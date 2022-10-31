@@ -1,0 +1,44 @@
+name: Generate OpenAPI
+on:
+  push:
+    branches:
+      - main
+jobs:
+  generate-client:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v2
+      - name: "Set Version"
+        run: echo "API_VERSION=$(cat meraki-openapi-version.txt | tr -d '\n')" >> $GITHUB_ENV
+        working-directory: ./build
+      - name: "Install JRE"
+        run: sudo apt update && sudo apt install -y default-jre
+      - name: "Fetch Specification"
+        run: wget https://github.com/meraki/openapi/archive/refs/tags/$API_VERSION.zip && unzip -j $API_VERSION.zip '*/spec2.json'
+      - name: "Install OpenAPI Generator"
+        run: wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.3.0/openapi-generator-cli-5.3.0.jar -O openapi-generator-cli.jar
+      - name: "Run OpenAPI Generator"
+        run: rm -rf client/; java -jar openapi-generator-cli.jar generate -i spec2.json -g go -o client -p enumClassPrefix=true -p structPrefix=true --package-name client -p packageVersion=$API_VERSION --git-user-id meraki --git-repo-id dashboard-api-go/client --git-host github.com
+      - name: "Timestamp"
+        run: date > generated_at.txt
+        working-directory: ./build
+      - name: "Cleanup"
+        run: rm openapi-generator-cli.jar; rm spec2.json; rm $API_VERSION.zip
+      - name: "Git Config"
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "<>"
+      - name: "Git Commit"
+        run: |
+          git add -A
+          git commit -m "OpenAPI client generation $API_VERSION"
+          git tag $API_VERSION
+          git push origin main
+          git push origin $API_VERSION
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ env.API_VERSION }}
+          name: Release ${{ env.API_VERSION }}
+          body: Meraki Golang Dashboard API ${{ env.API_VERSION }}
