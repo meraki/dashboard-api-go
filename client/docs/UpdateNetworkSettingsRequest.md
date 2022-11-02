@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LocalStatusPageEnabled** | Pointer to **bool** | Enables / disables the local device status pages (&lt;a target&#x3D;&#39;_blank&#39; href&#x3D;&#39;http://my.meraki.com/&#39;&gt;my.meraki.com, &lt;/a&gt;&lt;a target&#x3D;&#39;_blank&#39; href&#x3D;&#39;http://ap.meraki.com/&#39;&gt;ap.meraki.com, &lt;/a&gt;&lt;a target&#x3D;&#39;_blank&#39; href&#x3D;&#39;http://switch.meraki.com/&#39;&gt;switch.meraki.com, &lt;/a&gt;&lt;a target&#x3D;&#39;_blank&#39; href&#x3D;&#39;http://wired.meraki.com/&#39;&gt;wired.meraki.com&lt;/a&gt;). Optional (defaults to false) | [optional] 
 **RemoteStatusPageEnabled** | Pointer to **bool** | Enables / disables access to the device status page (&lt;a target&#x3D;&#39;_blank&#39;&gt;http://[device&#39;s LAN IP])&lt;/a&gt;. Optional. Can only be set if localStatusPageEnabled is set to true | [optional] 
-**SecureConnect** | Pointer to [**UpdateNetworkSettingsRequestSecureConnect**](UpdateNetworkSettingsRequestSecureConnect.md) |  | [optional] 
+**SecurePort** | Pointer to [**UpdateNetworkSettingsRequestSecurePort**](UpdateNetworkSettingsRequestSecurePort.md) |  | [optional] 
 **LocalStatusPage** | Pointer to [**UpdateNetworkSettingsRequestLocalStatusPage**](UpdateNetworkSettingsRequestLocalStatusPage.md) |  | [optional] 
 
 ## Methods
@@ -78,30 +78,30 @@ SetRemoteStatusPageEnabled sets RemoteStatusPageEnabled field to given value.
 
 HasRemoteStatusPageEnabled returns a boolean if a field has been set.
 
-### GetSecureConnect
+### GetSecurePort
 
-`func (o *UpdateNetworkSettingsRequest) GetSecureConnect() UpdateNetworkSettingsRequestSecureConnect`
+`func (o *UpdateNetworkSettingsRequest) GetSecurePort() UpdateNetworkSettingsRequestSecurePort`
 
-GetSecureConnect returns the SecureConnect field if non-nil, zero value otherwise.
+GetSecurePort returns the SecurePort field if non-nil, zero value otherwise.
 
-### GetSecureConnectOk
+### GetSecurePortOk
 
-`func (o *UpdateNetworkSettingsRequest) GetSecureConnectOk() (*UpdateNetworkSettingsRequestSecureConnect, bool)`
+`func (o *UpdateNetworkSettingsRequest) GetSecurePortOk() (*UpdateNetworkSettingsRequestSecurePort, bool)`
 
-GetSecureConnectOk returns a tuple with the SecureConnect field if it's non-nil, zero value otherwise
+GetSecurePortOk returns a tuple with the SecurePort field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSecureConnect
+### SetSecurePort
 
-`func (o *UpdateNetworkSettingsRequest) SetSecureConnect(v UpdateNetworkSettingsRequestSecureConnect)`
+`func (o *UpdateNetworkSettingsRequest) SetSecurePort(v UpdateNetworkSettingsRequestSecurePort)`
 
-SetSecureConnect sets SecureConnect field to given value.
+SetSecurePort sets SecurePort field to given value.
 
-### HasSecureConnect
+### HasSecurePort
 
-`func (o *UpdateNetworkSettingsRequest) HasSecureConnect() bool`
+`func (o *UpdateNetworkSettingsRequest) HasSecurePort() bool`
 
-HasSecureConnect returns a boolean if a field has been set.
+HasSecurePort returns a boolean if a field has been set.
 
 ### GetLocalStatusPage
 

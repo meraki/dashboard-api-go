@@ -22,6 +22,34 @@ func Test_client_OnboardingApiService(t *testing.T) {
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
 
+    t.Run("Test OnboardingApiService CreateOrganizationInventoryOnboardingCloudMonitoringImport", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+
+        resp, httpRes, err := apiClient.OnboardingApi.CreateOrganizationInventoryOnboardingCloudMonitoringImport(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test OnboardingApiService CreateOrganizationInventoryOnboardingCloudMonitoringPrepare", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+
+        resp, httpRes, err := apiClient.OnboardingApi.CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
     t.Run("Test OnboardingApiService GetOrganizationCameraOnboardingStatuses", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
@@ -29,6 +57,20 @@ func Test_client_OnboardingApiService(t *testing.T) {
         var organizationId string
 
         resp, httpRes, err := apiClient.OnboardingApi.GetOrganizationCameraOnboardingStatuses(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test OnboardingApiService GetOrganizationInventoryOnboardingCloudMonitoringImports", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+
+        resp, httpRes, err := apiClient.OnboardingApi.GetOrganizationInventoryOnboardingCloudMonitoringImports(context.Background(), organizationId).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)

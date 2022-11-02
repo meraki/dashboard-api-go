@@ -120,6 +120,20 @@ func Test_client_DevicesApiService(t *testing.T) {
 
     })
 
+    t.Run("Test DevicesApiService GetDeviceCellularSims", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var serial string
+
+        resp, httpRes, err := apiClient.DevicesApi.GetDeviceCellularSims(context.Background(), serial).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
     t.Run("Test DevicesApiService GetDeviceClients", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
@@ -704,6 +718,20 @@ func Test_client_DevicesApiService(t *testing.T) {
         var serial string
 
         resp, httpRes, err := apiClient.DevicesApi.UpdateDevice(context.Background(), serial).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test DevicesApiService UpdateDeviceCellularSims", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var serial string
+
+        resp, httpRes, err := apiClient.DevicesApi.UpdateDeviceCellularSims(context.Background(), serial).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)

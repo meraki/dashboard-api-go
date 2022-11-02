@@ -359,34 +359,6 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
     })
 
-    t.Run("Test ConfigureApiService CreateNetworkHttpServer", func(t *testing.T) {
-
-        t.Skip("skip test")  // remove to run test
-
-        var networkId string
-
-        resp, httpRes, err := apiClient.ConfigureApi.CreateNetworkHttpServer(context.Background(), networkId).Execute()
-
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
-
-    })
-
-    t.Run("Test ConfigureApiService CreateNetworkHttpServersWebhookTest", func(t *testing.T) {
-
-        t.Skip("skip test")  // remove to run test
-
-        var networkId string
-
-        resp, httpRes, err := apiClient.ConfigureApi.CreateNetworkHttpServersWebhookTest(context.Background(), networkId).Execute()
-
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
-
-    })
-
     t.Run("Test ConfigureApiService CreateNetworkMerakiAuthUser", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
@@ -836,6 +808,34 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
     })
 
+    t.Run("Test ConfigureApiService CreateOrganizationInventoryOnboardingCloudMonitoringImport", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.CreateOrganizationInventoryOnboardingCloudMonitoringImport(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test ConfigureApiService CreateOrganizationInventoryOnboardingCloudMonitoringPrepare", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
     t.Run("Test ConfigureApiService CreateOrganizationNetwork", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
@@ -843,6 +843,34 @@ func Test_client_ConfigureApiService(t *testing.T) {
         var organizationId string
 
         resp, httpRes, err := apiClient.ConfigureApi.CreateOrganizationNetwork(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test ConfigureApiService CreateOrganizationPolicyObject", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.CreateOrganizationPolicyObject(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test ConfigureApiService CreateOrganizationPolicyObjectsGroup", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.CreateOrganizationPolicyObjectsGroup(context.Background(), organizationId).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -1064,21 +1092,6 @@ func Test_client_ConfigureApiService(t *testing.T) {
         var groupPolicyId string
 
         resp, httpRes, err := apiClient.ConfigureApi.DeleteNetworkGroupPolicy(context.Background(), networkId, groupPolicyId).Execute()
-
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
-
-    })
-
-    t.Run("Test ConfigureApiService DeleteNetworkHttpServer", func(t *testing.T) {
-
-        t.Skip("skip test")  // remove to run test
-
-        var networkId string
-        var id string
-
-        resp, httpRes, err := apiClient.ConfigureApi.DeleteNetworkHttpServer(context.Background(), networkId, id).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -1553,6 +1566,36 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
     })
 
+    t.Run("Test ConfigureApiService DeleteOrganizationPolicyObject", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+        var policyObjectId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.DeleteOrganizationPolicyObject(context.Background(), organizationId, policyObjectId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test ConfigureApiService DeleteOrganizationPolicyObjectsGroup", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+        var policyObjectGroupId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.DeleteOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
     t.Run("Test ConfigureApiService DeleteOrganizationSamlIdp", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
@@ -1730,6 +1773,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
         var serial string
 
         resp, httpRes, err := apiClient.ConfigureApi.GetDeviceCellularGatewayPortForwardingRules(context.Background(), serial).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test ConfigureApiService GetDeviceCellularSims", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var serial string
+
+        resp, httpRes, err := apiClient.ConfigureApi.GetDeviceCellularSims(context.Background(), serial).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -2784,50 +2841,6 @@ func Test_client_ConfigureApiService(t *testing.T) {
         var networkId string
 
         resp, httpRes, err := apiClient.ConfigureApi.GetNetworkHealthAlerts(context.Background(), networkId).Execute()
-
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
-
-    })
-
-    t.Run("Test ConfigureApiService GetNetworkHttpServer", func(t *testing.T) {
-
-        t.Skip("skip test")  // remove to run test
-
-        var networkId string
-        var id string
-
-        resp, httpRes, err := apiClient.ConfigureApi.GetNetworkHttpServer(context.Background(), networkId, id).Execute()
-
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
-
-    })
-
-    t.Run("Test ConfigureApiService GetNetworkHttpServers", func(t *testing.T) {
-
-        t.Skip("skip test")  // remove to run test
-
-        var networkId string
-
-        resp, httpRes, err := apiClient.ConfigureApi.GetNetworkHttpServers(context.Background(), networkId).Execute()
-
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
-
-    })
-
-    t.Run("Test ConfigureApiService GetNetworkHttpServersWebhookTest", func(t *testing.T) {
-
-        t.Skip("skip test")  // remove to run test
-
-        var networkId string
-        var id string
-
-        resp, httpRes, err := apiClient.ConfigureApi.GetNetworkHttpServersWebhookTest(context.Background(), networkId, id).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -4602,6 +4615,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
     })
 
+    t.Run("Test ConfigureApiService GetOrganizationFirmwareUpgradesByDevice", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationFirmwareUpgradesByDevice(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
     t.Run("Test ConfigureApiService GetOrganizationInsightApplications", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
@@ -4674,6 +4701,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
     })
 
+    t.Run("Test ConfigureApiService GetOrganizationInventoryOnboardingCloudMonitoringImports", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationInventoryOnboardingCloudMonitoringImports(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
     t.Run("Test ConfigureApiService GetOrganizationLicense", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
@@ -4724,6 +4765,64 @@ func Test_client_ConfigureApiService(t *testing.T) {
         var organizationId string
 
         resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationNetworks(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test ConfigureApiService GetOrganizationPolicyObject", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+        var policyObjectId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationPolicyObject(context.Background(), organizationId, policyObjectId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test ConfigureApiService GetOrganizationPolicyObjects", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationPolicyObjects(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test ConfigureApiService GetOrganizationPolicyObjectsGroup", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+        var policyObjectGroupId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test ConfigureApiService GetOrganizationPolicyObjectsGroups", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationPolicyObjectsGroups(context.Background(), organizationId).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -5232,6 +5331,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
         var serial string
 
         resp, httpRes, err := apiClient.ConfigureApi.UpdateDeviceCellularGatewayPortForwardingRules(context.Background(), serial).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test ConfigureApiService UpdateDeviceCellularSims", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var serial string
+
+        resp, httpRes, err := apiClient.ConfigureApi.UpdateDeviceCellularSims(context.Background(), serial).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -6006,21 +6119,6 @@ func Test_client_ConfigureApiService(t *testing.T) {
         var groupPolicyId string
 
         resp, httpRes, err := apiClient.ConfigureApi.UpdateNetworkGroupPolicy(context.Background(), networkId, groupPolicyId).Execute()
-
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
-
-    })
-
-    t.Run("Test ConfigureApiService UpdateNetworkHttpServer", func(t *testing.T) {
-
-        t.Skip("skip test")  // remove to run test
-
-        var networkId string
-        var id string
-
-        resp, httpRes, err := apiClient.ConfigureApi.UpdateNetworkHttpServer(context.Background(), networkId, id).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -7033,6 +7131,36 @@ func Test_client_ConfigureApiService(t *testing.T) {
         var organizationId string
 
         resp, httpRes, err := apiClient.ConfigureApi.UpdateOrganizationLoginSecurity(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test ConfigureApiService UpdateOrganizationPolicyObject", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+        var policyObjectId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.UpdateOrganizationPolicyObject(context.Background(), organizationId, policyObjectId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test ConfigureApiService UpdateOrganizationPolicyObjectsGroup", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+        var policyObjectGroupId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.UpdateOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)

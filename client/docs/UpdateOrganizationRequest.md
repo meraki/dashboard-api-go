@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | The name of the organization | [optional] 
+**Management** | Pointer to [**GetOrganizations200ResponseInnerManagement**](GetOrganizations200ResponseInnerManagement.md) |  | [optional] 
 **Api** | Pointer to [**UpdateOrganizationRequestApi**](UpdateOrganizationRequestApi.md) |  | [optional] 
 
 ## Methods
@@ -50,6 +51,31 @@ SetName sets Name field to given value.
 `func (o *UpdateOrganizationRequest) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetManagement
+
+`func (o *UpdateOrganizationRequest) GetManagement() GetOrganizations200ResponseInnerManagement`
+
+GetManagement returns the Management field if non-nil, zero value otherwise.
+
+### GetManagementOk
+
+`func (o *UpdateOrganizationRequest) GetManagementOk() (*GetOrganizations200ResponseInnerManagement, bool)`
+
+GetManagementOk returns a tuple with the Management field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetManagement
+
+`func (o *UpdateOrganizationRequest) SetManagement(v GetOrganizations200ResponseInnerManagement)`
+
+SetManagement sets Management field to given value.
+
+### HasManagement
+
+`func (o *UpdateOrganizationRequest) HasManagement() bool`
+
+HasManagement returns a boolean if a field has been set.
 
 ### GetApi
 

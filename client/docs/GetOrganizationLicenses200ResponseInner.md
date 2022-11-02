@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **SeatCount** | Pointer to **int32** | The number of seats of the license. Only applicable to SM licenses. | [optional] 
 **TotalDurationInDays** | Pointer to **int32** | The duration of the license plus all permanently queued licenses associated with it | [optional] 
 **DurationInDays** | Pointer to **int32** | The duration of the individual license | [optional] 
-**PermanentlyQueuedLicenses** | Pointer to [**[]GetOrganizationLicenses200ResponseInnerPermanentlyQueuedLicensesInner**](GetOrganizationLicenses200ResponseInnerPermanentlyQueuedLicensesInner.md) | DEPRECATED List of permanently queued licenses attached to the license | [optional] 
+**PermanentlyQueuedLicenses** | Pointer to [**[]GetOrganizationLicenses200ResponseInnerPermanentlyQueuedLicensesInner**](GetOrganizationLicenses200ResponseInnerPermanentlyQueuedLicensesInner.md) | DEPRECATED List of permanently queued licenses attached to the license. Instead, use /organizations/{organizationId}/licenses?deviceSerial&#x3D; to retrieved queued licenses for a given device. | [optional] 
 **ClaimDate** | Pointer to **string** | The date the license was claimed into the organization | [optional] 
 **ActivationDate** | Pointer to **string** | The date the license started burning | [optional] 
 **ExpirationDate** | Pointer to **string** | The date the license will expire | [optional] 

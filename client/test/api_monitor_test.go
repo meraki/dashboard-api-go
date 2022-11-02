@@ -559,6 +559,20 @@ func Test_client_MonitorApiService(t *testing.T) {
 
     })
 
+    t.Run("Test MonitorApiService GetNetworkSensorAlertsOverviewByMetric", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var networkId string
+
+        resp, httpRes, err := apiClient.MonitorApi.GetNetworkSensorAlertsOverviewByMetric(context.Background(), networkId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
     t.Run("Test MonitorApiService GetNetworkSmDeviceCellularUsageHistory", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test

@@ -136,6 +136,20 @@ func Test_client_AlertsApiService(t *testing.T) {
 
     })
 
+    t.Run("Test AlertsApiService GetNetworkSensorAlertsOverviewByMetric", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var networkId string
+
+        resp, httpRes, err := apiClient.AlertsApi.GetNetworkSensorAlertsOverviewByMetric(context.Background(), networkId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
     t.Run("Test AlertsApiService GetNetworkSensorAlertsProfile", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
