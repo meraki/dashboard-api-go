@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The VLAN ID of the new VLAN (must be between 1 and 4094) | [optional] 
+**Id** | Pointer to **string** | The VLAN ID of the VLAN | [optional] 
+**InterfaceId** | Pointer to **string** | The interface ID of the VLAN | [optional] 
 **Name** | Pointer to **string** | The name of the VLAN | [optional] 
 **Subnet** | Pointer to **string** | The subnet of the VLAN | [optional] 
 **ApplianceIp** | Pointer to **string** | The local IP of the appliance on the VLAN | [optional] 
@@ -57,6 +58,31 @@ SetId sets Id field to given value.
 `func (o *CreateNetworkApplianceVlan201Response) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetInterfaceId
+
+`func (o *CreateNetworkApplianceVlan201Response) GetInterfaceId() string`
+
+GetInterfaceId returns the InterfaceId field if non-nil, zero value otherwise.
+
+### GetInterfaceIdOk
+
+`func (o *CreateNetworkApplianceVlan201Response) GetInterfaceIdOk() (*string, bool)`
+
+GetInterfaceIdOk returns a tuple with the InterfaceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInterfaceId
+
+`func (o *CreateNetworkApplianceVlan201Response) SetInterfaceId(v string)`
+
+SetInterfaceId sets InterfaceId field to given value.
+
+### HasInterfaceId
+
+`func (o *CreateNetworkApplianceVlan201Response) HasInterfaceId() bool`
+
+HasInterfaceId returns a boolean if a field has been set.
 
 ### GetName
 

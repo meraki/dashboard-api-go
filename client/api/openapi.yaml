@@ -6,7 +6,7 @@ info:
   description: |
     The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.
 
-    > Date: 05 October, 2022
+    > Date: 02 November, 2022
     >
     > [Recent Updates](https://meraki.io/whats-new/)
 
@@ -18,7 +18,7 @@ info:
 
     [Meraki Homepage](https://www.meraki.com)
   title: Meraki Dashboard API
-  version: 1.26.0
+  version: 1.27.0
 servers:
 - url: https://api.meraki.com/api/v1
 security:
@@ -74,6 +74,7 @@ tags:
 - name: byUtilization
 - name: bypassActivationLockAttempts
 - name: categories
+- name: cellular
 - name: cellularFirewallRules
 - name: cellularUsageHistory
 - name: certs
@@ -82,6 +83,7 @@ tags:
 - name: claim
 - name: clientCountHistory
 - name: clients
+- name: cloudMonitoring
 - name: configTemplates
 - name: configurationChanges
 - name: configure
@@ -125,6 +127,7 @@ tags:
 - name: identities
 - name: identityPsks
 - name: idps
+- name: imports
 - name: inboundCellularFirewallRules
 - name: inboundFirewallRules
 - name: interfaces
@@ -179,11 +182,13 @@ tags:
 - name: pingDevice
 - name: policies
 - name: policy
+- name: policyObjects
 - name: portForwardingRules
 - name: portSchedules
 - name: ports
 - name: powerModules
 - name: prefixes
+- name: prepare
 - name: priorities
 - name: profiles
 - name: qosRules
@@ -210,6 +215,7 @@ tags:
 - name: servers
 - name: settings
 - name: signalQualityHistory
+- name: sims
 - name: singleLan
 - name: siteToSiteVpn
 - name: smDevicesForKey
@@ -1388,6 +1394,82 @@ paths:
       - configure
       - wirelessProfiles
       x-codegen-request-body-name: updateDeviceCameraWirelessProfiles
+  /devices/{serial}/cellular/sims:
+    get:
+      description: Return the SIM and APN configurations for a cellular device.
+      operationId: getDeviceCellularSims
+      parameters:
+      - in: path
+        name: serial
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                sims:
+                - slot: sim1
+                  isPrimary: true
+                  apns:
+                  - name: internet
+                    allowedIpTypes:
+                    - ipv4
+                    - ipv6
+                    authentication:
+                      type: pap
+                      username: milesmeraki
+              schema:
+                type: object
+          description: Successful operation
+      summary: Return the SIM and APN configurations for a cellular device.
+      tags:
+      - devices
+      - configure
+      - cellular
+      - sims
+    put:
+      description: Updates the SIM and APN configurations for a cellular device.
+      operationId: updateDeviceCellularSims
+      parameters:
+      - in: path
+        name: serial
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateDeviceCellularSims_request'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                sims:
+                - slot: sim1
+                  isPrimary: true
+                  apns:
+                  - name: internet
+                    allowedIpTypes:
+                    - ipv4
+                    - ipv6
+                    authentication:
+                      type: pap
+                      username: milesmeraki
+              schema:
+                type: object
+          description: Successful operation
+      summary: Updates the SIM and APN configurations for a cellular device.
+      tags:
+      - devices
+      - configure
+      - cellular
+      - sims
+      x-codegen-request-body-name: updateDeviceCellularSims
   /devices/{serial}/cellularGateway/lan:
     get:
       description: Show the LAN Settings of a MG
@@ -2189,7 +2271,7 @@ paths:
                   total: 2.2
                   sent: 1.2
                   recv: 1.0
-                secureConnect:
+                securePort:
                   enabled: true
                   active: true
                   authenticationStatus: Authentication in progress
@@ -6522,7 +6604,9 @@ paths:
           content:
             application/json:
               example:
-              - name: My VLAN
+              - id: "1234"
+                interfaceId: "1284392014819"
+                name: My VLAN
                 subnet: 192.168.1.0/24
                 applianceIp: 192.168.1.2
                 groupPolicyId: "101"
@@ -6588,6 +6672,7 @@ paths:
             application/json:
               example:
                 id: "1234"
+                interfaceId: "1284392014819"
                 name: My VLAN
                 subnet: 192.168.1.0/24
                 applianceIp: 192.168.1.2
@@ -6713,6 +6798,8 @@ paths:
           content:
             application/json:
               example:
+                id: "1234"
+                interfaceId: "1284392014819"
                 name: My VLAN
                 subnet: 192.168.1.0/24
                 applianceIp: 192.168.1.2
@@ -6781,6 +6868,8 @@ paths:
           content:
             application/json:
               example:
+                id: "1234"
+                interfaceId: "1284392014819"
                 name: My VLAN
                 subnet: 192.168.1.0/24
                 applianceIp: 192.168.1.2
@@ -7794,7 +7883,7 @@ paths:
                 - 172.16.2.111
                 - 172.16.2.30
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkCellularGatewayDhcp_200_response'
           description: Successful operation
       summary: List common DHCP settings of MGs
       tags:
@@ -7827,7 +7916,7 @@ paths:
                 - 172.16.2.111
                 - 172.16.2.30
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkCellularGatewayDhcp_200_response'
           description: Successful operation
       summary: Update common DHCP settings of MGs
       tags:
@@ -9192,8 +9281,7 @@ paths:
                 description: 802.11 association
               schema:
                 items:
-                  properties: {}
-                  type: object
+                  $ref: '#/components/schemas/getNetworkEventsEventTypes_200_response_inner'
                 type: array
           description: Successful operation
       summary: List the event type to human-readable description
@@ -11156,240 +11244,6 @@ paths:
       - configure
       - health
       - alerts
-  /networks/{networkId}/httpServers:
-    get:
-      description: List the HTTP servers for a network
-      operationId: getNetworkHttpServers
-      parameters:
-      - in: path
-        name: networkId
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              example:
-              - id: aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=
-                name: Example Webhook Server
-                url: https://www.example.com/my_custom_webhook
-                networkId: N_12345678
-                payloadTemplate:
-                  payloadTemplateId: wpt_00001
-                  name: Meraki (included)
-              schema:
-                items:
-                  properties: {}
-                  type: object
-                type: array
-          description: Successful operation
-      summary: List the HTTP servers for a network
-      tags:
-      - networks
-      - configure
-      - httpServers
-    post:
-      description: Add an HTTP server to a network
-      operationId: createNetworkHttpServer
-      parameters:
-      - in: path
-        name: networkId
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/createNetworkHttpServer_request'
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              example:
-                id: aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=
-                name: Example Webhook Server
-                url: https://www.example.com/my_custom_webhook
-                networkId: N_12345678
-                payloadTemplate:
-                  payloadTemplateId: wpt_00001
-                  name: Meraki (included)
-              schema:
-                type: object
-          description: Successful operation
-      summary: Add an HTTP server to a network
-      tags:
-      - networks
-      - configure
-      - httpServers
-      x-codegen-request-body-name: createNetworkHttpServer
-  /networks/{networkId}/httpServers/webhookTests:
-    post:
-      description: Send a test webhook for a network
-      operationId: createNetworkHttpServersWebhookTest
-      parameters:
-      - in: path
-        name: networkId
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/createNetworkHttpServersWebhookTest_request'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              example:
-                id: "1234"
-                url: https://www.example.com/path
-                status: enqueued
-              schema:
-                type: object
-          description: Successful operation
-      summary: Send a test webhook for a network
-      tags:
-      - networks
-      - configure
-      - httpServers
-      - webhookTests
-      x-codegen-request-body-name: createNetworkHttpServersWebhookTest
-  /networks/{networkId}/httpServers/webhookTests/{id}:
-    get:
-      description: Return the status of a webhook test for a network
-      operationId: getNetworkHttpServersWebhookTest
-      parameters:
-      - in: path
-        name: networkId
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              example:
-                id: "1234"
-                url: https://www.example.com/path
-                status: delivered
-              schema:
-                type: object
-          description: Successful operation
-      summary: Return the status of a webhook test for a network
-      tags:
-      - networks
-      - configure
-      - httpServers
-      - webhookTests
-  /networks/{networkId}/httpServers/{id}:
-    delete:
-      description: Delete an HTTP server from a network
-      operationId: deleteNetworkHttpServer
-      parameters:
-      - in: path
-        name: networkId
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "204":
-          content: {}
-          description: Successful operation
-      summary: Delete an HTTP server from a network
-      tags:
-      - networks
-      - configure
-      - httpServers
-    get:
-      description: Return an HTTP server for a network
-      operationId: getNetworkHttpServer
-      parameters:
-      - in: path
-        name: networkId
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              example:
-                id: aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=
-                name: Example Webhook Server
-                url: https://www.example.com/my_custom_webhook
-                networkId: N_12345678
-                payloadTemplate:
-                  payloadTemplateId: wpt_00001
-                  name: Meraki (included)
-              schema:
-                type: object
-          description: Successful operation
-      summary: Return an HTTP server for a network
-      tags:
-      - networks
-      - configure
-      - httpServers
-    put:
-      description: Update an HTTP server
-      operationId: updateNetworkHttpServer
-      parameters:
-      - in: path
-        name: networkId
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/updateNetworkHttpServer_request'
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              example:
-                id: aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vbXlfY3VzdG9tX3dlYmhvb2s=
-                name: Example Webhook Server
-                url: https://www.example.com/my_custom_webhook
-                networkId: N_12345678
-                payloadTemplate:
-                  payloadTemplateId: wpt_00001
-                  name: Meraki (included)
-              schema:
-                type: object
-          description: Successful operation
-      summary: Update an HTTP server
-      tags:
-      - networks
-      - configure
-      - httpServers
-      x-codegen-request-body-name: updateNetworkHttpServer
   /networks/{networkId}/insight/applications/{applicationId}/healthByTime:
     get:
       description: Get application health by time
@@ -11490,8 +11344,7 @@ paths:
                   authorizedByEmail: miles@meraki.com
               schema:
                 items:
-                  properties: {}
-                  type: object
+                  $ref: '#/components/schemas/getNetworkMerakiAuthUsers_200_response_inner'
                 type: array
           description: Successful operation
       summary: "List the users configured under Meraki Authentication for a network\
@@ -11536,7 +11389,7 @@ paths:
                   authorizedByName: Miles Meraki
                   authorizedByEmail: miles@meraki.com
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkMerakiAuthUsers_200_response_inner'
           description: Successful operation
       summary: "Authorize a user configured with Meraki Authentication for a network\
         \ (currently supports 802.1X, splash guest, and client VPN users, and currently,\
@@ -11604,7 +11457,7 @@ paths:
                   authorizedByName: Miles Meraki
                   authorizedByEmail: miles@meraki.com
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkMerakiAuthUsers_200_response_inner'
           description: Successful operation
       summary: "Return the Meraki Auth splash guest, RADIUS, or client VPN user"
       tags:
@@ -11650,7 +11503,7 @@ paths:
                   authorizedByName: Miles Meraki
                   authorizedByEmail: miles@meraki.com
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkMerakiAuthUsers_200_response_inner'
           description: Successful operation
       summary: "Update a user configured with Meraki Authentication (currently, 802.1X\
         \ RADIUS, splash guest, and client VPN users can be updated)"
@@ -12509,6 +12362,71 @@ paths:
       - current
       - overview
       - byMetric
+  /networks/{networkId}/sensor/alerts/overview/byMetric:
+    get:
+      description: "Return an overview of alert occurrences over a timespan, by metric"
+      operationId: getNetworkSensorAlertsOverviewByMetric
+      parameters:
+      - in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+      - description: The beginning of the timespan for the data. The maximum lookback
+          period is 365 days from today.
+        in: query
+        name: t0
+        schema:
+          type: string
+      - description: The end of the timespan for the data. t1 can be a maximum of
+          31 days after t0.
+        in: query
+        name: t1
+        schema:
+          type: string
+      - description: "The timespan for which the information will be fetched. If specifying\
+          \ timespan, do not specify parameters t0 and t1. The value must be in seconds\
+          \ and be less than or equal to 31 days. The default is 7 days."
+        in: query
+        name: timespan
+        schema:
+          format: float
+          type: number
+      - description: "The time interval in seconds for returned data. The valid intervals\
+          \ are: 86400, 604800. The default is 604800."
+        in: query
+        name: interval
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - startTs: 2022-08-21T00:00:00Z
+                endTs: 2022-08-27T23:59:59Z
+                counts:
+                  door: 0
+                  humidity: 1
+                  indoorAirQuality: 0
+                  noise:
+                    ambient: 2
+                  pm25: 0
+                  temperature: 4
+                  tvoc: 0
+                  water: 0
+              schema:
+                items:
+                  $ref: '#/components/schemas/getNetworkSensorAlertsOverviewByMetric_200_response_inner'
+                type: array
+          description: Successful operation
+      summary: "Return an overview of alert occurrences over a timespan, by metric"
+      tags:
+      - sensor
+      - monitor
+      - alerts
+      - overview
+      - byMetric
   /networks/{networkId}/sensor/alerts/profiles:
     get:
       description: Lists all sensor alert profiles for a network.
@@ -12671,7 +12589,7 @@ paths:
         schema:
           type: string
       responses:
-        "200":
+        "204":
           content: {}
           description: Successful operation
       summary: Deletes a sensor alert profile from a network.
@@ -12854,7 +12772,7 @@ paths:
                   authentication:
                     enabled: false
                     username: admin
-                secureConnect:
+                securePort:
                   enabled: false
                 fips:
                   enabled: true
@@ -12894,7 +12812,7 @@ paths:
                   authentication:
                     enabled: false
                     username: admin
-                secureConnect:
+                securePort:
                   enabled: false
                 fips:
                   enabled: true
@@ -14219,6 +14137,7 @@ paths:
                 tags:
                 - tag1
                 - tag2
+                timeboundType: static
                 accessStartAt: 2018-02-11T00:00:00Z
                 accessEndAt: 2018-05-12T00:00:00Z
               schema:
@@ -18047,6 +17966,12 @@ paths:
         required: true
         schema:
           type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/unbindNetwork_request'
+        required: false
       responses:
         "200":
           content:
@@ -18074,6 +17999,7 @@ paths:
       tags:
       - networks
       - configure
+      x-codegen-request-body-name: unbindNetwork
   /networks/{networkId}/webhooks/httpServers:
     get:
       description: List the HTTP servers for a network
@@ -18367,13 +18293,13 @@ paths:
                 payloadTemplateId: wpt_343
                 type: custom
                 name: Weeb Hooks
-                body: "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"\
-                  text\":\"{{alertData}}\"}}"
                 headers:
                 - name: Authorization
                   template: "Bearer {{sharedSecret}}"
+                body: "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"\
+                  text\":\"{{alertData}}\"}}"
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkWebhooksPayloadTemplates_200_response_inner'
           description: Successful operation
       summary: Get the webhook payload template for a network
       tags:
@@ -18409,13 +18335,13 @@ paths:
                 payloadTemplateId: wpt_343
                 type: custom
                 name: Weeb Hooks
-                body: "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"\
-                  text\":\"{{alertData}}\"}}"
                 headers:
                 - name: Authorization
                   template: "Bearer {{sharedSecret}}"
+                body: "{\"event_type\":\"{{alertTypeId}}\",\"client_payload\":{\"\
+                  text\":\"{{alertData}}\"}}"
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkWebhooksPayloadTemplates_200_response_inner'
           description: Successful operation
       summary: Update a webhook payload template for a network
       tags:
@@ -22839,6 +22765,10 @@ paths:
                 cloud:
                   region:
                     name: North America
+                management:
+                  details:
+                  - name: MSP ID
+                    value: "123456"
               schema:
                 items:
                   $ref: '#/components/schemas/getOrganizations_200_response_inner'
@@ -22872,6 +22802,10 @@ paths:
                 cloud:
                   region:
                     name: North America
+                management:
+                  details:
+                  - name: MSP ID
+                    value: "123456"
               schema:
                 $ref: '#/components/schemas/getOrganizations_200_response_inner'
           description: Successful operation
@@ -22922,6 +22856,10 @@ paths:
                 cloud:
                   region:
                     name: North America
+                management:
+                  details:
+                  - name: MSP ID
+                    value: "123456"
               schema:
                 $ref: '#/components/schemas/getOrganizations_200_response_inner'
           description: Successful operation
@@ -22959,6 +22897,10 @@ paths:
                 cloud:
                   region:
                     name: North America
+                management:
+                  details:
+                  - name: MSP ID
+                    value: "123456"
               schema:
                 $ref: '#/components/schemas/getOrganizations_200_response_inner'
           description: Successful operation
@@ -23610,12 +23552,19 @@ paths:
               example:
                 counts:
                   groups: 10
+                  customGroups: 8
                   customAcls: 12
                   policies: 100
                   denyPolicies: 30
                   allowPolicies: 70
+                  policyObjects: 13
+                limits:
+                  customGroups: 60
+                  rulesInAnAcl: 16
+                  aclsInAPolicy: 7
+                  policyObjects: 8000
               schema:
-                type: object
+                $ref: '#/components/schemas/getOrganizationAdaptivePolicyOverview_200_response'
           description: Successful operation
       summary: Returns adaptive policy aggregate statistics for an organization
       tags:
@@ -25044,13 +24993,13 @@ paths:
             application/json:
               example:
                 peers:
-                - name: My peer 1
+                - name: Peer Name
                   publicIp: 123.123.123.1
+                  remoteId: miles@meraki.com
+                  localId: myMXId@meraki.com
                   privateSubnets:
                   - 192.168.1.0/24
                   - 192.168.128.0/24
-                  secret: asdf1234
-                  ikeVersion: "2"
                   ipsecPolicies:
                     ikeCipherAlgo:
                     - tripledes
@@ -25068,21 +25017,12 @@ paths:
                     childPfsGroup:
                     - disabled
                     childLifetime: 28800
+                  ipsecPoliciesPreset: default
+                  ikeVersion: "1"
                   networkTags:
                   - all
-                - name: My peer 2
-                  publicIp: 123.123.123.2
-                  remoteId: miles@meraki.com
-                  privateSubnets:
-                  - 192.168.2.0/24
-                  - 192.168.129.0/24
-                  secret: asdf56785678567856785678
-                  networkTags:
-                  - none
-                  ikeVersion: "1"
-                  ipsecPoliciesPreset: default
               schema:
-                type: object
+                $ref: '#/components/schemas/getOrganizationApplianceVpnThirdPartyVPNPeers_200_response'
           description: Successful operation
       summary: Return the third party VPN peers for an organization
       tags:
@@ -25111,13 +25051,13 @@ paths:
             application/json:
               example:
                 peers:
-                - name: My peer 1
+                - name: Peer Name
                   publicIp: 123.123.123.1
+                  remoteId: miles@meraki.com
+                  localId: myMXId@meraki.com
                   privateSubnets:
                   - 192.168.1.0/24
                   - 192.168.128.0/24
-                  secret: asdf1234
-                  ikeVersion: "2"
                   ipsecPolicies:
                     ikeCipherAlgo:
                     - tripledes
@@ -25135,21 +25075,12 @@ paths:
                     childPfsGroup:
                     - disabled
                     childLifetime: 28800
+                  ipsecPoliciesPreset: default
+                  ikeVersion: "1"
                   networkTags:
                   - all
-                - name: My peer 2
-                  publicIp: 123.123.123.2
-                  remoteId: miles@meraki.com
-                  privateSubnets:
-                  - 192.168.2.0/24
-                  - 192.168.129.0/24
-                  secret: asdf56785678567856785678
-                  networkTags:
-                  - none
-                  ikeVersion: "1"
-                  ipsecPoliciesPreset: default
               schema:
-                type: object
+                $ref: '#/components/schemas/getOrganizationApplianceVpnThirdPartyVPNPeers_200_response'
           description: Successful operation
       summary: Update the third party VPN peers for an organization
       tags:
@@ -25858,8 +25789,7 @@ paths:
                   iccid: "123456789"
               schema:
                 items:
-                  properties: {}
-                  type: object
+                  $ref: '#/components/schemas/getOrganizationCellularGatewayUplinkStatuses_200_response_inner'
                 type: array
           description: Successful operation
           headers:
@@ -26158,6 +26088,10 @@ paths:
                 cloud:
                   region:
                     name: North America
+                management:
+                  details:
+                  - name: MSP ID
+                    value: "123456"
               schema:
                 $ref: '#/components/schemas/getOrganizations_200_response_inner'
           description: Successful operation
@@ -27815,6 +27749,132 @@ paths:
       - configure
       - firmware
       - upgrades
+  /organizations/{organizationId}/firmware/upgrades/byDevice:
+    get:
+      description: Get firmware upgrade status for the filtered devices
+      operationId: getOrganizationFirmwareUpgradesByDevice
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - description: The number of entries per page returned. Acceptable range is
+          3 - 50. Default is 50.
+        in: query
+        name: perPage
+        schema:
+          type: integer
+      - description: "A token used by the server to indicate the start of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        in: query
+        name: startingAfter
+        schema:
+          type: string
+      - description: "A token used by the server to indicate the end of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        in: query
+        name: endingBefore
+        schema:
+          type: string
+      - description: Optional parameter to filter by network
+        explode: false
+        in: query
+        name: networkIds
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Optional parameter to filter by serial number.  All returned
+          devices will have a serial number that is an exact match.
+        explode: false
+        in: query
+        name: serials
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Optional parameter to filter by one or more MAC addresses belonging
+          to devices. All devices returned belong to MAC addresses that are an exact
+          match.
+        explode: false
+        in: query
+        name: macs
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Optional parameter to filter by firmware upgrade ids.
+        explode: false
+        in: query
+        name: firmwareUpgradeIds
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Optional parameter to filter by firmware upgrade batch ids.
+        explode: false
+        in: query
+        name: firmwareUpgradeBatchIds
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - serial: Q234-ABCD-5678
+                name: My AP
+                deviceStatus: completed
+                upgrade:
+                  time: 2018-02-11T00:00:00.090210Z
+                  fromVersion:
+                    id: "1234"
+                    shortName: MV 10.8.1
+                    releaseType: stable
+                    releaseDate: 2018-02-11T00:00:00.090210Z
+                  toVersion:
+                    id: "1234"
+                    shortName: MV 11.2.1
+                    releaseType: stable
+                    releaseDate: 2018-02-11T00:00:00.090210Z
+                  status: completed
+                  id: "1234"
+                  upgradeBatchId: "1234"
+                  staged:
+                    group:
+                      id: "1234"
+              schema:
+                items:
+                  $ref: '#/components/schemas/getOrganizationFirmwareUpgradesByDevice_200_response_inner'
+                type: array
+          description: Successful operation
+          headers:
+            Link:
+              description: "A comma-separated list of first, last, prev, and next\
+                \ relative links used for subsequent paginated requests."
+              schema:
+                type: string
+      summary: Get firmware upgrade status for the filtered devices
+      tags:
+      - organizations
+      - configure
+      - firmware
+      - upgrades
+      - byDevice
   /organizations/{organizationId}/insight/applications:
     get:
       description: List all Insight tracked applications
@@ -28192,8 +28252,7 @@ paths:
                 productType: wireless
               schema:
                 items:
-                  properties: {}
-                  type: object
+                  $ref: '#/components/schemas/getOrganizationInventoryDevices_200_response_inner'
                 type: array
           description: Successful operation
           headers:
@@ -28241,7 +28300,7 @@ paths:
                 - tag2
                 productType: wireless
               schema:
-                type: object
+                $ref: '#/components/schemas/getOrganizationInventoryDevices_200_response_inner'
           description: Successful operation
       summary: Return a single device from the inventory of an organization
       tags:
@@ -28249,6 +28308,143 @@ paths:
       - configure
       - inventory
       - devices
+  /organizations/{organizationId}/inventory/onboarding/cloudMonitoring/imports:
+    get:
+      description: Check the status of a committed Import operation
+      operationId: getOrganizationInventoryOnboardingCloudMonitoringImports
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - description: import ids from an imports
+        explode: false
+        in: query
+        name: importIds
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - importId: "0000000000000000"
+                device:
+                  url: https://n1.meraki.com//n//manage/nodes/new_list/000000000000
+                  created: true
+                  status: SUCCESS
+              schema:
+                items:
+                  $ref: '#/components/schemas/getOrganizationInventoryOnboardingCloudMonitoringImports_200_response_inner'
+                type: array
+          description: Successful operation
+      summary: Check the status of a committed Import operation
+      tags:
+      - organizations
+      - configure
+      - inventory
+      - onboarding
+      - cloudMonitoring
+      - imports
+    post:
+      description: Commits the import operation to complete the onboarding of a device
+        into Dashboard for monitoring.
+      operationId: createOrganizationInventoryOnboardingCloudMonitoringImport
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringImport_request'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+              - status: IMPORT JOB SUCCESS
+                importId: "1234"
+                message: Import Started
+              schema:
+                items:
+                  $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringImport_201_response_inner'
+                type: array
+          description: Successful operation
+      summary: Commits the import operation to complete the onboarding of a device
+        into Dashboard for monitoring.
+      tags:
+      - organizations
+      - configure
+      - inventory
+      - onboarding
+      - cloudMonitoring
+      - imports
+      x-codegen-request-body-name: createOrganizationInventoryOnboardingCloudMonitoringImport
+  /organizations/{organizationId}/inventory/onboarding/cloudMonitoring/prepare:
+    post:
+      description: Initiates or updates an import session. An import ID will be generated
+        and used when you are ready to commit the import.
+      operationId: createOrganizationInventoryOnboardingCloudMonitoringPrepare
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_request'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+              - message: Existing import found
+                udi: PID:C9200L-24P-4G SN:JAE25220R2K
+                deviceId: 161b2602-a713-4aac-b1eb-d9b55205353d
+                status: SUCCESS
+                configParams:
+                  tunnel:
+                    mode: "443"
+                    port: "443"
+                    host: secgw-int3.ciscocloudoffer.com
+                    name: MERAKI-PRIMARY
+                    rootCertificate:
+                      content: ""
+                      name: MERAKI_TLSGW_CA
+                  cloudStaticIp: 1.2.3.4
+                  user:
+                    publicKey: ""
+                    username: MERAKI_USER
+                    secret:
+                      hash: ""
+              schema:
+                items:
+                  $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_201_response_inner'
+                type: array
+          description: Successful operation
+      summary: Initiates or updates an import session
+      tags:
+      - organizations
+      - configure
+      - inventory
+      - onboarding
+      - cloudMonitoring
+      - prepare
+      x-codegen-request-body-name: createOrganizationInventoryOnboardingCloudMonitoringPrepare
   /organizations/{organizationId}/inventory/release:
     post:
       description: Release a list of claimed devices from an organization.
@@ -29011,6 +29207,415 @@ paths:
       - organizations
       - monitor
       - openapiSpec
+  /organizations/{organizationId}/policyObjects:
+    get:
+      description: Lists Policy Objects belonging to the organization.
+      operationId: getOrganizationPolicyObjects
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - description: The number of entries per page returned. Acceptable range is
+          10 - 5000. Default is 5000.
+        in: query
+        name: perPage
+        schema:
+          type: integer
+      - description: "A token used by the server to indicate the start of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        in: query
+        name: startingAfter
+        schema:
+          type: string
+      - description: "A token used by the server to indicate the end of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        in: query
+        name: endingBefore
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - id: "1234"
+                name: Web Servers - Datacenter 10
+                category: network
+                type: cidr
+                cidr: 10.0.0.0/24
+                created_at: 2018-05-12T00:00:00Z
+                updated_at: 2018-05-12T00:00:00Z
+                groupIds: []
+                networkIds: []
+              schema:
+                items:
+                  properties: {}
+                  type: object
+                type: array
+          description: Successful operation
+          headers:
+            Link:
+              description: "A comma-separated list of first, last, prev, and next\
+                \ relative links used for subsequent paginated requests."
+              schema:
+                type: string
+      summary: Lists Policy Objects belonging to the organization.
+      tags:
+      - organizations
+      - configure
+      - policyObjects
+    post:
+      description: Creates a new Policy Object.
+      operationId: createOrganizationPolicyObject
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createOrganizationPolicyObject_request'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                id: "1234"
+                name: Web Servers - Datacenter 10
+                category: network
+                type: cidr
+                cidr: 10.0.0.0/24
+                created_at: 2018-05-12T00:00:00Z
+                updated_at: 2018-05-12T00:00:00Z
+                groupIds: []
+                networkIds: []
+              schema:
+                type: object
+          description: Successful operation
+      summary: Creates a new Policy Object.
+      tags:
+      - organizations
+      - configure
+      - policyObjects
+      x-codegen-request-body-name: createOrganizationPolicyObject
+  /organizations/{organizationId}/policyObjects/groups:
+    get:
+      description: Lists Policy Object Groups belonging to the organization.
+      operationId: getOrganizationPolicyObjectsGroups
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - description: The number of entries per page returned. Acceptable range is
+          10 - 1000. Default is 1000.
+        in: query
+        name: perPage
+        schema:
+          type: integer
+      - description: "A token used by the server to indicate the start of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        in: query
+        name: startingAfter
+        schema:
+          type: string
+      - description: "A token used by the server to indicate the end of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        in: query
+        name: endingBefore
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - id: "1234"
+                name: Web Servers - Datacenter 10
+                category: NetworkObjectGroup
+                created_at: 2018-05-12T00:00:00Z
+                updated_at: 2018-05-12T00:00:00Z
+                objectIds: []
+                networkIds: []
+              schema:
+                items:
+                  properties: {}
+                  type: object
+                type: array
+          description: Successful operation
+          headers:
+            Link:
+              description: "A comma-separated list of first, last, prev, and next\
+                \ relative links used for subsequent paginated requests."
+              schema:
+                type: string
+      summary: Lists Policy Object Groups belonging to the organization.
+      tags:
+      - organizations
+      - configure
+      - policyObjects
+      - groups
+    post:
+      description: Creates a new Policy Object Group.
+      operationId: createOrganizationPolicyObjectsGroup
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createOrganizationPolicyObjectsGroup_request'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                id: "1234"
+                name: Web Servers - Datacenter 10
+                category: NetworkObjectGroup
+                created_at: 2018-05-12T00:00:00Z
+                updated_at: 2018-05-12T00:00:00Z
+                objectIds: []
+                networkIds: []
+              schema:
+                type: object
+          description: Successful operation
+      summary: Creates a new Policy Object Group.
+      tags:
+      - organizations
+      - configure
+      - policyObjects
+      - groups
+      x-codegen-request-body-name: createOrganizationPolicyObjectsGroup
+  /organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}:
+    delete:
+      description: Deletes a Policy Object Group.
+      operationId: deleteOrganizationPolicyObjectsGroup
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: policyObjectGroupId
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: Successful operation
+      summary: Deletes a Policy Object Group.
+      tags:
+      - organizations
+      - configure
+      - policyObjects
+      - groups
+    get:
+      description: Shows details of a Policy Object Group.
+      operationId: getOrganizationPolicyObjectsGroup
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: policyObjectGroupId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                id: "1234"
+                name: Web Servers - Datacenter 10
+                category: NetworkObjectGroup
+                created_at: 2018-05-12T00:00:00Z
+                updated_at: 2018-05-12T00:00:00Z
+                objectIds: []
+                networkIds: []
+              schema:
+                type: object
+          description: Successful operation
+      summary: Shows details of a Policy Object Group.
+      tags:
+      - organizations
+      - configure
+      - policyObjects
+      - groups
+    put:
+      description: Updates a Policy Object Group.
+      operationId: updateOrganizationPolicyObjectsGroup
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: policyObjectGroupId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateOrganizationPolicyObjectsGroup_request'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                id: "1234"
+                name: Web Servers - Datacenter 10
+                category: NetworkObjectGroup
+                created_at: 2018-05-12T00:00:00Z
+                updated_at: 2018-05-12T00:00:00Z
+                objectIds: []
+                networkIds: []
+              schema:
+                type: object
+          description: Successful operation
+      summary: Updates a Policy Object Group.
+      tags:
+      - organizations
+      - configure
+      - policyObjects
+      - groups
+      x-codegen-request-body-name: updateOrganizationPolicyObjectsGroup
+  /organizations/{organizationId}/policyObjects/{policyObjectId}:
+    delete:
+      description: Deletes a Policy Object.
+      operationId: deleteOrganizationPolicyObject
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: policyObjectId
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: Successful operation
+      summary: Deletes a Policy Object.
+      tags:
+      - organizations
+      - configure
+      - policyObjects
+    get:
+      description: Shows details of a Policy Object.
+      operationId: getOrganizationPolicyObject
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: policyObjectId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                id: "1234"
+                name: Web Servers - Datacenter 10
+                category: network
+                type: cidr
+                cidr: 10.0.0.0/24
+                created_at: 2018-05-12T00:00:00Z
+                updated_at: 2018-05-12T00:00:00Z
+                groupIds: []
+                networkIds: []
+              schema:
+                type: object
+          description: Successful operation
+      summary: Shows details of a Policy Object.
+      tags:
+      - organizations
+      - configure
+      - policyObjects
+    put:
+      description: Updates a Policy Object.
+      operationId: updateOrganizationPolicyObject
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: policyObjectId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateOrganizationPolicyObject_request'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                id: "1234"
+                name: Web Servers - Datacenter 10
+                category: network
+                type: cidr
+                cidr: 10.0.0.0/24
+                created_at: 2018-05-12T00:00:00Z
+                updated_at: 2018-05-12T00:00:00Z
+                groupIds: []
+                networkIds: []
+              schema:
+                type: object
+          description: Successful operation
+      summary: Updates a Policy Object.
+      tags:
+      - organizations
+      - configure
+      - policyObjects
+      x-codegen-request-body-name: updateOrganizationPolicyObject
   /organizations/{organizationId}/saml:
     get:
       description: Returns the SAML SSO enabled settings for an organization.
@@ -30649,6 +31254,7 @@ paths:
           - appliance
           - camera
           - cellularGateway
+          - health
           - platform
           - sensor
           - sm
@@ -30813,6 +31419,31 @@ components:
       - quality
       - resolution
       type: object
+    getNetworkMerakiAuthUsers_200_response_inner_authorizations_inner:
+      example:
+        ssidNumber: 0
+        authorizedByName: authorizedByName
+        authorizedZone: authorizedZone
+        authorizedByEmail: authorizedByEmail
+        expiresAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        ssidNumber:
+          description: SSID number
+          type: integer
+        authorizedZone:
+          description: Authorized zone of the user
+          type: string
+        expiresAt:
+          description: Authorization expiration time
+          format: date-time
+          type: string
+        authorizedByName:
+          description: User is authorized by the account name
+          type: string
+        authorizedByEmail:
+          description: User is authorized by the account email address
+          type: string
+      type: object
     createOrganizationAdaptivePolicyPolicy_request_destinationGroup:
       description: |
         The destination adaptive policy group (requires one unique attribute)
@@ -30927,6 +31558,14 @@ components:
           $ref: '#/components/schemas/getNetworkAlertsHistory_200_response_inner_destinations_sms'
         webhook:
           $ref: '#/components/schemas/getNetworkAlertsHistory_200_response_inner_destinations_webhook'
+      type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_accessList:
+      description: AccessList details
+      properties:
+        vtyIn:
+          $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_accessList_vtyIn'
+        vtyOut:
+          $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_accessList_vtyOut'
       type: object
     createNetworkCameraQualityRetentionProfile_request_videoSettings_MV52:
       description: Quality and resolution for MV52 camera models.
@@ -31096,13 +31735,6 @@ components:
       properties:
         created:
           description: If API key is created for this user
-          type: boolean
-      type: object
-    updateNetworkSettings_request_secureConnect:
-      description: A hash of SecureConnect options applied to the Network.
-      properties:
-        enabled:
-          description: Enables / disables SecureConnect on the network. Optional.
           type: boolean
       type: object
     updateOrganizationLicense_request:
@@ -31477,6 +32109,25 @@ components:
           pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
       type: object
+    updateDeviceCellularSims_request_sims_inner_apns_inner_authentication:
+      description: APN authentication configurations.
+      properties:
+        type:
+          default: none
+          description: APN auth type.
+          enum:
+          - pap
+          - chap
+          - none
+          type: string
+        username:
+          description: "APN username, if type is set."
+          type: string
+        password:
+          description: "APN password, if type is set (if APN password is not supplied,\
+            \ the password is left unchanged)."
+          type: string
+      type: object
     updateNetworkSwitchRoutingMulticast_request_defaultSettings:
       description: Default multicast setting for entire network. IGMP snooping and
         Flood unknown multicast traffic settings are enabled by default.
@@ -31510,6 +32161,56 @@ components:
           $ref: '#/components/schemas/updateNetworkSmDevicesFields_request_deviceFields'
       required:
       - deviceFields
+      type: object
+    getOrganizationInventoryDevices_200_response_inner:
+      example:
+        claimedAt: 2000-01-23T04:56:07.000+00:00
+        orderNumber: orderNumber
+        serial: serial
+        licenseExpirationDate: 2000-01-23T04:56:07.000+00:00
+        name: name
+        model: model
+        networkId: networkId
+        mac: mac
+        productType: productType
+        tags:
+        - tags
+        - tags
+      properties:
+        mac:
+          description: MAC address of the device
+          type: string
+        serial:
+          description: Serial number of the device
+          type: string
+        name:
+          description: Name of the device
+          type: string
+        model:
+          description: Model type of the device
+          type: string
+        networkId:
+          description: Network Id of the device
+          type: string
+        orderNumber:
+          description: Order number of the device
+          type: string
+        claimedAt:
+          description: Claimed time of the device
+          format: date-time
+          type: string
+        licenseExpirationDate:
+          description: License expiration date of the device
+          format: date-time
+          type: string
+        tags:
+          description: Device tags
+          items:
+            type: string
+          type: array
+        productType:
+          description: Product type of the device
+          type: string
       type: object
     provisionNetworkClients_request_policiesBySsid:
       description: "An object, describing the policy-connection associations for each\
@@ -31886,6 +32587,44 @@ components:
             of null will reset this to the default.
           type: integer
       type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_201_response_inner:
+      example:
+        configParams:
+          cloudStaticIp: cloudStaticIp
+          user:
+            publicKey: publicKey
+            secret:
+              hash: hash
+            username: username
+          tunnel:
+            mode: mode
+            rootCertificate:
+              name: name
+              content: content
+            port: port
+            host: host
+            name: name
+        udi: udi
+        message: message
+        deviceId: deviceId
+        status: status
+      properties:
+        message:
+          description: Message related to whether or not the device was found and
+            can be imported.
+          type: string
+        udi:
+          description: Device UDI certificate
+          type: string
+        deviceId:
+          description: Import ID from the Import operation
+          type: string
+        status:
+          description: The import status of the device
+          type: string
+        configParams:
+          $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_201_response_inner_configParams'
+      type: object
     updateNetworkApplianceVlan_request:
       example:
         name: My VLAN
@@ -32147,6 +32886,28 @@ components:
             $ref: '#/components/schemas/getOrganizationDevicesUplinksLossAndLatency_200_response_inner_timeSeries_inner'
           type: array
       type: object
+    getOrganizationFirmwareUpgradesByDevice_200_response_inner_upgrade_staged:
+      description: Staged upgrade
+      example:
+        group:
+          id: id
+      properties:
+        group:
+          $ref: '#/components/schemas/getOrganizationFirmwareUpgradesByDevice_200_response_inner_upgrade_staged_group'
+      type: object
+    getOrganizationCellularGatewayUplinkStatuses_200_response_inner_uplinks_inner_signalStat:
+      description: Tower Signal Status
+      example:
+        rsrq: rsrq
+        rsrp: rsrp
+      properties:
+        rsrp:
+          description: Reference Signal Received Power
+          type: string
+        rsrq:
+          description: Reference Signal Received Quality
+          type: string
+      type: object
     getDeviceSwitchRoutingInterfaces_200_response_inner:
       example:
         subnet: subnet
@@ -32207,6 +32968,31 @@ components:
           description: Optional numerical identifier that will add the GRE key field
             to the GRE header. Used to identify an individual traffic flow within
             a tunnel.
+          type: integer
+      type: object
+    getOrganizationAdaptivePolicyOverview_200_response_limits:
+      description: The current limits of various adaptive policy objects.
+      example:
+        customGroups: 9
+        rulesInAnAcl: 3
+        policyObjects: 4
+        aclsInAPolicy: 2
+      properties:
+        customGroups:
+          description: Maximum number of user-created adaptive policy groups allowed
+            in the organization.
+          type: integer
+        rulesInAnAcl:
+          description: Maximum number of rules allowed in an adaptive policy ACL in
+            the organization.
+          type: integer
+        aclsInAPolicy:
+          description: Maximum number of adaptive policy ACLs that can be assigned
+            to an adaptive policy in the organization.
+          type: integer
+        policyObjects:
+          description: Maximum number of policy objects (with the adaptive policy
+            type) allowed in the organization.
           type: integer
       type: object
     updateNetworkApplianceTrafficShapingRules_request:
@@ -32289,6 +33075,22 @@ components:
         isAuthorized:
           description: "New authorization status for the SSID (true, false)."
           type: boolean
+      type: object
+    getNetworkEventsEventTypes_200_response_inner:
+      example:
+        description: description
+        category: category
+        type: type
+      properties:
+        category:
+          description: Event category
+          type: string
+        type:
+          description: Event type
+          type: string
+        description:
+          description: Description of the event
+          type: string
       type: object
     createNetworkWirelessRfProfile_201_response_perSsidSettings_7:
       description: Settings for SSID 7
@@ -32746,6 +33548,18 @@ components:
             Can be either true or false.
           type: boolean
       type: object
+    getOrganizations_200_response_inner_management_details_inner:
+      example:
+        name: name
+        value: value
+      properties:
+        name:
+          description: Name of management data
+          type: string
+        value:
+          description: Value of management data
+          type: string
+      type: object
     moveOrganizationLicenses_200_response:
       example:
         destOrganizationId: destOrganizationId
@@ -32952,6 +33766,22 @@ components:
       - access
       - tag
       type: object
+    createOrganizationInventoryOnboardingCloudMonitoringImport_201_response_inner:
+      example:
+        importId: importId
+        message: message
+        status: status
+      properties:
+        status:
+          description: Cloud monitor import status
+          type: string
+        importId:
+          description: Unique id associated with the import of the device
+          type: string
+        message:
+          description: Response method
+          type: string
+      type: object
     provisionNetworkClients_request_policiesBySecurityAppliance:
       description: "An object, describing what the policy-connection association is\
         \ for the security appliance. (Only relevant if the security appliance is\
@@ -33136,6 +33966,8 @@ components:
         name: name
         templateVlanType: same
         cidr: cidr
+        id: id
+        interfaceId: interfaceId
         applianceIp: applianceIp
         groupPolicyId: groupPolicyId
         dhcpBootFilename: dhcpBootFilename
@@ -33148,6 +33980,12 @@ components:
           comment: comment
         mask: 0
       properties:
+        id:
+          description: The VLAN ID of the VLAN
+          type: string
+        interfaceId:
+          description: The interface ID of the VLAN
+          type: string
         name:
           description: The name of the VLAN
           type: string
@@ -33504,7 +34342,7 @@ components:
           authentication:
             enabled: false
             username: admin
-        secureConnect:
+        securePort:
           enabled: false
         fips:
           enabled: true
@@ -33523,10 +34361,27 @@ components:
             \ LAN IP])</a>. Optional. Can only be set if localStatusPageEnabled is\
             \ set to true"
           type: boolean
-        secureConnect:
-          $ref: '#/components/schemas/updateNetworkSettings_request_secureConnect'
+        securePort:
+          $ref: '#/components/schemas/updateNetworkSettings_request_securePort'
         localStatusPage:
           $ref: '#/components/schemas/updateNetworkSettings_request_localStatusPage'
+      type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_201_response_inner_configParams_user:
+      description: User credentials used to connect to the device
+      example:
+        publicKey: publicKey
+        secret:
+          hash: hash
+        username: username
+      properties:
+        publicKey:
+          description: The public key for the registered user
+          type: string
+        username:
+          description: The username added to Catalyst device
+          type: string
+        secret:
+          $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_201_response_inner_configParams_user_secret'
       type: object
     getOrganizationSummaryTopSwitchesByEnergyUsage_200_response_inner_usage:
       description: Energy usage of the switch
@@ -33904,6 +34759,25 @@ components:
           description: The liquid template for the headers
           type: string
       type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty:
+      description: VTY Related Parameters
+      properties:
+        startLineNumber:
+          description: Starting line VTY number
+          type: integer
+        endLineNumber:
+          description: Ending line VTY number
+          type: integer
+        authentication:
+          $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_authentication'
+        authorization:
+          $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_authorization'
+        accessList:
+          $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_accessList'
+        rotaryNumber:
+          description: SSH rotary number
+          type: integer
+      type: object
     getOrganizationDevicesPowerModulesStatusesByDevice_200_response_inner:
       example:
         slots:
@@ -34035,6 +34909,21 @@ components:
         space:
           description: The available disk space.
           type: integer
+      type: object
+    getOrganizations_200_response_inner_management:
+      description: Information about the organization's management system
+      example:
+        details:
+        - name: name
+          value: value
+        - name: name
+          value: value
+      properties:
+        details:
+          description: "Details related to organization management, possibly empty"
+          items:
+            $ref: '#/components/schemas/getOrganizations_200_response_inner_management_details_inner'
+          type: array
       type: object
     createDeviceSwitchRoutingInterface_request_ospfV3:
       description: The OSPFv3 routing settings of the interface.
@@ -34507,11 +35396,54 @@ components:
       - passphrase
       - username
       type: object
+    createNetworkCameraQualityRetentionProfile_request_videoSettings_MV93:
+      description: Quality and resolution for MV93 camera models.
+      properties:
+        quality:
+          description: "Quality of the camera. Can be one of 'Standard', 'Enhanced'\
+            \ or 'High'."
+          enum:
+          - Standard
+          - Enhanced
+          - High
+          type: string
+        resolution:
+          description: Resolution of the camera. Can be one of '1080x1080' or '2112x2112'.
+          enum:
+          - 1080x1080
+          - 2112x2112
+          type: string
+      required:
+      - quality
+      - resolution
+      type: object
+    createOrganizationInventoryOnboardingCloudMonitoringImport_request:
+      example:
+        devices:
+        - deviceId: 161b2602-a713-4aac-b1eb-d9b55205353d
+          udi: PID:C9200L-24P-4G SN:JAE25220R2K
+          networkId: "1338481"
+      properties:
+        devices:
+          description: A set of device imports to commit
+          items:
+            $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringImport_request_devices_inner'
+          type: array
+      required:
+      - devices
+      type: object
     updateNetworkCellularGatewayUplink_request:
       example: {}
       properties:
         bandwidthLimits:
           $ref: '#/components/schemas/updateNetworkApplianceTrafficShapingUplinkBandwidth_request_bandwidthLimits_cellular'
+      type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_authentication_group:
+      description: Group Details
+      properties:
+        name:
+          description: Group Name
+          type: string
       type: object
     removeNetworkDevices_request:
       example:
@@ -34622,10 +35554,16 @@ components:
     createOrganization_request:
       example:
         name: My organization
+        management:
+          details:
+          - name: MSP ID
+            value: "123456"
       properties:
         name:
           description: The name of the organization
           type: string
+        management:
+          $ref: '#/components/schemas/getOrganizations_200_response_inner_management'
       required:
       - name
       type: object
@@ -34719,6 +35657,27 @@ components:
         body:
           description: "The body of the payload template, in liquid template"
           type: string
+      type: object
+    getOrganizationAdaptivePolicyOverview_200_response:
+      example:
+        counts:
+          customGroups: 6
+          allowPolicies: 2
+          denyPolicies: 5
+          policyObjects: 7
+          policies: 5
+          groups: 0
+          customAcls: 1
+        limits:
+          customGroups: 9
+          rulesInAnAcl: 3
+          policyObjects: 4
+          aclsInAPolicy: 2
+      properties:
+        counts:
+          $ref: '#/components/schemas/getOrganizationAdaptivePolicyOverview_200_response_counts'
+        limits:
+          $ref: '#/components/schemas/getOrganizationAdaptivePolicyOverview_200_response_limits'
       type: object
     getOrganizationSwitchPortsBySwitch_200_response_inner:
       example:
@@ -35316,15 +36275,68 @@ components:
       required:
       - id
       type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_201_response_inner_configParams:
+      description: Params used in order to connect to the device
+      example:
+        cloudStaticIp: cloudStaticIp
+        user:
+          publicKey: publicKey
+          secret:
+            hash: hash
+          username: username
+        tunnel:
+          mode: mode
+          rootCertificate:
+            name: name
+            content: content
+          port: port
+          host: host
+          name: name
+      properties:
+        tunnel:
+          $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_201_response_inner_configParams_tunnel'
+        cloudStaticIp:
+          description: Static IP Address used to connect to the device
+          type: string
+        user:
+          $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_201_response_inner_configParams_user'
+      type: object
+    createNetworkCameraQualityRetentionProfile_request_videoSettings_MV63:
+      description: Quality and resolution for MV63 camera models.
+      properties:
+        quality:
+          description: "Quality of the camera. Can be one of 'Standard', 'Enhanced'\
+            \ or 'High'."
+          enum:
+          - Standard
+          - Enhanced
+          - High
+          type: string
+        resolution:
+          description: Resolution of the camera. Can be one of '1920x1080' or '2688x1512'.
+          enum:
+          - 1920x1080
+          - 2688x1512
+          type: string
+      required:
+      - quality
+      - resolution
+      type: object
     updateOrganization_request:
       example:
         name: My organization
+        management:
+          details:
+          - name: MSP ID
+            value: "123456"
         api:
           enabled: true
       properties:
         name:
           description: The name of the organization
           type: string
+        management:
+          $ref: '#/components/schemas/getOrganizations_200_response_inner_management'
         api:
           $ref: '#/components/schemas/updateOrganization_request_api'
       type: object
@@ -35433,6 +36445,67 @@ components:
           type: string
       required:
       - size
+      type: object
+    getOrganizationCellularGatewayUplinkStatuses_200_response_inner_uplinks_inner:
+      example:
+        dns2: dns2
+        ip: ip
+        dns1: dns1
+        signalStat:
+          rsrq: rsrq
+          rsrp: rsrp
+        publicIp: publicIp
+        interface: interface
+        connectionType: connectionType
+        iccid: iccid
+        provider: provider
+        signalType: signalType
+        model: model
+        apn: apn
+        gateway: gateway
+        status: status
+      properties:
+        interface:
+          description: Uplink interface
+          type: string
+        status:
+          description: Uplink status
+          type: string
+        ip:
+          description: Uplink IP
+          type: string
+        provider:
+          description: Network Provider
+          type: string
+        publicIp:
+          description: Public IP
+          type: string
+        model:
+          description: Uplink model
+          type: string
+        signalStat:
+          $ref: '#/components/schemas/getOrganizationCellularGatewayUplinkStatuses_200_response_inner_uplinks_inner_signalStat'
+        connectionType:
+          description: Connection Type
+          type: string
+        apn:
+          description: Access Point Name
+          type: string
+        gateway:
+          description: Gateway IP
+          type: string
+        dns1:
+          description: Primary DNS IP
+          type: string
+        dns2:
+          description: Secondary DNS IP
+          type: string
+        signalType:
+          description: Signal Type
+          type: string
+        iccid:
+          description: Integrated Circuit Card Identification Number
+          type: string
       type: object
     generateDeviceCameraSnapshot_request:
       example:
@@ -35564,7 +36637,13 @@ components:
           type: integer
       type: object
     updateNetworkMerakiAuthUser_request:
-      example: {}
+      example:
+        name: Miles Meraki
+        password: secret
+        emailPasswordToUser: false
+        authorizations:
+        - ssidNumber: 1
+          expiresAt: 2018-03-13T00:00:00.090210Z
       properties:
         name:
           description: Name of the user. Only allowed If the user is not Dashboard
@@ -35947,21 +37026,6 @@ components:
             type: string
           type: array
       type: object
-    createNetworkHttpServersWebhookTest_request:
-      example:
-        url: https://www.example.com/path
-      properties:
-        url:
-          description: The URL where the test webhook will be sent
-          type: string
-        sharedSecret:
-          default: ""
-          description: The shared secret the test webhook will send. Optional. Defaults
-            to an empty string.
-          type: string
-      required:
-      - url
-      type: object
     updateOrganizationSaml_request:
       example:
         enabled: true
@@ -36016,6 +37080,27 @@ components:
           $ref: '#/components/schemas/getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_noise'
         indoorAirQuality:
           $ref: '#/components/schemas/getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_indoorAirQuality'
+      type: object
+    getOrganizationFirmwareUpgradesByDevice_200_response_inner_upgrade_fromVersion:
+      description: The initial version of the device
+      example:
+        releaseDate: releaseDate
+        releaseType: releaseType
+        id: id
+        shortName: shortName
+      properties:
+        id:
+          description: ID of the initial firmware version
+          type: string
+        shortName:
+          description: Firmware version short name
+          type: string
+        releaseType:
+          description: Release type of the firmware version
+          type: string
+        releaseDate:
+          description: Release date of the firmware version
+          type: string
       type: object
     getNetwork_200_response:
       example:
@@ -36497,6 +37582,7 @@ components:
         ssidName: ssidName
         scope: scope
         name: name
+        timeboundType: static
         id: id
         accessStartAt: 2000-01-23T04:56:07.000+00:00
         tags:
@@ -36521,6 +37607,13 @@ components:
           items:
             type: string
           type: array
+        timeboundType:
+          description: "type of access period, either a static range or a dynamic\
+            \ period"
+          enum:
+          - static
+          - dynamic
+          type: string
         accessStartAt:
           description: time that access starts
           format: date-time
@@ -37206,6 +38299,29 @@ components:
       required:
       - id
       type: object
+    createOrganizationPolicyObjectsGroup_request:
+      example:
+        name: Web Servers - Datacenter 10
+        objectIds: []
+      properties:
+        name:
+          description: "A name for the group of network addresses, unique within the\
+            \ organization (alphanumeric, space, dash, or underscore characters only)"
+          type: string
+        category:
+          description: "Category of a policy object group (one of: NetworkObjectGroup,\
+            \ GeoLocationGroup, PortObjectGroup, ApplicationGroup)"
+          type: string
+        objectIds:
+          description: "A list of Policy Object ID's that this NetworkObjectGroup\
+            \ should be associated to (note: these ID's will replace the existing\
+            \ associated Policy Objects)"
+          items:
+            type: integer
+          type: array
+      required:
+      - name
+      type: object
     updateOrganizationSamlRole_200_response_tags_inner:
       example:
         access: access
@@ -37740,73 +38856,6 @@ components:
           description: "The value returned in the header attribute, in liquid template"
           type: string
       type: object
-    updateOrganizationApplianceVpnThirdPartyVPNPeers_request_peers_inner_ipsecPolicies:
-      description: "Custom IPSec policies for the VPN peer. If not included and a\
-        \ preset has not been chosen, the default preset for IPSec policies will be\
-        \ used."
-      properties:
-        ikeCipherAlgo:
-          description: "This is the cipher algorithm to be used in Phase 1. The value\
-            \ should be an array with one of the following algorithms: 'aes256', 'aes192',\
-            \ 'aes128', 'tripledes', 'des'"
-          items:
-            type: string
-          type: array
-        ikeAuthAlgo:
-          description: "This is the authentication algorithm to be used in Phase 1.\
-            \ The value should be an array with one of the following algorithms: 'sha256',\
-            \ 'sha1', 'md5'"
-          items:
-            type: string
-          type: array
-        ikePrfAlgo:
-          description: "[optional] This is the pseudo-random function to be used in\
-            \ IKE_SA. The value should be an array with one of the following algorithms:\
-            \ 'prfsha256', 'prfsha1', 'prfmd5', 'default'. The 'default' option can\
-            \ be used to default to the Authentication algorithm."
-          items:
-            enum:
-            - prfsha256
-            - prfsha1
-            - prfmd5
-            - default
-            type: string
-          type: array
-        ikeDiffieHellmanGroup:
-          description: "This is the Diffie-Hellman group to be used in Phase 1. The\
-            \ value should be an array with one of the following algorithms: 'group14',\
-            \ 'group5', 'group2', 'group1'"
-          items:
-            type: string
-          type: array
-        ikeLifetime:
-          description: The lifetime of the Phase 1 SA in seconds.
-          type: integer
-        childCipherAlgo:
-          description: "This is the cipher algorithms to be used in Phase 2. The value\
-            \ should be an array with one or more of the following algorithms: 'aes256',\
-            \ 'aes192', 'aes128', 'tripledes', 'des', 'null'"
-          items:
-            type: string
-          type: array
-        childAuthAlgo:
-          description: "This is the authentication algorithms to be used in Phase\
-            \ 2. The value should be an array with one of the following algorithms:\
-            \ 'sha256', 'sha1', 'md5'"
-          items:
-            type: string
-          type: array
-        childPfsGroup:
-          description: "This is the Diffie-Hellman group to be used for Perfect Forward\
-            \ Secrecy in Phase 2. The value should be an array with one of the following\
-            \ values: 'disabled','group14', 'group5', 'group2', 'group1'"
-          items:
-            type: string
-          type: array
-        childLifetime:
-          description: The lifetime of the Phase 2 SA in seconds.
-          type: integer
-      type: object
     getOrganizations_200_response_inner_licensing:
       description: Licensing related settings
       example:
@@ -38011,6 +39060,29 @@ components:
             $ref: '#/components/schemas/updateNetworkWirelessAlternateManagementInterface_request_accessPoints_inner'
           type: array
       type: object
+    createNetworkCameraQualityRetentionProfile_request_videoSettings_MV63X:
+      description: Quality and resolution for MV63X camera models.
+      properties:
+        quality:
+          description: "Quality of the camera. Can be one of 'Standard', 'Enhanced'\
+            \ or 'High'."
+          enum:
+          - Standard
+          - Enhanced
+          - High
+          type: string
+        resolution:
+          description: "Resolution of the camera. Can be one of '1920x1080', '2688x1512'\
+            \ or '3840x2160'."
+          enum:
+          - 1920x1080
+          - 2688x1512
+          - 3840x2160
+          type: string
+      required:
+      - quality
+      - resolution
+      type: object
     createOrganizationSamlIdp_request:
       example:
         x509certSha1Fingerprint: 00:11:22:33:44:55:66:77:88:99:00:11:22:33:44:55:66:77:88:99
@@ -38101,14 +39173,15 @@ components:
           type: boolean
         authMode:
           description: "The association control method for the SSID ('open', 'open-enhanced',\
-            \ 'psk', 'open-with-radius', '8021x-meraki', '8021x-radius', '8021x-google',\
-            \ '8021x-localradius', 'ipsk-with-radius' or 'ipsk-without-radius')"
+            \ 'psk', 'open-with-radius', '8021x-meraki', '8021x-nac', '8021x-radius',\
+            \ '8021x-google', '8021x-localradius', 'ipsk-with-radius' or 'ipsk-without-radius')"
           enum:
           - open
           - open-enhanced
           - psk
           - open-with-radius
           - 8021x-meraki
+          - 8021x-nac
           - 8021x-radius
           - 8021x-google
           - 8021x-localradius
@@ -38722,6 +39795,118 @@ components:
       required:
       - definitions
       type: object
+    getOrganizationApplianceVpnThirdPartyVPNPeers_200_response_peers_inner_ipsecPolicies:
+      description: "Custom IPSec policies for the VPN peer. If not included and a\
+        \ preset has not been chosen, the default preset for IPSec policies will be\
+        \ used."
+      example:
+        ikeAuthAlgo:
+        - sha256
+        - sha256
+        ikeDiffieHellmanGroup:
+        - ikeDiffieHellmanGroup
+        - ikeDiffieHellmanGroup
+        childLifetime: 6
+        childCipherAlgo:
+        - aes256
+        - aes256
+        ikeLifetime: 0
+        ikeCipherAlgo:
+        - aes256
+        - aes256
+        ikePrfAlgo:
+        - prfsha256
+        - prfsha256
+        childAuthAlgo:
+        - sha256
+        - sha256
+        childPfsGroup:
+        - childPfsGroup
+        - childPfsGroup
+      properties:
+        ikeCipherAlgo:
+          description: "This is the cipher algorithm to be used in Phase 1. The value\
+            \ should be an array with one of the following algorithms: 'aes256', 'aes192',\
+            \ 'aes128', 'tripledes', 'des'"
+          items:
+            enum:
+            - aes256
+            - aes192
+            - aes128
+            - tripledes
+            - des
+            type: string
+          type: array
+        ikeAuthAlgo:
+          description: "This is the authentication algorithm to be used in Phase 1.\
+            \ The value should be an array with one of the following algorithms: 'sha256',\
+            \ 'sha1', 'md5'"
+          items:
+            enum:
+            - sha256
+            - sha1
+            - md5
+            type: string
+          type: array
+        ikePrfAlgo:
+          description: "[optional] This is the pseudo-random function to be used in\
+            \ IKE_SA. The value should be an array with one of the following algorithms:\
+            \ 'prfsha256', 'prfsha1', 'prfmd5', 'default'. The 'default' option can\
+            \ be used to default to the Authentication algorithm."
+          items:
+            enum:
+            - prfsha256
+            - prfsha1
+            - prfmd5
+            - default
+            type: string
+          type: array
+        ikeDiffieHellmanGroup:
+          description: "This is the Diffie-Hellman group to be used in Phase 1. The\
+            \ value should be an array with one of the following algorithms: 'group14',\
+            \ 'group5', 'group2', 'group1'"
+          items:
+            type: string
+          type: array
+        ikeLifetime:
+          description: The lifetime of the Phase 1 SA in seconds.
+          type: integer
+        childCipherAlgo:
+          description: "This is the cipher algorithms to be used in Phase 2. The value\
+            \ should be an array with one or more of the following algorithms: 'aes256',\
+            \ 'aes192', 'aes128', 'tripledes', 'des', 'null'"
+          items:
+            enum:
+            - aes256
+            - aes192
+            - aes128
+            - tripledes
+            - des
+            - "null"
+            type: string
+          type: array
+        childAuthAlgo:
+          description: "This is the authentication algorithms to be used in Phase\
+            \ 2. The value should be an array with one of the following algorithms:\
+            \ 'sha256', 'sha1', 'md5'"
+          items:
+            enum:
+            - sha256
+            - sha1
+            - md5
+            type: string
+          type: array
+        childPfsGroup:
+          description: "This is the Diffie-Hellman group to be used for Perfect Forward\
+            \ Secrecy in Phase 2. The value should be an array with one of the following\
+            \ values: 'disabled','group14', 'group5', 'group2', 'group1'"
+          items:
+            type: string
+          type: array
+        childLifetime:
+          description: The lifetime of the Phase 2 SA in seconds.
+          type: integer
+      type: object
     createNetworkFirmwareUpgradesStagedEvent_request_products_switch_nextUpgrade:
       description: The pending firmware upgrade if it exists
       properties:
@@ -38840,6 +40025,14 @@ components:
           $ref: '#/components/schemas/createNetworkCameraQualityRetentionProfile_request_videoSettings_MV22X_MV72X'
         MV52:
           $ref: '#/components/schemas/createNetworkCameraQualityRetentionProfile_request_videoSettings_MV52'
+        MV63:
+          $ref: '#/components/schemas/createNetworkCameraQualityRetentionProfile_request_videoSettings_MV63'
+        MV93:
+          $ref: '#/components/schemas/createNetworkCameraQualityRetentionProfile_request_videoSettings_MV93'
+        MV63X:
+          $ref: '#/components/schemas/createNetworkCameraQualityRetentionProfile_request_videoSettings_MV63X'
+        MV93X:
+          $ref: '#/components/schemas/createNetworkCameraQualityRetentionProfile_request_videoSettings_MV93X'
       type: object
     updateNetworkWirelessSsidHotspot20_request_naiRealms_inner:
       properties:
@@ -39029,8 +40222,9 @@ components:
           description: The duration of the individual license
           type: integer
         permanentlyQueuedLicenses:
-          description: DEPRECATED List of permanently queued licenses attached to
-            the license
+          description: "DEPRECATED List of permanently queued licenses attached to\
+            \ the license. Instead, use /organizations/{organizationId}/licenses?deviceSerial=\
+            \ to retrieved queued licenses for a given device."
           items:
             $ref: '#/components/schemas/getOrganizationLicenses_200_response_inner_permanentlyQueuedLicenses_inner'
           type: array
@@ -39362,6 +40556,23 @@ components:
       required:
       - name
       - serials
+      type: object
+    updateOrganizationPolicyObjectsGroup_request:
+      example:
+        name: Web Servers - Datacenter 10
+        objectIds: []
+      properties:
+        name:
+          description: "A name for the group of network addresses, unique within the\
+            \ organization (alphanumeric, space, dash, or underscore characters only)"
+          type: string
+        objectIds:
+          description: "A list of Policy Object ID's that this NetworkObjectGroup\
+            \ should be associated to (note: these ID's will replace the existing\
+            \ associated Policy Objects)"
+          items:
+            type: integer
+          type: array
       type: object
     createNetworkGroupPolicy_request_scheduling_sunday:
       description: The schedule object for Sunday.
@@ -40149,6 +41360,27 @@ components:
             $ref: '#/components/schemas/updateNetworkApplianceStaticRoute_request_reservedIpRanges_inner'
           type: array
       type: object
+    getOrganizationFirmwareUpgradesByDevice_200_response_inner_upgrade_toVersion:
+      description: Version the device is upgrading to
+      example:
+        releaseDate: releaseDate
+        releaseType: releaseType
+        id: id
+        shortName: shortName
+      properties:
+        id:
+          description: ID of the initial firmware version
+          type: string
+        shortName:
+          description: Firmware version short name
+          type: string
+        releaseType:
+          description: Release type of the firmware version
+          type: string
+        releaseDate:
+          description: Release date of the firmware version
+          type: string
+      type: object
     getNetworkSmDeviceDeviceProfiles_200_response_inner:
       example:
         isEncrypted: true
@@ -40554,12 +41786,16 @@ components:
         templateVlanType: same
         cidr: cidr
         id: id
+        interfaceId: interfaceId
         applianceIp: applianceIp
         groupPolicyId: groupPolicyId
         mask: 0
       properties:
         id:
-          description: The VLAN ID of the new VLAN (must be between 1 and 4094)
+          description: The VLAN ID of the VLAN
+          type: string
+        interfaceId:
+          description: The interface ID of the VLAN
           type: string
         name:
           description: The name of the VLAN
@@ -40733,6 +41969,13 @@ components:
           $ref: '#/components/schemas/updateDeviceCameraSense_request_audioDetection'
         detectionModelId:
           description: The ID of the object detection model
+          type: string
+      type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_accessList_vtyIn:
+      description: VTY in ACL
+      properties:
+        name:
+          description: Name
           type: string
       type: object
     getDeviceWirelessConnectionStats_200_response:
@@ -41330,6 +42573,51 @@ components:
           description: Received signal strength indicator
           type: integer
       type: object
+    getNetworkMerakiAuthUsers_200_response_inner:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        accountType: accountType
+        name: name
+        authorizations:
+        - ssidNumber: 0
+          authorizedByName: authorizedByName
+          authorizedZone: authorizedZone
+          authorizedByEmail: authorizedByEmail
+          expiresAt: 2000-01-23T04:56:07.000+00:00
+        - ssidNumber: 0
+          authorizedByName: authorizedByName
+          authorizedZone: authorizedZone
+          authorizedByEmail: authorizedByEmail
+          expiresAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        isAdmin: true
+        email: email
+      properties:
+        id:
+          description: Meraki auth user id
+          type: string
+        email:
+          description: Email address of the user
+          type: string
+        name:
+          description: Name of the user
+          type: string
+        createdAt:
+          description: Creation time of the user
+          format: date-time
+          type: string
+        accountType:
+          description: Authorization type for user.
+          type: string
+        isAdmin:
+          description: Whether or not the user is a Dashboard administrator
+          type: boolean
+        authorizations:
+          description: User authorization info
+          items:
+            $ref: '#/components/schemas/getNetworkMerakiAuthUsers_200_response_inner_authorizations_inner'
+          type: array
+      type: object
     createNetworkAppliancePrefixesDelegatedStatic_request:
       example:
         prefix: 2001:db8:3c4d:15::/64
@@ -41390,6 +42678,32 @@ components:
       properties:
         region:
           $ref: '#/components/schemas/getOrganizations_200_response_inner_cloud_region'
+      type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_201_response_inner_configParams_tunnel:
+      description: Configuration options used to connect to the device
+      example:
+        mode: mode
+        rootCertificate:
+          name: name
+          content: content
+        port: port
+        host: host
+        name: name
+      properties:
+        mode:
+          description: ""
+          type: string
+        port:
+          description: The port used for the ssh tunnel.
+          type: string
+        host:
+          description: SSH tunnel URL used to connect to the device
+          type: string
+        name:
+          description: The name of the tunnel we are attempting to connect to
+          type: string
+        rootCertificate:
+          $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_201_response_inner_configParams_tunnel_rootCertificate'
       type: object
     createNetworkSwitchAccessPolicy_request_radiusAccountingServers_inner:
       properties:
@@ -41568,6 +42882,22 @@ components:
           type: string
         nameservers:
           $ref: '#/components/schemas/getDeviceApplianceUplinksSettings_200_response_interfaces_wan1_svis_ipv4_nameservers'
+      type: object
+    updateDeviceCellularSims_request_sims_inner_apns_inner:
+      properties:
+        name:
+          description: APN name.
+          type: string
+        allowedIpTypes:
+          description: "IP versions to support (permitted values include 'ipv4', 'ipv6')."
+          items:
+            type: string
+          type: array
+        authentication:
+          $ref: '#/components/schemas/updateDeviceCellularSims_request_sims_inner_apns_inner_authentication'
+      required:
+      - allowedIpTypes
+      - name
       type: object
     createNetworkFirmwareUpgradesStagedEvent_request_products:
       description: Contains information about the network to update
@@ -41750,6 +43080,44 @@ components:
             it will reset to Dashboard's automatically generated value.
           type: integer
       type: object
+    getOrganizationAdaptivePolicyOverview_200_response_counts:
+      description: The current amount of various adaptive policy objects.
+      example:
+        customGroups: 6
+        allowPolicies: 2
+        denyPolicies: 5
+        policyObjects: 7
+        policies: 5
+        groups: 0
+        customAcls: 1
+      properties:
+        groups:
+          description: Number of adaptive policy groups currently in the organization.
+          type: integer
+        customGroups:
+          description: Number of user-created adaptive policy groups currently in
+            the organization.
+          type: integer
+        customAcls:
+          description: Number of user-created adaptive policy ACLs currently in the
+            organization.
+          type: integer
+        policies:
+          description: Number of adaptive policies currently in the organization.
+          type: integer
+        denyPolicies:
+          description: Number of adaptive policies currently in the organization that
+            deny all traffic.
+          type: integer
+        allowPolicies:
+          description: Number of adaptive policies currently in the organization that
+            allow all traffic.
+          type: integer
+        policyObjects:
+          description: Number of policy objects (with the adaptive policy type) currently
+            in the organization.
+          type: integer
+      type: object
     getDeviceSwitchRoutingInterfaces_200_response_inner_ospfV3:
       description: IPv6 OSPF Settings
       example:
@@ -41832,13 +43200,17 @@ components:
           type: string
         resolution:
           description: "Resolution of the camera. Can be one of '1280x720', '1920x1080',\
-            \ '1080x1080' or '2058x2058'. Not all resolutions are supported by every\
-            \ camera model."
+            \ '1080x1080', '2058x2058', '2112x2112', '2880x2880', '2688x1512' or '3840x2160'.Not\
+            \ all resolutions are supported by every camera model."
           enum:
           - 1280x720
           - 1920x1080
           - 1080x1080
           - 2058x2058
+          - 2112x2112
+          - 2880x2880
+          - 2688x1512
+          - 3840x2160
           type: string
         motionDetectorVersion:
           description: The version of the motion detector that will be used by the
@@ -41852,6 +43224,25 @@ components:
           description: Enable or disable Dynamic ARP Inspection on the network. Default
             value is false.
           type: boolean
+      type: object
+    updateDeviceCellularSims_request_sims_inner:
+      properties:
+        slot:
+          description: SIM slot being configured. Must be 'sim1' on single-sim devices.
+          enum:
+          - sim1
+          - sim2
+          type: string
+        isPrimary:
+          default: false
+          description: "If true, this SIM is used for boot. Must be true on single-sim\
+            \ devices."
+          type: boolean
+        apns:
+          description: "APN configurations. If empty, the default APN will be used."
+          items:
+            $ref: '#/components/schemas/updateDeviceCellularSims_request_sims_inner_apns_inner'
+          type: array
       type: object
     ? updateNetworkApplianceTrafficShapingUplinkSelection_request_wanTrafficUplinkPreferences_inner_trafficFilters_inner_value_destination
     : description: Destination of this custom type traffic filter
@@ -42162,6 +43553,39 @@ components:
             value 100 percent rate is to clear the configuration.
           type: integer
       type: object
+    getNetworkCellularGatewayDhcp_200_response:
+      example:
+        dnsNameservers: upstream_dns
+        dhcpLeaseTime: 30 minutes
+        dnsCustomNameservers:
+        - dnsCustomNameservers
+        - dnsCustomNameservers
+      properties:
+        dhcpLeaseTime:
+          description: DHCP Lease time for all MG in the network.
+          enum:
+          - 30 minutes
+          - 1 hour
+          - 4 hours
+          - 12 hours
+          - 1 day
+          - 1 week
+          type: string
+        dnsNameservers:
+          description: DNS name servers mode for all MG in the network.
+          enum:
+          - upstream_dns
+          - google_dns
+          - opendns
+          - custom
+          type: string
+        dnsCustomNameservers:
+          description: List of fixed IPs representing the the DNS Name servers when
+            the mode is 'custom'.
+          items:
+            type: string
+          type: array
+      type: object
     updateNetworkWirelessRfProfile_request_apBandSettings:
       description: Settings that will be enabled if selectionType is set to 'ap'.
       properties:
@@ -42243,6 +43667,13 @@ components:
       - protocol
       - srcCidr
       type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_accessList_vtyOut:
+      description: VTY out ACL
+      properties:
+        name:
+          description: Name
+          type: string
+      type: object
     updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer_request:
       example:
         mac: 00:11:22:33:44:55
@@ -42290,7 +43721,8 @@ components:
           description: "The ID of the payload template. Defaults to 'wpt_00001' for\
             \ the Meraki template. For Meraki-included templates: for the Webex (included)\
             \ template use 'wpt_00002'; for the Slack (included) template use 'wpt_00003';\
-            \ for the Microsoft Teams (included) template use 'wpt_00004'"
+            \ for the Microsoft Teams (included) template use 'wpt_00004'; for the\
+            \ ServiceNow (included) template use 'wpt_00006'"
           type: string
       type: object
     getOrganizationInsightApplications_200_response_inner:
@@ -42620,6 +44052,13 @@ components:
             $ref: '#/components/schemas/updateNetworkSwitchRoutingMulticast_request_overrides_inner'
           type: array
       type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_user:
+      description: User parameters
+      properties:
+        username:
+          description: The name of the device user for Meraki monitoring
+          type: string
+      type: object
     createDeviceLiveToolsPingDevice_request:
       example:
         count: 3
@@ -42839,6 +44278,32 @@ components:
           type: array
       required:
       - serials
+      type: object
+    getNetworkSensorAlertsOverviewByMetric_200_response_inner:
+      example:
+        counts:
+          tvoc: 7
+          door: 0
+          pm25: 5
+          noise:
+            ambient: 5
+          temperature: 2
+          humidity: 6
+          indoorAirQuality: 1
+          water: 9
+        endTs: 2000-01-23T04:56:07.000+00:00
+        startTs: 2000-01-23T04:56:07.000+00:00
+      properties:
+        startTs:
+          description: Start of the timespan over which sensor alerts are counted
+          format: date-time
+          type: string
+        endTs:
+          description: End of the timespan over which sensor alerts are counted
+          format: date-time
+          type: string
+        counts:
+          $ref: '#/components/schemas/getNetworkSensorAlertsOverviewByMetric_200_response_inner_counts'
       type: object
     getNetworkWebhooksHttpServers_200_response_inner:
       example:
@@ -43776,19 +45241,6 @@ components:
         credentials:
           $ref: '#/components/schemas/updateNetworkWirelessSsid_request_activeDirectory_credentials'
       type: object
-    getOrganizationUplinksStatuses_200_response_inner_uplinks_inner_signalStat:
-      description: Tower Signal Status
-      example:
-        rsrq: rsrq
-        rsrp: rsrp
-      properties:
-        rsrp:
-          description: Reference Signal Received Power
-          type: string
-        rsrq:
-          description: Reference Signal Received Quality
-          type: string
-      type: object
     updateDeviceCameraCustomAnalytics_request_parameters_inner:
       properties:
         name:
@@ -44251,11 +45703,26 @@ components:
             The countries follow the two-letter ISO 3166-1 alpha-2 format.
           type: string
       type: object
+    unbindNetwork_request:
+      example:
+        retainConfigs: true
+      properties:
+        retainConfigs:
+          description: Optional boolean to retain all the current configs given by
+            the template.
+          type: boolean
+      type: object
     getOrganizations_200_response_inner:
       example:
         cloud:
           region:
             name: name
+        management:
+          details:
+          - name: name
+            value: value
+          - name: name
+            value: value
         name: name
         id: id
         api:
@@ -44279,6 +45746,8 @@ components:
           $ref: '#/components/schemas/getOrganizations_200_response_inner_licensing'
         cloud:
           $ref: '#/components/schemas/getOrganizations_200_response_inner_cloud'
+        management:
+          $ref: '#/components/schemas/getOrganizations_200_response_inner_management'
       type: object
     getNetworkWirelessLatencyHistory_200_response_inner:
       example:
@@ -44511,6 +45980,45 @@ components:
           type: string
         origin:
           $ref: '#/components/schemas/createNetworkAppliancePrefixesDelegatedStatic_request_origin'
+      type: object
+    getNetworkSensorAlertsOverviewByMetric_200_response_inner_counts:
+      description: "Counts of sensor alerts over the timespan, by reading metric"
+      example:
+        tvoc: 7
+        door: 0
+        pm25: 5
+        noise:
+          ambient: 5
+        temperature: 2
+        humidity: 6
+        indoorAirQuality: 1
+        water: 9
+      properties:
+        door:
+          description: Number of sensor alerts that occurred due to an open door
+          type: integer
+        humidity:
+          description: Number of sensor alerts that occurred due to humidity readings
+          type: integer
+        indoorAirQuality:
+          description: Number of sensor alerts that occurred due to indoor air quality
+            readings
+          type: integer
+        noise:
+          $ref: '#/components/schemas/getNetworkSensorAlertsOverviewByMetric_200_response_inner_counts_noise'
+        pm25:
+          description: Number of sensor alerts that occurred due to PM2.5 readings
+          type: integer
+        temperature:
+          description: Number of sensor alerts that occurred due to temperature readings
+          type: integer
+        tvoc:
+          description: Number of sensor alerts that occurred due to TVOC readings
+          type: integer
+        water:
+          description: Number of sensor alerts that occurred due to the presence of
+            water
+          type: integer
       type: object
     createNetworkWirelessRfProfile_request_perSsidSettings_9:
       description: Settings for SSID 9
@@ -44762,6 +46270,88 @@ components:
             Can be either true or false.
           type: boolean
       type: object
+    getOrganizationApplianceVpnThirdPartyVPNPeers_200_response:
+      example:
+        peers:
+        - networkTags:
+          - networkTags
+          - networkTags
+          ipsecPoliciesPreset: ipsecPoliciesPreset
+          name: name
+          publicIp: publicIp
+          privateSubnets:
+          - privateSubnets
+          - privateSubnets
+          ikeVersion: "1"
+          ipsecPolicies:
+            ikeAuthAlgo:
+            - sha256
+            - sha256
+            ikeDiffieHellmanGroup:
+            - ikeDiffieHellmanGroup
+            - ikeDiffieHellmanGroup
+            childLifetime: 6
+            childCipherAlgo:
+            - aes256
+            - aes256
+            ikeLifetime: 0
+            ikeCipherAlgo:
+            - aes256
+            - aes256
+            ikePrfAlgo:
+            - prfsha256
+            - prfsha256
+            childAuthAlgo:
+            - sha256
+            - sha256
+            childPfsGroup:
+            - childPfsGroup
+            - childPfsGroup
+          localId: localId
+          remoteId: remoteId
+        - networkTags:
+          - networkTags
+          - networkTags
+          ipsecPoliciesPreset: ipsecPoliciesPreset
+          name: name
+          publicIp: publicIp
+          privateSubnets:
+          - privateSubnets
+          - privateSubnets
+          ikeVersion: "1"
+          ipsecPolicies:
+            ikeAuthAlgo:
+            - sha256
+            - sha256
+            ikeDiffieHellmanGroup:
+            - ikeDiffieHellmanGroup
+            - ikeDiffieHellmanGroup
+            childLifetime: 6
+            childCipherAlgo:
+            - aes256
+            - aes256
+            ikeLifetime: 0
+            ikeCipherAlgo:
+            - aes256
+            - aes256
+            ikePrfAlgo:
+            - prfsha256
+            - prfsha256
+            childAuthAlgo:
+            - sha256
+            - sha256
+            childPfsGroup:
+            - childPfsGroup
+            - childPfsGroup
+          localId: localId
+          remoteId: remoteId
+      properties:
+        peers:
+          description: The list of VPN peers
+          items:
+            $ref: '#/components/schemas/getOrganizationApplianceVpnThirdPartyVPNPeers_200_response_peers_inner'
+          type: array
+      type: object
     getNetworkFirmwareUpgrades_200_response_products_wireless_nextUpgrade:
       description: Details of the next firmware upgrade on the device
       example:
@@ -44939,6 +46529,29 @@ components:
         notes:
           description: New notes for the device
           type: string
+      type: object
+    updateDeviceCellularSims_request:
+      example:
+        slot: sim1
+        isPrimary: true
+        apns:
+        - name: internet
+          allowedIpTypes:
+          - ipv4
+          - ipv6
+          authentication:
+            type: pap
+            username: milesmeraki
+            password: secret
+      properties:
+        sims:
+          description: "List of SIMs. If a SIM was previously configured and not specified\
+            \ in this request, it will remain unchanged."
+          items:
+            $ref: '#/components/schemas/updateDeviceCellularSims_request_sims_inner'
+          type: array
+        simFailover:
+          $ref: '#/components/schemas/updateDeviceCellularSims_request_simFailover'
       type: object
     getNetworkFirmwareUpgrades_200_response:
       example:
@@ -45246,19 +46859,23 @@ components:
           description: The name of the VPN peer
           type: string
         publicIp:
-          description: The public IP of the VPN peer
-          type: string
-        remoteId:
-          description: "[optional] The remote ID is used to identify the connecting\
-            \ VPN peer. This can either be a valid IPv4 Address, FQDN or User FQDN."
+          description: "[optional] The public IP of the VPN peer"
           type: string
         privateSubnets:
           description: The list of the private subnets of the VPN peer
           items:
             type: string
           type: array
+        localId:
+          description: "[optional] The local ID is used to identify the MX to the\
+            \ peer. This will apply to all MXs this peer applies to."
+          type: string
+        remoteId:
+          description: "[optional] The remote ID is used to identify the connecting\
+            \ VPN peer. This can either be a valid IPv4 Address, FQDN or User FQDN."
+          type: string
         ipsecPolicies:
-          $ref: '#/components/schemas/updateOrganizationApplianceVpnThirdPartyVPNPeers_request_peers_inner_ipsecPolicies'
+          $ref: '#/components/schemas/getOrganizationApplianceVpnThirdPartyVPNPeers_200_response_peers_inner_ipsecPolicies'
         ipsecPoliciesPreset:
           description: "One of the following available presets: 'default', 'aws',\
             \ 'azure'. If this is provided, the 'ipsecPolicies' parameter is ignored."
@@ -45284,7 +46901,6 @@ components:
       required:
       - name
       - privateSubnets
-      - publicIp
       - secret
       type: object
     updateNetworkWirelessSsid_request_ldap_servers_inner:
@@ -45334,6 +46950,86 @@ components:
       required:
       - powerType
       - serial
+      type: object
+    getOrganizationApplianceVpnThirdPartyVPNPeers_200_response_peers_inner:
+      example:
+        networkTags:
+        - networkTags
+        - networkTags
+        ipsecPoliciesPreset: ipsecPoliciesPreset
+        name: name
+        publicIp: publicIp
+        privateSubnets:
+        - privateSubnets
+        - privateSubnets
+        ikeVersion: "1"
+        ipsecPolicies:
+          ikeAuthAlgo:
+          - sha256
+          - sha256
+          ikeDiffieHellmanGroup:
+          - ikeDiffieHellmanGroup
+          - ikeDiffieHellmanGroup
+          childLifetime: 6
+          childCipherAlgo:
+          - aes256
+          - aes256
+          ikeLifetime: 0
+          ikeCipherAlgo:
+          - aes256
+          - aes256
+          ikePrfAlgo:
+          - prfsha256
+          - prfsha256
+          childAuthAlgo:
+          - sha256
+          - sha256
+          childPfsGroup:
+          - childPfsGroup
+          - childPfsGroup
+        localId: localId
+        remoteId: remoteId
+      properties:
+        name:
+          description: The name of the VPN peer
+          type: string
+        publicIp:
+          description: "[optional] The public IP of the VPN peer"
+          type: string
+        remoteId:
+          description: "[optional] The remote ID is used to identify the connecting\
+            \ VPN peer. This can either be a valid IPv4 Address, FQDN or User FQDN."
+          type: string
+        localId:
+          description: "[optional] The local ID is used to identify the MX to the\
+            \ peer. This will apply to all MXs this peer applies to."
+          type: string
+        privateSubnets:
+          description: The list of the private subnets of the VPN peer
+          items:
+            type: string
+          type: array
+        ipsecPolicies:
+          $ref: '#/components/schemas/getOrganizationApplianceVpnThirdPartyVPNPeers_200_response_peers_inner_ipsecPolicies'
+        ipsecPoliciesPreset:
+          description: "One of the following available presets: 'default', 'aws',\
+            \ 'azure'. If this is provided, the 'ipsecPolicies' parameter is ignored."
+          type: string
+        ikeVersion:
+          default: "1"
+          description: "[optional] The IKE version to be used for the IPsec VPN peer\
+            \ configuration. Defaults to '1' when omitted."
+          enum:
+          - "1"
+          - "2"
+          type: string
+        networkTags:
+          description: "A list of network tags that will connect with this peer. Use\
+            \ ['all'] for all networks. Use ['none'] for no networks. If not included,\
+            \ the default is ['all']."
+          items:
+            type: string
+          type: array
       type: object
     updateNetworkSwitchDscpToCosMappings_request_mappings_inner:
       properties:
@@ -45623,6 +47319,42 @@ components:
           items:
             $ref: '#/components/schemas/updateNetworkApplianceFirewallCellularFirewallRules_request_rules_inner'
           type: array
+      type: object
+    getOrganizationFirmwareUpgradesByDevice_200_response_inner:
+      example:
+        upgrade:
+          upgradeBatchId: upgradeBatchId
+          fromVersion:
+            releaseDate: releaseDate
+            releaseType: releaseType
+            id: id
+            shortName: shortName
+          time: time
+          id: id
+          staged:
+            group:
+              id: id
+          toVersion:
+            releaseDate: releaseDate
+            releaseType: releaseType
+            id: id
+            shortName: shortName
+          status: status
+        serial: serial
+        name: name
+        deviceStatus: deviceStatus
+      properties:
+        serial:
+          description: Serial of the device
+          type: string
+        name:
+          description: Name assigned to the device
+          type: string
+        deviceStatus:
+          description: Status of the device upgrade
+          type: string
+        upgrade:
+          $ref: '#/components/schemas/getOrganizationFirmwareUpgradesByDevice_200_response_inner_upgrade'
       type: object
     getNetworkFirmwareUpgradesStagedEvents_200_response_products_switch_nextUpgrade_toVersion:
       description: Details of the version the device will upgrade to
@@ -46122,6 +47854,12 @@ components:
       required:
       - ruleId
       type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_authentication:
+      description: VTY AAA authentication
+      properties:
+        group:
+          $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_authentication_group'
+      type: object
     getDeviceApplianceUplinksSettings_200_response_interfaces_wan2:
       description: WAN 2 settings.
       example:
@@ -46468,6 +48206,46 @@ components:
       - port
       - roles
       type: object
+    getOrganizationFirmwareUpgradesByDevice_200_response_inner_upgrade:
+      description: The devices upgrade details and status
+      example:
+        upgradeBatchId: upgradeBatchId
+        fromVersion:
+          releaseDate: releaseDate
+          releaseType: releaseType
+          id: id
+          shortName: shortName
+        time: time
+        id: id
+        staged:
+          group:
+            id: id
+        toVersion:
+          releaseDate: releaseDate
+          releaseType: releaseType
+          id: id
+          shortName: shortName
+        status: status
+      properties:
+        time:
+          description: Start time of the upgrade
+          type: string
+        fromVersion:
+          $ref: '#/components/schemas/getOrganizationFirmwareUpgradesByDevice_200_response_inner_upgrade_fromVersion'
+        toVersion:
+          $ref: '#/components/schemas/getOrganizationFirmwareUpgradesByDevice_200_response_inner_upgrade_toVersion'
+        status:
+          description: Status of the upgrade
+          type: string
+        id:
+          description: ID of the upgrade
+          type: string
+        upgradeBatchId:
+          description: ID of the upgrade batch
+          type: string
+        staged:
+          $ref: '#/components/schemas/getOrganizationFirmwareUpgradesByDevice_200_response_inner_upgrade_staged'
+      type: object
     createNetworkSensorAlertsProfile_request:
       example:
         name: My Sensor Alert Profile
@@ -46627,7 +48405,7 @@ components:
           description: Network Provider
           type: string
         signalStat:
-          $ref: '#/components/schemas/getOrganizationUplinksStatuses_200_response_inner_uplinks_inner_signalStat'
+          $ref: '#/components/schemas/getOrganizationCellularGatewayUplinkStatuses_200_response_inner_uplinks_inner_signalStat'
         connectionType:
           description: Connection Type
           type: string
@@ -46646,6 +48424,22 @@ components:
         iccid:
           description: Integrated Circuit Card Identification Number
           type: string
+      type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_tunnel:
+      description: TLS Related Parameters
+      properties:
+        certificateName:
+          description: Name of the configured TLS certificate
+          type: string
+        name:
+          description: Name of the configured TLS tunnel
+          type: string
+        loopbackNumber:
+          description: Number of the configured Loopback Interface used for TLS overlay
+          type: integer
+        localInterface:
+          description: Number of the vlan expected to be used to connect to the cloud
+          type: integer
       type: object
     createOrganizationBrandingPolicy_request:
       example:
@@ -46876,7 +48670,8 @@ components:
           description: "The ID of the payload template. Defaults to 'wpt_00001' for\
             \ the Meraki template. For Meraki-included templates: for the Webex (included)\
             \ template use 'wpt_00002'; for the Slack (included) template use 'wpt_00003';\
-            \ for the Microsoft Teams (included) template use 'wpt_00004'"
+            \ for the Microsoft Teams (included) template use 'wpt_00004'; for the\
+            \ ServiceNow (included) template use 'wpt_00006'"
           type: string
         name:
           description: The name of the payload template.
@@ -46899,9 +48694,10 @@ components:
       example:
         email: miles@meraki.com
         name: Miles Meraki
-        accountType: 802.1X
         password: secret
+        accountType: 802.1X
         emailPasswordToUser: false
+        isAdmin: false
         authorizations:
         - ssidNumber: 1
           expiresAt: 2018-03-13T00:00:00.090210Z
@@ -46993,15 +48789,15 @@ components:
         - 172.16.2.30
       properties:
         dhcpLeaseTime:
-          description: "DHCP Lease time for all MG of the network. It can be '30 minutes',\
-            \ '1 hour', '4 hours', '12 hours', '1 day' or '1 week'."
+          description: "DHCP Lease time for all MG of the network. Possible values\
+            \ are '30 minutes', '1 hour', '4 hours', '12 hours', '1 day' or '1 week'."
           type: string
         dnsNameservers:
-          description: "DNS name servers mode for all MG of the network. It can take\
-            \ 4 different values: 'upstream_dns', 'google_dns', 'opendns', 'custom'."
+          description: "DNS name servers mode for all MG of the network. Possible\
+            \ values are: 'upstream_dns', 'google_dns', 'opendns', 'custom'."
           type: string
         dnsCustomNameservers:
-          description: list of fixed IP representing the the DNS Name servers when
+          description: list of fixed IPs representing the the DNS Name servers when
             the mode is 'custom'
           items:
             type: string
@@ -47135,27 +48931,6 @@ components:
           items:
             $ref: '#/components/schemas/updateNetworkTrafficAnalysis_request_customPieChartItems_inner'
           type: array
-      type: object
-    createNetworkHttpServer_request:
-      example:
-        name: Example Webhook Server
-        url: https://example.com
-        sharedSecret: shhh
-      properties:
-        name:
-          description: A name for easy reference to the HTTP server
-          type: string
-        url:
-          description: The URL of the HTTP server
-          type: string
-        sharedSecret:
-          description: A shared secret that will be included in POSTs sent to the
-            HTTP server. This secret can be used to verify that the request was sent
-            by Meraki.
-          type: string
-      required:
-      - name
-      - url
       type: object
     updateNetworkApplianceVpnSiteToSiteVpn_request_hubs_inner:
       properties:
@@ -47509,6 +49284,12 @@ components:
             stack.
           type: string
       type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_authorization:
+      description: VTY AAA authorization
+      properties:
+        group:
+          $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_authentication_group'
+      type: object
     getDeviceLiveToolsPing_200_response:
       example:
         request:
@@ -47548,6 +49329,23 @@ components:
           type: string
         results:
           $ref: '#/components/schemas/getDeviceLiveToolsPing_200_response_results'
+      type: object
+    getOrganizationInventoryOnboardingCloudMonitoringImports_200_response_inner_device:
+      description: Represents the details of an imported device.
+      example:
+        created: true
+        url: url
+        status: status
+      properties:
+        url:
+          description: The url to the device details page within dashboard.
+          type: string
+        created:
+          description: Whether or not the device was successfully created in dashboard.
+          type: boolean
+        status:
+          description: Represents the current state of importing the device.
+          type: string
       type: object
     getNetworkAlertsHistory_200_response_inner_device:
       description: info related to the device that caused the alert
@@ -47701,6 +49499,62 @@ components:
           description: The Meraki Id of the certificate record.
           type: string
       type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_request:
+      example:
+        devices:
+        - sudi: "-----BEGIN CERTIFICATE-----\n        MIIDyTCCArGgAwIBAgIKBBNXOVCGU1YztjANBgkqhkiG9w0BAQsFADAnMQ4wDAYD\n\
+            \        VQQKEwVDaXNjbzEVMBMGA1UEAxMMQUNUMiBTVURJIENBMB4XDTIxMDUzMTEzNTUx\n\
+            \        NVoXDTI5MDUxNDIwMjU0MVowbTEpMCcGA1UEBRMgUElEOkM5MjAwTC0yNFAtNEcg\n\
+            \        U046SkFFMjUyMjBSMksxDjAMBgNVBAoTBUNpc2NvMRgwFgYDVQQLEw9BQ1QtMiBM\n\
+            \        aXRlIFNVREkxFjAUBgNVBAMTDUM5MjAwTC0yNFAtNEcwggEiMA0GCSqGSIb3DQEB\n\
+            \        AQUAA4IBDwAwggEKAoIBAQDaUPxW76gT5MdoEAt+UrDFiYA9RYh2iHicDViBEyow\n\
+            \        TR1TuP36bHh13X3vtGiDsCD88Ci2TZIqd/EDkkc7v9ipUUYVVH+YDrPt2Aukb1PH\n\
+            \        D6K0R+KhgEzRo5x54TlU6oWvjUpwNZUwwdhMWIQaUVkMyZBYNy0jGPLO8jwZhyBg\n\
+            \        1Fneybr9pwedGbLrAaz+gdEikB8B4a/fvPjVfL5Ngb4QRjFqWuE+X3nLc0kHedep\n\
+            \        6nfgpUNXMlStVm5nIXKP6OjmzfCHPYh9L2Ehs1TrSk1ser9Ofx0ZMVL/jBZR2EIj\n\
+            \        OZ8tH6KlX2/B2pbSPIO6kD5c4UA8Cf1SbDJCwJ/kI9ihAgMBAAGjgbAwga0wDgYD\n\
+            \        VR0PAQH/BAQDAgXgMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUSNjx8cJw1Vu7\n\
+            \        fHMJk6+4uDAD+H8wTQYDVR0RBEYwRKBCBgkrBgEEAQkVAgOgNRMzQ2hpcElEPVVV\n\
+            \        VUNNaElGcUVFMklFUUVBQWNBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUE9MB0GA1Ud\n\
+            \        DgQWBBRdhMkFD/z5hokaQeLbaRsp4hkvbzANBgkqhkiG9w0BAQsFAAOCAQEAMtuh\n\
+            \        YpBz4xEZ7YdJsLpw67Q0TTJGnTBRpzAeY1urYDoDz8TSx556XG7z3IRzuED5KVSp\n\
+            \        OwmH/iZ+tDfYQ3W3ElWTW93871DkuW4WQIfbnoHg/F7bF0DKYVkD3rpZjyz3NhzH\n\
+            \        d7cjTdJXQ85bTAOXDuxKH3qewrXxxOGXgh3I6NUq0UwMTWh84lND7Jl+ZAQkYNS2\n\
+            \        iHanTZFQBk3ML0NUb7fKDYGRTZRqwQ/upIO4S6LV1cxH/6V0qbMy3sCSHZoMLrW3\n\
+            \        0m3M6yKpe5+VZzHZwmWdUf3Ot+zKjhveK5/YNsMIASdvtvymxUizq2Hr1hvR/kPc\n\
+            \        p1vuyWxipU8JfzOh/A==\n        -----END CERTIFICATE-----\n   \
+            \     "
+          tunnel:
+            certificateName: DeviceSUDI
+            name: MERAKI
+            loopbackNumber: 1000
+            localInterface: 1
+          user:
+            username: Meraki
+          vty:
+            startLineNumber: 16
+            endLineNumber: 17
+            authentication:
+              group:
+                name: ""
+            authorization:
+              group:
+                name: MERAKI
+            accessList:
+              vtyIn:
+                name: MERAKI_IN
+              vtyOut:
+                name: MERAKI_OUT
+            rotaryNumber: 50
+      properties:
+        devices:
+          description: A set of devices to import (or update)
+          items:
+            $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner'
+          type: array
+      required:
+      - devices
+      type: object
     createNetworkCameraQualityRetentionProfile_request_videoSettings_MV12WE:
       description: Quality and resolution for MV12WE camera models.
       properties:
@@ -47734,6 +49588,17 @@ components:
       properties:
         ipRestrictionsForKeys:
           $ref: '#/components/schemas/getOrganizationLoginSecurity_200_response_apiAuthentication_ipRestrictionsForKeys'
+      type: object
+    getNetworkSensorAlertsOverviewByMetric_200_response_inner_counts_noise:
+      description: Object containing the number of sensor alerts that occurred due
+        to noise readings
+      example:
+        ambient: 5
+      properties:
+        ambient:
+          description: Number of sensor alerts that occurred due to ambient noise
+            readings
+          type: integer
       type: object
     createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer_request_ipv4:
       description: The IPv4 attributes of the trusted server being added
@@ -47882,24 +49747,6 @@ components:
           type: array
         arpInspection:
           $ref: '#/components/schemas/updateNetworkSwitchDhcpServerPolicy_request_arpInspection'
-      type: object
-    updateNetworkHttpServer_request:
-      example:
-        name: Example Webhook Server
-        url: https://example.com
-        sharedSecret: shhh
-      properties:
-        name:
-          description: A name for easy reference to the HTTP server
-          type: string
-        url:
-          description: The URL of the HTTP server
-          type: string
-        sharedSecret:
-          description: A shared secret that will be included in POSTs sent to the
-            HTTP server. This secret can be used to verify that the request was sent
-            by Meraki.
-          type: string
       type: object
     updateNetworkApplianceTrafficShapingRules_request_rules_inner:
       properties:
@@ -48260,6 +50107,20 @@ components:
         assignedDevices:
           $ref: '#/components/schemas/getNetworkFirmwareUpgradesStagedGroups_200_response_inner_assignedDevices'
       type: object
+    getOrganizationInventoryOnboardingCloudMonitoringImports_200_response_inner:
+      example:
+        importId: importId
+        device:
+          created: true
+          url: url
+          status: status
+      properties:
+        importId:
+          description: Database ID for the new entity entry.
+          type: string
+        device:
+          $ref: '#/components/schemas/getOrganizationInventoryOnboardingCloudMonitoringImports_200_response_inner_device'
+      type: object
     rollbacksNetworkFirmwareUpgradesStagedEvents_request:
       example:
         stages:
@@ -48554,6 +50415,46 @@ components:
           description: The pre-shared key of the SSID.
           type: string
       type: object
+    createOrganizationPolicyObject_request:
+      example:
+        name: Web Servers - Datacenter 10
+        category: network
+        type: cidr
+        groupIds: []
+      properties:
+        name:
+          description: "Name of a policy object, unique within the organization (alphanumeric,\
+            \ space, dash, or underscore characters only)"
+          type: string
+        category:
+          description: "Category of a policy object (one of: adaptivePolicy, network)"
+          type: string
+        type:
+          description: "Type of a policy object (one of: adaptivePolicyIpv4Cidr, fqdn,\
+            \ ipAndMask, cidr)"
+          type: string
+        cidr:
+          description: CIDR Value of a policy object (e.g. 10.11.12.1/24")
+          type: string
+        fqdn:
+          description: Fully qualified domain name of policy object (e.g. "example.com")
+          type: string
+        mask:
+          description: Mask of a policy object (e.g. "255.255.0.0")
+          type: string
+        ip:
+          description: IP Address of a policy object (e.g. "1.2.3.4")
+          type: string
+        groupIds:
+          description: The IDs of policy object groups the policy object belongs to
+          items:
+            type: integer
+          type: array
+      required:
+      - category
+      - name
+      - type
+      type: object
     updateDeviceCameraSense_request_audioDetection:
       description: The details of the audio detection config.
       properties:
@@ -48561,6 +50462,34 @@ components:
           description: Boolean indicating if audio detection is enabled(true) or disabled(false)
             on the camera
           type: boolean
+      type: object
+    updateOrganizationPolicyObject_request:
+      example:
+        name: Web Servers - Datacenter 10
+        type: cidr
+        groupIds: []
+      properties:
+        name:
+          description: "Name of a policy object, unique within the organization (alphanumeric,\
+            \ space, dash, or underscore characters only)"
+          type: string
+        cidr:
+          description: CIDR Value of a policy object (e.g. 10.11.12.1/24")
+          type: string
+        fqdn:
+          description: Fully qualified domain name of policy object (e.g. "example.com")
+          type: string
+        mask:
+          description: Mask of a policy object (e.g. "255.255.0.0")
+          type: string
+        ip:
+          description: IP Address of a policy object (e.g. "1.2.3.4")
+          type: string
+        groupIds:
+          description: The IDs of policy object groups the policy object belongs to
+          items:
+            type: integer
+          type: array
       type: object
     updateNetworkApplianceSsid_request_radiusServers_inner:
       properties:
@@ -48573,6 +50502,29 @@ components:
         secret:
           description: The RADIUS client shared secret.
           type: string
+      type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_201_response_inner_configParams_user_secret:
+      description: Stores the user secret hash
+      example:
+        hash: hash
+      properties:
+        hash:
+          description: The hashed secret
+          type: string
+      type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner:
+      properties:
+        sudi:
+          description: Device SUDI certificate
+          type: string
+        tunnel:
+          $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_tunnel'
+        user:
+          $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_user'
+        vty:
+          $ref: '#/components/schemas/createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty'
+      required:
+      - sudi
       type: object
     updateOrganizationSamlIdp_request:
       example:
@@ -49342,6 +51294,22 @@ components:
         dscp:
           $ref: '#/components/schemas/getNetworkSwitchDhcpV4ServersSeen_200_response_inner_lastPacket_ip_dscp'
       type: object
+    createOrganizationInventoryOnboardingCloudMonitoringImport_request_devices_inner:
+      properties:
+        deviceId:
+          description: Import ID from the Import operation
+          type: string
+        udi:
+          description: Device UDI certificate
+          type: string
+        networkId:
+          description: Network Id
+          type: string
+      required:
+      - deviceId
+      - networkId
+      - udi
+      type: object
     createNetworkSwitchPortSchedule_request:
       example:
         name: Weekdays schedule
@@ -49386,13 +51354,13 @@ components:
     updateOrganizationApplianceVpnThirdPartyVPNPeers_request:
       example:
         peers:
-        - name: My peer 1
+        - name: Peer Name
           publicIp: 123.123.123.1
           privateSubnets:
           - 192.168.1.0/24
           - 192.168.128.0/24
-          secret: asdf1234
-          ikeVersion: "2"
+          localId: myMXId@meraki.com
+          remoteId: miles@meraki.com
           ipsecPolicies:
             ikeCipherAlgo:
             - tripledes
@@ -49410,19 +51378,11 @@ components:
             childPfsGroup:
             - disabled
             childLifetime: 28800
-          networkTags:
-          - all
-        - name: My peer 2
-          publicIp: 123.123.123.2
-          remoteId: miles@meraki.com
-          privateSubnets:
-          - 192.168.2.0/24
-          - 192.168.129.0/24
-          secret: asdf56785678567856785678
+          ipsecPoliciesPreset: default
+          secret: Sample Password
+          ikeVersion: "2"
           networkTags:
           - none
-          ikeVersion: "1"
-          ipsecPoliciesPreset: default
       properties:
         peers:
           description: The list of VPN peers
@@ -49560,6 +51520,19 @@ components:
       properties:
         nextUpgrade:
           $ref: '#/components/schemas/createNetworkFirmwareUpgradesStagedEvent_request_products_switch_nextUpgrade'
+      type: object
+    createOrganizationInventoryOnboardingCloudMonitoringPrepare_201_response_inner_configParams_tunnel_rootCertificate:
+      description: Root certificate information
+      example:
+        name: name
+        content: content
+      properties:
+        content:
+          description: Public certificate value
+          type: string
+        name:
+          description: The name of the server protected by the certificate
+          type: string
       type: object
     createNetworkSwitchLinkAggregation_request:
       example:
@@ -49851,6 +51824,13 @@ components:
           type: string
         dynamicDns:
           $ref: '#/components/schemas/updateNetworkApplianceSettings_request_dynamicDns'
+      type: object
+    updateDeviceCellularSims_request_simFailover:
+      description: SIM Failover settings.
+      properties:
+        enabled:
+          description: Failover to secondary SIM (optional)
+          type: boolean
       type: object
     createOrganizationBrandingPolicy_request_helpSettings:
       description: |2-
@@ -50314,6 +52294,65 @@ components:
             $ref: '#/components/schemas/updateNetworkSnmp_request_users_inner'
           type: array
       type: object
+    getOrganizationCellularGatewayUplinkStatuses_200_response_inner:
+      example:
+        lastReportedAt: 2000-01-23T04:56:07.000+00:00
+        serial: serial
+        uplinks:
+        - dns2: dns2
+          ip: ip
+          dns1: dns1
+          signalStat:
+            rsrq: rsrq
+            rsrp: rsrp
+          publicIp: publicIp
+          interface: interface
+          connectionType: connectionType
+          iccid: iccid
+          provider: provider
+          signalType: signalType
+          model: model
+          apn: apn
+          gateway: gateway
+          status: status
+        - dns2: dns2
+          ip: ip
+          dns1: dns1
+          signalStat:
+            rsrq: rsrq
+            rsrp: rsrp
+          publicIp: publicIp
+          interface: interface
+          connectionType: connectionType
+          iccid: iccid
+          provider: provider
+          signalType: signalType
+          model: model
+          apn: apn
+          gateway: gateway
+          status: status
+        networkId: networkId
+        model: model
+      properties:
+        networkId:
+          description: Network Id
+          type: string
+        serial:
+          description: Serial number of the device
+          type: string
+        model:
+          description: Device model
+          type: string
+        lastReportedAt:
+          description: Last reported time for the device
+          format: date-time
+          type: string
+        uplinks:
+          description: Uplinks info
+          items:
+            $ref: '#/components/schemas/getOrganizationCellularGatewayUplinkStatuses_200_response_inner_uplinks_inner'
+          type: array
+      type: object
     getNetworkAlertsHistory_200_response_inner_destinations_webhook:
       description: webhook destinations for this alert
       example:
@@ -50711,6 +52750,29 @@ components:
           description: The version ID
           type: string
       type: object
+    createNetworkCameraQualityRetentionProfile_request_videoSettings_MV93X:
+      description: Quality and resolution for MV93X camera models.
+      properties:
+        quality:
+          description: "Quality of the camera. Can be one of 'Standard', 'Enhanced'\
+            \ or 'High'."
+          enum:
+          - Standard
+          - Enhanced
+          - High
+          type: string
+        resolution:
+          description: "Resolution of the camera. Can be one of '1080x1080', '2112x2112'\
+            \ or '2880x2880'."
+          enum:
+          - 1080x1080
+          - 2112x2112
+          - 2880x2880
+          type: string
+      required:
+      - quality
+      - resolution
+      type: object
     updateNetworkCellularGatewaySubnetPool_request:
       example:
         deploymentMode: routed
@@ -50866,6 +52928,15 @@ components:
           $ref: '#/components/schemas/createNetworkFirmwareUpgradesRollback_request_toVersion'
       required:
       - reasons
+      type: object
+    getOrganizationFirmwareUpgradesByDevice_200_response_inner_upgrade_staged_group:
+      description: The staged upgrade group
+      example:
+        id: id
+      properties:
+        id:
+          description: Id of the staged upgrade group
+          type: string
       type: object
     updateNetworkApplianceSecurityIntrusion_request_protectedNetworks:
       description: Set the included/excluded networks from the intrusion engine (optional
@@ -51624,6 +53695,13 @@ components:
       - licenseId
       - seatCount
       type: object
+    updateNetworkSettings_request_securePort:
+      description: A hash of SecureConnect options applied to the Network.
+      properties:
+        enabled:
+          description: Enables / disables SecureConnect on the network. Optional.
+          type: boolean
+      type: object
     getOrganizationClientsOverview_200_response_usage:
       description: Usage information of all clients across organization
       example:
@@ -52058,6 +54136,10 @@ x-batchable-actions:
     \ the SGT is allowed. Cannot update \"Unknown\"."
   resource: "/organizations/{organizationId}/adaptivePolicy/groups/{id}"
   operation: update
+- group: Adaptive policy settings
+  summary: Update global adaptive policy settings
+  resource: "/organizations/{organizationId}/adaptivePolicy/settings"
+  operation: update
 - group: Alternate management interface
   summary: Update the switch alternate management interface for the network
   resource: "/networks/{networkId}/switch/alternateManagementInterface"
@@ -52074,10 +54156,6 @@ x-batchable-actions:
 - group: Api/v1/adaptive policy/acls controller/shim adaptive policy acl
   summary: Updates an adaptive policy ACL
   resource: "/organizations/{organizationId}/adaptivePolicy/acls/{aclId}"
-  operation: update
-- group: Api/v1/adaptive policy/settings controller/shim adaptive policy settings
-  summary: Update global adaptive policy settings
-  resource: "/organizations/{organizationId}/adaptivePolicy/settings"
   operation: update
 - group: Appliance ssid
   summary: Update the attributes of an MX SSID
@@ -52442,6 +54520,30 @@ x-batchable-actions:
   summary: Update layer 3 OSPF routing configuration
   resource: "/networks/{networkId}/switch/routing/ospf"
   operation: update
+- group: Policy object
+  summary: Creates a new Policy Object.
+  resource: "/organizations/{organizationId}/policyObjects"
+  operation: create
+- group: Policy object
+  summary: Deletes a Policy Object.
+  resource: "/organizations/{organizationId}/policyObjects/{policyObjectId}"
+  operation: destroy
+- group: Policy object
+  summary: Updates a Policy Object.
+  resource: "/organizations/{organizationId}/policyObjects/{policyObjectId}"
+  operation: update
+- group: Policy object group
+  summary: Creates a new Policy Object Group.
+  resource: "/organizations/{organizationId}/policyObjects/groups"
+  operation: create
+- group: Policy object group
+  summary: Deletes a Policy Object Group.
+  resource: "/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}"
+  operation: destroy
+- group: Policy object group
+  summary: Updates a Policy Object Group.
+  resource: "/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}"
+  operation: update
 - group: Psk group
   summary: Create an Identity PSK
   resource: "/networks/{networkId}/wireless/ssids/{number}/identityPsks"
@@ -52711,6 +54813,10 @@ x-batchable-actions:
 - group: Wired/uplinks/settings
   summary: Update the uplink settings for an MX appliance
   resource: "/devices/{serial}/appliance/uplinks/settings"
+  operation: update
+- group: Wired/vpn/third party vpn peers
+  summary: Update the third party VPN peers for an organization
+  resource: "/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers"
   operation: update
 - group: Wireless alternate management interface
   summary: Update alternate management interface and device static IP

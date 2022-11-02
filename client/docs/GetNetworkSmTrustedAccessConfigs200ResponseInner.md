@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | device name | [optional] 
 **Scope** | Pointer to **string** | scope | [optional] 
 **Tags** | Pointer to **[]string** | device tags | [optional] 
+**TimeboundType** | Pointer to **string** | type of access period, either a static range or a dynamic period | [optional] 
 **AccessStartAt** | Pointer to **time.Time** | time that access starts | [optional] 
 **AccessEndAt** | Pointer to **time.Time** | time that access ends | [optional] 
 
@@ -155,6 +156,31 @@ SetTags sets Tags field to given value.
 `func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
+
+### GetTimeboundType
+
+`func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetTimeboundType() string`
+
+GetTimeboundType returns the TimeboundType field if non-nil, zero value otherwise.
+
+### GetTimeboundTypeOk
+
+`func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetTimeboundTypeOk() (*string, bool)`
+
+GetTimeboundTypeOk returns a tuple with the TimeboundType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeboundType
+
+`func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) SetTimeboundType(v string)`
+
+SetTimeboundType sets TimeboundType field to given value.
+
+### HasTimeboundType
+
+`func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasTimeboundType() bool`
+
+HasTimeboundType returns a boolean if a field has been set.
 
 ### GetAccessStartAt
 

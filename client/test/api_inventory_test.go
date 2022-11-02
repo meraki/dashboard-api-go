@@ -36,6 +36,34 @@ func Test_client_InventoryApiService(t *testing.T) {
 
     })
 
+    t.Run("Test InventoryApiService CreateOrganizationInventoryOnboardingCloudMonitoringImport", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+
+        resp, httpRes, err := apiClient.InventoryApi.CreateOrganizationInventoryOnboardingCloudMonitoringImport(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test InventoryApiService CreateOrganizationInventoryOnboardingCloudMonitoringPrepare", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+
+        resp, httpRes, err := apiClient.InventoryApi.CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
     t.Run("Test InventoryApiService GetOrganizationInventoryDevice", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
@@ -58,6 +86,20 @@ func Test_client_InventoryApiService(t *testing.T) {
         var organizationId string
 
         resp, httpRes, err := apiClient.InventoryApi.GetOrganizationInventoryDevices(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test InventoryApiService GetOrganizationInventoryOnboardingCloudMonitoringImports", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+
+        resp, httpRes, err := apiClient.InventoryApi.GetOrganizationInventoryOnboardingCloudMonitoringImports(context.Background(), organizationId).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)

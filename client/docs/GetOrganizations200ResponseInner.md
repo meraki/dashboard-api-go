@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Api** | Pointer to [**GetOrganizations200ResponseInnerApi**](GetOrganizations200ResponseInnerApi.md) |  | [optional] 
 **Licensing** | Pointer to [**GetOrganizations200ResponseInnerLicensing**](GetOrganizations200ResponseInnerLicensing.md) |  | [optional] 
 **Cloud** | Pointer to [**GetOrganizations200ResponseInnerCloud**](GetOrganizations200ResponseInnerCloud.md) |  | [optional] 
+**Management** | Pointer to [**GetOrganizations200ResponseInnerManagement**](GetOrganizations200ResponseInnerManagement.md) |  | [optional] 
 
 ## Methods
 
@@ -179,6 +180,31 @@ SetCloud sets Cloud field to given value.
 `func (o *GetOrganizations200ResponseInner) HasCloud() bool`
 
 HasCloud returns a boolean if a field has been set.
+
+### GetManagement
+
+`func (o *GetOrganizations200ResponseInner) GetManagement() GetOrganizations200ResponseInnerManagement`
+
+GetManagement returns the Management field if non-nil, zero value otherwise.
+
+### GetManagementOk
+
+`func (o *GetOrganizations200ResponseInner) GetManagementOk() (*GetOrganizations200ResponseInnerManagement, bool)`
+
+GetManagementOk returns a tuple with the Management field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetManagement
+
+`func (o *GetOrganizations200ResponseInner) SetManagement(v GetOrganizations200ResponseInnerManagement)`
+
+SetManagement sets Management field to given value.
+
+### HasManagement
+
+`func (o *GetOrganizations200ResponseInner) HasManagement() bool`
+
+HasManagement returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

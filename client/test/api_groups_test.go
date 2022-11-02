@@ -50,6 +50,20 @@ func Test_client_GroupsApiService(t *testing.T) {
 
     })
 
+    t.Run("Test GroupsApiService CreateOrganizationPolicyObjectsGroup", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+
+        resp, httpRes, err := apiClient.GroupsApi.CreateOrganizationPolicyObjectsGroup(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
     t.Run("Test GroupsApiService DeleteNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
@@ -73,6 +87,21 @@ func Test_client_GroupsApiService(t *testing.T) {
         var id string
 
         resp, httpRes, err := apiClient.GroupsApi.DeleteOrganizationAdaptivePolicyGroup(context.Background(), organizationId, id).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test GroupsApiService DeleteOrganizationPolicyObjectsGroup", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+        var policyObjectGroupId string
+
+        resp, httpRes, err := apiClient.GroupsApi.DeleteOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -138,6 +167,35 @@ func Test_client_GroupsApiService(t *testing.T) {
 
     })
 
+    t.Run("Test GroupsApiService GetOrganizationPolicyObjectsGroup", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+        var policyObjectGroupId string
+
+        resp, httpRes, err := apiClient.GroupsApi.GetOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test GroupsApiService GetOrganizationPolicyObjectsGroups", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+
+        resp, httpRes, err := apiClient.GroupsApi.GetOrganizationPolicyObjectsGroups(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
     t.Run("Test GroupsApiService UpdateNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
@@ -161,6 +219,21 @@ func Test_client_GroupsApiService(t *testing.T) {
         var id string
 
         resp, httpRes, err := apiClient.GroupsApi.UpdateOrganizationAdaptivePolicyGroup(context.Background(), organizationId, id).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test GroupsApiService UpdateOrganizationPolicyObjectsGroup", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var organizationId string
+        var policyObjectGroupId string
+
+        resp, httpRes, err := apiClient.GroupsApi.UpdateOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)

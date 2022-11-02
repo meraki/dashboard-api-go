@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **string** | The VLAN ID of the VLAN | [optional] 
+**InterfaceId** | Pointer to **string** | The interface ID of the VLAN | [optional] 
 **Name** | Pointer to **string** | The name of the VLAN | [optional] 
 **Subnet** | Pointer to **string** | The subnet of the VLAN | [optional] 
 **ApplianceIp** | Pointer to **string** | The local IP of the appliance on the VLAN | [optional] 
@@ -42,6 +44,56 @@ will change when the set of required properties is changed
 NewGetNetworkApplianceVlans200ResponseInnerWithDefaults instantiates a new GetNetworkApplianceVlans200ResponseInner object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *GetNetworkApplianceVlans200ResponseInner) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *GetNetworkApplianceVlans200ResponseInner) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *GetNetworkApplianceVlans200ResponseInner) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *GetNetworkApplianceVlans200ResponseInner) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetInterfaceId
+
+`func (o *GetNetworkApplianceVlans200ResponseInner) GetInterfaceId() string`
+
+GetInterfaceId returns the InterfaceId field if non-nil, zero value otherwise.
+
+### GetInterfaceIdOk
+
+`func (o *GetNetworkApplianceVlans200ResponseInner) GetInterfaceIdOk() (*string, bool)`
+
+GetInterfaceIdOk returns a tuple with the InterfaceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInterfaceId
+
+`func (o *GetNetworkApplianceVlans200ResponseInner) SetInterfaceId(v string)`
+
+SetInterfaceId sets InterfaceId field to given value.
+
+### HasInterfaceId
+
+`func (o *GetNetworkApplianceVlans200ResponseInner) HasInterfaceId() bool`
+
+HasInterfaceId returns a boolean if a field has been set.
 
 ### GetName
 
