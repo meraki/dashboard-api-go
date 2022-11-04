@@ -17,6 +17,7 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
+    "github.com/hashicorp/go-retryablehttp"
 	"io"
 	"io/ioutil"
 	"log"
@@ -565,9 +566,14 @@ type service struct {
 // NewAPIClient creates a new API client. Requires a userAgent string describing your application.
 // optionally a custom http.Client to allow for advanced features such as caching.
 func NewAPIClient(cfg *Configuration) *APIClient {
-	if cfg.HTTPClient == nil {
-		cfg.HTTPClient = http.DefaultClient
-	}
+
+    retryClient := retryablehttp.NewClient()
+    retryClient.RetryMax = 10
+    standardClient := retryClient.StandardClient() // *http.Client
+
+    if cfg.HTTPClient == nil {
+    cfg.HTTPClient = standardClient
+    }
 
 	c := &APIClient{}
 	c.cfg = cfg
