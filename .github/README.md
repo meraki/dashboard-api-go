@@ -33,7 +33,7 @@ java -jar openapi-generator-cli.jar generate \
   -p enumClassPrefix=true \
   -p structPrefix=true \
   -p packageVersion=$API_VERSION \
-  -t build/templates \
+  -t .github/templates \
   --package-name client \
   --git-user-id meraki \
   --git-repo-id dashboard-api-go \
