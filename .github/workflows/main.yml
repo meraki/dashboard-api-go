@@ -27,10 +27,15 @@ jobs:
         run: |
           echo "NEW=${{ env.NEW_API_VERSION }}" >> $GITHUB_OUTPUT
           echo "CURRENT=${{ env.CURRENT_API_VERSION }}" >> $GITHUB_OUTPUT
-          if [ "${{ env.NEW_API_VERSION }}" = "${{ env.CURRENT_API_VERSION }}" ]; then
-            echo "RESULT=false" >> $GITHUB_OUTPUT
-          else
+          echo "current: ${{ env.CURRENT_API_VERSION }}"
+          echo "New: ${{ env.NEW_API_VERSION }}"
+
+          if [ "${{ env.NEW_API_VERSION }}" != "${{ env.CURRENT_API_VERSION }}" ] && [[ "${{ env.NEW_API_VERSION }}" = v* ]]; then
+            echo "generate new client"
             echo "RESULT=true" >> $GITHUB_OUTPUT
+          else
+            echo "skip client generation"
+            echo "RESULT=false" >> $GITHUB_OUTPUT
           fi
 
   generate-client:
@@ -57,7 +62,7 @@ jobs:
       - name: "Git Commit"
         run: |
           git add -A
-          git commit -m "OpenAPI client generation ${{ needs.check-for-updates.outputs.new }}"
+          git commit -m "OpenAPI Client Generation ${{ needs.check-for-updates.outputs.new }}"
           git tag ${{ needs.check-for-updates.outputs.new }}
           git push origin main
           git push origin ${{ needs.check-for-updates.outputs.new }}
