@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetNetworkHealthAlerts
 
-> map[string]interface{} GetNetworkHealthAlerts(ctx, networkId).Execute()
+> []InlineResponse20029 GetNetworkHealthAlerts(ctx, networkId).Execute()
 
 Return all global alerts on this network
 
@@ -38,7 +38,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `HealthApi.GetNetworkHealthAlerts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkHealthAlerts`: map[string]interface{}
+    // response from `GetNetworkHealthAlerts`: []InlineResponse20029
     fmt.Fprintf(os.Stdout, "Response from `HealthApi.GetNetworkHealthAlerts`: %v\n", resp)
 }
 ```
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**[]InlineResponse20029**](InlineResponse20029.md)
 
 ### Authorization
 

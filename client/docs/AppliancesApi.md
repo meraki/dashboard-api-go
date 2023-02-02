@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetOrganizationSummaryTopAppliancesByUtilization
 
-> []GetOrganizationSummaryTopAppliancesByUtilization200ResponseInner GetOrganizationSummaryTopAppliancesByUtilization(ctx, organizationId).T0(t0).T1(t1).Timespan(timespan).Execute()
+> []InlineResponse200119 GetOrganizationSummaryTopAppliancesByUtilization(ctx, organizationId).T0(t0).T1(t1).Timespan(timespan).Execute()
 
 Return the top 10 appliances sorted by utilization over given time range.
 
@@ -41,7 +41,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `AppliancesApi.GetOrganizationSummaryTopAppliancesByUtilization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSummaryTopAppliancesByUtilization`: []GetOrganizationSummaryTopAppliancesByUtilization200ResponseInner
+    // response from `GetOrganizationSummaryTopAppliancesByUtilization`: []InlineResponse200119
     fmt.Fprintf(os.Stdout, "Response from `AppliancesApi.GetOrganizationSummaryTopAppliancesByUtilization`: %v\n", resp)
 }
 ```
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetOrganizationSummaryTopAppliancesByUtilization200ResponseInner**](GetOrganizationSummaryTopAppliancesByUtilization200ResponseInner.md)
+[**[]InlineResponse200119**](InlineResponse200119.md)
 
 ### Authorization
 
