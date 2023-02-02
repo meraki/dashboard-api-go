@@ -4,7 +4,7 @@ All URIs are relative to *https://api.meraki.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetNetworkTopologyLinkLayer**](LinkLayerApi.md#GetNetworkTopologyLinkLayer) | **Get** /networks/{networkId}/topology/linkLayer | List of devices and connections among them within the network.
+[**GetNetworkTopologyLinkLayer**](LinkLayerApi.md#GetNetworkTopologyLinkLayer) | **Get** /networks/{networkId}/topology/linkLayer | List the LLDP and CDP information for all discovered devices and connections in a network.
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > map[string]interface{} GetNetworkTopologyLinkLayer(ctx, networkId).Execute()
 
-List of devices and connections among them within the network.
+List the LLDP and CDP information for all discovered devices and connections in a network.
 
 
 

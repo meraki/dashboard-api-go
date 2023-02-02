@@ -172,7 +172,7 @@ import (
 
 func main() {
     serial := "serial_example" // string | 
-    updateDeviceCameraSense := *openapiclient.NewUpdateDeviceCameraSenseRequest() // UpdateDeviceCameraSenseRequest |  (optional)
+    updateDeviceCameraSense := *openapiclient.NewInlineObject6() // InlineObject6 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -202,7 +202,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceCameraSenseReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceCameraSense** | [**UpdateDeviceCameraSenseRequest**](UpdateDeviceCameraSenseRequest.md) |  | 
+ **updateDeviceCameraSense** | [**InlineObject6**](InlineObject6.md) |  | 
 
 ### Return type
 
