@@ -21,7 +21,7 @@ jobs:
       - name: "Get Previous API Version"
         run: echo "CURRENT_API_VERSION=$(curl -s GET $CLIENT_REPO | jq -r '.tag_name' | head -n1)" >> $GITHUB_ENV
       - name: "Get New API Version"
-        run: echo "NEW_API_VERSION=v$(curl $OPENAPI_REPO | jq '.info.version'  | tr -d '\"')" >> $GITHUB_ENV
+        run: echo "NEW_API_VERSION=$(curl $OPENAPI_REPO | jq '.info.version'  | tr -d '\"')" >> $GITHUB_ENV
       - name: "Export Results"
         id: generate-new-client
         run: |
