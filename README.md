@@ -1,8 +1,7 @@
 # dashboard-api-golang
 Dashboard API for Go
 
-The Meraki Dashboard API Golang library provides all current Meraki [dashboard API](https://developer.cisco.com/meraki/api-v1/) calls to interface with the Cisco Meraki cloud-managed platform.
-
+The Meraki Dashboard API Golang library provides all current Meraki [dashboard API](https://developer.cisco.com/meraki/api-v1/) calls to interface with the Cisco Meraki cloud-managed platform. The library requires Go 1.16+, receives support from the community, and you can install it according to the instructions below:
 
 ## Requirements
 [Go Programming Language](https://golang.org/doc/install) >= 1.16
@@ -36,6 +35,7 @@ import "os"
 func main() {
 	configuration := client.NewConfiguration()
 	configuration.AddDefaultHeader("X-Cisco-Meraki-API-Key", os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
 	apiClient := client.NewAPIClient(configuration)
 
 	orgs, _, err := apiClient.ConfigureApi.GetOrganizations(context.Background()).Execute()
