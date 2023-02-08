@@ -30,7 +30,7 @@ type SoftwaresApiGetNetworkSmDeviceSoftwaresRequest struct {
 	deviceId string
 }
 
-func (r SoftwaresApiGetNetworkSmDeviceSoftwaresRequest) Execute() ([]InlineResponse20053, *http.Response, error) {
+func (r SoftwaresApiGetNetworkSmDeviceSoftwaresRequest) Execute() ([]GetNetworkSmDeviceSoftwares200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceSoftwaresExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *SoftwaresApiService) GetNetworkSmDeviceSoftwares(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return []InlineResponse20053
-func (a *SoftwaresApiService) GetNetworkSmDeviceSoftwaresExecute(r SoftwaresApiGetNetworkSmDeviceSoftwaresRequest) ([]InlineResponse20053, *http.Response, error) {
+//  @return []GetNetworkSmDeviceSoftwares200ResponseInner
+func (a *SoftwaresApiService) GetNetworkSmDeviceSoftwaresExecute(r SoftwaresApiGetNetworkSmDeviceSoftwaresRequest) ([]GetNetworkSmDeviceSoftwares200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20053
+		localVarReturnValue  []GetNetworkSmDeviceSoftwares200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SoftwaresApiService.GetNetworkSmDeviceSoftwares")
@@ -151,7 +151,7 @@ type SoftwaresApiGetNetworkSmUserSoftwaresRequest struct {
 	userId string
 }
 
-func (r SoftwaresApiGetNetworkSmUserSoftwaresRequest) Execute() ([]InlineResponse20053, *http.Response, error) {
+func (r SoftwaresApiGetNetworkSmUserSoftwaresRequest) Execute() ([]GetNetworkSmDeviceSoftwares200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmUserSoftwaresExecute(r)
 }
 
@@ -175,13 +175,13 @@ func (a *SoftwaresApiService) GetNetworkSmUserSoftwares(ctx context.Context, net
 }
 
 // Execute executes the request
-//  @return []InlineResponse20053
-func (a *SoftwaresApiService) GetNetworkSmUserSoftwaresExecute(r SoftwaresApiGetNetworkSmUserSoftwaresRequest) ([]InlineResponse20053, *http.Response, error) {
+//  @return []GetNetworkSmDeviceSoftwares200ResponseInner
+func (a *SoftwaresApiService) GetNetworkSmUserSoftwaresExecute(r SoftwaresApiGetNetworkSmUserSoftwaresRequest) ([]GetNetworkSmDeviceSoftwares200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20053
+		localVarReturnValue  []GetNetworkSmDeviceSoftwares200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SoftwaresApiService.GetNetworkSmUserSoftwares")

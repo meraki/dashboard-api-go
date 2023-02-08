@@ -30,7 +30,7 @@ type SplashApiGetNetworkWirelessSsidSplashSettingsRequest struct {
 	number string
 }
 
-func (r SplashApiGetNetworkWirelessSsidSplashSettingsRequest) Execute() (*InlineResponse20078, *http.Response, error) {
+func (r SplashApiGetNetworkWirelessSsidSplashSettingsRequest) Execute() (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidSplashSettingsExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *SplashApiService) GetNetworkWirelessSsidSplashSettings(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20078
-func (a *SplashApiService) GetNetworkWirelessSsidSplashSettingsExecute(r SplashApiGetNetworkWirelessSsidSplashSettingsRequest) (*InlineResponse20078, *http.Response, error) {
+//  @return GetNetworkWirelessSsidSplashSettings200Response
+func (a *SplashApiService) GetNetworkWirelessSsidSplashSettingsExecute(r SplashApiGetNetworkWirelessSsidSplashSettingsRequest) (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20078
+		localVarReturnValue  *GetNetworkWirelessSsidSplashSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SplashApiService.GetNetworkWirelessSsidSplashSettings")
@@ -149,15 +149,15 @@ type SplashApiUpdateNetworkWirelessSsidSplashSettingsRequest struct {
 	ApiService *SplashApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidSplashSettings *InlineObject163
+	updateNetworkWirelessSsidSplashSettings *UpdateNetworkWirelessSsidSplashSettingsRequest
 }
 
-func (r SplashApiUpdateNetworkWirelessSsidSplashSettingsRequest) UpdateNetworkWirelessSsidSplashSettings(updateNetworkWirelessSsidSplashSettings InlineObject163) SplashApiUpdateNetworkWirelessSsidSplashSettingsRequest {
+func (r SplashApiUpdateNetworkWirelessSsidSplashSettingsRequest) UpdateNetworkWirelessSsidSplashSettings(updateNetworkWirelessSsidSplashSettings UpdateNetworkWirelessSsidSplashSettingsRequest) SplashApiUpdateNetworkWirelessSsidSplashSettingsRequest {
 	r.updateNetworkWirelessSsidSplashSettings = &updateNetworkWirelessSsidSplashSettings
 	return r
 }
 
-func (r SplashApiUpdateNetworkWirelessSsidSplashSettingsRequest) Execute() (*InlineResponse20078, *http.Response, error) {
+func (r SplashApiUpdateNetworkWirelessSsidSplashSettingsRequest) Execute() (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessSsidSplashSettingsExecute(r)
 }
 
@@ -181,13 +181,13 @@ func (a *SplashApiService) UpdateNetworkWirelessSsidSplashSettings(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse20078
-func (a *SplashApiService) UpdateNetworkWirelessSsidSplashSettingsExecute(r SplashApiUpdateNetworkWirelessSsidSplashSettingsRequest) (*InlineResponse20078, *http.Response, error) {
+//  @return GetNetworkWirelessSsidSplashSettings200Response
+func (a *SplashApiService) UpdateNetworkWirelessSsidSplashSettingsExecute(r SplashApiUpdateNetworkWirelessSsidSplashSettingsRequest) (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20078
+		localVarReturnValue  *GetNetworkWirelessSsidSplashSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SplashApiService.UpdateNetworkWirelessSsidSplashSettings")

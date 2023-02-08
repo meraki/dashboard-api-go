@@ -27,10 +27,10 @@ type PolicyObjectsApiCreateOrganizationPolicyObjectRequest struct {
 	ctx context.Context
 	ApiService *PolicyObjectsApiService
 	organizationId string
-	createOrganizationPolicyObject *InlineObject211
+	createOrganizationPolicyObject *CreateOrganizationPolicyObjectRequest
 }
 
-func (r PolicyObjectsApiCreateOrganizationPolicyObjectRequest) CreateOrganizationPolicyObject(createOrganizationPolicyObject InlineObject211) PolicyObjectsApiCreateOrganizationPolicyObjectRequest {
+func (r PolicyObjectsApiCreateOrganizationPolicyObjectRequest) CreateOrganizationPolicyObject(createOrganizationPolicyObject CreateOrganizationPolicyObjectRequest) PolicyObjectsApiCreateOrganizationPolicyObjectRequest {
 	r.createOrganizationPolicyObject = &createOrganizationPolicyObject
 	return r
 }
@@ -155,10 +155,10 @@ type PolicyObjectsApiCreateOrganizationPolicyObjectsGroupRequest struct {
 	ctx context.Context
 	ApiService *PolicyObjectsApiService
 	organizationId string
-	createOrganizationPolicyObjectsGroup *InlineObject212
+	createOrganizationPolicyObjectsGroup *CreateOrganizationPolicyObjectsGroupRequest
 }
 
-func (r PolicyObjectsApiCreateOrganizationPolicyObjectsGroupRequest) CreateOrganizationPolicyObjectsGroup(createOrganizationPolicyObjectsGroup InlineObject212) PolicyObjectsApiCreateOrganizationPolicyObjectsGroupRequest {
+func (r PolicyObjectsApiCreateOrganizationPolicyObjectsGroupRequest) CreateOrganizationPolicyObjectsGroup(createOrganizationPolicyObjectsGroup CreateOrganizationPolicyObjectsGroupRequest) PolicyObjectsApiCreateOrganizationPolicyObjectsGroupRequest {
 	r.createOrganizationPolicyObjectsGroup = &createOrganizationPolicyObjectsGroup
 	return r
 }
@@ -1040,10 +1040,10 @@ type PolicyObjectsApiUpdateOrganizationPolicyObjectRequest struct {
 	ApiService *PolicyObjectsApiService
 	organizationId string
 	policyObjectId string
-	updateOrganizationPolicyObject *InlineObject214
+	updateOrganizationPolicyObject *UpdateOrganizationPolicyObjectRequest
 }
 
-func (r PolicyObjectsApiUpdateOrganizationPolicyObjectRequest) UpdateOrganizationPolicyObject(updateOrganizationPolicyObject InlineObject214) PolicyObjectsApiUpdateOrganizationPolicyObjectRequest {
+func (r PolicyObjectsApiUpdateOrganizationPolicyObjectRequest) UpdateOrganizationPolicyObject(updateOrganizationPolicyObject UpdateOrganizationPolicyObjectRequest) PolicyObjectsApiUpdateOrganizationPolicyObjectRequest {
 	r.updateOrganizationPolicyObject = &updateOrganizationPolicyObject
 	return r
 }
@@ -1169,10 +1169,10 @@ type PolicyObjectsApiUpdateOrganizationPolicyObjectsGroupRequest struct {
 	ApiService *PolicyObjectsApiService
 	organizationId string
 	policyObjectGroupId string
-	updateOrganizationPolicyObjectsGroup *InlineObject213
+	updateOrganizationPolicyObjectsGroup *UpdateOrganizationPolicyObjectsGroupRequest
 }
 
-func (r PolicyObjectsApiUpdateOrganizationPolicyObjectsGroupRequest) UpdateOrganizationPolicyObjectsGroup(updateOrganizationPolicyObjectsGroup InlineObject213) PolicyObjectsApiUpdateOrganizationPolicyObjectsGroupRequest {
+func (r PolicyObjectsApiUpdateOrganizationPolicyObjectsGroupRequest) UpdateOrganizationPolicyObjectsGroup(updateOrganizationPolicyObjectsGroup UpdateOrganizationPolicyObjectsGroupRequest) PolicyObjectsApiUpdateOrganizationPolicyObjectsGroupRequest {
 	r.updateOrganizationPolicyObjectsGroup = &updateOrganizationPolicyObjectsGroup
 	return r
 }

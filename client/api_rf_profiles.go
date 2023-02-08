@@ -27,15 +27,15 @@ type RfProfilesApiCreateNetworkWirelessRfProfileRequest struct {
 	ctx context.Context
 	ApiService *RfProfilesApiService
 	networkId string
-	createNetworkWirelessRfProfile *InlineObject150
+	createNetworkWirelessRfProfile *CreateNetworkWirelessRfProfileRequest
 }
 
-func (r RfProfilesApiCreateNetworkWirelessRfProfileRequest) CreateNetworkWirelessRfProfile(createNetworkWirelessRfProfile InlineObject150) RfProfilesApiCreateNetworkWirelessRfProfileRequest {
+func (r RfProfilesApiCreateNetworkWirelessRfProfileRequest) CreateNetworkWirelessRfProfile(createNetworkWirelessRfProfile CreateNetworkWirelessRfProfileRequest) RfProfilesApiCreateNetworkWirelessRfProfileRequest {
 	r.createNetworkWirelessRfProfile = &createNetworkWirelessRfProfile
 	return r
 }
 
-func (r RfProfilesApiCreateNetworkWirelessRfProfileRequest) Execute() (*InlineResponse2014, *http.Response, error) {
+func (r RfProfilesApiCreateNetworkWirelessRfProfileRequest) Execute() (*CreateNetworkWirelessRfProfile201Response, *http.Response, error) {
 	return r.ApiService.CreateNetworkWirelessRfProfileExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *RfProfilesApiService) CreateNetworkWirelessRfProfile(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse2014
-func (a *RfProfilesApiService) CreateNetworkWirelessRfProfileExecute(r RfProfilesApiCreateNetworkWirelessRfProfileRequest) (*InlineResponse2014, *http.Response, error) {
+//  @return CreateNetworkWirelessRfProfile201Response
+func (a *RfProfilesApiService) CreateNetworkWirelessRfProfileExecute(r RfProfilesApiCreateNetworkWirelessRfProfileRequest) (*CreateNetworkWirelessRfProfile201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2014
+		localVarReturnValue  *CreateNetworkWirelessRfProfile201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RfProfilesApiService.CreateNetworkWirelessRfProfile")
@@ -514,15 +514,15 @@ type RfProfilesApiUpdateNetworkWirelessRfProfileRequest struct {
 	ApiService *RfProfilesApiService
 	networkId string
 	rfProfileId string
-	updateNetworkWirelessRfProfile *InlineObject151
+	updateNetworkWirelessRfProfile *UpdateNetworkWirelessRfProfileRequest
 }
 
-func (r RfProfilesApiUpdateNetworkWirelessRfProfileRequest) UpdateNetworkWirelessRfProfile(updateNetworkWirelessRfProfile InlineObject151) RfProfilesApiUpdateNetworkWirelessRfProfileRequest {
+func (r RfProfilesApiUpdateNetworkWirelessRfProfileRequest) UpdateNetworkWirelessRfProfile(updateNetworkWirelessRfProfile UpdateNetworkWirelessRfProfileRequest) RfProfilesApiUpdateNetworkWirelessRfProfileRequest {
 	r.updateNetworkWirelessRfProfile = &updateNetworkWirelessRfProfile
 	return r
 }
 
-func (r RfProfilesApiUpdateNetworkWirelessRfProfileRequest) Execute() (*InlineResponse2014, *http.Response, error) {
+func (r RfProfilesApiUpdateNetworkWirelessRfProfileRequest) Execute() (*CreateNetworkWirelessRfProfile201Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessRfProfileExecute(r)
 }
 
@@ -546,13 +546,13 @@ func (a *RfProfilesApiService) UpdateNetworkWirelessRfProfile(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse2014
-func (a *RfProfilesApiService) UpdateNetworkWirelessRfProfileExecute(r RfProfilesApiUpdateNetworkWirelessRfProfileRequest) (*InlineResponse2014, *http.Response, error) {
+//  @return CreateNetworkWirelessRfProfile201Response
+func (a *RfProfilesApiService) UpdateNetworkWirelessRfProfileExecute(r RfProfilesApiUpdateNetworkWirelessRfProfileRequest) (*CreateNetworkWirelessRfProfile201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2014
+		localVarReturnValue  *CreateNetworkWirelessRfProfile201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RfProfilesApiService.UpdateNetworkWirelessRfProfile")

@@ -27,15 +27,15 @@ type FirmwareUpgradesApiCreateNetworkFirmwareUpgradesRollbackRequest struct {
 	ctx context.Context
 	ApiService *FirmwareUpgradesApiService
 	networkId string
-	createNetworkFirmwareUpgradesRollback *InlineObject78
+	createNetworkFirmwareUpgradesRollback *CreateNetworkFirmwareUpgradesRollbackRequest
 }
 
-func (r FirmwareUpgradesApiCreateNetworkFirmwareUpgradesRollbackRequest) CreateNetworkFirmwareUpgradesRollback(createNetworkFirmwareUpgradesRollback InlineObject78) FirmwareUpgradesApiCreateNetworkFirmwareUpgradesRollbackRequest {
+func (r FirmwareUpgradesApiCreateNetworkFirmwareUpgradesRollbackRequest) CreateNetworkFirmwareUpgradesRollback(createNetworkFirmwareUpgradesRollback CreateNetworkFirmwareUpgradesRollbackRequest) FirmwareUpgradesApiCreateNetworkFirmwareUpgradesRollbackRequest {
 	r.createNetworkFirmwareUpgradesRollback = &createNetworkFirmwareUpgradesRollback
 	return r
 }
 
-func (r FirmwareUpgradesApiCreateNetworkFirmwareUpgradesRollbackRequest) Execute() (*InlineResponse20025, *http.Response, error) {
+func (r FirmwareUpgradesApiCreateNetworkFirmwareUpgradesRollbackRequest) Execute() (*CreateNetworkFirmwareUpgradesRollback200Response, *http.Response, error) {
 	return r.ApiService.CreateNetworkFirmwareUpgradesRollbackExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *FirmwareUpgradesApiService) CreateNetworkFirmwareUpgradesRollback(ctx c
 }
 
 // Execute executes the request
-//  @return InlineResponse20025
-func (a *FirmwareUpgradesApiService) CreateNetworkFirmwareUpgradesRollbackExecute(r FirmwareUpgradesApiCreateNetworkFirmwareUpgradesRollbackRequest) (*InlineResponse20025, *http.Response, error) {
+//  @return CreateNetworkFirmwareUpgradesRollback200Response
+func (a *FirmwareUpgradesApiService) CreateNetworkFirmwareUpgradesRollbackExecute(r FirmwareUpgradesApiCreateNetworkFirmwareUpgradesRollbackRequest) (*CreateNetworkFirmwareUpgradesRollback200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20025
+		localVarReturnValue  *CreateNetworkFirmwareUpgradesRollback200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareUpgradesApiService.CreateNetworkFirmwareUpgradesRollback")
@@ -155,15 +155,15 @@ type FirmwareUpgradesApiCreateNetworkFirmwareUpgradesStagedEventRequest struct {
 	ctx context.Context
 	ApiService *FirmwareUpgradesApiService
 	networkId string
-	createNetworkFirmwareUpgradesStagedEvent *InlineObject80
+	createNetworkFirmwareUpgradesStagedEvent *CreateNetworkFirmwareUpgradesStagedEventRequest
 }
 
-func (r FirmwareUpgradesApiCreateNetworkFirmwareUpgradesStagedEventRequest) CreateNetworkFirmwareUpgradesStagedEvent(createNetworkFirmwareUpgradesStagedEvent InlineObject80) FirmwareUpgradesApiCreateNetworkFirmwareUpgradesStagedEventRequest {
+func (r FirmwareUpgradesApiCreateNetworkFirmwareUpgradesStagedEventRequest) CreateNetworkFirmwareUpgradesStagedEvent(createNetworkFirmwareUpgradesStagedEvent CreateNetworkFirmwareUpgradesStagedEventRequest) FirmwareUpgradesApiCreateNetworkFirmwareUpgradesStagedEventRequest {
 	r.createNetworkFirmwareUpgradesStagedEvent = &createNetworkFirmwareUpgradesStagedEvent
 	return r
 }
 
-func (r FirmwareUpgradesApiCreateNetworkFirmwareUpgradesStagedEventRequest) Execute() (*InlineResponse20026, *http.Response, error) {
+func (r FirmwareUpgradesApiCreateNetworkFirmwareUpgradesStagedEventRequest) Execute() (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	return r.ApiService.CreateNetworkFirmwareUpgradesStagedEventExecute(r)
 }
 
@@ -185,13 +185,13 @@ func (a *FirmwareUpgradesApiService) CreateNetworkFirmwareUpgradesStagedEvent(ct
 }
 
 // Execute executes the request
-//  @return InlineResponse20026
-func (a *FirmwareUpgradesApiService) CreateNetworkFirmwareUpgradesStagedEventExecute(r FirmwareUpgradesApiCreateNetworkFirmwareUpgradesStagedEventRequest) (*InlineResponse20026, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgradesStagedEvents200Response
+func (a *FirmwareUpgradesApiService) CreateNetworkFirmwareUpgradesStagedEventExecute(r FirmwareUpgradesApiCreateNetworkFirmwareUpgradesStagedEventRequest) (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20026
+		localVarReturnValue  *GetNetworkFirmwareUpgradesStagedEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareUpgradesApiService.CreateNetworkFirmwareUpgradesStagedEvent")
@@ -283,10 +283,10 @@ type FirmwareUpgradesApiCreateNetworkFirmwareUpgradesStagedGroupRequest struct {
 	ctx context.Context
 	ApiService *FirmwareUpgradesApiService
 	networkId string
-	createNetworkFirmwareUpgradesStagedGroup *InlineObject82
+	createNetworkFirmwareUpgradesStagedGroup *CreateNetworkFirmwareUpgradesStagedGroupRequest
 }
 
-func (r FirmwareUpgradesApiCreateNetworkFirmwareUpgradesStagedGroupRequest) CreateNetworkFirmwareUpgradesStagedGroup(createNetworkFirmwareUpgradesStagedGroup InlineObject82) FirmwareUpgradesApiCreateNetworkFirmwareUpgradesStagedGroupRequest {
+func (r FirmwareUpgradesApiCreateNetworkFirmwareUpgradesStagedGroupRequest) CreateNetworkFirmwareUpgradesStagedGroup(createNetworkFirmwareUpgradesStagedGroup CreateNetworkFirmwareUpgradesStagedGroupRequest) FirmwareUpgradesApiCreateNetworkFirmwareUpgradesStagedGroupRequest {
 	r.createNetworkFirmwareUpgradesStagedGroup = &createNetworkFirmwareUpgradesStagedGroup
 	return r
 }
@@ -413,7 +413,7 @@ type FirmwareUpgradesApiDeferNetworkFirmwareUpgradesStagedEventsRequest struct {
 	networkId string
 }
 
-func (r FirmwareUpgradesApiDeferNetworkFirmwareUpgradesStagedEventsRequest) Execute() (*InlineResponse20026, *http.Response, error) {
+func (r FirmwareUpgradesApiDeferNetworkFirmwareUpgradesStagedEventsRequest) Execute() (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	return r.ApiService.DeferNetworkFirmwareUpgradesStagedEventsExecute(r)
 }
 
@@ -435,13 +435,13 @@ func (a *FirmwareUpgradesApiService) DeferNetworkFirmwareUpgradesStagedEvents(ct
 }
 
 // Execute executes the request
-//  @return InlineResponse20026
-func (a *FirmwareUpgradesApiService) DeferNetworkFirmwareUpgradesStagedEventsExecute(r FirmwareUpgradesApiDeferNetworkFirmwareUpgradesStagedEventsRequest) (*InlineResponse20026, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgradesStagedEvents200Response
+func (a *FirmwareUpgradesApiService) DeferNetworkFirmwareUpgradesStagedEventsExecute(r FirmwareUpgradesApiDeferNetworkFirmwareUpgradesStagedEventsRequest) (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20026
+		localVarReturnValue  *GetNetworkFirmwareUpgradesStagedEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareUpgradesApiService.DeferNetworkFirmwareUpgradesStagedEvents")
@@ -640,7 +640,7 @@ type FirmwareUpgradesApiGetNetworkFirmwareUpgradesRequest struct {
 	networkId string
 }
 
-func (r FirmwareUpgradesApiGetNetworkFirmwareUpgradesRequest) Execute() (*InlineResponse20024, *http.Response, error) {
+func (r FirmwareUpgradesApiGetNetworkFirmwareUpgradesRequest) Execute() (*GetNetworkFirmwareUpgrades200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkFirmwareUpgradesExecute(r)
 }
 
@@ -662,13 +662,13 @@ func (a *FirmwareUpgradesApiService) GetNetworkFirmwareUpgrades(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20024
-func (a *FirmwareUpgradesApiService) GetNetworkFirmwareUpgradesExecute(r FirmwareUpgradesApiGetNetworkFirmwareUpgradesRequest) (*InlineResponse20024, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgrades200Response
+func (a *FirmwareUpgradesApiService) GetNetworkFirmwareUpgradesExecute(r FirmwareUpgradesApiGetNetworkFirmwareUpgradesRequest) (*GetNetworkFirmwareUpgrades200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20024
+		localVarReturnValue  *GetNetworkFirmwareUpgrades200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareUpgradesApiService.GetNetworkFirmwareUpgrades")
@@ -757,7 +757,7 @@ type FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedEventsRequest struct {
 	networkId string
 }
 
-func (r FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedEventsRequest) Execute() (*InlineResponse20026, *http.Response, error) {
+func (r FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedEventsRequest) Execute() (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkFirmwareUpgradesStagedEventsExecute(r)
 }
 
@@ -779,13 +779,13 @@ func (a *FirmwareUpgradesApiService) GetNetworkFirmwareUpgradesStagedEvents(ctx 
 }
 
 // Execute executes the request
-//  @return InlineResponse20026
-func (a *FirmwareUpgradesApiService) GetNetworkFirmwareUpgradesStagedEventsExecute(r FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedEventsRequest) (*InlineResponse20026, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgradesStagedEvents200Response
+func (a *FirmwareUpgradesApiService) GetNetworkFirmwareUpgradesStagedEventsExecute(r FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedEventsRequest) (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20026
+		localVarReturnValue  *GetNetworkFirmwareUpgradesStagedEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareUpgradesApiService.GetNetworkFirmwareUpgradesStagedEvents")
@@ -875,7 +875,7 @@ type FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedGroupRequest struct {
 	groupId string
 }
 
-func (r FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedGroupRequest) Execute() (*InlineResponse20027, *http.Response, error) {
+func (r FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedGroupRequest) Execute() (*GetNetworkFirmwareUpgradesStagedGroups200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkFirmwareUpgradesStagedGroupExecute(r)
 }
 
@@ -899,13 +899,13 @@ func (a *FirmwareUpgradesApiService) GetNetworkFirmwareUpgradesStagedGroup(ctx c
 }
 
 // Execute executes the request
-//  @return InlineResponse20027
-func (a *FirmwareUpgradesApiService) GetNetworkFirmwareUpgradesStagedGroupExecute(r FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedGroupRequest) (*InlineResponse20027, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
+func (a *FirmwareUpgradesApiService) GetNetworkFirmwareUpgradesStagedGroupExecute(r FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedGroupRequest) (*GetNetworkFirmwareUpgradesStagedGroups200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20027
+		localVarReturnValue  *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareUpgradesApiService.GetNetworkFirmwareUpgradesStagedGroup")
@@ -995,7 +995,7 @@ type FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedGroupsRequest struct {
 	networkId string
 }
 
-func (r FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedGroupsRequest) Execute() ([]InlineResponse20027, *http.Response, error) {
+func (r FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedGroupsRequest) Execute() ([]GetNetworkFirmwareUpgradesStagedGroups200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkFirmwareUpgradesStagedGroupsExecute(r)
 }
 
@@ -1017,13 +1017,13 @@ func (a *FirmwareUpgradesApiService) GetNetworkFirmwareUpgradesStagedGroups(ctx 
 }
 
 // Execute executes the request
-//  @return []InlineResponse20027
-func (a *FirmwareUpgradesApiService) GetNetworkFirmwareUpgradesStagedGroupsExecute(r FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedGroupsRequest) ([]InlineResponse20027, *http.Response, error) {
+//  @return []GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
+func (a *FirmwareUpgradesApiService) GetNetworkFirmwareUpgradesStagedGroupsExecute(r FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedGroupsRequest) ([]GetNetworkFirmwareUpgradesStagedGroups200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20027
+		localVarReturnValue  []GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareUpgradesApiService.GetNetworkFirmwareUpgradesStagedGroups")
@@ -1112,7 +1112,7 @@ type FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedStagesRequest struct {
 	networkId string
 }
 
-func (r FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedStagesRequest) Execute() ([]InlineResponse20028, *http.Response, error) {
+func (r FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedStagesRequest) Execute() ([]GetNetworkFirmwareUpgradesStagedStages200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkFirmwareUpgradesStagedStagesExecute(r)
 }
 
@@ -1134,13 +1134,13 @@ func (a *FirmwareUpgradesApiService) GetNetworkFirmwareUpgradesStagedStages(ctx 
 }
 
 // Execute executes the request
-//  @return []InlineResponse20028
-func (a *FirmwareUpgradesApiService) GetNetworkFirmwareUpgradesStagedStagesExecute(r FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedStagesRequest) ([]InlineResponse20028, *http.Response, error) {
+//  @return []GetNetworkFirmwareUpgradesStagedStages200ResponseInner
+func (a *FirmwareUpgradesApiService) GetNetworkFirmwareUpgradesStagedStagesExecute(r FirmwareUpgradesApiGetNetworkFirmwareUpgradesStagedStagesRequest) ([]GetNetworkFirmwareUpgradesStagedStages200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20028
+		localVarReturnValue  []GetNetworkFirmwareUpgradesStagedStages200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareUpgradesApiService.GetNetworkFirmwareUpgradesStagedStages")
@@ -1227,15 +1227,15 @@ type FirmwareUpgradesApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest stru
 	ctx context.Context
 	ApiService *FirmwareUpgradesApiService
 	networkId string
-	rollbacksNetworkFirmwareUpgradesStagedEvents *InlineObject81
+	rollbacksNetworkFirmwareUpgradesStagedEvents *RollbacksNetworkFirmwareUpgradesStagedEventsRequest
 }
 
-func (r FirmwareUpgradesApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest) RollbacksNetworkFirmwareUpgradesStagedEvents(rollbacksNetworkFirmwareUpgradesStagedEvents InlineObject81) FirmwareUpgradesApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest {
+func (r FirmwareUpgradesApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest) RollbacksNetworkFirmwareUpgradesStagedEvents(rollbacksNetworkFirmwareUpgradesStagedEvents RollbacksNetworkFirmwareUpgradesStagedEventsRequest) FirmwareUpgradesApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest {
 	r.rollbacksNetworkFirmwareUpgradesStagedEvents = &rollbacksNetworkFirmwareUpgradesStagedEvents
 	return r
 }
 
-func (r FirmwareUpgradesApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest) Execute() (*InlineResponse20026, *http.Response, error) {
+func (r FirmwareUpgradesApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest) Execute() (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	return r.ApiService.RollbacksNetworkFirmwareUpgradesStagedEventsExecute(r)
 }
 
@@ -1257,13 +1257,13 @@ func (a *FirmwareUpgradesApiService) RollbacksNetworkFirmwareUpgradesStagedEvent
 }
 
 // Execute executes the request
-//  @return InlineResponse20026
-func (a *FirmwareUpgradesApiService) RollbacksNetworkFirmwareUpgradesStagedEventsExecute(r FirmwareUpgradesApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest) (*InlineResponse20026, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgradesStagedEvents200Response
+func (a *FirmwareUpgradesApiService) RollbacksNetworkFirmwareUpgradesStagedEventsExecute(r FirmwareUpgradesApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest) (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20026
+		localVarReturnValue  *GetNetworkFirmwareUpgradesStagedEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareUpgradesApiService.RollbacksNetworkFirmwareUpgradesStagedEvents")
@@ -1355,15 +1355,15 @@ type FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesRequest struct {
 	ctx context.Context
 	ApiService *FirmwareUpgradesApiService
 	networkId string
-	updateNetworkFirmwareUpgrades *InlineObject77
+	updateNetworkFirmwareUpgrades *UpdateNetworkFirmwareUpgradesRequest
 }
 
-func (r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesRequest) UpdateNetworkFirmwareUpgrades(updateNetworkFirmwareUpgrades InlineObject77) FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesRequest {
+func (r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesRequest) UpdateNetworkFirmwareUpgrades(updateNetworkFirmwareUpgrades UpdateNetworkFirmwareUpgradesRequest) FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesRequest {
 	r.updateNetworkFirmwareUpgrades = &updateNetworkFirmwareUpgrades
 	return r
 }
 
-func (r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesRequest) Execute() (*InlineResponse20024, *http.Response, error) {
+func (r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesRequest) Execute() (*GetNetworkFirmwareUpgrades200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkFirmwareUpgradesExecute(r)
 }
 
@@ -1385,13 +1385,13 @@ func (a *FirmwareUpgradesApiService) UpdateNetworkFirmwareUpgrades(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse20024
-func (a *FirmwareUpgradesApiService) UpdateNetworkFirmwareUpgradesExecute(r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesRequest) (*InlineResponse20024, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgrades200Response
+func (a *FirmwareUpgradesApiService) UpdateNetworkFirmwareUpgradesExecute(r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesRequest) (*GetNetworkFirmwareUpgrades200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20024
+		localVarReturnValue  *GetNetworkFirmwareUpgrades200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareUpgradesApiService.UpdateNetworkFirmwareUpgrades")
@@ -1480,15 +1480,15 @@ type FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedEventsRequest struct 
 	ctx context.Context
 	ApiService *FirmwareUpgradesApiService
 	networkId string
-	updateNetworkFirmwareUpgradesStagedEvents *InlineObject79
+	updateNetworkFirmwareUpgradesStagedEvents *UpdateNetworkFirmwareUpgradesStagedEventsRequest
 }
 
-func (r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedEventsRequest) UpdateNetworkFirmwareUpgradesStagedEvents(updateNetworkFirmwareUpgradesStagedEvents InlineObject79) FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedEventsRequest {
+func (r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedEventsRequest) UpdateNetworkFirmwareUpgradesStagedEvents(updateNetworkFirmwareUpgradesStagedEvents UpdateNetworkFirmwareUpgradesStagedEventsRequest) FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedEventsRequest {
 	r.updateNetworkFirmwareUpgradesStagedEvents = &updateNetworkFirmwareUpgradesStagedEvents
 	return r
 }
 
-func (r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedEventsRequest) Execute() (*InlineResponse20026, *http.Response, error) {
+func (r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedEventsRequest) Execute() (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkFirmwareUpgradesStagedEventsExecute(r)
 }
 
@@ -1510,13 +1510,13 @@ func (a *FirmwareUpgradesApiService) UpdateNetworkFirmwareUpgradesStagedEvents(c
 }
 
 // Execute executes the request
-//  @return InlineResponse20026
-func (a *FirmwareUpgradesApiService) UpdateNetworkFirmwareUpgradesStagedEventsExecute(r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedEventsRequest) (*InlineResponse20026, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgradesStagedEvents200Response
+func (a *FirmwareUpgradesApiService) UpdateNetworkFirmwareUpgradesStagedEventsExecute(r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedEventsRequest) (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20026
+		localVarReturnValue  *GetNetworkFirmwareUpgradesStagedEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareUpgradesApiService.UpdateNetworkFirmwareUpgradesStagedEvents")
@@ -1609,10 +1609,10 @@ type FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedGroupRequest struct {
 	ApiService *FirmwareUpgradesApiService
 	networkId string
 	groupId string
-	updateNetworkFirmwareUpgradesStagedGroup *InlineObject83
+	updateNetworkFirmwareUpgradesStagedGroup *CreateNetworkFirmwareUpgradesStagedGroupRequest
 }
 
-func (r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedGroupRequest) UpdateNetworkFirmwareUpgradesStagedGroup(updateNetworkFirmwareUpgradesStagedGroup InlineObject83) FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedGroupRequest {
+func (r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedGroupRequest) UpdateNetworkFirmwareUpgradesStagedGroup(updateNetworkFirmwareUpgradesStagedGroup CreateNetworkFirmwareUpgradesStagedGroupRequest) FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedGroupRequest {
 	r.updateNetworkFirmwareUpgradesStagedGroup = &updateNetworkFirmwareUpgradesStagedGroup
 	return r
 }
@@ -1740,15 +1740,15 @@ type FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest struct 
 	ctx context.Context
 	ApiService *FirmwareUpgradesApiService
 	networkId string
-	updateNetworkFirmwareUpgradesStagedStages *InlineObject84
+	updateNetworkFirmwareUpgradesStagedStages *UpdateNetworkFirmwareUpgradesStagedStagesRequest
 }
 
-func (r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) UpdateNetworkFirmwareUpgradesStagedStages(updateNetworkFirmwareUpgradesStagedStages InlineObject84) FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest {
+func (r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) UpdateNetworkFirmwareUpgradesStagedStages(updateNetworkFirmwareUpgradesStagedStages UpdateNetworkFirmwareUpgradesStagedStagesRequest) FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest {
 	r.updateNetworkFirmwareUpgradesStagedStages = &updateNetworkFirmwareUpgradesStagedStages
 	return r
 }
 
-func (r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) Execute() ([]InlineResponse20028, *http.Response, error) {
+func (r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) Execute() ([]GetNetworkFirmwareUpgradesStagedStages200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkFirmwareUpgradesStagedStagesExecute(r)
 }
 
@@ -1770,13 +1770,13 @@ func (a *FirmwareUpgradesApiService) UpdateNetworkFirmwareUpgradesStagedStages(c
 }
 
 // Execute executes the request
-//  @return []InlineResponse20028
-func (a *FirmwareUpgradesApiService) UpdateNetworkFirmwareUpgradesStagedStagesExecute(r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) ([]InlineResponse20028, *http.Response, error) {
+//  @return []GetNetworkFirmwareUpgradesStagedStages200ResponseInner
+func (a *FirmwareUpgradesApiService) UpdateNetworkFirmwareUpgradesStagedStagesExecute(r FirmwareUpgradesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) ([]GetNetworkFirmwareUpgradesStagedStages200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20028
+		localVarReturnValue  []GetNetworkFirmwareUpgradesStagedStages200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirmwareUpgradesApiService.UpdateNetworkFirmwareUpgradesStagedStages")

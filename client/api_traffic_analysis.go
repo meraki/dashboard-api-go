@@ -144,10 +144,10 @@ type TrafficAnalysisApiUpdateNetworkTrafficAnalysisRequest struct {
 	ctx context.Context
 	ApiService *TrafficAnalysisApiService
 	networkId string
-	updateNetworkTrafficAnalysis *InlineObject140
+	updateNetworkTrafficAnalysis *UpdateNetworkTrafficAnalysisRequest
 }
 
-func (r TrafficAnalysisApiUpdateNetworkTrafficAnalysisRequest) UpdateNetworkTrafficAnalysis(updateNetworkTrafficAnalysis InlineObject140) TrafficAnalysisApiUpdateNetworkTrafficAnalysisRequest {
+func (r TrafficAnalysisApiUpdateNetworkTrafficAnalysisRequest) UpdateNetworkTrafficAnalysis(updateNetworkTrafficAnalysis UpdateNetworkTrafficAnalysisRequest) TrafficAnalysisApiUpdateNetworkTrafficAnalysisRequest {
 	r.updateNetworkTrafficAnalysis = &updateNetworkTrafficAnalysis
 	return r
 }

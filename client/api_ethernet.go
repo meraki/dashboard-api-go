@@ -57,7 +57,7 @@ func (r EthernetApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Networ
 	return r
 }
 
-func (r EthernetApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Execute() ([]InlineResponse200129, *http.Response, error) {
+func (r EthernetApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Execute() ([]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWirelessDevicesEthernetStatusesExecute(r)
 }
 
@@ -79,13 +79,13 @@ func (a *EthernetApiService) GetOrganizationWirelessDevicesEthernetStatuses(ctx 
 }
 
 // Execute executes the request
-//  @return []InlineResponse200129
-func (a *EthernetApiService) GetOrganizationWirelessDevicesEthernetStatusesExecute(r EthernetApiGetOrganizationWirelessDevicesEthernetStatusesRequest) ([]InlineResponse200129, *http.Response, error) {
+//  @return []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
+func (a *EthernetApiService) GetOrganizationWirelessDevicesEthernetStatusesExecute(r EthernetApiGetOrganizationWirelessDevicesEthernetStatusesRequest) ([]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200129
+		localVarReturnValue  []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EthernetApiService.GetOrganizationWirelessDevicesEthernetStatuses")

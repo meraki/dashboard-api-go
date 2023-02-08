@@ -27,15 +27,15 @@ type FieldsApiUpdateNetworkSmDevicesFieldsRequest struct {
 	ctx context.Context
 	ApiService *FieldsApiService
 	networkId string
-	updateNetworkSmDevicesFields *InlineObject100
+	updateNetworkSmDevicesFields *UpdateNetworkSmDevicesFieldsRequest
 }
 
-func (r FieldsApiUpdateNetworkSmDevicesFieldsRequest) UpdateNetworkSmDevicesFields(updateNetworkSmDevicesFields InlineObject100) FieldsApiUpdateNetworkSmDevicesFieldsRequest {
+func (r FieldsApiUpdateNetworkSmDevicesFieldsRequest) UpdateNetworkSmDevicesFields(updateNetworkSmDevicesFields UpdateNetworkSmDevicesFieldsRequest) FieldsApiUpdateNetworkSmDevicesFieldsRequest {
 	r.updateNetworkSmDevicesFields = &updateNetworkSmDevicesFields
 	return r
 }
 
-func (r FieldsApiUpdateNetworkSmDevicesFieldsRequest) Execute() ([]InlineResponse20040, *http.Response, error) {
+func (r FieldsApiUpdateNetworkSmDevicesFieldsRequest) Execute() ([]UpdateNetworkSmDevicesFields200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSmDevicesFieldsExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *FieldsApiService) UpdateNetworkSmDevicesFields(ctx context.Context, net
 }
 
 // Execute executes the request
-//  @return []InlineResponse20040
-func (a *FieldsApiService) UpdateNetworkSmDevicesFieldsExecute(r FieldsApiUpdateNetworkSmDevicesFieldsRequest) ([]InlineResponse20040, *http.Response, error) {
+//  @return []UpdateNetworkSmDevicesFields200ResponseInner
+func (a *FieldsApiService) UpdateNetworkSmDevicesFieldsExecute(r FieldsApiUpdateNetworkSmDevicesFieldsRequest) ([]UpdateNetworkSmDevicesFields200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20040
+		localVarReturnValue  []UpdateNetworkSmDevicesFields200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FieldsApiService.UpdateNetworkSmDevicesFields")

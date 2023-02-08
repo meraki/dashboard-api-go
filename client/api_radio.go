@@ -144,10 +144,10 @@ type RadioApiUpdateDeviceWirelessRadioSettingsRequest struct {
 	ctx context.Context
 	ApiService *RadioApiService
 	serial string
-	updateDeviceWirelessRadioSettings *InlineObject25
+	updateDeviceWirelessRadioSettings *UpdateDeviceWirelessRadioSettingsRequest
 }
 
-func (r RadioApiUpdateDeviceWirelessRadioSettingsRequest) UpdateDeviceWirelessRadioSettings(updateDeviceWirelessRadioSettings InlineObject25) RadioApiUpdateDeviceWirelessRadioSettingsRequest {
+func (r RadioApiUpdateDeviceWirelessRadioSettingsRequest) UpdateDeviceWirelessRadioSettings(updateDeviceWirelessRadioSettings UpdateDeviceWirelessRadioSettingsRequest) RadioApiUpdateDeviceWirelessRadioSettingsRequest {
 	r.updateDeviceWirelessRadioSettings = &updateDeviceWirelessRadioSettings
 	return r
 }

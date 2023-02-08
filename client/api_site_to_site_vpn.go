@@ -29,7 +29,7 @@ type SiteToSiteVpnApiGetNetworkApplianceVpnSiteToSiteVpnRequest struct {
 	networkId string
 }
 
-func (r SiteToSiteVpnApiGetNetworkApplianceVpnSiteToSiteVpnRequest) Execute() (*InlineResponse20018, *http.Response, error) {
+func (r SiteToSiteVpnApiGetNetworkApplianceVpnSiteToSiteVpnRequest) Execute() (*GetNetworkApplianceVpnSiteToSiteVpn200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceVpnSiteToSiteVpnExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *SiteToSiteVpnApiService) GetNetworkApplianceVpnSiteToSiteVpn(ctx contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20018
-func (a *SiteToSiteVpnApiService) GetNetworkApplianceVpnSiteToSiteVpnExecute(r SiteToSiteVpnApiGetNetworkApplianceVpnSiteToSiteVpnRequest) (*InlineResponse20018, *http.Response, error) {
+//  @return GetNetworkApplianceVpnSiteToSiteVpn200Response
+func (a *SiteToSiteVpnApiService) GetNetworkApplianceVpnSiteToSiteVpnExecute(r SiteToSiteVpnApiGetNetworkApplianceVpnSiteToSiteVpnRequest) (*GetNetworkApplianceVpnSiteToSiteVpn200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20018
+		localVarReturnValue  *GetNetworkApplianceVpnSiteToSiteVpn200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SiteToSiteVpnApiService.GetNetworkApplianceVpnSiteToSiteVpn")
@@ -144,15 +144,15 @@ type SiteToSiteVpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest struct {
 	ctx context.Context
 	ApiService *SiteToSiteVpnApiService
 	networkId string
-	updateNetworkApplianceVpnSiteToSiteVpn *InlineObject60
+	updateNetworkApplianceVpnSiteToSiteVpn *UpdateNetworkApplianceVpnSiteToSiteVpnRequest
 }
 
-func (r SiteToSiteVpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) UpdateNetworkApplianceVpnSiteToSiteVpn(updateNetworkApplianceVpnSiteToSiteVpn InlineObject60) SiteToSiteVpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest {
+func (r SiteToSiteVpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) UpdateNetworkApplianceVpnSiteToSiteVpn(updateNetworkApplianceVpnSiteToSiteVpn UpdateNetworkApplianceVpnSiteToSiteVpnRequest) SiteToSiteVpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest {
 	r.updateNetworkApplianceVpnSiteToSiteVpn = &updateNetworkApplianceVpnSiteToSiteVpn
 	return r
 }
 
-func (r SiteToSiteVpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) Execute() (*InlineResponse20018, *http.Response, error) {
+func (r SiteToSiteVpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) Execute() (*GetNetworkApplianceVpnSiteToSiteVpn200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceVpnSiteToSiteVpnExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *SiteToSiteVpnApiService) UpdateNetworkApplianceVpnSiteToSiteVpn(ctx con
 }
 
 // Execute executes the request
-//  @return InlineResponse20018
-func (a *SiteToSiteVpnApiService) UpdateNetworkApplianceVpnSiteToSiteVpnExecute(r SiteToSiteVpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) (*InlineResponse20018, *http.Response, error) {
+//  @return GetNetworkApplianceVpnSiteToSiteVpn200Response
+func (a *SiteToSiteVpnApiService) UpdateNetworkApplianceVpnSiteToSiteVpnExecute(r SiteToSiteVpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) (*GetNetworkApplianceVpnSiteToSiteVpn200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20018
+		localVarReturnValue  *GetNetworkApplianceVpnSiteToSiteVpn200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SiteToSiteVpnApiService.UpdateNetworkApplianceVpnSiteToSiteVpn")

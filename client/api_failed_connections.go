@@ -92,7 +92,7 @@ func (r FailedConnectionsApiGetNetworkWirelessFailedConnectionsRequest) ClientId
 	return r
 }
 
-func (r FailedConnectionsApiGetNetworkWirelessFailedConnectionsRequest) Execute() ([]InlineResponse20073, *http.Response, error) {
+func (r FailedConnectionsApiGetNetworkWirelessFailedConnectionsRequest) Execute() ([]GetNetworkWirelessFailedConnections200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessFailedConnectionsExecute(r)
 }
 
@@ -114,13 +114,13 @@ func (a *FailedConnectionsApiService) GetNetworkWirelessFailedConnections(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20073
-func (a *FailedConnectionsApiService) GetNetworkWirelessFailedConnectionsExecute(r FailedConnectionsApiGetNetworkWirelessFailedConnectionsRequest) ([]InlineResponse20073, *http.Response, error) {
+//  @return []GetNetworkWirelessFailedConnections200ResponseInner
+func (a *FailedConnectionsApiService) GetNetworkWirelessFailedConnectionsExecute(r FailedConnectionsApiGetNetworkWirelessFailedConnectionsRequest) ([]GetNetworkWirelessFailedConnections200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20073
+		localVarReturnValue  []GetNetworkWirelessFailedConnections200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FailedConnectionsApiService.GetNetworkWirelessFailedConnections")

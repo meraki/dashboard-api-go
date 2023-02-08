@@ -28,10 +28,10 @@ type CameraApiCreateNetworkCameraQualityRetentionProfileRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	networkId string
-	createNetworkCameraQualityRetentionProfile *InlineObject63
+	createNetworkCameraQualityRetentionProfile *CreateNetworkCameraQualityRetentionProfileRequest
 }
 
-func (r CameraApiCreateNetworkCameraQualityRetentionProfileRequest) CreateNetworkCameraQualityRetentionProfile(createNetworkCameraQualityRetentionProfile InlineObject63) CameraApiCreateNetworkCameraQualityRetentionProfileRequest {
+func (r CameraApiCreateNetworkCameraQualityRetentionProfileRequest) CreateNetworkCameraQualityRetentionProfile(createNetworkCameraQualityRetentionProfile CreateNetworkCameraQualityRetentionProfileRequest) CameraApiCreateNetworkCameraQualityRetentionProfileRequest {
 	r.createNetworkCameraQualityRetentionProfile = &createNetworkCameraQualityRetentionProfile
 	return r
 }
@@ -156,10 +156,10 @@ type CameraApiCreateNetworkCameraWirelessProfileRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	networkId string
-	createNetworkCameraWirelessProfile *InlineObject65
+	createNetworkCameraWirelessProfile *CreateNetworkCameraWirelessProfileRequest
 }
 
-func (r CameraApiCreateNetworkCameraWirelessProfileRequest) CreateNetworkCameraWirelessProfile(createNetworkCameraWirelessProfile InlineObject65) CameraApiCreateNetworkCameraWirelessProfileRequest {
+func (r CameraApiCreateNetworkCameraWirelessProfileRequest) CreateNetworkCameraWirelessProfile(createNetworkCameraWirelessProfile CreateNetworkCameraWirelessProfileRequest) CameraApiCreateNetworkCameraWirelessProfileRequest {
 	r.createNetworkCameraWirelessProfile = &createNetworkCameraWirelessProfile
 	return r
 }
@@ -284,10 +284,10 @@ type CameraApiCreateOrganizationCameraCustomAnalyticsArtifactRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	organizationId string
-	createOrganizationCameraCustomAnalyticsArtifact *InlineObject187
+	createOrganizationCameraCustomAnalyticsArtifact *CreateOrganizationCameraCustomAnalyticsArtifactRequest
 }
 
-func (r CameraApiCreateOrganizationCameraCustomAnalyticsArtifactRequest) CreateOrganizationCameraCustomAnalyticsArtifact(createOrganizationCameraCustomAnalyticsArtifact InlineObject187) CameraApiCreateOrganizationCameraCustomAnalyticsArtifactRequest {
+func (r CameraApiCreateOrganizationCameraCustomAnalyticsArtifactRequest) CreateOrganizationCameraCustomAnalyticsArtifact(createOrganizationCameraCustomAnalyticsArtifact CreateOrganizationCameraCustomAnalyticsArtifactRequest) CameraApiCreateOrganizationCameraCustomAnalyticsArtifactRequest {
 	r.createOrganizationCameraCustomAnalyticsArtifact = &createOrganizationCameraCustomAnalyticsArtifact
 	return r
 }
@@ -739,10 +739,10 @@ type CameraApiGenerateDeviceCameraSnapshotRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	serial string
-	generateDeviceCameraSnapshot *InlineObject4
+	generateDeviceCameraSnapshot *GenerateDeviceCameraSnapshotRequest
 }
 
-func (r CameraApiGenerateDeviceCameraSnapshotRequest) GenerateDeviceCameraSnapshot(generateDeviceCameraSnapshot InlineObject4) CameraApiGenerateDeviceCameraSnapshotRequest {
+func (r CameraApiGenerateDeviceCameraSnapshotRequest) GenerateDeviceCameraSnapshot(generateDeviceCameraSnapshot GenerateDeviceCameraSnapshotRequest) CameraApiGenerateDeviceCameraSnapshotRequest {
 	r.generateDeviceCameraSnapshot = &generateDeviceCameraSnapshot
 	return r
 }
@@ -3350,10 +3350,10 @@ type CameraApiUpdateDeviceCameraCustomAnalyticsRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	serial string
-	updateDeviceCameraCustomAnalytics *InlineObject3
+	updateDeviceCameraCustomAnalytics *UpdateDeviceCameraCustomAnalyticsRequest
 }
 
-func (r CameraApiUpdateDeviceCameraCustomAnalyticsRequest) UpdateDeviceCameraCustomAnalytics(updateDeviceCameraCustomAnalytics InlineObject3) CameraApiUpdateDeviceCameraCustomAnalyticsRequest {
+func (r CameraApiUpdateDeviceCameraCustomAnalyticsRequest) UpdateDeviceCameraCustomAnalytics(updateDeviceCameraCustomAnalytics UpdateDeviceCameraCustomAnalyticsRequest) CameraApiUpdateDeviceCameraCustomAnalyticsRequest {
 	r.updateDeviceCameraCustomAnalytics = &updateDeviceCameraCustomAnalytics
 	return r
 }
@@ -3475,10 +3475,10 @@ type CameraApiUpdateDeviceCameraQualityAndRetentionRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	serial string
-	updateDeviceCameraQualityAndRetention *InlineObject5
+	updateDeviceCameraQualityAndRetention *UpdateDeviceCameraQualityAndRetentionRequest
 }
 
-func (r CameraApiUpdateDeviceCameraQualityAndRetentionRequest) UpdateDeviceCameraQualityAndRetention(updateDeviceCameraQualityAndRetention InlineObject5) CameraApiUpdateDeviceCameraQualityAndRetentionRequest {
+func (r CameraApiUpdateDeviceCameraQualityAndRetentionRequest) UpdateDeviceCameraQualityAndRetention(updateDeviceCameraQualityAndRetention UpdateDeviceCameraQualityAndRetentionRequest) CameraApiUpdateDeviceCameraQualityAndRetentionRequest {
 	r.updateDeviceCameraQualityAndRetention = &updateDeviceCameraQualityAndRetention
 	return r
 }
@@ -3600,10 +3600,10 @@ type CameraApiUpdateDeviceCameraSenseRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	serial string
-	updateDeviceCameraSense *InlineObject6
+	updateDeviceCameraSense *UpdateDeviceCameraSenseRequest
 }
 
-func (r CameraApiUpdateDeviceCameraSenseRequest) UpdateDeviceCameraSense(updateDeviceCameraSense InlineObject6) CameraApiUpdateDeviceCameraSenseRequest {
+func (r CameraApiUpdateDeviceCameraSenseRequest) UpdateDeviceCameraSense(updateDeviceCameraSense UpdateDeviceCameraSenseRequest) CameraApiUpdateDeviceCameraSenseRequest {
 	r.updateDeviceCameraSense = &updateDeviceCameraSense
 	return r
 }
@@ -3725,10 +3725,10 @@ type CameraApiUpdateDeviceCameraVideoSettingsRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	serial string
-	updateDeviceCameraVideoSettings *InlineObject7
+	updateDeviceCameraVideoSettings *UpdateDeviceCameraVideoSettingsRequest
 }
 
-func (r CameraApiUpdateDeviceCameraVideoSettingsRequest) UpdateDeviceCameraVideoSettings(updateDeviceCameraVideoSettings InlineObject7) CameraApiUpdateDeviceCameraVideoSettingsRequest {
+func (r CameraApiUpdateDeviceCameraVideoSettingsRequest) UpdateDeviceCameraVideoSettings(updateDeviceCameraVideoSettings UpdateDeviceCameraVideoSettingsRequest) CameraApiUpdateDeviceCameraVideoSettingsRequest {
 	r.updateDeviceCameraVideoSettings = &updateDeviceCameraVideoSettings
 	return r
 }
@@ -3850,10 +3850,10 @@ type CameraApiUpdateDeviceCameraWirelessProfilesRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	serial string
-	updateDeviceCameraWirelessProfiles *InlineObject8
+	updateDeviceCameraWirelessProfiles *UpdateDeviceCameraWirelessProfilesRequest
 }
 
-func (r CameraApiUpdateDeviceCameraWirelessProfilesRequest) UpdateDeviceCameraWirelessProfiles(updateDeviceCameraWirelessProfiles InlineObject8) CameraApiUpdateDeviceCameraWirelessProfilesRequest {
+func (r CameraApiUpdateDeviceCameraWirelessProfilesRequest) UpdateDeviceCameraWirelessProfiles(updateDeviceCameraWirelessProfiles UpdateDeviceCameraWirelessProfilesRequest) CameraApiUpdateDeviceCameraWirelessProfilesRequest {
 	r.updateDeviceCameraWirelessProfiles = &updateDeviceCameraWirelessProfiles
 	return r
 }
@@ -3979,10 +3979,10 @@ type CameraApiUpdateNetworkCameraQualityRetentionProfileRequest struct {
 	ApiService *CameraApiService
 	networkId string
 	qualityRetentionProfileId string
-	updateNetworkCameraQualityRetentionProfile *InlineObject64
+	updateNetworkCameraQualityRetentionProfile *UpdateNetworkCameraQualityRetentionProfileRequest
 }
 
-func (r CameraApiUpdateNetworkCameraQualityRetentionProfileRequest) UpdateNetworkCameraQualityRetentionProfile(updateNetworkCameraQualityRetentionProfile InlineObject64) CameraApiUpdateNetworkCameraQualityRetentionProfileRequest {
+func (r CameraApiUpdateNetworkCameraQualityRetentionProfileRequest) UpdateNetworkCameraQualityRetentionProfile(updateNetworkCameraQualityRetentionProfile UpdateNetworkCameraQualityRetentionProfileRequest) CameraApiUpdateNetworkCameraQualityRetentionProfileRequest {
 	r.updateNetworkCameraQualityRetentionProfile = &updateNetworkCameraQualityRetentionProfile
 	return r
 }
@@ -4108,10 +4108,10 @@ type CameraApiUpdateNetworkCameraWirelessProfileRequest struct {
 	ApiService *CameraApiService
 	networkId string
 	wirelessProfileId string
-	updateNetworkCameraWirelessProfile *InlineObject66
+	updateNetworkCameraWirelessProfile *UpdateNetworkCameraWirelessProfileRequest
 }
 
-func (r CameraApiUpdateNetworkCameraWirelessProfileRequest) UpdateNetworkCameraWirelessProfile(updateNetworkCameraWirelessProfile InlineObject66) CameraApiUpdateNetworkCameraWirelessProfileRequest {
+func (r CameraApiUpdateNetworkCameraWirelessProfileRequest) UpdateNetworkCameraWirelessProfile(updateNetworkCameraWirelessProfile UpdateNetworkCameraWirelessProfileRequest) CameraApiUpdateNetworkCameraWirelessProfileRequest {
 	r.updateNetworkCameraWirelessProfile = &updateNetworkCameraWirelessProfile
 	return r
 }
@@ -4236,10 +4236,10 @@ type CameraApiUpdateOrganizationCameraOnboardingStatusesRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	organizationId string
-	updateOrganizationCameraOnboardingStatuses *InlineObject188
+	updateOrganizationCameraOnboardingStatuses *UpdateOrganizationCameraOnboardingStatusesRequest
 }
 
-func (r CameraApiUpdateOrganizationCameraOnboardingStatusesRequest) UpdateOrganizationCameraOnboardingStatuses(updateOrganizationCameraOnboardingStatuses InlineObject188) CameraApiUpdateOrganizationCameraOnboardingStatusesRequest {
+func (r CameraApiUpdateOrganizationCameraOnboardingStatusesRequest) UpdateOrganizationCameraOnboardingStatuses(updateOrganizationCameraOnboardingStatuses UpdateOrganizationCameraOnboardingStatusesRequest) CameraApiUpdateOrganizationCameraOnboardingStatusesRequest {
 	r.updateOrganizationCameraOnboardingStatuses = &updateOrganizationCameraOnboardingStatuses
 	return r
 }

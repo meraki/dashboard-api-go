@@ -27,15 +27,15 @@ type OrganizationsApiAssignOrganizationLicensesSeatsRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	assignOrganizationLicensesSeats *InlineObject202
+	assignOrganizationLicensesSeats *AssignOrganizationLicensesSeatsRequest
 }
 
-func (r OrganizationsApiAssignOrganizationLicensesSeatsRequest) AssignOrganizationLicensesSeats(assignOrganizationLicensesSeats InlineObject202) OrganizationsApiAssignOrganizationLicensesSeatsRequest {
+func (r OrganizationsApiAssignOrganizationLicensesSeatsRequest) AssignOrganizationLicensesSeats(assignOrganizationLicensesSeats AssignOrganizationLicensesSeatsRequest) OrganizationsApiAssignOrganizationLicensesSeatsRequest {
 	r.assignOrganizationLicensesSeats = &assignOrganizationLicensesSeats
 	return r
 }
 
-func (r OrganizationsApiAssignOrganizationLicensesSeatsRequest) Execute() (*InlineResponse200105, *http.Response, error) {
+func (r OrganizationsApiAssignOrganizationLicensesSeatsRequest) Execute() (*AssignOrganizationLicensesSeats200Response, *http.Response, error) {
 	return r.ApiService.AssignOrganizationLicensesSeatsExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *OrganizationsApiService) AssignOrganizationLicensesSeats(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse200105
-func (a *OrganizationsApiService) AssignOrganizationLicensesSeatsExecute(r OrganizationsApiAssignOrganizationLicensesSeatsRequest) (*InlineResponse200105, *http.Response, error) {
+//  @return AssignOrganizationLicensesSeats200Response
+func (a *OrganizationsApiService) AssignOrganizationLicensesSeatsExecute(r OrganizationsApiAssignOrganizationLicensesSeatsRequest) (*AssignOrganizationLicensesSeats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200105
+		localVarReturnValue  *AssignOrganizationLicensesSeats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.AssignOrganizationLicensesSeats")
@@ -155,10 +155,10 @@ type OrganizationsApiClaimIntoOrganizationRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	claimIntoOrganization *InlineObject189
+	claimIntoOrganization *ClaimIntoOrganizationRequest
 }
 
-func (r OrganizationsApiClaimIntoOrganizationRequest) ClaimIntoOrganization(claimIntoOrganization InlineObject189) OrganizationsApiClaimIntoOrganizationRequest {
+func (r OrganizationsApiClaimIntoOrganizationRequest) ClaimIntoOrganization(claimIntoOrganization ClaimIntoOrganizationRequest) OrganizationsApiClaimIntoOrganizationRequest {
 	r.claimIntoOrganization = &claimIntoOrganization
 	return r
 }
@@ -280,10 +280,10 @@ type OrganizationsApiClaimIntoOrganizationInventoryRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	claimIntoOrganizationInventory *InlineObject198
+	claimIntoOrganizationInventory *ClaimIntoOrganizationInventoryRequest
 }
 
-func (r OrganizationsApiClaimIntoOrganizationInventoryRequest) ClaimIntoOrganizationInventory(claimIntoOrganizationInventory InlineObject198) OrganizationsApiClaimIntoOrganizationInventoryRequest {
+func (r OrganizationsApiClaimIntoOrganizationInventoryRequest) ClaimIntoOrganizationInventory(claimIntoOrganizationInventory ClaimIntoOrganizationInventoryRequest) OrganizationsApiClaimIntoOrganizationInventoryRequest {
 	r.claimIntoOrganizationInventory = &claimIntoOrganizationInventory
 	return r
 }
@@ -405,15 +405,15 @@ type OrganizationsApiCloneOrganizationRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	cloneOrganization *InlineObject190
+	cloneOrganization *CloneOrganizationRequest
 }
 
-func (r OrganizationsApiCloneOrganizationRequest) CloneOrganization(cloneOrganization InlineObject190) OrganizationsApiCloneOrganizationRequest {
+func (r OrganizationsApiCloneOrganizationRequest) CloneOrganization(cloneOrganization CloneOrganizationRequest) OrganizationsApiCloneOrganizationRequest {
 	r.cloneOrganization = &cloneOrganization
 	return r
 }
 
-func (r OrganizationsApiCloneOrganizationRequest) Execute() (*InlineResponse20080, *http.Response, error) {
+func (r OrganizationsApiCloneOrganizationRequest) Execute() (*GetOrganizations200ResponseInner, *http.Response, error) {
 	return r.ApiService.CloneOrganizationExecute(r)
 }
 
@@ -435,13 +435,13 @@ func (a *OrganizationsApiService) CloneOrganization(ctx context.Context, organiz
 }
 
 // Execute executes the request
-//  @return InlineResponse20080
-func (a *OrganizationsApiService) CloneOrganizationExecute(r OrganizationsApiCloneOrganizationRequest) (*InlineResponse20080, *http.Response, error) {
+//  @return GetOrganizations200ResponseInner
+func (a *OrganizationsApiService) CloneOrganizationExecute(r OrganizationsApiCloneOrganizationRequest) (*GetOrganizations200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20080
+		localVarReturnValue  *GetOrganizations200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.CloneOrganization")
@@ -533,15 +533,15 @@ type OrganizationsApiCombineOrganizationNetworksRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	combineOrganizationNetworks *InlineObject210
+	combineOrganizationNetworks *CombineOrganizationNetworksRequest
 }
 
-func (r OrganizationsApiCombineOrganizationNetworksRequest) CombineOrganizationNetworks(combineOrganizationNetworks InlineObject210) OrganizationsApiCombineOrganizationNetworksRequest {
+func (r OrganizationsApiCombineOrganizationNetworksRequest) CombineOrganizationNetworks(combineOrganizationNetworks CombineOrganizationNetworksRequest) OrganizationsApiCombineOrganizationNetworksRequest {
 	r.combineOrganizationNetworks = &combineOrganizationNetworks
 	return r
 }
 
-func (r OrganizationsApiCombineOrganizationNetworksRequest) Execute() (*InlineResponse200111, *http.Response, error) {
+func (r OrganizationsApiCombineOrganizationNetworksRequest) Execute() (*CombineOrganizationNetworks200Response, *http.Response, error) {
 	return r.ApiService.CombineOrganizationNetworksExecute(r)
 }
 
@@ -563,13 +563,13 @@ func (a *OrganizationsApiService) CombineOrganizationNetworks(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse200111
-func (a *OrganizationsApiService) CombineOrganizationNetworksExecute(r OrganizationsApiCombineOrganizationNetworksRequest) (*InlineResponse200111, *http.Response, error) {
+//  @return CombineOrganizationNetworks200Response
+func (a *OrganizationsApiService) CombineOrganizationNetworksExecute(r OrganizationsApiCombineOrganizationNetworksRequest) (*CombineOrganizationNetworks200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200111
+		localVarReturnValue  *CombineOrganizationNetworks200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.CombineOrganizationNetworks")
@@ -660,15 +660,15 @@ func (a *OrganizationsApiService) CombineOrganizationNetworksExecute(r Organizat
 type OrganizationsApiCreateOrganizationRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
-	createOrganization *InlineObject166
+	createOrganization *CreateOrganizationRequest
 }
 
-func (r OrganizationsApiCreateOrganizationRequest) CreateOrganization(createOrganization InlineObject166) OrganizationsApiCreateOrganizationRequest {
+func (r OrganizationsApiCreateOrganizationRequest) CreateOrganization(createOrganization CreateOrganizationRequest) OrganizationsApiCreateOrganizationRequest {
 	r.createOrganization = &createOrganization
 	return r
 }
 
-func (r OrganizationsApiCreateOrganizationRequest) Execute() (*InlineResponse20080, *http.Response, error) {
+func (r OrganizationsApiCreateOrganizationRequest) Execute() (*GetOrganizations200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationExecute(r)
 }
 
@@ -688,13 +688,13 @@ func (a *OrganizationsApiService) CreateOrganization(ctx context.Context) Organi
 }
 
 // Execute executes the request
-//  @return InlineResponse20080
-func (a *OrganizationsApiService) CreateOrganizationExecute(r OrganizationsApiCreateOrganizationRequest) (*InlineResponse20080, *http.Response, error) {
+//  @return GetOrganizations200ResponseInner
+func (a *OrganizationsApiService) CreateOrganizationExecute(r OrganizationsApiCreateOrganizationRequest) (*GetOrganizations200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20080
+		localVarReturnValue  *GetOrganizations200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.CreateOrganization")
@@ -785,15 +785,15 @@ type OrganizationsApiCreateOrganizationActionBatchRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	createOrganizationActionBatch *InlineObject168
+	createOrganizationActionBatch *CreateOrganizationActionBatchRequest
 }
 
-func (r OrganizationsApiCreateOrganizationActionBatchRequest) CreateOrganizationActionBatch(createOrganizationActionBatch InlineObject168) OrganizationsApiCreateOrganizationActionBatchRequest {
+func (r OrganizationsApiCreateOrganizationActionBatchRequest) CreateOrganizationActionBatch(createOrganizationActionBatch CreateOrganizationActionBatchRequest) OrganizationsApiCreateOrganizationActionBatchRequest {
 	r.createOrganizationActionBatch = &createOrganizationActionBatch
 	return r
 }
 
-func (r OrganizationsApiCreateOrganizationActionBatchRequest) Execute() (*InlineResponse2015, *http.Response, error) {
+func (r OrganizationsApiCreateOrganizationActionBatchRequest) Execute() (*CreateOrganizationActionBatch201Response, *http.Response, error) {
 	return r.ApiService.CreateOrganizationActionBatchExecute(r)
 }
 
@@ -815,13 +815,13 @@ func (a *OrganizationsApiService) CreateOrganizationActionBatch(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse2015
-func (a *OrganizationsApiService) CreateOrganizationActionBatchExecute(r OrganizationsApiCreateOrganizationActionBatchRequest) (*InlineResponse2015, *http.Response, error) {
+//  @return CreateOrganizationActionBatch201Response
+func (a *OrganizationsApiService) CreateOrganizationActionBatchExecute(r OrganizationsApiCreateOrganizationActionBatchRequest) (*CreateOrganizationActionBatch201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2015
+		localVarReturnValue  *CreateOrganizationActionBatch201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.CreateOrganizationActionBatch")
@@ -913,10 +913,10 @@ type OrganizationsApiCreateOrganizationAdaptivePolicyAclRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	createOrganizationAdaptivePolicyAcl *InlineObject170
+	createOrganizationAdaptivePolicyAcl *CreateOrganizationAdaptivePolicyAclRequest
 }
 
-func (r OrganizationsApiCreateOrganizationAdaptivePolicyAclRequest) CreateOrganizationAdaptivePolicyAcl(createOrganizationAdaptivePolicyAcl InlineObject170) OrganizationsApiCreateOrganizationAdaptivePolicyAclRequest {
+func (r OrganizationsApiCreateOrganizationAdaptivePolicyAclRequest) CreateOrganizationAdaptivePolicyAcl(createOrganizationAdaptivePolicyAcl CreateOrganizationAdaptivePolicyAclRequest) OrganizationsApiCreateOrganizationAdaptivePolicyAclRequest {
 	r.createOrganizationAdaptivePolicyAcl = &createOrganizationAdaptivePolicyAcl
 	return r
 }
@@ -1041,10 +1041,10 @@ type OrganizationsApiCreateOrganizationAdaptivePolicyGroupRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	createOrganizationAdaptivePolicyGroup *InlineObject172
+	createOrganizationAdaptivePolicyGroup *CreateOrganizationAdaptivePolicyGroupRequest
 }
 
-func (r OrganizationsApiCreateOrganizationAdaptivePolicyGroupRequest) CreateOrganizationAdaptivePolicyGroup(createOrganizationAdaptivePolicyGroup InlineObject172) OrganizationsApiCreateOrganizationAdaptivePolicyGroupRequest {
+func (r OrganizationsApiCreateOrganizationAdaptivePolicyGroupRequest) CreateOrganizationAdaptivePolicyGroup(createOrganizationAdaptivePolicyGroup CreateOrganizationAdaptivePolicyGroupRequest) OrganizationsApiCreateOrganizationAdaptivePolicyGroupRequest {
 	r.createOrganizationAdaptivePolicyGroup = &createOrganizationAdaptivePolicyGroup
 	return r
 }
@@ -1169,10 +1169,10 @@ type OrganizationsApiCreateOrganizationAdaptivePolicyPolicyRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	createOrganizationAdaptivePolicyPolicy *InlineObject174
+	createOrganizationAdaptivePolicyPolicy *CreateOrganizationAdaptivePolicyPolicyRequest
 }
 
-func (r OrganizationsApiCreateOrganizationAdaptivePolicyPolicyRequest) CreateOrganizationAdaptivePolicyPolicy(createOrganizationAdaptivePolicyPolicy InlineObject174) OrganizationsApiCreateOrganizationAdaptivePolicyPolicyRequest {
+func (r OrganizationsApiCreateOrganizationAdaptivePolicyPolicyRequest) CreateOrganizationAdaptivePolicyPolicy(createOrganizationAdaptivePolicyPolicy CreateOrganizationAdaptivePolicyPolicyRequest) OrganizationsApiCreateOrganizationAdaptivePolicyPolicyRequest {
 	r.createOrganizationAdaptivePolicyPolicy = &createOrganizationAdaptivePolicyPolicy
 	return r
 }
@@ -1297,10 +1297,10 @@ type OrganizationsApiCreateOrganizationAdminRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	createOrganizationAdmin *InlineObject177
+	createOrganizationAdmin *CreateOrganizationAdminRequest
 }
 
-func (r OrganizationsApiCreateOrganizationAdminRequest) CreateOrganizationAdmin(createOrganizationAdmin InlineObject177) OrganizationsApiCreateOrganizationAdminRequest {
+func (r OrganizationsApiCreateOrganizationAdminRequest) CreateOrganizationAdmin(createOrganizationAdmin CreateOrganizationAdminRequest) OrganizationsApiCreateOrganizationAdminRequest {
 	r.createOrganizationAdmin = &createOrganizationAdmin
 	return r
 }
@@ -1425,10 +1425,10 @@ type OrganizationsApiCreateOrganizationAlertsProfileRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	createOrganizationAlertsProfile *InlineObject179
+	createOrganizationAlertsProfile *CreateOrganizationAlertsProfileRequest
 }
 
-func (r OrganizationsApiCreateOrganizationAlertsProfileRequest) CreateOrganizationAlertsProfile(createOrganizationAlertsProfile InlineObject179) OrganizationsApiCreateOrganizationAlertsProfileRequest {
+func (r OrganizationsApiCreateOrganizationAlertsProfileRequest) CreateOrganizationAlertsProfile(createOrganizationAlertsProfile CreateOrganizationAlertsProfileRequest) OrganizationsApiCreateOrganizationAlertsProfileRequest {
 	r.createOrganizationAlertsProfile = &createOrganizationAlertsProfile
 	return r
 }
@@ -1553,15 +1553,15 @@ type OrganizationsApiCreateOrganizationBrandingPolicyRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	createOrganizationBrandingPolicy *InlineObject184
+	createOrganizationBrandingPolicy *CreateOrganizationBrandingPolicyRequest
 }
 
-func (r OrganizationsApiCreateOrganizationBrandingPolicyRequest) CreateOrganizationBrandingPolicy(createOrganizationBrandingPolicy InlineObject184) OrganizationsApiCreateOrganizationBrandingPolicyRequest {
+func (r OrganizationsApiCreateOrganizationBrandingPolicyRequest) CreateOrganizationBrandingPolicy(createOrganizationBrandingPolicy CreateOrganizationBrandingPolicyRequest) OrganizationsApiCreateOrganizationBrandingPolicyRequest {
 	r.createOrganizationBrandingPolicy = &createOrganizationBrandingPolicy
 	return r
 }
 
-func (r OrganizationsApiCreateOrganizationBrandingPolicyRequest) Execute() (*InlineResponse2016, *http.Response, error) {
+func (r OrganizationsApiCreateOrganizationBrandingPolicyRequest) Execute() (*CreateOrganizationBrandingPolicy201Response, *http.Response, error) {
 	return r.ApiService.CreateOrganizationBrandingPolicyExecute(r)
 }
 
@@ -1583,13 +1583,13 @@ func (a *OrganizationsApiService) CreateOrganizationBrandingPolicy(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse2016
-func (a *OrganizationsApiService) CreateOrganizationBrandingPolicyExecute(r OrganizationsApiCreateOrganizationBrandingPolicyRequest) (*InlineResponse2016, *http.Response, error) {
+//  @return CreateOrganizationBrandingPolicy201Response
+func (a *OrganizationsApiService) CreateOrganizationBrandingPolicyExecute(r OrganizationsApiCreateOrganizationBrandingPolicyRequest) (*CreateOrganizationBrandingPolicy201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2016
+		localVarReturnValue  *CreateOrganizationBrandingPolicy201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.CreateOrganizationBrandingPolicy")
@@ -1678,10 +1678,10 @@ type OrganizationsApiCreateOrganizationConfigTemplateRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	createOrganizationConfigTemplate *InlineObject191
+	createOrganizationConfigTemplate *CreateOrganizationConfigTemplateRequest
 }
 
-func (r OrganizationsApiCreateOrganizationConfigTemplateRequest) CreateOrganizationConfigTemplate(createOrganizationConfigTemplate InlineObject191) OrganizationsApiCreateOrganizationConfigTemplateRequest {
+func (r OrganizationsApiCreateOrganizationConfigTemplateRequest) CreateOrganizationConfigTemplate(createOrganizationConfigTemplate CreateOrganizationConfigTemplateRequest) OrganizationsApiCreateOrganizationConfigTemplateRequest {
 	r.createOrganizationConfigTemplate = &createOrganizationConfigTemplate
 	return r
 }
@@ -1806,10 +1806,10 @@ type OrganizationsApiCreateOrganizationEarlyAccessFeaturesOptInRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	createOrganizationEarlyAccessFeaturesOptIn *InlineObject194
+	createOrganizationEarlyAccessFeaturesOptIn *CreateOrganizationEarlyAccessFeaturesOptInRequest
 }
 
-func (r OrganizationsApiCreateOrganizationEarlyAccessFeaturesOptInRequest) CreateOrganizationEarlyAccessFeaturesOptIn(createOrganizationEarlyAccessFeaturesOptIn InlineObject194) OrganizationsApiCreateOrganizationEarlyAccessFeaturesOptInRequest {
+func (r OrganizationsApiCreateOrganizationEarlyAccessFeaturesOptInRequest) CreateOrganizationEarlyAccessFeaturesOptIn(createOrganizationEarlyAccessFeaturesOptIn CreateOrganizationEarlyAccessFeaturesOptInRequest) OrganizationsApiCreateOrganizationEarlyAccessFeaturesOptInRequest {
 	r.createOrganizationEarlyAccessFeaturesOptIn = &createOrganizationEarlyAccessFeaturesOptIn
 	return r
 }
@@ -1934,15 +1934,15 @@ type OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringImportR
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringImport *InlineObject199
+	createOrganizationInventoryOnboardingCloudMonitoringImport *CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest
 }
 
-func (r OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) CreateOrganizationInventoryOnboardingCloudMonitoringImport(createOrganizationInventoryOnboardingCloudMonitoringImport InlineObject199) OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest {
+func (r OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) CreateOrganizationInventoryOnboardingCloudMonitoringImport(createOrganizationInventoryOnboardingCloudMonitoringImport CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest {
 	r.createOrganizationInventoryOnboardingCloudMonitoringImport = &createOrganizationInventoryOnboardingCloudMonitoringImport
 	return r
 }
 
-func (r OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) Execute() ([]InlineResponse2017, *http.Response, error) {
+func (r OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) Execute() ([]CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r)
 }
 
@@ -1964,13 +1964,13 @@ func (a *OrganizationsApiService) CreateOrganizationInventoryOnboardingCloudMoni
 }
 
 // Execute executes the request
-//  @return []InlineResponse2017
-func (a *OrganizationsApiService) CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) ([]InlineResponse2017, *http.Response, error) {
+//  @return []CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner
+func (a *OrganizationsApiService) CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) ([]CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2017
+		localVarReturnValue  []CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.CreateOrganizationInventoryOnboardingCloudMonitoringImport")
@@ -2062,15 +2062,15 @@ type OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepare
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringPrepare *InlineObject200
+	createOrganizationInventoryOnboardingCloudMonitoringPrepare *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest
 }
 
-func (r OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(createOrganizationInventoryOnboardingCloudMonitoringPrepare InlineObject200) OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest {
+func (r OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(createOrganizationInventoryOnboardingCloudMonitoringPrepare CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest {
 	r.createOrganizationInventoryOnboardingCloudMonitoringPrepare = &createOrganizationInventoryOnboardingCloudMonitoringPrepare
 	return r
 }
 
-func (r OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) Execute() ([]InlineResponse2018, *http.Response, error) {
+func (r OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) Execute() ([]CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r)
 }
 
@@ -2092,13 +2092,13 @@ func (a *OrganizationsApiService) CreateOrganizationInventoryOnboardingCloudMoni
 }
 
 // Execute executes the request
-//  @return []InlineResponse2018
-func (a *OrganizationsApiService) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) ([]InlineResponse2018, *http.Response, error) {
+//  @return []CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner
+func (a *OrganizationsApiService) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r OrganizationsApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) ([]CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2018
+		localVarReturnValue  []CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.CreateOrganizationInventoryOnboardingCloudMonitoringPrepare")
@@ -2190,15 +2190,15 @@ type OrganizationsApiCreateOrganizationNetworkRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	createOrganizationNetwork *InlineObject209
+	createOrganizationNetwork *CreateOrganizationNetworkRequest
 }
 
-func (r OrganizationsApiCreateOrganizationNetworkRequest) CreateOrganizationNetwork(createOrganizationNetwork InlineObject209) OrganizationsApiCreateOrganizationNetworkRequest {
+func (r OrganizationsApiCreateOrganizationNetworkRequest) CreateOrganizationNetwork(createOrganizationNetwork CreateOrganizationNetworkRequest) OrganizationsApiCreateOrganizationNetworkRequest {
 	r.createOrganizationNetwork = &createOrganizationNetwork
 	return r
 }
 
-func (r OrganizationsApiCreateOrganizationNetworkRequest) Execute() (*InlineResponse2009, *http.Response, error) {
+func (r OrganizationsApiCreateOrganizationNetworkRequest) Execute() (*GetNetwork200Response, *http.Response, error) {
 	return r.ApiService.CreateOrganizationNetworkExecute(r)
 }
 
@@ -2220,13 +2220,13 @@ func (a *OrganizationsApiService) CreateOrganizationNetwork(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse2009
-func (a *OrganizationsApiService) CreateOrganizationNetworkExecute(r OrganizationsApiCreateOrganizationNetworkRequest) (*InlineResponse2009, *http.Response, error) {
+//  @return GetNetwork200Response
+func (a *OrganizationsApiService) CreateOrganizationNetworkExecute(r OrganizationsApiCreateOrganizationNetworkRequest) (*GetNetwork200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2009
+		localVarReturnValue  *GetNetwork200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.CreateOrganizationNetwork")
@@ -2318,10 +2318,10 @@ type OrganizationsApiCreateOrganizationPolicyObjectRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	createOrganizationPolicyObject *InlineObject211
+	createOrganizationPolicyObject *CreateOrganizationPolicyObjectRequest
 }
 
-func (r OrganizationsApiCreateOrganizationPolicyObjectRequest) CreateOrganizationPolicyObject(createOrganizationPolicyObject InlineObject211) OrganizationsApiCreateOrganizationPolicyObjectRequest {
+func (r OrganizationsApiCreateOrganizationPolicyObjectRequest) CreateOrganizationPolicyObject(createOrganizationPolicyObject CreateOrganizationPolicyObjectRequest) OrganizationsApiCreateOrganizationPolicyObjectRequest {
 	r.createOrganizationPolicyObject = &createOrganizationPolicyObject
 	return r
 }
@@ -2446,10 +2446,10 @@ type OrganizationsApiCreateOrganizationPolicyObjectsGroupRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	createOrganizationPolicyObjectsGroup *InlineObject212
+	createOrganizationPolicyObjectsGroup *CreateOrganizationPolicyObjectsGroupRequest
 }
 
-func (r OrganizationsApiCreateOrganizationPolicyObjectsGroupRequest) CreateOrganizationPolicyObjectsGroup(createOrganizationPolicyObjectsGroup InlineObject212) OrganizationsApiCreateOrganizationPolicyObjectsGroupRequest {
+func (r OrganizationsApiCreateOrganizationPolicyObjectsGroupRequest) CreateOrganizationPolicyObjectsGroup(createOrganizationPolicyObjectsGroup CreateOrganizationPolicyObjectsGroupRequest) OrganizationsApiCreateOrganizationPolicyObjectsGroupRequest {
 	r.createOrganizationPolicyObjectsGroup = &createOrganizationPolicyObjectsGroup
 	return r
 }
@@ -2574,15 +2574,15 @@ type OrganizationsApiCreateOrganizationSamlIdpRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	createOrganizationSamlIdp *InlineObject216
+	createOrganizationSamlIdp *CreateOrganizationSamlIdpRequest
 }
 
-func (r OrganizationsApiCreateOrganizationSamlIdpRequest) CreateOrganizationSamlIdp(createOrganizationSamlIdp InlineObject216) OrganizationsApiCreateOrganizationSamlIdpRequest {
+func (r OrganizationsApiCreateOrganizationSamlIdpRequest) CreateOrganizationSamlIdp(createOrganizationSamlIdp CreateOrganizationSamlIdpRequest) OrganizationsApiCreateOrganizationSamlIdpRequest {
 	r.createOrganizationSamlIdp = &createOrganizationSamlIdp
 	return r
 }
 
-func (r OrganizationsApiCreateOrganizationSamlIdpRequest) Execute() ([]InlineResponse200113, *http.Response, error) {
+func (r OrganizationsApiCreateOrganizationSamlIdpRequest) Execute() ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationSamlIdpExecute(r)
 }
 
@@ -2604,13 +2604,13 @@ func (a *OrganizationsApiService) CreateOrganizationSamlIdp(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return []InlineResponse200113
-func (a *OrganizationsApiService) CreateOrganizationSamlIdpExecute(r OrganizationsApiCreateOrganizationSamlIdpRequest) ([]InlineResponse200113, *http.Response, error) {
+//  @return []GetOrganizationSamlIdps200ResponseInner
+func (a *OrganizationsApiService) CreateOrganizationSamlIdpExecute(r OrganizationsApiCreateOrganizationSamlIdpRequest) ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200113
+		localVarReturnValue  []GetOrganizationSamlIdps200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.CreateOrganizationSamlIdp")
@@ -2702,10 +2702,10 @@ type OrganizationsApiCreateOrganizationSamlRoleRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	createOrganizationSamlRole *InlineObject218
+	createOrganizationSamlRole *CreateOrganizationSamlRoleRequest
 }
 
-func (r OrganizationsApiCreateOrganizationSamlRoleRequest) CreateOrganizationSamlRole(createOrganizationSamlRole InlineObject218) OrganizationsApiCreateOrganizationSamlRoleRequest {
+func (r OrganizationsApiCreateOrganizationSamlRoleRequest) CreateOrganizationSamlRole(createOrganizationSamlRole CreateOrganizationSamlRoleRequest) OrganizationsApiCreateOrganizationSamlRoleRequest {
 	r.createOrganizationSamlRole = &createOrganizationSamlRole
 	return r
 }
@@ -4478,7 +4478,7 @@ type OrganizationsApiGetOrganizationRequest struct {
 	organizationId string
 }
 
-func (r OrganizationsApiGetOrganizationRequest) Execute() (*InlineResponse20080, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationRequest) Execute() (*GetOrganizations200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationExecute(r)
 }
 
@@ -4500,13 +4500,13 @@ func (a *OrganizationsApiService) GetOrganization(ctx context.Context, organizat
 }
 
 // Execute executes the request
-//  @return InlineResponse20080
-func (a *OrganizationsApiService) GetOrganizationExecute(r OrganizationsApiGetOrganizationRequest) (*InlineResponse20080, *http.Response, error) {
+//  @return GetOrganizations200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationExecute(r OrganizationsApiGetOrganizationRequest) (*GetOrganizations200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20080
+		localVarReturnValue  *GetOrganizations200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganization")
@@ -4596,7 +4596,7 @@ type OrganizationsApiGetOrganizationActionBatchRequest struct {
 	actionBatchId string
 }
 
-func (r OrganizationsApiGetOrganizationActionBatchRequest) Execute() (*InlineResponse2015, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationActionBatchRequest) Execute() (*CreateOrganizationActionBatch201Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationActionBatchExecute(r)
 }
 
@@ -4620,13 +4620,13 @@ func (a *OrganizationsApiService) GetOrganizationActionBatch(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse2015
-func (a *OrganizationsApiService) GetOrganizationActionBatchExecute(r OrganizationsApiGetOrganizationActionBatchRequest) (*InlineResponse2015, *http.Response, error) {
+//  @return CreateOrganizationActionBatch201Response
+func (a *OrganizationsApiService) GetOrganizationActionBatchExecute(r OrganizationsApiGetOrganizationActionBatchRequest) (*CreateOrganizationActionBatch201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2015
+		localVarReturnValue  *CreateOrganizationActionBatch201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationActionBatch")
@@ -5319,7 +5319,7 @@ type OrganizationsApiGetOrganizationAdaptivePolicyOverviewRequest struct {
 	organizationId string
 }
 
-func (r OrganizationsApiGetOrganizationAdaptivePolicyOverviewRequest) Execute() (*InlineResponse20081, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationAdaptivePolicyOverviewRequest) Execute() (*GetOrganizationAdaptivePolicyOverview200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationAdaptivePolicyOverviewExecute(r)
 }
 
@@ -5341,13 +5341,13 @@ func (a *OrganizationsApiService) GetOrganizationAdaptivePolicyOverview(ctx cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20081
-func (a *OrganizationsApiService) GetOrganizationAdaptivePolicyOverviewExecute(r OrganizationsApiGetOrganizationAdaptivePolicyOverviewRequest) (*InlineResponse20081, *http.Response, error) {
+//  @return GetOrganizationAdaptivePolicyOverview200Response
+func (a *OrganizationsApiService) GetOrganizationAdaptivePolicyOverviewExecute(r OrganizationsApiGetOrganizationAdaptivePolicyOverviewRequest) (*GetOrganizationAdaptivePolicyOverview200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20081
+		localVarReturnValue  *GetOrganizationAdaptivePolicyOverview200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationAdaptivePolicyOverview")
@@ -6123,7 +6123,7 @@ func (r OrganizationsApiGetOrganizationApiRequestsRequest) OperationIds(operatio
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationApiRequestsRequest) Execute() ([]InlineResponse20082, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationApiRequestsRequest) Execute() ([]GetOrganizationApiRequests200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationApiRequestsExecute(r)
 }
 
@@ -6145,13 +6145,13 @@ func (a *OrganizationsApiService) GetOrganizationApiRequests(ctx context.Context
 }
 
 // Execute executes the request
-//  @return []InlineResponse20082
-func (a *OrganizationsApiService) GetOrganizationApiRequestsExecute(r OrganizationsApiGetOrganizationApiRequestsRequest) ([]InlineResponse20082, *http.Response, error) {
+//  @return []GetOrganizationApiRequests200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationApiRequestsExecute(r OrganizationsApiGetOrganizationApiRequestsRequest) ([]GetOrganizationApiRequests200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20082
+		localVarReturnValue  []GetOrganizationApiRequests200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationApiRequests")
@@ -6492,7 +6492,7 @@ func (r OrganizationsApiGetOrganizationApiRequestsOverviewResponseCodesByInterva
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) Execute() ([]InlineResponse20083, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) Execute() ([]GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationApiRequestsOverviewResponseCodesByIntervalExecute(r)
 }
 
@@ -6514,13 +6514,13 @@ func (a *OrganizationsApiService) GetOrganizationApiRequestsOverviewResponseCode
 }
 
 // Execute executes the request
-//  @return []InlineResponse20083
-func (a *OrganizationsApiService) GetOrganizationApiRequestsOverviewResponseCodesByIntervalExecute(r OrganizationsApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) ([]InlineResponse20083, *http.Response, error) {
+//  @return []GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationApiRequestsOverviewResponseCodesByIntervalExecute(r OrganizationsApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) ([]GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20083
+		localVarReturnValue  []GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationApiRequestsOverviewResponseCodesByInterval")
@@ -6636,7 +6636,7 @@ type OrganizationsApiGetOrganizationBrandingPoliciesRequest struct {
 	organizationId string
 }
 
-func (r OrganizationsApiGetOrganizationBrandingPoliciesRequest) Execute() ([]InlineResponse20085, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationBrandingPoliciesRequest) Execute() ([]GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationBrandingPoliciesExecute(r)
 }
 
@@ -6658,13 +6658,13 @@ func (a *OrganizationsApiService) GetOrganizationBrandingPolicies(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20085
-func (a *OrganizationsApiService) GetOrganizationBrandingPoliciesExecute(r OrganizationsApiGetOrganizationBrandingPoliciesRequest) ([]InlineResponse20085, *http.Response, error) {
+//  @return []GetOrganizationBrandingPolicies200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationBrandingPoliciesExecute(r OrganizationsApiGetOrganizationBrandingPoliciesRequest) ([]GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20085
+		localVarReturnValue  []GetOrganizationBrandingPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationBrandingPolicies")
@@ -6753,7 +6753,7 @@ type OrganizationsApiGetOrganizationBrandingPoliciesPrioritiesRequest struct {
 	organizationId string
 }
 
-func (r OrganizationsApiGetOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*InlineResponse20086, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationBrandingPoliciesPrioritiesExecute(r)
 }
 
@@ -6775,13 +6775,13 @@ func (a *OrganizationsApiService) GetOrganizationBrandingPoliciesPriorities(ctx 
 }
 
 // Execute executes the request
-//  @return InlineResponse20086
-func (a *OrganizationsApiService) GetOrganizationBrandingPoliciesPrioritiesExecute(r OrganizationsApiGetOrganizationBrandingPoliciesPrioritiesRequest) (*InlineResponse20086, *http.Response, error) {
+//  @return GetOrganizationBrandingPoliciesPriorities200Response
+func (a *OrganizationsApiService) GetOrganizationBrandingPoliciesPrioritiesExecute(r OrganizationsApiGetOrganizationBrandingPoliciesPrioritiesRequest) (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20086
+		localVarReturnValue  *GetOrganizationBrandingPoliciesPriorities200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationBrandingPoliciesPriorities")
@@ -6871,7 +6871,7 @@ type OrganizationsApiGetOrganizationBrandingPolicyRequest struct {
 	brandingPolicyId string
 }
 
-func (r OrganizationsApiGetOrganizationBrandingPolicyRequest) Execute() (*InlineResponse20085, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationBrandingPolicyRequest) Execute() (*GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationBrandingPolicyExecute(r)
 }
 
@@ -6895,13 +6895,13 @@ func (a *OrganizationsApiService) GetOrganizationBrandingPolicy(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20085
-func (a *OrganizationsApiService) GetOrganizationBrandingPolicyExecute(r OrganizationsApiGetOrganizationBrandingPolicyRequest) (*InlineResponse20085, *http.Response, error) {
+//  @return GetOrganizationBrandingPolicies200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationBrandingPolicyExecute(r OrganizationsApiGetOrganizationBrandingPolicyRequest) (*GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20085
+		localVarReturnValue  *GetOrganizationBrandingPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationBrandingPolicy")
@@ -7012,7 +7012,7 @@ func (r OrganizationsApiGetOrganizationClientsBandwidthUsageHistoryRequest) Time
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationClientsBandwidthUsageHistoryRequest) Execute() ([]InlineResponse20088, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationClientsBandwidthUsageHistoryRequest) Execute() ([]GetOrganizationClientsBandwidthUsageHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationClientsBandwidthUsageHistoryExecute(r)
 }
 
@@ -7034,13 +7034,13 @@ func (a *OrganizationsApiService) GetOrganizationClientsBandwidthUsageHistory(ct
 }
 
 // Execute executes the request
-//  @return []InlineResponse20088
-func (a *OrganizationsApiService) GetOrganizationClientsBandwidthUsageHistoryExecute(r OrganizationsApiGetOrganizationClientsBandwidthUsageHistoryRequest) ([]InlineResponse20088, *http.Response, error) {
+//  @return []GetOrganizationClientsBandwidthUsageHistory200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationClientsBandwidthUsageHistoryExecute(r OrganizationsApiGetOrganizationClientsBandwidthUsageHistoryRequest) ([]GetOrganizationClientsBandwidthUsageHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20088
+		localVarReturnValue  []GetOrganizationClientsBandwidthUsageHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationClientsBandwidthUsageHistory")
@@ -7159,7 +7159,7 @@ func (r OrganizationsApiGetOrganizationClientsOverviewRequest) Timespan(timespan
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationClientsOverviewRequest) Execute() (*InlineResponse20089, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationClientsOverviewRequest) Execute() (*GetOrganizationClientsOverview200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationClientsOverviewExecute(r)
 }
 
@@ -7181,13 +7181,13 @@ func (a *OrganizationsApiService) GetOrganizationClientsOverview(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InlineResponse20089
-func (a *OrganizationsApiService) GetOrganizationClientsOverviewExecute(r OrganizationsApiGetOrganizationClientsOverviewRequest) (*InlineResponse20089, *http.Response, error) {
+//  @return GetOrganizationClientsOverview200Response
+func (a *OrganizationsApiService) GetOrganizationClientsOverviewExecute(r OrganizationsApiGetOrganizationClientsOverviewRequest) (*GetOrganizationClientsOverview200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20089
+		localVarReturnValue  *GetOrganizationClientsOverview200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationClientsOverview")
@@ -8221,7 +8221,7 @@ func (r OrganizationsApiGetOrganizationDevicesAvailabilitiesRequest) TagsFilterT
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationDevicesAvailabilitiesRequest) Execute() ([]InlineResponse20092, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationDevicesAvailabilitiesRequest) Execute() ([]GetOrganizationDevicesAvailabilities200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesAvailabilitiesExecute(r)
 }
 
@@ -8243,13 +8243,13 @@ func (a *OrganizationsApiService) GetOrganizationDevicesAvailabilities(ctx conte
 }
 
 // Execute executes the request
-//  @return []InlineResponse20092
-func (a *OrganizationsApiService) GetOrganizationDevicesAvailabilitiesExecute(r OrganizationsApiGetOrganizationDevicesAvailabilitiesRequest) ([]InlineResponse20092, *http.Response, error) {
+//  @return []GetOrganizationDevicesAvailabilities200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationDevicesAvailabilitiesExecute(r OrganizationsApiGetOrganizationDevicesAvailabilitiesRequest) ([]GetOrganizationDevicesAvailabilities200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20092
+		localVarReturnValue  []GetOrganizationDevicesAvailabilities200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationDevicesAvailabilities")
@@ -8418,7 +8418,7 @@ func (r OrganizationsApiGetOrganizationDevicesPowerModulesStatusesByDeviceReques
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) Execute() ([]InlineResponse20093, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) Execute() ([]GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r)
 }
 
@@ -8440,13 +8440,13 @@ func (a *OrganizationsApiService) GetOrganizationDevicesPowerModulesStatusesByDe
 }
 
 // Execute executes the request
-//  @return []InlineResponse20093
-func (a *OrganizationsApiService) GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r OrganizationsApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) ([]InlineResponse20093, *http.Response, error) {
+//  @return []GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r OrganizationsApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) ([]GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20093
+		localVarReturnValue  []GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationDevicesPowerModulesStatusesByDevice")
@@ -8629,7 +8629,7 @@ func (r OrganizationsApiGetOrganizationDevicesStatusesRequest) TagsFilterType(ta
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationDevicesStatusesRequest) Execute() (*InlineResponse20094, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationDevicesStatusesRequest) Execute() (*GetOrganizationDevicesStatuses200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesStatusesExecute(r)
 }
 
@@ -8651,13 +8651,13 @@ func (a *OrganizationsApiService) GetOrganizationDevicesStatuses(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InlineResponse20094
-func (a *OrganizationsApiService) GetOrganizationDevicesStatusesExecute(r OrganizationsApiGetOrganizationDevicesStatusesRequest) (*InlineResponse20094, *http.Response, error) {
+//  @return GetOrganizationDevicesStatuses200Response
+func (a *OrganizationsApiService) GetOrganizationDevicesStatusesExecute(r OrganizationsApiGetOrganizationDevicesStatusesRequest) (*GetOrganizationDevicesStatuses200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20094
+		localVarReturnValue  *GetOrganizationDevicesStatuses200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationDevicesStatuses")
@@ -8790,7 +8790,7 @@ func (r OrganizationsApiGetOrganizationDevicesStatusesOverviewRequest) NetworkId
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationDevicesStatusesOverviewRequest) Execute() (*InlineResponse20095, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationDevicesStatusesOverviewRequest) Execute() (*GetOrganizationDevicesStatusesOverview200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesStatusesOverviewExecute(r)
 }
 
@@ -8812,13 +8812,13 @@ func (a *OrganizationsApiService) GetOrganizationDevicesStatusesOverview(ctx con
 }
 
 // Execute executes the request
-//  @return InlineResponse20095
-func (a *OrganizationsApiService) GetOrganizationDevicesStatusesOverviewExecute(r OrganizationsApiGetOrganizationDevicesStatusesOverviewRequest) (*InlineResponse20095, *http.Response, error) {
+//  @return GetOrganizationDevicesStatusesOverview200Response
+func (a *OrganizationsApiService) GetOrganizationDevicesStatusesOverviewExecute(r OrganizationsApiGetOrganizationDevicesStatusesOverviewRequest) (*GetOrganizationDevicesStatusesOverview200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20095
+		localVarReturnValue  *GetOrganizationDevicesStatusesOverview200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationDevicesStatusesOverview")
@@ -8969,7 +8969,7 @@ func (r OrganizationsApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) T
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) Execute() ([]InlineResponse20096, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) Execute() ([]GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesUplinksAddressesByDeviceExecute(r)
 }
 
@@ -8991,13 +8991,13 @@ func (a *OrganizationsApiService) GetOrganizationDevicesUplinksAddressesByDevice
 }
 
 // Execute executes the request
-//  @return []InlineResponse20096
-func (a *OrganizationsApiService) GetOrganizationDevicesUplinksAddressesByDeviceExecute(r OrganizationsApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) ([]InlineResponse20096, *http.Response, error) {
+//  @return []GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationDevicesUplinksAddressesByDeviceExecute(r OrganizationsApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) ([]GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20096
+		localVarReturnValue  []GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationDevicesUplinksAddressesByDevice")
@@ -9145,7 +9145,7 @@ func (r OrganizationsApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Ip(i
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Execute() ([]InlineResponse20097, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Execute() ([]GetOrganizationDevicesUplinksLossAndLatency200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesUplinksLossAndLatencyExecute(r)
 }
 
@@ -9167,13 +9167,13 @@ func (a *OrganizationsApiService) GetOrganizationDevicesUplinksLossAndLatency(ct
 }
 
 // Execute executes the request
-//  @return []InlineResponse20097
-func (a *OrganizationsApiService) GetOrganizationDevicesUplinksLossAndLatencyExecute(r OrganizationsApiGetOrganizationDevicesUplinksLossAndLatencyRequest) ([]InlineResponse20097, *http.Response, error) {
+//  @return []GetOrganizationDevicesUplinksLossAndLatency200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationDevicesUplinksLossAndLatencyExecute(r OrganizationsApiGetOrganizationDevicesUplinksLossAndLatencyRequest) ([]GetOrganizationDevicesUplinksLossAndLatency200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20097
+		localVarReturnValue  []GetOrganizationDevicesUplinksLossAndLatency200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationDevicesUplinksLossAndLatency")
@@ -9646,7 +9646,7 @@ func (r OrganizationsApiGetOrganizationFirmwareUpgradesRequest) ProductType(prod
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationFirmwareUpgradesRequest) Execute() ([]InlineResponse20098, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationFirmwareUpgradesRequest) Execute() ([]GetOrganizationFirmwareUpgrades200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationFirmwareUpgradesExecute(r)
 }
 
@@ -9668,13 +9668,13 @@ func (a *OrganizationsApiService) GetOrganizationFirmwareUpgrades(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20098
-func (a *OrganizationsApiService) GetOrganizationFirmwareUpgradesExecute(r OrganizationsApiGetOrganizationFirmwareUpgradesRequest) ([]InlineResponse20098, *http.Response, error) {
+//  @return []GetOrganizationFirmwareUpgrades200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationFirmwareUpgradesExecute(r OrganizationsApiGetOrganizationFirmwareUpgradesRequest) ([]GetOrganizationFirmwareUpgrades200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20098
+		localVarReturnValue  []GetOrganizationFirmwareUpgrades200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationFirmwareUpgrades")
@@ -9825,7 +9825,7 @@ func (r OrganizationsApiGetOrganizationFirmwareUpgradesByDeviceRequest) Firmware
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationFirmwareUpgradesByDeviceRequest) Execute() ([]InlineResponse20099, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationFirmwareUpgradesByDeviceRequest) Execute() ([]GetOrganizationFirmwareUpgradesByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationFirmwareUpgradesByDeviceExecute(r)
 }
 
@@ -9847,13 +9847,13 @@ func (a *OrganizationsApiService) GetOrganizationFirmwareUpgradesByDevice(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20099
-func (a *OrganizationsApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r OrganizationsApiGetOrganizationFirmwareUpgradesByDeviceRequest) ([]InlineResponse20099, *http.Response, error) {
+//  @return []GetOrganizationFirmwareUpgradesByDevice200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r OrganizationsApiGetOrganizationFirmwareUpgradesByDeviceRequest) ([]GetOrganizationFirmwareUpgradesByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20099
+		localVarReturnValue  []GetOrganizationFirmwareUpgradesByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationFirmwareUpgradesByDevice")
@@ -9967,7 +9967,7 @@ type OrganizationsApiGetOrganizationInventoryDeviceRequest struct {
 	serial string
 }
 
-func (r OrganizationsApiGetOrganizationInventoryDeviceRequest) Execute() (*InlineResponse200102, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationInventoryDeviceRequest) Execute() (*GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryDeviceExecute(r)
 }
 
@@ -9991,13 +9991,13 @@ func (a *OrganizationsApiService) GetOrganizationInventoryDevice(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InlineResponse200102
-func (a *OrganizationsApiService) GetOrganizationInventoryDeviceExecute(r OrganizationsApiGetOrganizationInventoryDeviceRequest) (*InlineResponse200102, *http.Response, error) {
+//  @return GetOrganizationInventoryDevices200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationInventoryDeviceExecute(r OrganizationsApiGetOrganizationInventoryDeviceRequest) (*GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200102
+		localVarReturnValue  *GetOrganizationInventoryDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationInventoryDevice")
@@ -10171,7 +10171,7 @@ func (r OrganizationsApiGetOrganizationInventoryDevicesRequest) ProductTypes(pro
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationInventoryDevicesRequest) Execute() ([]InlineResponse200102, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationInventoryDevicesRequest) Execute() ([]GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryDevicesExecute(r)
 }
 
@@ -10193,13 +10193,13 @@ func (a *OrganizationsApiService) GetOrganizationInventoryDevices(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []InlineResponse200102
-func (a *OrganizationsApiService) GetOrganizationInventoryDevicesExecute(r OrganizationsApiGetOrganizationInventoryDevicesRequest) ([]InlineResponse200102, *http.Response, error) {
+//  @return []GetOrganizationInventoryDevices200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationInventoryDevicesExecute(r OrganizationsApiGetOrganizationInventoryDevicesRequest) ([]GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200102
+		localVarReturnValue  []GetOrganizationInventoryDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationInventoryDevices")
@@ -10331,7 +10331,7 @@ func (r OrganizationsApiGetOrganizationInventoryOnboardingCloudMonitoringImports
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) Execute() ([]InlineResponse200103, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) Execute() ([]GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r)
 }
 
@@ -10353,13 +10353,13 @@ func (a *OrganizationsApiService) GetOrganizationInventoryOnboardingCloudMonitor
 }
 
 // Execute executes the request
-//  @return []InlineResponse200103
-func (a *OrganizationsApiService) GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r OrganizationsApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) ([]InlineResponse200103, *http.Response, error) {
+//  @return []GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r OrganizationsApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) ([]GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200103
+		localVarReturnValue  []GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationInventoryOnboardingCloudMonitoringImports")
@@ -10453,7 +10453,7 @@ type OrganizationsApiGetOrganizationLicenseRequest struct {
 	licenseId string
 }
 
-func (r OrganizationsApiGetOrganizationLicenseRequest) Execute() (*InlineResponse200104, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationLicenseRequest) Execute() (*GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationLicenseExecute(r)
 }
 
@@ -10477,13 +10477,13 @@ func (a *OrganizationsApiService) GetOrganizationLicense(ctx context.Context, or
 }
 
 // Execute executes the request
-//  @return InlineResponse200104
-func (a *OrganizationsApiService) GetOrganizationLicenseExecute(r OrganizationsApiGetOrganizationLicenseRequest) (*InlineResponse200104, *http.Response, error) {
+//  @return GetOrganizationLicenses200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationLicenseExecute(r OrganizationsApiGetOrganizationLicenseRequest) (*GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200104
+		localVarReturnValue  *GetOrganizationLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationLicense")
@@ -10615,7 +10615,7 @@ func (r OrganizationsApiGetOrganizationLicensesRequest) State(state string) Orga
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationLicensesRequest) Execute() ([]InlineResponse200104, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationLicensesRequest) Execute() ([]GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationLicensesExecute(r)
 }
 
@@ -10637,13 +10637,13 @@ func (a *OrganizationsApiService) GetOrganizationLicenses(ctx context.Context, o
 }
 
 // Execute executes the request
-//  @return []InlineResponse200104
-func (a *OrganizationsApiService) GetOrganizationLicensesExecute(r OrganizationsApiGetOrganizationLicensesRequest) ([]InlineResponse200104, *http.Response, error) {
+//  @return []GetOrganizationLicenses200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationLicensesExecute(r OrganizationsApiGetOrganizationLicensesRequest) ([]GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200104
+		localVarReturnValue  []GetOrganizationLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationLicenses")
@@ -10902,7 +10902,7 @@ func (r OrganizationsApiGetOrganizationLicensingCotermLicensesRequest) Expired(e
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationLicensingCotermLicensesRequest) Execute() ([]InlineResponse200108, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationLicensingCotermLicensesRequest) Execute() ([]GetOrganizationLicensingCotermLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationLicensingCotermLicensesExecute(r)
 }
 
@@ -10924,13 +10924,13 @@ func (a *OrganizationsApiService) GetOrganizationLicensingCotermLicenses(ctx con
 }
 
 // Execute executes the request
-//  @return []InlineResponse200108
-func (a *OrganizationsApiService) GetOrganizationLicensingCotermLicensesExecute(r OrganizationsApiGetOrganizationLicensingCotermLicensesRequest) ([]InlineResponse200108, *http.Response, error) {
+//  @return []GetOrganizationLicensingCotermLicenses200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationLicensingCotermLicensesExecute(r OrganizationsApiGetOrganizationLicensingCotermLicensesRequest) ([]GetOrganizationLicensingCotermLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200108
+		localVarReturnValue  []GetOrganizationLicensingCotermLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationLicensingCotermLicenses")
@@ -11034,7 +11034,7 @@ type OrganizationsApiGetOrganizationLoginSecurityRequest struct {
 	organizationId string
 }
 
-func (r OrganizationsApiGetOrganizationLoginSecurityRequest) Execute() (*InlineResponse200110, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationLoginSecurityRequest) Execute() (*GetOrganizationLoginSecurity200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationLoginSecurityExecute(r)
 }
 
@@ -11056,13 +11056,13 @@ func (a *OrganizationsApiService) GetOrganizationLoginSecurity(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse200110
-func (a *OrganizationsApiService) GetOrganizationLoginSecurityExecute(r OrganizationsApiGetOrganizationLoginSecurityRequest) (*InlineResponse200110, *http.Response, error) {
+//  @return GetOrganizationLoginSecurity200Response
+func (a *OrganizationsApiService) GetOrganizationLoginSecurityExecute(r OrganizationsApiGetOrganizationLoginSecurityRequest) (*GetOrganizationLoginSecurity200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200110
+		localVarReturnValue  *GetOrganizationLoginSecurity200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationLoginSecurity")
@@ -11200,7 +11200,7 @@ func (r OrganizationsApiGetOrganizationNetworksRequest) EndingBefore(endingBefor
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationNetworksRequest) Execute() ([]InlineResponse2009, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationNetworksRequest) Execute() ([]GetNetwork200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationNetworksExecute(r)
 }
 
@@ -11222,13 +11222,13 @@ func (a *OrganizationsApiService) GetOrganizationNetworks(ctx context.Context, o
 }
 
 // Execute executes the request
-//  @return []InlineResponse2009
-func (a *OrganizationsApiService) GetOrganizationNetworksExecute(r OrganizationsApiGetOrganizationNetworksRequest) ([]InlineResponse2009, *http.Response, error) {
+//  @return []GetNetwork200Response
+func (a *OrganizationsApiService) GetOrganizationNetworksExecute(r OrganizationsApiGetOrganizationNetworksRequest) ([]GetNetwork200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2009
+		localVarReturnValue  []GetNetwork200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationNetworks")
@@ -11991,7 +11991,7 @@ type OrganizationsApiGetOrganizationSamlRequest struct {
 	organizationId string
 }
 
-func (r OrganizationsApiGetOrganizationSamlRequest) Execute() (*InlineResponse200112, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationSamlRequest) Execute() (*GetOrganizationSaml200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationSamlExecute(r)
 }
 
@@ -12013,13 +12013,13 @@ func (a *OrganizationsApiService) GetOrganizationSaml(ctx context.Context, organ
 }
 
 // Execute executes the request
-//  @return InlineResponse200112
-func (a *OrganizationsApiService) GetOrganizationSamlExecute(r OrganizationsApiGetOrganizationSamlRequest) (*InlineResponse200112, *http.Response, error) {
+//  @return GetOrganizationSaml200Response
+func (a *OrganizationsApiService) GetOrganizationSamlExecute(r OrganizationsApiGetOrganizationSamlRequest) (*GetOrganizationSaml200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200112
+		localVarReturnValue  *GetOrganizationSaml200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationSaml")
@@ -12109,7 +12109,7 @@ type OrganizationsApiGetOrganizationSamlIdpRequest struct {
 	idpId string
 }
 
-func (r OrganizationsApiGetOrganizationSamlIdpRequest) Execute() (*InlineResponse200113, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationSamlIdpRequest) Execute() (*GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSamlIdpExecute(r)
 }
 
@@ -12133,13 +12133,13 @@ func (a *OrganizationsApiService) GetOrganizationSamlIdp(ctx context.Context, or
 }
 
 // Execute executes the request
-//  @return InlineResponse200113
-func (a *OrganizationsApiService) GetOrganizationSamlIdpExecute(r OrganizationsApiGetOrganizationSamlIdpRequest) (*InlineResponse200113, *http.Response, error) {
+//  @return GetOrganizationSamlIdps200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationSamlIdpExecute(r OrganizationsApiGetOrganizationSamlIdpRequest) (*GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200113
+		localVarReturnValue  *GetOrganizationSamlIdps200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationSamlIdp")
@@ -12229,7 +12229,7 @@ type OrganizationsApiGetOrganizationSamlIdpsRequest struct {
 	organizationId string
 }
 
-func (r OrganizationsApiGetOrganizationSamlIdpsRequest) Execute() ([]InlineResponse200113, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationSamlIdpsRequest) Execute() ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSamlIdpsExecute(r)
 }
 
@@ -12251,13 +12251,13 @@ func (a *OrganizationsApiService) GetOrganizationSamlIdps(ctx context.Context, o
 }
 
 // Execute executes the request
-//  @return []InlineResponse200113
-func (a *OrganizationsApiService) GetOrganizationSamlIdpsExecute(r OrganizationsApiGetOrganizationSamlIdpsRequest) ([]InlineResponse200113, *http.Response, error) {
+//  @return []GetOrganizationSamlIdps200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationSamlIdpsExecute(r OrganizationsApiGetOrganizationSamlIdpsRequest) ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200113
+		localVarReturnValue  []GetOrganizationSamlIdps200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationSamlIdps")
@@ -12722,7 +12722,7 @@ func (r OrganizationsApiGetOrganizationSummaryTopAppliancesByUtilizationRequest)
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationSummaryTopAppliancesByUtilizationRequest) Execute() ([]InlineResponse200119, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationSummaryTopAppliancesByUtilizationRequest) Execute() ([]GetOrganizationSummaryTopAppliancesByUtilization200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopAppliancesByUtilizationExecute(r)
 }
 
@@ -12744,13 +12744,13 @@ func (a *OrganizationsApiService) GetOrganizationSummaryTopAppliancesByUtilizati
 }
 
 // Execute executes the request
-//  @return []InlineResponse200119
-func (a *OrganizationsApiService) GetOrganizationSummaryTopAppliancesByUtilizationExecute(r OrganizationsApiGetOrganizationSummaryTopAppliancesByUtilizationRequest) ([]InlineResponse200119, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopAppliancesByUtilization200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationSummaryTopAppliancesByUtilizationExecute(r OrganizationsApiGetOrganizationSummaryTopAppliancesByUtilizationRequest) ([]GetOrganizationSummaryTopAppliancesByUtilization200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200119
+		localVarReturnValue  []GetOrganizationSummaryTopAppliancesByUtilization200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationSummaryTopAppliancesByUtilization")
@@ -12869,7 +12869,7 @@ func (r OrganizationsApiGetOrganizationSummaryTopClientsByUsageRequest) Timespan
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationSummaryTopClientsByUsageRequest) Execute() ([]InlineResponse200120, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationSummaryTopClientsByUsageRequest) Execute() ([]GetOrganizationSummaryTopClientsByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopClientsByUsageExecute(r)
 }
 
@@ -12891,13 +12891,13 @@ func (a *OrganizationsApiService) GetOrganizationSummaryTopClientsByUsage(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse200120
-func (a *OrganizationsApiService) GetOrganizationSummaryTopClientsByUsageExecute(r OrganizationsApiGetOrganizationSummaryTopClientsByUsageRequest) ([]InlineResponse200120, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopClientsByUsage200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationSummaryTopClientsByUsageExecute(r OrganizationsApiGetOrganizationSummaryTopClientsByUsageRequest) ([]GetOrganizationSummaryTopClientsByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200120
+		localVarReturnValue  []GetOrganizationSummaryTopClientsByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationSummaryTopClientsByUsage")
@@ -13016,7 +13016,7 @@ func (r OrganizationsApiGetOrganizationSummaryTopClientsManufacturersByUsageRequ
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) Execute() ([]InlineResponse200121, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) Execute() ([]GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopClientsManufacturersByUsageExecute(r)
 }
 
@@ -13038,13 +13038,13 @@ func (a *OrganizationsApiService) GetOrganizationSummaryTopClientsManufacturersB
 }
 
 // Execute executes the request
-//  @return []InlineResponse200121
-func (a *OrganizationsApiService) GetOrganizationSummaryTopClientsManufacturersByUsageExecute(r OrganizationsApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) ([]InlineResponse200121, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationSummaryTopClientsManufacturersByUsageExecute(r OrganizationsApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) ([]GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200121
+		localVarReturnValue  []GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationSummaryTopClientsManufacturersByUsage")
@@ -13163,7 +13163,7 @@ func (r OrganizationsApiGetOrganizationSummaryTopDevicesByUsageRequest) Timespan
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationSummaryTopDevicesByUsageRequest) Execute() ([]InlineResponse200122, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationSummaryTopDevicesByUsageRequest) Execute() ([]GetOrganizationSummaryTopDevicesByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopDevicesByUsageExecute(r)
 }
 
@@ -13185,13 +13185,13 @@ func (a *OrganizationsApiService) GetOrganizationSummaryTopDevicesByUsage(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse200122
-func (a *OrganizationsApiService) GetOrganizationSummaryTopDevicesByUsageExecute(r OrganizationsApiGetOrganizationSummaryTopDevicesByUsageRequest) ([]InlineResponse200122, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopDevicesByUsage200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationSummaryTopDevicesByUsageExecute(r OrganizationsApiGetOrganizationSummaryTopDevicesByUsageRequest) ([]GetOrganizationSummaryTopDevicesByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200122
+		localVarReturnValue  []GetOrganizationSummaryTopDevicesByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationSummaryTopDevicesByUsage")
@@ -13310,7 +13310,7 @@ func (r OrganizationsApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) Ti
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) Execute() ([]InlineResponse200123, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) Execute() ([]GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopDevicesModelsByUsageExecute(r)
 }
 
@@ -13332,13 +13332,13 @@ func (a *OrganizationsApiService) GetOrganizationSummaryTopDevicesModelsByUsage(
 }
 
 // Execute executes the request
-//  @return []InlineResponse200123
-func (a *OrganizationsApiService) GetOrganizationSummaryTopDevicesModelsByUsageExecute(r OrganizationsApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) ([]InlineResponse200123, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationSummaryTopDevicesModelsByUsageExecute(r OrganizationsApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) ([]GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200123
+		localVarReturnValue  []GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationSummaryTopDevicesModelsByUsage")
@@ -13457,7 +13457,7 @@ func (r OrganizationsApiGetOrganizationSummaryTopSsidsByUsageRequest) Timespan(t
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationSummaryTopSsidsByUsageRequest) Execute() ([]InlineResponse200124, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationSummaryTopSsidsByUsageRequest) Execute() ([]GetOrganizationSummaryTopSsidsByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopSsidsByUsageExecute(r)
 }
 
@@ -13479,13 +13479,13 @@ func (a *OrganizationsApiService) GetOrganizationSummaryTopSsidsByUsage(ctx cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse200124
-func (a *OrganizationsApiService) GetOrganizationSummaryTopSsidsByUsageExecute(r OrganizationsApiGetOrganizationSummaryTopSsidsByUsageRequest) ([]InlineResponse200124, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopSsidsByUsage200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationSummaryTopSsidsByUsageExecute(r OrganizationsApiGetOrganizationSummaryTopSsidsByUsageRequest) ([]GetOrganizationSummaryTopSsidsByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200124
+		localVarReturnValue  []GetOrganizationSummaryTopSsidsByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationSummaryTopSsidsByUsage")
@@ -13604,7 +13604,7 @@ func (r OrganizationsApiGetOrganizationSummaryTopSwitchesByEnergyUsageRequest) T
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationSummaryTopSwitchesByEnergyUsageRequest) Execute() ([]InlineResponse200125, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationSummaryTopSwitchesByEnergyUsageRequest) Execute() ([]GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopSwitchesByEnergyUsageExecute(r)
 }
 
@@ -13626,13 +13626,13 @@ func (a *OrganizationsApiService) GetOrganizationSummaryTopSwitchesByEnergyUsage
 }
 
 // Execute executes the request
-//  @return []InlineResponse200125
-func (a *OrganizationsApiService) GetOrganizationSummaryTopSwitchesByEnergyUsageExecute(r OrganizationsApiGetOrganizationSummaryTopSwitchesByEnergyUsageRequest) ([]InlineResponse200125, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationSummaryTopSwitchesByEnergyUsageExecute(r OrganizationsApiGetOrganizationSummaryTopSwitchesByEnergyUsageRequest) ([]GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200125
+		localVarReturnValue  []GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationSummaryTopSwitchesByEnergyUsage")
@@ -13772,7 +13772,7 @@ func (r OrganizationsApiGetOrganizationUplinksStatusesRequest) Iccids(iccids []s
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationUplinksStatusesRequest) Execute() ([]InlineResponse200127, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationUplinksStatusesRequest) Execute() ([]GetOrganizationUplinksStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationUplinksStatusesExecute(r)
 }
 
@@ -13794,13 +13794,13 @@ func (a *OrganizationsApiService) GetOrganizationUplinksStatuses(ctx context.Con
 }
 
 // Execute executes the request
-//  @return []InlineResponse200127
-func (a *OrganizationsApiService) GetOrganizationUplinksStatusesExecute(r OrganizationsApiGetOrganizationUplinksStatusesRequest) ([]InlineResponse200127, *http.Response, error) {
+//  @return []GetOrganizationUplinksStatuses200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationUplinksStatusesExecute(r OrganizationsApiGetOrganizationUplinksStatusesRequest) ([]GetOrganizationUplinksStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200127
+		localVarReturnValue  []GetOrganizationUplinksStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationUplinksStatuses")
@@ -14083,7 +14083,7 @@ func (r OrganizationsApiGetOrganizationWebhooksLogsRequest) Url(url string) Orga
 	return r
 }
 
-func (r OrganizationsApiGetOrganizationWebhooksLogsRequest) Execute() ([]InlineResponse200128, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationWebhooksLogsRequest) Execute() ([]GetOrganizationWebhooksLogs200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWebhooksLogsExecute(r)
 }
 
@@ -14105,13 +14105,13 @@ func (a *OrganizationsApiService) GetOrganizationWebhooksLogs(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse200128
-func (a *OrganizationsApiService) GetOrganizationWebhooksLogsExecute(r OrganizationsApiGetOrganizationWebhooksLogsRequest) ([]InlineResponse200128, *http.Response, error) {
+//  @return []GetOrganizationWebhooksLogs200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationWebhooksLogsExecute(r OrganizationsApiGetOrganizationWebhooksLogsRequest) ([]GetOrganizationWebhooksLogs200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200128
+		localVarReturnValue  []GetOrganizationWebhooksLogs200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizationWebhooksLogs")
@@ -14220,7 +14220,7 @@ type OrganizationsApiGetOrganizationsRequest struct {
 	ApiService *OrganizationsApiService
 }
 
-func (r OrganizationsApiGetOrganizationsRequest) Execute() ([]InlineResponse20080, *http.Response, error) {
+func (r OrganizationsApiGetOrganizationsRequest) Execute() ([]GetOrganizations200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationsExecute(r)
 }
 
@@ -14240,13 +14240,13 @@ func (a *OrganizationsApiService) GetOrganizations(ctx context.Context) Organiza
 }
 
 // Execute executes the request
-//  @return []InlineResponse20080
-func (a *OrganizationsApiService) GetOrganizationsExecute(r OrganizationsApiGetOrganizationsRequest) ([]InlineResponse20080, *http.Response, error) {
+//  @return []GetOrganizations200ResponseInner
+func (a *OrganizationsApiService) GetOrganizationsExecute(r OrganizationsApiGetOrganizationsRequest) ([]GetOrganizations200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20080
+		localVarReturnValue  []GetOrganizations200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrganizations")
@@ -14332,15 +14332,15 @@ type OrganizationsApiMoveOrganizationLicensesRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	moveOrganizationLicenses *InlineObject203
+	moveOrganizationLicenses *MoveOrganizationLicensesRequest
 }
 
-func (r OrganizationsApiMoveOrganizationLicensesRequest) MoveOrganizationLicenses(moveOrganizationLicenses InlineObject203) OrganizationsApiMoveOrganizationLicensesRequest {
+func (r OrganizationsApiMoveOrganizationLicensesRequest) MoveOrganizationLicenses(moveOrganizationLicenses MoveOrganizationLicensesRequest) OrganizationsApiMoveOrganizationLicensesRequest {
 	r.moveOrganizationLicenses = &moveOrganizationLicenses
 	return r
 }
 
-func (r OrganizationsApiMoveOrganizationLicensesRequest) Execute() (*InlineResponse200106, *http.Response, error) {
+func (r OrganizationsApiMoveOrganizationLicensesRequest) Execute() (*MoveOrganizationLicenses200Response, *http.Response, error) {
 	return r.ApiService.MoveOrganizationLicensesExecute(r)
 }
 
@@ -14362,13 +14362,13 @@ func (a *OrganizationsApiService) MoveOrganizationLicenses(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse200106
-func (a *OrganizationsApiService) MoveOrganizationLicensesExecute(r OrganizationsApiMoveOrganizationLicensesRequest) (*InlineResponse200106, *http.Response, error) {
+//  @return MoveOrganizationLicenses200Response
+func (a *OrganizationsApiService) MoveOrganizationLicensesExecute(r OrganizationsApiMoveOrganizationLicensesRequest) (*MoveOrganizationLicenses200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200106
+		localVarReturnValue  *MoveOrganizationLicenses200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.MoveOrganizationLicenses")
@@ -14460,15 +14460,15 @@ type OrganizationsApiMoveOrganizationLicensesSeatsRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	moveOrganizationLicensesSeats *InlineObject204
+	moveOrganizationLicensesSeats *MoveOrganizationLicensesSeatsRequest
 }
 
-func (r OrganizationsApiMoveOrganizationLicensesSeatsRequest) MoveOrganizationLicensesSeats(moveOrganizationLicensesSeats InlineObject204) OrganizationsApiMoveOrganizationLicensesSeatsRequest {
+func (r OrganizationsApiMoveOrganizationLicensesSeatsRequest) MoveOrganizationLicensesSeats(moveOrganizationLicensesSeats MoveOrganizationLicensesSeatsRequest) OrganizationsApiMoveOrganizationLicensesSeatsRequest {
 	r.moveOrganizationLicensesSeats = &moveOrganizationLicensesSeats
 	return r
 }
 
-func (r OrganizationsApiMoveOrganizationLicensesSeatsRequest) Execute() (*InlineResponse200107, *http.Response, error) {
+func (r OrganizationsApiMoveOrganizationLicensesSeatsRequest) Execute() (*MoveOrganizationLicensesSeats200Response, *http.Response, error) {
 	return r.ApiService.MoveOrganizationLicensesSeatsExecute(r)
 }
 
@@ -14490,13 +14490,13 @@ func (a *OrganizationsApiService) MoveOrganizationLicensesSeats(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse200107
-func (a *OrganizationsApiService) MoveOrganizationLicensesSeatsExecute(r OrganizationsApiMoveOrganizationLicensesSeatsRequest) (*InlineResponse200107, *http.Response, error) {
+//  @return MoveOrganizationLicensesSeats200Response
+func (a *OrganizationsApiService) MoveOrganizationLicensesSeatsExecute(r OrganizationsApiMoveOrganizationLicensesSeatsRequest) (*MoveOrganizationLicensesSeats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200107
+		localVarReturnValue  *MoveOrganizationLicensesSeats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.MoveOrganizationLicensesSeats")
@@ -14588,15 +14588,15 @@ type OrganizationsApiMoveOrganizationLicensingCotermLicensesRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	moveOrganizationLicensingCotermLicenses *InlineObject207
+	moveOrganizationLicensingCotermLicenses *MoveOrganizationLicensingCotermLicensesRequest
 }
 
-func (r OrganizationsApiMoveOrganizationLicensingCotermLicensesRequest) MoveOrganizationLicensingCotermLicenses(moveOrganizationLicensingCotermLicenses InlineObject207) OrganizationsApiMoveOrganizationLicensingCotermLicensesRequest {
+func (r OrganizationsApiMoveOrganizationLicensingCotermLicensesRequest) MoveOrganizationLicensingCotermLicenses(moveOrganizationLicensingCotermLicenses MoveOrganizationLicensingCotermLicensesRequest) OrganizationsApiMoveOrganizationLicensingCotermLicensesRequest {
 	r.moveOrganizationLicensingCotermLicenses = &moveOrganizationLicensingCotermLicenses
 	return r
 }
 
-func (r OrganizationsApiMoveOrganizationLicensingCotermLicensesRequest) Execute() (*InlineResponse200109, *http.Response, error) {
+func (r OrganizationsApiMoveOrganizationLicensingCotermLicensesRequest) Execute() (*MoveOrganizationLicensingCotermLicenses200Response, *http.Response, error) {
 	return r.ApiService.MoveOrganizationLicensingCotermLicensesExecute(r)
 }
 
@@ -14618,13 +14618,13 @@ func (a *OrganizationsApiService) MoveOrganizationLicensingCotermLicenses(ctx co
 }
 
 // Execute executes the request
-//  @return InlineResponse200109
-func (a *OrganizationsApiService) MoveOrganizationLicensingCotermLicensesExecute(r OrganizationsApiMoveOrganizationLicensingCotermLicensesRequest) (*InlineResponse200109, *http.Response, error) {
+//  @return MoveOrganizationLicensingCotermLicenses200Response
+func (a *OrganizationsApiService) MoveOrganizationLicensingCotermLicensesExecute(r OrganizationsApiMoveOrganizationLicensingCotermLicensesRequest) (*MoveOrganizationLicensingCotermLicenses200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200109
+		localVarReturnValue  *MoveOrganizationLicensingCotermLicenses200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.MoveOrganizationLicensingCotermLicenses")
@@ -14716,10 +14716,10 @@ type OrganizationsApiReleaseFromOrganizationInventoryRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	releaseFromOrganizationInventory *InlineObject201
+	releaseFromOrganizationInventory *ReleaseFromOrganizationInventoryRequest
 }
 
-func (r OrganizationsApiReleaseFromOrganizationInventoryRequest) ReleaseFromOrganizationInventory(releaseFromOrganizationInventory InlineObject201) OrganizationsApiReleaseFromOrganizationInventoryRequest {
+func (r OrganizationsApiReleaseFromOrganizationInventoryRequest) ReleaseFromOrganizationInventory(releaseFromOrganizationInventory ReleaseFromOrganizationInventoryRequest) OrganizationsApiReleaseFromOrganizationInventoryRequest {
 	r.releaseFromOrganizationInventory = &releaseFromOrganizationInventory
 	return r
 }
@@ -14841,15 +14841,15 @@ type OrganizationsApiRenewOrganizationLicensesSeatsRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	renewOrganizationLicensesSeats *InlineObject205
+	renewOrganizationLicensesSeats *RenewOrganizationLicensesSeatsRequest
 }
 
-func (r OrganizationsApiRenewOrganizationLicensesSeatsRequest) RenewOrganizationLicensesSeats(renewOrganizationLicensesSeats InlineObject205) OrganizationsApiRenewOrganizationLicensesSeatsRequest {
+func (r OrganizationsApiRenewOrganizationLicensesSeatsRequest) RenewOrganizationLicensesSeats(renewOrganizationLicensesSeats RenewOrganizationLicensesSeatsRequest) OrganizationsApiRenewOrganizationLicensesSeatsRequest {
 	r.renewOrganizationLicensesSeats = &renewOrganizationLicensesSeats
 	return r
 }
 
-func (r OrganizationsApiRenewOrganizationLicensesSeatsRequest) Execute() (*InlineResponse200105, *http.Response, error) {
+func (r OrganizationsApiRenewOrganizationLicensesSeatsRequest) Execute() (*AssignOrganizationLicensesSeats200Response, *http.Response, error) {
 	return r.ApiService.RenewOrganizationLicensesSeatsExecute(r)
 }
 
@@ -14871,13 +14871,13 @@ func (a *OrganizationsApiService) RenewOrganizationLicensesSeats(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InlineResponse200105
-func (a *OrganizationsApiService) RenewOrganizationLicensesSeatsExecute(r OrganizationsApiRenewOrganizationLicensesSeatsRequest) (*InlineResponse200105, *http.Response, error) {
+//  @return AssignOrganizationLicensesSeats200Response
+func (a *OrganizationsApiService) RenewOrganizationLicensesSeatsExecute(r OrganizationsApiRenewOrganizationLicensesSeatsRequest) (*AssignOrganizationLicensesSeats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200105
+		localVarReturnValue  *AssignOrganizationLicensesSeats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.RenewOrganizationLicensesSeats")
@@ -14969,15 +14969,15 @@ type OrganizationsApiUpdateOrganizationRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	updateOrganization *InlineObject167
+	updateOrganization *UpdateOrganizationRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationRequest) UpdateOrganization(updateOrganization InlineObject167) OrganizationsApiUpdateOrganizationRequest {
+func (r OrganizationsApiUpdateOrganizationRequest) UpdateOrganization(updateOrganization UpdateOrganizationRequest) OrganizationsApiUpdateOrganizationRequest {
 	r.updateOrganization = &updateOrganization
 	return r
 }
 
-func (r OrganizationsApiUpdateOrganizationRequest) Execute() (*InlineResponse20080, *http.Response, error) {
+func (r OrganizationsApiUpdateOrganizationRequest) Execute() (*GetOrganizations200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationExecute(r)
 }
 
@@ -14999,13 +14999,13 @@ func (a *OrganizationsApiService) UpdateOrganization(ctx context.Context, organi
 }
 
 // Execute executes the request
-//  @return InlineResponse20080
-func (a *OrganizationsApiService) UpdateOrganizationExecute(r OrganizationsApiUpdateOrganizationRequest) (*InlineResponse20080, *http.Response, error) {
+//  @return GetOrganizations200ResponseInner
+func (a *OrganizationsApiService) UpdateOrganizationExecute(r OrganizationsApiUpdateOrganizationRequest) (*GetOrganizations200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20080
+		localVarReturnValue  *GetOrganizations200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.UpdateOrganization")
@@ -15095,10 +15095,10 @@ type OrganizationsApiUpdateOrganizationActionBatchRequest struct {
 	ApiService *OrganizationsApiService
 	organizationId string
 	actionBatchId string
-	updateOrganizationActionBatch *InlineObject169
+	updateOrganizationActionBatch *UpdateOrganizationActionBatchRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationActionBatchRequest) UpdateOrganizationActionBatch(updateOrganizationActionBatch InlineObject169) OrganizationsApiUpdateOrganizationActionBatchRequest {
+func (r OrganizationsApiUpdateOrganizationActionBatchRequest) UpdateOrganizationActionBatch(updateOrganizationActionBatch UpdateOrganizationActionBatchRequest) OrganizationsApiUpdateOrganizationActionBatchRequest {
 	r.updateOrganizationActionBatch = &updateOrganizationActionBatch
 	return r
 }
@@ -15224,10 +15224,10 @@ type OrganizationsApiUpdateOrganizationAdaptivePolicyAclRequest struct {
 	ApiService *OrganizationsApiService
 	organizationId string
 	aclId string
-	updateOrganizationAdaptivePolicyAcl *InlineObject171
+	updateOrganizationAdaptivePolicyAcl *UpdateOrganizationAdaptivePolicyAclRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationAdaptivePolicyAclRequest) UpdateOrganizationAdaptivePolicyAcl(updateOrganizationAdaptivePolicyAcl InlineObject171) OrganizationsApiUpdateOrganizationAdaptivePolicyAclRequest {
+func (r OrganizationsApiUpdateOrganizationAdaptivePolicyAclRequest) UpdateOrganizationAdaptivePolicyAcl(updateOrganizationAdaptivePolicyAcl UpdateOrganizationAdaptivePolicyAclRequest) OrganizationsApiUpdateOrganizationAdaptivePolicyAclRequest {
 	r.updateOrganizationAdaptivePolicyAcl = &updateOrganizationAdaptivePolicyAcl
 	return r
 }
@@ -15353,10 +15353,10 @@ type OrganizationsApiUpdateOrganizationAdaptivePolicyGroupRequest struct {
 	ApiService *OrganizationsApiService
 	organizationId string
 	id string
-	updateOrganizationAdaptivePolicyGroup *InlineObject173
+	updateOrganizationAdaptivePolicyGroup *UpdateOrganizationAdaptivePolicyGroupRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationAdaptivePolicyGroupRequest) UpdateOrganizationAdaptivePolicyGroup(updateOrganizationAdaptivePolicyGroup InlineObject173) OrganizationsApiUpdateOrganizationAdaptivePolicyGroupRequest {
+func (r OrganizationsApiUpdateOrganizationAdaptivePolicyGroupRequest) UpdateOrganizationAdaptivePolicyGroup(updateOrganizationAdaptivePolicyGroup UpdateOrganizationAdaptivePolicyGroupRequest) OrganizationsApiUpdateOrganizationAdaptivePolicyGroupRequest {
 	r.updateOrganizationAdaptivePolicyGroup = &updateOrganizationAdaptivePolicyGroup
 	return r
 }
@@ -15482,10 +15482,10 @@ type OrganizationsApiUpdateOrganizationAdaptivePolicyPolicyRequest struct {
 	ApiService *OrganizationsApiService
 	organizationId string
 	id string
-	updateOrganizationAdaptivePolicyPolicy *InlineObject175
+	updateOrganizationAdaptivePolicyPolicy *UpdateOrganizationAdaptivePolicyPolicyRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationAdaptivePolicyPolicyRequest) UpdateOrganizationAdaptivePolicyPolicy(updateOrganizationAdaptivePolicyPolicy InlineObject175) OrganizationsApiUpdateOrganizationAdaptivePolicyPolicyRequest {
+func (r OrganizationsApiUpdateOrganizationAdaptivePolicyPolicyRequest) UpdateOrganizationAdaptivePolicyPolicy(updateOrganizationAdaptivePolicyPolicy UpdateOrganizationAdaptivePolicyPolicyRequest) OrganizationsApiUpdateOrganizationAdaptivePolicyPolicyRequest {
 	r.updateOrganizationAdaptivePolicyPolicy = &updateOrganizationAdaptivePolicyPolicy
 	return r
 }
@@ -15610,10 +15610,10 @@ type OrganizationsApiUpdateOrganizationAdaptivePolicySettingsRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	updateOrganizationAdaptivePolicySettings *InlineObject176
+	updateOrganizationAdaptivePolicySettings *UpdateOrganizationAdaptivePolicySettingsRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationAdaptivePolicySettingsRequest) UpdateOrganizationAdaptivePolicySettings(updateOrganizationAdaptivePolicySettings InlineObject176) OrganizationsApiUpdateOrganizationAdaptivePolicySettingsRequest {
+func (r OrganizationsApiUpdateOrganizationAdaptivePolicySettingsRequest) UpdateOrganizationAdaptivePolicySettings(updateOrganizationAdaptivePolicySettings UpdateOrganizationAdaptivePolicySettingsRequest) OrganizationsApiUpdateOrganizationAdaptivePolicySettingsRequest {
 	r.updateOrganizationAdaptivePolicySettings = &updateOrganizationAdaptivePolicySettings
 	return r
 }
@@ -15736,10 +15736,10 @@ type OrganizationsApiUpdateOrganizationAdminRequest struct {
 	ApiService *OrganizationsApiService
 	organizationId string
 	adminId string
-	updateOrganizationAdmin *InlineObject178
+	updateOrganizationAdmin *UpdateOrganizationAdminRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationAdminRequest) UpdateOrganizationAdmin(updateOrganizationAdmin InlineObject178) OrganizationsApiUpdateOrganizationAdminRequest {
+func (r OrganizationsApiUpdateOrganizationAdminRequest) UpdateOrganizationAdmin(updateOrganizationAdmin UpdateOrganizationAdminRequest) OrganizationsApiUpdateOrganizationAdminRequest {
 	r.updateOrganizationAdmin = &updateOrganizationAdmin
 	return r
 }
@@ -15865,10 +15865,10 @@ type OrganizationsApiUpdateOrganizationAlertsProfileRequest struct {
 	ApiService *OrganizationsApiService
 	organizationId string
 	alertConfigId string
-	updateOrganizationAlertsProfile *InlineObject180
+	updateOrganizationAlertsProfile *UpdateOrganizationAlertsProfileRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationAlertsProfileRequest) UpdateOrganizationAlertsProfile(updateOrganizationAlertsProfile InlineObject180) OrganizationsApiUpdateOrganizationAlertsProfileRequest {
+func (r OrganizationsApiUpdateOrganizationAlertsProfileRequest) UpdateOrganizationAlertsProfile(updateOrganizationAlertsProfile UpdateOrganizationAlertsProfileRequest) OrganizationsApiUpdateOrganizationAlertsProfileRequest {
 	r.updateOrganizationAlertsProfile = &updateOrganizationAlertsProfile
 	return r
 }
@@ -15993,15 +15993,15 @@ type OrganizationsApiUpdateOrganizationBrandingPoliciesPrioritiesRequest struct 
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	updateOrganizationBrandingPoliciesPriorities *InlineObject185
+	updateOrganizationBrandingPoliciesPriorities *UpdateOrganizationBrandingPoliciesPrioritiesRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) UpdateOrganizationBrandingPoliciesPriorities(updateOrganizationBrandingPoliciesPriorities InlineObject185) OrganizationsApiUpdateOrganizationBrandingPoliciesPrioritiesRequest {
+func (r OrganizationsApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) UpdateOrganizationBrandingPoliciesPriorities(updateOrganizationBrandingPoliciesPriorities UpdateOrganizationBrandingPoliciesPrioritiesRequest) OrganizationsApiUpdateOrganizationBrandingPoliciesPrioritiesRequest {
 	r.updateOrganizationBrandingPoliciesPriorities = &updateOrganizationBrandingPoliciesPriorities
 	return r
 }
 
-func (r OrganizationsApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*InlineResponse20086, *http.Response, error) {
+func (r OrganizationsApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationBrandingPoliciesPrioritiesExecute(r)
 }
 
@@ -16023,13 +16023,13 @@ func (a *OrganizationsApiService) UpdateOrganizationBrandingPoliciesPriorities(c
 }
 
 // Execute executes the request
-//  @return InlineResponse20086
-func (a *OrganizationsApiService) UpdateOrganizationBrandingPoliciesPrioritiesExecute(r OrganizationsApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) (*InlineResponse20086, *http.Response, error) {
+//  @return GetOrganizationBrandingPoliciesPriorities200Response
+func (a *OrganizationsApiService) UpdateOrganizationBrandingPoliciesPrioritiesExecute(r OrganizationsApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20086
+		localVarReturnValue  *GetOrganizationBrandingPoliciesPriorities200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.UpdateOrganizationBrandingPoliciesPriorities")
@@ -16119,15 +16119,15 @@ type OrganizationsApiUpdateOrganizationBrandingPolicyRequest struct {
 	ApiService *OrganizationsApiService
 	organizationId string
 	brandingPolicyId string
-	updateOrganizationBrandingPolicy *InlineObject186
+	updateOrganizationBrandingPolicy *UpdateOrganizationBrandingPolicyRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationBrandingPolicyRequest) UpdateOrganizationBrandingPolicy(updateOrganizationBrandingPolicy InlineObject186) OrganizationsApiUpdateOrganizationBrandingPolicyRequest {
+func (r OrganizationsApiUpdateOrganizationBrandingPolicyRequest) UpdateOrganizationBrandingPolicy(updateOrganizationBrandingPolicy UpdateOrganizationBrandingPolicyRequest) OrganizationsApiUpdateOrganizationBrandingPolicyRequest {
 	r.updateOrganizationBrandingPolicy = &updateOrganizationBrandingPolicy
 	return r
 }
 
-func (r OrganizationsApiUpdateOrganizationBrandingPolicyRequest) Execute() (*InlineResponse20085, *http.Response, error) {
+func (r OrganizationsApiUpdateOrganizationBrandingPolicyRequest) Execute() (*GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationBrandingPolicyExecute(r)
 }
 
@@ -16151,13 +16151,13 @@ func (a *OrganizationsApiService) UpdateOrganizationBrandingPolicy(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse20085
-func (a *OrganizationsApiService) UpdateOrganizationBrandingPolicyExecute(r OrganizationsApiUpdateOrganizationBrandingPolicyRequest) (*InlineResponse20085, *http.Response, error) {
+//  @return GetOrganizationBrandingPolicies200ResponseInner
+func (a *OrganizationsApiService) UpdateOrganizationBrandingPolicyExecute(r OrganizationsApiUpdateOrganizationBrandingPolicyRequest) (*GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20085
+		localVarReturnValue  *GetOrganizationBrandingPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.UpdateOrganizationBrandingPolicy")
@@ -16248,10 +16248,10 @@ type OrganizationsApiUpdateOrganizationConfigTemplateRequest struct {
 	ApiService *OrganizationsApiService
 	organizationId string
 	configTemplateId string
-	updateOrganizationConfigTemplate *InlineObject192
+	updateOrganizationConfigTemplate *UpdateOrganizationConfigTemplateRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationConfigTemplateRequest) UpdateOrganizationConfigTemplate(updateOrganizationConfigTemplate InlineObject192) OrganizationsApiUpdateOrganizationConfigTemplateRequest {
+func (r OrganizationsApiUpdateOrganizationConfigTemplateRequest) UpdateOrganizationConfigTemplate(updateOrganizationConfigTemplate UpdateOrganizationConfigTemplateRequest) OrganizationsApiUpdateOrganizationConfigTemplateRequest {
 	r.updateOrganizationConfigTemplate = &updateOrganizationConfigTemplate
 	return r
 }
@@ -16377,10 +16377,10 @@ type OrganizationsApiUpdateOrganizationEarlyAccessFeaturesOptInRequest struct {
 	ApiService *OrganizationsApiService
 	organizationId string
 	optInId string
-	updateOrganizationEarlyAccessFeaturesOptIn *InlineObject195
+	updateOrganizationEarlyAccessFeaturesOptIn *UpdateOrganizationEarlyAccessFeaturesOptInRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationEarlyAccessFeaturesOptInRequest) UpdateOrganizationEarlyAccessFeaturesOptIn(updateOrganizationEarlyAccessFeaturesOptIn InlineObject195) OrganizationsApiUpdateOrganizationEarlyAccessFeaturesOptInRequest {
+func (r OrganizationsApiUpdateOrganizationEarlyAccessFeaturesOptInRequest) UpdateOrganizationEarlyAccessFeaturesOptIn(updateOrganizationEarlyAccessFeaturesOptIn UpdateOrganizationEarlyAccessFeaturesOptInRequest) OrganizationsApiUpdateOrganizationEarlyAccessFeaturesOptInRequest {
 	r.updateOrganizationEarlyAccessFeaturesOptIn = &updateOrganizationEarlyAccessFeaturesOptIn
 	return r
 }
@@ -16506,15 +16506,15 @@ type OrganizationsApiUpdateOrganizationLicenseRequest struct {
 	ApiService *OrganizationsApiService
 	organizationId string
 	licenseId string
-	updateOrganizationLicense *InlineObject206
+	updateOrganizationLicense *UpdateOrganizationLicenseRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationLicenseRequest) UpdateOrganizationLicense(updateOrganizationLicense InlineObject206) OrganizationsApiUpdateOrganizationLicenseRequest {
+func (r OrganizationsApiUpdateOrganizationLicenseRequest) UpdateOrganizationLicense(updateOrganizationLicense UpdateOrganizationLicenseRequest) OrganizationsApiUpdateOrganizationLicenseRequest {
 	r.updateOrganizationLicense = &updateOrganizationLicense
 	return r
 }
 
-func (r OrganizationsApiUpdateOrganizationLicenseRequest) Execute() (*InlineResponse200104, *http.Response, error) {
+func (r OrganizationsApiUpdateOrganizationLicenseRequest) Execute() (*GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationLicenseExecute(r)
 }
 
@@ -16538,13 +16538,13 @@ func (a *OrganizationsApiService) UpdateOrganizationLicense(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse200104
-func (a *OrganizationsApiService) UpdateOrganizationLicenseExecute(r OrganizationsApiUpdateOrganizationLicenseRequest) (*InlineResponse200104, *http.Response, error) {
+//  @return GetOrganizationLicenses200ResponseInner
+func (a *OrganizationsApiService) UpdateOrganizationLicenseExecute(r OrganizationsApiUpdateOrganizationLicenseRequest) (*GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200104
+		localVarReturnValue  *GetOrganizationLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.UpdateOrganizationLicense")
@@ -16634,15 +16634,15 @@ type OrganizationsApiUpdateOrganizationLoginSecurityRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	updateOrganizationLoginSecurity *InlineObject208
+	updateOrganizationLoginSecurity *UpdateOrganizationLoginSecurityRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationLoginSecurityRequest) UpdateOrganizationLoginSecurity(updateOrganizationLoginSecurity InlineObject208) OrganizationsApiUpdateOrganizationLoginSecurityRequest {
+func (r OrganizationsApiUpdateOrganizationLoginSecurityRequest) UpdateOrganizationLoginSecurity(updateOrganizationLoginSecurity UpdateOrganizationLoginSecurityRequest) OrganizationsApiUpdateOrganizationLoginSecurityRequest {
 	r.updateOrganizationLoginSecurity = &updateOrganizationLoginSecurity
 	return r
 }
 
-func (r OrganizationsApiUpdateOrganizationLoginSecurityRequest) Execute() (*InlineResponse200110, *http.Response, error) {
+func (r OrganizationsApiUpdateOrganizationLoginSecurityRequest) Execute() (*GetOrganizationLoginSecurity200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationLoginSecurityExecute(r)
 }
 
@@ -16664,13 +16664,13 @@ func (a *OrganizationsApiService) UpdateOrganizationLoginSecurity(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse200110
-func (a *OrganizationsApiService) UpdateOrganizationLoginSecurityExecute(r OrganizationsApiUpdateOrganizationLoginSecurityRequest) (*InlineResponse200110, *http.Response, error) {
+//  @return GetOrganizationLoginSecurity200Response
+func (a *OrganizationsApiService) UpdateOrganizationLoginSecurityExecute(r OrganizationsApiUpdateOrganizationLoginSecurityRequest) (*GetOrganizationLoginSecurity200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200110
+		localVarReturnValue  *GetOrganizationLoginSecurity200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.UpdateOrganizationLoginSecurity")
@@ -16760,10 +16760,10 @@ type OrganizationsApiUpdateOrganizationPolicyObjectRequest struct {
 	ApiService *OrganizationsApiService
 	organizationId string
 	policyObjectId string
-	updateOrganizationPolicyObject *InlineObject214
+	updateOrganizationPolicyObject *UpdateOrganizationPolicyObjectRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationPolicyObjectRequest) UpdateOrganizationPolicyObject(updateOrganizationPolicyObject InlineObject214) OrganizationsApiUpdateOrganizationPolicyObjectRequest {
+func (r OrganizationsApiUpdateOrganizationPolicyObjectRequest) UpdateOrganizationPolicyObject(updateOrganizationPolicyObject UpdateOrganizationPolicyObjectRequest) OrganizationsApiUpdateOrganizationPolicyObjectRequest {
 	r.updateOrganizationPolicyObject = &updateOrganizationPolicyObject
 	return r
 }
@@ -16889,10 +16889,10 @@ type OrganizationsApiUpdateOrganizationPolicyObjectsGroupRequest struct {
 	ApiService *OrganizationsApiService
 	organizationId string
 	policyObjectGroupId string
-	updateOrganizationPolicyObjectsGroup *InlineObject213
+	updateOrganizationPolicyObjectsGroup *UpdateOrganizationPolicyObjectsGroupRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationPolicyObjectsGroupRequest) UpdateOrganizationPolicyObjectsGroup(updateOrganizationPolicyObjectsGroup InlineObject213) OrganizationsApiUpdateOrganizationPolicyObjectsGroupRequest {
+func (r OrganizationsApiUpdateOrganizationPolicyObjectsGroupRequest) UpdateOrganizationPolicyObjectsGroup(updateOrganizationPolicyObjectsGroup UpdateOrganizationPolicyObjectsGroupRequest) OrganizationsApiUpdateOrganizationPolicyObjectsGroupRequest {
 	r.updateOrganizationPolicyObjectsGroup = &updateOrganizationPolicyObjectsGroup
 	return r
 }
@@ -17017,15 +17017,15 @@ type OrganizationsApiUpdateOrganizationSamlRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	updateOrganizationSaml *InlineObject215
+	updateOrganizationSaml *UpdateOrganizationSamlRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationSamlRequest) UpdateOrganizationSaml(updateOrganizationSaml InlineObject215) OrganizationsApiUpdateOrganizationSamlRequest {
+func (r OrganizationsApiUpdateOrganizationSamlRequest) UpdateOrganizationSaml(updateOrganizationSaml UpdateOrganizationSamlRequest) OrganizationsApiUpdateOrganizationSamlRequest {
 	r.updateOrganizationSaml = &updateOrganizationSaml
 	return r
 }
 
-func (r OrganizationsApiUpdateOrganizationSamlRequest) Execute() (*InlineResponse200112, *http.Response, error) {
+func (r OrganizationsApiUpdateOrganizationSamlRequest) Execute() (*GetOrganizationSaml200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationSamlExecute(r)
 }
 
@@ -17047,13 +17047,13 @@ func (a *OrganizationsApiService) UpdateOrganizationSaml(ctx context.Context, or
 }
 
 // Execute executes the request
-//  @return InlineResponse200112
-func (a *OrganizationsApiService) UpdateOrganizationSamlExecute(r OrganizationsApiUpdateOrganizationSamlRequest) (*InlineResponse200112, *http.Response, error) {
+//  @return GetOrganizationSaml200Response
+func (a *OrganizationsApiService) UpdateOrganizationSamlExecute(r OrganizationsApiUpdateOrganizationSamlRequest) (*GetOrganizationSaml200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200112
+		localVarReturnValue  *GetOrganizationSaml200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.UpdateOrganizationSaml")
@@ -17143,15 +17143,15 @@ type OrganizationsApiUpdateOrganizationSamlIdpRequest struct {
 	ApiService *OrganizationsApiService
 	organizationId string
 	idpId string
-	updateOrganizationSamlIdp *InlineObject217
+	updateOrganizationSamlIdp *UpdateOrganizationSamlIdpRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationSamlIdpRequest) UpdateOrganizationSamlIdp(updateOrganizationSamlIdp InlineObject217) OrganizationsApiUpdateOrganizationSamlIdpRequest {
+func (r OrganizationsApiUpdateOrganizationSamlIdpRequest) UpdateOrganizationSamlIdp(updateOrganizationSamlIdp UpdateOrganizationSamlIdpRequest) OrganizationsApiUpdateOrganizationSamlIdpRequest {
 	r.updateOrganizationSamlIdp = &updateOrganizationSamlIdp
 	return r
 }
 
-func (r OrganizationsApiUpdateOrganizationSamlIdpRequest) Execute() ([]InlineResponse200113, *http.Response, error) {
+func (r OrganizationsApiUpdateOrganizationSamlIdpRequest) Execute() ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationSamlIdpExecute(r)
 }
 
@@ -17175,13 +17175,13 @@ func (a *OrganizationsApiService) UpdateOrganizationSamlIdp(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return []InlineResponse200113
-func (a *OrganizationsApiService) UpdateOrganizationSamlIdpExecute(r OrganizationsApiUpdateOrganizationSamlIdpRequest) ([]InlineResponse200113, *http.Response, error) {
+//  @return []GetOrganizationSamlIdps200ResponseInner
+func (a *OrganizationsApiService) UpdateOrganizationSamlIdpExecute(r OrganizationsApiUpdateOrganizationSamlIdpRequest) ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200113
+		localVarReturnValue  []GetOrganizationSamlIdps200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.UpdateOrganizationSamlIdp")
@@ -17272,15 +17272,15 @@ type OrganizationsApiUpdateOrganizationSamlRoleRequest struct {
 	ApiService *OrganizationsApiService
 	organizationId string
 	samlRoleId string
-	updateOrganizationSamlRole *InlineObject219
+	updateOrganizationSamlRole *UpdateOrganizationSamlRoleRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationSamlRoleRequest) UpdateOrganizationSamlRole(updateOrganizationSamlRole InlineObject219) OrganizationsApiUpdateOrganizationSamlRoleRequest {
+func (r OrganizationsApiUpdateOrganizationSamlRoleRequest) UpdateOrganizationSamlRole(updateOrganizationSamlRole UpdateOrganizationSamlRoleRequest) OrganizationsApiUpdateOrganizationSamlRoleRequest {
 	r.updateOrganizationSamlRole = &updateOrganizationSamlRole
 	return r
 }
 
-func (r OrganizationsApiUpdateOrganizationSamlRoleRequest) Execute() (*InlineResponse200114, *http.Response, error) {
+func (r OrganizationsApiUpdateOrganizationSamlRoleRequest) Execute() (*UpdateOrganizationSamlRole200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationSamlRoleExecute(r)
 }
 
@@ -17304,13 +17304,13 @@ func (a *OrganizationsApiService) UpdateOrganizationSamlRole(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse200114
-func (a *OrganizationsApiService) UpdateOrganizationSamlRoleExecute(r OrganizationsApiUpdateOrganizationSamlRoleRequest) (*InlineResponse200114, *http.Response, error) {
+//  @return UpdateOrganizationSamlRole200Response
+func (a *OrganizationsApiService) UpdateOrganizationSamlRoleExecute(r OrganizationsApiUpdateOrganizationSamlRoleRequest) (*UpdateOrganizationSamlRole200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200114
+		localVarReturnValue  *UpdateOrganizationSamlRole200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.UpdateOrganizationSamlRole")
@@ -17400,10 +17400,10 @@ type OrganizationsApiUpdateOrganizationSnmpRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsApiService
 	organizationId string
-	updateOrganizationSnmp *InlineObject220
+	updateOrganizationSnmp *UpdateOrganizationSnmpRequest
 }
 
-func (r OrganizationsApiUpdateOrganizationSnmpRequest) UpdateOrganizationSnmp(updateOrganizationSnmp InlineObject220) OrganizationsApiUpdateOrganizationSnmpRequest {
+func (r OrganizationsApiUpdateOrganizationSnmpRequest) UpdateOrganizationSnmp(updateOrganizationSnmp UpdateOrganizationSnmpRequest) OrganizationsApiUpdateOrganizationSnmpRequest {
 	r.updateOrganizationSnmp = &updateOrganizationSnmp
 	return r
 }

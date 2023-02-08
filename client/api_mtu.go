@@ -144,10 +144,10 @@ type MtuApiUpdateNetworkSwitchMtuRequest struct {
 	ctx context.Context
 	ApiService *MtuApiService
 	networkId string
-	updateNetworkSwitchMtu *InlineObject118
+	updateNetworkSwitchMtu *UpdateNetworkSwitchMtuRequest
 }
 
-func (r MtuApiUpdateNetworkSwitchMtuRequest) UpdateNetworkSwitchMtu(updateNetworkSwitchMtu InlineObject118) MtuApiUpdateNetworkSwitchMtuRequest {
+func (r MtuApiUpdateNetworkSwitchMtuRequest) UpdateNetworkSwitchMtu(updateNetworkSwitchMtu UpdateNetworkSwitchMtuRequest) MtuApiUpdateNetworkSwitchMtuRequest {
 	r.updateNetworkSwitchMtu = &updateNetworkSwitchMtu
 	return r
 }

@@ -358,7 +358,7 @@ type ClientsApiGetNetworkClientRequest struct {
 	clientId string
 }
 
-func (r ClientsApiGetNetworkClientRequest) Execute() (*InlineResponse20021, *http.Response, error) {
+func (r ClientsApiGetNetworkClientRequest) Execute() (*GetNetworkClient200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkClientExecute(r)
 }
 
@@ -382,13 +382,13 @@ func (a *ClientsApiService) GetNetworkClient(ctx context.Context, networkId stri
 }
 
 // Execute executes the request
-//  @return InlineResponse20021
-func (a *ClientsApiService) GetNetworkClientExecute(r ClientsApiGetNetworkClientRequest) (*InlineResponse20021, *http.Response, error) {
+//  @return GetNetworkClient200Response
+func (a *ClientsApiService) GetNetworkClientExecute(r ClientsApiGetNetworkClientRequest) (*GetNetworkClient200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20021
+		localVarReturnValue  *GetNetworkClient200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClientsApiService.GetNetworkClient")
@@ -1090,7 +1090,7 @@ func (r ClientsApiGetNetworkClientsRequest) RecentDeviceConnections(recentDevice
 	return r
 }
 
-func (r ClientsApiGetNetworkClientsRequest) Execute() (*InlineResponse20020, *http.Response, error) {
+func (r ClientsApiGetNetworkClientsRequest) Execute() (*GetNetworkClients200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkClientsExecute(r)
 }
 
@@ -1112,13 +1112,13 @@ func (a *ClientsApiService) GetNetworkClients(ctx context.Context, networkId str
 }
 
 // Execute executes the request
-//  @return InlineResponse20020
-func (a *ClientsApiService) GetNetworkClientsExecute(r ClientsApiGetNetworkClientsRequest) (*InlineResponse20020, *http.Response, error) {
+//  @return GetNetworkClients200Response
+func (a *ClientsApiService) GetNetworkClientsExecute(r ClientsApiGetNetworkClientsRequest) (*GetNetworkClients200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20020
+		localVarReturnValue  *GetNetworkClients200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClientsApiService.GetNetworkClients")
@@ -3168,7 +3168,7 @@ func (r ClientsApiGetOrganizationClientsBandwidthUsageHistoryRequest) Timespan(t
 	return r
 }
 
-func (r ClientsApiGetOrganizationClientsBandwidthUsageHistoryRequest) Execute() ([]InlineResponse20088, *http.Response, error) {
+func (r ClientsApiGetOrganizationClientsBandwidthUsageHistoryRequest) Execute() ([]GetOrganizationClientsBandwidthUsageHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationClientsBandwidthUsageHistoryExecute(r)
 }
 
@@ -3190,13 +3190,13 @@ func (a *ClientsApiService) GetOrganizationClientsBandwidthUsageHistory(ctx cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20088
-func (a *ClientsApiService) GetOrganizationClientsBandwidthUsageHistoryExecute(r ClientsApiGetOrganizationClientsBandwidthUsageHistoryRequest) ([]InlineResponse20088, *http.Response, error) {
+//  @return []GetOrganizationClientsBandwidthUsageHistory200ResponseInner
+func (a *ClientsApiService) GetOrganizationClientsBandwidthUsageHistoryExecute(r ClientsApiGetOrganizationClientsBandwidthUsageHistoryRequest) ([]GetOrganizationClientsBandwidthUsageHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20088
+		localVarReturnValue  []GetOrganizationClientsBandwidthUsageHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClientsApiService.GetOrganizationClientsBandwidthUsageHistory")
@@ -3315,7 +3315,7 @@ func (r ClientsApiGetOrganizationClientsOverviewRequest) Timespan(timespan float
 	return r
 }
 
-func (r ClientsApiGetOrganizationClientsOverviewRequest) Execute() (*InlineResponse20089, *http.Response, error) {
+func (r ClientsApiGetOrganizationClientsOverviewRequest) Execute() (*GetOrganizationClientsOverview200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationClientsOverviewExecute(r)
 }
 
@@ -3337,13 +3337,13 @@ func (a *ClientsApiService) GetOrganizationClientsOverview(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse20089
-func (a *ClientsApiService) GetOrganizationClientsOverviewExecute(r ClientsApiGetOrganizationClientsOverviewRequest) (*InlineResponse20089, *http.Response, error) {
+//  @return GetOrganizationClientsOverview200Response
+func (a *ClientsApiService) GetOrganizationClientsOverviewExecute(r ClientsApiGetOrganizationClientsOverviewRequest) (*GetOrganizationClientsOverview200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20089
+		localVarReturnValue  *GetOrganizationClientsOverview200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClientsApiService.GetOrganizationClientsOverview")
@@ -3620,7 +3620,7 @@ func (r ClientsApiGetOrganizationSummaryTopClientsByUsageRequest) Timespan(times
 	return r
 }
 
-func (r ClientsApiGetOrganizationSummaryTopClientsByUsageRequest) Execute() ([]InlineResponse200120, *http.Response, error) {
+func (r ClientsApiGetOrganizationSummaryTopClientsByUsageRequest) Execute() ([]GetOrganizationSummaryTopClientsByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopClientsByUsageExecute(r)
 }
 
@@ -3642,13 +3642,13 @@ func (a *ClientsApiService) GetOrganizationSummaryTopClientsByUsage(ctx context.
 }
 
 // Execute executes the request
-//  @return []InlineResponse200120
-func (a *ClientsApiService) GetOrganizationSummaryTopClientsByUsageExecute(r ClientsApiGetOrganizationSummaryTopClientsByUsageRequest) ([]InlineResponse200120, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopClientsByUsage200ResponseInner
+func (a *ClientsApiService) GetOrganizationSummaryTopClientsByUsageExecute(r ClientsApiGetOrganizationSummaryTopClientsByUsageRequest) ([]GetOrganizationSummaryTopClientsByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200120
+		localVarReturnValue  []GetOrganizationSummaryTopClientsByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClientsApiService.GetOrganizationSummaryTopClientsByUsage")
@@ -3767,7 +3767,7 @@ func (r ClientsApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) T
 	return r
 }
 
-func (r ClientsApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) Execute() ([]InlineResponse200121, *http.Response, error) {
+func (r ClientsApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) Execute() ([]GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopClientsManufacturersByUsageExecute(r)
 }
 
@@ -3789,13 +3789,13 @@ func (a *ClientsApiService) GetOrganizationSummaryTopClientsManufacturersByUsage
 }
 
 // Execute executes the request
-//  @return []InlineResponse200121
-func (a *ClientsApiService) GetOrganizationSummaryTopClientsManufacturersByUsageExecute(r ClientsApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) ([]InlineResponse200121, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner
+func (a *ClientsApiService) GetOrganizationSummaryTopClientsManufacturersByUsageExecute(r ClientsApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) ([]GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200121
+		localVarReturnValue  []GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClientsApiService.GetOrganizationSummaryTopClientsManufacturersByUsage")
@@ -3891,10 +3891,10 @@ type ClientsApiProvisionNetworkClientsRequest struct {
 	ctx context.Context
 	ApiService *ClientsApiService
 	networkId string
-	provisionNetworkClients *InlineObject71
+	provisionNetworkClients *ProvisionNetworkClientsRequest
 }
 
-func (r ClientsApiProvisionNetworkClientsRequest) ProvisionNetworkClients(provisionNetworkClients InlineObject71) ClientsApiProvisionNetworkClientsRequest {
+func (r ClientsApiProvisionNetworkClientsRequest) ProvisionNetworkClients(provisionNetworkClients ProvisionNetworkClientsRequest) ClientsApiProvisionNetworkClientsRequest {
 	r.provisionNetworkClients = &provisionNetworkClients
 	return r
 }
@@ -4020,10 +4020,10 @@ type ClientsApiUpdateNetworkClientPolicyRequest struct {
 	ApiService *ClientsApiService
 	networkId string
 	clientId string
-	updateNetworkClientPolicy *InlineObject72
+	updateNetworkClientPolicy *UpdateNetworkClientPolicyRequest
 }
 
-func (r ClientsApiUpdateNetworkClientPolicyRequest) UpdateNetworkClientPolicy(updateNetworkClientPolicy InlineObject72) ClientsApiUpdateNetworkClientPolicyRequest {
+func (r ClientsApiUpdateNetworkClientPolicyRequest) UpdateNetworkClientPolicy(updateNetworkClientPolicy UpdateNetworkClientPolicyRequest) ClientsApiUpdateNetworkClientPolicyRequest {
 	r.updateNetworkClientPolicy = &updateNetworkClientPolicy
 	return r
 }
@@ -4152,10 +4152,10 @@ type ClientsApiUpdateNetworkClientSplashAuthorizationStatusRequest struct {
 	ApiService *ClientsApiService
 	networkId string
 	clientId string
-	updateNetworkClientSplashAuthorizationStatus *InlineObject73
+	updateNetworkClientSplashAuthorizationStatus *UpdateNetworkClientSplashAuthorizationStatusRequest
 }
 
-func (r ClientsApiUpdateNetworkClientSplashAuthorizationStatusRequest) UpdateNetworkClientSplashAuthorizationStatus(updateNetworkClientSplashAuthorizationStatus InlineObject73) ClientsApiUpdateNetworkClientSplashAuthorizationStatusRequest {
+func (r ClientsApiUpdateNetworkClientSplashAuthorizationStatusRequest) UpdateNetworkClientSplashAuthorizationStatus(updateNetworkClientSplashAuthorizationStatus UpdateNetworkClientSplashAuthorizationStatusRequest) ClientsApiUpdateNetworkClientSplashAuthorizationStatusRequest {
 	r.updateNetworkClientSplashAuthorizationStatus = &updateNetworkClientSplashAuthorizationStatus
 	return r
 }

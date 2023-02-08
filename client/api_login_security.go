@@ -29,7 +29,7 @@ type LoginSecurityApiGetOrganizationLoginSecurityRequest struct {
 	organizationId string
 }
 
-func (r LoginSecurityApiGetOrganizationLoginSecurityRequest) Execute() (*InlineResponse200110, *http.Response, error) {
+func (r LoginSecurityApiGetOrganizationLoginSecurityRequest) Execute() (*GetOrganizationLoginSecurity200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationLoginSecurityExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *LoginSecurityApiService) GetOrganizationLoginSecurity(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse200110
-func (a *LoginSecurityApiService) GetOrganizationLoginSecurityExecute(r LoginSecurityApiGetOrganizationLoginSecurityRequest) (*InlineResponse200110, *http.Response, error) {
+//  @return GetOrganizationLoginSecurity200Response
+func (a *LoginSecurityApiService) GetOrganizationLoginSecurityExecute(r LoginSecurityApiGetOrganizationLoginSecurityRequest) (*GetOrganizationLoginSecurity200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200110
+		localVarReturnValue  *GetOrganizationLoginSecurity200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoginSecurityApiService.GetOrganizationLoginSecurity")
@@ -144,15 +144,15 @@ type LoginSecurityApiUpdateOrganizationLoginSecurityRequest struct {
 	ctx context.Context
 	ApiService *LoginSecurityApiService
 	organizationId string
-	updateOrganizationLoginSecurity *InlineObject208
+	updateOrganizationLoginSecurity *UpdateOrganizationLoginSecurityRequest
 }
 
-func (r LoginSecurityApiUpdateOrganizationLoginSecurityRequest) UpdateOrganizationLoginSecurity(updateOrganizationLoginSecurity InlineObject208) LoginSecurityApiUpdateOrganizationLoginSecurityRequest {
+func (r LoginSecurityApiUpdateOrganizationLoginSecurityRequest) UpdateOrganizationLoginSecurity(updateOrganizationLoginSecurity UpdateOrganizationLoginSecurityRequest) LoginSecurityApiUpdateOrganizationLoginSecurityRequest {
 	r.updateOrganizationLoginSecurity = &updateOrganizationLoginSecurity
 	return r
 }
 
-func (r LoginSecurityApiUpdateOrganizationLoginSecurityRequest) Execute() (*InlineResponse200110, *http.Response, error) {
+func (r LoginSecurityApiUpdateOrganizationLoginSecurityRequest) Execute() (*GetOrganizationLoginSecurity200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationLoginSecurityExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *LoginSecurityApiService) UpdateOrganizationLoginSecurity(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse200110
-func (a *LoginSecurityApiService) UpdateOrganizationLoginSecurityExecute(r LoginSecurityApiUpdateOrganizationLoginSecurityRequest) (*InlineResponse200110, *http.Response, error) {
+//  @return GetOrganizationLoginSecurity200Response
+func (a *LoginSecurityApiService) UpdateOrganizationLoginSecurityExecute(r LoginSecurityApiUpdateOrganizationLoginSecurityRequest) (*GetOrganizationLoginSecurity200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200110
+		localVarReturnValue  *GetOrganizationLoginSecurity200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoginSecurityApiService.UpdateOrganizationLoginSecurity")

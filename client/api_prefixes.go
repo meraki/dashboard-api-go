@@ -27,10 +27,10 @@ type PrefixesApiCreateNetworkAppliancePrefixesDelegatedStaticRequest struct {
 	ctx context.Context
 	ApiService *PrefixesApiService
 	networkId string
-	createNetworkAppliancePrefixesDelegatedStatic *InlineObject41
+	createNetworkAppliancePrefixesDelegatedStatic *CreateNetworkAppliancePrefixesDelegatedStaticRequest
 }
 
-func (r PrefixesApiCreateNetworkAppliancePrefixesDelegatedStaticRequest) CreateNetworkAppliancePrefixesDelegatedStatic(createNetworkAppliancePrefixesDelegatedStatic InlineObject41) PrefixesApiCreateNetworkAppliancePrefixesDelegatedStaticRequest {
+func (r PrefixesApiCreateNetworkAppliancePrefixesDelegatedStaticRequest) CreateNetworkAppliancePrefixesDelegatedStatic(createNetworkAppliancePrefixesDelegatedStatic CreateNetworkAppliancePrefixesDelegatedStaticRequest) PrefixesApiCreateNetworkAppliancePrefixesDelegatedStaticRequest {
 	r.createNetworkAppliancePrefixesDelegatedStatic = &createNetworkAppliancePrefixesDelegatedStatic
 	return r
 }
@@ -502,7 +502,7 @@ type PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticRequest struct {
 	staticDelegatedPrefixId string
 }
 
-func (r PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticRequest) Execute() (*InlineResponse20012, *http.Response, error) {
+func (r PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticRequest) Execute() (*GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkAppliancePrefixesDelegatedStaticExecute(r)
 }
 
@@ -526,13 +526,13 @@ func (a *PrefixesApiService) GetNetworkAppliancePrefixesDelegatedStatic(ctx cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20012
-func (a *PrefixesApiService) GetNetworkAppliancePrefixesDelegatedStaticExecute(r PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticRequest) (*InlineResponse20012, *http.Response, error) {
+//  @return GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
+func (a *PrefixesApiService) GetNetworkAppliancePrefixesDelegatedStaticExecute(r PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticRequest) (*GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20012
+		localVarReturnValue  *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrefixesApiService.GetNetworkAppliancePrefixesDelegatedStatic")
@@ -622,7 +622,7 @@ type PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticsRequest struct {
 	networkId string
 }
 
-func (r PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticsRequest) Execute() ([]InlineResponse20012, *http.Response, error) {
+func (r PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticsRequest) Execute() ([]GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkAppliancePrefixesDelegatedStaticsExecute(r)
 }
 
@@ -644,13 +644,13 @@ func (a *PrefixesApiService) GetNetworkAppliancePrefixesDelegatedStatics(ctx con
 }
 
 // Execute executes the request
-//  @return []InlineResponse20012
-func (a *PrefixesApiService) GetNetworkAppliancePrefixesDelegatedStaticsExecute(r PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticsRequest) ([]InlineResponse20012, *http.Response, error) {
+//  @return []GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
+func (a *PrefixesApiService) GetNetworkAppliancePrefixesDelegatedStaticsExecute(r PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticsRequest) ([]GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20012
+		localVarReturnValue  []GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrefixesApiService.GetNetworkAppliancePrefixesDelegatedStatics")
@@ -738,10 +738,10 @@ type PrefixesApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest struct {
 	ApiService *PrefixesApiService
 	networkId string
 	staticDelegatedPrefixId string
-	updateNetworkAppliancePrefixesDelegatedStatic *InlineObject42
+	updateNetworkAppliancePrefixesDelegatedStatic *UpdateNetworkAppliancePrefixesDelegatedStaticRequest
 }
 
-func (r PrefixesApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest) UpdateNetworkAppliancePrefixesDelegatedStatic(updateNetworkAppliancePrefixesDelegatedStatic InlineObject42) PrefixesApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest {
+func (r PrefixesApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest) UpdateNetworkAppliancePrefixesDelegatedStatic(updateNetworkAppliancePrefixesDelegatedStatic UpdateNetworkAppliancePrefixesDelegatedStaticRequest) PrefixesApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest {
 	r.updateNetworkAppliancePrefixesDelegatedStatic = &updateNetworkAppliancePrefixesDelegatedStatic
 	return r
 }

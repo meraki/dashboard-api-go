@@ -30,7 +30,7 @@ type CertsApiGetNetworkSmDeviceCertsRequest struct {
 	deviceId string
 }
 
-func (r CertsApiGetNetworkSmDeviceCertsRequest) Execute() ([]InlineResponse20045, *http.Response, error) {
+func (r CertsApiGetNetworkSmDeviceCertsRequest) Execute() ([]GetNetworkSmDeviceCerts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceCertsExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *CertsApiService) GetNetworkSmDeviceCerts(ctx context.Context, networkId
 }
 
 // Execute executes the request
-//  @return []InlineResponse20045
-func (a *CertsApiService) GetNetworkSmDeviceCertsExecute(r CertsApiGetNetworkSmDeviceCertsRequest) ([]InlineResponse20045, *http.Response, error) {
+//  @return []GetNetworkSmDeviceCerts200ResponseInner
+func (a *CertsApiService) GetNetworkSmDeviceCertsExecute(r CertsApiGetNetworkSmDeviceCertsRequest) ([]GetNetworkSmDeviceCerts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20045
+		localVarReturnValue  []GetNetworkSmDeviceCerts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CertsApiService.GetNetworkSmDeviceCerts")

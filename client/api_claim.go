@@ -27,10 +27,10 @@ type ClaimApiVmxNetworkDevicesClaimRequest struct {
 	ctx context.Context
 	ApiService *ClaimApiService
 	networkId string
-	vmxNetworkDevicesClaim *InlineObject75
+	vmxNetworkDevicesClaim *VmxNetworkDevicesClaimRequest
 }
 
-func (r ClaimApiVmxNetworkDevicesClaimRequest) VmxNetworkDevicesClaim(vmxNetworkDevicesClaim InlineObject75) ClaimApiVmxNetworkDevicesClaimRequest {
+func (r ClaimApiVmxNetworkDevicesClaimRequest) VmxNetworkDevicesClaim(vmxNetworkDevicesClaim VmxNetworkDevicesClaimRequest) ClaimApiVmxNetworkDevicesClaimRequest {
 	r.vmxNetworkDevicesClaim = &vmxNetworkDevicesClaim
 	return r
 }

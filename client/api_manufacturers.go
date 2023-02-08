@@ -50,7 +50,7 @@ func (r ManufacturersApiGetOrganizationSummaryTopClientsManufacturersByUsageRequ
 	return r
 }
 
-func (r ManufacturersApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) Execute() ([]InlineResponse200121, *http.Response, error) {
+func (r ManufacturersApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) Execute() ([]GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopClientsManufacturersByUsageExecute(r)
 }
 
@@ -72,13 +72,13 @@ func (a *ManufacturersApiService) GetOrganizationSummaryTopClientsManufacturersB
 }
 
 // Execute executes the request
-//  @return []InlineResponse200121
-func (a *ManufacturersApiService) GetOrganizationSummaryTopClientsManufacturersByUsageExecute(r ManufacturersApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) ([]InlineResponse200121, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner
+func (a *ManufacturersApiService) GetOrganizationSummaryTopClientsManufacturersByUsageExecute(r ManufacturersApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) ([]GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200121
+		localVarReturnValue  []GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ManufacturersApiService.GetOrganizationSummaryTopClientsManufacturersByUsage")

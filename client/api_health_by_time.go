@@ -58,7 +58,7 @@ func (r HealthByTimeApiGetNetworkInsightApplicationHealthByTimeRequest) Resoluti
 	return r
 }
 
-func (r HealthByTimeApiGetNetworkInsightApplicationHealthByTimeRequest) Execute() ([]InlineResponse20030, *http.Response, error) {
+func (r HealthByTimeApiGetNetworkInsightApplicationHealthByTimeRequest) Execute() ([]GetNetworkInsightApplicationHealthByTime200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkInsightApplicationHealthByTimeExecute(r)
 }
 
@@ -82,13 +82,13 @@ func (a *HealthByTimeApiService) GetNetworkInsightApplicationHealthByTime(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20030
-func (a *HealthByTimeApiService) GetNetworkInsightApplicationHealthByTimeExecute(r HealthByTimeApiGetNetworkInsightApplicationHealthByTimeRequest) ([]InlineResponse20030, *http.Response, error) {
+//  @return []GetNetworkInsightApplicationHealthByTime200ResponseInner
+func (a *HealthByTimeApiService) GetNetworkInsightApplicationHealthByTimeExecute(r HealthByTimeApiGetNetworkInsightApplicationHealthByTimeRequest) ([]GetNetworkInsightApplicationHealthByTime200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20030
+		localVarReturnValue  []GetNetworkInsightApplicationHealthByTime200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HealthByTimeApiService.GetNetworkInsightApplicationHealthByTime")

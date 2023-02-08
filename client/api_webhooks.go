@@ -27,15 +27,15 @@ type WebhooksApiCreateNetworkWebhooksHttpServerRequest struct {
 	ctx context.Context
 	ApiService *WebhooksApiService
 	networkId string
-	createNetworkWebhooksHttpServer *InlineObject142
+	createNetworkWebhooksHttpServer *CreateNetworkWebhooksHttpServerRequest
 }
 
-func (r WebhooksApiCreateNetworkWebhooksHttpServerRequest) CreateNetworkWebhooksHttpServer(createNetworkWebhooksHttpServer InlineObject142) WebhooksApiCreateNetworkWebhooksHttpServerRequest {
+func (r WebhooksApiCreateNetworkWebhooksHttpServerRequest) CreateNetworkWebhooksHttpServer(createNetworkWebhooksHttpServer CreateNetworkWebhooksHttpServerRequest) WebhooksApiCreateNetworkWebhooksHttpServerRequest {
 	r.createNetworkWebhooksHttpServer = &createNetworkWebhooksHttpServer
 	return r
 }
 
-func (r WebhooksApiCreateNetworkWebhooksHttpServerRequest) Execute() (*InlineResponse20066, *http.Response, error) {
+func (r WebhooksApiCreateNetworkWebhooksHttpServerRequest) Execute() (*GetNetworkWebhooksHttpServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkWebhooksHttpServerExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *WebhooksApiService) CreateNetworkWebhooksHttpServer(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse20066
-func (a *WebhooksApiService) CreateNetworkWebhooksHttpServerExecute(r WebhooksApiCreateNetworkWebhooksHttpServerRequest) (*InlineResponse20066, *http.Response, error) {
+//  @return GetNetworkWebhooksHttpServers200ResponseInner
+func (a *WebhooksApiService) CreateNetworkWebhooksHttpServerExecute(r WebhooksApiCreateNetworkWebhooksHttpServerRequest) (*GetNetworkWebhooksHttpServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20066
+		localVarReturnValue  *GetNetworkWebhooksHttpServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksApiService.CreateNetworkWebhooksHttpServer")
@@ -155,15 +155,15 @@ type WebhooksApiCreateNetworkWebhooksPayloadTemplateRequest struct {
 	ctx context.Context
 	ApiService *WebhooksApiService
 	networkId string
-	createNetworkWebhooksPayloadTemplate *InlineObject144
+	createNetworkWebhooksPayloadTemplate *CreateNetworkWebhooksPayloadTemplateRequest
 }
 
-func (r WebhooksApiCreateNetworkWebhooksPayloadTemplateRequest) CreateNetworkWebhooksPayloadTemplate(createNetworkWebhooksPayloadTemplate InlineObject144) WebhooksApiCreateNetworkWebhooksPayloadTemplateRequest {
+func (r WebhooksApiCreateNetworkWebhooksPayloadTemplateRequest) CreateNetworkWebhooksPayloadTemplate(createNetworkWebhooksPayloadTemplate CreateNetworkWebhooksPayloadTemplateRequest) WebhooksApiCreateNetworkWebhooksPayloadTemplateRequest {
 	r.createNetworkWebhooksPayloadTemplate = &createNetworkWebhooksPayloadTemplate
 	return r
 }
 
-func (r WebhooksApiCreateNetworkWebhooksPayloadTemplateRequest) Execute() (*InlineResponse20067, *http.Response, error) {
+func (r WebhooksApiCreateNetworkWebhooksPayloadTemplateRequest) Execute() (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkWebhooksPayloadTemplateExecute(r)
 }
 
@@ -185,13 +185,13 @@ func (a *WebhooksApiService) CreateNetworkWebhooksPayloadTemplate(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse20067
-func (a *WebhooksApiService) CreateNetworkWebhooksPayloadTemplateExecute(r WebhooksApiCreateNetworkWebhooksPayloadTemplateRequest) (*InlineResponse20067, *http.Response, error) {
+//  @return GetNetworkWebhooksPayloadTemplates200ResponseInner
+func (a *WebhooksApiService) CreateNetworkWebhooksPayloadTemplateExecute(r WebhooksApiCreateNetworkWebhooksPayloadTemplateRequest) (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20067
+		localVarReturnValue  *GetNetworkWebhooksPayloadTemplates200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksApiService.CreateNetworkWebhooksPayloadTemplate")
@@ -283,15 +283,15 @@ type WebhooksApiCreateNetworkWebhooksWebhookTestRequest struct {
 	ctx context.Context
 	ApiService *WebhooksApiService
 	networkId string
-	createNetworkWebhooksWebhookTest *InlineObject146
+	createNetworkWebhooksWebhookTest *CreateNetworkWebhooksWebhookTestRequest
 }
 
-func (r WebhooksApiCreateNetworkWebhooksWebhookTestRequest) CreateNetworkWebhooksWebhookTest(createNetworkWebhooksWebhookTest InlineObject146) WebhooksApiCreateNetworkWebhooksWebhookTestRequest {
+func (r WebhooksApiCreateNetworkWebhooksWebhookTestRequest) CreateNetworkWebhooksWebhookTest(createNetworkWebhooksWebhookTest CreateNetworkWebhooksWebhookTestRequest) WebhooksApiCreateNetworkWebhooksWebhookTestRequest {
 	r.createNetworkWebhooksWebhookTest = &createNetworkWebhooksWebhookTest
 	return r
 }
 
-func (r WebhooksApiCreateNetworkWebhooksWebhookTestRequest) Execute() (*InlineResponse2013, *http.Response, error) {
+func (r WebhooksApiCreateNetworkWebhooksWebhookTestRequest) Execute() (*CreateNetworkWebhooksWebhookTest201Response, *http.Response, error) {
 	return r.ApiService.CreateNetworkWebhooksWebhookTestExecute(r)
 }
 
@@ -313,13 +313,13 @@ func (a *WebhooksApiService) CreateNetworkWebhooksWebhookTest(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse2013
-func (a *WebhooksApiService) CreateNetworkWebhooksWebhookTestExecute(r WebhooksApiCreateNetworkWebhooksWebhookTestRequest) (*InlineResponse2013, *http.Response, error) {
+//  @return CreateNetworkWebhooksWebhookTest201Response
+func (a *WebhooksApiService) CreateNetworkWebhooksWebhookTestExecute(r WebhooksApiCreateNetworkWebhooksWebhookTestRequest) (*CreateNetworkWebhooksWebhookTest201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2013
+		localVarReturnValue  *CreateNetworkWebhooksWebhookTest201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksApiService.CreateNetworkWebhooksWebhookTest")
@@ -634,7 +634,7 @@ type WebhooksApiGetNetworkWebhooksHttpServerRequest struct {
 	httpServerId string
 }
 
-func (r WebhooksApiGetNetworkWebhooksHttpServerRequest) Execute() (*InlineResponse20066, *http.Response, error) {
+func (r WebhooksApiGetNetworkWebhooksHttpServerRequest) Execute() (*GetNetworkWebhooksHttpServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWebhooksHttpServerExecute(r)
 }
 
@@ -658,13 +658,13 @@ func (a *WebhooksApiService) GetNetworkWebhooksHttpServer(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return InlineResponse20066
-func (a *WebhooksApiService) GetNetworkWebhooksHttpServerExecute(r WebhooksApiGetNetworkWebhooksHttpServerRequest) (*InlineResponse20066, *http.Response, error) {
+//  @return GetNetworkWebhooksHttpServers200ResponseInner
+func (a *WebhooksApiService) GetNetworkWebhooksHttpServerExecute(r WebhooksApiGetNetworkWebhooksHttpServerRequest) (*GetNetworkWebhooksHttpServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20066
+		localVarReturnValue  *GetNetworkWebhooksHttpServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksApiService.GetNetworkWebhooksHttpServer")
@@ -754,7 +754,7 @@ type WebhooksApiGetNetworkWebhooksHttpServersRequest struct {
 	networkId string
 }
 
-func (r WebhooksApiGetNetworkWebhooksHttpServersRequest) Execute() ([]InlineResponse20066, *http.Response, error) {
+func (r WebhooksApiGetNetworkWebhooksHttpServersRequest) Execute() ([]GetNetworkWebhooksHttpServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWebhooksHttpServersExecute(r)
 }
 
@@ -776,13 +776,13 @@ func (a *WebhooksApiService) GetNetworkWebhooksHttpServers(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return []InlineResponse20066
-func (a *WebhooksApiService) GetNetworkWebhooksHttpServersExecute(r WebhooksApiGetNetworkWebhooksHttpServersRequest) ([]InlineResponse20066, *http.Response, error) {
+//  @return []GetNetworkWebhooksHttpServers200ResponseInner
+func (a *WebhooksApiService) GetNetworkWebhooksHttpServersExecute(r WebhooksApiGetNetworkWebhooksHttpServersRequest) ([]GetNetworkWebhooksHttpServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20066
+		localVarReturnValue  []GetNetworkWebhooksHttpServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksApiService.GetNetworkWebhooksHttpServers")
@@ -872,7 +872,7 @@ type WebhooksApiGetNetworkWebhooksPayloadTemplateRequest struct {
 	payloadTemplateId string
 }
 
-func (r WebhooksApiGetNetworkWebhooksPayloadTemplateRequest) Execute() (*InlineResponse20067, *http.Response, error) {
+func (r WebhooksApiGetNetworkWebhooksPayloadTemplateRequest) Execute() (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWebhooksPayloadTemplateExecute(r)
 }
 
@@ -896,13 +896,13 @@ func (a *WebhooksApiService) GetNetworkWebhooksPayloadTemplate(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20067
-func (a *WebhooksApiService) GetNetworkWebhooksPayloadTemplateExecute(r WebhooksApiGetNetworkWebhooksPayloadTemplateRequest) (*InlineResponse20067, *http.Response, error) {
+//  @return GetNetworkWebhooksPayloadTemplates200ResponseInner
+func (a *WebhooksApiService) GetNetworkWebhooksPayloadTemplateExecute(r WebhooksApiGetNetworkWebhooksPayloadTemplateRequest) (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20067
+		localVarReturnValue  *GetNetworkWebhooksPayloadTemplates200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksApiService.GetNetworkWebhooksPayloadTemplate")
@@ -992,7 +992,7 @@ type WebhooksApiGetNetworkWebhooksPayloadTemplatesRequest struct {
 	networkId string
 }
 
-func (r WebhooksApiGetNetworkWebhooksPayloadTemplatesRequest) Execute() ([]InlineResponse20067, *http.Response, error) {
+func (r WebhooksApiGetNetworkWebhooksPayloadTemplatesRequest) Execute() ([]GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWebhooksPayloadTemplatesExecute(r)
 }
 
@@ -1014,13 +1014,13 @@ func (a *WebhooksApiService) GetNetworkWebhooksPayloadTemplates(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20067
-func (a *WebhooksApiService) GetNetworkWebhooksPayloadTemplatesExecute(r WebhooksApiGetNetworkWebhooksPayloadTemplatesRequest) ([]InlineResponse20067, *http.Response, error) {
+//  @return []GetNetworkWebhooksPayloadTemplates200ResponseInner
+func (a *WebhooksApiService) GetNetworkWebhooksPayloadTemplatesExecute(r WebhooksApiGetNetworkWebhooksPayloadTemplatesRequest) ([]GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20067
+		localVarReturnValue  []GetNetworkWebhooksPayloadTemplates200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksApiService.GetNetworkWebhooksPayloadTemplates")
@@ -1110,7 +1110,7 @@ type WebhooksApiGetNetworkWebhooksWebhookTestRequest struct {
 	webhookTestId string
 }
 
-func (r WebhooksApiGetNetworkWebhooksWebhookTestRequest) Execute() (*InlineResponse2013, *http.Response, error) {
+func (r WebhooksApiGetNetworkWebhooksWebhookTestRequest) Execute() (*CreateNetworkWebhooksWebhookTest201Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWebhooksWebhookTestExecute(r)
 }
 
@@ -1134,13 +1134,13 @@ func (a *WebhooksApiService) GetNetworkWebhooksWebhookTest(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse2013
-func (a *WebhooksApiService) GetNetworkWebhooksWebhookTestExecute(r WebhooksApiGetNetworkWebhooksWebhookTestRequest) (*InlineResponse2013, *http.Response, error) {
+//  @return CreateNetworkWebhooksWebhookTest201Response
+func (a *WebhooksApiService) GetNetworkWebhooksWebhookTestExecute(r WebhooksApiGetNetworkWebhooksWebhookTestRequest) (*CreateNetworkWebhooksWebhookTest201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2013
+		localVarReturnValue  *CreateNetworkWebhooksWebhookTest201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksApiService.GetNetworkWebhooksWebhookTest")
@@ -1406,7 +1406,7 @@ func (r WebhooksApiGetOrganizationWebhooksLogsRequest) Url(url string) WebhooksA
 	return r
 }
 
-func (r WebhooksApiGetOrganizationWebhooksLogsRequest) Execute() ([]InlineResponse200128, *http.Response, error) {
+func (r WebhooksApiGetOrganizationWebhooksLogsRequest) Execute() ([]GetOrganizationWebhooksLogs200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWebhooksLogsExecute(r)
 }
 
@@ -1428,13 +1428,13 @@ func (a *WebhooksApiService) GetOrganizationWebhooksLogs(ctx context.Context, or
 }
 
 // Execute executes the request
-//  @return []InlineResponse200128
-func (a *WebhooksApiService) GetOrganizationWebhooksLogsExecute(r WebhooksApiGetOrganizationWebhooksLogsRequest) ([]InlineResponse200128, *http.Response, error) {
+//  @return []GetOrganizationWebhooksLogs200ResponseInner
+func (a *WebhooksApiService) GetOrganizationWebhooksLogsExecute(r WebhooksApiGetOrganizationWebhooksLogsRequest) ([]GetOrganizationWebhooksLogs200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200128
+		localVarReturnValue  []GetOrganizationWebhooksLogs200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksApiService.GetOrganizationWebhooksLogs")
@@ -1543,15 +1543,15 @@ type WebhooksApiUpdateNetworkWebhooksHttpServerRequest struct {
 	ApiService *WebhooksApiService
 	networkId string
 	httpServerId string
-	updateNetworkWebhooksHttpServer *InlineObject143
+	updateNetworkWebhooksHttpServer *UpdateNetworkWebhooksHttpServerRequest
 }
 
-func (r WebhooksApiUpdateNetworkWebhooksHttpServerRequest) UpdateNetworkWebhooksHttpServer(updateNetworkWebhooksHttpServer InlineObject143) WebhooksApiUpdateNetworkWebhooksHttpServerRequest {
+func (r WebhooksApiUpdateNetworkWebhooksHttpServerRequest) UpdateNetworkWebhooksHttpServer(updateNetworkWebhooksHttpServer UpdateNetworkWebhooksHttpServerRequest) WebhooksApiUpdateNetworkWebhooksHttpServerRequest {
 	r.updateNetworkWebhooksHttpServer = &updateNetworkWebhooksHttpServer
 	return r
 }
 
-func (r WebhooksApiUpdateNetworkWebhooksHttpServerRequest) Execute() (*InlineResponse20066, *http.Response, error) {
+func (r WebhooksApiUpdateNetworkWebhooksHttpServerRequest) Execute() (*GetNetworkWebhooksHttpServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWebhooksHttpServerExecute(r)
 }
 
@@ -1575,13 +1575,13 @@ func (a *WebhooksApiService) UpdateNetworkWebhooksHttpServer(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse20066
-func (a *WebhooksApiService) UpdateNetworkWebhooksHttpServerExecute(r WebhooksApiUpdateNetworkWebhooksHttpServerRequest) (*InlineResponse20066, *http.Response, error) {
+//  @return GetNetworkWebhooksHttpServers200ResponseInner
+func (a *WebhooksApiService) UpdateNetworkWebhooksHttpServerExecute(r WebhooksApiUpdateNetworkWebhooksHttpServerRequest) (*GetNetworkWebhooksHttpServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20066
+		localVarReturnValue  *GetNetworkWebhooksHttpServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksApiService.UpdateNetworkWebhooksHttpServer")
@@ -1672,15 +1672,15 @@ type WebhooksApiUpdateNetworkWebhooksPayloadTemplateRequest struct {
 	ApiService *WebhooksApiService
 	networkId string
 	payloadTemplateId string
-	updateNetworkWebhooksPayloadTemplate *InlineObject145
+	updateNetworkWebhooksPayloadTemplate *UpdateNetworkWebhooksPayloadTemplateRequest
 }
 
-func (r WebhooksApiUpdateNetworkWebhooksPayloadTemplateRequest) UpdateNetworkWebhooksPayloadTemplate(updateNetworkWebhooksPayloadTemplate InlineObject145) WebhooksApiUpdateNetworkWebhooksPayloadTemplateRequest {
+func (r WebhooksApiUpdateNetworkWebhooksPayloadTemplateRequest) UpdateNetworkWebhooksPayloadTemplate(updateNetworkWebhooksPayloadTemplate UpdateNetworkWebhooksPayloadTemplateRequest) WebhooksApiUpdateNetworkWebhooksPayloadTemplateRequest {
 	r.updateNetworkWebhooksPayloadTemplate = &updateNetworkWebhooksPayloadTemplate
 	return r
 }
 
-func (r WebhooksApiUpdateNetworkWebhooksPayloadTemplateRequest) Execute() (*InlineResponse20067, *http.Response, error) {
+func (r WebhooksApiUpdateNetworkWebhooksPayloadTemplateRequest) Execute() (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWebhooksPayloadTemplateExecute(r)
 }
 
@@ -1704,13 +1704,13 @@ func (a *WebhooksApiService) UpdateNetworkWebhooksPayloadTemplate(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse20067
-func (a *WebhooksApiService) UpdateNetworkWebhooksPayloadTemplateExecute(r WebhooksApiUpdateNetworkWebhooksPayloadTemplateRequest) (*InlineResponse20067, *http.Response, error) {
+//  @return GetNetworkWebhooksPayloadTemplates200ResponseInner
+func (a *WebhooksApiService) UpdateNetworkWebhooksPayloadTemplateExecute(r WebhooksApiUpdateNetworkWebhooksPayloadTemplateRequest) (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20067
+		localVarReturnValue  *GetNetworkWebhooksPayloadTemplates200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksApiService.UpdateNetworkWebhooksPayloadTemplate")

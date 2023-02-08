@@ -92,7 +92,7 @@ func (r ChannelUtilizationHistoryApiGetNetworkWirelessChannelUtilizationHistoryR
 	return r
 }
 
-func (r ChannelUtilizationHistoryApiGetNetworkWirelessChannelUtilizationHistoryRequest) Execute() ([]InlineResponse20069, *http.Response, error) {
+func (r ChannelUtilizationHistoryApiGetNetworkWirelessChannelUtilizationHistoryRequest) Execute() ([]GetNetworkWirelessChannelUtilizationHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessChannelUtilizationHistoryExecute(r)
 }
 
@@ -114,13 +114,13 @@ func (a *ChannelUtilizationHistoryApiService) GetNetworkWirelessChannelUtilizati
 }
 
 // Execute executes the request
-//  @return []InlineResponse20069
-func (a *ChannelUtilizationHistoryApiService) GetNetworkWirelessChannelUtilizationHistoryExecute(r ChannelUtilizationHistoryApiGetNetworkWirelessChannelUtilizationHistoryRequest) ([]InlineResponse20069, *http.Response, error) {
+//  @return []GetNetworkWirelessChannelUtilizationHistory200ResponseInner
+func (a *ChannelUtilizationHistoryApiService) GetNetworkWirelessChannelUtilizationHistoryExecute(r ChannelUtilizationHistoryApiGetNetworkWirelessChannelUtilizationHistoryRequest) ([]GetNetworkWirelessChannelUtilizationHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20069
+		localVarReturnValue  []GetNetworkWirelessChannelUtilizationHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelUtilizationHistoryApiService.GetNetworkWirelessChannelUtilizationHistory")

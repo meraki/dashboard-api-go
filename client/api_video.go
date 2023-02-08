@@ -144,10 +144,10 @@ type VideoApiUpdateDeviceCameraVideoSettingsRequest struct {
 	ctx context.Context
 	ApiService *VideoApiService
 	serial string
-	updateDeviceCameraVideoSettings *InlineObject7
+	updateDeviceCameraVideoSettings *UpdateDeviceCameraVideoSettingsRequest
 }
 
-func (r VideoApiUpdateDeviceCameraVideoSettingsRequest) UpdateDeviceCameraVideoSettings(updateDeviceCameraVideoSettings InlineObject7) VideoApiUpdateDeviceCameraVideoSettingsRequest {
+func (r VideoApiUpdateDeviceCameraVideoSettingsRequest) UpdateDeviceCameraVideoSettings(updateDeviceCameraVideoSettings UpdateDeviceCameraVideoSettingsRequest) VideoApiUpdateDeviceCameraVideoSettingsRequest {
 	r.updateDeviceCameraVideoSettings = &updateDeviceCameraVideoSettings
 	return r
 }

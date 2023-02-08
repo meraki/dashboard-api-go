@@ -106,7 +106,7 @@ func (r BySwitchApiGetOrganizationSwitchPortsBySwitchRequest) ConfigurationUpdat
 	return r
 }
 
-func (r BySwitchApiGetOrganizationSwitchPortsBySwitchRequest) Execute() ([]InlineResponse200126, *http.Response, error) {
+func (r BySwitchApiGetOrganizationSwitchPortsBySwitchRequest) Execute() ([]GetOrganizationSwitchPortsBySwitch200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSwitchPortsBySwitchExecute(r)
 }
 
@@ -128,13 +128,13 @@ func (a *BySwitchApiService) GetOrganizationSwitchPortsBySwitch(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse200126
-func (a *BySwitchApiService) GetOrganizationSwitchPortsBySwitchExecute(r BySwitchApiGetOrganizationSwitchPortsBySwitchRequest) ([]InlineResponse200126, *http.Response, error) {
+//  @return []GetOrganizationSwitchPortsBySwitch200ResponseInner
+func (a *BySwitchApiService) GetOrganizationSwitchPortsBySwitchExecute(r BySwitchApiGetOrganizationSwitchPortsBySwitchRequest) ([]GetOrganizationSwitchPortsBySwitch200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200126
+		localVarReturnValue  []GetOrganizationSwitchPortsBySwitch200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BySwitchApiService.GetOrganizationSwitchPortsBySwitch")

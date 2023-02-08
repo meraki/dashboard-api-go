@@ -27,10 +27,10 @@ type AclsApiCreateOrganizationAdaptivePolicyAclRequest struct {
 	ctx context.Context
 	ApiService *AclsApiService
 	organizationId string
-	createOrganizationAdaptivePolicyAcl *InlineObject170
+	createOrganizationAdaptivePolicyAcl *CreateOrganizationAdaptivePolicyAclRequest
 }
 
-func (r AclsApiCreateOrganizationAdaptivePolicyAclRequest) CreateOrganizationAdaptivePolicyAcl(createOrganizationAdaptivePolicyAcl InlineObject170) AclsApiCreateOrganizationAdaptivePolicyAclRequest {
+func (r AclsApiCreateOrganizationAdaptivePolicyAclRequest) CreateOrganizationAdaptivePolicyAcl(createOrganizationAdaptivePolicyAcl CreateOrganizationAdaptivePolicyAclRequest) AclsApiCreateOrganizationAdaptivePolicyAclRequest {
 	r.createOrganizationAdaptivePolicyAcl = &createOrganizationAdaptivePolicyAcl
 	return r
 }
@@ -504,10 +504,10 @@ type AclsApiUpdateOrganizationAdaptivePolicyAclRequest struct {
 	ApiService *AclsApiService
 	organizationId string
 	aclId string
-	updateOrganizationAdaptivePolicyAcl *InlineObject171
+	updateOrganizationAdaptivePolicyAcl *UpdateOrganizationAdaptivePolicyAclRequest
 }
 
-func (r AclsApiUpdateOrganizationAdaptivePolicyAclRequest) UpdateOrganizationAdaptivePolicyAcl(updateOrganizationAdaptivePolicyAcl InlineObject171) AclsApiUpdateOrganizationAdaptivePolicyAclRequest {
+func (r AclsApiUpdateOrganizationAdaptivePolicyAclRequest) UpdateOrganizationAdaptivePolicyAcl(updateOrganizationAdaptivePolicyAcl UpdateOrganizationAdaptivePolicyAclRequest) AclsApiUpdateOrganizationAdaptivePolicyAclRequest {
 	r.updateOrganizationAdaptivePolicyAcl = &updateOrganizationAdaptivePolicyAcl
 	return r
 }

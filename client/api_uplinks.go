@@ -29,7 +29,7 @@ type UplinksApiGetDeviceApplianceUplinksSettingsRequest struct {
 	serial string
 }
 
-func (r UplinksApiGetDeviceApplianceUplinksSettingsRequest) Execute() (*InlineResponse2001, *http.Response, error) {
+func (r UplinksApiGetDeviceApplianceUplinksSettingsRequest) Execute() (*GetDeviceApplianceUplinksSettings200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceApplianceUplinksSettingsExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *UplinksApiService) GetDeviceApplianceUplinksSettings(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse2001
-func (a *UplinksApiService) GetDeviceApplianceUplinksSettingsExecute(r UplinksApiGetDeviceApplianceUplinksSettingsRequest) (*InlineResponse2001, *http.Response, error) {
+//  @return GetDeviceApplianceUplinksSettings200Response
+func (a *UplinksApiService) GetDeviceApplianceUplinksSettingsExecute(r UplinksApiGetDeviceApplianceUplinksSettingsRequest) (*GetDeviceApplianceUplinksSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2001
+		localVarReturnValue  *GetDeviceApplianceUplinksSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinksApiService.GetDeviceApplianceUplinksSettings")
@@ -714,7 +714,7 @@ func (r UplinksApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) TagsFil
 	return r
 }
 
-func (r UplinksApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) Execute() ([]InlineResponse20096, *http.Response, error) {
+func (r UplinksApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) Execute() ([]GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesUplinksAddressesByDeviceExecute(r)
 }
 
@@ -736,13 +736,13 @@ func (a *UplinksApiService) GetOrganizationDevicesUplinksAddressesByDevice(ctx c
 }
 
 // Execute executes the request
-//  @return []InlineResponse20096
-func (a *UplinksApiService) GetOrganizationDevicesUplinksAddressesByDeviceExecute(r UplinksApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) ([]InlineResponse20096, *http.Response, error) {
+//  @return []GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner
+func (a *UplinksApiService) GetOrganizationDevicesUplinksAddressesByDeviceExecute(r UplinksApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) ([]GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20096
+		localVarReturnValue  []GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinksApiService.GetOrganizationDevicesUplinksAddressesByDevice")
@@ -890,7 +890,7 @@ func (r UplinksApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Ip(ip stri
 	return r
 }
 
-func (r UplinksApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Execute() ([]InlineResponse20097, *http.Response, error) {
+func (r UplinksApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Execute() ([]GetOrganizationDevicesUplinksLossAndLatency200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesUplinksLossAndLatencyExecute(r)
 }
 
@@ -912,13 +912,13 @@ func (a *UplinksApiService) GetOrganizationDevicesUplinksLossAndLatency(ctx cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20097
-func (a *UplinksApiService) GetOrganizationDevicesUplinksLossAndLatencyExecute(r UplinksApiGetOrganizationDevicesUplinksLossAndLatencyRequest) ([]InlineResponse20097, *http.Response, error) {
+//  @return []GetOrganizationDevicesUplinksLossAndLatency200ResponseInner
+func (a *UplinksApiService) GetOrganizationDevicesUplinksLossAndLatencyExecute(r UplinksApiGetOrganizationDevicesUplinksLossAndLatencyRequest) ([]GetOrganizationDevicesUplinksLossAndLatency200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20097
+		localVarReturnValue  []GetOrganizationDevicesUplinksLossAndLatency200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinksApiService.GetOrganizationDevicesUplinksLossAndLatency")
@@ -1064,7 +1064,7 @@ func (r UplinksApiGetOrganizationUplinksStatusesRequest) Iccids(iccids []string)
 	return r
 }
 
-func (r UplinksApiGetOrganizationUplinksStatusesRequest) Execute() ([]InlineResponse200127, *http.Response, error) {
+func (r UplinksApiGetOrganizationUplinksStatusesRequest) Execute() ([]GetOrganizationUplinksStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationUplinksStatusesExecute(r)
 }
 
@@ -1086,13 +1086,13 @@ func (a *UplinksApiService) GetOrganizationUplinksStatuses(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return []InlineResponse200127
-func (a *UplinksApiService) GetOrganizationUplinksStatusesExecute(r UplinksApiGetOrganizationUplinksStatusesRequest) ([]InlineResponse200127, *http.Response, error) {
+//  @return []GetOrganizationUplinksStatuses200ResponseInner
+func (a *UplinksApiService) GetOrganizationUplinksStatusesExecute(r UplinksApiGetOrganizationUplinksStatusesRequest) ([]GetOrganizationUplinksStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200127
+		localVarReturnValue  []GetOrganizationUplinksStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinksApiService.GetOrganizationUplinksStatuses")
@@ -1197,15 +1197,15 @@ type UplinksApiUpdateDeviceApplianceUplinksSettingsRequest struct {
 	ctx context.Context
 	ApiService *UplinksApiService
 	serial string
-	updateDeviceApplianceUplinksSettings *InlineObject1
+	updateDeviceApplianceUplinksSettings *UpdateDeviceApplianceUplinksSettingsRequest
 }
 
-func (r UplinksApiUpdateDeviceApplianceUplinksSettingsRequest) UpdateDeviceApplianceUplinksSettings(updateDeviceApplianceUplinksSettings InlineObject1) UplinksApiUpdateDeviceApplianceUplinksSettingsRequest {
+func (r UplinksApiUpdateDeviceApplianceUplinksSettingsRequest) UpdateDeviceApplianceUplinksSettings(updateDeviceApplianceUplinksSettings UpdateDeviceApplianceUplinksSettingsRequest) UplinksApiUpdateDeviceApplianceUplinksSettingsRequest {
 	r.updateDeviceApplianceUplinksSettings = &updateDeviceApplianceUplinksSettings
 	return r
 }
 
-func (r UplinksApiUpdateDeviceApplianceUplinksSettingsRequest) Execute() (*InlineResponse2001, *http.Response, error) {
+func (r UplinksApiUpdateDeviceApplianceUplinksSettingsRequest) Execute() (*GetDeviceApplianceUplinksSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateDeviceApplianceUplinksSettingsExecute(r)
 }
 
@@ -1227,13 +1227,13 @@ func (a *UplinksApiService) UpdateDeviceApplianceUplinksSettings(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InlineResponse2001
-func (a *UplinksApiService) UpdateDeviceApplianceUplinksSettingsExecute(r UplinksApiUpdateDeviceApplianceUplinksSettingsRequest) (*InlineResponse2001, *http.Response, error) {
+//  @return GetDeviceApplianceUplinksSettings200Response
+func (a *UplinksApiService) UpdateDeviceApplianceUplinksSettingsExecute(r UplinksApiUpdateDeviceApplianceUplinksSettingsRequest) (*GetDeviceApplianceUplinksSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2001
+		localVarReturnValue  *GetDeviceApplianceUplinksSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinksApiService.UpdateDeviceApplianceUplinksSettings")

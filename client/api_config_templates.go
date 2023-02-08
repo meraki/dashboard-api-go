@@ -27,10 +27,10 @@ type ConfigTemplatesApiCreateOrganizationConfigTemplateRequest struct {
 	ctx context.Context
 	ApiService *ConfigTemplatesApiService
 	organizationId string
-	createOrganizationConfigTemplate *InlineObject191
+	createOrganizationConfigTemplate *CreateOrganizationConfigTemplateRequest
 }
 
-func (r ConfigTemplatesApiCreateOrganizationConfigTemplateRequest) CreateOrganizationConfigTemplate(createOrganizationConfigTemplate InlineObject191) ConfigTemplatesApiCreateOrganizationConfigTemplateRequest {
+func (r ConfigTemplatesApiCreateOrganizationConfigTemplateRequest) CreateOrganizationConfigTemplate(createOrganizationConfigTemplate CreateOrganizationConfigTemplateRequest) ConfigTemplatesApiCreateOrganizationConfigTemplateRequest {
 	r.createOrganizationConfigTemplate = &createOrganizationConfigTemplate
 	return r
 }
@@ -391,7 +391,7 @@ type ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortRequest str
 	portId string
 }
 
-func (r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortRequest) Execute() (*InlineResponse20091, *http.Response, error) {
+func (r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortRequest) Execute() (*GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationConfigTemplateSwitchProfilePortExecute(r)
 }
 
@@ -419,13 +419,13 @@ func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfilePo
 }
 
 // Execute executes the request
-//  @return InlineResponse20091
-func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfilePortExecute(r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortRequest) (*InlineResponse20091, *http.Response, error) {
+//  @return GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
+func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfilePortExecute(r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortRequest) (*GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20091
+		localVarReturnValue  *GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigTemplatesApiService.GetOrganizationConfigTemplateSwitchProfilePort")
@@ -519,7 +519,7 @@ type ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortsRequest st
 	profileId string
 }
 
-func (r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortsRequest) Execute() ([]InlineResponse20091, *http.Response, error) {
+func (r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortsRequest) Execute() ([]GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationConfigTemplateSwitchProfilePortsExecute(r)
 }
 
@@ -545,13 +545,13 @@ func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfilePo
 }
 
 // Execute executes the request
-//  @return []InlineResponse20091
-func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfilePortsExecute(r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortsRequest) ([]InlineResponse20091, *http.Response, error) {
+//  @return []GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
+func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfilePortsExecute(r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortsRequest) ([]GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20091
+		localVarReturnValue  []GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigTemplatesApiService.GetOrganizationConfigTemplateSwitchProfilePorts")
@@ -643,7 +643,7 @@ type ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilesRequest struct
 	configTemplateId string
 }
 
-func (r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilesRequest) Execute() (*InlineResponse20090, *http.Response, error) {
+func (r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilesRequest) Execute() (*GetOrganizationConfigTemplateSwitchProfiles200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationConfigTemplateSwitchProfilesExecute(r)
 }
 
@@ -667,13 +667,13 @@ func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfiles(
 }
 
 // Execute executes the request
-//  @return InlineResponse20090
-func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfilesExecute(r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilesRequest) (*InlineResponse20090, *http.Response, error) {
+//  @return GetOrganizationConfigTemplateSwitchProfiles200Response
+func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfilesExecute(r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilesRequest) (*GetOrganizationConfigTemplateSwitchProfiles200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20090
+		localVarReturnValue  *GetOrganizationConfigTemplateSwitchProfiles200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigTemplatesApiService.GetOrganizationConfigTemplateSwitchProfiles")
@@ -879,10 +879,10 @@ type ConfigTemplatesApiUpdateOrganizationConfigTemplateRequest struct {
 	ApiService *ConfigTemplatesApiService
 	organizationId string
 	configTemplateId string
-	updateOrganizationConfigTemplate *InlineObject192
+	updateOrganizationConfigTemplate *UpdateOrganizationConfigTemplateRequest
 }
 
-func (r ConfigTemplatesApiUpdateOrganizationConfigTemplateRequest) UpdateOrganizationConfigTemplate(updateOrganizationConfigTemplate InlineObject192) ConfigTemplatesApiUpdateOrganizationConfigTemplateRequest {
+func (r ConfigTemplatesApiUpdateOrganizationConfigTemplateRequest) UpdateOrganizationConfigTemplate(updateOrganizationConfigTemplate UpdateOrganizationConfigTemplateRequest) ConfigTemplatesApiUpdateOrganizationConfigTemplateRequest {
 	r.updateOrganizationConfigTemplate = &updateOrganizationConfigTemplate
 	return r
 }
@@ -1010,15 +1010,15 @@ type ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest 
 	configTemplateId string
 	profileId string
 	portId string
-	updateOrganizationConfigTemplateSwitchProfilePort *InlineObject193
+	updateOrganizationConfigTemplateSwitchProfilePort *UpdateOrganizationConfigTemplateSwitchProfilePortRequest
 }
 
-func (r ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) UpdateOrganizationConfigTemplateSwitchProfilePort(updateOrganizationConfigTemplateSwitchProfilePort InlineObject193) ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest {
+func (r ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) UpdateOrganizationConfigTemplateSwitchProfilePort(updateOrganizationConfigTemplateSwitchProfilePort UpdateOrganizationConfigTemplateSwitchProfilePortRequest) ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest {
 	r.updateOrganizationConfigTemplateSwitchProfilePort = &updateOrganizationConfigTemplateSwitchProfilePort
 	return r
 }
 
-func (r ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) Execute() (*InlineResponse20091, *http.Response, error) {
+func (r ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) Execute() (*GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationConfigTemplateSwitchProfilePortExecute(r)
 }
 
@@ -1046,13 +1046,13 @@ func (a *ConfigTemplatesApiService) UpdateOrganizationConfigTemplateSwitchProfil
 }
 
 // Execute executes the request
-//  @return InlineResponse20091
-func (a *ConfigTemplatesApiService) UpdateOrganizationConfigTemplateSwitchProfilePortExecute(r ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) (*InlineResponse20091, *http.Response, error) {
+//  @return GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
+func (a *ConfigTemplatesApiService) UpdateOrganizationConfigTemplateSwitchProfilePortExecute(r ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) (*GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20091
+		localVarReturnValue  *GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigTemplatesApiService.UpdateOrganizationConfigTemplateSwitchProfilePort")

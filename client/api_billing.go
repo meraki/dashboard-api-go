@@ -144,10 +144,10 @@ type BillingApiUpdateNetworkWirelessBillingRequest struct {
 	ctx context.Context
 	ApiService *BillingApiService
 	networkId string
-	updateNetworkWirelessBilling *InlineObject148
+	updateNetworkWirelessBilling *UpdateNetworkWirelessBillingRequest
 }
 
-func (r BillingApiUpdateNetworkWirelessBillingRequest) UpdateNetworkWirelessBilling(updateNetworkWirelessBilling InlineObject148) BillingApiUpdateNetworkWirelessBillingRequest {
+func (r BillingApiUpdateNetworkWirelessBillingRequest) UpdateNetworkWirelessBilling(updateNetworkWirelessBilling UpdateNetworkWirelessBillingRequest) BillingApiUpdateNetworkWirelessBillingRequest {
 	r.updateNetworkWirelessBilling = &updateNetworkWirelessBilling
 	return r
 }

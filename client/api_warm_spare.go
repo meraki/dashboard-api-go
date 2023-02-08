@@ -378,10 +378,10 @@ type WarmSpareApiUpdateDeviceSwitchWarmSpareRequest struct {
 	ctx context.Context
 	ApiService *WarmSpareApiService
 	serial string
-	updateDeviceSwitchWarmSpare *InlineObject23
+	updateDeviceSwitchWarmSpare *UpdateDeviceSwitchWarmSpareRequest
 }
 
-func (r WarmSpareApiUpdateDeviceSwitchWarmSpareRequest) UpdateDeviceSwitchWarmSpare(updateDeviceSwitchWarmSpare InlineObject23) WarmSpareApiUpdateDeviceSwitchWarmSpareRequest {
+func (r WarmSpareApiUpdateDeviceSwitchWarmSpareRequest) UpdateDeviceSwitchWarmSpare(updateDeviceSwitchWarmSpare UpdateDeviceSwitchWarmSpareRequest) WarmSpareApiUpdateDeviceSwitchWarmSpareRequest {
 	r.updateDeviceSwitchWarmSpare = &updateDeviceSwitchWarmSpare
 	return r
 }
@@ -506,10 +506,10 @@ type WarmSpareApiUpdateNetworkApplianceWarmSpareRequest struct {
 	ctx context.Context
 	ApiService *WarmSpareApiService
 	networkId string
-	updateNetworkApplianceWarmSpare *InlineObject61
+	updateNetworkApplianceWarmSpare *UpdateNetworkApplianceWarmSpareRequest
 }
 
-func (r WarmSpareApiUpdateNetworkApplianceWarmSpareRequest) UpdateNetworkApplianceWarmSpare(updateNetworkApplianceWarmSpare InlineObject61) WarmSpareApiUpdateNetworkApplianceWarmSpareRequest {
+func (r WarmSpareApiUpdateNetworkApplianceWarmSpareRequest) UpdateNetworkApplianceWarmSpare(updateNetworkApplianceWarmSpare UpdateNetworkApplianceWarmSpareRequest) WarmSpareApiUpdateNetworkApplianceWarmSpareRequest {
 	r.updateNetworkApplianceWarmSpare = &updateNetworkApplianceWarmSpare
 	return r
 }

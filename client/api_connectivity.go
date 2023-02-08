@@ -51,7 +51,7 @@ func (r ConnectivityApiGetNetworkSmDeviceConnectivityRequest) EndingBefore(endin
 	return r
 }
 
-func (r ConnectivityApiGetNetworkSmDeviceConnectivityRequest) Execute() ([]InlineResponse20046, *http.Response, error) {
+func (r ConnectivityApiGetNetworkSmDeviceConnectivityRequest) Execute() ([]GetNetworkSmDeviceConnectivity200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceConnectivityExecute(r)
 }
 
@@ -75,13 +75,13 @@ func (a *ConnectivityApiService) GetNetworkSmDeviceConnectivity(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20046
-func (a *ConnectivityApiService) GetNetworkSmDeviceConnectivityExecute(r ConnectivityApiGetNetworkSmDeviceConnectivityRequest) ([]InlineResponse20046, *http.Response, error) {
+//  @return []GetNetworkSmDeviceConnectivity200ResponseInner
+func (a *ConnectivityApiService) GetNetworkSmDeviceConnectivityExecute(r ConnectivityApiGetNetworkSmDeviceConnectivityRequest) ([]GetNetworkSmDeviceConnectivity200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20046
+		localVarReturnValue  []GetNetworkSmDeviceConnectivity200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectivityApiService.GetNetworkSmDeviceConnectivity")
