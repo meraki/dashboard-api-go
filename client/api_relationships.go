@@ -29,7 +29,7 @@ type RelationshipsApiGetDeviceSensorRelationshipsRequest struct {
 	serial string
 }
 
-func (r RelationshipsApiGetDeviceSensorRelationshipsRequest) Execute() ([]InlineResponse2003, *http.Response, error) {
+func (r RelationshipsApiGetDeviceSensorRelationshipsRequest) Execute() ([]GetDeviceSensorRelationships200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetDeviceSensorRelationshipsExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *RelationshipsApiService) GetDeviceSensorRelationships(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return []InlineResponse2003
-func (a *RelationshipsApiService) GetDeviceSensorRelationshipsExecute(r RelationshipsApiGetDeviceSensorRelationshipsRequest) ([]InlineResponse2003, *http.Response, error) {
+//  @return []GetDeviceSensorRelationships200ResponseInner
+func (a *RelationshipsApiService) GetDeviceSensorRelationshipsExecute(r RelationshipsApiGetDeviceSensorRelationshipsRequest) ([]GetDeviceSensorRelationships200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2003
+		localVarReturnValue  []GetDeviceSensorRelationships200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationshipsApiService.GetDeviceSensorRelationships")
@@ -146,7 +146,7 @@ type RelationshipsApiGetNetworkSensorRelationshipsRequest struct {
 	networkId string
 }
 
-func (r RelationshipsApiGetNetworkSensorRelationshipsRequest) Execute() ([]InlineResponse20036, *http.Response, error) {
+func (r RelationshipsApiGetNetworkSensorRelationshipsRequest) Execute() ([]GetNetworkSensorRelationships200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorRelationshipsExecute(r)
 }
 
@@ -168,13 +168,13 @@ func (a *RelationshipsApiService) GetNetworkSensorRelationships(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20036
-func (a *RelationshipsApiService) GetNetworkSensorRelationshipsExecute(r RelationshipsApiGetNetworkSensorRelationshipsRequest) ([]InlineResponse20036, *http.Response, error) {
+//  @return []GetNetworkSensorRelationships200ResponseInner
+func (a *RelationshipsApiService) GetNetworkSensorRelationshipsExecute(r RelationshipsApiGetNetworkSensorRelationshipsRequest) ([]GetNetworkSensorRelationships200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20036
+		localVarReturnValue  []GetNetworkSensorRelationships200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationshipsApiService.GetNetworkSensorRelationships")
@@ -261,15 +261,15 @@ type RelationshipsApiUpdateDeviceSensorRelationshipsRequest struct {
 	ctx context.Context
 	ApiService *RelationshipsApiService
 	serial string
-	updateDeviceSensorRelationships *InlineObject15
+	updateDeviceSensorRelationships *UpdateDeviceSensorRelationshipsRequest
 }
 
-func (r RelationshipsApiUpdateDeviceSensorRelationshipsRequest) UpdateDeviceSensorRelationships(updateDeviceSensorRelationships InlineObject15) RelationshipsApiUpdateDeviceSensorRelationshipsRequest {
+func (r RelationshipsApiUpdateDeviceSensorRelationshipsRequest) UpdateDeviceSensorRelationships(updateDeviceSensorRelationships UpdateDeviceSensorRelationshipsRequest) RelationshipsApiUpdateDeviceSensorRelationshipsRequest {
 	r.updateDeviceSensorRelationships = &updateDeviceSensorRelationships
 	return r
 }
 
-func (r RelationshipsApiUpdateDeviceSensorRelationshipsRequest) Execute() (*InlineResponse2003, *http.Response, error) {
+func (r RelationshipsApiUpdateDeviceSensorRelationshipsRequest) Execute() (*GetDeviceSensorRelationships200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateDeviceSensorRelationshipsExecute(r)
 }
 
@@ -291,13 +291,13 @@ func (a *RelationshipsApiService) UpdateDeviceSensorRelationships(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse2003
-func (a *RelationshipsApiService) UpdateDeviceSensorRelationshipsExecute(r RelationshipsApiUpdateDeviceSensorRelationshipsRequest) (*InlineResponse2003, *http.Response, error) {
+//  @return GetDeviceSensorRelationships200ResponseInner
+func (a *RelationshipsApiService) UpdateDeviceSensorRelationshipsExecute(r RelationshipsApiUpdateDeviceSensorRelationshipsRequest) (*GetDeviceSensorRelationships200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2003
+		localVarReturnValue  *GetDeviceSensorRelationships200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RelationshipsApiService.UpdateDeviceSensorRelationships")

@@ -27,10 +27,10 @@ type RequestsApiCreateNetworkPiiRequestRequest struct {
 	ctx context.Context
 	ApiService *RequestsApiService
 	networkId string
-	createNetworkPiiRequest *InlineObject94
+	createNetworkPiiRequest *CreateNetworkPiiRequestRequest
 }
 
-func (r RequestsApiCreateNetworkPiiRequestRequest) CreateNetworkPiiRequest(createNetworkPiiRequest InlineObject94) RequestsApiCreateNetworkPiiRequestRequest {
+func (r RequestsApiCreateNetworkPiiRequestRequest) CreateNetworkPiiRequest(createNetworkPiiRequest CreateNetworkPiiRequestRequest) RequestsApiCreateNetworkPiiRequestRequest {
 	r.createNetworkPiiRequest = &createNetworkPiiRequest
 	return r
 }

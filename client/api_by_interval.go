@@ -92,7 +92,7 @@ func (r ByIntervalApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRe
 	return r
 }
 
-func (r ByIntervalApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) Execute() ([]InlineResponse20083, *http.Response, error) {
+func (r ByIntervalApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) Execute() ([]GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationApiRequestsOverviewResponseCodesByIntervalExecute(r)
 }
 
@@ -114,13 +114,13 @@ func (a *ByIntervalApiService) GetOrganizationApiRequestsOverviewResponseCodesBy
 }
 
 // Execute executes the request
-//  @return []InlineResponse20083
-func (a *ByIntervalApiService) GetOrganizationApiRequestsOverviewResponseCodesByIntervalExecute(r ByIntervalApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) ([]InlineResponse20083, *http.Response, error) {
+//  @return []GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner
+func (a *ByIntervalApiService) GetOrganizationApiRequestsOverviewResponseCodesByIntervalExecute(r ByIntervalApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) ([]GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20083
+		localVarReturnValue  []GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ByIntervalApiService.GetOrganizationApiRequestsOverviewResponseCodesByInterval")

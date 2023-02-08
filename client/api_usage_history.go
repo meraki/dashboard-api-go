@@ -377,7 +377,7 @@ func (r UsageHistoryApiGetNetworkWirelessUsageHistoryRequest) Ssid(ssid int32) U
 	return r
 }
 
-func (r UsageHistoryApiGetNetworkWirelessUsageHistoryRequest) Execute() ([]InlineResponse20079, *http.Response, error) {
+func (r UsageHistoryApiGetNetworkWirelessUsageHistoryRequest) Execute() ([]GetNetworkWirelessUsageHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessUsageHistoryExecute(r)
 }
 
@@ -399,13 +399,13 @@ func (a *UsageHistoryApiService) GetNetworkWirelessUsageHistory(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20079
-func (a *UsageHistoryApiService) GetNetworkWirelessUsageHistoryExecute(r UsageHistoryApiGetNetworkWirelessUsageHistoryRequest) ([]InlineResponse20079, *http.Response, error) {
+//  @return []GetNetworkWirelessUsageHistory200ResponseInner
+func (a *UsageHistoryApiService) GetNetworkWirelessUsageHistoryExecute(r UsageHistoryApiGetNetworkWirelessUsageHistoryRequest) ([]GetNetworkWirelessUsageHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20079
+		localVarReturnValue  []GetNetworkWirelessUsageHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageHistoryApiService.GetNetworkWirelessUsageHistory")

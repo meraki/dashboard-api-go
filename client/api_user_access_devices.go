@@ -160,7 +160,7 @@ func (r UserAccessDevicesApiGetNetworkSmUserAccessDevicesRequest) EndingBefore(e
 	return r
 }
 
-func (r UserAccessDevicesApiGetNetworkSmUserAccessDevicesRequest) Execute() ([]InlineResponse20056, *http.Response, error) {
+func (r UserAccessDevicesApiGetNetworkSmUserAccessDevicesRequest) Execute() ([]GetNetworkSmUserAccessDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmUserAccessDevicesExecute(r)
 }
 
@@ -182,13 +182,13 @@ func (a *UserAccessDevicesApiService) GetNetworkSmUserAccessDevices(ctx context.
 }
 
 // Execute executes the request
-//  @return []InlineResponse20056
-func (a *UserAccessDevicesApiService) GetNetworkSmUserAccessDevicesExecute(r UserAccessDevicesApiGetNetworkSmUserAccessDevicesRequest) ([]InlineResponse20056, *http.Response, error) {
+//  @return []GetNetworkSmUserAccessDevices200ResponseInner
+func (a *UserAccessDevicesApiService) GetNetworkSmUserAccessDevicesExecute(r UserAccessDevicesApiGetNetworkSmUserAccessDevicesRequest) ([]GetNetworkSmUserAccessDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20056
+		localVarReturnValue  []GetNetworkSmUserAccessDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserAccessDevicesApiService.GetNetworkSmUserAccessDevices")

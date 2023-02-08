@@ -27,10 +27,10 @@ type FloorPlansApiCreateNetworkFloorPlanRequest struct {
 	ctx context.Context
 	ApiService *FloorPlansApiService
 	networkId string
-	createNetworkFloorPlan *InlineObject85
+	createNetworkFloorPlan *CreateNetworkFloorPlanRequest
 }
 
-func (r FloorPlansApiCreateNetworkFloorPlanRequest) CreateNetworkFloorPlan(createNetworkFloorPlan InlineObject85) FloorPlansApiCreateNetworkFloorPlanRequest {
+func (r FloorPlansApiCreateNetworkFloorPlanRequest) CreateNetworkFloorPlan(createNetworkFloorPlan CreateNetworkFloorPlanRequest) FloorPlansApiCreateNetworkFloorPlanRequest {
 	r.createNetworkFloorPlan = &createNetworkFloorPlan
 	return r
 }
@@ -504,10 +504,10 @@ type FloorPlansApiUpdateNetworkFloorPlanRequest struct {
 	ApiService *FloorPlansApiService
 	networkId string
 	floorPlanId string
-	updateNetworkFloorPlan *InlineObject86
+	updateNetworkFloorPlan *UpdateNetworkFloorPlanRequest
 }
 
-func (r FloorPlansApiUpdateNetworkFloorPlanRequest) UpdateNetworkFloorPlan(updateNetworkFloorPlan InlineObject86) FloorPlansApiUpdateNetworkFloorPlanRequest {
+func (r FloorPlansApiUpdateNetworkFloorPlanRequest) UpdateNetworkFloorPlan(updateNetworkFloorPlan UpdateNetworkFloorPlanRequest) FloorPlansApiUpdateNetworkFloorPlanRequest {
 	r.updateNetworkFloorPlan = &updateNetworkFloorPlan
 	return r
 }

@@ -29,7 +29,7 @@ type SyslogServersApiGetNetworkSyslogServersRequest struct {
 	networkId string
 }
 
-func (r SyslogServersApiGetNetworkSyslogServersRequest) Execute() (*InlineResponse20065, *http.Response, error) {
+func (r SyslogServersApiGetNetworkSyslogServersRequest) Execute() (*GetNetworkSyslogServers200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSyslogServersExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *SyslogServersApiService) GetNetworkSyslogServers(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return InlineResponse20065
-func (a *SyslogServersApiService) GetNetworkSyslogServersExecute(r SyslogServersApiGetNetworkSyslogServersRequest) (*InlineResponse20065, *http.Response, error) {
+//  @return GetNetworkSyslogServers200Response
+func (a *SyslogServersApiService) GetNetworkSyslogServersExecute(r SyslogServersApiGetNetworkSyslogServersRequest) (*GetNetworkSyslogServers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20065
+		localVarReturnValue  *GetNetworkSyslogServers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyslogServersApiService.GetNetworkSyslogServers")
@@ -144,15 +144,15 @@ type SyslogServersApiUpdateNetworkSyslogServersRequest struct {
 	ctx context.Context
 	ApiService *SyslogServersApiService
 	networkId string
-	updateNetworkSyslogServers *InlineObject139
+	updateNetworkSyslogServers *UpdateNetworkSyslogServersRequest
 }
 
-func (r SyslogServersApiUpdateNetworkSyslogServersRequest) UpdateNetworkSyslogServers(updateNetworkSyslogServers InlineObject139) SyslogServersApiUpdateNetworkSyslogServersRequest {
+func (r SyslogServersApiUpdateNetworkSyslogServersRequest) UpdateNetworkSyslogServers(updateNetworkSyslogServers UpdateNetworkSyslogServersRequest) SyslogServersApiUpdateNetworkSyslogServersRequest {
 	r.updateNetworkSyslogServers = &updateNetworkSyslogServers
 	return r
 }
 
-func (r SyslogServersApiUpdateNetworkSyslogServersRequest) Execute() (*InlineResponse20065, *http.Response, error) {
+func (r SyslogServersApiUpdateNetworkSyslogServersRequest) Execute() (*GetNetworkSyslogServers200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSyslogServersExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *SyslogServersApiService) UpdateNetworkSyslogServers(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse20065
-func (a *SyslogServersApiService) UpdateNetworkSyslogServersExecute(r SyslogServersApiUpdateNetworkSyslogServersRequest) (*InlineResponse20065, *http.Response, error) {
+//  @return GetNetworkSyslogServers200Response
+func (a *SyslogServersApiService) UpdateNetworkSyslogServersExecute(r SyslogServersApiUpdateNetworkSyslogServersRequest) (*GetNetworkSyslogServers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20065
+		localVarReturnValue  *GetNetworkSyslogServers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyslogServersApiService.UpdateNetworkSyslogServers")

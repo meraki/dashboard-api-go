@@ -99,7 +99,7 @@ func (r SignalQualityHistoryApiGetNetworkWirelessSignalQualityHistoryRequest) Ss
 	return r
 }
 
-func (r SignalQualityHistoryApiGetNetworkWirelessSignalQualityHistoryRequest) Execute() ([]InlineResponse20076, *http.Response, error) {
+func (r SignalQualityHistoryApiGetNetworkWirelessSignalQualityHistoryRequest) Execute() ([]GetNetworkWirelessSignalQualityHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSignalQualityHistoryExecute(r)
 }
 
@@ -121,13 +121,13 @@ func (a *SignalQualityHistoryApiService) GetNetworkWirelessSignalQualityHistory(
 }
 
 // Execute executes the request
-//  @return []InlineResponse20076
-func (a *SignalQualityHistoryApiService) GetNetworkWirelessSignalQualityHistoryExecute(r SignalQualityHistoryApiGetNetworkWirelessSignalQualityHistoryRequest) ([]InlineResponse20076, *http.Response, error) {
+//  @return []GetNetworkWirelessSignalQualityHistory200ResponseInner
+func (a *SignalQualityHistoryApiService) GetNetworkWirelessSignalQualityHistoryExecute(r SignalQualityHistoryApiGetNetworkWirelessSignalQualityHistoryRequest) ([]GetNetworkWirelessSignalQualityHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20076
+		localVarReturnValue  []GetNetworkWirelessSignalQualityHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SignalQualityHistoryApiService.GetNetworkWirelessSignalQualityHistory")

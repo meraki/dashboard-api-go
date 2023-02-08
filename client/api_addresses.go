@@ -85,7 +85,7 @@ func (r AddressesApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) TagsF
 	return r
 }
 
-func (r AddressesApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) Execute() ([]InlineResponse20096, *http.Response, error) {
+func (r AddressesApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) Execute() ([]GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesUplinksAddressesByDeviceExecute(r)
 }
 
@@ -107,13 +107,13 @@ func (a *AddressesApiService) GetOrganizationDevicesUplinksAddressesByDevice(ctx
 }
 
 // Execute executes the request
-//  @return []InlineResponse20096
-func (a *AddressesApiService) GetOrganizationDevicesUplinksAddressesByDeviceExecute(r AddressesApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) ([]InlineResponse20096, *http.Response, error) {
+//  @return []GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner
+func (a *AddressesApiService) GetOrganizationDevicesUplinksAddressesByDeviceExecute(r AddressesApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) ([]GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20096
+		localVarReturnValue  []GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressesApiService.GetOrganizationDevicesUplinksAddressesByDevice")

@@ -64,7 +64,7 @@ func (r ByClientApiGetNetworkPoliciesByClientRequest) Timespan(timespan float32)
 	return r
 }
 
-func (r ByClientApiGetNetworkPoliciesByClientRequest) Execute() ([]InlineResponse20032, *http.Response, error) {
+func (r ByClientApiGetNetworkPoliciesByClientRequest) Execute() ([]GetNetworkPoliciesByClient200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkPoliciesByClientExecute(r)
 }
 
@@ -86,13 +86,13 @@ func (a *ByClientApiService) GetNetworkPoliciesByClient(ctx context.Context, net
 }
 
 // Execute executes the request
-//  @return []InlineResponse20032
-func (a *ByClientApiService) GetNetworkPoliciesByClientExecute(r ByClientApiGetNetworkPoliciesByClientRequest) ([]InlineResponse20032, *http.Response, error) {
+//  @return []GetNetworkPoliciesByClient200ResponseInner
+func (a *ByClientApiService) GetNetworkPoliciesByClientExecute(r ByClientApiGetNetworkPoliciesByClientRequest) ([]GetNetworkPoliciesByClient200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20032
+		localVarReturnValue  []GetNetworkPoliciesByClient200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ByClientApiService.GetNetworkPoliciesByClient")

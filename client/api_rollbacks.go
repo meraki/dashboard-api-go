@@ -27,15 +27,15 @@ type RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest struct {
 	ctx context.Context
 	ApiService *RollbacksApiService
 	networkId string
-	createNetworkFirmwareUpgradesRollback *InlineObject78
+	createNetworkFirmwareUpgradesRollback *CreateNetworkFirmwareUpgradesRollbackRequest
 }
 
-func (r RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest) CreateNetworkFirmwareUpgradesRollback(createNetworkFirmwareUpgradesRollback InlineObject78) RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest {
+func (r RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest) CreateNetworkFirmwareUpgradesRollback(createNetworkFirmwareUpgradesRollback CreateNetworkFirmwareUpgradesRollbackRequest) RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest {
 	r.createNetworkFirmwareUpgradesRollback = &createNetworkFirmwareUpgradesRollback
 	return r
 }
 
-func (r RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest) Execute() (*InlineResponse20025, *http.Response, error) {
+func (r RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest) Execute() (*CreateNetworkFirmwareUpgradesRollback200Response, *http.Response, error) {
 	return r.ApiService.CreateNetworkFirmwareUpgradesRollbackExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *RollbacksApiService) CreateNetworkFirmwareUpgradesRollback(ctx context.
 }
 
 // Execute executes the request
-//  @return InlineResponse20025
-func (a *RollbacksApiService) CreateNetworkFirmwareUpgradesRollbackExecute(r RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest) (*InlineResponse20025, *http.Response, error) {
+//  @return CreateNetworkFirmwareUpgradesRollback200Response
+func (a *RollbacksApiService) CreateNetworkFirmwareUpgradesRollbackExecute(r RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest) (*CreateNetworkFirmwareUpgradesRollback200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20025
+		localVarReturnValue  *CreateNetworkFirmwareUpgradesRollback200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RollbacksApiService.CreateNetworkFirmwareUpgradesRollback")

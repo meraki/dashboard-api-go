@@ -27,10 +27,10 @@ type DevicesApiBlinkDeviceLedsRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	serial string
-	blinkDeviceLeds *InlineObject2
+	blinkDeviceLeds *BlinkDeviceLedsRequest
 }
 
-func (r DevicesApiBlinkDeviceLedsRequest) BlinkDeviceLeds(blinkDeviceLeds InlineObject2) DevicesApiBlinkDeviceLedsRequest {
+func (r DevicesApiBlinkDeviceLedsRequest) BlinkDeviceLeds(blinkDeviceLeds BlinkDeviceLedsRequest) DevicesApiBlinkDeviceLedsRequest {
 	r.blinkDeviceLeds = &blinkDeviceLeds
 	return r
 }
@@ -152,15 +152,15 @@ type DevicesApiCheckinNetworkSmDevicesRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	checkinNetworkSmDevices *InlineObject99
+	checkinNetworkSmDevices *CheckinNetworkSmDevicesRequest
 }
 
-func (r DevicesApiCheckinNetworkSmDevicesRequest) CheckinNetworkSmDevices(checkinNetworkSmDevices InlineObject99) DevicesApiCheckinNetworkSmDevicesRequest {
+func (r DevicesApiCheckinNetworkSmDevicesRequest) CheckinNetworkSmDevices(checkinNetworkSmDevices CheckinNetworkSmDevicesRequest) DevicesApiCheckinNetworkSmDevicesRequest {
 	r.checkinNetworkSmDevices = &checkinNetworkSmDevices
 	return r
 }
 
-func (r DevicesApiCheckinNetworkSmDevicesRequest) Execute() (*InlineResponse20039, *http.Response, error) {
+func (r DevicesApiCheckinNetworkSmDevicesRequest) Execute() (*CheckinNetworkSmDevices200Response, *http.Response, error) {
 	return r.ApiService.CheckinNetworkSmDevicesExecute(r)
 }
 
@@ -182,13 +182,13 @@ func (a *DevicesApiService) CheckinNetworkSmDevices(ctx context.Context, network
 }
 
 // Execute executes the request
-//  @return InlineResponse20039
-func (a *DevicesApiService) CheckinNetworkSmDevicesExecute(r DevicesApiCheckinNetworkSmDevicesRequest) (*InlineResponse20039, *http.Response, error) {
+//  @return CheckinNetworkSmDevices200Response
+func (a *DevicesApiService) CheckinNetworkSmDevicesExecute(r DevicesApiCheckinNetworkSmDevicesRequest) (*CheckinNetworkSmDevices200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20039
+		localVarReturnValue  *CheckinNetworkSmDevices200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.CheckinNetworkSmDevices")
@@ -277,10 +277,10 @@ type DevicesApiClaimNetworkDevicesRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	claimNetworkDevices *InlineObject74
+	claimNetworkDevices *ClaimNetworkDevicesRequest
 }
 
-func (r DevicesApiClaimNetworkDevicesRequest) ClaimNetworkDevices(claimNetworkDevices InlineObject74) DevicesApiClaimNetworkDevicesRequest {
+func (r DevicesApiClaimNetworkDevicesRequest) ClaimNetworkDevices(claimNetworkDevices ClaimNetworkDevicesRequest) DevicesApiClaimNetworkDevicesRequest {
 	r.claimNetworkDevices = &claimNetworkDevices
 	return r
 }
@@ -394,10 +394,10 @@ type DevicesApiCloneOrganizationSwitchDevicesRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	organizationId string
-	cloneOrganizationSwitchDevices *InlineObject221
+	cloneOrganizationSwitchDevices *CloneOrganizationSwitchDevicesRequest
 }
 
-func (r DevicesApiCloneOrganizationSwitchDevicesRequest) CloneOrganizationSwitchDevices(cloneOrganizationSwitchDevices InlineObject221) DevicesApiCloneOrganizationSwitchDevicesRequest {
+func (r DevicesApiCloneOrganizationSwitchDevicesRequest) CloneOrganizationSwitchDevices(cloneOrganizationSwitchDevices CloneOrganizationSwitchDevicesRequest) DevicesApiCloneOrganizationSwitchDevicesRequest {
 	r.cloneOrganizationSwitchDevices = &cloneOrganizationSwitchDevices
 	return r
 }
@@ -522,15 +522,15 @@ type DevicesApiCreateDeviceLiveToolsPingRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	serial string
-	createDeviceLiveToolsPing *InlineObject12
+	createDeviceLiveToolsPing *CreateDeviceLiveToolsPingRequest
 }
 
-func (r DevicesApiCreateDeviceLiveToolsPingRequest) CreateDeviceLiveToolsPing(createDeviceLiveToolsPing InlineObject12) DevicesApiCreateDeviceLiveToolsPingRequest {
+func (r DevicesApiCreateDeviceLiveToolsPingRequest) CreateDeviceLiveToolsPing(createDeviceLiveToolsPing CreateDeviceLiveToolsPingRequest) DevicesApiCreateDeviceLiveToolsPingRequest {
 	r.createDeviceLiveToolsPing = &createDeviceLiveToolsPing
 	return r
 }
 
-func (r DevicesApiCreateDeviceLiveToolsPingRequest) Execute() (*InlineResponse2011, *http.Response, error) {
+func (r DevicesApiCreateDeviceLiveToolsPingRequest) Execute() (*CreateDeviceLiveToolsPing201Response, *http.Response, error) {
 	return r.ApiService.CreateDeviceLiveToolsPingExecute(r)
 }
 
@@ -552,13 +552,13 @@ func (a *DevicesApiService) CreateDeviceLiveToolsPing(ctx context.Context, seria
 }
 
 // Execute executes the request
-//  @return InlineResponse2011
-func (a *DevicesApiService) CreateDeviceLiveToolsPingExecute(r DevicesApiCreateDeviceLiveToolsPingRequest) (*InlineResponse2011, *http.Response, error) {
+//  @return CreateDeviceLiveToolsPing201Response
+func (a *DevicesApiService) CreateDeviceLiveToolsPingExecute(r DevicesApiCreateDeviceLiveToolsPingRequest) (*CreateDeviceLiveToolsPing201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2011
+		localVarReturnValue  *CreateDeviceLiveToolsPing201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.CreateDeviceLiveToolsPing")
@@ -650,15 +650,15 @@ type DevicesApiCreateDeviceLiveToolsPingDeviceRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	serial string
-	createDeviceLiveToolsPingDevice *InlineObject13
+	createDeviceLiveToolsPingDevice *CreateDeviceLiveToolsPingDeviceRequest
 }
 
-func (r DevicesApiCreateDeviceLiveToolsPingDeviceRequest) CreateDeviceLiveToolsPingDevice(createDeviceLiveToolsPingDevice InlineObject13) DevicesApiCreateDeviceLiveToolsPingDeviceRequest {
+func (r DevicesApiCreateDeviceLiveToolsPingDeviceRequest) CreateDeviceLiveToolsPingDevice(createDeviceLiveToolsPingDevice CreateDeviceLiveToolsPingDeviceRequest) DevicesApiCreateDeviceLiveToolsPingDeviceRequest {
 	r.createDeviceLiveToolsPingDevice = &createDeviceLiveToolsPingDevice
 	return r
 }
 
-func (r DevicesApiCreateDeviceLiveToolsPingDeviceRequest) Execute() (*InlineResponse2011, *http.Response, error) {
+func (r DevicesApiCreateDeviceLiveToolsPingDeviceRequest) Execute() (*CreateDeviceLiveToolsPing201Response, *http.Response, error) {
 	return r.ApiService.CreateDeviceLiveToolsPingDeviceExecute(r)
 }
 
@@ -680,13 +680,13 @@ func (a *DevicesApiService) CreateDeviceLiveToolsPingDevice(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse2011
-func (a *DevicesApiService) CreateDeviceLiveToolsPingDeviceExecute(r DevicesApiCreateDeviceLiveToolsPingDeviceRequest) (*InlineResponse2011, *http.Response, error) {
+//  @return CreateDeviceLiveToolsPing201Response
+func (a *DevicesApiService) CreateDeviceLiveToolsPingDeviceExecute(r DevicesApiCreateDeviceLiveToolsPingDeviceRequest) (*CreateDeviceLiveToolsPing201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2011
+		localVarReturnValue  *CreateDeviceLiveToolsPing201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.CreateDeviceLiveToolsPingDevice")
@@ -1149,7 +1149,7 @@ type DevicesApiGetDeviceLiveToolsPingRequest struct {
 	id string
 }
 
-func (r DevicesApiGetDeviceLiveToolsPingRequest) Execute() (*InlineResponse2002, *http.Response, error) {
+func (r DevicesApiGetDeviceLiveToolsPingRequest) Execute() (*GetDeviceLiveToolsPing200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceLiveToolsPingExecute(r)
 }
 
@@ -1173,13 +1173,13 @@ func (a *DevicesApiService) GetDeviceLiveToolsPing(ctx context.Context, serial s
 }
 
 // Execute executes the request
-//  @return InlineResponse2002
-func (a *DevicesApiService) GetDeviceLiveToolsPingExecute(r DevicesApiGetDeviceLiveToolsPingRequest) (*InlineResponse2002, *http.Response, error) {
+//  @return GetDeviceLiveToolsPing200Response
+func (a *DevicesApiService) GetDeviceLiveToolsPingExecute(r DevicesApiGetDeviceLiveToolsPingRequest) (*GetDeviceLiveToolsPing200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2002
+		localVarReturnValue  *GetDeviceLiveToolsPing200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetDeviceLiveToolsPing")
@@ -1270,7 +1270,7 @@ type DevicesApiGetDeviceLiveToolsPingDeviceRequest struct {
 	id string
 }
 
-func (r DevicesApiGetDeviceLiveToolsPingDeviceRequest) Execute() (*InlineResponse2002, *http.Response, error) {
+func (r DevicesApiGetDeviceLiveToolsPingDeviceRequest) Execute() (*GetDeviceLiveToolsPing200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceLiveToolsPingDeviceExecute(r)
 }
 
@@ -1294,13 +1294,13 @@ func (a *DevicesApiService) GetDeviceLiveToolsPingDevice(ctx context.Context, se
 }
 
 // Execute executes the request
-//  @return InlineResponse2002
-func (a *DevicesApiService) GetDeviceLiveToolsPingDeviceExecute(r DevicesApiGetDeviceLiveToolsPingDeviceRequest) (*InlineResponse2002, *http.Response, error) {
+//  @return GetDeviceLiveToolsPing200Response
+func (a *DevicesApiService) GetDeviceLiveToolsPingDeviceExecute(r DevicesApiGetDeviceLiveToolsPingDeviceRequest) (*GetDeviceLiveToolsPing200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2002
+		localVarReturnValue  *GetDeviceLiveToolsPing200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetDeviceLiveToolsPingDevice")
@@ -1920,7 +1920,7 @@ type DevicesApiGetNetworkSmDeviceCellularUsageHistoryRequest struct {
 	deviceId string
 }
 
-func (r DevicesApiGetNetworkSmDeviceCellularUsageHistoryRequest) Execute() ([]InlineResponse20044, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceCellularUsageHistoryRequest) Execute() ([]GetNetworkSmDeviceCellularUsageHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceCellularUsageHistoryExecute(r)
 }
 
@@ -1944,13 +1944,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceCellularUsageHistory(ctx context.C
 }
 
 // Execute executes the request
-//  @return []InlineResponse20044
-func (a *DevicesApiService) GetNetworkSmDeviceCellularUsageHistoryExecute(r DevicesApiGetNetworkSmDeviceCellularUsageHistoryRequest) ([]InlineResponse20044, *http.Response, error) {
+//  @return []GetNetworkSmDeviceCellularUsageHistory200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceCellularUsageHistoryExecute(r DevicesApiGetNetworkSmDeviceCellularUsageHistoryRequest) ([]GetNetworkSmDeviceCellularUsageHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20044
+		localVarReturnValue  []GetNetworkSmDeviceCellularUsageHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceCellularUsageHistory")
@@ -2041,7 +2041,7 @@ type DevicesApiGetNetworkSmDeviceCertsRequest struct {
 	deviceId string
 }
 
-func (r DevicesApiGetNetworkSmDeviceCertsRequest) Execute() ([]InlineResponse20045, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceCertsRequest) Execute() ([]GetNetworkSmDeviceCerts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceCertsExecute(r)
 }
 
@@ -2065,13 +2065,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceCerts(ctx context.Context, network
 }
 
 // Execute executes the request
-//  @return []InlineResponse20045
-func (a *DevicesApiService) GetNetworkSmDeviceCertsExecute(r DevicesApiGetNetworkSmDeviceCertsRequest) ([]InlineResponse20045, *http.Response, error) {
+//  @return []GetNetworkSmDeviceCerts200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceCertsExecute(r DevicesApiGetNetworkSmDeviceCertsRequest) ([]GetNetworkSmDeviceCerts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20045
+		localVarReturnValue  []GetNetworkSmDeviceCerts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceCerts")
@@ -2183,7 +2183,7 @@ func (r DevicesApiGetNetworkSmDeviceConnectivityRequest) EndingBefore(endingBefo
 	return r
 }
 
-func (r DevicesApiGetNetworkSmDeviceConnectivityRequest) Execute() ([]InlineResponse20046, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceConnectivityRequest) Execute() ([]GetNetworkSmDeviceConnectivity200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceConnectivityExecute(r)
 }
 
@@ -2207,13 +2207,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceConnectivity(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return []InlineResponse20046
-func (a *DevicesApiService) GetNetworkSmDeviceConnectivityExecute(r DevicesApiGetNetworkSmDeviceConnectivityRequest) ([]InlineResponse20046, *http.Response, error) {
+//  @return []GetNetworkSmDeviceConnectivity200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceConnectivityExecute(r DevicesApiGetNetworkSmDeviceConnectivityRequest) ([]GetNetworkSmDeviceConnectivity200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20046
+		localVarReturnValue  []GetNetworkSmDeviceConnectivity200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceConnectivity")
@@ -2334,7 +2334,7 @@ func (r DevicesApiGetNetworkSmDeviceDesktopLogsRequest) EndingBefore(endingBefor
 	return r
 }
 
-func (r DevicesApiGetNetworkSmDeviceDesktopLogsRequest) Execute() ([]InlineResponse20047, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceDesktopLogsRequest) Execute() ([]GetNetworkSmDeviceDesktopLogs200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceDesktopLogsExecute(r)
 }
 
@@ -2358,13 +2358,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceDesktopLogs(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return []InlineResponse20047
-func (a *DevicesApiService) GetNetworkSmDeviceDesktopLogsExecute(r DevicesApiGetNetworkSmDeviceDesktopLogsRequest) ([]InlineResponse20047, *http.Response, error) {
+//  @return []GetNetworkSmDeviceDesktopLogs200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceDesktopLogsExecute(r DevicesApiGetNetworkSmDeviceDesktopLogsRequest) ([]GetNetworkSmDeviceDesktopLogs200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20047
+		localVarReturnValue  []GetNetworkSmDeviceDesktopLogs200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceDesktopLogs")
@@ -2485,7 +2485,7 @@ func (r DevicesApiGetNetworkSmDeviceDeviceCommandLogsRequest) EndingBefore(endin
 	return r
 }
 
-func (r DevicesApiGetNetworkSmDeviceDeviceCommandLogsRequest) Execute() ([]InlineResponse20048, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceDeviceCommandLogsRequest) Execute() ([]GetNetworkSmDeviceDeviceCommandLogs200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceDeviceCommandLogsExecute(r)
 }
 
@@ -2509,13 +2509,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceDeviceCommandLogs(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20048
-func (a *DevicesApiService) GetNetworkSmDeviceDeviceCommandLogsExecute(r DevicesApiGetNetworkSmDeviceDeviceCommandLogsRequest) ([]InlineResponse20048, *http.Response, error) {
+//  @return []GetNetworkSmDeviceDeviceCommandLogs200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceDeviceCommandLogsExecute(r DevicesApiGetNetworkSmDeviceDeviceCommandLogsRequest) ([]GetNetworkSmDeviceDeviceCommandLogs200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20048
+		localVarReturnValue  []GetNetworkSmDeviceDeviceCommandLogs200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceDeviceCommandLogs")
@@ -2615,7 +2615,7 @@ type DevicesApiGetNetworkSmDeviceDeviceProfilesRequest struct {
 	deviceId string
 }
 
-func (r DevicesApiGetNetworkSmDeviceDeviceProfilesRequest) Execute() ([]InlineResponse20049, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceDeviceProfilesRequest) Execute() ([]GetNetworkSmDeviceDeviceProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceDeviceProfilesExecute(r)
 }
 
@@ -2639,13 +2639,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceDeviceProfiles(ctx context.Context
 }
 
 // Execute executes the request
-//  @return []InlineResponse20049
-func (a *DevicesApiService) GetNetworkSmDeviceDeviceProfilesExecute(r DevicesApiGetNetworkSmDeviceDeviceProfilesRequest) ([]InlineResponse20049, *http.Response, error) {
+//  @return []GetNetworkSmDeviceDeviceProfiles200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceDeviceProfilesExecute(r DevicesApiGetNetworkSmDeviceDeviceProfilesRequest) ([]GetNetworkSmDeviceDeviceProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20049
+		localVarReturnValue  []GetNetworkSmDeviceDeviceProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceDeviceProfiles")
@@ -2736,7 +2736,7 @@ type DevicesApiGetNetworkSmDeviceNetworkAdaptersRequest struct {
 	deviceId string
 }
 
-func (r DevicesApiGetNetworkSmDeviceNetworkAdaptersRequest) Execute() ([]InlineResponse20050, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceNetworkAdaptersRequest) Execute() ([]GetNetworkSmDeviceNetworkAdapters200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceNetworkAdaptersExecute(r)
 }
 
@@ -2760,13 +2760,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceNetworkAdapters(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse20050
-func (a *DevicesApiService) GetNetworkSmDeviceNetworkAdaptersExecute(r DevicesApiGetNetworkSmDeviceNetworkAdaptersRequest) ([]InlineResponse20050, *http.Response, error) {
+//  @return []GetNetworkSmDeviceNetworkAdapters200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceNetworkAdaptersExecute(r DevicesApiGetNetworkSmDeviceNetworkAdaptersRequest) ([]GetNetworkSmDeviceNetworkAdapters200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20050
+		localVarReturnValue  []GetNetworkSmDeviceNetworkAdapters200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceNetworkAdapters")
@@ -2878,7 +2878,7 @@ func (r DevicesApiGetNetworkSmDevicePerformanceHistoryRequest) EndingBefore(endi
 	return r
 }
 
-func (r DevicesApiGetNetworkSmDevicePerformanceHistoryRequest) Execute() ([]InlineResponse20051, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDevicePerformanceHistoryRequest) Execute() ([]GetNetworkSmDevicePerformanceHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDevicePerformanceHistoryExecute(r)
 }
 
@@ -2902,13 +2902,13 @@ func (a *DevicesApiService) GetNetworkSmDevicePerformanceHistory(ctx context.Con
 }
 
 // Execute executes the request
-//  @return []InlineResponse20051
-func (a *DevicesApiService) GetNetworkSmDevicePerformanceHistoryExecute(r DevicesApiGetNetworkSmDevicePerformanceHistoryRequest) ([]InlineResponse20051, *http.Response, error) {
+//  @return []GetNetworkSmDevicePerformanceHistory200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDevicePerformanceHistoryExecute(r DevicesApiGetNetworkSmDevicePerformanceHistoryRequest) ([]GetNetworkSmDevicePerformanceHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20051
+		localVarReturnValue  []GetNetworkSmDevicePerformanceHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDevicePerformanceHistory")
@@ -3129,7 +3129,7 @@ type DevicesApiGetNetworkSmDeviceSecurityCentersRequest struct {
 	deviceId string
 }
 
-func (r DevicesApiGetNetworkSmDeviceSecurityCentersRequest) Execute() ([]InlineResponse20052, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceSecurityCentersRequest) Execute() ([]GetNetworkSmDeviceSecurityCenters200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceSecurityCentersExecute(r)
 }
 
@@ -3153,13 +3153,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceSecurityCenters(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse20052
-func (a *DevicesApiService) GetNetworkSmDeviceSecurityCentersExecute(r DevicesApiGetNetworkSmDeviceSecurityCentersRequest) ([]InlineResponse20052, *http.Response, error) {
+//  @return []GetNetworkSmDeviceSecurityCenters200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceSecurityCentersExecute(r DevicesApiGetNetworkSmDeviceSecurityCentersRequest) ([]GetNetworkSmDeviceSecurityCenters200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20052
+		localVarReturnValue  []GetNetworkSmDeviceSecurityCenters200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceSecurityCenters")
@@ -3250,7 +3250,7 @@ type DevicesApiGetNetworkSmDeviceSoftwaresRequest struct {
 	deviceId string
 }
 
-func (r DevicesApiGetNetworkSmDeviceSoftwaresRequest) Execute() ([]InlineResponse20053, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceSoftwaresRequest) Execute() ([]GetNetworkSmDeviceSoftwares200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceSoftwaresExecute(r)
 }
 
@@ -3274,13 +3274,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceSoftwares(ctx context.Context, net
 }
 
 // Execute executes the request
-//  @return []InlineResponse20053
-func (a *DevicesApiService) GetNetworkSmDeviceSoftwaresExecute(r DevicesApiGetNetworkSmDeviceSoftwaresRequest) ([]InlineResponse20053, *http.Response, error) {
+//  @return []GetNetworkSmDeviceSoftwares200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceSoftwaresExecute(r DevicesApiGetNetworkSmDeviceSoftwaresRequest) ([]GetNetworkSmDeviceSoftwares200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20053
+		localVarReturnValue  []GetNetworkSmDeviceSoftwares200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceSoftwares")
@@ -3371,7 +3371,7 @@ type DevicesApiGetNetworkSmDeviceWlanListsRequest struct {
 	deviceId string
 }
 
-func (r DevicesApiGetNetworkSmDeviceWlanListsRequest) Execute() ([]InlineResponse20054, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceWlanListsRequest) Execute() ([]GetNetworkSmDeviceWlanLists200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceWlanListsExecute(r)
 }
 
@@ -3395,13 +3395,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceWlanLists(ctx context.Context, net
 }
 
 // Execute executes the request
-//  @return []InlineResponse20054
-func (a *DevicesApiService) GetNetworkSmDeviceWlanListsExecute(r DevicesApiGetNetworkSmDeviceWlanListsRequest) ([]InlineResponse20054, *http.Response, error) {
+//  @return []GetNetworkSmDeviceWlanLists200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceWlanListsExecute(r DevicesApiGetNetworkSmDeviceWlanListsRequest) ([]GetNetworkSmDeviceWlanLists200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20054
+		localVarReturnValue  []GetNetworkSmDeviceWlanLists200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceWlanLists")
@@ -3547,7 +3547,7 @@ func (r DevicesApiGetNetworkSmDevicesRequest) EndingBefore(endingBefore string) 
 	return r
 }
 
-func (r DevicesApiGetNetworkSmDevicesRequest) Execute() ([]InlineResponse20038, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDevicesRequest) Execute() ([]GetNetworkSmDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDevicesExecute(r)
 }
 
@@ -3569,13 +3569,13 @@ func (a *DevicesApiService) GetNetworkSmDevices(ctx context.Context, networkId s
 }
 
 // Execute executes the request
-//  @return []InlineResponse20038
-func (a *DevicesApiService) GetNetworkSmDevicesExecute(r DevicesApiGetNetworkSmDevicesRequest) ([]InlineResponse20038, *http.Response, error) {
+//  @return []GetNetworkSmDevices200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDevicesExecute(r DevicesApiGetNetworkSmDevicesRequest) ([]GetNetworkSmDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20038
+		localVarReturnValue  []GetNetworkSmDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDevices")
@@ -3737,7 +3737,7 @@ func (r DevicesApiGetNetworkWirelessDevicesConnectionStatsRequest) ApTag(apTag s
 	return r
 }
 
-func (r DevicesApiGetNetworkWirelessDevicesConnectionStatsRequest) Execute() ([]InlineResponse2008, *http.Response, error) {
+func (r DevicesApiGetNetworkWirelessDevicesConnectionStatsRequest) Execute() ([]GetDeviceWirelessConnectionStats200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessDevicesConnectionStatsExecute(r)
 }
 
@@ -3759,13 +3759,13 @@ func (a *DevicesApiService) GetNetworkWirelessDevicesConnectionStats(ctx context
 }
 
 // Execute executes the request
-//  @return []InlineResponse2008
-func (a *DevicesApiService) GetNetworkWirelessDevicesConnectionStatsExecute(r DevicesApiGetNetworkWirelessDevicesConnectionStatsRequest) ([]InlineResponse2008, *http.Response, error) {
+//  @return []GetDeviceWirelessConnectionStats200Response
+func (a *DevicesApiService) GetNetworkWirelessDevicesConnectionStatsExecute(r DevicesApiGetNetworkWirelessDevicesConnectionStatsRequest) ([]GetDeviceWirelessConnectionStats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2008
+		localVarReturnValue  []GetDeviceWirelessConnectionStats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkWirelessDevicesConnectionStats")
@@ -4415,7 +4415,7 @@ func (r DevicesApiGetOrganizationDevicesAvailabilitiesRequest) TagsFilterType(ta
 	return r
 }
 
-func (r DevicesApiGetOrganizationDevicesAvailabilitiesRequest) Execute() ([]InlineResponse20092, *http.Response, error) {
+func (r DevicesApiGetOrganizationDevicesAvailabilitiesRequest) Execute() ([]GetOrganizationDevicesAvailabilities200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesAvailabilitiesExecute(r)
 }
 
@@ -4437,13 +4437,13 @@ func (a *DevicesApiService) GetOrganizationDevicesAvailabilities(ctx context.Con
 }
 
 // Execute executes the request
-//  @return []InlineResponse20092
-func (a *DevicesApiService) GetOrganizationDevicesAvailabilitiesExecute(r DevicesApiGetOrganizationDevicesAvailabilitiesRequest) ([]InlineResponse20092, *http.Response, error) {
+//  @return []GetOrganizationDevicesAvailabilities200ResponseInner
+func (a *DevicesApiService) GetOrganizationDevicesAvailabilitiesExecute(r DevicesApiGetOrganizationDevicesAvailabilitiesRequest) ([]GetOrganizationDevicesAvailabilities200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20092
+		localVarReturnValue  []GetOrganizationDevicesAvailabilities200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationDevicesAvailabilities")
@@ -4612,7 +4612,7 @@ func (r DevicesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) Tag
 	return r
 }
 
-func (r DevicesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) Execute() ([]InlineResponse20093, *http.Response, error) {
+func (r DevicesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) Execute() ([]GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r)
 }
 
@@ -4634,13 +4634,13 @@ func (a *DevicesApiService) GetOrganizationDevicesPowerModulesStatusesByDevice(c
 }
 
 // Execute executes the request
-//  @return []InlineResponse20093
-func (a *DevicesApiService) GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r DevicesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) ([]InlineResponse20093, *http.Response, error) {
+//  @return []GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner
+func (a *DevicesApiService) GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r DevicesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) ([]GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20093
+		localVarReturnValue  []GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationDevicesPowerModulesStatusesByDevice")
@@ -4823,7 +4823,7 @@ func (r DevicesApiGetOrganizationDevicesStatusesRequest) TagsFilterType(tagsFilt
 	return r
 }
 
-func (r DevicesApiGetOrganizationDevicesStatusesRequest) Execute() (*InlineResponse20094, *http.Response, error) {
+func (r DevicesApiGetOrganizationDevicesStatusesRequest) Execute() (*GetOrganizationDevicesStatuses200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesStatusesExecute(r)
 }
 
@@ -4845,13 +4845,13 @@ func (a *DevicesApiService) GetOrganizationDevicesStatuses(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse20094
-func (a *DevicesApiService) GetOrganizationDevicesStatusesExecute(r DevicesApiGetOrganizationDevicesStatusesRequest) (*InlineResponse20094, *http.Response, error) {
+//  @return GetOrganizationDevicesStatuses200Response
+func (a *DevicesApiService) GetOrganizationDevicesStatusesExecute(r DevicesApiGetOrganizationDevicesStatusesRequest) (*GetOrganizationDevicesStatuses200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20094
+		localVarReturnValue  *GetOrganizationDevicesStatuses200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationDevicesStatuses")
@@ -4984,7 +4984,7 @@ func (r DevicesApiGetOrganizationDevicesStatusesOverviewRequest) NetworkIds(netw
 	return r
 }
 
-func (r DevicesApiGetOrganizationDevicesStatusesOverviewRequest) Execute() (*InlineResponse20095, *http.Response, error) {
+func (r DevicesApiGetOrganizationDevicesStatusesOverviewRequest) Execute() (*GetOrganizationDevicesStatusesOverview200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesStatusesOverviewExecute(r)
 }
 
@@ -5006,13 +5006,13 @@ func (a *DevicesApiService) GetOrganizationDevicesStatusesOverview(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse20095
-func (a *DevicesApiService) GetOrganizationDevicesStatusesOverviewExecute(r DevicesApiGetOrganizationDevicesStatusesOverviewRequest) (*InlineResponse20095, *http.Response, error) {
+//  @return GetOrganizationDevicesStatusesOverview200Response
+func (a *DevicesApiService) GetOrganizationDevicesStatusesOverviewExecute(r DevicesApiGetOrganizationDevicesStatusesOverviewRequest) (*GetOrganizationDevicesStatusesOverview200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20095
+		localVarReturnValue  *GetOrganizationDevicesStatusesOverview200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationDevicesStatusesOverview")
@@ -5163,7 +5163,7 @@ func (r DevicesApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) TagsFil
 	return r
 }
 
-func (r DevicesApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) Execute() ([]InlineResponse20096, *http.Response, error) {
+func (r DevicesApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) Execute() ([]GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesUplinksAddressesByDeviceExecute(r)
 }
 
@@ -5185,13 +5185,13 @@ func (a *DevicesApiService) GetOrganizationDevicesUplinksAddressesByDevice(ctx c
 }
 
 // Execute executes the request
-//  @return []InlineResponse20096
-func (a *DevicesApiService) GetOrganizationDevicesUplinksAddressesByDeviceExecute(r DevicesApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) ([]InlineResponse20096, *http.Response, error) {
+//  @return []GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner
+func (a *DevicesApiService) GetOrganizationDevicesUplinksAddressesByDeviceExecute(r DevicesApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) ([]GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20096
+		localVarReturnValue  []GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationDevicesUplinksAddressesByDevice")
@@ -5339,7 +5339,7 @@ func (r DevicesApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Ip(ip stri
 	return r
 }
 
-func (r DevicesApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Execute() ([]InlineResponse20097, *http.Response, error) {
+func (r DevicesApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Execute() ([]GetOrganizationDevicesUplinksLossAndLatency200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesUplinksLossAndLatencyExecute(r)
 }
 
@@ -5361,13 +5361,13 @@ func (a *DevicesApiService) GetOrganizationDevicesUplinksLossAndLatency(ctx cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20097
-func (a *DevicesApiService) GetOrganizationDevicesUplinksLossAndLatencyExecute(r DevicesApiGetOrganizationDevicesUplinksLossAndLatencyRequest) ([]InlineResponse20097, *http.Response, error) {
+//  @return []GetOrganizationDevicesUplinksLossAndLatency200ResponseInner
+func (a *DevicesApiService) GetOrganizationDevicesUplinksLossAndLatencyExecute(r DevicesApiGetOrganizationDevicesUplinksLossAndLatencyRequest) ([]GetOrganizationDevicesUplinksLossAndLatency200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20097
+		localVarReturnValue  []GetOrganizationDevicesUplinksLossAndLatency200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationDevicesUplinksLossAndLatency")
@@ -5472,7 +5472,7 @@ type DevicesApiGetOrganizationInventoryDeviceRequest struct {
 	serial string
 }
 
-func (r DevicesApiGetOrganizationInventoryDeviceRequest) Execute() (*InlineResponse200102, *http.Response, error) {
+func (r DevicesApiGetOrganizationInventoryDeviceRequest) Execute() (*GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryDeviceExecute(r)
 }
 
@@ -5496,13 +5496,13 @@ func (a *DevicesApiService) GetOrganizationInventoryDevice(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse200102
-func (a *DevicesApiService) GetOrganizationInventoryDeviceExecute(r DevicesApiGetOrganizationInventoryDeviceRequest) (*InlineResponse200102, *http.Response, error) {
+//  @return GetOrganizationInventoryDevices200ResponseInner
+func (a *DevicesApiService) GetOrganizationInventoryDeviceExecute(r DevicesApiGetOrganizationInventoryDeviceRequest) (*GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200102
+		localVarReturnValue  *GetOrganizationInventoryDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationInventoryDevice")
@@ -5676,7 +5676,7 @@ func (r DevicesApiGetOrganizationInventoryDevicesRequest) ProductTypes(productTy
 	return r
 }
 
-func (r DevicesApiGetOrganizationInventoryDevicesRequest) Execute() ([]InlineResponse200102, *http.Response, error) {
+func (r DevicesApiGetOrganizationInventoryDevicesRequest) Execute() ([]GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryDevicesExecute(r)
 }
 
@@ -5698,13 +5698,13 @@ func (a *DevicesApiService) GetOrganizationInventoryDevices(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return []InlineResponse200102
-func (a *DevicesApiService) GetOrganizationInventoryDevicesExecute(r DevicesApiGetOrganizationInventoryDevicesRequest) ([]InlineResponse200102, *http.Response, error) {
+//  @return []GetOrganizationInventoryDevices200ResponseInner
+func (a *DevicesApiService) GetOrganizationInventoryDevicesExecute(r DevicesApiGetOrganizationInventoryDevicesRequest) ([]GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200102
+		localVarReturnValue  []GetOrganizationInventoryDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationInventoryDevices")
@@ -5850,7 +5850,7 @@ func (r DevicesApiGetOrganizationSummaryTopDevicesByUsageRequest) Timespan(times
 	return r
 }
 
-func (r DevicesApiGetOrganizationSummaryTopDevicesByUsageRequest) Execute() ([]InlineResponse200122, *http.Response, error) {
+func (r DevicesApiGetOrganizationSummaryTopDevicesByUsageRequest) Execute() ([]GetOrganizationSummaryTopDevicesByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopDevicesByUsageExecute(r)
 }
 
@@ -5872,13 +5872,13 @@ func (a *DevicesApiService) GetOrganizationSummaryTopDevicesByUsage(ctx context.
 }
 
 // Execute executes the request
-//  @return []InlineResponse200122
-func (a *DevicesApiService) GetOrganizationSummaryTopDevicesByUsageExecute(r DevicesApiGetOrganizationSummaryTopDevicesByUsageRequest) ([]InlineResponse200122, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopDevicesByUsage200ResponseInner
+func (a *DevicesApiService) GetOrganizationSummaryTopDevicesByUsageExecute(r DevicesApiGetOrganizationSummaryTopDevicesByUsageRequest) ([]GetOrganizationSummaryTopDevicesByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200122
+		localVarReturnValue  []GetOrganizationSummaryTopDevicesByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationSummaryTopDevicesByUsage")
@@ -5997,7 +5997,7 @@ func (r DevicesApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) Timespan
 	return r
 }
 
-func (r DevicesApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) Execute() ([]InlineResponse200123, *http.Response, error) {
+func (r DevicesApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) Execute() ([]GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopDevicesModelsByUsageExecute(r)
 }
 
@@ -6019,13 +6019,13 @@ func (a *DevicesApiService) GetOrganizationSummaryTopDevicesModelsByUsage(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse200123
-func (a *DevicesApiService) GetOrganizationSummaryTopDevicesModelsByUsageExecute(r DevicesApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) ([]InlineResponse200123, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner
+func (a *DevicesApiService) GetOrganizationSummaryTopDevicesModelsByUsageExecute(r DevicesApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) ([]GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200123
+		localVarReturnValue  []GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationSummaryTopDevicesModelsByUsage")
@@ -6151,7 +6151,7 @@ func (r DevicesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Network
 	return r
 }
 
-func (r DevicesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Execute() ([]InlineResponse200129, *http.Response, error) {
+func (r DevicesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Execute() ([]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWirelessDevicesEthernetStatusesExecute(r)
 }
 
@@ -6173,13 +6173,13 @@ func (a *DevicesApiService) GetOrganizationWirelessDevicesEthernetStatuses(ctx c
 }
 
 // Execute executes the request
-//  @return []InlineResponse200129
-func (a *DevicesApiService) GetOrganizationWirelessDevicesEthernetStatusesExecute(r DevicesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) ([]InlineResponse200129, *http.Response, error) {
+//  @return []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
+func (a *DevicesApiService) GetOrganizationWirelessDevicesEthernetStatusesExecute(r DevicesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) ([]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200129
+		localVarReturnValue  []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationWirelessDevicesEthernetStatuses")
@@ -6278,15 +6278,15 @@ type DevicesApiLockNetworkSmDevicesRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	lockNetworkSmDevices *InlineObject101
+	lockNetworkSmDevices *LockNetworkSmDevicesRequest
 }
 
-func (r DevicesApiLockNetworkSmDevicesRequest) LockNetworkSmDevices(lockNetworkSmDevices InlineObject101) DevicesApiLockNetworkSmDevicesRequest {
+func (r DevicesApiLockNetworkSmDevicesRequest) LockNetworkSmDevices(lockNetworkSmDevices LockNetworkSmDevicesRequest) DevicesApiLockNetworkSmDevicesRequest {
 	r.lockNetworkSmDevices = &lockNetworkSmDevices
 	return r
 }
 
-func (r DevicesApiLockNetworkSmDevicesRequest) Execute() (*InlineResponse20039, *http.Response, error) {
+func (r DevicesApiLockNetworkSmDevicesRequest) Execute() (*CheckinNetworkSmDevices200Response, *http.Response, error) {
 	return r.ApiService.LockNetworkSmDevicesExecute(r)
 }
 
@@ -6308,13 +6308,13 @@ func (a *DevicesApiService) LockNetworkSmDevices(ctx context.Context, networkId 
 }
 
 // Execute executes the request
-//  @return InlineResponse20039
-func (a *DevicesApiService) LockNetworkSmDevicesExecute(r DevicesApiLockNetworkSmDevicesRequest) (*InlineResponse20039, *http.Response, error) {
+//  @return CheckinNetworkSmDevices200Response
+func (a *DevicesApiService) LockNetworkSmDevicesExecute(r DevicesApiLockNetworkSmDevicesRequest) (*CheckinNetworkSmDevices200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20039
+		localVarReturnValue  *CheckinNetworkSmDevices200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.LockNetworkSmDevices")
@@ -6403,15 +6403,15 @@ type DevicesApiModifyNetworkSmDevicesTagsRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	modifyNetworkSmDevicesTags *InlineObject102
+	modifyNetworkSmDevicesTags *ModifyNetworkSmDevicesTagsRequest
 }
 
-func (r DevicesApiModifyNetworkSmDevicesTagsRequest) ModifyNetworkSmDevicesTags(modifyNetworkSmDevicesTags InlineObject102) DevicesApiModifyNetworkSmDevicesTagsRequest {
+func (r DevicesApiModifyNetworkSmDevicesTagsRequest) ModifyNetworkSmDevicesTags(modifyNetworkSmDevicesTags ModifyNetworkSmDevicesTagsRequest) DevicesApiModifyNetworkSmDevicesTagsRequest {
 	r.modifyNetworkSmDevicesTags = &modifyNetworkSmDevicesTags
 	return r
 }
 
-func (r DevicesApiModifyNetworkSmDevicesTagsRequest) Execute() ([]InlineResponse20041, *http.Response, error) {
+func (r DevicesApiModifyNetworkSmDevicesTagsRequest) Execute() ([]ModifyNetworkSmDevicesTags200ResponseInner, *http.Response, error) {
 	return r.ApiService.ModifyNetworkSmDevicesTagsExecute(r)
 }
 
@@ -6433,13 +6433,13 @@ func (a *DevicesApiService) ModifyNetworkSmDevicesTags(ctx context.Context, netw
 }
 
 // Execute executes the request
-//  @return []InlineResponse20041
-func (a *DevicesApiService) ModifyNetworkSmDevicesTagsExecute(r DevicesApiModifyNetworkSmDevicesTagsRequest) ([]InlineResponse20041, *http.Response, error) {
+//  @return []ModifyNetworkSmDevicesTags200ResponseInner
+func (a *DevicesApiService) ModifyNetworkSmDevicesTagsExecute(r DevicesApiModifyNetworkSmDevicesTagsRequest) ([]ModifyNetworkSmDevicesTags200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20041
+		localVarReturnValue  []ModifyNetworkSmDevicesTags200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.ModifyNetworkSmDevicesTags")
@@ -6531,15 +6531,15 @@ type DevicesApiMoveNetworkSmDevicesRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	moveNetworkSmDevices *InlineObject103
+	moveNetworkSmDevices *MoveNetworkSmDevicesRequest
 }
 
-func (r DevicesApiMoveNetworkSmDevicesRequest) MoveNetworkSmDevices(moveNetworkSmDevices InlineObject103) DevicesApiMoveNetworkSmDevicesRequest {
+func (r DevicesApiMoveNetworkSmDevicesRequest) MoveNetworkSmDevices(moveNetworkSmDevices MoveNetworkSmDevicesRequest) DevicesApiMoveNetworkSmDevicesRequest {
 	r.moveNetworkSmDevices = &moveNetworkSmDevices
 	return r
 }
 
-func (r DevicesApiMoveNetworkSmDevicesRequest) Execute() (*InlineResponse20042, *http.Response, error) {
+func (r DevicesApiMoveNetworkSmDevicesRequest) Execute() (*MoveNetworkSmDevices200Response, *http.Response, error) {
 	return r.ApiService.MoveNetworkSmDevicesExecute(r)
 }
 
@@ -6561,13 +6561,13 @@ func (a *DevicesApiService) MoveNetworkSmDevices(ctx context.Context, networkId 
 }
 
 // Execute executes the request
-//  @return InlineResponse20042
-func (a *DevicesApiService) MoveNetworkSmDevicesExecute(r DevicesApiMoveNetworkSmDevicesRequest) (*InlineResponse20042, *http.Response, error) {
+//  @return MoveNetworkSmDevices200Response
+func (a *DevicesApiService) MoveNetworkSmDevicesExecute(r DevicesApiMoveNetworkSmDevicesRequest) (*MoveNetworkSmDevices200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20042
+		localVarReturnValue  *MoveNetworkSmDevices200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.MoveNetworkSmDevices")
@@ -6886,10 +6886,10 @@ type DevicesApiRemoveNetworkDevicesRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	removeNetworkDevices *InlineObject76
+	removeNetworkDevices *RemoveNetworkDevicesRequest
 }
 
-func (r DevicesApiRemoveNetworkDevicesRequest) RemoveNetworkDevices(removeNetworkDevices InlineObject76) DevicesApiRemoveNetworkDevicesRequest {
+func (r DevicesApiRemoveNetworkDevicesRequest) RemoveNetworkDevices(removeNetworkDevices RemoveNetworkDevicesRequest) DevicesApiRemoveNetworkDevicesRequest {
 	r.removeNetworkDevices = &removeNetworkDevices
 	return r
 }
@@ -7124,10 +7124,10 @@ type DevicesApiUpdateDeviceRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	serial string
-	updateDevice *InlineObject
+	updateDevice *UpdateDeviceRequest
 }
 
-func (r DevicesApiUpdateDeviceRequest) UpdateDevice(updateDevice InlineObject) DevicesApiUpdateDeviceRequest {
+func (r DevicesApiUpdateDeviceRequest) UpdateDevice(updateDevice UpdateDeviceRequest) DevicesApiUpdateDeviceRequest {
 	r.updateDevice = &updateDevice
 	return r
 }
@@ -7249,10 +7249,10 @@ type DevicesApiUpdateDeviceCellularSimsRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	serial string
-	updateDeviceCellularSims *InlineObject9
+	updateDeviceCellularSims *UpdateDeviceCellularSimsRequest
 }
 
-func (r DevicesApiUpdateDeviceCellularSimsRequest) UpdateDeviceCellularSims(updateDeviceCellularSims InlineObject9) DevicesApiUpdateDeviceCellularSimsRequest {
+func (r DevicesApiUpdateDeviceCellularSimsRequest) UpdateDeviceCellularSims(updateDeviceCellularSims UpdateDeviceCellularSimsRequest) DevicesApiUpdateDeviceCellularSimsRequest {
 	r.updateDeviceCellularSims = &updateDeviceCellularSims
 	return r
 }
@@ -7374,10 +7374,10 @@ type DevicesApiUpdateDeviceManagementInterfaceRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	serial string
-	updateDeviceManagementInterface *InlineObject14
+	updateDeviceManagementInterface *UpdateDeviceManagementInterfaceRequest
 }
 
-func (r DevicesApiUpdateDeviceManagementInterfaceRequest) UpdateDeviceManagementInterface(updateDeviceManagementInterface InlineObject14) DevicesApiUpdateDeviceManagementInterfaceRequest {
+func (r DevicesApiUpdateDeviceManagementInterfaceRequest) UpdateDeviceManagementInterface(updateDeviceManagementInterface UpdateDeviceManagementInterfaceRequest) DevicesApiUpdateDeviceManagementInterfaceRequest {
 	r.updateDeviceManagementInterface = &updateDeviceManagementInterface
 	return r
 }
@@ -7499,15 +7499,15 @@ type DevicesApiUpdateNetworkSmDevicesFieldsRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	updateNetworkSmDevicesFields *InlineObject100
+	updateNetworkSmDevicesFields *UpdateNetworkSmDevicesFieldsRequest
 }
 
-func (r DevicesApiUpdateNetworkSmDevicesFieldsRequest) UpdateNetworkSmDevicesFields(updateNetworkSmDevicesFields InlineObject100) DevicesApiUpdateNetworkSmDevicesFieldsRequest {
+func (r DevicesApiUpdateNetworkSmDevicesFieldsRequest) UpdateNetworkSmDevicesFields(updateNetworkSmDevicesFields UpdateNetworkSmDevicesFieldsRequest) DevicesApiUpdateNetworkSmDevicesFieldsRequest {
 	r.updateNetworkSmDevicesFields = &updateNetworkSmDevicesFields
 	return r
 }
 
-func (r DevicesApiUpdateNetworkSmDevicesFieldsRequest) Execute() ([]InlineResponse20040, *http.Response, error) {
+func (r DevicesApiUpdateNetworkSmDevicesFieldsRequest) Execute() ([]UpdateNetworkSmDevicesFields200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSmDevicesFieldsExecute(r)
 }
 
@@ -7529,13 +7529,13 @@ func (a *DevicesApiService) UpdateNetworkSmDevicesFields(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return []InlineResponse20040
-func (a *DevicesApiService) UpdateNetworkSmDevicesFieldsExecute(r DevicesApiUpdateNetworkSmDevicesFieldsRequest) ([]InlineResponse20040, *http.Response, error) {
+//  @return []UpdateNetworkSmDevicesFields200ResponseInner
+func (a *DevicesApiService) UpdateNetworkSmDevicesFieldsExecute(r DevicesApiUpdateNetworkSmDevicesFieldsRequest) ([]UpdateNetworkSmDevicesFields200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20040
+		localVarReturnValue  []UpdateNetworkSmDevicesFields200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.UpdateNetworkSmDevicesFields")
@@ -7627,10 +7627,10 @@ type DevicesApiVmxNetworkDevicesClaimRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	vmxNetworkDevicesClaim *InlineObject75
+	vmxNetworkDevicesClaim *VmxNetworkDevicesClaimRequest
 }
 
-func (r DevicesApiVmxNetworkDevicesClaimRequest) VmxNetworkDevicesClaim(vmxNetworkDevicesClaim InlineObject75) DevicesApiVmxNetworkDevicesClaimRequest {
+func (r DevicesApiVmxNetworkDevicesClaimRequest) VmxNetworkDevicesClaim(vmxNetworkDevicesClaim VmxNetworkDevicesClaimRequest) DevicesApiVmxNetworkDevicesClaimRequest {
 	r.vmxNetworkDevicesClaim = &vmxNetworkDevicesClaim
 	return r
 }
@@ -7755,15 +7755,15 @@ type DevicesApiWipeNetworkSmDevicesRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	wipeNetworkSmDevices *InlineObject104
+	wipeNetworkSmDevices *WipeNetworkSmDevicesRequest
 }
 
-func (r DevicesApiWipeNetworkSmDevicesRequest) WipeNetworkSmDevices(wipeNetworkSmDevices InlineObject104) DevicesApiWipeNetworkSmDevicesRequest {
+func (r DevicesApiWipeNetworkSmDevicesRequest) WipeNetworkSmDevices(wipeNetworkSmDevices WipeNetworkSmDevicesRequest) DevicesApiWipeNetworkSmDevicesRequest {
 	r.wipeNetworkSmDevices = &wipeNetworkSmDevices
 	return r
 }
 
-func (r DevicesApiWipeNetworkSmDevicesRequest) Execute() (*InlineResponse20043, *http.Response, error) {
+func (r DevicesApiWipeNetworkSmDevicesRequest) Execute() (*WipeNetworkSmDevices200Response, *http.Response, error) {
 	return r.ApiService.WipeNetworkSmDevicesExecute(r)
 }
 
@@ -7785,13 +7785,13 @@ func (a *DevicesApiService) WipeNetworkSmDevices(ctx context.Context, networkId 
 }
 
 // Execute executes the request
-//  @return InlineResponse20043
-func (a *DevicesApiService) WipeNetworkSmDevicesExecute(r DevicesApiWipeNetworkSmDevicesRequest) (*InlineResponse20043, *http.Response, error) {
+//  @return WipeNetworkSmDevices200Response
+func (a *DevicesApiService) WipeNetworkSmDevicesExecute(r DevicesApiWipeNetworkSmDevicesRequest) (*WipeNetworkSmDevices200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20043
+		localVarReturnValue  *WipeNetworkSmDevices200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.WipeNetworkSmDevices")

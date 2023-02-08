@@ -144,10 +144,10 @@ type CellularApiUpdateDeviceCellularSimsRequest struct {
 	ctx context.Context
 	ApiService *CellularApiService
 	serial string
-	updateDeviceCellularSims *InlineObject9
+	updateDeviceCellularSims *UpdateDeviceCellularSimsRequest
 }
 
-func (r CellularApiUpdateDeviceCellularSimsRequest) UpdateDeviceCellularSims(updateDeviceCellularSims InlineObject9) CellularApiUpdateDeviceCellularSimsRequest {
+func (r CellularApiUpdateDeviceCellularSimsRequest) UpdateDeviceCellularSims(updateDeviceCellularSims UpdateDeviceCellularSimsRequest) CellularApiUpdateDeviceCellularSimsRequest {
 	r.updateDeviceCellularSims = &updateDeviceCellularSims
 	return r
 }

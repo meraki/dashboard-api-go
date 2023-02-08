@@ -27,15 +27,15 @@ type OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequ
 	ctx context.Context
 	ApiService *OnboardingApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringImport *InlineObject199
+	createOrganizationInventoryOnboardingCloudMonitoringImport *CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest
 }
 
-func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) CreateOrganizationInventoryOnboardingCloudMonitoringImport(createOrganizationInventoryOnboardingCloudMonitoringImport InlineObject199) OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest {
+func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) CreateOrganizationInventoryOnboardingCloudMonitoringImport(createOrganizationInventoryOnboardingCloudMonitoringImport CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest {
 	r.createOrganizationInventoryOnboardingCloudMonitoringImport = &createOrganizationInventoryOnboardingCloudMonitoringImport
 	return r
 }
 
-func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) Execute() ([]InlineResponse2017, *http.Response, error) {
+func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) Execute() ([]CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitor
 }
 
 // Execute executes the request
-//  @return []InlineResponse2017
-func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) ([]InlineResponse2017, *http.Response, error) {
+//  @return []CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner
+func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) ([]CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2017
+		localVarReturnValue  []CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnboardingApiService.CreateOrganizationInventoryOnboardingCloudMonitoringImport")
@@ -155,15 +155,15 @@ type OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareReq
 	ctx context.Context
 	ApiService *OnboardingApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringPrepare *InlineObject200
+	createOrganizationInventoryOnboardingCloudMonitoringPrepare *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest
 }
 
-func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(createOrganizationInventoryOnboardingCloudMonitoringPrepare InlineObject200) OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest {
+func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(createOrganizationInventoryOnboardingCloudMonitoringPrepare CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest {
 	r.createOrganizationInventoryOnboardingCloudMonitoringPrepare = &createOrganizationInventoryOnboardingCloudMonitoringPrepare
 	return r
 }
 
-func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) Execute() ([]InlineResponse2018, *http.Response, error) {
+func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) Execute() ([]CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r)
 }
 
@@ -185,13 +185,13 @@ func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitor
 }
 
 // Execute executes the request
-//  @return []InlineResponse2018
-func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) ([]InlineResponse2018, *http.Response, error) {
+//  @return []CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner
+func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) ([]CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2018
+		localVarReturnValue  []CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnboardingApiService.CreateOrganizationInventoryOnboardingCloudMonitoringPrepare")
@@ -429,7 +429,7 @@ func (r OnboardingApiGetOrganizationInventoryOnboardingCloudMonitoringImportsReq
 	return r
 }
 
-func (r OnboardingApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) Execute() ([]InlineResponse200103, *http.Response, error) {
+func (r OnboardingApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) Execute() ([]GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r)
 }
 
@@ -451,13 +451,13 @@ func (a *OnboardingApiService) GetOrganizationInventoryOnboardingCloudMonitoring
 }
 
 // Execute executes the request
-//  @return []InlineResponse200103
-func (a *OnboardingApiService) GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r OnboardingApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) ([]InlineResponse200103, *http.Response, error) {
+//  @return []GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner
+func (a *OnboardingApiService) GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r OnboardingApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) ([]GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200103
+		localVarReturnValue  []GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnboardingApiService.GetOrganizationInventoryOnboardingCloudMonitoringImports")
@@ -548,10 +548,10 @@ type OnboardingApiUpdateOrganizationCameraOnboardingStatusesRequest struct {
 	ctx context.Context
 	ApiService *OnboardingApiService
 	organizationId string
-	updateOrganizationCameraOnboardingStatuses *InlineObject188
+	updateOrganizationCameraOnboardingStatuses *UpdateOrganizationCameraOnboardingStatusesRequest
 }
 
-func (r OnboardingApiUpdateOrganizationCameraOnboardingStatusesRequest) UpdateOrganizationCameraOnboardingStatuses(updateOrganizationCameraOnboardingStatuses InlineObject188) OnboardingApiUpdateOrganizationCameraOnboardingStatusesRequest {
+func (r OnboardingApiUpdateOrganizationCameraOnboardingStatusesRequest) UpdateOrganizationCameraOnboardingStatuses(updateOrganizationCameraOnboardingStatuses UpdateOrganizationCameraOnboardingStatusesRequest) OnboardingApiUpdateOrganizationCameraOnboardingStatusesRequest {
 	r.updateOrganizationCameraOnboardingStatuses = &updateOrganizationCameraOnboardingStatuses
 	return r
 }

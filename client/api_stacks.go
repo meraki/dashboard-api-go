@@ -28,10 +28,10 @@ type StacksApiAddNetworkSwitchStackRequest struct {
 	ApiService *StacksApiService
 	networkId string
 	switchStackId string
-	addNetworkSwitchStack *InlineObject130
+	addNetworkSwitchStack *AddNetworkSwitchStackRequest
 }
 
-func (r StacksApiAddNetworkSwitchStackRequest) AddNetworkSwitchStack(addNetworkSwitchStack InlineObject130) StacksApiAddNetworkSwitchStackRequest {
+func (r StacksApiAddNetworkSwitchStackRequest) AddNetworkSwitchStack(addNetworkSwitchStack AddNetworkSwitchStackRequest) StacksApiAddNetworkSwitchStackRequest {
 	r.addNetworkSwitchStack = &addNetworkSwitchStack
 	return r
 }
@@ -159,10 +159,10 @@ type StacksApiCreateNetworkSwitchStackRequest struct {
 	ctx context.Context
 	ApiService *StacksApiService
 	networkId string
-	createNetworkSwitchStack *InlineObject129
+	createNetworkSwitchStack *CreateNetworkSwitchStackRequest
 }
 
-func (r StacksApiCreateNetworkSwitchStackRequest) CreateNetworkSwitchStack(createNetworkSwitchStack InlineObject129) StacksApiCreateNetworkSwitchStackRequest {
+func (r StacksApiCreateNetworkSwitchStackRequest) CreateNetworkSwitchStack(createNetworkSwitchStack CreateNetworkSwitchStackRequest) StacksApiCreateNetworkSwitchStackRequest {
 	r.createNetworkSwitchStack = &createNetworkSwitchStack
 	return r
 }
@@ -288,10 +288,10 @@ type StacksApiCreateNetworkSwitchStackRoutingInterfaceRequest struct {
 	ApiService *StacksApiService
 	networkId string
 	switchStackId string
-	createNetworkSwitchStackRoutingInterface *InlineObject132
+	createNetworkSwitchStackRoutingInterface *CreateNetworkSwitchStackRoutingInterfaceRequest
 }
 
-func (r StacksApiCreateNetworkSwitchStackRoutingInterfaceRequest) CreateNetworkSwitchStackRoutingInterface(createNetworkSwitchStackRoutingInterface InlineObject132) StacksApiCreateNetworkSwitchStackRoutingInterfaceRequest {
+func (r StacksApiCreateNetworkSwitchStackRoutingInterfaceRequest) CreateNetworkSwitchStackRoutingInterface(createNetworkSwitchStackRoutingInterface CreateNetworkSwitchStackRoutingInterfaceRequest) StacksApiCreateNetworkSwitchStackRoutingInterfaceRequest {
 	r.createNetworkSwitchStackRoutingInterface = &createNetworkSwitchStackRoutingInterface
 	return r
 }
@@ -420,10 +420,10 @@ type StacksApiCreateNetworkSwitchStackRoutingStaticRouteRequest struct {
 	ApiService *StacksApiService
 	networkId string
 	switchStackId string
-	createNetworkSwitchStackRoutingStaticRoute *InlineObject135
+	createNetworkSwitchStackRoutingStaticRoute *CreateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r StacksApiCreateNetworkSwitchStackRoutingStaticRouteRequest) CreateNetworkSwitchStackRoutingStaticRoute(createNetworkSwitchStackRoutingStaticRoute InlineObject135) StacksApiCreateNetworkSwitchStackRoutingStaticRouteRequest {
+func (r StacksApiCreateNetworkSwitchStackRoutingStaticRouteRequest) CreateNetworkSwitchStackRoutingStaticRoute(createNetworkSwitchStackRoutingStaticRoute CreateDeviceSwitchRoutingStaticRouteRequest) StacksApiCreateNetworkSwitchStackRoutingStaticRouteRequest {
 	r.createNetworkSwitchStackRoutingStaticRoute = &createNetworkSwitchStackRoutingStaticRoute
 	return r
 }
@@ -1745,10 +1745,10 @@ type StacksApiRemoveNetworkSwitchStackRequest struct {
 	ApiService *StacksApiService
 	networkId string
 	switchStackId string
-	removeNetworkSwitchStack *InlineObject131
+	removeNetworkSwitchStack *RemoveNetworkSwitchStackRequest
 }
 
-func (r StacksApiRemoveNetworkSwitchStackRequest) RemoveNetworkSwitchStack(removeNetworkSwitchStack InlineObject131) StacksApiRemoveNetworkSwitchStackRequest {
+func (r StacksApiRemoveNetworkSwitchStackRequest) RemoveNetworkSwitchStack(removeNetworkSwitchStack RemoveNetworkSwitchStackRequest) StacksApiRemoveNetworkSwitchStackRequest {
 	r.removeNetworkSwitchStack = &removeNetworkSwitchStack
 	return r
 }
@@ -1878,10 +1878,10 @@ type StacksApiUpdateNetworkSwitchStackRoutingInterfaceRequest struct {
 	networkId string
 	switchStackId string
 	interfaceId string
-	updateNetworkSwitchStackRoutingInterface *InlineObject133
+	updateNetworkSwitchStackRoutingInterface *UpdateNetworkSwitchStackRoutingInterfaceRequest
 }
 
-func (r StacksApiUpdateNetworkSwitchStackRoutingInterfaceRequest) UpdateNetworkSwitchStackRoutingInterface(updateNetworkSwitchStackRoutingInterface InlineObject133) StacksApiUpdateNetworkSwitchStackRoutingInterfaceRequest {
+func (r StacksApiUpdateNetworkSwitchStackRoutingInterfaceRequest) UpdateNetworkSwitchStackRoutingInterface(updateNetworkSwitchStackRoutingInterface UpdateNetworkSwitchStackRoutingInterfaceRequest) StacksApiUpdateNetworkSwitchStackRoutingInterfaceRequest {
 	r.updateNetworkSwitchStackRoutingInterface = &updateNetworkSwitchStackRoutingInterface
 	return r
 }
@@ -2011,10 +2011,10 @@ type StacksApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest struct {
 	networkId string
 	switchStackId string
 	interfaceId string
-	updateNetworkSwitchStackRoutingInterfaceDhcp *InlineObject134
+	updateNetworkSwitchStackRoutingInterfaceDhcp *UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest
 }
 
-func (r StacksApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest) UpdateNetworkSwitchStackRoutingInterfaceDhcp(updateNetworkSwitchStackRoutingInterfaceDhcp InlineObject134) StacksApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest {
+func (r StacksApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest) UpdateNetworkSwitchStackRoutingInterfaceDhcp(updateNetworkSwitchStackRoutingInterfaceDhcp UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest) StacksApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest {
 	r.updateNetworkSwitchStackRoutingInterfaceDhcp = &updateNetworkSwitchStackRoutingInterfaceDhcp
 	return r
 }
@@ -2144,10 +2144,10 @@ type StacksApiUpdateNetworkSwitchStackRoutingStaticRouteRequest struct {
 	networkId string
 	switchStackId string
 	staticRouteId string
-	updateNetworkSwitchStackRoutingStaticRoute *InlineObject136
+	updateNetworkSwitchStackRoutingStaticRoute *UpdateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r StacksApiUpdateNetworkSwitchStackRoutingStaticRouteRequest) UpdateNetworkSwitchStackRoutingStaticRoute(updateNetworkSwitchStackRoutingStaticRoute InlineObject136) StacksApiUpdateNetworkSwitchStackRoutingStaticRouteRequest {
+func (r StacksApiUpdateNetworkSwitchStackRoutingStaticRouteRequest) UpdateNetworkSwitchStackRoutingStaticRoute(updateNetworkSwitchStackRoutingStaticRoute UpdateDeviceSwitchRoutingStaticRouteRequest) StacksApiUpdateNetworkSwitchStackRoutingStaticRouteRequest {
 	r.updateNetworkSwitchStackRoutingStaticRoute = &updateNetworkSwitchStackRoutingStaticRoute
 	return r
 }

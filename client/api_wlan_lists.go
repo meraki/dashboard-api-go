@@ -30,7 +30,7 @@ type WlanListsApiGetNetworkSmDeviceWlanListsRequest struct {
 	deviceId string
 }
 
-func (r WlanListsApiGetNetworkSmDeviceWlanListsRequest) Execute() ([]InlineResponse20054, *http.Response, error) {
+func (r WlanListsApiGetNetworkSmDeviceWlanListsRequest) Execute() ([]GetNetworkSmDeviceWlanLists200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceWlanListsExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *WlanListsApiService) GetNetworkSmDeviceWlanLists(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return []InlineResponse20054
-func (a *WlanListsApiService) GetNetworkSmDeviceWlanListsExecute(r WlanListsApiGetNetworkSmDeviceWlanListsRequest) ([]InlineResponse20054, *http.Response, error) {
+//  @return []GetNetworkSmDeviceWlanLists200ResponseInner
+func (a *WlanListsApiService) GetNetworkSmDeviceWlanListsExecute(r WlanListsApiGetNetworkSmDeviceWlanListsRequest) ([]GetNetworkSmDeviceWlanLists200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20054
+		localVarReturnValue  []GetNetworkSmDeviceWlanLists200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WlanListsApiService.GetNetworkSmDeviceWlanLists")

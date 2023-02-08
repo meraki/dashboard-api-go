@@ -30,7 +30,7 @@ type NetworkAdaptersApiGetNetworkSmDeviceNetworkAdaptersRequest struct {
 	deviceId string
 }
 
-func (r NetworkAdaptersApiGetNetworkSmDeviceNetworkAdaptersRequest) Execute() ([]InlineResponse20050, *http.Response, error) {
+func (r NetworkAdaptersApiGetNetworkSmDeviceNetworkAdaptersRequest) Execute() ([]GetNetworkSmDeviceNetworkAdapters200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceNetworkAdaptersExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *NetworkAdaptersApiService) GetNetworkSmDeviceNetworkAdapters(ctx contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse20050
-func (a *NetworkAdaptersApiService) GetNetworkSmDeviceNetworkAdaptersExecute(r NetworkAdaptersApiGetNetworkSmDeviceNetworkAdaptersRequest) ([]InlineResponse20050, *http.Response, error) {
+//  @return []GetNetworkSmDeviceNetworkAdapters200ResponseInner
+func (a *NetworkAdaptersApiService) GetNetworkSmDeviceNetworkAdaptersExecute(r NetworkAdaptersApiGetNetworkSmDeviceNetworkAdaptersRequest) ([]GetNetworkSmDeviceNetworkAdapters200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20050
+		localVarReturnValue  []GetNetworkSmDeviceNetworkAdapters200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkAdaptersApiService.GetNetworkSmDeviceNetworkAdapters")

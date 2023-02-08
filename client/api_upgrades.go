@@ -43,7 +43,7 @@ func (r UpgradesApiGetOrganizationFirmwareUpgradesRequest) ProductType(productTy
 	return r
 }
 
-func (r UpgradesApiGetOrganizationFirmwareUpgradesRequest) Execute() ([]InlineResponse20098, *http.Response, error) {
+func (r UpgradesApiGetOrganizationFirmwareUpgradesRequest) Execute() ([]GetOrganizationFirmwareUpgrades200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationFirmwareUpgradesExecute(r)
 }
 
@@ -65,13 +65,13 @@ func (a *UpgradesApiService) GetOrganizationFirmwareUpgrades(ctx context.Context
 }
 
 // Execute executes the request
-//  @return []InlineResponse20098
-func (a *UpgradesApiService) GetOrganizationFirmwareUpgradesExecute(r UpgradesApiGetOrganizationFirmwareUpgradesRequest) ([]InlineResponse20098, *http.Response, error) {
+//  @return []GetOrganizationFirmwareUpgrades200ResponseInner
+func (a *UpgradesApiService) GetOrganizationFirmwareUpgradesExecute(r UpgradesApiGetOrganizationFirmwareUpgradesRequest) ([]GetOrganizationFirmwareUpgrades200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20098
+		localVarReturnValue  []GetOrganizationFirmwareUpgrades200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UpgradesApiService.GetOrganizationFirmwareUpgrades")
@@ -222,7 +222,7 @@ func (r UpgradesApiGetOrganizationFirmwareUpgradesByDeviceRequest) FirmwareUpgra
 	return r
 }
 
-func (r UpgradesApiGetOrganizationFirmwareUpgradesByDeviceRequest) Execute() ([]InlineResponse20099, *http.Response, error) {
+func (r UpgradesApiGetOrganizationFirmwareUpgradesByDeviceRequest) Execute() ([]GetOrganizationFirmwareUpgradesByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationFirmwareUpgradesByDeviceExecute(r)
 }
 
@@ -244,13 +244,13 @@ func (a *UpgradesApiService) GetOrganizationFirmwareUpgradesByDevice(ctx context
 }
 
 // Execute executes the request
-//  @return []InlineResponse20099
-func (a *UpgradesApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r UpgradesApiGetOrganizationFirmwareUpgradesByDeviceRequest) ([]InlineResponse20099, *http.Response, error) {
+//  @return []GetOrganizationFirmwareUpgradesByDevice200ResponseInner
+func (a *UpgradesApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r UpgradesApiGetOrganizationFirmwareUpgradesByDeviceRequest) ([]GetOrganizationFirmwareUpgradesByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20099
+		localVarReturnValue  []GetOrganizationFirmwareUpgradesByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UpgradesApiService.GetOrganizationFirmwareUpgradesByDevice")

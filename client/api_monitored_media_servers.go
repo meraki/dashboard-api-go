@@ -27,10 +27,10 @@ type MonitoredMediaServersApiCreateOrganizationInsightMonitoredMediaServerReques
 	ctx context.Context
 	ApiService *MonitoredMediaServersApiService
 	organizationId string
-	createOrganizationInsightMonitoredMediaServer *InlineObject196
+	createOrganizationInsightMonitoredMediaServer *CreateOrganizationInsightMonitoredMediaServerRequest
 }
 
-func (r MonitoredMediaServersApiCreateOrganizationInsightMonitoredMediaServerRequest) CreateOrganizationInsightMonitoredMediaServer(createOrganizationInsightMonitoredMediaServer InlineObject196) MonitoredMediaServersApiCreateOrganizationInsightMonitoredMediaServerRequest {
+func (r MonitoredMediaServersApiCreateOrganizationInsightMonitoredMediaServerRequest) CreateOrganizationInsightMonitoredMediaServer(createOrganizationInsightMonitoredMediaServer CreateOrganizationInsightMonitoredMediaServerRequest) MonitoredMediaServersApiCreateOrganizationInsightMonitoredMediaServerRequest {
 	r.createOrganizationInsightMonitoredMediaServer = &createOrganizationInsightMonitoredMediaServer
 	return r
 }
@@ -388,7 +388,7 @@ type MonitoredMediaServersApiGetOrganizationInsightMonitoredMediaServersRequest 
 	organizationId string
 }
 
-func (r MonitoredMediaServersApiGetOrganizationInsightMonitoredMediaServersRequest) Execute() ([]InlineResponse200101, *http.Response, error) {
+func (r MonitoredMediaServersApiGetOrganizationInsightMonitoredMediaServersRequest) Execute() ([]GetOrganizationInsightMonitoredMediaServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInsightMonitoredMediaServersExecute(r)
 }
 
@@ -410,13 +410,13 @@ func (a *MonitoredMediaServersApiService) GetOrganizationInsightMonitoredMediaSe
 }
 
 // Execute executes the request
-//  @return []InlineResponse200101
-func (a *MonitoredMediaServersApiService) GetOrganizationInsightMonitoredMediaServersExecute(r MonitoredMediaServersApiGetOrganizationInsightMonitoredMediaServersRequest) ([]InlineResponse200101, *http.Response, error) {
+//  @return []GetOrganizationInsightMonitoredMediaServers200ResponseInner
+func (a *MonitoredMediaServersApiService) GetOrganizationInsightMonitoredMediaServersExecute(r MonitoredMediaServersApiGetOrganizationInsightMonitoredMediaServersRequest) ([]GetOrganizationInsightMonitoredMediaServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200101
+		localVarReturnValue  []GetOrganizationInsightMonitoredMediaServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitoredMediaServersApiService.GetOrganizationInsightMonitoredMediaServers")
@@ -504,10 +504,10 @@ type MonitoredMediaServersApiUpdateOrganizationInsightMonitoredMediaServerReques
 	ApiService *MonitoredMediaServersApiService
 	organizationId string
 	monitoredMediaServerId string
-	updateOrganizationInsightMonitoredMediaServer *InlineObject197
+	updateOrganizationInsightMonitoredMediaServer *UpdateOrganizationInsightMonitoredMediaServerRequest
 }
 
-func (r MonitoredMediaServersApiUpdateOrganizationInsightMonitoredMediaServerRequest) UpdateOrganizationInsightMonitoredMediaServer(updateOrganizationInsightMonitoredMediaServer InlineObject197) MonitoredMediaServersApiUpdateOrganizationInsightMonitoredMediaServerRequest {
+func (r MonitoredMediaServersApiUpdateOrganizationInsightMonitoredMediaServerRequest) UpdateOrganizationInsightMonitoredMediaServer(updateOrganizationInsightMonitoredMediaServer UpdateOrganizationInsightMonitoredMediaServerRequest) MonitoredMediaServersApiUpdateOrganizationInsightMonitoredMediaServerRequest {
 	r.updateOrganizationInsightMonitoredMediaServer = &updateOrganizationInsightMonitoredMediaServer
 	return r
 }

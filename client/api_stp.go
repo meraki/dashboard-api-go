@@ -144,10 +144,10 @@ type StpApiUpdateNetworkSwitchStpRequest struct {
 	ctx context.Context
 	ApiService *StpApiService
 	networkId string
-	updateNetworkSwitchStp *InlineObject138
+	updateNetworkSwitchStp *UpdateNetworkSwitchStpRequest
 }
 
-func (r StpApiUpdateNetworkSwitchStpRequest) UpdateNetworkSwitchStp(updateNetworkSwitchStp InlineObject138) StpApiUpdateNetworkSwitchStpRequest {
+func (r StpApiUpdateNetworkSwitchStpRequest) UpdateNetworkSwitchStp(updateNetworkSwitchStp UpdateNetworkSwitchStpRequest) StpApiUpdateNetworkSwitchStpRequest {
 	r.updateNetworkSwitchStp = &updateNetworkSwitchStp
 	return r
 }

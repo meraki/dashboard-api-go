@@ -27,10 +27,10 @@ type MqttBrokersApiCreateNetworkMqttBrokerRequest struct {
 	ctx context.Context
 	ApiService *MqttBrokersApiService
 	networkId string
-	createNetworkMqttBroker *InlineObject91
+	createNetworkMqttBroker *CreateNetworkMqttBrokerRequest
 }
 
-func (r MqttBrokersApiCreateNetworkMqttBrokerRequest) CreateNetworkMqttBroker(createNetworkMqttBroker InlineObject91) MqttBrokersApiCreateNetworkMqttBrokerRequest {
+func (r MqttBrokersApiCreateNetworkMqttBrokerRequest) CreateNetworkMqttBroker(createNetworkMqttBroker CreateNetworkMqttBrokerRequest) MqttBrokersApiCreateNetworkMqttBrokerRequest {
 	r.createNetworkMqttBroker = &createNetworkMqttBroker
 	return r
 }
@@ -504,10 +504,10 @@ type MqttBrokersApiUpdateNetworkMqttBrokerRequest struct {
 	ApiService *MqttBrokersApiService
 	networkId string
 	mqttBrokerId string
-	updateNetworkMqttBroker *InlineObject92
+	updateNetworkMqttBroker *UpdateNetworkMqttBrokerRequest
 }
 
-func (r MqttBrokersApiUpdateNetworkMqttBrokerRequest) UpdateNetworkMqttBroker(updateNetworkMqttBroker InlineObject92) MqttBrokersApiUpdateNetworkMqttBrokerRequest {
+func (r MqttBrokersApiUpdateNetworkMqttBrokerRequest) UpdateNetworkMqttBroker(updateNetworkMqttBroker UpdateNetworkMqttBrokerRequest) MqttBrokersApiUpdateNetworkMqttBrokerRequest {
 	r.updateNetworkMqttBroker = &updateNetworkMqttBroker
 	return r
 }

@@ -64,7 +64,7 @@ func (r UplinksLossAndLatencyApiGetOrganizationDevicesUplinksLossAndLatencyReque
 	return r
 }
 
-func (r UplinksLossAndLatencyApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Execute() ([]InlineResponse20097, *http.Response, error) {
+func (r UplinksLossAndLatencyApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Execute() ([]GetOrganizationDevicesUplinksLossAndLatency200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesUplinksLossAndLatencyExecute(r)
 }
 
@@ -86,13 +86,13 @@ func (a *UplinksLossAndLatencyApiService) GetOrganizationDevicesUplinksLossAndLa
 }
 
 // Execute executes the request
-//  @return []InlineResponse20097
-func (a *UplinksLossAndLatencyApiService) GetOrganizationDevicesUplinksLossAndLatencyExecute(r UplinksLossAndLatencyApiGetOrganizationDevicesUplinksLossAndLatencyRequest) ([]InlineResponse20097, *http.Response, error) {
+//  @return []GetOrganizationDevicesUplinksLossAndLatency200ResponseInner
+func (a *UplinksLossAndLatencyApiService) GetOrganizationDevicesUplinksLossAndLatencyExecute(r UplinksLossAndLatencyApiGetOrganizationDevicesUplinksLossAndLatencyRequest) ([]GetOrganizationDevicesUplinksLossAndLatency200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20097
+		localVarReturnValue  []GetOrganizationDevicesUplinksLossAndLatency200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinksLossAndLatencyApiService.GetOrganizationDevicesUplinksLossAndLatency")

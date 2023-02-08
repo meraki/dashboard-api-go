@@ -27,10 +27,10 @@ type LiveToolsApiBlinkDeviceLedsRequest struct {
 	ctx context.Context
 	ApiService *LiveToolsApiService
 	serial string
-	blinkDeviceLeds *InlineObject2
+	blinkDeviceLeds *BlinkDeviceLedsRequest
 }
 
-func (r LiveToolsApiBlinkDeviceLedsRequest) BlinkDeviceLeds(blinkDeviceLeds InlineObject2) LiveToolsApiBlinkDeviceLedsRequest {
+func (r LiveToolsApiBlinkDeviceLedsRequest) BlinkDeviceLeds(blinkDeviceLeds BlinkDeviceLedsRequest) LiveToolsApiBlinkDeviceLedsRequest {
 	r.blinkDeviceLeds = &blinkDeviceLeds
 	return r
 }
@@ -152,15 +152,15 @@ type LiveToolsApiCreateDeviceLiveToolsPingRequest struct {
 	ctx context.Context
 	ApiService *LiveToolsApiService
 	serial string
-	createDeviceLiveToolsPing *InlineObject12
+	createDeviceLiveToolsPing *CreateDeviceLiveToolsPingRequest
 }
 
-func (r LiveToolsApiCreateDeviceLiveToolsPingRequest) CreateDeviceLiveToolsPing(createDeviceLiveToolsPing InlineObject12) LiveToolsApiCreateDeviceLiveToolsPingRequest {
+func (r LiveToolsApiCreateDeviceLiveToolsPingRequest) CreateDeviceLiveToolsPing(createDeviceLiveToolsPing CreateDeviceLiveToolsPingRequest) LiveToolsApiCreateDeviceLiveToolsPingRequest {
 	r.createDeviceLiveToolsPing = &createDeviceLiveToolsPing
 	return r
 }
 
-func (r LiveToolsApiCreateDeviceLiveToolsPingRequest) Execute() (*InlineResponse2011, *http.Response, error) {
+func (r LiveToolsApiCreateDeviceLiveToolsPingRequest) Execute() (*CreateDeviceLiveToolsPing201Response, *http.Response, error) {
 	return r.ApiService.CreateDeviceLiveToolsPingExecute(r)
 }
 
@@ -182,13 +182,13 @@ func (a *LiveToolsApiService) CreateDeviceLiveToolsPing(ctx context.Context, ser
 }
 
 // Execute executes the request
-//  @return InlineResponse2011
-func (a *LiveToolsApiService) CreateDeviceLiveToolsPingExecute(r LiveToolsApiCreateDeviceLiveToolsPingRequest) (*InlineResponse2011, *http.Response, error) {
+//  @return CreateDeviceLiveToolsPing201Response
+func (a *LiveToolsApiService) CreateDeviceLiveToolsPingExecute(r LiveToolsApiCreateDeviceLiveToolsPingRequest) (*CreateDeviceLiveToolsPing201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2011
+		localVarReturnValue  *CreateDeviceLiveToolsPing201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LiveToolsApiService.CreateDeviceLiveToolsPing")
@@ -280,15 +280,15 @@ type LiveToolsApiCreateDeviceLiveToolsPingDeviceRequest struct {
 	ctx context.Context
 	ApiService *LiveToolsApiService
 	serial string
-	createDeviceLiveToolsPingDevice *InlineObject13
+	createDeviceLiveToolsPingDevice *CreateDeviceLiveToolsPingDeviceRequest
 }
 
-func (r LiveToolsApiCreateDeviceLiveToolsPingDeviceRequest) CreateDeviceLiveToolsPingDevice(createDeviceLiveToolsPingDevice InlineObject13) LiveToolsApiCreateDeviceLiveToolsPingDeviceRequest {
+func (r LiveToolsApiCreateDeviceLiveToolsPingDeviceRequest) CreateDeviceLiveToolsPingDevice(createDeviceLiveToolsPingDevice CreateDeviceLiveToolsPingDeviceRequest) LiveToolsApiCreateDeviceLiveToolsPingDeviceRequest {
 	r.createDeviceLiveToolsPingDevice = &createDeviceLiveToolsPingDevice
 	return r
 }
 
-func (r LiveToolsApiCreateDeviceLiveToolsPingDeviceRequest) Execute() (*InlineResponse2011, *http.Response, error) {
+func (r LiveToolsApiCreateDeviceLiveToolsPingDeviceRequest) Execute() (*CreateDeviceLiveToolsPing201Response, *http.Response, error) {
 	return r.ApiService.CreateDeviceLiveToolsPingDeviceExecute(r)
 }
 
@@ -310,13 +310,13 @@ func (a *LiveToolsApiService) CreateDeviceLiveToolsPingDevice(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse2011
-func (a *LiveToolsApiService) CreateDeviceLiveToolsPingDeviceExecute(r LiveToolsApiCreateDeviceLiveToolsPingDeviceRequest) (*InlineResponse2011, *http.Response, error) {
+//  @return CreateDeviceLiveToolsPing201Response
+func (a *LiveToolsApiService) CreateDeviceLiveToolsPingDeviceExecute(r LiveToolsApiCreateDeviceLiveToolsPingDeviceRequest) (*CreateDeviceLiveToolsPing201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2011
+		localVarReturnValue  *CreateDeviceLiveToolsPing201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LiveToolsApiService.CreateDeviceLiveToolsPingDevice")
@@ -405,10 +405,10 @@ type LiveToolsApiCycleDeviceSwitchPortsRequest struct {
 	ctx context.Context
 	ApiService *LiveToolsApiService
 	serial string
-	cycleDeviceSwitchPorts *InlineObject16
+	cycleDeviceSwitchPorts *CycleDeviceSwitchPortsRequest
 }
 
-func (r LiveToolsApiCycleDeviceSwitchPortsRequest) CycleDeviceSwitchPorts(cycleDeviceSwitchPorts InlineObject16) LiveToolsApiCycleDeviceSwitchPortsRequest {
+func (r LiveToolsApiCycleDeviceSwitchPortsRequest) CycleDeviceSwitchPorts(cycleDeviceSwitchPorts CycleDeviceSwitchPortsRequest) LiveToolsApiCycleDeviceSwitchPortsRequest {
 	r.cycleDeviceSwitchPorts = &cycleDeviceSwitchPorts
 	return r
 }
@@ -536,7 +536,7 @@ type LiveToolsApiGetDeviceLiveToolsPingRequest struct {
 	id string
 }
 
-func (r LiveToolsApiGetDeviceLiveToolsPingRequest) Execute() (*InlineResponse2002, *http.Response, error) {
+func (r LiveToolsApiGetDeviceLiveToolsPingRequest) Execute() (*GetDeviceLiveToolsPing200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceLiveToolsPingExecute(r)
 }
 
@@ -560,13 +560,13 @@ func (a *LiveToolsApiService) GetDeviceLiveToolsPing(ctx context.Context, serial
 }
 
 // Execute executes the request
-//  @return InlineResponse2002
-func (a *LiveToolsApiService) GetDeviceLiveToolsPingExecute(r LiveToolsApiGetDeviceLiveToolsPingRequest) (*InlineResponse2002, *http.Response, error) {
+//  @return GetDeviceLiveToolsPing200Response
+func (a *LiveToolsApiService) GetDeviceLiveToolsPingExecute(r LiveToolsApiGetDeviceLiveToolsPingRequest) (*GetDeviceLiveToolsPing200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2002
+		localVarReturnValue  *GetDeviceLiveToolsPing200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LiveToolsApiService.GetDeviceLiveToolsPing")
@@ -657,7 +657,7 @@ type LiveToolsApiGetDeviceLiveToolsPingDeviceRequest struct {
 	id string
 }
 
-func (r LiveToolsApiGetDeviceLiveToolsPingDeviceRequest) Execute() (*InlineResponse2002, *http.Response, error) {
+func (r LiveToolsApiGetDeviceLiveToolsPingDeviceRequest) Execute() (*GetDeviceLiveToolsPing200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceLiveToolsPingDeviceExecute(r)
 }
 
@@ -681,13 +681,13 @@ func (a *LiveToolsApiService) GetDeviceLiveToolsPingDevice(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse2002
-func (a *LiveToolsApiService) GetDeviceLiveToolsPingDeviceExecute(r LiveToolsApiGetDeviceLiveToolsPingDeviceRequest) (*InlineResponse2002, *http.Response, error) {
+//  @return GetDeviceLiveToolsPing200Response
+func (a *LiveToolsApiService) GetDeviceLiveToolsPingDeviceExecute(r LiveToolsApiGetDeviceLiveToolsPingDeviceRequest) (*GetDeviceLiveToolsPing200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2002
+		localVarReturnValue  *GetDeviceLiveToolsPing200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LiveToolsApiService.GetDeviceLiveToolsPingDevice")

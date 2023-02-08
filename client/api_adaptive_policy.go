@@ -27,10 +27,10 @@ type AdaptivePolicyApiCreateOrganizationAdaptivePolicyAclRequest struct {
 	ctx context.Context
 	ApiService *AdaptivePolicyApiService
 	organizationId string
-	createOrganizationAdaptivePolicyAcl *InlineObject170
+	createOrganizationAdaptivePolicyAcl *CreateOrganizationAdaptivePolicyAclRequest
 }
 
-func (r AdaptivePolicyApiCreateOrganizationAdaptivePolicyAclRequest) CreateOrganizationAdaptivePolicyAcl(createOrganizationAdaptivePolicyAcl InlineObject170) AdaptivePolicyApiCreateOrganizationAdaptivePolicyAclRequest {
+func (r AdaptivePolicyApiCreateOrganizationAdaptivePolicyAclRequest) CreateOrganizationAdaptivePolicyAcl(createOrganizationAdaptivePolicyAcl CreateOrganizationAdaptivePolicyAclRequest) AdaptivePolicyApiCreateOrganizationAdaptivePolicyAclRequest {
 	r.createOrganizationAdaptivePolicyAcl = &createOrganizationAdaptivePolicyAcl
 	return r
 }
@@ -155,10 +155,10 @@ type AdaptivePolicyApiCreateOrganizationAdaptivePolicyGroupRequest struct {
 	ctx context.Context
 	ApiService *AdaptivePolicyApiService
 	organizationId string
-	createOrganizationAdaptivePolicyGroup *InlineObject172
+	createOrganizationAdaptivePolicyGroup *CreateOrganizationAdaptivePolicyGroupRequest
 }
 
-func (r AdaptivePolicyApiCreateOrganizationAdaptivePolicyGroupRequest) CreateOrganizationAdaptivePolicyGroup(createOrganizationAdaptivePolicyGroup InlineObject172) AdaptivePolicyApiCreateOrganizationAdaptivePolicyGroupRequest {
+func (r AdaptivePolicyApiCreateOrganizationAdaptivePolicyGroupRequest) CreateOrganizationAdaptivePolicyGroup(createOrganizationAdaptivePolicyGroup CreateOrganizationAdaptivePolicyGroupRequest) AdaptivePolicyApiCreateOrganizationAdaptivePolicyGroupRequest {
 	r.createOrganizationAdaptivePolicyGroup = &createOrganizationAdaptivePolicyGroup
 	return r
 }
@@ -283,10 +283,10 @@ type AdaptivePolicyApiCreateOrganizationAdaptivePolicyPolicyRequest struct {
 	ctx context.Context
 	ApiService *AdaptivePolicyApiService
 	organizationId string
-	createOrganizationAdaptivePolicyPolicy *InlineObject174
+	createOrganizationAdaptivePolicyPolicy *CreateOrganizationAdaptivePolicyPolicyRequest
 }
 
-func (r AdaptivePolicyApiCreateOrganizationAdaptivePolicyPolicyRequest) CreateOrganizationAdaptivePolicyPolicy(createOrganizationAdaptivePolicyPolicy InlineObject174) AdaptivePolicyApiCreateOrganizationAdaptivePolicyPolicyRequest {
+func (r AdaptivePolicyApiCreateOrganizationAdaptivePolicyPolicyRequest) CreateOrganizationAdaptivePolicyPolicy(createOrganizationAdaptivePolicyPolicy CreateOrganizationAdaptivePolicyPolicyRequest) AdaptivePolicyApiCreateOrganizationAdaptivePolicyPolicyRequest {
 	r.createOrganizationAdaptivePolicyPolicy = &createOrganizationAdaptivePolicyPolicy
 	return r
 }
@@ -1219,7 +1219,7 @@ type AdaptivePolicyApiGetOrganizationAdaptivePolicyOverviewRequest struct {
 	organizationId string
 }
 
-func (r AdaptivePolicyApiGetOrganizationAdaptivePolicyOverviewRequest) Execute() (*InlineResponse20081, *http.Response, error) {
+func (r AdaptivePolicyApiGetOrganizationAdaptivePolicyOverviewRequest) Execute() (*GetOrganizationAdaptivePolicyOverview200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationAdaptivePolicyOverviewExecute(r)
 }
 
@@ -1241,13 +1241,13 @@ func (a *AdaptivePolicyApiService) GetOrganizationAdaptivePolicyOverview(ctx con
 }
 
 // Execute executes the request
-//  @return InlineResponse20081
-func (a *AdaptivePolicyApiService) GetOrganizationAdaptivePolicyOverviewExecute(r AdaptivePolicyApiGetOrganizationAdaptivePolicyOverviewRequest) (*InlineResponse20081, *http.Response, error) {
+//  @return GetOrganizationAdaptivePolicyOverview200Response
+func (a *AdaptivePolicyApiService) GetOrganizationAdaptivePolicyOverviewExecute(r AdaptivePolicyApiGetOrganizationAdaptivePolicyOverviewRequest) (*GetOrganizationAdaptivePolicyOverview200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20081
+		localVarReturnValue  *GetOrganizationAdaptivePolicyOverview200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdaptivePolicyApiService.GetOrganizationAdaptivePolicyOverview")
@@ -1690,10 +1690,10 @@ type AdaptivePolicyApiUpdateOrganizationAdaptivePolicyAclRequest struct {
 	ApiService *AdaptivePolicyApiService
 	organizationId string
 	aclId string
-	updateOrganizationAdaptivePolicyAcl *InlineObject171
+	updateOrganizationAdaptivePolicyAcl *UpdateOrganizationAdaptivePolicyAclRequest
 }
 
-func (r AdaptivePolicyApiUpdateOrganizationAdaptivePolicyAclRequest) UpdateOrganizationAdaptivePolicyAcl(updateOrganizationAdaptivePolicyAcl InlineObject171) AdaptivePolicyApiUpdateOrganizationAdaptivePolicyAclRequest {
+func (r AdaptivePolicyApiUpdateOrganizationAdaptivePolicyAclRequest) UpdateOrganizationAdaptivePolicyAcl(updateOrganizationAdaptivePolicyAcl UpdateOrganizationAdaptivePolicyAclRequest) AdaptivePolicyApiUpdateOrganizationAdaptivePolicyAclRequest {
 	r.updateOrganizationAdaptivePolicyAcl = &updateOrganizationAdaptivePolicyAcl
 	return r
 }
@@ -1819,10 +1819,10 @@ type AdaptivePolicyApiUpdateOrganizationAdaptivePolicyGroupRequest struct {
 	ApiService *AdaptivePolicyApiService
 	organizationId string
 	id string
-	updateOrganizationAdaptivePolicyGroup *InlineObject173
+	updateOrganizationAdaptivePolicyGroup *UpdateOrganizationAdaptivePolicyGroupRequest
 }
 
-func (r AdaptivePolicyApiUpdateOrganizationAdaptivePolicyGroupRequest) UpdateOrganizationAdaptivePolicyGroup(updateOrganizationAdaptivePolicyGroup InlineObject173) AdaptivePolicyApiUpdateOrganizationAdaptivePolicyGroupRequest {
+func (r AdaptivePolicyApiUpdateOrganizationAdaptivePolicyGroupRequest) UpdateOrganizationAdaptivePolicyGroup(updateOrganizationAdaptivePolicyGroup UpdateOrganizationAdaptivePolicyGroupRequest) AdaptivePolicyApiUpdateOrganizationAdaptivePolicyGroupRequest {
 	r.updateOrganizationAdaptivePolicyGroup = &updateOrganizationAdaptivePolicyGroup
 	return r
 }
@@ -1948,10 +1948,10 @@ type AdaptivePolicyApiUpdateOrganizationAdaptivePolicyPolicyRequest struct {
 	ApiService *AdaptivePolicyApiService
 	organizationId string
 	id string
-	updateOrganizationAdaptivePolicyPolicy *InlineObject175
+	updateOrganizationAdaptivePolicyPolicy *UpdateOrganizationAdaptivePolicyPolicyRequest
 }
 
-func (r AdaptivePolicyApiUpdateOrganizationAdaptivePolicyPolicyRequest) UpdateOrganizationAdaptivePolicyPolicy(updateOrganizationAdaptivePolicyPolicy InlineObject175) AdaptivePolicyApiUpdateOrganizationAdaptivePolicyPolicyRequest {
+func (r AdaptivePolicyApiUpdateOrganizationAdaptivePolicyPolicyRequest) UpdateOrganizationAdaptivePolicyPolicy(updateOrganizationAdaptivePolicyPolicy UpdateOrganizationAdaptivePolicyPolicyRequest) AdaptivePolicyApiUpdateOrganizationAdaptivePolicyPolicyRequest {
 	r.updateOrganizationAdaptivePolicyPolicy = &updateOrganizationAdaptivePolicyPolicy
 	return r
 }
@@ -2076,10 +2076,10 @@ type AdaptivePolicyApiUpdateOrganizationAdaptivePolicySettingsRequest struct {
 	ctx context.Context
 	ApiService *AdaptivePolicyApiService
 	organizationId string
-	updateOrganizationAdaptivePolicySettings *InlineObject176
+	updateOrganizationAdaptivePolicySettings *UpdateOrganizationAdaptivePolicySettingsRequest
 }
 
-func (r AdaptivePolicyApiUpdateOrganizationAdaptivePolicySettingsRequest) UpdateOrganizationAdaptivePolicySettings(updateOrganizationAdaptivePolicySettings InlineObject176) AdaptivePolicyApiUpdateOrganizationAdaptivePolicySettingsRequest {
+func (r AdaptivePolicyApiUpdateOrganizationAdaptivePolicySettingsRequest) UpdateOrganizationAdaptivePolicySettings(updateOrganizationAdaptivePolicySettings UpdateOrganizationAdaptivePolicySettingsRequest) AdaptivePolicyApiUpdateOrganizationAdaptivePolicySettingsRequest {
 	r.updateOrganizationAdaptivePolicySettings = &updateOrganizationAdaptivePolicySettings
 	return r
 }

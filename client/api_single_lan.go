@@ -29,7 +29,7 @@ type SingleLanApiGetNetworkApplianceSingleLanRequest struct {
 	networkId string
 }
 
-func (r SingleLanApiGetNetworkApplianceSingleLanRequest) Execute() (*InlineResponse20014, *http.Response, error) {
+func (r SingleLanApiGetNetworkApplianceSingleLanRequest) Execute() (*GetNetworkApplianceSingleLan200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceSingleLanExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *SingleLanApiService) GetNetworkApplianceSingleLan(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse20014
-func (a *SingleLanApiService) GetNetworkApplianceSingleLanExecute(r SingleLanApiGetNetworkApplianceSingleLanRequest) (*InlineResponse20014, *http.Response, error) {
+//  @return GetNetworkApplianceSingleLan200Response
+func (a *SingleLanApiService) GetNetworkApplianceSingleLanExecute(r SingleLanApiGetNetworkApplianceSingleLanRequest) (*GetNetworkApplianceSingleLan200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20014
+		localVarReturnValue  *GetNetworkApplianceSingleLan200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SingleLanApiService.GetNetworkApplianceSingleLan")
@@ -144,15 +144,15 @@ type SingleLanApiUpdateNetworkApplianceSingleLanRequest struct {
 	ctx context.Context
 	ApiService *SingleLanApiService
 	networkId string
-	updateNetworkApplianceSingleLan *InlineObject46
+	updateNetworkApplianceSingleLan *UpdateNetworkApplianceSingleLanRequest
 }
 
-func (r SingleLanApiUpdateNetworkApplianceSingleLanRequest) UpdateNetworkApplianceSingleLan(updateNetworkApplianceSingleLan InlineObject46) SingleLanApiUpdateNetworkApplianceSingleLanRequest {
+func (r SingleLanApiUpdateNetworkApplianceSingleLanRequest) UpdateNetworkApplianceSingleLan(updateNetworkApplianceSingleLan UpdateNetworkApplianceSingleLanRequest) SingleLanApiUpdateNetworkApplianceSingleLanRequest {
 	r.updateNetworkApplianceSingleLan = &updateNetworkApplianceSingleLan
 	return r
 }
 
-func (r SingleLanApiUpdateNetworkApplianceSingleLanRequest) Execute() (*InlineResponse20014, *http.Response, error) {
+func (r SingleLanApiUpdateNetworkApplianceSingleLanRequest) Execute() (*GetNetworkApplianceSingleLan200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceSingleLanExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *SingleLanApiService) UpdateNetworkApplianceSingleLan(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20014
-func (a *SingleLanApiService) UpdateNetworkApplianceSingleLanExecute(r SingleLanApiUpdateNetworkApplianceSingleLanRequest) (*InlineResponse20014, *http.Response, error) {
+//  @return GetNetworkApplianceSingleLan200Response
+func (a *SingleLanApiService) UpdateNetworkApplianceSingleLanExecute(r SingleLanApiUpdateNetworkApplianceSingleLanRequest) (*GetNetworkApplianceSingleLan200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20014
+		localVarReturnValue  *GetNetworkApplianceSingleLan200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SingleLanApiService.UpdateNetworkApplianceSingleLan")

@@ -149,10 +149,10 @@ type PolicyApiUpdateNetworkClientPolicyRequest struct {
 	ApiService *PolicyApiService
 	networkId string
 	clientId string
-	updateNetworkClientPolicy *InlineObject72
+	updateNetworkClientPolicy *UpdateNetworkClientPolicyRequest
 }
 
-func (r PolicyApiUpdateNetworkClientPolicyRequest) UpdateNetworkClientPolicy(updateNetworkClientPolicy InlineObject72) PolicyApiUpdateNetworkClientPolicyRequest {
+func (r PolicyApiUpdateNetworkClientPolicyRequest) UpdateNetworkClientPolicy(updateNetworkClientPolicy UpdateNetworkClientPolicyRequest) PolicyApiUpdateNetworkClientPolicyRequest {
 	r.updateNetworkClientPolicy = &updateNetworkClientPolicy
 	return r
 }

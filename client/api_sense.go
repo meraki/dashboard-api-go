@@ -261,10 +261,10 @@ type SenseApiUpdateDeviceCameraSenseRequest struct {
 	ctx context.Context
 	ApiService *SenseApiService
 	serial string
-	updateDeviceCameraSense *InlineObject6
+	updateDeviceCameraSense *UpdateDeviceCameraSenseRequest
 }
 
-func (r SenseApiUpdateDeviceCameraSenseRequest) UpdateDeviceCameraSense(updateDeviceCameraSense InlineObject6) SenseApiUpdateDeviceCameraSenseRequest {
+func (r SenseApiUpdateDeviceCameraSenseRequest) UpdateDeviceCameraSense(updateDeviceCameraSense UpdateDeviceCameraSenseRequest) SenseApiUpdateDeviceCameraSenseRequest {
 	r.updateDeviceCameraSense = &updateDeviceCameraSense
 	return r
 }

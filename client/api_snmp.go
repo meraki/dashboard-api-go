@@ -261,10 +261,10 @@ type SnmpApiUpdateNetworkSnmpRequest struct {
 	ctx context.Context
 	ApiService *SnmpApiService
 	networkId string
-	updateNetworkSnmp *InlineObject107
+	updateNetworkSnmp *UpdateNetworkSnmpRequest
 }
 
-func (r SnmpApiUpdateNetworkSnmpRequest) UpdateNetworkSnmp(updateNetworkSnmp InlineObject107) SnmpApiUpdateNetworkSnmpRequest {
+func (r SnmpApiUpdateNetworkSnmpRequest) UpdateNetworkSnmp(updateNetworkSnmp UpdateNetworkSnmpRequest) SnmpApiUpdateNetworkSnmpRequest {
 	r.updateNetworkSnmp = &updateNetworkSnmp
 	return r
 }
@@ -386,10 +386,10 @@ type SnmpApiUpdateOrganizationSnmpRequest struct {
 	ctx context.Context
 	ApiService *SnmpApiService
 	organizationId string
-	updateOrganizationSnmp *InlineObject220
+	updateOrganizationSnmp *UpdateOrganizationSnmpRequest
 }
 
-func (r SnmpApiUpdateOrganizationSnmpRequest) UpdateOrganizationSnmp(updateOrganizationSnmp InlineObject220) SnmpApiUpdateOrganizationSnmpRequest {
+func (r SnmpApiUpdateOrganizationSnmpRequest) UpdateOrganizationSnmp(updateOrganizationSnmp UpdateOrganizationSnmpRequest) SnmpApiUpdateOrganizationSnmpRequest {
 	r.updateOrganizationSnmp = &updateOrganizationSnmp
 	return r
 }

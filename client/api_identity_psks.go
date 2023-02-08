@@ -28,10 +28,10 @@ type IdentityPsksApiCreateNetworkWirelessSsidIdentityPskRequest struct {
 	ApiService *IdentityPsksApiService
 	networkId string
 	number string
-	createNetworkWirelessSsidIdentityPsk *InlineObject160
+	createNetworkWirelessSsidIdentityPsk *CreateNetworkWirelessSsidIdentityPskRequest
 }
 
-func (r IdentityPsksApiCreateNetworkWirelessSsidIdentityPskRequest) CreateNetworkWirelessSsidIdentityPsk(createNetworkWirelessSsidIdentityPsk InlineObject160) IdentityPsksApiCreateNetworkWirelessSsidIdentityPskRequest {
+func (r IdentityPsksApiCreateNetworkWirelessSsidIdentityPskRequest) CreateNetworkWirelessSsidIdentityPsk(createNetworkWirelessSsidIdentityPsk CreateNetworkWirelessSsidIdentityPskRequest) IdentityPsksApiCreateNetworkWirelessSsidIdentityPskRequest {
 	r.createNetworkWirelessSsidIdentityPsk = &createNetworkWirelessSsidIdentityPsk
 	return r
 }
@@ -277,7 +277,7 @@ type IdentityPsksApiGetNetworkWirelessSsidIdentityPskRequest struct {
 	identityPskId string
 }
 
-func (r IdentityPsksApiGetNetworkWirelessSsidIdentityPskRequest) Execute() (*InlineResponse20077, *http.Response, error) {
+func (r IdentityPsksApiGetNetworkWirelessSsidIdentityPskRequest) Execute() (*GetNetworkWirelessSsidIdentityPsks200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidIdentityPskExecute(r)
 }
 
@@ -303,13 +303,13 @@ func (a *IdentityPsksApiService) GetNetworkWirelessSsidIdentityPsk(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse20077
-func (a *IdentityPsksApiService) GetNetworkWirelessSsidIdentityPskExecute(r IdentityPsksApiGetNetworkWirelessSsidIdentityPskRequest) (*InlineResponse20077, *http.Response, error) {
+//  @return GetNetworkWirelessSsidIdentityPsks200ResponseInner
+func (a *IdentityPsksApiService) GetNetworkWirelessSsidIdentityPskExecute(r IdentityPsksApiGetNetworkWirelessSsidIdentityPskRequest) (*GetNetworkWirelessSsidIdentityPsks200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20077
+		localVarReturnValue  *GetNetworkWirelessSsidIdentityPsks200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IdentityPsksApiService.GetNetworkWirelessSsidIdentityPsk")
@@ -401,7 +401,7 @@ type IdentityPsksApiGetNetworkWirelessSsidIdentityPsksRequest struct {
 	number string
 }
 
-func (r IdentityPsksApiGetNetworkWirelessSsidIdentityPsksRequest) Execute() ([]InlineResponse20077, *http.Response, error) {
+func (r IdentityPsksApiGetNetworkWirelessSsidIdentityPsksRequest) Execute() ([]GetNetworkWirelessSsidIdentityPsks200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidIdentityPsksExecute(r)
 }
 
@@ -425,13 +425,13 @@ func (a *IdentityPsksApiService) GetNetworkWirelessSsidIdentityPsks(ctx context.
 }
 
 // Execute executes the request
-//  @return []InlineResponse20077
-func (a *IdentityPsksApiService) GetNetworkWirelessSsidIdentityPsksExecute(r IdentityPsksApiGetNetworkWirelessSsidIdentityPsksRequest) ([]InlineResponse20077, *http.Response, error) {
+//  @return []GetNetworkWirelessSsidIdentityPsks200ResponseInner
+func (a *IdentityPsksApiService) GetNetworkWirelessSsidIdentityPsksExecute(r IdentityPsksApiGetNetworkWirelessSsidIdentityPsksRequest) ([]GetNetworkWirelessSsidIdentityPsks200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20077
+		localVarReturnValue  []GetNetworkWirelessSsidIdentityPsks200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IdentityPsksApiService.GetNetworkWirelessSsidIdentityPsks")
@@ -521,10 +521,10 @@ type IdentityPsksApiUpdateNetworkWirelessSsidIdentityPskRequest struct {
 	networkId string
 	number string
 	identityPskId string
-	updateNetworkWirelessSsidIdentityPsk *InlineObject161
+	updateNetworkWirelessSsidIdentityPsk *UpdateNetworkWirelessSsidIdentityPskRequest
 }
 
-func (r IdentityPsksApiUpdateNetworkWirelessSsidIdentityPskRequest) UpdateNetworkWirelessSsidIdentityPsk(updateNetworkWirelessSsidIdentityPsk InlineObject161) IdentityPsksApiUpdateNetworkWirelessSsidIdentityPskRequest {
+func (r IdentityPsksApiUpdateNetworkWirelessSsidIdentityPskRequest) UpdateNetworkWirelessSsidIdentityPsk(updateNetworkWirelessSsidIdentityPsk UpdateNetworkWirelessSsidIdentityPskRequest) IdentityPsksApiUpdateNetworkWirelessSsidIdentityPskRequest {
 	r.updateNetworkWirelessSsidIdentityPsk = &updateNetworkWirelessSsidIdentityPsk
 	return r
 }

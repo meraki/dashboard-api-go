@@ -29,7 +29,7 @@ type HealthApiGetNetworkHealthAlertsRequest struct {
 	networkId string
 }
 
-func (r HealthApiGetNetworkHealthAlertsRequest) Execute() ([]InlineResponse20029, *http.Response, error) {
+func (r HealthApiGetNetworkHealthAlertsRequest) Execute() ([]GetNetworkHealthAlerts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkHealthAlertsExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *HealthApiService) GetNetworkHealthAlerts(ctx context.Context, networkId
 }
 
 // Execute executes the request
-//  @return []InlineResponse20029
-func (a *HealthApiService) GetNetworkHealthAlertsExecute(r HealthApiGetNetworkHealthAlertsRequest) ([]InlineResponse20029, *http.Response, error) {
+//  @return []GetNetworkHealthAlerts200ResponseInner
+func (a *HealthApiService) GetNetworkHealthAlertsExecute(r HealthApiGetNetworkHealthAlertsRequest) ([]GetNetworkHealthAlerts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20029
+		localVarReturnValue  []GetNetworkHealthAlerts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HealthApiService.GetNetworkHealthAlerts")

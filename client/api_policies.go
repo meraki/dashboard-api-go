@@ -27,10 +27,10 @@ type PoliciesApiCreateOrganizationAdaptivePolicyPolicyRequest struct {
 	ctx context.Context
 	ApiService *PoliciesApiService
 	organizationId string
-	createOrganizationAdaptivePolicyPolicy *InlineObject174
+	createOrganizationAdaptivePolicyPolicy *CreateOrganizationAdaptivePolicyPolicyRequest
 }
 
-func (r PoliciesApiCreateOrganizationAdaptivePolicyPolicyRequest) CreateOrganizationAdaptivePolicyPolicy(createOrganizationAdaptivePolicyPolicy InlineObject174) PoliciesApiCreateOrganizationAdaptivePolicyPolicyRequest {
+func (r PoliciesApiCreateOrganizationAdaptivePolicyPolicyRequest) CreateOrganizationAdaptivePolicyPolicy(createOrganizationAdaptivePolicyPolicy CreateOrganizationAdaptivePolicyPolicyRequest) PoliciesApiCreateOrganizationAdaptivePolicyPolicyRequest {
 	r.createOrganizationAdaptivePolicyPolicy = &createOrganizationAdaptivePolicyPolicy
 	return r
 }
@@ -302,7 +302,7 @@ func (r PoliciesApiGetNetworkPoliciesByClientRequest) Timespan(timespan float32)
 	return r
 }
 
-func (r PoliciesApiGetNetworkPoliciesByClientRequest) Execute() ([]InlineResponse20032, *http.Response, error) {
+func (r PoliciesApiGetNetworkPoliciesByClientRequest) Execute() ([]GetNetworkPoliciesByClient200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkPoliciesByClientExecute(r)
 }
 
@@ -324,13 +324,13 @@ func (a *PoliciesApiService) GetNetworkPoliciesByClient(ctx context.Context, net
 }
 
 // Execute executes the request
-//  @return []InlineResponse20032
-func (a *PoliciesApiService) GetNetworkPoliciesByClientExecute(r PoliciesApiGetNetworkPoliciesByClientRequest) ([]InlineResponse20032, *http.Response, error) {
+//  @return []GetNetworkPoliciesByClient200ResponseInner
+func (a *PoliciesApiService) GetNetworkPoliciesByClientExecute(r PoliciesApiGetNetworkPoliciesByClientRequest) ([]GetNetworkPoliciesByClient200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20032
+		localVarReturnValue  []GetNetworkPoliciesByClient200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PoliciesApiService.GetNetworkPoliciesByClient")
@@ -671,10 +671,10 @@ type PoliciesApiUpdateOrganizationAdaptivePolicyPolicyRequest struct {
 	ApiService *PoliciesApiService
 	organizationId string
 	id string
-	updateOrganizationAdaptivePolicyPolicy *InlineObject175
+	updateOrganizationAdaptivePolicyPolicy *UpdateOrganizationAdaptivePolicyPolicyRequest
 }
 
-func (r PoliciesApiUpdateOrganizationAdaptivePolicyPolicyRequest) UpdateOrganizationAdaptivePolicyPolicy(updateOrganizationAdaptivePolicyPolicy InlineObject175) PoliciesApiUpdateOrganizationAdaptivePolicyPolicyRequest {
+func (r PoliciesApiUpdateOrganizationAdaptivePolicyPolicyRequest) UpdateOrganizationAdaptivePolicyPolicy(updateOrganizationAdaptivePolicyPolicy UpdateOrganizationAdaptivePolicyPolicyRequest) PoliciesApiUpdateOrganizationAdaptivePolicyPolicyRequest {
 	r.updateOrganizationAdaptivePolicyPolicy = &updateOrganizationAdaptivePolicyPolicy
 	return r
 }

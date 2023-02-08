@@ -64,7 +64,7 @@ func (r V4ApiGetNetworkSwitchDhcpV4ServersSeenRequest) EndingBefore(endingBefore
 	return r
 }
 
-func (r V4ApiGetNetworkSwitchDhcpV4ServersSeenRequest) Execute() ([]InlineResponse20060, *http.Response, error) {
+func (r V4ApiGetNetworkSwitchDhcpV4ServersSeenRequest) Execute() ([]GetNetworkSwitchDhcpV4ServersSeen200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchDhcpV4ServersSeenExecute(r)
 }
 
@@ -86,13 +86,13 @@ func (a *V4ApiService) GetNetworkSwitchDhcpV4ServersSeen(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return []InlineResponse20060
-func (a *V4ApiService) GetNetworkSwitchDhcpV4ServersSeenExecute(r V4ApiGetNetworkSwitchDhcpV4ServersSeenRequest) ([]InlineResponse20060, *http.Response, error) {
+//  @return []GetNetworkSwitchDhcpV4ServersSeen200ResponseInner
+func (a *V4ApiService) GetNetworkSwitchDhcpV4ServersSeenExecute(r V4ApiGetNetworkSwitchDhcpV4ServersSeenRequest) ([]GetNetworkSwitchDhcpV4ServersSeen200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20060
+		localVarReturnValue  []GetNetworkSwitchDhcpV4ServersSeen200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "V4ApiService.GetNetworkSwitchDhcpV4ServersSeen")

@@ -58,7 +58,7 @@ func (r ApplicationsApiGetNetworkInsightApplicationHealthByTimeRequest) Resoluti
 	return r
 }
 
-func (r ApplicationsApiGetNetworkInsightApplicationHealthByTimeRequest) Execute() ([]InlineResponse20030, *http.Response, error) {
+func (r ApplicationsApiGetNetworkInsightApplicationHealthByTimeRequest) Execute() ([]GetNetworkInsightApplicationHealthByTime200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkInsightApplicationHealthByTimeExecute(r)
 }
 
@@ -82,13 +82,13 @@ func (a *ApplicationsApiService) GetNetworkInsightApplicationHealthByTime(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20030
-func (a *ApplicationsApiService) GetNetworkInsightApplicationHealthByTimeExecute(r ApplicationsApiGetNetworkInsightApplicationHealthByTimeRequest) ([]InlineResponse20030, *http.Response, error) {
+//  @return []GetNetworkInsightApplicationHealthByTime200ResponseInner
+func (a *ApplicationsApiService) GetNetworkInsightApplicationHealthByTimeExecute(r ApplicationsApiGetNetworkInsightApplicationHealthByTimeRequest) ([]GetNetworkInsightApplicationHealthByTime200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20030
+		localVarReturnValue  []GetNetworkInsightApplicationHealthByTime200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsApiService.GetNetworkInsightApplicationHealthByTime")
@@ -190,7 +190,7 @@ type ApplicationsApiGetOrganizationInsightApplicationsRequest struct {
 	organizationId string
 }
 
-func (r ApplicationsApiGetOrganizationInsightApplicationsRequest) Execute() ([]InlineResponse200100, *http.Response, error) {
+func (r ApplicationsApiGetOrganizationInsightApplicationsRequest) Execute() ([]GetOrganizationInsightApplications200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInsightApplicationsExecute(r)
 }
 
@@ -212,13 +212,13 @@ func (a *ApplicationsApiService) GetOrganizationInsightApplications(ctx context.
 }
 
 // Execute executes the request
-//  @return []InlineResponse200100
-func (a *ApplicationsApiService) GetOrganizationInsightApplicationsExecute(r ApplicationsApiGetOrganizationInsightApplicationsRequest) ([]InlineResponse200100, *http.Response, error) {
+//  @return []GetOrganizationInsightApplications200ResponseInner
+func (a *ApplicationsApiService) GetOrganizationInsightApplicationsExecute(r ApplicationsApiGetOrganizationInsightApplicationsRequest) ([]GetOrganizationInsightApplications200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200100
+		localVarReturnValue  []GetOrganizationInsightApplications200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsApiService.GetOrganizationInsightApplications")

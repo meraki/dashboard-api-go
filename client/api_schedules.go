@@ -266,10 +266,10 @@ type SchedulesApiUpdateNetworkWirelessSsidSchedulesRequest struct {
 	ApiService *SchedulesApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidSchedules *InlineObject162
+	updateNetworkWirelessSsidSchedules *UpdateNetworkWirelessSsidSchedulesRequest
 }
 
-func (r SchedulesApiUpdateNetworkWirelessSsidSchedulesRequest) UpdateNetworkWirelessSsidSchedules(updateNetworkWirelessSsidSchedules InlineObject162) SchedulesApiUpdateNetworkWirelessSsidSchedulesRequest {
+func (r SchedulesApiUpdateNetworkWirelessSsidSchedulesRequest) UpdateNetworkWirelessSsidSchedules(updateNetworkWirelessSsidSchedules UpdateNetworkWirelessSsidSchedulesRequest) SchedulesApiUpdateNetworkWirelessSsidSchedulesRequest {
 	r.updateNetworkWirelessSsidSchedules = &updateNetworkWirelessSsidSchedules
 	return r
 }

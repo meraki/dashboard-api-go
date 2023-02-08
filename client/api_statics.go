@@ -27,10 +27,10 @@ type StaticsApiCreateNetworkAppliancePrefixesDelegatedStaticRequest struct {
 	ctx context.Context
 	ApiService *StaticsApiService
 	networkId string
-	createNetworkAppliancePrefixesDelegatedStatic *InlineObject41
+	createNetworkAppliancePrefixesDelegatedStatic *CreateNetworkAppliancePrefixesDelegatedStaticRequest
 }
 
-func (r StaticsApiCreateNetworkAppliancePrefixesDelegatedStaticRequest) CreateNetworkAppliancePrefixesDelegatedStatic(createNetworkAppliancePrefixesDelegatedStatic InlineObject41) StaticsApiCreateNetworkAppliancePrefixesDelegatedStaticRequest {
+func (r StaticsApiCreateNetworkAppliancePrefixesDelegatedStaticRequest) CreateNetworkAppliancePrefixesDelegatedStatic(createNetworkAppliancePrefixesDelegatedStatic CreateNetworkAppliancePrefixesDelegatedStaticRequest) StaticsApiCreateNetworkAppliancePrefixesDelegatedStaticRequest {
 	r.createNetworkAppliancePrefixesDelegatedStatic = &createNetworkAppliancePrefixesDelegatedStatic
 	return r
 }
@@ -268,7 +268,7 @@ type StaticsApiGetNetworkAppliancePrefixesDelegatedStaticRequest struct {
 	staticDelegatedPrefixId string
 }
 
-func (r StaticsApiGetNetworkAppliancePrefixesDelegatedStaticRequest) Execute() (*InlineResponse20012, *http.Response, error) {
+func (r StaticsApiGetNetworkAppliancePrefixesDelegatedStaticRequest) Execute() (*GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkAppliancePrefixesDelegatedStaticExecute(r)
 }
 
@@ -292,13 +292,13 @@ func (a *StaticsApiService) GetNetworkAppliancePrefixesDelegatedStatic(ctx conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20012
-func (a *StaticsApiService) GetNetworkAppliancePrefixesDelegatedStaticExecute(r StaticsApiGetNetworkAppliancePrefixesDelegatedStaticRequest) (*InlineResponse20012, *http.Response, error) {
+//  @return GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
+func (a *StaticsApiService) GetNetworkAppliancePrefixesDelegatedStaticExecute(r StaticsApiGetNetworkAppliancePrefixesDelegatedStaticRequest) (*GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20012
+		localVarReturnValue  *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StaticsApiService.GetNetworkAppliancePrefixesDelegatedStatic")
@@ -388,7 +388,7 @@ type StaticsApiGetNetworkAppliancePrefixesDelegatedStaticsRequest struct {
 	networkId string
 }
 
-func (r StaticsApiGetNetworkAppliancePrefixesDelegatedStaticsRequest) Execute() ([]InlineResponse20012, *http.Response, error) {
+func (r StaticsApiGetNetworkAppliancePrefixesDelegatedStaticsRequest) Execute() ([]GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkAppliancePrefixesDelegatedStaticsExecute(r)
 }
 
@@ -410,13 +410,13 @@ func (a *StaticsApiService) GetNetworkAppliancePrefixesDelegatedStatics(ctx cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20012
-func (a *StaticsApiService) GetNetworkAppliancePrefixesDelegatedStaticsExecute(r StaticsApiGetNetworkAppliancePrefixesDelegatedStaticsRequest) ([]InlineResponse20012, *http.Response, error) {
+//  @return []GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
+func (a *StaticsApiService) GetNetworkAppliancePrefixesDelegatedStaticsExecute(r StaticsApiGetNetworkAppliancePrefixesDelegatedStaticsRequest) ([]GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20012
+		localVarReturnValue  []GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StaticsApiService.GetNetworkAppliancePrefixesDelegatedStatics")
@@ -504,10 +504,10 @@ type StaticsApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest struct {
 	ApiService *StaticsApiService
 	networkId string
 	staticDelegatedPrefixId string
-	updateNetworkAppliancePrefixesDelegatedStatic *InlineObject42
+	updateNetworkAppliancePrefixesDelegatedStatic *UpdateNetworkAppliancePrefixesDelegatedStaticRequest
 }
 
-func (r StaticsApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest) UpdateNetworkAppliancePrefixesDelegatedStatic(updateNetworkAppliancePrefixesDelegatedStatic InlineObject42) StaticsApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest {
+func (r StaticsApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest) UpdateNetworkAppliancePrefixesDelegatedStatic(updateNetworkAppliancePrefixesDelegatedStatic UpdateNetworkAppliancePrefixesDelegatedStaticRequest) StaticsApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest {
 	r.updateNetworkAppliancePrefixesDelegatedStatic = &updateNetworkAppliancePrefixesDelegatedStatic
 	return r
 }

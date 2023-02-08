@@ -71,7 +71,7 @@ func (r LatestApiGetOrganizationSensorReadingsLatestRequest) Metrics(metrics []s
 	return r
 }
 
-func (r LatestApiGetOrganizationSensorReadingsLatestRequest) Execute() ([]InlineResponse200116, *http.Response, error) {
+func (r LatestApiGetOrganizationSensorReadingsLatestRequest) Execute() ([]GetOrganizationSensorReadingsLatest200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSensorReadingsLatestExecute(r)
 }
 
@@ -93,13 +93,13 @@ func (a *LatestApiService) GetOrganizationSensorReadingsLatest(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return []InlineResponse200116
-func (a *LatestApiService) GetOrganizationSensorReadingsLatestExecute(r LatestApiGetOrganizationSensorReadingsLatestRequest) ([]InlineResponse200116, *http.Response, error) {
+//  @return []GetOrganizationSensorReadingsLatest200ResponseInner
+func (a *LatestApiService) GetOrganizationSensorReadingsLatestExecute(r LatestApiGetOrganizationSensorReadingsLatestRequest) ([]GetOrganizationSensorReadingsLatest200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200116
+		localVarReturnValue  []GetOrganizationSensorReadingsLatest200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LatestApiService.GetOrganizationSensorReadingsLatest")

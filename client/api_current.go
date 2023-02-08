@@ -29,7 +29,7 @@ type CurrentApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest struct {
 	networkId string
 }
 
-func (r CurrentApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) Execute() (*InlineResponse20033, *http.Response, error) {
+func (r CurrentApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) Execute() (*GetNetworkSensorAlertsCurrentOverviewByMetric200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsCurrentOverviewByMetricExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *CurrentApiService) GetNetworkSensorAlertsCurrentOverviewByMetric(ctx co
 }
 
 // Execute executes the request
-//  @return InlineResponse20033
-func (a *CurrentApiService) GetNetworkSensorAlertsCurrentOverviewByMetricExecute(r CurrentApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) (*InlineResponse20033, *http.Response, error) {
+//  @return GetNetworkSensorAlertsCurrentOverviewByMetric200Response
+func (a *CurrentApiService) GetNetworkSensorAlertsCurrentOverviewByMetricExecute(r CurrentApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) (*GetNetworkSensorAlertsCurrentOverviewByMetric200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20033
+		localVarReturnValue  *GetNetworkSensorAlertsCurrentOverviewByMetric200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CurrentApiService.GetNetworkSensorAlertsCurrentOverviewByMetric")

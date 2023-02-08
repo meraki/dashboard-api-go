@@ -29,7 +29,7 @@ type EventTypesApiGetNetworkEventsEventTypesRequest struct {
 	networkId string
 }
 
-func (r EventTypesApiGetNetworkEventsEventTypesRequest) Execute() ([]InlineResponse20023, *http.Response, error) {
+func (r EventTypesApiGetNetworkEventsEventTypesRequest) Execute() ([]GetNetworkEventsEventTypes200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkEventsEventTypesExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *EventTypesApiService) GetNetworkEventsEventTypes(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return []InlineResponse20023
-func (a *EventTypesApiService) GetNetworkEventsEventTypesExecute(r EventTypesApiGetNetworkEventsEventTypesRequest) ([]InlineResponse20023, *http.Response, error) {
+//  @return []GetNetworkEventsEventTypes200ResponseInner
+func (a *EventTypesApiService) GetNetworkEventsEventTypesExecute(r EventTypesApiGetNetworkEventsEventTypesRequest) ([]GetNetworkEventsEventTypes200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20023
+		localVarReturnValue  []GetNetworkEventsEventTypes200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventTypesApiService.GetNetworkEventsEventTypes")

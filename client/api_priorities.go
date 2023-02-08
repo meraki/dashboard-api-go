@@ -29,7 +29,7 @@ type PrioritiesApiGetOrganizationBrandingPoliciesPrioritiesRequest struct {
 	organizationId string
 }
 
-func (r PrioritiesApiGetOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*InlineResponse20086, *http.Response, error) {
+func (r PrioritiesApiGetOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationBrandingPoliciesPrioritiesExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *PrioritiesApiService) GetOrganizationBrandingPoliciesPriorities(ctx con
 }
 
 // Execute executes the request
-//  @return InlineResponse20086
-func (a *PrioritiesApiService) GetOrganizationBrandingPoliciesPrioritiesExecute(r PrioritiesApiGetOrganizationBrandingPoliciesPrioritiesRequest) (*InlineResponse20086, *http.Response, error) {
+//  @return GetOrganizationBrandingPoliciesPriorities200Response
+func (a *PrioritiesApiService) GetOrganizationBrandingPoliciesPrioritiesExecute(r PrioritiesApiGetOrganizationBrandingPoliciesPrioritiesRequest) (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20086
+		localVarReturnValue  *GetOrganizationBrandingPoliciesPriorities200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrioritiesApiService.GetOrganizationBrandingPoliciesPriorities")
@@ -144,15 +144,15 @@ type PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest struct {
 	ctx context.Context
 	ApiService *PrioritiesApiService
 	organizationId string
-	updateOrganizationBrandingPoliciesPriorities *InlineObject185
+	updateOrganizationBrandingPoliciesPriorities *UpdateOrganizationBrandingPoliciesPrioritiesRequest
 }
 
-func (r PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) UpdateOrganizationBrandingPoliciesPriorities(updateOrganizationBrandingPoliciesPriorities InlineObject185) PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest {
+func (r PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) UpdateOrganizationBrandingPoliciesPriorities(updateOrganizationBrandingPoliciesPriorities UpdateOrganizationBrandingPoliciesPrioritiesRequest) PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest {
 	r.updateOrganizationBrandingPoliciesPriorities = &updateOrganizationBrandingPoliciesPriorities
 	return r
 }
 
-func (r PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*InlineResponse20086, *http.Response, error) {
+func (r PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationBrandingPoliciesPrioritiesExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *PrioritiesApiService) UpdateOrganizationBrandingPoliciesPriorities(ctx 
 }
 
 // Execute executes the request
-//  @return InlineResponse20086
-func (a *PrioritiesApiService) UpdateOrganizationBrandingPoliciesPrioritiesExecute(r PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) (*InlineResponse20086, *http.Response, error) {
+//  @return GetOrganizationBrandingPoliciesPriorities200Response
+func (a *PrioritiesApiService) UpdateOrganizationBrandingPoliciesPrioritiesExecute(r PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20086
+		localVarReturnValue  *GetOrganizationBrandingPoliciesPriorities200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrioritiesApiService.UpdateOrganizationBrandingPoliciesPriorities")
