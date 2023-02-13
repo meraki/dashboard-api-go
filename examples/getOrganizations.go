@@ -7,7 +7,7 @@ import "os"
 
 func main() {
 	configuration := client.NewConfiguration()
-	configuration.AddDefaultHeader("X-Cisco-Meraki-API-Key", os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+	configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
 
 	apiClient := client.NewAPIClient(configuration)
 
