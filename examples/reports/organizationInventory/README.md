@@ -14,9 +14,10 @@ Simply download the correct binary for your operating system and run it with you
 
 | Operating System | Architecture | intel                                                  | arm                                                    |
 |------------------|--------------|--------------------------------------------------------|--------------------------------------------------------|
-| linux            | 64-bit       | [download](build/organizationReport-linux-amd64)       | [download](build/organizationReport-linux-arm64)       |
-| macos            | 64-bit       | [download](build/organizationReport-macos-amd64)       | [download](build/organizationReport-macos-arm64)       |
-| windows          | 64-bit       | [download](build/organizationReport-windows-amd64.exe) | [download](build/organizationReport-windows-arm64.exe) |
+| Linux            | 64-bit       | [download](build/organizationReport-linux-amd64)       | [download](build/organizationReport-linux-arm64)       |
+| MacOS            | 64-bit       | [download](build/organizationReport-macos-amd64)       | [download](build/organizationReport-macos-arm64)       |
+| Windows          | 64-bit       | [download](build/organizationReport-windows-amd64.exe) | [download](build/organizationReport-windows-arm64.exe) |
+
 
 
 Exporting your Meraki API key to an environmental variable is the recommended workflow:  
@@ -26,8 +27,12 @@ Exporting your Meraki API key to an environmental variable is the recommended wo
 # linux / macos
 MERAKI_DASHBOARD_API_KEY=093b24e85df15a3e66f1fc359f4c48493eaa1b73
 
+# windows
 set MERAKI_DASHBOARD_API_KEY=093b24e85df15a3e66f1fc359f4c48493eaa1b73
+
 ```
+
+
 
 Alternatively, you can use the `-apikey` flag as described in the cli flags help message:
 
@@ -37,7 +42,11 @@ Alternatively, you can use the `-apikey` flag as described in the cli flags help
 -help bool, Prints usage information
 
 -out string,   output directory to generate report. Defaults to current working directory.
+
 ```
+
+
+
 
 Running the report:
 
@@ -48,6 +57,7 @@ Running the report:
 
 # windows
 .\OrganizationReport-windows-{ARCH}.exe -apikey=093b24e85df15a3e66f1fc359f4c48493eaa1b73
+
 ```
 For reference: 
 
@@ -55,6 +65,9 @@ For reference:
 * {ARCH} = "arm64" or "amd64"
 
 **For example, the M1/M2 MacBook binary is [organizationReport-macos-arm64](build/organizationReport-macos-arm64)**
+
+
+
 
 ## Generating new Binaries (Optional)
 
