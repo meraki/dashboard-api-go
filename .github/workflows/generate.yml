@@ -50,9 +50,9 @@ jobs:
       - name: "Install JRE"
         run: sudo apt update && sudo apt install -y default-jre
       - name: "Run OpenAPI Generator"
-        run: rm -rf client/; java -jar .openapi/openapi-generator-cli.jar generate -i spec2.json -g go -o client -p enumClassPrefix=true -p structPrefix=true --package-name client -p packageVersion=${{ needs.check-for-updates.outputs.new }} -t .openapi/templates --git-user-id meraki --git-repo-id dashboard-api-go/client --git-host github.com
+        run: rm -rf client/; java -jar .openapi/generator/openapi-generator-cli.jar generate -i spec2.json -g go -o client -p enumClassPrefix=true -p structPrefix=true --package-name client -p packageVersion=${{ needs.check-for-updates.outputs.new }} -t .openapi/templates --git-user-id meraki --git-repo-id dashboard-api-go/client --git-host github.com
       - name: "Cleanup"
-        run: rm .openapi/openapi-generator-cli.jar; rm spec2.json; rm ${{ needs.check-for-updates.outputs.new }}.zip
+        run: rm .openapi/generator/openapi-generator-cli.jar; rm spec2.json; rm ${{ needs.check-for-updates.outputs.new }}.zip
       - name: "Git Config"
         run: |
           git config user.name "GitHub Actions"
