@@ -21,7 +21,7 @@ type merakiApiClient struct {
 func newMerakiApiClient(apiKey string) *merakiApiClient {
 
 	configuration := client.NewConfiguration()
-	configuration.AddDefaultHeader("X-Cisco-Meraki-API-Key", apiKey)
+	configuration.AddDefaultHeader("Authorization", "Bearer "+apiKey)
 	apiClient := client.NewAPIClient(configuration)
 
 	return &merakiApiClient{merakiApiClient: apiClient}
