@@ -11,6 +11,8 @@ build:
 	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o build/$(BINARY)-macos-amd64 -ldflags "-X main.version=$(VERSION)"
 	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o build/$(BINARY)-macos-arm64 -ldflags "-X main.version=$(VERSION)"
 
+	find build -type f -exec chmod +x {} \;
+
 .PHONY: clean
 clean:
-	rm -rf build/*
+	rm -rf build/* && rm -rf build/
