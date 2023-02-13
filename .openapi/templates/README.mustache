@@ -96,6 +96,20 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Authorization
 
+- **Header**: "Authorization"
+- **Type**: HTTP Bearer token authentication
+
+Example
+
+```golang
+configuration := client.NewConfiguration()
+configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
+apiClient := client.NewAPIClient(configuration)
+```
+
+
+
 {{^authMethods}} Endpoints do not require authorization.
 {{/authMethods}}{{#authMethods}}{{#last}} Authentication schemes defined for the API:{{/last}}{{/authMethods}}
 {{#authMethods}}
