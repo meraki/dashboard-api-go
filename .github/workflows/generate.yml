@@ -49,6 +49,8 @@ jobs:
         run: wget https://github.com/meraki/openapi/archive/refs/tags/${{ needs.check-for-updates.outputs.new }}.zip && unzip -j ${{ needs.check-for-updates.outputs.new }}.zip '*/spec2.json'
       - name: "Install JRE"
         run: sudo apt update && sudo apt install -y default-jre
+      - name: "Install OpenAPI Generator"
+        run: wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.3.0/openapi-generator-cli-5.3.0.jar -O .openapi/generator/openapi-generator-cli.jar
       - name: "Run OpenAPI Generator"
         run: rm -rf client/; java -jar .openapi/generator/openapi-generator-cli.jar generate -i spec2.json -g go -o client -p enumClassPrefix=true -p structPrefix=true --package-name client -p packageVersion=${{ needs.check-for-updates.outputs.new }} -t .openapi/templates --git-user-id meraki --git-repo-id dashboard-api-go/client --git-host github.com
       - name: "Cleanup"
