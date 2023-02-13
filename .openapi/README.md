@@ -21,7 +21,7 @@ While there isn't a requirement to generate this library, it can be accomplished
 
 1) Install or download the latest[ OpenAPI generator](https://github.com/OpenAPITools/openapi-generator#1---installation) jar file:
 ```shell
-wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/6.2.1/openapi-generator-cli-6.2.1.jar -O .openapi/openapi-generator-cli.jar
+wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/6.2.1/openapi-generator-cli-6.2.1.jar -O .openapi/generator/openapi-generator-cli.jar
 ```
 
 2) Set the API version as an environmental variable:
@@ -41,7 +41,7 @@ rm -rf client/
 
 5) Run the code generator jar:
 ```shell
-java -jar .openapi/openapi-generator-cli.jar generate \
+java -jar .openapi/generator/openapi-generator-cli.jar generate \
   -i spec2.json \
   -g go \
   -o client \
@@ -53,7 +53,13 @@ java -jar .openapi/openapi-generator-cli.jar generate \
   --git-user-id meraki \
   --git-repo-id dashboard-api-go \
   --git-host github.com
+```
+
+6) Cleanup the build files:
+```shell
+
 rm $API_VERSION.zip; rm spec2.json
+
 ```
 
 Use the `-t` option to specify the template directory. This is an override to the default templates which contains code tailored to this specific API client.
