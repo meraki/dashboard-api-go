@@ -77,7 +77,7 @@ Method | HTTP request | Description
 
 ## CreateNetworkWirelessRfProfile
 
-> CreateNetworkWirelessRfProfile201Response CreateNetworkWirelessRfProfile(ctx, networkId).CreateNetworkWirelessRfProfile(createNetworkWirelessRfProfile).Execute()
+> InlineResponse2014 CreateNetworkWirelessRfProfile(ctx, networkId).CreateNetworkWirelessRfProfile(createNetworkWirelessRfProfile).Execute()
 
 Creates new RF profile for this network
 
@@ -97,7 +97,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | 
-    createNetworkWirelessRfProfile := *openapiclient.NewCreateNetworkWirelessRfProfileRequest("Name_example", "BandSelectionType_example") // CreateNetworkWirelessRfProfileRequest | 
+    createNetworkWirelessRfProfile := *openapiclient.NewInlineObject150("Name_example", "BandSelectionType_example") // InlineObject150 | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -106,7 +106,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.CreateNetworkWirelessRfProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkWirelessRfProfile`: CreateNetworkWirelessRfProfile201Response
+    // response from `CreateNetworkWirelessRfProfile`: InlineResponse2014
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.CreateNetworkWirelessRfProfile`: %v\n", resp)
 }
 ```
@@ -127,11 +127,11 @@ Other parameters are passed through a pointer to a apiCreateNetworkWirelessRfPro
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkWirelessRfProfile** | [**CreateNetworkWirelessRfProfileRequest**](CreateNetworkWirelessRfProfileRequest.md) |  | 
+ **createNetworkWirelessRfProfile** | [**InlineObject150**](InlineObject150.md) |  | 
 
 ### Return type
 
-[**CreateNetworkWirelessRfProfile201Response**](CreateNetworkWirelessRfProfile201Response.md)
+[**InlineResponse2014**](InlineResponse2014.md)
 
 ### Authorization
 
@@ -170,7 +170,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | 
     number := "number_example" // string | 
-    createNetworkWirelessSsidIdentityPsk := *openapiclient.NewCreateNetworkWirelessSsidIdentityPskRequest("Name_example", "GroupPolicyId_example") // CreateNetworkWirelessSsidIdentityPskRequest | 
+    createNetworkWirelessSsidIdentityPsk := *openapiclient.NewInlineObject160("Name_example", "GroupPolicyId_example") // InlineObject160 | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -202,7 +202,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **createNetworkWirelessSsidIdentityPsk** | [**CreateNetworkWirelessSsidIdentityPskRequest**](CreateNetworkWirelessSsidIdentityPskRequest.md) |  | 
+ **createNetworkWirelessSsidIdentityPsk** | [**InlineObject160**](InlineObject160.md) |  | 
 
 ### Return type
 
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceWirelessBluetoothSettings
 
-> GetDeviceWirelessBluetoothSettings200Response GetDeviceWirelessBluetoothSettings(ctx, serial).Execute()
+> InlineResponse2007 GetDeviceWirelessBluetoothSettings(ctx, serial).Execute()
 
 Return the bluetooth settings for a wireless device
 
@@ -397,7 +397,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetDeviceWirelessBluetoothSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceWirelessBluetoothSettings`: GetDeviceWirelessBluetoothSettings200Response
+    // response from `GetDeviceWirelessBluetoothSettings`: InlineResponse2007
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetDeviceWirelessBluetoothSettings`: %v\n", resp)
 }
 ```
@@ -421,7 +421,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetDeviceWirelessBluetoothSettings200Response**](GetDeviceWirelessBluetoothSettings200Response.md)
+[**InlineResponse2007**](InlineResponse2007.md)
 
 ### Authorization
 
@@ -439,7 +439,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceWirelessConnectionStats
 
-> GetDeviceWirelessConnectionStats200Response GetDeviceWirelessConnectionStats(ctx, serial).T0(t0).T1(t1).Timespan(timespan).Band(band).Ssid(ssid).Vlan(vlan).ApTag(apTag).Execute()
+> InlineResponse2008 GetDeviceWirelessConnectionStats(ctx, serial).T0(t0).T1(t1).Timespan(timespan).Band(band).Ssid(ssid).Vlan(vlan).ApTag(apTag).Execute()
 
 Aggregated connectivity info for a given AP on this network
 
@@ -474,7 +474,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetDeviceWirelessConnectionStats``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceWirelessConnectionStats`: GetDeviceWirelessConnectionStats200Response
+    // response from `GetDeviceWirelessConnectionStats`: InlineResponse2008
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetDeviceWirelessConnectionStats`: %v\n", resp)
 }
 ```
@@ -505,7 +505,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetDeviceWirelessConnectionStats200Response**](GetDeviceWirelessConnectionStats200Response.md)
+[**InlineResponse2008**](InlineResponse2008.md)
 
 ### Authorization
 
@@ -963,7 +963,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessBluetoothSettings
 
-> GetNetworkWirelessBluetoothSettings200Response GetNetworkWirelessBluetoothSettings(ctx, networkId).Execute()
+> InlineResponse20072 GetNetworkWirelessBluetoothSettings(ctx, networkId).Execute()
 
 Return the Bluetooth settings for a network. <a href=\"https://documentation.meraki.com/MR/Bluetooth/Bluetooth_Low_Energy_(BLE)\">Bluetooth settings</a> must be enabled on the network.
 
@@ -991,7 +991,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetNetworkWirelessBluetoothSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessBluetoothSettings`: GetNetworkWirelessBluetoothSettings200Response
+    // response from `GetNetworkWirelessBluetoothSettings`: InlineResponse20072
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetNetworkWirelessBluetoothSettings`: %v\n", resp)
 }
 ```
@@ -1015,7 +1015,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetNetworkWirelessBluetoothSettings200Response**](GetNetworkWirelessBluetoothSettings200Response.md)
+[**InlineResponse20072**](InlineResponse20072.md)
 
 ### Authorization
 
@@ -1033,7 +1033,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessChannelUtilizationHistory
 
-> []GetNetworkWirelessChannelUtilizationHistory200ResponseInner GetNetworkWirelessChannelUtilizationHistory(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).AutoResolution(autoResolution).ClientId(clientId).DeviceSerial(deviceSerial).ApTag(apTag).Band(band).Execute()
+> []InlineResponse20073 GetNetworkWirelessChannelUtilizationHistory(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).AutoResolution(autoResolution).ClientId(clientId).DeviceSerial(deviceSerial).ApTag(apTag).Band(band).Execute()
 
 Return AP channel utilization over time for a device or network client
 
@@ -1070,7 +1070,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetNetworkWirelessChannelUtilizationHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessChannelUtilizationHistory`: []GetNetworkWirelessChannelUtilizationHistory200ResponseInner
+    // response from `GetNetworkWirelessChannelUtilizationHistory`: []InlineResponse20073
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetNetworkWirelessChannelUtilizationHistory`: %v\n", resp)
 }
 ```
@@ -1103,7 +1103,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetNetworkWirelessChannelUtilizationHistory200ResponseInner**](GetNetworkWirelessChannelUtilizationHistory200ResponseInner.md)
+[**[]InlineResponse20073**](InlineResponse20073.md)
 
 ### Authorization
 
@@ -1303,7 +1303,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessClientCountHistory
 
-> []GetNetworkWirelessClientCountHistory200ResponseInner GetNetworkWirelessClientCountHistory(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).AutoResolution(autoResolution).ClientId(clientId).DeviceSerial(deviceSerial).ApTag(apTag).Band(band).Ssid(ssid).Execute()
+> []InlineResponse20074 GetNetworkWirelessClientCountHistory(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).AutoResolution(autoResolution).ClientId(clientId).DeviceSerial(deviceSerial).ApTag(apTag).Band(band).Ssid(ssid).Execute()
 
 Return wireless client counts over time for a network, device, or network client
 
@@ -1341,7 +1341,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetNetworkWirelessClientCountHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessClientCountHistory`: []GetNetworkWirelessClientCountHistory200ResponseInner
+    // response from `GetNetworkWirelessClientCountHistory`: []InlineResponse20074
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetNetworkWirelessClientCountHistory`: %v\n", resp)
 }
 ```
@@ -1375,7 +1375,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetNetworkWirelessClientCountHistory200ResponseInner**](GetNetworkWirelessClientCountHistory200ResponseInner.md)
+[**[]InlineResponse20074**](InlineResponse20074.md)
 
 ### Authorization
 
@@ -1733,7 +1733,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessConnectionStats
 
-> GetNetworkWirelessConnectionStats200Response GetNetworkWirelessConnectionStats(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Band(band).Ssid(ssid).Vlan(vlan).ApTag(apTag).Execute()
+> InlineResponse20075 GetNetworkWirelessConnectionStats(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Band(band).Ssid(ssid).Vlan(vlan).ApTag(apTag).Execute()
 
 Aggregated connectivity info for this network
 
@@ -1768,7 +1768,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetNetworkWirelessConnectionStats``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessConnectionStats`: GetNetworkWirelessConnectionStats200Response
+    // response from `GetNetworkWirelessConnectionStats`: InlineResponse20075
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetNetworkWirelessConnectionStats`: %v\n", resp)
 }
 ```
@@ -1799,7 +1799,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetNetworkWirelessConnectionStats200Response**](GetNetworkWirelessConnectionStats200Response.md)
+[**InlineResponse20075**](InlineResponse20075.md)
 
 ### Authorization
 
@@ -1817,7 +1817,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessDataRateHistory
 
-> []GetNetworkWirelessDataRateHistory200ResponseInner GetNetworkWirelessDataRateHistory(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).AutoResolution(autoResolution).ClientId(clientId).DeviceSerial(deviceSerial).ApTag(apTag).Band(band).Ssid(ssid).Execute()
+> []InlineResponse20076 GetNetworkWirelessDataRateHistory(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).AutoResolution(autoResolution).ClientId(clientId).DeviceSerial(deviceSerial).ApTag(apTag).Band(band).Ssid(ssid).Execute()
 
 Return PHY data rates over time for a network, device, or network client
 
@@ -1855,7 +1855,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetNetworkWirelessDataRateHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessDataRateHistory`: []GetNetworkWirelessDataRateHistory200ResponseInner
+    // response from `GetNetworkWirelessDataRateHistory`: []InlineResponse20076
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetNetworkWirelessDataRateHistory`: %v\n", resp)
 }
 ```
@@ -1889,7 +1889,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetNetworkWirelessDataRateHistory200ResponseInner**](GetNetworkWirelessDataRateHistory200ResponseInner.md)
+[**[]InlineResponse20076**](InlineResponse20076.md)
 
 ### Authorization
 
@@ -1907,7 +1907,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessDevicesConnectionStats
 
-> []GetDeviceWirelessConnectionStats200Response GetNetworkWirelessDevicesConnectionStats(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Band(band).Ssid(ssid).Vlan(vlan).ApTag(apTag).Execute()
+> []InlineResponse2008 GetNetworkWirelessDevicesConnectionStats(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Band(band).Ssid(ssid).Vlan(vlan).ApTag(apTag).Execute()
 
 Aggregated connectivity info for this network, grouped by node
 
@@ -1942,7 +1942,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetNetworkWirelessDevicesConnectionStats``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessDevicesConnectionStats`: []GetDeviceWirelessConnectionStats200Response
+    // response from `GetNetworkWirelessDevicesConnectionStats`: []InlineResponse2008
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetNetworkWirelessDevicesConnectionStats`: %v\n", resp)
 }
 ```
@@ -1973,7 +1973,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetDeviceWirelessConnectionStats200Response**](GetDeviceWirelessConnectionStats200Response.md)
+[**[]InlineResponse2008**](InlineResponse2008.md)
 
 ### Authorization
 
@@ -2077,7 +2077,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessFailedConnections
 
-> []GetNetworkWirelessFailedConnections200ResponseInner GetNetworkWirelessFailedConnections(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Band(band).Ssid(ssid).Vlan(vlan).ApTag(apTag).Serial(serial).ClientId(clientId).Execute()
+> []InlineResponse20077 GetNetworkWirelessFailedConnections(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Band(band).Ssid(ssid).Vlan(vlan).ApTag(apTag).Serial(serial).ClientId(clientId).Execute()
 
 List of all failed client connection events on this network in a given time range
 
@@ -2114,7 +2114,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetNetworkWirelessFailedConnections``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessFailedConnections`: []GetNetworkWirelessFailedConnections200ResponseInner
+    // response from `GetNetworkWirelessFailedConnections`: []InlineResponse20077
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetNetworkWirelessFailedConnections`: %v\n", resp)
 }
 ```
@@ -2147,7 +2147,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetNetworkWirelessFailedConnections200ResponseInner**](GetNetworkWirelessFailedConnections200ResponseInner.md)
+[**[]InlineResponse20077**](InlineResponse20077.md)
 
 ### Authorization
 
@@ -2165,7 +2165,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessLatencyHistory
 
-> []GetNetworkWirelessLatencyHistory200ResponseInner GetNetworkWirelessLatencyHistory(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).AutoResolution(autoResolution).ClientId(clientId).DeviceSerial(deviceSerial).ApTag(apTag).Band(band).Ssid(ssid).AccessCategory(accessCategory).Execute()
+> []InlineResponse20078 GetNetworkWirelessLatencyHistory(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).AutoResolution(autoResolution).ClientId(clientId).DeviceSerial(deviceSerial).ApTag(apTag).Band(band).Ssid(ssid).AccessCategory(accessCategory).Execute()
 
 Return average wireless latency over time for a network, device, or network client
 
@@ -2204,7 +2204,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetNetworkWirelessLatencyHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessLatencyHistory`: []GetNetworkWirelessLatencyHistory200ResponseInner
+    // response from `GetNetworkWirelessLatencyHistory`: []InlineResponse20078
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetNetworkWirelessLatencyHistory`: %v\n", resp)
 }
 ```
@@ -2239,7 +2239,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetNetworkWirelessLatencyHistory200ResponseInner**](GetNetworkWirelessLatencyHistory200ResponseInner.md)
+[**[]InlineResponse20078**](InlineResponse20078.md)
 
 ### Authorization
 
@@ -2564,7 +2564,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessSettings
 
-> GetNetworkWirelessSettings200Response GetNetworkWirelessSettings(ctx, networkId).Execute()
+> InlineResponse20079 GetNetworkWirelessSettings(ctx, networkId).Execute()
 
 Return the wireless settings for a network
 
@@ -2592,7 +2592,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetNetworkWirelessSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessSettings`: GetNetworkWirelessSettings200Response
+    // response from `GetNetworkWirelessSettings`: InlineResponse20079
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetNetworkWirelessSettings`: %v\n", resp)
 }
 ```
@@ -2616,7 +2616,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetNetworkWirelessSettings200Response**](GetNetworkWirelessSettings200Response.md)
+[**InlineResponse20079**](InlineResponse20079.md)
 
 ### Authorization
 
@@ -2634,7 +2634,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessSignalQualityHistory
 
-> []GetNetworkWirelessSignalQualityHistory200ResponseInner GetNetworkWirelessSignalQualityHistory(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).AutoResolution(autoResolution).ClientId(clientId).DeviceSerial(deviceSerial).ApTag(apTag).Band(band).Ssid(ssid).Execute()
+> []InlineResponse20080 GetNetworkWirelessSignalQualityHistory(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).AutoResolution(autoResolution).ClientId(clientId).DeviceSerial(deviceSerial).ApTag(apTag).Band(band).Ssid(ssid).Execute()
 
 Return signal quality (SNR/RSSI) over time for a device or network client
 
@@ -2672,7 +2672,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetNetworkWirelessSignalQualityHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessSignalQualityHistory`: []GetNetworkWirelessSignalQualityHistory200ResponseInner
+    // response from `GetNetworkWirelessSignalQualityHistory`: []InlineResponse20080
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetNetworkWirelessSignalQualityHistory`: %v\n", resp)
 }
 ```
@@ -2706,7 +2706,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetNetworkWirelessSignalQualityHistory200ResponseInner**](GetNetworkWirelessSignalQualityHistory200ResponseInner.md)
+[**[]InlineResponse20080**](InlineResponse20080.md)
 
 ### Authorization
 
@@ -2943,7 +2943,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessSsidEapOverride
 
-> map[string]interface{} GetNetworkWirelessSsidEapOverride(ctx, networkId, number).Execute()
+> InlineResponse20081 GetNetworkWirelessSsidEapOverride(ctx, networkId, number).Execute()
 
 Return the EAP overridden parameters for an SSID
 
@@ -2972,7 +2972,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetNetworkWirelessSsidEapOverride``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessSsidEapOverride`: map[string]interface{}
+    // response from `GetNetworkWirelessSsidEapOverride`: InlineResponse20081
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetNetworkWirelessSsidEapOverride`: %v\n", resp)
 }
 ```
@@ -2998,7 +2998,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**InlineResponse20081**](InlineResponse20081.md)
 
 ### Authorization
 
@@ -3235,7 +3235,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessSsidIdentityPsk
 
-> GetNetworkWirelessSsidIdentityPsks200ResponseInner GetNetworkWirelessSsidIdentityPsk(ctx, networkId, number, identityPskId).Execute()
+> InlineResponse20082 GetNetworkWirelessSsidIdentityPsk(ctx, networkId, number, identityPskId).Execute()
 
 Return an Identity PSK
 
@@ -3265,7 +3265,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetNetworkWirelessSsidIdentityPsk``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessSsidIdentityPsk`: GetNetworkWirelessSsidIdentityPsks200ResponseInner
+    // response from `GetNetworkWirelessSsidIdentityPsk`: InlineResponse20082
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetNetworkWirelessSsidIdentityPsk`: %v\n", resp)
 }
 ```
@@ -3293,7 +3293,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetNetworkWirelessSsidIdentityPsks200ResponseInner**](GetNetworkWirelessSsidIdentityPsks200ResponseInner.md)
+[**InlineResponse20082**](InlineResponse20082.md)
 
 ### Authorization
 
@@ -3311,7 +3311,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessSsidIdentityPsks
 
-> []GetNetworkWirelessSsidIdentityPsks200ResponseInner GetNetworkWirelessSsidIdentityPsks(ctx, networkId, number).Execute()
+> []InlineResponse20082 GetNetworkWirelessSsidIdentityPsks(ctx, networkId, number).Execute()
 
 List all Identity PSKs in a wireless network
 
@@ -3340,7 +3340,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetNetworkWirelessSsidIdentityPsks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessSsidIdentityPsks`: []GetNetworkWirelessSsidIdentityPsks200ResponseInner
+    // response from `GetNetworkWirelessSsidIdentityPsks`: []InlineResponse20082
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetNetworkWirelessSsidIdentityPsks`: %v\n", resp)
 }
 ```
@@ -3366,7 +3366,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetNetworkWirelessSsidIdentityPsks200ResponseInner**](GetNetworkWirelessSsidIdentityPsks200ResponseInner.md)
+[**[]InlineResponse20082**](InlineResponse20082.md)
 
 ### Authorization
 
@@ -3457,7 +3457,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessSsidSplashSettings
 
-> GetNetworkWirelessSsidSplashSettings200Response GetNetworkWirelessSsidSplashSettings(ctx, networkId, number).Execute()
+> InlineResponse20083 GetNetworkWirelessSsidSplashSettings(ctx, networkId, number).Execute()
 
 Display the splash page settings for the given SSID
 
@@ -3486,7 +3486,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetNetworkWirelessSsidSplashSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessSsidSplashSettings`: GetNetworkWirelessSsidSplashSettings200Response
+    // response from `GetNetworkWirelessSsidSplashSettings`: InlineResponse20083
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetNetworkWirelessSsidSplashSettings`: %v\n", resp)
 }
 ```
@@ -3512,7 +3512,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetNetworkWirelessSsidSplashSettings200Response**](GetNetworkWirelessSsidSplashSettings200Response.md)
+[**InlineResponse20083**](InlineResponse20083.md)
 
 ### Authorization
 
@@ -3746,7 +3746,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessUsageHistory
 
-> []GetNetworkWirelessUsageHistory200ResponseInner GetNetworkWirelessUsageHistory(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).AutoResolution(autoResolution).ClientId(clientId).DeviceSerial(deviceSerial).ApTag(apTag).Band(band).Ssid(ssid).Execute()
+> []InlineResponse20084 GetNetworkWirelessUsageHistory(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).AutoResolution(autoResolution).ClientId(clientId).DeviceSerial(deviceSerial).ApTag(apTag).Band(band).Ssid(ssid).Execute()
 
 Return AP usage over time for a device or network client
 
@@ -3784,7 +3784,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetNetworkWirelessUsageHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessUsageHistory`: []GetNetworkWirelessUsageHistory200ResponseInner
+    // response from `GetNetworkWirelessUsageHistory`: []InlineResponse20084
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetNetworkWirelessUsageHistory`: %v\n", resp)
 }
 ```
@@ -3818,7 +3818,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetNetworkWirelessUsageHistory200ResponseInner**](GetNetworkWirelessUsageHistory200ResponseInner.md)
+[**[]InlineResponse20084**](InlineResponse20084.md)
 
 ### Authorization
 
@@ -3836,7 +3836,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationWirelessDevicesEthernetStatuses
 
-> []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner GetOrganizationWirelessDevicesEthernetStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Execute()
+> []InlineResponse200134 GetOrganizationWirelessDevicesEthernetStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Execute()
 
 Endpoint to see power status for wireless devices
 
@@ -3868,7 +3868,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.GetOrganizationWirelessDevicesEthernetStatuses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationWirelessDevicesEthernetStatuses`: []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
+    // response from `GetOrganizationWirelessDevicesEthernetStatuses`: []InlineResponse200134
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.GetOrganizationWirelessDevicesEthernetStatuses`: %v\n", resp)
 }
 ```
@@ -3896,7 +3896,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner**](GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner.md)
+[**[]InlineResponse200134**](InlineResponse200134.md)
 
 ### Authorization
 
@@ -3914,7 +3914,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceWirelessBluetoothSettings
 
-> GetDeviceWirelessBluetoothSettings200Response UpdateDeviceWirelessBluetoothSettings(ctx, serial).UpdateDeviceWirelessBluetoothSettings(updateDeviceWirelessBluetoothSettings).Execute()
+> InlineResponse2007 UpdateDeviceWirelessBluetoothSettings(ctx, serial).UpdateDeviceWirelessBluetoothSettings(updateDeviceWirelessBluetoothSettings).Execute()
 
 Update the bluetooth settings for a wireless device
 
@@ -3934,7 +3934,7 @@ import (
 
 func main() {
     serial := "serial_example" // string | 
-    updateDeviceWirelessBluetoothSettings := *openapiclient.NewUpdateDeviceWirelessBluetoothSettingsRequest() // UpdateDeviceWirelessBluetoothSettingsRequest |  (optional)
+    updateDeviceWirelessBluetoothSettings := *openapiclient.NewInlineObject24() // InlineObject24 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -3943,7 +3943,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.UpdateDeviceWirelessBluetoothSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateDeviceWirelessBluetoothSettings`: GetDeviceWirelessBluetoothSettings200Response
+    // response from `UpdateDeviceWirelessBluetoothSettings`: InlineResponse2007
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.UpdateDeviceWirelessBluetoothSettings`: %v\n", resp)
 }
 ```
@@ -3964,11 +3964,11 @@ Other parameters are passed through a pointer to a apiUpdateDeviceWirelessBlueto
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceWirelessBluetoothSettings** | [**UpdateDeviceWirelessBluetoothSettingsRequest**](UpdateDeviceWirelessBluetoothSettingsRequest.md) |  | 
+ **updateDeviceWirelessBluetoothSettings** | [**InlineObject24**](InlineObject24.md) |  | 
 
 ### Return type
 
-[**GetDeviceWirelessBluetoothSettings200Response**](GetDeviceWirelessBluetoothSettings200Response.md)
+[**InlineResponse2007**](InlineResponse2007.md)
 
 ### Authorization
 
@@ -4006,7 +4006,7 @@ import (
 
 func main() {
     serial := "serial_example" // string | 
-    updateDeviceWirelessRadioSettings := *openapiclient.NewUpdateDeviceWirelessRadioSettingsRequest() // UpdateDeviceWirelessRadioSettingsRequest |  (optional)
+    updateDeviceWirelessRadioSettings := *openapiclient.NewInlineObject25() // InlineObject25 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -4036,7 +4036,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceWirelessRadioS
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceWirelessRadioSettings** | [**UpdateDeviceWirelessRadioSettingsRequest**](UpdateDeviceWirelessRadioSettingsRequest.md) |  | 
+ **updateDeviceWirelessRadioSettings** | [**InlineObject25**](InlineObject25.md) |  | 
 
 ### Return type
 
@@ -4078,7 +4078,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | 
-    updateNetworkWirelessAlternateManagementInterface := *openapiclient.NewUpdateNetworkWirelessAlternateManagementInterfaceRequest() // UpdateNetworkWirelessAlternateManagementInterfaceRequest |  (optional)
+    updateNetworkWirelessAlternateManagementInterface := *openapiclient.NewInlineObject147() // InlineObject147 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -4108,7 +4108,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkWirelessAlter
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkWirelessAlternateManagementInterface** | [**UpdateNetworkWirelessAlternateManagementInterfaceRequest**](UpdateNetworkWirelessAlternateManagementInterfaceRequest.md) |  | 
+ **updateNetworkWirelessAlternateManagementInterface** | [**InlineObject147**](InlineObject147.md) |  | 
 
 ### Return type
 
@@ -4150,7 +4150,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | 
-    updateNetworkWirelessBilling := *openapiclient.NewUpdateNetworkWirelessBillingRequest() // UpdateNetworkWirelessBillingRequest |  (optional)
+    updateNetworkWirelessBilling := *openapiclient.NewInlineObject148() // InlineObject148 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -4180,7 +4180,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkWirelessBilli
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkWirelessBilling** | [**UpdateNetworkWirelessBillingRequest**](UpdateNetworkWirelessBillingRequest.md) |  | 
+ **updateNetworkWirelessBilling** | [**InlineObject148**](InlineObject148.md) |  | 
 
 ### Return type
 
@@ -4202,7 +4202,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessBluetoothSettings
 
-> GetNetworkWirelessBluetoothSettings200Response UpdateNetworkWirelessBluetoothSettings(ctx, networkId).UpdateNetworkWirelessBluetoothSettings(updateNetworkWirelessBluetoothSettings).Execute()
+> InlineResponse20072 UpdateNetworkWirelessBluetoothSettings(ctx, networkId).UpdateNetworkWirelessBluetoothSettings(updateNetworkWirelessBluetoothSettings).Execute()
 
 Update the Bluetooth settings for a network
 
@@ -4222,7 +4222,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | 
-    updateNetworkWirelessBluetoothSettings := *openapiclient.NewUpdateNetworkWirelessBluetoothSettingsRequest() // UpdateNetworkWirelessBluetoothSettingsRequest |  (optional)
+    updateNetworkWirelessBluetoothSettings := *openapiclient.NewInlineObject149() // InlineObject149 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -4231,7 +4231,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.UpdateNetworkWirelessBluetoothSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkWirelessBluetoothSettings`: GetNetworkWirelessBluetoothSettings200Response
+    // response from `UpdateNetworkWirelessBluetoothSettings`: InlineResponse20072
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.UpdateNetworkWirelessBluetoothSettings`: %v\n", resp)
 }
 ```
@@ -4252,11 +4252,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkWirelessBluet
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkWirelessBluetoothSettings** | [**UpdateNetworkWirelessBluetoothSettingsRequest**](UpdateNetworkWirelessBluetoothSettingsRequest.md) |  | 
+ **updateNetworkWirelessBluetoothSettings** | [**InlineObject149**](InlineObject149.md) |  | 
 
 ### Return type
 
-[**GetNetworkWirelessBluetoothSettings200Response**](GetNetworkWirelessBluetoothSettings200Response.md)
+[**InlineResponse20072**](InlineResponse20072.md)
 
 ### Authorization
 
@@ -4274,7 +4274,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessRfProfile
 
-> CreateNetworkWirelessRfProfile201Response UpdateNetworkWirelessRfProfile(ctx, networkId, rfProfileId).UpdateNetworkWirelessRfProfile(updateNetworkWirelessRfProfile).Execute()
+> InlineResponse2014 UpdateNetworkWirelessRfProfile(ctx, networkId, rfProfileId).UpdateNetworkWirelessRfProfile(updateNetworkWirelessRfProfile).Execute()
 
 Updates specified RF profile for this network
 
@@ -4295,7 +4295,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | 
     rfProfileId := "rfProfileId_example" // string | 
-    updateNetworkWirelessRfProfile := *openapiclient.NewUpdateNetworkWirelessRfProfileRequest() // UpdateNetworkWirelessRfProfileRequest |  (optional)
+    updateNetworkWirelessRfProfile := *openapiclient.NewInlineObject151() // InlineObject151 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -4304,7 +4304,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.UpdateNetworkWirelessRfProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkWirelessRfProfile`: CreateNetworkWirelessRfProfile201Response
+    // response from `UpdateNetworkWirelessRfProfile`: InlineResponse2014
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.UpdateNetworkWirelessRfProfile`: %v\n", resp)
 }
 ```
@@ -4327,11 +4327,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessRfProfile** | [**UpdateNetworkWirelessRfProfileRequest**](UpdateNetworkWirelessRfProfileRequest.md) |  | 
+ **updateNetworkWirelessRfProfile** | [**InlineObject151**](InlineObject151.md) |  | 
 
 ### Return type
 
-[**CreateNetworkWirelessRfProfile201Response**](CreateNetworkWirelessRfProfile201Response.md)
+[**InlineResponse2014**](InlineResponse2014.md)
 
 ### Authorization
 
@@ -4349,7 +4349,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessSettings
 
-> GetNetworkWirelessSettings200Response UpdateNetworkWirelessSettings(ctx, networkId).UpdateNetworkWirelessSettings(updateNetworkWirelessSettings).Execute()
+> InlineResponse20079 UpdateNetworkWirelessSettings(ctx, networkId).UpdateNetworkWirelessSettings(updateNetworkWirelessSettings).Execute()
 
 Update the wireless settings for a network
 
@@ -4369,7 +4369,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | 
-    updateNetworkWirelessSettings := *openapiclient.NewUpdateNetworkWirelessSettingsRequest() // UpdateNetworkWirelessSettingsRequest |  (optional)
+    updateNetworkWirelessSettings := *openapiclient.NewInlineObject152() // InlineObject152 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -4378,7 +4378,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.UpdateNetworkWirelessSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkWirelessSettings`: GetNetworkWirelessSettings200Response
+    // response from `UpdateNetworkWirelessSettings`: InlineResponse20079
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.UpdateNetworkWirelessSettings`: %v\n", resp)
 }
 ```
@@ -4399,11 +4399,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkWirelessSetti
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkWirelessSettings** | [**UpdateNetworkWirelessSettingsRequest**](UpdateNetworkWirelessSettingsRequest.md) |  | 
+ **updateNetworkWirelessSettings** | [**InlineObject152**](InlineObject152.md) |  | 
 
 ### Return type
 
-[**GetNetworkWirelessSettings200Response**](GetNetworkWirelessSettings200Response.md)
+[**InlineResponse20079**](InlineResponse20079.md)
 
 ### Authorization
 
@@ -4442,7 +4442,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | 
     number := "number_example" // string | 
-    updateNetworkWirelessSsid := *openapiclient.NewUpdateNetworkWirelessSsidRequest() // UpdateNetworkWirelessSsidRequest |  (optional)
+    updateNetworkWirelessSsid := *openapiclient.NewInlineObject153() // InlineObject153 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -4474,7 +4474,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsid** | [**UpdateNetworkWirelessSsidRequest**](UpdateNetworkWirelessSsidRequest.md) |  | 
+ **updateNetworkWirelessSsid** | [**InlineObject153**](InlineObject153.md) |  | 
 
 ### Return type
 
@@ -4517,7 +4517,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | 
     number := "number_example" // string | 
-    updateNetworkWirelessSsidBonjourForwarding := *openapiclient.NewUpdateNetworkWirelessSsidBonjourForwardingRequest() // UpdateNetworkWirelessSsidBonjourForwardingRequest |  (optional)
+    updateNetworkWirelessSsidBonjourForwarding := *openapiclient.NewInlineObject154() // InlineObject154 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -4549,7 +4549,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidBonjourForwarding** | [**UpdateNetworkWirelessSsidBonjourForwardingRequest**](UpdateNetworkWirelessSsidBonjourForwardingRequest.md) |  | 
+ **updateNetworkWirelessSsidBonjourForwarding** | [**InlineObject154**](InlineObject154.md) |  | 
 
 ### Return type
 
@@ -4592,7 +4592,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | 
     number := "number_example" // string | 
-    updateNetworkWirelessSsidDeviceTypeGroupPolicies := *openapiclient.NewUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest() // UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest |  (optional)
+    updateNetworkWirelessSsidDeviceTypeGroupPolicies := *openapiclient.NewInlineObject155() // InlineObject155 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -4624,7 +4624,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidDeviceTypeGroupPolicies** | [**UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest**](UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest.md) |  | 
+ **updateNetworkWirelessSsidDeviceTypeGroupPolicies** | [**InlineObject155**](InlineObject155.md) |  | 
 
 ### Return type
 
@@ -4667,7 +4667,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | 
     number := "number_example" // string | 
-    updateNetworkWirelessSsidEapOverride := *openapiclient.NewUpdateNetworkWirelessSsidEapOverrideRequest() // UpdateNetworkWirelessSsidEapOverrideRequest |  (optional)
+    updateNetworkWirelessSsidEapOverride := *openapiclient.NewInlineObject156() // InlineObject156 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -4699,7 +4699,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidEapOverride** | [**UpdateNetworkWirelessSsidEapOverrideRequest**](UpdateNetworkWirelessSsidEapOverrideRequest.md) |  | 
+ **updateNetworkWirelessSsidEapOverride** | [**InlineObject156**](InlineObject156.md) |  | 
 
 ### Return type
 
@@ -4742,7 +4742,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | 
     number := "number_example" // string | 
-    updateNetworkWirelessSsidFirewallL3FirewallRules := *openapiclient.NewUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest() // UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest |  (optional)
+    updateNetworkWirelessSsidFirewallL3FirewallRules := *openapiclient.NewInlineObject157() // InlineObject157 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -4774,7 +4774,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidFirewallL3FirewallRules** | [**UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest**](UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest.md) |  | 
+ **updateNetworkWirelessSsidFirewallL3FirewallRules** | [**InlineObject157**](InlineObject157.md) |  | 
 
 ### Return type
 
@@ -4817,7 +4817,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | 
     number := "number_example" // string | 
-    updateNetworkWirelessSsidFirewallL7FirewallRules := *openapiclient.NewUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest() // UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest |  (optional)
+    updateNetworkWirelessSsidFirewallL7FirewallRules := *openapiclient.NewInlineObject158() // InlineObject158 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -4849,7 +4849,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidFirewallL7FirewallRules** | [**UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest**](UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest.md) |  | 
+ **updateNetworkWirelessSsidFirewallL7FirewallRules** | [**InlineObject158**](InlineObject158.md) |  | 
 
 ### Return type
 
@@ -4892,7 +4892,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | 
     number := "number_example" // string | 
-    updateNetworkWirelessSsidHotspot20 := *openapiclient.NewUpdateNetworkWirelessSsidHotspot20Request() // UpdateNetworkWirelessSsidHotspot20Request |  (optional)
+    updateNetworkWirelessSsidHotspot20 := *openapiclient.NewInlineObject159() // InlineObject159 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -4924,7 +4924,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidHotspot20** | [**UpdateNetworkWirelessSsidHotspot20Request**](UpdateNetworkWirelessSsidHotspot20Request.md) |  | 
+ **updateNetworkWirelessSsidHotspot20** | [**InlineObject159**](InlineObject159.md) |  | 
 
 ### Return type
 
@@ -4968,7 +4968,7 @@ func main() {
     networkId := "networkId_example" // string | 
     number := "number_example" // string | 
     identityPskId := "identityPskId_example" // string | 
-    updateNetworkWirelessSsidIdentityPsk := *openapiclient.NewUpdateNetworkWirelessSsidIdentityPskRequest() // UpdateNetworkWirelessSsidIdentityPskRequest |  (optional)
+    updateNetworkWirelessSsidIdentityPsk := *openapiclient.NewInlineObject161() // InlineObject161 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -5002,7 +5002,7 @@ Name | Type | Description  | Notes
 
 
 
- **updateNetworkWirelessSsidIdentityPsk** | [**UpdateNetworkWirelessSsidIdentityPskRequest**](UpdateNetworkWirelessSsidIdentityPskRequest.md) |  | 
+ **updateNetworkWirelessSsidIdentityPsk** | [**InlineObject161**](InlineObject161.md) |  | 
 
 ### Return type
 
@@ -5045,7 +5045,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | 
     number := "number_example" // string | 
-    updateNetworkWirelessSsidSchedules := *openapiclient.NewUpdateNetworkWirelessSsidSchedulesRequest() // UpdateNetworkWirelessSsidSchedulesRequest |  (optional)
+    updateNetworkWirelessSsidSchedules := *openapiclient.NewInlineObject162() // InlineObject162 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -5077,7 +5077,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidSchedules** | [**UpdateNetworkWirelessSsidSchedulesRequest**](UpdateNetworkWirelessSsidSchedulesRequest.md) |  | 
+ **updateNetworkWirelessSsidSchedules** | [**InlineObject162**](InlineObject162.md) |  | 
 
 ### Return type
 
@@ -5099,7 +5099,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessSsidSplashSettings
 
-> GetNetworkWirelessSsidSplashSettings200Response UpdateNetworkWirelessSsidSplashSettings(ctx, networkId, number).UpdateNetworkWirelessSsidSplashSettings(updateNetworkWirelessSsidSplashSettings).Execute()
+> InlineResponse20083 UpdateNetworkWirelessSsidSplashSettings(ctx, networkId, number).UpdateNetworkWirelessSsidSplashSettings(updateNetworkWirelessSsidSplashSettings).Execute()
 
 Modify the splash page settings for the given SSID
 
@@ -5120,7 +5120,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | 
     number := "number_example" // string | 
-    updateNetworkWirelessSsidSplashSettings := *openapiclient.NewUpdateNetworkWirelessSsidSplashSettingsRequest() // UpdateNetworkWirelessSsidSplashSettingsRequest |  (optional)
+    updateNetworkWirelessSsidSplashSettings := *openapiclient.NewInlineObject163() // InlineObject163 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -5129,7 +5129,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WirelessApi.UpdateNetworkWirelessSsidSplashSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkWirelessSsidSplashSettings`: GetNetworkWirelessSsidSplashSettings200Response
+    // response from `UpdateNetworkWirelessSsidSplashSettings`: InlineResponse20083
     fmt.Fprintf(os.Stdout, "Response from `WirelessApi.UpdateNetworkWirelessSsidSplashSettings`: %v\n", resp)
 }
 ```
@@ -5152,11 +5152,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidSplashSettings** | [**UpdateNetworkWirelessSsidSplashSettingsRequest**](UpdateNetworkWirelessSsidSplashSettingsRequest.md) |  | 
+ **updateNetworkWirelessSsidSplashSettings** | [**InlineObject163**](InlineObject163.md) |  | 
 
 ### Return type
 
-[**GetNetworkWirelessSsidSplashSettings200Response**](GetNetworkWirelessSsidSplashSettings200Response.md)
+[**InlineResponse20083**](InlineResponse20083.md)
 
 ### Authorization
 
@@ -5195,7 +5195,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | 
     number := "number_example" // string | 
-    updateNetworkWirelessSsidTrafficShapingRules := *openapiclient.NewUpdateNetworkWirelessSsidTrafficShapingRulesRequest() // UpdateNetworkWirelessSsidTrafficShapingRulesRequest |  (optional)
+    updateNetworkWirelessSsidTrafficShapingRules := *openapiclient.NewInlineObject164() // InlineObject164 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -5227,7 +5227,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidTrafficShapingRules** | [**UpdateNetworkWirelessSsidTrafficShapingRulesRequest**](UpdateNetworkWirelessSsidTrafficShapingRulesRequest.md) |  | 
+ **updateNetworkWirelessSsidTrafficShapingRules** | [**InlineObject164**](InlineObject164.md) |  | 
 
 ### Return type
 
@@ -5270,7 +5270,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | 
     number := "number_example" // string | 
-    updateNetworkWirelessSsidVpn := *openapiclient.NewUpdateNetworkWirelessSsidVpnRequest() // UpdateNetworkWirelessSsidVpnRequest |  (optional)
+    updateNetworkWirelessSsidVpn := *openapiclient.NewInlineObject165() // InlineObject165 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -5302,7 +5302,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidVpn** | [**UpdateNetworkWirelessSsidVpnRequest**](UpdateNetworkWirelessSsidVpnRequest.md) |  | 
+ **updateNetworkWirelessSsidVpn** | [**InlineObject165**](InlineObject165.md) |  | 
 
 ### Return type
 

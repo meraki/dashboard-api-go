@@ -105,7 +105,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | 
     number := "number_example" // string | 
-    updateNetworkWirelessSsidBonjourForwarding := *openapiclient.NewUpdateNetworkWirelessSsidBonjourForwardingRequest() // UpdateNetworkWirelessSsidBonjourForwardingRequest |  (optional)
+    updateNetworkWirelessSsidBonjourForwarding := *openapiclient.NewInlineObject154() // InlineObject154 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidBonjourForwarding** | [**UpdateNetworkWirelessSsidBonjourForwardingRequest**](UpdateNetworkWirelessSsidBonjourForwardingRequest.md) |  | 
+ **updateNetworkWirelessSsidBonjourForwarding** | [**InlineObject154**](InlineObject154.md) |  | 
 
 ### Return type
 

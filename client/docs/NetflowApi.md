@@ -101,7 +101,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | 
-    updateNetworkNetflow := *openapiclient.NewUpdateNetworkNetflowRequest() // UpdateNetworkNetflowRequest |  (optional)
+    updateNetworkNetflow := *openapiclient.NewInlineObject93() // InlineObject93 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -131,7 +131,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkNetflowReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkNetflow** | [**UpdateNetworkNetflowRequest**](UpdateNetworkNetflowRequest.md) |  | 
+ **updateNetworkNetflow** | [**InlineObject93**](InlineObject93.md) |  | 
 
 ### Return type
 

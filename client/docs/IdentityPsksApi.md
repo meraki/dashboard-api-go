@@ -35,7 +35,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | 
     number := "number_example" // string | 
-    createNetworkWirelessSsidIdentityPsk := *openapiclient.NewCreateNetworkWirelessSsidIdentityPskRequest("Name_example", "GroupPolicyId_example") // CreateNetworkWirelessSsidIdentityPskRequest | 
+    createNetworkWirelessSsidIdentityPsk := *openapiclient.NewInlineObject160("Name_example", "GroupPolicyId_example") // InlineObject160 | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **createNetworkWirelessSsidIdentityPsk** | [**CreateNetworkWirelessSsidIdentityPskRequest**](CreateNetworkWirelessSsidIdentityPskRequest.md) |  | 
+ **createNetworkWirelessSsidIdentityPsk** | [**InlineObject160**](InlineObject160.md) |  | 
 
 ### Return type
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessSsidIdentityPsk
 
-> GetNetworkWirelessSsidIdentityPsks200ResponseInner GetNetworkWirelessSsidIdentityPsk(ctx, networkId, number, identityPskId).Execute()
+> InlineResponse20082 GetNetworkWirelessSsidIdentityPsk(ctx, networkId, number, identityPskId).Execute()
 
 Return an Identity PSK
 
@@ -193,7 +193,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `IdentityPsksApi.GetNetworkWirelessSsidIdentityPsk``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessSsidIdentityPsk`: GetNetworkWirelessSsidIdentityPsks200ResponseInner
+    // response from `GetNetworkWirelessSsidIdentityPsk`: InlineResponse20082
     fmt.Fprintf(os.Stdout, "Response from `IdentityPsksApi.GetNetworkWirelessSsidIdentityPsk`: %v\n", resp)
 }
 ```
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetNetworkWirelessSsidIdentityPsks200ResponseInner**](GetNetworkWirelessSsidIdentityPsks200ResponseInner.md)
+[**InlineResponse20082**](InlineResponse20082.md)
 
 ### Authorization
 
@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessSsidIdentityPsks
 
-> []GetNetworkWirelessSsidIdentityPsks200ResponseInner GetNetworkWirelessSsidIdentityPsks(ctx, networkId, number).Execute()
+> []InlineResponse20082 GetNetworkWirelessSsidIdentityPsks(ctx, networkId, number).Execute()
 
 List all Identity PSKs in a wireless network
 
@@ -268,7 +268,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `IdentityPsksApi.GetNetworkWirelessSsidIdentityPsks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessSsidIdentityPsks`: []GetNetworkWirelessSsidIdentityPsks200ResponseInner
+    // response from `GetNetworkWirelessSsidIdentityPsks`: []InlineResponse20082
     fmt.Fprintf(os.Stdout, "Response from `IdentityPsksApi.GetNetworkWirelessSsidIdentityPsks`: %v\n", resp)
 }
 ```
@@ -294,7 +294,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetNetworkWirelessSsidIdentityPsks200ResponseInner**](GetNetworkWirelessSsidIdentityPsks200ResponseInner.md)
+[**[]InlineResponse20082**](InlineResponse20082.md)
 
 ### Authorization
 
@@ -334,7 +334,7 @@ func main() {
     networkId := "networkId_example" // string | 
     number := "number_example" // string | 
     identityPskId := "identityPskId_example" // string | 
-    updateNetworkWirelessSsidIdentityPsk := *openapiclient.NewUpdateNetworkWirelessSsidIdentityPskRequest() // UpdateNetworkWirelessSsidIdentityPskRequest |  (optional)
+    updateNetworkWirelessSsidIdentityPsk := *openapiclient.NewInlineObject161() // InlineObject161 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
 
 
 
- **updateNetworkWirelessSsidIdentityPsk** | [**UpdateNetworkWirelessSsidIdentityPskRequest**](UpdateNetworkWirelessSsidIdentityPskRequest.md) |  | 
+ **updateNetworkWirelessSsidIdentityPsk** | [**InlineObject161**](InlineObject161.md) |  | 
 
 ### Return type
 

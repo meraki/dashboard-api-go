@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetAdministeredIdentitiesMe
 
-> GetAdministeredIdentitiesMe200Response GetAdministeredIdentitiesMe(ctx).Execute()
+> InlineResponse200 GetAdministeredIdentitiesMe(ctx).Execute()
 
 Returns the identity of the current user.
 
@@ -37,7 +37,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `AdministeredApi.GetAdministeredIdentitiesMe``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetAdministeredIdentitiesMe`: GetAdministeredIdentitiesMe200Response
+    // response from `GetAdministeredIdentitiesMe`: InlineResponse200
     fmt.Fprintf(os.Stdout, "Response from `AdministeredApi.GetAdministeredIdentitiesMe`: %v\n", resp)
 }
 ```
@@ -53,7 +53,7 @@ Other parameters are passed through a pointer to a apiGetAdministeredIdentitiesM
 
 ### Return type
 
-[**GetAdministeredIdentitiesMe200Response**](GetAdministeredIdentitiesMe200Response.md)
+[**InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 

@@ -34,7 +34,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | 
-    createNetworkGroupPolicy := *openapiclient.NewCreateNetworkGroupPolicyRequest("Name_example") // CreateNetworkGroupPolicyRequest | 
+    createNetworkGroupPolicy := *openapiclient.NewInlineObject87("Name_example") // InlineObject87 | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -64,7 +64,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkGroupPolicyRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkGroupPolicy** | [**CreateNetworkGroupPolicyRequest**](CreateNetworkGroupPolicyRequest.md) |  | 
+ **createNetworkGroupPolicy** | [**InlineObject87**](InlineObject87.md) |  | 
 
 ### Return type
 
@@ -321,7 +321,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | 
     groupPolicyId := "groupPolicyId_example" // string | 
-    updateNetworkGroupPolicy := *openapiclient.NewUpdateNetworkGroupPolicyRequest() // UpdateNetworkGroupPolicyRequest |  (optional)
+    updateNetworkGroupPolicy := *openapiclient.NewInlineObject88() // InlineObject88 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -353,7 +353,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkGroupPolicy** | [**UpdateNetworkGroupPolicyRequest**](UpdateNetworkGroupPolicyRequest.md) |  | 
+ **updateNetworkGroupPolicy** | [**InlineObject88**](InlineObject88.md) |  | 
 
 ### Return type
 

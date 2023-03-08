@@ -47,7 +47,7 @@ import (
 
 func main() {
     organizationId := "organizationId_example" // string | 
-    createOrganizationAdaptivePolicyAcl := *openapiclient.NewCreateOrganizationAdaptivePolicyAclRequest("Name_example", []openapiclient.CreateOrganizationAdaptivePolicyAclRequestRulesInner{*openapiclient.NewCreateOrganizationAdaptivePolicyAclRequestRulesInner("Policy_example", "Protocol_example")}, "IpVersion_example") // CreateOrganizationAdaptivePolicyAclRequest | 
+    createOrganizationAdaptivePolicyAcl := *openapiclient.NewInlineObject170("Name_example", []openapiclient.OrganizationsOrganizationIdAdaptivePolicyAclsRules{*openapiclient.NewOrganizationsOrganizationIdAdaptivePolicyAclsRules("Policy_example", "Protocol_example")}, "IpVersion_example") // InlineObject170 | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -77,7 +77,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationAdaptive
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationAdaptivePolicyAcl** | [**CreateOrganizationAdaptivePolicyAclRequest**](CreateOrganizationAdaptivePolicyAclRequest.md) |  | 
+ **createOrganizationAdaptivePolicyAcl** | [**InlineObject170**](InlineObject170.md) |  | 
 
 ### Return type
 
@@ -119,7 +119,7 @@ import (
 
 func main() {
     organizationId := "organizationId_example" // string | 
-    createOrganizationAdaptivePolicyGroup := *openapiclient.NewCreateOrganizationAdaptivePolicyGroupRequest("Name_example", int32(123)) // CreateOrganizationAdaptivePolicyGroupRequest | 
+    createOrganizationAdaptivePolicyGroup := *openapiclient.NewInlineObject172("Name_example", int32(123)) // InlineObject172 | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -149,7 +149,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationAdaptive
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationAdaptivePolicyGroup** | [**CreateOrganizationAdaptivePolicyGroupRequest**](CreateOrganizationAdaptivePolicyGroupRequest.md) |  | 
+ **createOrganizationAdaptivePolicyGroup** | [**InlineObject172**](InlineObject172.md) |  | 
 
 ### Return type
 
@@ -191,7 +191,7 @@ import (
 
 func main() {
     organizationId := "organizationId_example" // string | 
-    createOrganizationAdaptivePolicyPolicy := *openapiclient.NewCreateOrganizationAdaptivePolicyPolicyRequest(*openapiclient.NewCreateOrganizationAdaptivePolicyPolicyRequestSourceGroup(), *openapiclient.NewCreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup()) // CreateOrganizationAdaptivePolicyPolicyRequest | 
+    createOrganizationAdaptivePolicyPolicy := *openapiclient.NewInlineObject174(*openapiclient.NewOrganizationsOrganizationIdAdaptivePolicyPoliciesSourceGroup(), *openapiclient.NewOrganizationsOrganizationIdAdaptivePolicyPoliciesDestinationGroup()) // InlineObject174 | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -221,7 +221,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationAdaptive
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationAdaptivePolicyPolicy** | [**CreateOrganizationAdaptivePolicyPolicyRequest**](CreateOrganizationAdaptivePolicyPolicyRequest.md) |  | 
+ **createOrganizationAdaptivePolicyPolicy** | [**InlineObject174**](InlineObject174.md) |  | 
 
 ### Return type
 
@@ -742,7 +742,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationAdaptivePolicyOverview
 
-> GetOrganizationAdaptivePolicyOverview200Response GetOrganizationAdaptivePolicyOverview(ctx, organizationId).Execute()
+> InlineResponse20086 GetOrganizationAdaptivePolicyOverview(ctx, organizationId).Execute()
 
 Returns adaptive policy aggregate statistics for an organization
 
@@ -770,7 +770,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `AdaptivePolicyApi.GetOrganizationAdaptivePolicyOverview``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationAdaptivePolicyOverview`: GetOrganizationAdaptivePolicyOverview200Response
+    // response from `GetOrganizationAdaptivePolicyOverview`: InlineResponse20086
     fmt.Fprintf(os.Stdout, "Response from `AdaptivePolicyApi.GetOrganizationAdaptivePolicyOverview`: %v\n", resp)
 }
 ```
@@ -794,7 +794,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetOrganizationAdaptivePolicyOverview200Response**](GetOrganizationAdaptivePolicyOverview200Response.md)
+[**InlineResponse20086**](InlineResponse20086.md)
 
 ### Authorization
 
@@ -1046,7 +1046,7 @@ import (
 func main() {
     organizationId := "organizationId_example" // string | 
     aclId := "aclId_example" // string | 
-    updateOrganizationAdaptivePolicyAcl := *openapiclient.NewUpdateOrganizationAdaptivePolicyAclRequest() // UpdateOrganizationAdaptivePolicyAclRequest |  (optional)
+    updateOrganizationAdaptivePolicyAcl := *openapiclient.NewInlineObject171() // InlineObject171 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -1078,7 +1078,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationAdaptivePolicyAcl** | [**UpdateOrganizationAdaptivePolicyAclRequest**](UpdateOrganizationAdaptivePolicyAclRequest.md) |  | 
+ **updateOrganizationAdaptivePolicyAcl** | [**InlineObject171**](InlineObject171.md) |  | 
 
 ### Return type
 
@@ -1121,7 +1121,7 @@ import (
 func main() {
     organizationId := "organizationId_example" // string | 
     id := "id_example" // string | 
-    updateOrganizationAdaptivePolicyGroup := *openapiclient.NewUpdateOrganizationAdaptivePolicyGroupRequest() // UpdateOrganizationAdaptivePolicyGroupRequest |  (optional)
+    updateOrganizationAdaptivePolicyGroup := *openapiclient.NewInlineObject173() // InlineObject173 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -1153,7 +1153,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationAdaptivePolicyGroup** | [**UpdateOrganizationAdaptivePolicyGroupRequest**](UpdateOrganizationAdaptivePolicyGroupRequest.md) |  | 
+ **updateOrganizationAdaptivePolicyGroup** | [**InlineObject173**](InlineObject173.md) |  | 
 
 ### Return type
 
@@ -1196,7 +1196,7 @@ import (
 func main() {
     organizationId := "organizationId_example" // string | 
     id := "id_example" // string | 
-    updateOrganizationAdaptivePolicyPolicy := *openapiclient.NewUpdateOrganizationAdaptivePolicyPolicyRequest() // UpdateOrganizationAdaptivePolicyPolicyRequest |  (optional)
+    updateOrganizationAdaptivePolicyPolicy := *openapiclient.NewInlineObject175() // InlineObject175 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -1228,7 +1228,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationAdaptivePolicyPolicy** | [**UpdateOrganizationAdaptivePolicyPolicyRequest**](UpdateOrganizationAdaptivePolicyPolicyRequest.md) |  | 
+ **updateOrganizationAdaptivePolicyPolicy** | [**InlineObject175**](InlineObject175.md) |  | 
 
 ### Return type
 
@@ -1270,7 +1270,7 @@ import (
 
 func main() {
     organizationId := "organizationId_example" // string | 
-    updateOrganizationAdaptivePolicySettings := *openapiclient.NewUpdateOrganizationAdaptivePolicySettingsRequest() // UpdateOrganizationAdaptivePolicySettingsRequest |  (optional)
+    updateOrganizationAdaptivePolicySettings := *openapiclient.NewInlineObject176() // InlineObject176 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -1300,7 +1300,7 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationAdaptive
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateOrganizationAdaptivePolicySettings** | [**UpdateOrganizationAdaptivePolicySettingsRequest**](UpdateOrganizationAdaptivePolicySettingsRequest.md) |  | 
+ **updateOrganizationAdaptivePolicySettings** | [**InlineObject176**](InlineObject176.md) |  | 
 
 ### Return type
 

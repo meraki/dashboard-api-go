@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## GetNetworkApplianceVpnSiteToSiteVpn
 
-> GetNetworkApplianceVpnSiteToSiteVpn200Response GetNetworkApplianceVpnSiteToSiteVpn(ctx, networkId).Execute()
+> InlineResponse20019 GetNetworkApplianceVpnSiteToSiteVpn(ctx, networkId).Execute()
 
 Return the site-to-site VPN settings of a network
 
@@ -39,7 +39,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SiteToSiteVpnApi.GetNetworkApplianceVpnSiteToSiteVpn``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceVpnSiteToSiteVpn`: GetNetworkApplianceVpnSiteToSiteVpn200Response
+    // response from `GetNetworkApplianceVpnSiteToSiteVpn`: InlineResponse20019
     fmt.Fprintf(os.Stdout, "Response from `SiteToSiteVpnApi.GetNetworkApplianceVpnSiteToSiteVpn`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetNetworkApplianceVpnSiteToSiteVpn200Response**](GetNetworkApplianceVpnSiteToSiteVpn200Response.md)
+[**InlineResponse20019**](InlineResponse20019.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceVpnSiteToSiteVpn
 
-> GetNetworkApplianceVpnSiteToSiteVpn200Response UpdateNetworkApplianceVpnSiteToSiteVpn(ctx, networkId).UpdateNetworkApplianceVpnSiteToSiteVpn(updateNetworkApplianceVpnSiteToSiteVpn).Execute()
+> InlineResponse20019 UpdateNetworkApplianceVpnSiteToSiteVpn(ctx, networkId).UpdateNetworkApplianceVpnSiteToSiteVpn(updateNetworkApplianceVpnSiteToSiteVpn).Execute()
 
 Update the site-to-site VPN settings of a network
 
@@ -101,7 +101,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | 
-    updateNetworkApplianceVpnSiteToSiteVpn := *openapiclient.NewUpdateNetworkApplianceVpnSiteToSiteVpnRequest("Mode_example") // UpdateNetworkApplianceVpnSiteToSiteVpnRequest | 
+    updateNetworkApplianceVpnSiteToSiteVpn := *openapiclient.NewInlineObject60("Mode_example") // InlineObject60 | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -110,7 +110,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SiteToSiteVpnApi.UpdateNetworkApplianceVpnSiteToSiteVpn``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkApplianceVpnSiteToSiteVpn`: GetNetworkApplianceVpnSiteToSiteVpn200Response
+    // response from `UpdateNetworkApplianceVpnSiteToSiteVpn`: InlineResponse20019
     fmt.Fprintf(os.Stdout, "Response from `SiteToSiteVpnApi.UpdateNetworkApplianceVpnSiteToSiteVpn`: %v\n", resp)
 }
 ```
@@ -131,11 +131,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceVpnS
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceVpnSiteToSiteVpn** | [**UpdateNetworkApplianceVpnSiteToSiteVpnRequest**](UpdateNetworkApplianceVpnSiteToSiteVpnRequest.md) |  | 
+ **updateNetworkApplianceVpnSiteToSiteVpn** | [**InlineObject60**](InlineObject60.md) |  | 
 
 ### Return type
 
-[**GetNetworkApplianceVpnSiteToSiteVpn200Response**](GetNetworkApplianceVpnSiteToSiteVpn200Response.md)
+[**InlineResponse20019**](InlineResponse20019.md)
 
 ### Authorization
 

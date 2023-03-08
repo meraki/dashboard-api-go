@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice
 
-> []GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []InlineResponse20065 GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 Return the devices that have a Dynamic ARP Inspection warning and their warnings
 
@@ -44,7 +44,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ByDeviceApi.GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice`: []GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner
+    // response from `GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice`: []InlineResponse20065
     fmt.Fprintf(os.Stdout, "Response from `ByDeviceApi.GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice`: %v\n", resp)
 }
 ```
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner**](GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner.md)
+[**[]InlineResponse20065**](InlineResponse20065.md)
 
 ### Authorization
 
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationDevicesPowerModulesStatusesByDevice
 
-> []GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner GetOrganizationDevicesPowerModulesStatusesByDevice(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).ProductTypes(productTypes).Serials(serials).Tags(tags).TagsFilterType(tagsFilterType).Execute()
+> []InlineResponse20098 GetOrganizationDevicesPowerModulesStatusesByDevice(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).ProductTypes(productTypes).Serials(serials).Tags(tags).TagsFilterType(tagsFilterType).Execute()
 
 List the power status information for devices in an organization
 
@@ -125,7 +125,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ByDeviceApi.GetOrganizationDevicesPowerModulesStatusesByDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationDevicesPowerModulesStatusesByDevice`: []GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner
+    // response from `GetOrganizationDevicesPowerModulesStatusesByDevice`: []InlineResponse20098
     fmt.Fprintf(os.Stdout, "Response from `ByDeviceApi.GetOrganizationDevicesPowerModulesStatusesByDevice`: %v\n", resp)
 }
 ```
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner**](GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner.md)
+[**[]InlineResponse20098**](InlineResponse20098.md)
 
 ### Authorization
 
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationDevicesUplinksAddressesByDevice
 
-> []GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner GetOrganizationDevicesUplinksAddressesByDevice(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).ProductTypes(productTypes).Serials(serials).Tags(tags).TagsFilterType(tagsFilterType).Execute()
+> []InlineResponse200101 GetOrganizationDevicesUplinksAddressesByDevice(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).ProductTypes(productTypes).Serials(serials).Tags(tags).TagsFilterType(tagsFilterType).Execute()
 
 List the current uplink addresses for devices in an organization.
 
@@ -211,7 +211,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ByDeviceApi.GetOrganizationDevicesUplinksAddressesByDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationDevicesUplinksAddressesByDevice`: []GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner
+    // response from `GetOrganizationDevicesUplinksAddressesByDevice`: []InlineResponse200101
     fmt.Fprintf(os.Stdout, "Response from `ByDeviceApi.GetOrganizationDevicesUplinksAddressesByDevice`: %v\n", resp)
 }
 ```
@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner**](GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner.md)
+[**[]InlineResponse200101**](InlineResponse200101.md)
 
 ### Authorization
 
@@ -261,7 +261,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationFirmwareUpgradesByDevice
 
-> []GetOrganizationFirmwareUpgradesByDevice200ResponseInner GetOrganizationFirmwareUpgradesByDevice(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Macs(macs).FirmwareUpgradeIds(firmwareUpgradeIds).FirmwareUpgradeBatchIds(firmwareUpgradeBatchIds).Execute()
+> []InlineResponse200104 GetOrganizationFirmwareUpgradesByDevice(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Macs(macs).FirmwareUpgradeIds(firmwareUpgradeIds).FirmwareUpgradeBatchIds(firmwareUpgradeBatchIds).Execute()
 
 Get firmware upgrade status for the filtered devices
 
@@ -297,7 +297,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ByDeviceApi.GetOrganizationFirmwareUpgradesByDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationFirmwareUpgradesByDevice`: []GetOrganizationFirmwareUpgradesByDevice200ResponseInner
+    // response from `GetOrganizationFirmwareUpgradesByDevice`: []InlineResponse200104
     fmt.Fprintf(os.Stdout, "Response from `ByDeviceApi.GetOrganizationFirmwareUpgradesByDevice`: %v\n", resp)
 }
 ```
@@ -329,7 +329,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetOrganizationFirmwareUpgradesByDevice200ResponseInner**](GetOrganizationFirmwareUpgradesByDevice200ResponseInner.md)
+[**[]InlineResponse200104**](InlineResponse200104.md)
 
 ### Authorization
 
