@@ -28,4 +28,4 @@ jobs:
           version: latest
           run: "--path=client"
           working-directory: ./client
-          args: [ "run", "--out-format=github-actions" ]
+          args: ["run", "--out-format=github-actions"]
