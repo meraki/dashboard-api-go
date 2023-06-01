@@ -53,6 +53,20 @@ jobs:
     steps:
       - name: "Checkout Repository"
         uses: actions/checkout@v3
+      - name: "URL Check"
+        id: url-check
+        run: |
+          if [[ $(wget --spider --server-response "https://github.com/meraki/openapi/archive/refs/tags/${{ needs.check-for-updates.outputs.new }}.zip" 2>&1 | grep 'HTTP/1.1 200 OK') ]]; then
+            echo "URL Check: Passed"
+            echo "::set-output name=url_check::true"
+          else
+            echo "URL Check: Failed"
+            echo "::set-output name=url_check::false"
+          fi
+      - name: "Update Version"
+        if: steps.url-check.outputs.url_check == 'false' && startsWith(needs.check-for-updates.outputs.new, 'v') == false
+        run: |
+          echo "NEW_API_VERSION=v${{ needs.check-for-updates.outputs.new }}" >> $GITHUB_ENV
       - name: "Fetch Specification"
         run: wget https://github.com/meraki/openapi/archive/refs/tags/${{ needs.check-for-updates.outputs.new }}.zip && unzip -j ${{ needs.check-for-updates.outputs.new }}.zip '*/spec2.json'
       - name: "Install JRE"
