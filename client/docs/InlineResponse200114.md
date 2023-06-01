@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RemainderLicenses** | Pointer to [**[]InlineResponse200113**](InlineResponse200113.md) | Remainder licenses created in the source organization as a result of moving a subset of the counts of a license | [optional] 
-**MovedLicenses** | Pointer to [**[]InlineResponse200113**](InlineResponse200113.md) | Newly moved licenses created in the destination organization of the license move operation | [optional] 
+**ApplicationId** | Pointer to **string** | Application identifier | [optional] 
+**Name** | Pointer to **string** | Application name | [optional] 
+**Thresholds** | Pointer to [**OrganizationsOrganizationIdInsightApplicationsThresholds**](OrganizationsOrganizationIdInsightApplicationsThresholds.md) |  | [optional] 
 
 ## Methods
 
@@ -26,55 +27,80 @@ NewInlineResponse200114WithDefaults instantiates a new InlineResponse200114 obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetRemainderLicenses
+### GetApplicationId
 
-`func (o *InlineResponse200114) GetRemainderLicenses() []InlineResponse200113`
+`func (o *InlineResponse200114) GetApplicationId() string`
 
-GetRemainderLicenses returns the RemainderLicenses field if non-nil, zero value otherwise.
+GetApplicationId returns the ApplicationId field if non-nil, zero value otherwise.
 
-### GetRemainderLicensesOk
+### GetApplicationIdOk
 
-`func (o *InlineResponse200114) GetRemainderLicensesOk() (*[]InlineResponse200113, bool)`
+`func (o *InlineResponse200114) GetApplicationIdOk() (*string, bool)`
 
-GetRemainderLicensesOk returns a tuple with the RemainderLicenses field if it's non-nil, zero value otherwise
+GetApplicationIdOk returns a tuple with the ApplicationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRemainderLicenses
+### SetApplicationId
 
-`func (o *InlineResponse200114) SetRemainderLicenses(v []InlineResponse200113)`
+`func (o *InlineResponse200114) SetApplicationId(v string)`
 
-SetRemainderLicenses sets RemainderLicenses field to given value.
+SetApplicationId sets ApplicationId field to given value.
 
-### HasRemainderLicenses
+### HasApplicationId
 
-`func (o *InlineResponse200114) HasRemainderLicenses() bool`
+`func (o *InlineResponse200114) HasApplicationId() bool`
 
-HasRemainderLicenses returns a boolean if a field has been set.
+HasApplicationId returns a boolean if a field has been set.
 
-### GetMovedLicenses
+### GetName
 
-`func (o *InlineResponse200114) GetMovedLicenses() []InlineResponse200113`
+`func (o *InlineResponse200114) GetName() string`
 
-GetMovedLicenses returns the MovedLicenses field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetMovedLicensesOk
+### GetNameOk
 
-`func (o *InlineResponse200114) GetMovedLicensesOk() (*[]InlineResponse200113, bool)`
+`func (o *InlineResponse200114) GetNameOk() (*string, bool)`
 
-GetMovedLicensesOk returns a tuple with the MovedLicenses field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMovedLicenses
+### SetName
 
-`func (o *InlineResponse200114) SetMovedLicenses(v []InlineResponse200113)`
+`func (o *InlineResponse200114) SetName(v string)`
 
-SetMovedLicenses sets MovedLicenses field to given value.
+SetName sets Name field to given value.
 
-### HasMovedLicenses
+### HasName
 
-`func (o *InlineResponse200114) HasMovedLicenses() bool`
+`func (o *InlineResponse200114) HasName() bool`
 
-HasMovedLicenses returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
+
+### GetThresholds
+
+`func (o *InlineResponse200114) GetThresholds() OrganizationsOrganizationIdInsightApplicationsThresholds`
+
+GetThresholds returns the Thresholds field if non-nil, zero value otherwise.
+
+### GetThresholdsOk
+
+`func (o *InlineResponse200114) GetThresholdsOk() (*OrganizationsOrganizationIdInsightApplicationsThresholds, bool)`
+
+GetThresholdsOk returns a tuple with the Thresholds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThresholds
+
+`func (o *InlineResponse200114) SetThresholds(v OrganizationsOrganizationIdInsightApplicationsThresholds)`
+
+SetThresholds sets Thresholds field to given value.
+
+### HasThresholds
+
+`func (o *InlineResponse200114) HasThresholds() bool`
+
+HasThresholds returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

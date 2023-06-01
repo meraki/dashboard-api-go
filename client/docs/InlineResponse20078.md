@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **StartTs** | Pointer to **time.Time** | The start time of the query range | [optional] 
 **EndTs** | Pointer to **time.Time** | The end time of the query range | [optional] 
-**AvgLatencyMs** | Pointer to **int32** | Average latency in milliseconds | [optional] 
+**ClientCount** | Pointer to **int32** | Number of connected clients | [optional] 
 
 ## Methods
 
@@ -77,30 +77,30 @@ SetEndTs sets EndTs field to given value.
 
 HasEndTs returns a boolean if a field has been set.
 
-### GetAvgLatencyMs
+### GetClientCount
 
-`func (o *InlineResponse20078) GetAvgLatencyMs() int32`
+`func (o *InlineResponse20078) GetClientCount() int32`
 
-GetAvgLatencyMs returns the AvgLatencyMs field if non-nil, zero value otherwise.
+GetClientCount returns the ClientCount field if non-nil, zero value otherwise.
 
-### GetAvgLatencyMsOk
+### GetClientCountOk
 
-`func (o *InlineResponse20078) GetAvgLatencyMsOk() (*int32, bool)`
+`func (o *InlineResponse20078) GetClientCountOk() (*int32, bool)`
 
-GetAvgLatencyMsOk returns a tuple with the AvgLatencyMs field if it's non-nil, zero value otherwise
+GetClientCountOk returns a tuple with the ClientCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAvgLatencyMs
+### SetClientCount
 
-`func (o *InlineResponse20078) SetAvgLatencyMs(v int32)`
+`func (o *InlineResponse20078) SetClientCount(v int32)`
 
-SetAvgLatencyMs sets AvgLatencyMs field to given value.
+SetClientCount sets ClientCount field to given value.
 
-### HasAvgLatencyMs
+### HasClientCount
 
-`func (o *InlineResponse20078) HasAvgLatencyMs() bool`
+`func (o *InlineResponse20078) HasClientCount() bool`
 
-HasAvgLatencyMs returns a boolean if a field has been set.
+HasClientCount returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

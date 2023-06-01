@@ -4,9 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Mode** | Pointer to **string** | The site-to-site VPN mode. | [optional] 
-**Hubs** | Pointer to [**[]InlineResponse20019Hubs**](InlineResponse20019Hubs.md) | The list of VPN hubs, in order of preference. | [optional] 
-**Subnets** | Pointer to [**[]InlineResponse20019Subnets**](InlineResponse20019Subnets.md) | The list of subnets and their VPN presence. | [optional] 
+**ActiveActiveAutoVpnEnabled** | Pointer to **bool** | Whether active-active AutoVPN is enabled | [optional] 
+**DefaultUplink** | Pointer to **string** | The default uplink. Must be one of: &#39;wan1&#39; or &#39;wan2&#39; | [optional] 
+**LoadBalancingEnabled** | Pointer to **bool** | Whether load balancing is enabled | [optional] 
+**FailoverAndFailback** | Pointer to [**InlineResponse20019FailoverAndFailback**](InlineResponse20019FailoverAndFailback.md) |  | [optional] 
+**WanTrafficUplinkPreferences** | Pointer to [**[]InlineResponse20019WanTrafficUplinkPreferences**](InlineResponse20019WanTrafficUplinkPreferences.md) | Uplink preference rules for WAN traffic | [optional] 
+**VpnTrafficUplinkPreferences** | Pointer to [**[]InlineResponse20019VpnTrafficUplinkPreferences**](InlineResponse20019VpnTrafficUplinkPreferences.md) | Uplink preference rules for VPN traffic | [optional] 
 
 ## Methods
 
@@ -27,80 +30,155 @@ NewInlineResponse20019WithDefaults instantiates a new InlineResponse20019 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetMode
+### GetActiveActiveAutoVpnEnabled
 
-`func (o *InlineResponse20019) GetMode() string`
+`func (o *InlineResponse20019) GetActiveActiveAutoVpnEnabled() bool`
 
-GetMode returns the Mode field if non-nil, zero value otherwise.
+GetActiveActiveAutoVpnEnabled returns the ActiveActiveAutoVpnEnabled field if non-nil, zero value otherwise.
 
-### GetModeOk
+### GetActiveActiveAutoVpnEnabledOk
 
-`func (o *InlineResponse20019) GetModeOk() (*string, bool)`
+`func (o *InlineResponse20019) GetActiveActiveAutoVpnEnabledOk() (*bool, bool)`
 
-GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
+GetActiveActiveAutoVpnEnabledOk returns a tuple with the ActiveActiveAutoVpnEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMode
+### SetActiveActiveAutoVpnEnabled
 
-`func (o *InlineResponse20019) SetMode(v string)`
+`func (o *InlineResponse20019) SetActiveActiveAutoVpnEnabled(v bool)`
 
-SetMode sets Mode field to given value.
+SetActiveActiveAutoVpnEnabled sets ActiveActiveAutoVpnEnabled field to given value.
 
-### HasMode
+### HasActiveActiveAutoVpnEnabled
 
-`func (o *InlineResponse20019) HasMode() bool`
+`func (o *InlineResponse20019) HasActiveActiveAutoVpnEnabled() bool`
 
-HasMode returns a boolean if a field has been set.
+HasActiveActiveAutoVpnEnabled returns a boolean if a field has been set.
 
-### GetHubs
+### GetDefaultUplink
 
-`func (o *InlineResponse20019) GetHubs() []InlineResponse20019Hubs`
+`func (o *InlineResponse20019) GetDefaultUplink() string`
 
-GetHubs returns the Hubs field if non-nil, zero value otherwise.
+GetDefaultUplink returns the DefaultUplink field if non-nil, zero value otherwise.
 
-### GetHubsOk
+### GetDefaultUplinkOk
 
-`func (o *InlineResponse20019) GetHubsOk() (*[]InlineResponse20019Hubs, bool)`
+`func (o *InlineResponse20019) GetDefaultUplinkOk() (*string, bool)`
 
-GetHubsOk returns a tuple with the Hubs field if it's non-nil, zero value otherwise
+GetDefaultUplinkOk returns a tuple with the DefaultUplink field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHubs
+### SetDefaultUplink
 
-`func (o *InlineResponse20019) SetHubs(v []InlineResponse20019Hubs)`
+`func (o *InlineResponse20019) SetDefaultUplink(v string)`
 
-SetHubs sets Hubs field to given value.
+SetDefaultUplink sets DefaultUplink field to given value.
 
-### HasHubs
+### HasDefaultUplink
 
-`func (o *InlineResponse20019) HasHubs() bool`
+`func (o *InlineResponse20019) HasDefaultUplink() bool`
 
-HasHubs returns a boolean if a field has been set.
+HasDefaultUplink returns a boolean if a field has been set.
 
-### GetSubnets
+### GetLoadBalancingEnabled
 
-`func (o *InlineResponse20019) GetSubnets() []InlineResponse20019Subnets`
+`func (o *InlineResponse20019) GetLoadBalancingEnabled() bool`
 
-GetSubnets returns the Subnets field if non-nil, zero value otherwise.
+GetLoadBalancingEnabled returns the LoadBalancingEnabled field if non-nil, zero value otherwise.
 
-### GetSubnetsOk
+### GetLoadBalancingEnabledOk
 
-`func (o *InlineResponse20019) GetSubnetsOk() (*[]InlineResponse20019Subnets, bool)`
+`func (o *InlineResponse20019) GetLoadBalancingEnabledOk() (*bool, bool)`
 
-GetSubnetsOk returns a tuple with the Subnets field if it's non-nil, zero value otherwise
+GetLoadBalancingEnabledOk returns a tuple with the LoadBalancingEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSubnets
+### SetLoadBalancingEnabled
 
-`func (o *InlineResponse20019) SetSubnets(v []InlineResponse20019Subnets)`
+`func (o *InlineResponse20019) SetLoadBalancingEnabled(v bool)`
 
-SetSubnets sets Subnets field to given value.
+SetLoadBalancingEnabled sets LoadBalancingEnabled field to given value.
 
-### HasSubnets
+### HasLoadBalancingEnabled
 
-`func (o *InlineResponse20019) HasSubnets() bool`
+`func (o *InlineResponse20019) HasLoadBalancingEnabled() bool`
 
-HasSubnets returns a boolean if a field has been set.
+HasLoadBalancingEnabled returns a boolean if a field has been set.
+
+### GetFailoverAndFailback
+
+`func (o *InlineResponse20019) GetFailoverAndFailback() InlineResponse20019FailoverAndFailback`
+
+GetFailoverAndFailback returns the FailoverAndFailback field if non-nil, zero value otherwise.
+
+### GetFailoverAndFailbackOk
+
+`func (o *InlineResponse20019) GetFailoverAndFailbackOk() (*InlineResponse20019FailoverAndFailback, bool)`
+
+GetFailoverAndFailbackOk returns a tuple with the FailoverAndFailback field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFailoverAndFailback
+
+`func (o *InlineResponse20019) SetFailoverAndFailback(v InlineResponse20019FailoverAndFailback)`
+
+SetFailoverAndFailback sets FailoverAndFailback field to given value.
+
+### HasFailoverAndFailback
+
+`func (o *InlineResponse20019) HasFailoverAndFailback() bool`
+
+HasFailoverAndFailback returns a boolean if a field has been set.
+
+### GetWanTrafficUplinkPreferences
+
+`func (o *InlineResponse20019) GetWanTrafficUplinkPreferences() []InlineResponse20019WanTrafficUplinkPreferences`
+
+GetWanTrafficUplinkPreferences returns the WanTrafficUplinkPreferences field if non-nil, zero value otherwise.
+
+### GetWanTrafficUplinkPreferencesOk
+
+`func (o *InlineResponse20019) GetWanTrafficUplinkPreferencesOk() (*[]InlineResponse20019WanTrafficUplinkPreferences, bool)`
+
+GetWanTrafficUplinkPreferencesOk returns a tuple with the WanTrafficUplinkPreferences field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWanTrafficUplinkPreferences
+
+`func (o *InlineResponse20019) SetWanTrafficUplinkPreferences(v []InlineResponse20019WanTrafficUplinkPreferences)`
+
+SetWanTrafficUplinkPreferences sets WanTrafficUplinkPreferences field to given value.
+
+### HasWanTrafficUplinkPreferences
+
+`func (o *InlineResponse20019) HasWanTrafficUplinkPreferences() bool`
+
+HasWanTrafficUplinkPreferences returns a boolean if a field has been set.
+
+### GetVpnTrafficUplinkPreferences
+
+`func (o *InlineResponse20019) GetVpnTrafficUplinkPreferences() []InlineResponse20019VpnTrafficUplinkPreferences`
+
+GetVpnTrafficUplinkPreferences returns the VpnTrafficUplinkPreferences field if non-nil, zero value otherwise.
+
+### GetVpnTrafficUplinkPreferencesOk
+
+`func (o *InlineResponse20019) GetVpnTrafficUplinkPreferencesOk() (*[]InlineResponse20019VpnTrafficUplinkPreferences, bool)`
+
+GetVpnTrafficUplinkPreferencesOk returns a tuple with the VpnTrafficUplinkPreferences field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVpnTrafficUplinkPreferences
+
+`func (o *InlineResponse20019) SetVpnTrafficUplinkPreferences(v []InlineResponse20019VpnTrafficUplinkPreferences)`
+
+SetVpnTrafficUplinkPreferences sets VpnTrafficUplinkPreferences field to given value.
+
+### HasVpnTrafficUplinkPreferences
+
+`func (o *InlineResponse20019) HasVpnTrafficUplinkPreferences() bool`
+
+HasVpnTrafficUplinkPreferences returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

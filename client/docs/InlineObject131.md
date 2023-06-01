@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Serial** | **string** | The serial of the switch to be removed | 
+**Serial** | **string** | The serial of the switch to be added | 
 
 ## Methods
 

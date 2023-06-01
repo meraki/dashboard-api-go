@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StartTs** | Pointer to **time.Time** | Start of the timespan over which sensor alerts are counted | [optional] 
-**EndTs** | Pointer to **time.Time** | End of the timespan over which sensor alerts are counted | [optional] 
-**Counts** | Pointer to [**NetworksNetworkIdSensorAlertsOverviewByMetricCounts**](NetworksNetworkIdSensorAlertsOverviewByMetricCounts.md) |  | [optional] 
+**Name** | Pointer to **string** | Name of client | [optional] 
+**ClientId** | Pointer to **string** | ID of client | [optional] 
+**Assigned** | Pointer to [**[]NetworksNetworkIdPoliciesByClientAssigned**](NetworksNetworkIdPoliciesByClientAssigned.md) | Assigned policies | [optional] 
 
 ## Methods
 
@@ -27,80 +27,80 @@ NewInlineResponse20035WithDefaults instantiates a new InlineResponse20035 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetStartTs
+### GetName
 
-`func (o *InlineResponse20035) GetStartTs() time.Time`
+`func (o *InlineResponse20035) GetName() string`
 
-GetStartTs returns the StartTs field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetStartTsOk
+### GetNameOk
 
-`func (o *InlineResponse20035) GetStartTsOk() (*time.Time, bool)`
+`func (o *InlineResponse20035) GetNameOk() (*string, bool)`
 
-GetStartTsOk returns a tuple with the StartTs field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStartTs
+### SetName
 
-`func (o *InlineResponse20035) SetStartTs(v time.Time)`
+`func (o *InlineResponse20035) SetName(v string)`
 
-SetStartTs sets StartTs field to given value.
+SetName sets Name field to given value.
 
-### HasStartTs
+### HasName
 
-`func (o *InlineResponse20035) HasStartTs() bool`
+`func (o *InlineResponse20035) HasName() bool`
 
-HasStartTs returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetEndTs
+### GetClientId
 
-`func (o *InlineResponse20035) GetEndTs() time.Time`
+`func (o *InlineResponse20035) GetClientId() string`
 
-GetEndTs returns the EndTs field if non-nil, zero value otherwise.
+GetClientId returns the ClientId field if non-nil, zero value otherwise.
 
-### GetEndTsOk
+### GetClientIdOk
 
-`func (o *InlineResponse20035) GetEndTsOk() (*time.Time, bool)`
+`func (o *InlineResponse20035) GetClientIdOk() (*string, bool)`
 
-GetEndTsOk returns a tuple with the EndTs field if it's non-nil, zero value otherwise
+GetClientIdOk returns a tuple with the ClientId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEndTs
+### SetClientId
 
-`func (o *InlineResponse20035) SetEndTs(v time.Time)`
+`func (o *InlineResponse20035) SetClientId(v string)`
 
-SetEndTs sets EndTs field to given value.
+SetClientId sets ClientId field to given value.
 
-### HasEndTs
+### HasClientId
 
-`func (o *InlineResponse20035) HasEndTs() bool`
+`func (o *InlineResponse20035) HasClientId() bool`
 
-HasEndTs returns a boolean if a field has been set.
+HasClientId returns a boolean if a field has been set.
 
-### GetCounts
+### GetAssigned
 
-`func (o *InlineResponse20035) GetCounts() NetworksNetworkIdSensorAlertsOverviewByMetricCounts`
+`func (o *InlineResponse20035) GetAssigned() []NetworksNetworkIdPoliciesByClientAssigned`
 
-GetCounts returns the Counts field if non-nil, zero value otherwise.
+GetAssigned returns the Assigned field if non-nil, zero value otherwise.
 
-### GetCountsOk
+### GetAssignedOk
 
-`func (o *InlineResponse20035) GetCountsOk() (*NetworksNetworkIdSensorAlertsOverviewByMetricCounts, bool)`
+`func (o *InlineResponse20035) GetAssignedOk() (*[]NetworksNetworkIdPoliciesByClientAssigned, bool)`
 
-GetCountsOk returns a tuple with the Counts field if it's non-nil, zero value otherwise
+GetAssignedOk returns a tuple with the Assigned field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCounts
+### SetAssigned
 
-`func (o *InlineResponse20035) SetCounts(v NetworksNetworkIdSensorAlertsOverviewByMetricCounts)`
+`func (o *InlineResponse20035) SetAssigned(v []NetworksNetworkIdPoliciesByClientAssigned)`
 
-SetCounts sets Counts field to given value.
+SetAssigned sets Assigned field to given value.
 
-### HasCounts
+### HasAssigned
 
-`func (o *InlineResponse20035) HasCounts() bool`
+`func (o *InlineResponse20035) HasAssigned() bool`
 
-HasCounts returns a boolean if a field has been set.
+HasAssigned returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

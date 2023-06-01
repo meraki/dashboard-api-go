@@ -4,8 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ImportId** | Pointer to **string** | Database ID for the new entity entry. | [optional] 
-**Device** | Pointer to [**OrganizationsOrganizationIdInventoryOnboardingCloudMonitoringImportsDevice**](OrganizationsOrganizationIdInventoryOnboardingCloudMonitoringImportsDevice.md) |  | [optional] 
+**Counts** | Pointer to [**InlineResponse200108Counts**](InlineResponse200108Counts.md) |  | [optional] 
 
 ## Methods
 
@@ -26,55 +25,30 @@ NewInlineResponse200108WithDefaults instantiates a new InlineResponse200108 obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetImportId
+### GetCounts
 
-`func (o *InlineResponse200108) GetImportId() string`
+`func (o *InlineResponse200108) GetCounts() InlineResponse200108Counts`
 
-GetImportId returns the ImportId field if non-nil, zero value otherwise.
+GetCounts returns the Counts field if non-nil, zero value otherwise.
 
-### GetImportIdOk
+### GetCountsOk
 
-`func (o *InlineResponse200108) GetImportIdOk() (*string, bool)`
+`func (o *InlineResponse200108) GetCountsOk() (*InlineResponse200108Counts, bool)`
 
-GetImportIdOk returns a tuple with the ImportId field if it's non-nil, zero value otherwise
+GetCountsOk returns a tuple with the Counts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetImportId
+### SetCounts
 
-`func (o *InlineResponse200108) SetImportId(v string)`
+`func (o *InlineResponse200108) SetCounts(v InlineResponse200108Counts)`
 
-SetImportId sets ImportId field to given value.
+SetCounts sets Counts field to given value.
 
-### HasImportId
+### HasCounts
 
-`func (o *InlineResponse200108) HasImportId() bool`
+`func (o *InlineResponse200108) HasCounts() bool`
 
-HasImportId returns a boolean if a field has been set.
-
-### GetDevice
-
-`func (o *InlineResponse200108) GetDevice() OrganizationsOrganizationIdInventoryOnboardingCloudMonitoringImportsDevice`
-
-GetDevice returns the Device field if non-nil, zero value otherwise.
-
-### GetDeviceOk
-
-`func (o *InlineResponse200108) GetDeviceOk() (*OrganizationsOrganizationIdInventoryOnboardingCloudMonitoringImportsDevice, bool)`
-
-GetDeviceOk returns a tuple with the Device field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDevice
-
-`func (o *InlineResponse200108) SetDevice(v OrganizationsOrganizationIdInventoryOnboardingCloudMonitoringImportsDevice)`
-
-SetDevice sets Device field to given value.
-
-### HasDevice
-
-`func (o *InlineResponse200108) HasDevice() bool`
-
-HasDevice returns a boolean if a field has been set.
+HasCounts returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

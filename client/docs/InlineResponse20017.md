@@ -4,12 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ActiveActiveAutoVpnEnabled** | Pointer to **bool** | Whether active-active AutoVPN is enabled | [optional] 
-**DefaultUplink** | Pointer to **string** | The default uplink. Must be one of: &#39;wan1&#39; or &#39;wan2&#39; | [optional] 
-**LoadBalancingEnabled** | Pointer to **bool** | Whether load balancing is enabled | [optional] 
-**FailoverAndFailback** | Pointer to [**InlineResponse20017FailoverAndFailback**](InlineResponse20017FailoverAndFailback.md) |  | [optional] 
-**WanTrafficUplinkPreferences** | Pointer to [**[]InlineResponse20017WanTrafficUplinkPreferences**](InlineResponse20017WanTrafficUplinkPreferences.md) | Uplink preference rules for WAN traffic | [optional] 
-**VpnTrafficUplinkPreferences** | Pointer to [**[]InlineResponse20017VpnTrafficUplinkPreferences**](InlineResponse20017VpnTrafficUplinkPreferences.md) | Uplink preference rules for VPN traffic | [optional] 
+**Number** | Pointer to **int32** | The number of the SSID. | [optional] 
+**Name** | Pointer to **string** | The name of the SSID. | [optional] 
+**Enabled** | Pointer to **bool** | Whether or not the SSID is enabled. | [optional] 
+**DefaultVlanId** | Pointer to **int32** | The VLAN ID of the VLAN associated to this SSID. | [optional] 
+**AuthMode** | Pointer to **string** | The association control method for the SSID. | [optional] 
+**RadiusServers** | Pointer to [**[]NetworksNetworkIdApplianceSsidsRadiusServers**](NetworksNetworkIdApplianceSsidsRadiusServers.md) | The RADIUS 802.1x servers to be used for authentication. | [optional] 
+**EncryptionMode** | Pointer to **string** | The psk encryption mode for the SSID. | [optional] 
+**WpaEncryptionMode** | Pointer to **string** | WPA encryption mode for the SSID. | [optional] 
+**Visible** | Pointer to **bool** | Boolean indicating whether the MX should advertise or hide this SSID. | [optional] 
 
 ## Methods
 
@@ -30,155 +33,230 @@ NewInlineResponse20017WithDefaults instantiates a new InlineResponse20017 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetActiveActiveAutoVpnEnabled
+### GetNumber
 
-`func (o *InlineResponse20017) GetActiveActiveAutoVpnEnabled() bool`
+`func (o *InlineResponse20017) GetNumber() int32`
 
-GetActiveActiveAutoVpnEnabled returns the ActiveActiveAutoVpnEnabled field if non-nil, zero value otherwise.
+GetNumber returns the Number field if non-nil, zero value otherwise.
 
-### GetActiveActiveAutoVpnEnabledOk
+### GetNumberOk
 
-`func (o *InlineResponse20017) GetActiveActiveAutoVpnEnabledOk() (*bool, bool)`
+`func (o *InlineResponse20017) GetNumberOk() (*int32, bool)`
 
-GetActiveActiveAutoVpnEnabledOk returns a tuple with the ActiveActiveAutoVpnEnabled field if it's non-nil, zero value otherwise
+GetNumberOk returns a tuple with the Number field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetActiveActiveAutoVpnEnabled
+### SetNumber
 
-`func (o *InlineResponse20017) SetActiveActiveAutoVpnEnabled(v bool)`
+`func (o *InlineResponse20017) SetNumber(v int32)`
 
-SetActiveActiveAutoVpnEnabled sets ActiveActiveAutoVpnEnabled field to given value.
+SetNumber sets Number field to given value.
 
-### HasActiveActiveAutoVpnEnabled
+### HasNumber
 
-`func (o *InlineResponse20017) HasActiveActiveAutoVpnEnabled() bool`
+`func (o *InlineResponse20017) HasNumber() bool`
 
-HasActiveActiveAutoVpnEnabled returns a boolean if a field has been set.
+HasNumber returns a boolean if a field has been set.
 
-### GetDefaultUplink
+### GetName
 
-`func (o *InlineResponse20017) GetDefaultUplink() string`
+`func (o *InlineResponse20017) GetName() string`
 
-GetDefaultUplink returns the DefaultUplink field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetDefaultUplinkOk
+### GetNameOk
 
-`func (o *InlineResponse20017) GetDefaultUplinkOk() (*string, bool)`
+`func (o *InlineResponse20017) GetNameOk() (*string, bool)`
 
-GetDefaultUplinkOk returns a tuple with the DefaultUplink field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDefaultUplink
+### SetName
 
-`func (o *InlineResponse20017) SetDefaultUplink(v string)`
+`func (o *InlineResponse20017) SetName(v string)`
 
-SetDefaultUplink sets DefaultUplink field to given value.
+SetName sets Name field to given value.
 
-### HasDefaultUplink
+### HasName
 
-`func (o *InlineResponse20017) HasDefaultUplink() bool`
+`func (o *InlineResponse20017) HasName() bool`
 
-HasDefaultUplink returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetLoadBalancingEnabled
+### GetEnabled
 
-`func (o *InlineResponse20017) GetLoadBalancingEnabled() bool`
+`func (o *InlineResponse20017) GetEnabled() bool`
 
-GetLoadBalancingEnabled returns the LoadBalancingEnabled field if non-nil, zero value otherwise.
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
 
-### GetLoadBalancingEnabledOk
+### GetEnabledOk
 
-`func (o *InlineResponse20017) GetLoadBalancingEnabledOk() (*bool, bool)`
+`func (o *InlineResponse20017) GetEnabledOk() (*bool, bool)`
 
-GetLoadBalancingEnabledOk returns a tuple with the LoadBalancingEnabled field if it's non-nil, zero value otherwise
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLoadBalancingEnabled
+### SetEnabled
 
-`func (o *InlineResponse20017) SetLoadBalancingEnabled(v bool)`
+`func (o *InlineResponse20017) SetEnabled(v bool)`
 
-SetLoadBalancingEnabled sets LoadBalancingEnabled field to given value.
+SetEnabled sets Enabled field to given value.
 
-### HasLoadBalancingEnabled
+### HasEnabled
 
-`func (o *InlineResponse20017) HasLoadBalancingEnabled() bool`
+`func (o *InlineResponse20017) HasEnabled() bool`
 
-HasLoadBalancingEnabled returns a boolean if a field has been set.
+HasEnabled returns a boolean if a field has been set.
 
-### GetFailoverAndFailback
+### GetDefaultVlanId
 
-`func (o *InlineResponse20017) GetFailoverAndFailback() InlineResponse20017FailoverAndFailback`
+`func (o *InlineResponse20017) GetDefaultVlanId() int32`
 
-GetFailoverAndFailback returns the FailoverAndFailback field if non-nil, zero value otherwise.
+GetDefaultVlanId returns the DefaultVlanId field if non-nil, zero value otherwise.
 
-### GetFailoverAndFailbackOk
+### GetDefaultVlanIdOk
 
-`func (o *InlineResponse20017) GetFailoverAndFailbackOk() (*InlineResponse20017FailoverAndFailback, bool)`
+`func (o *InlineResponse20017) GetDefaultVlanIdOk() (*int32, bool)`
 
-GetFailoverAndFailbackOk returns a tuple with the FailoverAndFailback field if it's non-nil, zero value otherwise
+GetDefaultVlanIdOk returns a tuple with the DefaultVlanId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFailoverAndFailback
+### SetDefaultVlanId
 
-`func (o *InlineResponse20017) SetFailoverAndFailback(v InlineResponse20017FailoverAndFailback)`
+`func (o *InlineResponse20017) SetDefaultVlanId(v int32)`
 
-SetFailoverAndFailback sets FailoverAndFailback field to given value.
+SetDefaultVlanId sets DefaultVlanId field to given value.
 
-### HasFailoverAndFailback
+### HasDefaultVlanId
 
-`func (o *InlineResponse20017) HasFailoverAndFailback() bool`
+`func (o *InlineResponse20017) HasDefaultVlanId() bool`
 
-HasFailoverAndFailback returns a boolean if a field has been set.
+HasDefaultVlanId returns a boolean if a field has been set.
 
-### GetWanTrafficUplinkPreferences
+### GetAuthMode
 
-`func (o *InlineResponse20017) GetWanTrafficUplinkPreferences() []InlineResponse20017WanTrafficUplinkPreferences`
+`func (o *InlineResponse20017) GetAuthMode() string`
 
-GetWanTrafficUplinkPreferences returns the WanTrafficUplinkPreferences field if non-nil, zero value otherwise.
+GetAuthMode returns the AuthMode field if non-nil, zero value otherwise.
 
-### GetWanTrafficUplinkPreferencesOk
+### GetAuthModeOk
 
-`func (o *InlineResponse20017) GetWanTrafficUplinkPreferencesOk() (*[]InlineResponse20017WanTrafficUplinkPreferences, bool)`
+`func (o *InlineResponse20017) GetAuthModeOk() (*string, bool)`
 
-GetWanTrafficUplinkPreferencesOk returns a tuple with the WanTrafficUplinkPreferences field if it's non-nil, zero value otherwise
+GetAuthModeOk returns a tuple with the AuthMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetWanTrafficUplinkPreferences
+### SetAuthMode
 
-`func (o *InlineResponse20017) SetWanTrafficUplinkPreferences(v []InlineResponse20017WanTrafficUplinkPreferences)`
+`func (o *InlineResponse20017) SetAuthMode(v string)`
 
-SetWanTrafficUplinkPreferences sets WanTrafficUplinkPreferences field to given value.
+SetAuthMode sets AuthMode field to given value.
 
-### HasWanTrafficUplinkPreferences
+### HasAuthMode
 
-`func (o *InlineResponse20017) HasWanTrafficUplinkPreferences() bool`
+`func (o *InlineResponse20017) HasAuthMode() bool`
 
-HasWanTrafficUplinkPreferences returns a boolean if a field has been set.
+HasAuthMode returns a boolean if a field has been set.
 
-### GetVpnTrafficUplinkPreferences
+### GetRadiusServers
 
-`func (o *InlineResponse20017) GetVpnTrafficUplinkPreferences() []InlineResponse20017VpnTrafficUplinkPreferences`
+`func (o *InlineResponse20017) GetRadiusServers() []NetworksNetworkIdApplianceSsidsRadiusServers`
 
-GetVpnTrafficUplinkPreferences returns the VpnTrafficUplinkPreferences field if non-nil, zero value otherwise.
+GetRadiusServers returns the RadiusServers field if non-nil, zero value otherwise.
 
-### GetVpnTrafficUplinkPreferencesOk
+### GetRadiusServersOk
 
-`func (o *InlineResponse20017) GetVpnTrafficUplinkPreferencesOk() (*[]InlineResponse20017VpnTrafficUplinkPreferences, bool)`
+`func (o *InlineResponse20017) GetRadiusServersOk() (*[]NetworksNetworkIdApplianceSsidsRadiusServers, bool)`
 
-GetVpnTrafficUplinkPreferencesOk returns a tuple with the VpnTrafficUplinkPreferences field if it's non-nil, zero value otherwise
+GetRadiusServersOk returns a tuple with the RadiusServers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVpnTrafficUplinkPreferences
+### SetRadiusServers
 
-`func (o *InlineResponse20017) SetVpnTrafficUplinkPreferences(v []InlineResponse20017VpnTrafficUplinkPreferences)`
+`func (o *InlineResponse20017) SetRadiusServers(v []NetworksNetworkIdApplianceSsidsRadiusServers)`
 
-SetVpnTrafficUplinkPreferences sets VpnTrafficUplinkPreferences field to given value.
+SetRadiusServers sets RadiusServers field to given value.
 
-### HasVpnTrafficUplinkPreferences
+### HasRadiusServers
 
-`func (o *InlineResponse20017) HasVpnTrafficUplinkPreferences() bool`
+`func (o *InlineResponse20017) HasRadiusServers() bool`
 
-HasVpnTrafficUplinkPreferences returns a boolean if a field has been set.
+HasRadiusServers returns a boolean if a field has been set.
+
+### GetEncryptionMode
+
+`func (o *InlineResponse20017) GetEncryptionMode() string`
+
+GetEncryptionMode returns the EncryptionMode field if non-nil, zero value otherwise.
+
+### GetEncryptionModeOk
+
+`func (o *InlineResponse20017) GetEncryptionModeOk() (*string, bool)`
+
+GetEncryptionModeOk returns a tuple with the EncryptionMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEncryptionMode
+
+`func (o *InlineResponse20017) SetEncryptionMode(v string)`
+
+SetEncryptionMode sets EncryptionMode field to given value.
+
+### HasEncryptionMode
+
+`func (o *InlineResponse20017) HasEncryptionMode() bool`
+
+HasEncryptionMode returns a boolean if a field has been set.
+
+### GetWpaEncryptionMode
+
+`func (o *InlineResponse20017) GetWpaEncryptionMode() string`
+
+GetWpaEncryptionMode returns the WpaEncryptionMode field if non-nil, zero value otherwise.
+
+### GetWpaEncryptionModeOk
+
+`func (o *InlineResponse20017) GetWpaEncryptionModeOk() (*string, bool)`
+
+GetWpaEncryptionModeOk returns a tuple with the WpaEncryptionMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWpaEncryptionMode
+
+`func (o *InlineResponse20017) SetWpaEncryptionMode(v string)`
+
+SetWpaEncryptionMode sets WpaEncryptionMode field to given value.
+
+### HasWpaEncryptionMode
+
+`func (o *InlineResponse20017) HasWpaEncryptionMode() bool`
+
+HasWpaEncryptionMode returns a boolean if a field has been set.
+
+### GetVisible
+
+`func (o *InlineResponse20017) GetVisible() bool`
+
+GetVisible returns the Visible field if non-nil, zero value otherwise.
+
+### GetVisibleOk
+
+`func (o *InlineResponse20017) GetVisibleOk() (*bool, bool)`
+
+GetVisibleOk returns a tuple with the Visible field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVisible
+
+`func (o *InlineResponse20017) SetVisible(v bool)`
+
+SetVisible sets Visible field to given value.
+
+### HasVisible
+
+`func (o *InlineResponse20017) HasVisible() bool`
+
+HasVisible returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

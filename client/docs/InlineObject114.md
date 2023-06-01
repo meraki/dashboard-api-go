@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Mac** | Pointer to **string** | The updated mac address of the trusted server | [optional] 
-**Vlan** | Pointer to **int32** | The updated VLAN of the trusted server. It must be between 1 and 4094 | [optional] 
-**Ipv4** | Pointer to [**NetworksNetworkIdSwitchDhcpServerPolicyArpInspectionTrustedServersTrustedServerIdIpv4**](NetworksNetworkIdSwitchDhcpServerPolicyArpInspectionTrustedServersTrustedServerIdIpv4.md) |  | [optional] 
+**Mac** | **string** | The mac address of the trusted server being added | 
+**Vlan** | **int32** | The VLAN of the trusted server being added. It must be between 1 and 4094 | 
+**Ipv4** | [**NetworksNetworkIdSwitchDhcpServerPolicyArpInspectionTrustedServersIpv41**](NetworksNetworkIdSwitchDhcpServerPolicyArpInspectionTrustedServersIpv41.md) |  | 
 
 ## Methods
 
 ### NewInlineObject114
 
-`func NewInlineObject114() *InlineObject114`
+`func NewInlineObject114(mac string, vlan int32, ipv4 NetworksNetworkIdSwitchDhcpServerPolicyArpInspectionTrustedServersIpv41, ) *InlineObject114`
 
 NewInlineObject114 instantiates a new InlineObject114 object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetMac sets Mac field to given value.
 
-### HasMac
-
-`func (o *InlineObject114) HasMac() bool`
-
-HasMac returns a boolean if a field has been set.
 
 ### GetVlan
 
@@ -71,36 +66,26 @@ and a boolean to check if the value has been set.
 
 SetVlan sets Vlan field to given value.
 
-### HasVlan
-
-`func (o *InlineObject114) HasVlan() bool`
-
-HasVlan returns a boolean if a field has been set.
 
 ### GetIpv4
 
-`func (o *InlineObject114) GetIpv4() NetworksNetworkIdSwitchDhcpServerPolicyArpInspectionTrustedServersTrustedServerIdIpv4`
+`func (o *InlineObject114) GetIpv4() NetworksNetworkIdSwitchDhcpServerPolicyArpInspectionTrustedServersIpv41`
 
 GetIpv4 returns the Ipv4 field if non-nil, zero value otherwise.
 
 ### GetIpv4Ok
 
-`func (o *InlineObject114) GetIpv4Ok() (*NetworksNetworkIdSwitchDhcpServerPolicyArpInspectionTrustedServersTrustedServerIdIpv4, bool)`
+`func (o *InlineObject114) GetIpv4Ok() (*NetworksNetworkIdSwitchDhcpServerPolicyArpInspectionTrustedServersIpv41, bool)`
 
 GetIpv4Ok returns a tuple with the Ipv4 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpv4
 
-`func (o *InlineObject114) SetIpv4(v NetworksNetworkIdSwitchDhcpServerPolicyArpInspectionTrustedServersTrustedServerIdIpv4)`
+`func (o *InlineObject114) SetIpv4(v NetworksNetworkIdSwitchDhcpServerPolicyArpInspectionTrustedServersIpv41)`
 
 SetIpv4 sets Ipv4 field to given value.
 
-### HasIpv4
-
-`func (o *InlineObject114) HasIpv4() bool`
-
-HasIpv4 returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
     createNetworkCameraQualityRetentionProfile := *openapiclient.NewInlineObject63("Name_example") // InlineObject63 | 
 
     configuration := openapiclient.NewConfiguration()
@@ -54,7 +54,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
+**networkId** | **string** | Network ID | 
 
 ### Other Parameters
 
@@ -105,8 +105,8 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    qualityRetentionProfileId := "qualityRetentionProfileId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
+    qualityRetentionProfileId := "qualityRetentionProfileId_example" // string | Quality retention profile ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -124,8 +124,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**qualityRetentionProfileId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**qualityRetentionProfileId** | **string** | Quality retention profile ID | 
 
 ### Other Parameters
 
@@ -176,8 +176,8 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    qualityRetentionProfileId := "qualityRetentionProfileId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
+    qualityRetentionProfileId := "qualityRetentionProfileId_example" // string | Quality retention profile ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -197,8 +197,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**qualityRetentionProfileId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**qualityRetentionProfileId** | **string** | Quality retention profile ID | 
 
 ### Other Parameters
 
@@ -249,7 +249,7 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -269,7 +269,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
+**networkId** | **string** | Network ID | 
 
 ### Other Parameters
 
@@ -319,8 +319,8 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    qualityRetentionProfileId := "qualityRetentionProfileId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
+    qualityRetentionProfileId := "qualityRetentionProfileId_example" // string | Quality retention profile ID
     updateNetworkCameraQualityRetentionProfile := *openapiclient.NewInlineObject64() // InlineObject64 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -341,8 +341,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**qualityRetentionProfileId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**qualityRetentionProfileId** | **string** | Quality retention profile ID | 
 
 ### Other Parameters
 

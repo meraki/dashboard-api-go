@@ -4,15 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name of the organization | [optional] 
+**Name** | **string** | The name of the organization | 
 **Management** | Pointer to [**OrganizationsManagement**](OrganizationsManagement.md) |  | [optional] 
-**Api** | Pointer to [**OrganizationsOrganizationIdApi**](OrganizationsOrganizationIdApi.md) |  | [optional] 
 
 ## Methods
 
 ### NewInlineObject167
 
-`func NewInlineObject167() *InlineObject167`
+`func NewInlineObject167(name string, ) *InlineObject167`
 
 NewInlineObject167 instantiates a new InlineObject167 object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *InlineObject167) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetManagement
 
@@ -76,31 +70,6 @@ SetManagement sets Management field to given value.
 `func (o *InlineObject167) HasManagement() bool`
 
 HasManagement returns a boolean if a field has been set.
-
-### GetApi
-
-`func (o *InlineObject167) GetApi() OrganizationsOrganizationIdApi`
-
-GetApi returns the Api field if non-nil, zero value otherwise.
-
-### GetApiOk
-
-`func (o *InlineObject167) GetApiOk() (*OrganizationsOrganizationIdApi, bool)`
-
-GetApiOk returns a tuple with the Api field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetApi
-
-`func (o *InlineObject167) SetApi(v OrganizationsOrganizationIdApi)`
-
-SetApi sets Api field to given value.
-
-### HasApi
-
-`func (o *InlineObject167) HasApi() bool`
-
-HasApi returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

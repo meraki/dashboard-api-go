@@ -4,8 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name of this target group | [optional] 
-**Scope** | Pointer to **string** | The scope and tag options of the target group. Comma separated values beginning with one of withAny, withAll, withoutAny, withoutAll, all, none, followed by tags. Default to none if empty. | [optional] 
+**WifiMac** | Pointer to **string** | The wifiMac of the device to be wiped. | [optional] 
+**Id** | Pointer to **string** | The id of the device to be wiped. | [optional] 
+**Serial** | Pointer to **string** | The serial of the device to be wiped. | [optional] 
+**Pin** | Pointer to **int32** | The pin number (a six digit value) for wiping a macOS device. Required only for macOS devices. | [optional] 
 
 ## Methods
 
@@ -26,55 +28,105 @@ NewInlineObject105WithDefaults instantiates a new InlineObject105 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetWifiMac
 
-`func (o *InlineObject105) GetName() string`
+`func (o *InlineObject105) GetWifiMac() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetWifiMac returns the WifiMac field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetWifiMacOk
 
-`func (o *InlineObject105) GetNameOk() (*string, bool)`
+`func (o *InlineObject105) GetWifiMacOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetWifiMacOk returns a tuple with the WifiMac field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetWifiMac
 
-`func (o *InlineObject105) SetName(v string)`
+`func (o *InlineObject105) SetWifiMac(v string)`
 
-SetName sets Name field to given value.
+SetWifiMac sets WifiMac field to given value.
 
-### HasName
+### HasWifiMac
 
-`func (o *InlineObject105) HasName() bool`
+`func (o *InlineObject105) HasWifiMac() bool`
 
-HasName returns a boolean if a field has been set.
+HasWifiMac returns a boolean if a field has been set.
 
-### GetScope
+### GetId
 
-`func (o *InlineObject105) GetScope() string`
+`func (o *InlineObject105) GetId() string`
 
-GetScope returns the Scope field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetScopeOk
+### GetIdOk
 
-`func (o *InlineObject105) GetScopeOk() (*string, bool)`
+`func (o *InlineObject105) GetIdOk() (*string, bool)`
 
-GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetScope
+### SetId
 
-`func (o *InlineObject105) SetScope(v string)`
+`func (o *InlineObject105) SetId(v string)`
 
-SetScope sets Scope field to given value.
+SetId sets Id field to given value.
 
-### HasScope
+### HasId
 
-`func (o *InlineObject105) HasScope() bool`
+`func (o *InlineObject105) HasId() bool`
 
-HasScope returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
+
+### GetSerial
+
+`func (o *InlineObject105) GetSerial() string`
+
+GetSerial returns the Serial field if non-nil, zero value otherwise.
+
+### GetSerialOk
+
+`func (o *InlineObject105) GetSerialOk() (*string, bool)`
+
+GetSerialOk returns a tuple with the Serial field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSerial
+
+`func (o *InlineObject105) SetSerial(v string)`
+
+SetSerial sets Serial field to given value.
+
+### HasSerial
+
+`func (o *InlineObject105) HasSerial() bool`
+
+HasSerial returns a boolean if a field has been set.
+
+### GetPin
+
+`func (o *InlineObject105) GetPin() int32`
+
+GetPin returns the Pin field if non-nil, zero value otherwise.
+
+### GetPinOk
+
+`func (o *InlineObject105) GetPinOk() (*int32, bool)`
+
+GetPinOk returns a tuple with the Pin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPin
+
+`func (o *InlineObject105) SetPin(v int32)`
+
+SetPin sets Pin field to given value.
+
+### HasPin
+
+`func (o *InlineObject105) HasPin() bool`
+
+HasPin returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,9 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Access** | Pointer to **string** | The type of SNMP access. Can be one of &#39;none&#39; (disabled), &#39;community&#39; (V1/V2c), or &#39;users&#39; (V3). | [optional] 
-**CommunityString** | Pointer to **string** | The SNMP community string. Only relevant if &#39;access&#39; is set to &#39;community&#39;. | [optional] 
-**Users** | Pointer to [**[]NetworksNetworkIdSnmpUsers**](NetworksNetworkIdSnmpUsers.md) | The list of SNMP users. Only relevant if &#39;access&#39; is set to &#39;users&#39;. | [optional] 
+**Name** | Pointer to **string** | The name of this target group | [optional] 
+**Scope** | Pointer to **string** | The scope and tag options of the target group. Comma separated values beginning with one of withAny, withAll, withoutAny, withoutAll, all, none, followed by tags. Default to none if empty. | [optional] 
 
 ## Methods
 
@@ -27,80 +26,55 @@ NewInlineObject107WithDefaults instantiates a new InlineObject107 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAccess
+### GetName
 
-`func (o *InlineObject107) GetAccess() string`
+`func (o *InlineObject107) GetName() string`
 
-GetAccess returns the Access field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetAccessOk
+### GetNameOk
 
-`func (o *InlineObject107) GetAccessOk() (*string, bool)`
+`func (o *InlineObject107) GetNameOk() (*string, bool)`
 
-GetAccessOk returns a tuple with the Access field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccess
+### SetName
 
-`func (o *InlineObject107) SetAccess(v string)`
+`func (o *InlineObject107) SetName(v string)`
 
-SetAccess sets Access field to given value.
+SetName sets Name field to given value.
 
-### HasAccess
+### HasName
 
-`func (o *InlineObject107) HasAccess() bool`
+`func (o *InlineObject107) HasName() bool`
 
-HasAccess returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetCommunityString
+### GetScope
 
-`func (o *InlineObject107) GetCommunityString() string`
+`func (o *InlineObject107) GetScope() string`
 
-GetCommunityString returns the CommunityString field if non-nil, zero value otherwise.
+GetScope returns the Scope field if non-nil, zero value otherwise.
 
-### GetCommunityStringOk
+### GetScopeOk
 
-`func (o *InlineObject107) GetCommunityStringOk() (*string, bool)`
+`func (o *InlineObject107) GetScopeOk() (*string, bool)`
 
-GetCommunityStringOk returns a tuple with the CommunityString field if it's non-nil, zero value otherwise
+GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCommunityString
+### SetScope
 
-`func (o *InlineObject107) SetCommunityString(v string)`
+`func (o *InlineObject107) SetScope(v string)`
 
-SetCommunityString sets CommunityString field to given value.
+SetScope sets Scope field to given value.
 
-### HasCommunityString
+### HasScope
 
-`func (o *InlineObject107) HasCommunityString() bool`
+`func (o *InlineObject107) HasScope() bool`
 
-HasCommunityString returns a boolean if a field has been set.
-
-### GetUsers
-
-`func (o *InlineObject107) GetUsers() []NetworksNetworkIdSnmpUsers`
-
-GetUsers returns the Users field if non-nil, zero value otherwise.
-
-### GetUsersOk
-
-`func (o *InlineObject107) GetUsersOk() (*[]NetworksNetworkIdSnmpUsers, bool)`
-
-GetUsersOk returns a tuple with the Users field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUsers
-
-`func (o *InlineObject107) SetUsers(v []NetworksNetworkIdSnmpUsers)`
-
-SetUsers sets Users field to given value.
-
-### HasUsers
-
-`func (o *InlineObject107) HasUsers() bool`
-
-HasUsers returns a boolean if a field has been set.
+HasScope returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

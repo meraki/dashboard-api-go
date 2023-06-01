@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**WifiMac** | Pointer to **string** | The wifiMac of the device to be modified. | [optional] 
-**Id** | Pointer to **string** | The id of the device to be modified. | [optional] 
-**Serial** | Pointer to **string** | The serial of the device to be modified. | [optional] 
-**DeviceFields** | [**NetworksNetworkIdSmDevicesFieldsDeviceFields**](NetworksNetworkIdSmDevicesFieldsDeviceFields.md) |  | 
+**WifiMacs** | Pointer to **[]string** | The wifiMacs of the devices to be checked-in. | [optional] 
+**Ids** | Pointer to **[]string** | The ids of the devices to be checked-in. | [optional] 
+**Serials** | Pointer to **[]string** | The serials of the devices to be checked-in. | [optional] 
+**Scope** | Pointer to **[]string** | The scope (one of all, none, withAny, withAll, withoutAny, or withoutAll) and a set of tags of the devices to be checked-in. | [optional] 
 
 ## Methods
 
 ### NewInlineObject100
 
-`func NewInlineObject100(deviceFields NetworksNetworkIdSmDevicesFieldsDeviceFields, ) *InlineObject100`
+`func NewInlineObject100() *InlineObject100`
 
 NewInlineObject100 instantiates a new InlineObject100 object
 This constructor will assign default values to properties that have it defined,
@@ -28,100 +28,105 @@ NewInlineObject100WithDefaults instantiates a new InlineObject100 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetWifiMac
+### GetWifiMacs
 
-`func (o *InlineObject100) GetWifiMac() string`
+`func (o *InlineObject100) GetWifiMacs() []string`
 
-GetWifiMac returns the WifiMac field if non-nil, zero value otherwise.
+GetWifiMacs returns the WifiMacs field if non-nil, zero value otherwise.
 
-### GetWifiMacOk
+### GetWifiMacsOk
 
-`func (o *InlineObject100) GetWifiMacOk() (*string, bool)`
+`func (o *InlineObject100) GetWifiMacsOk() (*[]string, bool)`
 
-GetWifiMacOk returns a tuple with the WifiMac field if it's non-nil, zero value otherwise
+GetWifiMacsOk returns a tuple with the WifiMacs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetWifiMac
+### SetWifiMacs
 
-`func (o *InlineObject100) SetWifiMac(v string)`
+`func (o *InlineObject100) SetWifiMacs(v []string)`
 
-SetWifiMac sets WifiMac field to given value.
+SetWifiMacs sets WifiMacs field to given value.
 
-### HasWifiMac
+### HasWifiMacs
 
-`func (o *InlineObject100) HasWifiMac() bool`
+`func (o *InlineObject100) HasWifiMacs() bool`
 
-HasWifiMac returns a boolean if a field has been set.
+HasWifiMacs returns a boolean if a field has been set.
 
-### GetId
+### GetIds
 
-`func (o *InlineObject100) GetId() string`
+`func (o *InlineObject100) GetIds() []string`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetIds returns the Ids field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetIdsOk
 
-`func (o *InlineObject100) GetIdOk() (*string, bool)`
+`func (o *InlineObject100) GetIdsOk() (*[]string, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetIdsOk returns a tuple with the Ids field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetIds
 
-`func (o *InlineObject100) SetId(v string)`
+`func (o *InlineObject100) SetIds(v []string)`
 
-SetId sets Id field to given value.
+SetIds sets Ids field to given value.
 
-### HasId
+### HasIds
 
-`func (o *InlineObject100) HasId() bool`
+`func (o *InlineObject100) HasIds() bool`
 
-HasId returns a boolean if a field has been set.
+HasIds returns a boolean if a field has been set.
 
-### GetSerial
+### GetSerials
 
-`func (o *InlineObject100) GetSerial() string`
+`func (o *InlineObject100) GetSerials() []string`
 
-GetSerial returns the Serial field if non-nil, zero value otherwise.
+GetSerials returns the Serials field if non-nil, zero value otherwise.
 
-### GetSerialOk
+### GetSerialsOk
 
-`func (o *InlineObject100) GetSerialOk() (*string, bool)`
+`func (o *InlineObject100) GetSerialsOk() (*[]string, bool)`
 
-GetSerialOk returns a tuple with the Serial field if it's non-nil, zero value otherwise
+GetSerialsOk returns a tuple with the Serials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSerial
+### SetSerials
 
-`func (o *InlineObject100) SetSerial(v string)`
+`func (o *InlineObject100) SetSerials(v []string)`
 
-SetSerial sets Serial field to given value.
+SetSerials sets Serials field to given value.
 
-### HasSerial
+### HasSerials
 
-`func (o *InlineObject100) HasSerial() bool`
+`func (o *InlineObject100) HasSerials() bool`
 
-HasSerial returns a boolean if a field has been set.
+HasSerials returns a boolean if a field has been set.
 
-### GetDeviceFields
+### GetScope
 
-`func (o *InlineObject100) GetDeviceFields() NetworksNetworkIdSmDevicesFieldsDeviceFields`
+`func (o *InlineObject100) GetScope() []string`
 
-GetDeviceFields returns the DeviceFields field if non-nil, zero value otherwise.
+GetScope returns the Scope field if non-nil, zero value otherwise.
 
-### GetDeviceFieldsOk
+### GetScopeOk
 
-`func (o *InlineObject100) GetDeviceFieldsOk() (*NetworksNetworkIdSmDevicesFieldsDeviceFields, bool)`
+`func (o *InlineObject100) GetScopeOk() (*[]string, bool)`
 
-GetDeviceFieldsOk returns a tuple with the DeviceFields field if it's non-nil, zero value otherwise
+GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeviceFields
+### SetScope
 
-`func (o *InlineObject100) SetDeviceFields(v NetworksNetworkIdSmDevicesFieldsDeviceFields)`
+`func (o *InlineObject100) SetScope(v []string)`
 
-SetDeviceFields sets DeviceFields field to given value.
+SetScope sets Scope field to given value.
 
+### HasScope
+
+`func (o *InlineObject100) HasScope() bool`
+
+HasScope returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,9 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vlan** | Pointer to **int32** | Management VLAN | [optional] 
-**UseCombinedPower** | Pointer to **bool** | The use Combined Power as the default behavior of secondary power supplies on supported devices. | [optional] 
-**PowerExceptions** | Pointer to [**[]NetworksNetworkIdSwitchSettingsPowerExceptions**](NetworksNetworkIdSwitchSettingsPowerExceptions.md) | Exceptions on a per switch basis to \&quot;useCombinedPower\&quot; | [optional] 
+**Enabled** | Pointer to **bool** | Boolean value to enable or disable OSPF routing. OSPF routing is disabled by default. | [optional] 
+**HelloTimerInSeconds** | Pointer to **int32** | Time interval in seconds at which hello packet will be sent to OSPF neighbors to maintain connectivity. Value must be between 1 and 255. Default is 10 seconds. | [optional] 
+**DeadTimerInSeconds** | Pointer to **int32** | Time interval to determine when the peer will be declared inactive/dead. Value must be between 1 and 65535 | [optional] 
+**Areas** | Pointer to [**[]NetworksNetworkIdSwitchRoutingOspfAreas**](NetworksNetworkIdSwitchRoutingOspfAreas.md) | OSPF areas | [optional] 
+**V3** | Pointer to [**NetworksNetworkIdSwitchRoutingOspfV3**](NetworksNetworkIdSwitchRoutingOspfV3.md) |  | [optional] 
+**Md5AuthenticationEnabled** | Pointer to **bool** | Boolean value to enable or disable MD5 authentication. MD5 authentication is disabled by default. | [optional] 
+**Md5AuthenticationKey** | Pointer to [**NetworksNetworkIdSwitchRoutingOspfMd5AuthenticationKey**](NetworksNetworkIdSwitchRoutingOspfMd5AuthenticationKey.md) |  | [optional] 
 
 ## Methods
 
@@ -27,80 +31,180 @@ NewInlineObject128WithDefaults instantiates a new InlineObject128 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetVlan
+### GetEnabled
 
-`func (o *InlineObject128) GetVlan() int32`
+`func (o *InlineObject128) GetEnabled() bool`
 
-GetVlan returns the Vlan field if non-nil, zero value otherwise.
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
 
-### GetVlanOk
+### GetEnabledOk
 
-`func (o *InlineObject128) GetVlanOk() (*int32, bool)`
+`func (o *InlineObject128) GetEnabledOk() (*bool, bool)`
 
-GetVlanOk returns a tuple with the Vlan field if it's non-nil, zero value otherwise
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVlan
+### SetEnabled
 
-`func (o *InlineObject128) SetVlan(v int32)`
+`func (o *InlineObject128) SetEnabled(v bool)`
 
-SetVlan sets Vlan field to given value.
+SetEnabled sets Enabled field to given value.
 
-### HasVlan
+### HasEnabled
 
-`func (o *InlineObject128) HasVlan() bool`
+`func (o *InlineObject128) HasEnabled() bool`
 
-HasVlan returns a boolean if a field has been set.
+HasEnabled returns a boolean if a field has been set.
 
-### GetUseCombinedPower
+### GetHelloTimerInSeconds
 
-`func (o *InlineObject128) GetUseCombinedPower() bool`
+`func (o *InlineObject128) GetHelloTimerInSeconds() int32`
 
-GetUseCombinedPower returns the UseCombinedPower field if non-nil, zero value otherwise.
+GetHelloTimerInSeconds returns the HelloTimerInSeconds field if non-nil, zero value otherwise.
 
-### GetUseCombinedPowerOk
+### GetHelloTimerInSecondsOk
 
-`func (o *InlineObject128) GetUseCombinedPowerOk() (*bool, bool)`
+`func (o *InlineObject128) GetHelloTimerInSecondsOk() (*int32, bool)`
 
-GetUseCombinedPowerOk returns a tuple with the UseCombinedPower field if it's non-nil, zero value otherwise
+GetHelloTimerInSecondsOk returns a tuple with the HelloTimerInSeconds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUseCombinedPower
+### SetHelloTimerInSeconds
 
-`func (o *InlineObject128) SetUseCombinedPower(v bool)`
+`func (o *InlineObject128) SetHelloTimerInSeconds(v int32)`
 
-SetUseCombinedPower sets UseCombinedPower field to given value.
+SetHelloTimerInSeconds sets HelloTimerInSeconds field to given value.
 
-### HasUseCombinedPower
+### HasHelloTimerInSeconds
 
-`func (o *InlineObject128) HasUseCombinedPower() bool`
+`func (o *InlineObject128) HasHelloTimerInSeconds() bool`
 
-HasUseCombinedPower returns a boolean if a field has been set.
+HasHelloTimerInSeconds returns a boolean if a field has been set.
 
-### GetPowerExceptions
+### GetDeadTimerInSeconds
 
-`func (o *InlineObject128) GetPowerExceptions() []NetworksNetworkIdSwitchSettingsPowerExceptions`
+`func (o *InlineObject128) GetDeadTimerInSeconds() int32`
 
-GetPowerExceptions returns the PowerExceptions field if non-nil, zero value otherwise.
+GetDeadTimerInSeconds returns the DeadTimerInSeconds field if non-nil, zero value otherwise.
 
-### GetPowerExceptionsOk
+### GetDeadTimerInSecondsOk
 
-`func (o *InlineObject128) GetPowerExceptionsOk() (*[]NetworksNetworkIdSwitchSettingsPowerExceptions, bool)`
+`func (o *InlineObject128) GetDeadTimerInSecondsOk() (*int32, bool)`
 
-GetPowerExceptionsOk returns a tuple with the PowerExceptions field if it's non-nil, zero value otherwise
+GetDeadTimerInSecondsOk returns a tuple with the DeadTimerInSeconds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPowerExceptions
+### SetDeadTimerInSeconds
 
-`func (o *InlineObject128) SetPowerExceptions(v []NetworksNetworkIdSwitchSettingsPowerExceptions)`
+`func (o *InlineObject128) SetDeadTimerInSeconds(v int32)`
 
-SetPowerExceptions sets PowerExceptions field to given value.
+SetDeadTimerInSeconds sets DeadTimerInSeconds field to given value.
 
-### HasPowerExceptions
+### HasDeadTimerInSeconds
 
-`func (o *InlineObject128) HasPowerExceptions() bool`
+`func (o *InlineObject128) HasDeadTimerInSeconds() bool`
 
-HasPowerExceptions returns a boolean if a field has been set.
+HasDeadTimerInSeconds returns a boolean if a field has been set.
+
+### GetAreas
+
+`func (o *InlineObject128) GetAreas() []NetworksNetworkIdSwitchRoutingOspfAreas`
+
+GetAreas returns the Areas field if non-nil, zero value otherwise.
+
+### GetAreasOk
+
+`func (o *InlineObject128) GetAreasOk() (*[]NetworksNetworkIdSwitchRoutingOspfAreas, bool)`
+
+GetAreasOk returns a tuple with the Areas field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAreas
+
+`func (o *InlineObject128) SetAreas(v []NetworksNetworkIdSwitchRoutingOspfAreas)`
+
+SetAreas sets Areas field to given value.
+
+### HasAreas
+
+`func (o *InlineObject128) HasAreas() bool`
+
+HasAreas returns a boolean if a field has been set.
+
+### GetV3
+
+`func (o *InlineObject128) GetV3() NetworksNetworkIdSwitchRoutingOspfV3`
+
+GetV3 returns the V3 field if non-nil, zero value otherwise.
+
+### GetV3Ok
+
+`func (o *InlineObject128) GetV3Ok() (*NetworksNetworkIdSwitchRoutingOspfV3, bool)`
+
+GetV3Ok returns a tuple with the V3 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetV3
+
+`func (o *InlineObject128) SetV3(v NetworksNetworkIdSwitchRoutingOspfV3)`
+
+SetV3 sets V3 field to given value.
+
+### HasV3
+
+`func (o *InlineObject128) HasV3() bool`
+
+HasV3 returns a boolean if a field has been set.
+
+### GetMd5AuthenticationEnabled
+
+`func (o *InlineObject128) GetMd5AuthenticationEnabled() bool`
+
+GetMd5AuthenticationEnabled returns the Md5AuthenticationEnabled field if non-nil, zero value otherwise.
+
+### GetMd5AuthenticationEnabledOk
+
+`func (o *InlineObject128) GetMd5AuthenticationEnabledOk() (*bool, bool)`
+
+GetMd5AuthenticationEnabledOk returns a tuple with the Md5AuthenticationEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMd5AuthenticationEnabled
+
+`func (o *InlineObject128) SetMd5AuthenticationEnabled(v bool)`
+
+SetMd5AuthenticationEnabled sets Md5AuthenticationEnabled field to given value.
+
+### HasMd5AuthenticationEnabled
+
+`func (o *InlineObject128) HasMd5AuthenticationEnabled() bool`
+
+HasMd5AuthenticationEnabled returns a boolean if a field has been set.
+
+### GetMd5AuthenticationKey
+
+`func (o *InlineObject128) GetMd5AuthenticationKey() NetworksNetworkIdSwitchRoutingOspfMd5AuthenticationKey`
+
+GetMd5AuthenticationKey returns the Md5AuthenticationKey field if non-nil, zero value otherwise.
+
+### GetMd5AuthenticationKeyOk
+
+`func (o *InlineObject128) GetMd5AuthenticationKeyOk() (*NetworksNetworkIdSwitchRoutingOspfMd5AuthenticationKey, bool)`
+
+GetMd5AuthenticationKeyOk returns a tuple with the Md5AuthenticationKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMd5AuthenticationKey
+
+`func (o *InlineObject128) SetMd5AuthenticationKey(v NetworksNetworkIdSwitchRoutingOspfMd5AuthenticationKey)`
+
+SetMd5AuthenticationKey sets Md5AuthenticationKey field to given value.
+
+### HasMd5AuthenticationKey
+
+`func (o *InlineObject128) HasMd5AuthenticationKey() bool`
+
+HasMd5AuthenticationKey returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,8 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Counts** | Pointer to [**InlineResponse20086Counts**](InlineResponse20086Counts.md) |  | [optional] 
-**Limits** | Pointer to [**InlineResponse20086Limits**](InlineResponse20086Limits.md) |  | [optional] 
+**Name** | Pointer to **string** | The name of the Identity PSK | [optional] 
+**Id** | Pointer to **string** | The unique identifier of the Identity PSK | [optional] 
+**GroupPolicyId** | Pointer to **string** | The group policy to be applied to clients | [optional] 
+**Passphrase** | Pointer to **string** | The passphrase for client authentication | [optional] 
+**WifiPersonalNetworkId** | Pointer to **string** | The WiFi Personal Network unique identifier | [optional] 
+**Email** | Pointer to **string** | The email associated with the System&#39;s Manager User | [optional] 
+**ExpiresAt** | Pointer to **time.Time** | Timestamp for when the Identity PSK expires, or &#39;null&#39; to never expire | [optional] 
 
 ## Methods
 
@@ -26,55 +31,180 @@ NewInlineResponse20086WithDefaults instantiates a new InlineResponse20086 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCounts
+### GetName
 
-`func (o *InlineResponse20086) GetCounts() InlineResponse20086Counts`
+`func (o *InlineResponse20086) GetName() string`
 
-GetCounts returns the Counts field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetCountsOk
+### GetNameOk
 
-`func (o *InlineResponse20086) GetCountsOk() (*InlineResponse20086Counts, bool)`
+`func (o *InlineResponse20086) GetNameOk() (*string, bool)`
 
-GetCountsOk returns a tuple with the Counts field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCounts
+### SetName
 
-`func (o *InlineResponse20086) SetCounts(v InlineResponse20086Counts)`
+`func (o *InlineResponse20086) SetName(v string)`
 
-SetCounts sets Counts field to given value.
+SetName sets Name field to given value.
 
-### HasCounts
+### HasName
 
-`func (o *InlineResponse20086) HasCounts() bool`
+`func (o *InlineResponse20086) HasName() bool`
 
-HasCounts returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetLimits
+### GetId
 
-`func (o *InlineResponse20086) GetLimits() InlineResponse20086Limits`
+`func (o *InlineResponse20086) GetId() string`
 
-GetLimits returns the Limits field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetLimitsOk
+### GetIdOk
 
-`func (o *InlineResponse20086) GetLimitsOk() (*InlineResponse20086Limits, bool)`
+`func (o *InlineResponse20086) GetIdOk() (*string, bool)`
 
-GetLimitsOk returns a tuple with the Limits field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLimits
+### SetId
 
-`func (o *InlineResponse20086) SetLimits(v InlineResponse20086Limits)`
+`func (o *InlineResponse20086) SetId(v string)`
 
-SetLimits sets Limits field to given value.
+SetId sets Id field to given value.
 
-### HasLimits
+### HasId
 
-`func (o *InlineResponse20086) HasLimits() bool`
+`func (o *InlineResponse20086) HasId() bool`
 
-HasLimits returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
+
+### GetGroupPolicyId
+
+`func (o *InlineResponse20086) GetGroupPolicyId() string`
+
+GetGroupPolicyId returns the GroupPolicyId field if non-nil, zero value otherwise.
+
+### GetGroupPolicyIdOk
+
+`func (o *InlineResponse20086) GetGroupPolicyIdOk() (*string, bool)`
+
+GetGroupPolicyIdOk returns a tuple with the GroupPolicyId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroupPolicyId
+
+`func (o *InlineResponse20086) SetGroupPolicyId(v string)`
+
+SetGroupPolicyId sets GroupPolicyId field to given value.
+
+### HasGroupPolicyId
+
+`func (o *InlineResponse20086) HasGroupPolicyId() bool`
+
+HasGroupPolicyId returns a boolean if a field has been set.
+
+### GetPassphrase
+
+`func (o *InlineResponse20086) GetPassphrase() string`
+
+GetPassphrase returns the Passphrase field if non-nil, zero value otherwise.
+
+### GetPassphraseOk
+
+`func (o *InlineResponse20086) GetPassphraseOk() (*string, bool)`
+
+GetPassphraseOk returns a tuple with the Passphrase field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPassphrase
+
+`func (o *InlineResponse20086) SetPassphrase(v string)`
+
+SetPassphrase sets Passphrase field to given value.
+
+### HasPassphrase
+
+`func (o *InlineResponse20086) HasPassphrase() bool`
+
+HasPassphrase returns a boolean if a field has been set.
+
+### GetWifiPersonalNetworkId
+
+`func (o *InlineResponse20086) GetWifiPersonalNetworkId() string`
+
+GetWifiPersonalNetworkId returns the WifiPersonalNetworkId field if non-nil, zero value otherwise.
+
+### GetWifiPersonalNetworkIdOk
+
+`func (o *InlineResponse20086) GetWifiPersonalNetworkIdOk() (*string, bool)`
+
+GetWifiPersonalNetworkIdOk returns a tuple with the WifiPersonalNetworkId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWifiPersonalNetworkId
+
+`func (o *InlineResponse20086) SetWifiPersonalNetworkId(v string)`
+
+SetWifiPersonalNetworkId sets WifiPersonalNetworkId field to given value.
+
+### HasWifiPersonalNetworkId
+
+`func (o *InlineResponse20086) HasWifiPersonalNetworkId() bool`
+
+HasWifiPersonalNetworkId returns a boolean if a field has been set.
+
+### GetEmail
+
+`func (o *InlineResponse20086) GetEmail() string`
+
+GetEmail returns the Email field if non-nil, zero value otherwise.
+
+### GetEmailOk
+
+`func (o *InlineResponse20086) GetEmailOk() (*string, bool)`
+
+GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmail
+
+`func (o *InlineResponse20086) SetEmail(v string)`
+
+SetEmail sets Email field to given value.
+
+### HasEmail
+
+`func (o *InlineResponse20086) HasEmail() bool`
+
+HasEmail returns a boolean if a field has been set.
+
+### GetExpiresAt
+
+`func (o *InlineResponse20086) GetExpiresAt() time.Time`
+
+GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
+
+### GetExpiresAtOk
+
+`func (o *InlineResponse20086) GetExpiresAtOk() (*time.Time, bool)`
+
+GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiresAt
+
+`func (o *InlineResponse20086) SetExpiresAt(v time.Time)`
+
+SetExpiresAt sets ExpiresAt field to given value.
+
+### HasExpiresAt
+
+`func (o *InlineResponse20086) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

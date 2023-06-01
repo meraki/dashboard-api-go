@@ -4,9 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SwitchProfileId** | Pointer to **string** | Switch profile id | [optional] 
-**Name** | Pointer to **string** | Switch profile name | [optional] 
-**Model** | Pointer to **string** | Switch model | [optional] 
+**Rules** | Pointer to [**[]InlineResponse20095Rules**](InlineResponse20095Rules.md) | List of firewall rules | [optional] 
 
 ## Methods
 
@@ -27,80 +25,30 @@ NewInlineResponse20095WithDefaults instantiates a new InlineResponse20095 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetSwitchProfileId
+### GetRules
 
-`func (o *InlineResponse20095) GetSwitchProfileId() string`
+`func (o *InlineResponse20095) GetRules() []InlineResponse20095Rules`
 
-GetSwitchProfileId returns the SwitchProfileId field if non-nil, zero value otherwise.
+GetRules returns the Rules field if non-nil, zero value otherwise.
 
-### GetSwitchProfileIdOk
+### GetRulesOk
 
-`func (o *InlineResponse20095) GetSwitchProfileIdOk() (*string, bool)`
+`func (o *InlineResponse20095) GetRulesOk() (*[]InlineResponse20095Rules, bool)`
 
-GetSwitchProfileIdOk returns a tuple with the SwitchProfileId field if it's non-nil, zero value otherwise
+GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSwitchProfileId
+### SetRules
 
-`func (o *InlineResponse20095) SetSwitchProfileId(v string)`
+`func (o *InlineResponse20095) SetRules(v []InlineResponse20095Rules)`
 
-SetSwitchProfileId sets SwitchProfileId field to given value.
+SetRules sets Rules field to given value.
 
-### HasSwitchProfileId
+### HasRules
 
-`func (o *InlineResponse20095) HasSwitchProfileId() bool`
+`func (o *InlineResponse20095) HasRules() bool`
 
-HasSwitchProfileId returns a boolean if a field has been set.
-
-### GetName
-
-`func (o *InlineResponse20095) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *InlineResponse20095) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *InlineResponse20095) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *InlineResponse20095) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### GetModel
-
-`func (o *InlineResponse20095) GetModel() string`
-
-GetModel returns the Model field if non-nil, zero value otherwise.
-
-### GetModelOk
-
-`func (o *InlineResponse20095) GetModelOk() (*string, bool)`
-
-GetModelOk returns a tuple with the Model field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetModel
-
-`func (o *InlineResponse20095) SetModel(v string)`
-
-SetModel sets Model field to given value.
-
-### HasModel
-
-`func (o *InlineResponse20095) HasModel() bool`
-
-HasModel returns a boolean if a field has been set.
+HasRules returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

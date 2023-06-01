@@ -4,9 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Orders** | Pointer to **[]string** | The numbers of the orders that should be claimed | [optional] 
-**Serials** | Pointer to **[]string** | The serials of the devices that should be claimed | [optional] 
-**Licenses** | Pointer to [**[]OrganizationsOrganizationIdClaimLicenses**](OrganizationsOrganizationIdClaimLicenses.md) | The licenses that should be claimed | [optional] 
+**Serial** | Pointer to **string** | Serial of camera | [optional] 
+**WirelessCredentialsSent** | Pointer to **bool** | Note whether credentials were sent successfully | [optional] 
 
 ## Methods
 
@@ -27,80 +26,55 @@ NewInlineObject189WithDefaults instantiates a new InlineObject189 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetOrders
+### GetSerial
 
-`func (o *InlineObject189) GetOrders() []string`
+`func (o *InlineObject189) GetSerial() string`
 
-GetOrders returns the Orders field if non-nil, zero value otherwise.
+GetSerial returns the Serial field if non-nil, zero value otherwise.
 
-### GetOrdersOk
+### GetSerialOk
 
-`func (o *InlineObject189) GetOrdersOk() (*[]string, bool)`
+`func (o *InlineObject189) GetSerialOk() (*string, bool)`
 
-GetOrdersOk returns a tuple with the Orders field if it's non-nil, zero value otherwise
+GetSerialOk returns a tuple with the Serial field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOrders
+### SetSerial
 
-`func (o *InlineObject189) SetOrders(v []string)`
+`func (o *InlineObject189) SetSerial(v string)`
 
-SetOrders sets Orders field to given value.
+SetSerial sets Serial field to given value.
 
-### HasOrders
+### HasSerial
 
-`func (o *InlineObject189) HasOrders() bool`
+`func (o *InlineObject189) HasSerial() bool`
 
-HasOrders returns a boolean if a field has been set.
+HasSerial returns a boolean if a field has been set.
 
-### GetSerials
+### GetWirelessCredentialsSent
 
-`func (o *InlineObject189) GetSerials() []string`
+`func (o *InlineObject189) GetWirelessCredentialsSent() bool`
 
-GetSerials returns the Serials field if non-nil, zero value otherwise.
+GetWirelessCredentialsSent returns the WirelessCredentialsSent field if non-nil, zero value otherwise.
 
-### GetSerialsOk
+### GetWirelessCredentialsSentOk
 
-`func (o *InlineObject189) GetSerialsOk() (*[]string, bool)`
+`func (o *InlineObject189) GetWirelessCredentialsSentOk() (*bool, bool)`
 
-GetSerialsOk returns a tuple with the Serials field if it's non-nil, zero value otherwise
+GetWirelessCredentialsSentOk returns a tuple with the WirelessCredentialsSent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSerials
+### SetWirelessCredentialsSent
 
-`func (o *InlineObject189) SetSerials(v []string)`
+`func (o *InlineObject189) SetWirelessCredentialsSent(v bool)`
 
-SetSerials sets Serials field to given value.
+SetWirelessCredentialsSent sets WirelessCredentialsSent field to given value.
 
-### HasSerials
+### HasWirelessCredentialsSent
 
-`func (o *InlineObject189) HasSerials() bool`
+`func (o *InlineObject189) HasWirelessCredentialsSent() bool`
 
-HasSerials returns a boolean if a field has been set.
-
-### GetLicenses
-
-`func (o *InlineObject189) GetLicenses() []OrganizationsOrganizationIdClaimLicenses`
-
-GetLicenses returns the Licenses field if non-nil, zero value otherwise.
-
-### GetLicensesOk
-
-`func (o *InlineObject189) GetLicensesOk() (*[]OrganizationsOrganizationIdClaimLicenses, bool)`
-
-GetLicensesOk returns a tuple with the Licenses field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLicenses
-
-`func (o *InlineObject189) SetLicenses(v []OrganizationsOrganizationIdClaimLicenses)`
-
-SetLicenses sets Licenses field to given value.
-
-### HasLicenses
-
-`func (o *InlineObject189) HasLicenses() bool`
-
-HasLicenses returns a boolean if a field has been set.
+HasWirelessCredentialsSent returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

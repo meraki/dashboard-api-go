@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ids** | Pointer to **[]string** | The Meraki Ids of the set of devices. | [optional] 
+**Device** | Pointer to [**NetworksNetworkIdSensorRelationshipsDevice**](NetworksNetworkIdSensorRelationshipsDevice.md) |  | [optional] 
+**Relationships** | Pointer to [**NetworksNetworkIdSensorRelationshipsRelationships**](NetworksNetworkIdSensorRelationshipsRelationships.md) |  | [optional] 
 
 ## Methods
 
@@ -25,30 +26,55 @@ NewInlineResponse20040WithDefaults instantiates a new InlineResponse20040 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetIds
+### GetDevice
 
-`func (o *InlineResponse20040) GetIds() []string`
+`func (o *InlineResponse20040) GetDevice() NetworksNetworkIdSensorRelationshipsDevice`
 
-GetIds returns the Ids field if non-nil, zero value otherwise.
+GetDevice returns the Device field if non-nil, zero value otherwise.
 
-### GetIdsOk
+### GetDeviceOk
 
-`func (o *InlineResponse20040) GetIdsOk() (*[]string, bool)`
+`func (o *InlineResponse20040) GetDeviceOk() (*NetworksNetworkIdSensorRelationshipsDevice, bool)`
 
-GetIdsOk returns a tuple with the Ids field if it's non-nil, zero value otherwise
+GetDeviceOk returns a tuple with the Device field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIds
+### SetDevice
 
-`func (o *InlineResponse20040) SetIds(v []string)`
+`func (o *InlineResponse20040) SetDevice(v NetworksNetworkIdSensorRelationshipsDevice)`
 
-SetIds sets Ids field to given value.
+SetDevice sets Device field to given value.
 
-### HasIds
+### HasDevice
 
-`func (o *InlineResponse20040) HasIds() bool`
+`func (o *InlineResponse20040) HasDevice() bool`
 
-HasIds returns a boolean if a field has been set.
+HasDevice returns a boolean if a field has been set.
+
+### GetRelationships
+
+`func (o *InlineResponse20040) GetRelationships() NetworksNetworkIdSensorRelationshipsRelationships`
+
+GetRelationships returns the Relationships field if non-nil, zero value otherwise.
+
+### GetRelationshipsOk
+
+`func (o *InlineResponse20040) GetRelationshipsOk() (*NetworksNetworkIdSensorRelationshipsRelationships, bool)`
+
+GetRelationshipsOk returns a tuple with the Relationships field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRelationships
+
+`func (o *InlineResponse20040) SetRelationships(v NetworksNetworkIdSensorRelationshipsRelationships)`
+
+SetRelationships sets Relationships field to given value.
+
+### HasRelationships
+
+`func (o *InlineResponse20040) HasRelationships() bool`
+
+HasRelationships returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

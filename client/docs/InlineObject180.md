@@ -4,18 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | Pointer to **bool** | Is the alert config enabled | [optional] 
-**Type** | Pointer to **string** | The alert type | [optional] 
-**AlertCondition** | Pointer to [**OrganizationsOrganizationIdAlertsProfilesAlertCondition**](OrganizationsOrganizationIdAlertsProfilesAlertCondition.md) |  | [optional] 
-**Recipients** | Pointer to [**OrganizationsOrganizationIdAlertsProfilesRecipients**](OrganizationsOrganizationIdAlertsProfilesRecipients.md) |  | [optional] 
-**NetworkTags** | Pointer to **[]string** | Networks with these tags will be monitored for the alert | [optional] 
+**Type** | **string** | The alert type | 
+**AlertCondition** | [**OrganizationsOrganizationIdAlertsProfilesAlertCondition**](OrganizationsOrganizationIdAlertsProfilesAlertCondition.md) |  | 
+**Recipients** | [**OrganizationsOrganizationIdAlertsProfilesRecipients**](OrganizationsOrganizationIdAlertsProfilesRecipients.md) |  | 
+**NetworkTags** | **[]string** | Networks with these tags will be monitored for the alert | 
 **Description** | Pointer to **string** | User supplied description of the alert | [optional] 
 
 ## Methods
 
 ### NewInlineObject180
 
-`func NewInlineObject180() *InlineObject180`
+`func NewInlineObject180(type_ string, alertCondition OrganizationsOrganizationIdAlertsProfilesAlertCondition, recipients OrganizationsOrganizationIdAlertsProfilesRecipients, networkTags []string, ) *InlineObject180`
 
 NewInlineObject180 instantiates a new InlineObject180 object
 This constructor will assign default values to properties that have it defined,
@@ -29,31 +28,6 @@ will change when the set of required properties is changed
 NewInlineObject180WithDefaults instantiates a new InlineObject180 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetEnabled
-
-`func (o *InlineObject180) GetEnabled() bool`
-
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
-
-### GetEnabledOk
-
-`func (o *InlineObject180) GetEnabledOk() (*bool, bool)`
-
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEnabled
-
-`func (o *InlineObject180) SetEnabled(v bool)`
-
-SetEnabled sets Enabled field to given value.
-
-### HasEnabled
-
-`func (o *InlineObject180) HasEnabled() bool`
-
-HasEnabled returns a boolean if a field has been set.
 
 ### GetType
 
@@ -74,11 +48,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *InlineObject180) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetAlertCondition
 
@@ -99,11 +68,6 @@ and a boolean to check if the value has been set.
 
 SetAlertCondition sets AlertCondition field to given value.
 
-### HasAlertCondition
-
-`func (o *InlineObject180) HasAlertCondition() bool`
-
-HasAlertCondition returns a boolean if a field has been set.
 
 ### GetRecipients
 
@@ -124,11 +88,6 @@ and a boolean to check if the value has been set.
 
 SetRecipients sets Recipients field to given value.
 
-### HasRecipients
-
-`func (o *InlineObject180) HasRecipients() bool`
-
-HasRecipients returns a boolean if a field has been set.
 
 ### GetNetworkTags
 
@@ -149,11 +108,6 @@ and a boolean to check if the value has been set.
 
 SetNetworkTags sets NetworkTags field to given value.
 
-### HasNetworkTags
-
-`func (o *InlineObject180) HasNetworkTags() bool`
-
-HasNetworkTags returns a boolean if a field has been set.
 
 ### GetDescription
 
