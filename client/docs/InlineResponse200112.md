@@ -4,9 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DestOrganizationId** | Pointer to **string** | The ID of the organization to move the SM seats to | [optional] 
-**LicenseId** | Pointer to **string** | The ID of the SM license to move the seats from | [optional] 
-**SeatCount** | Pointer to **int32** | The number of seats to move to the new organization. Must be less than or equal to the total number of seats of the license | [optional] 
+**UpgradeId** | Pointer to **string** | The upgrade | [optional] 
+**UpgradeBatchId** | Pointer to **string** | The upgrade batch | [optional] 
+**Network** | Pointer to [**OrganizationsOrganizationIdFirmwareUpgradesNetwork**](OrganizationsOrganizationIdFirmwareUpgradesNetwork.md) |  | [optional] 
+**Status** | Pointer to **string** | Status of upgrade event: [Cancelled, Completed] | [optional] 
+**Time** | Pointer to **time.Time** | Scheduled start time | [optional] 
+**CompletedAt** | Pointer to **string** | Timestamp when upgrade completed. Null if status pending. | [optional] 
+**ProductType** | Pointer to **string** | product upgraded [wireless, appliance, switch, systemsManager, camera, cellularGateway, sensor] | [optional] 
+**ToVersion** | Pointer to [**OrganizationsOrganizationIdFirmwareUpgradesToVersion**](OrganizationsOrganizationIdFirmwareUpgradesToVersion.md) |  | [optional] 
+**FromVersion** | Pointer to [**OrganizationsOrganizationIdFirmwareUpgradesFromVersion**](OrganizationsOrganizationIdFirmwareUpgradesFromVersion.md) |  | [optional] 
 
 ## Methods
 
@@ -27,80 +33,230 @@ NewInlineResponse200112WithDefaults instantiates a new InlineResponse200112 obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDestOrganizationId
+### GetUpgradeId
 
-`func (o *InlineResponse200112) GetDestOrganizationId() string`
+`func (o *InlineResponse200112) GetUpgradeId() string`
 
-GetDestOrganizationId returns the DestOrganizationId field if non-nil, zero value otherwise.
+GetUpgradeId returns the UpgradeId field if non-nil, zero value otherwise.
 
-### GetDestOrganizationIdOk
+### GetUpgradeIdOk
 
-`func (o *InlineResponse200112) GetDestOrganizationIdOk() (*string, bool)`
+`func (o *InlineResponse200112) GetUpgradeIdOk() (*string, bool)`
 
-GetDestOrganizationIdOk returns a tuple with the DestOrganizationId field if it's non-nil, zero value otherwise
+GetUpgradeIdOk returns a tuple with the UpgradeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDestOrganizationId
+### SetUpgradeId
 
-`func (o *InlineResponse200112) SetDestOrganizationId(v string)`
+`func (o *InlineResponse200112) SetUpgradeId(v string)`
 
-SetDestOrganizationId sets DestOrganizationId field to given value.
+SetUpgradeId sets UpgradeId field to given value.
 
-### HasDestOrganizationId
+### HasUpgradeId
 
-`func (o *InlineResponse200112) HasDestOrganizationId() bool`
+`func (o *InlineResponse200112) HasUpgradeId() bool`
 
-HasDestOrganizationId returns a boolean if a field has been set.
+HasUpgradeId returns a boolean if a field has been set.
 
-### GetLicenseId
+### GetUpgradeBatchId
 
-`func (o *InlineResponse200112) GetLicenseId() string`
+`func (o *InlineResponse200112) GetUpgradeBatchId() string`
 
-GetLicenseId returns the LicenseId field if non-nil, zero value otherwise.
+GetUpgradeBatchId returns the UpgradeBatchId field if non-nil, zero value otherwise.
 
-### GetLicenseIdOk
+### GetUpgradeBatchIdOk
 
-`func (o *InlineResponse200112) GetLicenseIdOk() (*string, bool)`
+`func (o *InlineResponse200112) GetUpgradeBatchIdOk() (*string, bool)`
 
-GetLicenseIdOk returns a tuple with the LicenseId field if it's non-nil, zero value otherwise
+GetUpgradeBatchIdOk returns a tuple with the UpgradeBatchId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLicenseId
+### SetUpgradeBatchId
 
-`func (o *InlineResponse200112) SetLicenseId(v string)`
+`func (o *InlineResponse200112) SetUpgradeBatchId(v string)`
 
-SetLicenseId sets LicenseId field to given value.
+SetUpgradeBatchId sets UpgradeBatchId field to given value.
 
-### HasLicenseId
+### HasUpgradeBatchId
 
-`func (o *InlineResponse200112) HasLicenseId() bool`
+`func (o *InlineResponse200112) HasUpgradeBatchId() bool`
 
-HasLicenseId returns a boolean if a field has been set.
+HasUpgradeBatchId returns a boolean if a field has been set.
 
-### GetSeatCount
+### GetNetwork
 
-`func (o *InlineResponse200112) GetSeatCount() int32`
+`func (o *InlineResponse200112) GetNetwork() OrganizationsOrganizationIdFirmwareUpgradesNetwork`
 
-GetSeatCount returns the SeatCount field if non-nil, zero value otherwise.
+GetNetwork returns the Network field if non-nil, zero value otherwise.
 
-### GetSeatCountOk
+### GetNetworkOk
 
-`func (o *InlineResponse200112) GetSeatCountOk() (*int32, bool)`
+`func (o *InlineResponse200112) GetNetworkOk() (*OrganizationsOrganizationIdFirmwareUpgradesNetwork, bool)`
 
-GetSeatCountOk returns a tuple with the SeatCount field if it's non-nil, zero value otherwise
+GetNetworkOk returns a tuple with the Network field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSeatCount
+### SetNetwork
 
-`func (o *InlineResponse200112) SetSeatCount(v int32)`
+`func (o *InlineResponse200112) SetNetwork(v OrganizationsOrganizationIdFirmwareUpgradesNetwork)`
 
-SetSeatCount sets SeatCount field to given value.
+SetNetwork sets Network field to given value.
 
-### HasSeatCount
+### HasNetwork
 
-`func (o *InlineResponse200112) HasSeatCount() bool`
+`func (o *InlineResponse200112) HasNetwork() bool`
 
-HasSeatCount returns a boolean if a field has been set.
+HasNetwork returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *InlineResponse200112) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *InlineResponse200112) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *InlineResponse200112) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *InlineResponse200112) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
+
+### GetTime
+
+`func (o *InlineResponse200112) GetTime() time.Time`
+
+GetTime returns the Time field if non-nil, zero value otherwise.
+
+### GetTimeOk
+
+`func (o *InlineResponse200112) GetTimeOk() (*time.Time, bool)`
+
+GetTimeOk returns a tuple with the Time field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTime
+
+`func (o *InlineResponse200112) SetTime(v time.Time)`
+
+SetTime sets Time field to given value.
+
+### HasTime
+
+`func (o *InlineResponse200112) HasTime() bool`
+
+HasTime returns a boolean if a field has been set.
+
+### GetCompletedAt
+
+`func (o *InlineResponse200112) GetCompletedAt() string`
+
+GetCompletedAt returns the CompletedAt field if non-nil, zero value otherwise.
+
+### GetCompletedAtOk
+
+`func (o *InlineResponse200112) GetCompletedAtOk() (*string, bool)`
+
+GetCompletedAtOk returns a tuple with the CompletedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCompletedAt
+
+`func (o *InlineResponse200112) SetCompletedAt(v string)`
+
+SetCompletedAt sets CompletedAt field to given value.
+
+### HasCompletedAt
+
+`func (o *InlineResponse200112) HasCompletedAt() bool`
+
+HasCompletedAt returns a boolean if a field has been set.
+
+### GetProductType
+
+`func (o *InlineResponse200112) GetProductType() string`
+
+GetProductType returns the ProductType field if non-nil, zero value otherwise.
+
+### GetProductTypeOk
+
+`func (o *InlineResponse200112) GetProductTypeOk() (*string, bool)`
+
+GetProductTypeOk returns a tuple with the ProductType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProductType
+
+`func (o *InlineResponse200112) SetProductType(v string)`
+
+SetProductType sets ProductType field to given value.
+
+### HasProductType
+
+`func (o *InlineResponse200112) HasProductType() bool`
+
+HasProductType returns a boolean if a field has been set.
+
+### GetToVersion
+
+`func (o *InlineResponse200112) GetToVersion() OrganizationsOrganizationIdFirmwareUpgradesToVersion`
+
+GetToVersion returns the ToVersion field if non-nil, zero value otherwise.
+
+### GetToVersionOk
+
+`func (o *InlineResponse200112) GetToVersionOk() (*OrganizationsOrganizationIdFirmwareUpgradesToVersion, bool)`
+
+GetToVersionOk returns a tuple with the ToVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetToVersion
+
+`func (o *InlineResponse200112) SetToVersion(v OrganizationsOrganizationIdFirmwareUpgradesToVersion)`
+
+SetToVersion sets ToVersion field to given value.
+
+### HasToVersion
+
+`func (o *InlineResponse200112) HasToVersion() bool`
+
+HasToVersion returns a boolean if a field has been set.
+
+### GetFromVersion
+
+`func (o *InlineResponse200112) GetFromVersion() OrganizationsOrganizationIdFirmwareUpgradesFromVersion`
+
+GetFromVersion returns the FromVersion field if non-nil, zero value otherwise.
+
+### GetFromVersionOk
+
+`func (o *InlineResponse200112) GetFromVersionOk() (*OrganizationsOrganizationIdFirmwareUpgradesFromVersion, bool)`
+
+GetFromVersionOk returns a tuple with the FromVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFromVersion
+
+`func (o *InlineResponse200112) SetFromVersion(v OrganizationsOrganizationIdFirmwareUpgradesFromVersion)`
+
+SetFromVersion sets FromVersion field to given value.
+
+### HasFromVersion
+
+`func (o *InlineResponse200112) HasFromVersion() bool`
+
+HasFromVersion returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

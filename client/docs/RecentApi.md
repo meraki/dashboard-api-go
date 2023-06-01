@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-    serial := "serial_example" // string | 
+    serial := "serial_example" // string | Serial
     objectType := "objectType_example" // string | [optional] The object type for which analytics will be retrieved. The default object type is person. The available types are [person, vehicle]. (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -50,7 +50,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serial** | **string** |  | 
+**serial** | **string** | Serial | 
 
 ### Other Parameters
 

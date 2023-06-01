@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | Pointer to **bool** | Boolean for updating SAML SSO enabled settings. | [optional] 
+**Name** | Pointer to **string** | A name for the group of network addresses, unique within the organization (alphanumeric, space, dash, or underscore characters only) | [optional] 
+**ObjectIds** | Pointer to **[]int32** | A list of Policy Object ID&#39;s that this NetworkObjectGroup should be associated to (note: these ID&#39;s will replace the existing associated Policy Objects) | [optional] 
 
 ## Methods
 
@@ -25,30 +26,55 @@ NewInlineObject215WithDefaults instantiates a new InlineObject215 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetEnabled
+### GetName
 
-`func (o *InlineObject215) GetEnabled() bool`
+`func (o *InlineObject215) GetName() string`
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetEnabledOk
+### GetNameOk
 
-`func (o *InlineObject215) GetEnabledOk() (*bool, bool)`
+`func (o *InlineObject215) GetNameOk() (*string, bool)`
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnabled
+### SetName
 
-`func (o *InlineObject215) SetEnabled(v bool)`
+`func (o *InlineObject215) SetName(v string)`
 
-SetEnabled sets Enabled field to given value.
+SetName sets Name field to given value.
 
-### HasEnabled
+### HasName
 
-`func (o *InlineObject215) HasEnabled() bool`
+`func (o *InlineObject215) HasName() bool`
 
-HasEnabled returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
+
+### GetObjectIds
+
+`func (o *InlineObject215) GetObjectIds() []int32`
+
+GetObjectIds returns the ObjectIds field if non-nil, zero value otherwise.
+
+### GetObjectIdsOk
+
+`func (o *InlineObject215) GetObjectIdsOk() (*[]int32, bool)`
+
+GetObjectIdsOk returns a tuple with the ObjectIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetObjectIds
+
+`func (o *InlineObject215) SetObjectIds(v []int32)`
+
+SetObjectIds sets ObjectIds field to given value.
+
+### HasObjectIds
+
+`func (o *InlineObject215) HasObjectIds() bool`
+
+HasObjectIds returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

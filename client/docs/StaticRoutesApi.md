@@ -43,7 +43,7 @@ import (
 )
 
 func main() {
-    serial := "serial_example" // string | 
+    serial := "serial_example" // string | Serial
     createDeviceSwitchRoutingStaticRoute := *openapiclient.NewInlineObject21("Subnet_example", "NextHopIp_example") // InlineObject21 | 
 
     configuration := openapiclient.NewConfiguration()
@@ -64,7 +64,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serial** | **string** |  | 
+**serial** | **string** | Serial | 
 
 ### Other Parameters
 
@@ -115,7 +115,7 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
     createNetworkApplianceStaticRoute := *openapiclient.NewInlineObject48("Name_example", "Subnet_example", "GatewayIp_example") // InlineObject48 | 
 
     configuration := openapiclient.NewConfiguration()
@@ -136,7 +136,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
+**networkId** | **string** | Network ID | 
 
 ### Other Parameters
 
@@ -187,9 +187,9 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    switchStackId := "switchStackId_example" // string | 
-    createNetworkSwitchStackRoutingStaticRoute := *openapiclient.NewInlineObject135("Subnet_example", "NextHopIp_example") // InlineObject135 | 
+    networkId := "networkId_example" // string | Network ID
+    switchStackId := "switchStackId_example" // string | Switch stack ID
+    createNetworkSwitchStackRoutingStaticRoute := *openapiclient.NewInlineObject136("Subnet_example", "NextHopIp_example") // InlineObject136 | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -209,8 +209,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**switchStackId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**switchStackId** | **string** | Switch stack ID | 
 
 ### Other Parameters
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **createNetworkSwitchStackRoutingStaticRoute** | [**InlineObject135**](InlineObject135.md) |  | 
+ **createNetworkSwitchStackRoutingStaticRoute** | [**InlineObject136**](InlineObject136.md) |  | 
 
 ### Return type
 
@@ -262,8 +262,8 @@ import (
 )
 
 func main() {
-    serial := "serial_example" // string | 
-    staticRouteId := "staticRouteId_example" // string | 
+    serial := "serial_example" // string | Serial
+    staticRouteId := "staticRouteId_example" // string | Static route ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -281,8 +281,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serial** | **string** |  | 
-**staticRouteId** | **string** |  | 
+**serial** | **string** | Serial | 
+**staticRouteId** | **string** | Static route ID | 
 
 ### Other Parameters
 
@@ -333,8 +333,8 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    staticRouteId := "staticRouteId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
+    staticRouteId := "staticRouteId_example" // string | Static route ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -352,8 +352,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**staticRouteId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**staticRouteId** | **string** | Static route ID | 
 
 ### Other Parameters
 
@@ -404,9 +404,9 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    switchStackId := "switchStackId_example" // string | 
-    staticRouteId := "staticRouteId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
+    switchStackId := "switchStackId_example" // string | Switch stack ID
+    staticRouteId := "staticRouteId_example" // string | Static route ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -424,9 +424,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**switchStackId** | **string** |  | 
-**staticRouteId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**switchStackId** | **string** | Switch stack ID | 
+**staticRouteId** | **string** | Static route ID | 
 
 ### Other Parameters
 
@@ -459,7 +459,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceSwitchRoutingStaticRoute
 
-> map[string]interface{} GetDeviceSwitchRoutingStaticRoute(ctx, serial, staticRouteId).Execute()
+> InlineResponse2008 GetDeviceSwitchRoutingStaticRoute(ctx, serial, staticRouteId).Execute()
 
 Return a layer 3 static route for a switch
 
@@ -478,8 +478,8 @@ import (
 )
 
 func main() {
-    serial := "serial_example" // string | 
-    staticRouteId := "staticRouteId_example" // string | 
+    serial := "serial_example" // string | Serial
+    staticRouteId := "staticRouteId_example" // string | Static route ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -488,7 +488,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `StaticRoutesApi.GetDeviceSwitchRoutingStaticRoute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceSwitchRoutingStaticRoute`: map[string]interface{}
+    // response from `GetDeviceSwitchRoutingStaticRoute`: InlineResponse2008
     fmt.Fprintf(os.Stdout, "Response from `StaticRoutesApi.GetDeviceSwitchRoutingStaticRoute`: %v\n", resp)
 }
 ```
@@ -499,8 +499,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serial** | **string** |  | 
-**staticRouteId** | **string** |  | 
+**serial** | **string** | Serial | 
+**staticRouteId** | **string** | Static route ID | 
 
 ### Other Parameters
 
@@ -514,7 +514,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**InlineResponse2008**](InlineResponse2008.md)
 
 ### Authorization
 
@@ -551,7 +551,7 @@ import (
 )
 
 func main() {
-    serial := "serial_example" // string | 
+    serial := "serial_example" // string | Serial
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -571,7 +571,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serial** | **string** |  | 
+**serial** | **string** | Serial | 
 
 ### Other Parameters
 
@@ -621,8 +621,8 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    staticRouteId := "staticRouteId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
+    staticRouteId := "staticRouteId_example" // string | Static route ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -642,8 +642,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**staticRouteId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**staticRouteId** | **string** | Static route ID | 
 
 ### Other Parameters
 
@@ -694,7 +694,7 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -714,7 +714,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
+**networkId** | **string** | Network ID | 
 
 ### Other Parameters
 
@@ -764,9 +764,9 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    switchStackId := "switchStackId_example" // string | 
-    staticRouteId := "staticRouteId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
+    switchStackId := "switchStackId_example" // string | Switch stack ID
+    staticRouteId := "staticRouteId_example" // string | Static route ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -786,9 +786,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**switchStackId** | **string** |  | 
-**staticRouteId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**switchStackId** | **string** | Switch stack ID | 
+**staticRouteId** | **string** | Static route ID | 
 
 ### Other Parameters
 
@@ -840,8 +840,8 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    switchStackId := "switchStackId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
+    switchStackId := "switchStackId_example" // string | Switch stack ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -861,8 +861,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**switchStackId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**switchStackId** | **string** | Switch stack ID | 
 
 ### Other Parameters
 
@@ -913,8 +913,8 @@ import (
 )
 
 func main() {
-    serial := "serial_example" // string | 
-    staticRouteId := "staticRouteId_example" // string | 
+    serial := "serial_example" // string | Serial
+    staticRouteId := "staticRouteId_example" // string | Static route ID
     updateDeviceSwitchRoutingStaticRoute := *openapiclient.NewInlineObject22() // InlineObject22 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -935,8 +935,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serial** | **string** |  | 
-**staticRouteId** | **string** |  | 
+**serial** | **string** | Serial | 
+**staticRouteId** | **string** | Static route ID | 
 
 ### Other Parameters
 
@@ -988,8 +988,8 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    staticRouteId := "staticRouteId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
+    staticRouteId := "staticRouteId_example" // string | Static route ID
     updateNetworkApplianceStaticRoute := *openapiclient.NewInlineObject49() // InlineObject49 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -1010,8 +1010,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**staticRouteId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**staticRouteId** | **string** | Static route ID | 
 
 ### Other Parameters
 
@@ -1063,10 +1063,10 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    switchStackId := "switchStackId_example" // string | 
-    staticRouteId := "staticRouteId_example" // string | 
-    updateNetworkSwitchStackRoutingStaticRoute := *openapiclient.NewInlineObject136() // InlineObject136 |  (optional)
+    networkId := "networkId_example" // string | Network ID
+    switchStackId := "switchStackId_example" // string | Switch stack ID
+    staticRouteId := "staticRouteId_example" // string | Static route ID
+    updateNetworkSwitchStackRoutingStaticRoute := *openapiclient.NewInlineObject137() // InlineObject137 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -1086,9 +1086,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**switchStackId** | **string** |  | 
-**staticRouteId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**switchStackId** | **string** | Switch stack ID | 
+**staticRouteId** | **string** | Static route ID | 
 
 ### Other Parameters
 
@@ -1100,7 +1100,7 @@ Name | Type | Description  | Notes
 
 
 
- **updateNetworkSwitchStackRoutingStaticRoute** | [**InlineObject136**](InlineObject136.md) |  | 
+ **updateNetworkSwitchStackRoutingStaticRoute** | [**InlineObject137**](InlineObject137.md) |  | 
 
 ### Return type
 

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Orders** | Pointer to **[]string** | The numbers of the orders that should be claimed | [optional] 
-**Serials** | Pointer to **[]string** | The serials of the devices that should be claimed | [optional] 
-**Licenses** | Pointer to [**[]OrganizationsOrganizationIdInventoryClaimLicenses**](OrganizationsOrganizationIdInventoryClaimLicenses.md) | The licenses that should be claimed | [optional] 
+**Name** | Pointer to **string** | The name of the VoIP provider | [optional] 
+**Address** | Pointer to **string** | The IP address (IPv4 only) or hostname of the media server to monitor | [optional] 
+**BestEffortMonitoringEnabled** | Pointer to **bool** | Indicates that if the media server doesn&#39;t respond to ICMP pings, the nearest hop will be used in its stead. | [optional] 
 
 ## Methods
 
@@ -27,80 +27,80 @@ NewInlineObject198WithDefaults instantiates a new InlineObject198 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetOrders
+### GetName
 
-`func (o *InlineObject198) GetOrders() []string`
+`func (o *InlineObject198) GetName() string`
 
-GetOrders returns the Orders field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetOrdersOk
+### GetNameOk
 
-`func (o *InlineObject198) GetOrdersOk() (*[]string, bool)`
+`func (o *InlineObject198) GetNameOk() (*string, bool)`
 
-GetOrdersOk returns a tuple with the Orders field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOrders
+### SetName
 
-`func (o *InlineObject198) SetOrders(v []string)`
+`func (o *InlineObject198) SetName(v string)`
 
-SetOrders sets Orders field to given value.
+SetName sets Name field to given value.
 
-### HasOrders
+### HasName
 
-`func (o *InlineObject198) HasOrders() bool`
+`func (o *InlineObject198) HasName() bool`
 
-HasOrders returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetSerials
+### GetAddress
 
-`func (o *InlineObject198) GetSerials() []string`
+`func (o *InlineObject198) GetAddress() string`
 
-GetSerials returns the Serials field if non-nil, zero value otherwise.
+GetAddress returns the Address field if non-nil, zero value otherwise.
 
-### GetSerialsOk
+### GetAddressOk
 
-`func (o *InlineObject198) GetSerialsOk() (*[]string, bool)`
+`func (o *InlineObject198) GetAddressOk() (*string, bool)`
 
-GetSerialsOk returns a tuple with the Serials field if it's non-nil, zero value otherwise
+GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSerials
+### SetAddress
 
-`func (o *InlineObject198) SetSerials(v []string)`
+`func (o *InlineObject198) SetAddress(v string)`
 
-SetSerials sets Serials field to given value.
+SetAddress sets Address field to given value.
 
-### HasSerials
+### HasAddress
 
-`func (o *InlineObject198) HasSerials() bool`
+`func (o *InlineObject198) HasAddress() bool`
 
-HasSerials returns a boolean if a field has been set.
+HasAddress returns a boolean if a field has been set.
 
-### GetLicenses
+### GetBestEffortMonitoringEnabled
 
-`func (o *InlineObject198) GetLicenses() []OrganizationsOrganizationIdInventoryClaimLicenses`
+`func (o *InlineObject198) GetBestEffortMonitoringEnabled() bool`
 
-GetLicenses returns the Licenses field if non-nil, zero value otherwise.
+GetBestEffortMonitoringEnabled returns the BestEffortMonitoringEnabled field if non-nil, zero value otherwise.
 
-### GetLicensesOk
+### GetBestEffortMonitoringEnabledOk
 
-`func (o *InlineObject198) GetLicensesOk() (*[]OrganizationsOrganizationIdInventoryClaimLicenses, bool)`
+`func (o *InlineObject198) GetBestEffortMonitoringEnabledOk() (*bool, bool)`
 
-GetLicensesOk returns a tuple with the Licenses field if it's non-nil, zero value otherwise
+GetBestEffortMonitoringEnabledOk returns a tuple with the BestEffortMonitoringEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLicenses
+### SetBestEffortMonitoringEnabled
 
-`func (o *InlineObject198) SetLicenses(v []OrganizationsOrganizationIdInventoryClaimLicenses)`
+`func (o *InlineObject198) SetBestEffortMonitoringEnabled(v bool)`
 
-SetLicenses sets Licenses field to given value.
+SetBestEffortMonitoringEnabled sets BestEffortMonitoringEnabled field to given value.
 
-### HasLicenses
+### HasBestEffortMonitoringEnabled
 
-`func (o *InlineObject198) HasLicenses() bool`
+`func (o *InlineObject198) HasBestEffortMonitoringEnabled() bool`
 
-HasLicenses returns a boolean if a field has been set.
+HasBestEffortMonitoringEnabled returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

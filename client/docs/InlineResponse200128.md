@@ -4,9 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Model** | Pointer to **string** | The device model | [optional] 
-**Count** | Pointer to **int32** | Total number of devices per model | [optional] 
-**Usage** | Pointer to [**OrganizationsOrganizationIdSummaryTopDevicesModelsByUsageUsage**](OrganizationsOrganizationIdSummaryTopDevicesModelsByUsageUsage.md) |  | [optional] 
+**Id** | Pointer to **string** | ID associated with the SAML role | [optional] 
+**Role** | Pointer to **string** | The role of the SAML administrator | [optional] 
+**OrgAccess** | Pointer to **string** | The privilege of the SAML administrator on the organization | [optional] 
+**Networks** | Pointer to [**[]InlineResponse200128Networks**](InlineResponse200128Networks.md) | The list of networks that the SAML administrator has privileges on | [optional] 
+**Tags** | Pointer to [**[]InlineResponse200128Tags**](InlineResponse200128Tags.md) | The list of tags that the SAML administrator has privleges on | [optional] 
 
 ## Methods
 
@@ -27,80 +29,130 @@ NewInlineResponse200128WithDefaults instantiates a new InlineResponse200128 obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetModel
+### GetId
 
-`func (o *InlineResponse200128) GetModel() string`
+`func (o *InlineResponse200128) GetId() string`
 
-GetModel returns the Model field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetModelOk
+### GetIdOk
 
-`func (o *InlineResponse200128) GetModelOk() (*string, bool)`
+`func (o *InlineResponse200128) GetIdOk() (*string, bool)`
 
-GetModelOk returns a tuple with the Model field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetModel
+### SetId
 
-`func (o *InlineResponse200128) SetModel(v string)`
+`func (o *InlineResponse200128) SetId(v string)`
 
-SetModel sets Model field to given value.
+SetId sets Id field to given value.
 
-### HasModel
+### HasId
 
-`func (o *InlineResponse200128) HasModel() bool`
+`func (o *InlineResponse200128) HasId() bool`
 
-HasModel returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### GetCount
+### GetRole
 
-`func (o *InlineResponse200128) GetCount() int32`
+`func (o *InlineResponse200128) GetRole() string`
 
-GetCount returns the Count field if non-nil, zero value otherwise.
+GetRole returns the Role field if non-nil, zero value otherwise.
 
-### GetCountOk
+### GetRoleOk
 
-`func (o *InlineResponse200128) GetCountOk() (*int32, bool)`
+`func (o *InlineResponse200128) GetRoleOk() (*string, bool)`
 
-GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
+GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCount
+### SetRole
 
-`func (o *InlineResponse200128) SetCount(v int32)`
+`func (o *InlineResponse200128) SetRole(v string)`
 
-SetCount sets Count field to given value.
+SetRole sets Role field to given value.
 
-### HasCount
+### HasRole
 
-`func (o *InlineResponse200128) HasCount() bool`
+`func (o *InlineResponse200128) HasRole() bool`
 
-HasCount returns a boolean if a field has been set.
+HasRole returns a boolean if a field has been set.
 
-### GetUsage
+### GetOrgAccess
 
-`func (o *InlineResponse200128) GetUsage() OrganizationsOrganizationIdSummaryTopDevicesModelsByUsageUsage`
+`func (o *InlineResponse200128) GetOrgAccess() string`
 
-GetUsage returns the Usage field if non-nil, zero value otherwise.
+GetOrgAccess returns the OrgAccess field if non-nil, zero value otherwise.
 
-### GetUsageOk
+### GetOrgAccessOk
 
-`func (o *InlineResponse200128) GetUsageOk() (*OrganizationsOrganizationIdSummaryTopDevicesModelsByUsageUsage, bool)`
+`func (o *InlineResponse200128) GetOrgAccessOk() (*string, bool)`
 
-GetUsageOk returns a tuple with the Usage field if it's non-nil, zero value otherwise
+GetOrgAccessOk returns a tuple with the OrgAccess field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUsage
+### SetOrgAccess
 
-`func (o *InlineResponse200128) SetUsage(v OrganizationsOrganizationIdSummaryTopDevicesModelsByUsageUsage)`
+`func (o *InlineResponse200128) SetOrgAccess(v string)`
 
-SetUsage sets Usage field to given value.
+SetOrgAccess sets OrgAccess field to given value.
 
-### HasUsage
+### HasOrgAccess
 
-`func (o *InlineResponse200128) HasUsage() bool`
+`func (o *InlineResponse200128) HasOrgAccess() bool`
 
-HasUsage returns a boolean if a field has been set.
+HasOrgAccess returns a boolean if a field has been set.
+
+### GetNetworks
+
+`func (o *InlineResponse200128) GetNetworks() []InlineResponse200128Networks`
+
+GetNetworks returns the Networks field if non-nil, zero value otherwise.
+
+### GetNetworksOk
+
+`func (o *InlineResponse200128) GetNetworksOk() (*[]InlineResponse200128Networks, bool)`
+
+GetNetworksOk returns a tuple with the Networks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworks
+
+`func (o *InlineResponse200128) SetNetworks(v []InlineResponse200128Networks)`
+
+SetNetworks sets Networks field to given value.
+
+### HasNetworks
+
+`func (o *InlineResponse200128) HasNetworks() bool`
+
+HasNetworks returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *InlineResponse200128) GetTags() []InlineResponse200128Tags`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *InlineResponse200128) GetTagsOk() (*[]InlineResponse200128Tags, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *InlineResponse200128) SetTags(v []InlineResponse200128Tags)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *InlineResponse200128) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

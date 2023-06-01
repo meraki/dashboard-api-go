@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | A name for the group of network addresses, unique within the organization (alphanumeric, space, dash, or underscore characters only) | 
-**Category** | Pointer to **string** | Category of a policy object group (one of: NetworkObjectGroup, GeoLocationGroup, PortObjectGroup, ApplicationGroup) | [optional] 
-**ObjectIds** | Pointer to **[]int32** | A list of Policy Object ID&#39;s that this NetworkObjectGroup should be associated to (note: these ID&#39;s will replace the existing associated Policy Objects) | [optional] 
+**Name** | **string** | The name of the combined network | 
+**NetworkIds** | **[]string** | A list of the network IDs that will be combined. If an ID of a combined network is included in this list, the other networks in the list will be grouped into that network | 
+**EnrollmentString** | Pointer to **string** | A unique identifier which can be used for device enrollment or easy access through the Meraki SM Registration page or the Self Service Portal. Please note that changing this field may cause existing bookmarks to break. All networks that are part of this combined network will have their enrollment string appended by &#39;-network_type&#39;. If left empty, all exisitng enrollment strings will be deleted. | [optional] 
 
 ## Methods
 
 ### NewInlineObject212
 
-`func NewInlineObject212(name string, ) *InlineObject212`
+`func NewInlineObject212(name string, networkIds []string, ) *InlineObject212`
 
 NewInlineObject212 instantiates a new InlineObject212 object
 This constructor will assign default values to properties that have it defined,
@@ -47,55 +47,50 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetCategory
+### GetNetworkIds
 
-`func (o *InlineObject212) GetCategory() string`
+`func (o *InlineObject212) GetNetworkIds() []string`
 
-GetCategory returns the Category field if non-nil, zero value otherwise.
+GetNetworkIds returns the NetworkIds field if non-nil, zero value otherwise.
 
-### GetCategoryOk
+### GetNetworkIdsOk
 
-`func (o *InlineObject212) GetCategoryOk() (*string, bool)`
+`func (o *InlineObject212) GetNetworkIdsOk() (*[]string, bool)`
 
-GetCategoryOk returns a tuple with the Category field if it's non-nil, zero value otherwise
+GetNetworkIdsOk returns a tuple with the NetworkIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCategory
+### SetNetworkIds
 
-`func (o *InlineObject212) SetCategory(v string)`
+`func (o *InlineObject212) SetNetworkIds(v []string)`
 
-SetCategory sets Category field to given value.
+SetNetworkIds sets NetworkIds field to given value.
 
-### HasCategory
 
-`func (o *InlineObject212) HasCategory() bool`
+### GetEnrollmentString
 
-HasCategory returns a boolean if a field has been set.
+`func (o *InlineObject212) GetEnrollmentString() string`
 
-### GetObjectIds
+GetEnrollmentString returns the EnrollmentString field if non-nil, zero value otherwise.
 
-`func (o *InlineObject212) GetObjectIds() []int32`
+### GetEnrollmentStringOk
 
-GetObjectIds returns the ObjectIds field if non-nil, zero value otherwise.
+`func (o *InlineObject212) GetEnrollmentStringOk() (*string, bool)`
 
-### GetObjectIdsOk
-
-`func (o *InlineObject212) GetObjectIdsOk() (*[]int32, bool)`
-
-GetObjectIdsOk returns a tuple with the ObjectIds field if it's non-nil, zero value otherwise
+GetEnrollmentStringOk returns a tuple with the EnrollmentString field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetObjectIds
+### SetEnrollmentString
 
-`func (o *InlineObject212) SetObjectIds(v []int32)`
+`func (o *InlineObject212) SetEnrollmentString(v string)`
 
-SetObjectIds sets ObjectIds field to given value.
+SetEnrollmentString sets EnrollmentString field to given value.
 
-### HasObjectIds
+### HasEnrollmentString
 
-`func (o *InlineObject212) HasObjectIds() bool`
+`func (o *InlineObject212) HasEnrollmentString() bool`
 
-HasObjectIds returns a boolean if a field has been set.
+HasEnrollmentString returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

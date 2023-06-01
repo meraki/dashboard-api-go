@@ -4,10 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ts** | Pointer to **time.Time** | Timestamp for the bandwidth usage snapshot. | [optional] 
-**Total** | Pointer to **int32** | Total bandwidth usage, in mbps. | [optional] 
-**Upstream** | Pointer to **int32** | Uploaded data, in mbps. | [optional] 
-**Downstream** | Pointer to **int32** | Downloaded data, in mbps. | [optional] 
+**StartTs** | Pointer to **time.Time** | The start time of the access period | [optional] 
+**EndTs** | Pointer to **time.Time** | The end time of the access period | [optional] 
+**Counts** | Pointer to [**[]OrganizationsOrganizationIdApiRequestsOverviewResponseCodesByIntervalCounts**](OrganizationsOrganizationIdApiRequestsOverviewResponseCodesByIntervalCounts.md) | list of response codes and a count of how many requests had that code in the given time period | [optional] 
 
 ## Methods
 
@@ -28,105 +27,80 @@ NewInlineResponse20093WithDefaults instantiates a new InlineResponse20093 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetTs
+### GetStartTs
 
-`func (o *InlineResponse20093) GetTs() time.Time`
+`func (o *InlineResponse20093) GetStartTs() time.Time`
 
-GetTs returns the Ts field if non-nil, zero value otherwise.
+GetStartTs returns the StartTs field if non-nil, zero value otherwise.
 
-### GetTsOk
+### GetStartTsOk
 
-`func (o *InlineResponse20093) GetTsOk() (*time.Time, bool)`
+`func (o *InlineResponse20093) GetStartTsOk() (*time.Time, bool)`
 
-GetTsOk returns a tuple with the Ts field if it's non-nil, zero value otherwise
+GetStartTsOk returns a tuple with the StartTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTs
+### SetStartTs
 
-`func (o *InlineResponse20093) SetTs(v time.Time)`
+`func (o *InlineResponse20093) SetStartTs(v time.Time)`
 
-SetTs sets Ts field to given value.
+SetStartTs sets StartTs field to given value.
 
-### HasTs
+### HasStartTs
 
-`func (o *InlineResponse20093) HasTs() bool`
+`func (o *InlineResponse20093) HasStartTs() bool`
 
-HasTs returns a boolean if a field has been set.
+HasStartTs returns a boolean if a field has been set.
 
-### GetTotal
+### GetEndTs
 
-`func (o *InlineResponse20093) GetTotal() int32`
+`func (o *InlineResponse20093) GetEndTs() time.Time`
 
-GetTotal returns the Total field if non-nil, zero value otherwise.
+GetEndTs returns the EndTs field if non-nil, zero value otherwise.
 
-### GetTotalOk
+### GetEndTsOk
 
-`func (o *InlineResponse20093) GetTotalOk() (*int32, bool)`
+`func (o *InlineResponse20093) GetEndTsOk() (*time.Time, bool)`
 
-GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
+GetEndTsOk returns a tuple with the EndTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTotal
+### SetEndTs
 
-`func (o *InlineResponse20093) SetTotal(v int32)`
+`func (o *InlineResponse20093) SetEndTs(v time.Time)`
 
-SetTotal sets Total field to given value.
+SetEndTs sets EndTs field to given value.
 
-### HasTotal
+### HasEndTs
 
-`func (o *InlineResponse20093) HasTotal() bool`
+`func (o *InlineResponse20093) HasEndTs() bool`
 
-HasTotal returns a boolean if a field has been set.
+HasEndTs returns a boolean if a field has been set.
 
-### GetUpstream
+### GetCounts
 
-`func (o *InlineResponse20093) GetUpstream() int32`
+`func (o *InlineResponse20093) GetCounts() []OrganizationsOrganizationIdApiRequestsOverviewResponseCodesByIntervalCounts`
 
-GetUpstream returns the Upstream field if non-nil, zero value otherwise.
+GetCounts returns the Counts field if non-nil, zero value otherwise.
 
-### GetUpstreamOk
+### GetCountsOk
 
-`func (o *InlineResponse20093) GetUpstreamOk() (*int32, bool)`
+`func (o *InlineResponse20093) GetCountsOk() (*[]OrganizationsOrganizationIdApiRequestsOverviewResponseCodesByIntervalCounts, bool)`
 
-GetUpstreamOk returns a tuple with the Upstream field if it's non-nil, zero value otherwise
+GetCountsOk returns a tuple with the Counts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUpstream
+### SetCounts
 
-`func (o *InlineResponse20093) SetUpstream(v int32)`
+`func (o *InlineResponse20093) SetCounts(v []OrganizationsOrganizationIdApiRequestsOverviewResponseCodesByIntervalCounts)`
 
-SetUpstream sets Upstream field to given value.
+SetCounts sets Counts field to given value.
 
-### HasUpstream
+### HasCounts
 
-`func (o *InlineResponse20093) HasUpstream() bool`
+`func (o *InlineResponse20093) HasCounts() bool`
 
-HasUpstream returns a boolean if a field has been set.
-
-### GetDownstream
-
-`func (o *InlineResponse20093) GetDownstream() int32`
-
-GetDownstream returns the Downstream field if non-nil, zero value otherwise.
-
-### GetDownstreamOk
-
-`func (o *InlineResponse20093) GetDownstreamOk() (*int32, bool)`
-
-GetDownstreamOk returns a tuple with the Downstream field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDownstream
-
-`func (o *InlineResponse20093) SetDownstream(v int32)`
-
-SetDownstream sets Downstream field to given value.
-
-### HasDownstream
-
-`func (o *InlineResponse20093) HasDownstream() bool`
-
-HasDownstream returns a boolean if a field has been set.
+HasCounts returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

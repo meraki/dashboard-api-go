@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Name of the network | [optional] 
-**Id** | Pointer to **string** | ID of the network | [optional] 
+**Name** | Pointer to **string** | The name of the network. | [optional] 
+**Id** | Pointer to **string** | The ID of the network. | [optional] 
 
 ## Methods
 

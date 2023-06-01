@@ -31,8 +31,8 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    service := "service_example" // string | 
+    networkId := "networkId_example" // string | Network ID
+    service := "service_example" // string | Service
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -52,8 +52,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**service** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**service** | **string** | Service | 
 
 ### Other Parameters
 
@@ -104,7 +104,7 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -124,7 +124,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
+**networkId** | **string** | Network ID | 
 
 ### Other Parameters
 
@@ -174,8 +174,8 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    service := "service_example" // string | 
+    networkId := "networkId_example" // string | Network ID
+    service := "service_example" // string | Service
     updateNetworkApplianceFirewallFirewalledService := *openapiclient.NewInlineObject31("Access_example") // InlineObject31 | 
 
     configuration := openapiclient.NewConfiguration()
@@ -196,8 +196,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**service** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**service** | **string** | Service | 
 
 ### Other Parameters
 

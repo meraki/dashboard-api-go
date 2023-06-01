@@ -4,17 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**WifiMacs** | Pointer to **[]string** | The wifiMacs of the devices to be moved. | [optional] 
-**Ids** | Pointer to **[]string** | The ids of the devices to be moved. | [optional] 
-**Serials** | Pointer to **[]string** | The serials of the devices to be moved. | [optional] 
-**Scope** | Pointer to **[]string** | The scope (one of all, none, withAny, withAll, withoutAny, or withoutAll) and a set of tags of the devices to be moved. | [optional] 
-**NewNetwork** | **string** | The new network to which the devices will be moved. | 
+**WifiMacs** | Pointer to **[]string** | The wifiMacs of the devices to be modified. | [optional] 
+**Ids** | Pointer to **[]string** | The ids of the devices to be modified. | [optional] 
+**Serials** | Pointer to **[]string** | The serials of the devices to be modified. | [optional] 
+**Scope** | Pointer to **[]string** | The scope (one of all, none, withAny, withAll, withoutAny, or withoutAll) and a set of tags of the devices to be modified. | [optional] 
+**Tags** | **[]string** | The tags to be added, deleted, or updated. | 
+**UpdateAction** | **string** | One of add, delete, or update. Only devices that have been modified will be returned. | 
 
 ## Methods
 
 ### NewInlineObject103
 
-`func NewInlineObject103(newNetwork string, ) *InlineObject103`
+`func NewInlineObject103(tags []string, updateAction string, ) *InlineObject103`
 
 NewInlineObject103 instantiates a new InlineObject103 object
 This constructor will assign default values to properties that have it defined,
@@ -129,24 +130,44 @@ SetScope sets Scope field to given value.
 
 HasScope returns a boolean if a field has been set.
 
-### GetNewNetwork
+### GetTags
 
-`func (o *InlineObject103) GetNewNetwork() string`
+`func (o *InlineObject103) GetTags() []string`
 
-GetNewNetwork returns the NewNetwork field if non-nil, zero value otherwise.
+GetTags returns the Tags field if non-nil, zero value otherwise.
 
-### GetNewNetworkOk
+### GetTagsOk
 
-`func (o *InlineObject103) GetNewNetworkOk() (*string, bool)`
+`func (o *InlineObject103) GetTagsOk() (*[]string, bool)`
 
-GetNewNetworkOk returns a tuple with the NewNetwork field if it's non-nil, zero value otherwise
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNewNetwork
+### SetTags
 
-`func (o *InlineObject103) SetNewNetwork(v string)`
+`func (o *InlineObject103) SetTags(v []string)`
 
-SetNewNetwork sets NewNetwork field to given value.
+SetTags sets Tags field to given value.
+
+
+### GetUpdateAction
+
+`func (o *InlineObject103) GetUpdateAction() string`
+
+GetUpdateAction returns the UpdateAction field if non-nil, zero value otherwise.
+
+### GetUpdateActionOk
+
+`func (o *InlineObject103) GetUpdateActionOk() (*string, bool)`
+
+GetUpdateActionOk returns a tuple with the UpdateAction field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdateAction
+
+`func (o *InlineObject103) SetUpdateAction(v string)`
+
+SetUpdateAction sets UpdateAction field to given value.
 
 
 

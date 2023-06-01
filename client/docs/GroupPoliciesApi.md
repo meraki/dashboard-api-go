@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
     createNetworkGroupPolicy := *openapiclient.NewInlineObject87("Name_example") // InlineObject87 | 
 
     configuration := openapiclient.NewConfiguration()
@@ -54,7 +54,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
+**networkId** | **string** | Network ID | 
 
 ### Other Parameters
 
@@ -105,8 +105,8 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    groupPolicyId := "groupPolicyId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
+    groupPolicyId := "groupPolicyId_example" // string | Group policy ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -124,8 +124,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**groupPolicyId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**groupPolicyId** | **string** | Group policy ID | 
 
 ### Other Parameters
 
@@ -176,7 +176,7 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -196,7 +196,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
+**networkId** | **string** | Network ID | 
 
 ### Other Parameters
 
@@ -246,8 +246,8 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    groupPolicyId := "groupPolicyId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
+    groupPolicyId := "groupPolicyId_example" // string | Group policy ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -267,8 +267,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**groupPolicyId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**groupPolicyId** | **string** | Group policy ID | 
 
 ### Other Parameters
 
@@ -319,8 +319,8 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    groupPolicyId := "groupPolicyId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
+    groupPolicyId := "groupPolicyId_example" // string | Group policy ID
     updateNetworkGroupPolicy := *openapiclient.NewInlineObject88() // InlineObject88 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -341,8 +341,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**groupPolicyId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**groupPolicyId** | **string** | Group policy ID | 
 
 ### Other Parameters
 

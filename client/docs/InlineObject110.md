@@ -4,28 +4,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Name of the access policy | [optional] 
-**RadiusServers** | Pointer to [**[]NetworksNetworkIdSwitchAccessPoliciesRadiusServers1**](NetworksNetworkIdSwitchAccessPoliciesRadiusServers1.md) | List of RADIUS servers to require connecting devices to authenticate against before granting network access | [optional] 
+**Name** | **string** | Name of the access policy | 
+**RadiusServers** | [**[]NetworksNetworkIdSwitchAccessPoliciesRadiusServers1**](NetworksNetworkIdSwitchAccessPoliciesRadiusServers1.md) | List of RADIUS servers to require connecting devices to authenticate against before granting network access | 
 **Radius** | Pointer to [**NetworksNetworkIdSwitchAccessPoliciesRadius**](NetworksNetworkIdSwitchAccessPoliciesRadius.md) |  | [optional] 
-**RadiusTestingEnabled** | Pointer to **bool** | If enabled, Meraki devices will periodically send access-request messages to these RADIUS servers | [optional] 
-**RadiusCoaSupportEnabled** | Pointer to **bool** | Change of authentication for RADIUS re-authentication and disconnection | [optional] 
-**RadiusAccountingEnabled** | Pointer to **bool** | Enable to send start, interim-update and stop messages to a configured RADIUS accounting server for tracking connected clients | [optional] 
+**GuestPortBouncing** | Pointer to **bool** | If enabled, Meraki devices will periodically send access-request messages to these RADIUS servers | [optional] 
+**RadiusTestingEnabled** | **bool** | If enabled, Meraki devices will periodically send access-request messages to these RADIUS servers | 
+**RadiusCoaSupportEnabled** | **bool** | Change of authentication for RADIUS re-authentication and disconnection | 
+**RadiusAccountingEnabled** | **bool** | Enable to send start, interim-update and stop messages to a configured RADIUS accounting server for tracking connected clients | 
 **RadiusAccountingServers** | Pointer to [**[]NetworksNetworkIdSwitchAccessPoliciesRadiusAccountingServers1**](NetworksNetworkIdSwitchAccessPoliciesRadiusAccountingServers1.md) | List of RADIUS accounting servers to require connecting devices to authenticate against before granting network access | [optional] 
 **RadiusGroupAttribute** | Pointer to **string** | Acceptable values are &#x60;\&quot;\&quot;&#x60; for None, or &#x60;\&quot;11\&quot;&#x60; for Group Policies ACL | [optional] 
-**HostMode** | Pointer to **string** | Choose the Host Mode for the access policy. | [optional] 
+**HostMode** | **string** | Choose the Host Mode for the access policy. | 
 **AccessPolicyType** | Pointer to **string** | Access Type of the policy. Automatically &#39;Hybrid authentication&#39; when hostMode is &#39;Multi-Domain&#39;. | [optional] 
 **IncreaseAccessSpeed** | Pointer to **bool** | Enabling this option will make switches execute 802.1X and MAC-bypass authentication simultaneously so that clients authenticate faster. Only required when accessPolicyType is &#39;Hybrid Authentication. | [optional] 
 **GuestVlanId** | Pointer to **int32** | ID for the guest VLAN allow unauthorized devices access to limited network resources | [optional] 
 **Dot1x** | Pointer to [**NetworksNetworkIdSwitchAccessPoliciesDot1x**](NetworksNetworkIdSwitchAccessPoliciesDot1x.md) |  | [optional] 
 **VoiceVlanClients** | Pointer to **bool** | CDP/LLDP capable voice clients will be able to use this VLAN. Automatically true when hostMode is &#39;Multi-Domain&#39;. | [optional] 
-**UrlRedirectWalledGardenEnabled** | Pointer to **bool** | Enable to restrict access for clients to a specific set of IP addresses or hostnames prior to authentication | [optional] 
+**UrlRedirectWalledGardenEnabled** | **bool** | Enable to restrict access for clients to a specific set of IP addresses or hostnames prior to authentication | 
 **UrlRedirectWalledGardenRanges** | Pointer to **[]string** | IP address ranges, in CIDR notation, to restrict access for clients to a specific set of IP addresses or hostnames prior to authentication | [optional] 
 
 ## Methods
 
 ### NewInlineObject110
 
-`func NewInlineObject110() *InlineObject110`
+`func NewInlineObject110(name string, radiusServers []NetworksNetworkIdSwitchAccessPoliciesRadiusServers1, radiusTestingEnabled bool, radiusCoaSupportEnabled bool, radiusAccountingEnabled bool, hostMode string, urlRedirectWalledGardenEnabled bool, ) *InlineObject110`
 
 NewInlineObject110 instantiates a new InlineObject110 object
 This constructor will assign default values to properties that have it defined,
@@ -59,11 +60,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *InlineObject110) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetRadiusServers
 
@@ -84,11 +80,6 @@ and a boolean to check if the value has been set.
 
 SetRadiusServers sets RadiusServers field to given value.
 
-### HasRadiusServers
-
-`func (o *InlineObject110) HasRadiusServers() bool`
-
-HasRadiusServers returns a boolean if a field has been set.
 
 ### GetRadius
 
@@ -115,6 +106,31 @@ SetRadius sets Radius field to given value.
 
 HasRadius returns a boolean if a field has been set.
 
+### GetGuestPortBouncing
+
+`func (o *InlineObject110) GetGuestPortBouncing() bool`
+
+GetGuestPortBouncing returns the GuestPortBouncing field if non-nil, zero value otherwise.
+
+### GetGuestPortBouncingOk
+
+`func (o *InlineObject110) GetGuestPortBouncingOk() (*bool, bool)`
+
+GetGuestPortBouncingOk returns a tuple with the GuestPortBouncing field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGuestPortBouncing
+
+`func (o *InlineObject110) SetGuestPortBouncing(v bool)`
+
+SetGuestPortBouncing sets GuestPortBouncing field to given value.
+
+### HasGuestPortBouncing
+
+`func (o *InlineObject110) HasGuestPortBouncing() bool`
+
+HasGuestPortBouncing returns a boolean if a field has been set.
+
 ### GetRadiusTestingEnabled
 
 `func (o *InlineObject110) GetRadiusTestingEnabled() bool`
@@ -134,11 +150,6 @@ and a boolean to check if the value has been set.
 
 SetRadiusTestingEnabled sets RadiusTestingEnabled field to given value.
 
-### HasRadiusTestingEnabled
-
-`func (o *InlineObject110) HasRadiusTestingEnabled() bool`
-
-HasRadiusTestingEnabled returns a boolean if a field has been set.
 
 ### GetRadiusCoaSupportEnabled
 
@@ -159,11 +170,6 @@ and a boolean to check if the value has been set.
 
 SetRadiusCoaSupportEnabled sets RadiusCoaSupportEnabled field to given value.
 
-### HasRadiusCoaSupportEnabled
-
-`func (o *InlineObject110) HasRadiusCoaSupportEnabled() bool`
-
-HasRadiusCoaSupportEnabled returns a boolean if a field has been set.
 
 ### GetRadiusAccountingEnabled
 
@@ -184,11 +190,6 @@ and a boolean to check if the value has been set.
 
 SetRadiusAccountingEnabled sets RadiusAccountingEnabled field to given value.
 
-### HasRadiusAccountingEnabled
-
-`func (o *InlineObject110) HasRadiusAccountingEnabled() bool`
-
-HasRadiusAccountingEnabled returns a boolean if a field has been set.
 
 ### GetRadiusAccountingServers
 
@@ -259,11 +260,6 @@ and a boolean to check if the value has been set.
 
 SetHostMode sets HostMode field to given value.
 
-### HasHostMode
-
-`func (o *InlineObject110) HasHostMode() bool`
-
-HasHostMode returns a boolean if a field has been set.
 
 ### GetAccessPolicyType
 
@@ -409,11 +405,6 @@ and a boolean to check if the value has been set.
 
 SetUrlRedirectWalledGardenEnabled sets UrlRedirectWalledGardenEnabled field to given value.
 
-### HasUrlRedirectWalledGardenEnabled
-
-`func (o *InlineObject110) HasUrlRedirectWalledGardenEnabled() bool`
-
-HasUrlRedirectWalledGardenEnabled returns a boolean if a field has been set.
 
 ### GetUrlRedirectWalledGardenRanges
 

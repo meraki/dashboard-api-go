@@ -4,13 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Number** | Pointer to **int32** | Number of the port | [optional] 
-**Enabled** | Pointer to **bool** | The status of the port | [optional] 
-**Type** | Pointer to **string** | The type of the port: &#39;access&#39; or &#39;trunk&#39;. | [optional] 
-**DropUntaggedTraffic** | Pointer to **bool** | Whether the trunk port can drop all untagged traffic. | [optional] 
-**Vlan** | Pointer to **int32** | Native VLAN when the port is in Trunk mode. Access VLAN when the port is in Access mode. | [optional] 
-**AllowedVlans** | Pointer to **string** | Comma-delimited list of the VLAN ID&#39;s allowed on the port, or &#39;all&#39; to permit all VLAN&#39;s on the port. | [optional] 
-**AccessPolicy** | Pointer to **string** | The name of the policy. Only applicable to Access ports. | [optional] 
+**Id** | Pointer to **string** | Network ID | [optional] 
+**OrganizationId** | Pointer to **string** | Organization ID | [optional] 
+**Name** | Pointer to **string** | Network name | [optional] 
+**ProductTypes** | Pointer to **[]string** | List of the product types that the network supports | [optional] 
+**TimeZone** | Pointer to **string** | Timezone of the network | [optional] 
+**Tags** | Pointer to **[]string** | Network tags | [optional] 
+**EnrollmentString** | Pointer to **string** | Enrollment string for the network | [optional] 
+**Url** | Pointer to **string** | URL to the network Dashboard UI | [optional] 
+**Notes** | Pointer to **string** | Notes for the network | [optional] 
+**IsBoundToConfigTemplate** | Pointer to **bool** | If the network is bound to a config template | [optional] 
 
 ## Methods
 
@@ -31,180 +34,255 @@ NewInlineResponse20011WithDefaults instantiates a new InlineResponse20011 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetNumber
+### GetId
 
-`func (o *InlineResponse20011) GetNumber() int32`
+`func (o *InlineResponse20011) GetId() string`
 
-GetNumber returns the Number field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetNumberOk
+### GetIdOk
 
-`func (o *InlineResponse20011) GetNumberOk() (*int32, bool)`
+`func (o *InlineResponse20011) GetIdOk() (*string, bool)`
 
-GetNumberOk returns a tuple with the Number field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNumber
+### SetId
 
-`func (o *InlineResponse20011) SetNumber(v int32)`
+`func (o *InlineResponse20011) SetId(v string)`
 
-SetNumber sets Number field to given value.
+SetId sets Id field to given value.
 
-### HasNumber
+### HasId
 
-`func (o *InlineResponse20011) HasNumber() bool`
+`func (o *InlineResponse20011) HasId() bool`
 
-HasNumber returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### GetEnabled
+### GetOrganizationId
 
-`func (o *InlineResponse20011) GetEnabled() bool`
+`func (o *InlineResponse20011) GetOrganizationId() string`
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
 
-### GetEnabledOk
+### GetOrganizationIdOk
 
-`func (o *InlineResponse20011) GetEnabledOk() (*bool, bool)`
+`func (o *InlineResponse20011) GetOrganizationIdOk() (*string, bool)`
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnabled
+### SetOrganizationId
 
-`func (o *InlineResponse20011) SetEnabled(v bool)`
+`func (o *InlineResponse20011) SetOrganizationId(v string)`
 
-SetEnabled sets Enabled field to given value.
+SetOrganizationId sets OrganizationId field to given value.
 
-### HasEnabled
+### HasOrganizationId
 
-`func (o *InlineResponse20011) HasEnabled() bool`
+`func (o *InlineResponse20011) HasOrganizationId() bool`
 
-HasEnabled returns a boolean if a field has been set.
+HasOrganizationId returns a boolean if a field has been set.
 
-### GetType
+### GetName
 
-`func (o *InlineResponse20011) GetType() string`
+`func (o *InlineResponse20011) GetName() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetNameOk
 
-`func (o *InlineResponse20011) GetTypeOk() (*string, bool)`
+`func (o *InlineResponse20011) GetNameOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetName
 
-`func (o *InlineResponse20011) SetType(v string)`
+`func (o *InlineResponse20011) SetName(v string)`
 
-SetType sets Type field to given value.
+SetName sets Name field to given value.
 
-### HasType
+### HasName
 
-`func (o *InlineResponse20011) HasType() bool`
+`func (o *InlineResponse20011) HasName() bool`
 
-HasType returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetDropUntaggedTraffic
+### GetProductTypes
 
-`func (o *InlineResponse20011) GetDropUntaggedTraffic() bool`
+`func (o *InlineResponse20011) GetProductTypes() []string`
 
-GetDropUntaggedTraffic returns the DropUntaggedTraffic field if non-nil, zero value otherwise.
+GetProductTypes returns the ProductTypes field if non-nil, zero value otherwise.
 
-### GetDropUntaggedTrafficOk
+### GetProductTypesOk
 
-`func (o *InlineResponse20011) GetDropUntaggedTrafficOk() (*bool, bool)`
+`func (o *InlineResponse20011) GetProductTypesOk() (*[]string, bool)`
 
-GetDropUntaggedTrafficOk returns a tuple with the DropUntaggedTraffic field if it's non-nil, zero value otherwise
+GetProductTypesOk returns a tuple with the ProductTypes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDropUntaggedTraffic
+### SetProductTypes
 
-`func (o *InlineResponse20011) SetDropUntaggedTraffic(v bool)`
+`func (o *InlineResponse20011) SetProductTypes(v []string)`
 
-SetDropUntaggedTraffic sets DropUntaggedTraffic field to given value.
+SetProductTypes sets ProductTypes field to given value.
 
-### HasDropUntaggedTraffic
+### HasProductTypes
 
-`func (o *InlineResponse20011) HasDropUntaggedTraffic() bool`
+`func (o *InlineResponse20011) HasProductTypes() bool`
 
-HasDropUntaggedTraffic returns a boolean if a field has been set.
+HasProductTypes returns a boolean if a field has been set.
 
-### GetVlan
+### GetTimeZone
 
-`func (o *InlineResponse20011) GetVlan() int32`
+`func (o *InlineResponse20011) GetTimeZone() string`
 
-GetVlan returns the Vlan field if non-nil, zero value otherwise.
+GetTimeZone returns the TimeZone field if non-nil, zero value otherwise.
 
-### GetVlanOk
+### GetTimeZoneOk
 
-`func (o *InlineResponse20011) GetVlanOk() (*int32, bool)`
+`func (o *InlineResponse20011) GetTimeZoneOk() (*string, bool)`
 
-GetVlanOk returns a tuple with the Vlan field if it's non-nil, zero value otherwise
+GetTimeZoneOk returns a tuple with the TimeZone field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVlan
+### SetTimeZone
 
-`func (o *InlineResponse20011) SetVlan(v int32)`
+`func (o *InlineResponse20011) SetTimeZone(v string)`
 
-SetVlan sets Vlan field to given value.
+SetTimeZone sets TimeZone field to given value.
 
-### HasVlan
+### HasTimeZone
 
-`func (o *InlineResponse20011) HasVlan() bool`
+`func (o *InlineResponse20011) HasTimeZone() bool`
 
-HasVlan returns a boolean if a field has been set.
+HasTimeZone returns a boolean if a field has been set.
 
-### GetAllowedVlans
+### GetTags
 
-`func (o *InlineResponse20011) GetAllowedVlans() string`
+`func (o *InlineResponse20011) GetTags() []string`
 
-GetAllowedVlans returns the AllowedVlans field if non-nil, zero value otherwise.
+GetTags returns the Tags field if non-nil, zero value otherwise.
 
-### GetAllowedVlansOk
+### GetTagsOk
 
-`func (o *InlineResponse20011) GetAllowedVlansOk() (*string, bool)`
+`func (o *InlineResponse20011) GetTagsOk() (*[]string, bool)`
 
-GetAllowedVlansOk returns a tuple with the AllowedVlans field if it's non-nil, zero value otherwise
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAllowedVlans
+### SetTags
 
-`func (o *InlineResponse20011) SetAllowedVlans(v string)`
+`func (o *InlineResponse20011) SetTags(v []string)`
 
-SetAllowedVlans sets AllowedVlans field to given value.
+SetTags sets Tags field to given value.
 
-### HasAllowedVlans
+### HasTags
 
-`func (o *InlineResponse20011) HasAllowedVlans() bool`
+`func (o *InlineResponse20011) HasTags() bool`
 
-HasAllowedVlans returns a boolean if a field has been set.
+HasTags returns a boolean if a field has been set.
 
-### GetAccessPolicy
+### GetEnrollmentString
 
-`func (o *InlineResponse20011) GetAccessPolicy() string`
+`func (o *InlineResponse20011) GetEnrollmentString() string`
 
-GetAccessPolicy returns the AccessPolicy field if non-nil, zero value otherwise.
+GetEnrollmentString returns the EnrollmentString field if non-nil, zero value otherwise.
 
-### GetAccessPolicyOk
+### GetEnrollmentStringOk
 
-`func (o *InlineResponse20011) GetAccessPolicyOk() (*string, bool)`
+`func (o *InlineResponse20011) GetEnrollmentStringOk() (*string, bool)`
 
-GetAccessPolicyOk returns a tuple with the AccessPolicy field if it's non-nil, zero value otherwise
+GetEnrollmentStringOk returns a tuple with the EnrollmentString field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccessPolicy
+### SetEnrollmentString
 
-`func (o *InlineResponse20011) SetAccessPolicy(v string)`
+`func (o *InlineResponse20011) SetEnrollmentString(v string)`
 
-SetAccessPolicy sets AccessPolicy field to given value.
+SetEnrollmentString sets EnrollmentString field to given value.
 
-### HasAccessPolicy
+### HasEnrollmentString
 
-`func (o *InlineResponse20011) HasAccessPolicy() bool`
+`func (o *InlineResponse20011) HasEnrollmentString() bool`
 
-HasAccessPolicy returns a boolean if a field has been set.
+HasEnrollmentString returns a boolean if a field has been set.
+
+### GetUrl
+
+`func (o *InlineResponse20011) GetUrl() string`
+
+GetUrl returns the Url field if non-nil, zero value otherwise.
+
+### GetUrlOk
+
+`func (o *InlineResponse20011) GetUrlOk() (*string, bool)`
+
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUrl
+
+`func (o *InlineResponse20011) SetUrl(v string)`
+
+SetUrl sets Url field to given value.
+
+### HasUrl
+
+`func (o *InlineResponse20011) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
+
+### GetNotes
+
+`func (o *InlineResponse20011) GetNotes() string`
+
+GetNotes returns the Notes field if non-nil, zero value otherwise.
+
+### GetNotesOk
+
+`func (o *InlineResponse20011) GetNotesOk() (*string, bool)`
+
+GetNotesOk returns a tuple with the Notes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotes
+
+`func (o *InlineResponse20011) SetNotes(v string)`
+
+SetNotes sets Notes field to given value.
+
+### HasNotes
+
+`func (o *InlineResponse20011) HasNotes() bool`
+
+HasNotes returns a boolean if a field has been set.
+
+### GetIsBoundToConfigTemplate
+
+`func (o *InlineResponse20011) GetIsBoundToConfigTemplate() bool`
+
+GetIsBoundToConfigTemplate returns the IsBoundToConfigTemplate field if non-nil, zero value otherwise.
+
+### GetIsBoundToConfigTemplateOk
+
+`func (o *InlineResponse20011) GetIsBoundToConfigTemplateOk() (*bool, bool)`
+
+GetIsBoundToConfigTemplateOk returns a tuple with the IsBoundToConfigTemplate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsBoundToConfigTemplate
+
+`func (o *InlineResponse20011) SetIsBoundToConfigTemplate(v bool)`
+
+SetIsBoundToConfigTemplate sets IsBoundToConfigTemplate field to given value.
+
+### HasIsBoundToConfigTemplate
+
+`func (o *InlineResponse20011) HasIsBoundToConfigTemplate() bool`
+
+HasIsBoundToConfigTemplate returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

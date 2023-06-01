@@ -37,8 +37,8 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
-    createOrganizationConfigTemplate := *openapiclient.NewInlineObject191("Name_example") // InlineObject191 | 
+    organizationId := "organizationId_example" // string | Organization ID
+    createOrganizationConfigTemplate := *openapiclient.NewInlineObject192("Name_example") // InlineObject192 | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -58,7 +58,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
 
 ### Other Parameters
 
@@ -68,7 +68,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationConfigTe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationConfigTemplate** | [**InlineObject191**](InlineObject191.md) |  | 
+ **createOrganizationConfigTemplate** | [**InlineObject192**](InlineObject192.md) |  | 
 
 ### Return type
 
@@ -109,8 +109,8 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
-    configTemplateId := "configTemplateId_example" // string | 
+    organizationId := "organizationId_example" // string | Organization ID
+    configTemplateId := "configTemplateId_example" // string | Config template ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -128,8 +128,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
-**configTemplateId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
+**configTemplateId** | **string** | Config template ID | 
 
 ### Other Parameters
 
@@ -180,8 +180,8 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
-    configTemplateId := "configTemplateId_example" // string | 
+    organizationId := "organizationId_example" // string | Organization ID
+    configTemplateId := "configTemplateId_example" // string | Config template ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -201,8 +201,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
-**configTemplateId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
+**configTemplateId** | **string** | Config template ID | 
 
 ### Other Parameters
 
@@ -234,7 +234,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationConfigTemplateSwitchProfilePort
 
-> InlineResponse20096 GetOrganizationConfigTemplateSwitchProfilePort(ctx, organizationId, configTemplateId, profileId, portId).Execute()
+> InlineResponse200102 GetOrganizationConfigTemplateSwitchProfilePort(ctx, organizationId, configTemplateId, profileId, portId).Execute()
 
 Return a switch profile port
 
@@ -253,10 +253,10 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
-    configTemplateId := "configTemplateId_example" // string | 
-    profileId := "profileId_example" // string | 
-    portId := "portId_example" // string | 
+    organizationId := "organizationId_example" // string | Organization ID
+    configTemplateId := "configTemplateId_example" // string | Config template ID
+    profileId := "profileId_example" // string | Profile ID
+    portId := "portId_example" // string | Port ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -265,7 +265,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigTemplatesApi.GetOrganizationConfigTemplateSwitchProfilePort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationConfigTemplateSwitchProfilePort`: InlineResponse20096
+    // response from `GetOrganizationConfigTemplateSwitchProfilePort`: InlineResponse200102
     fmt.Fprintf(os.Stdout, "Response from `ConfigTemplatesApi.GetOrganizationConfigTemplateSwitchProfilePort`: %v\n", resp)
 }
 ```
@@ -276,10 +276,10 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
-**configTemplateId** | **string** |  | 
-**profileId** | **string** |  | 
-**portId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
+**configTemplateId** | **string** | Config template ID | 
+**profileId** | **string** | Profile ID | 
+**portId** | **string** | Port ID | 
 
 ### Other Parameters
 
@@ -295,7 +295,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20096**](InlineResponse20096.md)
+[**InlineResponse200102**](InlineResponse200102.md)
 
 ### Authorization
 
@@ -313,7 +313,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationConfigTemplateSwitchProfilePorts
 
-> []InlineResponse20096 GetOrganizationConfigTemplateSwitchProfilePorts(ctx, organizationId, configTemplateId, profileId).Execute()
+> []InlineResponse200102 GetOrganizationConfigTemplateSwitchProfilePorts(ctx, organizationId, configTemplateId, profileId).Execute()
 
 Return all the ports of a switch profile
 
@@ -332,9 +332,9 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
-    configTemplateId := "configTemplateId_example" // string | 
-    profileId := "profileId_example" // string | 
+    organizationId := "organizationId_example" // string | Organization ID
+    configTemplateId := "configTemplateId_example" // string | Config template ID
+    profileId := "profileId_example" // string | Profile ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -343,7 +343,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigTemplatesApi.GetOrganizationConfigTemplateSwitchProfilePorts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationConfigTemplateSwitchProfilePorts`: []InlineResponse20096
+    // response from `GetOrganizationConfigTemplateSwitchProfilePorts`: []InlineResponse200102
     fmt.Fprintf(os.Stdout, "Response from `ConfigTemplatesApi.GetOrganizationConfigTemplateSwitchProfilePorts`: %v\n", resp)
 }
 ```
@@ -354,9 +354,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
-**configTemplateId** | **string** |  | 
-**profileId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
+**configTemplateId** | **string** | Config template ID | 
+**profileId** | **string** | Profile ID | 
 
 ### Other Parameters
 
@@ -371,7 +371,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20096**](InlineResponse20096.md)
+[**[]InlineResponse200102**](InlineResponse200102.md)
 
 ### Authorization
 
@@ -389,7 +389,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationConfigTemplateSwitchProfiles
 
-> InlineResponse20095 GetOrganizationConfigTemplateSwitchProfiles(ctx, organizationId, configTemplateId).Execute()
+> InlineResponse200101 GetOrganizationConfigTemplateSwitchProfiles(ctx, organizationId, configTemplateId).Execute()
 
 List the switch profiles for your switch template configuration
 
@@ -408,8 +408,8 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
-    configTemplateId := "configTemplateId_example" // string | 
+    organizationId := "organizationId_example" // string | Organization ID
+    configTemplateId := "configTemplateId_example" // string | Config template ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -418,7 +418,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigTemplatesApi.GetOrganizationConfigTemplateSwitchProfiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationConfigTemplateSwitchProfiles`: InlineResponse20095
+    // response from `GetOrganizationConfigTemplateSwitchProfiles`: InlineResponse200101
     fmt.Fprintf(os.Stdout, "Response from `ConfigTemplatesApi.GetOrganizationConfigTemplateSwitchProfiles`: %v\n", resp)
 }
 ```
@@ -429,8 +429,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
-**configTemplateId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
+**configTemplateId** | **string** | Config template ID | 
 
 ### Other Parameters
 
@@ -444,7 +444,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20095**](InlineResponse20095.md)
+[**InlineResponse200101**](InlineResponse200101.md)
 
 ### Authorization
 
@@ -481,7 +481,7 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
+    organizationId := "organizationId_example" // string | Organization ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -501,7 +501,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
 
 ### Other Parameters
 
@@ -551,9 +551,9 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
-    configTemplateId := "configTemplateId_example" // string | 
-    updateOrganizationConfigTemplate := *openapiclient.NewInlineObject192() // InlineObject192 |  (optional)
+    organizationId := "organizationId_example" // string | Organization ID
+    configTemplateId := "configTemplateId_example" // string | Config template ID
+    updateOrganizationConfigTemplate := *openapiclient.NewInlineObject193() // InlineObject193 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -573,8 +573,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
-**configTemplateId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
+**configTemplateId** | **string** | Config template ID | 
 
 ### Other Parameters
 
@@ -585,7 +585,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationConfigTemplate** | [**InlineObject192**](InlineObject192.md) |  | 
+ **updateOrganizationConfigTemplate** | [**InlineObject193**](InlineObject193.md) |  | 
 
 ### Return type
 
@@ -607,7 +607,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationConfigTemplateSwitchProfilePort
 
-> InlineResponse20096 UpdateOrganizationConfigTemplateSwitchProfilePort(ctx, organizationId, configTemplateId, profileId, portId).UpdateOrganizationConfigTemplateSwitchProfilePort(updateOrganizationConfigTemplateSwitchProfilePort).Execute()
+> InlineResponse200102 UpdateOrganizationConfigTemplateSwitchProfilePort(ctx, organizationId, configTemplateId, profileId, portId).UpdateOrganizationConfigTemplateSwitchProfilePort(updateOrganizationConfigTemplateSwitchProfilePort).Execute()
 
 Update a switch profile port
 
@@ -626,11 +626,11 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
-    configTemplateId := "configTemplateId_example" // string | 
-    profileId := "profileId_example" // string | 
-    portId := "portId_example" // string | 
-    updateOrganizationConfigTemplateSwitchProfilePort := *openapiclient.NewInlineObject193() // InlineObject193 |  (optional)
+    organizationId := "organizationId_example" // string | Organization ID
+    configTemplateId := "configTemplateId_example" // string | Config template ID
+    profileId := "profileId_example" // string | Profile ID
+    portId := "portId_example" // string | Port ID
+    updateOrganizationConfigTemplateSwitchProfilePort := *openapiclient.NewInlineObject194() // InlineObject194 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -639,7 +639,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigTemplatesApi.UpdateOrganizationConfigTemplateSwitchProfilePort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationConfigTemplateSwitchProfilePort`: InlineResponse20096
+    // response from `UpdateOrganizationConfigTemplateSwitchProfilePort`: InlineResponse200102
     fmt.Fprintf(os.Stdout, "Response from `ConfigTemplatesApi.UpdateOrganizationConfigTemplateSwitchProfilePort`: %v\n", resp)
 }
 ```
@@ -650,10 +650,10 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
-**configTemplateId** | **string** |  | 
-**profileId** | **string** |  | 
-**portId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
+**configTemplateId** | **string** | Config template ID | 
+**profileId** | **string** | Profile ID | 
+**portId** | **string** | Port ID | 
 
 ### Other Parameters
 
@@ -666,11 +666,11 @@ Name | Type | Description  | Notes
 
 
 
- **updateOrganizationConfigTemplateSwitchProfilePort** | [**InlineObject193**](InlineObject193.md) |  | 
+ **updateOrganizationConfigTemplateSwitchProfilePort** | [**InlineObject194**](InlineObject194.md) |  | 
 
 ### Return type
 
-[**InlineResponse20096**](InlineResponse20096.md)
+[**InlineResponse200102**](InlineResponse200102.md)
 
 ### Authorization
 

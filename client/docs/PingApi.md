@@ -30,7 +30,7 @@ import (
 )
 
 func main() {
-    serial := "serial_example" // string | 
+    serial := "serial_example" // string | Serial
     createDeviceLiveToolsPing := *openapiclient.NewInlineObject12("Target_example") // InlineObject12 | 
 
     configuration := openapiclient.NewConfiguration()
@@ -51,7 +51,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serial** | **string** |  | 
+**serial** | **string** | Serial | 
 
 ### Other Parameters
 
@@ -102,8 +102,8 @@ import (
 )
 
 func main() {
-    serial := "serial_example" // string | 
-    id := "id_example" // string | 
+    serial := "serial_example" // string | Serial
+    id := "id_example" // string | Id
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -123,8 +123,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serial** | **string** |  | 
-**id** | **string** |  | 
+**serial** | **string** | Serial | 
+**id** | **string** | Id | 
 
 ### Other Parameters
 

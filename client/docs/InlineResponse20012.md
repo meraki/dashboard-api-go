@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StaticDelegatedPrefixId** | Pointer to **string** | Static delegated prefix id. | [optional] 
-**Prefix** | Pointer to **string** | IPv6 prefix/prefix length. | [optional] 
-**Origin** | Pointer to [**NetworksNetworkIdAppliancePrefixesDelegatedStaticsOrigin**](NetworksNetworkIdAppliancePrefixesDelegatedStaticsOrigin.md) |  | [optional] 
-**Description** | Pointer to **string** | Identifying description for the prefix. | [optional] 
-**CreatedAt** | Pointer to **time.Time** | Prefix creation time. | [optional] 
-**UpdatedAt** | Pointer to **time.Time** | Prefix Updated time. | [optional] 
+**OccurredAt** | Pointer to **string** | time when the event occurred | [optional] 
+**AlertTypeId** | Pointer to **string** | type of alert | [optional] 
+**AlertType** | Pointer to **string** | user friendly alert type | [optional] 
+**Device** | Pointer to [**NetworksNetworkIdAlertsHistoryDevice**](NetworksNetworkIdAlertsHistoryDevice.md) |  | [optional] 
+**Destinations** | Pointer to [**NetworksNetworkIdAlertsHistoryDestinations**](NetworksNetworkIdAlertsHistoryDestinations.md) |  | [optional] 
+**AlertData** | Pointer to **map[string]interface{}** | relevant data about the event that caused the alert | [optional] 
 
 ## Methods
 
@@ -30,155 +30,155 @@ NewInlineResponse20012WithDefaults instantiates a new InlineResponse20012 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetStaticDelegatedPrefixId
+### GetOccurredAt
 
-`func (o *InlineResponse20012) GetStaticDelegatedPrefixId() string`
+`func (o *InlineResponse20012) GetOccurredAt() string`
 
-GetStaticDelegatedPrefixId returns the StaticDelegatedPrefixId field if non-nil, zero value otherwise.
+GetOccurredAt returns the OccurredAt field if non-nil, zero value otherwise.
 
-### GetStaticDelegatedPrefixIdOk
+### GetOccurredAtOk
 
-`func (o *InlineResponse20012) GetStaticDelegatedPrefixIdOk() (*string, bool)`
+`func (o *InlineResponse20012) GetOccurredAtOk() (*string, bool)`
 
-GetStaticDelegatedPrefixIdOk returns a tuple with the StaticDelegatedPrefixId field if it's non-nil, zero value otherwise
+GetOccurredAtOk returns a tuple with the OccurredAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStaticDelegatedPrefixId
+### SetOccurredAt
 
-`func (o *InlineResponse20012) SetStaticDelegatedPrefixId(v string)`
+`func (o *InlineResponse20012) SetOccurredAt(v string)`
 
-SetStaticDelegatedPrefixId sets StaticDelegatedPrefixId field to given value.
+SetOccurredAt sets OccurredAt field to given value.
 
-### HasStaticDelegatedPrefixId
+### HasOccurredAt
 
-`func (o *InlineResponse20012) HasStaticDelegatedPrefixId() bool`
+`func (o *InlineResponse20012) HasOccurredAt() bool`
 
-HasStaticDelegatedPrefixId returns a boolean if a field has been set.
+HasOccurredAt returns a boolean if a field has been set.
 
-### GetPrefix
+### GetAlertTypeId
 
-`func (o *InlineResponse20012) GetPrefix() string`
+`func (o *InlineResponse20012) GetAlertTypeId() string`
 
-GetPrefix returns the Prefix field if non-nil, zero value otherwise.
+GetAlertTypeId returns the AlertTypeId field if non-nil, zero value otherwise.
 
-### GetPrefixOk
+### GetAlertTypeIdOk
 
-`func (o *InlineResponse20012) GetPrefixOk() (*string, bool)`
+`func (o *InlineResponse20012) GetAlertTypeIdOk() (*string, bool)`
 
-GetPrefixOk returns a tuple with the Prefix field if it's non-nil, zero value otherwise
+GetAlertTypeIdOk returns a tuple with the AlertTypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPrefix
+### SetAlertTypeId
 
-`func (o *InlineResponse20012) SetPrefix(v string)`
+`func (o *InlineResponse20012) SetAlertTypeId(v string)`
 
-SetPrefix sets Prefix field to given value.
+SetAlertTypeId sets AlertTypeId field to given value.
 
-### HasPrefix
+### HasAlertTypeId
 
-`func (o *InlineResponse20012) HasPrefix() bool`
+`func (o *InlineResponse20012) HasAlertTypeId() bool`
 
-HasPrefix returns a boolean if a field has been set.
+HasAlertTypeId returns a boolean if a field has been set.
 
-### GetOrigin
+### GetAlertType
 
-`func (o *InlineResponse20012) GetOrigin() NetworksNetworkIdAppliancePrefixesDelegatedStaticsOrigin`
+`func (o *InlineResponse20012) GetAlertType() string`
 
-GetOrigin returns the Origin field if non-nil, zero value otherwise.
+GetAlertType returns the AlertType field if non-nil, zero value otherwise.
 
-### GetOriginOk
+### GetAlertTypeOk
 
-`func (o *InlineResponse20012) GetOriginOk() (*NetworksNetworkIdAppliancePrefixesDelegatedStaticsOrigin, bool)`
+`func (o *InlineResponse20012) GetAlertTypeOk() (*string, bool)`
 
-GetOriginOk returns a tuple with the Origin field if it's non-nil, zero value otherwise
+GetAlertTypeOk returns a tuple with the AlertType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOrigin
+### SetAlertType
 
-`func (o *InlineResponse20012) SetOrigin(v NetworksNetworkIdAppliancePrefixesDelegatedStaticsOrigin)`
+`func (o *InlineResponse20012) SetAlertType(v string)`
 
-SetOrigin sets Origin field to given value.
+SetAlertType sets AlertType field to given value.
 
-### HasOrigin
+### HasAlertType
 
-`func (o *InlineResponse20012) HasOrigin() bool`
+`func (o *InlineResponse20012) HasAlertType() bool`
 
-HasOrigin returns a boolean if a field has been set.
+HasAlertType returns a boolean if a field has been set.
 
-### GetDescription
+### GetDevice
 
-`func (o *InlineResponse20012) GetDescription() string`
+`func (o *InlineResponse20012) GetDevice() NetworksNetworkIdAlertsHistoryDevice`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetDevice returns the Device field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetDeviceOk
 
-`func (o *InlineResponse20012) GetDescriptionOk() (*string, bool)`
+`func (o *InlineResponse20012) GetDeviceOk() (*NetworksNetworkIdAlertsHistoryDevice, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetDeviceOk returns a tuple with the Device field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetDevice
 
-`func (o *InlineResponse20012) SetDescription(v string)`
+`func (o *InlineResponse20012) SetDevice(v NetworksNetworkIdAlertsHistoryDevice)`
 
-SetDescription sets Description field to given value.
+SetDevice sets Device field to given value.
 
-### HasDescription
+### HasDevice
 
-`func (o *InlineResponse20012) HasDescription() bool`
+`func (o *InlineResponse20012) HasDevice() bool`
 
-HasDescription returns a boolean if a field has been set.
+HasDevice returns a boolean if a field has been set.
 
-### GetCreatedAt
+### GetDestinations
 
-`func (o *InlineResponse20012) GetCreatedAt() time.Time`
+`func (o *InlineResponse20012) GetDestinations() NetworksNetworkIdAlertsHistoryDestinations`
 
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+GetDestinations returns the Destinations field if non-nil, zero value otherwise.
 
-### GetCreatedAtOk
+### GetDestinationsOk
 
-`func (o *InlineResponse20012) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *InlineResponse20012) GetDestinationsOk() (*NetworksNetworkIdAlertsHistoryDestinations, bool)`
 
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+GetDestinationsOk returns a tuple with the Destinations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreatedAt
+### SetDestinations
 
-`func (o *InlineResponse20012) SetCreatedAt(v time.Time)`
+`func (o *InlineResponse20012) SetDestinations(v NetworksNetworkIdAlertsHistoryDestinations)`
 
-SetCreatedAt sets CreatedAt field to given value.
+SetDestinations sets Destinations field to given value.
 
-### HasCreatedAt
+### HasDestinations
 
-`func (o *InlineResponse20012) HasCreatedAt() bool`
+`func (o *InlineResponse20012) HasDestinations() bool`
 
-HasCreatedAt returns a boolean if a field has been set.
+HasDestinations returns a boolean if a field has been set.
 
-### GetUpdatedAt
+### GetAlertData
 
-`func (o *InlineResponse20012) GetUpdatedAt() time.Time`
+`func (o *InlineResponse20012) GetAlertData() map[string]interface{}`
 
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+GetAlertData returns the AlertData field if non-nil, zero value otherwise.
 
-### GetUpdatedAtOk
+### GetAlertDataOk
 
-`func (o *InlineResponse20012) GetUpdatedAtOk() (*time.Time, bool)`
+`func (o *InlineResponse20012) GetAlertDataOk() (*map[string]interface{}, bool)`
 
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+GetAlertDataOk returns a tuple with the AlertData field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUpdatedAt
+### SetAlertData
 
-`func (o *InlineResponse20012) SetUpdatedAt(v time.Time)`
+`func (o *InlineResponse20012) SetAlertData(v map[string]interface{})`
 
-SetUpdatedAt sets UpdatedAt field to given value.
+SetAlertData sets AlertData field to given value.
 
-### HasUpdatedAt
+### HasAlertData
 
-`func (o *InlineResponse20012) HasUpdatedAt() bool`
+`func (o *InlineResponse20012) HasAlertData() bool`
 
-HasUpdatedAt returns a boolean if a field has been set.
+HasAlertData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

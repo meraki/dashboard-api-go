@@ -6,8 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **StartTs** | Pointer to **time.Time** | The start time of the query range | [optional] 
 **EndTs** | Pointer to **time.Time** | The end time of the query range | [optional] 
-**Snr** | Pointer to **int32** | Signal to noise ratio | [optional] 
-**Rssi** | Pointer to **int32** | Received signal strength indicator | [optional] 
+**AverageKbps** | Pointer to **int32** | Average data rate in kilobytes-per-second | [optional] 
+**DownloadKbps** | Pointer to **int32** | Download rate in kilobytes-per-second | [optional] 
+**UploadKbps** | Pointer to **int32** | Upload rate in kilobytes-per-second | [optional] 
 
 ## Methods
 
@@ -78,55 +79,80 @@ SetEndTs sets EndTs field to given value.
 
 HasEndTs returns a boolean if a field has been set.
 
-### GetSnr
+### GetAverageKbps
 
-`func (o *InlineResponse20080) GetSnr() int32`
+`func (o *InlineResponse20080) GetAverageKbps() int32`
 
-GetSnr returns the Snr field if non-nil, zero value otherwise.
+GetAverageKbps returns the AverageKbps field if non-nil, zero value otherwise.
 
-### GetSnrOk
+### GetAverageKbpsOk
 
-`func (o *InlineResponse20080) GetSnrOk() (*int32, bool)`
+`func (o *InlineResponse20080) GetAverageKbpsOk() (*int32, bool)`
 
-GetSnrOk returns a tuple with the Snr field if it's non-nil, zero value otherwise
+GetAverageKbpsOk returns a tuple with the AverageKbps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSnr
+### SetAverageKbps
 
-`func (o *InlineResponse20080) SetSnr(v int32)`
+`func (o *InlineResponse20080) SetAverageKbps(v int32)`
 
-SetSnr sets Snr field to given value.
+SetAverageKbps sets AverageKbps field to given value.
 
-### HasSnr
+### HasAverageKbps
 
-`func (o *InlineResponse20080) HasSnr() bool`
+`func (o *InlineResponse20080) HasAverageKbps() bool`
 
-HasSnr returns a boolean if a field has been set.
+HasAverageKbps returns a boolean if a field has been set.
 
-### GetRssi
+### GetDownloadKbps
 
-`func (o *InlineResponse20080) GetRssi() int32`
+`func (o *InlineResponse20080) GetDownloadKbps() int32`
 
-GetRssi returns the Rssi field if non-nil, zero value otherwise.
+GetDownloadKbps returns the DownloadKbps field if non-nil, zero value otherwise.
 
-### GetRssiOk
+### GetDownloadKbpsOk
 
-`func (o *InlineResponse20080) GetRssiOk() (*int32, bool)`
+`func (o *InlineResponse20080) GetDownloadKbpsOk() (*int32, bool)`
 
-GetRssiOk returns a tuple with the Rssi field if it's non-nil, zero value otherwise
+GetDownloadKbpsOk returns a tuple with the DownloadKbps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRssi
+### SetDownloadKbps
 
-`func (o *InlineResponse20080) SetRssi(v int32)`
+`func (o *InlineResponse20080) SetDownloadKbps(v int32)`
 
-SetRssi sets Rssi field to given value.
+SetDownloadKbps sets DownloadKbps field to given value.
 
-### HasRssi
+### HasDownloadKbps
 
-`func (o *InlineResponse20080) HasRssi() bool`
+`func (o *InlineResponse20080) HasDownloadKbps() bool`
 
-HasRssi returns a boolean if a field has been set.
+HasDownloadKbps returns a boolean if a field has been set.
+
+### GetUploadKbps
+
+`func (o *InlineResponse20080) GetUploadKbps() int32`
+
+GetUploadKbps returns the UploadKbps field if non-nil, zero value otherwise.
+
+### GetUploadKbpsOk
+
+`func (o *InlineResponse20080) GetUploadKbpsOk() (*int32, bool)`
+
+GetUploadKbpsOk returns a tuple with the UploadKbps field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUploadKbps
+
+`func (o *InlineResponse20080) SetUploadKbps(v int32)`
+
+SetUploadKbps sets UploadKbps field to given value.
+
+### HasUploadKbps
+
+`func (o *InlineResponse20080) HasUploadKbps() bool`
+
+HasUploadKbps returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

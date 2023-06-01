@@ -4,10 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timeout** | Pointer to **int32** | General EAP timeout in seconds. | [optional] 
-**MaxRetries** | Pointer to **int32** | Maximum number of general EAP retries. | [optional] 
-**Identity** | Pointer to [**InlineResponse20081Identity**](InlineResponse20081Identity.md) |  | [optional] 
-**EapolKey** | Pointer to [**InlineResponse20081EapolKey**](InlineResponse20081EapolKey.md) |  | [optional] 
+**SsidNumber** | Pointer to **int32** | SSID Number | [optional] 
+**Vlan** | Pointer to **int32** | LAN | [optional] 
+**ClientMac** | Pointer to **string** | Client Mac | [optional] 
+**Serial** | Pointer to **string** | Serial Number | [optional] 
+**FailureStep** | Pointer to **string** | The failed onboarding step. One of: assoc, auth, dhcp, dns. | [optional] 
+**Type** | Pointer to **string** | The failure type in the onboarding step | [optional] 
+**Ts** | Pointer to **time.Time** | The timestamp when the client mac failed | [optional] 
 
 ## Methods
 
@@ -28,105 +31,180 @@ NewInlineResponse20081WithDefaults instantiates a new InlineResponse20081 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetTimeout
+### GetSsidNumber
 
-`func (o *InlineResponse20081) GetTimeout() int32`
+`func (o *InlineResponse20081) GetSsidNumber() int32`
 
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+GetSsidNumber returns the SsidNumber field if non-nil, zero value otherwise.
 
-### GetTimeoutOk
+### GetSsidNumberOk
 
-`func (o *InlineResponse20081) GetTimeoutOk() (*int32, bool)`
+`func (o *InlineResponse20081) GetSsidNumberOk() (*int32, bool)`
 
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+GetSsidNumberOk returns a tuple with the SsidNumber field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimeout
+### SetSsidNumber
 
-`func (o *InlineResponse20081) SetTimeout(v int32)`
+`func (o *InlineResponse20081) SetSsidNumber(v int32)`
 
-SetTimeout sets Timeout field to given value.
+SetSsidNumber sets SsidNumber field to given value.
 
-### HasTimeout
+### HasSsidNumber
 
-`func (o *InlineResponse20081) HasTimeout() bool`
+`func (o *InlineResponse20081) HasSsidNumber() bool`
 
-HasTimeout returns a boolean if a field has been set.
+HasSsidNumber returns a boolean if a field has been set.
 
-### GetMaxRetries
+### GetVlan
 
-`func (o *InlineResponse20081) GetMaxRetries() int32`
+`func (o *InlineResponse20081) GetVlan() int32`
 
-GetMaxRetries returns the MaxRetries field if non-nil, zero value otherwise.
+GetVlan returns the Vlan field if non-nil, zero value otherwise.
 
-### GetMaxRetriesOk
+### GetVlanOk
 
-`func (o *InlineResponse20081) GetMaxRetriesOk() (*int32, bool)`
+`func (o *InlineResponse20081) GetVlanOk() (*int32, bool)`
 
-GetMaxRetriesOk returns a tuple with the MaxRetries field if it's non-nil, zero value otherwise
+GetVlanOk returns a tuple with the Vlan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMaxRetries
+### SetVlan
 
-`func (o *InlineResponse20081) SetMaxRetries(v int32)`
+`func (o *InlineResponse20081) SetVlan(v int32)`
 
-SetMaxRetries sets MaxRetries field to given value.
+SetVlan sets Vlan field to given value.
 
-### HasMaxRetries
+### HasVlan
 
-`func (o *InlineResponse20081) HasMaxRetries() bool`
+`func (o *InlineResponse20081) HasVlan() bool`
 
-HasMaxRetries returns a boolean if a field has been set.
+HasVlan returns a boolean if a field has been set.
 
-### GetIdentity
+### GetClientMac
 
-`func (o *InlineResponse20081) GetIdentity() InlineResponse20081Identity`
+`func (o *InlineResponse20081) GetClientMac() string`
 
-GetIdentity returns the Identity field if non-nil, zero value otherwise.
+GetClientMac returns the ClientMac field if non-nil, zero value otherwise.
 
-### GetIdentityOk
+### GetClientMacOk
 
-`func (o *InlineResponse20081) GetIdentityOk() (*InlineResponse20081Identity, bool)`
+`func (o *InlineResponse20081) GetClientMacOk() (*string, bool)`
 
-GetIdentityOk returns a tuple with the Identity field if it's non-nil, zero value otherwise
+GetClientMacOk returns a tuple with the ClientMac field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIdentity
+### SetClientMac
 
-`func (o *InlineResponse20081) SetIdentity(v InlineResponse20081Identity)`
+`func (o *InlineResponse20081) SetClientMac(v string)`
 
-SetIdentity sets Identity field to given value.
+SetClientMac sets ClientMac field to given value.
 
-### HasIdentity
+### HasClientMac
 
-`func (o *InlineResponse20081) HasIdentity() bool`
+`func (o *InlineResponse20081) HasClientMac() bool`
 
-HasIdentity returns a boolean if a field has been set.
+HasClientMac returns a boolean if a field has been set.
 
-### GetEapolKey
+### GetSerial
 
-`func (o *InlineResponse20081) GetEapolKey() InlineResponse20081EapolKey`
+`func (o *InlineResponse20081) GetSerial() string`
 
-GetEapolKey returns the EapolKey field if non-nil, zero value otherwise.
+GetSerial returns the Serial field if non-nil, zero value otherwise.
 
-### GetEapolKeyOk
+### GetSerialOk
 
-`func (o *InlineResponse20081) GetEapolKeyOk() (*InlineResponse20081EapolKey, bool)`
+`func (o *InlineResponse20081) GetSerialOk() (*string, bool)`
 
-GetEapolKeyOk returns a tuple with the EapolKey field if it's non-nil, zero value otherwise
+GetSerialOk returns a tuple with the Serial field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEapolKey
+### SetSerial
 
-`func (o *InlineResponse20081) SetEapolKey(v InlineResponse20081EapolKey)`
+`func (o *InlineResponse20081) SetSerial(v string)`
 
-SetEapolKey sets EapolKey field to given value.
+SetSerial sets Serial field to given value.
 
-### HasEapolKey
+### HasSerial
 
-`func (o *InlineResponse20081) HasEapolKey() bool`
+`func (o *InlineResponse20081) HasSerial() bool`
 
-HasEapolKey returns a boolean if a field has been set.
+HasSerial returns a boolean if a field has been set.
+
+### GetFailureStep
+
+`func (o *InlineResponse20081) GetFailureStep() string`
+
+GetFailureStep returns the FailureStep field if non-nil, zero value otherwise.
+
+### GetFailureStepOk
+
+`func (o *InlineResponse20081) GetFailureStepOk() (*string, bool)`
+
+GetFailureStepOk returns a tuple with the FailureStep field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFailureStep
+
+`func (o *InlineResponse20081) SetFailureStep(v string)`
+
+SetFailureStep sets FailureStep field to given value.
+
+### HasFailureStep
+
+`func (o *InlineResponse20081) HasFailureStep() bool`
+
+HasFailureStep returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *InlineResponse20081) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *InlineResponse20081) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *InlineResponse20081) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *InlineResponse20081) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### GetTs
+
+`func (o *InlineResponse20081) GetTs() time.Time`
+
+GetTs returns the Ts field if non-nil, zero value otherwise.
+
+### GetTsOk
+
+`func (o *InlineResponse20081) GetTsOk() (*time.Time, bool)`
+
+GetTsOk returns a tuple with the Ts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTs
+
+`func (o *InlineResponse20081) SetTs(v time.Time)`
+
+SetTs sets Ts field to given value.
+
+### HasTs
+
+`func (o *InlineResponse20081) HasTs() bool`
+
+HasTs returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

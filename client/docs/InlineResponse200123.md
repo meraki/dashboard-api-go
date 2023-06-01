@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The id of the VPP Account | [optional] 
-**VppServiceToken** | Pointer to **string** | The VPP Account&#39;s Service Token | [optional] 
+**RemainderLicenses** | Pointer to [**[]InlineResponse200122**](InlineResponse200122.md) | Remainder licenses created in the source organization as a result of moving a subset of the counts of a license | [optional] 
+**MovedLicenses** | Pointer to [**[]InlineResponse200122**](InlineResponse200122.md) | Newly moved licenses created in the destination organization of the license move operation | [optional] 
 
 ## Methods
 
@@ -26,55 +26,55 @@ NewInlineResponse200123WithDefaults instantiates a new InlineResponse200123 obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetRemainderLicenses
 
-`func (o *InlineResponse200123) GetId() string`
+`func (o *InlineResponse200123) GetRemainderLicenses() []InlineResponse200122`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetRemainderLicenses returns the RemainderLicenses field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetRemainderLicensesOk
 
-`func (o *InlineResponse200123) GetIdOk() (*string, bool)`
+`func (o *InlineResponse200123) GetRemainderLicensesOk() (*[]InlineResponse200122, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetRemainderLicensesOk returns a tuple with the RemainderLicenses field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetRemainderLicenses
 
-`func (o *InlineResponse200123) SetId(v string)`
+`func (o *InlineResponse200123) SetRemainderLicenses(v []InlineResponse200122)`
 
-SetId sets Id field to given value.
+SetRemainderLicenses sets RemainderLicenses field to given value.
 
-### HasId
+### HasRemainderLicenses
 
-`func (o *InlineResponse200123) HasId() bool`
+`func (o *InlineResponse200123) HasRemainderLicenses() bool`
 
-HasId returns a boolean if a field has been set.
+HasRemainderLicenses returns a boolean if a field has been set.
 
-### GetVppServiceToken
+### GetMovedLicenses
 
-`func (o *InlineResponse200123) GetVppServiceToken() string`
+`func (o *InlineResponse200123) GetMovedLicenses() []InlineResponse200122`
 
-GetVppServiceToken returns the VppServiceToken field if non-nil, zero value otherwise.
+GetMovedLicenses returns the MovedLicenses field if non-nil, zero value otherwise.
 
-### GetVppServiceTokenOk
+### GetMovedLicensesOk
 
-`func (o *InlineResponse200123) GetVppServiceTokenOk() (*string, bool)`
+`func (o *InlineResponse200123) GetMovedLicensesOk() (*[]InlineResponse200122, bool)`
 
-GetVppServiceTokenOk returns a tuple with the VppServiceToken field if it's non-nil, zero value otherwise
+GetMovedLicensesOk returns a tuple with the MovedLicenses field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVppServiceToken
+### SetMovedLicenses
 
-`func (o *InlineResponse200123) SetVppServiceToken(v string)`
+`func (o *InlineResponse200123) SetMovedLicenses(v []InlineResponse200122)`
 
-SetVppServiceToken sets VppServiceToken field to given value.
+SetMovedLicenses sets MovedLicenses field to given value.
 
-### HasVppServiceToken
+### HasMovedLicenses
 
-`func (o *InlineResponse200123) HasVppServiceToken() bool`
+`func (o *InlineResponse200123) HasMovedLicenses() bool`
 
-HasVppServiceToken returns a boolean if a field has been set.
+HasMovedLicenses returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

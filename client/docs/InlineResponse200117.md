@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | Pointer to **bool** | Toggle depicting if SAML SSO settings are enabled | [optional] 
+**ImportId** | Pointer to **string** | Database ID for the new entity entry. | [optional] 
+**Device** | Pointer to [**OrganizationsOrganizationIdInventoryOnboardingCloudMonitoringImportsDevice**](OrganizationsOrganizationIdInventoryOnboardingCloudMonitoringImportsDevice.md) |  | [optional] 
 
 ## Methods
 
@@ -25,30 +26,55 @@ NewInlineResponse200117WithDefaults instantiates a new InlineResponse200117 obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetEnabled
+### GetImportId
 
-`func (o *InlineResponse200117) GetEnabled() bool`
+`func (o *InlineResponse200117) GetImportId() string`
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+GetImportId returns the ImportId field if non-nil, zero value otherwise.
 
-### GetEnabledOk
+### GetImportIdOk
 
-`func (o *InlineResponse200117) GetEnabledOk() (*bool, bool)`
+`func (o *InlineResponse200117) GetImportIdOk() (*string, bool)`
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+GetImportIdOk returns a tuple with the ImportId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnabled
+### SetImportId
 
-`func (o *InlineResponse200117) SetEnabled(v bool)`
+`func (o *InlineResponse200117) SetImportId(v string)`
 
-SetEnabled sets Enabled field to given value.
+SetImportId sets ImportId field to given value.
 
-### HasEnabled
+### HasImportId
 
-`func (o *InlineResponse200117) HasEnabled() bool`
+`func (o *InlineResponse200117) HasImportId() bool`
 
-HasEnabled returns a boolean if a field has been set.
+HasImportId returns a boolean if a field has been set.
+
+### GetDevice
+
+`func (o *InlineResponse200117) GetDevice() OrganizationsOrganizationIdInventoryOnboardingCloudMonitoringImportsDevice`
+
+GetDevice returns the Device field if non-nil, zero value otherwise.
+
+### GetDeviceOk
+
+`func (o *InlineResponse200117) GetDeviceOk() (*OrganizationsOrganizationIdInventoryOnboardingCloudMonitoringImportsDevice, bool)`
+
+GetDeviceOk returns a tuple with the Device field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDevice
+
+`func (o *InlineResponse200117) SetDevice(v OrganizationsOrganizationIdInventoryOnboardingCloudMonitoringImportsDevice)`
+
+SetDevice sets Device field to given value.
+
+### HasDevice
+
+`func (o *InlineResponse200117) HasDevice() bool`
+
+HasDevice returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

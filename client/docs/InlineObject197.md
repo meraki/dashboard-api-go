@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name of the VoIP provider | [optional] 
-**Address** | Pointer to **string** | The IP address (IPv4 only) or hostname of the media server to monitor | [optional] 
+**Name** | **string** | The name of the VoIP provider | 
+**Address** | **string** | The IP address (IPv4 only) or hostname of the media server to monitor | 
 **BestEffortMonitoringEnabled** | Pointer to **bool** | Indicates that if the media server doesn&#39;t respond to ICMP pings, the nearest hop will be used in its stead. | [optional] 
 
 ## Methods
 
 ### NewInlineObject197
 
-`func NewInlineObject197() *InlineObject197`
+`func NewInlineObject197(name string, address string, ) *InlineObject197`
 
 NewInlineObject197 instantiates a new InlineObject197 object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *InlineObject197) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetAddress
 
@@ -71,11 +66,6 @@ and a boolean to check if the value has been set.
 
 SetAddress sets Address field to given value.
 
-### HasAddress
-
-`func (o *InlineObject197) HasAddress() bool`
-
-HasAddress returns a boolean if a field has been set.
 
 ### GetBestEffortMonitoringEnabled
 

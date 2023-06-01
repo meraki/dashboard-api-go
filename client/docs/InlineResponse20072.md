@@ -4,13 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ScanningEnabled** | Pointer to **bool** | Whether APs will scan for Bluetooth enabled clients. | [optional] 
-**AdvertisingEnabled** | Pointer to **bool** | Whether APs will advertise beacons. | [optional] 
-**Uuid** | Pointer to **string** | The UUID to be used in the beacon identifier. | [optional] 
-**MajorMinorAssignmentMode** | Pointer to **string** | The way major and minor number should be assigned to nodes in the network. (&#39;Unique&#39;, &#39;Non-unique&#39;) | [optional] 
-**Major** | Pointer to **int32** | The major number to be used in the beacon identifier. Only valid in &#39;Non-unique&#39; mode. | [optional] 
-**Minor** | Pointer to **int32** | The minor number to be used in the beacon identifier. Only valid in &#39;Non-unique&#39; mode. | [optional] 
-**EslEnabled** | Pointer to **bool** | Whether ESL is enabled on this network. | [optional] 
+**BroadcastThreshold** | Pointer to **int32** | Broadcast threshold. | [optional] 
+**MulticastThreshold** | Pointer to **int32** | Multicast threshold. | [optional] 
+**UnknownUnicastThreshold** | Pointer to **int32** | Unknown Unicast threshold. | [optional] 
 
 ## Methods
 
@@ -31,180 +27,80 @@ NewInlineResponse20072WithDefaults instantiates a new InlineResponse20072 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetScanningEnabled
+### GetBroadcastThreshold
 
-`func (o *InlineResponse20072) GetScanningEnabled() bool`
+`func (o *InlineResponse20072) GetBroadcastThreshold() int32`
 
-GetScanningEnabled returns the ScanningEnabled field if non-nil, zero value otherwise.
+GetBroadcastThreshold returns the BroadcastThreshold field if non-nil, zero value otherwise.
 
-### GetScanningEnabledOk
+### GetBroadcastThresholdOk
 
-`func (o *InlineResponse20072) GetScanningEnabledOk() (*bool, bool)`
+`func (o *InlineResponse20072) GetBroadcastThresholdOk() (*int32, bool)`
 
-GetScanningEnabledOk returns a tuple with the ScanningEnabled field if it's non-nil, zero value otherwise
+GetBroadcastThresholdOk returns a tuple with the BroadcastThreshold field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetScanningEnabled
+### SetBroadcastThreshold
 
-`func (o *InlineResponse20072) SetScanningEnabled(v bool)`
+`func (o *InlineResponse20072) SetBroadcastThreshold(v int32)`
 
-SetScanningEnabled sets ScanningEnabled field to given value.
+SetBroadcastThreshold sets BroadcastThreshold field to given value.
 
-### HasScanningEnabled
+### HasBroadcastThreshold
 
-`func (o *InlineResponse20072) HasScanningEnabled() bool`
+`func (o *InlineResponse20072) HasBroadcastThreshold() bool`
 
-HasScanningEnabled returns a boolean if a field has been set.
+HasBroadcastThreshold returns a boolean if a field has been set.
 
-### GetAdvertisingEnabled
+### GetMulticastThreshold
 
-`func (o *InlineResponse20072) GetAdvertisingEnabled() bool`
+`func (o *InlineResponse20072) GetMulticastThreshold() int32`
 
-GetAdvertisingEnabled returns the AdvertisingEnabled field if non-nil, zero value otherwise.
+GetMulticastThreshold returns the MulticastThreshold field if non-nil, zero value otherwise.
 
-### GetAdvertisingEnabledOk
+### GetMulticastThresholdOk
 
-`func (o *InlineResponse20072) GetAdvertisingEnabledOk() (*bool, bool)`
+`func (o *InlineResponse20072) GetMulticastThresholdOk() (*int32, bool)`
 
-GetAdvertisingEnabledOk returns a tuple with the AdvertisingEnabled field if it's non-nil, zero value otherwise
+GetMulticastThresholdOk returns a tuple with the MulticastThreshold field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAdvertisingEnabled
+### SetMulticastThreshold
 
-`func (o *InlineResponse20072) SetAdvertisingEnabled(v bool)`
+`func (o *InlineResponse20072) SetMulticastThreshold(v int32)`
 
-SetAdvertisingEnabled sets AdvertisingEnabled field to given value.
+SetMulticastThreshold sets MulticastThreshold field to given value.
 
-### HasAdvertisingEnabled
+### HasMulticastThreshold
 
-`func (o *InlineResponse20072) HasAdvertisingEnabled() bool`
+`func (o *InlineResponse20072) HasMulticastThreshold() bool`
 
-HasAdvertisingEnabled returns a boolean if a field has been set.
+HasMulticastThreshold returns a boolean if a field has been set.
 
-### GetUuid
+### GetUnknownUnicastThreshold
 
-`func (o *InlineResponse20072) GetUuid() string`
+`func (o *InlineResponse20072) GetUnknownUnicastThreshold() int32`
 
-GetUuid returns the Uuid field if non-nil, zero value otherwise.
+GetUnknownUnicastThreshold returns the UnknownUnicastThreshold field if non-nil, zero value otherwise.
 
-### GetUuidOk
+### GetUnknownUnicastThresholdOk
 
-`func (o *InlineResponse20072) GetUuidOk() (*string, bool)`
+`func (o *InlineResponse20072) GetUnknownUnicastThresholdOk() (*int32, bool)`
 
-GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
+GetUnknownUnicastThresholdOk returns a tuple with the UnknownUnicastThreshold field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUuid
+### SetUnknownUnicastThreshold
 
-`func (o *InlineResponse20072) SetUuid(v string)`
+`func (o *InlineResponse20072) SetUnknownUnicastThreshold(v int32)`
 
-SetUuid sets Uuid field to given value.
+SetUnknownUnicastThreshold sets UnknownUnicastThreshold field to given value.
 
-### HasUuid
+### HasUnknownUnicastThreshold
 
-`func (o *InlineResponse20072) HasUuid() bool`
+`func (o *InlineResponse20072) HasUnknownUnicastThreshold() bool`
 
-HasUuid returns a boolean if a field has been set.
-
-### GetMajorMinorAssignmentMode
-
-`func (o *InlineResponse20072) GetMajorMinorAssignmentMode() string`
-
-GetMajorMinorAssignmentMode returns the MajorMinorAssignmentMode field if non-nil, zero value otherwise.
-
-### GetMajorMinorAssignmentModeOk
-
-`func (o *InlineResponse20072) GetMajorMinorAssignmentModeOk() (*string, bool)`
-
-GetMajorMinorAssignmentModeOk returns a tuple with the MajorMinorAssignmentMode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMajorMinorAssignmentMode
-
-`func (o *InlineResponse20072) SetMajorMinorAssignmentMode(v string)`
-
-SetMajorMinorAssignmentMode sets MajorMinorAssignmentMode field to given value.
-
-### HasMajorMinorAssignmentMode
-
-`func (o *InlineResponse20072) HasMajorMinorAssignmentMode() bool`
-
-HasMajorMinorAssignmentMode returns a boolean if a field has been set.
-
-### GetMajor
-
-`func (o *InlineResponse20072) GetMajor() int32`
-
-GetMajor returns the Major field if non-nil, zero value otherwise.
-
-### GetMajorOk
-
-`func (o *InlineResponse20072) GetMajorOk() (*int32, bool)`
-
-GetMajorOk returns a tuple with the Major field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMajor
-
-`func (o *InlineResponse20072) SetMajor(v int32)`
-
-SetMajor sets Major field to given value.
-
-### HasMajor
-
-`func (o *InlineResponse20072) HasMajor() bool`
-
-HasMajor returns a boolean if a field has been set.
-
-### GetMinor
-
-`func (o *InlineResponse20072) GetMinor() int32`
-
-GetMinor returns the Minor field if non-nil, zero value otherwise.
-
-### GetMinorOk
-
-`func (o *InlineResponse20072) GetMinorOk() (*int32, bool)`
-
-GetMinorOk returns a tuple with the Minor field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMinor
-
-`func (o *InlineResponse20072) SetMinor(v int32)`
-
-SetMinor sets Minor field to given value.
-
-### HasMinor
-
-`func (o *InlineResponse20072) HasMinor() bool`
-
-HasMinor returns a boolean if a field has been set.
-
-### GetEslEnabled
-
-`func (o *InlineResponse20072) GetEslEnabled() bool`
-
-GetEslEnabled returns the EslEnabled field if non-nil, zero value otherwise.
-
-### GetEslEnabledOk
-
-`func (o *InlineResponse20072) GetEslEnabledOk() (*bool, bool)`
-
-GetEslEnabledOk returns a tuple with the EslEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEslEnabled
-
-`func (o *InlineResponse20072) SetEslEnabled(v bool)`
-
-SetEslEnabled sets EslEnabled field to given value.
-
-### HasEslEnabled
-
-`func (o *InlineResponse20072) HasEslEnabled() bool`
-
-HasEslEnabled returns a boolean if a field has been set.
+HasUnknownUnicastThreshold returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

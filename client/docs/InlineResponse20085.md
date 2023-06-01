@@ -4,13 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | Organization ID | [optional] 
-**Name** | Pointer to **string** | Organization name | [optional] 
-**Url** | Pointer to **string** | Organization URL | [optional] 
-**Api** | Pointer to [**OrganizationsApi**](OrganizationsApi.md) |  | [optional] 
-**Licensing** | Pointer to [**OrganizationsLicensing**](OrganizationsLicensing.md) |  | [optional] 
-**Cloud** | Pointer to [**OrganizationsCloud**](OrganizationsCloud.md) |  | [optional] 
-**Management** | Pointer to [**OrganizationsManagement**](OrganizationsManagement.md) |  | [optional] 
+**Timeout** | Pointer to **int32** | General EAP timeout in seconds. | [optional] 
+**MaxRetries** | Pointer to **int32** | Maximum number of general EAP retries. | [optional] 
+**Identity** | Pointer to [**InlineResponse20085Identity**](InlineResponse20085Identity.md) |  | [optional] 
+**EapolKey** | Pointer to [**InlineResponse20085EapolKey**](InlineResponse20085EapolKey.md) |  | [optional] 
 
 ## Methods
 
@@ -31,180 +28,105 @@ NewInlineResponse20085WithDefaults instantiates a new InlineResponse20085 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetTimeout
 
-`func (o *InlineResponse20085) GetId() string`
+`func (o *InlineResponse20085) GetTimeout() int32`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetTimeoutOk
 
-`func (o *InlineResponse20085) GetIdOk() (*string, bool)`
+`func (o *InlineResponse20085) GetTimeoutOk() (*int32, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetTimeout
 
-`func (o *InlineResponse20085) SetId(v string)`
+`func (o *InlineResponse20085) SetTimeout(v int32)`
 
-SetId sets Id field to given value.
+SetTimeout sets Timeout field to given value.
 
-### HasId
+### HasTimeout
 
-`func (o *InlineResponse20085) HasId() bool`
+`func (o *InlineResponse20085) HasTimeout() bool`
 
-HasId returns a boolean if a field has been set.
+HasTimeout returns a boolean if a field has been set.
 
-### GetName
+### GetMaxRetries
 
-`func (o *InlineResponse20085) GetName() string`
+`func (o *InlineResponse20085) GetMaxRetries() int32`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetMaxRetries returns the MaxRetries field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetMaxRetriesOk
 
-`func (o *InlineResponse20085) GetNameOk() (*string, bool)`
+`func (o *InlineResponse20085) GetMaxRetriesOk() (*int32, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetMaxRetriesOk returns a tuple with the MaxRetries field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetMaxRetries
 
-`func (o *InlineResponse20085) SetName(v string)`
+`func (o *InlineResponse20085) SetMaxRetries(v int32)`
 
-SetName sets Name field to given value.
+SetMaxRetries sets MaxRetries field to given value.
 
-### HasName
+### HasMaxRetries
 
-`func (o *InlineResponse20085) HasName() bool`
+`func (o *InlineResponse20085) HasMaxRetries() bool`
 
-HasName returns a boolean if a field has been set.
+HasMaxRetries returns a boolean if a field has been set.
 
-### GetUrl
+### GetIdentity
 
-`func (o *InlineResponse20085) GetUrl() string`
+`func (o *InlineResponse20085) GetIdentity() InlineResponse20085Identity`
 
-GetUrl returns the Url field if non-nil, zero value otherwise.
+GetIdentity returns the Identity field if non-nil, zero value otherwise.
 
-### GetUrlOk
+### GetIdentityOk
 
-`func (o *InlineResponse20085) GetUrlOk() (*string, bool)`
+`func (o *InlineResponse20085) GetIdentityOk() (*InlineResponse20085Identity, bool)`
 
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+GetIdentityOk returns a tuple with the Identity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUrl
+### SetIdentity
 
-`func (o *InlineResponse20085) SetUrl(v string)`
+`func (o *InlineResponse20085) SetIdentity(v InlineResponse20085Identity)`
 
-SetUrl sets Url field to given value.
+SetIdentity sets Identity field to given value.
 
-### HasUrl
+### HasIdentity
 
-`func (o *InlineResponse20085) HasUrl() bool`
+`func (o *InlineResponse20085) HasIdentity() bool`
 
-HasUrl returns a boolean if a field has been set.
+HasIdentity returns a boolean if a field has been set.
 
-### GetApi
+### GetEapolKey
 
-`func (o *InlineResponse20085) GetApi() OrganizationsApi`
+`func (o *InlineResponse20085) GetEapolKey() InlineResponse20085EapolKey`
 
-GetApi returns the Api field if non-nil, zero value otherwise.
+GetEapolKey returns the EapolKey field if non-nil, zero value otherwise.
 
-### GetApiOk
+### GetEapolKeyOk
 
-`func (o *InlineResponse20085) GetApiOk() (*OrganizationsApi, bool)`
+`func (o *InlineResponse20085) GetEapolKeyOk() (*InlineResponse20085EapolKey, bool)`
 
-GetApiOk returns a tuple with the Api field if it's non-nil, zero value otherwise
+GetEapolKeyOk returns a tuple with the EapolKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetApi
+### SetEapolKey
 
-`func (o *InlineResponse20085) SetApi(v OrganizationsApi)`
+`func (o *InlineResponse20085) SetEapolKey(v InlineResponse20085EapolKey)`
 
-SetApi sets Api field to given value.
+SetEapolKey sets EapolKey field to given value.
 
-### HasApi
+### HasEapolKey
 
-`func (o *InlineResponse20085) HasApi() bool`
+`func (o *InlineResponse20085) HasEapolKey() bool`
 
-HasApi returns a boolean if a field has been set.
-
-### GetLicensing
-
-`func (o *InlineResponse20085) GetLicensing() OrganizationsLicensing`
-
-GetLicensing returns the Licensing field if non-nil, zero value otherwise.
-
-### GetLicensingOk
-
-`func (o *InlineResponse20085) GetLicensingOk() (*OrganizationsLicensing, bool)`
-
-GetLicensingOk returns a tuple with the Licensing field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLicensing
-
-`func (o *InlineResponse20085) SetLicensing(v OrganizationsLicensing)`
-
-SetLicensing sets Licensing field to given value.
-
-### HasLicensing
-
-`func (o *InlineResponse20085) HasLicensing() bool`
-
-HasLicensing returns a boolean if a field has been set.
-
-### GetCloud
-
-`func (o *InlineResponse20085) GetCloud() OrganizationsCloud`
-
-GetCloud returns the Cloud field if non-nil, zero value otherwise.
-
-### GetCloudOk
-
-`func (o *InlineResponse20085) GetCloudOk() (*OrganizationsCloud, bool)`
-
-GetCloudOk returns a tuple with the Cloud field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCloud
-
-`func (o *InlineResponse20085) SetCloud(v OrganizationsCloud)`
-
-SetCloud sets Cloud field to given value.
-
-### HasCloud
-
-`func (o *InlineResponse20085) HasCloud() bool`
-
-HasCloud returns a boolean if a field has been set.
-
-### GetManagement
-
-`func (o *InlineResponse20085) GetManagement() OrganizationsManagement`
-
-GetManagement returns the Management field if non-nil, zero value otherwise.
-
-### GetManagementOk
-
-`func (o *InlineResponse20085) GetManagementOk() (*OrganizationsManagement, bool)`
-
-GetManagementOk returns a tuple with the Management field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetManagement
-
-`func (o *InlineResponse20085) SetManagement(v OrganizationsManagement)`
-
-SetManagement sets Management field to given value.
-
-### HasManagement
-
-`func (o *InlineResponse20085) HasManagement() bool`
-
-HasManagement returns a boolean if a field has been set.
+HasEapolKey returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

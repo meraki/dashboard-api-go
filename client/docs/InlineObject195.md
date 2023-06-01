@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ShortName** | **string** | Short name of the early access feature | 
 **LimitScopeToNetworks** | Pointer to **[]string** | A list of network IDs to apply the opt-in to | [optional] 
 
 ## Methods
 
 ### NewInlineObject195
 
-`func NewInlineObject195() *InlineObject195`
+`func NewInlineObject195(shortName string, ) *InlineObject195`
 
 NewInlineObject195 instantiates a new InlineObject195 object
 This constructor will assign default values to properties that have it defined,
@@ -24,6 +25,26 @@ will change when the set of required properties is changed
 NewInlineObject195WithDefaults instantiates a new InlineObject195 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetShortName
+
+`func (o *InlineObject195) GetShortName() string`
+
+GetShortName returns the ShortName field if non-nil, zero value otherwise.
+
+### GetShortNameOk
+
+`func (o *InlineObject195) GetShortNameOk() (*string, bool)`
+
+GetShortNameOk returns a tuple with the ShortName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetShortName
+
+`func (o *InlineObject195) SetShortName(v string)`
+
+SetShortName sets ShortName field to given value.
+
 
 ### GetLimitScopeToNetworks
 

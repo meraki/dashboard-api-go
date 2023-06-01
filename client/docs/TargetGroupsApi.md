@@ -33,8 +33,8 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    createNetworkSmTargetGroup := *openapiclient.NewInlineObject105() // InlineObject105 |  (optional)
+    networkId := "networkId_example" // string | Network ID
+    createNetworkSmTargetGroup := *openapiclient.NewInlineObject106() // InlineObject106 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -54,7 +54,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
+**networkId** | **string** | Network ID | 
 
 ### Other Parameters
 
@@ -64,7 +64,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkSmTargetGroup
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkSmTargetGroup** | [**InlineObject105**](InlineObject105.md) |  | 
+ **createNetworkSmTargetGroup** | [**InlineObject106**](InlineObject106.md) |  | 
 
 ### Return type
 
@@ -105,8 +105,8 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    targetGroupId := "targetGroupId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
+    targetGroupId := "targetGroupId_example" // string | Target group ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -124,8 +124,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**targetGroupId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**targetGroupId** | **string** | Target group ID | 
 
 ### Other Parameters
 
@@ -176,8 +176,8 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    targetGroupId := "targetGroupId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
+    targetGroupId := "targetGroupId_example" // string | Target group ID
     withDetails := true // bool | Boolean indicating if the the ids of the devices or users scoped by the target group should be included in the response (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -198,8 +198,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**targetGroupId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**targetGroupId** | **string** | Target group ID | 
 
 ### Other Parameters
 
@@ -251,7 +251,7 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
+    networkId := "networkId_example" // string | Network ID
     withDetails := true // bool | Boolean indicating if the the ids of the devices or users scoped by the target group should be included in the response (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -272,7 +272,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
+**networkId** | **string** | Network ID | 
 
 ### Other Parameters
 
@@ -323,9 +323,9 @@ import (
 )
 
 func main() {
-    networkId := "networkId_example" // string | 
-    targetGroupId := "targetGroupId_example" // string | 
-    updateNetworkSmTargetGroup := *openapiclient.NewInlineObject106() // InlineObject106 |  (optional)
+    networkId := "networkId_example" // string | Network ID
+    targetGroupId := "targetGroupId_example" // string | Target group ID
+    updateNetworkSmTargetGroup := *openapiclient.NewInlineObject107() // InlineObject107 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -345,8 +345,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkId** | **string** |  | 
-**targetGroupId** | **string** |  | 
+**networkId** | **string** | Network ID | 
+**targetGroupId** | **string** | Target group ID | 
 
 ### Other Parameters
 
@@ -357,7 +357,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkSmTargetGroup** | [**InlineObject106**](InlineObject106.md) |  | 
+ **updateNetworkSmTargetGroup** | [**InlineObject107**](InlineObject107.md) |  | 
 
 ### Return type
 

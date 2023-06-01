@@ -4,13 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SsidNumber** | Pointer to **int32** | SSID Number | [optional] 
-**Vlan** | Pointer to **int32** | LAN | [optional] 
-**ClientMac** | Pointer to **string** | Client Mac | [optional] 
-**Serial** | Pointer to **string** | Serial Number | [optional] 
-**FailureStep** | Pointer to **string** | The failed onboarding step. One of: assoc, auth, dhcp, dns. | [optional] 
-**Type** | Pointer to **string** | The failure type in the onboarding step | [optional] 
-**Ts** | Pointer to **time.Time** | The timestamp when the client mac failed | [optional] 
+**StartTs** | Pointer to **time.Time** | The start time of the query range | [optional] 
+**EndTs** | Pointer to **time.Time** | The end time of the query range | [optional] 
+**UtilizationTotal** | Pointer to **float32** | Total channel utilization | [optional] 
+**Utilization80211** | Pointer to **float32** | Average wifi utilization | [optional] 
+**UtilizationNon80211** | Pointer to **float32** | Average signal interference | [optional] 
 
 ## Methods
 
@@ -31,180 +29,130 @@ NewInlineResponse20077WithDefaults instantiates a new InlineResponse20077 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetSsidNumber
+### GetStartTs
 
-`func (o *InlineResponse20077) GetSsidNumber() int32`
+`func (o *InlineResponse20077) GetStartTs() time.Time`
 
-GetSsidNumber returns the SsidNumber field if non-nil, zero value otherwise.
+GetStartTs returns the StartTs field if non-nil, zero value otherwise.
 
-### GetSsidNumberOk
+### GetStartTsOk
 
-`func (o *InlineResponse20077) GetSsidNumberOk() (*int32, bool)`
+`func (o *InlineResponse20077) GetStartTsOk() (*time.Time, bool)`
 
-GetSsidNumberOk returns a tuple with the SsidNumber field if it's non-nil, zero value otherwise
+GetStartTsOk returns a tuple with the StartTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSsidNumber
+### SetStartTs
 
-`func (o *InlineResponse20077) SetSsidNumber(v int32)`
+`func (o *InlineResponse20077) SetStartTs(v time.Time)`
 
-SetSsidNumber sets SsidNumber field to given value.
+SetStartTs sets StartTs field to given value.
 
-### HasSsidNumber
+### HasStartTs
 
-`func (o *InlineResponse20077) HasSsidNumber() bool`
+`func (o *InlineResponse20077) HasStartTs() bool`
 
-HasSsidNumber returns a boolean if a field has been set.
+HasStartTs returns a boolean if a field has been set.
 
-### GetVlan
+### GetEndTs
 
-`func (o *InlineResponse20077) GetVlan() int32`
+`func (o *InlineResponse20077) GetEndTs() time.Time`
 
-GetVlan returns the Vlan field if non-nil, zero value otherwise.
+GetEndTs returns the EndTs field if non-nil, zero value otherwise.
 
-### GetVlanOk
+### GetEndTsOk
 
-`func (o *InlineResponse20077) GetVlanOk() (*int32, bool)`
+`func (o *InlineResponse20077) GetEndTsOk() (*time.Time, bool)`
 
-GetVlanOk returns a tuple with the Vlan field if it's non-nil, zero value otherwise
+GetEndTsOk returns a tuple with the EndTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVlan
+### SetEndTs
 
-`func (o *InlineResponse20077) SetVlan(v int32)`
+`func (o *InlineResponse20077) SetEndTs(v time.Time)`
 
-SetVlan sets Vlan field to given value.
+SetEndTs sets EndTs field to given value.
 
-### HasVlan
+### HasEndTs
 
-`func (o *InlineResponse20077) HasVlan() bool`
+`func (o *InlineResponse20077) HasEndTs() bool`
 
-HasVlan returns a boolean if a field has been set.
+HasEndTs returns a boolean if a field has been set.
 
-### GetClientMac
+### GetUtilizationTotal
 
-`func (o *InlineResponse20077) GetClientMac() string`
+`func (o *InlineResponse20077) GetUtilizationTotal() float32`
 
-GetClientMac returns the ClientMac field if non-nil, zero value otherwise.
+GetUtilizationTotal returns the UtilizationTotal field if non-nil, zero value otherwise.
 
-### GetClientMacOk
+### GetUtilizationTotalOk
 
-`func (o *InlineResponse20077) GetClientMacOk() (*string, bool)`
+`func (o *InlineResponse20077) GetUtilizationTotalOk() (*float32, bool)`
 
-GetClientMacOk returns a tuple with the ClientMac field if it's non-nil, zero value otherwise
+GetUtilizationTotalOk returns a tuple with the UtilizationTotal field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetClientMac
+### SetUtilizationTotal
 
-`func (o *InlineResponse20077) SetClientMac(v string)`
+`func (o *InlineResponse20077) SetUtilizationTotal(v float32)`
 
-SetClientMac sets ClientMac field to given value.
+SetUtilizationTotal sets UtilizationTotal field to given value.
 
-### HasClientMac
+### HasUtilizationTotal
 
-`func (o *InlineResponse20077) HasClientMac() bool`
+`func (o *InlineResponse20077) HasUtilizationTotal() bool`
 
-HasClientMac returns a boolean if a field has been set.
+HasUtilizationTotal returns a boolean if a field has been set.
 
-### GetSerial
+### GetUtilization80211
 
-`func (o *InlineResponse20077) GetSerial() string`
+`func (o *InlineResponse20077) GetUtilization80211() float32`
 
-GetSerial returns the Serial field if non-nil, zero value otherwise.
+GetUtilization80211 returns the Utilization80211 field if non-nil, zero value otherwise.
 
-### GetSerialOk
+### GetUtilization80211Ok
 
-`func (o *InlineResponse20077) GetSerialOk() (*string, bool)`
+`func (o *InlineResponse20077) GetUtilization80211Ok() (*float32, bool)`
 
-GetSerialOk returns a tuple with the Serial field if it's non-nil, zero value otherwise
+GetUtilization80211Ok returns a tuple with the Utilization80211 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSerial
+### SetUtilization80211
 
-`func (o *InlineResponse20077) SetSerial(v string)`
+`func (o *InlineResponse20077) SetUtilization80211(v float32)`
 
-SetSerial sets Serial field to given value.
+SetUtilization80211 sets Utilization80211 field to given value.
 
-### HasSerial
+### HasUtilization80211
 
-`func (o *InlineResponse20077) HasSerial() bool`
+`func (o *InlineResponse20077) HasUtilization80211() bool`
 
-HasSerial returns a boolean if a field has been set.
+HasUtilization80211 returns a boolean if a field has been set.
 
-### GetFailureStep
+### GetUtilizationNon80211
 
-`func (o *InlineResponse20077) GetFailureStep() string`
+`func (o *InlineResponse20077) GetUtilizationNon80211() float32`
 
-GetFailureStep returns the FailureStep field if non-nil, zero value otherwise.
+GetUtilizationNon80211 returns the UtilizationNon80211 field if non-nil, zero value otherwise.
 
-### GetFailureStepOk
+### GetUtilizationNon80211Ok
 
-`func (o *InlineResponse20077) GetFailureStepOk() (*string, bool)`
+`func (o *InlineResponse20077) GetUtilizationNon80211Ok() (*float32, bool)`
 
-GetFailureStepOk returns a tuple with the FailureStep field if it's non-nil, zero value otherwise
+GetUtilizationNon80211Ok returns a tuple with the UtilizationNon80211 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFailureStep
+### SetUtilizationNon80211
 
-`func (o *InlineResponse20077) SetFailureStep(v string)`
+`func (o *InlineResponse20077) SetUtilizationNon80211(v float32)`
 
-SetFailureStep sets FailureStep field to given value.
+SetUtilizationNon80211 sets UtilizationNon80211 field to given value.
 
-### HasFailureStep
+### HasUtilizationNon80211
 
-`func (o *InlineResponse20077) HasFailureStep() bool`
+`func (o *InlineResponse20077) HasUtilizationNon80211() bool`
 
-HasFailureStep returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *InlineResponse20077) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *InlineResponse20077) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *InlineResponse20077) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *InlineResponse20077) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
-### GetTs
-
-`func (o *InlineResponse20077) GetTs() time.Time`
-
-GetTs returns the Ts field if non-nil, zero value otherwise.
-
-### GetTsOk
-
-`func (o *InlineResponse20077) GetTsOk() (*time.Time, bool)`
-
-GetTsOk returns a tuple with the Ts field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTs
-
-`func (o *InlineResponse20077) SetTs(v time.Time)`
-
-SetTs sets Ts field to given value.
-
-### HasTs
-
-`func (o *InlineResponse20077) HasTs() bool`
-
-HasTs returns a boolean if a field has been set.
+HasUtilizationNon80211 returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

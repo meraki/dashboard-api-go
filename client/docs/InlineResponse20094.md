@@ -4,8 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Usage** | Pointer to [**InlineResponse20094Usage**](InlineResponse20094Usage.md) |  | [optional] 
-**Counts** | Pointer to [**InlineResponse20094Counts**](InlineResponse20094Counts.md) |  | [optional] 
+**Peers** | Pointer to [**[]InlineResponse20094Peers**](InlineResponse20094Peers.md) | The list of VPN peers | [optional] 
 
 ## Methods
 
@@ -26,55 +25,30 @@ NewInlineResponse20094WithDefaults instantiates a new InlineResponse20094 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetUsage
+### GetPeers
 
-`func (o *InlineResponse20094) GetUsage() InlineResponse20094Usage`
+`func (o *InlineResponse20094) GetPeers() []InlineResponse20094Peers`
 
-GetUsage returns the Usage field if non-nil, zero value otherwise.
+GetPeers returns the Peers field if non-nil, zero value otherwise.
 
-### GetUsageOk
+### GetPeersOk
 
-`func (o *InlineResponse20094) GetUsageOk() (*InlineResponse20094Usage, bool)`
+`func (o *InlineResponse20094) GetPeersOk() (*[]InlineResponse20094Peers, bool)`
 
-GetUsageOk returns a tuple with the Usage field if it's non-nil, zero value otherwise
+GetPeersOk returns a tuple with the Peers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUsage
+### SetPeers
 
-`func (o *InlineResponse20094) SetUsage(v InlineResponse20094Usage)`
+`func (o *InlineResponse20094) SetPeers(v []InlineResponse20094Peers)`
 
-SetUsage sets Usage field to given value.
+SetPeers sets Peers field to given value.
 
-### HasUsage
+### HasPeers
 
-`func (o *InlineResponse20094) HasUsage() bool`
+`func (o *InlineResponse20094) HasPeers() bool`
 
-HasUsage returns a boolean if a field has been set.
-
-### GetCounts
-
-`func (o *InlineResponse20094) GetCounts() InlineResponse20094Counts`
-
-GetCounts returns the Counts field if non-nil, zero value otherwise.
-
-### GetCountsOk
-
-`func (o *InlineResponse20094) GetCountsOk() (*InlineResponse20094Counts, bool)`
-
-GetCountsOk returns a tuple with the Counts field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCounts
-
-`func (o *InlineResponse20094) SetCounts(v InlineResponse20094Counts)`
-
-SetCounts sets Counts field to given value.
-
-### HasCounts
-
-`func (o *InlineResponse20094) HasCounts() bool`
-
-HasCounts returns a boolean if a field has been set.
+HasPeers returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

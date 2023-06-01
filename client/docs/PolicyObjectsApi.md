@@ -38,8 +38,8 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
-    createOrganizationPolicyObject := *openapiclient.NewInlineObject211("Name_example", "Category_example", "Type_example") // InlineObject211 | 
+    organizationId := "organizationId_example" // string | Organization ID
+    createOrganizationPolicyObject := *openapiclient.NewInlineObject213("Name_example", "Category_example", "Type_example") // InlineObject213 | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -59,7 +59,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
 
 ### Other Parameters
 
@@ -69,7 +69,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationPolicyOb
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationPolicyObject** | [**InlineObject211**](InlineObject211.md) |  | 
+ **createOrganizationPolicyObject** | [**InlineObject213**](InlineObject213.md) |  | 
 
 ### Return type
 
@@ -110,8 +110,8 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
-    createOrganizationPolicyObjectsGroup := *openapiclient.NewInlineObject212("Name_example") // InlineObject212 | 
+    organizationId := "organizationId_example" // string | Organization ID
+    createOrganizationPolicyObjectsGroup := *openapiclient.NewInlineObject214("Name_example") // InlineObject214 | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -131,7 +131,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
 
 ### Other Parameters
 
@@ -141,7 +141,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationPolicyOb
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationPolicyObjectsGroup** | [**InlineObject212**](InlineObject212.md) |  | 
+ **createOrganizationPolicyObjectsGroup** | [**InlineObject214**](InlineObject214.md) |  | 
 
 ### Return type
 
@@ -182,8 +182,8 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
-    policyObjectId := "policyObjectId_example" // string | 
+    organizationId := "organizationId_example" // string | Organization ID
+    policyObjectId := "policyObjectId_example" // string | Policy object ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -201,8 +201,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
-**policyObjectId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
+**policyObjectId** | **string** | Policy object ID | 
 
 ### Other Parameters
 
@@ -253,8 +253,8 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
-    policyObjectGroupId := "policyObjectGroupId_example" // string | 
+    organizationId := "organizationId_example" // string | Organization ID
+    policyObjectGroupId := "policyObjectGroupId_example" // string | Policy object group ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -272,8 +272,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
-**policyObjectGroupId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
+**policyObjectGroupId** | **string** | Policy object group ID | 
 
 ### Other Parameters
 
@@ -324,8 +324,8 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
-    policyObjectId := "policyObjectId_example" // string | 
+    organizationId := "organizationId_example" // string | Organization ID
+    policyObjectId := "policyObjectId_example" // string | Policy object ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -345,8 +345,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
-**policyObjectId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
+**policyObjectId** | **string** | Policy object ID | 
 
 ### Other Parameters
 
@@ -397,7 +397,7 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
+    organizationId := "organizationId_example" // string | Organization ID
     perPage := int32(56) // int32 | The number of entries per page returned. Acceptable range is 10 - 5000. Default is 5000. (optional)
     startingAfter := "startingAfter_example" // string | A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
     endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
@@ -420,7 +420,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
 
 ### Other Parameters
 
@@ -473,8 +473,8 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
-    policyObjectGroupId := "policyObjectGroupId_example" // string | 
+    organizationId := "organizationId_example" // string | Organization ID
+    policyObjectGroupId := "policyObjectGroupId_example" // string | Policy object group ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -494,8 +494,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
-**policyObjectGroupId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
+**policyObjectGroupId** | **string** | Policy object group ID | 
 
 ### Other Parameters
 
@@ -546,7 +546,7 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
+    organizationId := "organizationId_example" // string | Organization ID
     perPage := int32(56) // int32 | The number of entries per page returned. Acceptable range is 10 - 1000. Default is 1000. (optional)
     startingAfter := "startingAfter_example" // string | A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
     endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
@@ -569,7 +569,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
 
 ### Other Parameters
 
@@ -622,9 +622,9 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
-    policyObjectId := "policyObjectId_example" // string | 
-    updateOrganizationPolicyObject := *openapiclient.NewInlineObject214() // InlineObject214 |  (optional)
+    organizationId := "organizationId_example" // string | Organization ID
+    policyObjectId := "policyObjectId_example" // string | Policy object ID
+    updateOrganizationPolicyObject := *openapiclient.NewInlineObject216() // InlineObject216 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -644,8 +644,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
-**policyObjectId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
+**policyObjectId** | **string** | Policy object ID | 
 
 ### Other Parameters
 
@@ -656,7 +656,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationPolicyObject** | [**InlineObject214**](InlineObject214.md) |  | 
+ **updateOrganizationPolicyObject** | [**InlineObject216**](InlineObject216.md) |  | 
 
 ### Return type
 
@@ -697,9 +697,9 @@ import (
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | 
-    policyObjectGroupId := "policyObjectGroupId_example" // string | 
-    updateOrganizationPolicyObjectsGroup := *openapiclient.NewInlineObject213() // InlineObject213 |  (optional)
+    organizationId := "organizationId_example" // string | Organization ID
+    policyObjectGroupId := "policyObjectGroupId_example" // string | Policy object group ID
+    updateOrganizationPolicyObjectsGroup := *openapiclient.NewInlineObject215() // InlineObject215 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -719,8 +719,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**organizationId** | **string** |  | 
-**policyObjectGroupId** | **string** |  | 
+**organizationId** | **string** | Organization ID | 
+**policyObjectGroupId** | **string** | Policy object group ID | 
 
 ### Other Parameters
 
@@ -731,7 +731,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationPolicyObjectsGroup** | [**InlineObject213**](InlineObject213.md) |  | 
+ **updateOrganizationPolicyObjectsGroup** | [**InlineObject215**](InlineObject215.md) |  | 
 
 ### Return type
 

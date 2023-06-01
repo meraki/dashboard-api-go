@@ -11,6 +11,10 @@ Name | Type | Description | Notes
 **AllowTransit** | Pointer to **bool** | When this feature is on, the Meraki device will advertise routes learned from other Autonomous Systems, thereby allowing traffic between Autonomous Systems to transit this AS. When absent, it defaults to false. | [optional] 
 **EbgpHoldTimer** | **int32** | The EBGP hold timer in seconds for each neighbor. The EBGP hold timer must be an integer between 12 and 240. | 
 **EbgpMultihop** | **int32** | Configure this if the neighbor is not adjacent. The EBGP multi-hop must be an integer between 1 and 255. | 
+**SourceInterface** | Pointer to **string** | The output interface for peering with the remote BGP peer. Valid values are: &#39;wired0&#39;, &#39;wired1&#39; or &#39;vlan{VLAN ID}&#39;(e.g. &#39;vlan123&#39;). | [optional] 
+**NextHopIp** | Pointer to **string** | The IPv4 address of the remote BGP peer that will establish a TCP session with the local MX. | [optional] 
+**TtlSecurity** | Pointer to [**NetworksNetworkIdApplianceVpnBgpTtlSecurity**](NetworksNetworkIdApplianceVpnBgpTtlSecurity.md) |  | [optional] 
+**Authentication** | Pointer to [**NetworksNetworkIdApplianceVpnBgpAuthentication**](NetworksNetworkIdApplianceVpnBgpAuthentication.md) |  | [optional] 
 
 ## Methods
 
@@ -190,6 +194,106 @@ and a boolean to check if the value has been set.
 
 SetEbgpMultihop sets EbgpMultihop field to given value.
 
+
+### GetSourceInterface
+
+`func (o *NetworksNetworkIdApplianceVpnBgpNeighbors) GetSourceInterface() string`
+
+GetSourceInterface returns the SourceInterface field if non-nil, zero value otherwise.
+
+### GetSourceInterfaceOk
+
+`func (o *NetworksNetworkIdApplianceVpnBgpNeighbors) GetSourceInterfaceOk() (*string, bool)`
+
+GetSourceInterfaceOk returns a tuple with the SourceInterface field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSourceInterface
+
+`func (o *NetworksNetworkIdApplianceVpnBgpNeighbors) SetSourceInterface(v string)`
+
+SetSourceInterface sets SourceInterface field to given value.
+
+### HasSourceInterface
+
+`func (o *NetworksNetworkIdApplianceVpnBgpNeighbors) HasSourceInterface() bool`
+
+HasSourceInterface returns a boolean if a field has been set.
+
+### GetNextHopIp
+
+`func (o *NetworksNetworkIdApplianceVpnBgpNeighbors) GetNextHopIp() string`
+
+GetNextHopIp returns the NextHopIp field if non-nil, zero value otherwise.
+
+### GetNextHopIpOk
+
+`func (o *NetworksNetworkIdApplianceVpnBgpNeighbors) GetNextHopIpOk() (*string, bool)`
+
+GetNextHopIpOk returns a tuple with the NextHopIp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNextHopIp
+
+`func (o *NetworksNetworkIdApplianceVpnBgpNeighbors) SetNextHopIp(v string)`
+
+SetNextHopIp sets NextHopIp field to given value.
+
+### HasNextHopIp
+
+`func (o *NetworksNetworkIdApplianceVpnBgpNeighbors) HasNextHopIp() bool`
+
+HasNextHopIp returns a boolean if a field has been set.
+
+### GetTtlSecurity
+
+`func (o *NetworksNetworkIdApplianceVpnBgpNeighbors) GetTtlSecurity() NetworksNetworkIdApplianceVpnBgpTtlSecurity`
+
+GetTtlSecurity returns the TtlSecurity field if non-nil, zero value otherwise.
+
+### GetTtlSecurityOk
+
+`func (o *NetworksNetworkIdApplianceVpnBgpNeighbors) GetTtlSecurityOk() (*NetworksNetworkIdApplianceVpnBgpTtlSecurity, bool)`
+
+GetTtlSecurityOk returns a tuple with the TtlSecurity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTtlSecurity
+
+`func (o *NetworksNetworkIdApplianceVpnBgpNeighbors) SetTtlSecurity(v NetworksNetworkIdApplianceVpnBgpTtlSecurity)`
+
+SetTtlSecurity sets TtlSecurity field to given value.
+
+### HasTtlSecurity
+
+`func (o *NetworksNetworkIdApplianceVpnBgpNeighbors) HasTtlSecurity() bool`
+
+HasTtlSecurity returns a boolean if a field has been set.
+
+### GetAuthentication
+
+`func (o *NetworksNetworkIdApplianceVpnBgpNeighbors) GetAuthentication() NetworksNetworkIdApplianceVpnBgpAuthentication`
+
+GetAuthentication returns the Authentication field if non-nil, zero value otherwise.
+
+### GetAuthenticationOk
+
+`func (o *NetworksNetworkIdApplianceVpnBgpNeighbors) GetAuthenticationOk() (*NetworksNetworkIdApplianceVpnBgpAuthentication, bool)`
+
+GetAuthenticationOk returns a tuple with the Authentication field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthentication
+
+`func (o *NetworksNetworkIdApplianceVpnBgpNeighbors) SetAuthentication(v NetworksNetworkIdApplianceVpnBgpAuthentication)`
+
+SetAuthentication sets Authentication field to given value.
+
+### HasAuthentication
+
+`func (o *NetworksNetworkIdApplianceVpnBgpNeighbors) HasAuthentication() bool`
+
+HasAuthentication returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

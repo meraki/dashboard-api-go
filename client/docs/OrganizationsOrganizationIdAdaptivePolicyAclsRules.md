@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Policy** | **string** | &#39;allow&#39; or &#39;deny&#39; traffic specified by this rule. | 
-**Protocol** | **string** | The type of protocol (must be &#39;tcp&#39;, &#39;udp&#39;, &#39;icmp&#39; or &#39;any&#39;). | 
-**SrcPort** | Pointer to **string** | Source port. Must be in the format of single port: &#39;1&#39;, port list: &#39;1,2&#39; or port range: &#39;1-10&#39;, and in the range of 1-65535, or &#39;any&#39;. Default is &#39;any&#39;. | [optional] 
-**DstPort** | Pointer to **string** | Destination port. Must be in the format of single port: &#39;1&#39;, port list: &#39;1,2&#39; or port range: &#39;1-10&#39;, and in the range of 1-65535, or &#39;any&#39;. Default is &#39;any&#39;. | [optional] 
+**Policy** | Pointer to **string** | &#39;allow&#39; or &#39;deny&#39; traffic specified by this rule | [optional] 
+**Protocol** | Pointer to **string** | The type of protocol | [optional] 
+**SrcPort** | Pointer to **string** | Source port | [optional] 
+**DstPort** | Pointer to **string** | Destination port | [optional] 
 
 ## Methods
 
 ### NewOrganizationsOrganizationIdAdaptivePolicyAclsRules
 
-`func NewOrganizationsOrganizationIdAdaptivePolicyAclsRules(policy string, protocol string, ) *OrganizationsOrganizationIdAdaptivePolicyAclsRules`
+`func NewOrganizationsOrganizationIdAdaptivePolicyAclsRules() *OrganizationsOrganizationIdAdaptivePolicyAclsRules`
 
 NewOrganizationsOrganizationIdAdaptivePolicyAclsRules instantiates a new OrganizationsOrganizationIdAdaptivePolicyAclsRules object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetPolicy sets Policy field to given value.
 
+### HasPolicy
+
+`func (o *OrganizationsOrganizationIdAdaptivePolicyAclsRules) HasPolicy() bool`
+
+HasPolicy returns a boolean if a field has been set.
 
 ### GetProtocol
 
@@ -67,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetProtocol sets Protocol field to given value.
 
+### HasProtocol
+
+`func (o *OrganizationsOrganizationIdAdaptivePolicyAclsRules) HasProtocol() bool`
+
+HasProtocol returns a boolean if a field has been set.
 
 ### GetSrcPort
 

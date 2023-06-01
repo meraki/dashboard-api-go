@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LicenseIdToRenew** | **string** | The ID of the SM license to renew. This license must already be assigned to an SM network | 
-**UnusedLicenseId** | **string** | The SM license to use to renew the seats on &#39;licenseIdToRenew&#39;. This license must have at least as many seats available as there are seats on &#39;licenseIdToRenew&#39; | 
+**DestOrganizationId** | **string** | The ID of the organization to move the licenses to | 
+**LicenseIds** | **[]string** | A list of IDs of licenses to move to the new organization | 
 
 ## Methods
 
 ### NewInlineObject205
 
-`func NewInlineObject205(licenseIdToRenew string, unusedLicenseId string, ) *InlineObject205`
+`func NewInlineObject205(destOrganizationId string, licenseIds []string, ) *InlineObject205`
 
 NewInlineObject205 instantiates a new InlineObject205 object
 This constructor will assign default values to properties that have it defined,
@@ -26,44 +26,44 @@ NewInlineObject205WithDefaults instantiates a new InlineObject205 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetLicenseIdToRenew
+### GetDestOrganizationId
 
-`func (o *InlineObject205) GetLicenseIdToRenew() string`
+`func (o *InlineObject205) GetDestOrganizationId() string`
 
-GetLicenseIdToRenew returns the LicenseIdToRenew field if non-nil, zero value otherwise.
+GetDestOrganizationId returns the DestOrganizationId field if non-nil, zero value otherwise.
 
-### GetLicenseIdToRenewOk
+### GetDestOrganizationIdOk
 
-`func (o *InlineObject205) GetLicenseIdToRenewOk() (*string, bool)`
+`func (o *InlineObject205) GetDestOrganizationIdOk() (*string, bool)`
 
-GetLicenseIdToRenewOk returns a tuple with the LicenseIdToRenew field if it's non-nil, zero value otherwise
+GetDestOrganizationIdOk returns a tuple with the DestOrganizationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLicenseIdToRenew
+### SetDestOrganizationId
 
-`func (o *InlineObject205) SetLicenseIdToRenew(v string)`
+`func (o *InlineObject205) SetDestOrganizationId(v string)`
 
-SetLicenseIdToRenew sets LicenseIdToRenew field to given value.
+SetDestOrganizationId sets DestOrganizationId field to given value.
 
 
-### GetUnusedLicenseId
+### GetLicenseIds
 
-`func (o *InlineObject205) GetUnusedLicenseId() string`
+`func (o *InlineObject205) GetLicenseIds() []string`
 
-GetUnusedLicenseId returns the UnusedLicenseId field if non-nil, zero value otherwise.
+GetLicenseIds returns the LicenseIds field if non-nil, zero value otherwise.
 
-### GetUnusedLicenseIdOk
+### GetLicenseIdsOk
 
-`func (o *InlineObject205) GetUnusedLicenseIdOk() (*string, bool)`
+`func (o *InlineObject205) GetLicenseIdsOk() (*[]string, bool)`
 
-GetUnusedLicenseIdOk returns a tuple with the UnusedLicenseId field if it's non-nil, zero value otherwise
+GetLicenseIdsOk returns a tuple with the LicenseIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUnusedLicenseId
+### SetLicenseIds
 
-`func (o *InlineObject205) SetUnusedLicenseId(v string)`
+`func (o *InlineObject205) SetLicenseIds(v []string)`
 
-SetUnusedLicenseId sets UnusedLicenseId field to given value.
+SetLicenseIds sets LicenseIds field to given value.
 
 
 

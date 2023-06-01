@@ -4,13 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | Meraki auth user id | [optional] 
-**Email** | Pointer to **string** | Email address of the user | [optional] 
-**Name** | Pointer to **string** | Name of the user | [optional] 
-**CreatedAt** | Pointer to **time.Time** | Creation time of the user | [optional] 
-**AccountType** | Pointer to **string** | Authorization type for user. | [optional] 
-**IsAdmin** | Pointer to **bool** | Whether or not the user is a Dashboard administrator | [optional] 
-**Authorizations** | Pointer to [**[]NetworksNetworkIdMerakiAuthUsersAuthorizations**](NetworksNetworkIdMerakiAuthUsersAuthorizations.md) | User authorization info | [optional] 
+**Id** | Pointer to **string** | Alert identifier. Value can be empty | [optional] 
+**Category** | Pointer to **string** | Category of the alert | [optional] 
+**Type** | Pointer to **string** | Alert type | [optional] 
+**Severity** | Pointer to **string** | Severity of the alert | [optional] 
+**Scope** | Pointer to [**NetworksNetworkIdHealthAlertsScope**](NetworksNetworkIdHealthAlertsScope.md) |  | [optional] 
 
 ## Methods
 
@@ -56,155 +54,105 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### GetEmail
+### GetCategory
 
-`func (o *InlineResponse20032) GetEmail() string`
+`func (o *InlineResponse20032) GetCategory() string`
 
-GetEmail returns the Email field if non-nil, zero value otherwise.
+GetCategory returns the Category field if non-nil, zero value otherwise.
 
-### GetEmailOk
+### GetCategoryOk
 
-`func (o *InlineResponse20032) GetEmailOk() (*string, bool)`
+`func (o *InlineResponse20032) GetCategoryOk() (*string, bool)`
 
-GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
+GetCategoryOk returns a tuple with the Category field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEmail
+### SetCategory
 
-`func (o *InlineResponse20032) SetEmail(v string)`
+`func (o *InlineResponse20032) SetCategory(v string)`
 
-SetEmail sets Email field to given value.
+SetCategory sets Category field to given value.
 
-### HasEmail
+### HasCategory
 
-`func (o *InlineResponse20032) HasEmail() bool`
+`func (o *InlineResponse20032) HasCategory() bool`
 
-HasEmail returns a boolean if a field has been set.
+HasCategory returns a boolean if a field has been set.
 
-### GetName
+### GetType
 
-`func (o *InlineResponse20032) GetName() string`
+`func (o *InlineResponse20032) GetType() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetTypeOk
 
-`func (o *InlineResponse20032) GetNameOk() (*string, bool)`
+`func (o *InlineResponse20032) GetTypeOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetType
 
-`func (o *InlineResponse20032) SetName(v string)`
+`func (o *InlineResponse20032) SetType(v string)`
 
-SetName sets Name field to given value.
+SetType sets Type field to given value.
 
-### HasName
+### HasType
 
-`func (o *InlineResponse20032) HasName() bool`
+`func (o *InlineResponse20032) HasType() bool`
 
-HasName returns a boolean if a field has been set.
+HasType returns a boolean if a field has been set.
 
-### GetCreatedAt
+### GetSeverity
 
-`func (o *InlineResponse20032) GetCreatedAt() time.Time`
+`func (o *InlineResponse20032) GetSeverity() string`
 
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+GetSeverity returns the Severity field if non-nil, zero value otherwise.
 
-### GetCreatedAtOk
+### GetSeverityOk
 
-`func (o *InlineResponse20032) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *InlineResponse20032) GetSeverityOk() (*string, bool)`
 
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+GetSeverityOk returns a tuple with the Severity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreatedAt
+### SetSeverity
 
-`func (o *InlineResponse20032) SetCreatedAt(v time.Time)`
+`func (o *InlineResponse20032) SetSeverity(v string)`
 
-SetCreatedAt sets CreatedAt field to given value.
+SetSeverity sets Severity field to given value.
 
-### HasCreatedAt
+### HasSeverity
 
-`func (o *InlineResponse20032) HasCreatedAt() bool`
+`func (o *InlineResponse20032) HasSeverity() bool`
 
-HasCreatedAt returns a boolean if a field has been set.
+HasSeverity returns a boolean if a field has been set.
 
-### GetAccountType
+### GetScope
 
-`func (o *InlineResponse20032) GetAccountType() string`
+`func (o *InlineResponse20032) GetScope() NetworksNetworkIdHealthAlertsScope`
 
-GetAccountType returns the AccountType field if non-nil, zero value otherwise.
+GetScope returns the Scope field if non-nil, zero value otherwise.
 
-### GetAccountTypeOk
+### GetScopeOk
 
-`func (o *InlineResponse20032) GetAccountTypeOk() (*string, bool)`
+`func (o *InlineResponse20032) GetScopeOk() (*NetworksNetworkIdHealthAlertsScope, bool)`
 
-GetAccountTypeOk returns a tuple with the AccountType field if it's non-nil, zero value otherwise
+GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountType
+### SetScope
 
-`func (o *InlineResponse20032) SetAccountType(v string)`
+`func (o *InlineResponse20032) SetScope(v NetworksNetworkIdHealthAlertsScope)`
 
-SetAccountType sets AccountType field to given value.
+SetScope sets Scope field to given value.
 
-### HasAccountType
+### HasScope
 
-`func (o *InlineResponse20032) HasAccountType() bool`
+`func (o *InlineResponse20032) HasScope() bool`
 
-HasAccountType returns a boolean if a field has been set.
-
-### GetIsAdmin
-
-`func (o *InlineResponse20032) GetIsAdmin() bool`
-
-GetIsAdmin returns the IsAdmin field if non-nil, zero value otherwise.
-
-### GetIsAdminOk
-
-`func (o *InlineResponse20032) GetIsAdminOk() (*bool, bool)`
-
-GetIsAdminOk returns a tuple with the IsAdmin field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIsAdmin
-
-`func (o *InlineResponse20032) SetIsAdmin(v bool)`
-
-SetIsAdmin sets IsAdmin field to given value.
-
-### HasIsAdmin
-
-`func (o *InlineResponse20032) HasIsAdmin() bool`
-
-HasIsAdmin returns a boolean if a field has been set.
-
-### GetAuthorizations
-
-`func (o *InlineResponse20032) GetAuthorizations() []NetworksNetworkIdMerakiAuthUsersAuthorizations`
-
-GetAuthorizations returns the Authorizations field if non-nil, zero value otherwise.
-
-### GetAuthorizationsOk
-
-`func (o *InlineResponse20032) GetAuthorizationsOk() (*[]NetworksNetworkIdMerakiAuthUsersAuthorizations, bool)`
-
-GetAuthorizationsOk returns a tuple with the Authorizations field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthorizations
-
-`func (o *InlineResponse20032) SetAuthorizations(v []NetworksNetworkIdMerakiAuthUsersAuthorizations)`
-
-SetAuthorizations sets Authorizations field to given value.
-
-### HasAuthorizations
-
-`func (o *InlineResponse20032) HasAuthorizations() bool`
-
-HasAuthorizations returns a boolean if a field has been set.
+HasScope returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

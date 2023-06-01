@@ -6,9 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **StartTs** | Pointer to **time.Time** | The start time of the query range | [optional] 
 **EndTs** | Pointer to **time.Time** | The end time of the query range | [optional] 
-**TotalKbps** | Pointer to **int32** | Total usage in kilobytes-per-second | [optional] 
-**SentKbps** | Pointer to **int32** | Sent kilobytes-per-second | [optional] 
-**ReceivedKbps** | Pointer to **int32** | Received kilobytes-per-second | [optional] 
+**Snr** | Pointer to **int32** | Signal to noise ratio | [optional] 
+**Rssi** | Pointer to **int32** | Received signal strength indicator | [optional] 
 
 ## Methods
 
@@ -79,80 +78,55 @@ SetEndTs sets EndTs field to given value.
 
 HasEndTs returns a boolean if a field has been set.
 
-### GetTotalKbps
+### GetSnr
 
-`func (o *InlineResponse20084) GetTotalKbps() int32`
+`func (o *InlineResponse20084) GetSnr() int32`
 
-GetTotalKbps returns the TotalKbps field if non-nil, zero value otherwise.
+GetSnr returns the Snr field if non-nil, zero value otherwise.
 
-### GetTotalKbpsOk
+### GetSnrOk
 
-`func (o *InlineResponse20084) GetTotalKbpsOk() (*int32, bool)`
+`func (o *InlineResponse20084) GetSnrOk() (*int32, bool)`
 
-GetTotalKbpsOk returns a tuple with the TotalKbps field if it's non-nil, zero value otherwise
+GetSnrOk returns a tuple with the Snr field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTotalKbps
+### SetSnr
 
-`func (o *InlineResponse20084) SetTotalKbps(v int32)`
+`func (o *InlineResponse20084) SetSnr(v int32)`
 
-SetTotalKbps sets TotalKbps field to given value.
+SetSnr sets Snr field to given value.
 
-### HasTotalKbps
+### HasSnr
 
-`func (o *InlineResponse20084) HasTotalKbps() bool`
+`func (o *InlineResponse20084) HasSnr() bool`
 
-HasTotalKbps returns a boolean if a field has been set.
+HasSnr returns a boolean if a field has been set.
 
-### GetSentKbps
+### GetRssi
 
-`func (o *InlineResponse20084) GetSentKbps() int32`
+`func (o *InlineResponse20084) GetRssi() int32`
 
-GetSentKbps returns the SentKbps field if non-nil, zero value otherwise.
+GetRssi returns the Rssi field if non-nil, zero value otherwise.
 
-### GetSentKbpsOk
+### GetRssiOk
 
-`func (o *InlineResponse20084) GetSentKbpsOk() (*int32, bool)`
+`func (o *InlineResponse20084) GetRssiOk() (*int32, bool)`
 
-GetSentKbpsOk returns a tuple with the SentKbps field if it's non-nil, zero value otherwise
+GetRssiOk returns a tuple with the Rssi field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSentKbps
+### SetRssi
 
-`func (o *InlineResponse20084) SetSentKbps(v int32)`
+`func (o *InlineResponse20084) SetRssi(v int32)`
 
-SetSentKbps sets SentKbps field to given value.
+SetRssi sets Rssi field to given value.
 
-### HasSentKbps
+### HasRssi
 
-`func (o *InlineResponse20084) HasSentKbps() bool`
+`func (o *InlineResponse20084) HasRssi() bool`
 
-HasSentKbps returns a boolean if a field has been set.
-
-### GetReceivedKbps
-
-`func (o *InlineResponse20084) GetReceivedKbps() int32`
-
-GetReceivedKbps returns the ReceivedKbps field if non-nil, zero value otherwise.
-
-### GetReceivedKbpsOk
-
-`func (o *InlineResponse20084) GetReceivedKbpsOk() (*int32, bool)`
-
-GetReceivedKbpsOk returns a tuple with the ReceivedKbps field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReceivedKbps
-
-`func (o *InlineResponse20084) SetReceivedKbps(v int32)`
-
-SetReceivedKbps sets ReceivedKbps field to given value.
-
-### HasReceivedKbps
-
-`func (o *InlineResponse20084) HasReceivedKbps() bool`
-
-HasReceivedKbps returns a boolean if a field has been set.
+HasRssi returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

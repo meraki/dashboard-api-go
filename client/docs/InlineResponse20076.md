@@ -4,11 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StartTs** | Pointer to **time.Time** | The start time of the query range | [optional] 
-**EndTs** | Pointer to **time.Time** | The end time of the query range | [optional] 
-**AverageKbps** | Pointer to **int32** | Average data rate in kilobytes-per-second | [optional] 
-**DownloadKbps** | Pointer to **int32** | Download rate in kilobytes-per-second | [optional] 
-**UploadKbps** | Pointer to **int32** | Upload rate in kilobytes-per-second | [optional] 
+**ScanningEnabled** | Pointer to **bool** | Whether APs will scan for Bluetooth enabled clients. | [optional] 
+**AdvertisingEnabled** | Pointer to **bool** | Whether APs will advertise beacons. | [optional] 
+**Uuid** | Pointer to **string** | The UUID to be used in the beacon identifier. | [optional] 
+**MajorMinorAssignmentMode** | Pointer to **string** | The way major and minor number should be assigned to nodes in the network. (&#39;Unique&#39;, &#39;Non-unique&#39;) | [optional] 
+**Major** | Pointer to **int32** | The major number to be used in the beacon identifier. Only valid in &#39;Non-unique&#39; mode. | [optional] 
+**Minor** | Pointer to **int32** | The minor number to be used in the beacon identifier. Only valid in &#39;Non-unique&#39; mode. | [optional] 
+**EslEnabled** | Pointer to **bool** | Whether ESL is enabled on this network. | [optional] 
 
 ## Methods
 
@@ -29,130 +31,180 @@ NewInlineResponse20076WithDefaults instantiates a new InlineResponse20076 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetStartTs
+### GetScanningEnabled
 
-`func (o *InlineResponse20076) GetStartTs() time.Time`
+`func (o *InlineResponse20076) GetScanningEnabled() bool`
 
-GetStartTs returns the StartTs field if non-nil, zero value otherwise.
+GetScanningEnabled returns the ScanningEnabled field if non-nil, zero value otherwise.
 
-### GetStartTsOk
+### GetScanningEnabledOk
 
-`func (o *InlineResponse20076) GetStartTsOk() (*time.Time, bool)`
+`func (o *InlineResponse20076) GetScanningEnabledOk() (*bool, bool)`
 
-GetStartTsOk returns a tuple with the StartTs field if it's non-nil, zero value otherwise
+GetScanningEnabledOk returns a tuple with the ScanningEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStartTs
+### SetScanningEnabled
 
-`func (o *InlineResponse20076) SetStartTs(v time.Time)`
+`func (o *InlineResponse20076) SetScanningEnabled(v bool)`
 
-SetStartTs sets StartTs field to given value.
+SetScanningEnabled sets ScanningEnabled field to given value.
 
-### HasStartTs
+### HasScanningEnabled
 
-`func (o *InlineResponse20076) HasStartTs() bool`
+`func (o *InlineResponse20076) HasScanningEnabled() bool`
 
-HasStartTs returns a boolean if a field has been set.
+HasScanningEnabled returns a boolean if a field has been set.
 
-### GetEndTs
+### GetAdvertisingEnabled
 
-`func (o *InlineResponse20076) GetEndTs() time.Time`
+`func (o *InlineResponse20076) GetAdvertisingEnabled() bool`
 
-GetEndTs returns the EndTs field if non-nil, zero value otherwise.
+GetAdvertisingEnabled returns the AdvertisingEnabled field if non-nil, zero value otherwise.
 
-### GetEndTsOk
+### GetAdvertisingEnabledOk
 
-`func (o *InlineResponse20076) GetEndTsOk() (*time.Time, bool)`
+`func (o *InlineResponse20076) GetAdvertisingEnabledOk() (*bool, bool)`
 
-GetEndTsOk returns a tuple with the EndTs field if it's non-nil, zero value otherwise
+GetAdvertisingEnabledOk returns a tuple with the AdvertisingEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEndTs
+### SetAdvertisingEnabled
 
-`func (o *InlineResponse20076) SetEndTs(v time.Time)`
+`func (o *InlineResponse20076) SetAdvertisingEnabled(v bool)`
 
-SetEndTs sets EndTs field to given value.
+SetAdvertisingEnabled sets AdvertisingEnabled field to given value.
 
-### HasEndTs
+### HasAdvertisingEnabled
 
-`func (o *InlineResponse20076) HasEndTs() bool`
+`func (o *InlineResponse20076) HasAdvertisingEnabled() bool`
 
-HasEndTs returns a boolean if a field has been set.
+HasAdvertisingEnabled returns a boolean if a field has been set.
 
-### GetAverageKbps
+### GetUuid
 
-`func (o *InlineResponse20076) GetAverageKbps() int32`
+`func (o *InlineResponse20076) GetUuid() string`
 
-GetAverageKbps returns the AverageKbps field if non-nil, zero value otherwise.
+GetUuid returns the Uuid field if non-nil, zero value otherwise.
 
-### GetAverageKbpsOk
+### GetUuidOk
 
-`func (o *InlineResponse20076) GetAverageKbpsOk() (*int32, bool)`
+`func (o *InlineResponse20076) GetUuidOk() (*string, bool)`
 
-GetAverageKbpsOk returns a tuple with the AverageKbps field if it's non-nil, zero value otherwise
+GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAverageKbps
+### SetUuid
 
-`func (o *InlineResponse20076) SetAverageKbps(v int32)`
+`func (o *InlineResponse20076) SetUuid(v string)`
 
-SetAverageKbps sets AverageKbps field to given value.
+SetUuid sets Uuid field to given value.
 
-### HasAverageKbps
+### HasUuid
 
-`func (o *InlineResponse20076) HasAverageKbps() bool`
+`func (o *InlineResponse20076) HasUuid() bool`
 
-HasAverageKbps returns a boolean if a field has been set.
+HasUuid returns a boolean if a field has been set.
 
-### GetDownloadKbps
+### GetMajorMinorAssignmentMode
 
-`func (o *InlineResponse20076) GetDownloadKbps() int32`
+`func (o *InlineResponse20076) GetMajorMinorAssignmentMode() string`
 
-GetDownloadKbps returns the DownloadKbps field if non-nil, zero value otherwise.
+GetMajorMinorAssignmentMode returns the MajorMinorAssignmentMode field if non-nil, zero value otherwise.
 
-### GetDownloadKbpsOk
+### GetMajorMinorAssignmentModeOk
 
-`func (o *InlineResponse20076) GetDownloadKbpsOk() (*int32, bool)`
+`func (o *InlineResponse20076) GetMajorMinorAssignmentModeOk() (*string, bool)`
 
-GetDownloadKbpsOk returns a tuple with the DownloadKbps field if it's non-nil, zero value otherwise
+GetMajorMinorAssignmentModeOk returns a tuple with the MajorMinorAssignmentMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDownloadKbps
+### SetMajorMinorAssignmentMode
 
-`func (o *InlineResponse20076) SetDownloadKbps(v int32)`
+`func (o *InlineResponse20076) SetMajorMinorAssignmentMode(v string)`
 
-SetDownloadKbps sets DownloadKbps field to given value.
+SetMajorMinorAssignmentMode sets MajorMinorAssignmentMode field to given value.
 
-### HasDownloadKbps
+### HasMajorMinorAssignmentMode
 
-`func (o *InlineResponse20076) HasDownloadKbps() bool`
+`func (o *InlineResponse20076) HasMajorMinorAssignmentMode() bool`
 
-HasDownloadKbps returns a boolean if a field has been set.
+HasMajorMinorAssignmentMode returns a boolean if a field has been set.
 
-### GetUploadKbps
+### GetMajor
 
-`func (o *InlineResponse20076) GetUploadKbps() int32`
+`func (o *InlineResponse20076) GetMajor() int32`
 
-GetUploadKbps returns the UploadKbps field if non-nil, zero value otherwise.
+GetMajor returns the Major field if non-nil, zero value otherwise.
 
-### GetUploadKbpsOk
+### GetMajorOk
 
-`func (o *InlineResponse20076) GetUploadKbpsOk() (*int32, bool)`
+`func (o *InlineResponse20076) GetMajorOk() (*int32, bool)`
 
-GetUploadKbpsOk returns a tuple with the UploadKbps field if it's non-nil, zero value otherwise
+GetMajorOk returns a tuple with the Major field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUploadKbps
+### SetMajor
 
-`func (o *InlineResponse20076) SetUploadKbps(v int32)`
+`func (o *InlineResponse20076) SetMajor(v int32)`
 
-SetUploadKbps sets UploadKbps field to given value.
+SetMajor sets Major field to given value.
 
-### HasUploadKbps
+### HasMajor
 
-`func (o *InlineResponse20076) HasUploadKbps() bool`
+`func (o *InlineResponse20076) HasMajor() bool`
 
-HasUploadKbps returns a boolean if a field has been set.
+HasMajor returns a boolean if a field has been set.
+
+### GetMinor
+
+`func (o *InlineResponse20076) GetMinor() int32`
+
+GetMinor returns the Minor field if non-nil, zero value otherwise.
+
+### GetMinorOk
+
+`func (o *InlineResponse20076) GetMinorOk() (*int32, bool)`
+
+GetMinorOk returns a tuple with the Minor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMinor
+
+`func (o *InlineResponse20076) SetMinor(v int32)`
+
+SetMinor sets Minor field to given value.
+
+### HasMinor
+
+`func (o *InlineResponse20076) HasMinor() bool`
+
+HasMinor returns a boolean if a field has been set.
+
+### GetEslEnabled
+
+`func (o *InlineResponse20076) GetEslEnabled() bool`
+
+GetEslEnabled returns the EslEnabled field if non-nil, zero value otherwise.
+
+### GetEslEnabledOk
+
+`func (o *InlineResponse20076) GetEslEnabledOk() (*bool, bool)`
+
+GetEslEnabledOk returns a tuple with the EslEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEslEnabled
+
+`func (o *InlineResponse20076) SetEslEnabled(v bool)`
+
+SetEslEnabled sets EslEnabled field to given value.
+
+### HasEslEnabled
+
+`func (o *InlineResponse20076) HasEslEnabled() bool`
+
+HasEslEnabled returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InterfaceIp** | **string** | The IP address of the interface to use | 
+**InterfaceIp** | **string** | The IP address of the interface where the RP needs to be created. | 
 **MulticastGroup** | **string** | &#39;Any&#39;, or the IP address of a multicast group | 
 
 ## Methods
