@@ -30,9 +30,17 @@ jobs:
           echo "current: ${{ env.CURRENT_API_VERSION }}"
           echo "New: ${{ env.NEW_API_VERSION }}"
 
-          if [ "${{ env.NEW_API_VERSION }}" != "${{ env.CURRENT_API_VERSION }}" ] && [[ "${{ env.NEW_API_VERSION }}" = v* ]]; then
-            echo "generate new client"
-            echo "RESULT=true" >> $GITHUB_OUTPUT
+          if [[ "${{ env.NEW_API_VERSION }}" != "${{ env.CURRENT_API_VERSION }}" ]]; then
+            if [[ "${{ env.NEW_API_VERSION }}" = v* ]] && [[ "${{ env.CURRENT_API_VERSION }}" != v* ]]; then
+              echo "generate new client"
+              echo "RESULT=true" >> $GITHUB_OUTPUT
+            elif [[ "${{ env.NEW_API_VERSION }}" != v* ]] && [[ "${{ env.CURRENT_API_VERSION }}" = v* ]]; then
+              echo "generate new client"
+              echo "RESULT=true" >> $GITHUB_OUTPUT
+            else
+              echo "skip client generation"
+              echo "RESULT=false" >> $GITHUB_OUTPUT
+            fi
           else
             echo "skip client generation"
             echo "RESULT=false" >> $GITHUB_OUTPUT
