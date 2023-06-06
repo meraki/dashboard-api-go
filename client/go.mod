@@ -3,7 +3,7 @@ module github.com/meraki/dashboard-api-go/client
 go 1.19
 
 require (
-	github.com/hashicorp/go-retryablehttp v0.7.2
+	github.com/hashicorp/go-retryablehttp v0.7.4
 	golang.org/x/oauth2 v0.8.0
 )
 
