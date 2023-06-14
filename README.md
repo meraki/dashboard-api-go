@@ -15,8 +15,6 @@ go get github.com/meraki/dashboard-api-go/client
 While you can make direct HTTP requests to dashboard API in any programming language or REST API client, using a client library can make it easier for you to focus on your specific use case, without the overhead of having to write functions to handle the dashboard API calls.
 
 * Support for all API endpoints, as it uses the [OpenAPI Generator](https://openapi-generator.tech) to generate source code from the Meraki [OpenAPI specification](https://api.meraki.com/api/v1/openapiSpec)
-* Automatic retries upon 429 rate limit errors, using the [`Retry-After` field](https://developer.cisco.com/meraki/api-v1/#!rate-limit) within response headers
-
 
 ## Setup
 
