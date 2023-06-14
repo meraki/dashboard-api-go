@@ -92,7 +92,7 @@ func (r ProvisioningApiGetOrganizationDevicesProvisioningStatusesRequest) TagsFi
 	return r
 }
 
-func (r ProvisioningApiGetOrganizationDevicesProvisioningStatusesRequest) Execute() ([]InlineResponse200106, *http.Response, error) {
+func (r ProvisioningApiGetOrganizationDevicesProvisioningStatusesRequest) Execute() ([]GetOrganizationDevicesProvisioningStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesProvisioningStatusesExecute(r)
 }
 
@@ -114,13 +114,13 @@ func (a *ProvisioningApiService) GetOrganizationDevicesProvisioningStatuses(ctx 
 }
 
 // Execute executes the request
-//  @return []InlineResponse200106
-func (a *ProvisioningApiService) GetOrganizationDevicesProvisioningStatusesExecute(r ProvisioningApiGetOrganizationDevicesProvisioningStatusesRequest) ([]InlineResponse200106, *http.Response, error) {
+//  @return []GetOrganizationDevicesProvisioningStatuses200ResponseInner
+func (a *ProvisioningApiService) GetOrganizationDevicesProvisioningStatusesExecute(r ProvisioningApiGetOrganizationDevicesProvisioningStatusesRequest) ([]GetOrganizationDevicesProvisioningStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200106
+		localVarReturnValue  []GetOrganizationDevicesProvisioningStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProvisioningApiService.GetOrganizationDevicesProvisioningStatuses")

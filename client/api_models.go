@@ -50,7 +50,7 @@ func (r ModelsApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) Timespan(
 	return r
 }
 
-func (r ModelsApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) Execute() ([]InlineResponse200137, *http.Response, error) {
+func (r ModelsApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) Execute() ([]GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopDevicesModelsByUsageExecute(r)
 }
 
@@ -72,13 +72,13 @@ func (a *ModelsApiService) GetOrganizationSummaryTopDevicesModelsByUsage(ctx con
 }
 
 // Execute executes the request
-//  @return []InlineResponse200137
-func (a *ModelsApiService) GetOrganizationSummaryTopDevicesModelsByUsageExecute(r ModelsApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) ([]InlineResponse200137, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner
+func (a *ModelsApiService) GetOrganizationSummaryTopDevicesModelsByUsageExecute(r ModelsApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) ([]GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200137
+		localVarReturnValue  []GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ModelsApiService.GetOrganizationSummaryTopDevicesModelsByUsage")

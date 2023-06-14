@@ -50,7 +50,7 @@ func (r ByEnergyUsageApiGetOrganizationSummaryTopSwitchesByEnergyUsageRequest) T
 	return r
 }
 
-func (r ByEnergyUsageApiGetOrganizationSummaryTopSwitchesByEnergyUsageRequest) Execute() ([]InlineResponse200139, *http.Response, error) {
+func (r ByEnergyUsageApiGetOrganizationSummaryTopSwitchesByEnergyUsageRequest) Execute() ([]GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopSwitchesByEnergyUsageExecute(r)
 }
 
@@ -72,13 +72,13 @@ func (a *ByEnergyUsageApiService) GetOrganizationSummaryTopSwitchesByEnergyUsage
 }
 
 // Execute executes the request
-//  @return []InlineResponse200139
-func (a *ByEnergyUsageApiService) GetOrganizationSummaryTopSwitchesByEnergyUsageExecute(r ByEnergyUsageApiGetOrganizationSummaryTopSwitchesByEnergyUsageRequest) ([]InlineResponse200139, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner
+func (a *ByEnergyUsageApiService) GetOrganizationSummaryTopSwitchesByEnergyUsageExecute(r ByEnergyUsageApiGetOrganizationSummaryTopSwitchesByEnergyUsageRequest) ([]GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200139
+		localVarReturnValue  []GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ByEnergyUsageApiService.GetOrganizationSummaryTopSwitchesByEnergyUsage")

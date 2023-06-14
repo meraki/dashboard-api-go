@@ -27,15 +27,15 @@ type ActionBatchesApiCreateOrganizationActionBatchRequest struct {
 	ctx context.Context
 	ApiService *ActionBatchesApiService
 	organizationId string
-	createOrganizationActionBatch *InlineObject169
+	createOrganizationActionBatch *CreateOrganizationActionBatchRequest
 }
 
-func (r ActionBatchesApiCreateOrganizationActionBatchRequest) CreateOrganizationActionBatch(createOrganizationActionBatch InlineObject169) ActionBatchesApiCreateOrganizationActionBatchRequest {
+func (r ActionBatchesApiCreateOrganizationActionBatchRequest) CreateOrganizationActionBatch(createOrganizationActionBatch CreateOrganizationActionBatchRequest) ActionBatchesApiCreateOrganizationActionBatchRequest {
 	r.createOrganizationActionBatch = &createOrganizationActionBatch
 	return r
 }
 
-func (r ActionBatchesApiCreateOrganizationActionBatchRequest) Execute() (*InlineResponse2015, *http.Response, error) {
+func (r ActionBatchesApiCreateOrganizationActionBatchRequest) Execute() (*CreateOrganizationActionBatch201Response, *http.Response, error) {
 	return r.ApiService.CreateOrganizationActionBatchExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *ActionBatchesApiService) CreateOrganizationActionBatch(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse2015
-func (a *ActionBatchesApiService) CreateOrganizationActionBatchExecute(r ActionBatchesApiCreateOrganizationActionBatchRequest) (*InlineResponse2015, *http.Response, error) {
+//  @return CreateOrganizationActionBatch201Response
+func (a *ActionBatchesApiService) CreateOrganizationActionBatchExecute(r ActionBatchesApiCreateOrganizationActionBatchRequest) (*CreateOrganizationActionBatch201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2015
+		localVarReturnValue  *CreateOrganizationActionBatch201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ActionBatchesApiService.CreateOrganizationActionBatch")
@@ -268,7 +268,7 @@ type ActionBatchesApiGetOrganizationActionBatchRequest struct {
 	actionBatchId string
 }
 
-func (r ActionBatchesApiGetOrganizationActionBatchRequest) Execute() (*InlineResponse2015, *http.Response, error) {
+func (r ActionBatchesApiGetOrganizationActionBatchRequest) Execute() (*CreateOrganizationActionBatch201Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationActionBatchExecute(r)
 }
 
@@ -292,13 +292,13 @@ func (a *ActionBatchesApiService) GetOrganizationActionBatch(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse2015
-func (a *ActionBatchesApiService) GetOrganizationActionBatchExecute(r ActionBatchesApiGetOrganizationActionBatchRequest) (*InlineResponse2015, *http.Response, error) {
+//  @return CreateOrganizationActionBatch201Response
+func (a *ActionBatchesApiService) GetOrganizationActionBatchExecute(r ActionBatchesApiGetOrganizationActionBatchRequest) (*CreateOrganizationActionBatch201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2015
+		localVarReturnValue  *CreateOrganizationActionBatch201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ActionBatchesApiService.GetOrganizationActionBatch")
@@ -514,10 +514,10 @@ type ActionBatchesApiUpdateOrganizationActionBatchRequest struct {
 	ApiService *ActionBatchesApiService
 	organizationId string
 	actionBatchId string
-	updateOrganizationActionBatch *InlineObject170
+	updateOrganizationActionBatch *UpdateOrganizationActionBatchRequest
 }
 
-func (r ActionBatchesApiUpdateOrganizationActionBatchRequest) UpdateOrganizationActionBatch(updateOrganizationActionBatch InlineObject170) ActionBatchesApiUpdateOrganizationActionBatchRequest {
+func (r ActionBatchesApiUpdateOrganizationActionBatchRequest) UpdateOrganizationActionBatch(updateOrganizationActionBatch UpdateOrganizationActionBatchRequest) ActionBatchesApiUpdateOrganizationActionBatchRequest {
 	r.updateOrganizationActionBatch = &updateOrganizationActionBatch
 	return r
 }

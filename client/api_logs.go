@@ -78,7 +78,7 @@ func (r LogsApiGetOrganizationWebhooksLogsRequest) Url(url string) LogsApiGetOrg
 	return r
 }
 
-func (r LogsApiGetOrganizationWebhooksLogsRequest) Execute() ([]InlineResponse200142, *http.Response, error) {
+func (r LogsApiGetOrganizationWebhooksLogsRequest) Execute() ([]GetOrganizationWebhooksLogs200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWebhooksLogsExecute(r)
 }
 
@@ -100,13 +100,13 @@ func (a *LogsApiService) GetOrganizationWebhooksLogs(ctx context.Context, organi
 }
 
 // Execute executes the request
-//  @return []InlineResponse200142
-func (a *LogsApiService) GetOrganizationWebhooksLogsExecute(r LogsApiGetOrganizationWebhooksLogsRequest) ([]InlineResponse200142, *http.Response, error) {
+//  @return []GetOrganizationWebhooksLogs200ResponseInner
+func (a *LogsApiService) GetOrganizationWebhooksLogsExecute(r LogsApiGetOrganizationWebhooksLogsRequest) ([]GetOrganizationWebhooksLogs200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200142
+		localVarReturnValue  []GetOrganizationWebhooksLogs200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.GetOrganizationWebhooksLogs")

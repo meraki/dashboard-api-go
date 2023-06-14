@@ -27,10 +27,10 @@ type PortSchedulesApiCreateNetworkSwitchPortScheduleRequest struct {
 	ctx context.Context
 	ApiService *PortSchedulesApiService
 	networkId string
-	createNetworkSwitchPortSchedule *InlineObject120
+	createNetworkSwitchPortSchedule *CreateNetworkSwitchPortScheduleRequest
 }
 
-func (r PortSchedulesApiCreateNetworkSwitchPortScheduleRequest) CreateNetworkSwitchPortSchedule(createNetworkSwitchPortSchedule InlineObject120) PortSchedulesApiCreateNetworkSwitchPortScheduleRequest {
+func (r PortSchedulesApiCreateNetworkSwitchPortScheduleRequest) CreateNetworkSwitchPortSchedule(createNetworkSwitchPortSchedule CreateNetworkSwitchPortScheduleRequest) PortSchedulesApiCreateNetworkSwitchPortScheduleRequest {
 	r.createNetworkSwitchPortSchedule = &createNetworkSwitchPortSchedule
 	return r
 }
@@ -383,10 +383,10 @@ type PortSchedulesApiUpdateNetworkSwitchPortScheduleRequest struct {
 	ApiService *PortSchedulesApiService
 	networkId string
 	portScheduleId string
-	updateNetworkSwitchPortSchedule *InlineObject121
+	updateNetworkSwitchPortSchedule *UpdateNetworkSwitchPortScheduleRequest
 }
 
-func (r PortSchedulesApiUpdateNetworkSwitchPortScheduleRequest) UpdateNetworkSwitchPortSchedule(updateNetworkSwitchPortSchedule InlineObject121) PortSchedulesApiUpdateNetworkSwitchPortScheduleRequest {
+func (r PortSchedulesApiUpdateNetworkSwitchPortScheduleRequest) UpdateNetworkSwitchPortSchedule(updateNetworkSwitchPortSchedule UpdateNetworkSwitchPortScheduleRequest) PortSchedulesApiUpdateNetworkSwitchPortScheduleRequest {
 	r.updateNetworkSwitchPortSchedule = &updateNetworkSwitchPortSchedule
 	return r
 }

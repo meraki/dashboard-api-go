@@ -27,15 +27,15 @@ type WirelessApiCreateNetworkWirelessRfProfileRequest struct {
 	ctx context.Context
 	ApiService *WirelessApiService
 	networkId string
-	createNetworkWirelessRfProfile *InlineObject151
+	createNetworkWirelessRfProfile *CreateNetworkWirelessRfProfileRequest
 }
 
-func (r WirelessApiCreateNetworkWirelessRfProfileRequest) CreateNetworkWirelessRfProfile(createNetworkWirelessRfProfile InlineObject151) WirelessApiCreateNetworkWirelessRfProfileRequest {
+func (r WirelessApiCreateNetworkWirelessRfProfileRequest) CreateNetworkWirelessRfProfile(createNetworkWirelessRfProfile CreateNetworkWirelessRfProfileRequest) WirelessApiCreateNetworkWirelessRfProfileRequest {
 	r.createNetworkWirelessRfProfile = &createNetworkWirelessRfProfile
 	return r
 }
 
-func (r WirelessApiCreateNetworkWirelessRfProfileRequest) Execute() (*InlineResponse2014, *http.Response, error) {
+func (r WirelessApiCreateNetworkWirelessRfProfileRequest) Execute() (*CreateNetworkWirelessRfProfile201Response, *http.Response, error) {
 	return r.ApiService.CreateNetworkWirelessRfProfileExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *WirelessApiService) CreateNetworkWirelessRfProfile(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse2014
-func (a *WirelessApiService) CreateNetworkWirelessRfProfileExecute(r WirelessApiCreateNetworkWirelessRfProfileRequest) (*InlineResponse2014, *http.Response, error) {
+//  @return CreateNetworkWirelessRfProfile201Response
+func (a *WirelessApiService) CreateNetworkWirelessRfProfileExecute(r WirelessApiCreateNetworkWirelessRfProfileRequest) (*CreateNetworkWirelessRfProfile201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2014
+		localVarReturnValue  *CreateNetworkWirelessRfProfile201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.CreateNetworkWirelessRfProfile")
@@ -156,10 +156,10 @@ type WirelessApiCreateNetworkWirelessSsidIdentityPskRequest struct {
 	ApiService *WirelessApiService
 	networkId string
 	number string
-	createNetworkWirelessSsidIdentityPsk *InlineObject161
+	createNetworkWirelessSsidIdentityPsk *CreateNetworkWirelessSsidIdentityPskRequest
 }
 
-func (r WirelessApiCreateNetworkWirelessSsidIdentityPskRequest) CreateNetworkWirelessSsidIdentityPsk(createNetworkWirelessSsidIdentityPsk InlineObject161) WirelessApiCreateNetworkWirelessSsidIdentityPskRequest {
+func (r WirelessApiCreateNetworkWirelessSsidIdentityPskRequest) CreateNetworkWirelessSsidIdentityPsk(createNetworkWirelessSsidIdentityPsk CreateNetworkWirelessSsidIdentityPskRequest) WirelessApiCreateNetworkWirelessSsidIdentityPskRequest {
 	r.createNetworkWirelessSsidIdentityPsk = &createNetworkWirelessSsidIdentityPsk
 	return r
 }
@@ -513,7 +513,7 @@ type WirelessApiGetDeviceWirelessBluetoothSettingsRequest struct {
 	serial string
 }
 
-func (r WirelessApiGetDeviceWirelessBluetoothSettingsRequest) Execute() (*InlineResponse2009, *http.Response, error) {
+func (r WirelessApiGetDeviceWirelessBluetoothSettingsRequest) Execute() (*GetDeviceWirelessBluetoothSettings200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceWirelessBluetoothSettingsExecute(r)
 }
 
@@ -535,13 +535,13 @@ func (a *WirelessApiService) GetDeviceWirelessBluetoothSettings(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse2009
-func (a *WirelessApiService) GetDeviceWirelessBluetoothSettingsExecute(r WirelessApiGetDeviceWirelessBluetoothSettingsRequest) (*InlineResponse2009, *http.Response, error) {
+//  @return GetDeviceWirelessBluetoothSettings200Response
+func (a *WirelessApiService) GetDeviceWirelessBluetoothSettingsExecute(r WirelessApiGetDeviceWirelessBluetoothSettingsRequest) (*GetDeviceWirelessBluetoothSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2009
+		localVarReturnValue  *GetDeviceWirelessBluetoothSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetDeviceWirelessBluetoothSettings")
@@ -679,7 +679,7 @@ func (r WirelessApiGetDeviceWirelessConnectionStatsRequest) ApTag(apTag string) 
 	return r
 }
 
-func (r WirelessApiGetDeviceWirelessConnectionStatsRequest) Execute() (*InlineResponse20010, *http.Response, error) {
+func (r WirelessApiGetDeviceWirelessConnectionStatsRequest) Execute() (*GetDeviceWirelessConnectionStats200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceWirelessConnectionStatsExecute(r)
 }
 
@@ -701,13 +701,13 @@ func (a *WirelessApiService) GetDeviceWirelessConnectionStats(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20010
-func (a *WirelessApiService) GetDeviceWirelessConnectionStatsExecute(r WirelessApiGetDeviceWirelessConnectionStatsRequest) (*InlineResponse20010, *http.Response, error) {
+//  @return GetDeviceWirelessConnectionStats200Response
+func (a *WirelessApiService) GetDeviceWirelessConnectionStatsExecute(r WirelessApiGetDeviceWirelessConnectionStatsRequest) (*GetDeviceWirelessConnectionStats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20010
+		localVarReturnValue  *GetDeviceWirelessConnectionStats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetDeviceWirelessConnectionStats")
@@ -1619,7 +1619,7 @@ type WirelessApiGetNetworkWirelessBluetoothSettingsRequest struct {
 	networkId string
 }
 
-func (r WirelessApiGetNetworkWirelessBluetoothSettingsRequest) Execute() (*InlineResponse20076, *http.Response, error) {
+func (r WirelessApiGetNetworkWirelessBluetoothSettingsRequest) Execute() (*GetNetworkWirelessBluetoothSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessBluetoothSettingsExecute(r)
 }
 
@@ -1641,13 +1641,13 @@ func (a *WirelessApiService) GetNetworkWirelessBluetoothSettings(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InlineResponse20076
-func (a *WirelessApiService) GetNetworkWirelessBluetoothSettingsExecute(r WirelessApiGetNetworkWirelessBluetoothSettingsRequest) (*InlineResponse20076, *http.Response, error) {
+//  @return GetNetworkWirelessBluetoothSettings200Response
+func (a *WirelessApiService) GetNetworkWirelessBluetoothSettingsExecute(r WirelessApiGetNetworkWirelessBluetoothSettingsRequest) (*GetNetworkWirelessBluetoothSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20076
+		localVarReturnValue  *GetNetworkWirelessBluetoothSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetNetworkWirelessBluetoothSettings")
@@ -1799,7 +1799,7 @@ func (r WirelessApiGetNetworkWirelessChannelUtilizationHistoryRequest) Band(band
 	return r
 }
 
-func (r WirelessApiGetNetworkWirelessChannelUtilizationHistoryRequest) Execute() ([]InlineResponse20077, *http.Response, error) {
+func (r WirelessApiGetNetworkWirelessChannelUtilizationHistoryRequest) Execute() ([]GetNetworkWirelessChannelUtilizationHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessChannelUtilizationHistoryExecute(r)
 }
 
@@ -1821,13 +1821,13 @@ func (a *WirelessApiService) GetNetworkWirelessChannelUtilizationHistory(ctx con
 }
 
 // Execute executes the request
-//  @return []InlineResponse20077
-func (a *WirelessApiService) GetNetworkWirelessChannelUtilizationHistoryExecute(r WirelessApiGetNetworkWirelessChannelUtilizationHistoryRequest) ([]InlineResponse20077, *http.Response, error) {
+//  @return []GetNetworkWirelessChannelUtilizationHistory200ResponseInner
+func (a *WirelessApiService) GetNetworkWirelessChannelUtilizationHistoryExecute(r WirelessApiGetNetworkWirelessChannelUtilizationHistoryRequest) ([]GetNetworkWirelessChannelUtilizationHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20077
+		localVarReturnValue  []GetNetworkWirelessChannelUtilizationHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetNetworkWirelessChannelUtilizationHistory")
@@ -2435,7 +2435,7 @@ func (r WirelessApiGetNetworkWirelessClientCountHistoryRequest) Ssid(ssid int32)
 	return r
 }
 
-func (r WirelessApiGetNetworkWirelessClientCountHistoryRequest) Execute() ([]InlineResponse20078, *http.Response, error) {
+func (r WirelessApiGetNetworkWirelessClientCountHistoryRequest) Execute() ([]GetNetworkWirelessClientCountHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessClientCountHistoryExecute(r)
 }
 
@@ -2457,13 +2457,13 @@ func (a *WirelessApiService) GetNetworkWirelessClientCountHistory(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20078
-func (a *WirelessApiService) GetNetworkWirelessClientCountHistoryExecute(r WirelessApiGetNetworkWirelessClientCountHistoryRequest) ([]InlineResponse20078, *http.Response, error) {
+//  @return []GetNetworkWirelessClientCountHistory200ResponseInner
+func (a *WirelessApiService) GetNetworkWirelessClientCountHistoryExecute(r WirelessApiGetNetworkWirelessClientCountHistoryRequest) ([]GetNetworkWirelessClientCountHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20078
+		localVarReturnValue  []GetNetworkWirelessClientCountHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetNetworkWirelessClientCountHistory")
@@ -3377,7 +3377,7 @@ func (r WirelessApiGetNetworkWirelessConnectionStatsRequest) ApTag(apTag string)
 	return r
 }
 
-func (r WirelessApiGetNetworkWirelessConnectionStatsRequest) Execute() (*InlineResponse20079, *http.Response, error) {
+func (r WirelessApiGetNetworkWirelessConnectionStatsRequest) Execute() (*GetNetworkWirelessConnectionStats200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessConnectionStatsExecute(r)
 }
 
@@ -3399,13 +3399,13 @@ func (a *WirelessApiService) GetNetworkWirelessConnectionStats(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20079
-func (a *WirelessApiService) GetNetworkWirelessConnectionStatsExecute(r WirelessApiGetNetworkWirelessConnectionStatsRequest) (*InlineResponse20079, *http.Response, error) {
+//  @return GetNetworkWirelessConnectionStats200Response
+func (a *WirelessApiService) GetNetworkWirelessConnectionStatsExecute(r WirelessApiGetNetworkWirelessConnectionStatsRequest) (*GetNetworkWirelessConnectionStats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20079
+		localVarReturnValue  *GetNetworkWirelessConnectionStats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetNetworkWirelessConnectionStats")
@@ -3585,7 +3585,7 @@ func (r WirelessApiGetNetworkWirelessDataRateHistoryRequest) Ssid(ssid int32) Wi
 	return r
 }
 
-func (r WirelessApiGetNetworkWirelessDataRateHistoryRequest) Execute() ([]InlineResponse20080, *http.Response, error) {
+func (r WirelessApiGetNetworkWirelessDataRateHistoryRequest) Execute() ([]GetNetworkWirelessDataRateHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessDataRateHistoryExecute(r)
 }
 
@@ -3607,13 +3607,13 @@ func (a *WirelessApiService) GetNetworkWirelessDataRateHistory(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return []InlineResponse20080
-func (a *WirelessApiService) GetNetworkWirelessDataRateHistoryExecute(r WirelessApiGetNetworkWirelessDataRateHistoryRequest) ([]InlineResponse20080, *http.Response, error) {
+//  @return []GetNetworkWirelessDataRateHistory200ResponseInner
+func (a *WirelessApiService) GetNetworkWirelessDataRateHistoryExecute(r WirelessApiGetNetworkWirelessDataRateHistoryRequest) ([]GetNetworkWirelessDataRateHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20080
+		localVarReturnValue  []GetNetworkWirelessDataRateHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetNetworkWirelessDataRateHistory")
@@ -3781,7 +3781,7 @@ func (r WirelessApiGetNetworkWirelessDevicesConnectionStatsRequest) ApTag(apTag 
 	return r
 }
 
-func (r WirelessApiGetNetworkWirelessDevicesConnectionStatsRequest) Execute() ([]InlineResponse20010, *http.Response, error) {
+func (r WirelessApiGetNetworkWirelessDevicesConnectionStatsRequest) Execute() ([]GetDeviceWirelessConnectionStats200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessDevicesConnectionStatsExecute(r)
 }
 
@@ -3803,13 +3803,13 @@ func (a *WirelessApiService) GetNetworkWirelessDevicesConnectionStats(ctx contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse20010
-func (a *WirelessApiService) GetNetworkWirelessDevicesConnectionStatsExecute(r WirelessApiGetNetworkWirelessDevicesConnectionStatsRequest) ([]InlineResponse20010, *http.Response, error) {
+//  @return []GetDeviceWirelessConnectionStats200Response
+func (a *WirelessApiService) GetNetworkWirelessDevicesConnectionStatsExecute(r WirelessApiGetNetworkWirelessDevicesConnectionStatsRequest) ([]GetDeviceWirelessConnectionStats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20010
+		localVarReturnValue  []GetDeviceWirelessConnectionStats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetNetworkWirelessDevicesConnectionStats")
@@ -4179,7 +4179,7 @@ func (r WirelessApiGetNetworkWirelessFailedConnectionsRequest) ClientId(clientId
 	return r
 }
 
-func (r WirelessApiGetNetworkWirelessFailedConnectionsRequest) Execute() ([]InlineResponse20081, *http.Response, error) {
+func (r WirelessApiGetNetworkWirelessFailedConnectionsRequest) Execute() ([]GetNetworkWirelessFailedConnections200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessFailedConnectionsExecute(r)
 }
 
@@ -4201,13 +4201,13 @@ func (a *WirelessApiService) GetNetworkWirelessFailedConnections(ctx context.Con
 }
 
 // Execute executes the request
-//  @return []InlineResponse20081
-func (a *WirelessApiService) GetNetworkWirelessFailedConnectionsExecute(r WirelessApiGetNetworkWirelessFailedConnectionsRequest) ([]InlineResponse20081, *http.Response, error) {
+//  @return []GetNetworkWirelessFailedConnections200ResponseInner
+func (a *WirelessApiService) GetNetworkWirelessFailedConnectionsExecute(r WirelessApiGetNetworkWirelessFailedConnectionsRequest) ([]GetNetworkWirelessFailedConnections200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20081
+		localVarReturnValue  []GetNetworkWirelessFailedConnections200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetNetworkWirelessFailedConnections")
@@ -4400,7 +4400,7 @@ func (r WirelessApiGetNetworkWirelessLatencyHistoryRequest) AccessCategory(acces
 	return r
 }
 
-func (r WirelessApiGetNetworkWirelessLatencyHistoryRequest) Execute() ([]InlineResponse20082, *http.Response, error) {
+func (r WirelessApiGetNetworkWirelessLatencyHistoryRequest) Execute() ([]GetNetworkWirelessLatencyHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessLatencyHistoryExecute(r)
 }
 
@@ -4422,13 +4422,13 @@ func (a *WirelessApiService) GetNetworkWirelessLatencyHistory(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse20082
-func (a *WirelessApiService) GetNetworkWirelessLatencyHistoryExecute(r WirelessApiGetNetworkWirelessLatencyHistoryRequest) ([]InlineResponse20082, *http.Response, error) {
+//  @return []GetNetworkWirelessLatencyHistory200ResponseInner
+func (a *WirelessApiService) GetNetworkWirelessLatencyHistoryExecute(r WirelessApiGetNetworkWirelessLatencyHistoryRequest) ([]GetNetworkWirelessLatencyHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20082
+		localVarReturnValue  []GetNetworkWirelessLatencyHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetNetworkWirelessLatencyHistory")
@@ -5142,7 +5142,7 @@ type WirelessApiGetNetworkWirelessSettingsRequest struct {
 	networkId string
 }
 
-func (r WirelessApiGetNetworkWirelessSettingsRequest) Execute() (*InlineResponse20083, *http.Response, error) {
+func (r WirelessApiGetNetworkWirelessSettingsRequest) Execute() (*GetNetworkWirelessSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSettingsExecute(r)
 }
 
@@ -5164,13 +5164,13 @@ func (a *WirelessApiService) GetNetworkWirelessSettings(ctx context.Context, net
 }
 
 // Execute executes the request
-//  @return InlineResponse20083
-func (a *WirelessApiService) GetNetworkWirelessSettingsExecute(r WirelessApiGetNetworkWirelessSettingsRequest) (*InlineResponse20083, *http.Response, error) {
+//  @return GetNetworkWirelessSettings200Response
+func (a *WirelessApiService) GetNetworkWirelessSettingsExecute(r WirelessApiGetNetworkWirelessSettingsRequest) (*GetNetworkWirelessSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20083
+		localVarReturnValue  *GetNetworkWirelessSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetNetworkWirelessSettings")
@@ -5329,7 +5329,7 @@ func (r WirelessApiGetNetworkWirelessSignalQualityHistoryRequest) Ssid(ssid int3
 	return r
 }
 
-func (r WirelessApiGetNetworkWirelessSignalQualityHistoryRequest) Execute() ([]InlineResponse20084, *http.Response, error) {
+func (r WirelessApiGetNetworkWirelessSignalQualityHistoryRequest) Execute() ([]GetNetworkWirelessSignalQualityHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSignalQualityHistoryExecute(r)
 }
 
@@ -5351,13 +5351,13 @@ func (a *WirelessApiService) GetNetworkWirelessSignalQualityHistory(ctx context.
 }
 
 // Execute executes the request
-//  @return []InlineResponse20084
-func (a *WirelessApiService) GetNetworkWirelessSignalQualityHistoryExecute(r WirelessApiGetNetworkWirelessSignalQualityHistoryRequest) ([]InlineResponse20084, *http.Response, error) {
+//  @return []GetNetworkWirelessSignalQualityHistory200ResponseInner
+func (a *WirelessApiService) GetNetworkWirelessSignalQualityHistoryExecute(r WirelessApiGetNetworkWirelessSignalQualityHistoryRequest) ([]GetNetworkWirelessSignalQualityHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20084
+		localVarReturnValue  []GetNetworkWirelessSignalQualityHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetNetworkWirelessSignalQualityHistory")
@@ -5840,7 +5840,7 @@ type WirelessApiGetNetworkWirelessSsidEapOverrideRequest struct {
 	number string
 }
 
-func (r WirelessApiGetNetworkWirelessSsidEapOverrideRequest) Execute() (*InlineResponse20085, *http.Response, error) {
+func (r WirelessApiGetNetworkWirelessSsidEapOverrideRequest) Execute() (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidEapOverrideExecute(r)
 }
 
@@ -5864,13 +5864,13 @@ func (a *WirelessApiService) GetNetworkWirelessSsidEapOverride(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20085
-func (a *WirelessApiService) GetNetworkWirelessSsidEapOverrideExecute(r WirelessApiGetNetworkWirelessSsidEapOverrideRequest) (*InlineResponse20085, *http.Response, error) {
+//  @return GetNetworkWirelessSsidEapOverride200Response
+func (a *WirelessApiService) GetNetworkWirelessSsidEapOverrideExecute(r WirelessApiGetNetworkWirelessSsidEapOverrideRequest) (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20085
+		localVarReturnValue  *GetNetworkWirelessSsidEapOverride200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetNetworkWirelessSsidEapOverride")
@@ -6325,7 +6325,7 @@ type WirelessApiGetNetworkWirelessSsidIdentityPskRequest struct {
 	identityPskId string
 }
 
-func (r WirelessApiGetNetworkWirelessSsidIdentityPskRequest) Execute() (*InlineResponse20086, *http.Response, error) {
+func (r WirelessApiGetNetworkWirelessSsidIdentityPskRequest) Execute() (*GetNetworkWirelessSsidIdentityPsks200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidIdentityPskExecute(r)
 }
 
@@ -6351,13 +6351,13 @@ func (a *WirelessApiService) GetNetworkWirelessSsidIdentityPsk(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20086
-func (a *WirelessApiService) GetNetworkWirelessSsidIdentityPskExecute(r WirelessApiGetNetworkWirelessSsidIdentityPskRequest) (*InlineResponse20086, *http.Response, error) {
+//  @return GetNetworkWirelessSsidIdentityPsks200ResponseInner
+func (a *WirelessApiService) GetNetworkWirelessSsidIdentityPskExecute(r WirelessApiGetNetworkWirelessSsidIdentityPskRequest) (*GetNetworkWirelessSsidIdentityPsks200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20086
+		localVarReturnValue  *GetNetworkWirelessSsidIdentityPsks200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetNetworkWirelessSsidIdentityPsk")
@@ -6449,7 +6449,7 @@ type WirelessApiGetNetworkWirelessSsidIdentityPsksRequest struct {
 	number string
 }
 
-func (r WirelessApiGetNetworkWirelessSsidIdentityPsksRequest) Execute() ([]InlineResponse20086, *http.Response, error) {
+func (r WirelessApiGetNetworkWirelessSsidIdentityPsksRequest) Execute() ([]GetNetworkWirelessSsidIdentityPsks200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidIdentityPsksExecute(r)
 }
 
@@ -6473,13 +6473,13 @@ func (a *WirelessApiService) GetNetworkWirelessSsidIdentityPsks(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20086
-func (a *WirelessApiService) GetNetworkWirelessSsidIdentityPsksExecute(r WirelessApiGetNetworkWirelessSsidIdentityPsksRequest) ([]InlineResponse20086, *http.Response, error) {
+//  @return []GetNetworkWirelessSsidIdentityPsks200ResponseInner
+func (a *WirelessApiService) GetNetworkWirelessSsidIdentityPsksExecute(r WirelessApiGetNetworkWirelessSsidIdentityPsksRequest) ([]GetNetworkWirelessSsidIdentityPsks200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20086
+		localVarReturnValue  []GetNetworkWirelessSsidIdentityPsks200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetNetworkWirelessSsidIdentityPsks")
@@ -6691,7 +6691,7 @@ type WirelessApiGetNetworkWirelessSsidSplashSettingsRequest struct {
 	number string
 }
 
-func (r WirelessApiGetNetworkWirelessSsidSplashSettingsRequest) Execute() (*InlineResponse20087, *http.Response, error) {
+func (r WirelessApiGetNetworkWirelessSsidSplashSettingsRequest) Execute() (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidSplashSettingsExecute(r)
 }
 
@@ -6715,13 +6715,13 @@ func (a *WirelessApiService) GetNetworkWirelessSsidSplashSettings(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse20087
-func (a *WirelessApiService) GetNetworkWirelessSsidSplashSettingsExecute(r WirelessApiGetNetworkWirelessSsidSplashSettingsRequest) (*InlineResponse20087, *http.Response, error) {
+//  @return GetNetworkWirelessSsidSplashSettings200Response
+func (a *WirelessApiService) GetNetworkWirelessSsidSplashSettingsExecute(r WirelessApiGetNetworkWirelessSsidSplashSettingsRequest) (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20087
+		localVarReturnValue  *GetNetworkWirelessSsidSplashSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetNetworkWirelessSsidSplashSettings")
@@ -7240,7 +7240,7 @@ func (r WirelessApiGetNetworkWirelessUsageHistoryRequest) Ssid(ssid int32) Wirel
 	return r
 }
 
-func (r WirelessApiGetNetworkWirelessUsageHistoryRequest) Execute() ([]InlineResponse20088, *http.Response, error) {
+func (r WirelessApiGetNetworkWirelessUsageHistoryRequest) Execute() ([]GetNetworkWirelessUsageHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessUsageHistoryExecute(r)
 }
 
@@ -7262,13 +7262,13 @@ func (a *WirelessApiService) GetNetworkWirelessUsageHistory(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return []InlineResponse20088
-func (a *WirelessApiService) GetNetworkWirelessUsageHistoryExecute(r WirelessApiGetNetworkWirelessUsageHistoryRequest) ([]InlineResponse20088, *http.Response, error) {
+//  @return []GetNetworkWirelessUsageHistory200ResponseInner
+func (a *WirelessApiService) GetNetworkWirelessUsageHistoryExecute(r WirelessApiGetNetworkWirelessUsageHistoryRequest) ([]GetNetworkWirelessUsageHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20088
+		localVarReturnValue  []GetNetworkWirelessUsageHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetNetworkWirelessUsageHistory")
@@ -7415,7 +7415,7 @@ func (r WirelessApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Networ
 	return r
 }
 
-func (r WirelessApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Execute() ([]InlineResponse200143, *http.Response, error) {
+func (r WirelessApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Execute() ([]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWirelessDevicesEthernetStatusesExecute(r)
 }
 
@@ -7437,13 +7437,13 @@ func (a *WirelessApiService) GetOrganizationWirelessDevicesEthernetStatuses(ctx 
 }
 
 // Execute executes the request
-//  @return []InlineResponse200143
-func (a *WirelessApiService) GetOrganizationWirelessDevicesEthernetStatusesExecute(r WirelessApiGetOrganizationWirelessDevicesEthernetStatusesRequest) ([]InlineResponse200143, *http.Response, error) {
+//  @return []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
+func (a *WirelessApiService) GetOrganizationWirelessDevicesEthernetStatusesExecute(r WirelessApiGetOrganizationWirelessDevicesEthernetStatusesRequest) ([]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200143
+		localVarReturnValue  []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.GetOrganizationWirelessDevicesEthernetStatuses")
@@ -7542,15 +7542,15 @@ type WirelessApiUpdateDeviceWirelessBluetoothSettingsRequest struct {
 	ctx context.Context
 	ApiService *WirelessApiService
 	serial string
-	updateDeviceWirelessBluetoothSettings *InlineObject24
+	updateDeviceWirelessBluetoothSettings *UpdateDeviceWirelessBluetoothSettingsRequest
 }
 
-func (r WirelessApiUpdateDeviceWirelessBluetoothSettingsRequest) UpdateDeviceWirelessBluetoothSettings(updateDeviceWirelessBluetoothSettings InlineObject24) WirelessApiUpdateDeviceWirelessBluetoothSettingsRequest {
+func (r WirelessApiUpdateDeviceWirelessBluetoothSettingsRequest) UpdateDeviceWirelessBluetoothSettings(updateDeviceWirelessBluetoothSettings UpdateDeviceWirelessBluetoothSettingsRequest) WirelessApiUpdateDeviceWirelessBluetoothSettingsRequest {
 	r.updateDeviceWirelessBluetoothSettings = &updateDeviceWirelessBluetoothSettings
 	return r
 }
 
-func (r WirelessApiUpdateDeviceWirelessBluetoothSettingsRequest) Execute() (*InlineResponse2009, *http.Response, error) {
+func (r WirelessApiUpdateDeviceWirelessBluetoothSettingsRequest) Execute() (*GetDeviceWirelessBluetoothSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateDeviceWirelessBluetoothSettingsExecute(r)
 }
 
@@ -7572,13 +7572,13 @@ func (a *WirelessApiService) UpdateDeviceWirelessBluetoothSettings(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse2009
-func (a *WirelessApiService) UpdateDeviceWirelessBluetoothSettingsExecute(r WirelessApiUpdateDeviceWirelessBluetoothSettingsRequest) (*InlineResponse2009, *http.Response, error) {
+//  @return GetDeviceWirelessBluetoothSettings200Response
+func (a *WirelessApiService) UpdateDeviceWirelessBluetoothSettingsExecute(r WirelessApiUpdateDeviceWirelessBluetoothSettingsRequest) (*GetDeviceWirelessBluetoothSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2009
+		localVarReturnValue  *GetDeviceWirelessBluetoothSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.UpdateDeviceWirelessBluetoothSettings")
@@ -7667,10 +7667,10 @@ type WirelessApiUpdateDeviceWirelessRadioSettingsRequest struct {
 	ctx context.Context
 	ApiService *WirelessApiService
 	serial string
-	updateDeviceWirelessRadioSettings *InlineObject25
+	updateDeviceWirelessRadioSettings *UpdateDeviceWirelessRadioSettingsRequest
 }
 
-func (r WirelessApiUpdateDeviceWirelessRadioSettingsRequest) UpdateDeviceWirelessRadioSettings(updateDeviceWirelessRadioSettings InlineObject25) WirelessApiUpdateDeviceWirelessRadioSettingsRequest {
+func (r WirelessApiUpdateDeviceWirelessRadioSettingsRequest) UpdateDeviceWirelessRadioSettings(updateDeviceWirelessRadioSettings UpdateDeviceWirelessRadioSettingsRequest) WirelessApiUpdateDeviceWirelessRadioSettingsRequest {
 	r.updateDeviceWirelessRadioSettings = &updateDeviceWirelessRadioSettings
 	return r
 }
@@ -7792,10 +7792,10 @@ type WirelessApiUpdateNetworkWirelessAlternateManagementInterfaceRequest struct 
 	ctx context.Context
 	ApiService *WirelessApiService
 	networkId string
-	updateNetworkWirelessAlternateManagementInterface *InlineObject148
+	updateNetworkWirelessAlternateManagementInterface *UpdateNetworkWirelessAlternateManagementInterfaceRequest
 }
 
-func (r WirelessApiUpdateNetworkWirelessAlternateManagementInterfaceRequest) UpdateNetworkWirelessAlternateManagementInterface(updateNetworkWirelessAlternateManagementInterface InlineObject148) WirelessApiUpdateNetworkWirelessAlternateManagementInterfaceRequest {
+func (r WirelessApiUpdateNetworkWirelessAlternateManagementInterfaceRequest) UpdateNetworkWirelessAlternateManagementInterface(updateNetworkWirelessAlternateManagementInterface UpdateNetworkWirelessAlternateManagementInterfaceRequest) WirelessApiUpdateNetworkWirelessAlternateManagementInterfaceRequest {
 	r.updateNetworkWirelessAlternateManagementInterface = &updateNetworkWirelessAlternateManagementInterface
 	return r
 }
@@ -7917,10 +7917,10 @@ type WirelessApiUpdateNetworkWirelessBillingRequest struct {
 	ctx context.Context
 	ApiService *WirelessApiService
 	networkId string
-	updateNetworkWirelessBilling *InlineObject149
+	updateNetworkWirelessBilling *UpdateNetworkWirelessBillingRequest
 }
 
-func (r WirelessApiUpdateNetworkWirelessBillingRequest) UpdateNetworkWirelessBilling(updateNetworkWirelessBilling InlineObject149) WirelessApiUpdateNetworkWirelessBillingRequest {
+func (r WirelessApiUpdateNetworkWirelessBillingRequest) UpdateNetworkWirelessBilling(updateNetworkWirelessBilling UpdateNetworkWirelessBillingRequest) WirelessApiUpdateNetworkWirelessBillingRequest {
 	r.updateNetworkWirelessBilling = &updateNetworkWirelessBilling
 	return r
 }
@@ -8042,15 +8042,15 @@ type WirelessApiUpdateNetworkWirelessBluetoothSettingsRequest struct {
 	ctx context.Context
 	ApiService *WirelessApiService
 	networkId string
-	updateNetworkWirelessBluetoothSettings *InlineObject150
+	updateNetworkWirelessBluetoothSettings *UpdateNetworkWirelessBluetoothSettingsRequest
 }
 
-func (r WirelessApiUpdateNetworkWirelessBluetoothSettingsRequest) UpdateNetworkWirelessBluetoothSettings(updateNetworkWirelessBluetoothSettings InlineObject150) WirelessApiUpdateNetworkWirelessBluetoothSettingsRequest {
+func (r WirelessApiUpdateNetworkWirelessBluetoothSettingsRequest) UpdateNetworkWirelessBluetoothSettings(updateNetworkWirelessBluetoothSettings UpdateNetworkWirelessBluetoothSettingsRequest) WirelessApiUpdateNetworkWirelessBluetoothSettingsRequest {
 	r.updateNetworkWirelessBluetoothSettings = &updateNetworkWirelessBluetoothSettings
 	return r
 }
 
-func (r WirelessApiUpdateNetworkWirelessBluetoothSettingsRequest) Execute() (*InlineResponse20076, *http.Response, error) {
+func (r WirelessApiUpdateNetworkWirelessBluetoothSettingsRequest) Execute() (*GetNetworkWirelessBluetoothSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessBluetoothSettingsExecute(r)
 }
 
@@ -8072,13 +8072,13 @@ func (a *WirelessApiService) UpdateNetworkWirelessBluetoothSettings(ctx context.
 }
 
 // Execute executes the request
-//  @return InlineResponse20076
-func (a *WirelessApiService) UpdateNetworkWirelessBluetoothSettingsExecute(r WirelessApiUpdateNetworkWirelessBluetoothSettingsRequest) (*InlineResponse20076, *http.Response, error) {
+//  @return GetNetworkWirelessBluetoothSettings200Response
+func (a *WirelessApiService) UpdateNetworkWirelessBluetoothSettingsExecute(r WirelessApiUpdateNetworkWirelessBluetoothSettingsRequest) (*GetNetworkWirelessBluetoothSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20076
+		localVarReturnValue  *GetNetworkWirelessBluetoothSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.UpdateNetworkWirelessBluetoothSettings")
@@ -8168,15 +8168,15 @@ type WirelessApiUpdateNetworkWirelessRfProfileRequest struct {
 	ApiService *WirelessApiService
 	networkId string
 	rfProfileId string
-	updateNetworkWirelessRfProfile *InlineObject152
+	updateNetworkWirelessRfProfile *UpdateNetworkWirelessRfProfileRequest
 }
 
-func (r WirelessApiUpdateNetworkWirelessRfProfileRequest) UpdateNetworkWirelessRfProfile(updateNetworkWirelessRfProfile InlineObject152) WirelessApiUpdateNetworkWirelessRfProfileRequest {
+func (r WirelessApiUpdateNetworkWirelessRfProfileRequest) UpdateNetworkWirelessRfProfile(updateNetworkWirelessRfProfile UpdateNetworkWirelessRfProfileRequest) WirelessApiUpdateNetworkWirelessRfProfileRequest {
 	r.updateNetworkWirelessRfProfile = &updateNetworkWirelessRfProfile
 	return r
 }
 
-func (r WirelessApiUpdateNetworkWirelessRfProfileRequest) Execute() (*InlineResponse2014, *http.Response, error) {
+func (r WirelessApiUpdateNetworkWirelessRfProfileRequest) Execute() (*CreateNetworkWirelessRfProfile201Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessRfProfileExecute(r)
 }
 
@@ -8200,13 +8200,13 @@ func (a *WirelessApiService) UpdateNetworkWirelessRfProfile(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse2014
-func (a *WirelessApiService) UpdateNetworkWirelessRfProfileExecute(r WirelessApiUpdateNetworkWirelessRfProfileRequest) (*InlineResponse2014, *http.Response, error) {
+//  @return CreateNetworkWirelessRfProfile201Response
+func (a *WirelessApiService) UpdateNetworkWirelessRfProfileExecute(r WirelessApiUpdateNetworkWirelessRfProfileRequest) (*CreateNetworkWirelessRfProfile201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2014
+		localVarReturnValue  *CreateNetworkWirelessRfProfile201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.UpdateNetworkWirelessRfProfile")
@@ -8296,15 +8296,15 @@ type WirelessApiUpdateNetworkWirelessSettingsRequest struct {
 	ctx context.Context
 	ApiService *WirelessApiService
 	networkId string
-	updateNetworkWirelessSettings *InlineObject153
+	updateNetworkWirelessSettings *UpdateNetworkWirelessSettingsRequest
 }
 
-func (r WirelessApiUpdateNetworkWirelessSettingsRequest) UpdateNetworkWirelessSettings(updateNetworkWirelessSettings InlineObject153) WirelessApiUpdateNetworkWirelessSettingsRequest {
+func (r WirelessApiUpdateNetworkWirelessSettingsRequest) UpdateNetworkWirelessSettings(updateNetworkWirelessSettings UpdateNetworkWirelessSettingsRequest) WirelessApiUpdateNetworkWirelessSettingsRequest {
 	r.updateNetworkWirelessSettings = &updateNetworkWirelessSettings
 	return r
 }
 
-func (r WirelessApiUpdateNetworkWirelessSettingsRequest) Execute() (*InlineResponse20083, *http.Response, error) {
+func (r WirelessApiUpdateNetworkWirelessSettingsRequest) Execute() (*GetNetworkWirelessSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessSettingsExecute(r)
 }
 
@@ -8326,13 +8326,13 @@ func (a *WirelessApiService) UpdateNetworkWirelessSettings(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse20083
-func (a *WirelessApiService) UpdateNetworkWirelessSettingsExecute(r WirelessApiUpdateNetworkWirelessSettingsRequest) (*InlineResponse20083, *http.Response, error) {
+//  @return GetNetworkWirelessSettings200Response
+func (a *WirelessApiService) UpdateNetworkWirelessSettingsExecute(r WirelessApiUpdateNetworkWirelessSettingsRequest) (*GetNetworkWirelessSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20083
+		localVarReturnValue  *GetNetworkWirelessSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.UpdateNetworkWirelessSettings")
@@ -8422,10 +8422,10 @@ type WirelessApiUpdateNetworkWirelessSsidRequest struct {
 	ApiService *WirelessApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsid *InlineObject154
+	updateNetworkWirelessSsid *UpdateNetworkWirelessSsidRequest
 }
 
-func (r WirelessApiUpdateNetworkWirelessSsidRequest) UpdateNetworkWirelessSsid(updateNetworkWirelessSsid InlineObject154) WirelessApiUpdateNetworkWirelessSsidRequest {
+func (r WirelessApiUpdateNetworkWirelessSsidRequest) UpdateNetworkWirelessSsid(updateNetworkWirelessSsid UpdateNetworkWirelessSsidRequest) WirelessApiUpdateNetworkWirelessSsidRequest {
 	r.updateNetworkWirelessSsid = &updateNetworkWirelessSsid
 	return r
 }
@@ -8551,10 +8551,10 @@ type WirelessApiUpdateNetworkWirelessSsidBonjourForwardingRequest struct {
 	ApiService *WirelessApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidBonjourForwarding *InlineObject155
+	updateNetworkWirelessSsidBonjourForwarding *UpdateNetworkWirelessSsidBonjourForwardingRequest
 }
 
-func (r WirelessApiUpdateNetworkWirelessSsidBonjourForwardingRequest) UpdateNetworkWirelessSsidBonjourForwarding(updateNetworkWirelessSsidBonjourForwarding InlineObject155) WirelessApiUpdateNetworkWirelessSsidBonjourForwardingRequest {
+func (r WirelessApiUpdateNetworkWirelessSsidBonjourForwardingRequest) UpdateNetworkWirelessSsidBonjourForwarding(updateNetworkWirelessSsidBonjourForwarding UpdateNetworkWirelessSsidBonjourForwardingRequest) WirelessApiUpdateNetworkWirelessSsidBonjourForwardingRequest {
 	r.updateNetworkWirelessSsidBonjourForwarding = &updateNetworkWirelessSsidBonjourForwarding
 	return r
 }
@@ -8680,10 +8680,10 @@ type WirelessApiUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest struct {
 	ApiService *WirelessApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidDeviceTypeGroupPolicies *InlineObject156
+	updateNetworkWirelessSsidDeviceTypeGroupPolicies *UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest
 }
 
-func (r WirelessApiUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest) UpdateNetworkWirelessSsidDeviceTypeGroupPolicies(updateNetworkWirelessSsidDeviceTypeGroupPolicies InlineObject156) WirelessApiUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest {
+func (r WirelessApiUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest) UpdateNetworkWirelessSsidDeviceTypeGroupPolicies(updateNetworkWirelessSsidDeviceTypeGroupPolicies UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest) WirelessApiUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest {
 	r.updateNetworkWirelessSsidDeviceTypeGroupPolicies = &updateNetworkWirelessSsidDeviceTypeGroupPolicies
 	return r
 }
@@ -8809,15 +8809,15 @@ type WirelessApiUpdateNetworkWirelessSsidEapOverrideRequest struct {
 	ApiService *WirelessApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidEapOverride *InlineObject157
+	updateNetworkWirelessSsidEapOverride *UpdateNetworkWirelessSsidEapOverrideRequest
 }
 
-func (r WirelessApiUpdateNetworkWirelessSsidEapOverrideRequest) UpdateNetworkWirelessSsidEapOverride(updateNetworkWirelessSsidEapOverride InlineObject157) WirelessApiUpdateNetworkWirelessSsidEapOverrideRequest {
+func (r WirelessApiUpdateNetworkWirelessSsidEapOverrideRequest) UpdateNetworkWirelessSsidEapOverride(updateNetworkWirelessSsidEapOverride UpdateNetworkWirelessSsidEapOverrideRequest) WirelessApiUpdateNetworkWirelessSsidEapOverrideRequest {
 	r.updateNetworkWirelessSsidEapOverride = &updateNetworkWirelessSsidEapOverride
 	return r
 }
 
-func (r WirelessApiUpdateNetworkWirelessSsidEapOverrideRequest) Execute() (*InlineResponse20085, *http.Response, error) {
+func (r WirelessApiUpdateNetworkWirelessSsidEapOverrideRequest) Execute() (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessSsidEapOverrideExecute(r)
 }
 
@@ -8841,13 +8841,13 @@ func (a *WirelessApiService) UpdateNetworkWirelessSsidEapOverride(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse20085
-func (a *WirelessApiService) UpdateNetworkWirelessSsidEapOverrideExecute(r WirelessApiUpdateNetworkWirelessSsidEapOverrideRequest) (*InlineResponse20085, *http.Response, error) {
+//  @return GetNetworkWirelessSsidEapOverride200Response
+func (a *WirelessApiService) UpdateNetworkWirelessSsidEapOverrideExecute(r WirelessApiUpdateNetworkWirelessSsidEapOverrideRequest) (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20085
+		localVarReturnValue  *GetNetworkWirelessSsidEapOverride200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.UpdateNetworkWirelessSsidEapOverride")
@@ -8938,10 +8938,10 @@ type WirelessApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest struct {
 	ApiService *WirelessApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidFirewallL3FirewallRules *InlineObject158
+	updateNetworkWirelessSsidFirewallL3FirewallRules *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest
 }
 
-func (r WirelessApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) UpdateNetworkWirelessSsidFirewallL3FirewallRules(updateNetworkWirelessSsidFirewallL3FirewallRules InlineObject158) WirelessApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest {
+func (r WirelessApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) UpdateNetworkWirelessSsidFirewallL3FirewallRules(updateNetworkWirelessSsidFirewallL3FirewallRules UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) WirelessApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest {
 	r.updateNetworkWirelessSsidFirewallL3FirewallRules = &updateNetworkWirelessSsidFirewallL3FirewallRules
 	return r
 }
@@ -9067,10 +9067,10 @@ type WirelessApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest struct {
 	ApiService *WirelessApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidFirewallL7FirewallRules *InlineObject159
+	updateNetworkWirelessSsidFirewallL7FirewallRules *UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest
 }
 
-func (r WirelessApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) UpdateNetworkWirelessSsidFirewallL7FirewallRules(updateNetworkWirelessSsidFirewallL7FirewallRules InlineObject159) WirelessApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest {
+func (r WirelessApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) UpdateNetworkWirelessSsidFirewallL7FirewallRules(updateNetworkWirelessSsidFirewallL7FirewallRules UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) WirelessApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest {
 	r.updateNetworkWirelessSsidFirewallL7FirewallRules = &updateNetworkWirelessSsidFirewallL7FirewallRules
 	return r
 }
@@ -9196,10 +9196,10 @@ type WirelessApiUpdateNetworkWirelessSsidHotspot20Request struct {
 	ApiService *WirelessApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidHotspot20 *InlineObject160
+	updateNetworkWirelessSsidHotspot20 *UpdateNetworkWirelessSsidHotspot20Request
 }
 
-func (r WirelessApiUpdateNetworkWirelessSsidHotspot20Request) UpdateNetworkWirelessSsidHotspot20(updateNetworkWirelessSsidHotspot20 InlineObject160) WirelessApiUpdateNetworkWirelessSsidHotspot20Request {
+func (r WirelessApiUpdateNetworkWirelessSsidHotspot20Request) UpdateNetworkWirelessSsidHotspot20(updateNetworkWirelessSsidHotspot20 UpdateNetworkWirelessSsidHotspot20Request) WirelessApiUpdateNetworkWirelessSsidHotspot20Request {
 	r.updateNetworkWirelessSsidHotspot20 = &updateNetworkWirelessSsidHotspot20
 	return r
 }
@@ -9326,10 +9326,10 @@ type WirelessApiUpdateNetworkWirelessSsidIdentityPskRequest struct {
 	networkId string
 	number string
 	identityPskId string
-	updateNetworkWirelessSsidIdentityPsk *InlineObject162
+	updateNetworkWirelessSsidIdentityPsk *UpdateNetworkWirelessSsidIdentityPskRequest
 }
 
-func (r WirelessApiUpdateNetworkWirelessSsidIdentityPskRequest) UpdateNetworkWirelessSsidIdentityPsk(updateNetworkWirelessSsidIdentityPsk InlineObject162) WirelessApiUpdateNetworkWirelessSsidIdentityPskRequest {
+func (r WirelessApiUpdateNetworkWirelessSsidIdentityPskRequest) UpdateNetworkWirelessSsidIdentityPsk(updateNetworkWirelessSsidIdentityPsk UpdateNetworkWirelessSsidIdentityPskRequest) WirelessApiUpdateNetworkWirelessSsidIdentityPskRequest {
 	r.updateNetworkWirelessSsidIdentityPsk = &updateNetworkWirelessSsidIdentityPsk
 	return r
 }
@@ -9458,10 +9458,10 @@ type WirelessApiUpdateNetworkWirelessSsidSchedulesRequest struct {
 	ApiService *WirelessApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidSchedules *InlineObject163
+	updateNetworkWirelessSsidSchedules *UpdateNetworkWirelessSsidSchedulesRequest
 }
 
-func (r WirelessApiUpdateNetworkWirelessSsidSchedulesRequest) UpdateNetworkWirelessSsidSchedules(updateNetworkWirelessSsidSchedules InlineObject163) WirelessApiUpdateNetworkWirelessSsidSchedulesRequest {
+func (r WirelessApiUpdateNetworkWirelessSsidSchedulesRequest) UpdateNetworkWirelessSsidSchedules(updateNetworkWirelessSsidSchedules UpdateNetworkWirelessSsidSchedulesRequest) WirelessApiUpdateNetworkWirelessSsidSchedulesRequest {
 	r.updateNetworkWirelessSsidSchedules = &updateNetworkWirelessSsidSchedules
 	return r
 }
@@ -9587,15 +9587,15 @@ type WirelessApiUpdateNetworkWirelessSsidSplashSettingsRequest struct {
 	ApiService *WirelessApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidSplashSettings *InlineObject164
+	updateNetworkWirelessSsidSplashSettings *UpdateNetworkWirelessSsidSplashSettingsRequest
 }
 
-func (r WirelessApiUpdateNetworkWirelessSsidSplashSettingsRequest) UpdateNetworkWirelessSsidSplashSettings(updateNetworkWirelessSsidSplashSettings InlineObject164) WirelessApiUpdateNetworkWirelessSsidSplashSettingsRequest {
+func (r WirelessApiUpdateNetworkWirelessSsidSplashSettingsRequest) UpdateNetworkWirelessSsidSplashSettings(updateNetworkWirelessSsidSplashSettings UpdateNetworkWirelessSsidSplashSettingsRequest) WirelessApiUpdateNetworkWirelessSsidSplashSettingsRequest {
 	r.updateNetworkWirelessSsidSplashSettings = &updateNetworkWirelessSsidSplashSettings
 	return r
 }
 
-func (r WirelessApiUpdateNetworkWirelessSsidSplashSettingsRequest) Execute() (*InlineResponse20087, *http.Response, error) {
+func (r WirelessApiUpdateNetworkWirelessSsidSplashSettingsRequest) Execute() (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessSsidSplashSettingsExecute(r)
 }
 
@@ -9619,13 +9619,13 @@ func (a *WirelessApiService) UpdateNetworkWirelessSsidSplashSettings(ctx context
 }
 
 // Execute executes the request
-//  @return InlineResponse20087
-func (a *WirelessApiService) UpdateNetworkWirelessSsidSplashSettingsExecute(r WirelessApiUpdateNetworkWirelessSsidSplashSettingsRequest) (*InlineResponse20087, *http.Response, error) {
+//  @return GetNetworkWirelessSsidSplashSettings200Response
+func (a *WirelessApiService) UpdateNetworkWirelessSsidSplashSettingsExecute(r WirelessApiUpdateNetworkWirelessSsidSplashSettingsRequest) (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20087
+		localVarReturnValue  *GetNetworkWirelessSsidSplashSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WirelessApiService.UpdateNetworkWirelessSsidSplashSettings")
@@ -9716,10 +9716,10 @@ type WirelessApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest struct {
 	ApiService *WirelessApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidTrafficShapingRules *InlineObject165
+	updateNetworkWirelessSsidTrafficShapingRules *UpdateNetworkWirelessSsidTrafficShapingRulesRequest
 }
 
-func (r WirelessApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest) UpdateNetworkWirelessSsidTrafficShapingRules(updateNetworkWirelessSsidTrafficShapingRules InlineObject165) WirelessApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest {
+func (r WirelessApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest) UpdateNetworkWirelessSsidTrafficShapingRules(updateNetworkWirelessSsidTrafficShapingRules UpdateNetworkWirelessSsidTrafficShapingRulesRequest) WirelessApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest {
 	r.updateNetworkWirelessSsidTrafficShapingRules = &updateNetworkWirelessSsidTrafficShapingRules
 	return r
 }
@@ -9845,10 +9845,10 @@ type WirelessApiUpdateNetworkWirelessSsidVpnRequest struct {
 	ApiService *WirelessApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidVpn *InlineObject166
+	updateNetworkWirelessSsidVpn *UpdateNetworkWirelessSsidVpnRequest
 }
 
-func (r WirelessApiUpdateNetworkWirelessSsidVpnRequest) UpdateNetworkWirelessSsidVpn(updateNetworkWirelessSsidVpn InlineObject166) WirelessApiUpdateNetworkWirelessSsidVpnRequest {
+func (r WirelessApiUpdateNetworkWirelessSsidVpnRequest) UpdateNetworkWirelessSsidVpn(updateNetworkWirelessSsidVpn UpdateNetworkWirelessSsidVpnRequest) WirelessApiUpdateNetworkWirelessSsidVpnRequest {
 	r.updateNetworkWirelessSsidVpn = &updateNetworkWirelessSsidVpn
 	return r
 }

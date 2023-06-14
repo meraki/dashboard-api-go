@@ -188,7 +188,7 @@ func (r UplinkApiGetOrganizationCellularGatewayUplinkStatusesRequest) Iccids(icc
 	return r
 }
 
-func (r UplinkApiGetOrganizationCellularGatewayUplinkStatusesRequest) Execute() ([]InlineResponse20098, *http.Response, error) {
+func (r UplinkApiGetOrganizationCellularGatewayUplinkStatusesRequest) Execute() ([]GetOrganizationCellularGatewayUplinkStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationCellularGatewayUplinkStatusesExecute(r)
 }
 
@@ -210,13 +210,13 @@ func (a *UplinkApiService) GetOrganizationCellularGatewayUplinkStatuses(ctx cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20098
-func (a *UplinkApiService) GetOrganizationCellularGatewayUplinkStatusesExecute(r UplinkApiGetOrganizationCellularGatewayUplinkStatusesRequest) ([]InlineResponse20098, *http.Response, error) {
+//  @return []GetOrganizationCellularGatewayUplinkStatuses200ResponseInner
+func (a *UplinkApiService) GetOrganizationCellularGatewayUplinkStatusesExecute(r UplinkApiGetOrganizationCellularGatewayUplinkStatusesRequest) ([]GetOrganizationCellularGatewayUplinkStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20098
+		localVarReturnValue  []GetOrganizationCellularGatewayUplinkStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinkApiService.GetOrganizationCellularGatewayUplinkStatuses")
@@ -321,10 +321,10 @@ type UplinkApiUpdateNetworkCellularGatewayUplinkRequest struct {
 	ctx context.Context
 	ApiService *UplinkApiService
 	networkId string
-	updateNetworkCellularGatewayUplink *InlineObject70
+	updateNetworkCellularGatewayUplink *UpdateNetworkCellularGatewayUplinkRequest
 }
 
-func (r UplinkApiUpdateNetworkCellularGatewayUplinkRequest) UpdateNetworkCellularGatewayUplink(updateNetworkCellularGatewayUplink InlineObject70) UplinkApiUpdateNetworkCellularGatewayUplinkRequest {
+func (r UplinkApiUpdateNetworkCellularGatewayUplinkRequest) UpdateNetworkCellularGatewayUplink(updateNetworkCellularGatewayUplink UpdateNetworkCellularGatewayUplinkRequest) UplinkApiUpdateNetworkCellularGatewayUplinkRequest {
 	r.updateNetworkCellularGatewayUplink = &updateNetworkCellularGatewayUplink
 	return r
 }

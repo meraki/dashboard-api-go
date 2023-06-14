@@ -30,7 +30,7 @@ type CellularUsageHistoryApiGetNetworkSmDeviceCellularUsageHistoryRequest struct
 	deviceId string
 }
 
-func (r CellularUsageHistoryApiGetNetworkSmDeviceCellularUsageHistoryRequest) Execute() ([]InlineResponse20048, *http.Response, error) {
+func (r CellularUsageHistoryApiGetNetworkSmDeviceCellularUsageHistoryRequest) Execute() ([]GetNetworkSmDeviceCellularUsageHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceCellularUsageHistoryExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *CellularUsageHistoryApiService) GetNetworkSmDeviceCellularUsageHistory(
 }
 
 // Execute executes the request
-//  @return []InlineResponse20048
-func (a *CellularUsageHistoryApiService) GetNetworkSmDeviceCellularUsageHistoryExecute(r CellularUsageHistoryApiGetNetworkSmDeviceCellularUsageHistoryRequest) ([]InlineResponse20048, *http.Response, error) {
+//  @return []GetNetworkSmDeviceCellularUsageHistory200ResponseInner
+func (a *CellularUsageHistoryApiService) GetNetworkSmDeviceCellularUsageHistoryExecute(r CellularUsageHistoryApiGetNetworkSmDeviceCellularUsageHistoryRequest) ([]GetNetworkSmDeviceCellularUsageHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20048
+		localVarReturnValue  []GetNetworkSmDeviceCellularUsageHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CellularUsageHistoryApiService.GetNetworkSmDeviceCellularUsageHistory")

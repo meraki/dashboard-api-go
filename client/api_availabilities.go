@@ -85,7 +85,7 @@ func (r AvailabilitiesApiGetOrganizationDevicesAvailabilitiesRequest) TagsFilter
 	return r
 }
 
-func (r AvailabilitiesApiGetOrganizationDevicesAvailabilitiesRequest) Execute() ([]InlineResponse200104, *http.Response, error) {
+func (r AvailabilitiesApiGetOrganizationDevicesAvailabilitiesRequest) Execute() ([]GetOrganizationDevicesAvailabilities200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesAvailabilitiesExecute(r)
 }
 
@@ -107,13 +107,13 @@ func (a *AvailabilitiesApiService) GetOrganizationDevicesAvailabilities(ctx cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse200104
-func (a *AvailabilitiesApiService) GetOrganizationDevicesAvailabilitiesExecute(r AvailabilitiesApiGetOrganizationDevicesAvailabilitiesRequest) ([]InlineResponse200104, *http.Response, error) {
+//  @return []GetOrganizationDevicesAvailabilities200ResponseInner
+func (a *AvailabilitiesApiService) GetOrganizationDevicesAvailabilitiesExecute(r AvailabilitiesApiGetOrganizationDevicesAvailabilitiesRequest) ([]GetOrganizationDevicesAvailabilities200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200104
+		localVarReturnValue  []GetOrganizationDevicesAvailabilities200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AvailabilitiesApiService.GetOrganizationDevicesAvailabilities")

@@ -51,7 +51,7 @@ func (r DeviceCommandLogsApiGetNetworkSmDeviceDeviceCommandLogsRequest) EndingBe
 	return r
 }
 
-func (r DeviceCommandLogsApiGetNetworkSmDeviceDeviceCommandLogsRequest) Execute() ([]InlineResponse20052, *http.Response, error) {
+func (r DeviceCommandLogsApiGetNetworkSmDeviceDeviceCommandLogsRequest) Execute() ([]GetNetworkSmDeviceDeviceCommandLogs200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceDeviceCommandLogsExecute(r)
 }
 
@@ -75,13 +75,13 @@ func (a *DeviceCommandLogsApiService) GetNetworkSmDeviceDeviceCommandLogs(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20052
-func (a *DeviceCommandLogsApiService) GetNetworkSmDeviceDeviceCommandLogsExecute(r DeviceCommandLogsApiGetNetworkSmDeviceDeviceCommandLogsRequest) ([]InlineResponse20052, *http.Response, error) {
+//  @return []GetNetworkSmDeviceDeviceCommandLogs200ResponseInner
+func (a *DeviceCommandLogsApiService) GetNetworkSmDeviceDeviceCommandLogsExecute(r DeviceCommandLogsApiGetNetworkSmDeviceDeviceCommandLogsRequest) ([]GetNetworkSmDeviceDeviceCommandLogs200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20052
+		localVarReturnValue  []GetNetworkSmDeviceDeviceCommandLogs200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceCommandLogsApiService.GetNetworkSmDeviceDeviceCommandLogs")

@@ -144,10 +144,10 @@ type LanApiUpdateDeviceCellularGatewayLanRequest struct {
 	ctx context.Context
 	ApiService *LanApiService
 	serial string
-	updateDeviceCellularGatewayLan *InlineObject10
+	updateDeviceCellularGatewayLan *UpdateDeviceCellularGatewayLanRequest
 }
 
-func (r LanApiUpdateDeviceCellularGatewayLanRequest) UpdateDeviceCellularGatewayLan(updateDeviceCellularGatewayLan InlineObject10) LanApiUpdateDeviceCellularGatewayLanRequest {
+func (r LanApiUpdateDeviceCellularGatewayLanRequest) UpdateDeviceCellularGatewayLan(updateDeviceCellularGatewayLan UpdateDeviceCellularGatewayLanRequest) LanApiUpdateDeviceCellularGatewayLanRequest {
 	r.updateDeviceCellularGatewayLan = &updateDeviceCellularGatewayLan
 	return r
 }

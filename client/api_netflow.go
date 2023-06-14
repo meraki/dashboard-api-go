@@ -144,10 +144,10 @@ type NetflowApiUpdateNetworkNetflowRequest struct {
 	ctx context.Context
 	ApiService *NetflowApiService
 	networkId string
-	updateNetworkNetflow *InlineObject93
+	updateNetworkNetflow *UpdateNetworkNetflowRequest
 }
 
-func (r NetflowApiUpdateNetworkNetflowRequest) UpdateNetworkNetflow(updateNetworkNetflow InlineObject93) NetflowApiUpdateNetworkNetflowRequest {
+func (r NetflowApiUpdateNetworkNetflowRequest) UpdateNetworkNetflow(updateNetworkNetflow UpdateNetworkNetflowRequest) NetflowApiUpdateNetworkNetflowRequest {
 	r.updateNetworkNetflow = &updateNetworkNetflow
 	return r
 }

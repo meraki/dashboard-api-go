@@ -27,15 +27,15 @@ type AccessPoliciesApiCreateNetworkSwitchAccessPolicyRequest struct {
 	ctx context.Context
 	ApiService *AccessPoliciesApiService
 	networkId string
-	createNetworkSwitchAccessPolicy *InlineObject110
+	createNetworkSwitchAccessPolicy *CreateNetworkSwitchAccessPolicyRequest
 }
 
-func (r AccessPoliciesApiCreateNetworkSwitchAccessPolicyRequest) CreateNetworkSwitchAccessPolicy(createNetworkSwitchAccessPolicy InlineObject110) AccessPoliciesApiCreateNetworkSwitchAccessPolicyRequest {
+func (r AccessPoliciesApiCreateNetworkSwitchAccessPolicyRequest) CreateNetworkSwitchAccessPolicy(createNetworkSwitchAccessPolicy CreateNetworkSwitchAccessPolicyRequest) AccessPoliciesApiCreateNetworkSwitchAccessPolicyRequest {
 	r.createNetworkSwitchAccessPolicy = &createNetworkSwitchAccessPolicy
 	return r
 }
 
-func (r AccessPoliciesApiCreateNetworkSwitchAccessPolicyRequest) Execute() (*InlineResponse20065, *http.Response, error) {
+func (r AccessPoliciesApiCreateNetworkSwitchAccessPolicyRequest) Execute() (*GetNetworkSwitchAccessPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkSwitchAccessPolicyExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *AccessPoliciesApiService) CreateNetworkSwitchAccessPolicy(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse20065
-func (a *AccessPoliciesApiService) CreateNetworkSwitchAccessPolicyExecute(r AccessPoliciesApiCreateNetworkSwitchAccessPolicyRequest) (*InlineResponse20065, *http.Response, error) {
+//  @return GetNetworkSwitchAccessPolicies200ResponseInner
+func (a *AccessPoliciesApiService) CreateNetworkSwitchAccessPolicyExecute(r AccessPoliciesApiCreateNetworkSwitchAccessPolicyRequest) (*GetNetworkSwitchAccessPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20065
+		localVarReturnValue  *GetNetworkSwitchAccessPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessPoliciesApiService.CreateNetworkSwitchAccessPolicy")
@@ -267,7 +267,7 @@ type AccessPoliciesApiGetNetworkSwitchAccessPoliciesRequest struct {
 	networkId string
 }
 
-func (r AccessPoliciesApiGetNetworkSwitchAccessPoliciesRequest) Execute() ([]InlineResponse20065, *http.Response, error) {
+func (r AccessPoliciesApiGetNetworkSwitchAccessPoliciesRequest) Execute() ([]GetNetworkSwitchAccessPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchAccessPoliciesExecute(r)
 }
 
@@ -289,13 +289,13 @@ func (a *AccessPoliciesApiService) GetNetworkSwitchAccessPolicies(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20065
-func (a *AccessPoliciesApiService) GetNetworkSwitchAccessPoliciesExecute(r AccessPoliciesApiGetNetworkSwitchAccessPoliciesRequest) ([]InlineResponse20065, *http.Response, error) {
+//  @return []GetNetworkSwitchAccessPolicies200ResponseInner
+func (a *AccessPoliciesApiService) GetNetworkSwitchAccessPoliciesExecute(r AccessPoliciesApiGetNetworkSwitchAccessPoliciesRequest) ([]GetNetworkSwitchAccessPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20065
+		localVarReturnValue  []GetNetworkSwitchAccessPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessPoliciesApiService.GetNetworkSwitchAccessPolicies")
@@ -385,7 +385,7 @@ type AccessPoliciesApiGetNetworkSwitchAccessPolicyRequest struct {
 	accessPolicyNumber string
 }
 
-func (r AccessPoliciesApiGetNetworkSwitchAccessPolicyRequest) Execute() (*InlineResponse20065, *http.Response, error) {
+func (r AccessPoliciesApiGetNetworkSwitchAccessPolicyRequest) Execute() (*GetNetworkSwitchAccessPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchAccessPolicyExecute(r)
 }
 
@@ -409,13 +409,13 @@ func (a *AccessPoliciesApiService) GetNetworkSwitchAccessPolicy(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20065
-func (a *AccessPoliciesApiService) GetNetworkSwitchAccessPolicyExecute(r AccessPoliciesApiGetNetworkSwitchAccessPolicyRequest) (*InlineResponse20065, *http.Response, error) {
+//  @return GetNetworkSwitchAccessPolicies200ResponseInner
+func (a *AccessPoliciesApiService) GetNetworkSwitchAccessPolicyExecute(r AccessPoliciesApiGetNetworkSwitchAccessPolicyRequest) (*GetNetworkSwitchAccessPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20065
+		localVarReturnValue  *GetNetworkSwitchAccessPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessPoliciesApiService.GetNetworkSwitchAccessPolicy")
@@ -504,15 +504,15 @@ type AccessPoliciesApiUpdateNetworkSwitchAccessPolicyRequest struct {
 	ApiService *AccessPoliciesApiService
 	networkId string
 	accessPolicyNumber string
-	updateNetworkSwitchAccessPolicy *InlineObject111
+	updateNetworkSwitchAccessPolicy *UpdateNetworkSwitchAccessPolicyRequest
 }
 
-func (r AccessPoliciesApiUpdateNetworkSwitchAccessPolicyRequest) UpdateNetworkSwitchAccessPolicy(updateNetworkSwitchAccessPolicy InlineObject111) AccessPoliciesApiUpdateNetworkSwitchAccessPolicyRequest {
+func (r AccessPoliciesApiUpdateNetworkSwitchAccessPolicyRequest) UpdateNetworkSwitchAccessPolicy(updateNetworkSwitchAccessPolicy UpdateNetworkSwitchAccessPolicyRequest) AccessPoliciesApiUpdateNetworkSwitchAccessPolicyRequest {
 	r.updateNetworkSwitchAccessPolicy = &updateNetworkSwitchAccessPolicy
 	return r
 }
 
-func (r AccessPoliciesApiUpdateNetworkSwitchAccessPolicyRequest) Execute() (*InlineResponse20065, *http.Response, error) {
+func (r AccessPoliciesApiUpdateNetworkSwitchAccessPolicyRequest) Execute() (*GetNetworkSwitchAccessPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSwitchAccessPolicyExecute(r)
 }
 
@@ -536,13 +536,13 @@ func (a *AccessPoliciesApiService) UpdateNetworkSwitchAccessPolicy(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse20065
-func (a *AccessPoliciesApiService) UpdateNetworkSwitchAccessPolicyExecute(r AccessPoliciesApiUpdateNetworkSwitchAccessPolicyRequest) (*InlineResponse20065, *http.Response, error) {
+//  @return GetNetworkSwitchAccessPolicies200ResponseInner
+func (a *AccessPoliciesApiService) UpdateNetworkSwitchAccessPolicyExecute(r AccessPoliciesApiUpdateNetworkSwitchAccessPolicyRequest) (*GetNetworkSwitchAccessPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20065
+		localVarReturnValue  *GetNetworkSwitchAccessPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessPoliciesApiService.UpdateNetworkSwitchAccessPolicy")

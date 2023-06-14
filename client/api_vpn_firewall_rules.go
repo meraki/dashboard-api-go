@@ -144,15 +144,15 @@ type VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest st
 	ctx context.Context
 	ApiService *VpnFirewallRulesApiService
 	organizationId string
-	updateOrganizationApplianceVpnVpnFirewallRules *InlineObject184
+	updateOrganizationApplianceVpnVpnFirewallRules *UpdateOrganizationApplianceVpnVpnFirewallRulesRequest
 }
 
-func (r VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) UpdateOrganizationApplianceVpnVpnFirewallRules(updateOrganizationApplianceVpnVpnFirewallRules InlineObject184) VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest {
+func (r VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) UpdateOrganizationApplianceVpnVpnFirewallRules(updateOrganizationApplianceVpnVpnFirewallRules UpdateOrganizationApplianceVpnVpnFirewallRulesRequest) VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest {
 	r.updateOrganizationApplianceVpnVpnFirewallRules = &updateOrganizationApplianceVpnVpnFirewallRules
 	return r
 }
 
-func (r VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) Execute() (*InlineResponse20095, *http.Response, error) {
+func (r VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) Execute() (*UpdateOrganizationApplianceVpnVpnFirewallRules200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationApplianceVpnVpnFirewallRulesExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *VpnFirewallRulesApiService) UpdateOrganizationApplianceVpnVpnFirewallRu
 }
 
 // Execute executes the request
-//  @return InlineResponse20095
-func (a *VpnFirewallRulesApiService) UpdateOrganizationApplianceVpnVpnFirewallRulesExecute(r VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) (*InlineResponse20095, *http.Response, error) {
+//  @return UpdateOrganizationApplianceVpnVpnFirewallRules200Response
+func (a *VpnFirewallRulesApiService) UpdateOrganizationApplianceVpnVpnFirewallRulesExecute(r VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) (*UpdateOrganizationApplianceVpnVpnFirewallRules200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20095
+		localVarReturnValue  *UpdateOrganizationApplianceVpnVpnFirewallRules200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VpnFirewallRulesApiService.UpdateOrganizationApplianceVpnVpnFirewallRules")

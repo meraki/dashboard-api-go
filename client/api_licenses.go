@@ -27,15 +27,15 @@ type LicensesApiAssignOrganizationLicensesSeatsRequest struct {
 	ctx context.Context
 	ApiService *LicensesApiService
 	organizationId string
-	assignOrganizationLicensesSeats *InlineObject204
+	assignOrganizationLicensesSeats *AssignOrganizationLicensesSeatsRequest
 }
 
-func (r LicensesApiAssignOrganizationLicensesSeatsRequest) AssignOrganizationLicensesSeats(assignOrganizationLicensesSeats InlineObject204) LicensesApiAssignOrganizationLicensesSeatsRequest {
+func (r LicensesApiAssignOrganizationLicensesSeatsRequest) AssignOrganizationLicensesSeats(assignOrganizationLicensesSeats AssignOrganizationLicensesSeatsRequest) LicensesApiAssignOrganizationLicensesSeatsRequest {
 	r.assignOrganizationLicensesSeats = &assignOrganizationLicensesSeats
 	return r
 }
 
-func (r LicensesApiAssignOrganizationLicensesSeatsRequest) Execute() (*InlineResponse200119, *http.Response, error) {
+func (r LicensesApiAssignOrganizationLicensesSeatsRequest) Execute() (*AssignOrganizationLicensesSeats200Response, *http.Response, error) {
 	return r.ApiService.AssignOrganizationLicensesSeatsExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *LicensesApiService) AssignOrganizationLicensesSeats(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse200119
-func (a *LicensesApiService) AssignOrganizationLicensesSeatsExecute(r LicensesApiAssignOrganizationLicensesSeatsRequest) (*InlineResponse200119, *http.Response, error) {
+//  @return AssignOrganizationLicensesSeats200Response
+func (a *LicensesApiService) AssignOrganizationLicensesSeatsExecute(r LicensesApiAssignOrganizationLicensesSeatsRequest) (*AssignOrganizationLicensesSeats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200119
+		localVarReturnValue  *AssignOrganizationLicensesSeats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.AssignOrganizationLicensesSeats")
@@ -158,7 +158,7 @@ type LicensesApiGetOrganizationLicenseRequest struct {
 	licenseId string
 }
 
-func (r LicensesApiGetOrganizationLicenseRequest) Execute() (*InlineResponse200118, *http.Response, error) {
+func (r LicensesApiGetOrganizationLicenseRequest) Execute() (*GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationLicenseExecute(r)
 }
 
@@ -182,13 +182,13 @@ func (a *LicensesApiService) GetOrganizationLicense(ctx context.Context, organiz
 }
 
 // Execute executes the request
-//  @return InlineResponse200118
-func (a *LicensesApiService) GetOrganizationLicenseExecute(r LicensesApiGetOrganizationLicenseRequest) (*InlineResponse200118, *http.Response, error) {
+//  @return GetOrganizationLicenses200ResponseInner
+func (a *LicensesApiService) GetOrganizationLicenseExecute(r LicensesApiGetOrganizationLicenseRequest) (*GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200118
+		localVarReturnValue  *GetOrganizationLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.GetOrganizationLicense")
@@ -320,7 +320,7 @@ func (r LicensesApiGetOrganizationLicensesRequest) State(state string) LicensesA
 	return r
 }
 
-func (r LicensesApiGetOrganizationLicensesRequest) Execute() ([]InlineResponse200118, *http.Response, error) {
+func (r LicensesApiGetOrganizationLicensesRequest) Execute() ([]GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationLicensesExecute(r)
 }
 
@@ -342,13 +342,13 @@ func (a *LicensesApiService) GetOrganizationLicenses(ctx context.Context, organi
 }
 
 // Execute executes the request
-//  @return []InlineResponse200118
-func (a *LicensesApiService) GetOrganizationLicensesExecute(r LicensesApiGetOrganizationLicensesRequest) ([]InlineResponse200118, *http.Response, error) {
+//  @return []GetOrganizationLicenses200ResponseInner
+func (a *LicensesApiService) GetOrganizationLicensesExecute(r LicensesApiGetOrganizationLicensesRequest) ([]GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200118
+		localVarReturnValue  []GetOrganizationLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.GetOrganizationLicenses")
@@ -607,7 +607,7 @@ func (r LicensesApiGetOrganizationLicensingCotermLicensesRequest) Expired(expire
 	return r
 }
 
-func (r LicensesApiGetOrganizationLicensingCotermLicensesRequest) Execute() ([]InlineResponse200122, *http.Response, error) {
+func (r LicensesApiGetOrganizationLicensingCotermLicensesRequest) Execute() ([]GetOrganizationLicensingCotermLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationLicensingCotermLicensesExecute(r)
 }
 
@@ -629,13 +629,13 @@ func (a *LicensesApiService) GetOrganizationLicensingCotermLicenses(ctx context.
 }
 
 // Execute executes the request
-//  @return []InlineResponse200122
-func (a *LicensesApiService) GetOrganizationLicensingCotermLicensesExecute(r LicensesApiGetOrganizationLicensingCotermLicensesRequest) ([]InlineResponse200122, *http.Response, error) {
+//  @return []GetOrganizationLicensingCotermLicenses200ResponseInner
+func (a *LicensesApiService) GetOrganizationLicensingCotermLicensesExecute(r LicensesApiGetOrganizationLicensingCotermLicensesRequest) ([]GetOrganizationLicensingCotermLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200122
+		localVarReturnValue  []GetOrganizationLicensingCotermLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.GetOrganizationLicensingCotermLicenses")
@@ -737,15 +737,15 @@ type LicensesApiMoveOrganizationLicensesRequest struct {
 	ctx context.Context
 	ApiService *LicensesApiService
 	organizationId string
-	moveOrganizationLicenses *InlineObject205
+	moveOrganizationLicenses *MoveOrganizationLicensesRequest
 }
 
-func (r LicensesApiMoveOrganizationLicensesRequest) MoveOrganizationLicenses(moveOrganizationLicenses InlineObject205) LicensesApiMoveOrganizationLicensesRequest {
+func (r LicensesApiMoveOrganizationLicensesRequest) MoveOrganizationLicenses(moveOrganizationLicenses MoveOrganizationLicensesRequest) LicensesApiMoveOrganizationLicensesRequest {
 	r.moveOrganizationLicenses = &moveOrganizationLicenses
 	return r
 }
 
-func (r LicensesApiMoveOrganizationLicensesRequest) Execute() (*InlineResponse200120, *http.Response, error) {
+func (r LicensesApiMoveOrganizationLicensesRequest) Execute() (*MoveOrganizationLicenses200Response, *http.Response, error) {
 	return r.ApiService.MoveOrganizationLicensesExecute(r)
 }
 
@@ -767,13 +767,13 @@ func (a *LicensesApiService) MoveOrganizationLicenses(ctx context.Context, organ
 }
 
 // Execute executes the request
-//  @return InlineResponse200120
-func (a *LicensesApiService) MoveOrganizationLicensesExecute(r LicensesApiMoveOrganizationLicensesRequest) (*InlineResponse200120, *http.Response, error) {
+//  @return MoveOrganizationLicenses200Response
+func (a *LicensesApiService) MoveOrganizationLicensesExecute(r LicensesApiMoveOrganizationLicensesRequest) (*MoveOrganizationLicenses200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200120
+		localVarReturnValue  *MoveOrganizationLicenses200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.MoveOrganizationLicenses")
@@ -865,15 +865,15 @@ type LicensesApiMoveOrganizationLicensesSeatsRequest struct {
 	ctx context.Context
 	ApiService *LicensesApiService
 	organizationId string
-	moveOrganizationLicensesSeats *InlineObject206
+	moveOrganizationLicensesSeats *MoveOrganizationLicensesSeatsRequest
 }
 
-func (r LicensesApiMoveOrganizationLicensesSeatsRequest) MoveOrganizationLicensesSeats(moveOrganizationLicensesSeats InlineObject206) LicensesApiMoveOrganizationLicensesSeatsRequest {
+func (r LicensesApiMoveOrganizationLicensesSeatsRequest) MoveOrganizationLicensesSeats(moveOrganizationLicensesSeats MoveOrganizationLicensesSeatsRequest) LicensesApiMoveOrganizationLicensesSeatsRequest {
 	r.moveOrganizationLicensesSeats = &moveOrganizationLicensesSeats
 	return r
 }
 
-func (r LicensesApiMoveOrganizationLicensesSeatsRequest) Execute() (*InlineResponse200121, *http.Response, error) {
+func (r LicensesApiMoveOrganizationLicensesSeatsRequest) Execute() (*MoveOrganizationLicensesSeats200Response, *http.Response, error) {
 	return r.ApiService.MoveOrganizationLicensesSeatsExecute(r)
 }
 
@@ -895,13 +895,13 @@ func (a *LicensesApiService) MoveOrganizationLicensesSeats(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse200121
-func (a *LicensesApiService) MoveOrganizationLicensesSeatsExecute(r LicensesApiMoveOrganizationLicensesSeatsRequest) (*InlineResponse200121, *http.Response, error) {
+//  @return MoveOrganizationLicensesSeats200Response
+func (a *LicensesApiService) MoveOrganizationLicensesSeatsExecute(r LicensesApiMoveOrganizationLicensesSeatsRequest) (*MoveOrganizationLicensesSeats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200121
+		localVarReturnValue  *MoveOrganizationLicensesSeats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.MoveOrganizationLicensesSeats")
@@ -993,15 +993,15 @@ type LicensesApiMoveOrganizationLicensingCotermLicensesRequest struct {
 	ctx context.Context
 	ApiService *LicensesApiService
 	organizationId string
-	moveOrganizationLicensingCotermLicenses *InlineObject209
+	moveOrganizationLicensingCotermLicenses *MoveOrganizationLicensingCotermLicensesRequest
 }
 
-func (r LicensesApiMoveOrganizationLicensingCotermLicensesRequest) MoveOrganizationLicensingCotermLicenses(moveOrganizationLicensingCotermLicenses InlineObject209) LicensesApiMoveOrganizationLicensingCotermLicensesRequest {
+func (r LicensesApiMoveOrganizationLicensingCotermLicensesRequest) MoveOrganizationLicensingCotermLicenses(moveOrganizationLicensingCotermLicenses MoveOrganizationLicensingCotermLicensesRequest) LicensesApiMoveOrganizationLicensingCotermLicensesRequest {
 	r.moveOrganizationLicensingCotermLicenses = &moveOrganizationLicensingCotermLicenses
 	return r
 }
 
-func (r LicensesApiMoveOrganizationLicensingCotermLicensesRequest) Execute() (*InlineResponse200123, *http.Response, error) {
+func (r LicensesApiMoveOrganizationLicensingCotermLicensesRequest) Execute() (*MoveOrganizationLicensingCotermLicenses200Response, *http.Response, error) {
 	return r.ApiService.MoveOrganizationLicensingCotermLicensesExecute(r)
 }
 
@@ -1023,13 +1023,13 @@ func (a *LicensesApiService) MoveOrganizationLicensingCotermLicenses(ctx context
 }
 
 // Execute executes the request
-//  @return InlineResponse200123
-func (a *LicensesApiService) MoveOrganizationLicensingCotermLicensesExecute(r LicensesApiMoveOrganizationLicensingCotermLicensesRequest) (*InlineResponse200123, *http.Response, error) {
+//  @return MoveOrganizationLicensingCotermLicenses200Response
+func (a *LicensesApiService) MoveOrganizationLicensingCotermLicensesExecute(r LicensesApiMoveOrganizationLicensingCotermLicensesRequest) (*MoveOrganizationLicensingCotermLicenses200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200123
+		localVarReturnValue  *MoveOrganizationLicensingCotermLicenses200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.MoveOrganizationLicensingCotermLicenses")
@@ -1121,15 +1121,15 @@ type LicensesApiRenewOrganizationLicensesSeatsRequest struct {
 	ctx context.Context
 	ApiService *LicensesApiService
 	organizationId string
-	renewOrganizationLicensesSeats *InlineObject207
+	renewOrganizationLicensesSeats *RenewOrganizationLicensesSeatsRequest
 }
 
-func (r LicensesApiRenewOrganizationLicensesSeatsRequest) RenewOrganizationLicensesSeats(renewOrganizationLicensesSeats InlineObject207) LicensesApiRenewOrganizationLicensesSeatsRequest {
+func (r LicensesApiRenewOrganizationLicensesSeatsRequest) RenewOrganizationLicensesSeats(renewOrganizationLicensesSeats RenewOrganizationLicensesSeatsRequest) LicensesApiRenewOrganizationLicensesSeatsRequest {
 	r.renewOrganizationLicensesSeats = &renewOrganizationLicensesSeats
 	return r
 }
 
-func (r LicensesApiRenewOrganizationLicensesSeatsRequest) Execute() (*InlineResponse200119, *http.Response, error) {
+func (r LicensesApiRenewOrganizationLicensesSeatsRequest) Execute() (*AssignOrganizationLicensesSeats200Response, *http.Response, error) {
 	return r.ApiService.RenewOrganizationLicensesSeatsExecute(r)
 }
 
@@ -1151,13 +1151,13 @@ func (a *LicensesApiService) RenewOrganizationLicensesSeats(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse200119
-func (a *LicensesApiService) RenewOrganizationLicensesSeatsExecute(r LicensesApiRenewOrganizationLicensesSeatsRequest) (*InlineResponse200119, *http.Response, error) {
+//  @return AssignOrganizationLicensesSeats200Response
+func (a *LicensesApiService) RenewOrganizationLicensesSeatsExecute(r LicensesApiRenewOrganizationLicensesSeatsRequest) (*AssignOrganizationLicensesSeats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200119
+		localVarReturnValue  *AssignOrganizationLicensesSeats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.RenewOrganizationLicensesSeats")
@@ -1250,15 +1250,15 @@ type LicensesApiUpdateOrganizationLicenseRequest struct {
 	ApiService *LicensesApiService
 	organizationId string
 	licenseId string
-	updateOrganizationLicense *InlineObject208
+	updateOrganizationLicense *UpdateOrganizationLicenseRequest
 }
 
-func (r LicensesApiUpdateOrganizationLicenseRequest) UpdateOrganizationLicense(updateOrganizationLicense InlineObject208) LicensesApiUpdateOrganizationLicenseRequest {
+func (r LicensesApiUpdateOrganizationLicenseRequest) UpdateOrganizationLicense(updateOrganizationLicense UpdateOrganizationLicenseRequest) LicensesApiUpdateOrganizationLicenseRequest {
 	r.updateOrganizationLicense = &updateOrganizationLicense
 	return r
 }
 
-func (r LicensesApiUpdateOrganizationLicenseRequest) Execute() (*InlineResponse200118, *http.Response, error) {
+func (r LicensesApiUpdateOrganizationLicenseRequest) Execute() (*GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationLicenseExecute(r)
 }
 
@@ -1282,13 +1282,13 @@ func (a *LicensesApiService) UpdateOrganizationLicense(ctx context.Context, orga
 }
 
 // Execute executes the request
-//  @return InlineResponse200118
-func (a *LicensesApiService) UpdateOrganizationLicenseExecute(r LicensesApiUpdateOrganizationLicenseRequest) (*InlineResponse200118, *http.Response, error) {
+//  @return GetOrganizationLicenses200ResponseInner
+func (a *LicensesApiService) UpdateOrganizationLicenseExecute(r LicensesApiUpdateOrganizationLicenseRequest) (*GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200118
+		localVarReturnValue  *GetOrganizationLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.UpdateOrganizationLicense")

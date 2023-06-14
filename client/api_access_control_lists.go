@@ -29,7 +29,7 @@ type AccessControlListsApiGetNetworkSwitchAccessControlListsRequest struct {
 	networkId string
 }
 
-func (r AccessControlListsApiGetNetworkSwitchAccessControlListsRequest) Execute() (*InlineResponse20064, *http.Response, error) {
+func (r AccessControlListsApiGetNetworkSwitchAccessControlListsRequest) Execute() (*GetNetworkSwitchAccessControlLists200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchAccessControlListsExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *AccessControlListsApiService) GetNetworkSwitchAccessControlLists(ctx co
 }
 
 // Execute executes the request
-//  @return InlineResponse20064
-func (a *AccessControlListsApiService) GetNetworkSwitchAccessControlListsExecute(r AccessControlListsApiGetNetworkSwitchAccessControlListsRequest) (*InlineResponse20064, *http.Response, error) {
+//  @return GetNetworkSwitchAccessControlLists200Response
+func (a *AccessControlListsApiService) GetNetworkSwitchAccessControlListsExecute(r AccessControlListsApiGetNetworkSwitchAccessControlListsRequest) (*GetNetworkSwitchAccessControlLists200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20064
+		localVarReturnValue  *GetNetworkSwitchAccessControlLists200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessControlListsApiService.GetNetworkSwitchAccessControlLists")
@@ -144,15 +144,15 @@ type AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest struct {
 	ctx context.Context
 	ApiService *AccessControlListsApiService
 	networkId string
-	updateNetworkSwitchAccessControlLists *InlineObject109
+	updateNetworkSwitchAccessControlLists *UpdateNetworkSwitchAccessControlListsRequest
 }
 
-func (r AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest) UpdateNetworkSwitchAccessControlLists(updateNetworkSwitchAccessControlLists InlineObject109) AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest {
+func (r AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest) UpdateNetworkSwitchAccessControlLists(updateNetworkSwitchAccessControlLists UpdateNetworkSwitchAccessControlListsRequest) AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest {
 	r.updateNetworkSwitchAccessControlLists = &updateNetworkSwitchAccessControlLists
 	return r
 }
 
-func (r AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest) Execute() (*InlineResponse20064, *http.Response, error) {
+func (r AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest) Execute() (*GetNetworkSwitchAccessControlLists200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSwitchAccessControlListsExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *AccessControlListsApiService) UpdateNetworkSwitchAccessControlLists(ctx
 }
 
 // Execute executes the request
-//  @return InlineResponse20064
-func (a *AccessControlListsApiService) UpdateNetworkSwitchAccessControlListsExecute(r AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest) (*InlineResponse20064, *http.Response, error) {
+//  @return GetNetworkSwitchAccessControlLists200Response
+func (a *AccessControlListsApiService) UpdateNetworkSwitchAccessControlListsExecute(r AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest) (*GetNetworkSwitchAccessControlLists200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20064
+		localVarReturnValue  *GetNetworkSwitchAccessControlLists200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessControlListsApiService.UpdateNetworkSwitchAccessControlLists")

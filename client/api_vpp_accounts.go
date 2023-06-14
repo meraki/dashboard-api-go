@@ -30,7 +30,7 @@ type VppAccountsApiGetOrganizationSmVppAccountRequest struct {
 	vppAccountId string
 }
 
-func (r VppAccountsApiGetOrganizationSmVppAccountRequest) Execute() (*InlineResponse200132, *http.Response, error) {
+func (r VppAccountsApiGetOrganizationSmVppAccountRequest) Execute() (*GetOrganizationSmVppAccounts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSmVppAccountExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *VppAccountsApiService) GetOrganizationSmVppAccount(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse200132
-func (a *VppAccountsApiService) GetOrganizationSmVppAccountExecute(r VppAccountsApiGetOrganizationSmVppAccountRequest) (*InlineResponse200132, *http.Response, error) {
+//  @return GetOrganizationSmVppAccounts200ResponseInner
+func (a *VppAccountsApiService) GetOrganizationSmVppAccountExecute(r VppAccountsApiGetOrganizationSmVppAccountRequest) (*GetOrganizationSmVppAccounts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200132
+		localVarReturnValue  *GetOrganizationSmVppAccounts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VppAccountsApiService.GetOrganizationSmVppAccount")
@@ -150,7 +150,7 @@ type VppAccountsApiGetOrganizationSmVppAccountsRequest struct {
 	organizationId string
 }
 
-func (r VppAccountsApiGetOrganizationSmVppAccountsRequest) Execute() ([]InlineResponse200132, *http.Response, error) {
+func (r VppAccountsApiGetOrganizationSmVppAccountsRequest) Execute() ([]GetOrganizationSmVppAccounts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSmVppAccountsExecute(r)
 }
 
@@ -172,13 +172,13 @@ func (a *VppAccountsApiService) GetOrganizationSmVppAccounts(ctx context.Context
 }
 
 // Execute executes the request
-//  @return []InlineResponse200132
-func (a *VppAccountsApiService) GetOrganizationSmVppAccountsExecute(r VppAccountsApiGetOrganizationSmVppAccountsRequest) ([]InlineResponse200132, *http.Response, error) {
+//  @return []GetOrganizationSmVppAccounts200ResponseInner
+func (a *VppAccountsApiService) GetOrganizationSmVppAccountsExecute(r VppAccountsApiGetOrganizationSmVppAccountsRequest) ([]GetOrganizationSmVppAccounts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200132
+		localVarReturnValue  []GetOrganizationSmVppAccounts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VppAccountsApiService.GetOrganizationSmVppAccounts")

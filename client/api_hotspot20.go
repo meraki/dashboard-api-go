@@ -149,10 +149,10 @@ type Hotspot20ApiUpdateNetworkWirelessSsidHotspot20Request struct {
 	ApiService *Hotspot20ApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidHotspot20 *InlineObject160
+	updateNetworkWirelessSsidHotspot20 *UpdateNetworkWirelessSsidHotspot20Request
 }
 
-func (r Hotspot20ApiUpdateNetworkWirelessSsidHotspot20Request) UpdateNetworkWirelessSsidHotspot20(updateNetworkWirelessSsidHotspot20 InlineObject160) Hotspot20ApiUpdateNetworkWirelessSsidHotspot20Request {
+func (r Hotspot20ApiUpdateNetworkWirelessSsidHotspot20Request) UpdateNetworkWirelessSsidHotspot20(updateNetworkWirelessSsidHotspot20 UpdateNetworkWirelessSsidHotspot20Request) Hotspot20ApiUpdateNetworkWirelessSsidHotspot20Request {
 	r.updateNetworkWirelessSsidHotspot20 = &updateNetworkWirelessSsidHotspot20
 	return r
 }

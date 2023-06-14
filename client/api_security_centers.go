@@ -30,7 +30,7 @@ type SecurityCentersApiGetNetworkSmDeviceSecurityCentersRequest struct {
 	deviceId string
 }
 
-func (r SecurityCentersApiGetNetworkSmDeviceSecurityCentersRequest) Execute() ([]InlineResponse20056, *http.Response, error) {
+func (r SecurityCentersApiGetNetworkSmDeviceSecurityCentersRequest) Execute() ([]GetNetworkSmDeviceSecurityCenters200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceSecurityCentersExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *SecurityCentersApiService) GetNetworkSmDeviceSecurityCenters(ctx contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse20056
-func (a *SecurityCentersApiService) GetNetworkSmDeviceSecurityCentersExecute(r SecurityCentersApiGetNetworkSmDeviceSecurityCentersRequest) ([]InlineResponse20056, *http.Response, error) {
+//  @return []GetNetworkSmDeviceSecurityCenters200ResponseInner
+func (a *SecurityCentersApiService) GetNetworkSmDeviceSecurityCentersExecute(r SecurityCentersApiGetNetworkSmDeviceSecurityCentersRequest) ([]GetNetworkSmDeviceSecurityCenters200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20056
+		localVarReturnValue  []GetNetworkSmDeviceSecurityCenters200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityCentersApiService.GetNetworkSmDeviceSecurityCenters")

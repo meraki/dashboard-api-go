@@ -27,10 +27,10 @@ type EarlyAccessApiCreateOrganizationEarlyAccessFeaturesOptInRequest struct {
 	ctx context.Context
 	ApiService *EarlyAccessApiService
 	organizationId string
-	createOrganizationEarlyAccessFeaturesOptIn *InlineObject195
+	createOrganizationEarlyAccessFeaturesOptIn *CreateOrganizationEarlyAccessFeaturesOptInRequest
 }
 
-func (r EarlyAccessApiCreateOrganizationEarlyAccessFeaturesOptInRequest) CreateOrganizationEarlyAccessFeaturesOptIn(createOrganizationEarlyAccessFeaturesOptIn InlineObject195) EarlyAccessApiCreateOrganizationEarlyAccessFeaturesOptInRequest {
+func (r EarlyAccessApiCreateOrganizationEarlyAccessFeaturesOptInRequest) CreateOrganizationEarlyAccessFeaturesOptIn(createOrganizationEarlyAccessFeaturesOptIn CreateOrganizationEarlyAccessFeaturesOptInRequest) EarlyAccessApiCreateOrganizationEarlyAccessFeaturesOptInRequest {
 	r.createOrganizationEarlyAccessFeaturesOptIn = &createOrganizationEarlyAccessFeaturesOptIn
 	return r
 }
@@ -267,7 +267,7 @@ type EarlyAccessApiGetOrganizationEarlyAccessFeaturesRequest struct {
 	organizationId string
 }
 
-func (r EarlyAccessApiGetOrganizationEarlyAccessFeaturesRequest) Execute() ([]InlineResponse200111, *http.Response, error) {
+func (r EarlyAccessApiGetOrganizationEarlyAccessFeaturesRequest) Execute() ([]GetOrganizationEarlyAccessFeatures200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationEarlyAccessFeaturesExecute(r)
 }
 
@@ -289,13 +289,13 @@ func (a *EarlyAccessApiService) GetOrganizationEarlyAccessFeatures(ctx context.C
 }
 
 // Execute executes the request
-//  @return []InlineResponse200111
-func (a *EarlyAccessApiService) GetOrganizationEarlyAccessFeaturesExecute(r EarlyAccessApiGetOrganizationEarlyAccessFeaturesRequest) ([]InlineResponse200111, *http.Response, error) {
+//  @return []GetOrganizationEarlyAccessFeatures200ResponseInner
+func (a *EarlyAccessApiService) GetOrganizationEarlyAccessFeaturesExecute(r EarlyAccessApiGetOrganizationEarlyAccessFeaturesRequest) ([]GetOrganizationEarlyAccessFeatures200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200111
+		localVarReturnValue  []GetOrganizationEarlyAccessFeatures200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EarlyAccessApiService.GetOrganizationEarlyAccessFeatures")
@@ -621,10 +621,10 @@ type EarlyAccessApiUpdateOrganizationEarlyAccessFeaturesOptInRequest struct {
 	ApiService *EarlyAccessApiService
 	organizationId string
 	optInId string
-	updateOrganizationEarlyAccessFeaturesOptIn *InlineObject196
+	updateOrganizationEarlyAccessFeaturesOptIn *UpdateOrganizationEarlyAccessFeaturesOptInRequest
 }
 
-func (r EarlyAccessApiUpdateOrganizationEarlyAccessFeaturesOptInRequest) UpdateOrganizationEarlyAccessFeaturesOptIn(updateOrganizationEarlyAccessFeaturesOptIn InlineObject196) EarlyAccessApiUpdateOrganizationEarlyAccessFeaturesOptInRequest {
+func (r EarlyAccessApiUpdateOrganizationEarlyAccessFeaturesOptInRequest) UpdateOrganizationEarlyAccessFeaturesOptIn(updateOrganizationEarlyAccessFeaturesOptIn UpdateOrganizationEarlyAccessFeaturesOptInRequest) EarlyAccessApiUpdateOrganizationEarlyAccessFeaturesOptInRequest {
 	r.updateOrganizationEarlyAccessFeaturesOptIn = &updateOrganizationEarlyAccessFeaturesOptIn
 	return r
 }

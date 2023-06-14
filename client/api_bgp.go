@@ -144,10 +144,10 @@ type BgpApiUpdateNetworkApplianceVpnBgpRequest struct {
 	ctx context.Context
 	ApiService *BgpApiService
 	networkId string
-	updateNetworkApplianceVpnBgp *InlineObject59
+	updateNetworkApplianceVpnBgp *UpdateNetworkApplianceVpnBgpRequest
 }
 
-func (r BgpApiUpdateNetworkApplianceVpnBgpRequest) UpdateNetworkApplianceVpnBgp(updateNetworkApplianceVpnBgp InlineObject59) BgpApiUpdateNetworkApplianceVpnBgpRequest {
+func (r BgpApiUpdateNetworkApplianceVpnBgpRequest) UpdateNetworkApplianceVpnBgp(updateNetworkApplianceVpnBgp UpdateNetworkApplianceVpnBgpRequest) BgpApiUpdateNetworkApplianceVpnBgpRequest {
 	r.updateNetworkApplianceVpnBgp = &updateNetworkApplianceVpnBgp
 	return r
 }

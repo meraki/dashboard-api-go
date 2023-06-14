@@ -29,7 +29,7 @@ type UplinkSelectionApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest s
 	networkId string
 }
 
-func (r UplinkSelectionApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest) Execute() (*InlineResponse20019, *http.Response, error) {
+func (r UplinkSelectionApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest) Execute() (*GetNetworkApplianceTrafficShapingUplinkSelection200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceTrafficShapingUplinkSelectionExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *UplinkSelectionApiService) GetNetworkApplianceTrafficShapingUplinkSelec
 }
 
 // Execute executes the request
-//  @return InlineResponse20019
-func (a *UplinkSelectionApiService) GetNetworkApplianceTrafficShapingUplinkSelectionExecute(r UplinkSelectionApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest) (*InlineResponse20019, *http.Response, error) {
+//  @return GetNetworkApplianceTrafficShapingUplinkSelection200Response
+func (a *UplinkSelectionApiService) GetNetworkApplianceTrafficShapingUplinkSelectionExecute(r UplinkSelectionApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest) (*GetNetworkApplianceTrafficShapingUplinkSelection200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20019
+		localVarReturnValue  *GetNetworkApplianceTrafficShapingUplinkSelection200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinkSelectionApiService.GetNetworkApplianceTrafficShapingUplinkSelection")
@@ -144,15 +144,15 @@ type UplinkSelectionApiUpdateNetworkApplianceTrafficShapingUplinkSelectionReques
 	ctx context.Context
 	ApiService *UplinkSelectionApiService
 	networkId string
-	updateNetworkApplianceTrafficShapingUplinkSelection *InlineObject55
+	updateNetworkApplianceTrafficShapingUplinkSelection *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest
 }
 
-func (r UplinkSelectionApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) UpdateNetworkApplianceTrafficShapingUplinkSelection(updateNetworkApplianceTrafficShapingUplinkSelection InlineObject55) UplinkSelectionApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest {
+func (r UplinkSelectionApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) UpdateNetworkApplianceTrafficShapingUplinkSelection(updateNetworkApplianceTrafficShapingUplinkSelection UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) UplinkSelectionApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest {
 	r.updateNetworkApplianceTrafficShapingUplinkSelection = &updateNetworkApplianceTrafficShapingUplinkSelection
 	return r
 }
 
-func (r UplinkSelectionApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) Execute() (*InlineResponse20019, *http.Response, error) {
+func (r UplinkSelectionApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) Execute() (*GetNetworkApplianceTrafficShapingUplinkSelection200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceTrafficShapingUplinkSelectionExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *UplinkSelectionApiService) UpdateNetworkApplianceTrafficShapingUplinkSe
 }
 
 // Execute executes the request
-//  @return InlineResponse20019
-func (a *UplinkSelectionApiService) UpdateNetworkApplianceTrafficShapingUplinkSelectionExecute(r UplinkSelectionApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) (*InlineResponse20019, *http.Response, error) {
+//  @return GetNetworkApplianceTrafficShapingUplinkSelection200Response
+func (a *UplinkSelectionApiService) UpdateNetworkApplianceTrafficShapingUplinkSelectionExecute(r UplinkSelectionApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) (*GetNetworkApplianceTrafficShapingUplinkSelection200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20019
+		localVarReturnValue  *GetNetworkApplianceTrafficShapingUplinkSelection200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinkSelectionApiService.UpdateNetworkApplianceTrafficShapingUplinkSelection")

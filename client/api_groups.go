@@ -27,10 +27,10 @@ type GroupsApiCreateNetworkFirmwareUpgradesStagedGroupRequest struct {
 	ctx context.Context
 	ApiService *GroupsApiService
 	networkId string
-	createNetworkFirmwareUpgradesStagedGroup *InlineObject82
+	createNetworkFirmwareUpgradesStagedGroup *CreateNetworkFirmwareUpgradesStagedGroupRequest
 }
 
-func (r GroupsApiCreateNetworkFirmwareUpgradesStagedGroupRequest) CreateNetworkFirmwareUpgradesStagedGroup(createNetworkFirmwareUpgradesStagedGroup InlineObject82) GroupsApiCreateNetworkFirmwareUpgradesStagedGroupRequest {
+func (r GroupsApiCreateNetworkFirmwareUpgradesStagedGroupRequest) CreateNetworkFirmwareUpgradesStagedGroup(createNetworkFirmwareUpgradesStagedGroup CreateNetworkFirmwareUpgradesStagedGroupRequest) GroupsApiCreateNetworkFirmwareUpgradesStagedGroupRequest {
 	r.createNetworkFirmwareUpgradesStagedGroup = &createNetworkFirmwareUpgradesStagedGroup
 	return r
 }
@@ -155,10 +155,10 @@ type GroupsApiCreateOrganizationAdaptivePolicyGroupRequest struct {
 	ctx context.Context
 	ApiService *GroupsApiService
 	organizationId string
-	createOrganizationAdaptivePolicyGroup *InlineObject173
+	createOrganizationAdaptivePolicyGroup *CreateOrganizationAdaptivePolicyGroupRequest
 }
 
-func (r GroupsApiCreateOrganizationAdaptivePolicyGroupRequest) CreateOrganizationAdaptivePolicyGroup(createOrganizationAdaptivePolicyGroup InlineObject173) GroupsApiCreateOrganizationAdaptivePolicyGroupRequest {
+func (r GroupsApiCreateOrganizationAdaptivePolicyGroupRequest) CreateOrganizationAdaptivePolicyGroup(createOrganizationAdaptivePolicyGroup CreateOrganizationAdaptivePolicyGroupRequest) GroupsApiCreateOrganizationAdaptivePolicyGroupRequest {
 	r.createOrganizationAdaptivePolicyGroup = &createOrganizationAdaptivePolicyGroup
 	return r
 }
@@ -283,10 +283,10 @@ type GroupsApiCreateOrganizationPolicyObjectsGroupRequest struct {
 	ctx context.Context
 	ApiService *GroupsApiService
 	organizationId string
-	createOrganizationPolicyObjectsGroup *InlineObject214
+	createOrganizationPolicyObjectsGroup *CreateOrganizationPolicyObjectsGroupRequest
 }
 
-func (r GroupsApiCreateOrganizationPolicyObjectsGroupRequest) CreateOrganizationPolicyObjectsGroup(createOrganizationPolicyObjectsGroup InlineObject214) GroupsApiCreateOrganizationPolicyObjectsGroupRequest {
+func (r GroupsApiCreateOrganizationPolicyObjectsGroupRequest) CreateOrganizationPolicyObjectsGroup(createOrganizationPolicyObjectsGroup CreateOrganizationPolicyObjectsGroupRequest) GroupsApiCreateOrganizationPolicyObjectsGroupRequest {
 	r.createOrganizationPolicyObjectsGroup = &createOrganizationPolicyObjectsGroup
 	return r
 }
@@ -744,7 +744,7 @@ type GroupsApiGetNetworkFirmwareUpgradesStagedGroupRequest struct {
 	groupId string
 }
 
-func (r GroupsApiGetNetworkFirmwareUpgradesStagedGroupRequest) Execute() (*InlineResponse20030, *http.Response, error) {
+func (r GroupsApiGetNetworkFirmwareUpgradesStagedGroupRequest) Execute() (*GetNetworkFirmwareUpgradesStagedGroups200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkFirmwareUpgradesStagedGroupExecute(r)
 }
 
@@ -768,13 +768,13 @@ func (a *GroupsApiService) GetNetworkFirmwareUpgradesStagedGroup(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InlineResponse20030
-func (a *GroupsApiService) GetNetworkFirmwareUpgradesStagedGroupExecute(r GroupsApiGetNetworkFirmwareUpgradesStagedGroupRequest) (*InlineResponse20030, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
+func (a *GroupsApiService) GetNetworkFirmwareUpgradesStagedGroupExecute(r GroupsApiGetNetworkFirmwareUpgradesStagedGroupRequest) (*GetNetworkFirmwareUpgradesStagedGroups200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20030
+		localVarReturnValue  *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsApiService.GetNetworkFirmwareUpgradesStagedGroup")
@@ -864,7 +864,7 @@ type GroupsApiGetNetworkFirmwareUpgradesStagedGroupsRequest struct {
 	networkId string
 }
 
-func (r GroupsApiGetNetworkFirmwareUpgradesStagedGroupsRequest) Execute() ([]InlineResponse20030, *http.Response, error) {
+func (r GroupsApiGetNetworkFirmwareUpgradesStagedGroupsRequest) Execute() ([]GetNetworkFirmwareUpgradesStagedGroups200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkFirmwareUpgradesStagedGroupsExecute(r)
 }
 
@@ -886,13 +886,13 @@ func (a *GroupsApiService) GetNetworkFirmwareUpgradesStagedGroups(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20030
-func (a *GroupsApiService) GetNetworkFirmwareUpgradesStagedGroupsExecute(r GroupsApiGetNetworkFirmwareUpgradesStagedGroupsRequest) ([]InlineResponse20030, *http.Response, error) {
+//  @return []GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
+func (a *GroupsApiService) GetNetworkFirmwareUpgradesStagedGroupsExecute(r GroupsApiGetNetworkFirmwareUpgradesStagedGroupsRequest) ([]GetNetworkFirmwareUpgradesStagedGroups200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20030
+		localVarReturnValue  []GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsApiService.GetNetworkFirmwareUpgradesStagedGroups")
@@ -1486,10 +1486,10 @@ type GroupsApiUpdateNetworkFirmwareUpgradesStagedGroupRequest struct {
 	ApiService *GroupsApiService
 	networkId string
 	groupId string
-	updateNetworkFirmwareUpgradesStagedGroup *InlineObject83
+	updateNetworkFirmwareUpgradesStagedGroup *CreateNetworkFirmwareUpgradesStagedGroupRequest
 }
 
-func (r GroupsApiUpdateNetworkFirmwareUpgradesStagedGroupRequest) UpdateNetworkFirmwareUpgradesStagedGroup(updateNetworkFirmwareUpgradesStagedGroup InlineObject83) GroupsApiUpdateNetworkFirmwareUpgradesStagedGroupRequest {
+func (r GroupsApiUpdateNetworkFirmwareUpgradesStagedGroupRequest) UpdateNetworkFirmwareUpgradesStagedGroup(updateNetworkFirmwareUpgradesStagedGroup CreateNetworkFirmwareUpgradesStagedGroupRequest) GroupsApiUpdateNetworkFirmwareUpgradesStagedGroupRequest {
 	r.updateNetworkFirmwareUpgradesStagedGroup = &updateNetworkFirmwareUpgradesStagedGroup
 	return r
 }
@@ -1618,10 +1618,10 @@ type GroupsApiUpdateOrganizationAdaptivePolicyGroupRequest struct {
 	ApiService *GroupsApiService
 	organizationId string
 	id string
-	updateOrganizationAdaptivePolicyGroup *InlineObject174
+	updateOrganizationAdaptivePolicyGroup *UpdateOrganizationAdaptivePolicyGroupRequest
 }
 
-func (r GroupsApiUpdateOrganizationAdaptivePolicyGroupRequest) UpdateOrganizationAdaptivePolicyGroup(updateOrganizationAdaptivePolicyGroup InlineObject174) GroupsApiUpdateOrganizationAdaptivePolicyGroupRequest {
+func (r GroupsApiUpdateOrganizationAdaptivePolicyGroupRequest) UpdateOrganizationAdaptivePolicyGroup(updateOrganizationAdaptivePolicyGroup UpdateOrganizationAdaptivePolicyGroupRequest) GroupsApiUpdateOrganizationAdaptivePolicyGroupRequest {
 	r.updateOrganizationAdaptivePolicyGroup = &updateOrganizationAdaptivePolicyGroup
 	return r
 }
@@ -1747,10 +1747,10 @@ type GroupsApiUpdateOrganizationPolicyObjectsGroupRequest struct {
 	ApiService *GroupsApiService
 	organizationId string
 	policyObjectGroupId string
-	updateOrganizationPolicyObjectsGroup *InlineObject215
+	updateOrganizationPolicyObjectsGroup *UpdateOrganizationPolicyObjectsGroupRequest
 }
 
-func (r GroupsApiUpdateOrganizationPolicyObjectsGroupRequest) UpdateOrganizationPolicyObjectsGroup(updateOrganizationPolicyObjectsGroup InlineObject215) GroupsApiUpdateOrganizationPolicyObjectsGroupRequest {
+func (r GroupsApiUpdateOrganizationPolicyObjectsGroupRequest) UpdateOrganizationPolicyObjectsGroup(updateOrganizationPolicyObjectsGroup UpdateOrganizationPolicyObjectsGroupRequest) GroupsApiUpdateOrganizationPolicyObjectsGroupRequest {
 	r.updateOrganizationPolicyObjectsGroup = &updateOrganizationPolicyObjectsGroup
 	return r
 }

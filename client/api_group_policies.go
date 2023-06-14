@@ -27,10 +27,10 @@ type GroupPoliciesApiCreateNetworkGroupPolicyRequest struct {
 	ctx context.Context
 	ApiService *GroupPoliciesApiService
 	networkId string
-	createNetworkGroupPolicy *InlineObject87
+	createNetworkGroupPolicy *CreateNetworkGroupPolicyRequest
 }
 
-func (r GroupPoliciesApiCreateNetworkGroupPolicyRequest) CreateNetworkGroupPolicy(createNetworkGroupPolicy InlineObject87) GroupPoliciesApiCreateNetworkGroupPolicyRequest {
+func (r GroupPoliciesApiCreateNetworkGroupPolicyRequest) CreateNetworkGroupPolicy(createNetworkGroupPolicy CreateNetworkGroupPolicyRequest) GroupPoliciesApiCreateNetworkGroupPolicyRequest {
 	r.createNetworkGroupPolicy = &createNetworkGroupPolicy
 	return r
 }
@@ -504,10 +504,10 @@ type GroupPoliciesApiUpdateNetworkGroupPolicyRequest struct {
 	ApiService *GroupPoliciesApiService
 	networkId string
 	groupPolicyId string
-	updateNetworkGroupPolicy *InlineObject88
+	updateNetworkGroupPolicy *UpdateNetworkGroupPolicyRequest
 }
 
-func (r GroupPoliciesApiUpdateNetworkGroupPolicyRequest) UpdateNetworkGroupPolicy(updateNetworkGroupPolicy InlineObject88) GroupPoliciesApiUpdateNetworkGroupPolicyRequest {
+func (r GroupPoliciesApiUpdateNetworkGroupPolicyRequest) UpdateNetworkGroupPolicy(updateNetworkGroupPolicy UpdateNetworkGroupPolicyRequest) GroupPoliciesApiUpdateNetworkGroupPolicyRequest {
 	r.updateNetworkGroupPolicy = &updateNetworkGroupPolicy
 	return r
 }

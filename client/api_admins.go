@@ -27,10 +27,10 @@ type AdminsApiCreateOrganizationAdminRequest struct {
 	ctx context.Context
 	ApiService *AdminsApiService
 	organizationId string
-	createOrganizationAdmin *InlineObject178
+	createOrganizationAdmin *CreateOrganizationAdminRequest
 }
 
-func (r AdminsApiCreateOrganizationAdminRequest) CreateOrganizationAdmin(createOrganizationAdmin InlineObject178) AdminsApiCreateOrganizationAdminRequest {
+func (r AdminsApiCreateOrganizationAdminRequest) CreateOrganizationAdmin(createOrganizationAdmin CreateOrganizationAdminRequest) AdminsApiCreateOrganizationAdminRequest {
 	r.createOrganizationAdmin = &createOrganizationAdmin
 	return r
 }
@@ -383,10 +383,10 @@ type AdminsApiUpdateOrganizationAdminRequest struct {
 	ApiService *AdminsApiService
 	organizationId string
 	adminId string
-	updateOrganizationAdmin *InlineObject179
+	updateOrganizationAdmin *UpdateOrganizationAdminRequest
 }
 
-func (r AdminsApiUpdateOrganizationAdminRequest) UpdateOrganizationAdmin(updateOrganizationAdmin InlineObject179) AdminsApiUpdateOrganizationAdminRequest {
+func (r AdminsApiUpdateOrganizationAdminRequest) UpdateOrganizationAdmin(updateOrganizationAdmin UpdateOrganizationAdminRequest) AdminsApiUpdateOrganizationAdminRequest {
 	r.updateOrganizationAdmin = &updateOrganizationAdmin
 	return r
 }

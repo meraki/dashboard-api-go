@@ -27,10 +27,10 @@ type InventoryApiClaimIntoOrganizationInventoryRequest struct {
 	ctx context.Context
 	ApiService *InventoryApiService
 	organizationId string
-	claimIntoOrganizationInventory *InlineObject199
+	claimIntoOrganizationInventory *ClaimIntoOrganizationInventoryRequest
 }
 
-func (r InventoryApiClaimIntoOrganizationInventoryRequest) ClaimIntoOrganizationInventory(claimIntoOrganizationInventory InlineObject199) InventoryApiClaimIntoOrganizationInventoryRequest {
+func (r InventoryApiClaimIntoOrganizationInventoryRequest) ClaimIntoOrganizationInventory(claimIntoOrganizationInventory ClaimIntoOrganizationInventoryRequest) InventoryApiClaimIntoOrganizationInventoryRequest {
 	r.claimIntoOrganizationInventory = &claimIntoOrganizationInventory
 	return r
 }
@@ -152,10 +152,10 @@ type InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEvent
 	ctx context.Context
 	ApiService *InventoryApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringExportEvent *InlineObject200
+	createOrganizationInventoryOnboardingCloudMonitoringExportEvent *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest
 }
 
-func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) CreateOrganizationInventoryOnboardingCloudMonitoringExportEvent(createOrganizationInventoryOnboardingCloudMonitoringExportEvent InlineObject200) InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest {
+func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) CreateOrganizationInventoryOnboardingCloudMonitoringExportEvent(createOrganizationInventoryOnboardingCloudMonitoringExportEvent CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest {
 	r.createOrganizationInventoryOnboardingCloudMonitoringExportEvent = &createOrganizationInventoryOnboardingCloudMonitoringExportEvent
 	return r
 }
@@ -280,15 +280,15 @@ type InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportReque
 	ctx context.Context
 	ApiService *InventoryApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringImport *InlineObject201
+	createOrganizationInventoryOnboardingCloudMonitoringImport *CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest
 }
 
-func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) CreateOrganizationInventoryOnboardingCloudMonitoringImport(createOrganizationInventoryOnboardingCloudMonitoringImport InlineObject201) InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest {
+func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) CreateOrganizationInventoryOnboardingCloudMonitoringImport(createOrganizationInventoryOnboardingCloudMonitoringImport CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest {
 	r.createOrganizationInventoryOnboardingCloudMonitoringImport = &createOrganizationInventoryOnboardingCloudMonitoringImport
 	return r
 }
 
-func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) Execute() ([]InlineResponse2017, *http.Response, error) {
+func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) Execute() ([]CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r)
 }
 
@@ -310,13 +310,13 @@ func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 }
 
 // Execute executes the request
-//  @return []InlineResponse2017
-func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) ([]InlineResponse2017, *http.Response, error) {
+//  @return []CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner
+func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) ([]CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2017
+		localVarReturnValue  []CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.CreateOrganizationInventoryOnboardingCloudMonitoringImport")
@@ -408,15 +408,15 @@ type InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequ
 	ctx context.Context
 	ApiService *InventoryApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringPrepare *InlineObject202
+	createOrganizationInventoryOnboardingCloudMonitoringPrepare *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest
 }
 
-func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(createOrganizationInventoryOnboardingCloudMonitoringPrepare InlineObject202) InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest {
+func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(createOrganizationInventoryOnboardingCloudMonitoringPrepare CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest {
 	r.createOrganizationInventoryOnboardingCloudMonitoringPrepare = &createOrganizationInventoryOnboardingCloudMonitoringPrepare
 	return r
 }
 
-func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) Execute() ([]InlineResponse2018, *http.Response, error) {
+func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) Execute() ([]CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r)
 }
 
@@ -438,13 +438,13 @@ func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 }
 
 // Execute executes the request
-//  @return []InlineResponse2018
-func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) ([]InlineResponse2018, *http.Response, error) {
+//  @return []CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner
+func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) ([]CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2018
+		localVarReturnValue  []CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.CreateOrganizationInventoryOnboardingCloudMonitoringPrepare")
@@ -539,7 +539,7 @@ type InventoryApiGetOrganizationInventoryDeviceRequest struct {
 	serial string
 }
 
-func (r InventoryApiGetOrganizationInventoryDeviceRequest) Execute() (*InlineResponse200116, *http.Response, error) {
+func (r InventoryApiGetOrganizationInventoryDeviceRequest) Execute() (*GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryDeviceExecute(r)
 }
 
@@ -563,13 +563,13 @@ func (a *InventoryApiService) GetOrganizationInventoryDevice(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse200116
-func (a *InventoryApiService) GetOrganizationInventoryDeviceExecute(r InventoryApiGetOrganizationInventoryDeviceRequest) (*InlineResponse200116, *http.Response, error) {
+//  @return GetOrganizationInventoryDevices200ResponseInner
+func (a *InventoryApiService) GetOrganizationInventoryDeviceExecute(r InventoryApiGetOrganizationInventoryDeviceRequest) (*GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200116
+		localVarReturnValue  *GetOrganizationInventoryDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.GetOrganizationInventoryDevice")
@@ -750,7 +750,7 @@ func (r InventoryApiGetOrganizationInventoryDevicesRequest) ProductTypes(product
 	return r
 }
 
-func (r InventoryApiGetOrganizationInventoryDevicesRequest) Execute() ([]InlineResponse200116, *http.Response, error) {
+func (r InventoryApiGetOrganizationInventoryDevicesRequest) Execute() ([]GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryDevicesExecute(r)
 }
 
@@ -772,13 +772,13 @@ func (a *InventoryApiService) GetOrganizationInventoryDevices(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse200116
-func (a *InventoryApiService) GetOrganizationInventoryDevicesExecute(r InventoryApiGetOrganizationInventoryDevicesRequest) ([]InlineResponse200116, *http.Response, error) {
+//  @return []GetOrganizationInventoryDevices200ResponseInner
+func (a *InventoryApiService) GetOrganizationInventoryDevicesExecute(r InventoryApiGetOrganizationInventoryDevicesRequest) ([]GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200116
+		localVarReturnValue  []GetOrganizationInventoryDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.GetOrganizationInventoryDevices")
@@ -913,7 +913,7 @@ func (r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequ
 	return r
 }
 
-func (r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) Execute() ([]InlineResponse200117, *http.Response, error) {
+func (r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) Execute() ([]GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r)
 }
 
@@ -935,13 +935,13 @@ func (a *InventoryApiService) GetOrganizationInventoryOnboardingCloudMonitoringI
 }
 
 // Execute executes the request
-//  @return []InlineResponse200117
-func (a *InventoryApiService) GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) ([]InlineResponse200117, *http.Response, error) {
+//  @return []GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner
+func (a *InventoryApiService) GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) ([]GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200117
+		localVarReturnValue  []GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.GetOrganizationInventoryOnboardingCloudMonitoringImports")
@@ -1062,7 +1062,7 @@ func (r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksReq
 	return r
 }
 
-func (r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRequest) Execute() ([]InlineResponse20011, *http.Response, error) {
+func (r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRequest) Execute() ([]GetNetwork200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryOnboardingCloudMonitoringNetworksExecute(r)
 }
 
@@ -1084,13 +1084,13 @@ func (a *InventoryApiService) GetOrganizationInventoryOnboardingCloudMonitoringN
 }
 
 // Execute executes the request
-//  @return []InlineResponse20011
-func (a *InventoryApiService) GetOrganizationInventoryOnboardingCloudMonitoringNetworksExecute(r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRequest) ([]InlineResponse20011, *http.Response, error) {
+//  @return []GetNetwork200Response
+func (a *InventoryApiService) GetOrganizationInventoryOnboardingCloudMonitoringNetworksExecute(r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRequest) ([]GetNetwork200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20011
+		localVarReturnValue  []GetNetwork200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.GetOrganizationInventoryOnboardingCloudMonitoringNetworks")
@@ -1190,10 +1190,10 @@ type InventoryApiReleaseFromOrganizationInventoryRequest struct {
 	ctx context.Context
 	ApiService *InventoryApiService
 	organizationId string
-	releaseFromOrganizationInventory *InlineObject203
+	releaseFromOrganizationInventory *ReleaseFromOrganizationInventoryRequest
 }
 
-func (r InventoryApiReleaseFromOrganizationInventoryRequest) ReleaseFromOrganizationInventory(releaseFromOrganizationInventory InlineObject203) InventoryApiReleaseFromOrganizationInventoryRequest {
+func (r InventoryApiReleaseFromOrganizationInventoryRequest) ReleaseFromOrganizationInventory(releaseFromOrganizationInventory ReleaseFromOrganizationInventoryRequest) InventoryApiReleaseFromOrganizationInventoryRequest {
 	r.releaseFromOrganizationInventory = &releaseFromOrganizationInventory
 	return r
 }

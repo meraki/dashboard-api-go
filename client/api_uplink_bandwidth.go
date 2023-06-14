@@ -29,7 +29,7 @@ type UplinkBandwidthApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest s
 	networkId string
 }
 
-func (r UplinkBandwidthApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) Execute() (*InlineResponse20018, *http.Response, error) {
+func (r UplinkBandwidthApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) Execute() (*GetNetworkApplianceTrafficShapingUplinkBandwidth200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceTrafficShapingUplinkBandwidthExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *UplinkBandwidthApiService) GetNetworkApplianceTrafficShapingUplinkBandw
 }
 
 // Execute executes the request
-//  @return InlineResponse20018
-func (a *UplinkBandwidthApiService) GetNetworkApplianceTrafficShapingUplinkBandwidthExecute(r UplinkBandwidthApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) (*InlineResponse20018, *http.Response, error) {
+//  @return GetNetworkApplianceTrafficShapingUplinkBandwidth200Response
+func (a *UplinkBandwidthApiService) GetNetworkApplianceTrafficShapingUplinkBandwidthExecute(r UplinkBandwidthApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) (*GetNetworkApplianceTrafficShapingUplinkBandwidth200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20018
+		localVarReturnValue  *GetNetworkApplianceTrafficShapingUplinkBandwidth200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinkBandwidthApiService.GetNetworkApplianceTrafficShapingUplinkBandwidth")
@@ -144,10 +144,10 @@ type UplinkBandwidthApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthReques
 	ctx context.Context
 	ApiService *UplinkBandwidthApiService
 	networkId string
-	updateNetworkApplianceTrafficShapingUplinkBandwidth *InlineObject54
+	updateNetworkApplianceTrafficShapingUplinkBandwidth *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest
 }
 
-func (r UplinkBandwidthApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) UpdateNetworkApplianceTrafficShapingUplinkBandwidth(updateNetworkApplianceTrafficShapingUplinkBandwidth InlineObject54) UplinkBandwidthApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest {
+func (r UplinkBandwidthApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) UpdateNetworkApplianceTrafficShapingUplinkBandwidth(updateNetworkApplianceTrafficShapingUplinkBandwidth UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) UplinkBandwidthApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest {
 	r.updateNetworkApplianceTrafficShapingUplinkBandwidth = &updateNetworkApplianceTrafficShapingUplinkBandwidth
 	return r
 }

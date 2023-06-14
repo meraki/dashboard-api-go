@@ -127,7 +127,7 @@ func (r ApiRequestsApiGetOrganizationApiRequestsRequest) OperationIds(operationI
 	return r
 }
 
-func (r ApiRequestsApiGetOrganizationApiRequestsRequest) Execute() ([]InlineResponse20092, *http.Response, error) {
+func (r ApiRequestsApiGetOrganizationApiRequestsRequest) Execute() ([]GetOrganizationApiRequests200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationApiRequestsExecute(r)
 }
 
@@ -149,13 +149,13 @@ func (a *ApiRequestsApiService) GetOrganizationApiRequests(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return []InlineResponse20092
-func (a *ApiRequestsApiService) GetOrganizationApiRequestsExecute(r ApiRequestsApiGetOrganizationApiRequestsRequest) ([]InlineResponse20092, *http.Response, error) {
+//  @return []GetOrganizationApiRequests200ResponseInner
+func (a *ApiRequestsApiService) GetOrganizationApiRequestsExecute(r ApiRequestsApiGetOrganizationApiRequestsRequest) ([]GetOrganizationApiRequests200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20092
+		localVarReturnValue  []GetOrganizationApiRequests200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiRequestsApiService.GetOrganizationApiRequests")
@@ -496,7 +496,7 @@ func (r ApiRequestsApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalR
 	return r
 }
 
-func (r ApiRequestsApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) Execute() ([]InlineResponse20093, *http.Response, error) {
+func (r ApiRequestsApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) Execute() ([]GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationApiRequestsOverviewResponseCodesByIntervalExecute(r)
 }
 
@@ -518,13 +518,13 @@ func (a *ApiRequestsApiService) GetOrganizationApiRequestsOverviewResponseCodesB
 }
 
 // Execute executes the request
-//  @return []InlineResponse20093
-func (a *ApiRequestsApiService) GetOrganizationApiRequestsOverviewResponseCodesByIntervalExecute(r ApiRequestsApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) ([]InlineResponse20093, *http.Response, error) {
+//  @return []GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner
+func (a *ApiRequestsApiService) GetOrganizationApiRequestsOverviewResponseCodesByIntervalExecute(r ApiRequestsApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) ([]GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20093
+		localVarReturnValue  []GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiRequestsApiService.GetOrganizationApiRequestsOverviewResponseCodesByInterval")

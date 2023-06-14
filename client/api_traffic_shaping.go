@@ -27,10 +27,10 @@ type TrafficShapingApiCreateNetworkApplianceTrafficShapingCustomPerformanceClass
 	ctx context.Context
 	ApiService *TrafficShapingApiService
 	networkId string
-	createNetworkApplianceTrafficShapingCustomPerformanceClass *InlineObject51
+	createNetworkApplianceTrafficShapingCustomPerformanceClass *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 }
 
-func (r TrafficShapingApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) CreateNetworkApplianceTrafficShapingCustomPerformanceClass(createNetworkApplianceTrafficShapingCustomPerformanceClass InlineObject51) TrafficShapingApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest {
+func (r TrafficShapingApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) CreateNetworkApplianceTrafficShapingCustomPerformanceClass(createNetworkApplianceTrafficShapingCustomPerformanceClass CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) TrafficShapingApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest {
 	r.createNetworkApplianceTrafficShapingCustomPerformanceClass = &createNetworkApplianceTrafficShapingCustomPerformanceClass
 	return r
 }
@@ -739,7 +739,7 @@ type TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest st
 	networkId string
 }
 
-func (r TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) Execute() (*InlineResponse20018, *http.Response, error) {
+func (r TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) Execute() (*GetNetworkApplianceTrafficShapingUplinkBandwidth200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceTrafficShapingUplinkBandwidthExecute(r)
 }
 
@@ -761,13 +761,13 @@ func (a *TrafficShapingApiService) GetNetworkApplianceTrafficShapingUplinkBandwi
 }
 
 // Execute executes the request
-//  @return InlineResponse20018
-func (a *TrafficShapingApiService) GetNetworkApplianceTrafficShapingUplinkBandwidthExecute(r TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) (*InlineResponse20018, *http.Response, error) {
+//  @return GetNetworkApplianceTrafficShapingUplinkBandwidth200Response
+func (a *TrafficShapingApiService) GetNetworkApplianceTrafficShapingUplinkBandwidthExecute(r TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) (*GetNetworkApplianceTrafficShapingUplinkBandwidth200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20018
+		localVarReturnValue  *GetNetworkApplianceTrafficShapingUplinkBandwidth200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrafficShapingApiService.GetNetworkApplianceTrafficShapingUplinkBandwidth")
@@ -856,7 +856,7 @@ type TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest st
 	networkId string
 }
 
-func (r TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest) Execute() (*InlineResponse20019, *http.Response, error) {
+func (r TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest) Execute() (*GetNetworkApplianceTrafficShapingUplinkSelection200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceTrafficShapingUplinkSelectionExecute(r)
 }
 
@@ -878,13 +878,13 @@ func (a *TrafficShapingApiService) GetNetworkApplianceTrafficShapingUplinkSelect
 }
 
 // Execute executes the request
-//  @return InlineResponse20019
-func (a *TrafficShapingApiService) GetNetworkApplianceTrafficShapingUplinkSelectionExecute(r TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest) (*InlineResponse20019, *http.Response, error) {
+//  @return GetNetworkApplianceTrafficShapingUplinkSelection200Response
+func (a *TrafficShapingApiService) GetNetworkApplianceTrafficShapingUplinkSelectionExecute(r TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest) (*GetNetworkApplianceTrafficShapingUplinkSelection200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20019
+		localVarReturnValue  *GetNetworkApplianceTrafficShapingUplinkSelection200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrafficShapingApiService.GetNetworkApplianceTrafficShapingUplinkSelection")
@@ -1326,10 +1326,10 @@ type TrafficShapingApiUpdateNetworkApplianceTrafficShapingRequest struct {
 	ctx context.Context
 	ApiService *TrafficShapingApiService
 	networkId string
-	updateNetworkApplianceTrafficShaping *InlineObject50
+	updateNetworkApplianceTrafficShaping *UpdateNetworkApplianceTrafficShapingRequest
 }
 
-func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingRequest) UpdateNetworkApplianceTrafficShaping(updateNetworkApplianceTrafficShaping InlineObject50) TrafficShapingApiUpdateNetworkApplianceTrafficShapingRequest {
+func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingRequest) UpdateNetworkApplianceTrafficShaping(updateNetworkApplianceTrafficShaping UpdateNetworkApplianceTrafficShapingRequest) TrafficShapingApiUpdateNetworkApplianceTrafficShapingRequest {
 	r.updateNetworkApplianceTrafficShaping = &updateNetworkApplianceTrafficShaping
 	return r
 }
@@ -1452,10 +1452,10 @@ type TrafficShapingApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClass
 	ApiService *TrafficShapingApiService
 	networkId string
 	customPerformanceClassId string
-	updateNetworkApplianceTrafficShapingCustomPerformanceClass *InlineObject52
+	updateNetworkApplianceTrafficShapingCustomPerformanceClass *UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 }
 
-func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) UpdateNetworkApplianceTrafficShapingCustomPerformanceClass(updateNetworkApplianceTrafficShapingCustomPerformanceClass InlineObject52) TrafficShapingApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest {
+func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) UpdateNetworkApplianceTrafficShapingCustomPerformanceClass(updateNetworkApplianceTrafficShapingCustomPerformanceClass UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) TrafficShapingApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest {
 	r.updateNetworkApplianceTrafficShapingCustomPerformanceClass = &updateNetworkApplianceTrafficShapingCustomPerformanceClass
 	return r
 }
@@ -1580,10 +1580,10 @@ type TrafficShapingApiUpdateNetworkApplianceTrafficShapingRulesRequest struct {
 	ctx context.Context
 	ApiService *TrafficShapingApiService
 	networkId string
-	updateNetworkApplianceTrafficShapingRules *InlineObject53
+	updateNetworkApplianceTrafficShapingRules *UpdateNetworkApplianceTrafficShapingRulesRequest
 }
 
-func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingRulesRequest) UpdateNetworkApplianceTrafficShapingRules(updateNetworkApplianceTrafficShapingRules InlineObject53) TrafficShapingApiUpdateNetworkApplianceTrafficShapingRulesRequest {
+func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingRulesRequest) UpdateNetworkApplianceTrafficShapingRules(updateNetworkApplianceTrafficShapingRules UpdateNetworkApplianceTrafficShapingRulesRequest) TrafficShapingApiUpdateNetworkApplianceTrafficShapingRulesRequest {
 	r.updateNetworkApplianceTrafficShapingRules = &updateNetworkApplianceTrafficShapingRules
 	return r
 }
@@ -1705,10 +1705,10 @@ type TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest
 	ctx context.Context
 	ApiService *TrafficShapingApiService
 	networkId string
-	updateNetworkApplianceTrafficShapingUplinkBandwidth *InlineObject54
+	updateNetworkApplianceTrafficShapingUplinkBandwidth *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest
 }
 
-func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) UpdateNetworkApplianceTrafficShapingUplinkBandwidth(updateNetworkApplianceTrafficShapingUplinkBandwidth InlineObject54) TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest {
+func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) UpdateNetworkApplianceTrafficShapingUplinkBandwidth(updateNetworkApplianceTrafficShapingUplinkBandwidth UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest {
 	r.updateNetworkApplianceTrafficShapingUplinkBandwidth = &updateNetworkApplianceTrafficShapingUplinkBandwidth
 	return r
 }
@@ -1830,15 +1830,15 @@ type TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest
 	ctx context.Context
 	ApiService *TrafficShapingApiService
 	networkId string
-	updateNetworkApplianceTrafficShapingUplinkSelection *InlineObject55
+	updateNetworkApplianceTrafficShapingUplinkSelection *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest
 }
 
-func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) UpdateNetworkApplianceTrafficShapingUplinkSelection(updateNetworkApplianceTrafficShapingUplinkSelection InlineObject55) TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest {
+func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) UpdateNetworkApplianceTrafficShapingUplinkSelection(updateNetworkApplianceTrafficShapingUplinkSelection UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest {
 	r.updateNetworkApplianceTrafficShapingUplinkSelection = &updateNetworkApplianceTrafficShapingUplinkSelection
 	return r
 }
 
-func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) Execute() (*InlineResponse20019, *http.Response, error) {
+func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) Execute() (*GetNetworkApplianceTrafficShapingUplinkSelection200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceTrafficShapingUplinkSelectionExecute(r)
 }
 
@@ -1860,13 +1860,13 @@ func (a *TrafficShapingApiService) UpdateNetworkApplianceTrafficShapingUplinkSel
 }
 
 // Execute executes the request
-//  @return InlineResponse20019
-func (a *TrafficShapingApiService) UpdateNetworkApplianceTrafficShapingUplinkSelectionExecute(r TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) (*InlineResponse20019, *http.Response, error) {
+//  @return GetNetworkApplianceTrafficShapingUplinkSelection200Response
+func (a *TrafficShapingApiService) UpdateNetworkApplianceTrafficShapingUplinkSelectionExecute(r TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) (*GetNetworkApplianceTrafficShapingUplinkSelection200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20019
+		localVarReturnValue  *GetNetworkApplianceTrafficShapingUplinkSelection200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrafficShapingApiService.UpdateNetworkApplianceTrafficShapingUplinkSelection")
@@ -1956,10 +1956,10 @@ type TrafficShapingApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest struct
 	ApiService *TrafficShapingApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidTrafficShapingRules *InlineObject165
+	updateNetworkWirelessSsidTrafficShapingRules *UpdateNetworkWirelessSsidTrafficShapingRulesRequest
 }
 
-func (r TrafficShapingApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest) UpdateNetworkWirelessSsidTrafficShapingRules(updateNetworkWirelessSsidTrafficShapingRules InlineObject165) TrafficShapingApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest {
+func (r TrafficShapingApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest) UpdateNetworkWirelessSsidTrafficShapingRules(updateNetworkWirelessSsidTrafficShapingRules UpdateNetworkWirelessSsidTrafficShapingRulesRequest) TrafficShapingApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest {
 	r.updateNetworkWirelessSsidTrafficShapingRules = &updateNetworkWirelessSsidTrafficShapingRules
 	return r
 }
