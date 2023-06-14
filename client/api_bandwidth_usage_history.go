@@ -227,7 +227,7 @@ func (r BandwidthUsageHistoryApiGetOrganizationClientsBandwidthUsageHistoryReque
 	return r
 }
 
-func (r BandwidthUsageHistoryApiGetOrganizationClientsBandwidthUsageHistoryRequest) Execute() ([]InlineResponse20099, *http.Response, error) {
+func (r BandwidthUsageHistoryApiGetOrganizationClientsBandwidthUsageHistoryRequest) Execute() ([]GetOrganizationClientsBandwidthUsageHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationClientsBandwidthUsageHistoryExecute(r)
 }
 
@@ -249,13 +249,13 @@ func (a *BandwidthUsageHistoryApiService) GetOrganizationClientsBandwidthUsageHi
 }
 
 // Execute executes the request
-//  @return []InlineResponse20099
-func (a *BandwidthUsageHistoryApiService) GetOrganizationClientsBandwidthUsageHistoryExecute(r BandwidthUsageHistoryApiGetOrganizationClientsBandwidthUsageHistoryRequest) ([]InlineResponse20099, *http.Response, error) {
+//  @return []GetOrganizationClientsBandwidthUsageHistory200ResponseInner
+func (a *BandwidthUsageHistoryApiService) GetOrganizationClientsBandwidthUsageHistoryExecute(r BandwidthUsageHistoryApiGetOrganizationClientsBandwidthUsageHistoryRequest) ([]GetOrganizationClientsBandwidthUsageHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20099
+		localVarReturnValue  []GetOrganizationClientsBandwidthUsageHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BandwidthUsageHistoryApiService.GetOrganizationClientsBandwidthUsageHistory")

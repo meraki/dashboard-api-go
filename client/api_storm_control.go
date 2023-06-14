@@ -29,7 +29,7 @@ type StormControlApiGetNetworkSwitchStormControlRequest struct {
 	networkId string
 }
 
-func (r StormControlApiGetNetworkSwitchStormControlRequest) Execute() (*InlineResponse20072, *http.Response, error) {
+func (r StormControlApiGetNetworkSwitchStormControlRequest) Execute() (*GetNetworkSwitchStormControl200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchStormControlExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *StormControlApiService) GetNetworkSwitchStormControl(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20072
-func (a *StormControlApiService) GetNetworkSwitchStormControlExecute(r StormControlApiGetNetworkSwitchStormControlRequest) (*InlineResponse20072, *http.Response, error) {
+//  @return GetNetworkSwitchStormControl200Response
+func (a *StormControlApiService) GetNetworkSwitchStormControlExecute(r StormControlApiGetNetworkSwitchStormControlRequest) (*GetNetworkSwitchStormControl200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20072
+		localVarReturnValue  *GetNetworkSwitchStormControl200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StormControlApiService.GetNetworkSwitchStormControl")
@@ -144,10 +144,10 @@ type StormControlApiUpdateNetworkSwitchStormControlRequest struct {
 	ctx context.Context
 	ApiService *StormControlApiService
 	networkId string
-	updateNetworkSwitchStormControl *InlineObject138
+	updateNetworkSwitchStormControl *UpdateNetworkSwitchStormControlRequest
 }
 
-func (r StormControlApiUpdateNetworkSwitchStormControlRequest) UpdateNetworkSwitchStormControl(updateNetworkSwitchStormControl InlineObject138) StormControlApiUpdateNetworkSwitchStormControlRequest {
+func (r StormControlApiUpdateNetworkSwitchStormControlRequest) UpdateNetworkSwitchStormControl(updateNetworkSwitchStormControl UpdateNetworkSwitchStormControlRequest) StormControlApiUpdateNetworkSwitchStormControlRequest {
 	r.updateNetworkSwitchStormControl = &updateNetworkSwitchStormControl
 	return r
 }

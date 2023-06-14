@@ -27,15 +27,15 @@ type PortsApiCycleDeviceSwitchPortsRequest struct {
 	ctx context.Context
 	ApiService *PortsApiService
 	serial string
-	cycleDeviceSwitchPorts *InlineObject16
+	cycleDeviceSwitchPorts *CycleDeviceSwitchPortsRequest
 }
 
-func (r PortsApiCycleDeviceSwitchPortsRequest) CycleDeviceSwitchPorts(cycleDeviceSwitchPorts InlineObject16) PortsApiCycleDeviceSwitchPortsRequest {
+func (r PortsApiCycleDeviceSwitchPortsRequest) CycleDeviceSwitchPorts(cycleDeviceSwitchPorts CycleDeviceSwitchPortsRequest) PortsApiCycleDeviceSwitchPortsRequest {
 	r.cycleDeviceSwitchPorts = &cycleDeviceSwitchPorts
 	return r
 }
 
-func (r PortsApiCycleDeviceSwitchPortsRequest) Execute() (*InlineResponse2005, *http.Response, error) {
+func (r PortsApiCycleDeviceSwitchPortsRequest) Execute() (*CycleDeviceSwitchPorts200Response, *http.Response, error) {
 	return r.ApiService.CycleDeviceSwitchPortsExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *PortsApiService) CycleDeviceSwitchPorts(ctx context.Context, serial str
 }
 
 // Execute executes the request
-//  @return InlineResponse2005
-func (a *PortsApiService) CycleDeviceSwitchPortsExecute(r PortsApiCycleDeviceSwitchPortsRequest) (*InlineResponse2005, *http.Response, error) {
+//  @return CycleDeviceSwitchPorts200Response
+func (a *PortsApiService) CycleDeviceSwitchPortsExecute(r PortsApiCycleDeviceSwitchPortsRequest) (*CycleDeviceSwitchPorts200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2005
+		localVarReturnValue  *CycleDeviceSwitchPorts200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.CycleDeviceSwitchPorts")
@@ -158,7 +158,7 @@ type PortsApiGetDeviceSwitchPortRequest struct {
 	portId string
 }
 
-func (r PortsApiGetDeviceSwitchPortRequest) Execute() (*InlineResponse2004, *http.Response, error) {
+func (r PortsApiGetDeviceSwitchPortRequest) Execute() (*GetDeviceSwitchPorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetDeviceSwitchPortExecute(r)
 }
 
@@ -182,13 +182,13 @@ func (a *PortsApiService) GetDeviceSwitchPort(ctx context.Context, serial string
 }
 
 // Execute executes the request
-//  @return InlineResponse2004
-func (a *PortsApiService) GetDeviceSwitchPortExecute(r PortsApiGetDeviceSwitchPortRequest) (*InlineResponse2004, *http.Response, error) {
+//  @return GetDeviceSwitchPorts200ResponseInner
+func (a *PortsApiService) GetDeviceSwitchPortExecute(r PortsApiGetDeviceSwitchPortRequest) (*GetDeviceSwitchPorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2004
+		localVarReturnValue  *GetDeviceSwitchPorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.GetDeviceSwitchPort")
@@ -278,7 +278,7 @@ type PortsApiGetDeviceSwitchPortsRequest struct {
 	serial string
 }
 
-func (r PortsApiGetDeviceSwitchPortsRequest) Execute() ([]InlineResponse2004, *http.Response, error) {
+func (r PortsApiGetDeviceSwitchPortsRequest) Execute() ([]GetDeviceSwitchPorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetDeviceSwitchPortsExecute(r)
 }
 
@@ -300,13 +300,13 @@ func (a *PortsApiService) GetDeviceSwitchPorts(ctx context.Context, serial strin
 }
 
 // Execute executes the request
-//  @return []InlineResponse2004
-func (a *PortsApiService) GetDeviceSwitchPortsExecute(r PortsApiGetDeviceSwitchPortsRequest) ([]InlineResponse2004, *http.Response, error) {
+//  @return []GetDeviceSwitchPorts200ResponseInner
+func (a *PortsApiService) GetDeviceSwitchPortsExecute(r PortsApiGetDeviceSwitchPortsRequest) ([]GetDeviceSwitchPorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2004
+		localVarReturnValue  []GetDeviceSwitchPorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.GetDeviceSwitchPorts")
@@ -409,7 +409,7 @@ func (r PortsApiGetDeviceSwitchPortsStatusesRequest) Timespan(timespan float32) 
 	return r
 }
 
-func (r PortsApiGetDeviceSwitchPortsStatusesRequest) Execute() ([]InlineResponse2006, *http.Response, error) {
+func (r PortsApiGetDeviceSwitchPortsStatusesRequest) Execute() ([]GetDeviceSwitchPortsStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetDeviceSwitchPortsStatusesExecute(r)
 }
 
@@ -431,13 +431,13 @@ func (a *PortsApiService) GetDeviceSwitchPortsStatuses(ctx context.Context, seri
 }
 
 // Execute executes the request
-//  @return []InlineResponse2006
-func (a *PortsApiService) GetDeviceSwitchPortsStatusesExecute(r PortsApiGetDeviceSwitchPortsStatusesRequest) ([]InlineResponse2006, *http.Response, error) {
+//  @return []GetDeviceSwitchPortsStatuses200ResponseInner
+func (a *PortsApiService) GetDeviceSwitchPortsStatusesExecute(r PortsApiGetDeviceSwitchPortsStatusesRequest) ([]GetDeviceSwitchPortsStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2006
+		localVarReturnValue  []GetDeviceSwitchPortsStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.GetDeviceSwitchPortsStatuses")
@@ -670,7 +670,7 @@ type PortsApiGetNetworkAppliancePortRequest struct {
 	portId string
 }
 
-func (r PortsApiGetNetworkAppliancePortRequest) Execute() (*InlineResponse20013, *http.Response, error) {
+func (r PortsApiGetNetworkAppliancePortRequest) Execute() (*GetNetworkAppliancePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkAppliancePortExecute(r)
 }
 
@@ -694,13 +694,13 @@ func (a *PortsApiService) GetNetworkAppliancePort(ctx context.Context, networkId
 }
 
 // Execute executes the request
-//  @return InlineResponse20013
-func (a *PortsApiService) GetNetworkAppliancePortExecute(r PortsApiGetNetworkAppliancePortRequest) (*InlineResponse20013, *http.Response, error) {
+//  @return GetNetworkAppliancePorts200ResponseInner
+func (a *PortsApiService) GetNetworkAppliancePortExecute(r PortsApiGetNetworkAppliancePortRequest) (*GetNetworkAppliancePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20013
+		localVarReturnValue  *GetNetworkAppliancePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.GetNetworkAppliancePort")
@@ -790,7 +790,7 @@ type PortsApiGetNetworkAppliancePortsRequest struct {
 	networkId string
 }
 
-func (r PortsApiGetNetworkAppliancePortsRequest) Execute() ([]InlineResponse20013, *http.Response, error) {
+func (r PortsApiGetNetworkAppliancePortsRequest) Execute() ([]GetNetworkAppliancePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkAppliancePortsExecute(r)
 }
 
@@ -812,13 +812,13 @@ func (a *PortsApiService) GetNetworkAppliancePorts(ctx context.Context, networkI
 }
 
 // Execute executes the request
-//  @return []InlineResponse20013
-func (a *PortsApiService) GetNetworkAppliancePortsExecute(r PortsApiGetNetworkAppliancePortsRequest) ([]InlineResponse20013, *http.Response, error) {
+//  @return []GetNetworkAppliancePorts200ResponseInner
+func (a *PortsApiService) GetNetworkAppliancePortsExecute(r PortsApiGetNetworkAppliancePortsRequest) ([]GetNetworkAppliancePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20013
+		localVarReturnValue  []GetNetworkAppliancePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.GetNetworkAppliancePorts")
@@ -910,7 +910,7 @@ type PortsApiGetOrganizationConfigTemplateSwitchProfilePortRequest struct {
 	portId string
 }
 
-func (r PortsApiGetOrganizationConfigTemplateSwitchProfilePortRequest) Execute() (*InlineResponse200102, *http.Response, error) {
+func (r PortsApiGetOrganizationConfigTemplateSwitchProfilePortRequest) Execute() (*GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationConfigTemplateSwitchProfilePortExecute(r)
 }
 
@@ -938,13 +938,13 @@ func (a *PortsApiService) GetOrganizationConfigTemplateSwitchProfilePort(ctx con
 }
 
 // Execute executes the request
-//  @return InlineResponse200102
-func (a *PortsApiService) GetOrganizationConfigTemplateSwitchProfilePortExecute(r PortsApiGetOrganizationConfigTemplateSwitchProfilePortRequest) (*InlineResponse200102, *http.Response, error) {
+//  @return GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
+func (a *PortsApiService) GetOrganizationConfigTemplateSwitchProfilePortExecute(r PortsApiGetOrganizationConfigTemplateSwitchProfilePortRequest) (*GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200102
+		localVarReturnValue  *GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.GetOrganizationConfigTemplateSwitchProfilePort")
@@ -1038,7 +1038,7 @@ type PortsApiGetOrganizationConfigTemplateSwitchProfilePortsRequest struct {
 	profileId string
 }
 
-func (r PortsApiGetOrganizationConfigTemplateSwitchProfilePortsRequest) Execute() ([]InlineResponse200102, *http.Response, error) {
+func (r PortsApiGetOrganizationConfigTemplateSwitchProfilePortsRequest) Execute() ([]GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationConfigTemplateSwitchProfilePortsExecute(r)
 }
 
@@ -1064,13 +1064,13 @@ func (a *PortsApiService) GetOrganizationConfigTemplateSwitchProfilePorts(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse200102
-func (a *PortsApiService) GetOrganizationConfigTemplateSwitchProfilePortsExecute(r PortsApiGetOrganizationConfigTemplateSwitchProfilePortsRequest) ([]InlineResponse200102, *http.Response, error) {
+//  @return []GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
+func (a *PortsApiService) GetOrganizationConfigTemplateSwitchProfilePortsExecute(r PortsApiGetOrganizationConfigTemplateSwitchProfilePortsRequest) ([]GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200102
+		localVarReturnValue  []GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.GetOrganizationConfigTemplateSwitchProfilePorts")
@@ -1238,7 +1238,7 @@ func (r PortsApiGetOrganizationSwitchPortsBySwitchRequest) ConfigurationUpdatedA
 	return r
 }
 
-func (r PortsApiGetOrganizationSwitchPortsBySwitchRequest) Execute() ([]InlineResponse200140, *http.Response, error) {
+func (r PortsApiGetOrganizationSwitchPortsBySwitchRequest) Execute() ([]GetOrganizationSwitchPortsBySwitch200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSwitchPortsBySwitchExecute(r)
 }
 
@@ -1260,13 +1260,13 @@ func (a *PortsApiService) GetOrganizationSwitchPortsBySwitch(ctx context.Context
 }
 
 // Execute executes the request
-//  @return []InlineResponse200140
-func (a *PortsApiService) GetOrganizationSwitchPortsBySwitchExecute(r PortsApiGetOrganizationSwitchPortsBySwitchRequest) ([]InlineResponse200140, *http.Response, error) {
+//  @return []GetOrganizationSwitchPortsBySwitch200ResponseInner
+func (a *PortsApiService) GetOrganizationSwitchPortsBySwitchExecute(r PortsApiGetOrganizationSwitchPortsBySwitchRequest) ([]GetOrganizationSwitchPortsBySwitch200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200140
+		localVarReturnValue  []GetOrganizationSwitchPortsBySwitch200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.GetOrganizationSwitchPortsBySwitch")
@@ -1387,15 +1387,15 @@ type PortsApiUpdateDeviceSwitchPortRequest struct {
 	ApiService *PortsApiService
 	serial string
 	portId string
-	updateDeviceSwitchPort *InlineObject17
+	updateDeviceSwitchPort *UpdateDeviceSwitchPortRequest
 }
 
-func (r PortsApiUpdateDeviceSwitchPortRequest) UpdateDeviceSwitchPort(updateDeviceSwitchPort InlineObject17) PortsApiUpdateDeviceSwitchPortRequest {
+func (r PortsApiUpdateDeviceSwitchPortRequest) UpdateDeviceSwitchPort(updateDeviceSwitchPort UpdateDeviceSwitchPortRequest) PortsApiUpdateDeviceSwitchPortRequest {
 	r.updateDeviceSwitchPort = &updateDeviceSwitchPort
 	return r
 }
 
-func (r PortsApiUpdateDeviceSwitchPortRequest) Execute() (*InlineResponse2004, *http.Response, error) {
+func (r PortsApiUpdateDeviceSwitchPortRequest) Execute() (*GetDeviceSwitchPorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateDeviceSwitchPortExecute(r)
 }
 
@@ -1419,13 +1419,13 @@ func (a *PortsApiService) UpdateDeviceSwitchPort(ctx context.Context, serial str
 }
 
 // Execute executes the request
-//  @return InlineResponse2004
-func (a *PortsApiService) UpdateDeviceSwitchPortExecute(r PortsApiUpdateDeviceSwitchPortRequest) (*InlineResponse2004, *http.Response, error) {
+//  @return GetDeviceSwitchPorts200ResponseInner
+func (a *PortsApiService) UpdateDeviceSwitchPortExecute(r PortsApiUpdateDeviceSwitchPortRequest) (*GetDeviceSwitchPorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2004
+		localVarReturnValue  *GetDeviceSwitchPorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.UpdateDeviceSwitchPort")
@@ -1516,15 +1516,15 @@ type PortsApiUpdateNetworkAppliancePortRequest struct {
 	ApiService *PortsApiService
 	networkId string
 	portId string
-	updateNetworkAppliancePort *InlineObject40
+	updateNetworkAppliancePort *UpdateNetworkAppliancePortRequest
 }
 
-func (r PortsApiUpdateNetworkAppliancePortRequest) UpdateNetworkAppliancePort(updateNetworkAppliancePort InlineObject40) PortsApiUpdateNetworkAppliancePortRequest {
+func (r PortsApiUpdateNetworkAppliancePortRequest) UpdateNetworkAppliancePort(updateNetworkAppliancePort UpdateNetworkAppliancePortRequest) PortsApiUpdateNetworkAppliancePortRequest {
 	r.updateNetworkAppliancePort = &updateNetworkAppliancePort
 	return r
 }
 
-func (r PortsApiUpdateNetworkAppliancePortRequest) Execute() (*InlineResponse20013, *http.Response, error) {
+func (r PortsApiUpdateNetworkAppliancePortRequest) Execute() (*GetNetworkAppliancePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkAppliancePortExecute(r)
 }
 
@@ -1548,13 +1548,13 @@ func (a *PortsApiService) UpdateNetworkAppliancePort(ctx context.Context, networ
 }
 
 // Execute executes the request
-//  @return InlineResponse20013
-func (a *PortsApiService) UpdateNetworkAppliancePortExecute(r PortsApiUpdateNetworkAppliancePortRequest) (*InlineResponse20013, *http.Response, error) {
+//  @return GetNetworkAppliancePorts200ResponseInner
+func (a *PortsApiService) UpdateNetworkAppliancePortExecute(r PortsApiUpdateNetworkAppliancePortRequest) (*GetNetworkAppliancePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20013
+		localVarReturnValue  *GetNetworkAppliancePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.UpdateNetworkAppliancePort")
@@ -1647,15 +1647,15 @@ type PortsApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest struct {
 	configTemplateId string
 	profileId string
 	portId string
-	updateOrganizationConfigTemplateSwitchProfilePort *InlineObject194
+	updateOrganizationConfigTemplateSwitchProfilePort *UpdateOrganizationConfigTemplateSwitchProfilePortRequest
 }
 
-func (r PortsApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) UpdateOrganizationConfigTemplateSwitchProfilePort(updateOrganizationConfigTemplateSwitchProfilePort InlineObject194) PortsApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest {
+func (r PortsApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) UpdateOrganizationConfigTemplateSwitchProfilePort(updateOrganizationConfigTemplateSwitchProfilePort UpdateOrganizationConfigTemplateSwitchProfilePortRequest) PortsApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest {
 	r.updateOrganizationConfigTemplateSwitchProfilePort = &updateOrganizationConfigTemplateSwitchProfilePort
 	return r
 }
 
-func (r PortsApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) Execute() (*InlineResponse200102, *http.Response, error) {
+func (r PortsApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) Execute() (*GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationConfigTemplateSwitchProfilePortExecute(r)
 }
 
@@ -1683,13 +1683,13 @@ func (a *PortsApiService) UpdateOrganizationConfigTemplateSwitchProfilePort(ctx 
 }
 
 // Execute executes the request
-//  @return InlineResponse200102
-func (a *PortsApiService) UpdateOrganizationConfigTemplateSwitchProfilePortExecute(r PortsApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) (*InlineResponse200102, *http.Response, error) {
+//  @return GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
+func (a *PortsApiService) UpdateOrganizationConfigTemplateSwitchProfilePortExecute(r PortsApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) (*GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200102
+		localVarReturnValue  *GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PortsApiService.UpdateOrganizationConfigTemplateSwitchProfilePort")

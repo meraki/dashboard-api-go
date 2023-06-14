@@ -27,15 +27,15 @@ type AlertsApiCreateNetworkSensorAlertsProfileRequest struct {
 	ctx context.Context
 	ApiService *AlertsApiService
 	networkId string
-	createNetworkSensorAlertsProfile *InlineObject95
+	createNetworkSensorAlertsProfile *CreateNetworkSensorAlertsProfileRequest
 }
 
-func (r AlertsApiCreateNetworkSensorAlertsProfileRequest) CreateNetworkSensorAlertsProfile(createNetworkSensorAlertsProfile InlineObject95) AlertsApiCreateNetworkSensorAlertsProfileRequest {
+func (r AlertsApiCreateNetworkSensorAlertsProfileRequest) CreateNetworkSensorAlertsProfile(createNetworkSensorAlertsProfile CreateNetworkSensorAlertsProfileRequest) AlertsApiCreateNetworkSensorAlertsProfileRequest {
 	r.createNetworkSensorAlertsProfile = &createNetworkSensorAlertsProfile
 	return r
 }
 
-func (r AlertsApiCreateNetworkSensorAlertsProfileRequest) Execute() (*InlineResponse20038, *http.Response, error) {
+func (r AlertsApiCreateNetworkSensorAlertsProfileRequest) Execute() (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkSensorAlertsProfileExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *AlertsApiService) CreateNetworkSensorAlertsProfile(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20038
-func (a *AlertsApiService) CreateNetworkSensorAlertsProfileExecute(r AlertsApiCreateNetworkSensorAlertsProfileRequest) (*InlineResponse20038, *http.Response, error) {
+//  @return GetNetworkSensorAlertsProfiles200ResponseInner
+func (a *AlertsApiService) CreateNetworkSensorAlertsProfileExecute(r AlertsApiCreateNetworkSensorAlertsProfileRequest) (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20038
+		localVarReturnValue  *GetNetworkSensorAlertsProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.CreateNetworkSensorAlertsProfile")
@@ -155,10 +155,10 @@ type AlertsApiCreateOrganizationAlertsProfileRequest struct {
 	ctx context.Context
 	ApiService *AlertsApiService
 	organizationId string
-	createOrganizationAlertsProfile *InlineObject180
+	createOrganizationAlertsProfile *CreateOrganizationAlertsProfileRequest
 }
 
-func (r AlertsApiCreateOrganizationAlertsProfileRequest) CreateOrganizationAlertsProfile(createOrganizationAlertsProfile InlineObject180) AlertsApiCreateOrganizationAlertsProfileRequest {
+func (r AlertsApiCreateOrganizationAlertsProfileRequest) CreateOrganizationAlertsProfile(createOrganizationAlertsProfile CreateOrganizationAlertsProfileRequest) AlertsApiCreateOrganizationAlertsProfileRequest {
 	r.createOrganizationAlertsProfile = &createOrganizationAlertsProfile
 	return r
 }
@@ -526,7 +526,7 @@ func (r AlertsApiGetNetworkAlertsHistoryRequest) EndingBefore(endingBefore strin
 	return r
 }
 
-func (r AlertsApiGetNetworkAlertsHistoryRequest) Execute() ([]InlineResponse20012, *http.Response, error) {
+func (r AlertsApiGetNetworkAlertsHistoryRequest) Execute() ([]GetNetworkAlertsHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkAlertsHistoryExecute(r)
 }
 
@@ -548,13 +548,13 @@ func (a *AlertsApiService) GetNetworkAlertsHistory(ctx context.Context, networkI
 }
 
 // Execute executes the request
-//  @return []InlineResponse20012
-func (a *AlertsApiService) GetNetworkAlertsHistoryExecute(r AlertsApiGetNetworkAlertsHistoryRequest) ([]InlineResponse20012, *http.Response, error) {
+//  @return []GetNetworkAlertsHistory200ResponseInner
+func (a *AlertsApiService) GetNetworkAlertsHistoryExecute(r AlertsApiGetNetworkAlertsHistoryRequest) ([]GetNetworkAlertsHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20012
+		localVarReturnValue  []GetNetworkAlertsHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.GetNetworkAlertsHistory")
@@ -769,7 +769,7 @@ type AlertsApiGetNetworkHealthAlertsRequest struct {
 	networkId string
 }
 
-func (r AlertsApiGetNetworkHealthAlertsRequest) Execute() ([]InlineResponse20032, *http.Response, error) {
+func (r AlertsApiGetNetworkHealthAlertsRequest) Execute() ([]GetNetworkHealthAlerts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkHealthAlertsExecute(r)
 }
 
@@ -791,13 +791,13 @@ func (a *AlertsApiService) GetNetworkHealthAlerts(ctx context.Context, networkId
 }
 
 // Execute executes the request
-//  @return []InlineResponse20032
-func (a *AlertsApiService) GetNetworkHealthAlertsExecute(r AlertsApiGetNetworkHealthAlertsRequest) ([]InlineResponse20032, *http.Response, error) {
+//  @return []GetNetworkHealthAlerts200ResponseInner
+func (a *AlertsApiService) GetNetworkHealthAlertsExecute(r AlertsApiGetNetworkHealthAlertsRequest) ([]GetNetworkHealthAlerts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20032
+		localVarReturnValue  []GetNetworkHealthAlerts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.GetNetworkHealthAlerts")
@@ -886,7 +886,7 @@ type AlertsApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest struct {
 	networkId string
 }
 
-func (r AlertsApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) Execute() (*InlineResponse20036, *http.Response, error) {
+func (r AlertsApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) Execute() (*GetNetworkSensorAlertsCurrentOverviewByMetric200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsCurrentOverviewByMetricExecute(r)
 }
 
@@ -908,13 +908,13 @@ func (a *AlertsApiService) GetNetworkSensorAlertsCurrentOverviewByMetric(ctx con
 }
 
 // Execute executes the request
-//  @return InlineResponse20036
-func (a *AlertsApiService) GetNetworkSensorAlertsCurrentOverviewByMetricExecute(r AlertsApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) (*InlineResponse20036, *http.Response, error) {
+//  @return GetNetworkSensorAlertsCurrentOverviewByMetric200Response
+func (a *AlertsApiService) GetNetworkSensorAlertsCurrentOverviewByMetricExecute(r AlertsApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) (*GetNetworkSensorAlertsCurrentOverviewByMetric200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20036
+		localVarReturnValue  *GetNetworkSensorAlertsCurrentOverviewByMetric200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.GetNetworkSensorAlertsCurrentOverviewByMetric")
@@ -1031,7 +1031,7 @@ func (r AlertsApiGetNetworkSensorAlertsOverviewByMetricRequest) Interval(interva
 	return r
 }
 
-func (r AlertsApiGetNetworkSensorAlertsOverviewByMetricRequest) Execute() ([]InlineResponse20037, *http.Response, error) {
+func (r AlertsApiGetNetworkSensorAlertsOverviewByMetricRequest) Execute() ([]GetNetworkSensorAlertsOverviewByMetric200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsOverviewByMetricExecute(r)
 }
 
@@ -1053,13 +1053,13 @@ func (a *AlertsApiService) GetNetworkSensorAlertsOverviewByMetric(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20037
-func (a *AlertsApiService) GetNetworkSensorAlertsOverviewByMetricExecute(r AlertsApiGetNetworkSensorAlertsOverviewByMetricRequest) ([]InlineResponse20037, *http.Response, error) {
+//  @return []GetNetworkSensorAlertsOverviewByMetric200ResponseInner
+func (a *AlertsApiService) GetNetworkSensorAlertsOverviewByMetricExecute(r AlertsApiGetNetworkSensorAlertsOverviewByMetricRequest) ([]GetNetworkSensorAlertsOverviewByMetric200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20037
+		localVarReturnValue  []GetNetworkSensorAlertsOverviewByMetric200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.GetNetworkSensorAlertsOverviewByMetric")
@@ -1161,7 +1161,7 @@ type AlertsApiGetNetworkSensorAlertsProfileRequest struct {
 	id string
 }
 
-func (r AlertsApiGetNetworkSensorAlertsProfileRequest) Execute() (*InlineResponse20038, *http.Response, error) {
+func (r AlertsApiGetNetworkSensorAlertsProfileRequest) Execute() (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsProfileExecute(r)
 }
 
@@ -1185,13 +1185,13 @@ func (a *AlertsApiService) GetNetworkSensorAlertsProfile(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return InlineResponse20038
-func (a *AlertsApiService) GetNetworkSensorAlertsProfileExecute(r AlertsApiGetNetworkSensorAlertsProfileRequest) (*InlineResponse20038, *http.Response, error) {
+//  @return GetNetworkSensorAlertsProfiles200ResponseInner
+func (a *AlertsApiService) GetNetworkSensorAlertsProfileExecute(r AlertsApiGetNetworkSensorAlertsProfileRequest) (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20038
+		localVarReturnValue  *GetNetworkSensorAlertsProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.GetNetworkSensorAlertsProfile")
@@ -1281,7 +1281,7 @@ type AlertsApiGetNetworkSensorAlertsProfilesRequest struct {
 	networkId string
 }
 
-func (r AlertsApiGetNetworkSensorAlertsProfilesRequest) Execute() ([]InlineResponse20038, *http.Response, error) {
+func (r AlertsApiGetNetworkSensorAlertsProfilesRequest) Execute() ([]GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsProfilesExecute(r)
 }
 
@@ -1303,13 +1303,13 @@ func (a *AlertsApiService) GetNetworkSensorAlertsProfiles(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return []InlineResponse20038
-func (a *AlertsApiService) GetNetworkSensorAlertsProfilesExecute(r AlertsApiGetNetworkSensorAlertsProfilesRequest) ([]InlineResponse20038, *http.Response, error) {
+//  @return []GetNetworkSensorAlertsProfiles200ResponseInner
+func (a *AlertsApiService) GetNetworkSensorAlertsProfilesExecute(r AlertsApiGetNetworkSensorAlertsProfilesRequest) ([]GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20038
+		localVarReturnValue  []GetNetworkSensorAlertsProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.GetNetworkSensorAlertsProfiles")
@@ -1513,10 +1513,10 @@ type AlertsApiUpdateNetworkAlertsSettingsRequest struct {
 	ctx context.Context
 	ApiService *AlertsApiService
 	networkId string
-	updateNetworkAlertsSettings *InlineObject27
+	updateNetworkAlertsSettings *UpdateNetworkAlertsSettingsRequest
 }
 
-func (r AlertsApiUpdateNetworkAlertsSettingsRequest) UpdateNetworkAlertsSettings(updateNetworkAlertsSettings InlineObject27) AlertsApiUpdateNetworkAlertsSettingsRequest {
+func (r AlertsApiUpdateNetworkAlertsSettingsRequest) UpdateNetworkAlertsSettings(updateNetworkAlertsSettings UpdateNetworkAlertsSettingsRequest) AlertsApiUpdateNetworkAlertsSettingsRequest {
 	r.updateNetworkAlertsSettings = &updateNetworkAlertsSettings
 	return r
 }
@@ -1639,15 +1639,15 @@ type AlertsApiUpdateNetworkSensorAlertsProfileRequest struct {
 	ApiService *AlertsApiService
 	networkId string
 	id string
-	updateNetworkSensorAlertsProfile *InlineObject96
+	updateNetworkSensorAlertsProfile *UpdateNetworkSensorAlertsProfileRequest
 }
 
-func (r AlertsApiUpdateNetworkSensorAlertsProfileRequest) UpdateNetworkSensorAlertsProfile(updateNetworkSensorAlertsProfile InlineObject96) AlertsApiUpdateNetworkSensorAlertsProfileRequest {
+func (r AlertsApiUpdateNetworkSensorAlertsProfileRequest) UpdateNetworkSensorAlertsProfile(updateNetworkSensorAlertsProfile UpdateNetworkSensorAlertsProfileRequest) AlertsApiUpdateNetworkSensorAlertsProfileRequest {
 	r.updateNetworkSensorAlertsProfile = &updateNetworkSensorAlertsProfile
 	return r
 }
 
-func (r AlertsApiUpdateNetworkSensorAlertsProfileRequest) Execute() (*InlineResponse20038, *http.Response, error) {
+func (r AlertsApiUpdateNetworkSensorAlertsProfileRequest) Execute() (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSensorAlertsProfileExecute(r)
 }
 
@@ -1671,13 +1671,13 @@ func (a *AlertsApiService) UpdateNetworkSensorAlertsProfile(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20038
-func (a *AlertsApiService) UpdateNetworkSensorAlertsProfileExecute(r AlertsApiUpdateNetworkSensorAlertsProfileRequest) (*InlineResponse20038, *http.Response, error) {
+//  @return GetNetworkSensorAlertsProfiles200ResponseInner
+func (a *AlertsApiService) UpdateNetworkSensorAlertsProfileExecute(r AlertsApiUpdateNetworkSensorAlertsProfileRequest) (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20038
+		localVarReturnValue  *GetNetworkSensorAlertsProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.UpdateNetworkSensorAlertsProfile")
@@ -1768,10 +1768,10 @@ type AlertsApiUpdateOrganizationAlertsProfileRequest struct {
 	ApiService *AlertsApiService
 	organizationId string
 	alertConfigId string
-	updateOrganizationAlertsProfile *InlineObject181
+	updateOrganizationAlertsProfile *UpdateOrganizationAlertsProfileRequest
 }
 
-func (r AlertsApiUpdateOrganizationAlertsProfileRequest) UpdateOrganizationAlertsProfile(updateOrganizationAlertsProfile InlineObject181) AlertsApiUpdateOrganizationAlertsProfileRequest {
+func (r AlertsApiUpdateOrganizationAlertsProfileRequest) UpdateOrganizationAlertsProfile(updateOrganizationAlertsProfile UpdateOrganizationAlertsProfileRequest) AlertsApiUpdateOrganizationAlertsProfileRequest {
 	r.updateOrganizationAlertsProfile = &updateOrganizationAlertsProfile
 	return r
 }

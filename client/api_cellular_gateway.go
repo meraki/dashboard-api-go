@@ -380,7 +380,7 @@ type CellularGatewayApiGetNetworkCellularGatewayDhcpRequest struct {
 	networkId string
 }
 
-func (r CellularGatewayApiGetNetworkCellularGatewayDhcpRequest) Execute() (*InlineResponse20022, *http.Response, error) {
+func (r CellularGatewayApiGetNetworkCellularGatewayDhcpRequest) Execute() (*GetNetworkCellularGatewayDhcp200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkCellularGatewayDhcpExecute(r)
 }
 
@@ -402,13 +402,13 @@ func (a *CellularGatewayApiService) GetNetworkCellularGatewayDhcp(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse20022
-func (a *CellularGatewayApiService) GetNetworkCellularGatewayDhcpExecute(r CellularGatewayApiGetNetworkCellularGatewayDhcpRequest) (*InlineResponse20022, *http.Response, error) {
+//  @return GetNetworkCellularGatewayDhcp200Response
+func (a *CellularGatewayApiService) GetNetworkCellularGatewayDhcpExecute(r CellularGatewayApiGetNetworkCellularGatewayDhcpRequest) (*GetNetworkCellularGatewayDhcp200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20022
+		localVarReturnValue  *GetNetworkCellularGatewayDhcp200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CellularGatewayApiService.GetNetworkCellularGatewayDhcp")
@@ -773,7 +773,7 @@ func (r CellularGatewayApiGetOrganizationCellularGatewayUplinkStatusesRequest) I
 	return r
 }
 
-func (r CellularGatewayApiGetOrganizationCellularGatewayUplinkStatusesRequest) Execute() ([]InlineResponse20098, *http.Response, error) {
+func (r CellularGatewayApiGetOrganizationCellularGatewayUplinkStatusesRequest) Execute() ([]GetOrganizationCellularGatewayUplinkStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationCellularGatewayUplinkStatusesExecute(r)
 }
 
@@ -795,13 +795,13 @@ func (a *CellularGatewayApiService) GetOrganizationCellularGatewayUplinkStatuses
 }
 
 // Execute executes the request
-//  @return []InlineResponse20098
-func (a *CellularGatewayApiService) GetOrganizationCellularGatewayUplinkStatusesExecute(r CellularGatewayApiGetOrganizationCellularGatewayUplinkStatusesRequest) ([]InlineResponse20098, *http.Response, error) {
+//  @return []GetOrganizationCellularGatewayUplinkStatuses200ResponseInner
+func (a *CellularGatewayApiService) GetOrganizationCellularGatewayUplinkStatusesExecute(r CellularGatewayApiGetOrganizationCellularGatewayUplinkStatusesRequest) ([]GetOrganizationCellularGatewayUplinkStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20098
+		localVarReturnValue  []GetOrganizationCellularGatewayUplinkStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CellularGatewayApiService.GetOrganizationCellularGatewayUplinkStatuses")
@@ -906,10 +906,10 @@ type CellularGatewayApiUpdateDeviceCellularGatewayLanRequest struct {
 	ctx context.Context
 	ApiService *CellularGatewayApiService
 	serial string
-	updateDeviceCellularGatewayLan *InlineObject10
+	updateDeviceCellularGatewayLan *UpdateDeviceCellularGatewayLanRequest
 }
 
-func (r CellularGatewayApiUpdateDeviceCellularGatewayLanRequest) UpdateDeviceCellularGatewayLan(updateDeviceCellularGatewayLan InlineObject10) CellularGatewayApiUpdateDeviceCellularGatewayLanRequest {
+func (r CellularGatewayApiUpdateDeviceCellularGatewayLanRequest) UpdateDeviceCellularGatewayLan(updateDeviceCellularGatewayLan UpdateDeviceCellularGatewayLanRequest) CellularGatewayApiUpdateDeviceCellularGatewayLanRequest {
 	r.updateDeviceCellularGatewayLan = &updateDeviceCellularGatewayLan
 	return r
 }
@@ -1031,10 +1031,10 @@ type CellularGatewayApiUpdateDeviceCellularGatewayPortForwardingRulesRequest str
 	ctx context.Context
 	ApiService *CellularGatewayApiService
 	serial string
-	updateDeviceCellularGatewayPortForwardingRules *InlineObject11
+	updateDeviceCellularGatewayPortForwardingRules *UpdateDeviceCellularGatewayPortForwardingRulesRequest
 }
 
-func (r CellularGatewayApiUpdateDeviceCellularGatewayPortForwardingRulesRequest) UpdateDeviceCellularGatewayPortForwardingRules(updateDeviceCellularGatewayPortForwardingRules InlineObject11) CellularGatewayApiUpdateDeviceCellularGatewayPortForwardingRulesRequest {
+func (r CellularGatewayApiUpdateDeviceCellularGatewayPortForwardingRulesRequest) UpdateDeviceCellularGatewayPortForwardingRules(updateDeviceCellularGatewayPortForwardingRules UpdateDeviceCellularGatewayPortForwardingRulesRequest) CellularGatewayApiUpdateDeviceCellularGatewayPortForwardingRulesRequest {
 	r.updateDeviceCellularGatewayPortForwardingRules = &updateDeviceCellularGatewayPortForwardingRules
 	return r
 }
@@ -1156,10 +1156,10 @@ type CellularGatewayApiUpdateNetworkCellularGatewayConnectivityMonitoringDestina
 	ctx context.Context
 	ApiService *CellularGatewayApiService
 	networkId string
-	updateNetworkCellularGatewayConnectivityMonitoringDestinations *InlineObject67
+	updateNetworkCellularGatewayConnectivityMonitoringDestinations *UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest
 }
 
-func (r CellularGatewayApiUpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest) UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(updateNetworkCellularGatewayConnectivityMonitoringDestinations InlineObject67) CellularGatewayApiUpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest {
+func (r CellularGatewayApiUpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest) UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(updateNetworkCellularGatewayConnectivityMonitoringDestinations UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest) CellularGatewayApiUpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest {
 	r.updateNetworkCellularGatewayConnectivityMonitoringDestinations = &updateNetworkCellularGatewayConnectivityMonitoringDestinations
 	return r
 }
@@ -1281,15 +1281,15 @@ type CellularGatewayApiUpdateNetworkCellularGatewayDhcpRequest struct {
 	ctx context.Context
 	ApiService *CellularGatewayApiService
 	networkId string
-	updateNetworkCellularGatewayDhcp *InlineObject68
+	updateNetworkCellularGatewayDhcp *UpdateNetworkCellularGatewayDhcpRequest
 }
 
-func (r CellularGatewayApiUpdateNetworkCellularGatewayDhcpRequest) UpdateNetworkCellularGatewayDhcp(updateNetworkCellularGatewayDhcp InlineObject68) CellularGatewayApiUpdateNetworkCellularGatewayDhcpRequest {
+func (r CellularGatewayApiUpdateNetworkCellularGatewayDhcpRequest) UpdateNetworkCellularGatewayDhcp(updateNetworkCellularGatewayDhcp UpdateNetworkCellularGatewayDhcpRequest) CellularGatewayApiUpdateNetworkCellularGatewayDhcpRequest {
 	r.updateNetworkCellularGatewayDhcp = &updateNetworkCellularGatewayDhcp
 	return r
 }
 
-func (r CellularGatewayApiUpdateNetworkCellularGatewayDhcpRequest) Execute() (*InlineResponse20022, *http.Response, error) {
+func (r CellularGatewayApiUpdateNetworkCellularGatewayDhcpRequest) Execute() (*GetNetworkCellularGatewayDhcp200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkCellularGatewayDhcpExecute(r)
 }
 
@@ -1311,13 +1311,13 @@ func (a *CellularGatewayApiService) UpdateNetworkCellularGatewayDhcp(ctx context
 }
 
 // Execute executes the request
-//  @return InlineResponse20022
-func (a *CellularGatewayApiService) UpdateNetworkCellularGatewayDhcpExecute(r CellularGatewayApiUpdateNetworkCellularGatewayDhcpRequest) (*InlineResponse20022, *http.Response, error) {
+//  @return GetNetworkCellularGatewayDhcp200Response
+func (a *CellularGatewayApiService) UpdateNetworkCellularGatewayDhcpExecute(r CellularGatewayApiUpdateNetworkCellularGatewayDhcpRequest) (*GetNetworkCellularGatewayDhcp200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20022
+		localVarReturnValue  *GetNetworkCellularGatewayDhcp200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CellularGatewayApiService.UpdateNetworkCellularGatewayDhcp")
@@ -1406,10 +1406,10 @@ type CellularGatewayApiUpdateNetworkCellularGatewaySubnetPoolRequest struct {
 	ctx context.Context
 	ApiService *CellularGatewayApiService
 	networkId string
-	updateNetworkCellularGatewaySubnetPool *InlineObject69
+	updateNetworkCellularGatewaySubnetPool *UpdateNetworkCellularGatewaySubnetPoolRequest
 }
 
-func (r CellularGatewayApiUpdateNetworkCellularGatewaySubnetPoolRequest) UpdateNetworkCellularGatewaySubnetPool(updateNetworkCellularGatewaySubnetPool InlineObject69) CellularGatewayApiUpdateNetworkCellularGatewaySubnetPoolRequest {
+func (r CellularGatewayApiUpdateNetworkCellularGatewaySubnetPoolRequest) UpdateNetworkCellularGatewaySubnetPool(updateNetworkCellularGatewaySubnetPool UpdateNetworkCellularGatewaySubnetPoolRequest) CellularGatewayApiUpdateNetworkCellularGatewaySubnetPoolRequest {
 	r.updateNetworkCellularGatewaySubnetPool = &updateNetworkCellularGatewaySubnetPool
 	return r
 }
@@ -1531,10 +1531,10 @@ type CellularGatewayApiUpdateNetworkCellularGatewayUplinkRequest struct {
 	ctx context.Context
 	ApiService *CellularGatewayApiService
 	networkId string
-	updateNetworkCellularGatewayUplink *InlineObject70
+	updateNetworkCellularGatewayUplink *UpdateNetworkCellularGatewayUplinkRequest
 }
 
-func (r CellularGatewayApiUpdateNetworkCellularGatewayUplinkRequest) UpdateNetworkCellularGatewayUplink(updateNetworkCellularGatewayUplink InlineObject70) CellularGatewayApiUpdateNetworkCellularGatewayUplinkRequest {
+func (r CellularGatewayApiUpdateNetworkCellularGatewayUplinkRequest) UpdateNetworkCellularGatewayUplink(updateNetworkCellularGatewayUplink UpdateNetworkCellularGatewayUplinkRequest) CellularGatewayApiUpdateNetworkCellularGatewayUplinkRequest {
 	r.updateNetworkCellularGatewayUplink = &updateNetworkCellularGatewayUplink
 	return r
 }

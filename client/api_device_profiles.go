@@ -30,7 +30,7 @@ type DeviceProfilesApiGetNetworkSmDeviceDeviceProfilesRequest struct {
 	deviceId string
 }
 
-func (r DeviceProfilesApiGetNetworkSmDeviceDeviceProfilesRequest) Execute() ([]InlineResponse20053, *http.Response, error) {
+func (r DeviceProfilesApiGetNetworkSmDeviceDeviceProfilesRequest) Execute() ([]GetNetworkSmDeviceDeviceProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceDeviceProfilesExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *DeviceProfilesApiService) GetNetworkSmDeviceDeviceProfiles(ctx context.
 }
 
 // Execute executes the request
-//  @return []InlineResponse20053
-func (a *DeviceProfilesApiService) GetNetworkSmDeviceDeviceProfilesExecute(r DeviceProfilesApiGetNetworkSmDeviceDeviceProfilesRequest) ([]InlineResponse20053, *http.Response, error) {
+//  @return []GetNetworkSmDeviceDeviceProfiles200ResponseInner
+func (a *DeviceProfilesApiService) GetNetworkSmDeviceDeviceProfilesExecute(r DeviceProfilesApiGetNetworkSmDeviceDeviceProfilesRequest) ([]GetNetworkSmDeviceDeviceProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20053
+		localVarReturnValue  []GetNetworkSmDeviceDeviceProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceProfilesApiService.GetNetworkSmDeviceDeviceProfiles")
@@ -151,7 +151,7 @@ type DeviceProfilesApiGetNetworkSmUserDeviceProfilesRequest struct {
 	userId string
 }
 
-func (r DeviceProfilesApiGetNetworkSmUserDeviceProfilesRequest) Execute() ([]InlineResponse20053, *http.Response, error) {
+func (r DeviceProfilesApiGetNetworkSmUserDeviceProfilesRequest) Execute() ([]GetNetworkSmDeviceDeviceProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmUserDeviceProfilesExecute(r)
 }
 
@@ -175,13 +175,13 @@ func (a *DeviceProfilesApiService) GetNetworkSmUserDeviceProfiles(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20053
-func (a *DeviceProfilesApiService) GetNetworkSmUserDeviceProfilesExecute(r DeviceProfilesApiGetNetworkSmUserDeviceProfilesRequest) ([]InlineResponse20053, *http.Response, error) {
+//  @return []GetNetworkSmDeviceDeviceProfiles200ResponseInner
+func (a *DeviceProfilesApiService) GetNetworkSmUserDeviceProfilesExecute(r DeviceProfilesApiGetNetworkSmUserDeviceProfilesRequest) ([]GetNetworkSmDeviceDeviceProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20053
+		localVarReturnValue  []GetNetworkSmDeviceDeviceProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceProfilesApiService.GetNetworkSmUserDeviceProfiles")

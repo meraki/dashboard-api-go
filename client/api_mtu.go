@@ -29,7 +29,7 @@ type MtuApiGetNetworkSwitchMtuRequest struct {
 	networkId string
 }
 
-func (r MtuApiGetNetworkSwitchMtuRequest) Execute() (*InlineResponse20069, *http.Response, error) {
+func (r MtuApiGetNetworkSwitchMtuRequest) Execute() (*GetNetworkSwitchMtu200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchMtuExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *MtuApiService) GetNetworkSwitchMtu(ctx context.Context, networkId strin
 }
 
 // Execute executes the request
-//  @return InlineResponse20069
-func (a *MtuApiService) GetNetworkSwitchMtuExecute(r MtuApiGetNetworkSwitchMtuRequest) (*InlineResponse20069, *http.Response, error) {
+//  @return GetNetworkSwitchMtu200Response
+func (a *MtuApiService) GetNetworkSwitchMtuExecute(r MtuApiGetNetworkSwitchMtuRequest) (*GetNetworkSwitchMtu200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20069
+		localVarReturnValue  *GetNetworkSwitchMtu200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MtuApiService.GetNetworkSwitchMtu")
@@ -144,10 +144,10 @@ type MtuApiUpdateNetworkSwitchMtuRequest struct {
 	ctx context.Context
 	ApiService *MtuApiService
 	networkId string
-	updateNetworkSwitchMtu *InlineObject119
+	updateNetworkSwitchMtu *UpdateNetworkSwitchMtuRequest
 }
 
-func (r MtuApiUpdateNetworkSwitchMtuRequest) UpdateNetworkSwitchMtu(updateNetworkSwitchMtu InlineObject119) MtuApiUpdateNetworkSwitchMtuRequest {
+func (r MtuApiUpdateNetworkSwitchMtuRequest) UpdateNetworkSwitchMtu(updateNetworkSwitchMtu UpdateNetworkSwitchMtuRequest) MtuApiUpdateNetworkSwitchMtuRequest {
 	r.updateNetworkSwitchMtu = &updateNetworkSwitchMtu
 	return r
 }

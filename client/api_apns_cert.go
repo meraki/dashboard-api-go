@@ -29,7 +29,7 @@ type ApnsCertApiGetOrganizationSmApnsCertRequest struct {
 	organizationId string
 }
 
-func (r ApnsCertApiGetOrganizationSmApnsCertRequest) Execute() (*InlineResponse200131, *http.Response, error) {
+func (r ApnsCertApiGetOrganizationSmApnsCertRequest) Execute() (*GetOrganizationSmApnsCert200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationSmApnsCertExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *ApnsCertApiService) GetOrganizationSmApnsCert(ctx context.Context, orga
 }
 
 // Execute executes the request
-//  @return InlineResponse200131
-func (a *ApnsCertApiService) GetOrganizationSmApnsCertExecute(r ApnsCertApiGetOrganizationSmApnsCertRequest) (*InlineResponse200131, *http.Response, error) {
+//  @return GetOrganizationSmApnsCert200Response
+func (a *ApnsCertApiService) GetOrganizationSmApnsCertExecute(r ApnsCertApiGetOrganizationSmApnsCertRequest) (*GetOrganizationSmApnsCert200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200131
+		localVarReturnValue  *GetOrganizationSmApnsCert200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApnsCertApiService.GetOrganizationSmApnsCert")

@@ -50,7 +50,7 @@ func (r TrustedAccessConfigsApiGetNetworkSmTrustedAccessConfigsRequest) EndingBe
 	return r
 }
 
-func (r TrustedAccessConfigsApiGetNetworkSmTrustedAccessConfigsRequest) Execute() ([]InlineResponse20060, *http.Response, error) {
+func (r TrustedAccessConfigsApiGetNetworkSmTrustedAccessConfigsRequest) Execute() ([]GetNetworkSmTrustedAccessConfigs200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmTrustedAccessConfigsExecute(r)
 }
 
@@ -72,13 +72,13 @@ func (a *TrustedAccessConfigsApiService) GetNetworkSmTrustedAccessConfigs(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20060
-func (a *TrustedAccessConfigsApiService) GetNetworkSmTrustedAccessConfigsExecute(r TrustedAccessConfigsApiGetNetworkSmTrustedAccessConfigsRequest) ([]InlineResponse20060, *http.Response, error) {
+//  @return []GetNetworkSmTrustedAccessConfigs200ResponseInner
+func (a *TrustedAccessConfigsApiService) GetNetworkSmTrustedAccessConfigsExecute(r TrustedAccessConfigsApiGetNetworkSmTrustedAccessConfigsRequest) ([]GetNetworkSmTrustedAccessConfigs200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20060
+		localVarReturnValue  []GetNetworkSmTrustedAccessConfigs200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrustedAccessConfigsApiService.GetNetworkSmTrustedAccessConfigs")

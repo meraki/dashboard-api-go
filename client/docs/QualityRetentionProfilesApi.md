@@ -34,7 +34,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkCameraQualityRetentionProfile := *openapiclient.NewInlineObject63("Name_example") // InlineObject63 | 
+    createNetworkCameraQualityRetentionProfile := *openapiclient.NewCreateNetworkCameraQualityRetentionProfileRequest("Name_example") // CreateNetworkCameraQualityRetentionProfileRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -64,7 +64,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkCameraQuality
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkCameraQualityRetentionProfile** | [**InlineObject63**](InlineObject63.md) |  | 
+ **createNetworkCameraQualityRetentionProfile** | [**CreateNetworkCameraQualityRetentionProfileRequest**](CreateNetworkCameraQualityRetentionProfileRequest.md) |  | 
 
 ### Return type
 
@@ -321,7 +321,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | Network ID
     qualityRetentionProfileId := "qualityRetentionProfileId_example" // string | Quality retention profile ID
-    updateNetworkCameraQualityRetentionProfile := *openapiclient.NewInlineObject64() // InlineObject64 |  (optional)
+    updateNetworkCameraQualityRetentionProfile := *openapiclient.NewUpdateNetworkCameraQualityRetentionProfileRequest() // UpdateNetworkCameraQualityRetentionProfileRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -353,7 +353,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkCameraQualityRetentionProfile** | [**InlineObject64**](InlineObject64.md) |  | 
+ **updateNetworkCameraQualityRetentionProfile** | [**UpdateNetworkCameraQualityRetentionProfileRequest**](UpdateNetworkCameraQualityRetentionProfileRequest.md) |  | 
 
 ### Return type
 

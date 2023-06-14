@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## GetNetworkSwitchMtu
 
-> InlineResponse20069 GetNetworkSwitchMtu(ctx, networkId).Execute()
+> GetNetworkSwitchMtu200Response GetNetworkSwitchMtu(ctx, networkId).Execute()
 
 Return the MTU configuration
 
@@ -39,7 +39,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MtuApi.GetNetworkSwitchMtu``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchMtu`: InlineResponse20069
+    // response from `GetNetworkSwitchMtu`: GetNetworkSwitchMtu200Response
     fmt.Fprintf(os.Stdout, "Response from `MtuApi.GetNetworkSwitchMtu`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20069**](InlineResponse20069.md)
+[**GetNetworkSwitchMtu200Response**](GetNetworkSwitchMtu200Response.md)
 
 ### Authorization
 
@@ -101,7 +101,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSwitchMtu := *openapiclient.NewInlineObject119() // InlineObject119 |  (optional)
+    updateNetworkSwitchMtu := *openapiclient.NewUpdateNetworkSwitchMtuRequest() // UpdateNetworkSwitchMtuRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -131,7 +131,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSwitchMtuRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSwitchMtu** | [**InlineObject119**](InlineObject119.md) |  | 
+ **updateNetworkSwitchMtu** | [**UpdateNetworkSwitchMtuRequest**](UpdateNetworkSwitchMtuRequest.md) |  | 
 
 ### Return type
 

@@ -27,10 +27,10 @@ type StaticRoutesApiCreateDeviceSwitchRoutingStaticRouteRequest struct {
 	ctx context.Context
 	ApiService *StaticRoutesApiService
 	serial string
-	createDeviceSwitchRoutingStaticRoute *InlineObject21
+	createDeviceSwitchRoutingStaticRoute *CreateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r StaticRoutesApiCreateDeviceSwitchRoutingStaticRouteRequest) CreateDeviceSwitchRoutingStaticRoute(createDeviceSwitchRoutingStaticRoute InlineObject21) StaticRoutesApiCreateDeviceSwitchRoutingStaticRouteRequest {
+func (r StaticRoutesApiCreateDeviceSwitchRoutingStaticRouteRequest) CreateDeviceSwitchRoutingStaticRoute(createDeviceSwitchRoutingStaticRoute CreateDeviceSwitchRoutingStaticRouteRequest) StaticRoutesApiCreateDeviceSwitchRoutingStaticRouteRequest {
 	r.createDeviceSwitchRoutingStaticRoute = &createDeviceSwitchRoutingStaticRoute
 	return r
 }
@@ -155,10 +155,10 @@ type StaticRoutesApiCreateNetworkApplianceStaticRouteRequest struct {
 	ctx context.Context
 	ApiService *StaticRoutesApiService
 	networkId string
-	createNetworkApplianceStaticRoute *InlineObject48
+	createNetworkApplianceStaticRoute *CreateNetworkApplianceStaticRouteRequest
 }
 
-func (r StaticRoutesApiCreateNetworkApplianceStaticRouteRequest) CreateNetworkApplianceStaticRoute(createNetworkApplianceStaticRoute InlineObject48) StaticRoutesApiCreateNetworkApplianceStaticRouteRequest {
+func (r StaticRoutesApiCreateNetworkApplianceStaticRouteRequest) CreateNetworkApplianceStaticRoute(createNetworkApplianceStaticRoute CreateNetworkApplianceStaticRouteRequest) StaticRoutesApiCreateNetworkApplianceStaticRouteRequest {
 	r.createNetworkApplianceStaticRoute = &createNetworkApplianceStaticRoute
 	return r
 }
@@ -284,10 +284,10 @@ type StaticRoutesApiCreateNetworkSwitchStackRoutingStaticRouteRequest struct {
 	ApiService *StaticRoutesApiService
 	networkId string
 	switchStackId string
-	createNetworkSwitchStackRoutingStaticRoute *InlineObject136
+	createNetworkSwitchStackRoutingStaticRoute *CreateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r StaticRoutesApiCreateNetworkSwitchStackRoutingStaticRouteRequest) CreateNetworkSwitchStackRoutingStaticRoute(createNetworkSwitchStackRoutingStaticRoute InlineObject136) StaticRoutesApiCreateNetworkSwitchStackRoutingStaticRouteRequest {
+func (r StaticRoutesApiCreateNetworkSwitchStackRoutingStaticRouteRequest) CreateNetworkSwitchStackRoutingStaticRoute(createNetworkSwitchStackRoutingStaticRoute CreateDeviceSwitchRoutingStaticRouteRequest) StaticRoutesApiCreateNetworkSwitchStackRoutingStaticRouteRequest {
 	r.createNetworkSwitchStackRoutingStaticRoute = &createNetworkSwitchStackRoutingStaticRoute
 	return r
 }
@@ -752,7 +752,7 @@ type StaticRoutesApiGetDeviceSwitchRoutingStaticRouteRequest struct {
 	staticRouteId string
 }
 
-func (r StaticRoutesApiGetDeviceSwitchRoutingStaticRouteRequest) Execute() (*InlineResponse2008, *http.Response, error) {
+func (r StaticRoutesApiGetDeviceSwitchRoutingStaticRouteRequest) Execute() (*GetDeviceSwitchRoutingStaticRoute200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceSwitchRoutingStaticRouteExecute(r)
 }
 
@@ -776,13 +776,13 @@ func (a *StaticRoutesApiService) GetDeviceSwitchRoutingStaticRoute(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse2008
-func (a *StaticRoutesApiService) GetDeviceSwitchRoutingStaticRouteExecute(r StaticRoutesApiGetDeviceSwitchRoutingStaticRouteRequest) (*InlineResponse2008, *http.Response, error) {
+//  @return GetDeviceSwitchRoutingStaticRoute200Response
+func (a *StaticRoutesApiService) GetDeviceSwitchRoutingStaticRouteExecute(r StaticRoutesApiGetDeviceSwitchRoutingStaticRouteRequest) (*GetDeviceSwitchRoutingStaticRoute200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2008
+		localVarReturnValue  *GetDeviceSwitchRoutingStaticRoute200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StaticRoutesApiService.GetDeviceSwitchRoutingStaticRoute")
@@ -1472,10 +1472,10 @@ type StaticRoutesApiUpdateDeviceSwitchRoutingStaticRouteRequest struct {
 	ApiService *StaticRoutesApiService
 	serial string
 	staticRouteId string
-	updateDeviceSwitchRoutingStaticRoute *InlineObject22
+	updateDeviceSwitchRoutingStaticRoute *UpdateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r StaticRoutesApiUpdateDeviceSwitchRoutingStaticRouteRequest) UpdateDeviceSwitchRoutingStaticRoute(updateDeviceSwitchRoutingStaticRoute InlineObject22) StaticRoutesApiUpdateDeviceSwitchRoutingStaticRouteRequest {
+func (r StaticRoutesApiUpdateDeviceSwitchRoutingStaticRouteRequest) UpdateDeviceSwitchRoutingStaticRoute(updateDeviceSwitchRoutingStaticRoute UpdateDeviceSwitchRoutingStaticRouteRequest) StaticRoutesApiUpdateDeviceSwitchRoutingStaticRouteRequest {
 	r.updateDeviceSwitchRoutingStaticRoute = &updateDeviceSwitchRoutingStaticRoute
 	return r
 }
@@ -1601,10 +1601,10 @@ type StaticRoutesApiUpdateNetworkApplianceStaticRouteRequest struct {
 	ApiService *StaticRoutesApiService
 	networkId string
 	staticRouteId string
-	updateNetworkApplianceStaticRoute *InlineObject49
+	updateNetworkApplianceStaticRoute *UpdateNetworkApplianceStaticRouteRequest
 }
 
-func (r StaticRoutesApiUpdateNetworkApplianceStaticRouteRequest) UpdateNetworkApplianceStaticRoute(updateNetworkApplianceStaticRoute InlineObject49) StaticRoutesApiUpdateNetworkApplianceStaticRouteRequest {
+func (r StaticRoutesApiUpdateNetworkApplianceStaticRouteRequest) UpdateNetworkApplianceStaticRoute(updateNetworkApplianceStaticRoute UpdateNetworkApplianceStaticRouteRequest) StaticRoutesApiUpdateNetworkApplianceStaticRouteRequest {
 	r.updateNetworkApplianceStaticRoute = &updateNetworkApplianceStaticRoute
 	return r
 }
@@ -1731,10 +1731,10 @@ type StaticRoutesApiUpdateNetworkSwitchStackRoutingStaticRouteRequest struct {
 	networkId string
 	switchStackId string
 	staticRouteId string
-	updateNetworkSwitchStackRoutingStaticRoute *InlineObject137
+	updateNetworkSwitchStackRoutingStaticRoute *UpdateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r StaticRoutesApiUpdateNetworkSwitchStackRoutingStaticRouteRequest) UpdateNetworkSwitchStackRoutingStaticRoute(updateNetworkSwitchStackRoutingStaticRoute InlineObject137) StaticRoutesApiUpdateNetworkSwitchStackRoutingStaticRouteRequest {
+func (r StaticRoutesApiUpdateNetworkSwitchStackRoutingStaticRouteRequest) UpdateNetworkSwitchStackRoutingStaticRoute(updateNetworkSwitchStackRoutingStaticRoute UpdateDeviceSwitchRoutingStaticRouteRequest) StaticRoutesApiUpdateNetworkSwitchStackRoutingStaticRouteRequest {
 	r.updateNetworkSwitchStackRoutingStaticRoute = &updateNetworkSwitchStackRoutingStaticRoute
 	return r
 }

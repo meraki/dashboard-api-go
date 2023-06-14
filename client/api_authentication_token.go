@@ -29,7 +29,7 @@ type AuthenticationTokenApiCreateDeviceApplianceVmxAuthenticationTokenRequest st
 	serial string
 }
 
-func (r AuthenticationTokenApiCreateDeviceApplianceVmxAuthenticationTokenRequest) Execute() (*InlineResponse201, *http.Response, error) {
+func (r AuthenticationTokenApiCreateDeviceApplianceVmxAuthenticationTokenRequest) Execute() (*CreateDeviceApplianceVmxAuthenticationToken201Response, *http.Response, error) {
 	return r.ApiService.CreateDeviceApplianceVmxAuthenticationTokenExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *AuthenticationTokenApiService) CreateDeviceApplianceVmxAuthenticationTo
 }
 
 // Execute executes the request
-//  @return InlineResponse201
-func (a *AuthenticationTokenApiService) CreateDeviceApplianceVmxAuthenticationTokenExecute(r AuthenticationTokenApiCreateDeviceApplianceVmxAuthenticationTokenRequest) (*InlineResponse201, *http.Response, error) {
+//  @return CreateDeviceApplianceVmxAuthenticationToken201Response
+func (a *AuthenticationTokenApiService) CreateDeviceApplianceVmxAuthenticationTokenExecute(r AuthenticationTokenApiCreateDeviceApplianceVmxAuthenticationTokenRequest) (*CreateDeviceApplianceVmxAuthenticationToken201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse201
+		localVarReturnValue  *CreateDeviceApplianceVmxAuthenticationToken201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationTokenApiService.CreateDeviceApplianceVmxAuthenticationToken")

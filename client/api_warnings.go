@@ -50,7 +50,7 @@ func (r WarningsApiGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice
 	return r
 }
 
-func (r WarningsApiGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceRequest) Execute() ([]InlineResponse20068, *http.Response, error) {
+func (r WarningsApiGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceRequest) Execute() ([]GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceExecute(r)
 }
 
@@ -72,13 +72,13 @@ func (a *WarningsApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarnin
 }
 
 // Execute executes the request
-//  @return []InlineResponse20068
-func (a *WarningsApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceExecute(r WarningsApiGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceRequest) ([]InlineResponse20068, *http.Response, error) {
+//  @return []GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner
+func (a *WarningsApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceExecute(r WarningsApiGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceRequest) ([]GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20068
+		localVarReturnValue  []GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WarningsApiService.GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice")

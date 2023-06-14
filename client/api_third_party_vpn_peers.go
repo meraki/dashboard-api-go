@@ -29,7 +29,7 @@ type ThirdPartyVPNPeersApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest s
 	organizationId string
 }
 
-func (r ThirdPartyVPNPeersApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest) Execute() (*InlineResponse20094, *http.Response, error) {
+func (r ThirdPartyVPNPeersApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest) Execute() (*GetOrganizationApplianceVpnThirdPartyVPNPeers200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationApplianceVpnThirdPartyVPNPeersExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *ThirdPartyVPNPeersApiService) GetOrganizationApplianceVpnThirdPartyVPNP
 }
 
 // Execute executes the request
-//  @return InlineResponse20094
-func (a *ThirdPartyVPNPeersApiService) GetOrganizationApplianceVpnThirdPartyVPNPeersExecute(r ThirdPartyVPNPeersApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest) (*InlineResponse20094, *http.Response, error) {
+//  @return GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
+func (a *ThirdPartyVPNPeersApiService) GetOrganizationApplianceVpnThirdPartyVPNPeersExecute(r ThirdPartyVPNPeersApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest) (*GetOrganizationApplianceVpnThirdPartyVPNPeers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20094
+		localVarReturnValue  *GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyVPNPeersApiService.GetOrganizationApplianceVpnThirdPartyVPNPeers")
@@ -144,15 +144,15 @@ type ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersReques
 	ctx context.Context
 	ApiService *ThirdPartyVPNPeersApiService
 	organizationId string
-	updateOrganizationApplianceVpnThirdPartyVPNPeers *InlineObject183
+	updateOrganizationApplianceVpnThirdPartyVPNPeers *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest
 }
 
-func (r ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) UpdateOrganizationApplianceVpnThirdPartyVPNPeers(updateOrganizationApplianceVpnThirdPartyVPNPeers InlineObject183) ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest {
+func (r ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) UpdateOrganizationApplianceVpnThirdPartyVPNPeers(updateOrganizationApplianceVpnThirdPartyVPNPeers UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest {
 	r.updateOrganizationApplianceVpnThirdPartyVPNPeers = &updateOrganizationApplianceVpnThirdPartyVPNPeers
 	return r
 }
 
-func (r ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) Execute() (*InlineResponse20094, *http.Response, error) {
+func (r ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) Execute() (*GetOrganizationApplianceVpnThirdPartyVPNPeers200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationApplianceVpnThirdPartyVPNPeersExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *ThirdPartyVPNPeersApiService) UpdateOrganizationApplianceVpnThirdPartyV
 }
 
 // Execute executes the request
-//  @return InlineResponse20094
-func (a *ThirdPartyVPNPeersApiService) UpdateOrganizationApplianceVpnThirdPartyVPNPeersExecute(r ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) (*InlineResponse20094, *http.Response, error) {
+//  @return GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
+func (a *ThirdPartyVPNPeersApiService) UpdateOrganizationApplianceVpnThirdPartyVPNPeersExecute(r ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) (*GetOrganizationApplianceVpnThirdPartyVPNPeers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20094
+		localVarReturnValue  *GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyVPNPeersApiService.UpdateOrganizationApplianceVpnThirdPartyVPNPeers")

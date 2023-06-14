@@ -85,7 +85,7 @@ func (r PowerModulesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest
 	return r
 }
 
-func (r PowerModulesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) Execute() ([]InlineResponse200105, *http.Response, error) {
+func (r PowerModulesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) Execute() ([]GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r)
 }
 
@@ -107,13 +107,13 @@ func (a *PowerModulesApiService) GetOrganizationDevicesPowerModulesStatusesByDev
 }
 
 // Execute executes the request
-//  @return []InlineResponse200105
-func (a *PowerModulesApiService) GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r PowerModulesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) ([]InlineResponse200105, *http.Response, error) {
+//  @return []GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner
+func (a *PowerModulesApiService) GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r PowerModulesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) ([]GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200105
+		localVarReturnValue  []GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PowerModulesApiService.GetOrganizationDevicesPowerModulesStatusesByDevice")

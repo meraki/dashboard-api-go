@@ -144,10 +144,10 @@ type OspfApiUpdateNetworkSwitchRoutingOspfRequest struct {
 	ctx context.Context
 	ApiService *OspfApiService
 	networkId string
-	updateNetworkSwitchRoutingOspf *InlineObject128
+	updateNetworkSwitchRoutingOspf *UpdateNetworkSwitchRoutingOspfRequest
 }
 
-func (r OspfApiUpdateNetworkSwitchRoutingOspfRequest) UpdateNetworkSwitchRoutingOspf(updateNetworkSwitchRoutingOspf InlineObject128) OspfApiUpdateNetworkSwitchRoutingOspfRequest {
+func (r OspfApiUpdateNetworkSwitchRoutingOspfRequest) UpdateNetworkSwitchRoutingOspf(updateNetworkSwitchRoutingOspf UpdateNetworkSwitchRoutingOspfRequest) OspfApiUpdateNetworkSwitchRoutingOspfRequest {
 	r.updateNetworkSwitchRoutingOspf = &updateNetworkSwitchRoutingOspf
 	return r
 }

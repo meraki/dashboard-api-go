@@ -43,7 +43,7 @@ func (r StatusesApiGetDeviceSwitchPortsStatusesRequest) Timespan(timespan float3
 	return r
 }
 
-func (r StatusesApiGetDeviceSwitchPortsStatusesRequest) Execute() ([]InlineResponse2006, *http.Response, error) {
+func (r StatusesApiGetDeviceSwitchPortsStatusesRequest) Execute() ([]GetDeviceSwitchPortsStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetDeviceSwitchPortsStatusesExecute(r)
 }
 
@@ -65,13 +65,13 @@ func (a *StatusesApiService) GetDeviceSwitchPortsStatuses(ctx context.Context, s
 }
 
 // Execute executes the request
-//  @return []InlineResponse2006
-func (a *StatusesApiService) GetDeviceSwitchPortsStatusesExecute(r StatusesApiGetDeviceSwitchPortsStatusesRequest) ([]InlineResponse2006, *http.Response, error) {
+//  @return []GetDeviceSwitchPortsStatuses200ResponseInner
+func (a *StatusesApiService) GetDeviceSwitchPortsStatusesExecute(r StatusesApiGetDeviceSwitchPortsStatusesRequest) ([]GetDeviceSwitchPortsStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2006
+		localVarReturnValue  []GetDeviceSwitchPortsStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusesApiService.GetDeviceSwitchPortsStatuses")
@@ -816,7 +816,7 @@ func (r StatusesApiGetOrganizationCellularGatewayUplinkStatusesRequest) Iccids(i
 	return r
 }
 
-func (r StatusesApiGetOrganizationCellularGatewayUplinkStatusesRequest) Execute() ([]InlineResponse20098, *http.Response, error) {
+func (r StatusesApiGetOrganizationCellularGatewayUplinkStatusesRequest) Execute() ([]GetOrganizationCellularGatewayUplinkStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationCellularGatewayUplinkStatusesExecute(r)
 }
 
@@ -838,13 +838,13 @@ func (a *StatusesApiService) GetOrganizationCellularGatewayUplinkStatuses(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20098
-func (a *StatusesApiService) GetOrganizationCellularGatewayUplinkStatusesExecute(r StatusesApiGetOrganizationCellularGatewayUplinkStatusesRequest) ([]InlineResponse20098, *http.Response, error) {
+//  @return []GetOrganizationCellularGatewayUplinkStatuses200ResponseInner
+func (a *StatusesApiService) GetOrganizationCellularGatewayUplinkStatusesExecute(r StatusesApiGetOrganizationCellularGatewayUplinkStatusesRequest) ([]GetOrganizationCellularGatewayUplinkStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20098
+		localVarReturnValue  []GetOrganizationCellularGatewayUplinkStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusesApiService.GetOrganizationCellularGatewayUplinkStatuses")
@@ -1007,7 +1007,7 @@ func (r StatusesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) Ta
 	return r
 }
 
-func (r StatusesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) Execute() ([]InlineResponse200105, *http.Response, error) {
+func (r StatusesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) Execute() ([]GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r)
 }
 
@@ -1029,13 +1029,13 @@ func (a *StatusesApiService) GetOrganizationDevicesPowerModulesStatusesByDevice(
 }
 
 // Execute executes the request
-//  @return []InlineResponse200105
-func (a *StatusesApiService) GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r StatusesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) ([]InlineResponse200105, *http.Response, error) {
+//  @return []GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner
+func (a *StatusesApiService) GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r StatusesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) ([]GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200105
+		localVarReturnValue  []GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusesApiService.GetOrganizationDevicesPowerModulesStatusesByDevice")
@@ -1211,7 +1211,7 @@ func (r StatusesApiGetOrganizationDevicesProvisioningStatusesRequest) TagsFilter
 	return r
 }
 
-func (r StatusesApiGetOrganizationDevicesProvisioningStatusesRequest) Execute() ([]InlineResponse200106, *http.Response, error) {
+func (r StatusesApiGetOrganizationDevicesProvisioningStatusesRequest) Execute() ([]GetOrganizationDevicesProvisioningStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesProvisioningStatusesExecute(r)
 }
 
@@ -1233,13 +1233,13 @@ func (a *StatusesApiService) GetOrganizationDevicesProvisioningStatuses(ctx cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse200106
-func (a *StatusesApiService) GetOrganizationDevicesProvisioningStatusesExecute(r StatusesApiGetOrganizationDevicesProvisioningStatusesRequest) ([]InlineResponse200106, *http.Response, error) {
+//  @return []GetOrganizationDevicesProvisioningStatuses200ResponseInner
+func (a *StatusesApiService) GetOrganizationDevicesProvisioningStatusesExecute(r StatusesApiGetOrganizationDevicesProvisioningStatusesRequest) ([]GetOrganizationDevicesProvisioningStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200106
+		localVarReturnValue  []GetOrganizationDevicesProvisioningStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusesApiService.GetOrganizationDevicesProvisioningStatuses")
@@ -1425,7 +1425,7 @@ func (r StatusesApiGetOrganizationDevicesStatusesRequest) TagsFilterType(tagsFil
 	return r
 }
 
-func (r StatusesApiGetOrganizationDevicesStatusesRequest) Execute() (*InlineResponse200107, *http.Response, error) {
+func (r StatusesApiGetOrganizationDevicesStatusesRequest) Execute() (*GetOrganizationDevicesStatuses200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesStatusesExecute(r)
 }
 
@@ -1447,13 +1447,13 @@ func (a *StatusesApiService) GetOrganizationDevicesStatuses(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse200107
-func (a *StatusesApiService) GetOrganizationDevicesStatusesExecute(r StatusesApiGetOrganizationDevicesStatusesRequest) (*InlineResponse200107, *http.Response, error) {
+//  @return GetOrganizationDevicesStatuses200Response
+func (a *StatusesApiService) GetOrganizationDevicesStatusesExecute(r StatusesApiGetOrganizationDevicesStatusesRequest) (*GetOrganizationDevicesStatuses200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200107
+		localVarReturnValue  *GetOrganizationDevicesStatuses200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusesApiService.GetOrganizationDevicesStatuses")
@@ -1586,7 +1586,7 @@ func (r StatusesApiGetOrganizationDevicesStatusesOverviewRequest) NetworkIds(net
 	return r
 }
 
-func (r StatusesApiGetOrganizationDevicesStatusesOverviewRequest) Execute() (*InlineResponse200108, *http.Response, error) {
+func (r StatusesApiGetOrganizationDevicesStatusesOverviewRequest) Execute() (*GetOrganizationDevicesStatusesOverview200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesStatusesOverviewExecute(r)
 }
 
@@ -1608,13 +1608,13 @@ func (a *StatusesApiService) GetOrganizationDevicesStatusesOverview(ctx context.
 }
 
 // Execute executes the request
-//  @return InlineResponse200108
-func (a *StatusesApiService) GetOrganizationDevicesStatusesOverviewExecute(r StatusesApiGetOrganizationDevicesStatusesOverviewRequest) (*InlineResponse200108, *http.Response, error) {
+//  @return GetOrganizationDevicesStatusesOverview200Response
+func (a *StatusesApiService) GetOrganizationDevicesStatusesOverviewExecute(r StatusesApiGetOrganizationDevicesStatusesOverviewRequest) (*GetOrganizationDevicesStatusesOverview200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200108
+		localVarReturnValue  *GetOrganizationDevicesStatusesOverview200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusesApiService.GetOrganizationDevicesStatusesOverview")
@@ -1751,7 +1751,7 @@ func (r StatusesApiGetOrganizationUplinksStatusesRequest) Iccids(iccids []string
 	return r
 }
 
-func (r StatusesApiGetOrganizationUplinksStatusesRequest) Execute() ([]InlineResponse200141, *http.Response, error) {
+func (r StatusesApiGetOrganizationUplinksStatusesRequest) Execute() ([]GetOrganizationUplinksStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationUplinksStatusesExecute(r)
 }
 
@@ -1773,13 +1773,13 @@ func (a *StatusesApiService) GetOrganizationUplinksStatuses(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return []InlineResponse200141
-func (a *StatusesApiService) GetOrganizationUplinksStatusesExecute(r StatusesApiGetOrganizationUplinksStatusesRequest) ([]InlineResponse200141, *http.Response, error) {
+//  @return []GetOrganizationUplinksStatuses200ResponseInner
+func (a *StatusesApiService) GetOrganizationUplinksStatusesExecute(r StatusesApiGetOrganizationUplinksStatusesRequest) ([]GetOrganizationUplinksStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200141
+		localVarReturnValue  []GetOrganizationUplinksStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusesApiService.GetOrganizationUplinksStatuses")
@@ -1914,7 +1914,7 @@ func (r StatusesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Networ
 	return r
 }
 
-func (r StatusesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Execute() ([]InlineResponse200143, *http.Response, error) {
+func (r StatusesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Execute() ([]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWirelessDevicesEthernetStatusesExecute(r)
 }
 
@@ -1936,13 +1936,13 @@ func (a *StatusesApiService) GetOrganizationWirelessDevicesEthernetStatuses(ctx 
 }
 
 // Execute executes the request
-//  @return []InlineResponse200143
-func (a *StatusesApiService) GetOrganizationWirelessDevicesEthernetStatusesExecute(r StatusesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) ([]InlineResponse200143, *http.Response, error) {
+//  @return []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
+func (a *StatusesApiService) GetOrganizationWirelessDevicesEthernetStatusesExecute(r StatusesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) ([]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200143
+		localVarReturnValue  []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusesApiService.GetOrganizationWirelessDevicesEthernetStatuses")
@@ -2041,10 +2041,10 @@ type StatusesApiUpdateOrganizationCameraOnboardingStatusesRequest struct {
 	ctx context.Context
 	ApiService *StatusesApiService
 	organizationId string
-	updateOrganizationCameraOnboardingStatuses *InlineObject189
+	updateOrganizationCameraOnboardingStatuses *UpdateOrganizationCameraOnboardingStatusesRequest
 }
 
-func (r StatusesApiUpdateOrganizationCameraOnboardingStatusesRequest) UpdateOrganizationCameraOnboardingStatuses(updateOrganizationCameraOnboardingStatuses InlineObject189) StatusesApiUpdateOrganizationCameraOnboardingStatusesRequest {
+func (r StatusesApiUpdateOrganizationCameraOnboardingStatusesRequest) UpdateOrganizationCameraOnboardingStatuses(updateOrganizationCameraOnboardingStatuses UpdateOrganizationCameraOnboardingStatusesRequest) StatusesApiUpdateOrganizationCameraOnboardingStatusesRequest {
 	r.updateOrganizationCameraOnboardingStatuses = &updateOrganizationCameraOnboardingStatuses
 	return r
 }

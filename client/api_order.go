@@ -144,10 +144,10 @@ type OrderApiUpdateNetworkSwitchQosRulesOrderRequest struct {
 	ctx context.Context
 	ApiService *OrderApiService
 	networkId string
-	updateNetworkSwitchQosRulesOrder *InlineObject123
+	updateNetworkSwitchQosRulesOrder *UpdateNetworkSwitchQosRulesOrderRequest
 }
 
-func (r OrderApiUpdateNetworkSwitchQosRulesOrderRequest) UpdateNetworkSwitchQosRulesOrder(updateNetworkSwitchQosRulesOrder InlineObject123) OrderApiUpdateNetworkSwitchQosRulesOrderRequest {
+func (r OrderApiUpdateNetworkSwitchQosRulesOrderRequest) UpdateNetworkSwitchQosRulesOrder(updateNetworkSwitchQosRulesOrder UpdateNetworkSwitchQosRulesOrderRequest) OrderApiUpdateNetworkSwitchQosRulesOrderRequest {
 	r.updateNetworkSwitchQosRulesOrder = &updateNetworkSwitchQosRulesOrder
 	return r
 }

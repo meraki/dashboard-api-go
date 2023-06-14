@@ -51,7 +51,7 @@ func (r PerformanceHistoryApiGetNetworkSmDevicePerformanceHistoryRequest) Ending
 	return r
 }
 
-func (r PerformanceHistoryApiGetNetworkSmDevicePerformanceHistoryRequest) Execute() ([]InlineResponse20055, *http.Response, error) {
+func (r PerformanceHistoryApiGetNetworkSmDevicePerformanceHistoryRequest) Execute() ([]GetNetworkSmDevicePerformanceHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDevicePerformanceHistoryExecute(r)
 }
 
@@ -75,13 +75,13 @@ func (a *PerformanceHistoryApiService) GetNetworkSmDevicePerformanceHistory(ctx 
 }
 
 // Execute executes the request
-//  @return []InlineResponse20055
-func (a *PerformanceHistoryApiService) GetNetworkSmDevicePerformanceHistoryExecute(r PerformanceHistoryApiGetNetworkSmDevicePerformanceHistoryRequest) ([]InlineResponse20055, *http.Response, error) {
+//  @return []GetNetworkSmDevicePerformanceHistory200ResponseInner
+func (a *PerformanceHistoryApiService) GetNetworkSmDevicePerformanceHistoryExecute(r PerformanceHistoryApiGetNetworkSmDevicePerformanceHistoryRequest) ([]GetNetworkSmDevicePerformanceHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20055
+		localVarReturnValue  []GetNetworkSmDevicePerformanceHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PerformanceHistoryApiService.GetNetworkSmDevicePerformanceHistory")

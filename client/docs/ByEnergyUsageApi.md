@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetOrganizationSummaryTopSwitchesByEnergyUsage
 
-> []InlineResponse200139 GetOrganizationSummaryTopSwitchesByEnergyUsage(ctx, organizationId).T0(t0).T1(t1).Timespan(timespan).Execute()
+> []GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner GetOrganizationSummaryTopSwitchesByEnergyUsage(ctx, organizationId).T0(t0).T1(t1).Timespan(timespan).Execute()
 
 Return metrics for organization's top 10 switches by energy usage over given time range
 
@@ -41,7 +41,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ByEnergyUsageApi.GetOrganizationSummaryTopSwitchesByEnergyUsage``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSummaryTopSwitchesByEnergyUsage`: []InlineResponse200139
+    // response from `GetOrganizationSummaryTopSwitchesByEnergyUsage`: []GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ByEnergyUsageApi.GetOrganizationSummaryTopSwitchesByEnergyUsage`: %v\n", resp)
 }
 ```
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200139**](InlineResponse200139.md)
+[**[]GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner**](GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner.md)
 
 ### Authorization
 

@@ -30,7 +30,7 @@ type EapOverrideApiGetNetworkWirelessSsidEapOverrideRequest struct {
 	number string
 }
 
-func (r EapOverrideApiGetNetworkWirelessSsidEapOverrideRequest) Execute() (*InlineResponse20085, *http.Response, error) {
+func (r EapOverrideApiGetNetworkWirelessSsidEapOverrideRequest) Execute() (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidEapOverrideExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *EapOverrideApiService) GetNetworkWirelessSsidEapOverride(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse20085
-func (a *EapOverrideApiService) GetNetworkWirelessSsidEapOverrideExecute(r EapOverrideApiGetNetworkWirelessSsidEapOverrideRequest) (*InlineResponse20085, *http.Response, error) {
+//  @return GetNetworkWirelessSsidEapOverride200Response
+func (a *EapOverrideApiService) GetNetworkWirelessSsidEapOverrideExecute(r EapOverrideApiGetNetworkWirelessSsidEapOverrideRequest) (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20085
+		localVarReturnValue  *GetNetworkWirelessSsidEapOverride200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EapOverrideApiService.GetNetworkWirelessSsidEapOverride")
@@ -149,15 +149,15 @@ type EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest struct {
 	ApiService *EapOverrideApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidEapOverride *InlineObject157
+	updateNetworkWirelessSsidEapOverride *UpdateNetworkWirelessSsidEapOverrideRequest
 }
 
-func (r EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest) UpdateNetworkWirelessSsidEapOverride(updateNetworkWirelessSsidEapOverride InlineObject157) EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest {
+func (r EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest) UpdateNetworkWirelessSsidEapOverride(updateNetworkWirelessSsidEapOverride UpdateNetworkWirelessSsidEapOverrideRequest) EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest {
 	r.updateNetworkWirelessSsidEapOverride = &updateNetworkWirelessSsidEapOverride
 	return r
 }
 
-func (r EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest) Execute() (*InlineResponse20085, *http.Response, error) {
+func (r EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest) Execute() (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessSsidEapOverrideExecute(r)
 }
 
@@ -181,13 +181,13 @@ func (a *EapOverrideApiService) UpdateNetworkWirelessSsidEapOverride(ctx context
 }
 
 // Execute executes the request
-//  @return InlineResponse20085
-func (a *EapOverrideApiService) UpdateNetworkWirelessSsidEapOverrideExecute(r EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest) (*InlineResponse20085, *http.Response, error) {
+//  @return GetNetworkWirelessSsidEapOverride200Response
+func (a *EapOverrideApiService) UpdateNetworkWirelessSsidEapOverrideExecute(r EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest) (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20085
+		localVarReturnValue  *GetNetworkWirelessSsidEapOverride200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EapOverrideApiService.UpdateNetworkWirelessSsidEapOverride")

@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkAlertsHistory
 
-> []InlineResponse20012 GetNetworkAlertsHistory(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkAlertsHistory200ResponseInner GetNetworkAlertsHistory(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 Return the alert history for this network
 
@@ -126,7 +126,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `HistoryApi.GetNetworkAlertsHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkAlertsHistory`: []InlineResponse20012
+    // response from `GetNetworkAlertsHistory`: []GetNetworkAlertsHistory200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `HistoryApi.GetNetworkAlertsHistory`: %v\n", resp)
 }
 ```
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20012**](InlineResponse20012.md)
+[**[]GetNetworkAlertsHistory200ResponseInner**](GetNetworkAlertsHistory200ResponseInner.md)
 
 ### Authorization
 
@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationSensorReadingsHistory
 
-> []InlineResponse200129 GetOrganizationSensorReadingsHistory(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).T0(t0).T1(t1).Timespan(timespan).NetworkIds(networkIds).Serials(serials).Metrics(metrics).Execute()
+> []GetOrganizationSensorReadingsHistory200ResponseInner GetOrganizationSensorReadingsHistory(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).T0(t0).T1(t1).Timespan(timespan).NetworkIds(networkIds).Serials(serials).Metrics(metrics).Execute()
 
 Return all reported readings from sensors in a given timespan, sorted by timestamp
 
@@ -208,7 +208,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `HistoryApi.GetOrganizationSensorReadingsHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSensorReadingsHistory`: []InlineResponse200129
+    // response from `GetOrganizationSensorReadingsHistory`: []GetOrganizationSensorReadingsHistory200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `HistoryApi.GetOrganizationSensorReadingsHistory`: %v\n", resp)
 }
 ```
@@ -241,7 +241,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200129**](InlineResponse200129.md)
+[**[]GetOrganizationSensorReadingsHistory200ResponseInner**](GetOrganizationSensorReadingsHistory200ResponseInner.md)
 
 ### Authorization
 

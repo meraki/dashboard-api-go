@@ -221,7 +221,7 @@ func (r HistoryApiGetNetworkAlertsHistoryRequest) EndingBefore(endingBefore stri
 	return r
 }
 
-func (r HistoryApiGetNetworkAlertsHistoryRequest) Execute() ([]InlineResponse20012, *http.Response, error) {
+func (r HistoryApiGetNetworkAlertsHistoryRequest) Execute() ([]GetNetworkAlertsHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkAlertsHistoryExecute(r)
 }
 
@@ -243,13 +243,13 @@ func (a *HistoryApiService) GetNetworkAlertsHistory(ctx context.Context, network
 }
 
 // Execute executes the request
-//  @return []InlineResponse20012
-func (a *HistoryApiService) GetNetworkAlertsHistoryExecute(r HistoryApiGetNetworkAlertsHistoryRequest) ([]InlineResponse20012, *http.Response, error) {
+//  @return []GetNetworkAlertsHistory200ResponseInner
+func (a *HistoryApiService) GetNetworkAlertsHistoryExecute(r HistoryApiGetNetworkAlertsHistoryRequest) ([]GetNetworkAlertsHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20012
+		localVarReturnValue  []GetNetworkAlertsHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryApiService.GetNetworkAlertsHistory")
@@ -410,7 +410,7 @@ func (r HistoryApiGetOrganizationSensorReadingsHistoryRequest) Metrics(metrics [
 	return r
 }
 
-func (r HistoryApiGetOrganizationSensorReadingsHistoryRequest) Execute() ([]InlineResponse200129, *http.Response, error) {
+func (r HistoryApiGetOrganizationSensorReadingsHistoryRequest) Execute() ([]GetOrganizationSensorReadingsHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSensorReadingsHistoryExecute(r)
 }
 
@@ -432,13 +432,13 @@ func (a *HistoryApiService) GetOrganizationSensorReadingsHistory(ctx context.Con
 }
 
 // Execute executes the request
-//  @return []InlineResponse200129
-func (a *HistoryApiService) GetOrganizationSensorReadingsHistoryExecute(r HistoryApiGetOrganizationSensorReadingsHistoryRequest) ([]InlineResponse200129, *http.Response, error) {
+//  @return []GetOrganizationSensorReadingsHistory200ResponseInner
+func (a *HistoryApiService) GetOrganizationSensorReadingsHistoryExecute(r HistoryApiGetOrganizationSensorReadingsHistoryRequest) ([]GetOrganizationSensorReadingsHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200129
+		localVarReturnValue  []GetOrganizationSensorReadingsHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryApiService.GetOrganizationSensorReadingsHistory")

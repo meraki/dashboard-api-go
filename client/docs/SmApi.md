@@ -47,7 +47,7 @@ Method | HTTP request | Description
 
 ## CheckinNetworkSmDevices
 
-> InlineResponse20043 CheckinNetworkSmDevices(ctx, networkId).CheckinNetworkSmDevices(checkinNetworkSmDevices).Execute()
+> CheckinNetworkSmDevices200Response CheckinNetworkSmDevices(ctx, networkId).CheckinNetworkSmDevices(checkinNetworkSmDevices).Execute()
 
 Force check-in a set of devices
 
@@ -67,7 +67,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    checkinNetworkSmDevices := *openapiclient.NewInlineObject100() // InlineObject100 |  (optional)
+    checkinNetworkSmDevices := *openapiclient.NewCheckinNetworkSmDevicesRequest() // CheckinNetworkSmDevicesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -76,7 +76,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.CheckinNetworkSmDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CheckinNetworkSmDevices`: InlineResponse20043
+    // response from `CheckinNetworkSmDevices`: CheckinNetworkSmDevices200Response
     fmt.Fprintf(os.Stdout, "Response from `SmApi.CheckinNetworkSmDevices`: %v\n", resp)
 }
 ```
@@ -97,11 +97,11 @@ Other parameters are passed through a pointer to a apiCheckinNetworkSmDevicesReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **checkinNetworkSmDevices** | [**InlineObject100**](InlineObject100.md) |  | 
+ **checkinNetworkSmDevices** | [**CheckinNetworkSmDevicesRequest**](CheckinNetworkSmDevicesRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20043**](InlineResponse20043.md)
+[**CheckinNetworkSmDevices200Response**](CheckinNetworkSmDevices200Response.md)
 
 ### Authorization
 
@@ -139,7 +139,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkSmBypassActivationLockAttempt := *openapiclient.NewInlineObject99([]string{"Ids_example"}) // InlineObject99 | 
+    createNetworkSmBypassActivationLockAttempt := *openapiclient.NewCreateNetworkSmBypassActivationLockAttemptRequest([]string{"Ids_example"}) // CreateNetworkSmBypassActivationLockAttemptRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -169,7 +169,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkSmBypassActiv
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkSmBypassActivationLockAttempt** | [**InlineObject99**](InlineObject99.md) |  | 
+ **createNetworkSmBypassActivationLockAttempt** | [**CreateNetworkSmBypassActivationLockAttemptRequest**](CreateNetworkSmBypassActivationLockAttemptRequest.md) |  | 
 
 ### Return type
 
@@ -211,7 +211,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkSmTargetGroup := *openapiclient.NewInlineObject106() // InlineObject106 |  (optional)
+    createNetworkSmTargetGroup := *openapiclient.NewCreateNetworkSmTargetGroupRequest() // CreateNetworkSmTargetGroupRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -241,7 +241,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkSmTargetGroup
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkSmTargetGroup** | [**InlineObject106**](InlineObject106.md) |  | 
+ **createNetworkSmTargetGroup** | [**CreateNetworkSmTargetGroupRequest**](CreateNetworkSmTargetGroupRequest.md) |  | 
 
 ### Return type
 
@@ -478,7 +478,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDeviceCellularUsageHistory
 
-> []InlineResponse20048 GetNetworkSmDeviceCellularUsageHistory(ctx, networkId, deviceId).Execute()
+> []GetNetworkSmDeviceCellularUsageHistory200ResponseInner GetNetworkSmDeviceCellularUsageHistory(ctx, networkId, deviceId).Execute()
 
 Return the client's daily cellular data usage history
 
@@ -507,7 +507,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmDeviceCellularUsageHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceCellularUsageHistory`: []InlineResponse20048
+    // response from `GetNetworkSmDeviceCellularUsageHistory`: []GetNetworkSmDeviceCellularUsageHistory200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmDeviceCellularUsageHistory`: %v\n", resp)
 }
 ```
@@ -533,7 +533,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20048**](InlineResponse20048.md)
+[**[]GetNetworkSmDeviceCellularUsageHistory200ResponseInner**](GetNetworkSmDeviceCellularUsageHistory200ResponseInner.md)
 
 ### Authorization
 
@@ -551,7 +551,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDeviceCerts
 
-> []InlineResponse20049 GetNetworkSmDeviceCerts(ctx, networkId, deviceId).Execute()
+> []GetNetworkSmDeviceCerts200ResponseInner GetNetworkSmDeviceCerts(ctx, networkId, deviceId).Execute()
 
 List the certs on a device
 
@@ -580,7 +580,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmDeviceCerts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceCerts`: []InlineResponse20049
+    // response from `GetNetworkSmDeviceCerts`: []GetNetworkSmDeviceCerts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmDeviceCerts`: %v\n", resp)
 }
 ```
@@ -606,7 +606,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20049**](InlineResponse20049.md)
+[**[]GetNetworkSmDeviceCerts200ResponseInner**](GetNetworkSmDeviceCerts200ResponseInner.md)
 
 ### Authorization
 
@@ -624,7 +624,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDeviceConnectivity
 
-> []InlineResponse20050 GetNetworkSmDeviceConnectivity(ctx, networkId, deviceId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSmDeviceConnectivity200ResponseInner GetNetworkSmDeviceConnectivity(ctx, networkId, deviceId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 Returns historical connectivity data (whether a device is regularly checking in to Dashboard).
 
@@ -656,7 +656,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmDeviceConnectivity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceConnectivity`: []InlineResponse20050
+    // response from `GetNetworkSmDeviceConnectivity`: []GetNetworkSmDeviceConnectivity200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmDeviceConnectivity`: %v\n", resp)
 }
 ```
@@ -685,7 +685,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20050**](InlineResponse20050.md)
+[**[]GetNetworkSmDeviceConnectivity200ResponseInner**](GetNetworkSmDeviceConnectivity200ResponseInner.md)
 
 ### Authorization
 
@@ -703,7 +703,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDeviceDesktopLogs
 
-> []InlineResponse20051 GetNetworkSmDeviceDesktopLogs(ctx, networkId, deviceId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSmDeviceDesktopLogs200ResponseInner GetNetworkSmDeviceDesktopLogs(ctx, networkId, deviceId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 Return historical records of various Systems Manager network connection details for desktop devices.
 
@@ -735,7 +735,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmDeviceDesktopLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceDesktopLogs`: []InlineResponse20051
+    // response from `GetNetworkSmDeviceDesktopLogs`: []GetNetworkSmDeviceDesktopLogs200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmDeviceDesktopLogs`: %v\n", resp)
 }
 ```
@@ -764,7 +764,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20051**](InlineResponse20051.md)
+[**[]GetNetworkSmDeviceDesktopLogs200ResponseInner**](GetNetworkSmDeviceDesktopLogs200ResponseInner.md)
 
 ### Authorization
 
@@ -782,7 +782,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDeviceDeviceCommandLogs
 
-> []InlineResponse20052 GetNetworkSmDeviceDeviceCommandLogs(ctx, networkId, deviceId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSmDeviceDeviceCommandLogs200ResponseInner GetNetworkSmDeviceDeviceCommandLogs(ctx, networkId, deviceId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 Return historical records of commands sent to Systems Manager devices
 
@@ -814,7 +814,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmDeviceDeviceCommandLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceDeviceCommandLogs`: []InlineResponse20052
+    // response from `GetNetworkSmDeviceDeviceCommandLogs`: []GetNetworkSmDeviceDeviceCommandLogs200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmDeviceDeviceCommandLogs`: %v\n", resp)
 }
 ```
@@ -843,7 +843,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20052**](InlineResponse20052.md)
+[**[]GetNetworkSmDeviceDeviceCommandLogs200ResponseInner**](GetNetworkSmDeviceDeviceCommandLogs200ResponseInner.md)
 
 ### Authorization
 
@@ -861,7 +861,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDeviceDeviceProfiles
 
-> []InlineResponse20053 GetNetworkSmDeviceDeviceProfiles(ctx, networkId, deviceId).Execute()
+> []GetNetworkSmDeviceDeviceProfiles200ResponseInner GetNetworkSmDeviceDeviceProfiles(ctx, networkId, deviceId).Execute()
 
 Get the installed profiles associated with a device
 
@@ -890,7 +890,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmDeviceDeviceProfiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceDeviceProfiles`: []InlineResponse20053
+    // response from `GetNetworkSmDeviceDeviceProfiles`: []GetNetworkSmDeviceDeviceProfiles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmDeviceDeviceProfiles`: %v\n", resp)
 }
 ```
@@ -916,7 +916,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20053**](InlineResponse20053.md)
+[**[]GetNetworkSmDeviceDeviceProfiles200ResponseInner**](GetNetworkSmDeviceDeviceProfiles200ResponseInner.md)
 
 ### Authorization
 
@@ -934,7 +934,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDeviceNetworkAdapters
 
-> []InlineResponse20054 GetNetworkSmDeviceNetworkAdapters(ctx, networkId, deviceId).Execute()
+> []GetNetworkSmDeviceNetworkAdapters200ResponseInner GetNetworkSmDeviceNetworkAdapters(ctx, networkId, deviceId).Execute()
 
 List the network adapters of a device
 
@@ -963,7 +963,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmDeviceNetworkAdapters``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceNetworkAdapters`: []InlineResponse20054
+    // response from `GetNetworkSmDeviceNetworkAdapters`: []GetNetworkSmDeviceNetworkAdapters200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmDeviceNetworkAdapters`: %v\n", resp)
 }
 ```
@@ -989,7 +989,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20054**](InlineResponse20054.md)
+[**[]GetNetworkSmDeviceNetworkAdapters200ResponseInner**](GetNetworkSmDeviceNetworkAdapters200ResponseInner.md)
 
 ### Authorization
 
@@ -1007,7 +1007,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDevicePerformanceHistory
 
-> []InlineResponse20055 GetNetworkSmDevicePerformanceHistory(ctx, networkId, deviceId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSmDevicePerformanceHistory200ResponseInner GetNetworkSmDevicePerformanceHistory(ctx, networkId, deviceId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 Return historical records of various Systems Manager client metrics for desktop devices.
 
@@ -1039,7 +1039,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmDevicePerformanceHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDevicePerformanceHistory`: []InlineResponse20055
+    // response from `GetNetworkSmDevicePerformanceHistory`: []GetNetworkSmDevicePerformanceHistory200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmDevicePerformanceHistory`: %v\n", resp)
 }
 ```
@@ -1068,7 +1068,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20055**](InlineResponse20055.md)
+[**[]GetNetworkSmDevicePerformanceHistory200ResponseInner**](GetNetworkSmDevicePerformanceHistory200ResponseInner.md)
 
 ### Authorization
 
@@ -1159,7 +1159,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDeviceSecurityCenters
 
-> []InlineResponse20056 GetNetworkSmDeviceSecurityCenters(ctx, networkId, deviceId).Execute()
+> []GetNetworkSmDeviceSecurityCenters200ResponseInner GetNetworkSmDeviceSecurityCenters(ctx, networkId, deviceId).Execute()
 
 List the security centers on a device
 
@@ -1188,7 +1188,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmDeviceSecurityCenters``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceSecurityCenters`: []InlineResponse20056
+    // response from `GetNetworkSmDeviceSecurityCenters`: []GetNetworkSmDeviceSecurityCenters200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmDeviceSecurityCenters`: %v\n", resp)
 }
 ```
@@ -1214,7 +1214,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20056**](InlineResponse20056.md)
+[**[]GetNetworkSmDeviceSecurityCenters200ResponseInner**](GetNetworkSmDeviceSecurityCenters200ResponseInner.md)
 
 ### Authorization
 
@@ -1232,7 +1232,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDeviceSoftwares
 
-> []InlineResponse20057 GetNetworkSmDeviceSoftwares(ctx, networkId, deviceId).Execute()
+> []GetNetworkSmDeviceSoftwares200ResponseInner GetNetworkSmDeviceSoftwares(ctx, networkId, deviceId).Execute()
 
 Get a list of softwares associated with a device
 
@@ -1261,7 +1261,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmDeviceSoftwares``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceSoftwares`: []InlineResponse20057
+    // response from `GetNetworkSmDeviceSoftwares`: []GetNetworkSmDeviceSoftwares200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmDeviceSoftwares`: %v\n", resp)
 }
 ```
@@ -1287,7 +1287,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20057**](InlineResponse20057.md)
+[**[]GetNetworkSmDeviceSoftwares200ResponseInner**](GetNetworkSmDeviceSoftwares200ResponseInner.md)
 
 ### Authorization
 
@@ -1305,7 +1305,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDeviceWlanLists
 
-> []InlineResponse20058 GetNetworkSmDeviceWlanLists(ctx, networkId, deviceId).Execute()
+> []GetNetworkSmDeviceWlanLists200ResponseInner GetNetworkSmDeviceWlanLists(ctx, networkId, deviceId).Execute()
 
 List the saved SSID names on a device
 
@@ -1334,7 +1334,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmDeviceWlanLists``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceWlanLists`: []InlineResponse20058
+    // response from `GetNetworkSmDeviceWlanLists`: []GetNetworkSmDeviceWlanLists200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmDeviceWlanLists`: %v\n", resp)
 }
 ```
@@ -1360,7 +1360,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20058**](InlineResponse20058.md)
+[**[]GetNetworkSmDeviceWlanLists200ResponseInner**](GetNetworkSmDeviceWlanLists200ResponseInner.md)
 
 ### Authorization
 
@@ -1378,7 +1378,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDevices
 
-> []InlineResponse20042 GetNetworkSmDevices(ctx, networkId).Fields(fields).WifiMacs(wifiMacs).Serials(serials).Ids(ids).Scope(scope).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSmDevices200ResponseInner GetNetworkSmDevices(ctx, networkId).Fields(fields).WifiMacs(wifiMacs).Serials(serials).Ids(ids).Scope(scope).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 List the devices enrolled in an SM network with various specified fields and filters
 
@@ -1414,7 +1414,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDevices`: []InlineResponse20042
+    // response from `GetNetworkSmDevices`: []GetNetworkSmDevices200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmDevices`: %v\n", resp)
 }
 ```
@@ -1446,7 +1446,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20042**](InlineResponse20042.md)
+[**[]GetNetworkSmDevices200ResponseInner**](GetNetworkSmDevices200ResponseInner.md)
 
 ### Authorization
 
@@ -1464,7 +1464,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmProfiles
 
-> []InlineResponse20059 GetNetworkSmProfiles(ctx, networkId).Execute()
+> []GetNetworkSmProfiles200ResponseInner GetNetworkSmProfiles(ctx, networkId).Execute()
 
 List all profiles in a network
 
@@ -1492,7 +1492,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmProfiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmProfiles`: []InlineResponse20059
+    // response from `GetNetworkSmProfiles`: []GetNetworkSmProfiles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmProfiles`: %v\n", resp)
 }
 ```
@@ -1516,7 +1516,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20059**](InlineResponse20059.md)
+[**[]GetNetworkSmProfiles200ResponseInner**](GetNetworkSmProfiles200ResponseInner.md)
 
 ### Authorization
 
@@ -1681,7 +1681,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmTrustedAccessConfigs
 
-> []InlineResponse20060 GetNetworkSmTrustedAccessConfigs(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSmTrustedAccessConfigs200ResponseInner GetNetworkSmTrustedAccessConfigs(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 List Trusted Access Configs
 
@@ -1712,7 +1712,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmTrustedAccessConfigs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmTrustedAccessConfigs`: []InlineResponse20060
+    // response from `GetNetworkSmTrustedAccessConfigs`: []GetNetworkSmTrustedAccessConfigs200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmTrustedAccessConfigs`: %v\n", resp)
 }
 ```
@@ -1739,7 +1739,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20060**](InlineResponse20060.md)
+[**[]GetNetworkSmTrustedAccessConfigs200ResponseInner**](GetNetworkSmTrustedAccessConfigs200ResponseInner.md)
 
 ### Authorization
 
@@ -1757,7 +1757,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmUserAccessDevices
 
-> []InlineResponse20061 GetNetworkSmUserAccessDevices(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSmUserAccessDevices200ResponseInner GetNetworkSmUserAccessDevices(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 List User Access Devices and its Trusted Access Connections
 
@@ -1788,7 +1788,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmUserAccessDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmUserAccessDevices`: []InlineResponse20061
+    // response from `GetNetworkSmUserAccessDevices`: []GetNetworkSmUserAccessDevices200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmUserAccessDevices`: %v\n", resp)
 }
 ```
@@ -1815,7 +1815,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20061**](InlineResponse20061.md)
+[**[]GetNetworkSmUserAccessDevices200ResponseInner**](GetNetworkSmUserAccessDevices200ResponseInner.md)
 
 ### Authorization
 
@@ -1833,7 +1833,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmUserDeviceProfiles
 
-> []InlineResponse20053 GetNetworkSmUserDeviceProfiles(ctx, networkId, userId).Execute()
+> []GetNetworkSmDeviceDeviceProfiles200ResponseInner GetNetworkSmUserDeviceProfiles(ctx, networkId, userId).Execute()
 
 Get the profiles associated with a user
 
@@ -1862,7 +1862,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmUserDeviceProfiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmUserDeviceProfiles`: []InlineResponse20053
+    // response from `GetNetworkSmUserDeviceProfiles`: []GetNetworkSmDeviceDeviceProfiles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmUserDeviceProfiles`: %v\n", resp)
 }
 ```
@@ -1888,7 +1888,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20053**](InlineResponse20053.md)
+[**[]GetNetworkSmDeviceDeviceProfiles200ResponseInner**](GetNetworkSmDeviceDeviceProfiles200ResponseInner.md)
 
 ### Authorization
 
@@ -1906,7 +1906,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmUserSoftwares
 
-> []InlineResponse20057 GetNetworkSmUserSoftwares(ctx, networkId, userId).Execute()
+> []GetNetworkSmDeviceSoftwares200ResponseInner GetNetworkSmUserSoftwares(ctx, networkId, userId).Execute()
 
 Get a list of softwares associated with a user
 
@@ -1935,7 +1935,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmUserSoftwares``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmUserSoftwares`: []InlineResponse20057
+    // response from `GetNetworkSmUserSoftwares`: []GetNetworkSmDeviceSoftwares200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmUserSoftwares`: %v\n", resp)
 }
 ```
@@ -1961,7 +1961,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20057**](InlineResponse20057.md)
+[**[]GetNetworkSmDeviceSoftwares200ResponseInner**](GetNetworkSmDeviceSoftwares200ResponseInner.md)
 
 ### Authorization
 
@@ -1979,7 +1979,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmUsers
 
-> []InlineResponse20062 GetNetworkSmUsers(ctx, networkId).Ids(ids).Usernames(usernames).Emails(emails).Scope(scope).Execute()
+> []GetNetworkSmUsers200ResponseInner GetNetworkSmUsers(ctx, networkId).Ids(ids).Usernames(usernames).Emails(emails).Scope(scope).Execute()
 
 List the owners in an SM network with various specified fields and filters
 
@@ -2011,7 +2011,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetNetworkSmUsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmUsers`: []InlineResponse20062
+    // response from `GetNetworkSmUsers`: []GetNetworkSmUsers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetNetworkSmUsers`: %v\n", resp)
 }
 ```
@@ -2039,7 +2039,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20062**](InlineResponse20062.md)
+[**[]GetNetworkSmUsers200ResponseInner**](GetNetworkSmUsers200ResponseInner.md)
 
 ### Authorization
 
@@ -2057,7 +2057,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationSmApnsCert
 
-> InlineResponse200131 GetOrganizationSmApnsCert(ctx, organizationId).Execute()
+> GetOrganizationSmApnsCert200Response GetOrganizationSmApnsCert(ctx, organizationId).Execute()
 
 Get the organization's APNS certificate
 
@@ -2085,7 +2085,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetOrganizationSmApnsCert``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSmApnsCert`: InlineResponse200131
+    // response from `GetOrganizationSmApnsCert`: GetOrganizationSmApnsCert200Response
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetOrganizationSmApnsCert`: %v\n", resp)
 }
 ```
@@ -2109,7 +2109,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200131**](InlineResponse200131.md)
+[**GetOrganizationSmApnsCert200Response**](GetOrganizationSmApnsCert200Response.md)
 
 ### Authorization
 
@@ -2127,7 +2127,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationSmVppAccount
 
-> InlineResponse200132 GetOrganizationSmVppAccount(ctx, organizationId, vppAccountId).Execute()
+> GetOrganizationSmVppAccounts200ResponseInner GetOrganizationSmVppAccount(ctx, organizationId, vppAccountId).Execute()
 
 Get a hash containing the unparsed token of the VPP account with the given ID
 
@@ -2156,7 +2156,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetOrganizationSmVppAccount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSmVppAccount`: InlineResponse200132
+    // response from `GetOrganizationSmVppAccount`: GetOrganizationSmVppAccounts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetOrganizationSmVppAccount`: %v\n", resp)
 }
 ```
@@ -2182,7 +2182,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200132**](InlineResponse200132.md)
+[**GetOrganizationSmVppAccounts200ResponseInner**](GetOrganizationSmVppAccounts200ResponseInner.md)
 
 ### Authorization
 
@@ -2200,7 +2200,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationSmVppAccounts
 
-> []InlineResponse200132 GetOrganizationSmVppAccounts(ctx, organizationId).Execute()
+> []GetOrganizationSmVppAccounts200ResponseInner GetOrganizationSmVppAccounts(ctx, organizationId).Execute()
 
 List the VPP accounts in the organization
 
@@ -2228,7 +2228,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.GetOrganizationSmVppAccounts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSmVppAccounts`: []InlineResponse200132
+    // response from `GetOrganizationSmVppAccounts`: []GetOrganizationSmVppAccounts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.GetOrganizationSmVppAccounts`: %v\n", resp)
 }
 ```
@@ -2252,7 +2252,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200132**](InlineResponse200132.md)
+[**[]GetOrganizationSmVppAccounts200ResponseInner**](GetOrganizationSmVppAccounts200ResponseInner.md)
 
 ### Authorization
 
@@ -2270,7 +2270,7 @@ Name | Type | Description  | Notes
 
 ## LockNetworkSmDevices
 
-> InlineResponse20043 LockNetworkSmDevices(ctx, networkId).LockNetworkSmDevices(lockNetworkSmDevices).Execute()
+> CheckinNetworkSmDevices200Response LockNetworkSmDevices(ctx, networkId).LockNetworkSmDevices(lockNetworkSmDevices).Execute()
 
 Lock a set of devices
 
@@ -2290,7 +2290,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    lockNetworkSmDevices := *openapiclient.NewInlineObject102() // InlineObject102 |  (optional)
+    lockNetworkSmDevices := *openapiclient.NewLockNetworkSmDevicesRequest() // LockNetworkSmDevicesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -2299,7 +2299,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.LockNetworkSmDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `LockNetworkSmDevices`: InlineResponse20043
+    // response from `LockNetworkSmDevices`: CheckinNetworkSmDevices200Response
     fmt.Fprintf(os.Stdout, "Response from `SmApi.LockNetworkSmDevices`: %v\n", resp)
 }
 ```
@@ -2320,11 +2320,11 @@ Other parameters are passed through a pointer to a apiLockNetworkSmDevicesReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **lockNetworkSmDevices** | [**InlineObject102**](InlineObject102.md) |  | 
+ **lockNetworkSmDevices** | [**LockNetworkSmDevicesRequest**](LockNetworkSmDevicesRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20043**](InlineResponse20043.md)
+[**CheckinNetworkSmDevices200Response**](CheckinNetworkSmDevices200Response.md)
 
 ### Authorization
 
@@ -2342,7 +2342,7 @@ Name | Type | Description  | Notes
 
 ## ModifyNetworkSmDevicesTags
 
-> []InlineResponse20045 ModifyNetworkSmDevicesTags(ctx, networkId).ModifyNetworkSmDevicesTags(modifyNetworkSmDevicesTags).Execute()
+> []ModifyNetworkSmDevicesTags200ResponseInner ModifyNetworkSmDevicesTags(ctx, networkId).ModifyNetworkSmDevicesTags(modifyNetworkSmDevicesTags).Execute()
 
 Add, delete, or update the tags of a set of devices
 
@@ -2362,7 +2362,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    modifyNetworkSmDevicesTags := *openapiclient.NewInlineObject103([]string{"Tags_example"}, "UpdateAction_example") // InlineObject103 | 
+    modifyNetworkSmDevicesTags := *openapiclient.NewModifyNetworkSmDevicesTagsRequest([]string{"Tags_example"}, "UpdateAction_example") // ModifyNetworkSmDevicesTagsRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -2371,7 +2371,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.ModifyNetworkSmDevicesTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ModifyNetworkSmDevicesTags`: []InlineResponse20045
+    // response from `ModifyNetworkSmDevicesTags`: []ModifyNetworkSmDevicesTags200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.ModifyNetworkSmDevicesTags`: %v\n", resp)
 }
 ```
@@ -2392,11 +2392,11 @@ Other parameters are passed through a pointer to a apiModifyNetworkSmDevicesTags
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **modifyNetworkSmDevicesTags** | [**InlineObject103**](InlineObject103.md) |  | 
+ **modifyNetworkSmDevicesTags** | [**ModifyNetworkSmDevicesTagsRequest**](ModifyNetworkSmDevicesTagsRequest.md) |  | 
 
 ### Return type
 
-[**[]InlineResponse20045**](InlineResponse20045.md)
+[**[]ModifyNetworkSmDevicesTags200ResponseInner**](ModifyNetworkSmDevicesTags200ResponseInner.md)
 
 ### Authorization
 
@@ -2414,7 +2414,7 @@ Name | Type | Description  | Notes
 
 ## MoveNetworkSmDevices
 
-> InlineResponse20046 MoveNetworkSmDevices(ctx, networkId).MoveNetworkSmDevices(moveNetworkSmDevices).Execute()
+> MoveNetworkSmDevices200Response MoveNetworkSmDevices(ctx, networkId).MoveNetworkSmDevices(moveNetworkSmDevices).Execute()
 
 Move a set of devices to a new network
 
@@ -2434,7 +2434,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    moveNetworkSmDevices := *openapiclient.NewInlineObject104("NewNetwork_example") // InlineObject104 | 
+    moveNetworkSmDevices := *openapiclient.NewMoveNetworkSmDevicesRequest("NewNetwork_example") // MoveNetworkSmDevicesRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -2443,7 +2443,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.MoveNetworkSmDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `MoveNetworkSmDevices`: InlineResponse20046
+    // response from `MoveNetworkSmDevices`: MoveNetworkSmDevices200Response
     fmt.Fprintf(os.Stdout, "Response from `SmApi.MoveNetworkSmDevices`: %v\n", resp)
 }
 ```
@@ -2464,11 +2464,11 @@ Other parameters are passed through a pointer to a apiMoveNetworkSmDevicesReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **moveNetworkSmDevices** | [**InlineObject104**](InlineObject104.md) |  | 
+ **moveNetworkSmDevices** | [**MoveNetworkSmDevicesRequest**](MoveNetworkSmDevicesRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20046**](InlineResponse20046.md)
+[**MoveNetworkSmDevices200Response**](MoveNetworkSmDevices200Response.md)
 
 ### Authorization
 
@@ -2630,7 +2630,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSmDevicesFields
 
-> []InlineResponse20044 UpdateNetworkSmDevicesFields(ctx, networkId).UpdateNetworkSmDevicesFields(updateNetworkSmDevicesFields).Execute()
+> []UpdateNetworkSmDevicesFields200ResponseInner UpdateNetworkSmDevicesFields(ctx, networkId).UpdateNetworkSmDevicesFields(updateNetworkSmDevicesFields).Execute()
 
 Modify the fields of a device
 
@@ -2650,7 +2650,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSmDevicesFields := *openapiclient.NewInlineObject101(*openapiclient.NewNetworksNetworkIdSmDevicesFieldsDeviceFields()) // InlineObject101 | 
+    updateNetworkSmDevicesFields := *openapiclient.NewUpdateNetworkSmDevicesFieldsRequest(*openapiclient.NewUpdateNetworkSmDevicesFieldsRequestDeviceFields()) // UpdateNetworkSmDevicesFieldsRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -2659,7 +2659,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.UpdateNetworkSmDevicesFields``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkSmDevicesFields`: []InlineResponse20044
+    // response from `UpdateNetworkSmDevicesFields`: []UpdateNetworkSmDevicesFields200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SmApi.UpdateNetworkSmDevicesFields`: %v\n", resp)
 }
 ```
@@ -2680,11 +2680,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSmDevicesFiel
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSmDevicesFields** | [**InlineObject101**](InlineObject101.md) |  | 
+ **updateNetworkSmDevicesFields** | [**UpdateNetworkSmDevicesFieldsRequest**](UpdateNetworkSmDevicesFieldsRequest.md) |  | 
 
 ### Return type
 
-[**[]InlineResponse20044**](InlineResponse20044.md)
+[**[]UpdateNetworkSmDevicesFields200ResponseInner**](UpdateNetworkSmDevicesFields200ResponseInner.md)
 
 ### Authorization
 
@@ -2723,7 +2723,7 @@ import (
 func main() {
     networkId := "networkId_example" // string | Network ID
     targetGroupId := "targetGroupId_example" // string | Target group ID
-    updateNetworkSmTargetGroup := *openapiclient.NewInlineObject107() // InlineObject107 |  (optional)
+    updateNetworkSmTargetGroup := *openapiclient.NewCreateNetworkSmTargetGroupRequest() // CreateNetworkSmTargetGroupRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -2755,7 +2755,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkSmTargetGroup** | [**InlineObject107**](InlineObject107.md) |  | 
+ **updateNetworkSmTargetGroup** | [**CreateNetworkSmTargetGroupRequest**](CreateNetworkSmTargetGroupRequest.md) |  | 
 
 ### Return type
 
@@ -2777,7 +2777,7 @@ Name | Type | Description  | Notes
 
 ## WipeNetworkSmDevices
 
-> InlineResponse20047 WipeNetworkSmDevices(ctx, networkId).WipeNetworkSmDevices(wipeNetworkSmDevices).Execute()
+> WipeNetworkSmDevices200Response WipeNetworkSmDevices(ctx, networkId).WipeNetworkSmDevices(wipeNetworkSmDevices).Execute()
 
 Wipe a device
 
@@ -2797,7 +2797,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    wipeNetworkSmDevices := *openapiclient.NewInlineObject105() // InlineObject105 |  (optional)
+    wipeNetworkSmDevices := *openapiclient.NewWipeNetworkSmDevicesRequest() // WipeNetworkSmDevicesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -2806,7 +2806,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.WipeNetworkSmDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `WipeNetworkSmDevices`: InlineResponse20047
+    // response from `WipeNetworkSmDevices`: WipeNetworkSmDevices200Response
     fmt.Fprintf(os.Stdout, "Response from `SmApi.WipeNetworkSmDevices`: %v\n", resp)
 }
 ```
@@ -2827,11 +2827,11 @@ Other parameters are passed through a pointer to a apiWipeNetworkSmDevicesReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **wipeNetworkSmDevices** | [**InlineObject105**](InlineObject105.md) |  | 
+ **wipeNetworkSmDevices** | [**WipeNetworkSmDevicesRequest**](WipeNetworkSmDevicesRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20047**](InlineResponse20047.md)
+[**WipeNetworkSmDevices200Response**](WipeNetworkSmDevices200Response.md)
 
 ### Authorization
 

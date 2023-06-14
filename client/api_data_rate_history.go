@@ -99,7 +99,7 @@ func (r DataRateHistoryApiGetNetworkWirelessDataRateHistoryRequest) Ssid(ssid in
 	return r
 }
 
-func (r DataRateHistoryApiGetNetworkWirelessDataRateHistoryRequest) Execute() ([]InlineResponse20080, *http.Response, error) {
+func (r DataRateHistoryApiGetNetworkWirelessDataRateHistoryRequest) Execute() ([]GetNetworkWirelessDataRateHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessDataRateHistoryExecute(r)
 }
 
@@ -121,13 +121,13 @@ func (a *DataRateHistoryApiService) GetNetworkWirelessDataRateHistory(ctx contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse20080
-func (a *DataRateHistoryApiService) GetNetworkWirelessDataRateHistoryExecute(r DataRateHistoryApiGetNetworkWirelessDataRateHistoryRequest) ([]InlineResponse20080, *http.Response, error) {
+//  @return []GetNetworkWirelessDataRateHistory200ResponseInner
+func (a *DataRateHistoryApiService) GetNetworkWirelessDataRateHistoryExecute(r DataRateHistoryApiGetNetworkWirelessDataRateHistoryRequest) ([]GetNetworkWirelessDataRateHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20080
+		localVarReturnValue  []GetNetworkWirelessDataRateHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataRateHistoryApiService.GetNetworkWirelessDataRateHistory")

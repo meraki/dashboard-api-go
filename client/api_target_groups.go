@@ -27,10 +27,10 @@ type TargetGroupsApiCreateNetworkSmTargetGroupRequest struct {
 	ctx context.Context
 	ApiService *TargetGroupsApiService
 	networkId string
-	createNetworkSmTargetGroup *InlineObject106
+	createNetworkSmTargetGroup *CreateNetworkSmTargetGroupRequest
 }
 
-func (r TargetGroupsApiCreateNetworkSmTargetGroupRequest) CreateNetworkSmTargetGroup(createNetworkSmTargetGroup InlineObject106) TargetGroupsApiCreateNetworkSmTargetGroupRequest {
+func (r TargetGroupsApiCreateNetworkSmTargetGroupRequest) CreateNetworkSmTargetGroup(createNetworkSmTargetGroup CreateNetworkSmTargetGroupRequest) TargetGroupsApiCreateNetworkSmTargetGroupRequest {
 	r.createNetworkSmTargetGroup = &createNetworkSmTargetGroup
 	return r
 }
@@ -521,10 +521,10 @@ type TargetGroupsApiUpdateNetworkSmTargetGroupRequest struct {
 	ApiService *TargetGroupsApiService
 	networkId string
 	targetGroupId string
-	updateNetworkSmTargetGroup *InlineObject107
+	updateNetworkSmTargetGroup *CreateNetworkSmTargetGroupRequest
 }
 
-func (r TargetGroupsApiUpdateNetworkSmTargetGroupRequest) UpdateNetworkSmTargetGroup(updateNetworkSmTargetGroup InlineObject107) TargetGroupsApiUpdateNetworkSmTargetGroupRequest {
+func (r TargetGroupsApiUpdateNetworkSmTargetGroupRequest) UpdateNetworkSmTargetGroup(updateNetworkSmTargetGroup CreateNetworkSmTargetGroupRequest) TargetGroupsApiUpdateNetworkSmTargetGroupRequest {
 	r.updateNetworkSmTargetGroup = &updateNetworkSmTargetGroup
 	return r
 }

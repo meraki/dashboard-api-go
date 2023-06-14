@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateOrganizationActionBatch
 
-> InlineResponse2015 CreateOrganizationActionBatch(ctx, organizationId).CreateOrganizationActionBatch(createOrganizationActionBatch).Execute()
+> CreateOrganizationActionBatch201Response CreateOrganizationActionBatch(ctx, organizationId).CreateOrganizationActionBatch(createOrganizationActionBatch).Execute()
 
 Create an action batch
 
@@ -34,7 +34,7 @@ import (
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationActionBatch := *openapiclient.NewInlineObject169([]openapiclient.OrganizationsOrganizationIdActionBatchesActions{*openapiclient.NewOrganizationsOrganizationIdActionBatchesActions("Resource_example", "Operation_example")}) // InlineObject169 | 
+    createOrganizationActionBatch := *openapiclient.NewCreateOrganizationActionBatchRequest([]openapiclient.CreateOrganizationActionBatchRequestActionsInner{*openapiclient.NewCreateOrganizationActionBatchRequestActionsInner("Resource_example", "Operation_example")}) // CreateOrganizationActionBatchRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -43,7 +43,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ActionBatchesApi.CreateOrganizationActionBatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganizationActionBatch`: InlineResponse2015
+    // response from `CreateOrganizationActionBatch`: CreateOrganizationActionBatch201Response
     fmt.Fprintf(os.Stdout, "Response from `ActionBatchesApi.CreateOrganizationActionBatch`: %v\n", resp)
 }
 ```
@@ -64,11 +64,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationActionBa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationActionBatch** | [**InlineObject169**](InlineObject169.md) |  | 
+ **createOrganizationActionBatch** | [**CreateOrganizationActionBatchRequest**](CreateOrganizationActionBatchRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse2015**](InlineResponse2015.md)
+[**CreateOrganizationActionBatch201Response**](CreateOrganizationActionBatch201Response.md)
 
 ### Authorization
 
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationActionBatch
 
-> InlineResponse2015 GetOrganizationActionBatch(ctx, organizationId, actionBatchId).Execute()
+> CreateOrganizationActionBatch201Response GetOrganizationActionBatch(ctx, organizationId, actionBatchId).Execute()
 
 Return an action batch
 
@@ -186,7 +186,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ActionBatchesApi.GetOrganizationActionBatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationActionBatch`: InlineResponse2015
+    // response from `GetOrganizationActionBatch`: CreateOrganizationActionBatch201Response
     fmt.Fprintf(os.Stdout, "Response from `ActionBatchesApi.GetOrganizationActionBatch`: %v\n", resp)
 }
 ```
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2015**](InlineResponse2015.md)
+[**CreateOrganizationActionBatch201Response**](CreateOrganizationActionBatch201Response.md)
 
 ### Authorization
 
@@ -323,7 +323,7 @@ import (
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     actionBatchId := "actionBatchId_example" // string | Action batch ID
-    updateOrganizationActionBatch := *openapiclient.NewInlineObject170() // InlineObject170 |  (optional)
+    updateOrganizationActionBatch := *openapiclient.NewUpdateOrganizationActionBatchRequest() // UpdateOrganizationActionBatchRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -355,7 +355,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationActionBatch** | [**InlineObject170**](InlineObject170.md) |  | 
+ **updateOrganizationActionBatch** | [**UpdateOrganizationActionBatchRequest**](UpdateOrganizationActionBatchRequest.md) |  | 
 
 ### Return type
 

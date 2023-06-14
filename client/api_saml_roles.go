@@ -27,10 +27,10 @@ type SamlRolesApiCreateOrganizationSamlRoleRequest struct {
 	ctx context.Context
 	ApiService *SamlRolesApiService
 	organizationId string
-	createOrganizationSamlRole *InlineObject220
+	createOrganizationSamlRole *CreateOrganizationSamlRoleRequest
 }
 
-func (r SamlRolesApiCreateOrganizationSamlRoleRequest) CreateOrganizationSamlRole(createOrganizationSamlRole InlineObject220) SamlRolesApiCreateOrganizationSamlRoleRequest {
+func (r SamlRolesApiCreateOrganizationSamlRoleRequest) CreateOrganizationSamlRole(createOrganizationSamlRole CreateOrganizationSamlRoleRequest) SamlRolesApiCreateOrganizationSamlRoleRequest {
 	r.createOrganizationSamlRole = &createOrganizationSamlRole
 	return r
 }
@@ -504,15 +504,15 @@ type SamlRolesApiUpdateOrganizationSamlRoleRequest struct {
 	ApiService *SamlRolesApiService
 	organizationId string
 	samlRoleId string
-	updateOrganizationSamlRole *InlineObject221
+	updateOrganizationSamlRole *UpdateOrganizationSamlRoleRequest
 }
 
-func (r SamlRolesApiUpdateOrganizationSamlRoleRequest) UpdateOrganizationSamlRole(updateOrganizationSamlRole InlineObject221) SamlRolesApiUpdateOrganizationSamlRoleRequest {
+func (r SamlRolesApiUpdateOrganizationSamlRoleRequest) UpdateOrganizationSamlRole(updateOrganizationSamlRole UpdateOrganizationSamlRoleRequest) SamlRolesApiUpdateOrganizationSamlRoleRequest {
 	r.updateOrganizationSamlRole = &updateOrganizationSamlRole
 	return r
 }
 
-func (r SamlRolesApiUpdateOrganizationSamlRoleRequest) Execute() (*InlineResponse200128, *http.Response, error) {
+func (r SamlRolesApiUpdateOrganizationSamlRoleRequest) Execute() (*UpdateOrganizationSamlRole200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationSamlRoleExecute(r)
 }
 
@@ -536,13 +536,13 @@ func (a *SamlRolesApiService) UpdateOrganizationSamlRole(ctx context.Context, or
 }
 
 // Execute executes the request
-//  @return InlineResponse200128
-func (a *SamlRolesApiService) UpdateOrganizationSamlRoleExecute(r SamlRolesApiUpdateOrganizationSamlRoleRequest) (*InlineResponse200128, *http.Response, error) {
+//  @return UpdateOrganizationSamlRole200Response
+func (a *SamlRolesApiService) UpdateOrganizationSamlRoleExecute(r SamlRolesApiUpdateOrganizationSamlRoleRequest) (*UpdateOrganizationSamlRole200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200128
+		localVarReturnValue  *UpdateOrganizationSamlRole200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SamlRolesApiService.UpdateOrganizationSamlRole")

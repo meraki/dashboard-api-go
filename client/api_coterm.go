@@ -64,7 +64,7 @@ func (r CotermApiGetOrganizationLicensingCotermLicensesRequest) Expired(expired 
 	return r
 }
 
-func (r CotermApiGetOrganizationLicensingCotermLicensesRequest) Execute() ([]InlineResponse200122, *http.Response, error) {
+func (r CotermApiGetOrganizationLicensingCotermLicensesRequest) Execute() ([]GetOrganizationLicensingCotermLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationLicensingCotermLicensesExecute(r)
 }
 
@@ -86,13 +86,13 @@ func (a *CotermApiService) GetOrganizationLicensingCotermLicenses(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []InlineResponse200122
-func (a *CotermApiService) GetOrganizationLicensingCotermLicensesExecute(r CotermApiGetOrganizationLicensingCotermLicensesRequest) ([]InlineResponse200122, *http.Response, error) {
+//  @return []GetOrganizationLicensingCotermLicenses200ResponseInner
+func (a *CotermApiService) GetOrganizationLicensingCotermLicensesExecute(r CotermApiGetOrganizationLicensingCotermLicensesRequest) ([]GetOrganizationLicensingCotermLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200122
+		localVarReturnValue  []GetOrganizationLicensingCotermLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CotermApiService.GetOrganizationLicensingCotermLicenses")
@@ -194,15 +194,15 @@ type CotermApiMoveOrganizationLicensingCotermLicensesRequest struct {
 	ctx context.Context
 	ApiService *CotermApiService
 	organizationId string
-	moveOrganizationLicensingCotermLicenses *InlineObject209
+	moveOrganizationLicensingCotermLicenses *MoveOrganizationLicensingCotermLicensesRequest
 }
 
-func (r CotermApiMoveOrganizationLicensingCotermLicensesRequest) MoveOrganizationLicensingCotermLicenses(moveOrganizationLicensingCotermLicenses InlineObject209) CotermApiMoveOrganizationLicensingCotermLicensesRequest {
+func (r CotermApiMoveOrganizationLicensingCotermLicensesRequest) MoveOrganizationLicensingCotermLicenses(moveOrganizationLicensingCotermLicenses MoveOrganizationLicensingCotermLicensesRequest) CotermApiMoveOrganizationLicensingCotermLicensesRequest {
 	r.moveOrganizationLicensingCotermLicenses = &moveOrganizationLicensingCotermLicenses
 	return r
 }
 
-func (r CotermApiMoveOrganizationLicensingCotermLicensesRequest) Execute() (*InlineResponse200123, *http.Response, error) {
+func (r CotermApiMoveOrganizationLicensingCotermLicensesRequest) Execute() (*MoveOrganizationLicensingCotermLicenses200Response, *http.Response, error) {
 	return r.ApiService.MoveOrganizationLicensingCotermLicensesExecute(r)
 }
 
@@ -224,13 +224,13 @@ func (a *CotermApiService) MoveOrganizationLicensingCotermLicenses(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse200123
-func (a *CotermApiService) MoveOrganizationLicensingCotermLicensesExecute(r CotermApiMoveOrganizationLicensingCotermLicensesRequest) (*InlineResponse200123, *http.Response, error) {
+//  @return MoveOrganizationLicensingCotermLicenses200Response
+func (a *CotermApiService) MoveOrganizationLicensingCotermLicensesExecute(r CotermApiMoveOrganizationLicensingCotermLicensesRequest) (*MoveOrganizationLicensingCotermLicenses200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200123
+		localVarReturnValue  *MoveOrganizationLicensingCotermLicenses200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CotermApiService.MoveOrganizationLicensingCotermLicenses")

@@ -144,10 +144,10 @@ type ManagementInterfaceApiUpdateDeviceManagementInterfaceRequest struct {
 	ctx context.Context
 	ApiService *ManagementInterfaceApiService
 	serial string
-	updateDeviceManagementInterface *InlineObject14
+	updateDeviceManagementInterface *UpdateDeviceManagementInterfaceRequest
 }
 
-func (r ManagementInterfaceApiUpdateDeviceManagementInterfaceRequest) UpdateDeviceManagementInterface(updateDeviceManagementInterface InlineObject14) ManagementInterfaceApiUpdateDeviceManagementInterfaceRequest {
+func (r ManagementInterfaceApiUpdateDeviceManagementInterfaceRequest) UpdateDeviceManagementInterface(updateDeviceManagementInterface UpdateDeviceManagementInterfaceRequest) ManagementInterfaceApiUpdateDeviceManagementInterfaceRequest {
 	r.updateDeviceManagementInterface = &updateDeviceManagementInterface
 	return r
 }

@@ -27,7 +27,7 @@ type IdentitiesApiGetAdministeredIdentitiesMeRequest struct {
 	ApiService *IdentitiesApiService
 }
 
-func (r IdentitiesApiGetAdministeredIdentitiesMeRequest) Execute() (*InlineResponse200, *http.Response, error) {
+func (r IdentitiesApiGetAdministeredIdentitiesMeRequest) Execute() (*GetAdministeredIdentitiesMe200Response, *http.Response, error) {
 	return r.ApiService.GetAdministeredIdentitiesMeExecute(r)
 }
 
@@ -47,13 +47,13 @@ func (a *IdentitiesApiService) GetAdministeredIdentitiesMe(ctx context.Context) 
 }
 
 // Execute executes the request
-//  @return InlineResponse200
-func (a *IdentitiesApiService) GetAdministeredIdentitiesMeExecute(r IdentitiesApiGetAdministeredIdentitiesMeRequest) (*InlineResponse200, *http.Response, error) {
+//  @return GetAdministeredIdentitiesMe200Response
+func (a *IdentitiesApiService) GetAdministeredIdentitiesMeExecute(r IdentitiesApiGetAdministeredIdentitiesMeRequest) (*GetAdministeredIdentitiesMe200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200
+		localVarReturnValue  *GetAdministeredIdentitiesMe200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IdentitiesApiService.GetAdministeredIdentitiesMe")

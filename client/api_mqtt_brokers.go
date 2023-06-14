@@ -27,10 +27,10 @@ type MqttBrokersApiCreateNetworkMqttBrokerRequest struct {
 	ctx context.Context
 	ApiService *MqttBrokersApiService
 	networkId string
-	createNetworkMqttBroker *InlineObject91
+	createNetworkMqttBroker *CreateNetworkMqttBrokerRequest
 }
 
-func (r MqttBrokersApiCreateNetworkMqttBrokerRequest) CreateNetworkMqttBroker(createNetworkMqttBroker InlineObject91) MqttBrokersApiCreateNetworkMqttBrokerRequest {
+func (r MqttBrokersApiCreateNetworkMqttBrokerRequest) CreateNetworkMqttBroker(createNetworkMqttBroker CreateNetworkMqttBrokerRequest) MqttBrokersApiCreateNetworkMqttBrokerRequest {
 	r.createNetworkMqttBroker = &createNetworkMqttBroker
 	return r
 }
@@ -506,7 +506,7 @@ type MqttBrokersApiGetNetworkSensorMqttBrokerRequest struct {
 	mqttBrokerId string
 }
 
-func (r MqttBrokersApiGetNetworkSensorMqttBrokerRequest) Execute() (*InlineResponse20039, *http.Response, error) {
+func (r MqttBrokersApiGetNetworkSensorMqttBrokerRequest) Execute() (*GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorMqttBrokerExecute(r)
 }
 
@@ -530,13 +530,13 @@ func (a *MqttBrokersApiService) GetNetworkSensorMqttBroker(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse20039
-func (a *MqttBrokersApiService) GetNetworkSensorMqttBrokerExecute(r MqttBrokersApiGetNetworkSensorMqttBrokerRequest) (*InlineResponse20039, *http.Response, error) {
+//  @return GetNetworkSensorMqttBrokers200ResponseInner
+func (a *MqttBrokersApiService) GetNetworkSensorMqttBrokerExecute(r MqttBrokersApiGetNetworkSensorMqttBrokerRequest) (*GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20039
+		localVarReturnValue  *GetNetworkSensorMqttBrokers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MqttBrokersApiService.GetNetworkSensorMqttBroker")
@@ -626,7 +626,7 @@ type MqttBrokersApiGetNetworkSensorMqttBrokersRequest struct {
 	networkId string
 }
 
-func (r MqttBrokersApiGetNetworkSensorMqttBrokersRequest) Execute() ([]InlineResponse20039, *http.Response, error) {
+func (r MqttBrokersApiGetNetworkSensorMqttBrokersRequest) Execute() ([]GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorMqttBrokersExecute(r)
 }
 
@@ -648,13 +648,13 @@ func (a *MqttBrokersApiService) GetNetworkSensorMqttBrokers(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return []InlineResponse20039
-func (a *MqttBrokersApiService) GetNetworkSensorMqttBrokersExecute(r MqttBrokersApiGetNetworkSensorMqttBrokersRequest) ([]InlineResponse20039, *http.Response, error) {
+//  @return []GetNetworkSensorMqttBrokers200ResponseInner
+func (a *MqttBrokersApiService) GetNetworkSensorMqttBrokersExecute(r MqttBrokersApiGetNetworkSensorMqttBrokersRequest) ([]GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20039
+		localVarReturnValue  []GetNetworkSensorMqttBrokers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MqttBrokersApiService.GetNetworkSensorMqttBrokers")
@@ -742,10 +742,10 @@ type MqttBrokersApiUpdateNetworkMqttBrokerRequest struct {
 	ApiService *MqttBrokersApiService
 	networkId string
 	mqttBrokerId string
-	updateNetworkMqttBroker *InlineObject92
+	updateNetworkMqttBroker *UpdateNetworkMqttBrokerRequest
 }
 
-func (r MqttBrokersApiUpdateNetworkMqttBrokerRequest) UpdateNetworkMqttBroker(updateNetworkMqttBroker InlineObject92) MqttBrokersApiUpdateNetworkMqttBrokerRequest {
+func (r MqttBrokersApiUpdateNetworkMqttBrokerRequest) UpdateNetworkMqttBroker(updateNetworkMqttBroker UpdateNetworkMqttBrokerRequest) MqttBrokersApiUpdateNetworkMqttBrokerRequest {
 	r.updateNetworkMqttBroker = &updateNetworkMqttBroker
 	return r
 }
@@ -871,15 +871,15 @@ type MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest struct {
 	ApiService *MqttBrokersApiService
 	networkId string
 	mqttBrokerId string
-	updateNetworkSensorMqttBroker *InlineObject97
+	updateNetworkSensorMqttBroker *UpdateNetworkSensorMqttBrokerRequest
 }
 
-func (r MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest) UpdateNetworkSensorMqttBroker(updateNetworkSensorMqttBroker InlineObject97) MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest {
+func (r MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest) UpdateNetworkSensorMqttBroker(updateNetworkSensorMqttBroker UpdateNetworkSensorMqttBrokerRequest) MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest {
 	r.updateNetworkSensorMqttBroker = &updateNetworkSensorMqttBroker
 	return r
 }
 
-func (r MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest) Execute() (*InlineResponse20039, *http.Response, error) {
+func (r MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest) Execute() (*GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSensorMqttBrokerExecute(r)
 }
 
@@ -903,13 +903,13 @@ func (a *MqttBrokersApiService) UpdateNetworkSensorMqttBroker(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20039
-func (a *MqttBrokersApiService) UpdateNetworkSensorMqttBrokerExecute(r MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest) (*InlineResponse20039, *http.Response, error) {
+//  @return GetNetworkSensorMqttBrokers200ResponseInner
+func (a *MqttBrokersApiService) UpdateNetworkSensorMqttBrokerExecute(r MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest) (*GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20039
+		localVarReturnValue  *GetNetworkSensorMqttBrokers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MqttBrokersApiService.UpdateNetworkSensorMqttBroker")

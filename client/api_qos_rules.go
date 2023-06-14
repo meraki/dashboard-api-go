@@ -27,10 +27,10 @@ type QosRulesApiCreateNetworkSwitchQosRuleRequest struct {
 	ctx context.Context
 	ApiService *QosRulesApiService
 	networkId string
-	createNetworkSwitchQosRule *InlineObject122
+	createNetworkSwitchQosRule *CreateNetworkSwitchQosRuleRequest
 }
 
-func (r QosRulesApiCreateNetworkSwitchQosRuleRequest) CreateNetworkSwitchQosRule(createNetworkSwitchQosRule InlineObject122) QosRulesApiCreateNetworkSwitchQosRuleRequest {
+func (r QosRulesApiCreateNetworkSwitchQosRuleRequest) CreateNetworkSwitchQosRule(createNetworkSwitchQosRule CreateNetworkSwitchQosRuleRequest) QosRulesApiCreateNetworkSwitchQosRuleRequest {
 	r.createNetworkSwitchQosRule = &createNetworkSwitchQosRule
 	return r
 }
@@ -621,10 +621,10 @@ type QosRulesApiUpdateNetworkSwitchQosRuleRequest struct {
 	ApiService *QosRulesApiService
 	networkId string
 	qosRuleId string
-	updateNetworkSwitchQosRule *InlineObject124
+	updateNetworkSwitchQosRule *UpdateNetworkSwitchQosRuleRequest
 }
 
-func (r QosRulesApiUpdateNetworkSwitchQosRuleRequest) UpdateNetworkSwitchQosRule(updateNetworkSwitchQosRule InlineObject124) QosRulesApiUpdateNetworkSwitchQosRuleRequest {
+func (r QosRulesApiUpdateNetworkSwitchQosRuleRequest) UpdateNetworkSwitchQosRule(updateNetworkSwitchQosRule UpdateNetworkSwitchQosRuleRequest) QosRulesApiUpdateNetworkSwitchQosRuleRequest {
 	r.updateNetworkSwitchQosRule = &updateNetworkSwitchQosRule
 	return r
 }
@@ -749,10 +749,10 @@ type QosRulesApiUpdateNetworkSwitchQosRulesOrderRequest struct {
 	ctx context.Context
 	ApiService *QosRulesApiService
 	networkId string
-	updateNetworkSwitchQosRulesOrder *InlineObject123
+	updateNetworkSwitchQosRulesOrder *UpdateNetworkSwitchQosRulesOrderRequest
 }
 
-func (r QosRulesApiUpdateNetworkSwitchQosRulesOrderRequest) UpdateNetworkSwitchQosRulesOrder(updateNetworkSwitchQosRulesOrder InlineObject123) QosRulesApiUpdateNetworkSwitchQosRulesOrderRequest {
+func (r QosRulesApiUpdateNetworkSwitchQosRulesOrderRequest) UpdateNetworkSwitchQosRulesOrder(updateNetworkSwitchQosRulesOrder UpdateNetworkSwitchQosRulesOrderRequest) QosRulesApiUpdateNetworkSwitchQosRulesOrderRequest {
 	r.updateNetworkSwitchQosRulesOrder = &updateNetworkSwitchQosRulesOrder
 	return r
 }

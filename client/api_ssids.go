@@ -28,10 +28,10 @@ type SsidsApiCreateNetworkWirelessSsidIdentityPskRequest struct {
 	ApiService *SsidsApiService
 	networkId string
 	number string
-	createNetworkWirelessSsidIdentityPsk *InlineObject161
+	createNetworkWirelessSsidIdentityPsk *CreateNetworkWirelessSsidIdentityPskRequest
 }
 
-func (r SsidsApiCreateNetworkWirelessSsidIdentityPskRequest) CreateNetworkWirelessSsidIdentityPsk(createNetworkWirelessSsidIdentityPsk InlineObject161) SsidsApiCreateNetworkWirelessSsidIdentityPskRequest {
+func (r SsidsApiCreateNetworkWirelessSsidIdentityPskRequest) CreateNetworkWirelessSsidIdentityPsk(createNetworkWirelessSsidIdentityPsk CreateNetworkWirelessSsidIdentityPskRequest) SsidsApiCreateNetworkWirelessSsidIdentityPskRequest {
 	r.createNetworkWirelessSsidIdentityPsk = &createNetworkWirelessSsidIdentityPsk
 	return r
 }
@@ -276,7 +276,7 @@ type SsidsApiGetNetworkApplianceSsidRequest struct {
 	number string
 }
 
-func (r SsidsApiGetNetworkApplianceSsidRequest) Execute() (*InlineResponse20017, *http.Response, error) {
+func (r SsidsApiGetNetworkApplianceSsidRequest) Execute() (*GetNetworkApplianceSsids200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceSsidExecute(r)
 }
 
@@ -300,13 +300,13 @@ func (a *SsidsApiService) GetNetworkApplianceSsid(ctx context.Context, networkId
 }
 
 // Execute executes the request
-//  @return InlineResponse20017
-func (a *SsidsApiService) GetNetworkApplianceSsidExecute(r SsidsApiGetNetworkApplianceSsidRequest) (*InlineResponse20017, *http.Response, error) {
+//  @return GetNetworkApplianceSsids200ResponseInner
+func (a *SsidsApiService) GetNetworkApplianceSsidExecute(r SsidsApiGetNetworkApplianceSsidRequest) (*GetNetworkApplianceSsids200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20017
+		localVarReturnValue  *GetNetworkApplianceSsids200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SsidsApiService.GetNetworkApplianceSsid")
@@ -396,7 +396,7 @@ type SsidsApiGetNetworkApplianceSsidsRequest struct {
 	networkId string
 }
 
-func (r SsidsApiGetNetworkApplianceSsidsRequest) Execute() ([]InlineResponse20017, *http.Response, error) {
+func (r SsidsApiGetNetworkApplianceSsidsRequest) Execute() ([]GetNetworkApplianceSsids200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceSsidsExecute(r)
 }
 
@@ -418,13 +418,13 @@ func (a *SsidsApiService) GetNetworkApplianceSsids(ctx context.Context, networkI
 }
 
 // Execute executes the request
-//  @return []InlineResponse20017
-func (a *SsidsApiService) GetNetworkApplianceSsidsExecute(r SsidsApiGetNetworkApplianceSsidsRequest) ([]InlineResponse20017, *http.Response, error) {
+//  @return []GetNetworkApplianceSsids200ResponseInner
+func (a *SsidsApiService) GetNetworkApplianceSsidsExecute(r SsidsApiGetNetworkApplianceSsidsRequest) ([]GetNetworkApplianceSsids200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20017
+		localVarReturnValue  []GetNetworkApplianceSsids200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SsidsApiService.GetNetworkApplianceSsids")
@@ -877,7 +877,7 @@ type SsidsApiGetNetworkWirelessSsidEapOverrideRequest struct {
 	number string
 }
 
-func (r SsidsApiGetNetworkWirelessSsidEapOverrideRequest) Execute() (*InlineResponse20085, *http.Response, error) {
+func (r SsidsApiGetNetworkWirelessSsidEapOverrideRequest) Execute() (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidEapOverrideExecute(r)
 }
 
@@ -901,13 +901,13 @@ func (a *SsidsApiService) GetNetworkWirelessSsidEapOverride(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20085
-func (a *SsidsApiService) GetNetworkWirelessSsidEapOverrideExecute(r SsidsApiGetNetworkWirelessSsidEapOverrideRequest) (*InlineResponse20085, *http.Response, error) {
+//  @return GetNetworkWirelessSsidEapOverride200Response
+func (a *SsidsApiService) GetNetworkWirelessSsidEapOverrideExecute(r SsidsApiGetNetworkWirelessSsidEapOverrideRequest) (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20085
+		localVarReturnValue  *GetNetworkWirelessSsidEapOverride200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SsidsApiService.GetNetworkWirelessSsidEapOverride")
@@ -1362,7 +1362,7 @@ type SsidsApiGetNetworkWirelessSsidIdentityPskRequest struct {
 	identityPskId string
 }
 
-func (r SsidsApiGetNetworkWirelessSsidIdentityPskRequest) Execute() (*InlineResponse20086, *http.Response, error) {
+func (r SsidsApiGetNetworkWirelessSsidIdentityPskRequest) Execute() (*GetNetworkWirelessSsidIdentityPsks200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidIdentityPskExecute(r)
 }
 
@@ -1388,13 +1388,13 @@ func (a *SsidsApiService) GetNetworkWirelessSsidIdentityPsk(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20086
-func (a *SsidsApiService) GetNetworkWirelessSsidIdentityPskExecute(r SsidsApiGetNetworkWirelessSsidIdentityPskRequest) (*InlineResponse20086, *http.Response, error) {
+//  @return GetNetworkWirelessSsidIdentityPsks200ResponseInner
+func (a *SsidsApiService) GetNetworkWirelessSsidIdentityPskExecute(r SsidsApiGetNetworkWirelessSsidIdentityPskRequest) (*GetNetworkWirelessSsidIdentityPsks200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20086
+		localVarReturnValue  *GetNetworkWirelessSsidIdentityPsks200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SsidsApiService.GetNetworkWirelessSsidIdentityPsk")
@@ -1486,7 +1486,7 @@ type SsidsApiGetNetworkWirelessSsidIdentityPsksRequest struct {
 	number string
 }
 
-func (r SsidsApiGetNetworkWirelessSsidIdentityPsksRequest) Execute() ([]InlineResponse20086, *http.Response, error) {
+func (r SsidsApiGetNetworkWirelessSsidIdentityPsksRequest) Execute() ([]GetNetworkWirelessSsidIdentityPsks200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidIdentityPsksExecute(r)
 }
 
@@ -1510,13 +1510,13 @@ func (a *SsidsApiService) GetNetworkWirelessSsidIdentityPsks(ctx context.Context
 }
 
 // Execute executes the request
-//  @return []InlineResponse20086
-func (a *SsidsApiService) GetNetworkWirelessSsidIdentityPsksExecute(r SsidsApiGetNetworkWirelessSsidIdentityPsksRequest) ([]InlineResponse20086, *http.Response, error) {
+//  @return []GetNetworkWirelessSsidIdentityPsks200ResponseInner
+func (a *SsidsApiService) GetNetworkWirelessSsidIdentityPsksExecute(r SsidsApiGetNetworkWirelessSsidIdentityPsksRequest) ([]GetNetworkWirelessSsidIdentityPsks200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20086
+		localVarReturnValue  []GetNetworkWirelessSsidIdentityPsks200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SsidsApiService.GetNetworkWirelessSsidIdentityPsks")
@@ -1728,7 +1728,7 @@ type SsidsApiGetNetworkWirelessSsidSplashSettingsRequest struct {
 	number string
 }
 
-func (r SsidsApiGetNetworkWirelessSsidSplashSettingsRequest) Execute() (*InlineResponse20087, *http.Response, error) {
+func (r SsidsApiGetNetworkWirelessSsidSplashSettingsRequest) Execute() (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidSplashSettingsExecute(r)
 }
 
@@ -1752,13 +1752,13 @@ func (a *SsidsApiService) GetNetworkWirelessSsidSplashSettings(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20087
-func (a *SsidsApiService) GetNetworkWirelessSsidSplashSettingsExecute(r SsidsApiGetNetworkWirelessSsidSplashSettingsRequest) (*InlineResponse20087, *http.Response, error) {
+//  @return GetNetworkWirelessSsidSplashSettings200Response
+func (a *SsidsApiService) GetNetworkWirelessSsidSplashSettingsExecute(r SsidsApiGetNetworkWirelessSsidSplashSettingsRequest) (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20087
+		localVarReturnValue  *GetNetworkWirelessSsidSplashSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SsidsApiService.GetNetworkWirelessSsidSplashSettings")
@@ -2228,7 +2228,7 @@ func (r SsidsApiGetOrganizationSummaryTopSsidsByUsageRequest) Timespan(timespan 
 	return r
 }
 
-func (r SsidsApiGetOrganizationSummaryTopSsidsByUsageRequest) Execute() ([]InlineResponse200138, *http.Response, error) {
+func (r SsidsApiGetOrganizationSummaryTopSsidsByUsageRequest) Execute() ([]GetOrganizationSummaryTopSsidsByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopSsidsByUsageExecute(r)
 }
 
@@ -2250,13 +2250,13 @@ func (a *SsidsApiService) GetOrganizationSummaryTopSsidsByUsage(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse200138
-func (a *SsidsApiService) GetOrganizationSummaryTopSsidsByUsageExecute(r SsidsApiGetOrganizationSummaryTopSsidsByUsageRequest) ([]InlineResponse200138, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopSsidsByUsage200ResponseInner
+func (a *SsidsApiService) GetOrganizationSummaryTopSsidsByUsageExecute(r SsidsApiGetOrganizationSummaryTopSsidsByUsageRequest) ([]GetOrganizationSummaryTopSsidsByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200138
+		localVarReturnValue  []GetOrganizationSummaryTopSsidsByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SsidsApiService.GetOrganizationSummaryTopSsidsByUsage")
@@ -2353,15 +2353,15 @@ type SsidsApiUpdateNetworkApplianceSsidRequest struct {
 	ApiService *SsidsApiService
 	networkId string
 	number string
-	updateNetworkApplianceSsid *InlineObject47
+	updateNetworkApplianceSsid *UpdateNetworkApplianceSsidRequest
 }
 
-func (r SsidsApiUpdateNetworkApplianceSsidRequest) UpdateNetworkApplianceSsid(updateNetworkApplianceSsid InlineObject47) SsidsApiUpdateNetworkApplianceSsidRequest {
+func (r SsidsApiUpdateNetworkApplianceSsidRequest) UpdateNetworkApplianceSsid(updateNetworkApplianceSsid UpdateNetworkApplianceSsidRequest) SsidsApiUpdateNetworkApplianceSsidRequest {
 	r.updateNetworkApplianceSsid = &updateNetworkApplianceSsid
 	return r
 }
 
-func (r SsidsApiUpdateNetworkApplianceSsidRequest) Execute() (*InlineResponse20017, *http.Response, error) {
+func (r SsidsApiUpdateNetworkApplianceSsidRequest) Execute() (*GetNetworkApplianceSsids200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceSsidExecute(r)
 }
 
@@ -2385,13 +2385,13 @@ func (a *SsidsApiService) UpdateNetworkApplianceSsid(ctx context.Context, networ
 }
 
 // Execute executes the request
-//  @return InlineResponse20017
-func (a *SsidsApiService) UpdateNetworkApplianceSsidExecute(r SsidsApiUpdateNetworkApplianceSsidRequest) (*InlineResponse20017, *http.Response, error) {
+//  @return GetNetworkApplianceSsids200ResponseInner
+func (a *SsidsApiService) UpdateNetworkApplianceSsidExecute(r SsidsApiUpdateNetworkApplianceSsidRequest) (*GetNetworkApplianceSsids200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20017
+		localVarReturnValue  *GetNetworkApplianceSsids200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SsidsApiService.UpdateNetworkApplianceSsid")
@@ -2482,10 +2482,10 @@ type SsidsApiUpdateNetworkWirelessSsidRequest struct {
 	ApiService *SsidsApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsid *InlineObject154
+	updateNetworkWirelessSsid *UpdateNetworkWirelessSsidRequest
 }
 
-func (r SsidsApiUpdateNetworkWirelessSsidRequest) UpdateNetworkWirelessSsid(updateNetworkWirelessSsid InlineObject154) SsidsApiUpdateNetworkWirelessSsidRequest {
+func (r SsidsApiUpdateNetworkWirelessSsidRequest) UpdateNetworkWirelessSsid(updateNetworkWirelessSsid UpdateNetworkWirelessSsidRequest) SsidsApiUpdateNetworkWirelessSsidRequest {
 	r.updateNetworkWirelessSsid = &updateNetworkWirelessSsid
 	return r
 }
@@ -2611,10 +2611,10 @@ type SsidsApiUpdateNetworkWirelessSsidBonjourForwardingRequest struct {
 	ApiService *SsidsApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidBonjourForwarding *InlineObject155
+	updateNetworkWirelessSsidBonjourForwarding *UpdateNetworkWirelessSsidBonjourForwardingRequest
 }
 
-func (r SsidsApiUpdateNetworkWirelessSsidBonjourForwardingRequest) UpdateNetworkWirelessSsidBonjourForwarding(updateNetworkWirelessSsidBonjourForwarding InlineObject155) SsidsApiUpdateNetworkWirelessSsidBonjourForwardingRequest {
+func (r SsidsApiUpdateNetworkWirelessSsidBonjourForwardingRequest) UpdateNetworkWirelessSsidBonjourForwarding(updateNetworkWirelessSsidBonjourForwarding UpdateNetworkWirelessSsidBonjourForwardingRequest) SsidsApiUpdateNetworkWirelessSsidBonjourForwardingRequest {
 	r.updateNetworkWirelessSsidBonjourForwarding = &updateNetworkWirelessSsidBonjourForwarding
 	return r
 }
@@ -2740,10 +2740,10 @@ type SsidsApiUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest struct {
 	ApiService *SsidsApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidDeviceTypeGroupPolicies *InlineObject156
+	updateNetworkWirelessSsidDeviceTypeGroupPolicies *UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest
 }
 
-func (r SsidsApiUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest) UpdateNetworkWirelessSsidDeviceTypeGroupPolicies(updateNetworkWirelessSsidDeviceTypeGroupPolicies InlineObject156) SsidsApiUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest {
+func (r SsidsApiUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest) UpdateNetworkWirelessSsidDeviceTypeGroupPolicies(updateNetworkWirelessSsidDeviceTypeGroupPolicies UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest) SsidsApiUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest {
 	r.updateNetworkWirelessSsidDeviceTypeGroupPolicies = &updateNetworkWirelessSsidDeviceTypeGroupPolicies
 	return r
 }
@@ -2869,15 +2869,15 @@ type SsidsApiUpdateNetworkWirelessSsidEapOverrideRequest struct {
 	ApiService *SsidsApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidEapOverride *InlineObject157
+	updateNetworkWirelessSsidEapOverride *UpdateNetworkWirelessSsidEapOverrideRequest
 }
 
-func (r SsidsApiUpdateNetworkWirelessSsidEapOverrideRequest) UpdateNetworkWirelessSsidEapOverride(updateNetworkWirelessSsidEapOverride InlineObject157) SsidsApiUpdateNetworkWirelessSsidEapOverrideRequest {
+func (r SsidsApiUpdateNetworkWirelessSsidEapOverrideRequest) UpdateNetworkWirelessSsidEapOverride(updateNetworkWirelessSsidEapOverride UpdateNetworkWirelessSsidEapOverrideRequest) SsidsApiUpdateNetworkWirelessSsidEapOverrideRequest {
 	r.updateNetworkWirelessSsidEapOverride = &updateNetworkWirelessSsidEapOverride
 	return r
 }
 
-func (r SsidsApiUpdateNetworkWirelessSsidEapOverrideRequest) Execute() (*InlineResponse20085, *http.Response, error) {
+func (r SsidsApiUpdateNetworkWirelessSsidEapOverrideRequest) Execute() (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessSsidEapOverrideExecute(r)
 }
 
@@ -2901,13 +2901,13 @@ func (a *SsidsApiService) UpdateNetworkWirelessSsidEapOverride(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20085
-func (a *SsidsApiService) UpdateNetworkWirelessSsidEapOverrideExecute(r SsidsApiUpdateNetworkWirelessSsidEapOverrideRequest) (*InlineResponse20085, *http.Response, error) {
+//  @return GetNetworkWirelessSsidEapOverride200Response
+func (a *SsidsApiService) UpdateNetworkWirelessSsidEapOverrideExecute(r SsidsApiUpdateNetworkWirelessSsidEapOverrideRequest) (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20085
+		localVarReturnValue  *GetNetworkWirelessSsidEapOverride200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SsidsApiService.UpdateNetworkWirelessSsidEapOverride")
@@ -2998,10 +2998,10 @@ type SsidsApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest struct {
 	ApiService *SsidsApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidFirewallL3FirewallRules *InlineObject158
+	updateNetworkWirelessSsidFirewallL3FirewallRules *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest
 }
 
-func (r SsidsApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) UpdateNetworkWirelessSsidFirewallL3FirewallRules(updateNetworkWirelessSsidFirewallL3FirewallRules InlineObject158) SsidsApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest {
+func (r SsidsApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) UpdateNetworkWirelessSsidFirewallL3FirewallRules(updateNetworkWirelessSsidFirewallL3FirewallRules UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) SsidsApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest {
 	r.updateNetworkWirelessSsidFirewallL3FirewallRules = &updateNetworkWirelessSsidFirewallL3FirewallRules
 	return r
 }
@@ -3127,10 +3127,10 @@ type SsidsApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest struct {
 	ApiService *SsidsApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidFirewallL7FirewallRules *InlineObject159
+	updateNetworkWirelessSsidFirewallL7FirewallRules *UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest
 }
 
-func (r SsidsApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) UpdateNetworkWirelessSsidFirewallL7FirewallRules(updateNetworkWirelessSsidFirewallL7FirewallRules InlineObject159) SsidsApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest {
+func (r SsidsApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) UpdateNetworkWirelessSsidFirewallL7FirewallRules(updateNetworkWirelessSsidFirewallL7FirewallRules UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) SsidsApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest {
 	r.updateNetworkWirelessSsidFirewallL7FirewallRules = &updateNetworkWirelessSsidFirewallL7FirewallRules
 	return r
 }
@@ -3256,10 +3256,10 @@ type SsidsApiUpdateNetworkWirelessSsidHotspot20Request struct {
 	ApiService *SsidsApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidHotspot20 *InlineObject160
+	updateNetworkWirelessSsidHotspot20 *UpdateNetworkWirelessSsidHotspot20Request
 }
 
-func (r SsidsApiUpdateNetworkWirelessSsidHotspot20Request) UpdateNetworkWirelessSsidHotspot20(updateNetworkWirelessSsidHotspot20 InlineObject160) SsidsApiUpdateNetworkWirelessSsidHotspot20Request {
+func (r SsidsApiUpdateNetworkWirelessSsidHotspot20Request) UpdateNetworkWirelessSsidHotspot20(updateNetworkWirelessSsidHotspot20 UpdateNetworkWirelessSsidHotspot20Request) SsidsApiUpdateNetworkWirelessSsidHotspot20Request {
 	r.updateNetworkWirelessSsidHotspot20 = &updateNetworkWirelessSsidHotspot20
 	return r
 }
@@ -3386,10 +3386,10 @@ type SsidsApiUpdateNetworkWirelessSsidIdentityPskRequest struct {
 	networkId string
 	number string
 	identityPskId string
-	updateNetworkWirelessSsidIdentityPsk *InlineObject162
+	updateNetworkWirelessSsidIdentityPsk *UpdateNetworkWirelessSsidIdentityPskRequest
 }
 
-func (r SsidsApiUpdateNetworkWirelessSsidIdentityPskRequest) UpdateNetworkWirelessSsidIdentityPsk(updateNetworkWirelessSsidIdentityPsk InlineObject162) SsidsApiUpdateNetworkWirelessSsidIdentityPskRequest {
+func (r SsidsApiUpdateNetworkWirelessSsidIdentityPskRequest) UpdateNetworkWirelessSsidIdentityPsk(updateNetworkWirelessSsidIdentityPsk UpdateNetworkWirelessSsidIdentityPskRequest) SsidsApiUpdateNetworkWirelessSsidIdentityPskRequest {
 	r.updateNetworkWirelessSsidIdentityPsk = &updateNetworkWirelessSsidIdentityPsk
 	return r
 }
@@ -3518,10 +3518,10 @@ type SsidsApiUpdateNetworkWirelessSsidSchedulesRequest struct {
 	ApiService *SsidsApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidSchedules *InlineObject163
+	updateNetworkWirelessSsidSchedules *UpdateNetworkWirelessSsidSchedulesRequest
 }
 
-func (r SsidsApiUpdateNetworkWirelessSsidSchedulesRequest) UpdateNetworkWirelessSsidSchedules(updateNetworkWirelessSsidSchedules InlineObject163) SsidsApiUpdateNetworkWirelessSsidSchedulesRequest {
+func (r SsidsApiUpdateNetworkWirelessSsidSchedulesRequest) UpdateNetworkWirelessSsidSchedules(updateNetworkWirelessSsidSchedules UpdateNetworkWirelessSsidSchedulesRequest) SsidsApiUpdateNetworkWirelessSsidSchedulesRequest {
 	r.updateNetworkWirelessSsidSchedules = &updateNetworkWirelessSsidSchedules
 	return r
 }
@@ -3647,15 +3647,15 @@ type SsidsApiUpdateNetworkWirelessSsidSplashSettingsRequest struct {
 	ApiService *SsidsApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidSplashSettings *InlineObject164
+	updateNetworkWirelessSsidSplashSettings *UpdateNetworkWirelessSsidSplashSettingsRequest
 }
 
-func (r SsidsApiUpdateNetworkWirelessSsidSplashSettingsRequest) UpdateNetworkWirelessSsidSplashSettings(updateNetworkWirelessSsidSplashSettings InlineObject164) SsidsApiUpdateNetworkWirelessSsidSplashSettingsRequest {
+func (r SsidsApiUpdateNetworkWirelessSsidSplashSettingsRequest) UpdateNetworkWirelessSsidSplashSettings(updateNetworkWirelessSsidSplashSettings UpdateNetworkWirelessSsidSplashSettingsRequest) SsidsApiUpdateNetworkWirelessSsidSplashSettingsRequest {
 	r.updateNetworkWirelessSsidSplashSettings = &updateNetworkWirelessSsidSplashSettings
 	return r
 }
 
-func (r SsidsApiUpdateNetworkWirelessSsidSplashSettingsRequest) Execute() (*InlineResponse20087, *http.Response, error) {
+func (r SsidsApiUpdateNetworkWirelessSsidSplashSettingsRequest) Execute() (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessSsidSplashSettingsExecute(r)
 }
 
@@ -3679,13 +3679,13 @@ func (a *SsidsApiService) UpdateNetworkWirelessSsidSplashSettings(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse20087
-func (a *SsidsApiService) UpdateNetworkWirelessSsidSplashSettingsExecute(r SsidsApiUpdateNetworkWirelessSsidSplashSettingsRequest) (*InlineResponse20087, *http.Response, error) {
+//  @return GetNetworkWirelessSsidSplashSettings200Response
+func (a *SsidsApiService) UpdateNetworkWirelessSsidSplashSettingsExecute(r SsidsApiUpdateNetworkWirelessSsidSplashSettingsRequest) (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20087
+		localVarReturnValue  *GetNetworkWirelessSsidSplashSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SsidsApiService.UpdateNetworkWirelessSsidSplashSettings")
@@ -3776,10 +3776,10 @@ type SsidsApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest struct {
 	ApiService *SsidsApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidTrafficShapingRules *InlineObject165
+	updateNetworkWirelessSsidTrafficShapingRules *UpdateNetworkWirelessSsidTrafficShapingRulesRequest
 }
 
-func (r SsidsApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest) UpdateNetworkWirelessSsidTrafficShapingRules(updateNetworkWirelessSsidTrafficShapingRules InlineObject165) SsidsApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest {
+func (r SsidsApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest) UpdateNetworkWirelessSsidTrafficShapingRules(updateNetworkWirelessSsidTrafficShapingRules UpdateNetworkWirelessSsidTrafficShapingRulesRequest) SsidsApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest {
 	r.updateNetworkWirelessSsidTrafficShapingRules = &updateNetworkWirelessSsidTrafficShapingRules
 	return r
 }
@@ -3905,10 +3905,10 @@ type SsidsApiUpdateNetworkWirelessSsidVpnRequest struct {
 	ApiService *SsidsApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidVpn *InlineObject166
+	updateNetworkWirelessSsidVpn *UpdateNetworkWirelessSsidVpnRequest
 }
 
-func (r SsidsApiUpdateNetworkWirelessSsidVpnRequest) UpdateNetworkWirelessSsidVpn(updateNetworkWirelessSsidVpn InlineObject166) SsidsApiUpdateNetworkWirelessSsidVpnRequest {
+func (r SsidsApiUpdateNetworkWirelessSsidVpnRequest) UpdateNetworkWirelessSsidVpn(updateNetworkWirelessSsidVpn UpdateNetworkWirelessSsidVpnRequest) SsidsApiUpdateNetworkWirelessSsidVpnRequest {
 	r.updateNetworkWirelessSsidVpn = &updateNetworkWirelessSsidVpn
 	return r
 }
