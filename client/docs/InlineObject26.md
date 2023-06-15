@@ -4,11 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name of the network | [optional] 
-**TimeZone** | Pointer to **string** | The timezone of the network. For a list of allowed timezones, please see the &#39;TZ&#39; column in the table in &lt;a target&#x3D;&#39;_blank&#39; href&#x3D;&#39;https://en.wikipedia.org/wiki/List_of_tz_database_time_zones&#39;&gt;this article.&lt;/a&gt; | [optional] 
-**Tags** | Pointer to **[]string** | A list of tags to be applied to the network | [optional] 
-**EnrollmentString** | Pointer to **string** | A unique identifier which can be used for device enrollment or easy access through the Meraki SM Registration page or the Self Service Portal. Please note that changing this field may cause existing bookmarks to break. | [optional] 
-**Notes** | Pointer to **string** | Add any notes or additional information about this network here. | [optional] 
+**RfProfileId** | Pointer to **string** | The ID of an RF profile to assign to the device. If the value of this parameter is null, the appropriate basic RF profile (indoor or outdoor) will be assigned to the device. Assigning an RF profile will clear ALL manually configured overrides on the device (channel width, channel, power). | [optional] 
+**TwoFourGhzSettings** | Pointer to [**DevicesSerialApplianceRadioSettingsTwoFourGhzSettings**](DevicesSerialApplianceRadioSettingsTwoFourGhzSettings.md) |  | [optional] 
+**FiveGhzSettings** | Pointer to [**DevicesSerialWirelessRadioSettingsFiveGhzSettings**](DevicesSerialWirelessRadioSettingsFiveGhzSettings.md) |  | [optional] 
 
 ## Methods
 
@@ -29,130 +27,80 @@ NewInlineObject26WithDefaults instantiates a new InlineObject26 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetRfProfileId
 
-`func (o *InlineObject26) GetName() string`
+`func (o *InlineObject26) GetRfProfileId() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetRfProfileId returns the RfProfileId field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetRfProfileIdOk
 
-`func (o *InlineObject26) GetNameOk() (*string, bool)`
+`func (o *InlineObject26) GetRfProfileIdOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetRfProfileIdOk returns a tuple with the RfProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetRfProfileId
 
-`func (o *InlineObject26) SetName(v string)`
+`func (o *InlineObject26) SetRfProfileId(v string)`
 
-SetName sets Name field to given value.
+SetRfProfileId sets RfProfileId field to given value.
 
-### HasName
+### HasRfProfileId
 
-`func (o *InlineObject26) HasName() bool`
+`func (o *InlineObject26) HasRfProfileId() bool`
 
-HasName returns a boolean if a field has been set.
+HasRfProfileId returns a boolean if a field has been set.
 
-### GetTimeZone
+### GetTwoFourGhzSettings
 
-`func (o *InlineObject26) GetTimeZone() string`
+`func (o *InlineObject26) GetTwoFourGhzSettings() DevicesSerialApplianceRadioSettingsTwoFourGhzSettings`
 
-GetTimeZone returns the TimeZone field if non-nil, zero value otherwise.
+GetTwoFourGhzSettings returns the TwoFourGhzSettings field if non-nil, zero value otherwise.
 
-### GetTimeZoneOk
+### GetTwoFourGhzSettingsOk
 
-`func (o *InlineObject26) GetTimeZoneOk() (*string, bool)`
+`func (o *InlineObject26) GetTwoFourGhzSettingsOk() (*DevicesSerialApplianceRadioSettingsTwoFourGhzSettings, bool)`
 
-GetTimeZoneOk returns a tuple with the TimeZone field if it's non-nil, zero value otherwise
+GetTwoFourGhzSettingsOk returns a tuple with the TwoFourGhzSettings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimeZone
+### SetTwoFourGhzSettings
 
-`func (o *InlineObject26) SetTimeZone(v string)`
+`func (o *InlineObject26) SetTwoFourGhzSettings(v DevicesSerialApplianceRadioSettingsTwoFourGhzSettings)`
 
-SetTimeZone sets TimeZone field to given value.
+SetTwoFourGhzSettings sets TwoFourGhzSettings field to given value.
 
-### HasTimeZone
+### HasTwoFourGhzSettings
 
-`func (o *InlineObject26) HasTimeZone() bool`
+`func (o *InlineObject26) HasTwoFourGhzSettings() bool`
 
-HasTimeZone returns a boolean if a field has been set.
+HasTwoFourGhzSettings returns a boolean if a field has been set.
 
-### GetTags
+### GetFiveGhzSettings
 
-`func (o *InlineObject26) GetTags() []string`
+`func (o *InlineObject26) GetFiveGhzSettings() DevicesSerialWirelessRadioSettingsFiveGhzSettings`
 
-GetTags returns the Tags field if non-nil, zero value otherwise.
+GetFiveGhzSettings returns the FiveGhzSettings field if non-nil, zero value otherwise.
 
-### GetTagsOk
+### GetFiveGhzSettingsOk
 
-`func (o *InlineObject26) GetTagsOk() (*[]string, bool)`
+`func (o *InlineObject26) GetFiveGhzSettingsOk() (*DevicesSerialWirelessRadioSettingsFiveGhzSettings, bool)`
 
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+GetFiveGhzSettingsOk returns a tuple with the FiveGhzSettings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTags
+### SetFiveGhzSettings
 
-`func (o *InlineObject26) SetTags(v []string)`
+`func (o *InlineObject26) SetFiveGhzSettings(v DevicesSerialWirelessRadioSettingsFiveGhzSettings)`
 
-SetTags sets Tags field to given value.
+SetFiveGhzSettings sets FiveGhzSettings field to given value.
 
-### HasTags
+### HasFiveGhzSettings
 
-`func (o *InlineObject26) HasTags() bool`
+`func (o *InlineObject26) HasFiveGhzSettings() bool`
 
-HasTags returns a boolean if a field has been set.
-
-### GetEnrollmentString
-
-`func (o *InlineObject26) GetEnrollmentString() string`
-
-GetEnrollmentString returns the EnrollmentString field if non-nil, zero value otherwise.
-
-### GetEnrollmentStringOk
-
-`func (o *InlineObject26) GetEnrollmentStringOk() (*string, bool)`
-
-GetEnrollmentStringOk returns a tuple with the EnrollmentString field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEnrollmentString
-
-`func (o *InlineObject26) SetEnrollmentString(v string)`
-
-SetEnrollmentString sets EnrollmentString field to given value.
-
-### HasEnrollmentString
-
-`func (o *InlineObject26) HasEnrollmentString() bool`
-
-HasEnrollmentString returns a boolean if a field has been set.
-
-### GetNotes
-
-`func (o *InlineObject26) GetNotes() string`
-
-GetNotes returns the Notes field if non-nil, zero value otherwise.
-
-### GetNotesOk
-
-`func (o *InlineObject26) GetNotesOk() (*string, bool)`
-
-GetNotesOk returns a tuple with the Notes field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNotes
-
-`func (o *InlineObject26) SetNotes(v string)`
-
-SetNotes sets Notes field to given value.
-
-### HasNotes
-
-`func (o *InlineObject26) HasNotes() bool`
-
-HasNotes returns a boolean if a field has been set.
+HasFiveGhzSettings returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

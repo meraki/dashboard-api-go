@@ -4,9 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SwitchProfileId** | Pointer to **string** | Switch profile id | [optional] 
-**Name** | Pointer to **string** | Switch profile name | [optional] 
-**Model** | Pointer to **string** | Switch model | [optional] 
+**Counts** | Pointer to [**InlineResponse200101Counts**](InlineResponse200101Counts.md) |  | [optional] 
+**Limits** | Pointer to [**InlineResponse200101Limits**](InlineResponse200101Limits.md) |  | [optional] 
 
 ## Methods
 
@@ -27,80 +26,55 @@ NewInlineResponse200101WithDefaults instantiates a new InlineResponse200101 obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetSwitchProfileId
+### GetCounts
 
-`func (o *InlineResponse200101) GetSwitchProfileId() string`
+`func (o *InlineResponse200101) GetCounts() InlineResponse200101Counts`
 
-GetSwitchProfileId returns the SwitchProfileId field if non-nil, zero value otherwise.
+GetCounts returns the Counts field if non-nil, zero value otherwise.
 
-### GetSwitchProfileIdOk
+### GetCountsOk
 
-`func (o *InlineResponse200101) GetSwitchProfileIdOk() (*string, bool)`
+`func (o *InlineResponse200101) GetCountsOk() (*InlineResponse200101Counts, bool)`
 
-GetSwitchProfileIdOk returns a tuple with the SwitchProfileId field if it's non-nil, zero value otherwise
+GetCountsOk returns a tuple with the Counts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSwitchProfileId
+### SetCounts
 
-`func (o *InlineResponse200101) SetSwitchProfileId(v string)`
+`func (o *InlineResponse200101) SetCounts(v InlineResponse200101Counts)`
 
-SetSwitchProfileId sets SwitchProfileId field to given value.
+SetCounts sets Counts field to given value.
 
-### HasSwitchProfileId
+### HasCounts
 
-`func (o *InlineResponse200101) HasSwitchProfileId() bool`
+`func (o *InlineResponse200101) HasCounts() bool`
 
-HasSwitchProfileId returns a boolean if a field has been set.
+HasCounts returns a boolean if a field has been set.
 
-### GetName
+### GetLimits
 
-`func (o *InlineResponse200101) GetName() string`
+`func (o *InlineResponse200101) GetLimits() InlineResponse200101Limits`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetLimits returns the Limits field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetLimitsOk
 
-`func (o *InlineResponse200101) GetNameOk() (*string, bool)`
+`func (o *InlineResponse200101) GetLimitsOk() (*InlineResponse200101Limits, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetLimitsOk returns a tuple with the Limits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetLimits
 
-`func (o *InlineResponse200101) SetName(v string)`
+`func (o *InlineResponse200101) SetLimits(v InlineResponse200101Limits)`
 
-SetName sets Name field to given value.
+SetLimits sets Limits field to given value.
 
-### HasName
+### HasLimits
 
-`func (o *InlineResponse200101) HasName() bool`
+`func (o *InlineResponse200101) HasLimits() bool`
 
-HasName returns a boolean if a field has been set.
-
-### GetModel
-
-`func (o *InlineResponse200101) GetModel() string`
-
-GetModel returns the Model field if non-nil, zero value otherwise.
-
-### GetModelOk
-
-`func (o *InlineResponse200101) GetModelOk() (*string, bool)`
-
-GetModelOk returns a tuple with the Model field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetModel
-
-`func (o *InlineResponse200101) SetModel(v string)`
-
-SetModel sets Model field to given value.
-
-### HasModel
-
-`func (o *InlineResponse200101) HasModel() bool`
-
-HasModel returns a boolean if a field has been set.
+HasLimits returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

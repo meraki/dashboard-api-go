@@ -4,13 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | Organization ID | [optional] 
-**Name** | Pointer to **string** | Organization name | [optional] 
-**Url** | Pointer to **string** | Organization URL | [optional] 
-**Api** | Pointer to [**OrganizationsApi**](OrganizationsApi.md) |  | [optional] 
-**Licensing** | Pointer to [**OrganizationsLicensing**](OrganizationsLicensing.md) |  | [optional] 
-**Cloud** | Pointer to [**OrganizationsCloud**](OrganizationsCloud.md) |  | [optional] 
-**Management** | Pointer to [**OrganizationsManagement**](OrganizationsManagement.md) |  | [optional] 
+**StartTs** | Pointer to **time.Time** | The start time of the query range | [optional] 
+**EndTs** | Pointer to **time.Time** | The end time of the query range | [optional] 
+**AverageKbps** | Pointer to **int32** | Average data rate in kilobytes-per-second | [optional] 
+**DownloadKbps** | Pointer to **int32** | Download rate in kilobytes-per-second | [optional] 
+**UploadKbps** | Pointer to **int32** | Upload rate in kilobytes-per-second | [optional] 
 
 ## Methods
 
@@ -31,180 +29,130 @@ NewInlineResponse20089WithDefaults instantiates a new InlineResponse20089 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetStartTs
 
-`func (o *InlineResponse20089) GetId() string`
+`func (o *InlineResponse20089) GetStartTs() time.Time`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetStartTs returns the StartTs field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetStartTsOk
 
-`func (o *InlineResponse20089) GetIdOk() (*string, bool)`
+`func (o *InlineResponse20089) GetStartTsOk() (*time.Time, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetStartTsOk returns a tuple with the StartTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetStartTs
 
-`func (o *InlineResponse20089) SetId(v string)`
+`func (o *InlineResponse20089) SetStartTs(v time.Time)`
 
-SetId sets Id field to given value.
+SetStartTs sets StartTs field to given value.
 
-### HasId
+### HasStartTs
 
-`func (o *InlineResponse20089) HasId() bool`
+`func (o *InlineResponse20089) HasStartTs() bool`
 
-HasId returns a boolean if a field has been set.
+HasStartTs returns a boolean if a field has been set.
 
-### GetName
+### GetEndTs
 
-`func (o *InlineResponse20089) GetName() string`
+`func (o *InlineResponse20089) GetEndTs() time.Time`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetEndTs returns the EndTs field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetEndTsOk
 
-`func (o *InlineResponse20089) GetNameOk() (*string, bool)`
+`func (o *InlineResponse20089) GetEndTsOk() (*time.Time, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetEndTsOk returns a tuple with the EndTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetEndTs
 
-`func (o *InlineResponse20089) SetName(v string)`
+`func (o *InlineResponse20089) SetEndTs(v time.Time)`
 
-SetName sets Name field to given value.
+SetEndTs sets EndTs field to given value.
 
-### HasName
+### HasEndTs
 
-`func (o *InlineResponse20089) HasName() bool`
+`func (o *InlineResponse20089) HasEndTs() bool`
 
-HasName returns a boolean if a field has been set.
+HasEndTs returns a boolean if a field has been set.
 
-### GetUrl
+### GetAverageKbps
 
-`func (o *InlineResponse20089) GetUrl() string`
+`func (o *InlineResponse20089) GetAverageKbps() int32`
 
-GetUrl returns the Url field if non-nil, zero value otherwise.
+GetAverageKbps returns the AverageKbps field if non-nil, zero value otherwise.
 
-### GetUrlOk
+### GetAverageKbpsOk
 
-`func (o *InlineResponse20089) GetUrlOk() (*string, bool)`
+`func (o *InlineResponse20089) GetAverageKbpsOk() (*int32, bool)`
 
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+GetAverageKbpsOk returns a tuple with the AverageKbps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUrl
+### SetAverageKbps
 
-`func (o *InlineResponse20089) SetUrl(v string)`
+`func (o *InlineResponse20089) SetAverageKbps(v int32)`
 
-SetUrl sets Url field to given value.
+SetAverageKbps sets AverageKbps field to given value.
 
-### HasUrl
+### HasAverageKbps
 
-`func (o *InlineResponse20089) HasUrl() bool`
+`func (o *InlineResponse20089) HasAverageKbps() bool`
 
-HasUrl returns a boolean if a field has been set.
+HasAverageKbps returns a boolean if a field has been set.
 
-### GetApi
+### GetDownloadKbps
 
-`func (o *InlineResponse20089) GetApi() OrganizationsApi`
+`func (o *InlineResponse20089) GetDownloadKbps() int32`
 
-GetApi returns the Api field if non-nil, zero value otherwise.
+GetDownloadKbps returns the DownloadKbps field if non-nil, zero value otherwise.
 
-### GetApiOk
+### GetDownloadKbpsOk
 
-`func (o *InlineResponse20089) GetApiOk() (*OrganizationsApi, bool)`
+`func (o *InlineResponse20089) GetDownloadKbpsOk() (*int32, bool)`
 
-GetApiOk returns a tuple with the Api field if it's non-nil, zero value otherwise
+GetDownloadKbpsOk returns a tuple with the DownloadKbps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetApi
+### SetDownloadKbps
 
-`func (o *InlineResponse20089) SetApi(v OrganizationsApi)`
+`func (o *InlineResponse20089) SetDownloadKbps(v int32)`
 
-SetApi sets Api field to given value.
+SetDownloadKbps sets DownloadKbps field to given value.
 
-### HasApi
+### HasDownloadKbps
 
-`func (o *InlineResponse20089) HasApi() bool`
+`func (o *InlineResponse20089) HasDownloadKbps() bool`
 
-HasApi returns a boolean if a field has been set.
+HasDownloadKbps returns a boolean if a field has been set.
 
-### GetLicensing
+### GetUploadKbps
 
-`func (o *InlineResponse20089) GetLicensing() OrganizationsLicensing`
+`func (o *InlineResponse20089) GetUploadKbps() int32`
 
-GetLicensing returns the Licensing field if non-nil, zero value otherwise.
+GetUploadKbps returns the UploadKbps field if non-nil, zero value otherwise.
 
-### GetLicensingOk
+### GetUploadKbpsOk
 
-`func (o *InlineResponse20089) GetLicensingOk() (*OrganizationsLicensing, bool)`
+`func (o *InlineResponse20089) GetUploadKbpsOk() (*int32, bool)`
 
-GetLicensingOk returns a tuple with the Licensing field if it's non-nil, zero value otherwise
+GetUploadKbpsOk returns a tuple with the UploadKbps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLicensing
+### SetUploadKbps
 
-`func (o *InlineResponse20089) SetLicensing(v OrganizationsLicensing)`
+`func (o *InlineResponse20089) SetUploadKbps(v int32)`
 
-SetLicensing sets Licensing field to given value.
+SetUploadKbps sets UploadKbps field to given value.
 
-### HasLicensing
+### HasUploadKbps
 
-`func (o *InlineResponse20089) HasLicensing() bool`
+`func (o *InlineResponse20089) HasUploadKbps() bool`
 
-HasLicensing returns a boolean if a field has been set.
-
-### GetCloud
-
-`func (o *InlineResponse20089) GetCloud() OrganizationsCloud`
-
-GetCloud returns the Cloud field if non-nil, zero value otherwise.
-
-### GetCloudOk
-
-`func (o *InlineResponse20089) GetCloudOk() (*OrganizationsCloud, bool)`
-
-GetCloudOk returns a tuple with the Cloud field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCloud
-
-`func (o *InlineResponse20089) SetCloud(v OrganizationsCloud)`
-
-SetCloud sets Cloud field to given value.
-
-### HasCloud
-
-`func (o *InlineResponse20089) HasCloud() bool`
-
-HasCloud returns a boolean if a field has been set.
-
-### GetManagement
-
-`func (o *InlineResponse20089) GetManagement() OrganizationsManagement`
-
-GetManagement returns the Management field if non-nil, zero value otherwise.
-
-### GetManagementOk
-
-`func (o *InlineResponse20089) GetManagementOk() (*OrganizationsManagement, bool)`
-
-GetManagementOk returns a tuple with the Management field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetManagement
-
-`func (o *InlineResponse20089) SetManagement(v OrganizationsManagement)`
-
-SetManagement sets Management field to given value.
-
-### HasManagement
-
-`func (o *InlineResponse20089) HasManagement() bool`
-
-HasManagement returns a boolean if a field has been set.
+HasUploadKbps returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

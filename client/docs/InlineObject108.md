@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Access** | Pointer to **string** | The type of SNMP access. Can be one of &#39;none&#39; (disabled), &#39;community&#39; (V1/V2c), or &#39;users&#39; (V3). | [optional] 
-**CommunityString** | Pointer to **string** | The SNMP community string. Only relevant if &#39;access&#39; is set to &#39;community&#39;. | [optional] 
-**Users** | Pointer to [**[]NetworksNetworkIdSnmpUsers**](NetworksNetworkIdSnmpUsers.md) | The list of SNMP users. Only relevant if &#39;access&#39; is set to &#39;users&#39;. | [optional] 
+**WifiMac** | Pointer to **string** | The wifiMac of the device to be wiped. | [optional] 
+**Id** | Pointer to **string** | The id of the device to be wiped. | [optional] 
+**Serial** | Pointer to **string** | The serial of the device to be wiped. | [optional] 
+**Pin** | Pointer to **int32** | The pin number (a six digit value) for wiping a macOS device. Required only for macOS devices. | [optional] 
 
 ## Methods
 
@@ -27,80 +28,105 @@ NewInlineObject108WithDefaults instantiates a new InlineObject108 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAccess
+### GetWifiMac
 
-`func (o *InlineObject108) GetAccess() string`
+`func (o *InlineObject108) GetWifiMac() string`
 
-GetAccess returns the Access field if non-nil, zero value otherwise.
+GetWifiMac returns the WifiMac field if non-nil, zero value otherwise.
 
-### GetAccessOk
+### GetWifiMacOk
 
-`func (o *InlineObject108) GetAccessOk() (*string, bool)`
+`func (o *InlineObject108) GetWifiMacOk() (*string, bool)`
 
-GetAccessOk returns a tuple with the Access field if it's non-nil, zero value otherwise
+GetWifiMacOk returns a tuple with the WifiMac field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccess
+### SetWifiMac
 
-`func (o *InlineObject108) SetAccess(v string)`
+`func (o *InlineObject108) SetWifiMac(v string)`
 
-SetAccess sets Access field to given value.
+SetWifiMac sets WifiMac field to given value.
 
-### HasAccess
+### HasWifiMac
 
-`func (o *InlineObject108) HasAccess() bool`
+`func (o *InlineObject108) HasWifiMac() bool`
 
-HasAccess returns a boolean if a field has been set.
+HasWifiMac returns a boolean if a field has been set.
 
-### GetCommunityString
+### GetId
 
-`func (o *InlineObject108) GetCommunityString() string`
+`func (o *InlineObject108) GetId() string`
 
-GetCommunityString returns the CommunityString field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetCommunityStringOk
+### GetIdOk
 
-`func (o *InlineObject108) GetCommunityStringOk() (*string, bool)`
+`func (o *InlineObject108) GetIdOk() (*string, bool)`
 
-GetCommunityStringOk returns a tuple with the CommunityString field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCommunityString
+### SetId
 
-`func (o *InlineObject108) SetCommunityString(v string)`
+`func (o *InlineObject108) SetId(v string)`
 
-SetCommunityString sets CommunityString field to given value.
+SetId sets Id field to given value.
 
-### HasCommunityString
+### HasId
 
-`func (o *InlineObject108) HasCommunityString() bool`
+`func (o *InlineObject108) HasId() bool`
 
-HasCommunityString returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### GetUsers
+### GetSerial
 
-`func (o *InlineObject108) GetUsers() []NetworksNetworkIdSnmpUsers`
+`func (o *InlineObject108) GetSerial() string`
 
-GetUsers returns the Users field if non-nil, zero value otherwise.
+GetSerial returns the Serial field if non-nil, zero value otherwise.
 
-### GetUsersOk
+### GetSerialOk
 
-`func (o *InlineObject108) GetUsersOk() (*[]NetworksNetworkIdSnmpUsers, bool)`
+`func (o *InlineObject108) GetSerialOk() (*string, bool)`
 
-GetUsersOk returns a tuple with the Users field if it's non-nil, zero value otherwise
+GetSerialOk returns a tuple with the Serial field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUsers
+### SetSerial
 
-`func (o *InlineObject108) SetUsers(v []NetworksNetworkIdSnmpUsers)`
+`func (o *InlineObject108) SetSerial(v string)`
 
-SetUsers sets Users field to given value.
+SetSerial sets Serial field to given value.
 
-### HasUsers
+### HasSerial
 
-`func (o *InlineObject108) HasUsers() bool`
+`func (o *InlineObject108) HasSerial() bool`
 
-HasUsers returns a boolean if a field has been set.
+HasSerial returns a boolean if a field has been set.
+
+### GetPin
+
+`func (o *InlineObject108) GetPin() int32`
+
+GetPin returns the Pin field if non-nil, zero value otherwise.
+
+### GetPinOk
+
+`func (o *InlineObject108) GetPinOk() (*int32, bool)`
+
+GetPinOk returns a tuple with the Pin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPin
+
+`func (o *InlineObject108) SetPin(v int32)`
+
+SetPin sets Pin field to given value.
+
+### HasPin
+
+`func (o *InlineObject108) HasPin() bool`
+
+HasPin returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

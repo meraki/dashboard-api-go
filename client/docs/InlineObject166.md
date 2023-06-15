@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Concentrator** | Pointer to [**NetworksNetworkIdWirelessSsidsNumberVpnConcentrator**](NetworksNetworkIdWirelessSsidsNumberVpnConcentrator.md) |  | [optional] 
-**SplitTunnel** | Pointer to [**NetworksNetworkIdWirelessSsidsNumberVpnSplitTunnel**](NetworksNetworkIdWirelessSsidsNumberVpnSplitTunnel.md) |  | [optional] 
-**Failover** | Pointer to [**NetworksNetworkIdWirelessSsidsNumberVpnFailover**](NetworksNetworkIdWirelessSsidsNumberVpnFailover.md) |  | [optional] 
+**Enabled** | Pointer to **bool** | If true, the SSID outage schedule is enabled. | [optional] 
+**Ranges** | Pointer to [**[]NetworksNetworkIdWirelessSsidsNumberSchedulesRanges**](NetworksNetworkIdWirelessSsidsNumberSchedulesRanges.md) | List of outage ranges. Has a start date and time, and end date and time. If this parameter is passed in along with rangesInSeconds parameter, this will take precedence. | [optional] 
+**RangesInSeconds** | Pointer to [**[]NetworksNetworkIdWirelessSsidsNumberSchedulesRangesInSeconds**](NetworksNetworkIdWirelessSsidsNumberSchedulesRangesInSeconds.md) | List of outage ranges in seconds since Sunday at Midnight. Has a start and end. If this parameter is passed in along with the ranges parameter, ranges will take precedence. | [optional] 
 
 ## Methods
 
@@ -27,80 +27,80 @@ NewInlineObject166WithDefaults instantiates a new InlineObject166 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetConcentrator
+### GetEnabled
 
-`func (o *InlineObject166) GetConcentrator() NetworksNetworkIdWirelessSsidsNumberVpnConcentrator`
+`func (o *InlineObject166) GetEnabled() bool`
 
-GetConcentrator returns the Concentrator field if non-nil, zero value otherwise.
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
 
-### GetConcentratorOk
+### GetEnabledOk
 
-`func (o *InlineObject166) GetConcentratorOk() (*NetworksNetworkIdWirelessSsidsNumberVpnConcentrator, bool)`
+`func (o *InlineObject166) GetEnabledOk() (*bool, bool)`
 
-GetConcentratorOk returns a tuple with the Concentrator field if it's non-nil, zero value otherwise
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetConcentrator
+### SetEnabled
 
-`func (o *InlineObject166) SetConcentrator(v NetworksNetworkIdWirelessSsidsNumberVpnConcentrator)`
+`func (o *InlineObject166) SetEnabled(v bool)`
 
-SetConcentrator sets Concentrator field to given value.
+SetEnabled sets Enabled field to given value.
 
-### HasConcentrator
+### HasEnabled
 
-`func (o *InlineObject166) HasConcentrator() bool`
+`func (o *InlineObject166) HasEnabled() bool`
 
-HasConcentrator returns a boolean if a field has been set.
+HasEnabled returns a boolean if a field has been set.
 
-### GetSplitTunnel
+### GetRanges
 
-`func (o *InlineObject166) GetSplitTunnel() NetworksNetworkIdWirelessSsidsNumberVpnSplitTunnel`
+`func (o *InlineObject166) GetRanges() []NetworksNetworkIdWirelessSsidsNumberSchedulesRanges`
 
-GetSplitTunnel returns the SplitTunnel field if non-nil, zero value otherwise.
+GetRanges returns the Ranges field if non-nil, zero value otherwise.
 
-### GetSplitTunnelOk
+### GetRangesOk
 
-`func (o *InlineObject166) GetSplitTunnelOk() (*NetworksNetworkIdWirelessSsidsNumberVpnSplitTunnel, bool)`
+`func (o *InlineObject166) GetRangesOk() (*[]NetworksNetworkIdWirelessSsidsNumberSchedulesRanges, bool)`
 
-GetSplitTunnelOk returns a tuple with the SplitTunnel field if it's non-nil, zero value otherwise
+GetRangesOk returns a tuple with the Ranges field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSplitTunnel
+### SetRanges
 
-`func (o *InlineObject166) SetSplitTunnel(v NetworksNetworkIdWirelessSsidsNumberVpnSplitTunnel)`
+`func (o *InlineObject166) SetRanges(v []NetworksNetworkIdWirelessSsidsNumberSchedulesRanges)`
 
-SetSplitTunnel sets SplitTunnel field to given value.
+SetRanges sets Ranges field to given value.
 
-### HasSplitTunnel
+### HasRanges
 
-`func (o *InlineObject166) HasSplitTunnel() bool`
+`func (o *InlineObject166) HasRanges() bool`
 
-HasSplitTunnel returns a boolean if a field has been set.
+HasRanges returns a boolean if a field has been set.
 
-### GetFailover
+### GetRangesInSeconds
 
-`func (o *InlineObject166) GetFailover() NetworksNetworkIdWirelessSsidsNumberVpnFailover`
+`func (o *InlineObject166) GetRangesInSeconds() []NetworksNetworkIdWirelessSsidsNumberSchedulesRangesInSeconds`
 
-GetFailover returns the Failover field if non-nil, zero value otherwise.
+GetRangesInSeconds returns the RangesInSeconds field if non-nil, zero value otherwise.
 
-### GetFailoverOk
+### GetRangesInSecondsOk
 
-`func (o *InlineObject166) GetFailoverOk() (*NetworksNetworkIdWirelessSsidsNumberVpnFailover, bool)`
+`func (o *InlineObject166) GetRangesInSecondsOk() (*[]NetworksNetworkIdWirelessSsidsNumberSchedulesRangesInSeconds, bool)`
 
-GetFailoverOk returns a tuple with the Failover field if it's non-nil, zero value otherwise
+GetRangesInSecondsOk returns a tuple with the RangesInSeconds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFailover
+### SetRangesInSeconds
 
-`func (o *InlineObject166) SetFailover(v NetworksNetworkIdWirelessSsidsNumberVpnFailover)`
+`func (o *InlineObject166) SetRangesInSeconds(v []NetworksNetworkIdWirelessSsidsNumberSchedulesRangesInSeconds)`
 
-SetFailover sets Failover field to given value.
+SetRangesInSeconds sets RangesInSeconds field to given value.
 
-### HasFailover
+### HasRangesInSeconds
 
-`func (o *InlineObject166) HasFailover() bool`
+`func (o *InlineObject166) HasRangesInSeconds() bool`
 
-HasFailover returns a boolean if a field has been set.
+HasRangesInSeconds returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

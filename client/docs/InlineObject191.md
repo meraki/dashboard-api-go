@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | The name of the new organization | 
+**Name** | Pointer to **string** | Unique name of the artifact | [optional] 
 
 ## Methods
 
 ### NewInlineObject191
 
-`func NewInlineObject191(name string, ) *InlineObject191`
+`func NewInlineObject191() *InlineObject191`
 
 NewInlineObject191 instantiates a new InlineObject191 object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *InlineObject191) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

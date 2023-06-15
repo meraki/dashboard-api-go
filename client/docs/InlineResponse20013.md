@@ -4,13 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Number** | Pointer to **int32** | Number of the port | [optional] 
-**Enabled** | Pointer to **bool** | The status of the port | [optional] 
-**Type** | Pointer to **string** | The type of the port: &#39;access&#39; or &#39;trunk&#39;. | [optional] 
-**DropUntaggedTraffic** | Pointer to **bool** | Whether the trunk port can drop all untagged traffic. | [optional] 
-**Vlan** | Pointer to **int32** | Native VLAN when the port is in Trunk mode. Access VLAN when the port is in Access mode. | [optional] 
-**AllowedVlans** | Pointer to **string** | Comma-delimited list of the VLAN ID&#39;s allowed on the port, or &#39;all&#39; to permit all VLAN&#39;s on the port. | [optional] 
-**AccessPolicy** | Pointer to **string** | The name of the policy. Only applicable to Access ports. | [optional] 
+**OccurredAt** | Pointer to **string** | time when the event occurred | [optional] 
+**AlertTypeId** | Pointer to **string** | type of alert | [optional] 
+**AlertType** | Pointer to **string** | user friendly alert type | [optional] 
+**Device** | Pointer to [**NetworksNetworkIdAlertsHistoryDevice**](NetworksNetworkIdAlertsHistoryDevice.md) |  | [optional] 
+**Destinations** | Pointer to [**NetworksNetworkIdAlertsHistoryDestinations**](NetworksNetworkIdAlertsHistoryDestinations.md) |  | [optional] 
+**AlertData** | Pointer to **map[string]interface{}** | relevant data about the event that caused the alert | [optional] 
 
 ## Methods
 
@@ -31,180 +30,155 @@ NewInlineResponse20013WithDefaults instantiates a new InlineResponse20013 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetNumber
+### GetOccurredAt
 
-`func (o *InlineResponse20013) GetNumber() int32`
+`func (o *InlineResponse20013) GetOccurredAt() string`
 
-GetNumber returns the Number field if non-nil, zero value otherwise.
+GetOccurredAt returns the OccurredAt field if non-nil, zero value otherwise.
 
-### GetNumberOk
+### GetOccurredAtOk
 
-`func (o *InlineResponse20013) GetNumberOk() (*int32, bool)`
+`func (o *InlineResponse20013) GetOccurredAtOk() (*string, bool)`
 
-GetNumberOk returns a tuple with the Number field if it's non-nil, zero value otherwise
+GetOccurredAtOk returns a tuple with the OccurredAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNumber
+### SetOccurredAt
 
-`func (o *InlineResponse20013) SetNumber(v int32)`
+`func (o *InlineResponse20013) SetOccurredAt(v string)`
 
-SetNumber sets Number field to given value.
+SetOccurredAt sets OccurredAt field to given value.
 
-### HasNumber
+### HasOccurredAt
 
-`func (o *InlineResponse20013) HasNumber() bool`
+`func (o *InlineResponse20013) HasOccurredAt() bool`
 
-HasNumber returns a boolean if a field has been set.
+HasOccurredAt returns a boolean if a field has been set.
 
-### GetEnabled
+### GetAlertTypeId
 
-`func (o *InlineResponse20013) GetEnabled() bool`
+`func (o *InlineResponse20013) GetAlertTypeId() string`
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+GetAlertTypeId returns the AlertTypeId field if non-nil, zero value otherwise.
 
-### GetEnabledOk
+### GetAlertTypeIdOk
 
-`func (o *InlineResponse20013) GetEnabledOk() (*bool, bool)`
+`func (o *InlineResponse20013) GetAlertTypeIdOk() (*string, bool)`
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+GetAlertTypeIdOk returns a tuple with the AlertTypeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnabled
+### SetAlertTypeId
 
-`func (o *InlineResponse20013) SetEnabled(v bool)`
+`func (o *InlineResponse20013) SetAlertTypeId(v string)`
 
-SetEnabled sets Enabled field to given value.
+SetAlertTypeId sets AlertTypeId field to given value.
 
-### HasEnabled
+### HasAlertTypeId
 
-`func (o *InlineResponse20013) HasEnabled() bool`
+`func (o *InlineResponse20013) HasAlertTypeId() bool`
 
-HasEnabled returns a boolean if a field has been set.
+HasAlertTypeId returns a boolean if a field has been set.
 
-### GetType
+### GetAlertType
 
-`func (o *InlineResponse20013) GetType() string`
+`func (o *InlineResponse20013) GetAlertType() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetAlertType returns the AlertType field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetAlertTypeOk
 
-`func (o *InlineResponse20013) GetTypeOk() (*string, bool)`
+`func (o *InlineResponse20013) GetAlertTypeOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetAlertTypeOk returns a tuple with the AlertType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetAlertType
 
-`func (o *InlineResponse20013) SetType(v string)`
+`func (o *InlineResponse20013) SetAlertType(v string)`
 
-SetType sets Type field to given value.
+SetAlertType sets AlertType field to given value.
 
-### HasType
+### HasAlertType
 
-`func (o *InlineResponse20013) HasType() bool`
+`func (o *InlineResponse20013) HasAlertType() bool`
 
-HasType returns a boolean if a field has been set.
+HasAlertType returns a boolean if a field has been set.
 
-### GetDropUntaggedTraffic
+### GetDevice
 
-`func (o *InlineResponse20013) GetDropUntaggedTraffic() bool`
+`func (o *InlineResponse20013) GetDevice() NetworksNetworkIdAlertsHistoryDevice`
 
-GetDropUntaggedTraffic returns the DropUntaggedTraffic field if non-nil, zero value otherwise.
+GetDevice returns the Device field if non-nil, zero value otherwise.
 
-### GetDropUntaggedTrafficOk
+### GetDeviceOk
 
-`func (o *InlineResponse20013) GetDropUntaggedTrafficOk() (*bool, bool)`
+`func (o *InlineResponse20013) GetDeviceOk() (*NetworksNetworkIdAlertsHistoryDevice, bool)`
 
-GetDropUntaggedTrafficOk returns a tuple with the DropUntaggedTraffic field if it's non-nil, zero value otherwise
+GetDeviceOk returns a tuple with the Device field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDropUntaggedTraffic
+### SetDevice
 
-`func (o *InlineResponse20013) SetDropUntaggedTraffic(v bool)`
+`func (o *InlineResponse20013) SetDevice(v NetworksNetworkIdAlertsHistoryDevice)`
 
-SetDropUntaggedTraffic sets DropUntaggedTraffic field to given value.
+SetDevice sets Device field to given value.
 
-### HasDropUntaggedTraffic
+### HasDevice
 
-`func (o *InlineResponse20013) HasDropUntaggedTraffic() bool`
+`func (o *InlineResponse20013) HasDevice() bool`
 
-HasDropUntaggedTraffic returns a boolean if a field has been set.
+HasDevice returns a boolean if a field has been set.
 
-### GetVlan
+### GetDestinations
 
-`func (o *InlineResponse20013) GetVlan() int32`
+`func (o *InlineResponse20013) GetDestinations() NetworksNetworkIdAlertsHistoryDestinations`
 
-GetVlan returns the Vlan field if non-nil, zero value otherwise.
+GetDestinations returns the Destinations field if non-nil, zero value otherwise.
 
-### GetVlanOk
+### GetDestinationsOk
 
-`func (o *InlineResponse20013) GetVlanOk() (*int32, bool)`
+`func (o *InlineResponse20013) GetDestinationsOk() (*NetworksNetworkIdAlertsHistoryDestinations, bool)`
 
-GetVlanOk returns a tuple with the Vlan field if it's non-nil, zero value otherwise
+GetDestinationsOk returns a tuple with the Destinations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVlan
+### SetDestinations
 
-`func (o *InlineResponse20013) SetVlan(v int32)`
+`func (o *InlineResponse20013) SetDestinations(v NetworksNetworkIdAlertsHistoryDestinations)`
 
-SetVlan sets Vlan field to given value.
+SetDestinations sets Destinations field to given value.
 
-### HasVlan
+### HasDestinations
 
-`func (o *InlineResponse20013) HasVlan() bool`
+`func (o *InlineResponse20013) HasDestinations() bool`
 
-HasVlan returns a boolean if a field has been set.
+HasDestinations returns a boolean if a field has been set.
 
-### GetAllowedVlans
+### GetAlertData
 
-`func (o *InlineResponse20013) GetAllowedVlans() string`
+`func (o *InlineResponse20013) GetAlertData() map[string]interface{}`
 
-GetAllowedVlans returns the AllowedVlans field if non-nil, zero value otherwise.
+GetAlertData returns the AlertData field if non-nil, zero value otherwise.
 
-### GetAllowedVlansOk
+### GetAlertDataOk
 
-`func (o *InlineResponse20013) GetAllowedVlansOk() (*string, bool)`
+`func (o *InlineResponse20013) GetAlertDataOk() (*map[string]interface{}, bool)`
 
-GetAllowedVlansOk returns a tuple with the AllowedVlans field if it's non-nil, zero value otherwise
+GetAlertDataOk returns a tuple with the AlertData field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAllowedVlans
+### SetAlertData
 
-`func (o *InlineResponse20013) SetAllowedVlans(v string)`
+`func (o *InlineResponse20013) SetAlertData(v map[string]interface{})`
 
-SetAllowedVlans sets AllowedVlans field to given value.
+SetAlertData sets AlertData field to given value.
 
-### HasAllowedVlans
+### HasAlertData
 
-`func (o *InlineResponse20013) HasAllowedVlans() bool`
+`func (o *InlineResponse20013) HasAlertData() bool`
 
-HasAllowedVlans returns a boolean if a field has been set.
-
-### GetAccessPolicy
-
-`func (o *InlineResponse20013) GetAccessPolicy() string`
-
-GetAccessPolicy returns the AccessPolicy field if non-nil, zero value otherwise.
-
-### GetAccessPolicyOk
-
-`func (o *InlineResponse20013) GetAccessPolicyOk() (*string, bool)`
-
-GetAccessPolicyOk returns a tuple with the AccessPolicy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAccessPolicy
-
-`func (o *InlineResponse20013) SetAccessPolicy(v string)`
-
-SetAccessPolicy sets AccessPolicy field to given value.
-
-### HasAccessPolicy
-
-`func (o *InlineResponse20013) HasAccessPolicy() bool`
-
-HasAccessPolicy returns a boolean if a field has been set.
+HasAlertData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

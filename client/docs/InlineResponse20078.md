@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StartTs** | Pointer to **time.Time** | The start time of the query range | [optional] 
-**EndTs** | Pointer to **time.Time** | The end time of the query range | [optional] 
-**ClientCount** | Pointer to **int32** | Number of connected clients | [optional] 
+**Vlan** | Pointer to **int32** | Management VLAN | [optional] 
+**UseCombinedPower** | Pointer to **bool** | The use Combined Power as the default behavior of secondary power supplies on supported devices. | [optional] 
+**PowerExceptions** | Pointer to [**[]InlineResponse20078PowerExceptions**](InlineResponse20078PowerExceptions.md) | Exceptions on a per switch basis to \&quot;useCombinedPower\&quot; | [optional] 
+**UplinkClientSampling** | Pointer to [**InlineResponse20078UplinkClientSampling**](InlineResponse20078UplinkClientSampling.md) |  | [optional] 
 
 ## Methods
 
@@ -27,80 +28,105 @@ NewInlineResponse20078WithDefaults instantiates a new InlineResponse20078 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetStartTs
+### GetVlan
 
-`func (o *InlineResponse20078) GetStartTs() time.Time`
+`func (o *InlineResponse20078) GetVlan() int32`
 
-GetStartTs returns the StartTs field if non-nil, zero value otherwise.
+GetVlan returns the Vlan field if non-nil, zero value otherwise.
 
-### GetStartTsOk
+### GetVlanOk
 
-`func (o *InlineResponse20078) GetStartTsOk() (*time.Time, bool)`
+`func (o *InlineResponse20078) GetVlanOk() (*int32, bool)`
 
-GetStartTsOk returns a tuple with the StartTs field if it's non-nil, zero value otherwise
+GetVlanOk returns a tuple with the Vlan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStartTs
+### SetVlan
 
-`func (o *InlineResponse20078) SetStartTs(v time.Time)`
+`func (o *InlineResponse20078) SetVlan(v int32)`
 
-SetStartTs sets StartTs field to given value.
+SetVlan sets Vlan field to given value.
 
-### HasStartTs
+### HasVlan
 
-`func (o *InlineResponse20078) HasStartTs() bool`
+`func (o *InlineResponse20078) HasVlan() bool`
 
-HasStartTs returns a boolean if a field has been set.
+HasVlan returns a boolean if a field has been set.
 
-### GetEndTs
+### GetUseCombinedPower
 
-`func (o *InlineResponse20078) GetEndTs() time.Time`
+`func (o *InlineResponse20078) GetUseCombinedPower() bool`
 
-GetEndTs returns the EndTs field if non-nil, zero value otherwise.
+GetUseCombinedPower returns the UseCombinedPower field if non-nil, zero value otherwise.
 
-### GetEndTsOk
+### GetUseCombinedPowerOk
 
-`func (o *InlineResponse20078) GetEndTsOk() (*time.Time, bool)`
+`func (o *InlineResponse20078) GetUseCombinedPowerOk() (*bool, bool)`
 
-GetEndTsOk returns a tuple with the EndTs field if it's non-nil, zero value otherwise
+GetUseCombinedPowerOk returns a tuple with the UseCombinedPower field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEndTs
+### SetUseCombinedPower
 
-`func (o *InlineResponse20078) SetEndTs(v time.Time)`
+`func (o *InlineResponse20078) SetUseCombinedPower(v bool)`
 
-SetEndTs sets EndTs field to given value.
+SetUseCombinedPower sets UseCombinedPower field to given value.
 
-### HasEndTs
+### HasUseCombinedPower
 
-`func (o *InlineResponse20078) HasEndTs() bool`
+`func (o *InlineResponse20078) HasUseCombinedPower() bool`
 
-HasEndTs returns a boolean if a field has been set.
+HasUseCombinedPower returns a boolean if a field has been set.
 
-### GetClientCount
+### GetPowerExceptions
 
-`func (o *InlineResponse20078) GetClientCount() int32`
+`func (o *InlineResponse20078) GetPowerExceptions() []InlineResponse20078PowerExceptions`
 
-GetClientCount returns the ClientCount field if non-nil, zero value otherwise.
+GetPowerExceptions returns the PowerExceptions field if non-nil, zero value otherwise.
 
-### GetClientCountOk
+### GetPowerExceptionsOk
 
-`func (o *InlineResponse20078) GetClientCountOk() (*int32, bool)`
+`func (o *InlineResponse20078) GetPowerExceptionsOk() (*[]InlineResponse20078PowerExceptions, bool)`
 
-GetClientCountOk returns a tuple with the ClientCount field if it's non-nil, zero value otherwise
+GetPowerExceptionsOk returns a tuple with the PowerExceptions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetClientCount
+### SetPowerExceptions
 
-`func (o *InlineResponse20078) SetClientCount(v int32)`
+`func (o *InlineResponse20078) SetPowerExceptions(v []InlineResponse20078PowerExceptions)`
 
-SetClientCount sets ClientCount field to given value.
+SetPowerExceptions sets PowerExceptions field to given value.
 
-### HasClientCount
+### HasPowerExceptions
 
-`func (o *InlineResponse20078) HasClientCount() bool`
+`func (o *InlineResponse20078) HasPowerExceptions() bool`
 
-HasClientCount returns a boolean if a field has been set.
+HasPowerExceptions returns a boolean if a field has been set.
+
+### GetUplinkClientSampling
+
+`func (o *InlineResponse20078) GetUplinkClientSampling() InlineResponse20078UplinkClientSampling`
+
+GetUplinkClientSampling returns the UplinkClientSampling field if non-nil, zero value otherwise.
+
+### GetUplinkClientSamplingOk
+
+`func (o *InlineResponse20078) GetUplinkClientSamplingOk() (*InlineResponse20078UplinkClientSampling, bool)`
+
+GetUplinkClientSamplingOk returns a tuple with the UplinkClientSampling field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUplinkClientSampling
+
+`func (o *InlineResponse20078) SetUplinkClientSampling(v InlineResponse20078UplinkClientSampling)`
+
+SetUplinkClientSampling sets UplinkClientSampling field to given value.
+
+### HasUplinkClientSampling
+
+`func (o *InlineResponse20078) HasUplinkClientSampling() bool`
+
+HasUplinkClientSampling returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

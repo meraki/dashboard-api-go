@@ -4,7 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Counts** | Pointer to [**InlineResponse200108Counts**](InlineResponse200108Counts.md) |  | [optional] 
+**Name** | Pointer to **string** | Name of the Dashboard branding policy. | [optional] 
+**Enabled** | Pointer to **bool** | Boolean indicating whether this policy is enabled. | [optional] 
+**AdminSettings** | Pointer to [**OrganizationsOrganizationIdBrandingPoliciesAdminSettings**](OrganizationsOrganizationIdBrandingPoliciesAdminSettings.md) |  | [optional] 
+**HelpSettings** | Pointer to [**OrganizationsOrganizationIdBrandingPoliciesHelpSettings**](OrganizationsOrganizationIdBrandingPoliciesHelpSettings.md) |  | [optional] 
+**CustomLogo** | Pointer to [**OrganizationsOrganizationIdBrandingPoliciesCustomLogo**](OrganizationsOrganizationIdBrandingPoliciesCustomLogo.md) |  | [optional] 
 
 ## Methods
 
@@ -25,30 +29,130 @@ NewInlineResponse200108WithDefaults instantiates a new InlineResponse200108 obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCounts
+### GetName
 
-`func (o *InlineResponse200108) GetCounts() InlineResponse200108Counts`
+`func (o *InlineResponse200108) GetName() string`
 
-GetCounts returns the Counts field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetCountsOk
+### GetNameOk
 
-`func (o *InlineResponse200108) GetCountsOk() (*InlineResponse200108Counts, bool)`
+`func (o *InlineResponse200108) GetNameOk() (*string, bool)`
 
-GetCountsOk returns a tuple with the Counts field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCounts
+### SetName
 
-`func (o *InlineResponse200108) SetCounts(v InlineResponse200108Counts)`
+`func (o *InlineResponse200108) SetName(v string)`
 
-SetCounts sets Counts field to given value.
+SetName sets Name field to given value.
 
-### HasCounts
+### HasName
 
-`func (o *InlineResponse200108) HasCounts() bool`
+`func (o *InlineResponse200108) HasName() bool`
 
-HasCounts returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
+
+### GetEnabled
+
+`func (o *InlineResponse200108) GetEnabled() bool`
+
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+
+### GetEnabledOk
+
+`func (o *InlineResponse200108) GetEnabledOk() (*bool, bool)`
+
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnabled
+
+`func (o *InlineResponse200108) SetEnabled(v bool)`
+
+SetEnabled sets Enabled field to given value.
+
+### HasEnabled
+
+`func (o *InlineResponse200108) HasEnabled() bool`
+
+HasEnabled returns a boolean if a field has been set.
+
+### GetAdminSettings
+
+`func (o *InlineResponse200108) GetAdminSettings() OrganizationsOrganizationIdBrandingPoliciesAdminSettings`
+
+GetAdminSettings returns the AdminSettings field if non-nil, zero value otherwise.
+
+### GetAdminSettingsOk
+
+`func (o *InlineResponse200108) GetAdminSettingsOk() (*OrganizationsOrganizationIdBrandingPoliciesAdminSettings, bool)`
+
+GetAdminSettingsOk returns a tuple with the AdminSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAdminSettings
+
+`func (o *InlineResponse200108) SetAdminSettings(v OrganizationsOrganizationIdBrandingPoliciesAdminSettings)`
+
+SetAdminSettings sets AdminSettings field to given value.
+
+### HasAdminSettings
+
+`func (o *InlineResponse200108) HasAdminSettings() bool`
+
+HasAdminSettings returns a boolean if a field has been set.
+
+### GetHelpSettings
+
+`func (o *InlineResponse200108) GetHelpSettings() OrganizationsOrganizationIdBrandingPoliciesHelpSettings`
+
+GetHelpSettings returns the HelpSettings field if non-nil, zero value otherwise.
+
+### GetHelpSettingsOk
+
+`func (o *InlineResponse200108) GetHelpSettingsOk() (*OrganizationsOrganizationIdBrandingPoliciesHelpSettings, bool)`
+
+GetHelpSettingsOk returns a tuple with the HelpSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHelpSettings
+
+`func (o *InlineResponse200108) SetHelpSettings(v OrganizationsOrganizationIdBrandingPoliciesHelpSettings)`
+
+SetHelpSettings sets HelpSettings field to given value.
+
+### HasHelpSettings
+
+`func (o *InlineResponse200108) HasHelpSettings() bool`
+
+HasHelpSettings returns a boolean if a field has been set.
+
+### GetCustomLogo
+
+`func (o *InlineResponse200108) GetCustomLogo() OrganizationsOrganizationIdBrandingPoliciesCustomLogo`
+
+GetCustomLogo returns the CustomLogo field if non-nil, zero value otherwise.
+
+### GetCustomLogoOk
+
+`func (o *InlineResponse200108) GetCustomLogoOk() (*OrganizationsOrganizationIdBrandingPoliciesCustomLogo, bool)`
+
+GetCustomLogoOk returns a tuple with the CustomLogo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomLogo
+
+`func (o *InlineResponse200108) SetCustomLogo(v OrganizationsOrganizationIdBrandingPoliciesCustomLogo)`
+
+SetCustomLogo sets CustomLogo field to given value.
+
+### HasCustomLogo
+
+`func (o *InlineResponse200108) HasCustomLogo() bool`
+
+HasCustomLogo returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

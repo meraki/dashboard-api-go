@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **PrivateSubnets** | **[]string** | The list of the private subnets of the VPN peer | 
 **LocalId** | Pointer to **string** | [optional] The local ID is used to identify the MX to the peer. This will apply to all MXs this peer applies to. | [optional] 
 **RemoteId** | Pointer to **string** | [optional] The remote ID is used to identify the connecting VPN peer. This can either be a valid IPv4 Address, FQDN or User FQDN. | [optional] 
-**IpsecPolicies** | Pointer to [**InlineResponse20094IpsecPolicies**](InlineResponse20094IpsecPolicies.md) |  | [optional] 
+**IpsecPolicies** | Pointer to [**InlineResponse200106IpsecPolicies**](InlineResponse200106IpsecPolicies.md) |  | [optional] 
 **IpsecPoliciesPreset** | Pointer to **string** | One of the following available presets: &#39;default&#39;, &#39;aws&#39;, &#39;azure&#39;. If this is provided, the &#39;ipsecPolicies&#39; parameter is ignored. | [optional] 
 **Secret** | **string** | The shared secret with the VPN peer | 
 **IkeVersion** | Pointer to **string** | [optional] The IKE version to be used for the IPsec VPN peer configuration. Defaults to &#39;1&#39; when omitted. | [optional] [default to "1"]
@@ -151,20 +151,20 @@ HasRemoteId returns a boolean if a field has been set.
 
 ### GetIpsecPolicies
 
-`func (o *OrganizationsOrganizationIdApplianceVpnThirdPartyVPNPeersPeers) GetIpsecPolicies() InlineResponse20094IpsecPolicies`
+`func (o *OrganizationsOrganizationIdApplianceVpnThirdPartyVPNPeersPeers) GetIpsecPolicies() InlineResponse200106IpsecPolicies`
 
 GetIpsecPolicies returns the IpsecPolicies field if non-nil, zero value otherwise.
 
 ### GetIpsecPoliciesOk
 
-`func (o *OrganizationsOrganizationIdApplianceVpnThirdPartyVPNPeersPeers) GetIpsecPoliciesOk() (*InlineResponse20094IpsecPolicies, bool)`
+`func (o *OrganizationsOrganizationIdApplianceVpnThirdPartyVPNPeersPeers) GetIpsecPoliciesOk() (*InlineResponse200106IpsecPolicies, bool)`
 
 GetIpsecPoliciesOk returns a tuple with the IpsecPolicies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpsecPolicies
 
-`func (o *OrganizationsOrganizationIdApplianceVpnThirdPartyVPNPeersPeers) SetIpsecPolicies(v InlineResponse20094IpsecPolicies)`
+`func (o *OrganizationsOrganizationIdApplianceVpnThirdPartyVPNPeersPeers) SetIpsecPolicies(v InlineResponse200106IpsecPolicies)`
 
 SetIpsecPolicies sets IpsecPolicies field to given value.
 

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | The network ID | 
-**Access** | **string** | The privilege of the dashboard administrator on the network. Can be one of &#39;full&#39;, &#39;read-only&#39;, &#39;guest-ambassador&#39; or &#39;monitor-only&#39; | 
+**Id** | Pointer to **string** | Network ID | [optional] 
+**Access** | Pointer to **string** | Admin&#39;s level of access to the network | [optional] 
 
 ## Methods
 
 ### NewOrganizationsOrganizationIdAdminsNetworks
 
-`func NewOrganizationsOrganizationIdAdminsNetworks(id string, access string, ) *OrganizationsOrganizationIdAdminsNetworks`
+`func NewOrganizationsOrganizationIdAdminsNetworks() *OrganizationsOrganizationIdAdminsNetworks`
 
 NewOrganizationsOrganizationIdAdminsNetworks instantiates a new OrganizationsOrganizationIdAdminsNetworks object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *OrganizationsOrganizationIdAdminsNetworks) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetAccess
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetAccess sets Access field to given value.
 
+### HasAccess
+
+`func (o *OrganizationsOrganizationIdAdminsNetworks) HasAccess() bool`
+
+HasAccess returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

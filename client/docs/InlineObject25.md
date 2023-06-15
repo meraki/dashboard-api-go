@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RfProfileId** | Pointer to **string** | The ID of an RF profile to assign to the device. If the value of this parameter is null, the appropriate basic RF profile (indoor or outdoor) will be assigned to the device. Assigning an RF profile will clear ALL manually configured overrides on the device (channel width, channel, power). | [optional] 
-**TwoFourGhzSettings** | Pointer to [**DevicesSerialWirelessRadioSettingsTwoFourGhzSettings**](DevicesSerialWirelessRadioSettingsTwoFourGhzSettings.md) |  | [optional] 
-**FiveGhzSettings** | Pointer to [**DevicesSerialWirelessRadioSettingsFiveGhzSettings**](DevicesSerialWirelessRadioSettingsFiveGhzSettings.md) |  | [optional] 
+**Uuid** | Pointer to **string** | Desired UUID of the beacon. If the value is set to null it will reset to Dashboard&#39;s automatically generated value. | [optional] 
+**Major** | Pointer to **int32** | Desired major value of the beacon. If the value is set to null it will reset to Dashboard&#39;s automatically generated value. | [optional] 
+**Minor** | Pointer to **int32** | Desired minor value of the beacon. If the value is set to null it will reset to Dashboard&#39;s automatically generated value. | [optional] 
 
 ## Methods
 
@@ -27,80 +27,80 @@ NewInlineObject25WithDefaults instantiates a new InlineObject25 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetRfProfileId
+### GetUuid
 
-`func (o *InlineObject25) GetRfProfileId() string`
+`func (o *InlineObject25) GetUuid() string`
 
-GetRfProfileId returns the RfProfileId field if non-nil, zero value otherwise.
+GetUuid returns the Uuid field if non-nil, zero value otherwise.
 
-### GetRfProfileIdOk
+### GetUuidOk
 
-`func (o *InlineObject25) GetRfProfileIdOk() (*string, bool)`
+`func (o *InlineObject25) GetUuidOk() (*string, bool)`
 
-GetRfProfileIdOk returns a tuple with the RfProfileId field if it's non-nil, zero value otherwise
+GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRfProfileId
+### SetUuid
 
-`func (o *InlineObject25) SetRfProfileId(v string)`
+`func (o *InlineObject25) SetUuid(v string)`
 
-SetRfProfileId sets RfProfileId field to given value.
+SetUuid sets Uuid field to given value.
 
-### HasRfProfileId
+### HasUuid
 
-`func (o *InlineObject25) HasRfProfileId() bool`
+`func (o *InlineObject25) HasUuid() bool`
 
-HasRfProfileId returns a boolean if a field has been set.
+HasUuid returns a boolean if a field has been set.
 
-### GetTwoFourGhzSettings
+### GetMajor
 
-`func (o *InlineObject25) GetTwoFourGhzSettings() DevicesSerialWirelessRadioSettingsTwoFourGhzSettings`
+`func (o *InlineObject25) GetMajor() int32`
 
-GetTwoFourGhzSettings returns the TwoFourGhzSettings field if non-nil, zero value otherwise.
+GetMajor returns the Major field if non-nil, zero value otherwise.
 
-### GetTwoFourGhzSettingsOk
+### GetMajorOk
 
-`func (o *InlineObject25) GetTwoFourGhzSettingsOk() (*DevicesSerialWirelessRadioSettingsTwoFourGhzSettings, bool)`
+`func (o *InlineObject25) GetMajorOk() (*int32, bool)`
 
-GetTwoFourGhzSettingsOk returns a tuple with the TwoFourGhzSettings field if it's non-nil, zero value otherwise
+GetMajorOk returns a tuple with the Major field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTwoFourGhzSettings
+### SetMajor
 
-`func (o *InlineObject25) SetTwoFourGhzSettings(v DevicesSerialWirelessRadioSettingsTwoFourGhzSettings)`
+`func (o *InlineObject25) SetMajor(v int32)`
 
-SetTwoFourGhzSettings sets TwoFourGhzSettings field to given value.
+SetMajor sets Major field to given value.
 
-### HasTwoFourGhzSettings
+### HasMajor
 
-`func (o *InlineObject25) HasTwoFourGhzSettings() bool`
+`func (o *InlineObject25) HasMajor() bool`
 
-HasTwoFourGhzSettings returns a boolean if a field has been set.
+HasMajor returns a boolean if a field has been set.
 
-### GetFiveGhzSettings
+### GetMinor
 
-`func (o *InlineObject25) GetFiveGhzSettings() DevicesSerialWirelessRadioSettingsFiveGhzSettings`
+`func (o *InlineObject25) GetMinor() int32`
 
-GetFiveGhzSettings returns the FiveGhzSettings field if non-nil, zero value otherwise.
+GetMinor returns the Minor field if non-nil, zero value otherwise.
 
-### GetFiveGhzSettingsOk
+### GetMinorOk
 
-`func (o *InlineObject25) GetFiveGhzSettingsOk() (*DevicesSerialWirelessRadioSettingsFiveGhzSettings, bool)`
+`func (o *InlineObject25) GetMinorOk() (*int32, bool)`
 
-GetFiveGhzSettingsOk returns a tuple with the FiveGhzSettings field if it's non-nil, zero value otherwise
+GetMinorOk returns a tuple with the Minor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFiveGhzSettings
+### SetMinor
 
-`func (o *InlineObject25) SetFiveGhzSettings(v DevicesSerialWirelessRadioSettingsFiveGhzSettings)`
+`func (o *InlineObject25) SetMinor(v int32)`
 
-SetFiveGhzSettings sets FiveGhzSettings field to given value.
+SetMinor sets Minor field to given value.
 
-### HasFiveGhzSettings
+### HasMinor
 
-`func (o *InlineObject25) HasFiveGhzSettings() bool`
+`func (o *InlineObject25) HasMinor() bool`
 
-HasFiveGhzSettings returns a boolean if a field has been set.
+HasMinor returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

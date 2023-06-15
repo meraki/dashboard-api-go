@@ -4,7 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Servers** | Pointer to [**[]InlineResponse20073Servers**](InlineResponse20073Servers.md) | List of the syslog servers for this network | [optional] 
+**Serial** | Pointer to **string** | Switch serial. | [optional] 
+**Name** | Pointer to **string** | Switch name. | [optional] 
+**Url** | Pointer to **string** | Url link to switch. | [optional] 
+**SupportsInspection** | Pointer to **bool** | Whether this switch supports Dynamic ARP Inspection. | [optional] 
+**HasTrustedPort** | Pointer to **bool** | Whether this switch has a trusted DAI port. Always false if supportsInspection is false. | [optional] 
 
 ## Methods
 
@@ -25,30 +29,130 @@ NewInlineResponse20073WithDefaults instantiates a new InlineResponse20073 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetServers
+### GetSerial
 
-`func (o *InlineResponse20073) GetServers() []InlineResponse20073Servers`
+`func (o *InlineResponse20073) GetSerial() string`
 
-GetServers returns the Servers field if non-nil, zero value otherwise.
+GetSerial returns the Serial field if non-nil, zero value otherwise.
 
-### GetServersOk
+### GetSerialOk
 
-`func (o *InlineResponse20073) GetServersOk() (*[]InlineResponse20073Servers, bool)`
+`func (o *InlineResponse20073) GetSerialOk() (*string, bool)`
 
-GetServersOk returns a tuple with the Servers field if it's non-nil, zero value otherwise
+GetSerialOk returns a tuple with the Serial field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServers
+### SetSerial
 
-`func (o *InlineResponse20073) SetServers(v []InlineResponse20073Servers)`
+`func (o *InlineResponse20073) SetSerial(v string)`
 
-SetServers sets Servers field to given value.
+SetSerial sets Serial field to given value.
 
-### HasServers
+### HasSerial
 
-`func (o *InlineResponse20073) HasServers() bool`
+`func (o *InlineResponse20073) HasSerial() bool`
 
-HasServers returns a boolean if a field has been set.
+HasSerial returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *InlineResponse20073) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *InlineResponse20073) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *InlineResponse20073) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *InlineResponse20073) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### GetUrl
+
+`func (o *InlineResponse20073) GetUrl() string`
+
+GetUrl returns the Url field if non-nil, zero value otherwise.
+
+### GetUrlOk
+
+`func (o *InlineResponse20073) GetUrlOk() (*string, bool)`
+
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUrl
+
+`func (o *InlineResponse20073) SetUrl(v string)`
+
+SetUrl sets Url field to given value.
+
+### HasUrl
+
+`func (o *InlineResponse20073) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
+
+### GetSupportsInspection
+
+`func (o *InlineResponse20073) GetSupportsInspection() bool`
+
+GetSupportsInspection returns the SupportsInspection field if non-nil, zero value otherwise.
+
+### GetSupportsInspectionOk
+
+`func (o *InlineResponse20073) GetSupportsInspectionOk() (*bool, bool)`
+
+GetSupportsInspectionOk returns a tuple with the SupportsInspection field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSupportsInspection
+
+`func (o *InlineResponse20073) SetSupportsInspection(v bool)`
+
+SetSupportsInspection sets SupportsInspection field to given value.
+
+### HasSupportsInspection
+
+`func (o *InlineResponse20073) HasSupportsInspection() bool`
+
+HasSupportsInspection returns a boolean if a field has been set.
+
+### GetHasTrustedPort
+
+`func (o *InlineResponse20073) GetHasTrustedPort() bool`
+
+GetHasTrustedPort returns the HasTrustedPort field if non-nil, zero value otherwise.
+
+### GetHasTrustedPortOk
+
+`func (o *InlineResponse20073) GetHasTrustedPortOk() (*bool, bool)`
+
+GetHasTrustedPortOk returns a tuple with the HasTrustedPort field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasTrustedPort
+
+`func (o *InlineResponse20073) SetHasTrustedPort(v bool)`
+
+SetHasTrustedPort sets HasTrustedPort field to given value.
+
+### HasHasTrustedPort
+
+`func (o *InlineResponse20073) HasHasTrustedPort() bool`
+
+HasHasTrustedPort returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

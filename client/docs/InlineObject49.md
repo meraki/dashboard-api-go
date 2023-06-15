@@ -4,13 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name of the static route | [optional] 
-**Subnet** | Pointer to **string** | The subnet of the static route | [optional] 
-**GatewayIp** | Pointer to **string** | The gateway IP (next hop) of the static route | [optional] 
-**GatewayVlanId** | Pointer to **string** | The gateway IP (next hop) VLAN ID of the static route | [optional] 
-**Enabled** | Pointer to **bool** | The enabled state of the static route | [optional] 
-**FixedIpAssignments** | Pointer to **map[string]interface{}** | The DHCP fixed IP assignments on the static route. This should be an object that contains mappings from MAC addresses to objects that themselves each contain \&quot;ip\&quot; and \&quot;name\&quot; string fields. See the sample request/response for more details. | [optional] 
-**ReservedIpRanges** | Pointer to [**[]NetworksNetworkIdApplianceStaticRoutesStaticRouteIdReservedIpRanges**](NetworksNetworkIdApplianceStaticRoutesStaticRouteIdReservedIpRanges.md) | The DHCP reserved IP ranges on the static route | [optional] 
+**Subnet** | Pointer to **string** | The subnet of the single LAN configuration | [optional] 
+**ApplianceIp** | Pointer to **string** | The appliance IP address of the single LAN | [optional] 
+**Ipv6** | Pointer to [**NetworksNetworkIdApplianceSingleLanIpv6**](NetworksNetworkIdApplianceSingleLanIpv6.md) |  | [optional] 
+**MandatoryDhcp** | Pointer to [**NetworksNetworkIdApplianceSingleLanMandatoryDhcp**](NetworksNetworkIdApplianceSingleLanMandatoryDhcp.md) |  | [optional] 
 
 ## Methods
 
@@ -30,31 +27,6 @@ will change when the set of required properties is changed
 NewInlineObject49WithDefaults instantiates a new InlineObject49 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetName
-
-`func (o *InlineObject49) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *InlineObject49) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *InlineObject49) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *InlineObject49) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetSubnet
 
@@ -81,130 +53,80 @@ SetSubnet sets Subnet field to given value.
 
 HasSubnet returns a boolean if a field has been set.
 
-### GetGatewayIp
+### GetApplianceIp
 
-`func (o *InlineObject49) GetGatewayIp() string`
+`func (o *InlineObject49) GetApplianceIp() string`
 
-GetGatewayIp returns the GatewayIp field if non-nil, zero value otherwise.
+GetApplianceIp returns the ApplianceIp field if non-nil, zero value otherwise.
 
-### GetGatewayIpOk
+### GetApplianceIpOk
 
-`func (o *InlineObject49) GetGatewayIpOk() (*string, bool)`
+`func (o *InlineObject49) GetApplianceIpOk() (*string, bool)`
 
-GetGatewayIpOk returns a tuple with the GatewayIp field if it's non-nil, zero value otherwise
+GetApplianceIpOk returns a tuple with the ApplianceIp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGatewayIp
+### SetApplianceIp
 
-`func (o *InlineObject49) SetGatewayIp(v string)`
+`func (o *InlineObject49) SetApplianceIp(v string)`
 
-SetGatewayIp sets GatewayIp field to given value.
+SetApplianceIp sets ApplianceIp field to given value.
 
-### HasGatewayIp
+### HasApplianceIp
 
-`func (o *InlineObject49) HasGatewayIp() bool`
+`func (o *InlineObject49) HasApplianceIp() bool`
 
-HasGatewayIp returns a boolean if a field has been set.
+HasApplianceIp returns a boolean if a field has been set.
 
-### GetGatewayVlanId
+### GetIpv6
 
-`func (o *InlineObject49) GetGatewayVlanId() string`
+`func (o *InlineObject49) GetIpv6() NetworksNetworkIdApplianceSingleLanIpv6`
 
-GetGatewayVlanId returns the GatewayVlanId field if non-nil, zero value otherwise.
+GetIpv6 returns the Ipv6 field if non-nil, zero value otherwise.
 
-### GetGatewayVlanIdOk
+### GetIpv6Ok
 
-`func (o *InlineObject49) GetGatewayVlanIdOk() (*string, bool)`
+`func (o *InlineObject49) GetIpv6Ok() (*NetworksNetworkIdApplianceSingleLanIpv6, bool)`
 
-GetGatewayVlanIdOk returns a tuple with the GatewayVlanId field if it's non-nil, zero value otherwise
+GetIpv6Ok returns a tuple with the Ipv6 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGatewayVlanId
+### SetIpv6
 
-`func (o *InlineObject49) SetGatewayVlanId(v string)`
+`func (o *InlineObject49) SetIpv6(v NetworksNetworkIdApplianceSingleLanIpv6)`
 
-SetGatewayVlanId sets GatewayVlanId field to given value.
+SetIpv6 sets Ipv6 field to given value.
 
-### HasGatewayVlanId
+### HasIpv6
 
-`func (o *InlineObject49) HasGatewayVlanId() bool`
+`func (o *InlineObject49) HasIpv6() bool`
 
-HasGatewayVlanId returns a boolean if a field has been set.
+HasIpv6 returns a boolean if a field has been set.
 
-### GetEnabled
+### GetMandatoryDhcp
 
-`func (o *InlineObject49) GetEnabled() bool`
+`func (o *InlineObject49) GetMandatoryDhcp() NetworksNetworkIdApplianceSingleLanMandatoryDhcp`
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+GetMandatoryDhcp returns the MandatoryDhcp field if non-nil, zero value otherwise.
 
-### GetEnabledOk
+### GetMandatoryDhcpOk
 
-`func (o *InlineObject49) GetEnabledOk() (*bool, bool)`
+`func (o *InlineObject49) GetMandatoryDhcpOk() (*NetworksNetworkIdApplianceSingleLanMandatoryDhcp, bool)`
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+GetMandatoryDhcpOk returns a tuple with the MandatoryDhcp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnabled
+### SetMandatoryDhcp
 
-`func (o *InlineObject49) SetEnabled(v bool)`
+`func (o *InlineObject49) SetMandatoryDhcp(v NetworksNetworkIdApplianceSingleLanMandatoryDhcp)`
 
-SetEnabled sets Enabled field to given value.
+SetMandatoryDhcp sets MandatoryDhcp field to given value.
 
-### HasEnabled
+### HasMandatoryDhcp
 
-`func (o *InlineObject49) HasEnabled() bool`
+`func (o *InlineObject49) HasMandatoryDhcp() bool`
 
-HasEnabled returns a boolean if a field has been set.
-
-### GetFixedIpAssignments
-
-`func (o *InlineObject49) GetFixedIpAssignments() map[string]interface{}`
-
-GetFixedIpAssignments returns the FixedIpAssignments field if non-nil, zero value otherwise.
-
-### GetFixedIpAssignmentsOk
-
-`func (o *InlineObject49) GetFixedIpAssignmentsOk() (*map[string]interface{}, bool)`
-
-GetFixedIpAssignmentsOk returns a tuple with the FixedIpAssignments field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFixedIpAssignments
-
-`func (o *InlineObject49) SetFixedIpAssignments(v map[string]interface{})`
-
-SetFixedIpAssignments sets FixedIpAssignments field to given value.
-
-### HasFixedIpAssignments
-
-`func (o *InlineObject49) HasFixedIpAssignments() bool`
-
-HasFixedIpAssignments returns a boolean if a field has been set.
-
-### GetReservedIpRanges
-
-`func (o *InlineObject49) GetReservedIpRanges() []NetworksNetworkIdApplianceStaticRoutesStaticRouteIdReservedIpRanges`
-
-GetReservedIpRanges returns the ReservedIpRanges field if non-nil, zero value otherwise.
-
-### GetReservedIpRangesOk
-
-`func (o *InlineObject49) GetReservedIpRangesOk() (*[]NetworksNetworkIdApplianceStaticRoutesStaticRouteIdReservedIpRanges, bool)`
-
-GetReservedIpRangesOk returns a tuple with the ReservedIpRanges field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReservedIpRanges
-
-`func (o *InlineObject49) SetReservedIpRanges(v []NetworksNetworkIdApplianceStaticRoutesStaticRouteIdReservedIpRanges)`
-
-SetReservedIpRanges sets ReservedIpRanges field to given value.
-
-### HasReservedIpRanges
-
-`func (o *InlineObject49) HasReservedIpRanges() bool`
-
-HasReservedIpRanges returns a boolean if a field has been set.
+HasMandatoryDhcp returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

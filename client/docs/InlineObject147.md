@@ -4,17 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | **string** | The URL where the test webhook will be sent | 
-**SharedSecret** | Pointer to **string** | The shared secret the test webhook will send. Optional. Defaults to an empty string. | [optional] [default to ""]
-**PayloadTemplateId** | Pointer to **string** | The ID of the payload template of the test webhook. Defaults to the HTTP server&#39;s template ID if one exists for the given URL, or Generic template ID otherwise | [optional] 
-**PayloadTemplateName** | Pointer to **string** | The name of the payload template. | [optional] 
-**AlertTypeId** | Pointer to **string** | The type of alert which the test webhook will send. Optional. Defaults to power_supply_down. | [optional] [default to "power_supply_down"]
+**Name** | Pointer to **string** | A name for easy reference to the HTTP server | [optional] 
+**SharedSecret** | Pointer to **string** | A shared secret that will be included in POSTs sent to the HTTP server. This secret can be used to verify that the request was sent by Meraki. | [optional] 
+**PayloadTemplate** | Pointer to [**NetworksNetworkIdWebhooksHttpServersHttpServerIdPayloadTemplate**](NetworksNetworkIdWebhooksHttpServersHttpServerIdPayloadTemplate.md) |  | [optional] 
 
 ## Methods
 
 ### NewInlineObject147
 
-`func NewInlineObject147(url string, ) *InlineObject147`
+`func NewInlineObject147() *InlineObject147`
 
 NewInlineObject147 instantiates a new InlineObject147 object
 This constructor will assign default values to properties that have it defined,
@@ -29,25 +27,30 @@ NewInlineObject147WithDefaults instantiates a new InlineObject147 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetUrl
+### GetName
 
-`func (o *InlineObject147) GetUrl() string`
+`func (o *InlineObject147) GetName() string`
 
-GetUrl returns the Url field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetUrlOk
+### GetNameOk
 
-`func (o *InlineObject147) GetUrlOk() (*string, bool)`
+`func (o *InlineObject147) GetNameOk() (*string, bool)`
 
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUrl
+### SetName
 
-`func (o *InlineObject147) SetUrl(v string)`
+`func (o *InlineObject147) SetName(v string)`
 
-SetUrl sets Url field to given value.
+SetName sets Name field to given value.
 
+### HasName
+
+`func (o *InlineObject147) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetSharedSecret
 
@@ -74,80 +77,30 @@ SetSharedSecret sets SharedSecret field to given value.
 
 HasSharedSecret returns a boolean if a field has been set.
 
-### GetPayloadTemplateId
+### GetPayloadTemplate
 
-`func (o *InlineObject147) GetPayloadTemplateId() string`
+`func (o *InlineObject147) GetPayloadTemplate() NetworksNetworkIdWebhooksHttpServersHttpServerIdPayloadTemplate`
 
-GetPayloadTemplateId returns the PayloadTemplateId field if non-nil, zero value otherwise.
+GetPayloadTemplate returns the PayloadTemplate field if non-nil, zero value otherwise.
 
-### GetPayloadTemplateIdOk
+### GetPayloadTemplateOk
 
-`func (o *InlineObject147) GetPayloadTemplateIdOk() (*string, bool)`
+`func (o *InlineObject147) GetPayloadTemplateOk() (*NetworksNetworkIdWebhooksHttpServersHttpServerIdPayloadTemplate, bool)`
 
-GetPayloadTemplateIdOk returns a tuple with the PayloadTemplateId field if it's non-nil, zero value otherwise
+GetPayloadTemplateOk returns a tuple with the PayloadTemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPayloadTemplateId
+### SetPayloadTemplate
 
-`func (o *InlineObject147) SetPayloadTemplateId(v string)`
+`func (o *InlineObject147) SetPayloadTemplate(v NetworksNetworkIdWebhooksHttpServersHttpServerIdPayloadTemplate)`
 
-SetPayloadTemplateId sets PayloadTemplateId field to given value.
+SetPayloadTemplate sets PayloadTemplate field to given value.
 
-### HasPayloadTemplateId
+### HasPayloadTemplate
 
-`func (o *InlineObject147) HasPayloadTemplateId() bool`
+`func (o *InlineObject147) HasPayloadTemplate() bool`
 
-HasPayloadTemplateId returns a boolean if a field has been set.
-
-### GetPayloadTemplateName
-
-`func (o *InlineObject147) GetPayloadTemplateName() string`
-
-GetPayloadTemplateName returns the PayloadTemplateName field if non-nil, zero value otherwise.
-
-### GetPayloadTemplateNameOk
-
-`func (o *InlineObject147) GetPayloadTemplateNameOk() (*string, bool)`
-
-GetPayloadTemplateNameOk returns a tuple with the PayloadTemplateName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPayloadTemplateName
-
-`func (o *InlineObject147) SetPayloadTemplateName(v string)`
-
-SetPayloadTemplateName sets PayloadTemplateName field to given value.
-
-### HasPayloadTemplateName
-
-`func (o *InlineObject147) HasPayloadTemplateName() bool`
-
-HasPayloadTemplateName returns a boolean if a field has been set.
-
-### GetAlertTypeId
-
-`func (o *InlineObject147) GetAlertTypeId() string`
-
-GetAlertTypeId returns the AlertTypeId field if non-nil, zero value otherwise.
-
-### GetAlertTypeIdOk
-
-`func (o *InlineObject147) GetAlertTypeIdOk() (*string, bool)`
-
-GetAlertTypeIdOk returns a tuple with the AlertTypeId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAlertTypeId
-
-`func (o *InlineObject147) SetAlertTypeId(v string)`
-
-SetAlertTypeId sets AlertTypeId field to given value.
-
-### HasAlertTypeId
-
-`func (o *InlineObject147) HasAlertTypeId() bool`
-
-HasAlertTypeId returns a boolean if a field has been set.
+HasPayloadTemplate returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

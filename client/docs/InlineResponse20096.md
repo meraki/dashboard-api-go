@@ -4,11 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Name of the Dashboard branding policy. | [optional] 
-**Enabled** | Pointer to **bool** | Boolean indicating whether this policy is enabled. | [optional] 
-**AdminSettings** | Pointer to [**OrganizationsOrganizationIdBrandingPoliciesAdminSettings**](OrganizationsOrganizationIdBrandingPoliciesAdminSettings.md) |  | [optional] 
-**HelpSettings** | Pointer to [**OrganizationsOrganizationIdBrandingPoliciesHelpSettings**](OrganizationsOrganizationIdBrandingPoliciesHelpSettings.md) |  | [optional] 
-**CustomLogo** | Pointer to [**OrganizationsOrganizationIdBrandingPoliciesCustomLogo**](OrganizationsOrganizationIdBrandingPoliciesCustomLogo.md) |  | [optional] 
+**Name** | Pointer to **string** | The name of the Identity PSK | [optional] 
+**Id** | Pointer to **string** | The unique identifier of the Identity PSK | [optional] 
+**GroupPolicyId** | Pointer to **string** | The group policy to be applied to clients | [optional] 
+**Passphrase** | Pointer to **string** | The passphrase for client authentication | [optional] 
+**WifiPersonalNetworkId** | Pointer to **string** | The WiFi Personal Network unique identifier | [optional] 
+**Email** | Pointer to **string** | The email associated with the System&#39;s Manager User | [optional] 
+**ExpiresAt** | Pointer to **time.Time** | Timestamp for when the Identity PSK expires, or &#39;null&#39; to never expire | [optional] 
 
 ## Methods
 
@@ -54,105 +56,155 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### GetEnabled
+### GetId
 
-`func (o *InlineResponse20096) GetEnabled() bool`
+`func (o *InlineResponse20096) GetId() string`
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetEnabledOk
+### GetIdOk
 
-`func (o *InlineResponse20096) GetEnabledOk() (*bool, bool)`
+`func (o *InlineResponse20096) GetIdOk() (*string, bool)`
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnabled
+### SetId
 
-`func (o *InlineResponse20096) SetEnabled(v bool)`
+`func (o *InlineResponse20096) SetId(v string)`
 
-SetEnabled sets Enabled field to given value.
+SetId sets Id field to given value.
 
-### HasEnabled
+### HasId
 
-`func (o *InlineResponse20096) HasEnabled() bool`
+`func (o *InlineResponse20096) HasId() bool`
 
-HasEnabled returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### GetAdminSettings
+### GetGroupPolicyId
 
-`func (o *InlineResponse20096) GetAdminSettings() OrganizationsOrganizationIdBrandingPoliciesAdminSettings`
+`func (o *InlineResponse20096) GetGroupPolicyId() string`
 
-GetAdminSettings returns the AdminSettings field if non-nil, zero value otherwise.
+GetGroupPolicyId returns the GroupPolicyId field if non-nil, zero value otherwise.
 
-### GetAdminSettingsOk
+### GetGroupPolicyIdOk
 
-`func (o *InlineResponse20096) GetAdminSettingsOk() (*OrganizationsOrganizationIdBrandingPoliciesAdminSettings, bool)`
+`func (o *InlineResponse20096) GetGroupPolicyIdOk() (*string, bool)`
 
-GetAdminSettingsOk returns a tuple with the AdminSettings field if it's non-nil, zero value otherwise
+GetGroupPolicyIdOk returns a tuple with the GroupPolicyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAdminSettings
+### SetGroupPolicyId
 
-`func (o *InlineResponse20096) SetAdminSettings(v OrganizationsOrganizationIdBrandingPoliciesAdminSettings)`
+`func (o *InlineResponse20096) SetGroupPolicyId(v string)`
 
-SetAdminSettings sets AdminSettings field to given value.
+SetGroupPolicyId sets GroupPolicyId field to given value.
 
-### HasAdminSettings
+### HasGroupPolicyId
 
-`func (o *InlineResponse20096) HasAdminSettings() bool`
+`func (o *InlineResponse20096) HasGroupPolicyId() bool`
 
-HasAdminSettings returns a boolean if a field has been set.
+HasGroupPolicyId returns a boolean if a field has been set.
 
-### GetHelpSettings
+### GetPassphrase
 
-`func (o *InlineResponse20096) GetHelpSettings() OrganizationsOrganizationIdBrandingPoliciesHelpSettings`
+`func (o *InlineResponse20096) GetPassphrase() string`
 
-GetHelpSettings returns the HelpSettings field if non-nil, zero value otherwise.
+GetPassphrase returns the Passphrase field if non-nil, zero value otherwise.
 
-### GetHelpSettingsOk
+### GetPassphraseOk
 
-`func (o *InlineResponse20096) GetHelpSettingsOk() (*OrganizationsOrganizationIdBrandingPoliciesHelpSettings, bool)`
+`func (o *InlineResponse20096) GetPassphraseOk() (*string, bool)`
 
-GetHelpSettingsOk returns a tuple with the HelpSettings field if it's non-nil, zero value otherwise
+GetPassphraseOk returns a tuple with the Passphrase field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHelpSettings
+### SetPassphrase
 
-`func (o *InlineResponse20096) SetHelpSettings(v OrganizationsOrganizationIdBrandingPoliciesHelpSettings)`
+`func (o *InlineResponse20096) SetPassphrase(v string)`
 
-SetHelpSettings sets HelpSettings field to given value.
+SetPassphrase sets Passphrase field to given value.
 
-### HasHelpSettings
+### HasPassphrase
 
-`func (o *InlineResponse20096) HasHelpSettings() bool`
+`func (o *InlineResponse20096) HasPassphrase() bool`
 
-HasHelpSettings returns a boolean if a field has been set.
+HasPassphrase returns a boolean if a field has been set.
 
-### GetCustomLogo
+### GetWifiPersonalNetworkId
 
-`func (o *InlineResponse20096) GetCustomLogo() OrganizationsOrganizationIdBrandingPoliciesCustomLogo`
+`func (o *InlineResponse20096) GetWifiPersonalNetworkId() string`
 
-GetCustomLogo returns the CustomLogo field if non-nil, zero value otherwise.
+GetWifiPersonalNetworkId returns the WifiPersonalNetworkId field if non-nil, zero value otherwise.
 
-### GetCustomLogoOk
+### GetWifiPersonalNetworkIdOk
 
-`func (o *InlineResponse20096) GetCustomLogoOk() (*OrganizationsOrganizationIdBrandingPoliciesCustomLogo, bool)`
+`func (o *InlineResponse20096) GetWifiPersonalNetworkIdOk() (*string, bool)`
 
-GetCustomLogoOk returns a tuple with the CustomLogo field if it's non-nil, zero value otherwise
+GetWifiPersonalNetworkIdOk returns a tuple with the WifiPersonalNetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCustomLogo
+### SetWifiPersonalNetworkId
 
-`func (o *InlineResponse20096) SetCustomLogo(v OrganizationsOrganizationIdBrandingPoliciesCustomLogo)`
+`func (o *InlineResponse20096) SetWifiPersonalNetworkId(v string)`
 
-SetCustomLogo sets CustomLogo field to given value.
+SetWifiPersonalNetworkId sets WifiPersonalNetworkId field to given value.
 
-### HasCustomLogo
+### HasWifiPersonalNetworkId
 
-`func (o *InlineResponse20096) HasCustomLogo() bool`
+`func (o *InlineResponse20096) HasWifiPersonalNetworkId() bool`
 
-HasCustomLogo returns a boolean if a field has been set.
+HasWifiPersonalNetworkId returns a boolean if a field has been set.
+
+### GetEmail
+
+`func (o *InlineResponse20096) GetEmail() string`
+
+GetEmail returns the Email field if non-nil, zero value otherwise.
+
+### GetEmailOk
+
+`func (o *InlineResponse20096) GetEmailOk() (*string, bool)`
+
+GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmail
+
+`func (o *InlineResponse20096) SetEmail(v string)`
+
+SetEmail sets Email field to given value.
+
+### HasEmail
+
+`func (o *InlineResponse20096) HasEmail() bool`
+
+HasEmail returns a boolean if a field has been set.
+
+### GetExpiresAt
+
+`func (o *InlineResponse20096) GetExpiresAt() time.Time`
+
+GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
+
+### GetExpiresAtOk
+
+`func (o *InlineResponse20096) GetExpiresAtOk() (*time.Time, bool)`
+
+GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiresAt
+
+`func (o *InlineResponse20096) SetExpiresAt(v time.Time)`
+
+SetExpiresAt sets ExpiresAt field to given value.
+
+### HasExpiresAt
+
+`func (o *InlineResponse20096) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

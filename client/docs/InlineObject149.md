@@ -4,8 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Currency** | Pointer to **string** | The currency code of this node group&#39;s billing plans | [optional] 
-**Plans** | Pointer to [**[]NetworksNetworkIdWirelessBillingPlans**](NetworksNetworkIdWirelessBillingPlans.md) | Array of billing plans in the node group. (Can configure a maximum of 5) | [optional] 
+**Name** | Pointer to **string** | The name of the template | [optional] 
+**Body** | Pointer to **string** | The liquid template used for the body of the webhook message. | [optional] 
+**Headers** | Pointer to [**[]NetworksNetworkIdWebhooksPayloadTemplatesHeaders1**](NetworksNetworkIdWebhooksPayloadTemplatesHeaders1.md) | The liquid template used with the webhook headers. | [optional] 
+**BodyFile** | Pointer to **string** | A file containing liquid template used for the body of the webhook message. | [optional] 
+**HeadersFile** | Pointer to **string** | A file containing the liquid template used with the webhook headers. | [optional] 
 
 ## Methods
 
@@ -26,55 +29,130 @@ NewInlineObject149WithDefaults instantiates a new InlineObject149 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCurrency
+### GetName
 
-`func (o *InlineObject149) GetCurrency() string`
+`func (o *InlineObject149) GetName() string`
 
-GetCurrency returns the Currency field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetCurrencyOk
+### GetNameOk
 
-`func (o *InlineObject149) GetCurrencyOk() (*string, bool)`
+`func (o *InlineObject149) GetNameOk() (*string, bool)`
 
-GetCurrencyOk returns a tuple with the Currency field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCurrency
+### SetName
 
-`func (o *InlineObject149) SetCurrency(v string)`
+`func (o *InlineObject149) SetName(v string)`
 
-SetCurrency sets Currency field to given value.
+SetName sets Name field to given value.
 
-### HasCurrency
+### HasName
 
-`func (o *InlineObject149) HasCurrency() bool`
+`func (o *InlineObject149) HasName() bool`
 
-HasCurrency returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetPlans
+### GetBody
 
-`func (o *InlineObject149) GetPlans() []NetworksNetworkIdWirelessBillingPlans`
+`func (o *InlineObject149) GetBody() string`
 
-GetPlans returns the Plans field if non-nil, zero value otherwise.
+GetBody returns the Body field if non-nil, zero value otherwise.
 
-### GetPlansOk
+### GetBodyOk
 
-`func (o *InlineObject149) GetPlansOk() (*[]NetworksNetworkIdWirelessBillingPlans, bool)`
+`func (o *InlineObject149) GetBodyOk() (*string, bool)`
 
-GetPlansOk returns a tuple with the Plans field if it's non-nil, zero value otherwise
+GetBodyOk returns a tuple with the Body field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPlans
+### SetBody
 
-`func (o *InlineObject149) SetPlans(v []NetworksNetworkIdWirelessBillingPlans)`
+`func (o *InlineObject149) SetBody(v string)`
 
-SetPlans sets Plans field to given value.
+SetBody sets Body field to given value.
 
-### HasPlans
+### HasBody
 
-`func (o *InlineObject149) HasPlans() bool`
+`func (o *InlineObject149) HasBody() bool`
 
-HasPlans returns a boolean if a field has been set.
+HasBody returns a boolean if a field has been set.
+
+### GetHeaders
+
+`func (o *InlineObject149) GetHeaders() []NetworksNetworkIdWebhooksPayloadTemplatesHeaders1`
+
+GetHeaders returns the Headers field if non-nil, zero value otherwise.
+
+### GetHeadersOk
+
+`func (o *InlineObject149) GetHeadersOk() (*[]NetworksNetworkIdWebhooksPayloadTemplatesHeaders1, bool)`
+
+GetHeadersOk returns a tuple with the Headers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHeaders
+
+`func (o *InlineObject149) SetHeaders(v []NetworksNetworkIdWebhooksPayloadTemplatesHeaders1)`
+
+SetHeaders sets Headers field to given value.
+
+### HasHeaders
+
+`func (o *InlineObject149) HasHeaders() bool`
+
+HasHeaders returns a boolean if a field has been set.
+
+### GetBodyFile
+
+`func (o *InlineObject149) GetBodyFile() string`
+
+GetBodyFile returns the BodyFile field if non-nil, zero value otherwise.
+
+### GetBodyFileOk
+
+`func (o *InlineObject149) GetBodyFileOk() (*string, bool)`
+
+GetBodyFileOk returns a tuple with the BodyFile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBodyFile
+
+`func (o *InlineObject149) SetBodyFile(v string)`
+
+SetBodyFile sets BodyFile field to given value.
+
+### HasBodyFile
+
+`func (o *InlineObject149) HasBodyFile() bool`
+
+HasBodyFile returns a boolean if a field has been set.
+
+### GetHeadersFile
+
+`func (o *InlineObject149) GetHeadersFile() string`
+
+GetHeadersFile returns the HeadersFile field if non-nil, zero value otherwise.
+
+### GetHeadersFileOk
+
+`func (o *InlineObject149) GetHeadersFileOk() (*string, bool)`
+
+GetHeadersFileOk returns a tuple with the HeadersFile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHeadersFile
+
+`func (o *InlineObject149) SetHeadersFile(v string)`
+
+SetHeadersFile sets HeadersFile field to given value.
+
+### HasHeadersFile
+
+`func (o *InlineObject149) HasHeadersFile() bool`
+
+HasHeadersFile returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

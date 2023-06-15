@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NetworkId** | Pointer to **string** | Network ID | [optional] 
-**Serial** | Pointer to **string** | Serial of MX device | [optional] 
-**Uplink** | Pointer to **string** | Uplink interface (wan1, wan2, or cellular) | [optional] 
-**Ip** | Pointer to **string** | IP address of uplink | [optional] 
-**TimeSeries** | Pointer to [**[]OrganizationsOrganizationIdDevicesUplinksLossAndLatencyTimeSeries**](OrganizationsOrganizationIdDevicesUplinksLossAndLatencyTimeSeries.md) | Loss and latency timeseries data | [optional] 
+**NetworkId** | Pointer to **string** | Network Id | [optional] 
+**Serial** | Pointer to **string** | Serial number of the device | [optional] 
+**Model** | Pointer to **string** | Device model | [optional] 
+**LastReportedAt** | Pointer to **time.Time** | Last reported time for the device | [optional] 
+**Uplinks** | Pointer to [**[]OrganizationsOrganizationIdCellularGatewayUplinkStatusesUplinks**](OrganizationsOrganizationIdCellularGatewayUplinkStatusesUplinks.md) | Uplinks info | [optional] 
 
 ## Methods
 
@@ -79,80 +79,80 @@ SetSerial sets Serial field to given value.
 
 HasSerial returns a boolean if a field has been set.
 
-### GetUplink
+### GetModel
 
-`func (o *InlineResponse200110) GetUplink() string`
+`func (o *InlineResponse200110) GetModel() string`
 
-GetUplink returns the Uplink field if non-nil, zero value otherwise.
+GetModel returns the Model field if non-nil, zero value otherwise.
 
-### GetUplinkOk
+### GetModelOk
 
-`func (o *InlineResponse200110) GetUplinkOk() (*string, bool)`
+`func (o *InlineResponse200110) GetModelOk() (*string, bool)`
 
-GetUplinkOk returns a tuple with the Uplink field if it's non-nil, zero value otherwise
+GetModelOk returns a tuple with the Model field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUplink
+### SetModel
 
-`func (o *InlineResponse200110) SetUplink(v string)`
+`func (o *InlineResponse200110) SetModel(v string)`
 
-SetUplink sets Uplink field to given value.
+SetModel sets Model field to given value.
 
-### HasUplink
+### HasModel
 
-`func (o *InlineResponse200110) HasUplink() bool`
+`func (o *InlineResponse200110) HasModel() bool`
 
-HasUplink returns a boolean if a field has been set.
+HasModel returns a boolean if a field has been set.
 
-### GetIp
+### GetLastReportedAt
 
-`func (o *InlineResponse200110) GetIp() string`
+`func (o *InlineResponse200110) GetLastReportedAt() time.Time`
 
-GetIp returns the Ip field if non-nil, zero value otherwise.
+GetLastReportedAt returns the LastReportedAt field if non-nil, zero value otherwise.
 
-### GetIpOk
+### GetLastReportedAtOk
 
-`func (o *InlineResponse200110) GetIpOk() (*string, bool)`
+`func (o *InlineResponse200110) GetLastReportedAtOk() (*time.Time, bool)`
 
-GetIpOk returns a tuple with the Ip field if it's non-nil, zero value otherwise
+GetLastReportedAtOk returns a tuple with the LastReportedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIp
+### SetLastReportedAt
 
-`func (o *InlineResponse200110) SetIp(v string)`
+`func (o *InlineResponse200110) SetLastReportedAt(v time.Time)`
 
-SetIp sets Ip field to given value.
+SetLastReportedAt sets LastReportedAt field to given value.
 
-### HasIp
+### HasLastReportedAt
 
-`func (o *InlineResponse200110) HasIp() bool`
+`func (o *InlineResponse200110) HasLastReportedAt() bool`
 
-HasIp returns a boolean if a field has been set.
+HasLastReportedAt returns a boolean if a field has been set.
 
-### GetTimeSeries
+### GetUplinks
 
-`func (o *InlineResponse200110) GetTimeSeries() []OrganizationsOrganizationIdDevicesUplinksLossAndLatencyTimeSeries`
+`func (o *InlineResponse200110) GetUplinks() []OrganizationsOrganizationIdCellularGatewayUplinkStatusesUplinks`
 
-GetTimeSeries returns the TimeSeries field if non-nil, zero value otherwise.
+GetUplinks returns the Uplinks field if non-nil, zero value otherwise.
 
-### GetTimeSeriesOk
+### GetUplinksOk
 
-`func (o *InlineResponse200110) GetTimeSeriesOk() (*[]OrganizationsOrganizationIdDevicesUplinksLossAndLatencyTimeSeries, bool)`
+`func (o *InlineResponse200110) GetUplinksOk() (*[]OrganizationsOrganizationIdCellularGatewayUplinkStatusesUplinks, bool)`
 
-GetTimeSeriesOk returns a tuple with the TimeSeries field if it's non-nil, zero value otherwise
+GetUplinksOk returns a tuple with the Uplinks field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimeSeries
+### SetUplinks
 
-`func (o *InlineResponse200110) SetTimeSeries(v []OrganizationsOrganizationIdDevicesUplinksLossAndLatencyTimeSeries)`
+`func (o *InlineResponse200110) SetUplinks(v []OrganizationsOrganizationIdCellularGatewayUplinkStatusesUplinks)`
 
-SetTimeSeries sets TimeSeries field to given value.
+SetUplinks sets Uplinks field to given value.
 
-### HasTimeSeries
+### HasUplinks
 
-`func (o *InlineResponse200110) HasTimeSeries() bool`
+`func (o *InlineResponse200110) HasUplinks() bool`
 
-HasTimeSeries returns a boolean if a field has been set.
+HasUplinks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

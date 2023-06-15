@@ -4,17 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name of the template | [optional] 
-**Body** | Pointer to **string** | The liquid template used for the body of the webhook message. | [optional] 
-**Headers** | Pointer to [**[]NetworksNetworkIdWebhooksPayloadTemplatesHeaders1**](NetworksNetworkIdWebhooksPayloadTemplatesHeaders1.md) | The liquid template used with the webhook headers. | [optional] 
-**BodyFile** | Pointer to **string** | A file containing liquid template used for the body of the webhook message. | [optional] 
-**HeadersFile** | Pointer to **string** | A file containing the liquid template used with the webhook headers. | [optional] 
+**Name** | **string** | A name for easy reference to the HTTP server | 
+**Url** | **string** | The URL of the HTTP server. Once set, cannot be updated. | 
+**SharedSecret** | Pointer to **string** | A shared secret that will be included in POSTs sent to the HTTP server. This secret can be used to verify that the request was sent by Meraki. | [optional] 
+**PayloadTemplate** | Pointer to [**NetworksNetworkIdWebhooksHttpServersPayloadTemplate1**](NetworksNetworkIdWebhooksHttpServersPayloadTemplate1.md) |  | [optional] 
 
 ## Methods
 
 ### NewInlineObject146
 
-`func NewInlineObject146() *InlineObject146`
+`func NewInlineObject146(name string, url string, ) *InlineObject146`
 
 NewInlineObject146 instantiates a new InlineObject146 object
 This constructor will assign default values to properties that have it defined,
@@ -48,111 +47,76 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
 
-`func (o *InlineObject146) HasName() bool`
+### GetUrl
 
-HasName returns a boolean if a field has been set.
+`func (o *InlineObject146) GetUrl() string`
 
-### GetBody
+GetUrl returns the Url field if non-nil, zero value otherwise.
 
-`func (o *InlineObject146) GetBody() string`
+### GetUrlOk
 
-GetBody returns the Body field if non-nil, zero value otherwise.
+`func (o *InlineObject146) GetUrlOk() (*string, bool)`
 
-### GetBodyOk
-
-`func (o *InlineObject146) GetBodyOk() (*string, bool)`
-
-GetBodyOk returns a tuple with the Body field if it's non-nil, zero value otherwise
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBody
+### SetUrl
 
-`func (o *InlineObject146) SetBody(v string)`
+`func (o *InlineObject146) SetUrl(v string)`
 
-SetBody sets Body field to given value.
+SetUrl sets Url field to given value.
 
-### HasBody
 
-`func (o *InlineObject146) HasBody() bool`
+### GetSharedSecret
 
-HasBody returns a boolean if a field has been set.
+`func (o *InlineObject146) GetSharedSecret() string`
 
-### GetHeaders
+GetSharedSecret returns the SharedSecret field if non-nil, zero value otherwise.
 
-`func (o *InlineObject146) GetHeaders() []NetworksNetworkIdWebhooksPayloadTemplatesHeaders1`
+### GetSharedSecretOk
 
-GetHeaders returns the Headers field if non-nil, zero value otherwise.
+`func (o *InlineObject146) GetSharedSecretOk() (*string, bool)`
 
-### GetHeadersOk
-
-`func (o *InlineObject146) GetHeadersOk() (*[]NetworksNetworkIdWebhooksPayloadTemplatesHeaders1, bool)`
-
-GetHeadersOk returns a tuple with the Headers field if it's non-nil, zero value otherwise
+GetSharedSecretOk returns a tuple with the SharedSecret field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHeaders
+### SetSharedSecret
 
-`func (o *InlineObject146) SetHeaders(v []NetworksNetworkIdWebhooksPayloadTemplatesHeaders1)`
+`func (o *InlineObject146) SetSharedSecret(v string)`
 
-SetHeaders sets Headers field to given value.
+SetSharedSecret sets SharedSecret field to given value.
 
-### HasHeaders
+### HasSharedSecret
 
-`func (o *InlineObject146) HasHeaders() bool`
+`func (o *InlineObject146) HasSharedSecret() bool`
 
-HasHeaders returns a boolean if a field has been set.
+HasSharedSecret returns a boolean if a field has been set.
 
-### GetBodyFile
+### GetPayloadTemplate
 
-`func (o *InlineObject146) GetBodyFile() string`
+`func (o *InlineObject146) GetPayloadTemplate() NetworksNetworkIdWebhooksHttpServersPayloadTemplate1`
 
-GetBodyFile returns the BodyFile field if non-nil, zero value otherwise.
+GetPayloadTemplate returns the PayloadTemplate field if non-nil, zero value otherwise.
 
-### GetBodyFileOk
+### GetPayloadTemplateOk
 
-`func (o *InlineObject146) GetBodyFileOk() (*string, bool)`
+`func (o *InlineObject146) GetPayloadTemplateOk() (*NetworksNetworkIdWebhooksHttpServersPayloadTemplate1, bool)`
 
-GetBodyFileOk returns a tuple with the BodyFile field if it's non-nil, zero value otherwise
+GetPayloadTemplateOk returns a tuple with the PayloadTemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBodyFile
+### SetPayloadTemplate
 
-`func (o *InlineObject146) SetBodyFile(v string)`
+`func (o *InlineObject146) SetPayloadTemplate(v NetworksNetworkIdWebhooksHttpServersPayloadTemplate1)`
 
-SetBodyFile sets BodyFile field to given value.
+SetPayloadTemplate sets PayloadTemplate field to given value.
 
-### HasBodyFile
+### HasPayloadTemplate
 
-`func (o *InlineObject146) HasBodyFile() bool`
+`func (o *InlineObject146) HasPayloadTemplate() bool`
 
-HasBodyFile returns a boolean if a field has been set.
-
-### GetHeadersFile
-
-`func (o *InlineObject146) GetHeadersFile() string`
-
-GetHeadersFile returns the HeadersFile field if non-nil, zero value otherwise.
-
-### GetHeadersFileOk
-
-`func (o *InlineObject146) GetHeadersFileOk() (*string, bool)`
-
-GetHeadersFileOk returns a tuple with the HeadersFile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHeadersFile
-
-`func (o *InlineObject146) SetHeadersFile(v string)`
-
-SetHeadersFile sets HeadersFile field to given value.
-
-### HasHeadersFile
-
-`func (o *InlineObject146) HasHeadersFile() bool`
-
-HasHeadersFile returns a boolean if a field has been set.
+HasPayloadTemplate returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

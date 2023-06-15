@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Name of the group | [optional] 
-**Sgt** | Pointer to **int32** | SGT value of the group | [optional] 
-**Description** | Pointer to **string** | Description of the group | [optional] 
-**PolicyObjects** | Pointer to [**[]OrganizationsOrganizationIdAdaptivePolicyGroupsPolicyObjects**](OrganizationsOrganizationIdAdaptivePolicyGroupsPolicyObjects.md) | The policy objects that belong to this group; traffic from addresses specified by these policy objects will be tagged with this group&#39;s SGT value if no other tagging scheme is being used (each requires one unique attribute) | [optional] 
+**Name** | **string** | Name of the adaptive policy ACL | 
+**Description** | Pointer to **string** | Description of the adaptive policy ACL | [optional] [default to ""]
+**Rules** | [**[]OrganizationsOrganizationIdAdaptivePolicyAclsRules1**](OrganizationsOrganizationIdAdaptivePolicyAclsRules1.md) | An ordered array of the adaptive policy ACL rules. | 
+**IpVersion** | **string** | IP version of adpative policy ACL. One of: &#39;any&#39;, &#39;ipv4&#39; or &#39;ipv6&#39; | 
 
 ## Methods
 
 ### NewInlineObject174
 
-`func NewInlineObject174() *InlineObject174`
+`func NewInlineObject174(name string, rules []OrganizationsOrganizationIdAdaptivePolicyAclsRules1, ipVersion string, ) *InlineObject174`
 
 NewInlineObject174 instantiates a new InlineObject174 object
 This constructor will assign default values to properties that have it defined,
@@ -47,36 +47,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *InlineObject174) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### GetSgt
-
-`func (o *InlineObject174) GetSgt() int32`
-
-GetSgt returns the Sgt field if non-nil, zero value otherwise.
-
-### GetSgtOk
-
-`func (o *InlineObject174) GetSgtOk() (*int32, bool)`
-
-GetSgtOk returns a tuple with the Sgt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSgt
-
-`func (o *InlineObject174) SetSgt(v int32)`
-
-SetSgt sets Sgt field to given value.
-
-### HasSgt
-
-`func (o *InlineObject174) HasSgt() bool`
-
-HasSgt returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -103,30 +73,45 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### GetPolicyObjects
+### GetRules
 
-`func (o *InlineObject174) GetPolicyObjects() []OrganizationsOrganizationIdAdaptivePolicyGroupsPolicyObjects`
+`func (o *InlineObject174) GetRules() []OrganizationsOrganizationIdAdaptivePolicyAclsRules1`
 
-GetPolicyObjects returns the PolicyObjects field if non-nil, zero value otherwise.
+GetRules returns the Rules field if non-nil, zero value otherwise.
 
-### GetPolicyObjectsOk
+### GetRulesOk
 
-`func (o *InlineObject174) GetPolicyObjectsOk() (*[]OrganizationsOrganizationIdAdaptivePolicyGroupsPolicyObjects, bool)`
+`func (o *InlineObject174) GetRulesOk() (*[]OrganizationsOrganizationIdAdaptivePolicyAclsRules1, bool)`
 
-GetPolicyObjectsOk returns a tuple with the PolicyObjects field if it's non-nil, zero value otherwise
+GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPolicyObjects
+### SetRules
 
-`func (o *InlineObject174) SetPolicyObjects(v []OrganizationsOrganizationIdAdaptivePolicyGroupsPolicyObjects)`
+`func (o *InlineObject174) SetRules(v []OrganizationsOrganizationIdAdaptivePolicyAclsRules1)`
 
-SetPolicyObjects sets PolicyObjects field to given value.
+SetRules sets Rules field to given value.
 
-### HasPolicyObjects
 
-`func (o *InlineObject174) HasPolicyObjects() bool`
+### GetIpVersion
 
-HasPolicyObjects returns a boolean if a field has been set.
+`func (o *InlineObject174) GetIpVersion() string`
+
+GetIpVersion returns the IpVersion field if non-nil, zero value otherwise.
+
+### GetIpVersionOk
+
+`func (o *InlineObject174) GetIpVersionOk() (*string, bool)`
+
+GetIpVersionOk returns a tuple with the IpVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpVersion
+
+`func (o *InlineObject174) SetIpVersion(v string)`
+
+SetIpVersion sets IpVersion field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name for your port schedule. | [optional] 
-**PortSchedule** | Pointer to [**NetworksNetworkIdSwitchPortSchedulesPortSchedule**](NetworksNetworkIdSwitchPortSchedulesPortSchedule.md) |  | [optional] 
+**SwitchPorts** | Pointer to [**[]NetworksNetworkIdSwitchLinkAggregationsSwitchPorts**](NetworksNetworkIdSwitchLinkAggregationsSwitchPorts.md) | Array of switch or stack ports for updating aggregation group. Minimum 2 and maximum 8 ports are supported. | [optional] 
+**SwitchProfilePorts** | Pointer to [**[]NetworksNetworkIdSwitchLinkAggregationsSwitchProfilePorts**](NetworksNetworkIdSwitchLinkAggregationsSwitchProfilePorts.md) | Array of switch profile ports for updating aggregation group. Minimum 2 and maximum 8 ports are supported. | [optional] 
 
 ## Methods
 
@@ -26,55 +26,55 @@ NewInlineObject121WithDefaults instantiates a new InlineObject121 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetSwitchPorts
 
-`func (o *InlineObject121) GetName() string`
+`func (o *InlineObject121) GetSwitchPorts() []NetworksNetworkIdSwitchLinkAggregationsSwitchPorts`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetSwitchPorts returns the SwitchPorts field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetSwitchPortsOk
 
-`func (o *InlineObject121) GetNameOk() (*string, bool)`
+`func (o *InlineObject121) GetSwitchPortsOk() (*[]NetworksNetworkIdSwitchLinkAggregationsSwitchPorts, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetSwitchPortsOk returns a tuple with the SwitchPorts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetSwitchPorts
 
-`func (o *InlineObject121) SetName(v string)`
+`func (o *InlineObject121) SetSwitchPorts(v []NetworksNetworkIdSwitchLinkAggregationsSwitchPorts)`
 
-SetName sets Name field to given value.
+SetSwitchPorts sets SwitchPorts field to given value.
 
-### HasName
+### HasSwitchPorts
 
-`func (o *InlineObject121) HasName() bool`
+`func (o *InlineObject121) HasSwitchPorts() bool`
 
-HasName returns a boolean if a field has been set.
+HasSwitchPorts returns a boolean if a field has been set.
 
-### GetPortSchedule
+### GetSwitchProfilePorts
 
-`func (o *InlineObject121) GetPortSchedule() NetworksNetworkIdSwitchPortSchedulesPortSchedule`
+`func (o *InlineObject121) GetSwitchProfilePorts() []NetworksNetworkIdSwitchLinkAggregationsSwitchProfilePorts`
 
-GetPortSchedule returns the PortSchedule field if non-nil, zero value otherwise.
+GetSwitchProfilePorts returns the SwitchProfilePorts field if non-nil, zero value otherwise.
 
-### GetPortScheduleOk
+### GetSwitchProfilePortsOk
 
-`func (o *InlineObject121) GetPortScheduleOk() (*NetworksNetworkIdSwitchPortSchedulesPortSchedule, bool)`
+`func (o *InlineObject121) GetSwitchProfilePortsOk() (*[]NetworksNetworkIdSwitchLinkAggregationsSwitchProfilePorts, bool)`
 
-GetPortScheduleOk returns a tuple with the PortSchedule field if it's non-nil, zero value otherwise
+GetSwitchProfilePortsOk returns a tuple with the SwitchProfilePorts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPortSchedule
+### SetSwitchProfilePorts
 
-`func (o *InlineObject121) SetPortSchedule(v NetworksNetworkIdSwitchPortSchedulesPortSchedule)`
+`func (o *InlineObject121) SetSwitchProfilePorts(v []NetworksNetworkIdSwitchLinkAggregationsSwitchProfilePorts)`
 
-SetPortSchedule sets PortSchedule field to given value.
+SetSwitchProfilePorts sets SwitchProfilePorts field to given value.
 
-### HasPortSchedule
+### HasSwitchProfilePorts
 
-`func (o *InlineObject121) HasPortSchedule() bool`
+`func (o *InlineObject121) HasSwitchProfilePorts() bool`
 
-HasPortSchedule returns a boolean if a field has been set.
+HasSwitchProfilePorts returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

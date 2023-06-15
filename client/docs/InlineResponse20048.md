@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Received** | Pointer to **float32** | The amount of cellular data received by the device. | [optional] 
-**Sent** | Pointer to **float32** | The amount of cellular sent received by the device. | [optional] 
-**Ts** | Pointer to **string** | When the cellular usage data was collected. | [optional] 
+**Id** | Pointer to **string** | The Meraki Id of the device record. | [optional] 
+**Tags** | Pointer to **[]string** | An array of tags associated with the device. | [optional] 
+**WifiMac** | Pointer to **string** | The MAC of the device. | [optional] 
+**Serial** | Pointer to **string** | The device serial. | [optional] 
 
 ## Methods
 
@@ -27,80 +28,105 @@ NewInlineResponse20048WithDefaults instantiates a new InlineResponse20048 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetReceived
+### GetId
 
-`func (o *InlineResponse20048) GetReceived() float32`
+`func (o *InlineResponse20048) GetId() string`
 
-GetReceived returns the Received field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetReceivedOk
+### GetIdOk
 
-`func (o *InlineResponse20048) GetReceivedOk() (*float32, bool)`
+`func (o *InlineResponse20048) GetIdOk() (*string, bool)`
 
-GetReceivedOk returns a tuple with the Received field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetReceived
+### SetId
 
-`func (o *InlineResponse20048) SetReceived(v float32)`
+`func (o *InlineResponse20048) SetId(v string)`
 
-SetReceived sets Received field to given value.
+SetId sets Id field to given value.
 
-### HasReceived
+### HasId
 
-`func (o *InlineResponse20048) HasReceived() bool`
+`func (o *InlineResponse20048) HasId() bool`
 
-HasReceived returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### GetSent
+### GetTags
 
-`func (o *InlineResponse20048) GetSent() float32`
+`func (o *InlineResponse20048) GetTags() []string`
 
-GetSent returns the Sent field if non-nil, zero value otherwise.
+GetTags returns the Tags field if non-nil, zero value otherwise.
 
-### GetSentOk
+### GetTagsOk
 
-`func (o *InlineResponse20048) GetSentOk() (*float32, bool)`
+`func (o *InlineResponse20048) GetTagsOk() (*[]string, bool)`
 
-GetSentOk returns a tuple with the Sent field if it's non-nil, zero value otherwise
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSent
+### SetTags
 
-`func (o *InlineResponse20048) SetSent(v float32)`
+`func (o *InlineResponse20048) SetTags(v []string)`
 
-SetSent sets Sent field to given value.
+SetTags sets Tags field to given value.
 
-### HasSent
+### HasTags
 
-`func (o *InlineResponse20048) HasSent() bool`
+`func (o *InlineResponse20048) HasTags() bool`
 
-HasSent returns a boolean if a field has been set.
+HasTags returns a boolean if a field has been set.
 
-### GetTs
+### GetWifiMac
 
-`func (o *InlineResponse20048) GetTs() string`
+`func (o *InlineResponse20048) GetWifiMac() string`
 
-GetTs returns the Ts field if non-nil, zero value otherwise.
+GetWifiMac returns the WifiMac field if non-nil, zero value otherwise.
 
-### GetTsOk
+### GetWifiMacOk
 
-`func (o *InlineResponse20048) GetTsOk() (*string, bool)`
+`func (o *InlineResponse20048) GetWifiMacOk() (*string, bool)`
 
-GetTsOk returns a tuple with the Ts field if it's non-nil, zero value otherwise
+GetWifiMacOk returns a tuple with the WifiMac field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTs
+### SetWifiMac
 
-`func (o *InlineResponse20048) SetTs(v string)`
+`func (o *InlineResponse20048) SetWifiMac(v string)`
 
-SetTs sets Ts field to given value.
+SetWifiMac sets WifiMac field to given value.
 
-### HasTs
+### HasWifiMac
 
-`func (o *InlineResponse20048) HasTs() bool`
+`func (o *InlineResponse20048) HasWifiMac() bool`
 
-HasTs returns a boolean if a field has been set.
+HasWifiMac returns a boolean if a field has been set.
+
+### GetSerial
+
+`func (o *InlineResponse20048) GetSerial() string`
+
+GetSerial returns the Serial field if non-nil, zero value otherwise.
+
+### GetSerialOk
+
+`func (o *InlineResponse20048) GetSerialOk() (*string, bool)`
+
+GetSerialOk returns a tuple with the Serial field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSerial
+
+`func (o *InlineResponse20048) SetSerial(v string)`
+
+SetSerial sets Serial field to given value.
+
+### HasSerial
+
+`func (o *InlineResponse20048) HasSerial() bool`
+
+HasSerial returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

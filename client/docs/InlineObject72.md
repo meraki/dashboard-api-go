@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DevicePolicy** | **string** | The policy to assign. Can be &#39;Whitelisted&#39;, &#39;Blocked&#39;, &#39;Normal&#39; or &#39;Group policy&#39;. Required. | 
-**GroupPolicyId** | Pointer to **string** | [optional] If &#39;devicePolicy&#39; is set to &#39;Group policy&#39; this param is used to specify the group policy ID. | [optional] 
+**Mask** | Pointer to **int32** | Mask used for the subnet of all MGs in  this network. | [optional] 
+**Cidr** | Pointer to **string** | CIDR of the pool of subnets. Each MG in this network will automatically pick a subnet from this pool. | [optional] 
 
 ## Methods
 
 ### NewInlineObject72
 
-`func NewInlineObject72(devicePolicy string, ) *InlineObject72`
+`func NewInlineObject72() *InlineObject72`
 
 NewInlineObject72 instantiates a new InlineObject72 object
 This constructor will assign default values to properties that have it defined,
@@ -26,50 +26,55 @@ NewInlineObject72WithDefaults instantiates a new InlineObject72 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDevicePolicy
+### GetMask
 
-`func (o *InlineObject72) GetDevicePolicy() string`
+`func (o *InlineObject72) GetMask() int32`
 
-GetDevicePolicy returns the DevicePolicy field if non-nil, zero value otherwise.
+GetMask returns the Mask field if non-nil, zero value otherwise.
 
-### GetDevicePolicyOk
+### GetMaskOk
 
-`func (o *InlineObject72) GetDevicePolicyOk() (*string, bool)`
+`func (o *InlineObject72) GetMaskOk() (*int32, bool)`
 
-GetDevicePolicyOk returns a tuple with the DevicePolicy field if it's non-nil, zero value otherwise
+GetMaskOk returns a tuple with the Mask field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDevicePolicy
+### SetMask
 
-`func (o *InlineObject72) SetDevicePolicy(v string)`
+`func (o *InlineObject72) SetMask(v int32)`
 
-SetDevicePolicy sets DevicePolicy field to given value.
+SetMask sets Mask field to given value.
 
+### HasMask
 
-### GetGroupPolicyId
+`func (o *InlineObject72) HasMask() bool`
 
-`func (o *InlineObject72) GetGroupPolicyId() string`
+HasMask returns a boolean if a field has been set.
 
-GetGroupPolicyId returns the GroupPolicyId field if non-nil, zero value otherwise.
+### GetCidr
 
-### GetGroupPolicyIdOk
+`func (o *InlineObject72) GetCidr() string`
 
-`func (o *InlineObject72) GetGroupPolicyIdOk() (*string, bool)`
+GetCidr returns the Cidr field if non-nil, zero value otherwise.
 
-GetGroupPolicyIdOk returns a tuple with the GroupPolicyId field if it's non-nil, zero value otherwise
+### GetCidrOk
+
+`func (o *InlineObject72) GetCidrOk() (*string, bool)`
+
+GetCidrOk returns a tuple with the Cidr field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGroupPolicyId
+### SetCidr
 
-`func (o *InlineObject72) SetGroupPolicyId(v string)`
+`func (o *InlineObject72) SetCidr(v string)`
 
-SetGroupPolicyId sets GroupPolicyId field to given value.
+SetCidr sets Cidr field to given value.
 
-### HasGroupPolicyId
+### HasCidr
 
-`func (o *InlineObject72) HasGroupPolicyId() bool`
+`func (o *InlineObject72) HasCidr() bool`
 
-HasGroupPolicyId returns a boolean if a field has been set.
+HasCidr returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

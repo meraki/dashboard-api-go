@@ -4,16 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | Name of the adaptive policy ACL | 
-**Description** | Pointer to **string** | Description of the adaptive policy ACL | [optional] [default to ""]
-**Rules** | [**[]OrganizationsOrganizationIdAdaptivePolicyAclsRules1**](OrganizationsOrganizationIdAdaptivePolicyAclsRules1.md) | An ordered array of the adaptive policy ACL rules. | 
-**IpVersion** | **string** | IP version of adpative policy ACL. One of: &#39;any&#39;, &#39;ipv4&#39; or &#39;ipv6&#39; | 
+**Name** | Pointer to **string** | The name of the organization | [optional] 
+**Management** | Pointer to [**OrganizationsManagement**](OrganizationsManagement.md) |  | [optional] 
+**Api** | Pointer to [**OrganizationsOrganizationIdApi**](OrganizationsOrganizationIdApi.md) |  | [optional] 
 
 ## Methods
 
 ### NewInlineObject171
 
-`func NewInlineObject171(name string, rules []OrganizationsOrganizationIdAdaptivePolicyAclsRules1, ipVersion string, ) *InlineObject171`
+`func NewInlineObject171() *InlineObject171`
 
 NewInlineObject171 instantiates a new InlineObject171 object
 This constructor will assign default values to properties that have it defined,
@@ -47,71 +46,61 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
 
-### GetDescription
+`func (o *InlineObject171) HasName() bool`
 
-`func (o *InlineObject171) GetDescription() string`
+HasName returns a boolean if a field has been set.
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+### GetManagement
 
-### GetDescriptionOk
+`func (o *InlineObject171) GetManagement() OrganizationsManagement`
 
-`func (o *InlineObject171) GetDescriptionOk() (*string, bool)`
+GetManagement returns the Management field if non-nil, zero value otherwise.
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+### GetManagementOk
+
+`func (o *InlineObject171) GetManagementOk() (*OrganizationsManagement, bool)`
+
+GetManagementOk returns a tuple with the Management field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetManagement
 
-`func (o *InlineObject171) SetDescription(v string)`
+`func (o *InlineObject171) SetManagement(v OrganizationsManagement)`
 
-SetDescription sets Description field to given value.
+SetManagement sets Management field to given value.
 
-### HasDescription
+### HasManagement
 
-`func (o *InlineObject171) HasDescription() bool`
+`func (o *InlineObject171) HasManagement() bool`
 
-HasDescription returns a boolean if a field has been set.
+HasManagement returns a boolean if a field has been set.
 
-### GetRules
+### GetApi
 
-`func (o *InlineObject171) GetRules() []OrganizationsOrganizationIdAdaptivePolicyAclsRules1`
+`func (o *InlineObject171) GetApi() OrganizationsOrganizationIdApi`
 
-GetRules returns the Rules field if non-nil, zero value otherwise.
+GetApi returns the Api field if non-nil, zero value otherwise.
 
-### GetRulesOk
+### GetApiOk
 
-`func (o *InlineObject171) GetRulesOk() (*[]OrganizationsOrganizationIdAdaptivePolicyAclsRules1, bool)`
+`func (o *InlineObject171) GetApiOk() (*OrganizationsOrganizationIdApi, bool)`
 
-GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
+GetApiOk returns a tuple with the Api field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRules
+### SetApi
 
-`func (o *InlineObject171) SetRules(v []OrganizationsOrganizationIdAdaptivePolicyAclsRules1)`
+`func (o *InlineObject171) SetApi(v OrganizationsOrganizationIdApi)`
 
-SetRules sets Rules field to given value.
+SetApi sets Api field to given value.
 
+### HasApi
 
-### GetIpVersion
+`func (o *InlineObject171) HasApi() bool`
 
-`func (o *InlineObject171) GetIpVersion() string`
-
-GetIpVersion returns the IpVersion field if non-nil, zero value otherwise.
-
-### GetIpVersionOk
-
-`func (o *InlineObject171) GetIpVersionOk() (*string, bool)`
-
-GetIpVersionOk returns a tuple with the IpVersion field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIpVersion
-
-`func (o *InlineObject171) SetIpVersion(v string)`
-
-SetIpVersion sets IpVersion field to given value.
-
+HasApi returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

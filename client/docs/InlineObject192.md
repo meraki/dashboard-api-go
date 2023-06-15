@@ -4,15 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | The name of the configuration template | 
-**TimeZone** | Pointer to **string** | The timezone of the configuration template. For a list of allowed timezones, please see the &#39;TZ&#39; column in the table in &lt;a target&#x3D;&#39;_blank&#39; href&#x3D;&#39;https://en.wikipedia.org/wiki/List_of_tz_database_time_zones&#39;&gt;this article&lt;/a&gt;. Not applicable if copying from existing network or template | [optional] 
-**CopyFromNetworkId** | Pointer to **string** | The ID of the network or config template to copy configuration from | [optional] 
+**Serial** | Pointer to **string** | Serial of camera | [optional] 
+**WirelessCredentialsSent** | Pointer to **bool** | Note whether credentials were sent successfully | [optional] 
 
 ## Methods
 
 ### NewInlineObject192
 
-`func NewInlineObject192(name string, ) *InlineObject192`
+`func NewInlineObject192() *InlineObject192`
 
 NewInlineObject192 instantiates a new InlineObject192 object
 This constructor will assign default values to properties that have it defined,
@@ -27,75 +26,55 @@ NewInlineObject192WithDefaults instantiates a new InlineObject192 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetSerial
 
-`func (o *InlineObject192) GetName() string`
+`func (o *InlineObject192) GetSerial() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetSerial returns the Serial field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetSerialOk
 
-`func (o *InlineObject192) GetNameOk() (*string, bool)`
+`func (o *InlineObject192) GetSerialOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetSerialOk returns a tuple with the Serial field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetSerial
 
-`func (o *InlineObject192) SetName(v string)`
+`func (o *InlineObject192) SetSerial(v string)`
 
-SetName sets Name field to given value.
+SetSerial sets Serial field to given value.
 
+### HasSerial
 
-### GetTimeZone
+`func (o *InlineObject192) HasSerial() bool`
 
-`func (o *InlineObject192) GetTimeZone() string`
+HasSerial returns a boolean if a field has been set.
 
-GetTimeZone returns the TimeZone field if non-nil, zero value otherwise.
+### GetWirelessCredentialsSent
 
-### GetTimeZoneOk
+`func (o *InlineObject192) GetWirelessCredentialsSent() bool`
 
-`func (o *InlineObject192) GetTimeZoneOk() (*string, bool)`
+GetWirelessCredentialsSent returns the WirelessCredentialsSent field if non-nil, zero value otherwise.
 
-GetTimeZoneOk returns a tuple with the TimeZone field if it's non-nil, zero value otherwise
+### GetWirelessCredentialsSentOk
+
+`func (o *InlineObject192) GetWirelessCredentialsSentOk() (*bool, bool)`
+
+GetWirelessCredentialsSentOk returns a tuple with the WirelessCredentialsSent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimeZone
+### SetWirelessCredentialsSent
 
-`func (o *InlineObject192) SetTimeZone(v string)`
+`func (o *InlineObject192) SetWirelessCredentialsSent(v bool)`
 
-SetTimeZone sets TimeZone field to given value.
+SetWirelessCredentialsSent sets WirelessCredentialsSent field to given value.
 
-### HasTimeZone
+### HasWirelessCredentialsSent
 
-`func (o *InlineObject192) HasTimeZone() bool`
+`func (o *InlineObject192) HasWirelessCredentialsSent() bool`
 
-HasTimeZone returns a boolean if a field has been set.
-
-### GetCopyFromNetworkId
-
-`func (o *InlineObject192) GetCopyFromNetworkId() string`
-
-GetCopyFromNetworkId returns the CopyFromNetworkId field if non-nil, zero value otherwise.
-
-### GetCopyFromNetworkIdOk
-
-`func (o *InlineObject192) GetCopyFromNetworkIdOk() (*string, bool)`
-
-GetCopyFromNetworkIdOk returns a tuple with the CopyFromNetworkId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCopyFromNetworkId
-
-`func (o *InlineObject192) SetCopyFromNetworkId(v string)`
-
-SetCopyFromNetworkId sets CopyFromNetworkId field to given value.
-
-### HasCopyFromNetworkId
-
-`func (o *InlineObject192) HasCopyFromNetworkId() bool`
-
-HasCopyFromNetworkId returns a boolean if a field has been set.
+HasWirelessCredentialsSent returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

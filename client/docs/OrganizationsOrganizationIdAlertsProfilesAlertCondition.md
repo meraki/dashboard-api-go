@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **LatencyMs** | Pointer to **int32** | The threshold the metric must cross to be valid for alerting. Used only for WAN Latency alerts. | [optional] 
 **JitterMs** | Pointer to **int32** | The threshold the metric must cross to be valid for alerting. Used only for VoIP Jitter alerts. | [optional] 
 **Mos** | Pointer to **float32** | The threshold the metric must drop below to be valid for alerting. Used only for VoIP MOS alerts. | [optional] 
-**Interface** | Pointer to **string** | The uplink observed for the alert.  interface must be one of the following: wan1, wan2, cellular | [optional] 
+**Interface** | Pointer to **string** | The uplink observed for the alert.  interface must be one of the following: wan1, wan2, wan3, cellular | [optional] 
 
 ## Methods
 

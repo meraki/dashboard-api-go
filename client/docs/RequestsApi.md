@@ -33,7 +33,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkPiiRequest := *openapiclient.NewInlineObject94() // InlineObject94 |  (optional)
+    createNetworkPiiRequest := *openapiclient.NewInlineObject97() // InlineObject97 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -63,7 +63,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkPiiRequestReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkPiiRequest** | [**InlineObject94**](InlineObject94.md) |  | 
+ **createNetworkPiiRequest** | [**InlineObject97**](InlineObject97.md) |  | 
 
 ### Return type
 

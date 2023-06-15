@@ -4,16 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LogEvent** | **string** | The type of log event this is recording, e.g. download or opening a banner | 
-**Timestamp** | **int32** | A JavaScript UTC datetime stamp for when the even occurred | 
-**TargetOS** | Pointer to **string** | The name of the onboarding distro being downloaded | [optional] 
-**Request** | Pointer to **string** | Used to describe if this event was the result of a redirect. E.g. a query param if an info banner is being used | [optional] 
+**Name** | **string** | The name of the VoIP provider | 
+**Address** | **string** | The IP address (IPv4 only) or hostname of the media server to monitor | 
+**BestEffortMonitoringEnabled** | Pointer to **bool** | Indicates that if the media server doesn&#39;t respond to ICMP pings, the nearest hop will be used in its stead. | [optional] 
 
 ## Methods
 
 ### NewInlineObject200
 
-`func NewInlineObject200(logEvent string, timestamp int32, ) *InlineObject200`
+`func NewInlineObject200(name string, address string, ) *InlineObject200`
 
 NewInlineObject200 instantiates a new InlineObject200 object
 This constructor will assign default values to properties that have it defined,
@@ -28,95 +27,70 @@ NewInlineObject200WithDefaults instantiates a new InlineObject200 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetLogEvent
+### GetName
 
-`func (o *InlineObject200) GetLogEvent() string`
+`func (o *InlineObject200) GetName() string`
 
-GetLogEvent returns the LogEvent field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetLogEventOk
+### GetNameOk
 
-`func (o *InlineObject200) GetLogEventOk() (*string, bool)`
+`func (o *InlineObject200) GetNameOk() (*string, bool)`
 
-GetLogEventOk returns a tuple with the LogEvent field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLogEvent
+### SetName
 
-`func (o *InlineObject200) SetLogEvent(v string)`
+`func (o *InlineObject200) SetName(v string)`
 
-SetLogEvent sets LogEvent field to given value.
+SetName sets Name field to given value.
 
 
-### GetTimestamp
+### GetAddress
 
-`func (o *InlineObject200) GetTimestamp() int32`
+`func (o *InlineObject200) GetAddress() string`
 
-GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
+GetAddress returns the Address field if non-nil, zero value otherwise.
 
-### GetTimestampOk
+### GetAddressOk
 
-`func (o *InlineObject200) GetTimestampOk() (*int32, bool)`
+`func (o *InlineObject200) GetAddressOk() (*string, bool)`
 
-GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
+GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimestamp
+### SetAddress
 
-`func (o *InlineObject200) SetTimestamp(v int32)`
+`func (o *InlineObject200) SetAddress(v string)`
 
-SetTimestamp sets Timestamp field to given value.
+SetAddress sets Address field to given value.
 
 
-### GetTargetOS
+### GetBestEffortMonitoringEnabled
 
-`func (o *InlineObject200) GetTargetOS() string`
+`func (o *InlineObject200) GetBestEffortMonitoringEnabled() bool`
 
-GetTargetOS returns the TargetOS field if non-nil, zero value otherwise.
+GetBestEffortMonitoringEnabled returns the BestEffortMonitoringEnabled field if non-nil, zero value otherwise.
 
-### GetTargetOSOk
+### GetBestEffortMonitoringEnabledOk
 
-`func (o *InlineObject200) GetTargetOSOk() (*string, bool)`
+`func (o *InlineObject200) GetBestEffortMonitoringEnabledOk() (*bool, bool)`
 
-GetTargetOSOk returns a tuple with the TargetOS field if it's non-nil, zero value otherwise
+GetBestEffortMonitoringEnabledOk returns a tuple with the BestEffortMonitoringEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTargetOS
+### SetBestEffortMonitoringEnabled
 
-`func (o *InlineObject200) SetTargetOS(v string)`
+`func (o *InlineObject200) SetBestEffortMonitoringEnabled(v bool)`
 
-SetTargetOS sets TargetOS field to given value.
+SetBestEffortMonitoringEnabled sets BestEffortMonitoringEnabled field to given value.
 
-### HasTargetOS
+### HasBestEffortMonitoringEnabled
 
-`func (o *InlineObject200) HasTargetOS() bool`
+`func (o *InlineObject200) HasBestEffortMonitoringEnabled() bool`
 
-HasTargetOS returns a boolean if a field has been set.
-
-### GetRequest
-
-`func (o *InlineObject200) GetRequest() string`
-
-GetRequest returns the Request field if non-nil, zero value otherwise.
-
-### GetRequestOk
-
-`func (o *InlineObject200) GetRequestOk() (*string, bool)`
-
-GetRequestOk returns a tuple with the Request field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequest
-
-`func (o *InlineObject200) SetRequest(v string)`
-
-SetRequest sets Request field to given value.
-
-### HasRequest
-
-`func (o *InlineObject200) HasRequest() bool`
-
-HasRequest returns a boolean if a field has been set.
+HasBestEffortMonitoringEnabled returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

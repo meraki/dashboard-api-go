@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tag** | **string** | The name of the tag | 
-**Access** | **string** | The privilege of the dashboard administrator on the tag. Can be one of &#39;full&#39;, &#39;read-only&#39;, &#39;guest-ambassador&#39; or &#39;monitor-only&#39; | 
+**Tag** | Pointer to **string** | Tag value | [optional] 
+**Access** | Pointer to **string** | Access level for the tag | [optional] 
 
 ## Methods
 
 ### NewOrganizationsOrganizationIdAdminsTags
 
-`func NewOrganizationsOrganizationIdAdminsTags(tag string, access string, ) *OrganizationsOrganizationIdAdminsTags`
+`func NewOrganizationsOrganizationIdAdminsTags() *OrganizationsOrganizationIdAdminsTags`
 
 NewOrganizationsOrganizationIdAdminsTags instantiates a new OrganizationsOrganizationIdAdminsTags object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetTag sets Tag field to given value.
 
+### HasTag
+
+`func (o *OrganizationsOrganizationIdAdminsTags) HasTag() bool`
+
+HasTag returns a boolean if a field has been set.
 
 ### GetAccess
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetAccess sets Access field to given value.
 
+### HasAccess
+
+`func (o *OrganizationsOrganizationIdAdminsTags) HasAccess() bool`
+
+HasAccess returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

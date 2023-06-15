@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | The name of the new stack | 
-**Serials** | **[]string** | An array of switch serials to be added into the new stack | 
+**InterfaceIp** | **string** | The IP address of the interface to use | 
+**MulticastGroup** | **string** | &#39;Any&#39;, or the IP address of a multicast group | 
 
 ## Methods
 
 ### NewInlineObject130
 
-`func NewInlineObject130(name string, serials []string, ) *InlineObject130`
+`func NewInlineObject130(interfaceIp string, multicastGroup string, ) *InlineObject130`
 
 NewInlineObject130 instantiates a new InlineObject130 object
 This constructor will assign default values to properties that have it defined,
@@ -26,44 +26,44 @@ NewInlineObject130WithDefaults instantiates a new InlineObject130 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetInterfaceIp
 
-`func (o *InlineObject130) GetName() string`
+`func (o *InlineObject130) GetInterfaceIp() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetInterfaceIp returns the InterfaceIp field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetInterfaceIpOk
 
-`func (o *InlineObject130) GetNameOk() (*string, bool)`
+`func (o *InlineObject130) GetInterfaceIpOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetInterfaceIpOk returns a tuple with the InterfaceIp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetInterfaceIp
 
-`func (o *InlineObject130) SetName(v string)`
+`func (o *InlineObject130) SetInterfaceIp(v string)`
 
-SetName sets Name field to given value.
+SetInterfaceIp sets InterfaceIp field to given value.
 
 
-### GetSerials
+### GetMulticastGroup
 
-`func (o *InlineObject130) GetSerials() []string`
+`func (o *InlineObject130) GetMulticastGroup() string`
 
-GetSerials returns the Serials field if non-nil, zero value otherwise.
+GetMulticastGroup returns the MulticastGroup field if non-nil, zero value otherwise.
 
-### GetSerialsOk
+### GetMulticastGroupOk
 
-`func (o *InlineObject130) GetSerialsOk() (*[]string, bool)`
+`func (o *InlineObject130) GetMulticastGroupOk() (*string, bool)`
 
-GetSerialsOk returns a tuple with the Serials field if it's non-nil, zero value otherwise
+GetMulticastGroupOk returns a tuple with the MulticastGroup field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSerials
+### SetMulticastGroup
 
-`func (o *InlineObject130) SetSerials(v []string)`
+`func (o *InlineObject130) SetMulticastGroup(v string)`
 
-SetSerials sets Serials field to given value.
+SetMulticastGroup sets MulticastGroup field to given value.
 
 
 

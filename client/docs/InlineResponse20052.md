@@ -4,11 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Action** | Pointer to **string** | The type of command sent to the device. | [optional] 
-**Name** | Pointer to **string** | The name of the device to which the command is sent. | [optional] 
-**Details** | Pointer to **string** | A JSON string object containing command details. | [optional] 
-**DashboardUser** | Pointer to **string** | The Meraki dashboard user who initiated the command. | [optional] 
-**Ts** | Pointer to **string** | The time the command was sent to the device. | [optional] 
+**Name** | Pointer to **string** | The name of the certificate. | [optional] 
+**NotValidAfter** | Pointer to **string** | The date after which the certificate is no longer valid. | [optional] 
+**NotValidBefore** | Pointer to **string** | The date before which the certificate is not valid. | [optional] 
+**CertPem** | Pointer to **string** | The PEM of the certificate. | [optional] 
+**DeviceId** | Pointer to **string** | The Meraki managed device Id. | [optional] 
+**Issuer** | Pointer to **string** | The certificate issuer. | [optional] 
+**Subject** | Pointer to **string** | The subject of the certificate. | [optional] 
+**Id** | Pointer to **string** | The Meraki Id of the certificate record. | [optional] 
 
 ## Methods
 
@@ -28,31 +31,6 @@ will change when the set of required properties is changed
 NewInlineResponse20052WithDefaults instantiates a new InlineResponse20052 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetAction
-
-`func (o *InlineResponse20052) GetAction() string`
-
-GetAction returns the Action field if non-nil, zero value otherwise.
-
-### GetActionOk
-
-`func (o *InlineResponse20052) GetActionOk() (*string, bool)`
-
-GetActionOk returns a tuple with the Action field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAction
-
-`func (o *InlineResponse20052) SetAction(v string)`
-
-SetAction sets Action field to given value.
-
-### HasAction
-
-`func (o *InlineResponse20052) HasAction() bool`
-
-HasAction returns a boolean if a field has been set.
 
 ### GetName
 
@@ -79,80 +57,180 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### GetDetails
+### GetNotValidAfter
 
-`func (o *InlineResponse20052) GetDetails() string`
+`func (o *InlineResponse20052) GetNotValidAfter() string`
 
-GetDetails returns the Details field if non-nil, zero value otherwise.
+GetNotValidAfter returns the NotValidAfter field if non-nil, zero value otherwise.
 
-### GetDetailsOk
+### GetNotValidAfterOk
 
-`func (o *InlineResponse20052) GetDetailsOk() (*string, bool)`
+`func (o *InlineResponse20052) GetNotValidAfterOk() (*string, bool)`
 
-GetDetailsOk returns a tuple with the Details field if it's non-nil, zero value otherwise
+GetNotValidAfterOk returns a tuple with the NotValidAfter field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDetails
+### SetNotValidAfter
 
-`func (o *InlineResponse20052) SetDetails(v string)`
+`func (o *InlineResponse20052) SetNotValidAfter(v string)`
 
-SetDetails sets Details field to given value.
+SetNotValidAfter sets NotValidAfter field to given value.
 
-### HasDetails
+### HasNotValidAfter
 
-`func (o *InlineResponse20052) HasDetails() bool`
+`func (o *InlineResponse20052) HasNotValidAfter() bool`
 
-HasDetails returns a boolean if a field has been set.
+HasNotValidAfter returns a boolean if a field has been set.
 
-### GetDashboardUser
+### GetNotValidBefore
 
-`func (o *InlineResponse20052) GetDashboardUser() string`
+`func (o *InlineResponse20052) GetNotValidBefore() string`
 
-GetDashboardUser returns the DashboardUser field if non-nil, zero value otherwise.
+GetNotValidBefore returns the NotValidBefore field if non-nil, zero value otherwise.
 
-### GetDashboardUserOk
+### GetNotValidBeforeOk
 
-`func (o *InlineResponse20052) GetDashboardUserOk() (*string, bool)`
+`func (o *InlineResponse20052) GetNotValidBeforeOk() (*string, bool)`
 
-GetDashboardUserOk returns a tuple with the DashboardUser field if it's non-nil, zero value otherwise
+GetNotValidBeforeOk returns a tuple with the NotValidBefore field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDashboardUser
+### SetNotValidBefore
 
-`func (o *InlineResponse20052) SetDashboardUser(v string)`
+`func (o *InlineResponse20052) SetNotValidBefore(v string)`
 
-SetDashboardUser sets DashboardUser field to given value.
+SetNotValidBefore sets NotValidBefore field to given value.
 
-### HasDashboardUser
+### HasNotValidBefore
 
-`func (o *InlineResponse20052) HasDashboardUser() bool`
+`func (o *InlineResponse20052) HasNotValidBefore() bool`
 
-HasDashboardUser returns a boolean if a field has been set.
+HasNotValidBefore returns a boolean if a field has been set.
 
-### GetTs
+### GetCertPem
 
-`func (o *InlineResponse20052) GetTs() string`
+`func (o *InlineResponse20052) GetCertPem() string`
 
-GetTs returns the Ts field if non-nil, zero value otherwise.
+GetCertPem returns the CertPem field if non-nil, zero value otherwise.
 
-### GetTsOk
+### GetCertPemOk
 
-`func (o *InlineResponse20052) GetTsOk() (*string, bool)`
+`func (o *InlineResponse20052) GetCertPemOk() (*string, bool)`
 
-GetTsOk returns a tuple with the Ts field if it's non-nil, zero value otherwise
+GetCertPemOk returns a tuple with the CertPem field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTs
+### SetCertPem
 
-`func (o *InlineResponse20052) SetTs(v string)`
+`func (o *InlineResponse20052) SetCertPem(v string)`
 
-SetTs sets Ts field to given value.
+SetCertPem sets CertPem field to given value.
 
-### HasTs
+### HasCertPem
 
-`func (o *InlineResponse20052) HasTs() bool`
+`func (o *InlineResponse20052) HasCertPem() bool`
 
-HasTs returns a boolean if a field has been set.
+HasCertPem returns a boolean if a field has been set.
+
+### GetDeviceId
+
+`func (o *InlineResponse20052) GetDeviceId() string`
+
+GetDeviceId returns the DeviceId field if non-nil, zero value otherwise.
+
+### GetDeviceIdOk
+
+`func (o *InlineResponse20052) GetDeviceIdOk() (*string, bool)`
+
+GetDeviceIdOk returns a tuple with the DeviceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeviceId
+
+`func (o *InlineResponse20052) SetDeviceId(v string)`
+
+SetDeviceId sets DeviceId field to given value.
+
+### HasDeviceId
+
+`func (o *InlineResponse20052) HasDeviceId() bool`
+
+HasDeviceId returns a boolean if a field has been set.
+
+### GetIssuer
+
+`func (o *InlineResponse20052) GetIssuer() string`
+
+GetIssuer returns the Issuer field if non-nil, zero value otherwise.
+
+### GetIssuerOk
+
+`func (o *InlineResponse20052) GetIssuerOk() (*string, bool)`
+
+GetIssuerOk returns a tuple with the Issuer field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIssuer
+
+`func (o *InlineResponse20052) SetIssuer(v string)`
+
+SetIssuer sets Issuer field to given value.
+
+### HasIssuer
+
+`func (o *InlineResponse20052) HasIssuer() bool`
+
+HasIssuer returns a boolean if a field has been set.
+
+### GetSubject
+
+`func (o *InlineResponse20052) GetSubject() string`
+
+GetSubject returns the Subject field if non-nil, zero value otherwise.
+
+### GetSubjectOk
+
+`func (o *InlineResponse20052) GetSubjectOk() (*string, bool)`
+
+GetSubjectOk returns a tuple with the Subject field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubject
+
+`func (o *InlineResponse20052) SetSubject(v string)`
+
+SetSubject sets Subject field to given value.
+
+### HasSubject
+
+`func (o *InlineResponse20052) HasSubject() bool`
+
+HasSubject returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *InlineResponse20052) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *InlineResponse20052) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *InlineResponse20052) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *InlineResponse20052) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

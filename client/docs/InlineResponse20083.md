@@ -4,12 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MeshingEnabled** | Pointer to **bool** | Toggle for enabling or disabling meshing in a network | [optional] 
-**Ipv6BridgeEnabled** | Pointer to **bool** | Toggle for enabling or disabling IPv6 bridging in a network (Note: if enabled, SSIDs must also be configured to use bridge mode) | [optional] 
-**LocationAnalyticsEnabled** | Pointer to **bool** | Toggle for enabling or disabling location analytics for your network | [optional] 
-**UpgradeStrategy** | Pointer to **string** | The upgrade strategy to apply to the network. Must be one of &#39;minimizeUpgradeTime&#39; or &#39;minimizeClientDowntime&#39;. Requires firmware version MR 26.8 or higher&#39; | [optional] 
-**LedLightsOn** | Pointer to **bool** | Toggle for enabling or disabling LED lights on all APs in the network (making them run dark) | [optional] 
-**NamedVlans** | Pointer to [**InlineResponse20083NamedVlans**](InlineResponse20083NamedVlans.md) |  | [optional] 
+**Id** | Pointer to **string** | A Base64 encoded ID. | [optional] 
+**Name** | Pointer to **string** | A name for easy reference to the HTTP server | [optional] 
+**Url** | Pointer to **string** | The URL of the HTTP server. | [optional] 
+**NetworkId** | Pointer to **string** | A Meraki network ID. | [optional] 
+**PayloadTemplate** | Pointer to [**NetworksNetworkIdWebhooksHttpServersPayloadTemplate**](NetworksNetworkIdWebhooksHttpServersPayloadTemplate.md) |  | [optional] 
 
 ## Methods
 
@@ -30,155 +29,130 @@ NewInlineResponse20083WithDefaults instantiates a new InlineResponse20083 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetMeshingEnabled
+### GetId
 
-`func (o *InlineResponse20083) GetMeshingEnabled() bool`
+`func (o *InlineResponse20083) GetId() string`
 
-GetMeshingEnabled returns the MeshingEnabled field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetMeshingEnabledOk
+### GetIdOk
 
-`func (o *InlineResponse20083) GetMeshingEnabledOk() (*bool, bool)`
+`func (o *InlineResponse20083) GetIdOk() (*string, bool)`
 
-GetMeshingEnabledOk returns a tuple with the MeshingEnabled field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMeshingEnabled
+### SetId
 
-`func (o *InlineResponse20083) SetMeshingEnabled(v bool)`
+`func (o *InlineResponse20083) SetId(v string)`
 
-SetMeshingEnabled sets MeshingEnabled field to given value.
+SetId sets Id field to given value.
 
-### HasMeshingEnabled
+### HasId
 
-`func (o *InlineResponse20083) HasMeshingEnabled() bool`
+`func (o *InlineResponse20083) HasId() bool`
 
-HasMeshingEnabled returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### GetIpv6BridgeEnabled
+### GetName
 
-`func (o *InlineResponse20083) GetIpv6BridgeEnabled() bool`
+`func (o *InlineResponse20083) GetName() string`
 
-GetIpv6BridgeEnabled returns the Ipv6BridgeEnabled field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetIpv6BridgeEnabledOk
+### GetNameOk
 
-`func (o *InlineResponse20083) GetIpv6BridgeEnabledOk() (*bool, bool)`
+`func (o *InlineResponse20083) GetNameOk() (*string, bool)`
 
-GetIpv6BridgeEnabledOk returns a tuple with the Ipv6BridgeEnabled field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIpv6BridgeEnabled
+### SetName
 
-`func (o *InlineResponse20083) SetIpv6BridgeEnabled(v bool)`
+`func (o *InlineResponse20083) SetName(v string)`
 
-SetIpv6BridgeEnabled sets Ipv6BridgeEnabled field to given value.
+SetName sets Name field to given value.
 
-### HasIpv6BridgeEnabled
+### HasName
 
-`func (o *InlineResponse20083) HasIpv6BridgeEnabled() bool`
+`func (o *InlineResponse20083) HasName() bool`
 
-HasIpv6BridgeEnabled returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetLocationAnalyticsEnabled
+### GetUrl
 
-`func (o *InlineResponse20083) GetLocationAnalyticsEnabled() bool`
+`func (o *InlineResponse20083) GetUrl() string`
 
-GetLocationAnalyticsEnabled returns the LocationAnalyticsEnabled field if non-nil, zero value otherwise.
+GetUrl returns the Url field if non-nil, zero value otherwise.
 
-### GetLocationAnalyticsEnabledOk
+### GetUrlOk
 
-`func (o *InlineResponse20083) GetLocationAnalyticsEnabledOk() (*bool, bool)`
+`func (o *InlineResponse20083) GetUrlOk() (*string, bool)`
 
-GetLocationAnalyticsEnabledOk returns a tuple with the LocationAnalyticsEnabled field if it's non-nil, zero value otherwise
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLocationAnalyticsEnabled
+### SetUrl
 
-`func (o *InlineResponse20083) SetLocationAnalyticsEnabled(v bool)`
+`func (o *InlineResponse20083) SetUrl(v string)`
 
-SetLocationAnalyticsEnabled sets LocationAnalyticsEnabled field to given value.
+SetUrl sets Url field to given value.
 
-### HasLocationAnalyticsEnabled
+### HasUrl
 
-`func (o *InlineResponse20083) HasLocationAnalyticsEnabled() bool`
+`func (o *InlineResponse20083) HasUrl() bool`
 
-HasLocationAnalyticsEnabled returns a boolean if a field has been set.
+HasUrl returns a boolean if a field has been set.
 
-### GetUpgradeStrategy
+### GetNetworkId
 
-`func (o *InlineResponse20083) GetUpgradeStrategy() string`
+`func (o *InlineResponse20083) GetNetworkId() string`
 
-GetUpgradeStrategy returns the UpgradeStrategy field if non-nil, zero value otherwise.
+GetNetworkId returns the NetworkId field if non-nil, zero value otherwise.
 
-### GetUpgradeStrategyOk
+### GetNetworkIdOk
 
-`func (o *InlineResponse20083) GetUpgradeStrategyOk() (*string, bool)`
+`func (o *InlineResponse20083) GetNetworkIdOk() (*string, bool)`
 
-GetUpgradeStrategyOk returns a tuple with the UpgradeStrategy field if it's non-nil, zero value otherwise
+GetNetworkIdOk returns a tuple with the NetworkId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUpgradeStrategy
+### SetNetworkId
 
-`func (o *InlineResponse20083) SetUpgradeStrategy(v string)`
+`func (o *InlineResponse20083) SetNetworkId(v string)`
 
-SetUpgradeStrategy sets UpgradeStrategy field to given value.
+SetNetworkId sets NetworkId field to given value.
 
-### HasUpgradeStrategy
+### HasNetworkId
 
-`func (o *InlineResponse20083) HasUpgradeStrategy() bool`
+`func (o *InlineResponse20083) HasNetworkId() bool`
 
-HasUpgradeStrategy returns a boolean if a field has been set.
+HasNetworkId returns a boolean if a field has been set.
 
-### GetLedLightsOn
+### GetPayloadTemplate
 
-`func (o *InlineResponse20083) GetLedLightsOn() bool`
+`func (o *InlineResponse20083) GetPayloadTemplate() NetworksNetworkIdWebhooksHttpServersPayloadTemplate`
 
-GetLedLightsOn returns the LedLightsOn field if non-nil, zero value otherwise.
+GetPayloadTemplate returns the PayloadTemplate field if non-nil, zero value otherwise.
 
-### GetLedLightsOnOk
+### GetPayloadTemplateOk
 
-`func (o *InlineResponse20083) GetLedLightsOnOk() (*bool, bool)`
+`func (o *InlineResponse20083) GetPayloadTemplateOk() (*NetworksNetworkIdWebhooksHttpServersPayloadTemplate, bool)`
 
-GetLedLightsOnOk returns a tuple with the LedLightsOn field if it's non-nil, zero value otherwise
+GetPayloadTemplateOk returns a tuple with the PayloadTemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLedLightsOn
+### SetPayloadTemplate
 
-`func (o *InlineResponse20083) SetLedLightsOn(v bool)`
+`func (o *InlineResponse20083) SetPayloadTemplate(v NetworksNetworkIdWebhooksHttpServersPayloadTemplate)`
 
-SetLedLightsOn sets LedLightsOn field to given value.
+SetPayloadTemplate sets PayloadTemplate field to given value.
 
-### HasLedLightsOn
+### HasPayloadTemplate
 
-`func (o *InlineResponse20083) HasLedLightsOn() bool`
+`func (o *InlineResponse20083) HasPayloadTemplate() bool`
 
-HasLedLightsOn returns a boolean if a field has been set.
-
-### GetNamedVlans
-
-`func (o *InlineResponse20083) GetNamedVlans() InlineResponse20083NamedVlans`
-
-GetNamedVlans returns the NamedVlans field if non-nil, zero value otherwise.
-
-### GetNamedVlansOk
-
-`func (o *InlineResponse20083) GetNamedVlansOk() (*InlineResponse20083NamedVlans, bool)`
-
-GetNamedVlansOk returns a tuple with the NamedVlans field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNamedVlans
-
-`func (o *InlineResponse20083) SetNamedVlans(v InlineResponse20083NamedVlans)`
-
-SetNamedVlans sets NamedVlans field to given value.
-
-### HasNamedVlans
-
-`func (o *InlineResponse20083) HasNamedVlans() bool`
-
-HasNamedVlans returns a boolean if a field has been set.
+HasPayloadTemplate returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

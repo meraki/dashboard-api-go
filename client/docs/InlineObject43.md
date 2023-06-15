@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Mode** | Pointer to **string** | Set mode to &#39;disabled&#39;/&#39;detection&#39;/&#39;prevention&#39; (optional - omitting will leave current config unchanged) | [optional] 
-**IdsRulesets** | Pointer to **string** | Set the detection ruleset &#39;connectivity&#39;/&#39;balanced&#39;/&#39;security&#39; (optional - omitting will leave current config unchanged). Default value is &#39;balanced&#39; if none currently saved | [optional] 
-**ProtectedNetworks** | Pointer to [**NetworksNetworkIdApplianceSecurityIntrusionProtectedNetworks**](NetworksNetworkIdApplianceSecurityIntrusionProtectedNetworks.md) |  | [optional] 
+**Prefix** | Pointer to **string** | A static IPv6 prefix | [optional] 
+**Origin** | Pointer to [**NetworksNetworkIdAppliancePrefixesDelegatedStaticsOrigin1**](NetworksNetworkIdAppliancePrefixesDelegatedStaticsOrigin1.md) |  | [optional] 
+**Description** | Pointer to **string** | A name or description for the prefix | [optional] 
 
 ## Methods
 
@@ -27,80 +27,80 @@ NewInlineObject43WithDefaults instantiates a new InlineObject43 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetMode
+### GetPrefix
 
-`func (o *InlineObject43) GetMode() string`
+`func (o *InlineObject43) GetPrefix() string`
 
-GetMode returns the Mode field if non-nil, zero value otherwise.
+GetPrefix returns the Prefix field if non-nil, zero value otherwise.
 
-### GetModeOk
+### GetPrefixOk
 
-`func (o *InlineObject43) GetModeOk() (*string, bool)`
+`func (o *InlineObject43) GetPrefixOk() (*string, bool)`
 
-GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
+GetPrefixOk returns a tuple with the Prefix field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMode
+### SetPrefix
 
-`func (o *InlineObject43) SetMode(v string)`
+`func (o *InlineObject43) SetPrefix(v string)`
 
-SetMode sets Mode field to given value.
+SetPrefix sets Prefix field to given value.
 
-### HasMode
+### HasPrefix
 
-`func (o *InlineObject43) HasMode() bool`
+`func (o *InlineObject43) HasPrefix() bool`
 
-HasMode returns a boolean if a field has been set.
+HasPrefix returns a boolean if a field has been set.
 
-### GetIdsRulesets
+### GetOrigin
 
-`func (o *InlineObject43) GetIdsRulesets() string`
+`func (o *InlineObject43) GetOrigin() NetworksNetworkIdAppliancePrefixesDelegatedStaticsOrigin1`
 
-GetIdsRulesets returns the IdsRulesets field if non-nil, zero value otherwise.
+GetOrigin returns the Origin field if non-nil, zero value otherwise.
 
-### GetIdsRulesetsOk
+### GetOriginOk
 
-`func (o *InlineObject43) GetIdsRulesetsOk() (*string, bool)`
+`func (o *InlineObject43) GetOriginOk() (*NetworksNetworkIdAppliancePrefixesDelegatedStaticsOrigin1, bool)`
 
-GetIdsRulesetsOk returns a tuple with the IdsRulesets field if it's non-nil, zero value otherwise
+GetOriginOk returns a tuple with the Origin field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIdsRulesets
+### SetOrigin
 
-`func (o *InlineObject43) SetIdsRulesets(v string)`
+`func (o *InlineObject43) SetOrigin(v NetworksNetworkIdAppliancePrefixesDelegatedStaticsOrigin1)`
 
-SetIdsRulesets sets IdsRulesets field to given value.
+SetOrigin sets Origin field to given value.
 
-### HasIdsRulesets
+### HasOrigin
 
-`func (o *InlineObject43) HasIdsRulesets() bool`
+`func (o *InlineObject43) HasOrigin() bool`
 
-HasIdsRulesets returns a boolean if a field has been set.
+HasOrigin returns a boolean if a field has been set.
 
-### GetProtectedNetworks
+### GetDescription
 
-`func (o *InlineObject43) GetProtectedNetworks() NetworksNetworkIdApplianceSecurityIntrusionProtectedNetworks`
+`func (o *InlineObject43) GetDescription() string`
 
-GetProtectedNetworks returns the ProtectedNetworks field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetProtectedNetworksOk
+### GetDescriptionOk
 
-`func (o *InlineObject43) GetProtectedNetworksOk() (*NetworksNetworkIdApplianceSecurityIntrusionProtectedNetworks, bool)`
+`func (o *InlineObject43) GetDescriptionOk() (*string, bool)`
 
-GetProtectedNetworksOk returns a tuple with the ProtectedNetworks field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProtectedNetworks
+### SetDescription
 
-`func (o *InlineObject43) SetProtectedNetworks(v NetworksNetworkIdApplianceSecurityIntrusionProtectedNetworks)`
+`func (o *InlineObject43) SetDescription(v string)`
 
-SetProtectedNetworks sets ProtectedNetworks field to given value.
+SetDescription sets Description field to given value.
 
-### HasProtectedNetworks
+### HasDescription
 
-`func (o *InlineObject43) HasProtectedNetworks() bool`
+`func (o *InlineObject43) HasDescription() bool`
 
-HasProtectedNetworks returns a boolean if a field has been set.
+HasDescription returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

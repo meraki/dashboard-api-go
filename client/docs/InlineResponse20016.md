@@ -4,10 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Subnet** | Pointer to **string** | The subnet of the single LAN | [optional] 
-**ApplianceIp** | Pointer to **string** | The local IP of the appliance on the single LAN | [optional] 
-**MandatoryDhcp** | Pointer to [**InlineResponse20016MandatoryDhcp**](InlineResponse20016MandatoryDhcp.md) |  | [optional] 
-**Ipv6** | Pointer to [**InlineResponse20016Ipv6**](InlineResponse20016Ipv6.md) |  | [optional] 
+**StaticDelegatedPrefixId** | Pointer to **string** | Static delegated prefix id. | [optional] 
+**Prefix** | Pointer to **string** | IPv6 prefix/prefix length. | [optional] 
+**Origin** | Pointer to [**NetworksNetworkIdAppliancePrefixesDelegatedStaticsOrigin**](NetworksNetworkIdAppliancePrefixesDelegatedStaticsOrigin.md) |  | [optional] 
+**Description** | Pointer to **string** | Identifying description for the prefix. | [optional] 
+**CreatedAt** | Pointer to **time.Time** | Prefix creation time. | [optional] 
+**UpdatedAt** | Pointer to **time.Time** | Prefix Updated time. | [optional] 
 
 ## Methods
 
@@ -28,105 +30,155 @@ NewInlineResponse20016WithDefaults instantiates a new InlineResponse20016 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetSubnet
+### GetStaticDelegatedPrefixId
 
-`func (o *InlineResponse20016) GetSubnet() string`
+`func (o *InlineResponse20016) GetStaticDelegatedPrefixId() string`
 
-GetSubnet returns the Subnet field if non-nil, zero value otherwise.
+GetStaticDelegatedPrefixId returns the StaticDelegatedPrefixId field if non-nil, zero value otherwise.
 
-### GetSubnetOk
+### GetStaticDelegatedPrefixIdOk
 
-`func (o *InlineResponse20016) GetSubnetOk() (*string, bool)`
+`func (o *InlineResponse20016) GetStaticDelegatedPrefixIdOk() (*string, bool)`
 
-GetSubnetOk returns a tuple with the Subnet field if it's non-nil, zero value otherwise
+GetStaticDelegatedPrefixIdOk returns a tuple with the StaticDelegatedPrefixId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSubnet
+### SetStaticDelegatedPrefixId
 
-`func (o *InlineResponse20016) SetSubnet(v string)`
+`func (o *InlineResponse20016) SetStaticDelegatedPrefixId(v string)`
 
-SetSubnet sets Subnet field to given value.
+SetStaticDelegatedPrefixId sets StaticDelegatedPrefixId field to given value.
 
-### HasSubnet
+### HasStaticDelegatedPrefixId
 
-`func (o *InlineResponse20016) HasSubnet() bool`
+`func (o *InlineResponse20016) HasStaticDelegatedPrefixId() bool`
 
-HasSubnet returns a boolean if a field has been set.
+HasStaticDelegatedPrefixId returns a boolean if a field has been set.
 
-### GetApplianceIp
+### GetPrefix
 
-`func (o *InlineResponse20016) GetApplianceIp() string`
+`func (o *InlineResponse20016) GetPrefix() string`
 
-GetApplianceIp returns the ApplianceIp field if non-nil, zero value otherwise.
+GetPrefix returns the Prefix field if non-nil, zero value otherwise.
 
-### GetApplianceIpOk
+### GetPrefixOk
 
-`func (o *InlineResponse20016) GetApplianceIpOk() (*string, bool)`
+`func (o *InlineResponse20016) GetPrefixOk() (*string, bool)`
 
-GetApplianceIpOk returns a tuple with the ApplianceIp field if it's non-nil, zero value otherwise
+GetPrefixOk returns a tuple with the Prefix field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetApplianceIp
+### SetPrefix
 
-`func (o *InlineResponse20016) SetApplianceIp(v string)`
+`func (o *InlineResponse20016) SetPrefix(v string)`
 
-SetApplianceIp sets ApplianceIp field to given value.
+SetPrefix sets Prefix field to given value.
 
-### HasApplianceIp
+### HasPrefix
 
-`func (o *InlineResponse20016) HasApplianceIp() bool`
+`func (o *InlineResponse20016) HasPrefix() bool`
 
-HasApplianceIp returns a boolean if a field has been set.
+HasPrefix returns a boolean if a field has been set.
 
-### GetMandatoryDhcp
+### GetOrigin
 
-`func (o *InlineResponse20016) GetMandatoryDhcp() InlineResponse20016MandatoryDhcp`
+`func (o *InlineResponse20016) GetOrigin() NetworksNetworkIdAppliancePrefixesDelegatedStaticsOrigin`
 
-GetMandatoryDhcp returns the MandatoryDhcp field if non-nil, zero value otherwise.
+GetOrigin returns the Origin field if non-nil, zero value otherwise.
 
-### GetMandatoryDhcpOk
+### GetOriginOk
 
-`func (o *InlineResponse20016) GetMandatoryDhcpOk() (*InlineResponse20016MandatoryDhcp, bool)`
+`func (o *InlineResponse20016) GetOriginOk() (*NetworksNetworkIdAppliancePrefixesDelegatedStaticsOrigin, bool)`
 
-GetMandatoryDhcpOk returns a tuple with the MandatoryDhcp field if it's non-nil, zero value otherwise
+GetOriginOk returns a tuple with the Origin field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMandatoryDhcp
+### SetOrigin
 
-`func (o *InlineResponse20016) SetMandatoryDhcp(v InlineResponse20016MandatoryDhcp)`
+`func (o *InlineResponse20016) SetOrigin(v NetworksNetworkIdAppliancePrefixesDelegatedStaticsOrigin)`
 
-SetMandatoryDhcp sets MandatoryDhcp field to given value.
+SetOrigin sets Origin field to given value.
 
-### HasMandatoryDhcp
+### HasOrigin
 
-`func (o *InlineResponse20016) HasMandatoryDhcp() bool`
+`func (o *InlineResponse20016) HasOrigin() bool`
 
-HasMandatoryDhcp returns a boolean if a field has been set.
+HasOrigin returns a boolean if a field has been set.
 
-### GetIpv6
+### GetDescription
 
-`func (o *InlineResponse20016) GetIpv6() InlineResponse20016Ipv6`
+`func (o *InlineResponse20016) GetDescription() string`
 
-GetIpv6 returns the Ipv6 field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetIpv6Ok
+### GetDescriptionOk
 
-`func (o *InlineResponse20016) GetIpv6Ok() (*InlineResponse20016Ipv6, bool)`
+`func (o *InlineResponse20016) GetDescriptionOk() (*string, bool)`
 
-GetIpv6Ok returns a tuple with the Ipv6 field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIpv6
+### SetDescription
 
-`func (o *InlineResponse20016) SetIpv6(v InlineResponse20016Ipv6)`
+`func (o *InlineResponse20016) SetDescription(v string)`
 
-SetIpv6 sets Ipv6 field to given value.
+SetDescription sets Description field to given value.
 
-### HasIpv6
+### HasDescription
 
-`func (o *InlineResponse20016) HasIpv6() bool`
+`func (o *InlineResponse20016) HasDescription() bool`
 
-HasIpv6 returns a boolean if a field has been set.
+HasDescription returns a boolean if a field has been set.
+
+### GetCreatedAt
+
+`func (o *InlineResponse20016) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *InlineResponse20016) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *InlineResponse20016) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+### HasCreatedAt
+
+`func (o *InlineResponse20016) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
+
+### GetUpdatedAt
+
+`func (o *InlineResponse20016) GetUpdatedAt() time.Time`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *InlineResponse20016) GetUpdatedAtOk() (*time.Time, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *InlineResponse20016) SetUpdatedAt(v time.Time)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+### HasUpdatedAt
+
+`func (o *InlineResponse20016) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

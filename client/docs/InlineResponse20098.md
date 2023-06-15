@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NetworkId** | Pointer to **string** | Network Id | [optional] 
-**Serial** | Pointer to **string** | Serial number of the device | [optional] 
-**Model** | Pointer to **string** | Device model | [optional] 
-**LastReportedAt** | Pointer to **time.Time** | Last reported time for the device | [optional] 
-**Uplinks** | Pointer to [**[]OrganizationsOrganizationIdCellularGatewayUplinkStatusesUplinks**](OrganizationsOrganizationIdCellularGatewayUplinkStatusesUplinks.md) | Uplinks info | [optional] 
+**StartTs** | Pointer to **time.Time** | The start time of the query range | [optional] 
+**EndTs** | Pointer to **time.Time** | The end time of the query range | [optional] 
+**TotalKbps** | Pointer to **int32** | Total usage in kilobytes-per-second | [optional] 
+**SentKbps** | Pointer to **int32** | Sent kilobytes-per-second | [optional] 
+**ReceivedKbps** | Pointer to **int32** | Received kilobytes-per-second | [optional] 
 
 ## Methods
 
@@ -29,130 +29,130 @@ NewInlineResponse20098WithDefaults instantiates a new InlineResponse20098 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetNetworkId
+### GetStartTs
 
-`func (o *InlineResponse20098) GetNetworkId() string`
+`func (o *InlineResponse20098) GetStartTs() time.Time`
 
-GetNetworkId returns the NetworkId field if non-nil, zero value otherwise.
+GetStartTs returns the StartTs field if non-nil, zero value otherwise.
 
-### GetNetworkIdOk
+### GetStartTsOk
 
-`func (o *InlineResponse20098) GetNetworkIdOk() (*string, bool)`
+`func (o *InlineResponse20098) GetStartTsOk() (*time.Time, bool)`
 
-GetNetworkIdOk returns a tuple with the NetworkId field if it's non-nil, zero value otherwise
+GetStartTsOk returns a tuple with the StartTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNetworkId
+### SetStartTs
 
-`func (o *InlineResponse20098) SetNetworkId(v string)`
+`func (o *InlineResponse20098) SetStartTs(v time.Time)`
 
-SetNetworkId sets NetworkId field to given value.
+SetStartTs sets StartTs field to given value.
 
-### HasNetworkId
+### HasStartTs
 
-`func (o *InlineResponse20098) HasNetworkId() bool`
+`func (o *InlineResponse20098) HasStartTs() bool`
 
-HasNetworkId returns a boolean if a field has been set.
+HasStartTs returns a boolean if a field has been set.
 
-### GetSerial
+### GetEndTs
 
-`func (o *InlineResponse20098) GetSerial() string`
+`func (o *InlineResponse20098) GetEndTs() time.Time`
 
-GetSerial returns the Serial field if non-nil, zero value otherwise.
+GetEndTs returns the EndTs field if non-nil, zero value otherwise.
 
-### GetSerialOk
+### GetEndTsOk
 
-`func (o *InlineResponse20098) GetSerialOk() (*string, bool)`
+`func (o *InlineResponse20098) GetEndTsOk() (*time.Time, bool)`
 
-GetSerialOk returns a tuple with the Serial field if it's non-nil, zero value otherwise
+GetEndTsOk returns a tuple with the EndTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSerial
+### SetEndTs
 
-`func (o *InlineResponse20098) SetSerial(v string)`
+`func (o *InlineResponse20098) SetEndTs(v time.Time)`
 
-SetSerial sets Serial field to given value.
+SetEndTs sets EndTs field to given value.
 
-### HasSerial
+### HasEndTs
 
-`func (o *InlineResponse20098) HasSerial() bool`
+`func (o *InlineResponse20098) HasEndTs() bool`
 
-HasSerial returns a boolean if a field has been set.
+HasEndTs returns a boolean if a field has been set.
 
-### GetModel
+### GetTotalKbps
 
-`func (o *InlineResponse20098) GetModel() string`
+`func (o *InlineResponse20098) GetTotalKbps() int32`
 
-GetModel returns the Model field if non-nil, zero value otherwise.
+GetTotalKbps returns the TotalKbps field if non-nil, zero value otherwise.
 
-### GetModelOk
+### GetTotalKbpsOk
 
-`func (o *InlineResponse20098) GetModelOk() (*string, bool)`
+`func (o *InlineResponse20098) GetTotalKbpsOk() (*int32, bool)`
 
-GetModelOk returns a tuple with the Model field if it's non-nil, zero value otherwise
+GetTotalKbpsOk returns a tuple with the TotalKbps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetModel
+### SetTotalKbps
 
-`func (o *InlineResponse20098) SetModel(v string)`
+`func (o *InlineResponse20098) SetTotalKbps(v int32)`
 
-SetModel sets Model field to given value.
+SetTotalKbps sets TotalKbps field to given value.
 
-### HasModel
+### HasTotalKbps
 
-`func (o *InlineResponse20098) HasModel() bool`
+`func (o *InlineResponse20098) HasTotalKbps() bool`
 
-HasModel returns a boolean if a field has been set.
+HasTotalKbps returns a boolean if a field has been set.
 
-### GetLastReportedAt
+### GetSentKbps
 
-`func (o *InlineResponse20098) GetLastReportedAt() time.Time`
+`func (o *InlineResponse20098) GetSentKbps() int32`
 
-GetLastReportedAt returns the LastReportedAt field if non-nil, zero value otherwise.
+GetSentKbps returns the SentKbps field if non-nil, zero value otherwise.
 
-### GetLastReportedAtOk
+### GetSentKbpsOk
 
-`func (o *InlineResponse20098) GetLastReportedAtOk() (*time.Time, bool)`
+`func (o *InlineResponse20098) GetSentKbpsOk() (*int32, bool)`
 
-GetLastReportedAtOk returns a tuple with the LastReportedAt field if it's non-nil, zero value otherwise
+GetSentKbpsOk returns a tuple with the SentKbps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLastReportedAt
+### SetSentKbps
 
-`func (o *InlineResponse20098) SetLastReportedAt(v time.Time)`
+`func (o *InlineResponse20098) SetSentKbps(v int32)`
 
-SetLastReportedAt sets LastReportedAt field to given value.
+SetSentKbps sets SentKbps field to given value.
 
-### HasLastReportedAt
+### HasSentKbps
 
-`func (o *InlineResponse20098) HasLastReportedAt() bool`
+`func (o *InlineResponse20098) HasSentKbps() bool`
 
-HasLastReportedAt returns a boolean if a field has been set.
+HasSentKbps returns a boolean if a field has been set.
 
-### GetUplinks
+### GetReceivedKbps
 
-`func (o *InlineResponse20098) GetUplinks() []OrganizationsOrganizationIdCellularGatewayUplinkStatusesUplinks`
+`func (o *InlineResponse20098) GetReceivedKbps() int32`
 
-GetUplinks returns the Uplinks field if non-nil, zero value otherwise.
+GetReceivedKbps returns the ReceivedKbps field if non-nil, zero value otherwise.
 
-### GetUplinksOk
+### GetReceivedKbpsOk
 
-`func (o *InlineResponse20098) GetUplinksOk() (*[]OrganizationsOrganizationIdCellularGatewayUplinkStatusesUplinks, bool)`
+`func (o *InlineResponse20098) GetReceivedKbpsOk() (*int32, bool)`
 
-GetUplinksOk returns a tuple with the Uplinks field if it's non-nil, zero value otherwise
+GetReceivedKbpsOk returns a tuple with the ReceivedKbps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUplinks
+### SetReceivedKbps
 
-`func (o *InlineResponse20098) SetUplinks(v []OrganizationsOrganizationIdCellularGatewayUplinkStatusesUplinks)`
+`func (o *InlineResponse20098) SetReceivedKbps(v int32)`
 
-SetUplinks sets Uplinks field to given value.
+SetReceivedKbps sets ReceivedKbps field to given value.
 
-### HasUplinks
+### HasReceivedKbps
 
-`func (o *InlineResponse20098) HasUplinks() bool`
+`func (o *InlineResponse20098) HasReceivedKbps() bool`
 
-HasUplinks returns a boolean if a field has been set.
+HasReceivedKbps returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

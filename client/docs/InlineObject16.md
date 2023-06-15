@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ports** | **[]string** | List of switch ports | 
+**Livestream** | Pointer to [**DevicesSerialSensorRelationshipsLivestream1**](DevicesSerialSensorRelationshipsLivestream1.md) |  | [optional] 
 
 ## Methods
 
 ### NewInlineObject16
 
-`func NewInlineObject16(ports []string, ) *InlineObject16`
+`func NewInlineObject16() *InlineObject16`
 
 NewInlineObject16 instantiates a new InlineObject16 object
 This constructor will assign default values to properties that have it defined,
@@ -25,25 +25,30 @@ NewInlineObject16WithDefaults instantiates a new InlineObject16 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetPorts
+### GetLivestream
 
-`func (o *InlineObject16) GetPorts() []string`
+`func (o *InlineObject16) GetLivestream() DevicesSerialSensorRelationshipsLivestream1`
 
-GetPorts returns the Ports field if non-nil, zero value otherwise.
+GetLivestream returns the Livestream field if non-nil, zero value otherwise.
 
-### GetPortsOk
+### GetLivestreamOk
 
-`func (o *InlineObject16) GetPortsOk() (*[]string, bool)`
+`func (o *InlineObject16) GetLivestreamOk() (*DevicesSerialSensorRelationshipsLivestream1, bool)`
 
-GetPortsOk returns a tuple with the Ports field if it's non-nil, zero value otherwise
+GetLivestreamOk returns a tuple with the Livestream field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPorts
+### SetLivestream
 
-`func (o *InlineObject16) SetPorts(v []string)`
+`func (o *InlineObject16) SetLivestream(v DevicesSerialSensorRelationshipsLivestream1)`
 
-SetPorts sets Ports field to given value.
+SetLivestream sets Livestream field to given value.
 
+### HasLivestream
+
+`func (o *InlineObject16) HasLivestream() bool`
+
+HasLivestream returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

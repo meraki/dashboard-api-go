@@ -4,16 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | **bool** | Boolean value to enable or disable the BGP configuration. When BGP is enabled, the asNumber (ASN) will be autopopulated with the preconfigured ASN at other Hubs or a default value if there is no ASN configured. | 
-**AsNumber** | Pointer to **int32** | An Autonomous System Number (ASN) is required if you are to run BGP and peer with another BGP Speaker outside of the Auto VPN domain. This ASN will be applied to the entire Auto VPN domain. The entire 4-byte ASN range is supported. So, the ASN must be an integer between 1 and 4294967295. When absent, this field is not updated. If no value exists then it defaults to 64512. | [optional] 
-**IbgpHoldTimer** | Pointer to **int32** | The IBGP holdtimer in seconds. The IBGP holdtimer must be an integer between 12 and 240. When absent, this field is not updated. If no value exists then it defaults to 240. | [optional] 
-**Neighbors** | Pointer to [**[]NetworksNetworkIdApplianceVpnBgpNeighbors**](NetworksNetworkIdApplianceVpnBgpNeighbors.md) | List of BGP neighbors. This list replaces the existing set of neighbors. When absent, this field is not updated. | [optional] 
+**Id** | **string** | The VLAN ID of the new VLAN (must be between 1 and 4094) | 
+**Name** | **string** | The name of the new VLAN | 
+**Subnet** | Pointer to **string** | The subnet of the VLAN | [optional] 
+**ApplianceIp** | Pointer to **string** | The local IP of the appliance on the VLAN | [optional] 
+**GroupPolicyId** | Pointer to **string** | The id of the desired group policy to apply to the VLAN | [optional] 
+**TemplateVlanType** | Pointer to **string** | Type of subnetting of the VLAN. Applicable only for template network. | [optional] [default to "same"]
+**Cidr** | Pointer to **string** | CIDR of the pool of subnets. Applicable only for template network. Each network bound to the template will automatically pick a subnet from this pool to build its own VLAN. | [optional] 
+**Mask** | Pointer to **int32** | Mask used for the subnet of all bound to the template networks. Applicable only for template network. | [optional] 
+**Ipv6** | Pointer to [**NetworksNetworkIdApplianceSingleLanIpv6**](NetworksNetworkIdApplianceSingleLanIpv6.md) |  | [optional] 
+**MandatoryDhcp** | Pointer to [**NetworksNetworkIdApplianceVlansMandatoryDhcp**](NetworksNetworkIdApplianceVlansMandatoryDhcp.md) |  | [optional] 
 
 ## Methods
 
 ### NewInlineObject59
 
-`func NewInlineObject59(enabled bool, ) *InlineObject59`
+`func NewInlineObject59(id string, name string, ) *InlineObject59`
 
 NewInlineObject59 instantiates a new InlineObject59 object
 This constructor will assign default values to properties that have it defined,
@@ -28,100 +34,245 @@ NewInlineObject59WithDefaults instantiates a new InlineObject59 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetEnabled
+### GetId
 
-`func (o *InlineObject59) GetEnabled() bool`
+`func (o *InlineObject59) GetId() string`
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetEnabledOk
+### GetIdOk
 
-`func (o *InlineObject59) GetEnabledOk() (*bool, bool)`
+`func (o *InlineObject59) GetIdOk() (*string, bool)`
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnabled
+### SetId
 
-`func (o *InlineObject59) SetEnabled(v bool)`
+`func (o *InlineObject59) SetId(v string)`
 
-SetEnabled sets Enabled field to given value.
+SetId sets Id field to given value.
 
 
-### GetAsNumber
+### GetName
 
-`func (o *InlineObject59) GetAsNumber() int32`
+`func (o *InlineObject59) GetName() string`
 
-GetAsNumber returns the AsNumber field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetAsNumberOk
+### GetNameOk
 
-`func (o *InlineObject59) GetAsNumberOk() (*int32, bool)`
+`func (o *InlineObject59) GetNameOk() (*string, bool)`
 
-GetAsNumberOk returns a tuple with the AsNumber field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAsNumber
+### SetName
 
-`func (o *InlineObject59) SetAsNumber(v int32)`
+`func (o *InlineObject59) SetName(v string)`
 
-SetAsNumber sets AsNumber field to given value.
+SetName sets Name field to given value.
 
-### HasAsNumber
 
-`func (o *InlineObject59) HasAsNumber() bool`
+### GetSubnet
 
-HasAsNumber returns a boolean if a field has been set.
+`func (o *InlineObject59) GetSubnet() string`
 
-### GetIbgpHoldTimer
+GetSubnet returns the Subnet field if non-nil, zero value otherwise.
 
-`func (o *InlineObject59) GetIbgpHoldTimer() int32`
+### GetSubnetOk
 
-GetIbgpHoldTimer returns the IbgpHoldTimer field if non-nil, zero value otherwise.
+`func (o *InlineObject59) GetSubnetOk() (*string, bool)`
 
-### GetIbgpHoldTimerOk
-
-`func (o *InlineObject59) GetIbgpHoldTimerOk() (*int32, bool)`
-
-GetIbgpHoldTimerOk returns a tuple with the IbgpHoldTimer field if it's non-nil, zero value otherwise
+GetSubnetOk returns a tuple with the Subnet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIbgpHoldTimer
+### SetSubnet
 
-`func (o *InlineObject59) SetIbgpHoldTimer(v int32)`
+`func (o *InlineObject59) SetSubnet(v string)`
 
-SetIbgpHoldTimer sets IbgpHoldTimer field to given value.
+SetSubnet sets Subnet field to given value.
 
-### HasIbgpHoldTimer
+### HasSubnet
 
-`func (o *InlineObject59) HasIbgpHoldTimer() bool`
+`func (o *InlineObject59) HasSubnet() bool`
 
-HasIbgpHoldTimer returns a boolean if a field has been set.
+HasSubnet returns a boolean if a field has been set.
 
-### GetNeighbors
+### GetApplianceIp
 
-`func (o *InlineObject59) GetNeighbors() []NetworksNetworkIdApplianceVpnBgpNeighbors`
+`func (o *InlineObject59) GetApplianceIp() string`
 
-GetNeighbors returns the Neighbors field if non-nil, zero value otherwise.
+GetApplianceIp returns the ApplianceIp field if non-nil, zero value otherwise.
 
-### GetNeighborsOk
+### GetApplianceIpOk
 
-`func (o *InlineObject59) GetNeighborsOk() (*[]NetworksNetworkIdApplianceVpnBgpNeighbors, bool)`
+`func (o *InlineObject59) GetApplianceIpOk() (*string, bool)`
 
-GetNeighborsOk returns a tuple with the Neighbors field if it's non-nil, zero value otherwise
+GetApplianceIpOk returns a tuple with the ApplianceIp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNeighbors
+### SetApplianceIp
 
-`func (o *InlineObject59) SetNeighbors(v []NetworksNetworkIdApplianceVpnBgpNeighbors)`
+`func (o *InlineObject59) SetApplianceIp(v string)`
 
-SetNeighbors sets Neighbors field to given value.
+SetApplianceIp sets ApplianceIp field to given value.
 
-### HasNeighbors
+### HasApplianceIp
 
-`func (o *InlineObject59) HasNeighbors() bool`
+`func (o *InlineObject59) HasApplianceIp() bool`
 
-HasNeighbors returns a boolean if a field has been set.
+HasApplianceIp returns a boolean if a field has been set.
+
+### GetGroupPolicyId
+
+`func (o *InlineObject59) GetGroupPolicyId() string`
+
+GetGroupPolicyId returns the GroupPolicyId field if non-nil, zero value otherwise.
+
+### GetGroupPolicyIdOk
+
+`func (o *InlineObject59) GetGroupPolicyIdOk() (*string, bool)`
+
+GetGroupPolicyIdOk returns a tuple with the GroupPolicyId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroupPolicyId
+
+`func (o *InlineObject59) SetGroupPolicyId(v string)`
+
+SetGroupPolicyId sets GroupPolicyId field to given value.
+
+### HasGroupPolicyId
+
+`func (o *InlineObject59) HasGroupPolicyId() bool`
+
+HasGroupPolicyId returns a boolean if a field has been set.
+
+### GetTemplateVlanType
+
+`func (o *InlineObject59) GetTemplateVlanType() string`
+
+GetTemplateVlanType returns the TemplateVlanType field if non-nil, zero value otherwise.
+
+### GetTemplateVlanTypeOk
+
+`func (o *InlineObject59) GetTemplateVlanTypeOk() (*string, bool)`
+
+GetTemplateVlanTypeOk returns a tuple with the TemplateVlanType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplateVlanType
+
+`func (o *InlineObject59) SetTemplateVlanType(v string)`
+
+SetTemplateVlanType sets TemplateVlanType field to given value.
+
+### HasTemplateVlanType
+
+`func (o *InlineObject59) HasTemplateVlanType() bool`
+
+HasTemplateVlanType returns a boolean if a field has been set.
+
+### GetCidr
+
+`func (o *InlineObject59) GetCidr() string`
+
+GetCidr returns the Cidr field if non-nil, zero value otherwise.
+
+### GetCidrOk
+
+`func (o *InlineObject59) GetCidrOk() (*string, bool)`
+
+GetCidrOk returns a tuple with the Cidr field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCidr
+
+`func (o *InlineObject59) SetCidr(v string)`
+
+SetCidr sets Cidr field to given value.
+
+### HasCidr
+
+`func (o *InlineObject59) HasCidr() bool`
+
+HasCidr returns a boolean if a field has been set.
+
+### GetMask
+
+`func (o *InlineObject59) GetMask() int32`
+
+GetMask returns the Mask field if non-nil, zero value otherwise.
+
+### GetMaskOk
+
+`func (o *InlineObject59) GetMaskOk() (*int32, bool)`
+
+GetMaskOk returns a tuple with the Mask field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMask
+
+`func (o *InlineObject59) SetMask(v int32)`
+
+SetMask sets Mask field to given value.
+
+### HasMask
+
+`func (o *InlineObject59) HasMask() bool`
+
+HasMask returns a boolean if a field has been set.
+
+### GetIpv6
+
+`func (o *InlineObject59) GetIpv6() NetworksNetworkIdApplianceSingleLanIpv6`
+
+GetIpv6 returns the Ipv6 field if non-nil, zero value otherwise.
+
+### GetIpv6Ok
+
+`func (o *InlineObject59) GetIpv6Ok() (*NetworksNetworkIdApplianceSingleLanIpv6, bool)`
+
+GetIpv6Ok returns a tuple with the Ipv6 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpv6
+
+`func (o *InlineObject59) SetIpv6(v NetworksNetworkIdApplianceSingleLanIpv6)`
+
+SetIpv6 sets Ipv6 field to given value.
+
+### HasIpv6
+
+`func (o *InlineObject59) HasIpv6() bool`
+
+HasIpv6 returns a boolean if a field has been set.
+
+### GetMandatoryDhcp
+
+`func (o *InlineObject59) GetMandatoryDhcp() NetworksNetworkIdApplianceVlansMandatoryDhcp`
+
+GetMandatoryDhcp returns the MandatoryDhcp field if non-nil, zero value otherwise.
+
+### GetMandatoryDhcpOk
+
+`func (o *InlineObject59) GetMandatoryDhcpOk() (*NetworksNetworkIdApplianceVlansMandatoryDhcp, bool)`
+
+GetMandatoryDhcpOk returns a tuple with the MandatoryDhcp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMandatoryDhcp
+
+`func (o *InlineObject59) SetMandatoryDhcp(v NetworksNetworkIdApplianceVlansMandatoryDhcp)`
+
+SetMandatoryDhcp sets MandatoryDhcp field to given value.
+
+### HasMandatoryDhcp
+
+`func (o *InlineObject59) HasMandatoryDhcp() bool`
+
+HasMandatoryDhcp returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

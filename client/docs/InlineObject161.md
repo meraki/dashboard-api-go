@@ -4,16 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | The name of the Identity PSK | 
-**Passphrase** | Pointer to **string** | The passphrase for client authentication. If left blank, one will be auto-generated. | [optional] 
-**GroupPolicyId** | **string** | The group policy to be applied to clients | 
-**ExpiresAt** | Pointer to **time.Time** | Timestamp for when the Identity PSK expires. Will not expire if left blank. | [optional] 
+**Rules** | Pointer to [**[]NetworksNetworkIdWirelessSsidsNumberFirewallL3FirewallRulesRules**](NetworksNetworkIdWirelessSsidsNumberFirewallL3FirewallRulesRules.md) | An ordered array of the firewall rules for this SSID (not including the local LAN access rule or the default rule) | [optional] 
+**AllowLanAccess** | Pointer to **bool** | Allow wireless client access to local LAN (boolean value - true allows access and false denies access) (optional) | [optional] 
 
 ## Methods
 
 ### NewInlineObject161
 
-`func NewInlineObject161(name string, groupPolicyId string, ) *InlineObject161`
+`func NewInlineObject161() *InlineObject161`
 
 NewInlineObject161 instantiates a new InlineObject161 object
 This constructor will assign default values to properties that have it defined,
@@ -28,95 +26,55 @@ NewInlineObject161WithDefaults instantiates a new InlineObject161 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetRules
 
-`func (o *InlineObject161) GetName() string`
+`func (o *InlineObject161) GetRules() []NetworksNetworkIdWirelessSsidsNumberFirewallL3FirewallRulesRules`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetRules returns the Rules field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetRulesOk
 
-`func (o *InlineObject161) GetNameOk() (*string, bool)`
+`func (o *InlineObject161) GetRulesOk() (*[]NetworksNetworkIdWirelessSsidsNumberFirewallL3FirewallRulesRules, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetRules
 
-`func (o *InlineObject161) SetName(v string)`
+`func (o *InlineObject161) SetRules(v []NetworksNetworkIdWirelessSsidsNumberFirewallL3FirewallRulesRules)`
 
-SetName sets Name field to given value.
+SetRules sets Rules field to given value.
 
+### HasRules
 
-### GetPassphrase
+`func (o *InlineObject161) HasRules() bool`
 
-`func (o *InlineObject161) GetPassphrase() string`
+HasRules returns a boolean if a field has been set.
 
-GetPassphrase returns the Passphrase field if non-nil, zero value otherwise.
+### GetAllowLanAccess
 
-### GetPassphraseOk
+`func (o *InlineObject161) GetAllowLanAccess() bool`
 
-`func (o *InlineObject161) GetPassphraseOk() (*string, bool)`
+GetAllowLanAccess returns the AllowLanAccess field if non-nil, zero value otherwise.
 
-GetPassphraseOk returns a tuple with the Passphrase field if it's non-nil, zero value otherwise
+### GetAllowLanAccessOk
+
+`func (o *InlineObject161) GetAllowLanAccessOk() (*bool, bool)`
+
+GetAllowLanAccessOk returns a tuple with the AllowLanAccess field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPassphrase
+### SetAllowLanAccess
 
-`func (o *InlineObject161) SetPassphrase(v string)`
+`func (o *InlineObject161) SetAllowLanAccess(v bool)`
 
-SetPassphrase sets Passphrase field to given value.
+SetAllowLanAccess sets AllowLanAccess field to given value.
 
-### HasPassphrase
+### HasAllowLanAccess
 
-`func (o *InlineObject161) HasPassphrase() bool`
+`func (o *InlineObject161) HasAllowLanAccess() bool`
 
-HasPassphrase returns a boolean if a field has been set.
-
-### GetGroupPolicyId
-
-`func (o *InlineObject161) GetGroupPolicyId() string`
-
-GetGroupPolicyId returns the GroupPolicyId field if non-nil, zero value otherwise.
-
-### GetGroupPolicyIdOk
-
-`func (o *InlineObject161) GetGroupPolicyIdOk() (*string, bool)`
-
-GetGroupPolicyIdOk returns a tuple with the GroupPolicyId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGroupPolicyId
-
-`func (o *InlineObject161) SetGroupPolicyId(v string)`
-
-SetGroupPolicyId sets GroupPolicyId field to given value.
-
-
-### GetExpiresAt
-
-`func (o *InlineObject161) GetExpiresAt() time.Time`
-
-GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
-
-### GetExpiresAtOk
-
-`func (o *InlineObject161) GetExpiresAtOk() (*time.Time, bool)`
-
-GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExpiresAt
-
-`func (o *InlineObject161) SetExpiresAt(v time.Time)`
-
-SetExpiresAt sets ExpiresAt field to given value.
-
-### HasExpiresAt
-
-`func (o *InlineObject161) HasExpiresAt() bool`
-
-HasExpiresAt returns a boolean if a field has been set.
+HasAllowLanAccess returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

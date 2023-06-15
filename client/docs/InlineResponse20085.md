@@ -4,10 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timeout** | Pointer to **int32** | General EAP timeout in seconds. | [optional] 
-**MaxRetries** | Pointer to **int32** | Maximum number of general EAP retries. | [optional] 
-**Identity** | Pointer to [**InlineResponse20085Identity**](InlineResponse20085Identity.md) |  | [optional] 
-**EapolKey** | Pointer to [**InlineResponse20085EapolKey**](InlineResponse20085EapolKey.md) |  | [optional] 
+**ScanningEnabled** | Pointer to **bool** | Whether APs will scan for Bluetooth enabled clients. | [optional] 
+**AdvertisingEnabled** | Pointer to **bool** | Whether APs will advertise beacons. | [optional] 
+**Uuid** | Pointer to **string** | The UUID to be used in the beacon identifier. | [optional] 
+**MajorMinorAssignmentMode** | Pointer to **string** | The way major and minor number should be assigned to nodes in the network. (&#39;Unique&#39;, &#39;Non-unique&#39;) | [optional] 
+**Major** | Pointer to **int32** | The major number to be used in the beacon identifier. Only valid in &#39;Non-unique&#39; mode. | [optional] 
+**Minor** | Pointer to **int32** | The minor number to be used in the beacon identifier. Only valid in &#39;Non-unique&#39; mode. | [optional] 
+**EslEnabled** | Pointer to **bool** | Whether ESL is enabled on this network. | [optional] 
 
 ## Methods
 
@@ -28,105 +31,180 @@ NewInlineResponse20085WithDefaults instantiates a new InlineResponse20085 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetTimeout
+### GetScanningEnabled
 
-`func (o *InlineResponse20085) GetTimeout() int32`
+`func (o *InlineResponse20085) GetScanningEnabled() bool`
 
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+GetScanningEnabled returns the ScanningEnabled field if non-nil, zero value otherwise.
 
-### GetTimeoutOk
+### GetScanningEnabledOk
 
-`func (o *InlineResponse20085) GetTimeoutOk() (*int32, bool)`
+`func (o *InlineResponse20085) GetScanningEnabledOk() (*bool, bool)`
 
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+GetScanningEnabledOk returns a tuple with the ScanningEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimeout
+### SetScanningEnabled
 
-`func (o *InlineResponse20085) SetTimeout(v int32)`
+`func (o *InlineResponse20085) SetScanningEnabled(v bool)`
 
-SetTimeout sets Timeout field to given value.
+SetScanningEnabled sets ScanningEnabled field to given value.
 
-### HasTimeout
+### HasScanningEnabled
 
-`func (o *InlineResponse20085) HasTimeout() bool`
+`func (o *InlineResponse20085) HasScanningEnabled() bool`
 
-HasTimeout returns a boolean if a field has been set.
+HasScanningEnabled returns a boolean if a field has been set.
 
-### GetMaxRetries
+### GetAdvertisingEnabled
 
-`func (o *InlineResponse20085) GetMaxRetries() int32`
+`func (o *InlineResponse20085) GetAdvertisingEnabled() bool`
 
-GetMaxRetries returns the MaxRetries field if non-nil, zero value otherwise.
+GetAdvertisingEnabled returns the AdvertisingEnabled field if non-nil, zero value otherwise.
 
-### GetMaxRetriesOk
+### GetAdvertisingEnabledOk
 
-`func (o *InlineResponse20085) GetMaxRetriesOk() (*int32, bool)`
+`func (o *InlineResponse20085) GetAdvertisingEnabledOk() (*bool, bool)`
 
-GetMaxRetriesOk returns a tuple with the MaxRetries field if it's non-nil, zero value otherwise
+GetAdvertisingEnabledOk returns a tuple with the AdvertisingEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMaxRetries
+### SetAdvertisingEnabled
 
-`func (o *InlineResponse20085) SetMaxRetries(v int32)`
+`func (o *InlineResponse20085) SetAdvertisingEnabled(v bool)`
 
-SetMaxRetries sets MaxRetries field to given value.
+SetAdvertisingEnabled sets AdvertisingEnabled field to given value.
 
-### HasMaxRetries
+### HasAdvertisingEnabled
 
-`func (o *InlineResponse20085) HasMaxRetries() bool`
+`func (o *InlineResponse20085) HasAdvertisingEnabled() bool`
 
-HasMaxRetries returns a boolean if a field has been set.
+HasAdvertisingEnabled returns a boolean if a field has been set.
 
-### GetIdentity
+### GetUuid
 
-`func (o *InlineResponse20085) GetIdentity() InlineResponse20085Identity`
+`func (o *InlineResponse20085) GetUuid() string`
 
-GetIdentity returns the Identity field if non-nil, zero value otherwise.
+GetUuid returns the Uuid field if non-nil, zero value otherwise.
 
-### GetIdentityOk
+### GetUuidOk
 
-`func (o *InlineResponse20085) GetIdentityOk() (*InlineResponse20085Identity, bool)`
+`func (o *InlineResponse20085) GetUuidOk() (*string, bool)`
 
-GetIdentityOk returns a tuple with the Identity field if it's non-nil, zero value otherwise
+GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIdentity
+### SetUuid
 
-`func (o *InlineResponse20085) SetIdentity(v InlineResponse20085Identity)`
+`func (o *InlineResponse20085) SetUuid(v string)`
 
-SetIdentity sets Identity field to given value.
+SetUuid sets Uuid field to given value.
 
-### HasIdentity
+### HasUuid
 
-`func (o *InlineResponse20085) HasIdentity() bool`
+`func (o *InlineResponse20085) HasUuid() bool`
 
-HasIdentity returns a boolean if a field has been set.
+HasUuid returns a boolean if a field has been set.
 
-### GetEapolKey
+### GetMajorMinorAssignmentMode
 
-`func (o *InlineResponse20085) GetEapolKey() InlineResponse20085EapolKey`
+`func (o *InlineResponse20085) GetMajorMinorAssignmentMode() string`
 
-GetEapolKey returns the EapolKey field if non-nil, zero value otherwise.
+GetMajorMinorAssignmentMode returns the MajorMinorAssignmentMode field if non-nil, zero value otherwise.
 
-### GetEapolKeyOk
+### GetMajorMinorAssignmentModeOk
 
-`func (o *InlineResponse20085) GetEapolKeyOk() (*InlineResponse20085EapolKey, bool)`
+`func (o *InlineResponse20085) GetMajorMinorAssignmentModeOk() (*string, bool)`
 
-GetEapolKeyOk returns a tuple with the EapolKey field if it's non-nil, zero value otherwise
+GetMajorMinorAssignmentModeOk returns a tuple with the MajorMinorAssignmentMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEapolKey
+### SetMajorMinorAssignmentMode
 
-`func (o *InlineResponse20085) SetEapolKey(v InlineResponse20085EapolKey)`
+`func (o *InlineResponse20085) SetMajorMinorAssignmentMode(v string)`
 
-SetEapolKey sets EapolKey field to given value.
+SetMajorMinorAssignmentMode sets MajorMinorAssignmentMode field to given value.
 
-### HasEapolKey
+### HasMajorMinorAssignmentMode
 
-`func (o *InlineResponse20085) HasEapolKey() bool`
+`func (o *InlineResponse20085) HasMajorMinorAssignmentMode() bool`
 
-HasEapolKey returns a boolean if a field has been set.
+HasMajorMinorAssignmentMode returns a boolean if a field has been set.
+
+### GetMajor
+
+`func (o *InlineResponse20085) GetMajor() int32`
+
+GetMajor returns the Major field if non-nil, zero value otherwise.
+
+### GetMajorOk
+
+`func (o *InlineResponse20085) GetMajorOk() (*int32, bool)`
+
+GetMajorOk returns a tuple with the Major field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMajor
+
+`func (o *InlineResponse20085) SetMajor(v int32)`
+
+SetMajor sets Major field to given value.
+
+### HasMajor
+
+`func (o *InlineResponse20085) HasMajor() bool`
+
+HasMajor returns a boolean if a field has been set.
+
+### GetMinor
+
+`func (o *InlineResponse20085) GetMinor() int32`
+
+GetMinor returns the Minor field if non-nil, zero value otherwise.
+
+### GetMinorOk
+
+`func (o *InlineResponse20085) GetMinorOk() (*int32, bool)`
+
+GetMinorOk returns a tuple with the Minor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMinor
+
+`func (o *InlineResponse20085) SetMinor(v int32)`
+
+SetMinor sets Minor field to given value.
+
+### HasMinor
+
+`func (o *InlineResponse20085) HasMinor() bool`
+
+HasMinor returns a boolean if a field has been set.
+
+### GetEslEnabled
+
+`func (o *InlineResponse20085) GetEslEnabled() bool`
+
+GetEslEnabled returns the EslEnabled field if non-nil, zero value otherwise.
+
+### GetEslEnabledOk
+
+`func (o *InlineResponse20085) GetEslEnabledOk() (*bool, bool)`
+
+GetEslEnabledOk returns a tuple with the EslEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEslEnabled
+
+`func (o *InlineResponse20085) SetEslEnabled(v bool)`
+
+SetEslEnabled sets EslEnabled field to given value.
+
+### HasEslEnabled
+
+`func (o *InlineResponse20085) HasEslEnabled() bool`
+
+HasEslEnabled returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

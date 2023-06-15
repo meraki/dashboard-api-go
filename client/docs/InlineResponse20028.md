@@ -4,12 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Product** | Pointer to **string** | Product type to rollback (if the network is a combined network) | [optional] 
-**Status** | Pointer to **string** | Status of the rollback | [optional] 
-**UpgradeBatchId** | Pointer to **string** | Batch ID of the firmware rollback | [optional] 
-**Time** | Pointer to **time.Time** | Scheduled time for the rollback | [optional] 
-**ToVersion** | Pointer to [**InlineResponse20028ToVersion**](InlineResponse20028ToVersion.md) |  | [optional] 
-**Reasons** | Pointer to [**[]InlineResponse20028Reasons**](InlineResponse20028Reasons.md) | Reasons for the rollback | [optional] 
+**Message** | Pointer to **string** | A message regarding the events sent. Usually &#39;null&#39; unless there are no events | [optional] 
+**PageStartAt** | Pointer to **string** | An UTC ISO8601 string of the earliest occured at time of the listed events of the page. | [optional] 
+**PageEndAt** | Pointer to **string** | An UTC ISO8601 string of the latest occured at time of the listed events of the page. | [optional] 
+**Events** | Pointer to [**[]InlineResponse20028Events**](InlineResponse20028Events.md) | An array of events that took place in the network. | [optional] 
 
 ## Methods
 
@@ -30,155 +28,105 @@ NewInlineResponse20028WithDefaults instantiates a new InlineResponse20028 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetProduct
+### GetMessage
 
-`func (o *InlineResponse20028) GetProduct() string`
+`func (o *InlineResponse20028) GetMessage() string`
 
-GetProduct returns the Product field if non-nil, zero value otherwise.
+GetMessage returns the Message field if non-nil, zero value otherwise.
 
-### GetProductOk
+### GetMessageOk
 
-`func (o *InlineResponse20028) GetProductOk() (*string, bool)`
+`func (o *InlineResponse20028) GetMessageOk() (*string, bool)`
 
-GetProductOk returns a tuple with the Product field if it's non-nil, zero value otherwise
+GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProduct
+### SetMessage
 
-`func (o *InlineResponse20028) SetProduct(v string)`
+`func (o *InlineResponse20028) SetMessage(v string)`
 
-SetProduct sets Product field to given value.
+SetMessage sets Message field to given value.
 
-### HasProduct
+### HasMessage
 
-`func (o *InlineResponse20028) HasProduct() bool`
+`func (o *InlineResponse20028) HasMessage() bool`
 
-HasProduct returns a boolean if a field has been set.
+HasMessage returns a boolean if a field has been set.
 
-### GetStatus
+### GetPageStartAt
 
-`func (o *InlineResponse20028) GetStatus() string`
+`func (o *InlineResponse20028) GetPageStartAt() string`
 
-GetStatus returns the Status field if non-nil, zero value otherwise.
+GetPageStartAt returns the PageStartAt field if non-nil, zero value otherwise.
 
-### GetStatusOk
+### GetPageStartAtOk
 
-`func (o *InlineResponse20028) GetStatusOk() (*string, bool)`
+`func (o *InlineResponse20028) GetPageStartAtOk() (*string, bool)`
 
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+GetPageStartAtOk returns a tuple with the PageStartAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStatus
+### SetPageStartAt
 
-`func (o *InlineResponse20028) SetStatus(v string)`
+`func (o *InlineResponse20028) SetPageStartAt(v string)`
 
-SetStatus sets Status field to given value.
+SetPageStartAt sets PageStartAt field to given value.
 
-### HasStatus
+### HasPageStartAt
 
-`func (o *InlineResponse20028) HasStatus() bool`
+`func (o *InlineResponse20028) HasPageStartAt() bool`
 
-HasStatus returns a boolean if a field has been set.
+HasPageStartAt returns a boolean if a field has been set.
 
-### GetUpgradeBatchId
+### GetPageEndAt
 
-`func (o *InlineResponse20028) GetUpgradeBatchId() string`
+`func (o *InlineResponse20028) GetPageEndAt() string`
 
-GetUpgradeBatchId returns the UpgradeBatchId field if non-nil, zero value otherwise.
+GetPageEndAt returns the PageEndAt field if non-nil, zero value otherwise.
 
-### GetUpgradeBatchIdOk
+### GetPageEndAtOk
 
-`func (o *InlineResponse20028) GetUpgradeBatchIdOk() (*string, bool)`
+`func (o *InlineResponse20028) GetPageEndAtOk() (*string, bool)`
 
-GetUpgradeBatchIdOk returns a tuple with the UpgradeBatchId field if it's non-nil, zero value otherwise
+GetPageEndAtOk returns a tuple with the PageEndAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUpgradeBatchId
+### SetPageEndAt
 
-`func (o *InlineResponse20028) SetUpgradeBatchId(v string)`
+`func (o *InlineResponse20028) SetPageEndAt(v string)`
 
-SetUpgradeBatchId sets UpgradeBatchId field to given value.
+SetPageEndAt sets PageEndAt field to given value.
 
-### HasUpgradeBatchId
+### HasPageEndAt
 
-`func (o *InlineResponse20028) HasUpgradeBatchId() bool`
+`func (o *InlineResponse20028) HasPageEndAt() bool`
 
-HasUpgradeBatchId returns a boolean if a field has been set.
+HasPageEndAt returns a boolean if a field has been set.
 
-### GetTime
+### GetEvents
 
-`func (o *InlineResponse20028) GetTime() time.Time`
+`func (o *InlineResponse20028) GetEvents() []InlineResponse20028Events`
 
-GetTime returns the Time field if non-nil, zero value otherwise.
+GetEvents returns the Events field if non-nil, zero value otherwise.
 
-### GetTimeOk
+### GetEventsOk
 
-`func (o *InlineResponse20028) GetTimeOk() (*time.Time, bool)`
+`func (o *InlineResponse20028) GetEventsOk() (*[]InlineResponse20028Events, bool)`
 
-GetTimeOk returns a tuple with the Time field if it's non-nil, zero value otherwise
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTime
+### SetEvents
 
-`func (o *InlineResponse20028) SetTime(v time.Time)`
+`func (o *InlineResponse20028) SetEvents(v []InlineResponse20028Events)`
 
-SetTime sets Time field to given value.
+SetEvents sets Events field to given value.
 
-### HasTime
+### HasEvents
 
-`func (o *InlineResponse20028) HasTime() bool`
+`func (o *InlineResponse20028) HasEvents() bool`
 
-HasTime returns a boolean if a field has been set.
-
-### GetToVersion
-
-`func (o *InlineResponse20028) GetToVersion() InlineResponse20028ToVersion`
-
-GetToVersion returns the ToVersion field if non-nil, zero value otherwise.
-
-### GetToVersionOk
-
-`func (o *InlineResponse20028) GetToVersionOk() (*InlineResponse20028ToVersion, bool)`
-
-GetToVersionOk returns a tuple with the ToVersion field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetToVersion
-
-`func (o *InlineResponse20028) SetToVersion(v InlineResponse20028ToVersion)`
-
-SetToVersion sets ToVersion field to given value.
-
-### HasToVersion
-
-`func (o *InlineResponse20028) HasToVersion() bool`
-
-HasToVersion returns a boolean if a field has been set.
-
-### GetReasons
-
-`func (o *InlineResponse20028) GetReasons() []InlineResponse20028Reasons`
-
-GetReasons returns the Reasons field if non-nil, zero value otherwise.
-
-### GetReasonsOk
-
-`func (o *InlineResponse20028) GetReasonsOk() (*[]InlineResponse20028Reasons, bool)`
-
-GetReasonsOk returns a tuple with the Reasons field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReasons
-
-`func (o *InlineResponse20028) SetReasons(v []InlineResponse20028Reasons)`
-
-SetReasons sets Reasons field to given value.
-
-### HasReasons
-
-`func (o *InlineResponse20028) HasReasons() bool`
-
-HasReasons returns a boolean if a field has been set.
+HasEvents returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

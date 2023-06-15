@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Mask** | Pointer to **int32** | Mask used for the subnet of all MGs in  this network. | [optional] 
-**Cidr** | Pointer to **string** | CIDR of the pool of subnets. Each MG in this network will automatically pick a subnet from this pool. | [optional] 
+**Name** | Pointer to **string** | The name of the camera wireless profile. | [optional] 
+**Ssid** | Pointer to [**NetworksNetworkIdCameraWirelessProfilesSsid**](NetworksNetworkIdCameraWirelessProfilesSsid.md) |  | [optional] 
+**Identity** | Pointer to [**NetworksNetworkIdCameraWirelessProfilesIdentity**](NetworksNetworkIdCameraWirelessProfilesIdentity.md) |  | [optional] 
 
 ## Methods
 
@@ -26,55 +27,80 @@ NewInlineObject69WithDefaults instantiates a new InlineObject69 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetMask
+### GetName
 
-`func (o *InlineObject69) GetMask() int32`
+`func (o *InlineObject69) GetName() string`
 
-GetMask returns the Mask field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetMaskOk
+### GetNameOk
 
-`func (o *InlineObject69) GetMaskOk() (*int32, bool)`
+`func (o *InlineObject69) GetNameOk() (*string, bool)`
 
-GetMaskOk returns a tuple with the Mask field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMask
+### SetName
 
-`func (o *InlineObject69) SetMask(v int32)`
+`func (o *InlineObject69) SetName(v string)`
 
-SetMask sets Mask field to given value.
+SetName sets Name field to given value.
 
-### HasMask
+### HasName
 
-`func (o *InlineObject69) HasMask() bool`
+`func (o *InlineObject69) HasName() bool`
 
-HasMask returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetCidr
+### GetSsid
 
-`func (o *InlineObject69) GetCidr() string`
+`func (o *InlineObject69) GetSsid() NetworksNetworkIdCameraWirelessProfilesSsid`
 
-GetCidr returns the Cidr field if non-nil, zero value otherwise.
+GetSsid returns the Ssid field if non-nil, zero value otherwise.
 
-### GetCidrOk
+### GetSsidOk
 
-`func (o *InlineObject69) GetCidrOk() (*string, bool)`
+`func (o *InlineObject69) GetSsidOk() (*NetworksNetworkIdCameraWirelessProfilesSsid, bool)`
 
-GetCidrOk returns a tuple with the Cidr field if it's non-nil, zero value otherwise
+GetSsidOk returns a tuple with the Ssid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCidr
+### SetSsid
 
-`func (o *InlineObject69) SetCidr(v string)`
+`func (o *InlineObject69) SetSsid(v NetworksNetworkIdCameraWirelessProfilesSsid)`
 
-SetCidr sets Cidr field to given value.
+SetSsid sets Ssid field to given value.
 
-### HasCidr
+### HasSsid
 
-`func (o *InlineObject69) HasCidr() bool`
+`func (o *InlineObject69) HasSsid() bool`
 
-HasCidr returns a boolean if a field has been set.
+HasSsid returns a boolean if a field has been set.
+
+### GetIdentity
+
+`func (o *InlineObject69) GetIdentity() NetworksNetworkIdCameraWirelessProfilesIdentity`
+
+GetIdentity returns the Identity field if non-nil, zero value otherwise.
+
+### GetIdentityOk
+
+`func (o *InlineObject69) GetIdentityOk() (*NetworksNetworkIdCameraWirelessProfilesIdentity, bool)`
+
+GetIdentityOk returns a tuple with the Identity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdentity
+
+`func (o *InlineObject69) SetIdentity(v NetworksNetworkIdCameraWirelessProfilesIdentity)`
+
+SetIdentity sets Identity field to given value.
+
+### HasIdentity
+
+`func (o *InlineObject69) HasIdentity() bool`
+
+HasIdentity returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
