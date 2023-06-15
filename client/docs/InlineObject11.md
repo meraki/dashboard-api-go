@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Rules** | Pointer to [**[]DevicesSerialCellularGatewayPortForwardingRulesRules**](DevicesSerialCellularGatewayPortForwardingRulesRules.md) | An array of port forwarding params | [optional] 
+**ReservedIpRanges** | Pointer to [**[]DevicesSerialCellularGatewayLanReservedIpRanges**](DevicesSerialCellularGatewayLanReservedIpRanges.md) | list of all reserved IP ranges for a single MG | [optional] 
+**FixedIpAssignments** | Pointer to [**[]DevicesSerialCellularGatewayLanFixedIpAssignments**](DevicesSerialCellularGatewayLanFixedIpAssignments.md) | list of all fixed IP assignments for a single MG | [optional] 
 
 ## Methods
 
@@ -25,30 +26,55 @@ NewInlineObject11WithDefaults instantiates a new InlineObject11 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetRules
+### GetReservedIpRanges
 
-`func (o *InlineObject11) GetRules() []DevicesSerialCellularGatewayPortForwardingRulesRules`
+`func (o *InlineObject11) GetReservedIpRanges() []DevicesSerialCellularGatewayLanReservedIpRanges`
 
-GetRules returns the Rules field if non-nil, zero value otherwise.
+GetReservedIpRanges returns the ReservedIpRanges field if non-nil, zero value otherwise.
 
-### GetRulesOk
+### GetReservedIpRangesOk
 
-`func (o *InlineObject11) GetRulesOk() (*[]DevicesSerialCellularGatewayPortForwardingRulesRules, bool)`
+`func (o *InlineObject11) GetReservedIpRangesOk() (*[]DevicesSerialCellularGatewayLanReservedIpRanges, bool)`
 
-GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
+GetReservedIpRangesOk returns a tuple with the ReservedIpRanges field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRules
+### SetReservedIpRanges
 
-`func (o *InlineObject11) SetRules(v []DevicesSerialCellularGatewayPortForwardingRulesRules)`
+`func (o *InlineObject11) SetReservedIpRanges(v []DevicesSerialCellularGatewayLanReservedIpRanges)`
 
-SetRules sets Rules field to given value.
+SetReservedIpRanges sets ReservedIpRanges field to given value.
 
-### HasRules
+### HasReservedIpRanges
 
-`func (o *InlineObject11) HasRules() bool`
+`func (o *InlineObject11) HasReservedIpRanges() bool`
 
-HasRules returns a boolean if a field has been set.
+HasReservedIpRanges returns a boolean if a field has been set.
+
+### GetFixedIpAssignments
+
+`func (o *InlineObject11) GetFixedIpAssignments() []DevicesSerialCellularGatewayLanFixedIpAssignments`
+
+GetFixedIpAssignments returns the FixedIpAssignments field if non-nil, zero value otherwise.
+
+### GetFixedIpAssignmentsOk
+
+`func (o *InlineObject11) GetFixedIpAssignmentsOk() (*[]DevicesSerialCellularGatewayLanFixedIpAssignments, bool)`
+
+GetFixedIpAssignmentsOk returns a tuple with the FixedIpAssignments field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFixedIpAssignments
+
+`func (o *InlineObject11) SetFixedIpAssignments(v []DevicesSerialCellularGatewayLanFixedIpAssignments)`
+
+SetFixedIpAssignments sets FixedIpAssignments field to given value.
+
+### HasFixedIpAssignments
+
+`func (o *InlineObject11) HasFixedIpAssignments() bool`
+
+HasFixedIpAssignments returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

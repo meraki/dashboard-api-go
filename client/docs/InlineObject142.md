@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RetainConfigs** | Pointer to **bool** | Optional boolean to retain all the current configs given by the template. | [optional] 
+**RstpEnabled** | Pointer to **bool** | The spanning tree protocol status in network | [optional] 
+**StpBridgePriority** | Pointer to [**[]NetworksNetworkIdSwitchStpStpBridgePriority**](NetworksNetworkIdSwitchStpStpBridgePriority.md) | STP bridge priority for switches/stacks or switch profiles. An empty array will clear the STP bridge priority settings. | [optional] 
 
 ## Methods
 
@@ -25,30 +26,55 @@ NewInlineObject142WithDefaults instantiates a new InlineObject142 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetRetainConfigs
+### GetRstpEnabled
 
-`func (o *InlineObject142) GetRetainConfigs() bool`
+`func (o *InlineObject142) GetRstpEnabled() bool`
 
-GetRetainConfigs returns the RetainConfigs field if non-nil, zero value otherwise.
+GetRstpEnabled returns the RstpEnabled field if non-nil, zero value otherwise.
 
-### GetRetainConfigsOk
+### GetRstpEnabledOk
 
-`func (o *InlineObject142) GetRetainConfigsOk() (*bool, bool)`
+`func (o *InlineObject142) GetRstpEnabledOk() (*bool, bool)`
 
-GetRetainConfigsOk returns a tuple with the RetainConfigs field if it's non-nil, zero value otherwise
+GetRstpEnabledOk returns a tuple with the RstpEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRetainConfigs
+### SetRstpEnabled
 
-`func (o *InlineObject142) SetRetainConfigs(v bool)`
+`func (o *InlineObject142) SetRstpEnabled(v bool)`
 
-SetRetainConfigs sets RetainConfigs field to given value.
+SetRstpEnabled sets RstpEnabled field to given value.
 
-### HasRetainConfigs
+### HasRstpEnabled
 
-`func (o *InlineObject142) HasRetainConfigs() bool`
+`func (o *InlineObject142) HasRstpEnabled() bool`
 
-HasRetainConfigs returns a boolean if a field has been set.
+HasRstpEnabled returns a boolean if a field has been set.
+
+### GetStpBridgePriority
+
+`func (o *InlineObject142) GetStpBridgePriority() []NetworksNetworkIdSwitchStpStpBridgePriority`
+
+GetStpBridgePriority returns the StpBridgePriority field if non-nil, zero value otherwise.
+
+### GetStpBridgePriorityOk
+
+`func (o *InlineObject142) GetStpBridgePriorityOk() (*[]NetworksNetworkIdSwitchStpStpBridgePriority, bool)`
+
+GetStpBridgePriorityOk returns a tuple with the StpBridgePriority field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStpBridgePriority
+
+`func (o *InlineObject142) SetStpBridgePriority(v []NetworksNetworkIdSwitchStpStpBridgePriority)`
+
+SetStpBridgePriority sets StpBridgePriority field to given value.
+
+### HasStpBridgePriority
+
+`func (o *InlineObject142) HasStpBridgePriority() bool`
+
+HasStpBridgePriority returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

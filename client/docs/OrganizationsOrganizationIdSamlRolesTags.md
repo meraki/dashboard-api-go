@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tag** | **string** | The name of the tag | 
-**Access** | **string** | The privilege of the SAML administrator on the tag. Can be one of &#39;full&#39;, &#39;read-only&#39;, &#39;guest-ambassador&#39; or &#39;monitor-only&#39; | 
+**Tag** | Pointer to **string** | The name of the tag | [optional] 
+**Access** | Pointer to **string** | The privilege of the SAML administrator on the tag | [optional] 
 
 ## Methods
 
 ### NewOrganizationsOrganizationIdSamlRolesTags
 
-`func NewOrganizationsOrganizationIdSamlRolesTags(tag string, access string, ) *OrganizationsOrganizationIdSamlRolesTags`
+`func NewOrganizationsOrganizationIdSamlRolesTags() *OrganizationsOrganizationIdSamlRolesTags`
 
 NewOrganizationsOrganizationIdSamlRolesTags instantiates a new OrganizationsOrganizationIdSamlRolesTags object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetTag sets Tag field to given value.
 
+### HasTag
+
+`func (o *OrganizationsOrganizationIdSamlRolesTags) HasTag() bool`
+
+HasTag returns a boolean if a field has been set.
 
 ### GetAccess
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetAccess sets Access field to given value.
 
+### HasAccess
+
+`func (o *OrganizationsOrganizationIdSamlRolesTags) HasAccess() bool`
+
+HasAccess returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

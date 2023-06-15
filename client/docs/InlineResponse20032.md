@@ -4,11 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | Alert identifier. Value can be empty | [optional] 
-**Category** | Pointer to **string** | Category of the alert | [optional] 
-**Type** | Pointer to **string** | Alert type | [optional] 
-**Severity** | Pointer to **string** | Severity of the alert | [optional] 
-**Scope** | Pointer to [**NetworksNetworkIdHealthAlertsScope**](NetworksNetworkIdHealthAlertsScope.md) |  | [optional] 
+**Products** | Pointer to [**InlineResponse20032Products**](InlineResponse20032Products.md) |  | [optional] 
+**Stages** | Pointer to [**[]InlineResponse20032Stages**](InlineResponse20032Stages.md) | The ordered stages in the network | [optional] 
+**Reasons** | Pointer to [**[]InlineResponse20031Reasons**](InlineResponse20031Reasons.md) | Reasons for the rollback | [optional] 
 
 ## Methods
 
@@ -29,130 +27,80 @@ NewInlineResponse20032WithDefaults instantiates a new InlineResponse20032 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetProducts
 
-`func (o *InlineResponse20032) GetId() string`
+`func (o *InlineResponse20032) GetProducts() InlineResponse20032Products`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetProducts returns the Products field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetProductsOk
 
-`func (o *InlineResponse20032) GetIdOk() (*string, bool)`
+`func (o *InlineResponse20032) GetProductsOk() (*InlineResponse20032Products, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetProductsOk returns a tuple with the Products field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetProducts
 
-`func (o *InlineResponse20032) SetId(v string)`
+`func (o *InlineResponse20032) SetProducts(v InlineResponse20032Products)`
 
-SetId sets Id field to given value.
+SetProducts sets Products field to given value.
 
-### HasId
+### HasProducts
 
-`func (o *InlineResponse20032) HasId() bool`
+`func (o *InlineResponse20032) HasProducts() bool`
 
-HasId returns a boolean if a field has been set.
+HasProducts returns a boolean if a field has been set.
 
-### GetCategory
+### GetStages
 
-`func (o *InlineResponse20032) GetCategory() string`
+`func (o *InlineResponse20032) GetStages() []InlineResponse20032Stages`
 
-GetCategory returns the Category field if non-nil, zero value otherwise.
+GetStages returns the Stages field if non-nil, zero value otherwise.
 
-### GetCategoryOk
+### GetStagesOk
 
-`func (o *InlineResponse20032) GetCategoryOk() (*string, bool)`
+`func (o *InlineResponse20032) GetStagesOk() (*[]InlineResponse20032Stages, bool)`
 
-GetCategoryOk returns a tuple with the Category field if it's non-nil, zero value otherwise
+GetStagesOk returns a tuple with the Stages field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCategory
+### SetStages
 
-`func (o *InlineResponse20032) SetCategory(v string)`
+`func (o *InlineResponse20032) SetStages(v []InlineResponse20032Stages)`
 
-SetCategory sets Category field to given value.
+SetStages sets Stages field to given value.
 
-### HasCategory
+### HasStages
 
-`func (o *InlineResponse20032) HasCategory() bool`
+`func (o *InlineResponse20032) HasStages() bool`
 
-HasCategory returns a boolean if a field has been set.
+HasStages returns a boolean if a field has been set.
 
-### GetType
+### GetReasons
 
-`func (o *InlineResponse20032) GetType() string`
+`func (o *InlineResponse20032) GetReasons() []InlineResponse20031Reasons`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetReasons returns the Reasons field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetReasonsOk
 
-`func (o *InlineResponse20032) GetTypeOk() (*string, bool)`
+`func (o *InlineResponse20032) GetReasonsOk() (*[]InlineResponse20031Reasons, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetReasonsOk returns a tuple with the Reasons field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetReasons
 
-`func (o *InlineResponse20032) SetType(v string)`
+`func (o *InlineResponse20032) SetReasons(v []InlineResponse20031Reasons)`
 
-SetType sets Type field to given value.
+SetReasons sets Reasons field to given value.
 
-### HasType
+### HasReasons
 
-`func (o *InlineResponse20032) HasType() bool`
+`func (o *InlineResponse20032) HasReasons() bool`
 
-HasType returns a boolean if a field has been set.
-
-### GetSeverity
-
-`func (o *InlineResponse20032) GetSeverity() string`
-
-GetSeverity returns the Severity field if non-nil, zero value otherwise.
-
-### GetSeverityOk
-
-`func (o *InlineResponse20032) GetSeverityOk() (*string, bool)`
-
-GetSeverityOk returns a tuple with the Severity field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSeverity
-
-`func (o *InlineResponse20032) SetSeverity(v string)`
-
-SetSeverity sets Severity field to given value.
-
-### HasSeverity
-
-`func (o *InlineResponse20032) HasSeverity() bool`
-
-HasSeverity returns a boolean if a field has been set.
-
-### GetScope
-
-`func (o *InlineResponse20032) GetScope() NetworksNetworkIdHealthAlertsScope`
-
-GetScope returns the Scope field if non-nil, zero value otherwise.
-
-### GetScopeOk
-
-`func (o *InlineResponse20032) GetScopeOk() (*NetworksNetworkIdHealthAlertsScope, bool)`
-
-GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetScope
-
-`func (o *InlineResponse20032) SetScope(v NetworksNetworkIdHealthAlertsScope)`
-
-SetScope sets Scope field to given value.
-
-### HasScope
-
-`func (o *InlineResponse20032) HasScope() bool`
-
-HasScope returns a boolean if a field has been set.
+HasReasons returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,17 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DhcpMode** | Pointer to **string** | The DHCP mode options for the switch interface (&#39;dhcpDisabled&#39;, &#39;dhcpRelay&#39; or &#39;dhcpServer&#39;) | [optional] 
-**DhcpRelayServerIps** | Pointer to **[]string** | The DHCP relay server IPs to which DHCP packets would get relayed for the switch interface | [optional] 
-**DhcpLeaseTime** | Pointer to **string** | The DHCP lease time config for the dhcp server running on switch interface (&#39;30 minutes&#39;, &#39;1 hour&#39;, &#39;4 hours&#39;, &#39;12 hours&#39;, &#39;1 day&#39; or &#39;1 week&#39;) | [optional] 
-**DnsNameserversOption** | Pointer to **string** | The DHCP name server option for the dhcp server running on the switch interface (&#39;googlePublicDns&#39;, &#39;openDns&#39; or &#39;custom&#39;) | [optional] 
-**DnsCustomNameservers** | Pointer to **[]string** | The DHCP name server IPs when DHCP name server option is &#39;custom&#39; | [optional] 
-**BootOptionsEnabled** | Pointer to **bool** | Enable DHCP boot options to provide PXE boot options configs for the dhcp server running on the switch interface | [optional] 
-**BootNextServer** | Pointer to **string** | The PXE boot server IP for the DHCP server running on the switch interface | [optional] 
-**BootFileName** | Pointer to **string** | The PXE boot server filename for the DHCP server running on the switch interface | [optional] 
-**DhcpOptions** | Pointer to [**[]DevicesSerialSwitchRoutingInterfacesInterfaceIdDhcpDhcpOptions**](DevicesSerialSwitchRoutingInterfacesInterfaceIdDhcpDhcpOptions.md) | Array of DHCP options consisting of code, type and value for the DHCP server running on the switch interface | [optional] 
-**ReservedIpRanges** | Pointer to [**[]DevicesSerialSwitchRoutingInterfacesInterfaceIdDhcpReservedIpRanges**](DevicesSerialSwitchRoutingInterfacesInterfaceIdDhcpReservedIpRanges.md) | Array of DHCP reserved IP assignments for the DHCP server running on the switch interface | [optional] 
-**FixedIpAssignments** | Pointer to [**[]DevicesSerialSwitchRoutingInterfacesInterfaceIdDhcpFixedIpAssignments**](DevicesSerialSwitchRoutingInterfacesInterfaceIdDhcpFixedIpAssignments.md) | Array of DHCP fixed IP assignments for the DHCP server running on the switch interface | [optional] 
+**Name** | Pointer to **string** | A friendly name or description for the interface or VLAN. | [optional] 
+**Subnet** | Pointer to **string** | The network that this routed interface is on, in CIDR notation (ex. 10.1.1.0/24). | [optional] 
+**InterfaceIp** | Pointer to **string** | The IP address this switch will use for layer 3 routing on this VLAN or subnet. This cannot be the same         as the switch&#39;s management IP. | [optional] 
+**MulticastRouting** | Pointer to **string** | Enable multicast support if, multicast routing between VLANs is required. Options are:         &#39;disabled&#39;, &#39;enabled&#39; or &#39;IGMP snooping querier&#39;. Default is &#39;disabled&#39;. | [optional] 
+**VlanId** | Pointer to **int32** | The VLAN this routed interface is on. VLAN must be between 1 and 4094. | [optional] 
+**DefaultGateway** | Pointer to **string** | The next hop for any traffic that isn&#39;t going to a directly connected subnet or over a static route.         This IP address must exist in a subnet with a routed interface. Required if this is the first IPv4 interface. | [optional] 
+**OspfSettings** | Pointer to [**DevicesSerialSwitchRoutingInterfacesOspfSettings1**](DevicesSerialSwitchRoutingInterfacesOspfSettings1.md) |  | [optional] 
+**OspfV3** | Pointer to [**DevicesSerialSwitchRoutingInterfacesOspfV31**](DevicesSerialSwitchRoutingInterfacesOspfV31.md) |  | [optional] 
+**Ipv6** | Pointer to [**DevicesSerialSwitchRoutingInterfacesIpv61**](DevicesSerialSwitchRoutingInterfacesIpv61.md) |  | [optional] 
 
 ## Methods
 
@@ -35,280 +33,230 @@ NewInlineObject20WithDefaults instantiates a new InlineObject20 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDhcpMode
+### GetName
 
-`func (o *InlineObject20) GetDhcpMode() string`
+`func (o *InlineObject20) GetName() string`
 
-GetDhcpMode returns the DhcpMode field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetDhcpModeOk
+### GetNameOk
 
-`func (o *InlineObject20) GetDhcpModeOk() (*string, bool)`
+`func (o *InlineObject20) GetNameOk() (*string, bool)`
 
-GetDhcpModeOk returns a tuple with the DhcpMode field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDhcpMode
+### SetName
 
-`func (o *InlineObject20) SetDhcpMode(v string)`
+`func (o *InlineObject20) SetName(v string)`
 
-SetDhcpMode sets DhcpMode field to given value.
+SetName sets Name field to given value.
 
-### HasDhcpMode
+### HasName
 
-`func (o *InlineObject20) HasDhcpMode() bool`
+`func (o *InlineObject20) HasName() bool`
 
-HasDhcpMode returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetDhcpRelayServerIps
+### GetSubnet
 
-`func (o *InlineObject20) GetDhcpRelayServerIps() []string`
+`func (o *InlineObject20) GetSubnet() string`
 
-GetDhcpRelayServerIps returns the DhcpRelayServerIps field if non-nil, zero value otherwise.
+GetSubnet returns the Subnet field if non-nil, zero value otherwise.
 
-### GetDhcpRelayServerIpsOk
+### GetSubnetOk
 
-`func (o *InlineObject20) GetDhcpRelayServerIpsOk() (*[]string, bool)`
+`func (o *InlineObject20) GetSubnetOk() (*string, bool)`
 
-GetDhcpRelayServerIpsOk returns a tuple with the DhcpRelayServerIps field if it's non-nil, zero value otherwise
+GetSubnetOk returns a tuple with the Subnet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDhcpRelayServerIps
+### SetSubnet
 
-`func (o *InlineObject20) SetDhcpRelayServerIps(v []string)`
+`func (o *InlineObject20) SetSubnet(v string)`
 
-SetDhcpRelayServerIps sets DhcpRelayServerIps field to given value.
+SetSubnet sets Subnet field to given value.
 
-### HasDhcpRelayServerIps
+### HasSubnet
 
-`func (o *InlineObject20) HasDhcpRelayServerIps() bool`
+`func (o *InlineObject20) HasSubnet() bool`
 
-HasDhcpRelayServerIps returns a boolean if a field has been set.
+HasSubnet returns a boolean if a field has been set.
 
-### GetDhcpLeaseTime
+### GetInterfaceIp
 
-`func (o *InlineObject20) GetDhcpLeaseTime() string`
+`func (o *InlineObject20) GetInterfaceIp() string`
 
-GetDhcpLeaseTime returns the DhcpLeaseTime field if non-nil, zero value otherwise.
+GetInterfaceIp returns the InterfaceIp field if non-nil, zero value otherwise.
 
-### GetDhcpLeaseTimeOk
+### GetInterfaceIpOk
 
-`func (o *InlineObject20) GetDhcpLeaseTimeOk() (*string, bool)`
+`func (o *InlineObject20) GetInterfaceIpOk() (*string, bool)`
 
-GetDhcpLeaseTimeOk returns a tuple with the DhcpLeaseTime field if it's non-nil, zero value otherwise
+GetInterfaceIpOk returns a tuple with the InterfaceIp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDhcpLeaseTime
+### SetInterfaceIp
 
-`func (o *InlineObject20) SetDhcpLeaseTime(v string)`
+`func (o *InlineObject20) SetInterfaceIp(v string)`
 
-SetDhcpLeaseTime sets DhcpLeaseTime field to given value.
+SetInterfaceIp sets InterfaceIp field to given value.
 
-### HasDhcpLeaseTime
+### HasInterfaceIp
 
-`func (o *InlineObject20) HasDhcpLeaseTime() bool`
+`func (o *InlineObject20) HasInterfaceIp() bool`
 
-HasDhcpLeaseTime returns a boolean if a field has been set.
+HasInterfaceIp returns a boolean if a field has been set.
 
-### GetDnsNameserversOption
+### GetMulticastRouting
 
-`func (o *InlineObject20) GetDnsNameserversOption() string`
+`func (o *InlineObject20) GetMulticastRouting() string`
 
-GetDnsNameserversOption returns the DnsNameserversOption field if non-nil, zero value otherwise.
+GetMulticastRouting returns the MulticastRouting field if non-nil, zero value otherwise.
 
-### GetDnsNameserversOptionOk
+### GetMulticastRoutingOk
 
-`func (o *InlineObject20) GetDnsNameserversOptionOk() (*string, bool)`
+`func (o *InlineObject20) GetMulticastRoutingOk() (*string, bool)`
 
-GetDnsNameserversOptionOk returns a tuple with the DnsNameserversOption field if it's non-nil, zero value otherwise
+GetMulticastRoutingOk returns a tuple with the MulticastRouting field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDnsNameserversOption
+### SetMulticastRouting
 
-`func (o *InlineObject20) SetDnsNameserversOption(v string)`
+`func (o *InlineObject20) SetMulticastRouting(v string)`
 
-SetDnsNameserversOption sets DnsNameserversOption field to given value.
+SetMulticastRouting sets MulticastRouting field to given value.
 
-### HasDnsNameserversOption
+### HasMulticastRouting
 
-`func (o *InlineObject20) HasDnsNameserversOption() bool`
+`func (o *InlineObject20) HasMulticastRouting() bool`
 
-HasDnsNameserversOption returns a boolean if a field has been set.
+HasMulticastRouting returns a boolean if a field has been set.
 
-### GetDnsCustomNameservers
+### GetVlanId
 
-`func (o *InlineObject20) GetDnsCustomNameservers() []string`
+`func (o *InlineObject20) GetVlanId() int32`
 
-GetDnsCustomNameservers returns the DnsCustomNameservers field if non-nil, zero value otherwise.
+GetVlanId returns the VlanId field if non-nil, zero value otherwise.
 
-### GetDnsCustomNameserversOk
+### GetVlanIdOk
 
-`func (o *InlineObject20) GetDnsCustomNameserversOk() (*[]string, bool)`
+`func (o *InlineObject20) GetVlanIdOk() (*int32, bool)`
 
-GetDnsCustomNameserversOk returns a tuple with the DnsCustomNameservers field if it's non-nil, zero value otherwise
+GetVlanIdOk returns a tuple with the VlanId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDnsCustomNameservers
+### SetVlanId
 
-`func (o *InlineObject20) SetDnsCustomNameservers(v []string)`
+`func (o *InlineObject20) SetVlanId(v int32)`
 
-SetDnsCustomNameservers sets DnsCustomNameservers field to given value.
+SetVlanId sets VlanId field to given value.
 
-### HasDnsCustomNameservers
+### HasVlanId
 
-`func (o *InlineObject20) HasDnsCustomNameservers() bool`
+`func (o *InlineObject20) HasVlanId() bool`
 
-HasDnsCustomNameservers returns a boolean if a field has been set.
+HasVlanId returns a boolean if a field has been set.
 
-### GetBootOptionsEnabled
+### GetDefaultGateway
 
-`func (o *InlineObject20) GetBootOptionsEnabled() bool`
+`func (o *InlineObject20) GetDefaultGateway() string`
 
-GetBootOptionsEnabled returns the BootOptionsEnabled field if non-nil, zero value otherwise.
+GetDefaultGateway returns the DefaultGateway field if non-nil, zero value otherwise.
 
-### GetBootOptionsEnabledOk
+### GetDefaultGatewayOk
 
-`func (o *InlineObject20) GetBootOptionsEnabledOk() (*bool, bool)`
+`func (o *InlineObject20) GetDefaultGatewayOk() (*string, bool)`
 
-GetBootOptionsEnabledOk returns a tuple with the BootOptionsEnabled field if it's non-nil, zero value otherwise
+GetDefaultGatewayOk returns a tuple with the DefaultGateway field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBootOptionsEnabled
+### SetDefaultGateway
 
-`func (o *InlineObject20) SetBootOptionsEnabled(v bool)`
+`func (o *InlineObject20) SetDefaultGateway(v string)`
 
-SetBootOptionsEnabled sets BootOptionsEnabled field to given value.
+SetDefaultGateway sets DefaultGateway field to given value.
 
-### HasBootOptionsEnabled
+### HasDefaultGateway
 
-`func (o *InlineObject20) HasBootOptionsEnabled() bool`
+`func (o *InlineObject20) HasDefaultGateway() bool`
 
-HasBootOptionsEnabled returns a boolean if a field has been set.
+HasDefaultGateway returns a boolean if a field has been set.
 
-### GetBootNextServer
+### GetOspfSettings
 
-`func (o *InlineObject20) GetBootNextServer() string`
+`func (o *InlineObject20) GetOspfSettings() DevicesSerialSwitchRoutingInterfacesOspfSettings1`
 
-GetBootNextServer returns the BootNextServer field if non-nil, zero value otherwise.
+GetOspfSettings returns the OspfSettings field if non-nil, zero value otherwise.
 
-### GetBootNextServerOk
+### GetOspfSettingsOk
 
-`func (o *InlineObject20) GetBootNextServerOk() (*string, bool)`
+`func (o *InlineObject20) GetOspfSettingsOk() (*DevicesSerialSwitchRoutingInterfacesOspfSettings1, bool)`
 
-GetBootNextServerOk returns a tuple with the BootNextServer field if it's non-nil, zero value otherwise
+GetOspfSettingsOk returns a tuple with the OspfSettings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBootNextServer
+### SetOspfSettings
 
-`func (o *InlineObject20) SetBootNextServer(v string)`
+`func (o *InlineObject20) SetOspfSettings(v DevicesSerialSwitchRoutingInterfacesOspfSettings1)`
 
-SetBootNextServer sets BootNextServer field to given value.
+SetOspfSettings sets OspfSettings field to given value.
 
-### HasBootNextServer
+### HasOspfSettings
 
-`func (o *InlineObject20) HasBootNextServer() bool`
+`func (o *InlineObject20) HasOspfSettings() bool`
 
-HasBootNextServer returns a boolean if a field has been set.
+HasOspfSettings returns a boolean if a field has been set.
 
-### GetBootFileName
+### GetOspfV3
 
-`func (o *InlineObject20) GetBootFileName() string`
+`func (o *InlineObject20) GetOspfV3() DevicesSerialSwitchRoutingInterfacesOspfV31`
 
-GetBootFileName returns the BootFileName field if non-nil, zero value otherwise.
+GetOspfV3 returns the OspfV3 field if non-nil, zero value otherwise.
 
-### GetBootFileNameOk
+### GetOspfV3Ok
 
-`func (o *InlineObject20) GetBootFileNameOk() (*string, bool)`
+`func (o *InlineObject20) GetOspfV3Ok() (*DevicesSerialSwitchRoutingInterfacesOspfV31, bool)`
 
-GetBootFileNameOk returns a tuple with the BootFileName field if it's non-nil, zero value otherwise
+GetOspfV3Ok returns a tuple with the OspfV3 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBootFileName
+### SetOspfV3
 
-`func (o *InlineObject20) SetBootFileName(v string)`
+`func (o *InlineObject20) SetOspfV3(v DevicesSerialSwitchRoutingInterfacesOspfV31)`
 
-SetBootFileName sets BootFileName field to given value.
+SetOspfV3 sets OspfV3 field to given value.
 
-### HasBootFileName
+### HasOspfV3
 
-`func (o *InlineObject20) HasBootFileName() bool`
+`func (o *InlineObject20) HasOspfV3() bool`
 
-HasBootFileName returns a boolean if a field has been set.
+HasOspfV3 returns a boolean if a field has been set.
 
-### GetDhcpOptions
+### GetIpv6
 
-`func (o *InlineObject20) GetDhcpOptions() []DevicesSerialSwitchRoutingInterfacesInterfaceIdDhcpDhcpOptions`
+`func (o *InlineObject20) GetIpv6() DevicesSerialSwitchRoutingInterfacesIpv61`
 
-GetDhcpOptions returns the DhcpOptions field if non-nil, zero value otherwise.
+GetIpv6 returns the Ipv6 field if non-nil, zero value otherwise.
 
-### GetDhcpOptionsOk
+### GetIpv6Ok
 
-`func (o *InlineObject20) GetDhcpOptionsOk() (*[]DevicesSerialSwitchRoutingInterfacesInterfaceIdDhcpDhcpOptions, bool)`
+`func (o *InlineObject20) GetIpv6Ok() (*DevicesSerialSwitchRoutingInterfacesIpv61, bool)`
 
-GetDhcpOptionsOk returns a tuple with the DhcpOptions field if it's non-nil, zero value otherwise
+GetIpv6Ok returns a tuple with the Ipv6 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDhcpOptions
+### SetIpv6
 
-`func (o *InlineObject20) SetDhcpOptions(v []DevicesSerialSwitchRoutingInterfacesInterfaceIdDhcpDhcpOptions)`
+`func (o *InlineObject20) SetIpv6(v DevicesSerialSwitchRoutingInterfacesIpv61)`
 
-SetDhcpOptions sets DhcpOptions field to given value.
+SetIpv6 sets Ipv6 field to given value.
 
-### HasDhcpOptions
+### HasIpv6
 
-`func (o *InlineObject20) HasDhcpOptions() bool`
+`func (o *InlineObject20) HasIpv6() bool`
 
-HasDhcpOptions returns a boolean if a field has been set.
-
-### GetReservedIpRanges
-
-`func (o *InlineObject20) GetReservedIpRanges() []DevicesSerialSwitchRoutingInterfacesInterfaceIdDhcpReservedIpRanges`
-
-GetReservedIpRanges returns the ReservedIpRanges field if non-nil, zero value otherwise.
-
-### GetReservedIpRangesOk
-
-`func (o *InlineObject20) GetReservedIpRangesOk() (*[]DevicesSerialSwitchRoutingInterfacesInterfaceIdDhcpReservedIpRanges, bool)`
-
-GetReservedIpRangesOk returns a tuple with the ReservedIpRanges field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReservedIpRanges
-
-`func (o *InlineObject20) SetReservedIpRanges(v []DevicesSerialSwitchRoutingInterfacesInterfaceIdDhcpReservedIpRanges)`
-
-SetReservedIpRanges sets ReservedIpRanges field to given value.
-
-### HasReservedIpRanges
-
-`func (o *InlineObject20) HasReservedIpRanges() bool`
-
-HasReservedIpRanges returns a boolean if a field has been set.
-
-### GetFixedIpAssignments
-
-`func (o *InlineObject20) GetFixedIpAssignments() []DevicesSerialSwitchRoutingInterfacesInterfaceIdDhcpFixedIpAssignments`
-
-GetFixedIpAssignments returns the FixedIpAssignments field if non-nil, zero value otherwise.
-
-### GetFixedIpAssignmentsOk
-
-`func (o *InlineObject20) GetFixedIpAssignmentsOk() (*[]DevicesSerialSwitchRoutingInterfacesInterfaceIdDhcpFixedIpAssignments, bool)`
-
-GetFixedIpAssignmentsOk returns a tuple with the FixedIpAssignments field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFixedIpAssignments
-
-`func (o *InlineObject20) SetFixedIpAssignments(v []DevicesSerialSwitchRoutingInterfacesInterfaceIdDhcpFixedIpAssignments)`
-
-SetFixedIpAssignments sets FixedIpAssignments field to given value.
-
-### HasFixedIpAssignments
-
-`func (o *InlineObject20) HasFixedIpAssignments() bool`
-
-HasFixedIpAssignments returns a boolean if a field has been set.
+HasIpv6 returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

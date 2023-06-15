@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Device** | Pointer to [**NetworksNetworkIdSensorRelationshipsDevice**](NetworksNetworkIdSensorRelationshipsDevice.md) |  | [optional] 
-**Relationships** | Pointer to [**NetworksNetworkIdSensorRelationshipsRelationships**](NetworksNetworkIdSensorRelationshipsRelationships.md) |  | [optional] 
+**StartTs** | Pointer to **time.Time** | Start of the timespan over which sensor alerts are counted | [optional] 
+**EndTs** | Pointer to **time.Time** | End of the timespan over which sensor alerts are counted | [optional] 
+**Counts** | Pointer to [**NetworksNetworkIdSensorAlertsOverviewByMetricCounts**](NetworksNetworkIdSensorAlertsOverviewByMetricCounts.md) |  | [optional] 
 
 ## Methods
 
@@ -26,55 +27,80 @@ NewInlineResponse20040WithDefaults instantiates a new InlineResponse20040 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDevice
+### GetStartTs
 
-`func (o *InlineResponse20040) GetDevice() NetworksNetworkIdSensorRelationshipsDevice`
+`func (o *InlineResponse20040) GetStartTs() time.Time`
 
-GetDevice returns the Device field if non-nil, zero value otherwise.
+GetStartTs returns the StartTs field if non-nil, zero value otherwise.
 
-### GetDeviceOk
+### GetStartTsOk
 
-`func (o *InlineResponse20040) GetDeviceOk() (*NetworksNetworkIdSensorRelationshipsDevice, bool)`
+`func (o *InlineResponse20040) GetStartTsOk() (*time.Time, bool)`
 
-GetDeviceOk returns a tuple with the Device field if it's non-nil, zero value otherwise
+GetStartTsOk returns a tuple with the StartTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDevice
+### SetStartTs
 
-`func (o *InlineResponse20040) SetDevice(v NetworksNetworkIdSensorRelationshipsDevice)`
+`func (o *InlineResponse20040) SetStartTs(v time.Time)`
 
-SetDevice sets Device field to given value.
+SetStartTs sets StartTs field to given value.
 
-### HasDevice
+### HasStartTs
 
-`func (o *InlineResponse20040) HasDevice() bool`
+`func (o *InlineResponse20040) HasStartTs() bool`
 
-HasDevice returns a boolean if a field has been set.
+HasStartTs returns a boolean if a field has been set.
 
-### GetRelationships
+### GetEndTs
 
-`func (o *InlineResponse20040) GetRelationships() NetworksNetworkIdSensorRelationshipsRelationships`
+`func (o *InlineResponse20040) GetEndTs() time.Time`
 
-GetRelationships returns the Relationships field if non-nil, zero value otherwise.
+GetEndTs returns the EndTs field if non-nil, zero value otherwise.
 
-### GetRelationshipsOk
+### GetEndTsOk
 
-`func (o *InlineResponse20040) GetRelationshipsOk() (*NetworksNetworkIdSensorRelationshipsRelationships, bool)`
+`func (o *InlineResponse20040) GetEndTsOk() (*time.Time, bool)`
 
-GetRelationshipsOk returns a tuple with the Relationships field if it's non-nil, zero value otherwise
+GetEndTsOk returns a tuple with the EndTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRelationships
+### SetEndTs
 
-`func (o *InlineResponse20040) SetRelationships(v NetworksNetworkIdSensorRelationshipsRelationships)`
+`func (o *InlineResponse20040) SetEndTs(v time.Time)`
 
-SetRelationships sets Relationships field to given value.
+SetEndTs sets EndTs field to given value.
 
-### HasRelationships
+### HasEndTs
 
-`func (o *InlineResponse20040) HasRelationships() bool`
+`func (o *InlineResponse20040) HasEndTs() bool`
 
-HasRelationships returns a boolean if a field has been set.
+HasEndTs returns a boolean if a field has been set.
+
+### GetCounts
+
+`func (o *InlineResponse20040) GetCounts() NetworksNetworkIdSensorAlertsOverviewByMetricCounts`
+
+GetCounts returns the Counts field if non-nil, zero value otherwise.
+
+### GetCountsOk
+
+`func (o *InlineResponse20040) GetCountsOk() (*NetworksNetworkIdSensorAlertsOverviewByMetricCounts, bool)`
+
+GetCountsOk returns a tuple with the Counts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCounts
+
+`func (o *InlineResponse20040) SetCounts(v NetworksNetworkIdSensorAlertsOverviewByMetricCounts)`
+
+SetCounts sets Counts field to given value.
+
+### HasCounts
+
+`func (o *InlineResponse20040) HasCounts() bool`
+
+HasCounts returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

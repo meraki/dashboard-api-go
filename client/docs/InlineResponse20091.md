@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Counts** | Pointer to [**InlineResponse20091Counts**](InlineResponse20091Counts.md) |  | [optional] 
-**Limits** | Pointer to [**InlineResponse20091Limits**](InlineResponse20091Limits.md) |  | [optional] 
+**StartTs** | Pointer to **time.Time** | The start time of the query range | [optional] 
+**EndTs** | Pointer to **time.Time** | The end time of the query range | [optional] 
+**AvgLatencyMs** | Pointer to **int32** | Average latency in milliseconds | [optional] 
 
 ## Methods
 
@@ -26,55 +27,80 @@ NewInlineResponse20091WithDefaults instantiates a new InlineResponse20091 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCounts
+### GetStartTs
 
-`func (o *InlineResponse20091) GetCounts() InlineResponse20091Counts`
+`func (o *InlineResponse20091) GetStartTs() time.Time`
 
-GetCounts returns the Counts field if non-nil, zero value otherwise.
+GetStartTs returns the StartTs field if non-nil, zero value otherwise.
 
-### GetCountsOk
+### GetStartTsOk
 
-`func (o *InlineResponse20091) GetCountsOk() (*InlineResponse20091Counts, bool)`
+`func (o *InlineResponse20091) GetStartTsOk() (*time.Time, bool)`
 
-GetCountsOk returns a tuple with the Counts field if it's non-nil, zero value otherwise
+GetStartTsOk returns a tuple with the StartTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCounts
+### SetStartTs
 
-`func (o *InlineResponse20091) SetCounts(v InlineResponse20091Counts)`
+`func (o *InlineResponse20091) SetStartTs(v time.Time)`
 
-SetCounts sets Counts field to given value.
+SetStartTs sets StartTs field to given value.
 
-### HasCounts
+### HasStartTs
 
-`func (o *InlineResponse20091) HasCounts() bool`
+`func (o *InlineResponse20091) HasStartTs() bool`
 
-HasCounts returns a boolean if a field has been set.
+HasStartTs returns a boolean if a field has been set.
 
-### GetLimits
+### GetEndTs
 
-`func (o *InlineResponse20091) GetLimits() InlineResponse20091Limits`
+`func (o *InlineResponse20091) GetEndTs() time.Time`
 
-GetLimits returns the Limits field if non-nil, zero value otherwise.
+GetEndTs returns the EndTs field if non-nil, zero value otherwise.
 
-### GetLimitsOk
+### GetEndTsOk
 
-`func (o *InlineResponse20091) GetLimitsOk() (*InlineResponse20091Limits, bool)`
+`func (o *InlineResponse20091) GetEndTsOk() (*time.Time, bool)`
 
-GetLimitsOk returns a tuple with the Limits field if it's non-nil, zero value otherwise
+GetEndTsOk returns a tuple with the EndTs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLimits
+### SetEndTs
 
-`func (o *InlineResponse20091) SetLimits(v InlineResponse20091Limits)`
+`func (o *InlineResponse20091) SetEndTs(v time.Time)`
 
-SetLimits sets Limits field to given value.
+SetEndTs sets EndTs field to given value.
 
-### HasLimits
+### HasEndTs
 
-`func (o *InlineResponse20091) HasLimits() bool`
+`func (o *InlineResponse20091) HasEndTs() bool`
 
-HasLimits returns a boolean if a field has been set.
+HasEndTs returns a boolean if a field has been set.
+
+### GetAvgLatencyMs
+
+`func (o *InlineResponse20091) GetAvgLatencyMs() int32`
+
+GetAvgLatencyMs returns the AvgLatencyMs field if non-nil, zero value otherwise.
+
+### GetAvgLatencyMsOk
+
+`func (o *InlineResponse20091) GetAvgLatencyMsOk() (*int32, bool)`
+
+GetAvgLatencyMsOk returns a tuple with the AvgLatencyMs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAvgLatencyMs
+
+`func (o *InlineResponse20091) SetAvgLatencyMs(v int32)`
+
+SetAvgLatencyMs sets AvgLatencyMs field to given value.
+
+### HasAvgLatencyMs
+
+`func (o *InlineResponse20091) HasAvgLatencyMs() bool`
+
+HasAvgLatencyMs returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

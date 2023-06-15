@@ -4,12 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OccurredAt** | Pointer to **string** | time when the event occurred | [optional] 
-**AlertTypeId** | Pointer to **string** | type of alert | [optional] 
-**AlertType** | Pointer to **string** | user friendly alert type | [optional] 
-**Device** | Pointer to [**NetworksNetworkIdAlertsHistoryDevice**](NetworksNetworkIdAlertsHistoryDevice.md) |  | [optional] 
-**Destinations** | Pointer to [**NetworksNetworkIdAlertsHistoryDestinations**](NetworksNetworkIdAlertsHistoryDestinations.md) |  | [optional] 
-**AlertData** | Pointer to **map[string]interface{}** | relevant data about the event that caused the alert | [optional] 
+**Id** | Pointer to **string** | Network ID | [optional] 
+**OrganizationId** | Pointer to **string** | Organization ID | [optional] 
+**Name** | Pointer to **string** | Network name | [optional] 
+**ProductTypes** | Pointer to **[]string** | List of the product types that the network supports | [optional] 
+**TimeZone** | Pointer to **string** | Timezone of the network | [optional] 
+**Tags** | Pointer to **[]string** | Network tags | [optional] 
+**EnrollmentString** | Pointer to **string** | Enrollment string for the network | [optional] 
+**Url** | Pointer to **string** | URL to the network Dashboard UI | [optional] 
+**Notes** | Pointer to **string** | Notes for the network | [optional] 
+**IsBoundToConfigTemplate** | Pointer to **bool** | If the network is bound to a config template | [optional] 
 
 ## Methods
 
@@ -30,155 +34,255 @@ NewInlineResponse20012WithDefaults instantiates a new InlineResponse20012 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetOccurredAt
+### GetId
 
-`func (o *InlineResponse20012) GetOccurredAt() string`
+`func (o *InlineResponse20012) GetId() string`
 
-GetOccurredAt returns the OccurredAt field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetOccurredAtOk
+### GetIdOk
 
-`func (o *InlineResponse20012) GetOccurredAtOk() (*string, bool)`
+`func (o *InlineResponse20012) GetIdOk() (*string, bool)`
 
-GetOccurredAtOk returns a tuple with the OccurredAt field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOccurredAt
+### SetId
 
-`func (o *InlineResponse20012) SetOccurredAt(v string)`
+`func (o *InlineResponse20012) SetId(v string)`
 
-SetOccurredAt sets OccurredAt field to given value.
+SetId sets Id field to given value.
 
-### HasOccurredAt
+### HasId
 
-`func (o *InlineResponse20012) HasOccurredAt() bool`
+`func (o *InlineResponse20012) HasId() bool`
 
-HasOccurredAt returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### GetAlertTypeId
+### GetOrganizationId
 
-`func (o *InlineResponse20012) GetAlertTypeId() string`
+`func (o *InlineResponse20012) GetOrganizationId() string`
 
-GetAlertTypeId returns the AlertTypeId field if non-nil, zero value otherwise.
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
 
-### GetAlertTypeIdOk
+### GetOrganizationIdOk
 
-`func (o *InlineResponse20012) GetAlertTypeIdOk() (*string, bool)`
+`func (o *InlineResponse20012) GetOrganizationIdOk() (*string, bool)`
 
-GetAlertTypeIdOk returns a tuple with the AlertTypeId field if it's non-nil, zero value otherwise
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAlertTypeId
+### SetOrganizationId
 
-`func (o *InlineResponse20012) SetAlertTypeId(v string)`
+`func (o *InlineResponse20012) SetOrganizationId(v string)`
 
-SetAlertTypeId sets AlertTypeId field to given value.
+SetOrganizationId sets OrganizationId field to given value.
 
-### HasAlertTypeId
+### HasOrganizationId
 
-`func (o *InlineResponse20012) HasAlertTypeId() bool`
+`func (o *InlineResponse20012) HasOrganizationId() bool`
 
-HasAlertTypeId returns a boolean if a field has been set.
+HasOrganizationId returns a boolean if a field has been set.
 
-### GetAlertType
+### GetName
 
-`func (o *InlineResponse20012) GetAlertType() string`
+`func (o *InlineResponse20012) GetName() string`
 
-GetAlertType returns the AlertType field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetAlertTypeOk
+### GetNameOk
 
-`func (o *InlineResponse20012) GetAlertTypeOk() (*string, bool)`
+`func (o *InlineResponse20012) GetNameOk() (*string, bool)`
 
-GetAlertTypeOk returns a tuple with the AlertType field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAlertType
+### SetName
 
-`func (o *InlineResponse20012) SetAlertType(v string)`
+`func (o *InlineResponse20012) SetName(v string)`
 
-SetAlertType sets AlertType field to given value.
+SetName sets Name field to given value.
 
-### HasAlertType
+### HasName
 
-`func (o *InlineResponse20012) HasAlertType() bool`
+`func (o *InlineResponse20012) HasName() bool`
 
-HasAlertType returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetDevice
+### GetProductTypes
 
-`func (o *InlineResponse20012) GetDevice() NetworksNetworkIdAlertsHistoryDevice`
+`func (o *InlineResponse20012) GetProductTypes() []string`
 
-GetDevice returns the Device field if non-nil, zero value otherwise.
+GetProductTypes returns the ProductTypes field if non-nil, zero value otherwise.
 
-### GetDeviceOk
+### GetProductTypesOk
 
-`func (o *InlineResponse20012) GetDeviceOk() (*NetworksNetworkIdAlertsHistoryDevice, bool)`
+`func (o *InlineResponse20012) GetProductTypesOk() (*[]string, bool)`
 
-GetDeviceOk returns a tuple with the Device field if it's non-nil, zero value otherwise
+GetProductTypesOk returns a tuple with the ProductTypes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDevice
+### SetProductTypes
 
-`func (o *InlineResponse20012) SetDevice(v NetworksNetworkIdAlertsHistoryDevice)`
+`func (o *InlineResponse20012) SetProductTypes(v []string)`
 
-SetDevice sets Device field to given value.
+SetProductTypes sets ProductTypes field to given value.
 
-### HasDevice
+### HasProductTypes
 
-`func (o *InlineResponse20012) HasDevice() bool`
+`func (o *InlineResponse20012) HasProductTypes() bool`
 
-HasDevice returns a boolean if a field has been set.
+HasProductTypes returns a boolean if a field has been set.
 
-### GetDestinations
+### GetTimeZone
 
-`func (o *InlineResponse20012) GetDestinations() NetworksNetworkIdAlertsHistoryDestinations`
+`func (o *InlineResponse20012) GetTimeZone() string`
 
-GetDestinations returns the Destinations field if non-nil, zero value otherwise.
+GetTimeZone returns the TimeZone field if non-nil, zero value otherwise.
 
-### GetDestinationsOk
+### GetTimeZoneOk
 
-`func (o *InlineResponse20012) GetDestinationsOk() (*NetworksNetworkIdAlertsHistoryDestinations, bool)`
+`func (o *InlineResponse20012) GetTimeZoneOk() (*string, bool)`
 
-GetDestinationsOk returns a tuple with the Destinations field if it's non-nil, zero value otherwise
+GetTimeZoneOk returns a tuple with the TimeZone field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDestinations
+### SetTimeZone
 
-`func (o *InlineResponse20012) SetDestinations(v NetworksNetworkIdAlertsHistoryDestinations)`
+`func (o *InlineResponse20012) SetTimeZone(v string)`
 
-SetDestinations sets Destinations field to given value.
+SetTimeZone sets TimeZone field to given value.
 
-### HasDestinations
+### HasTimeZone
 
-`func (o *InlineResponse20012) HasDestinations() bool`
+`func (o *InlineResponse20012) HasTimeZone() bool`
 
-HasDestinations returns a boolean if a field has been set.
+HasTimeZone returns a boolean if a field has been set.
 
-### GetAlertData
+### GetTags
 
-`func (o *InlineResponse20012) GetAlertData() map[string]interface{}`
+`func (o *InlineResponse20012) GetTags() []string`
 
-GetAlertData returns the AlertData field if non-nil, zero value otherwise.
+GetTags returns the Tags field if non-nil, zero value otherwise.
 
-### GetAlertDataOk
+### GetTagsOk
 
-`func (o *InlineResponse20012) GetAlertDataOk() (*map[string]interface{}, bool)`
+`func (o *InlineResponse20012) GetTagsOk() (*[]string, bool)`
 
-GetAlertDataOk returns a tuple with the AlertData field if it's non-nil, zero value otherwise
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAlertData
+### SetTags
 
-`func (o *InlineResponse20012) SetAlertData(v map[string]interface{})`
+`func (o *InlineResponse20012) SetTags(v []string)`
 
-SetAlertData sets AlertData field to given value.
+SetTags sets Tags field to given value.
 
-### HasAlertData
+### HasTags
 
-`func (o *InlineResponse20012) HasAlertData() bool`
+`func (o *InlineResponse20012) HasTags() bool`
 
-HasAlertData returns a boolean if a field has been set.
+HasTags returns a boolean if a field has been set.
+
+### GetEnrollmentString
+
+`func (o *InlineResponse20012) GetEnrollmentString() string`
+
+GetEnrollmentString returns the EnrollmentString field if non-nil, zero value otherwise.
+
+### GetEnrollmentStringOk
+
+`func (o *InlineResponse20012) GetEnrollmentStringOk() (*string, bool)`
+
+GetEnrollmentStringOk returns a tuple with the EnrollmentString field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnrollmentString
+
+`func (o *InlineResponse20012) SetEnrollmentString(v string)`
+
+SetEnrollmentString sets EnrollmentString field to given value.
+
+### HasEnrollmentString
+
+`func (o *InlineResponse20012) HasEnrollmentString() bool`
+
+HasEnrollmentString returns a boolean if a field has been set.
+
+### GetUrl
+
+`func (o *InlineResponse20012) GetUrl() string`
+
+GetUrl returns the Url field if non-nil, zero value otherwise.
+
+### GetUrlOk
+
+`func (o *InlineResponse20012) GetUrlOk() (*string, bool)`
+
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUrl
+
+`func (o *InlineResponse20012) SetUrl(v string)`
+
+SetUrl sets Url field to given value.
+
+### HasUrl
+
+`func (o *InlineResponse20012) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
+
+### GetNotes
+
+`func (o *InlineResponse20012) GetNotes() string`
+
+GetNotes returns the Notes field if non-nil, zero value otherwise.
+
+### GetNotesOk
+
+`func (o *InlineResponse20012) GetNotesOk() (*string, bool)`
+
+GetNotesOk returns a tuple with the Notes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotes
+
+`func (o *InlineResponse20012) SetNotes(v string)`
+
+SetNotes sets Notes field to given value.
+
+### HasNotes
+
+`func (o *InlineResponse20012) HasNotes() bool`
+
+HasNotes returns a boolean if a field has been set.
+
+### GetIsBoundToConfigTemplate
+
+`func (o *InlineResponse20012) GetIsBoundToConfigTemplate() bool`
+
+GetIsBoundToConfigTemplate returns the IsBoundToConfigTemplate field if non-nil, zero value otherwise.
+
+### GetIsBoundToConfigTemplateOk
+
+`func (o *InlineResponse20012) GetIsBoundToConfigTemplateOk() (*bool, bool)`
+
+GetIsBoundToConfigTemplateOk returns a tuple with the IsBoundToConfigTemplate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsBoundToConfigTemplate
+
+`func (o *InlineResponse20012) SetIsBoundToConfigTemplate(v bool)`
+
+SetIsBoundToConfigTemplate sets IsBoundToConfigTemplate field to given value.
+
+### HasIsBoundToConfigTemplate
+
+`func (o *InlineResponse20012) HasIsBoundToConfigTemplate() bool`
+
+HasIsBoundToConfigTemplate returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

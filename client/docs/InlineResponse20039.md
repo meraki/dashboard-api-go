@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MqttBrokerId** | Pointer to **string** | ID of the MQTT Broker. | [optional] 
-**Enabled** | Pointer to **bool** | Specifies whether the broker is enabled for sensor data. Currently, only a single broker may be enabled for sensor data. | [optional] 
+**SupportedMetrics** | Pointer to **[]string** | List of metrics that are supported for alerts, based on available sensor devices in the network | [optional] 
+**Counts** | Pointer to [**InlineResponse20039Counts**](InlineResponse20039Counts.md) |  | [optional] 
 
 ## Methods
 
@@ -26,55 +26,55 @@ NewInlineResponse20039WithDefaults instantiates a new InlineResponse20039 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetMqttBrokerId
+### GetSupportedMetrics
 
-`func (o *InlineResponse20039) GetMqttBrokerId() string`
+`func (o *InlineResponse20039) GetSupportedMetrics() []string`
 
-GetMqttBrokerId returns the MqttBrokerId field if non-nil, zero value otherwise.
+GetSupportedMetrics returns the SupportedMetrics field if non-nil, zero value otherwise.
 
-### GetMqttBrokerIdOk
+### GetSupportedMetricsOk
 
-`func (o *InlineResponse20039) GetMqttBrokerIdOk() (*string, bool)`
+`func (o *InlineResponse20039) GetSupportedMetricsOk() (*[]string, bool)`
 
-GetMqttBrokerIdOk returns a tuple with the MqttBrokerId field if it's non-nil, zero value otherwise
+GetSupportedMetricsOk returns a tuple with the SupportedMetrics field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMqttBrokerId
+### SetSupportedMetrics
 
-`func (o *InlineResponse20039) SetMqttBrokerId(v string)`
+`func (o *InlineResponse20039) SetSupportedMetrics(v []string)`
 
-SetMqttBrokerId sets MqttBrokerId field to given value.
+SetSupportedMetrics sets SupportedMetrics field to given value.
 
-### HasMqttBrokerId
+### HasSupportedMetrics
 
-`func (o *InlineResponse20039) HasMqttBrokerId() bool`
+`func (o *InlineResponse20039) HasSupportedMetrics() bool`
 
-HasMqttBrokerId returns a boolean if a field has been set.
+HasSupportedMetrics returns a boolean if a field has been set.
 
-### GetEnabled
+### GetCounts
 
-`func (o *InlineResponse20039) GetEnabled() bool`
+`func (o *InlineResponse20039) GetCounts() InlineResponse20039Counts`
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+GetCounts returns the Counts field if non-nil, zero value otherwise.
 
-### GetEnabledOk
+### GetCountsOk
 
-`func (o *InlineResponse20039) GetEnabledOk() (*bool, bool)`
+`func (o *InlineResponse20039) GetCountsOk() (*InlineResponse20039Counts, bool)`
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+GetCountsOk returns a tuple with the Counts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnabled
+### SetCounts
 
-`func (o *InlineResponse20039) SetEnabled(v bool)`
+`func (o *InlineResponse20039) SetCounts(v InlineResponse20039Counts)`
 
-SetEnabled sets Enabled field to given value.
+SetCounts sets Counts field to given value.
 
-### HasEnabled
+### HasCounts
 
-`func (o *InlineResponse20039) HasEnabled() bool`
+`func (o *InlineResponse20039) HasCounts() bool`
 
-HasEnabled returns a boolean if a field has been set.
+HasCounts returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

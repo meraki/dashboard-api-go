@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Serial** | Pointer to **string** | The serial number for the device | [optional] 
-**ConnectionStats** | Pointer to [**InlineResponse20010ConnectionStats**](InlineResponse20010ConnectionStats.md) |  | [optional] 
+**Uuid** | Pointer to **string** | Desired UUID of the beacon. If the value is set to null it will reset to Dashboard&#39;s automatically generated value. | [optional] 
+**Major** | Pointer to **int32** | Desired major value of the beacon. If the value is set to null it will reset to Dashboard&#39;s automatically generated value. | [optional] 
+**Minor** | Pointer to **int32** | Desired minor value of the beacon. If the value is set to null it will reset to Dashboard&#39;s automatically generated value. | [optional] 
 
 ## Methods
 
@@ -26,55 +27,80 @@ NewInlineResponse20010WithDefaults instantiates a new InlineResponse20010 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetSerial
+### GetUuid
 
-`func (o *InlineResponse20010) GetSerial() string`
+`func (o *InlineResponse20010) GetUuid() string`
 
-GetSerial returns the Serial field if non-nil, zero value otherwise.
+GetUuid returns the Uuid field if non-nil, zero value otherwise.
 
-### GetSerialOk
+### GetUuidOk
 
-`func (o *InlineResponse20010) GetSerialOk() (*string, bool)`
+`func (o *InlineResponse20010) GetUuidOk() (*string, bool)`
 
-GetSerialOk returns a tuple with the Serial field if it's non-nil, zero value otherwise
+GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSerial
+### SetUuid
 
-`func (o *InlineResponse20010) SetSerial(v string)`
+`func (o *InlineResponse20010) SetUuid(v string)`
 
-SetSerial sets Serial field to given value.
+SetUuid sets Uuid field to given value.
 
-### HasSerial
+### HasUuid
 
-`func (o *InlineResponse20010) HasSerial() bool`
+`func (o *InlineResponse20010) HasUuid() bool`
 
-HasSerial returns a boolean if a field has been set.
+HasUuid returns a boolean if a field has been set.
 
-### GetConnectionStats
+### GetMajor
 
-`func (o *InlineResponse20010) GetConnectionStats() InlineResponse20010ConnectionStats`
+`func (o *InlineResponse20010) GetMajor() int32`
 
-GetConnectionStats returns the ConnectionStats field if non-nil, zero value otherwise.
+GetMajor returns the Major field if non-nil, zero value otherwise.
 
-### GetConnectionStatsOk
+### GetMajorOk
 
-`func (o *InlineResponse20010) GetConnectionStatsOk() (*InlineResponse20010ConnectionStats, bool)`
+`func (o *InlineResponse20010) GetMajorOk() (*int32, bool)`
 
-GetConnectionStatsOk returns a tuple with the ConnectionStats field if it's non-nil, zero value otherwise
+GetMajorOk returns a tuple with the Major field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetConnectionStats
+### SetMajor
 
-`func (o *InlineResponse20010) SetConnectionStats(v InlineResponse20010ConnectionStats)`
+`func (o *InlineResponse20010) SetMajor(v int32)`
 
-SetConnectionStats sets ConnectionStats field to given value.
+SetMajor sets Major field to given value.
 
-### HasConnectionStats
+### HasMajor
 
-`func (o *InlineResponse20010) HasConnectionStats() bool`
+`func (o *InlineResponse20010) HasMajor() bool`
 
-HasConnectionStats returns a boolean if a field has been set.
+HasMajor returns a boolean if a field has been set.
+
+### GetMinor
+
+`func (o *InlineResponse20010) GetMinor() int32`
+
+GetMinor returns the Minor field if non-nil, zero value otherwise.
+
+### GetMinorOk
+
+`func (o *InlineResponse20010) GetMinorOk() (*int32, bool)`
+
+GetMinorOk returns a tuple with the Minor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMinor
+
+`func (o *InlineResponse20010) SetMinor(v int32)`
+
+SetMinor sets Minor field to given value.
+
+### HasMinor
+
+`func (o *InlineResponse20010) HasMinor() bool`
+
+HasMinor returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AclId** | Pointer to **string** | ID of the adaptive policy ACL | [optional] 
-**Name** | Pointer to **string** | Name of the adaptive policy ACL | [optional] 
-**Description** | Pointer to **string** | Description of the adaptive policy ACL | [optional] 
-**IpVersion** | Pointer to **string** | IP version of adpative policy ACL | [optional] 
-**Rules** | Pointer to [**[]OrganizationsOrganizationIdAdaptivePolicyAclsRules**](OrganizationsOrganizationIdAdaptivePolicyAclsRules.md) | An ordered array of the adaptive policy ACL rules | [optional] 
-**CreatedAt** | Pointer to **time.Time** | When the adaptive policy ACL was created | [optional] 
-**UpdatedAt** | Pointer to **time.Time** | When the adaptive policy ACL was last updated | [optional] 
+**SsidNumber** | Pointer to **int32** | SSID Number | [optional] 
+**Vlan** | Pointer to **int32** | LAN | [optional] 
+**ClientMac** | Pointer to **string** | Client Mac | [optional] 
+**Serial** | Pointer to **string** | Serial Number | [optional] 
+**FailureStep** | Pointer to **string** | The failed onboarding step. One of: assoc, auth, dhcp, dns. | [optional] 
+**Type** | Pointer to **string** | The failure type in the onboarding step | [optional] 
+**Ts** | Pointer to **time.Time** | The timestamp when the client mac failed | [optional] 
 
 ## Methods
 
@@ -31,180 +31,180 @@ NewInlineResponse20090WithDefaults instantiates a new InlineResponse20090 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAclId
+### GetSsidNumber
 
-`func (o *InlineResponse20090) GetAclId() string`
+`func (o *InlineResponse20090) GetSsidNumber() int32`
 
-GetAclId returns the AclId field if non-nil, zero value otherwise.
+GetSsidNumber returns the SsidNumber field if non-nil, zero value otherwise.
 
-### GetAclIdOk
+### GetSsidNumberOk
 
-`func (o *InlineResponse20090) GetAclIdOk() (*string, bool)`
+`func (o *InlineResponse20090) GetSsidNumberOk() (*int32, bool)`
 
-GetAclIdOk returns a tuple with the AclId field if it's non-nil, zero value otherwise
+GetSsidNumberOk returns a tuple with the SsidNumber field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAclId
+### SetSsidNumber
 
-`func (o *InlineResponse20090) SetAclId(v string)`
+`func (o *InlineResponse20090) SetSsidNumber(v int32)`
 
-SetAclId sets AclId field to given value.
+SetSsidNumber sets SsidNumber field to given value.
 
-### HasAclId
+### HasSsidNumber
 
-`func (o *InlineResponse20090) HasAclId() bool`
+`func (o *InlineResponse20090) HasSsidNumber() bool`
 
-HasAclId returns a boolean if a field has been set.
+HasSsidNumber returns a boolean if a field has been set.
 
-### GetName
+### GetVlan
 
-`func (o *InlineResponse20090) GetName() string`
+`func (o *InlineResponse20090) GetVlan() int32`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetVlan returns the Vlan field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetVlanOk
 
-`func (o *InlineResponse20090) GetNameOk() (*string, bool)`
+`func (o *InlineResponse20090) GetVlanOk() (*int32, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetVlanOk returns a tuple with the Vlan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetVlan
 
-`func (o *InlineResponse20090) SetName(v string)`
+`func (o *InlineResponse20090) SetVlan(v int32)`
 
-SetName sets Name field to given value.
+SetVlan sets Vlan field to given value.
 
-### HasName
+### HasVlan
 
-`func (o *InlineResponse20090) HasName() bool`
+`func (o *InlineResponse20090) HasVlan() bool`
 
-HasName returns a boolean if a field has been set.
+HasVlan returns a boolean if a field has been set.
 
-### GetDescription
+### GetClientMac
 
-`func (o *InlineResponse20090) GetDescription() string`
+`func (o *InlineResponse20090) GetClientMac() string`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetClientMac returns the ClientMac field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetClientMacOk
 
-`func (o *InlineResponse20090) GetDescriptionOk() (*string, bool)`
+`func (o *InlineResponse20090) GetClientMacOk() (*string, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetClientMacOk returns a tuple with the ClientMac field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetClientMac
 
-`func (o *InlineResponse20090) SetDescription(v string)`
+`func (o *InlineResponse20090) SetClientMac(v string)`
 
-SetDescription sets Description field to given value.
+SetClientMac sets ClientMac field to given value.
 
-### HasDescription
+### HasClientMac
 
-`func (o *InlineResponse20090) HasDescription() bool`
+`func (o *InlineResponse20090) HasClientMac() bool`
 
-HasDescription returns a boolean if a field has been set.
+HasClientMac returns a boolean if a field has been set.
 
-### GetIpVersion
+### GetSerial
 
-`func (o *InlineResponse20090) GetIpVersion() string`
+`func (o *InlineResponse20090) GetSerial() string`
 
-GetIpVersion returns the IpVersion field if non-nil, zero value otherwise.
+GetSerial returns the Serial field if non-nil, zero value otherwise.
 
-### GetIpVersionOk
+### GetSerialOk
 
-`func (o *InlineResponse20090) GetIpVersionOk() (*string, bool)`
+`func (o *InlineResponse20090) GetSerialOk() (*string, bool)`
 
-GetIpVersionOk returns a tuple with the IpVersion field if it's non-nil, zero value otherwise
+GetSerialOk returns a tuple with the Serial field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIpVersion
+### SetSerial
 
-`func (o *InlineResponse20090) SetIpVersion(v string)`
+`func (o *InlineResponse20090) SetSerial(v string)`
 
-SetIpVersion sets IpVersion field to given value.
+SetSerial sets Serial field to given value.
 
-### HasIpVersion
+### HasSerial
 
-`func (o *InlineResponse20090) HasIpVersion() bool`
+`func (o *InlineResponse20090) HasSerial() bool`
 
-HasIpVersion returns a boolean if a field has been set.
+HasSerial returns a boolean if a field has been set.
 
-### GetRules
+### GetFailureStep
 
-`func (o *InlineResponse20090) GetRules() []OrganizationsOrganizationIdAdaptivePolicyAclsRules`
+`func (o *InlineResponse20090) GetFailureStep() string`
 
-GetRules returns the Rules field if non-nil, zero value otherwise.
+GetFailureStep returns the FailureStep field if non-nil, zero value otherwise.
 
-### GetRulesOk
+### GetFailureStepOk
 
-`func (o *InlineResponse20090) GetRulesOk() (*[]OrganizationsOrganizationIdAdaptivePolicyAclsRules, bool)`
+`func (o *InlineResponse20090) GetFailureStepOk() (*string, bool)`
 
-GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
+GetFailureStepOk returns a tuple with the FailureStep field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRules
+### SetFailureStep
 
-`func (o *InlineResponse20090) SetRules(v []OrganizationsOrganizationIdAdaptivePolicyAclsRules)`
+`func (o *InlineResponse20090) SetFailureStep(v string)`
 
-SetRules sets Rules field to given value.
+SetFailureStep sets FailureStep field to given value.
 
-### HasRules
+### HasFailureStep
 
-`func (o *InlineResponse20090) HasRules() bool`
+`func (o *InlineResponse20090) HasFailureStep() bool`
 
-HasRules returns a boolean if a field has been set.
+HasFailureStep returns a boolean if a field has been set.
 
-### GetCreatedAt
+### GetType
 
-`func (o *InlineResponse20090) GetCreatedAt() time.Time`
+`func (o *InlineResponse20090) GetType() string`
 
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetCreatedAtOk
+### GetTypeOk
 
-`func (o *InlineResponse20090) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *InlineResponse20090) GetTypeOk() (*string, bool)`
 
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreatedAt
+### SetType
 
-`func (o *InlineResponse20090) SetCreatedAt(v time.Time)`
+`func (o *InlineResponse20090) SetType(v string)`
 
-SetCreatedAt sets CreatedAt field to given value.
+SetType sets Type field to given value.
 
-### HasCreatedAt
+### HasType
 
-`func (o *InlineResponse20090) HasCreatedAt() bool`
+`func (o *InlineResponse20090) HasType() bool`
 
-HasCreatedAt returns a boolean if a field has been set.
+HasType returns a boolean if a field has been set.
 
-### GetUpdatedAt
+### GetTs
 
-`func (o *InlineResponse20090) GetUpdatedAt() time.Time`
+`func (o *InlineResponse20090) GetTs() time.Time`
 
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+GetTs returns the Ts field if non-nil, zero value otherwise.
 
-### GetUpdatedAtOk
+### GetTsOk
 
-`func (o *InlineResponse20090) GetUpdatedAtOk() (*time.Time, bool)`
+`func (o *InlineResponse20090) GetTsOk() (*time.Time, bool)`
 
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+GetTsOk returns a tuple with the Ts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUpdatedAt
+### SetTs
 
-`func (o *InlineResponse20090) SetUpdatedAt(v time.Time)`
+`func (o *InlineResponse20090) SetTs(v time.Time)`
 
-SetUpdatedAt sets UpdatedAt field to given value.
+SetTs sets Ts field to given value.
 
-### HasUpdatedAt
+### HasTs
 
-`func (o *InlineResponse20090) HasUpdatedAt() bool`
+`func (o *InlineResponse20090) HasTs() bool`
 
-HasUpdatedAt returns a boolean if a field has been set.
+HasTs returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

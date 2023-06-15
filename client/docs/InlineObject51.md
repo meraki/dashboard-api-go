@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | Name of the custom performance class | 
-**MaxLatency** | Pointer to **int32** | Maximum latency in milliseconds | [optional] 
-**MaxJitter** | Pointer to **int32** | Maximum jitter in milliseconds | [optional] 
-**MaxLossPercentage** | Pointer to **int32** | Maximum percentage of packet loss | [optional] 
+**Name** | **string** | The name of the new static route | 
+**Subnet** | **string** | The subnet of the static route | 
+**GatewayIp** | **string** | The gateway IP (next hop) of the static route | 
+**GatewayVlanId** | Pointer to **string** | The gateway IP (next hop) VLAN ID of the static route | [optional] 
 
 ## Methods
 
 ### NewInlineObject51
 
-`func NewInlineObject51(name string, ) *InlineObject51`
+`func NewInlineObject51(name string, subnet string, gatewayIp string, ) *InlineObject51`
 
 NewInlineObject51 instantiates a new InlineObject51 object
 This constructor will assign default values to properties that have it defined,
@@ -48,80 +48,70 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetMaxLatency
+### GetSubnet
 
-`func (o *InlineObject51) GetMaxLatency() int32`
+`func (o *InlineObject51) GetSubnet() string`
 
-GetMaxLatency returns the MaxLatency field if non-nil, zero value otherwise.
+GetSubnet returns the Subnet field if non-nil, zero value otherwise.
 
-### GetMaxLatencyOk
+### GetSubnetOk
 
-`func (o *InlineObject51) GetMaxLatencyOk() (*int32, bool)`
+`func (o *InlineObject51) GetSubnetOk() (*string, bool)`
 
-GetMaxLatencyOk returns a tuple with the MaxLatency field if it's non-nil, zero value otherwise
+GetSubnetOk returns a tuple with the Subnet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMaxLatency
+### SetSubnet
 
-`func (o *InlineObject51) SetMaxLatency(v int32)`
+`func (o *InlineObject51) SetSubnet(v string)`
 
-SetMaxLatency sets MaxLatency field to given value.
+SetSubnet sets Subnet field to given value.
 
-### HasMaxLatency
 
-`func (o *InlineObject51) HasMaxLatency() bool`
+### GetGatewayIp
 
-HasMaxLatency returns a boolean if a field has been set.
+`func (o *InlineObject51) GetGatewayIp() string`
 
-### GetMaxJitter
+GetGatewayIp returns the GatewayIp field if non-nil, zero value otherwise.
 
-`func (o *InlineObject51) GetMaxJitter() int32`
+### GetGatewayIpOk
 
-GetMaxJitter returns the MaxJitter field if non-nil, zero value otherwise.
+`func (o *InlineObject51) GetGatewayIpOk() (*string, bool)`
 
-### GetMaxJitterOk
-
-`func (o *InlineObject51) GetMaxJitterOk() (*int32, bool)`
-
-GetMaxJitterOk returns a tuple with the MaxJitter field if it's non-nil, zero value otherwise
+GetGatewayIpOk returns a tuple with the GatewayIp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMaxJitter
+### SetGatewayIp
 
-`func (o *InlineObject51) SetMaxJitter(v int32)`
+`func (o *InlineObject51) SetGatewayIp(v string)`
 
-SetMaxJitter sets MaxJitter field to given value.
+SetGatewayIp sets GatewayIp field to given value.
 
-### HasMaxJitter
 
-`func (o *InlineObject51) HasMaxJitter() bool`
+### GetGatewayVlanId
 
-HasMaxJitter returns a boolean if a field has been set.
+`func (o *InlineObject51) GetGatewayVlanId() string`
 
-### GetMaxLossPercentage
+GetGatewayVlanId returns the GatewayVlanId field if non-nil, zero value otherwise.
 
-`func (o *InlineObject51) GetMaxLossPercentage() int32`
+### GetGatewayVlanIdOk
 
-GetMaxLossPercentage returns the MaxLossPercentage field if non-nil, zero value otherwise.
+`func (o *InlineObject51) GetGatewayVlanIdOk() (*string, bool)`
 
-### GetMaxLossPercentageOk
-
-`func (o *InlineObject51) GetMaxLossPercentageOk() (*int32, bool)`
-
-GetMaxLossPercentageOk returns a tuple with the MaxLossPercentage field if it's non-nil, zero value otherwise
+GetGatewayVlanIdOk returns a tuple with the GatewayVlanId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMaxLossPercentage
+### SetGatewayVlanId
 
-`func (o *InlineObject51) SetMaxLossPercentage(v int32)`
+`func (o *InlineObject51) SetGatewayVlanId(v string)`
 
-SetMaxLossPercentage sets MaxLossPercentage field to given value.
+SetGatewayVlanId sets GatewayVlanId field to given value.
 
-### HasMaxLossPercentage
+### HasGatewayVlanId
 
-`func (o *InlineObject51) HasMaxLossPercentage() bool`
+`func (o *InlineObject51) HasGatewayVlanId() bool`
 
-HasMaxLossPercentage returns a boolean if a field has been set.
+HasGatewayVlanId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

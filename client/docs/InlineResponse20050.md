@@ -4,8 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FirstSeenAt** | Pointer to **string** | When the device was first seen as connected to the internet in each connection. | [optional] 
-**LastSeenAt** | Pointer to **string** | When the device was last seen as connected to the internet in each connection. | [optional] 
+**Id** | Pointer to **string** | The Meraki Id of the devices. | [optional] 
 
 ## Methods
 
@@ -26,55 +25,30 @@ NewInlineResponse20050WithDefaults instantiates a new InlineResponse20050 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetFirstSeenAt
+### GetId
 
-`func (o *InlineResponse20050) GetFirstSeenAt() string`
+`func (o *InlineResponse20050) GetId() string`
 
-GetFirstSeenAt returns the FirstSeenAt field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetFirstSeenAtOk
+### GetIdOk
 
-`func (o *InlineResponse20050) GetFirstSeenAtOk() (*string, bool)`
+`func (o *InlineResponse20050) GetIdOk() (*string, bool)`
 
-GetFirstSeenAtOk returns a tuple with the FirstSeenAt field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFirstSeenAt
+### SetId
 
-`func (o *InlineResponse20050) SetFirstSeenAt(v string)`
+`func (o *InlineResponse20050) SetId(v string)`
 
-SetFirstSeenAt sets FirstSeenAt field to given value.
+SetId sets Id field to given value.
 
-### HasFirstSeenAt
+### HasId
 
-`func (o *InlineResponse20050) HasFirstSeenAt() bool`
+`func (o *InlineResponse20050) HasId() bool`
 
-HasFirstSeenAt returns a boolean if a field has been set.
-
-### GetLastSeenAt
-
-`func (o *InlineResponse20050) GetLastSeenAt() string`
-
-GetLastSeenAt returns the LastSeenAt field if non-nil, zero value otherwise.
-
-### GetLastSeenAtOk
-
-`func (o *InlineResponse20050) GetLastSeenAtOk() (*string, bool)`
-
-GetLastSeenAtOk returns a tuple with the LastSeenAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastSeenAt
-
-`func (o *InlineResponse20050) SetLastSeenAt(v string)`
-
-SetLastSeenAt sets LastSeenAt field to given value.
-
-### HasLastSeenAt
-
-`func (o *InlineResponse20050) HasLastSeenAt() bool`
-
-HasLastSeenAt returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

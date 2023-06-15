@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BandwidthLimits** | Pointer to [**NetworksNetworkIdApplianceTrafficShapingUplinkBandwidthBandwidthLimitsCellular**](NetworksNetworkIdApplianceTrafficShapingUplinkBandwidthBandwidthLimitsCellular.md) |  | [optional] 
+**Destinations** | Pointer to [**[]NetworksNetworkIdCellularGatewayConnectivityMonitoringDestinationsDestinations**](NetworksNetworkIdCellularGatewayConnectivityMonitoringDestinationsDestinations.md) | The list of connectivity monitoring destinations | [optional] 
 
 ## Methods
 
@@ -25,30 +25,30 @@ NewInlineObject70WithDefaults instantiates a new InlineObject70 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetBandwidthLimits
+### GetDestinations
 
-`func (o *InlineObject70) GetBandwidthLimits() NetworksNetworkIdApplianceTrafficShapingUplinkBandwidthBandwidthLimitsCellular`
+`func (o *InlineObject70) GetDestinations() []NetworksNetworkIdCellularGatewayConnectivityMonitoringDestinationsDestinations`
 
-GetBandwidthLimits returns the BandwidthLimits field if non-nil, zero value otherwise.
+GetDestinations returns the Destinations field if non-nil, zero value otherwise.
 
-### GetBandwidthLimitsOk
+### GetDestinationsOk
 
-`func (o *InlineObject70) GetBandwidthLimitsOk() (*NetworksNetworkIdApplianceTrafficShapingUplinkBandwidthBandwidthLimitsCellular, bool)`
+`func (o *InlineObject70) GetDestinationsOk() (*[]NetworksNetworkIdCellularGatewayConnectivityMonitoringDestinationsDestinations, bool)`
 
-GetBandwidthLimitsOk returns a tuple with the BandwidthLimits field if it's non-nil, zero value otherwise
+GetDestinationsOk returns a tuple with the Destinations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBandwidthLimits
+### SetDestinations
 
-`func (o *InlineObject70) SetBandwidthLimits(v NetworksNetworkIdApplianceTrafficShapingUplinkBandwidthBandwidthLimitsCellular)`
+`func (o *InlineObject70) SetDestinations(v []NetworksNetworkIdCellularGatewayConnectivityMonitoringDestinationsDestinations)`
 
-SetBandwidthLimits sets BandwidthLimits field to given value.
+SetDestinations sets Destinations field to given value.
 
-### HasBandwidthLimits
+### HasDestinations
 
-`func (o *InlineObject70) HasBandwidthLimits() bool`
+`func (o *InlineObject70) HasDestinations() bool`
 
-HasBandwidthLimits returns a boolean if a field has been set.
+HasDestinations returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

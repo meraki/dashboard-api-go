@@ -4,9 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientTrackingMethod** | Pointer to **string** | Client tracking method of a network | [optional] 
-**DeploymentMode** | Pointer to **string** | Deployment mode of a network | [optional] 
-**DynamicDns** | Pointer to [**InlineResponse20015DynamicDns**](InlineResponse20015DynamicDns.md) |  | [optional] 
+**Number** | Pointer to **int32** | Number of the port | [optional] 
+**Enabled** | Pointer to **bool** | The status of the port | [optional] 
+**Type** | Pointer to **string** | The type of the port: &#39;access&#39; or &#39;trunk&#39;. | [optional] 
+**DropUntaggedTraffic** | Pointer to **bool** | Whether the trunk port can drop all untagged traffic. | [optional] 
+**Vlan** | Pointer to **int32** | Native VLAN when the port is in Trunk mode. Access VLAN when the port is in Access mode. | [optional] 
+**AllowedVlans** | Pointer to **string** | Comma-delimited list of the VLAN ID&#39;s allowed on the port, or &#39;all&#39; to permit all VLAN&#39;s on the port. | [optional] 
+**AccessPolicy** | Pointer to **string** | The name of the policy. Only applicable to Access ports. | [optional] 
 
 ## Methods
 
@@ -27,80 +31,180 @@ NewInlineResponse20015WithDefaults instantiates a new InlineResponse20015 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetClientTrackingMethod
+### GetNumber
 
-`func (o *InlineResponse20015) GetClientTrackingMethod() string`
+`func (o *InlineResponse20015) GetNumber() int32`
 
-GetClientTrackingMethod returns the ClientTrackingMethod field if non-nil, zero value otherwise.
+GetNumber returns the Number field if non-nil, zero value otherwise.
 
-### GetClientTrackingMethodOk
+### GetNumberOk
 
-`func (o *InlineResponse20015) GetClientTrackingMethodOk() (*string, bool)`
+`func (o *InlineResponse20015) GetNumberOk() (*int32, bool)`
 
-GetClientTrackingMethodOk returns a tuple with the ClientTrackingMethod field if it's non-nil, zero value otherwise
+GetNumberOk returns a tuple with the Number field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetClientTrackingMethod
+### SetNumber
 
-`func (o *InlineResponse20015) SetClientTrackingMethod(v string)`
+`func (o *InlineResponse20015) SetNumber(v int32)`
 
-SetClientTrackingMethod sets ClientTrackingMethod field to given value.
+SetNumber sets Number field to given value.
 
-### HasClientTrackingMethod
+### HasNumber
 
-`func (o *InlineResponse20015) HasClientTrackingMethod() bool`
+`func (o *InlineResponse20015) HasNumber() bool`
 
-HasClientTrackingMethod returns a boolean if a field has been set.
+HasNumber returns a boolean if a field has been set.
 
-### GetDeploymentMode
+### GetEnabled
 
-`func (o *InlineResponse20015) GetDeploymentMode() string`
+`func (o *InlineResponse20015) GetEnabled() bool`
 
-GetDeploymentMode returns the DeploymentMode field if non-nil, zero value otherwise.
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
 
-### GetDeploymentModeOk
+### GetEnabledOk
 
-`func (o *InlineResponse20015) GetDeploymentModeOk() (*string, bool)`
+`func (o *InlineResponse20015) GetEnabledOk() (*bool, bool)`
 
-GetDeploymentModeOk returns a tuple with the DeploymentMode field if it's non-nil, zero value otherwise
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeploymentMode
+### SetEnabled
 
-`func (o *InlineResponse20015) SetDeploymentMode(v string)`
+`func (o *InlineResponse20015) SetEnabled(v bool)`
 
-SetDeploymentMode sets DeploymentMode field to given value.
+SetEnabled sets Enabled field to given value.
 
-### HasDeploymentMode
+### HasEnabled
 
-`func (o *InlineResponse20015) HasDeploymentMode() bool`
+`func (o *InlineResponse20015) HasEnabled() bool`
 
-HasDeploymentMode returns a boolean if a field has been set.
+HasEnabled returns a boolean if a field has been set.
 
-### GetDynamicDns
+### GetType
 
-`func (o *InlineResponse20015) GetDynamicDns() InlineResponse20015DynamicDns`
+`func (o *InlineResponse20015) GetType() string`
 
-GetDynamicDns returns the DynamicDns field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetDynamicDnsOk
+### GetTypeOk
 
-`func (o *InlineResponse20015) GetDynamicDnsOk() (*InlineResponse20015DynamicDns, bool)`
+`func (o *InlineResponse20015) GetTypeOk() (*string, bool)`
 
-GetDynamicDnsOk returns a tuple with the DynamicDns field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDynamicDns
+### SetType
 
-`func (o *InlineResponse20015) SetDynamicDns(v InlineResponse20015DynamicDns)`
+`func (o *InlineResponse20015) SetType(v string)`
 
-SetDynamicDns sets DynamicDns field to given value.
+SetType sets Type field to given value.
 
-### HasDynamicDns
+### HasType
 
-`func (o *InlineResponse20015) HasDynamicDns() bool`
+`func (o *InlineResponse20015) HasType() bool`
 
-HasDynamicDns returns a boolean if a field has been set.
+HasType returns a boolean if a field has been set.
+
+### GetDropUntaggedTraffic
+
+`func (o *InlineResponse20015) GetDropUntaggedTraffic() bool`
+
+GetDropUntaggedTraffic returns the DropUntaggedTraffic field if non-nil, zero value otherwise.
+
+### GetDropUntaggedTrafficOk
+
+`func (o *InlineResponse20015) GetDropUntaggedTrafficOk() (*bool, bool)`
+
+GetDropUntaggedTrafficOk returns a tuple with the DropUntaggedTraffic field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDropUntaggedTraffic
+
+`func (o *InlineResponse20015) SetDropUntaggedTraffic(v bool)`
+
+SetDropUntaggedTraffic sets DropUntaggedTraffic field to given value.
+
+### HasDropUntaggedTraffic
+
+`func (o *InlineResponse20015) HasDropUntaggedTraffic() bool`
+
+HasDropUntaggedTraffic returns a boolean if a field has been set.
+
+### GetVlan
+
+`func (o *InlineResponse20015) GetVlan() int32`
+
+GetVlan returns the Vlan field if non-nil, zero value otherwise.
+
+### GetVlanOk
+
+`func (o *InlineResponse20015) GetVlanOk() (*int32, bool)`
+
+GetVlanOk returns a tuple with the Vlan field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVlan
+
+`func (o *InlineResponse20015) SetVlan(v int32)`
+
+SetVlan sets Vlan field to given value.
+
+### HasVlan
+
+`func (o *InlineResponse20015) HasVlan() bool`
+
+HasVlan returns a boolean if a field has been set.
+
+### GetAllowedVlans
+
+`func (o *InlineResponse20015) GetAllowedVlans() string`
+
+GetAllowedVlans returns the AllowedVlans field if non-nil, zero value otherwise.
+
+### GetAllowedVlansOk
+
+`func (o *InlineResponse20015) GetAllowedVlansOk() (*string, bool)`
+
+GetAllowedVlansOk returns a tuple with the AllowedVlans field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllowedVlans
+
+`func (o *InlineResponse20015) SetAllowedVlans(v string)`
+
+SetAllowedVlans sets AllowedVlans field to given value.
+
+### HasAllowedVlans
+
+`func (o *InlineResponse20015) HasAllowedVlans() bool`
+
+HasAllowedVlans returns a boolean if a field has been set.
+
+### GetAccessPolicy
+
+`func (o *InlineResponse20015) GetAccessPolicy() string`
+
+GetAccessPolicy returns the AccessPolicy field if non-nil, zero value otherwise.
+
+### GetAccessPolicyOk
+
+`func (o *InlineResponse20015) GetAccessPolicyOk() (*string, bool)`
+
+GetAccessPolicyOk returns a tuple with the AccessPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccessPolicy
+
+`func (o *InlineResponse20015) SetAccessPolicy(v string)`
+
+SetAccessPolicy sets AccessPolicy field to given value.
+
+### HasAccessPolicy
+
+`func (o *InlineResponse20015) HasAccessPolicy() bool`
+
+HasAccessPolicy returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

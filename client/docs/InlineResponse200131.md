@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Certificate** | Pointer to **string** | Organization APNS Certificate used by devices to communication with Apple | [optional] 
+**ResultingLicenses** | Pointer to [**[]InlineResponse200130**](InlineResponse200130.md) | Resulting licenses from the move | [optional] 
 
 ## Methods
 
@@ -25,30 +25,30 @@ NewInlineResponse200131WithDefaults instantiates a new InlineResponse200131 obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCertificate
+### GetResultingLicenses
 
-`func (o *InlineResponse200131) GetCertificate() string`
+`func (o *InlineResponse200131) GetResultingLicenses() []InlineResponse200130`
 
-GetCertificate returns the Certificate field if non-nil, zero value otherwise.
+GetResultingLicenses returns the ResultingLicenses field if non-nil, zero value otherwise.
 
-### GetCertificateOk
+### GetResultingLicensesOk
 
-`func (o *InlineResponse200131) GetCertificateOk() (*string, bool)`
+`func (o *InlineResponse200131) GetResultingLicensesOk() (*[]InlineResponse200130, bool)`
 
-GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
+GetResultingLicensesOk returns a tuple with the ResultingLicenses field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCertificate
+### SetResultingLicenses
 
-`func (o *InlineResponse200131) SetCertificate(v string)`
+`func (o *InlineResponse200131) SetResultingLicenses(v []InlineResponse200130)`
 
-SetCertificate sets Certificate field to given value.
+SetResultingLicenses sets ResultingLicenses field to given value.
 
-### HasCertificate
+### HasResultingLicenses
 
-`func (o *InlineResponse200131) HasCertificate() bool`
+`func (o *InlineResponse200131) HasResultingLicenses() bool`
 
-HasCertificate returns a boolean if a field has been set.
+HasResultingLicenses returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

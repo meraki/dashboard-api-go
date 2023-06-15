@@ -4,15 +4,15 @@ All URIs are relative to *https://api.meraki.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetOrganizationOpenapiSpec**](OpenapiSpecApi.md#GetOrganizationOpenapiSpec) | **Get** /organizations/{organizationId}/openapiSpec | Return the OpenAPI 2.0 Specification of the organization&#39;s API documentation in JSON
+[**GetOrganizationOpenapiSpec**](OpenapiSpecApi.md#GetOrganizationOpenapiSpec) | **Get** /organizations/{organizationId}/openapiSpec | Return the OpenAPI Specification of the organization&#39;s API documentation in JSON
 
 
 
 ## GetOrganizationOpenapiSpec
 
-> map[string]interface{} GetOrganizationOpenapiSpec(ctx, organizationId).Execute()
+> map[string]interface{} GetOrganizationOpenapiSpec(ctx, organizationId).Version(version).Execute()
 
-Return the OpenAPI 2.0 Specification of the organization's API documentation in JSON
+Return the OpenAPI Specification of the organization's API documentation in JSON
 
 
 
@@ -30,10 +30,11 @@ import (
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
+    version := int32(56) // int32 | OpenAPI Specification version to return. Default is 2 (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OpenapiSpecApi.GetOrganizationOpenapiSpec(context.Background(), organizationId).Execute()
+    resp, r, err := apiClient.OpenapiSpecApi.GetOrganizationOpenapiSpec(context.Background(), organizationId).Version(version).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OpenapiSpecApi.GetOrganizationOpenapiSpec``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,6 +60,7 @@ Other parameters are passed through a pointer to a apiGetOrganizationOpenapiSpec
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **version** | **int32** | OpenAPI Specification version to return. Default is 2 | 
 
 ### Return type
 

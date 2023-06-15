@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The id of the VPP Account | [optional] 
-**VppServiceToken** | Pointer to **string** | The VPP Account&#39;s Service Token | [optional] 
+**DestOrganizationId** | Pointer to **string** | The ID of the organization to move the licenses to | [optional] 
+**LicenseIds** | Pointer to **[]string** | A list of IDs of licenses to move to the new organization | [optional] 
 
 ## Methods
 
@@ -26,55 +26,55 @@ NewInlineResponse200132WithDefaults instantiates a new InlineResponse200132 obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetDestOrganizationId
 
-`func (o *InlineResponse200132) GetId() string`
+`func (o *InlineResponse200132) GetDestOrganizationId() string`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetDestOrganizationId returns the DestOrganizationId field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetDestOrganizationIdOk
 
-`func (o *InlineResponse200132) GetIdOk() (*string, bool)`
+`func (o *InlineResponse200132) GetDestOrganizationIdOk() (*string, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetDestOrganizationIdOk returns a tuple with the DestOrganizationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetDestOrganizationId
 
-`func (o *InlineResponse200132) SetId(v string)`
+`func (o *InlineResponse200132) SetDestOrganizationId(v string)`
 
-SetId sets Id field to given value.
+SetDestOrganizationId sets DestOrganizationId field to given value.
 
-### HasId
+### HasDestOrganizationId
 
-`func (o *InlineResponse200132) HasId() bool`
+`func (o *InlineResponse200132) HasDestOrganizationId() bool`
 
-HasId returns a boolean if a field has been set.
+HasDestOrganizationId returns a boolean if a field has been set.
 
-### GetVppServiceToken
+### GetLicenseIds
 
-`func (o *InlineResponse200132) GetVppServiceToken() string`
+`func (o *InlineResponse200132) GetLicenseIds() []string`
 
-GetVppServiceToken returns the VppServiceToken field if non-nil, zero value otherwise.
+GetLicenseIds returns the LicenseIds field if non-nil, zero value otherwise.
 
-### GetVppServiceTokenOk
+### GetLicenseIdsOk
 
-`func (o *InlineResponse200132) GetVppServiceTokenOk() (*string, bool)`
+`func (o *InlineResponse200132) GetLicenseIdsOk() (*[]string, bool)`
 
-GetVppServiceTokenOk returns a tuple with the VppServiceToken field if it's non-nil, zero value otherwise
+GetLicenseIdsOk returns a tuple with the LicenseIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVppServiceToken
+### SetLicenseIds
 
-`func (o *InlineResponse200132) SetVppServiceToken(v string)`
+`func (o *InlineResponse200132) SetLicenseIds(v []string)`
 
-SetVppServiceToken sets VppServiceToken field to given value.
+SetLicenseIds sets LicenseIds field to given value.
 
-### HasVppServiceToken
+### HasLicenseIds
 
-`func (o *InlineResponse200132) HasVppServiceToken() bool`
+`func (o *InlineResponse200132) HasLicenseIds() bool`
 
-HasVppServiceToken returns a boolean if a field has been set.
+HasLicenseIds returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

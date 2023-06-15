@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | The network ID | 
-**Access** | **string** | The privilege of the SAML administrator on the network. Can be one of &#39;full&#39;, &#39;read-only&#39;, &#39;guest-ambassador&#39;, &#39;monitor-only&#39; or &#39;ssid-admin&#39; | 
+**Id** | Pointer to **string** | The network ID | [optional] 
+**Access** | Pointer to **string** | The privilege of the SAML administrator on the network | [optional] 
 
 ## Methods
 
 ### NewOrganizationsOrganizationIdSamlRolesNetworks
 
-`func NewOrganizationsOrganizationIdSamlRolesNetworks(id string, access string, ) *OrganizationsOrganizationIdSamlRolesNetworks`
+`func NewOrganizationsOrganizationIdSamlRolesNetworks() *OrganizationsOrganizationIdSamlRolesNetworks`
 
 NewOrganizationsOrganizationIdSamlRolesNetworks instantiates a new OrganizationsOrganizationIdSamlRolesNetworks object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *OrganizationsOrganizationIdSamlRolesNetworks) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetAccess
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetAccess sets Access field to given value.
 
+### HasAccess
+
+`func (o *OrganizationsOrganizationIdSamlRolesNetworks) HasAccess() bool`
+
+HasAccess returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

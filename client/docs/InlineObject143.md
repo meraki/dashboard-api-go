@@ -4,16 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | A name for easy reference to the HTTP server | 
-**Url** | **string** | The URL of the HTTP server. Once set, cannot be updated. | 
-**SharedSecret** | Pointer to **string** | A shared secret that will be included in POSTs sent to the HTTP server. This secret can be used to verify that the request was sent by Meraki. | [optional] 
-**PayloadTemplate** | Pointer to [**NetworksNetworkIdWebhooksHttpServersPayloadTemplate1**](NetworksNetworkIdWebhooksHttpServersPayloadTemplate1.md) |  | [optional] 
+**Servers** | [**[]NetworksNetworkIdSyslogServersServers**](NetworksNetworkIdSyslogServersServers.md) | A list of the syslog servers for this network | 
 
 ## Methods
 
 ### NewInlineObject143
 
-`func NewInlineObject143(name string, url string, ) *InlineObject143`
+`func NewInlineObject143(servers []NetworksNetworkIdSyslogServersServers, ) *InlineObject143`
 
 NewInlineObject143 instantiates a new InlineObject143 object
 This constructor will assign default values to properties that have it defined,
@@ -28,95 +25,25 @@ NewInlineObject143WithDefaults instantiates a new InlineObject143 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetServers
 
-`func (o *InlineObject143) GetName() string`
+`func (o *InlineObject143) GetServers() []NetworksNetworkIdSyslogServersServers`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetServers returns the Servers field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetServersOk
 
-`func (o *InlineObject143) GetNameOk() (*string, bool)`
+`func (o *InlineObject143) GetServersOk() (*[]NetworksNetworkIdSyslogServersServers, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetServersOk returns a tuple with the Servers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetServers
 
-`func (o *InlineObject143) SetName(v string)`
+`func (o *InlineObject143) SetServers(v []NetworksNetworkIdSyslogServersServers)`
 
-SetName sets Name field to given value.
+SetServers sets Servers field to given value.
 
-
-### GetUrl
-
-`func (o *InlineObject143) GetUrl() string`
-
-GetUrl returns the Url field if non-nil, zero value otherwise.
-
-### GetUrlOk
-
-`func (o *InlineObject143) GetUrlOk() (*string, bool)`
-
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUrl
-
-`func (o *InlineObject143) SetUrl(v string)`
-
-SetUrl sets Url field to given value.
-
-
-### GetSharedSecret
-
-`func (o *InlineObject143) GetSharedSecret() string`
-
-GetSharedSecret returns the SharedSecret field if non-nil, zero value otherwise.
-
-### GetSharedSecretOk
-
-`func (o *InlineObject143) GetSharedSecretOk() (*string, bool)`
-
-GetSharedSecretOk returns a tuple with the SharedSecret field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSharedSecret
-
-`func (o *InlineObject143) SetSharedSecret(v string)`
-
-SetSharedSecret sets SharedSecret field to given value.
-
-### HasSharedSecret
-
-`func (o *InlineObject143) HasSharedSecret() bool`
-
-HasSharedSecret returns a boolean if a field has been set.
-
-### GetPayloadTemplate
-
-`func (o *InlineObject143) GetPayloadTemplate() NetworksNetworkIdWebhooksHttpServersPayloadTemplate1`
-
-GetPayloadTemplate returns the PayloadTemplate field if non-nil, zero value otherwise.
-
-### GetPayloadTemplateOk
-
-`func (o *InlineObject143) GetPayloadTemplateOk() (*NetworksNetworkIdWebhooksHttpServersPayloadTemplate1, bool)`
-
-GetPayloadTemplateOk returns a tuple with the PayloadTemplate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPayloadTemplate
-
-`func (o *InlineObject143) SetPayloadTemplate(v NetworksNetworkIdWebhooksHttpServersPayloadTemplate1)`
-
-SetPayloadTemplate sets PayloadTemplate field to given value.
-
-### HasPayloadTemplate
-
-`func (o *InlineObject143) HasPayloadTemplate() bool`
-
-HasPayloadTemplate returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

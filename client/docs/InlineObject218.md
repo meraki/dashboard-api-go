@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**X509certSha1Fingerprint** | **string** | Fingerprint (SHA1) of the SAML certificate provided by your Identity Provider (IdP). This will be used for encryption / validation. | 
-**SloLogoutUrl** | Pointer to **string** | Dashboard will redirect users to this URL when they sign out. | [optional] 
+**Name** | Pointer to **string** | A name for the group of network addresses, unique within the organization (alphanumeric, space, dash, or underscore characters only) | [optional] 
+**ObjectIds** | Pointer to **[]int32** | A list of Policy Object ID&#39;s that this NetworkObjectGroup should be associated to (note: these ID&#39;s will replace the existing associated Policy Objects) | [optional] 
 
 ## Methods
 
 ### NewInlineObject218
 
-`func NewInlineObject218(x509certSha1Fingerprint string, ) *InlineObject218`
+`func NewInlineObject218() *InlineObject218`
 
 NewInlineObject218 instantiates a new InlineObject218 object
 This constructor will assign default values to properties that have it defined,
@@ -26,50 +26,55 @@ NewInlineObject218WithDefaults instantiates a new InlineObject218 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetX509certSha1Fingerprint
+### GetName
 
-`func (o *InlineObject218) GetX509certSha1Fingerprint() string`
+`func (o *InlineObject218) GetName() string`
 
-GetX509certSha1Fingerprint returns the X509certSha1Fingerprint field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetX509certSha1FingerprintOk
+### GetNameOk
 
-`func (o *InlineObject218) GetX509certSha1FingerprintOk() (*string, bool)`
+`func (o *InlineObject218) GetNameOk() (*string, bool)`
 
-GetX509certSha1FingerprintOk returns a tuple with the X509certSha1Fingerprint field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetX509certSha1Fingerprint
+### SetName
 
-`func (o *InlineObject218) SetX509certSha1Fingerprint(v string)`
+`func (o *InlineObject218) SetName(v string)`
 
-SetX509certSha1Fingerprint sets X509certSha1Fingerprint field to given value.
+SetName sets Name field to given value.
 
+### HasName
 
-### GetSloLogoutUrl
+`func (o *InlineObject218) HasName() bool`
 
-`func (o *InlineObject218) GetSloLogoutUrl() string`
+HasName returns a boolean if a field has been set.
 
-GetSloLogoutUrl returns the SloLogoutUrl field if non-nil, zero value otherwise.
+### GetObjectIds
 
-### GetSloLogoutUrlOk
+`func (o *InlineObject218) GetObjectIds() []int32`
 
-`func (o *InlineObject218) GetSloLogoutUrlOk() (*string, bool)`
+GetObjectIds returns the ObjectIds field if non-nil, zero value otherwise.
 
-GetSloLogoutUrlOk returns a tuple with the SloLogoutUrl field if it's non-nil, zero value otherwise
+### GetObjectIdsOk
+
+`func (o *InlineObject218) GetObjectIdsOk() (*[]int32, bool)`
+
+GetObjectIdsOk returns a tuple with the ObjectIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSloLogoutUrl
+### SetObjectIds
 
-`func (o *InlineObject218) SetSloLogoutUrl(v string)`
+`func (o *InlineObject218) SetObjectIds(v []int32)`
 
-SetSloLogoutUrl sets SloLogoutUrl field to given value.
+SetObjectIds sets ObjectIds field to given value.
 
-### HasSloLogoutUrl
+### HasObjectIds
 
-`func (o *InlineObject218) HasSloLogoutUrl() bool`
+`func (o *InlineObject218) HasObjectIds() bool`
 
-HasSloLogoutUrl returns a boolean if a field has been set.
+HasObjectIds returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

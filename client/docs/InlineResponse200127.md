@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IdpId** | Pointer to **string** | ID associated with the SAML Identity Provider (IdP) | [optional] 
-**ConsumerUrl** | Pointer to **string** | URL that is consuming SAML Identity Provider (IdP) | [optional] 
-**X509certSha1Fingerprint** | Pointer to **string** | Fingerprint (SHA1) of the SAML certificate provided by your Identity Provider (IdP). This will be used for encryption / validation. | [optional] 
-**SloLogoutUrl** | Pointer to **string** | Dashboard will redirect users to this URL when they sign out. | [optional] 
+**Id** | Pointer to **string** | Monitored media server id | [optional] 
+**Name** | Pointer to **string** | The name of the VoIP provider | [optional] 
+**Address** | Pointer to **string** | The IP address (IPv4 only) or hostname of the media server to monitor | [optional] 
+**BestEffortMonitoringEnabled** | Pointer to **bool** | Indicates that if the media server doesn&#39;t respond to ICMP pings, the nearest hop will be used in its stead | [optional] 
 
 ## Methods
 
@@ -28,105 +28,105 @@ NewInlineResponse200127WithDefaults instantiates a new InlineResponse200127 obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetIdpId
+### GetId
 
-`func (o *InlineResponse200127) GetIdpId() string`
+`func (o *InlineResponse200127) GetId() string`
 
-GetIdpId returns the IdpId field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetIdpIdOk
+### GetIdOk
 
-`func (o *InlineResponse200127) GetIdpIdOk() (*string, bool)`
+`func (o *InlineResponse200127) GetIdOk() (*string, bool)`
 
-GetIdpIdOk returns a tuple with the IdpId field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIdpId
+### SetId
 
-`func (o *InlineResponse200127) SetIdpId(v string)`
+`func (o *InlineResponse200127) SetId(v string)`
 
-SetIdpId sets IdpId field to given value.
+SetId sets Id field to given value.
 
-### HasIdpId
+### HasId
 
-`func (o *InlineResponse200127) HasIdpId() bool`
+`func (o *InlineResponse200127) HasId() bool`
 
-HasIdpId returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### GetConsumerUrl
+### GetName
 
-`func (o *InlineResponse200127) GetConsumerUrl() string`
+`func (o *InlineResponse200127) GetName() string`
 
-GetConsumerUrl returns the ConsumerUrl field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetConsumerUrlOk
+### GetNameOk
 
-`func (o *InlineResponse200127) GetConsumerUrlOk() (*string, bool)`
+`func (o *InlineResponse200127) GetNameOk() (*string, bool)`
 
-GetConsumerUrlOk returns a tuple with the ConsumerUrl field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetConsumerUrl
+### SetName
 
-`func (o *InlineResponse200127) SetConsumerUrl(v string)`
+`func (o *InlineResponse200127) SetName(v string)`
 
-SetConsumerUrl sets ConsumerUrl field to given value.
+SetName sets Name field to given value.
 
-### HasConsumerUrl
+### HasName
 
-`func (o *InlineResponse200127) HasConsumerUrl() bool`
+`func (o *InlineResponse200127) HasName() bool`
 
-HasConsumerUrl returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetX509certSha1Fingerprint
+### GetAddress
 
-`func (o *InlineResponse200127) GetX509certSha1Fingerprint() string`
+`func (o *InlineResponse200127) GetAddress() string`
 
-GetX509certSha1Fingerprint returns the X509certSha1Fingerprint field if non-nil, zero value otherwise.
+GetAddress returns the Address field if non-nil, zero value otherwise.
 
-### GetX509certSha1FingerprintOk
+### GetAddressOk
 
-`func (o *InlineResponse200127) GetX509certSha1FingerprintOk() (*string, bool)`
+`func (o *InlineResponse200127) GetAddressOk() (*string, bool)`
 
-GetX509certSha1FingerprintOk returns a tuple with the X509certSha1Fingerprint field if it's non-nil, zero value otherwise
+GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetX509certSha1Fingerprint
+### SetAddress
 
-`func (o *InlineResponse200127) SetX509certSha1Fingerprint(v string)`
+`func (o *InlineResponse200127) SetAddress(v string)`
 
-SetX509certSha1Fingerprint sets X509certSha1Fingerprint field to given value.
+SetAddress sets Address field to given value.
 
-### HasX509certSha1Fingerprint
+### HasAddress
 
-`func (o *InlineResponse200127) HasX509certSha1Fingerprint() bool`
+`func (o *InlineResponse200127) HasAddress() bool`
 
-HasX509certSha1Fingerprint returns a boolean if a field has been set.
+HasAddress returns a boolean if a field has been set.
 
-### GetSloLogoutUrl
+### GetBestEffortMonitoringEnabled
 
-`func (o *InlineResponse200127) GetSloLogoutUrl() string`
+`func (o *InlineResponse200127) GetBestEffortMonitoringEnabled() bool`
 
-GetSloLogoutUrl returns the SloLogoutUrl field if non-nil, zero value otherwise.
+GetBestEffortMonitoringEnabled returns the BestEffortMonitoringEnabled field if non-nil, zero value otherwise.
 
-### GetSloLogoutUrlOk
+### GetBestEffortMonitoringEnabledOk
 
-`func (o *InlineResponse200127) GetSloLogoutUrlOk() (*string, bool)`
+`func (o *InlineResponse200127) GetBestEffortMonitoringEnabledOk() (*bool, bool)`
 
-GetSloLogoutUrlOk returns a tuple with the SloLogoutUrl field if it's non-nil, zero value otherwise
+GetBestEffortMonitoringEnabledOk returns a tuple with the BestEffortMonitoringEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSloLogoutUrl
+### SetBestEffortMonitoringEnabled
 
-`func (o *InlineResponse200127) SetSloLogoutUrl(v string)`
+`func (o *InlineResponse200127) SetBestEffortMonitoringEnabled(v bool)`
 
-SetSloLogoutUrl sets SloLogoutUrl field to given value.
+SetBestEffortMonitoringEnabled sets BestEffortMonitoringEnabled field to given value.
 
-### HasSloLogoutUrl
+### HasBestEffortMonitoringEnabled
 
-`func (o *InlineResponse200127) HasSloLogoutUrl() bool`
+`func (o *InlineResponse200127) HasBestEffortMonitoringEnabled() bool`
 
-HasSloLogoutUrl returns a boolean if a field has been set.
+HasBestEffortMonitoringEnabled returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

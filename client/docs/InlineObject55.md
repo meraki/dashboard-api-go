@@ -4,12 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ActiveActiveAutoVpnEnabled** | Pointer to **bool** | Toggle for enabling or disabling active-active AutoVPN | [optional] 
-**DefaultUplink** | Pointer to **string** | The default uplink. Must be one of: &#39;wan1&#39; or &#39;wan2&#39; | [optional] 
-**LoadBalancingEnabled** | Pointer to **bool** | Toggle for enabling or disabling load balancing | [optional] 
-**FailoverAndFailback** | Pointer to [**NetworksNetworkIdApplianceTrafficShapingUplinkSelectionFailoverAndFailback**](NetworksNetworkIdApplianceTrafficShapingUplinkSelectionFailoverAndFailback.md) |  | [optional] 
-**WanTrafficUplinkPreferences** | Pointer to [**[]NetworksNetworkIdApplianceTrafficShapingUplinkSelectionWanTrafficUplinkPreferences**](NetworksNetworkIdApplianceTrafficShapingUplinkSelectionWanTrafficUplinkPreferences.md) | Array of uplink preference rules for WAN traffic | [optional] 
-**VpnTrafficUplinkPreferences** | Pointer to [**[]NetworksNetworkIdApplianceTrafficShapingUplinkSelectionVpnTrafficUplinkPreferences**](NetworksNetworkIdApplianceTrafficShapingUplinkSelectionVpnTrafficUplinkPreferences.md) | Array of uplink preference rules for VPN traffic | [optional] 
+**Name** | Pointer to **string** | Name of the custom performance class | [optional] 
+**MaxLatency** | Pointer to **int32** | Maximum latency in milliseconds | [optional] 
+**MaxJitter** | Pointer to **int32** | Maximum jitter in milliseconds | [optional] 
+**MaxLossPercentage** | Pointer to **int32** | Maximum percentage of packet loss | [optional] 
 
 ## Methods
 
@@ -30,155 +28,105 @@ NewInlineObject55WithDefaults instantiates a new InlineObject55 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetActiveActiveAutoVpnEnabled
+### GetName
 
-`func (o *InlineObject55) GetActiveActiveAutoVpnEnabled() bool`
+`func (o *InlineObject55) GetName() string`
 
-GetActiveActiveAutoVpnEnabled returns the ActiveActiveAutoVpnEnabled field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetActiveActiveAutoVpnEnabledOk
+### GetNameOk
 
-`func (o *InlineObject55) GetActiveActiveAutoVpnEnabledOk() (*bool, bool)`
+`func (o *InlineObject55) GetNameOk() (*string, bool)`
 
-GetActiveActiveAutoVpnEnabledOk returns a tuple with the ActiveActiveAutoVpnEnabled field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetActiveActiveAutoVpnEnabled
+### SetName
 
-`func (o *InlineObject55) SetActiveActiveAutoVpnEnabled(v bool)`
+`func (o *InlineObject55) SetName(v string)`
 
-SetActiveActiveAutoVpnEnabled sets ActiveActiveAutoVpnEnabled field to given value.
+SetName sets Name field to given value.
 
-### HasActiveActiveAutoVpnEnabled
+### HasName
 
-`func (o *InlineObject55) HasActiveActiveAutoVpnEnabled() bool`
+`func (o *InlineObject55) HasName() bool`
 
-HasActiveActiveAutoVpnEnabled returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetDefaultUplink
+### GetMaxLatency
 
-`func (o *InlineObject55) GetDefaultUplink() string`
+`func (o *InlineObject55) GetMaxLatency() int32`
 
-GetDefaultUplink returns the DefaultUplink field if non-nil, zero value otherwise.
+GetMaxLatency returns the MaxLatency field if non-nil, zero value otherwise.
 
-### GetDefaultUplinkOk
+### GetMaxLatencyOk
 
-`func (o *InlineObject55) GetDefaultUplinkOk() (*string, bool)`
+`func (o *InlineObject55) GetMaxLatencyOk() (*int32, bool)`
 
-GetDefaultUplinkOk returns a tuple with the DefaultUplink field if it's non-nil, zero value otherwise
+GetMaxLatencyOk returns a tuple with the MaxLatency field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDefaultUplink
+### SetMaxLatency
 
-`func (o *InlineObject55) SetDefaultUplink(v string)`
+`func (o *InlineObject55) SetMaxLatency(v int32)`
 
-SetDefaultUplink sets DefaultUplink field to given value.
+SetMaxLatency sets MaxLatency field to given value.
 
-### HasDefaultUplink
+### HasMaxLatency
 
-`func (o *InlineObject55) HasDefaultUplink() bool`
+`func (o *InlineObject55) HasMaxLatency() bool`
 
-HasDefaultUplink returns a boolean if a field has been set.
+HasMaxLatency returns a boolean if a field has been set.
 
-### GetLoadBalancingEnabled
+### GetMaxJitter
 
-`func (o *InlineObject55) GetLoadBalancingEnabled() bool`
+`func (o *InlineObject55) GetMaxJitter() int32`
 
-GetLoadBalancingEnabled returns the LoadBalancingEnabled field if non-nil, zero value otherwise.
+GetMaxJitter returns the MaxJitter field if non-nil, zero value otherwise.
 
-### GetLoadBalancingEnabledOk
+### GetMaxJitterOk
 
-`func (o *InlineObject55) GetLoadBalancingEnabledOk() (*bool, bool)`
+`func (o *InlineObject55) GetMaxJitterOk() (*int32, bool)`
 
-GetLoadBalancingEnabledOk returns a tuple with the LoadBalancingEnabled field if it's non-nil, zero value otherwise
+GetMaxJitterOk returns a tuple with the MaxJitter field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLoadBalancingEnabled
+### SetMaxJitter
 
-`func (o *InlineObject55) SetLoadBalancingEnabled(v bool)`
+`func (o *InlineObject55) SetMaxJitter(v int32)`
 
-SetLoadBalancingEnabled sets LoadBalancingEnabled field to given value.
+SetMaxJitter sets MaxJitter field to given value.
 
-### HasLoadBalancingEnabled
+### HasMaxJitter
 
-`func (o *InlineObject55) HasLoadBalancingEnabled() bool`
+`func (o *InlineObject55) HasMaxJitter() bool`
 
-HasLoadBalancingEnabled returns a boolean if a field has been set.
+HasMaxJitter returns a boolean if a field has been set.
 
-### GetFailoverAndFailback
+### GetMaxLossPercentage
 
-`func (o *InlineObject55) GetFailoverAndFailback() NetworksNetworkIdApplianceTrafficShapingUplinkSelectionFailoverAndFailback`
+`func (o *InlineObject55) GetMaxLossPercentage() int32`
 
-GetFailoverAndFailback returns the FailoverAndFailback field if non-nil, zero value otherwise.
+GetMaxLossPercentage returns the MaxLossPercentage field if non-nil, zero value otherwise.
 
-### GetFailoverAndFailbackOk
+### GetMaxLossPercentageOk
 
-`func (o *InlineObject55) GetFailoverAndFailbackOk() (*NetworksNetworkIdApplianceTrafficShapingUplinkSelectionFailoverAndFailback, bool)`
+`func (o *InlineObject55) GetMaxLossPercentageOk() (*int32, bool)`
 
-GetFailoverAndFailbackOk returns a tuple with the FailoverAndFailback field if it's non-nil, zero value otherwise
+GetMaxLossPercentageOk returns a tuple with the MaxLossPercentage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFailoverAndFailback
+### SetMaxLossPercentage
 
-`func (o *InlineObject55) SetFailoverAndFailback(v NetworksNetworkIdApplianceTrafficShapingUplinkSelectionFailoverAndFailback)`
+`func (o *InlineObject55) SetMaxLossPercentage(v int32)`
 
-SetFailoverAndFailback sets FailoverAndFailback field to given value.
+SetMaxLossPercentage sets MaxLossPercentage field to given value.
 
-### HasFailoverAndFailback
+### HasMaxLossPercentage
 
-`func (o *InlineObject55) HasFailoverAndFailback() bool`
+`func (o *InlineObject55) HasMaxLossPercentage() bool`
 
-HasFailoverAndFailback returns a boolean if a field has been set.
-
-### GetWanTrafficUplinkPreferences
-
-`func (o *InlineObject55) GetWanTrafficUplinkPreferences() []NetworksNetworkIdApplianceTrafficShapingUplinkSelectionWanTrafficUplinkPreferences`
-
-GetWanTrafficUplinkPreferences returns the WanTrafficUplinkPreferences field if non-nil, zero value otherwise.
-
-### GetWanTrafficUplinkPreferencesOk
-
-`func (o *InlineObject55) GetWanTrafficUplinkPreferencesOk() (*[]NetworksNetworkIdApplianceTrafficShapingUplinkSelectionWanTrafficUplinkPreferences, bool)`
-
-GetWanTrafficUplinkPreferencesOk returns a tuple with the WanTrafficUplinkPreferences field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWanTrafficUplinkPreferences
-
-`func (o *InlineObject55) SetWanTrafficUplinkPreferences(v []NetworksNetworkIdApplianceTrafficShapingUplinkSelectionWanTrafficUplinkPreferences)`
-
-SetWanTrafficUplinkPreferences sets WanTrafficUplinkPreferences field to given value.
-
-### HasWanTrafficUplinkPreferences
-
-`func (o *InlineObject55) HasWanTrafficUplinkPreferences() bool`
-
-HasWanTrafficUplinkPreferences returns a boolean if a field has been set.
-
-### GetVpnTrafficUplinkPreferences
-
-`func (o *InlineObject55) GetVpnTrafficUplinkPreferences() []NetworksNetworkIdApplianceTrafficShapingUplinkSelectionVpnTrafficUplinkPreferences`
-
-GetVpnTrafficUplinkPreferences returns the VpnTrafficUplinkPreferences field if non-nil, zero value otherwise.
-
-### GetVpnTrafficUplinkPreferencesOk
-
-`func (o *InlineObject55) GetVpnTrafficUplinkPreferencesOk() (*[]NetworksNetworkIdApplianceTrafficShapingUplinkSelectionVpnTrafficUplinkPreferences, bool)`
-
-GetVpnTrafficUplinkPreferencesOk returns a tuple with the VpnTrafficUplinkPreferences field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVpnTrafficUplinkPreferences
-
-`func (o *InlineObject55) SetVpnTrafficUplinkPreferences(v []NetworksNetworkIdApplianceTrafficShapingUplinkSelectionVpnTrafficUplinkPreferences)`
-
-SetVpnTrafficUplinkPreferences sets VpnTrafficUplinkPreferences field to given value.
-
-### HasVpnTrafficUplinkPreferences
-
-`func (o *InlineObject55) HasVpnTrafficUplinkPreferences() bool`
-
-HasVpnTrafficUplinkPreferences returns a boolean if a field has been set.
+HasMaxLossPercentage returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

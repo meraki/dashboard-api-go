@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Products** | Pointer to [**InlineResponse20029Products**](InlineResponse20029Products.md) |  | [optional] 
-**Stages** | Pointer to [**[]InlineResponse20029Stages**](InlineResponse20029Stages.md) | The ordered stages in the network | [optional] 
-**Reasons** | Pointer to [**[]InlineResponse20028Reasons**](InlineResponse20028Reasons.md) | Reasons for the rollback | [optional] 
+**Category** | Pointer to **string** | Event category | [optional] 
+**Type** | Pointer to **string** | Event type | [optional] 
+**Description** | Pointer to **string** | Description of the event | [optional] 
 
 ## Methods
 
@@ -27,80 +27,80 @@ NewInlineResponse20029WithDefaults instantiates a new InlineResponse20029 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetProducts
+### GetCategory
 
-`func (o *InlineResponse20029) GetProducts() InlineResponse20029Products`
+`func (o *InlineResponse20029) GetCategory() string`
 
-GetProducts returns the Products field if non-nil, zero value otherwise.
+GetCategory returns the Category field if non-nil, zero value otherwise.
 
-### GetProductsOk
+### GetCategoryOk
 
-`func (o *InlineResponse20029) GetProductsOk() (*InlineResponse20029Products, bool)`
+`func (o *InlineResponse20029) GetCategoryOk() (*string, bool)`
 
-GetProductsOk returns a tuple with the Products field if it's non-nil, zero value otherwise
+GetCategoryOk returns a tuple with the Category field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProducts
+### SetCategory
 
-`func (o *InlineResponse20029) SetProducts(v InlineResponse20029Products)`
+`func (o *InlineResponse20029) SetCategory(v string)`
 
-SetProducts sets Products field to given value.
+SetCategory sets Category field to given value.
 
-### HasProducts
+### HasCategory
 
-`func (o *InlineResponse20029) HasProducts() bool`
+`func (o *InlineResponse20029) HasCategory() bool`
 
-HasProducts returns a boolean if a field has been set.
+HasCategory returns a boolean if a field has been set.
 
-### GetStages
+### GetType
 
-`func (o *InlineResponse20029) GetStages() []InlineResponse20029Stages`
+`func (o *InlineResponse20029) GetType() string`
 
-GetStages returns the Stages field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetStagesOk
+### GetTypeOk
 
-`func (o *InlineResponse20029) GetStagesOk() (*[]InlineResponse20029Stages, bool)`
+`func (o *InlineResponse20029) GetTypeOk() (*string, bool)`
 
-GetStagesOk returns a tuple with the Stages field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStages
+### SetType
 
-`func (o *InlineResponse20029) SetStages(v []InlineResponse20029Stages)`
+`func (o *InlineResponse20029) SetType(v string)`
 
-SetStages sets Stages field to given value.
+SetType sets Type field to given value.
 
-### HasStages
+### HasType
 
-`func (o *InlineResponse20029) HasStages() bool`
+`func (o *InlineResponse20029) HasType() bool`
 
-HasStages returns a boolean if a field has been set.
+HasType returns a boolean if a field has been set.
 
-### GetReasons
+### GetDescription
 
-`func (o *InlineResponse20029) GetReasons() []InlineResponse20028Reasons`
+`func (o *InlineResponse20029) GetDescription() string`
 
-GetReasons returns the Reasons field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetReasonsOk
+### GetDescriptionOk
 
-`func (o *InlineResponse20029) GetReasonsOk() (*[]InlineResponse20028Reasons, bool)`
+`func (o *InlineResponse20029) GetDescriptionOk() (*string, bool)`
 
-GetReasonsOk returns a tuple with the Reasons field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetReasons
+### SetDescription
 
-`func (o *InlineResponse20029) SetReasons(v []InlineResponse20028Reasons)`
+`func (o *InlineResponse20029) SetDescription(v string)`
 
-SetReasons sets Reasons field to given value.
+SetDescription sets Description field to given value.
 
-### HasReasons
+### HasDescription
 
-`func (o *InlineResponse20029) HasReasons() bool`
+`func (o *InlineResponse20029) HasDescription() bool`
 
-HasReasons returns a boolean if a field has been set.
+HasDescription returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

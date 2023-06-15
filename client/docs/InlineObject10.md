@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ReservedIpRanges** | Pointer to [**[]DevicesSerialCellularGatewayLanReservedIpRanges**](DevicesSerialCellularGatewayLanReservedIpRanges.md) | list of all reserved IP ranges for a single MG | [optional] 
-**FixedIpAssignments** | Pointer to [**[]DevicesSerialCellularGatewayLanFixedIpAssignments**](DevicesSerialCellularGatewayLanFixedIpAssignments.md) | list of all fixed IP assignments for a single MG | [optional] 
+**Sims** | Pointer to [**[]DevicesSerialCellularSimsSims**](DevicesSerialCellularSimsSims.md) | List of SIMs. If a SIM was previously configured and not specified in this request, it will remain unchanged. | [optional] 
+**SimFailover** | Pointer to [**DevicesSerialCellularSimsSimFailover**](DevicesSerialCellularSimsSimFailover.md) |  | [optional] 
 
 ## Methods
 
@@ -26,55 +26,55 @@ NewInlineObject10WithDefaults instantiates a new InlineObject10 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetReservedIpRanges
+### GetSims
 
-`func (o *InlineObject10) GetReservedIpRanges() []DevicesSerialCellularGatewayLanReservedIpRanges`
+`func (o *InlineObject10) GetSims() []DevicesSerialCellularSimsSims`
 
-GetReservedIpRanges returns the ReservedIpRanges field if non-nil, zero value otherwise.
+GetSims returns the Sims field if non-nil, zero value otherwise.
 
-### GetReservedIpRangesOk
+### GetSimsOk
 
-`func (o *InlineObject10) GetReservedIpRangesOk() (*[]DevicesSerialCellularGatewayLanReservedIpRanges, bool)`
+`func (o *InlineObject10) GetSimsOk() (*[]DevicesSerialCellularSimsSims, bool)`
 
-GetReservedIpRangesOk returns a tuple with the ReservedIpRanges field if it's non-nil, zero value otherwise
+GetSimsOk returns a tuple with the Sims field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetReservedIpRanges
+### SetSims
 
-`func (o *InlineObject10) SetReservedIpRanges(v []DevicesSerialCellularGatewayLanReservedIpRanges)`
+`func (o *InlineObject10) SetSims(v []DevicesSerialCellularSimsSims)`
 
-SetReservedIpRanges sets ReservedIpRanges field to given value.
+SetSims sets Sims field to given value.
 
-### HasReservedIpRanges
+### HasSims
 
-`func (o *InlineObject10) HasReservedIpRanges() bool`
+`func (o *InlineObject10) HasSims() bool`
 
-HasReservedIpRanges returns a boolean if a field has been set.
+HasSims returns a boolean if a field has been set.
 
-### GetFixedIpAssignments
+### GetSimFailover
 
-`func (o *InlineObject10) GetFixedIpAssignments() []DevicesSerialCellularGatewayLanFixedIpAssignments`
+`func (o *InlineObject10) GetSimFailover() DevicesSerialCellularSimsSimFailover`
 
-GetFixedIpAssignments returns the FixedIpAssignments field if non-nil, zero value otherwise.
+GetSimFailover returns the SimFailover field if non-nil, zero value otherwise.
 
-### GetFixedIpAssignmentsOk
+### GetSimFailoverOk
 
-`func (o *InlineObject10) GetFixedIpAssignmentsOk() (*[]DevicesSerialCellularGatewayLanFixedIpAssignments, bool)`
+`func (o *InlineObject10) GetSimFailoverOk() (*DevicesSerialCellularSimsSimFailover, bool)`
 
-GetFixedIpAssignmentsOk returns a tuple with the FixedIpAssignments field if it's non-nil, zero value otherwise
+GetSimFailoverOk returns a tuple with the SimFailover field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFixedIpAssignments
+### SetSimFailover
 
-`func (o *InlineObject10) SetFixedIpAssignments(v []DevicesSerialCellularGatewayLanFixedIpAssignments)`
+`func (o *InlineObject10) SetSimFailover(v DevicesSerialCellularSimsSimFailover)`
 
-SetFixedIpAssignments sets FixedIpAssignments field to given value.
+SetSimFailover sets SimFailover field to given value.
 
-### HasFixedIpAssignments
+### HasSimFailover
 
-`func (o *InlineObject10) HasFixedIpAssignments() bool`
+`func (o *InlineObject10) HasSimFailover() bool`
 
-HasFixedIpAssignments returns a boolean if a field has been set.
+HasSimFailover returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

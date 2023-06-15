@@ -4,33 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The ID of the client | [optional] 
-**Mac** | Pointer to **string** | The MAC address of the client | [optional] 
-**Ip** | Pointer to **string** | The IP address of the client | [optional] 
-**Ip6** | Pointer to **string** | The IPv6 address of the client | [optional] 
-**Description** | Pointer to **string** | Short description of the client | [optional] 
-**FirstSeen** | Pointer to **int32** | Timestamp client was first seen in the network | [optional] 
-**LastSeen** | Pointer to **int32** | Timestamp client was last seen in the network | [optional] 
-**Manufacturer** | Pointer to **string** | Manufacturer of the client | [optional] 
-**Os** | Pointer to **string** | The operating system of the client | [optional] 
-**User** | Pointer to **string** | The username of the user of the client | [optional] 
-**Vlan** | Pointer to **string** | The name of the VLAN that the client is connected to | [optional] 
-**Ssid** | Pointer to **string** | The name of the SSID that the client is connected to | [optional] 
-**Switchport** | Pointer to **string** | The switch port that the client is connected to | [optional] 
-**WirelessCapabilities** | Pointer to **string** | Wireless capabilities of the client | [optional] 
-**SmInstalled** | Pointer to **bool** | Status of SM for the client | [optional] 
-**RecentDeviceMac** | Pointer to **string** | The MAC address of the node that the device was last connected to | [optional] 
-**Status** | Pointer to **string** | The connection status of the client | [optional] 
-**Usage** | Pointer to [**InlineResponse20023Usage**](InlineResponse20023Usage.md) |  | [optional] 
-**NamedVlan** | Pointer to **string** | Named VLAN of the client | [optional] 
-**AdaptivePolicyGroup** | Pointer to **string** | The adaptive policy group of the client | [optional] 
-**DeviceTypePrediction** | Pointer to **string** | Prediction of the client&#39;s device type | [optional] 
-**RecentDeviceSerial** | Pointer to **string** | The serial of the node the device was last connected to | [optional] 
-**RecentDeviceName** | Pointer to **string** | The name of the node the device was last connected to | [optional] 
-**RecentDeviceConnection** | Pointer to **string** | Client&#39;s most recent connection type | [optional] 
-**Notes** | Pointer to **string** | Notes on the client | [optional] 
-**Ip6Local** | Pointer to **string** | Local IPv6 address of the client | [optional] 
-**GroupPolicy8021x** | Pointer to **string** | 802.1x group policy of the client | [optional] 
+**Id** | Pointer to **string** | The VLAN ID of the VLAN | [optional] 
+**InterfaceId** | Pointer to **string** | The interface ID of the VLAN | [optional] 
+**Name** | Pointer to **string** | The name of the VLAN | [optional] 
+**Subnet** | Pointer to **string** | The subnet of the VLAN | [optional] 
+**ApplianceIp** | Pointer to **string** | The local IP of the appliance on the VLAN | [optional] 
+**GroupPolicyId** | Pointer to **string** | The id of the desired group policy to apply to the VLAN | [optional] 
+**TemplateVlanType** | Pointer to **string** | Type of subnetting of the VLAN. Applicable only for template network. | [optional] [default to "same"]
+**Cidr** | Pointer to **string** | CIDR of the pool of subnets. Applicable only for template network. Each network bound to the template will automatically pick a subnet from this pool to build its own VLAN. | [optional] 
+**Mask** | Pointer to **int32** | Mask used for the subnet of all bound to the template networks. Applicable only for template network. | [optional] 
+**DhcpRelayServerIps** | Pointer to **[]string** | The IPs of the DHCP servers that DHCP requests should be relayed to | [optional] 
+**DhcpHandling** | Pointer to **string** | The appliance&#39;s handling of DHCP requests on this VLAN. One of: &#39;Run a DHCP server&#39;, &#39;Relay DHCP to another server&#39; or &#39;Do not respond to DHCP requests&#39; | [optional] 
+**DhcpLeaseTime** | Pointer to **string** | The term of DHCP leases if the appliance is running a DHCP server on this VLAN. One of: &#39;30 minutes&#39;, &#39;1 hour&#39;, &#39;4 hours&#39;, &#39;12 hours&#39;, &#39;1 day&#39; or &#39;1 week&#39; | [optional] 
+**DhcpBootOptionsEnabled** | Pointer to **bool** | Use DHCP boot options specified in other properties | [optional] 
+**DhcpBootNextServer** | Pointer to **string** | DHCP boot option to direct boot clients to the server to load the boot file from | [optional] 
+**DhcpBootFilename** | Pointer to **string** | DHCP boot option for boot filename | [optional] 
+**FixedIpAssignments** | Pointer to **map[string]interface{}** | The DHCP fixed IP assignments on the VLAN. This should be an object that contains mappings from MAC addresses to objects that themselves each contain \&quot;ip\&quot; and \&quot;name\&quot; string fields. See the sample request/response for more details. | [optional] 
+**ReservedIpRanges** | Pointer to [**[]NetworksNetworkIdApplianceVlansReservedIpRanges**](NetworksNetworkIdApplianceVlansReservedIpRanges.md) | The DHCP reserved IP ranges on the VLAN | [optional] 
+**DnsNameservers** | Pointer to **string** | The DNS nameservers used for DHCP responses, either \&quot;upstream_dns\&quot;, \&quot;google_dns\&quot;, \&quot;opendns\&quot;, or a newline seperated string of IP addresses or domain names | [optional] 
+**DhcpOptions** | Pointer to [**[]NetworksNetworkIdApplianceVlansDhcpOptions**](NetworksNetworkIdApplianceVlansDhcpOptions.md) | The list of DHCP options that will be included in DHCP responses. Each object in the list should have \&quot;code\&quot;, \&quot;type\&quot;, and \&quot;value\&quot; properties. | [optional] 
+**VpnNatSubnet** | Pointer to **string** | The translated VPN subnet if VPN and VPN subnet translation are enabled on the VLAN | [optional] 
+**MandatoryDhcp** | Pointer to [**NetworksNetworkIdApplianceVlansMandatoryDhcp**](NetworksNetworkIdApplianceVlansMandatoryDhcp.md) |  | [optional] 
+**Ipv6** | Pointer to [**NetworksNetworkIdApplianceVlansIpv6**](NetworksNetworkIdApplianceVlansIpv6.md) |  | [optional] 
 
 ## Methods
 
@@ -76,655 +71,530 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### GetMac
+### GetInterfaceId
 
-`func (o *InlineResponse20023) GetMac() string`
+`func (o *InlineResponse20023) GetInterfaceId() string`
 
-GetMac returns the Mac field if non-nil, zero value otherwise.
+GetInterfaceId returns the InterfaceId field if non-nil, zero value otherwise.
 
-### GetMacOk
+### GetInterfaceIdOk
 
-`func (o *InlineResponse20023) GetMacOk() (*string, bool)`
+`func (o *InlineResponse20023) GetInterfaceIdOk() (*string, bool)`
 
-GetMacOk returns a tuple with the Mac field if it's non-nil, zero value otherwise
+GetInterfaceIdOk returns a tuple with the InterfaceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMac
+### SetInterfaceId
 
-`func (o *InlineResponse20023) SetMac(v string)`
+`func (o *InlineResponse20023) SetInterfaceId(v string)`
 
-SetMac sets Mac field to given value.
+SetInterfaceId sets InterfaceId field to given value.
 
-### HasMac
+### HasInterfaceId
 
-`func (o *InlineResponse20023) HasMac() bool`
+`func (o *InlineResponse20023) HasInterfaceId() bool`
 
-HasMac returns a boolean if a field has been set.
+HasInterfaceId returns a boolean if a field has been set.
 
-### GetIp
+### GetName
 
-`func (o *InlineResponse20023) GetIp() string`
+`func (o *InlineResponse20023) GetName() string`
 
-GetIp returns the Ip field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetIpOk
+### GetNameOk
 
-`func (o *InlineResponse20023) GetIpOk() (*string, bool)`
+`func (o *InlineResponse20023) GetNameOk() (*string, bool)`
 
-GetIpOk returns a tuple with the Ip field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIp
+### SetName
 
-`func (o *InlineResponse20023) SetIp(v string)`
+`func (o *InlineResponse20023) SetName(v string)`
 
-SetIp sets Ip field to given value.
+SetName sets Name field to given value.
 
-### HasIp
+### HasName
 
-`func (o *InlineResponse20023) HasIp() bool`
+`func (o *InlineResponse20023) HasName() bool`
 
-HasIp returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetIp6
+### GetSubnet
 
-`func (o *InlineResponse20023) GetIp6() string`
+`func (o *InlineResponse20023) GetSubnet() string`
 
-GetIp6 returns the Ip6 field if non-nil, zero value otherwise.
+GetSubnet returns the Subnet field if non-nil, zero value otherwise.
 
-### GetIp6Ok
+### GetSubnetOk
 
-`func (o *InlineResponse20023) GetIp6Ok() (*string, bool)`
+`func (o *InlineResponse20023) GetSubnetOk() (*string, bool)`
 
-GetIp6Ok returns a tuple with the Ip6 field if it's non-nil, zero value otherwise
+GetSubnetOk returns a tuple with the Subnet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIp6
+### SetSubnet
 
-`func (o *InlineResponse20023) SetIp6(v string)`
+`func (o *InlineResponse20023) SetSubnet(v string)`
 
-SetIp6 sets Ip6 field to given value.
+SetSubnet sets Subnet field to given value.
 
-### HasIp6
+### HasSubnet
 
-`func (o *InlineResponse20023) HasIp6() bool`
+`func (o *InlineResponse20023) HasSubnet() bool`
 
-HasIp6 returns a boolean if a field has been set.
+HasSubnet returns a boolean if a field has been set.
 
-### GetDescription
+### GetApplianceIp
 
-`func (o *InlineResponse20023) GetDescription() string`
+`func (o *InlineResponse20023) GetApplianceIp() string`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetApplianceIp returns the ApplianceIp field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetApplianceIpOk
 
-`func (o *InlineResponse20023) GetDescriptionOk() (*string, bool)`
+`func (o *InlineResponse20023) GetApplianceIpOk() (*string, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetApplianceIpOk returns a tuple with the ApplianceIp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetApplianceIp
 
-`func (o *InlineResponse20023) SetDescription(v string)`
+`func (o *InlineResponse20023) SetApplianceIp(v string)`
 
-SetDescription sets Description field to given value.
+SetApplianceIp sets ApplianceIp field to given value.
 
-### HasDescription
+### HasApplianceIp
 
-`func (o *InlineResponse20023) HasDescription() bool`
+`func (o *InlineResponse20023) HasApplianceIp() bool`
 
-HasDescription returns a boolean if a field has been set.
+HasApplianceIp returns a boolean if a field has been set.
 
-### GetFirstSeen
+### GetGroupPolicyId
 
-`func (o *InlineResponse20023) GetFirstSeen() int32`
+`func (o *InlineResponse20023) GetGroupPolicyId() string`
 
-GetFirstSeen returns the FirstSeen field if non-nil, zero value otherwise.
+GetGroupPolicyId returns the GroupPolicyId field if non-nil, zero value otherwise.
 
-### GetFirstSeenOk
+### GetGroupPolicyIdOk
 
-`func (o *InlineResponse20023) GetFirstSeenOk() (*int32, bool)`
+`func (o *InlineResponse20023) GetGroupPolicyIdOk() (*string, bool)`
 
-GetFirstSeenOk returns a tuple with the FirstSeen field if it's non-nil, zero value otherwise
+GetGroupPolicyIdOk returns a tuple with the GroupPolicyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFirstSeen
+### SetGroupPolicyId
 
-`func (o *InlineResponse20023) SetFirstSeen(v int32)`
+`func (o *InlineResponse20023) SetGroupPolicyId(v string)`
 
-SetFirstSeen sets FirstSeen field to given value.
+SetGroupPolicyId sets GroupPolicyId field to given value.
 
-### HasFirstSeen
+### HasGroupPolicyId
 
-`func (o *InlineResponse20023) HasFirstSeen() bool`
+`func (o *InlineResponse20023) HasGroupPolicyId() bool`
 
-HasFirstSeen returns a boolean if a field has been set.
+HasGroupPolicyId returns a boolean if a field has been set.
 
-### GetLastSeen
+### GetTemplateVlanType
 
-`func (o *InlineResponse20023) GetLastSeen() int32`
+`func (o *InlineResponse20023) GetTemplateVlanType() string`
 
-GetLastSeen returns the LastSeen field if non-nil, zero value otherwise.
+GetTemplateVlanType returns the TemplateVlanType field if non-nil, zero value otherwise.
 
-### GetLastSeenOk
+### GetTemplateVlanTypeOk
 
-`func (o *InlineResponse20023) GetLastSeenOk() (*int32, bool)`
+`func (o *InlineResponse20023) GetTemplateVlanTypeOk() (*string, bool)`
 
-GetLastSeenOk returns a tuple with the LastSeen field if it's non-nil, zero value otherwise
+GetTemplateVlanTypeOk returns a tuple with the TemplateVlanType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLastSeen
+### SetTemplateVlanType
 
-`func (o *InlineResponse20023) SetLastSeen(v int32)`
+`func (o *InlineResponse20023) SetTemplateVlanType(v string)`
 
-SetLastSeen sets LastSeen field to given value.
+SetTemplateVlanType sets TemplateVlanType field to given value.
 
-### HasLastSeen
+### HasTemplateVlanType
 
-`func (o *InlineResponse20023) HasLastSeen() bool`
+`func (o *InlineResponse20023) HasTemplateVlanType() bool`
 
-HasLastSeen returns a boolean if a field has been set.
+HasTemplateVlanType returns a boolean if a field has been set.
 
-### GetManufacturer
+### GetCidr
 
-`func (o *InlineResponse20023) GetManufacturer() string`
+`func (o *InlineResponse20023) GetCidr() string`
 
-GetManufacturer returns the Manufacturer field if non-nil, zero value otherwise.
+GetCidr returns the Cidr field if non-nil, zero value otherwise.
 
-### GetManufacturerOk
+### GetCidrOk
 
-`func (o *InlineResponse20023) GetManufacturerOk() (*string, bool)`
+`func (o *InlineResponse20023) GetCidrOk() (*string, bool)`
 
-GetManufacturerOk returns a tuple with the Manufacturer field if it's non-nil, zero value otherwise
+GetCidrOk returns a tuple with the Cidr field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetManufacturer
+### SetCidr
 
-`func (o *InlineResponse20023) SetManufacturer(v string)`
+`func (o *InlineResponse20023) SetCidr(v string)`
 
-SetManufacturer sets Manufacturer field to given value.
+SetCidr sets Cidr field to given value.
 
-### HasManufacturer
+### HasCidr
 
-`func (o *InlineResponse20023) HasManufacturer() bool`
+`func (o *InlineResponse20023) HasCidr() bool`
 
-HasManufacturer returns a boolean if a field has been set.
+HasCidr returns a boolean if a field has been set.
 
-### GetOs
+### GetMask
 
-`func (o *InlineResponse20023) GetOs() string`
+`func (o *InlineResponse20023) GetMask() int32`
 
-GetOs returns the Os field if non-nil, zero value otherwise.
+GetMask returns the Mask field if non-nil, zero value otherwise.
 
-### GetOsOk
+### GetMaskOk
 
-`func (o *InlineResponse20023) GetOsOk() (*string, bool)`
+`func (o *InlineResponse20023) GetMaskOk() (*int32, bool)`
 
-GetOsOk returns a tuple with the Os field if it's non-nil, zero value otherwise
+GetMaskOk returns a tuple with the Mask field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOs
+### SetMask
 
-`func (o *InlineResponse20023) SetOs(v string)`
+`func (o *InlineResponse20023) SetMask(v int32)`
 
-SetOs sets Os field to given value.
+SetMask sets Mask field to given value.
 
-### HasOs
+### HasMask
 
-`func (o *InlineResponse20023) HasOs() bool`
+`func (o *InlineResponse20023) HasMask() bool`
 
-HasOs returns a boolean if a field has been set.
+HasMask returns a boolean if a field has been set.
 
-### GetUser
+### GetDhcpRelayServerIps
 
-`func (o *InlineResponse20023) GetUser() string`
+`func (o *InlineResponse20023) GetDhcpRelayServerIps() []string`
 
-GetUser returns the User field if non-nil, zero value otherwise.
+GetDhcpRelayServerIps returns the DhcpRelayServerIps field if non-nil, zero value otherwise.
 
-### GetUserOk
+### GetDhcpRelayServerIpsOk
 
-`func (o *InlineResponse20023) GetUserOk() (*string, bool)`
+`func (o *InlineResponse20023) GetDhcpRelayServerIpsOk() (*[]string, bool)`
 
-GetUserOk returns a tuple with the User field if it's non-nil, zero value otherwise
+GetDhcpRelayServerIpsOk returns a tuple with the DhcpRelayServerIps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUser
+### SetDhcpRelayServerIps
 
-`func (o *InlineResponse20023) SetUser(v string)`
+`func (o *InlineResponse20023) SetDhcpRelayServerIps(v []string)`
 
-SetUser sets User field to given value.
+SetDhcpRelayServerIps sets DhcpRelayServerIps field to given value.
 
-### HasUser
+### HasDhcpRelayServerIps
 
-`func (o *InlineResponse20023) HasUser() bool`
+`func (o *InlineResponse20023) HasDhcpRelayServerIps() bool`
 
-HasUser returns a boolean if a field has been set.
+HasDhcpRelayServerIps returns a boolean if a field has been set.
 
-### GetVlan
+### GetDhcpHandling
 
-`func (o *InlineResponse20023) GetVlan() string`
+`func (o *InlineResponse20023) GetDhcpHandling() string`
 
-GetVlan returns the Vlan field if non-nil, zero value otherwise.
+GetDhcpHandling returns the DhcpHandling field if non-nil, zero value otherwise.
 
-### GetVlanOk
+### GetDhcpHandlingOk
 
-`func (o *InlineResponse20023) GetVlanOk() (*string, bool)`
+`func (o *InlineResponse20023) GetDhcpHandlingOk() (*string, bool)`
 
-GetVlanOk returns a tuple with the Vlan field if it's non-nil, zero value otherwise
+GetDhcpHandlingOk returns a tuple with the DhcpHandling field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVlan
+### SetDhcpHandling
 
-`func (o *InlineResponse20023) SetVlan(v string)`
+`func (o *InlineResponse20023) SetDhcpHandling(v string)`
 
-SetVlan sets Vlan field to given value.
+SetDhcpHandling sets DhcpHandling field to given value.
 
-### HasVlan
+### HasDhcpHandling
 
-`func (o *InlineResponse20023) HasVlan() bool`
+`func (o *InlineResponse20023) HasDhcpHandling() bool`
 
-HasVlan returns a boolean if a field has been set.
+HasDhcpHandling returns a boolean if a field has been set.
 
-### GetSsid
+### GetDhcpLeaseTime
 
-`func (o *InlineResponse20023) GetSsid() string`
+`func (o *InlineResponse20023) GetDhcpLeaseTime() string`
 
-GetSsid returns the Ssid field if non-nil, zero value otherwise.
+GetDhcpLeaseTime returns the DhcpLeaseTime field if non-nil, zero value otherwise.
 
-### GetSsidOk
+### GetDhcpLeaseTimeOk
 
-`func (o *InlineResponse20023) GetSsidOk() (*string, bool)`
+`func (o *InlineResponse20023) GetDhcpLeaseTimeOk() (*string, bool)`
 
-GetSsidOk returns a tuple with the Ssid field if it's non-nil, zero value otherwise
+GetDhcpLeaseTimeOk returns a tuple with the DhcpLeaseTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSsid
+### SetDhcpLeaseTime
 
-`func (o *InlineResponse20023) SetSsid(v string)`
+`func (o *InlineResponse20023) SetDhcpLeaseTime(v string)`
 
-SetSsid sets Ssid field to given value.
+SetDhcpLeaseTime sets DhcpLeaseTime field to given value.
 
-### HasSsid
+### HasDhcpLeaseTime
 
-`func (o *InlineResponse20023) HasSsid() bool`
+`func (o *InlineResponse20023) HasDhcpLeaseTime() bool`
 
-HasSsid returns a boolean if a field has been set.
+HasDhcpLeaseTime returns a boolean if a field has been set.
 
-### GetSwitchport
+### GetDhcpBootOptionsEnabled
 
-`func (o *InlineResponse20023) GetSwitchport() string`
+`func (o *InlineResponse20023) GetDhcpBootOptionsEnabled() bool`
 
-GetSwitchport returns the Switchport field if non-nil, zero value otherwise.
+GetDhcpBootOptionsEnabled returns the DhcpBootOptionsEnabled field if non-nil, zero value otherwise.
 
-### GetSwitchportOk
+### GetDhcpBootOptionsEnabledOk
 
-`func (o *InlineResponse20023) GetSwitchportOk() (*string, bool)`
+`func (o *InlineResponse20023) GetDhcpBootOptionsEnabledOk() (*bool, bool)`
 
-GetSwitchportOk returns a tuple with the Switchport field if it's non-nil, zero value otherwise
+GetDhcpBootOptionsEnabledOk returns a tuple with the DhcpBootOptionsEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSwitchport
+### SetDhcpBootOptionsEnabled
 
-`func (o *InlineResponse20023) SetSwitchport(v string)`
+`func (o *InlineResponse20023) SetDhcpBootOptionsEnabled(v bool)`
 
-SetSwitchport sets Switchport field to given value.
+SetDhcpBootOptionsEnabled sets DhcpBootOptionsEnabled field to given value.
 
-### HasSwitchport
+### HasDhcpBootOptionsEnabled
 
-`func (o *InlineResponse20023) HasSwitchport() bool`
+`func (o *InlineResponse20023) HasDhcpBootOptionsEnabled() bool`
 
-HasSwitchport returns a boolean if a field has been set.
+HasDhcpBootOptionsEnabled returns a boolean if a field has been set.
 
-### GetWirelessCapabilities
+### GetDhcpBootNextServer
 
-`func (o *InlineResponse20023) GetWirelessCapabilities() string`
+`func (o *InlineResponse20023) GetDhcpBootNextServer() string`
 
-GetWirelessCapabilities returns the WirelessCapabilities field if non-nil, zero value otherwise.
+GetDhcpBootNextServer returns the DhcpBootNextServer field if non-nil, zero value otherwise.
 
-### GetWirelessCapabilitiesOk
+### GetDhcpBootNextServerOk
 
-`func (o *InlineResponse20023) GetWirelessCapabilitiesOk() (*string, bool)`
+`func (o *InlineResponse20023) GetDhcpBootNextServerOk() (*string, bool)`
 
-GetWirelessCapabilitiesOk returns a tuple with the WirelessCapabilities field if it's non-nil, zero value otherwise
+GetDhcpBootNextServerOk returns a tuple with the DhcpBootNextServer field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetWirelessCapabilities
+### SetDhcpBootNextServer
 
-`func (o *InlineResponse20023) SetWirelessCapabilities(v string)`
+`func (o *InlineResponse20023) SetDhcpBootNextServer(v string)`
 
-SetWirelessCapabilities sets WirelessCapabilities field to given value.
+SetDhcpBootNextServer sets DhcpBootNextServer field to given value.
 
-### HasWirelessCapabilities
+### HasDhcpBootNextServer
 
-`func (o *InlineResponse20023) HasWirelessCapabilities() bool`
+`func (o *InlineResponse20023) HasDhcpBootNextServer() bool`
 
-HasWirelessCapabilities returns a boolean if a field has been set.
+HasDhcpBootNextServer returns a boolean if a field has been set.
 
-### GetSmInstalled
+### GetDhcpBootFilename
 
-`func (o *InlineResponse20023) GetSmInstalled() bool`
+`func (o *InlineResponse20023) GetDhcpBootFilename() string`
 
-GetSmInstalled returns the SmInstalled field if non-nil, zero value otherwise.
+GetDhcpBootFilename returns the DhcpBootFilename field if non-nil, zero value otherwise.
 
-### GetSmInstalledOk
+### GetDhcpBootFilenameOk
 
-`func (o *InlineResponse20023) GetSmInstalledOk() (*bool, bool)`
+`func (o *InlineResponse20023) GetDhcpBootFilenameOk() (*string, bool)`
 
-GetSmInstalledOk returns a tuple with the SmInstalled field if it's non-nil, zero value otherwise
+GetDhcpBootFilenameOk returns a tuple with the DhcpBootFilename field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSmInstalled
+### SetDhcpBootFilename
 
-`func (o *InlineResponse20023) SetSmInstalled(v bool)`
+`func (o *InlineResponse20023) SetDhcpBootFilename(v string)`
 
-SetSmInstalled sets SmInstalled field to given value.
+SetDhcpBootFilename sets DhcpBootFilename field to given value.
 
-### HasSmInstalled
+### HasDhcpBootFilename
 
-`func (o *InlineResponse20023) HasSmInstalled() bool`
+`func (o *InlineResponse20023) HasDhcpBootFilename() bool`
 
-HasSmInstalled returns a boolean if a field has been set.
+HasDhcpBootFilename returns a boolean if a field has been set.
 
-### GetRecentDeviceMac
+### GetFixedIpAssignments
 
-`func (o *InlineResponse20023) GetRecentDeviceMac() string`
+`func (o *InlineResponse20023) GetFixedIpAssignments() map[string]interface{}`
 
-GetRecentDeviceMac returns the RecentDeviceMac field if non-nil, zero value otherwise.
+GetFixedIpAssignments returns the FixedIpAssignments field if non-nil, zero value otherwise.
 
-### GetRecentDeviceMacOk
+### GetFixedIpAssignmentsOk
 
-`func (o *InlineResponse20023) GetRecentDeviceMacOk() (*string, bool)`
+`func (o *InlineResponse20023) GetFixedIpAssignmentsOk() (*map[string]interface{}, bool)`
 
-GetRecentDeviceMacOk returns a tuple with the RecentDeviceMac field if it's non-nil, zero value otherwise
+GetFixedIpAssignmentsOk returns a tuple with the FixedIpAssignments field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRecentDeviceMac
+### SetFixedIpAssignments
 
-`func (o *InlineResponse20023) SetRecentDeviceMac(v string)`
+`func (o *InlineResponse20023) SetFixedIpAssignments(v map[string]interface{})`
 
-SetRecentDeviceMac sets RecentDeviceMac field to given value.
+SetFixedIpAssignments sets FixedIpAssignments field to given value.
 
-### HasRecentDeviceMac
+### HasFixedIpAssignments
 
-`func (o *InlineResponse20023) HasRecentDeviceMac() bool`
+`func (o *InlineResponse20023) HasFixedIpAssignments() bool`
 
-HasRecentDeviceMac returns a boolean if a field has been set.
+HasFixedIpAssignments returns a boolean if a field has been set.
 
-### GetStatus
+### GetReservedIpRanges
 
-`func (o *InlineResponse20023) GetStatus() string`
+`func (o *InlineResponse20023) GetReservedIpRanges() []NetworksNetworkIdApplianceVlansReservedIpRanges`
 
-GetStatus returns the Status field if non-nil, zero value otherwise.
+GetReservedIpRanges returns the ReservedIpRanges field if non-nil, zero value otherwise.
 
-### GetStatusOk
+### GetReservedIpRangesOk
 
-`func (o *InlineResponse20023) GetStatusOk() (*string, bool)`
+`func (o *InlineResponse20023) GetReservedIpRangesOk() (*[]NetworksNetworkIdApplianceVlansReservedIpRanges, bool)`
 
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+GetReservedIpRangesOk returns a tuple with the ReservedIpRanges field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStatus
+### SetReservedIpRanges
 
-`func (o *InlineResponse20023) SetStatus(v string)`
+`func (o *InlineResponse20023) SetReservedIpRanges(v []NetworksNetworkIdApplianceVlansReservedIpRanges)`
 
-SetStatus sets Status field to given value.
+SetReservedIpRanges sets ReservedIpRanges field to given value.
 
-### HasStatus
+### HasReservedIpRanges
 
-`func (o *InlineResponse20023) HasStatus() bool`
+`func (o *InlineResponse20023) HasReservedIpRanges() bool`
 
-HasStatus returns a boolean if a field has been set.
+HasReservedIpRanges returns a boolean if a field has been set.
 
-### GetUsage
+### GetDnsNameservers
 
-`func (o *InlineResponse20023) GetUsage() InlineResponse20023Usage`
+`func (o *InlineResponse20023) GetDnsNameservers() string`
 
-GetUsage returns the Usage field if non-nil, zero value otherwise.
+GetDnsNameservers returns the DnsNameservers field if non-nil, zero value otherwise.
 
-### GetUsageOk
+### GetDnsNameserversOk
 
-`func (o *InlineResponse20023) GetUsageOk() (*InlineResponse20023Usage, bool)`
+`func (o *InlineResponse20023) GetDnsNameserversOk() (*string, bool)`
 
-GetUsageOk returns a tuple with the Usage field if it's non-nil, zero value otherwise
+GetDnsNameserversOk returns a tuple with the DnsNameservers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUsage
+### SetDnsNameservers
 
-`func (o *InlineResponse20023) SetUsage(v InlineResponse20023Usage)`
+`func (o *InlineResponse20023) SetDnsNameservers(v string)`
 
-SetUsage sets Usage field to given value.
+SetDnsNameservers sets DnsNameservers field to given value.
 
-### HasUsage
+### HasDnsNameservers
 
-`func (o *InlineResponse20023) HasUsage() bool`
+`func (o *InlineResponse20023) HasDnsNameservers() bool`
 
-HasUsage returns a boolean if a field has been set.
+HasDnsNameservers returns a boolean if a field has been set.
 
-### GetNamedVlan
+### GetDhcpOptions
 
-`func (o *InlineResponse20023) GetNamedVlan() string`
+`func (o *InlineResponse20023) GetDhcpOptions() []NetworksNetworkIdApplianceVlansDhcpOptions`
 
-GetNamedVlan returns the NamedVlan field if non-nil, zero value otherwise.
+GetDhcpOptions returns the DhcpOptions field if non-nil, zero value otherwise.
 
-### GetNamedVlanOk
+### GetDhcpOptionsOk
 
-`func (o *InlineResponse20023) GetNamedVlanOk() (*string, bool)`
+`func (o *InlineResponse20023) GetDhcpOptionsOk() (*[]NetworksNetworkIdApplianceVlansDhcpOptions, bool)`
 
-GetNamedVlanOk returns a tuple with the NamedVlan field if it's non-nil, zero value otherwise
+GetDhcpOptionsOk returns a tuple with the DhcpOptions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNamedVlan
+### SetDhcpOptions
 
-`func (o *InlineResponse20023) SetNamedVlan(v string)`
+`func (o *InlineResponse20023) SetDhcpOptions(v []NetworksNetworkIdApplianceVlansDhcpOptions)`
 
-SetNamedVlan sets NamedVlan field to given value.
+SetDhcpOptions sets DhcpOptions field to given value.
 
-### HasNamedVlan
+### HasDhcpOptions
 
-`func (o *InlineResponse20023) HasNamedVlan() bool`
+`func (o *InlineResponse20023) HasDhcpOptions() bool`
 
-HasNamedVlan returns a boolean if a field has been set.
+HasDhcpOptions returns a boolean if a field has been set.
 
-### GetAdaptivePolicyGroup
+### GetVpnNatSubnet
 
-`func (o *InlineResponse20023) GetAdaptivePolicyGroup() string`
+`func (o *InlineResponse20023) GetVpnNatSubnet() string`
 
-GetAdaptivePolicyGroup returns the AdaptivePolicyGroup field if non-nil, zero value otherwise.
+GetVpnNatSubnet returns the VpnNatSubnet field if non-nil, zero value otherwise.
 
-### GetAdaptivePolicyGroupOk
+### GetVpnNatSubnetOk
 
-`func (o *InlineResponse20023) GetAdaptivePolicyGroupOk() (*string, bool)`
+`func (o *InlineResponse20023) GetVpnNatSubnetOk() (*string, bool)`
 
-GetAdaptivePolicyGroupOk returns a tuple with the AdaptivePolicyGroup field if it's non-nil, zero value otherwise
+GetVpnNatSubnetOk returns a tuple with the VpnNatSubnet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAdaptivePolicyGroup
+### SetVpnNatSubnet
 
-`func (o *InlineResponse20023) SetAdaptivePolicyGroup(v string)`
+`func (o *InlineResponse20023) SetVpnNatSubnet(v string)`
 
-SetAdaptivePolicyGroup sets AdaptivePolicyGroup field to given value.
+SetVpnNatSubnet sets VpnNatSubnet field to given value.
 
-### HasAdaptivePolicyGroup
+### HasVpnNatSubnet
 
-`func (o *InlineResponse20023) HasAdaptivePolicyGroup() bool`
+`func (o *InlineResponse20023) HasVpnNatSubnet() bool`
 
-HasAdaptivePolicyGroup returns a boolean if a field has been set.
+HasVpnNatSubnet returns a boolean if a field has been set.
 
-### GetDeviceTypePrediction
+### GetMandatoryDhcp
 
-`func (o *InlineResponse20023) GetDeviceTypePrediction() string`
+`func (o *InlineResponse20023) GetMandatoryDhcp() NetworksNetworkIdApplianceVlansMandatoryDhcp`
 
-GetDeviceTypePrediction returns the DeviceTypePrediction field if non-nil, zero value otherwise.
+GetMandatoryDhcp returns the MandatoryDhcp field if non-nil, zero value otherwise.
 
-### GetDeviceTypePredictionOk
+### GetMandatoryDhcpOk
 
-`func (o *InlineResponse20023) GetDeviceTypePredictionOk() (*string, bool)`
+`func (o *InlineResponse20023) GetMandatoryDhcpOk() (*NetworksNetworkIdApplianceVlansMandatoryDhcp, bool)`
 
-GetDeviceTypePredictionOk returns a tuple with the DeviceTypePrediction field if it's non-nil, zero value otherwise
+GetMandatoryDhcpOk returns a tuple with the MandatoryDhcp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeviceTypePrediction
+### SetMandatoryDhcp
 
-`func (o *InlineResponse20023) SetDeviceTypePrediction(v string)`
+`func (o *InlineResponse20023) SetMandatoryDhcp(v NetworksNetworkIdApplianceVlansMandatoryDhcp)`
 
-SetDeviceTypePrediction sets DeviceTypePrediction field to given value.
+SetMandatoryDhcp sets MandatoryDhcp field to given value.
 
-### HasDeviceTypePrediction
+### HasMandatoryDhcp
 
-`func (o *InlineResponse20023) HasDeviceTypePrediction() bool`
+`func (o *InlineResponse20023) HasMandatoryDhcp() bool`
 
-HasDeviceTypePrediction returns a boolean if a field has been set.
+HasMandatoryDhcp returns a boolean if a field has been set.
 
-### GetRecentDeviceSerial
+### GetIpv6
 
-`func (o *InlineResponse20023) GetRecentDeviceSerial() string`
+`func (o *InlineResponse20023) GetIpv6() NetworksNetworkIdApplianceVlansIpv6`
 
-GetRecentDeviceSerial returns the RecentDeviceSerial field if non-nil, zero value otherwise.
+GetIpv6 returns the Ipv6 field if non-nil, zero value otherwise.
 
-### GetRecentDeviceSerialOk
+### GetIpv6Ok
 
-`func (o *InlineResponse20023) GetRecentDeviceSerialOk() (*string, bool)`
+`func (o *InlineResponse20023) GetIpv6Ok() (*NetworksNetworkIdApplianceVlansIpv6, bool)`
 
-GetRecentDeviceSerialOk returns a tuple with the RecentDeviceSerial field if it's non-nil, zero value otherwise
+GetIpv6Ok returns a tuple with the Ipv6 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRecentDeviceSerial
+### SetIpv6
 
-`func (o *InlineResponse20023) SetRecentDeviceSerial(v string)`
+`func (o *InlineResponse20023) SetIpv6(v NetworksNetworkIdApplianceVlansIpv6)`
 
-SetRecentDeviceSerial sets RecentDeviceSerial field to given value.
+SetIpv6 sets Ipv6 field to given value.
 
-### HasRecentDeviceSerial
+### HasIpv6
 
-`func (o *InlineResponse20023) HasRecentDeviceSerial() bool`
+`func (o *InlineResponse20023) HasIpv6() bool`
 
-HasRecentDeviceSerial returns a boolean if a field has been set.
-
-### GetRecentDeviceName
-
-`func (o *InlineResponse20023) GetRecentDeviceName() string`
-
-GetRecentDeviceName returns the RecentDeviceName field if non-nil, zero value otherwise.
-
-### GetRecentDeviceNameOk
-
-`func (o *InlineResponse20023) GetRecentDeviceNameOk() (*string, bool)`
-
-GetRecentDeviceNameOk returns a tuple with the RecentDeviceName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRecentDeviceName
-
-`func (o *InlineResponse20023) SetRecentDeviceName(v string)`
-
-SetRecentDeviceName sets RecentDeviceName field to given value.
-
-### HasRecentDeviceName
-
-`func (o *InlineResponse20023) HasRecentDeviceName() bool`
-
-HasRecentDeviceName returns a boolean if a field has been set.
-
-### GetRecentDeviceConnection
-
-`func (o *InlineResponse20023) GetRecentDeviceConnection() string`
-
-GetRecentDeviceConnection returns the RecentDeviceConnection field if non-nil, zero value otherwise.
-
-### GetRecentDeviceConnectionOk
-
-`func (o *InlineResponse20023) GetRecentDeviceConnectionOk() (*string, bool)`
-
-GetRecentDeviceConnectionOk returns a tuple with the RecentDeviceConnection field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRecentDeviceConnection
-
-`func (o *InlineResponse20023) SetRecentDeviceConnection(v string)`
-
-SetRecentDeviceConnection sets RecentDeviceConnection field to given value.
-
-### HasRecentDeviceConnection
-
-`func (o *InlineResponse20023) HasRecentDeviceConnection() bool`
-
-HasRecentDeviceConnection returns a boolean if a field has been set.
-
-### GetNotes
-
-`func (o *InlineResponse20023) GetNotes() string`
-
-GetNotes returns the Notes field if non-nil, zero value otherwise.
-
-### GetNotesOk
-
-`func (o *InlineResponse20023) GetNotesOk() (*string, bool)`
-
-GetNotesOk returns a tuple with the Notes field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNotes
-
-`func (o *InlineResponse20023) SetNotes(v string)`
-
-SetNotes sets Notes field to given value.
-
-### HasNotes
-
-`func (o *InlineResponse20023) HasNotes() bool`
-
-HasNotes returns a boolean if a field has been set.
-
-### GetIp6Local
-
-`func (o *InlineResponse20023) GetIp6Local() string`
-
-GetIp6Local returns the Ip6Local field if non-nil, zero value otherwise.
-
-### GetIp6LocalOk
-
-`func (o *InlineResponse20023) GetIp6LocalOk() (*string, bool)`
-
-GetIp6LocalOk returns a tuple with the Ip6Local field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIp6Local
-
-`func (o *InlineResponse20023) SetIp6Local(v string)`
-
-SetIp6Local sets Ip6Local field to given value.
-
-### HasIp6Local
-
-`func (o *InlineResponse20023) HasIp6Local() bool`
-
-HasIp6Local returns a boolean if a field has been set.
-
-### GetGroupPolicy8021x
-
-`func (o *InlineResponse20023) GetGroupPolicy8021x() string`
-
-GetGroupPolicy8021x returns the GroupPolicy8021x field if non-nil, zero value otherwise.
-
-### GetGroupPolicy8021xOk
-
-`func (o *InlineResponse20023) GetGroupPolicy8021xOk() (*string, bool)`
-
-GetGroupPolicy8021xOk returns a tuple with the GroupPolicy8021x field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGroupPolicy8021x
-
-`func (o *InlineResponse20023) SetGroupPolicy8021x(v string)`
-
-SetGroupPolicy8021x sets GroupPolicy8021x field to given value.
-
-### HasGroupPolicy8021x
-
-`func (o *InlineResponse20023) HasGroupPolicy8021x() bool`
-
-HasGroupPolicy8021x returns a boolean if a field has been set.
+HasIpv6 returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

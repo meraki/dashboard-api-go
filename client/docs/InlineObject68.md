@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DhcpLeaseTime** | Pointer to **string** | DHCP Lease time for all MG of the network. Possible values are &#39;30 minutes&#39;, &#39;1 hour&#39;, &#39;4 hours&#39;, &#39;12 hours&#39;, &#39;1 day&#39; or &#39;1 week&#39;. | [optional] 
-**DnsNameservers** | Pointer to **string** | DNS name servers mode for all MG of the network. Possible values are: &#39;upstream_dns&#39;, &#39;google_dns&#39;, &#39;opendns&#39;, &#39;custom&#39;. | [optional] 
-**DnsCustomNameservers** | Pointer to **[]string** | list of fixed IPs representing the the DNS Name servers when the mode is &#39;custom&#39; | [optional] 
+**Name** | **string** | The name of the camera wireless profile. This parameter is required. | 
+**Ssid** | [**NetworksNetworkIdCameraWirelessProfilesSsid**](NetworksNetworkIdCameraWirelessProfilesSsid.md) |  | 
+**Identity** | Pointer to [**NetworksNetworkIdCameraWirelessProfilesIdentity**](NetworksNetworkIdCameraWirelessProfilesIdentity.md) |  | [optional] 
 
 ## Methods
 
 ### NewInlineObject68
 
-`func NewInlineObject68() *InlineObject68`
+`func NewInlineObject68(name string, ssid NetworksNetworkIdCameraWirelessProfilesSsid, ) *InlineObject68`
 
 NewInlineObject68 instantiates a new InlineObject68 object
 This constructor will assign default values to properties that have it defined,
@@ -27,80 +27,70 @@ NewInlineObject68WithDefaults instantiates a new InlineObject68 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDhcpLeaseTime
+### GetName
 
-`func (o *InlineObject68) GetDhcpLeaseTime() string`
+`func (o *InlineObject68) GetName() string`
 
-GetDhcpLeaseTime returns the DhcpLeaseTime field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetDhcpLeaseTimeOk
+### GetNameOk
 
-`func (o *InlineObject68) GetDhcpLeaseTimeOk() (*string, bool)`
+`func (o *InlineObject68) GetNameOk() (*string, bool)`
 
-GetDhcpLeaseTimeOk returns a tuple with the DhcpLeaseTime field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDhcpLeaseTime
+### SetName
 
-`func (o *InlineObject68) SetDhcpLeaseTime(v string)`
+`func (o *InlineObject68) SetName(v string)`
 
-SetDhcpLeaseTime sets DhcpLeaseTime field to given value.
+SetName sets Name field to given value.
 
-### HasDhcpLeaseTime
 
-`func (o *InlineObject68) HasDhcpLeaseTime() bool`
+### GetSsid
 
-HasDhcpLeaseTime returns a boolean if a field has been set.
+`func (o *InlineObject68) GetSsid() NetworksNetworkIdCameraWirelessProfilesSsid`
 
-### GetDnsNameservers
+GetSsid returns the Ssid field if non-nil, zero value otherwise.
 
-`func (o *InlineObject68) GetDnsNameservers() string`
+### GetSsidOk
 
-GetDnsNameservers returns the DnsNameservers field if non-nil, zero value otherwise.
+`func (o *InlineObject68) GetSsidOk() (*NetworksNetworkIdCameraWirelessProfilesSsid, bool)`
 
-### GetDnsNameserversOk
-
-`func (o *InlineObject68) GetDnsNameserversOk() (*string, bool)`
-
-GetDnsNameserversOk returns a tuple with the DnsNameservers field if it's non-nil, zero value otherwise
+GetSsidOk returns a tuple with the Ssid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDnsNameservers
+### SetSsid
 
-`func (o *InlineObject68) SetDnsNameservers(v string)`
+`func (o *InlineObject68) SetSsid(v NetworksNetworkIdCameraWirelessProfilesSsid)`
 
-SetDnsNameservers sets DnsNameservers field to given value.
+SetSsid sets Ssid field to given value.
 
-### HasDnsNameservers
 
-`func (o *InlineObject68) HasDnsNameservers() bool`
+### GetIdentity
 
-HasDnsNameservers returns a boolean if a field has been set.
+`func (o *InlineObject68) GetIdentity() NetworksNetworkIdCameraWirelessProfilesIdentity`
 
-### GetDnsCustomNameservers
+GetIdentity returns the Identity field if non-nil, zero value otherwise.
 
-`func (o *InlineObject68) GetDnsCustomNameservers() []string`
+### GetIdentityOk
 
-GetDnsCustomNameservers returns the DnsCustomNameservers field if non-nil, zero value otherwise.
+`func (o *InlineObject68) GetIdentityOk() (*NetworksNetworkIdCameraWirelessProfilesIdentity, bool)`
 
-### GetDnsCustomNameserversOk
-
-`func (o *InlineObject68) GetDnsCustomNameserversOk() (*[]string, bool)`
-
-GetDnsCustomNameserversOk returns a tuple with the DnsCustomNameservers field if it's non-nil, zero value otherwise
+GetIdentityOk returns a tuple with the Identity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDnsCustomNameservers
+### SetIdentity
 
-`func (o *InlineObject68) SetDnsCustomNameservers(v []string)`
+`func (o *InlineObject68) SetIdentity(v NetworksNetworkIdCameraWirelessProfilesIdentity)`
 
-SetDnsCustomNameservers sets DnsCustomNameservers field to given value.
+SetIdentity sets Identity field to given value.
 
-### HasDnsCustomNameservers
+### HasIdentity
 
-`func (o *InlineObject68) HasDnsCustomNameservers() bool`
+`func (o *InlineObject68) HasIdentity() bool`
 
-HasDnsCustomNameservers returns a boolean if a field has been set.
+HasIdentity returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

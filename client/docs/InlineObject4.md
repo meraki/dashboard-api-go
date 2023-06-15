@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timestamp** | Pointer to **time.Time** | [optional] The snapshot will be taken from this time on the camera. The timestamp is expected to be in ISO 8601 format. If no timestamp is specified, we will assume current time. | [optional] 
-**Fullframe** | Pointer to **bool** | [optional] If set to \&quot;true\&quot; the snapshot will be taken at full sensor resolution. This will error if used with timestamp. | [optional] 
+**Enabled** | Pointer to **bool** | Enable custom analytics | [optional] 
+**ArtifactId** | Pointer to **string** | The ID of the custom analytics artifact | [optional] 
+**Parameters** | Pointer to [**[]DevicesSerialCameraCustomAnalyticsParameters**](DevicesSerialCameraCustomAnalyticsParameters.md) | Parameters for the custom analytics workload | [optional] 
 
 ## Methods
 
@@ -26,55 +27,80 @@ NewInlineObject4WithDefaults instantiates a new InlineObject4 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetTimestamp
+### GetEnabled
 
-`func (o *InlineObject4) GetTimestamp() time.Time`
+`func (o *InlineObject4) GetEnabled() bool`
 
-GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
 
-### GetTimestampOk
+### GetEnabledOk
 
-`func (o *InlineObject4) GetTimestampOk() (*time.Time, bool)`
+`func (o *InlineObject4) GetEnabledOk() (*bool, bool)`
 
-GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimestamp
+### SetEnabled
 
-`func (o *InlineObject4) SetTimestamp(v time.Time)`
+`func (o *InlineObject4) SetEnabled(v bool)`
 
-SetTimestamp sets Timestamp field to given value.
+SetEnabled sets Enabled field to given value.
 
-### HasTimestamp
+### HasEnabled
 
-`func (o *InlineObject4) HasTimestamp() bool`
+`func (o *InlineObject4) HasEnabled() bool`
 
-HasTimestamp returns a boolean if a field has been set.
+HasEnabled returns a boolean if a field has been set.
 
-### GetFullframe
+### GetArtifactId
 
-`func (o *InlineObject4) GetFullframe() bool`
+`func (o *InlineObject4) GetArtifactId() string`
 
-GetFullframe returns the Fullframe field if non-nil, zero value otherwise.
+GetArtifactId returns the ArtifactId field if non-nil, zero value otherwise.
 
-### GetFullframeOk
+### GetArtifactIdOk
 
-`func (o *InlineObject4) GetFullframeOk() (*bool, bool)`
+`func (o *InlineObject4) GetArtifactIdOk() (*string, bool)`
 
-GetFullframeOk returns a tuple with the Fullframe field if it's non-nil, zero value otherwise
+GetArtifactIdOk returns a tuple with the ArtifactId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFullframe
+### SetArtifactId
 
-`func (o *InlineObject4) SetFullframe(v bool)`
+`func (o *InlineObject4) SetArtifactId(v string)`
 
-SetFullframe sets Fullframe field to given value.
+SetArtifactId sets ArtifactId field to given value.
 
-### HasFullframe
+### HasArtifactId
 
-`func (o *InlineObject4) HasFullframe() bool`
+`func (o *InlineObject4) HasArtifactId() bool`
 
-HasFullframe returns a boolean if a field has been set.
+HasArtifactId returns a boolean if a field has been set.
+
+### GetParameters
+
+`func (o *InlineObject4) GetParameters() []DevicesSerialCameraCustomAnalyticsParameters`
+
+GetParameters returns the Parameters field if non-nil, zero value otherwise.
+
+### GetParametersOk
+
+`func (o *InlineObject4) GetParametersOk() (*[]DevicesSerialCameraCustomAnalyticsParameters, bool)`
+
+GetParametersOk returns a tuple with the Parameters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParameters
+
+`func (o *InlineObject4) SetParameters(v []DevicesSerialCameraCustomAnalyticsParameters)`
+
+SetParameters sets Parameters field to given value.
+
+### HasParameters
+
+`func (o *InlineObject4) HasParameters() bool`
+
+HasParameters returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

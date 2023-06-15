@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | Name or description for layer 3 static route | [optional] 
-**Subnet** | Pointer to **string** | The subnet which is routed via this static route and should be specified in CIDR notation (ex. 1.2.3.0/24) | [optional] 
-**NextHopIp** | Pointer to **string** | IP address of the next hop device to which the device sends its traffic for the subnet | [optional] 
+**Subnet** | **string** | The subnet which is routed via this static route and should be specified in CIDR notation (ex. 1.2.3.0/24) | 
+**NextHopIp** | **string** | IP address of the next hop device to which the device sends its traffic for the subnet | 
 **AdvertiseViaOspfEnabled** | Pointer to **bool** | Option to advertise static route via OSPF | [optional] 
 **PreferOverOspfRoutesEnabled** | Pointer to **bool** | Option to prefer static route over OSPF routes | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewInlineObject22
 
-`func NewInlineObject22() *InlineObject22`
+`func NewInlineObject22(subnet string, nextHopIp string, ) *InlineObject22`
 
 NewInlineObject22 instantiates a new InlineObject22 object
 This constructor will assign default values to properties that have it defined,
@@ -73,11 +73,6 @@ and a boolean to check if the value has been set.
 
 SetSubnet sets Subnet field to given value.
 
-### HasSubnet
-
-`func (o *InlineObject22) HasSubnet() bool`
-
-HasSubnet returns a boolean if a field has been set.
 
 ### GetNextHopIp
 
@@ -98,11 +93,6 @@ and a boolean to check if the value has been set.
 
 SetNextHopIp sets NextHopIp field to given value.
 
-### HasNextHopIp
-
-`func (o *InlineObject22) HasNextHopIp() bool`
-
-HasNextHopIp returns a boolean if a field has been set.
 
 ### GetAdvertiseViaOspfEnabled
 

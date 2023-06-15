@@ -4,9 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Name of the manufacturer | [optional] 
-**Clients** | Pointer to [**OrganizationsOrganizationIdSummaryTopClientsManufacturersByUsageClients**](OrganizationsOrganizationIdSummaryTopClientsManufacturersByUsageClients.md) |  | [optional] 
-**Usage** | Pointer to [**OrganizationsOrganizationIdSummaryTopClientsManufacturersByUsageUsage**](OrganizationsOrganizationIdSummaryTopClientsManufacturersByUsageUsage.md) |  | [optional] 
+**RemainderLicenses** | Pointer to [**[]InlineResponse200134**](InlineResponse200134.md) | Remainder licenses created in the source organization as a result of moving a subset of the counts of a license | [optional] 
+**MovedLicenses** | Pointer to [**[]InlineResponse200134**](InlineResponse200134.md) | Newly moved licenses created in the destination organization of the license move operation | [optional] 
 
 ## Methods
 
@@ -27,80 +26,55 @@ NewInlineResponse200135WithDefaults instantiates a new InlineResponse200135 obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetRemainderLicenses
 
-`func (o *InlineResponse200135) GetName() string`
+`func (o *InlineResponse200135) GetRemainderLicenses() []InlineResponse200134`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetRemainderLicenses returns the RemainderLicenses field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetRemainderLicensesOk
 
-`func (o *InlineResponse200135) GetNameOk() (*string, bool)`
+`func (o *InlineResponse200135) GetRemainderLicensesOk() (*[]InlineResponse200134, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetRemainderLicensesOk returns a tuple with the RemainderLicenses field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetRemainderLicenses
 
-`func (o *InlineResponse200135) SetName(v string)`
+`func (o *InlineResponse200135) SetRemainderLicenses(v []InlineResponse200134)`
 
-SetName sets Name field to given value.
+SetRemainderLicenses sets RemainderLicenses field to given value.
 
-### HasName
+### HasRemainderLicenses
 
-`func (o *InlineResponse200135) HasName() bool`
+`func (o *InlineResponse200135) HasRemainderLicenses() bool`
 
-HasName returns a boolean if a field has been set.
+HasRemainderLicenses returns a boolean if a field has been set.
 
-### GetClients
+### GetMovedLicenses
 
-`func (o *InlineResponse200135) GetClients() OrganizationsOrganizationIdSummaryTopClientsManufacturersByUsageClients`
+`func (o *InlineResponse200135) GetMovedLicenses() []InlineResponse200134`
 
-GetClients returns the Clients field if non-nil, zero value otherwise.
+GetMovedLicenses returns the MovedLicenses field if non-nil, zero value otherwise.
 
-### GetClientsOk
+### GetMovedLicensesOk
 
-`func (o *InlineResponse200135) GetClientsOk() (*OrganizationsOrganizationIdSummaryTopClientsManufacturersByUsageClients, bool)`
+`func (o *InlineResponse200135) GetMovedLicensesOk() (*[]InlineResponse200134, bool)`
 
-GetClientsOk returns a tuple with the Clients field if it's non-nil, zero value otherwise
+GetMovedLicensesOk returns a tuple with the MovedLicenses field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetClients
+### SetMovedLicenses
 
-`func (o *InlineResponse200135) SetClients(v OrganizationsOrganizationIdSummaryTopClientsManufacturersByUsageClients)`
+`func (o *InlineResponse200135) SetMovedLicenses(v []InlineResponse200134)`
 
-SetClients sets Clients field to given value.
+SetMovedLicenses sets MovedLicenses field to given value.
 
-### HasClients
+### HasMovedLicenses
 
-`func (o *InlineResponse200135) HasClients() bool`
+`func (o *InlineResponse200135) HasMovedLicenses() bool`
 
-HasClients returns a boolean if a field has been set.
-
-### GetUsage
-
-`func (o *InlineResponse200135) GetUsage() OrganizationsOrganizationIdSummaryTopClientsManufacturersByUsageUsage`
-
-GetUsage returns the Usage field if non-nil, zero value otherwise.
-
-### GetUsageOk
-
-`func (o *InlineResponse200135) GetUsageOk() (*OrganizationsOrganizationIdSummaryTopClientsManufacturersByUsageUsage, bool)`
-
-GetUsageOk returns a tuple with the Usage field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUsage
-
-`func (o *InlineResponse200135) SetUsage(v OrganizationsOrganizationIdSummaryTopClientsManufacturersByUsageUsage)`
-
-SetUsage sets Usage field to given value.
-
-### HasUsage
-
-`func (o *InlineResponse200135) HasUsage() bool`
-
-HasUsage returns a boolean if a field has been set.
+HasMovedLicenses returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,23 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The name of the new profile. Must be unique. | [optional] 
-**NetworkId** | Pointer to **string** | The network ID of the RF Profile | [optional] 
-**Name** | Pointer to **string** | The name of the new profile. Must be unique. This param is required on creation. | [optional] 
-**ClientBalancingEnabled** | Pointer to **bool** | Steers client to best available access point. Can be either true or false. Defaults to true. | [optional] 
-**MinBitrateType** | Pointer to **string** | Minimum bitrate can be set to either &#39;band&#39; or &#39;ssid&#39;. Defaults to band. | [optional] 
-**BandSelectionType** | Pointer to **string** | Band selection can be set to either &#39;ssid&#39; or &#39;ap&#39;. This param is required on creation. | [optional] 
-**ApBandSettings** | Pointer to [**InlineResponse2014ApBandSettings**](InlineResponse2014ApBandSettings.md) |  | [optional] 
-**TwoFourGhzSettings** | Pointer to [**NetworksNetworkIdWirelessRfProfilesTwoFourGhzSettings**](NetworksNetworkIdWirelessRfProfilesTwoFourGhzSettings.md) |  | [optional] 
-**FiveGhzSettings** | Pointer to [**NetworksNetworkIdWirelessRfProfilesFiveGhzSettings**](NetworksNetworkIdWirelessRfProfilesFiveGhzSettings.md) |  | [optional] 
-**Transmission** | Pointer to [**NetworksNetworkIdWirelessRfProfilesTransmission**](NetworksNetworkIdWirelessRfProfilesTransmission.md) |  | [optional] 
-**PerSsidSettings** | Pointer to [**InlineResponse2014PerSsidSettings**](InlineResponse2014PerSsidSettings.md) |  | [optional] 
+**Id** | Pointer to **string** | ID of the action batch. Can be used to check the status of the action batch at /organizations/{organizationId}/actionBatches/{actionBatchId} | [optional] 
+**OrganizationId** | Pointer to **string** | ID of the organization this action batch belongs to | [optional] 
+**Confirmed** | Pointer to **bool** | Flag describing whether the action should be previewed before executing or not | [optional] 
+**Synchronous** | Pointer to **bool** | Flag describing whether actions should run synchronously or asynchronously | [optional] 
+**Status** | Pointer to [**InlineResponse2014Status**](InlineResponse2014Status.md) |  | [optional] 
+**Actions** | [**[]InlineResponse2014Actions**](InlineResponse2014Actions.md) | A set of changes made as part of this action (&lt;a href&#x3D;&#39;https://developer.cisco.com/meraki/api/#/rest/guides/action-batches/&#39;&gt;more details&lt;/a&gt;) | 
 
 ## Methods
 
 ### NewInlineResponse2014
 
-`func NewInlineResponse2014() *InlineResponse2014`
+`func NewInlineResponse2014(actions []InlineResponse2014Actions, ) *InlineResponse2014`
 
 NewInlineResponse2014 instantiates a new InlineResponse2014 object
 This constructor will assign default values to properties that have it defined,
@@ -60,255 +55,125 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### GetNetworkId
+### GetOrganizationId
 
-`func (o *InlineResponse2014) GetNetworkId() string`
+`func (o *InlineResponse2014) GetOrganizationId() string`
 
-GetNetworkId returns the NetworkId field if non-nil, zero value otherwise.
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
 
-### GetNetworkIdOk
+### GetOrganizationIdOk
 
-`func (o *InlineResponse2014) GetNetworkIdOk() (*string, bool)`
+`func (o *InlineResponse2014) GetOrganizationIdOk() (*string, bool)`
 
-GetNetworkIdOk returns a tuple with the NetworkId field if it's non-nil, zero value otherwise
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNetworkId
+### SetOrganizationId
 
-`func (o *InlineResponse2014) SetNetworkId(v string)`
+`func (o *InlineResponse2014) SetOrganizationId(v string)`
 
-SetNetworkId sets NetworkId field to given value.
+SetOrganizationId sets OrganizationId field to given value.
 
-### HasNetworkId
+### HasOrganizationId
 
-`func (o *InlineResponse2014) HasNetworkId() bool`
+`func (o *InlineResponse2014) HasOrganizationId() bool`
 
-HasNetworkId returns a boolean if a field has been set.
+HasOrganizationId returns a boolean if a field has been set.
 
-### GetName
+### GetConfirmed
 
-`func (o *InlineResponse2014) GetName() string`
+`func (o *InlineResponse2014) GetConfirmed() bool`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetConfirmed returns the Confirmed field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetConfirmedOk
 
-`func (o *InlineResponse2014) GetNameOk() (*string, bool)`
+`func (o *InlineResponse2014) GetConfirmedOk() (*bool, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetConfirmedOk returns a tuple with the Confirmed field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetConfirmed
 
-`func (o *InlineResponse2014) SetName(v string)`
+`func (o *InlineResponse2014) SetConfirmed(v bool)`
 
-SetName sets Name field to given value.
+SetConfirmed sets Confirmed field to given value.
 
-### HasName
+### HasConfirmed
 
-`func (o *InlineResponse2014) HasName() bool`
+`func (o *InlineResponse2014) HasConfirmed() bool`
 
-HasName returns a boolean if a field has been set.
+HasConfirmed returns a boolean if a field has been set.
 
-### GetClientBalancingEnabled
+### GetSynchronous
 
-`func (o *InlineResponse2014) GetClientBalancingEnabled() bool`
+`func (o *InlineResponse2014) GetSynchronous() bool`
 
-GetClientBalancingEnabled returns the ClientBalancingEnabled field if non-nil, zero value otherwise.
+GetSynchronous returns the Synchronous field if non-nil, zero value otherwise.
 
-### GetClientBalancingEnabledOk
+### GetSynchronousOk
 
-`func (o *InlineResponse2014) GetClientBalancingEnabledOk() (*bool, bool)`
+`func (o *InlineResponse2014) GetSynchronousOk() (*bool, bool)`
 
-GetClientBalancingEnabledOk returns a tuple with the ClientBalancingEnabled field if it's non-nil, zero value otherwise
+GetSynchronousOk returns a tuple with the Synchronous field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetClientBalancingEnabled
+### SetSynchronous
 
-`func (o *InlineResponse2014) SetClientBalancingEnabled(v bool)`
+`func (o *InlineResponse2014) SetSynchronous(v bool)`
 
-SetClientBalancingEnabled sets ClientBalancingEnabled field to given value.
+SetSynchronous sets Synchronous field to given value.
 
-### HasClientBalancingEnabled
+### HasSynchronous
 
-`func (o *InlineResponse2014) HasClientBalancingEnabled() bool`
+`func (o *InlineResponse2014) HasSynchronous() bool`
 
-HasClientBalancingEnabled returns a boolean if a field has been set.
+HasSynchronous returns a boolean if a field has been set.
 
-### GetMinBitrateType
+### GetStatus
 
-`func (o *InlineResponse2014) GetMinBitrateType() string`
+`func (o *InlineResponse2014) GetStatus() InlineResponse2014Status`
 
-GetMinBitrateType returns the MinBitrateType field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### GetMinBitrateTypeOk
+### GetStatusOk
 
-`func (o *InlineResponse2014) GetMinBitrateTypeOk() (*string, bool)`
+`func (o *InlineResponse2014) GetStatusOk() (*InlineResponse2014Status, bool)`
 
-GetMinBitrateTypeOk returns a tuple with the MinBitrateType field if it's non-nil, zero value otherwise
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMinBitrateType
+### SetStatus
 
-`func (o *InlineResponse2014) SetMinBitrateType(v string)`
+`func (o *InlineResponse2014) SetStatus(v InlineResponse2014Status)`
 
-SetMinBitrateType sets MinBitrateType field to given value.
+SetStatus sets Status field to given value.
 
-### HasMinBitrateType
+### HasStatus
 
-`func (o *InlineResponse2014) HasMinBitrateType() bool`
+`func (o *InlineResponse2014) HasStatus() bool`
 
-HasMinBitrateType returns a boolean if a field has been set.
+HasStatus returns a boolean if a field has been set.
 
-### GetBandSelectionType
+### GetActions
 
-`func (o *InlineResponse2014) GetBandSelectionType() string`
+`func (o *InlineResponse2014) GetActions() []InlineResponse2014Actions`
 
-GetBandSelectionType returns the BandSelectionType field if non-nil, zero value otherwise.
+GetActions returns the Actions field if non-nil, zero value otherwise.
 
-### GetBandSelectionTypeOk
+### GetActionsOk
 
-`func (o *InlineResponse2014) GetBandSelectionTypeOk() (*string, bool)`
+`func (o *InlineResponse2014) GetActionsOk() (*[]InlineResponse2014Actions, bool)`
 
-GetBandSelectionTypeOk returns a tuple with the BandSelectionType field if it's non-nil, zero value otherwise
+GetActionsOk returns a tuple with the Actions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBandSelectionType
+### SetActions
 
-`func (o *InlineResponse2014) SetBandSelectionType(v string)`
+`func (o *InlineResponse2014) SetActions(v []InlineResponse2014Actions)`
 
-SetBandSelectionType sets BandSelectionType field to given value.
+SetActions sets Actions field to given value.
 
-### HasBandSelectionType
-
-`func (o *InlineResponse2014) HasBandSelectionType() bool`
-
-HasBandSelectionType returns a boolean if a field has been set.
-
-### GetApBandSettings
-
-`func (o *InlineResponse2014) GetApBandSettings() InlineResponse2014ApBandSettings`
-
-GetApBandSettings returns the ApBandSettings field if non-nil, zero value otherwise.
-
-### GetApBandSettingsOk
-
-`func (o *InlineResponse2014) GetApBandSettingsOk() (*InlineResponse2014ApBandSettings, bool)`
-
-GetApBandSettingsOk returns a tuple with the ApBandSettings field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetApBandSettings
-
-`func (o *InlineResponse2014) SetApBandSettings(v InlineResponse2014ApBandSettings)`
-
-SetApBandSettings sets ApBandSettings field to given value.
-
-### HasApBandSettings
-
-`func (o *InlineResponse2014) HasApBandSettings() bool`
-
-HasApBandSettings returns a boolean if a field has been set.
-
-### GetTwoFourGhzSettings
-
-`func (o *InlineResponse2014) GetTwoFourGhzSettings() NetworksNetworkIdWirelessRfProfilesTwoFourGhzSettings`
-
-GetTwoFourGhzSettings returns the TwoFourGhzSettings field if non-nil, zero value otherwise.
-
-### GetTwoFourGhzSettingsOk
-
-`func (o *InlineResponse2014) GetTwoFourGhzSettingsOk() (*NetworksNetworkIdWirelessRfProfilesTwoFourGhzSettings, bool)`
-
-GetTwoFourGhzSettingsOk returns a tuple with the TwoFourGhzSettings field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTwoFourGhzSettings
-
-`func (o *InlineResponse2014) SetTwoFourGhzSettings(v NetworksNetworkIdWirelessRfProfilesTwoFourGhzSettings)`
-
-SetTwoFourGhzSettings sets TwoFourGhzSettings field to given value.
-
-### HasTwoFourGhzSettings
-
-`func (o *InlineResponse2014) HasTwoFourGhzSettings() bool`
-
-HasTwoFourGhzSettings returns a boolean if a field has been set.
-
-### GetFiveGhzSettings
-
-`func (o *InlineResponse2014) GetFiveGhzSettings() NetworksNetworkIdWirelessRfProfilesFiveGhzSettings`
-
-GetFiveGhzSettings returns the FiveGhzSettings field if non-nil, zero value otherwise.
-
-### GetFiveGhzSettingsOk
-
-`func (o *InlineResponse2014) GetFiveGhzSettingsOk() (*NetworksNetworkIdWirelessRfProfilesFiveGhzSettings, bool)`
-
-GetFiveGhzSettingsOk returns a tuple with the FiveGhzSettings field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFiveGhzSettings
-
-`func (o *InlineResponse2014) SetFiveGhzSettings(v NetworksNetworkIdWirelessRfProfilesFiveGhzSettings)`
-
-SetFiveGhzSettings sets FiveGhzSettings field to given value.
-
-### HasFiveGhzSettings
-
-`func (o *InlineResponse2014) HasFiveGhzSettings() bool`
-
-HasFiveGhzSettings returns a boolean if a field has been set.
-
-### GetTransmission
-
-`func (o *InlineResponse2014) GetTransmission() NetworksNetworkIdWirelessRfProfilesTransmission`
-
-GetTransmission returns the Transmission field if non-nil, zero value otherwise.
-
-### GetTransmissionOk
-
-`func (o *InlineResponse2014) GetTransmissionOk() (*NetworksNetworkIdWirelessRfProfilesTransmission, bool)`
-
-GetTransmissionOk returns a tuple with the Transmission field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTransmission
-
-`func (o *InlineResponse2014) SetTransmission(v NetworksNetworkIdWirelessRfProfilesTransmission)`
-
-SetTransmission sets Transmission field to given value.
-
-### HasTransmission
-
-`func (o *InlineResponse2014) HasTransmission() bool`
-
-HasTransmission returns a boolean if a field has been set.
-
-### GetPerSsidSettings
-
-`func (o *InlineResponse2014) GetPerSsidSettings() InlineResponse2014PerSsidSettings`
-
-GetPerSsidSettings returns the PerSsidSettings field if non-nil, zero value otherwise.
-
-### GetPerSsidSettingsOk
-
-`func (o *InlineResponse2014) GetPerSsidSettingsOk() (*InlineResponse2014PerSsidSettings, bool)`
-
-GetPerSsidSettingsOk returns a tuple with the PerSsidSettings field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPerSsidSettings
-
-`func (o *InlineResponse2014) SetPerSsidSettings(v InlineResponse2014PerSsidSettings)`
-
-SetPerSsidSettings sets PerSsidSettings field to given value.
-
-### HasPerSsidSettings
-
-`func (o *InlineResponse2014) HasPerSsidSettings() bool`
-
-HasPerSsidSettings returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

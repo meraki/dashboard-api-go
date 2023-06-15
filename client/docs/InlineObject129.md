@@ -4,15 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vlan** | Pointer to **int32** | Management VLAN | [optional] 
-**UseCombinedPower** | Pointer to **bool** | The use Combined Power as the default behavior of secondary power supplies on supported devices. | [optional] 
-**PowerExceptions** | Pointer to [**[]NetworksNetworkIdSwitchSettingsPowerExceptions**](NetworksNetworkIdSwitchSettingsPowerExceptions.md) | Exceptions on a per switch basis to \&quot;useCombinedPower\&quot; | [optional] 
+**InterfaceIp** | **string** | The IP address of the interface where the RP needs to be created. | 
+**MulticastGroup** | **string** | &#39;Any&#39;, or the IP address of a multicast group | 
 
 ## Methods
 
 ### NewInlineObject129
 
-`func NewInlineObject129() *InlineObject129`
+`func NewInlineObject129(interfaceIp string, multicastGroup string, ) *InlineObject129`
 
 NewInlineObject129 instantiates a new InlineObject129 object
 This constructor will assign default values to properties that have it defined,
@@ -27,80 +26,45 @@ NewInlineObject129WithDefaults instantiates a new InlineObject129 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetVlan
+### GetInterfaceIp
 
-`func (o *InlineObject129) GetVlan() int32`
+`func (o *InlineObject129) GetInterfaceIp() string`
 
-GetVlan returns the Vlan field if non-nil, zero value otherwise.
+GetInterfaceIp returns the InterfaceIp field if non-nil, zero value otherwise.
 
-### GetVlanOk
+### GetInterfaceIpOk
 
-`func (o *InlineObject129) GetVlanOk() (*int32, bool)`
+`func (o *InlineObject129) GetInterfaceIpOk() (*string, bool)`
 
-GetVlanOk returns a tuple with the Vlan field if it's non-nil, zero value otherwise
+GetInterfaceIpOk returns a tuple with the InterfaceIp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVlan
+### SetInterfaceIp
 
-`func (o *InlineObject129) SetVlan(v int32)`
+`func (o *InlineObject129) SetInterfaceIp(v string)`
 
-SetVlan sets Vlan field to given value.
+SetInterfaceIp sets InterfaceIp field to given value.
 
-### HasVlan
 
-`func (o *InlineObject129) HasVlan() bool`
+### GetMulticastGroup
 
-HasVlan returns a boolean if a field has been set.
+`func (o *InlineObject129) GetMulticastGroup() string`
 
-### GetUseCombinedPower
+GetMulticastGroup returns the MulticastGroup field if non-nil, zero value otherwise.
 
-`func (o *InlineObject129) GetUseCombinedPower() bool`
+### GetMulticastGroupOk
 
-GetUseCombinedPower returns the UseCombinedPower field if non-nil, zero value otherwise.
+`func (o *InlineObject129) GetMulticastGroupOk() (*string, bool)`
 
-### GetUseCombinedPowerOk
-
-`func (o *InlineObject129) GetUseCombinedPowerOk() (*bool, bool)`
-
-GetUseCombinedPowerOk returns a tuple with the UseCombinedPower field if it's non-nil, zero value otherwise
+GetMulticastGroupOk returns a tuple with the MulticastGroup field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUseCombinedPower
+### SetMulticastGroup
 
-`func (o *InlineObject129) SetUseCombinedPower(v bool)`
+`func (o *InlineObject129) SetMulticastGroup(v string)`
 
-SetUseCombinedPower sets UseCombinedPower field to given value.
+SetMulticastGroup sets MulticastGroup field to given value.
 
-### HasUseCombinedPower
-
-`func (o *InlineObject129) HasUseCombinedPower() bool`
-
-HasUseCombinedPower returns a boolean if a field has been set.
-
-### GetPowerExceptions
-
-`func (o *InlineObject129) GetPowerExceptions() []NetworksNetworkIdSwitchSettingsPowerExceptions`
-
-GetPowerExceptions returns the PowerExceptions field if non-nil, zero value otherwise.
-
-### GetPowerExceptionsOk
-
-`func (o *InlineObject129) GetPowerExceptionsOk() (*[]NetworksNetworkIdSwitchSettingsPowerExceptions, bool)`
-
-GetPowerExceptionsOk returns a tuple with the PowerExceptions field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPowerExceptions
-
-`func (o *InlineObject129) SetPowerExceptions(v []NetworksNetworkIdSwitchSettingsPowerExceptions)`
-
-SetPowerExceptions sets PowerExceptions field to given value.
-
-### HasPowerExceptions
-
-`func (o *InlineObject129) HasPowerExceptions() bool`
-
-HasPowerExceptions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

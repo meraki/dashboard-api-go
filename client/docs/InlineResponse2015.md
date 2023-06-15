@@ -4,18 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | ID of the action batch. Can be used to check the status of the action batch at /organizations/{organizationId}/actionBatches/{actionBatchId} | [optional] 
-**OrganizationId** | Pointer to **string** | ID of the organization this action batch belongs to | [optional] 
-**Confirmed** | Pointer to **bool** | Flag describing whether the action should be previewed before executing or not | [optional] 
-**Synchronous** | Pointer to **bool** | Flag describing whether actions should run synchronously or asynchronously | [optional] 
-**Status** | Pointer to [**InlineResponse2015Status**](InlineResponse2015Status.md) |  | [optional] 
-**Actions** | [**[]InlineResponse2015Actions**](InlineResponse2015Actions.md) | A set of changes made as part of this action (&lt;a href&#x3D;&#39;https://developer.cisco.com/meraki/api/#/rest/guides/action-batches/&#39;&gt;more details&lt;/a&gt;) | 
+**Name** | Pointer to **string** | Name of the Dashboard branding policy. | [optional] 
+**Enabled** | Pointer to **bool** | Boolean indicating whether this policy is enabled. | [optional] 
+**AdminSettings** | Pointer to [**OrganizationsOrganizationIdBrandingPoliciesAdminSettings**](OrganizationsOrganizationIdBrandingPoliciesAdminSettings.md) |  | [optional] 
+**HelpSettings** | Pointer to [**OrganizationsOrganizationIdBrandingPoliciesHelpSettings1**](OrganizationsOrganizationIdBrandingPoliciesHelpSettings1.md) |  | [optional] 
+**CustomLogo** | Pointer to [**OrganizationsOrganizationIdBrandingPoliciesCustomLogo**](OrganizationsOrganizationIdBrandingPoliciesCustomLogo.md) |  | [optional] 
 
 ## Methods
 
 ### NewInlineResponse2015
 
-`func NewInlineResponse2015(actions []InlineResponse2015Actions, ) *InlineResponse2015`
+`func NewInlineResponse2015() *InlineResponse2015`
 
 NewInlineResponse2015 instantiates a new InlineResponse2015 object
 This constructor will assign default values to properties that have it defined,
@@ -30,150 +29,130 @@ NewInlineResponse2015WithDefaults instantiates a new InlineResponse2015 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetName
 
-`func (o *InlineResponse2015) GetId() string`
+`func (o *InlineResponse2015) GetName() string`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetNameOk
 
-`func (o *InlineResponse2015) GetIdOk() (*string, bool)`
+`func (o *InlineResponse2015) GetNameOk() (*string, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetName
 
-`func (o *InlineResponse2015) SetId(v string)`
+`func (o *InlineResponse2015) SetName(v string)`
 
-SetId sets Id field to given value.
+SetName sets Name field to given value.
 
-### HasId
+### HasName
 
-`func (o *InlineResponse2015) HasId() bool`
+`func (o *InlineResponse2015) HasName() bool`
 
-HasId returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetOrganizationId
+### GetEnabled
 
-`func (o *InlineResponse2015) GetOrganizationId() string`
+`func (o *InlineResponse2015) GetEnabled() bool`
 
-GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
 
-### GetOrganizationIdOk
+### GetEnabledOk
 
-`func (o *InlineResponse2015) GetOrganizationIdOk() (*string, bool)`
+`func (o *InlineResponse2015) GetEnabledOk() (*bool, bool)`
 
-GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOrganizationId
+### SetEnabled
 
-`func (o *InlineResponse2015) SetOrganizationId(v string)`
+`func (o *InlineResponse2015) SetEnabled(v bool)`
 
-SetOrganizationId sets OrganizationId field to given value.
+SetEnabled sets Enabled field to given value.
 
-### HasOrganizationId
+### HasEnabled
 
-`func (o *InlineResponse2015) HasOrganizationId() bool`
+`func (o *InlineResponse2015) HasEnabled() bool`
 
-HasOrganizationId returns a boolean if a field has been set.
+HasEnabled returns a boolean if a field has been set.
 
-### GetConfirmed
+### GetAdminSettings
 
-`func (o *InlineResponse2015) GetConfirmed() bool`
+`func (o *InlineResponse2015) GetAdminSettings() OrganizationsOrganizationIdBrandingPoliciesAdminSettings`
 
-GetConfirmed returns the Confirmed field if non-nil, zero value otherwise.
+GetAdminSettings returns the AdminSettings field if non-nil, zero value otherwise.
 
-### GetConfirmedOk
+### GetAdminSettingsOk
 
-`func (o *InlineResponse2015) GetConfirmedOk() (*bool, bool)`
+`func (o *InlineResponse2015) GetAdminSettingsOk() (*OrganizationsOrganizationIdBrandingPoliciesAdminSettings, bool)`
 
-GetConfirmedOk returns a tuple with the Confirmed field if it's non-nil, zero value otherwise
+GetAdminSettingsOk returns a tuple with the AdminSettings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetConfirmed
+### SetAdminSettings
 
-`func (o *InlineResponse2015) SetConfirmed(v bool)`
+`func (o *InlineResponse2015) SetAdminSettings(v OrganizationsOrganizationIdBrandingPoliciesAdminSettings)`
 
-SetConfirmed sets Confirmed field to given value.
+SetAdminSettings sets AdminSettings field to given value.
 
-### HasConfirmed
+### HasAdminSettings
 
-`func (o *InlineResponse2015) HasConfirmed() bool`
+`func (o *InlineResponse2015) HasAdminSettings() bool`
 
-HasConfirmed returns a boolean if a field has been set.
+HasAdminSettings returns a boolean if a field has been set.
 
-### GetSynchronous
+### GetHelpSettings
 
-`func (o *InlineResponse2015) GetSynchronous() bool`
+`func (o *InlineResponse2015) GetHelpSettings() OrganizationsOrganizationIdBrandingPoliciesHelpSettings1`
 
-GetSynchronous returns the Synchronous field if non-nil, zero value otherwise.
+GetHelpSettings returns the HelpSettings field if non-nil, zero value otherwise.
 
-### GetSynchronousOk
+### GetHelpSettingsOk
 
-`func (o *InlineResponse2015) GetSynchronousOk() (*bool, bool)`
+`func (o *InlineResponse2015) GetHelpSettingsOk() (*OrganizationsOrganizationIdBrandingPoliciesHelpSettings1, bool)`
 
-GetSynchronousOk returns a tuple with the Synchronous field if it's non-nil, zero value otherwise
+GetHelpSettingsOk returns a tuple with the HelpSettings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSynchronous
+### SetHelpSettings
 
-`func (o *InlineResponse2015) SetSynchronous(v bool)`
+`func (o *InlineResponse2015) SetHelpSettings(v OrganizationsOrganizationIdBrandingPoliciesHelpSettings1)`
 
-SetSynchronous sets Synchronous field to given value.
+SetHelpSettings sets HelpSettings field to given value.
 
-### HasSynchronous
+### HasHelpSettings
 
-`func (o *InlineResponse2015) HasSynchronous() bool`
+`func (o *InlineResponse2015) HasHelpSettings() bool`
 
-HasSynchronous returns a boolean if a field has been set.
+HasHelpSettings returns a boolean if a field has been set.
 
-### GetStatus
+### GetCustomLogo
 
-`func (o *InlineResponse2015) GetStatus() InlineResponse2015Status`
+`func (o *InlineResponse2015) GetCustomLogo() OrganizationsOrganizationIdBrandingPoliciesCustomLogo`
 
-GetStatus returns the Status field if non-nil, zero value otherwise.
+GetCustomLogo returns the CustomLogo field if non-nil, zero value otherwise.
 
-### GetStatusOk
+### GetCustomLogoOk
 
-`func (o *InlineResponse2015) GetStatusOk() (*InlineResponse2015Status, bool)`
+`func (o *InlineResponse2015) GetCustomLogoOk() (*OrganizationsOrganizationIdBrandingPoliciesCustomLogo, bool)`
 
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+GetCustomLogoOk returns a tuple with the CustomLogo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStatus
+### SetCustomLogo
 
-`func (o *InlineResponse2015) SetStatus(v InlineResponse2015Status)`
+`func (o *InlineResponse2015) SetCustomLogo(v OrganizationsOrganizationIdBrandingPoliciesCustomLogo)`
 
-SetStatus sets Status field to given value.
+SetCustomLogo sets CustomLogo field to given value.
 
-### HasStatus
+### HasCustomLogo
 
-`func (o *InlineResponse2015) HasStatus() bool`
+`func (o *InlineResponse2015) HasCustomLogo() bool`
 
-HasStatus returns a boolean if a field has been set.
-
-### GetActions
-
-`func (o *InlineResponse2015) GetActions() []InlineResponse2015Actions`
-
-GetActions returns the Actions field if non-nil, zero value otherwise.
-
-### GetActionsOk
-
-`func (o *InlineResponse2015) GetActionsOk() (*[]InlineResponse2015Actions, bool)`
-
-GetActionsOk returns a tuple with the Actions field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetActions
-
-`func (o *InlineResponse2015) SetActions(v []InlineResponse2015Actions)`
-
-SetActions sets Actions field to given value.
-
+HasCustomLogo returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

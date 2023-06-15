@@ -4,10 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | Pointer to **string** | A message regarding the events sent. Usually &#39;null&#39; unless there are no events | [optional] 
-**PageStartAt** | Pointer to **string** | An UTC ISO8601 string of the earliest occured at time of the listed events of the page. | [optional] 
-**PageEndAt** | Pointer to **string** | An UTC ISO8601 string of the latest occured at time of the listed events of the page. | [optional] 
-**Events** | Pointer to [**[]InlineResponse20025Events**](InlineResponse20025Events.md) | An array of events that took place in the network. | [optional] 
+**DhcpLeaseTime** | Pointer to **string** | DHCP Lease time for all MG in the network. | [optional] 
+**DnsNameservers** | Pointer to **string** | DNS name servers mode for all MG in the network. | [optional] 
+**DnsCustomNameservers** | Pointer to **[]string** | List of fixed IPs representing the the DNS Name servers when the mode is &#39;custom&#39;. | [optional] 
 
 ## Methods
 
@@ -28,105 +27,80 @@ NewInlineResponse20025WithDefaults instantiates a new InlineResponse20025 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetMessage
+### GetDhcpLeaseTime
 
-`func (o *InlineResponse20025) GetMessage() string`
+`func (o *InlineResponse20025) GetDhcpLeaseTime() string`
 
-GetMessage returns the Message field if non-nil, zero value otherwise.
+GetDhcpLeaseTime returns the DhcpLeaseTime field if non-nil, zero value otherwise.
 
-### GetMessageOk
+### GetDhcpLeaseTimeOk
 
-`func (o *InlineResponse20025) GetMessageOk() (*string, bool)`
+`func (o *InlineResponse20025) GetDhcpLeaseTimeOk() (*string, bool)`
 
-GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
+GetDhcpLeaseTimeOk returns a tuple with the DhcpLeaseTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMessage
+### SetDhcpLeaseTime
 
-`func (o *InlineResponse20025) SetMessage(v string)`
+`func (o *InlineResponse20025) SetDhcpLeaseTime(v string)`
 
-SetMessage sets Message field to given value.
+SetDhcpLeaseTime sets DhcpLeaseTime field to given value.
 
-### HasMessage
+### HasDhcpLeaseTime
 
-`func (o *InlineResponse20025) HasMessage() bool`
+`func (o *InlineResponse20025) HasDhcpLeaseTime() bool`
 
-HasMessage returns a boolean if a field has been set.
+HasDhcpLeaseTime returns a boolean if a field has been set.
 
-### GetPageStartAt
+### GetDnsNameservers
 
-`func (o *InlineResponse20025) GetPageStartAt() string`
+`func (o *InlineResponse20025) GetDnsNameservers() string`
 
-GetPageStartAt returns the PageStartAt field if non-nil, zero value otherwise.
+GetDnsNameservers returns the DnsNameservers field if non-nil, zero value otherwise.
 
-### GetPageStartAtOk
+### GetDnsNameserversOk
 
-`func (o *InlineResponse20025) GetPageStartAtOk() (*string, bool)`
+`func (o *InlineResponse20025) GetDnsNameserversOk() (*string, bool)`
 
-GetPageStartAtOk returns a tuple with the PageStartAt field if it's non-nil, zero value otherwise
+GetDnsNameserversOk returns a tuple with the DnsNameservers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPageStartAt
+### SetDnsNameservers
 
-`func (o *InlineResponse20025) SetPageStartAt(v string)`
+`func (o *InlineResponse20025) SetDnsNameservers(v string)`
 
-SetPageStartAt sets PageStartAt field to given value.
+SetDnsNameservers sets DnsNameservers field to given value.
 
-### HasPageStartAt
+### HasDnsNameservers
 
-`func (o *InlineResponse20025) HasPageStartAt() bool`
+`func (o *InlineResponse20025) HasDnsNameservers() bool`
 
-HasPageStartAt returns a boolean if a field has been set.
+HasDnsNameservers returns a boolean if a field has been set.
 
-### GetPageEndAt
+### GetDnsCustomNameservers
 
-`func (o *InlineResponse20025) GetPageEndAt() string`
+`func (o *InlineResponse20025) GetDnsCustomNameservers() []string`
 
-GetPageEndAt returns the PageEndAt field if non-nil, zero value otherwise.
+GetDnsCustomNameservers returns the DnsCustomNameservers field if non-nil, zero value otherwise.
 
-### GetPageEndAtOk
+### GetDnsCustomNameserversOk
 
-`func (o *InlineResponse20025) GetPageEndAtOk() (*string, bool)`
+`func (o *InlineResponse20025) GetDnsCustomNameserversOk() (*[]string, bool)`
 
-GetPageEndAtOk returns a tuple with the PageEndAt field if it's non-nil, zero value otherwise
+GetDnsCustomNameserversOk returns a tuple with the DnsCustomNameservers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPageEndAt
+### SetDnsCustomNameservers
 
-`func (o *InlineResponse20025) SetPageEndAt(v string)`
+`func (o *InlineResponse20025) SetDnsCustomNameservers(v []string)`
 
-SetPageEndAt sets PageEndAt field to given value.
+SetDnsCustomNameservers sets DnsCustomNameservers field to given value.
 
-### HasPageEndAt
+### HasDnsCustomNameservers
 
-`func (o *InlineResponse20025) HasPageEndAt() bool`
+`func (o *InlineResponse20025) HasDnsCustomNameservers() bool`
 
-HasPageEndAt returns a boolean if a field has been set.
-
-### GetEvents
-
-`func (o *InlineResponse20025) GetEvents() []InlineResponse20025Events`
-
-GetEvents returns the Events field if non-nil, zero value otherwise.
-
-### GetEventsOk
-
-`func (o *InlineResponse20025) GetEventsOk() (*[]InlineResponse20025Events, bool)`
-
-GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEvents
-
-`func (o *InlineResponse20025) SetEvents(v []InlineResponse20025Events)`
-
-SetEvents sets Events field to given value.
-
-### HasEvents
-
-`func (o *InlineResponse20025) HasEvents() bool`
-
-HasEvents returns a boolean if a field has been set.
+HasDnsCustomNameservers returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

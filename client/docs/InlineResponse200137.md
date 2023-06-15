@@ -4,9 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Model** | Pointer to **string** | The device model | [optional] 
-**Count** | Pointer to **int32** | Total number of devices per model | [optional] 
-**Usage** | Pointer to [**OrganizationsOrganizationIdSummaryTopDevicesModelsByUsageUsage**](OrganizationsOrganizationIdSummaryTopDevicesModelsByUsageUsage.md) |  | [optional] 
+**ResultingNetwork** | Pointer to [**InlineResponse200137ResultingNetwork**](InlineResponse200137ResultingNetwork.md) |  | [optional] 
 
 ## Methods
 
@@ -27,80 +25,30 @@ NewInlineResponse200137WithDefaults instantiates a new InlineResponse200137 obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetModel
+### GetResultingNetwork
 
-`func (o *InlineResponse200137) GetModel() string`
+`func (o *InlineResponse200137) GetResultingNetwork() InlineResponse200137ResultingNetwork`
 
-GetModel returns the Model field if non-nil, zero value otherwise.
+GetResultingNetwork returns the ResultingNetwork field if non-nil, zero value otherwise.
 
-### GetModelOk
+### GetResultingNetworkOk
 
-`func (o *InlineResponse200137) GetModelOk() (*string, bool)`
+`func (o *InlineResponse200137) GetResultingNetworkOk() (*InlineResponse200137ResultingNetwork, bool)`
 
-GetModelOk returns a tuple with the Model field if it's non-nil, zero value otherwise
+GetResultingNetworkOk returns a tuple with the ResultingNetwork field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetModel
+### SetResultingNetwork
 
-`func (o *InlineResponse200137) SetModel(v string)`
+`func (o *InlineResponse200137) SetResultingNetwork(v InlineResponse200137ResultingNetwork)`
 
-SetModel sets Model field to given value.
+SetResultingNetwork sets ResultingNetwork field to given value.
 
-### HasModel
+### HasResultingNetwork
 
-`func (o *InlineResponse200137) HasModel() bool`
+`func (o *InlineResponse200137) HasResultingNetwork() bool`
 
-HasModel returns a boolean if a field has been set.
-
-### GetCount
-
-`func (o *InlineResponse200137) GetCount() int32`
-
-GetCount returns the Count field if non-nil, zero value otherwise.
-
-### GetCountOk
-
-`func (o *InlineResponse200137) GetCountOk() (*int32, bool)`
-
-GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCount
-
-`func (o *InlineResponse200137) SetCount(v int32)`
-
-SetCount sets Count field to given value.
-
-### HasCount
-
-`func (o *InlineResponse200137) HasCount() bool`
-
-HasCount returns a boolean if a field has been set.
-
-### GetUsage
-
-`func (o *InlineResponse200137) GetUsage() OrganizationsOrganizationIdSummaryTopDevicesModelsByUsageUsage`
-
-GetUsage returns the Usage field if non-nil, zero value otherwise.
-
-### GetUsageOk
-
-`func (o *InlineResponse200137) GetUsageOk() (*OrganizationsOrganizationIdSummaryTopDevicesModelsByUsageUsage, bool)`
-
-GetUsageOk returns a tuple with the Usage field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUsage
-
-`func (o *InlineResponse200137) SetUsage(v OrganizationsOrganizationIdSummaryTopDevicesModelsByUsageUsage)`
-
-SetUsage sets Usage field to given value.
-
-### HasUsage
-
-`func (o *InlineResponse200137) HasUsage() bool`
-
-HasUsage returns a boolean if a field has been set.
+HasResultingNetwork returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

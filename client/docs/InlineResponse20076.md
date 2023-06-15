@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ScanningEnabled** | Pointer to **bool** | Whether APs will scan for Bluetooth enabled clients. | [optional] 
-**AdvertisingEnabled** | Pointer to **bool** | Whether APs will advertise beacons. | [optional] 
-**Uuid** | Pointer to **string** | The UUID to be used in the beacon identifier. | [optional] 
-**MajorMinorAssignmentMode** | Pointer to **string** | The way major and minor number should be assigned to nodes in the network. (&#39;Unique&#39;, &#39;Non-unique&#39;) | [optional] 
-**Major** | Pointer to **int32** | The major number to be used in the beacon identifier. Only valid in &#39;Non-unique&#39; mode. | [optional] 
-**Minor** | Pointer to **int32** | The minor number to be used in the beacon identifier. Only valid in &#39;Non-unique&#39; mode. | [optional] 
-**EslEnabled** | Pointer to **bool** | Whether ESL is enabled on this network. | [optional] 
+**Id** | Pointer to **string** | Qos Rule id | [optional] 
+**Vlan** | Pointer to **int32** | The VLAN of the incoming packet. A null value will match any VLAN. | [optional] 
+**Protocol** | Pointer to **string** | The protocol of the incoming packet. Can be one of \&quot;ANY\&quot;, \&quot;TCP\&quot; or \&quot;UDP\&quot;. Default value is \&quot;ANY\&quot; | [optional] 
+**SrcPort** | Pointer to **int32** | The source port of the incoming packet. Applicable only if protocol is TCP or UDP. | [optional] 
+**SrcPortRange** | Pointer to **string** | The source port range of the incoming packet. Applicable only if protocol is set to TCP or UDP. Example: 70-80 | [optional] 
+**DstPort** | Pointer to **int32** | The destination port of the incoming packet. Applicable only if protocol is TCP or UDP. | [optional] 
+**DstPortRange** | Pointer to **string** | The destination port range of the incoming packet. Applicable only if protocol is set to TCP or UDP. Example: 70-80 | [optional] 
+**Dscp** | Pointer to **int32** | DSCP tag. Set this to -1 to trust incoming DSCP. Default value is 0 | [optional] 
 
 ## Methods
 
@@ -31,180 +32,205 @@ NewInlineResponse20076WithDefaults instantiates a new InlineResponse20076 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetScanningEnabled
+### GetId
 
-`func (o *InlineResponse20076) GetScanningEnabled() bool`
+`func (o *InlineResponse20076) GetId() string`
 
-GetScanningEnabled returns the ScanningEnabled field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetScanningEnabledOk
+### GetIdOk
 
-`func (o *InlineResponse20076) GetScanningEnabledOk() (*bool, bool)`
+`func (o *InlineResponse20076) GetIdOk() (*string, bool)`
 
-GetScanningEnabledOk returns a tuple with the ScanningEnabled field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetScanningEnabled
+### SetId
 
-`func (o *InlineResponse20076) SetScanningEnabled(v bool)`
+`func (o *InlineResponse20076) SetId(v string)`
 
-SetScanningEnabled sets ScanningEnabled field to given value.
+SetId sets Id field to given value.
 
-### HasScanningEnabled
+### HasId
 
-`func (o *InlineResponse20076) HasScanningEnabled() bool`
+`func (o *InlineResponse20076) HasId() bool`
 
-HasScanningEnabled returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### GetAdvertisingEnabled
+### GetVlan
 
-`func (o *InlineResponse20076) GetAdvertisingEnabled() bool`
+`func (o *InlineResponse20076) GetVlan() int32`
 
-GetAdvertisingEnabled returns the AdvertisingEnabled field if non-nil, zero value otherwise.
+GetVlan returns the Vlan field if non-nil, zero value otherwise.
 
-### GetAdvertisingEnabledOk
+### GetVlanOk
 
-`func (o *InlineResponse20076) GetAdvertisingEnabledOk() (*bool, bool)`
+`func (o *InlineResponse20076) GetVlanOk() (*int32, bool)`
 
-GetAdvertisingEnabledOk returns a tuple with the AdvertisingEnabled field if it's non-nil, zero value otherwise
+GetVlanOk returns a tuple with the Vlan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAdvertisingEnabled
+### SetVlan
 
-`func (o *InlineResponse20076) SetAdvertisingEnabled(v bool)`
+`func (o *InlineResponse20076) SetVlan(v int32)`
 
-SetAdvertisingEnabled sets AdvertisingEnabled field to given value.
+SetVlan sets Vlan field to given value.
 
-### HasAdvertisingEnabled
+### HasVlan
 
-`func (o *InlineResponse20076) HasAdvertisingEnabled() bool`
+`func (o *InlineResponse20076) HasVlan() bool`
 
-HasAdvertisingEnabled returns a boolean if a field has been set.
+HasVlan returns a boolean if a field has been set.
 
-### GetUuid
+### GetProtocol
 
-`func (o *InlineResponse20076) GetUuid() string`
+`func (o *InlineResponse20076) GetProtocol() string`
 
-GetUuid returns the Uuid field if non-nil, zero value otherwise.
+GetProtocol returns the Protocol field if non-nil, zero value otherwise.
 
-### GetUuidOk
+### GetProtocolOk
 
-`func (o *InlineResponse20076) GetUuidOk() (*string, bool)`
+`func (o *InlineResponse20076) GetProtocolOk() (*string, bool)`
 
-GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
+GetProtocolOk returns a tuple with the Protocol field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUuid
+### SetProtocol
 
-`func (o *InlineResponse20076) SetUuid(v string)`
+`func (o *InlineResponse20076) SetProtocol(v string)`
 
-SetUuid sets Uuid field to given value.
+SetProtocol sets Protocol field to given value.
 
-### HasUuid
+### HasProtocol
 
-`func (o *InlineResponse20076) HasUuid() bool`
+`func (o *InlineResponse20076) HasProtocol() bool`
 
-HasUuid returns a boolean if a field has been set.
+HasProtocol returns a boolean if a field has been set.
 
-### GetMajorMinorAssignmentMode
+### GetSrcPort
 
-`func (o *InlineResponse20076) GetMajorMinorAssignmentMode() string`
+`func (o *InlineResponse20076) GetSrcPort() int32`
 
-GetMajorMinorAssignmentMode returns the MajorMinorAssignmentMode field if non-nil, zero value otherwise.
+GetSrcPort returns the SrcPort field if non-nil, zero value otherwise.
 
-### GetMajorMinorAssignmentModeOk
+### GetSrcPortOk
 
-`func (o *InlineResponse20076) GetMajorMinorAssignmentModeOk() (*string, bool)`
+`func (o *InlineResponse20076) GetSrcPortOk() (*int32, bool)`
 
-GetMajorMinorAssignmentModeOk returns a tuple with the MajorMinorAssignmentMode field if it's non-nil, zero value otherwise
+GetSrcPortOk returns a tuple with the SrcPort field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMajorMinorAssignmentMode
+### SetSrcPort
 
-`func (o *InlineResponse20076) SetMajorMinorAssignmentMode(v string)`
+`func (o *InlineResponse20076) SetSrcPort(v int32)`
 
-SetMajorMinorAssignmentMode sets MajorMinorAssignmentMode field to given value.
+SetSrcPort sets SrcPort field to given value.
 
-### HasMajorMinorAssignmentMode
+### HasSrcPort
 
-`func (o *InlineResponse20076) HasMajorMinorAssignmentMode() bool`
+`func (o *InlineResponse20076) HasSrcPort() bool`
 
-HasMajorMinorAssignmentMode returns a boolean if a field has been set.
+HasSrcPort returns a boolean if a field has been set.
 
-### GetMajor
+### GetSrcPortRange
 
-`func (o *InlineResponse20076) GetMajor() int32`
+`func (o *InlineResponse20076) GetSrcPortRange() string`
 
-GetMajor returns the Major field if non-nil, zero value otherwise.
+GetSrcPortRange returns the SrcPortRange field if non-nil, zero value otherwise.
 
-### GetMajorOk
+### GetSrcPortRangeOk
 
-`func (o *InlineResponse20076) GetMajorOk() (*int32, bool)`
+`func (o *InlineResponse20076) GetSrcPortRangeOk() (*string, bool)`
 
-GetMajorOk returns a tuple with the Major field if it's non-nil, zero value otherwise
+GetSrcPortRangeOk returns a tuple with the SrcPortRange field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMajor
+### SetSrcPortRange
 
-`func (o *InlineResponse20076) SetMajor(v int32)`
+`func (o *InlineResponse20076) SetSrcPortRange(v string)`
 
-SetMajor sets Major field to given value.
+SetSrcPortRange sets SrcPortRange field to given value.
 
-### HasMajor
+### HasSrcPortRange
 
-`func (o *InlineResponse20076) HasMajor() bool`
+`func (o *InlineResponse20076) HasSrcPortRange() bool`
 
-HasMajor returns a boolean if a field has been set.
+HasSrcPortRange returns a boolean if a field has been set.
 
-### GetMinor
+### GetDstPort
 
-`func (o *InlineResponse20076) GetMinor() int32`
+`func (o *InlineResponse20076) GetDstPort() int32`
 
-GetMinor returns the Minor field if non-nil, zero value otherwise.
+GetDstPort returns the DstPort field if non-nil, zero value otherwise.
 
-### GetMinorOk
+### GetDstPortOk
 
-`func (o *InlineResponse20076) GetMinorOk() (*int32, bool)`
+`func (o *InlineResponse20076) GetDstPortOk() (*int32, bool)`
 
-GetMinorOk returns a tuple with the Minor field if it's non-nil, zero value otherwise
+GetDstPortOk returns a tuple with the DstPort field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMinor
+### SetDstPort
 
-`func (o *InlineResponse20076) SetMinor(v int32)`
+`func (o *InlineResponse20076) SetDstPort(v int32)`
 
-SetMinor sets Minor field to given value.
+SetDstPort sets DstPort field to given value.
 
-### HasMinor
+### HasDstPort
 
-`func (o *InlineResponse20076) HasMinor() bool`
+`func (o *InlineResponse20076) HasDstPort() bool`
 
-HasMinor returns a boolean if a field has been set.
+HasDstPort returns a boolean if a field has been set.
 
-### GetEslEnabled
+### GetDstPortRange
 
-`func (o *InlineResponse20076) GetEslEnabled() bool`
+`func (o *InlineResponse20076) GetDstPortRange() string`
 
-GetEslEnabled returns the EslEnabled field if non-nil, zero value otherwise.
+GetDstPortRange returns the DstPortRange field if non-nil, zero value otherwise.
 
-### GetEslEnabledOk
+### GetDstPortRangeOk
 
-`func (o *InlineResponse20076) GetEslEnabledOk() (*bool, bool)`
+`func (o *InlineResponse20076) GetDstPortRangeOk() (*string, bool)`
 
-GetEslEnabledOk returns a tuple with the EslEnabled field if it's non-nil, zero value otherwise
+GetDstPortRangeOk returns a tuple with the DstPortRange field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEslEnabled
+### SetDstPortRange
 
-`func (o *InlineResponse20076) SetEslEnabled(v bool)`
+`func (o *InlineResponse20076) SetDstPortRange(v string)`
 
-SetEslEnabled sets EslEnabled field to given value.
+SetDstPortRange sets DstPortRange field to given value.
 
-### HasEslEnabled
+### HasDstPortRange
 
-`func (o *InlineResponse20076) HasEslEnabled() bool`
+`func (o *InlineResponse20076) HasDstPortRange() bool`
 
-HasEslEnabled returns a boolean if a field has been set.
+HasDstPortRange returns a boolean if a field has been set.
+
+### GetDscp
+
+`func (o *InlineResponse20076) GetDscp() int32`
+
+GetDscp returns the Dscp field if non-nil, zero value otherwise.
+
+### GetDscpOk
+
+`func (o *InlineResponse20076) GetDscpOk() (*int32, bool)`
+
+GetDscpOk returns a tuple with the Dscp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDscp
+
+`func (o *InlineResponse20076) SetDscp(v int32)`
+
+SetDscp sets Dscp field to given value.
+
+### HasDscp
+
+`func (o *InlineResponse20076) HasDscp() bool`
+
+HasDscp returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

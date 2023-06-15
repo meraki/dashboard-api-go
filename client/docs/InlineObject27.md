@@ -4,8 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DefaultDestinations** | Pointer to [**NetworksNetworkIdAlertsSettingsDefaultDestinations**](NetworksNetworkIdAlertsSettingsDefaultDestinations.md) |  | [optional] 
-**Alerts** | Pointer to [**[]NetworksNetworkIdAlertsSettingsAlerts**](NetworksNetworkIdAlertsSettingsAlerts.md) | Alert-specific configuration for each type. Only alerts that pertain to the network can be updated. | [optional] 
+**Name** | Pointer to **string** | The name of the network | [optional] 
+**TimeZone** | Pointer to **string** | The timezone of the network. For a list of allowed timezones, please see the &#39;TZ&#39; column in the table in &lt;a target&#x3D;&#39;_blank&#39; href&#x3D;&#39;https://en.wikipedia.org/wiki/List_of_tz_database_time_zones&#39;&gt;this article.&lt;/a&gt; | [optional] 
+**Tags** | Pointer to **[]string** | A list of tags to be applied to the network | [optional] 
+**EnrollmentString** | Pointer to **string** | A unique identifier which can be used for device enrollment or easy access through the Meraki SM Registration page or the Self Service Portal. Please note that changing this field may cause existing bookmarks to break. | [optional] 
+**Notes** | Pointer to **string** | Add any notes or additional information about this network here. | [optional] 
 
 ## Methods
 
@@ -26,55 +29,130 @@ NewInlineObject27WithDefaults instantiates a new InlineObject27 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDefaultDestinations
+### GetName
 
-`func (o *InlineObject27) GetDefaultDestinations() NetworksNetworkIdAlertsSettingsDefaultDestinations`
+`func (o *InlineObject27) GetName() string`
 
-GetDefaultDestinations returns the DefaultDestinations field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetDefaultDestinationsOk
+### GetNameOk
 
-`func (o *InlineObject27) GetDefaultDestinationsOk() (*NetworksNetworkIdAlertsSettingsDefaultDestinations, bool)`
+`func (o *InlineObject27) GetNameOk() (*string, bool)`
 
-GetDefaultDestinationsOk returns a tuple with the DefaultDestinations field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDefaultDestinations
+### SetName
 
-`func (o *InlineObject27) SetDefaultDestinations(v NetworksNetworkIdAlertsSettingsDefaultDestinations)`
+`func (o *InlineObject27) SetName(v string)`
 
-SetDefaultDestinations sets DefaultDestinations field to given value.
+SetName sets Name field to given value.
 
-### HasDefaultDestinations
+### HasName
 
-`func (o *InlineObject27) HasDefaultDestinations() bool`
+`func (o *InlineObject27) HasName() bool`
 
-HasDefaultDestinations returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetAlerts
+### GetTimeZone
 
-`func (o *InlineObject27) GetAlerts() []NetworksNetworkIdAlertsSettingsAlerts`
+`func (o *InlineObject27) GetTimeZone() string`
 
-GetAlerts returns the Alerts field if non-nil, zero value otherwise.
+GetTimeZone returns the TimeZone field if non-nil, zero value otherwise.
 
-### GetAlertsOk
+### GetTimeZoneOk
 
-`func (o *InlineObject27) GetAlertsOk() (*[]NetworksNetworkIdAlertsSettingsAlerts, bool)`
+`func (o *InlineObject27) GetTimeZoneOk() (*string, bool)`
 
-GetAlertsOk returns a tuple with the Alerts field if it's non-nil, zero value otherwise
+GetTimeZoneOk returns a tuple with the TimeZone field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAlerts
+### SetTimeZone
 
-`func (o *InlineObject27) SetAlerts(v []NetworksNetworkIdAlertsSettingsAlerts)`
+`func (o *InlineObject27) SetTimeZone(v string)`
 
-SetAlerts sets Alerts field to given value.
+SetTimeZone sets TimeZone field to given value.
 
-### HasAlerts
+### HasTimeZone
 
-`func (o *InlineObject27) HasAlerts() bool`
+`func (o *InlineObject27) HasTimeZone() bool`
 
-HasAlerts returns a boolean if a field has been set.
+HasTimeZone returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *InlineObject27) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *InlineObject27) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *InlineObject27) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *InlineObject27) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
+
+### GetEnrollmentString
+
+`func (o *InlineObject27) GetEnrollmentString() string`
+
+GetEnrollmentString returns the EnrollmentString field if non-nil, zero value otherwise.
+
+### GetEnrollmentStringOk
+
+`func (o *InlineObject27) GetEnrollmentStringOk() (*string, bool)`
+
+GetEnrollmentStringOk returns a tuple with the EnrollmentString field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnrollmentString
+
+`func (o *InlineObject27) SetEnrollmentString(v string)`
+
+SetEnrollmentString sets EnrollmentString field to given value.
+
+### HasEnrollmentString
+
+`func (o *InlineObject27) HasEnrollmentString() bool`
+
+HasEnrollmentString returns a boolean if a field has been set.
+
+### GetNotes
+
+`func (o *InlineObject27) GetNotes() string`
+
+GetNotes returns the Notes field if non-nil, zero value otherwise.
+
+### GetNotesOk
+
+`func (o *InlineObject27) GetNotesOk() (*string, bool)`
+
+GetNotesOk returns a tuple with the Notes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotes
+
+`func (o *InlineObject27) SetNotes(v string)`
+
+SetNotes sets Notes field to given value.
+
+### HasNotes
+
+`func (o *InlineObject27) HasNotes() bool`
+
+HasNotes returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
