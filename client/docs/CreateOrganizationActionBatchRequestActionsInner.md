@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Resource** | **string** | Unique identifier for the resource to be acted on | 
 **Operation** | **string** | The operation to be used | 
-**Body** | Pointer to **map[string]interface{}** | The body of the action | [optional] 
+**Body** | Pointer to **map[string]interface{}** | The body of the action | [optional] [default to {}]
 
 ## Methods
 

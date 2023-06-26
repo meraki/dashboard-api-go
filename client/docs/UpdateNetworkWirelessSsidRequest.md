@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **EncryptionMode** | Pointer to **string** | The psk encryption mode for the SSID (&#39;wep&#39; or &#39;wpa&#39;). This param is only valid if the authMode is &#39;psk&#39; | [optional] 
 **Psk** | Pointer to **string** | The passkey for the SSID. This param is only valid if the authMode is &#39;psk&#39; | [optional] 
 **WpaEncryptionMode** | Pointer to **string** | The types of WPA encryption. (&#39;WPA1 only&#39;, &#39;WPA1 and WPA2&#39;, &#39;WPA2 only&#39;, &#39;WPA3 Transition Mode&#39;, &#39;WPA3 only&#39; or &#39;WPA3 192-bit Security&#39;) | [optional] 
-**Dot11w** | Pointer to [**UpdateNetworkWirelessSsidRequestDot11w**](UpdateNetworkWirelessSsidRequestDot11w.md) |  | [optional] 
+**Dot11w** | Pointer to [**UpdateNetworkApplianceSsidRequestDot11w**](UpdateNetworkApplianceSsidRequestDot11w.md) |  | [optional] 
 **Dot11r** | Pointer to [**UpdateNetworkWirelessSsidRequestDot11r**](UpdateNetworkWirelessSsidRequestDot11r.md) |  | [optional] 
 **SplashPage** | Pointer to **string** | The type of splash page for the SSID (&#39;None&#39;, &#39;Click-through splash page&#39;, &#39;Billing&#39;, &#39;Password-protected with Meraki RADIUS&#39;, &#39;Password-protected with custom RADIUS&#39;, &#39;Password-protected with Active Directory&#39;, &#39;Password-protected with LDAP&#39;, &#39;SMS authentication&#39;, &#39;Systems Manager Sentry&#39;, &#39;Facebook Wi-Fi&#39;, &#39;Google OAuth&#39;, &#39;Sponsored guest&#39;, &#39;Cisco ISE&#39; or &#39;Google Apps domain&#39;). This attribute is not supported for template children. | [optional] 
 **SplashGuestSponsorDomains** | Pointer to **[]string** | Array of valid sponsor email domains for sponsored guest splash type. | [optional] 
@@ -259,20 +259,20 @@ HasWpaEncryptionMode returns a boolean if a field has been set.
 
 ### GetDot11w
 
-`func (o *UpdateNetworkWirelessSsidRequest) GetDot11w() UpdateNetworkWirelessSsidRequestDot11w`
+`func (o *UpdateNetworkWirelessSsidRequest) GetDot11w() UpdateNetworkApplianceSsidRequestDot11w`
 
 GetDot11w returns the Dot11w field if non-nil, zero value otherwise.
 
 ### GetDot11wOk
 
-`func (o *UpdateNetworkWirelessSsidRequest) GetDot11wOk() (*UpdateNetworkWirelessSsidRequestDot11w, bool)`
+`func (o *UpdateNetworkWirelessSsidRequest) GetDot11wOk() (*UpdateNetworkApplianceSsidRequestDot11w, bool)`
 
 GetDot11wOk returns a tuple with the Dot11w field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDot11w
 
-`func (o *UpdateNetworkWirelessSsidRequest) SetDot11w(v UpdateNetworkWirelessSsidRequestDot11w)`
+`func (o *UpdateNetworkWirelessSsidRequest) SetDot11w(v UpdateNetworkApplianceSsidRequestDot11w)`
 
 SetDot11w sets Dot11w field to given value.
 

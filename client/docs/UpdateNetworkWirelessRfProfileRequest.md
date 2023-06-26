@@ -11,7 +11,8 @@ Name | Type | Description | Notes
 **ApBandSettings** | Pointer to [**UpdateNetworkWirelessRfProfileRequestApBandSettings**](UpdateNetworkWirelessRfProfileRequestApBandSettings.md) |  | [optional] 
 **TwoFourGhzSettings** | Pointer to [**UpdateNetworkWirelessRfProfileRequestTwoFourGhzSettings**](UpdateNetworkWirelessRfProfileRequestTwoFourGhzSettings.md) |  | [optional] 
 **FiveGhzSettings** | Pointer to [**UpdateNetworkWirelessRfProfileRequestFiveGhzSettings**](UpdateNetworkWirelessRfProfileRequestFiveGhzSettings.md) |  | [optional] 
-**Transmission** | Pointer to [**CreateNetworkWirelessRfProfileRequestTransmission**](CreateNetworkWirelessRfProfileRequestTransmission.md) |  | [optional] 
+**SixGhzSettings** | Pointer to [**UpdateNetworkWirelessRfProfileRequestSixGhzSettings**](UpdateNetworkWirelessRfProfileRequestSixGhzSettings.md) |  | [optional] 
+**Transmission** | Pointer to [**GetNetworkWirelessRfProfiles200ResponseTransmission**](GetNetworkWirelessRfProfiles200ResponseTransmission.md) |  | [optional] 
 **PerSsidSettings** | Pointer to [**CreateNetworkWirelessRfProfileRequestPerSsidSettings**](CreateNetworkWirelessRfProfileRequestPerSsidSettings.md) |  | [optional] 
 
 ## Methods
@@ -208,22 +209,47 @@ SetFiveGhzSettings sets FiveGhzSettings field to given value.
 
 HasFiveGhzSettings returns a boolean if a field has been set.
 
+### GetSixGhzSettings
+
+`func (o *UpdateNetworkWirelessRfProfileRequest) GetSixGhzSettings() UpdateNetworkWirelessRfProfileRequestSixGhzSettings`
+
+GetSixGhzSettings returns the SixGhzSettings field if non-nil, zero value otherwise.
+
+### GetSixGhzSettingsOk
+
+`func (o *UpdateNetworkWirelessRfProfileRequest) GetSixGhzSettingsOk() (*UpdateNetworkWirelessRfProfileRequestSixGhzSettings, bool)`
+
+GetSixGhzSettingsOk returns a tuple with the SixGhzSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSixGhzSettings
+
+`func (o *UpdateNetworkWirelessRfProfileRequest) SetSixGhzSettings(v UpdateNetworkWirelessRfProfileRequestSixGhzSettings)`
+
+SetSixGhzSettings sets SixGhzSettings field to given value.
+
+### HasSixGhzSettings
+
+`func (o *UpdateNetworkWirelessRfProfileRequest) HasSixGhzSettings() bool`
+
+HasSixGhzSettings returns a boolean if a field has been set.
+
 ### GetTransmission
 
-`func (o *UpdateNetworkWirelessRfProfileRequest) GetTransmission() CreateNetworkWirelessRfProfileRequestTransmission`
+`func (o *UpdateNetworkWirelessRfProfileRequest) GetTransmission() GetNetworkWirelessRfProfiles200ResponseTransmission`
 
 GetTransmission returns the Transmission field if non-nil, zero value otherwise.
 
 ### GetTransmissionOk
 
-`func (o *UpdateNetworkWirelessRfProfileRequest) GetTransmissionOk() (*CreateNetworkWirelessRfProfileRequestTransmission, bool)`
+`func (o *UpdateNetworkWirelessRfProfileRequest) GetTransmissionOk() (*GetNetworkWirelessRfProfiles200ResponseTransmission, bool)`
 
 GetTransmissionOk returns a tuple with the Transmission field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransmission
 
-`func (o *UpdateNetworkWirelessRfProfileRequest) SetTransmission(v CreateNetworkWirelessRfProfileRequestTransmission)`
+`func (o *UpdateNetworkWirelessRfProfileRequest) SetTransmission(v GetNetworkWirelessRfProfiles200ResponseTransmission)`
 
 SetTransmission sets Transmission field to given value.
 

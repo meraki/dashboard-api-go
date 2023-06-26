@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Camera** | Pointer to [**GetNetworkFirmwareUpgrades200ResponseProductsWireless**](GetNetworkFirmwareUpgrades200ResponseProductsWireless.md) |  | [optional] 
 **CellularGateway** | Pointer to [**GetNetworkFirmwareUpgrades200ResponseProductsWireless**](GetNetworkFirmwareUpgrades200ResponseProductsWireless.md) |  | [optional] 
 **Sensor** | Pointer to [**GetNetworkFirmwareUpgrades200ResponseProductsWireless**](GetNetworkFirmwareUpgrades200ResponseProductsWireless.md) |  | [optional] 
+**CloudGateway** | Pointer to [**GetNetworkFirmwareUpgrades200ResponseProductsWireless**](GetNetworkFirmwareUpgrades200ResponseProductsWireless.md) |  | [optional] 
 
 ## Methods
 
@@ -179,6 +180,31 @@ SetSensor sets Sensor field to given value.
 `func (o *GetNetworkFirmwareUpgrades200ResponseProducts) HasSensor() bool`
 
 HasSensor returns a boolean if a field has been set.
+
+### GetCloudGateway
+
+`func (o *GetNetworkFirmwareUpgrades200ResponseProducts) GetCloudGateway() GetNetworkFirmwareUpgrades200ResponseProductsWireless`
+
+GetCloudGateway returns the CloudGateway field if non-nil, zero value otherwise.
+
+### GetCloudGatewayOk
+
+`func (o *GetNetworkFirmwareUpgrades200ResponseProducts) GetCloudGatewayOk() (*GetNetworkFirmwareUpgrades200ResponseProductsWireless, bool)`
+
+GetCloudGatewayOk returns a tuple with the CloudGateway field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCloudGateway
+
+`func (o *GetNetworkFirmwareUpgrades200ResponseProducts) SetCloudGateway(v GetNetworkFirmwareUpgrades200ResponseProductsWireless)`
+
+SetCloudGateway sets CloudGateway field to given value.
+
+### HasCloudGateway
+
+`func (o *GetNetworkFirmwareUpgrades200ResponseProducts) HasCloudGateway() bool`
+
+HasCloudGateway returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

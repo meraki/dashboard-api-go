@@ -26,12 +26,12 @@ wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/6.2.1
 
 2) Set the API version as an environmental variable:
 ```shell
-API_VERSION="v1.30.0"
+API_VERSION="v1.34.0"
 ```
 
 3) Download the specified version of the Meraki openAPI spec:
 ```shell
-wget https://github.com/meraki/openapi/archive/refs/tags/$API_VERSION.zip && unzip -j $API_VERSION.zip '*/spec2.json'
+wget https://github.com/meraki/openapi/archive/refs/tags/$API_VERSION.zip && unzip -j $API_VERSION.zip '*/spec3.json'
 ```
 
 4) Remove any existing client code:
@@ -42,7 +42,7 @@ rm -rf client/
 5) Run the code generator jar:
 ```shell
 java -jar .openapi/generator/openapi-generator-cli.jar generate \
-  -i spec2.json \
+  -i spec3.json \
   -g go \
   -o client \
   -p enumClassPrefix=true \
@@ -58,7 +58,7 @@ java -jar .openapi/generator/openapi-generator-cli.jar generate \
 6) Cleanup the build files:
 ```shell
 
-rm $API_VERSION.zip; rm spec2.json
+rm $API_VERSION.zip; rm spec3.json
 
 ```
 

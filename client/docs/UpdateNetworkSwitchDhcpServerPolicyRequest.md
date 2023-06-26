@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **DefaultPolicy** | Pointer to **string** | &#39;allow&#39; or &#39;block&#39; new DHCP servers. Default value is &#39;allow&#39;. | [optional] 
 **AllowedServers** | Pointer to **[]string** | List the MAC addresses of DHCP servers to permit on the network when defaultPolicy is set to block. An empty array will clear the entries. | [optional] 
 **BlockedServers** | Pointer to **[]string** | List the MAC addresses of DHCP servers to block on the network when defaultPolicy is set to allow. An empty array will clear the entries. | [optional] 
-**ArpInspection** | Pointer to [**UpdateNetworkSwitchDhcpServerPolicyRequestArpInspection**](UpdateNetworkSwitchDhcpServerPolicyRequestArpInspection.md) |  | [optional] 
+**ArpInspection** | Pointer to [**GetNetworkSwitchDhcpServerPolicy200ResponseArpInspection**](GetNetworkSwitchDhcpServerPolicy200ResponseArpInspection.md) |  | [optional] 
 
 ## Methods
 
@@ -131,20 +131,20 @@ HasBlockedServers returns a boolean if a field has been set.
 
 ### GetArpInspection
 
-`func (o *UpdateNetworkSwitchDhcpServerPolicyRequest) GetArpInspection() UpdateNetworkSwitchDhcpServerPolicyRequestArpInspection`
+`func (o *UpdateNetworkSwitchDhcpServerPolicyRequest) GetArpInspection() GetNetworkSwitchDhcpServerPolicy200ResponseArpInspection`
 
 GetArpInspection returns the ArpInspection field if non-nil, zero value otherwise.
 
 ### GetArpInspectionOk
 
-`func (o *UpdateNetworkSwitchDhcpServerPolicyRequest) GetArpInspectionOk() (*UpdateNetworkSwitchDhcpServerPolicyRequestArpInspection, bool)`
+`func (o *UpdateNetworkSwitchDhcpServerPolicyRequest) GetArpInspectionOk() (*GetNetworkSwitchDhcpServerPolicy200ResponseArpInspection, bool)`
 
 GetArpInspectionOk returns a tuple with the ArpInspection field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetArpInspection
 
-`func (o *UpdateNetworkSwitchDhcpServerPolicyRequest) SetArpInspection(v UpdateNetworkSwitchDhcpServerPolicyRequestArpInspection)`
+`func (o *UpdateNetworkSwitchDhcpServerPolicyRequest) SetArpInspection(v GetNetworkSwitchDhcpServerPolicy200ResponseArpInspection)`
 
 SetArpInspection sets ArpInspection field to given value.
 

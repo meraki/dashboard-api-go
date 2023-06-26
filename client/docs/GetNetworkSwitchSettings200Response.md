@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Vlan** | Pointer to **int32** | Management VLAN | [optional] 
 **UseCombinedPower** | Pointer to **bool** | The use Combined Power as the default behavior of secondary power supplies on supported devices. | [optional] 
 **PowerExceptions** | Pointer to [**[]GetNetworkSwitchSettings200ResponsePowerExceptionsInner**](GetNetworkSwitchSettings200ResponsePowerExceptionsInner.md) | Exceptions on a per switch basis to \&quot;useCombinedPower\&quot; | [optional] 
+**UplinkClientSampling** | Pointer to [**GetNetworkSwitchSettings200ResponseUplinkClientSampling**](GetNetworkSwitchSettings200ResponseUplinkClientSampling.md) |  | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetPowerExceptions sets PowerExceptions field to given value.
 `func (o *GetNetworkSwitchSettings200Response) HasPowerExceptions() bool`
 
 HasPowerExceptions returns a boolean if a field has been set.
+
+### GetUplinkClientSampling
+
+`func (o *GetNetworkSwitchSettings200Response) GetUplinkClientSampling() GetNetworkSwitchSettings200ResponseUplinkClientSampling`
+
+GetUplinkClientSampling returns the UplinkClientSampling field if non-nil, zero value otherwise.
+
+### GetUplinkClientSamplingOk
+
+`func (o *GetNetworkSwitchSettings200Response) GetUplinkClientSamplingOk() (*GetNetworkSwitchSettings200ResponseUplinkClientSampling, bool)`
+
+GetUplinkClientSamplingOk returns a tuple with the UplinkClientSampling field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUplinkClientSampling
+
+`func (o *GetNetworkSwitchSettings200Response) SetUplinkClientSampling(v GetNetworkSwitchSettings200ResponseUplinkClientSampling)`
+
+SetUplinkClientSampling sets UplinkClientSampling field to given value.
+
+### HasUplinkClientSampling
+
+`func (o *GetNetworkSwitchSettings200Response) HasUplinkClientSampling() bool`
+
+HasUplinkClientSampling returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

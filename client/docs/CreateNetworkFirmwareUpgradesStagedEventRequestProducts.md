@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Switch** | Pointer to [**CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch**](CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch.md) |  | [optional] 
+**SwitchCatalyst** | Pointer to [**CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchCatalyst**](CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchCatalyst.md) |  | [optional] 
 
 ## Methods
 
@@ -49,6 +50,31 @@ SetSwitch sets Switch field to given value.
 `func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProducts) HasSwitch() bool`
 
 HasSwitch returns a boolean if a field has been set.
+
+### GetSwitchCatalyst
+
+`func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProducts) GetSwitchCatalyst() CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchCatalyst`
+
+GetSwitchCatalyst returns the SwitchCatalyst field if non-nil, zero value otherwise.
+
+### GetSwitchCatalystOk
+
+`func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProducts) GetSwitchCatalystOk() (*CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchCatalyst, bool)`
+
+GetSwitchCatalystOk returns a tuple with the SwitchCatalyst field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSwitchCatalyst
+
+`func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProducts) SetSwitchCatalyst(v CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchCatalyst)`
+
+SetSwitchCatalyst sets SwitchCatalyst field to given value.
+
+### HasSwitchCatalyst
+
+`func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProducts) HasSwitchCatalyst() bool`
+
+HasSwitchCatalyst returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
