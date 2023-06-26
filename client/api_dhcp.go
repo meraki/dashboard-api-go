@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -267,7 +267,7 @@ type DhcpApiGetNetworkCellularGatewayDhcpRequest struct {
 	networkId string
 }
 
-func (r DhcpApiGetNetworkCellularGatewayDhcpRequest) Execute() (*InlineResponse20025, *http.Response, error) {
+func (r DhcpApiGetNetworkCellularGatewayDhcpRequest) Execute() (*GetNetworkCellularGatewayDhcp200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkCellularGatewayDhcpExecute(r)
 }
 
@@ -289,13 +289,13 @@ func (a *DhcpApiService) GetNetworkCellularGatewayDhcp(ctx context.Context, netw
 }
 
 // Execute executes the request
-//  @return InlineResponse20025
-func (a *DhcpApiService) GetNetworkCellularGatewayDhcpExecute(r DhcpApiGetNetworkCellularGatewayDhcpRequest) (*InlineResponse20025, *http.Response, error) {
+//  @return GetNetworkCellularGatewayDhcp200Response
+func (a *DhcpApiService) GetNetworkCellularGatewayDhcpExecute(r DhcpApiGetNetworkCellularGatewayDhcpRequest) (*GetNetworkCellularGatewayDhcp200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20025
+		localVarReturnValue  *GetNetworkCellularGatewayDhcp200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DhcpApiService.GetNetworkCellularGatewayDhcp")
@@ -419,7 +419,7 @@ func (r DhcpApiGetNetworkSwitchDhcpV4ServersSeenRequest) EndingBefore(endingBefo
 	return r
 }
 
-func (r DhcpApiGetNetworkSwitchDhcpV4ServersSeenRequest) Execute() ([]InlineResponse20070, *http.Response, error) {
+func (r DhcpApiGetNetworkSwitchDhcpV4ServersSeenRequest) Execute() ([]GetNetworkSwitchDhcpV4ServersSeen200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchDhcpV4ServersSeenExecute(r)
 }
 
@@ -441,13 +441,13 @@ func (a *DhcpApiService) GetNetworkSwitchDhcpV4ServersSeen(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return []InlineResponse20070
-func (a *DhcpApiService) GetNetworkSwitchDhcpV4ServersSeenExecute(r DhcpApiGetNetworkSwitchDhcpV4ServersSeenRequest) ([]InlineResponse20070, *http.Response, error) {
+//  @return []GetNetworkSwitchDhcpV4ServersSeen200ResponseInner
+func (a *DhcpApiService) GetNetworkSwitchDhcpV4ServersSeenExecute(r DhcpApiGetNetworkSwitchDhcpV4ServersSeenRequest) ([]GetNetworkSwitchDhcpV4ServersSeen200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20070
+		localVarReturnValue  []GetNetworkSwitchDhcpV4ServersSeen200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DhcpApiService.GetNetworkSwitchDhcpV4ServersSeen")
@@ -553,7 +553,7 @@ type DhcpApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest struct {
 	interfaceId string
 }
 
-func (r DhcpApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest) Execute() (*InlineResponse20080, *http.Response, error) {
+func (r DhcpApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest) Execute() (*GetNetworkSwitchStackRoutingInterfaceDhcp200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchStackRoutingInterfaceDhcpExecute(r)
 }
 
@@ -579,13 +579,13 @@ func (a *DhcpApiService) GetNetworkSwitchStackRoutingInterfaceDhcp(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse20080
-func (a *DhcpApiService) GetNetworkSwitchStackRoutingInterfaceDhcpExecute(r DhcpApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest) (*InlineResponse20080, *http.Response, error) {
+//  @return GetNetworkSwitchStackRoutingInterfaceDhcp200Response
+func (a *DhcpApiService) GetNetworkSwitchStackRoutingInterfaceDhcpExecute(r DhcpApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest) (*GetNetworkSwitchStackRoutingInterfaceDhcp200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20080
+		localVarReturnValue  *GetNetworkSwitchStackRoutingInterfaceDhcp200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DhcpApiService.GetNetworkSwitchStackRoutingInterfaceDhcp")
@@ -675,11 +675,11 @@ type DhcpApiUpdateDeviceSwitchRoutingInterfaceDhcpRequest struct {
 	ApiService *DhcpApiService
 	serial string
 	interfaceId string
-	updateDeviceSwitchRoutingInterfaceDhcp *InlineObject21
+	updateDeviceSwitchRoutingInterfaceDhcpRequest *UpdateDeviceSwitchRoutingInterfaceDhcpRequest
 }
 
-func (r DhcpApiUpdateDeviceSwitchRoutingInterfaceDhcpRequest) UpdateDeviceSwitchRoutingInterfaceDhcp(updateDeviceSwitchRoutingInterfaceDhcp InlineObject21) DhcpApiUpdateDeviceSwitchRoutingInterfaceDhcpRequest {
-	r.updateDeviceSwitchRoutingInterfaceDhcp = &updateDeviceSwitchRoutingInterfaceDhcp
+func (r DhcpApiUpdateDeviceSwitchRoutingInterfaceDhcpRequest) UpdateDeviceSwitchRoutingInterfaceDhcpRequest(updateDeviceSwitchRoutingInterfaceDhcpRequest UpdateDeviceSwitchRoutingInterfaceDhcpRequest) DhcpApiUpdateDeviceSwitchRoutingInterfaceDhcpRequest {
+	r.updateDeviceSwitchRoutingInterfaceDhcpRequest = &updateDeviceSwitchRoutingInterfaceDhcpRequest
 	return r
 }
 
@@ -747,7 +747,7 @@ func (a *DhcpApiService) UpdateDeviceSwitchRoutingInterfaceDhcpExecute(r DhcpApi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceSwitchRoutingInterfaceDhcp
+	localVarPostBody = r.updateDeviceSwitchRoutingInterfaceDhcpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -803,15 +803,15 @@ type DhcpApiUpdateNetworkCellularGatewayDhcpRequest struct {
 	ctx context.Context
 	ApiService *DhcpApiService
 	networkId string
-	updateNetworkCellularGatewayDhcp *InlineObject71
+	updateNetworkCellularGatewayDhcpRequest *UpdateNetworkCellularGatewayDhcpRequest
 }
 
-func (r DhcpApiUpdateNetworkCellularGatewayDhcpRequest) UpdateNetworkCellularGatewayDhcp(updateNetworkCellularGatewayDhcp InlineObject71) DhcpApiUpdateNetworkCellularGatewayDhcpRequest {
-	r.updateNetworkCellularGatewayDhcp = &updateNetworkCellularGatewayDhcp
+func (r DhcpApiUpdateNetworkCellularGatewayDhcpRequest) UpdateNetworkCellularGatewayDhcpRequest(updateNetworkCellularGatewayDhcpRequest UpdateNetworkCellularGatewayDhcpRequest) DhcpApiUpdateNetworkCellularGatewayDhcpRequest {
+	r.updateNetworkCellularGatewayDhcpRequest = &updateNetworkCellularGatewayDhcpRequest
 	return r
 }
 
-func (r DhcpApiUpdateNetworkCellularGatewayDhcpRequest) Execute() (*InlineResponse20025, *http.Response, error) {
+func (r DhcpApiUpdateNetworkCellularGatewayDhcpRequest) Execute() (*GetNetworkCellularGatewayDhcp200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkCellularGatewayDhcpExecute(r)
 }
 
@@ -833,13 +833,13 @@ func (a *DhcpApiService) UpdateNetworkCellularGatewayDhcp(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return InlineResponse20025
-func (a *DhcpApiService) UpdateNetworkCellularGatewayDhcpExecute(r DhcpApiUpdateNetworkCellularGatewayDhcpRequest) (*InlineResponse20025, *http.Response, error) {
+//  @return GetNetworkCellularGatewayDhcp200Response
+func (a *DhcpApiService) UpdateNetworkCellularGatewayDhcpExecute(r DhcpApiUpdateNetworkCellularGatewayDhcpRequest) (*GetNetworkCellularGatewayDhcp200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20025
+		localVarReturnValue  *GetNetworkCellularGatewayDhcp200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DhcpApiService.UpdateNetworkCellularGatewayDhcp")
@@ -872,7 +872,7 @@ func (a *DhcpApiService) UpdateNetworkCellularGatewayDhcpExecute(r DhcpApiUpdate
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkCellularGatewayDhcp
+	localVarPostBody = r.updateNetworkCellularGatewayDhcpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -930,11 +930,11 @@ type DhcpApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest struct {
 	networkId string
 	switchStackId string
 	interfaceId string
-	updateNetworkSwitchStackRoutingInterfaceDhcp *InlineObject138
+	updateNetworkSwitchStackRoutingInterfaceDhcpRequest *UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest
 }
 
-func (r DhcpApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest) UpdateNetworkSwitchStackRoutingInterfaceDhcp(updateNetworkSwitchStackRoutingInterfaceDhcp InlineObject138) DhcpApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest {
-	r.updateNetworkSwitchStackRoutingInterfaceDhcp = &updateNetworkSwitchStackRoutingInterfaceDhcp
+func (r DhcpApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest) UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest(updateNetworkSwitchStackRoutingInterfaceDhcpRequest UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest) DhcpApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest {
+	r.updateNetworkSwitchStackRoutingInterfaceDhcpRequest = &updateNetworkSwitchStackRoutingInterfaceDhcpRequest
 	return r
 }
 
@@ -1005,7 +1005,7 @@ func (a *DhcpApiService) UpdateNetworkSwitchStackRoutingInterfaceDhcpExecute(r D
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchStackRoutingInterfaceDhcp
+	localVarPostBody = r.updateNetworkSwitchStackRoutingInterfaceDhcpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

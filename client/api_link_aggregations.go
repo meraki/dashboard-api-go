@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type LinkAggregationsApiCreateNetworkSwitchLinkAggregationRequest struct {
 	ctx context.Context
 	ApiService *LinkAggregationsApiService
 	networkId string
-	createNetworkSwitchLinkAggregation *InlineObject120
+	createNetworkSwitchLinkAggregationRequest *CreateNetworkSwitchLinkAggregationRequest
 }
 
-func (r LinkAggregationsApiCreateNetworkSwitchLinkAggregationRequest) CreateNetworkSwitchLinkAggregation(createNetworkSwitchLinkAggregation InlineObject120) LinkAggregationsApiCreateNetworkSwitchLinkAggregationRequest {
-	r.createNetworkSwitchLinkAggregation = &createNetworkSwitchLinkAggregation
+func (r LinkAggregationsApiCreateNetworkSwitchLinkAggregationRequest) CreateNetworkSwitchLinkAggregationRequest(createNetworkSwitchLinkAggregationRequest CreateNetworkSwitchLinkAggregationRequest) LinkAggregationsApiCreateNetworkSwitchLinkAggregationRequest {
+	r.createNetworkSwitchLinkAggregationRequest = &createNetworkSwitchLinkAggregationRequest
 	return r
 }
 
@@ -96,7 +96,7 @@ func (a *LinkAggregationsApiService) CreateNetworkSwitchLinkAggregationExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchLinkAggregation
+	localVarPostBody = r.createNetworkSwitchLinkAggregationRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -380,11 +380,11 @@ type LinkAggregationsApiUpdateNetworkSwitchLinkAggregationRequest struct {
 	ApiService *LinkAggregationsApiService
 	networkId string
 	linkAggregationId string
-	updateNetworkSwitchLinkAggregation *InlineObject121
+	updateNetworkSwitchLinkAggregationRequest *UpdateNetworkSwitchLinkAggregationRequest
 }
 
-func (r LinkAggregationsApiUpdateNetworkSwitchLinkAggregationRequest) UpdateNetworkSwitchLinkAggregation(updateNetworkSwitchLinkAggregation InlineObject121) LinkAggregationsApiUpdateNetworkSwitchLinkAggregationRequest {
-	r.updateNetworkSwitchLinkAggregation = &updateNetworkSwitchLinkAggregation
+func (r LinkAggregationsApiUpdateNetworkSwitchLinkAggregationRequest) UpdateNetworkSwitchLinkAggregationRequest(updateNetworkSwitchLinkAggregationRequest UpdateNetworkSwitchLinkAggregationRequest) LinkAggregationsApiUpdateNetworkSwitchLinkAggregationRequest {
+	r.updateNetworkSwitchLinkAggregationRequest = &updateNetworkSwitchLinkAggregationRequest
 	return r
 }
 
@@ -452,7 +452,7 @@ func (a *LinkAggregationsApiService) UpdateNetworkSwitchLinkAggregationExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchLinkAggregation
+	localVarPostBody = r.updateNetworkSwitchLinkAggregationRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

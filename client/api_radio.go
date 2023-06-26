@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -29,7 +29,7 @@ type RadioApiGetDeviceApplianceRadioSettingsRequest struct {
 	serial string
 }
 
-func (r RadioApiGetDeviceApplianceRadioSettingsRequest) Execute() (*InlineResponse2001, *http.Response, error) {
+func (r RadioApiGetDeviceApplianceRadioSettingsRequest) Execute() (*GetDeviceApplianceRadioSettings200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceApplianceRadioSettingsExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *RadioApiService) GetDeviceApplianceRadioSettings(ctx context.Context, s
 }
 
 // Execute executes the request
-//  @return InlineResponse2001
-func (a *RadioApiService) GetDeviceApplianceRadioSettingsExecute(r RadioApiGetDeviceApplianceRadioSettingsRequest) (*InlineResponse2001, *http.Response, error) {
+//  @return GetDeviceApplianceRadioSettings200Response
+func (a *RadioApiService) GetDeviceApplianceRadioSettingsExecute(r RadioApiGetDeviceApplianceRadioSettingsRequest) (*GetDeviceApplianceRadioSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2001
+		localVarReturnValue  *GetDeviceApplianceRadioSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RadioApiService.GetDeviceApplianceRadioSettings")
@@ -261,15 +261,15 @@ type RadioApiUpdateDeviceApplianceRadioSettingsRequest struct {
 	ctx context.Context
 	ApiService *RadioApiService
 	serial string
-	updateDeviceApplianceRadioSettings *InlineObject1
+	updateDeviceApplianceRadioSettingsRequest *UpdateDeviceApplianceRadioSettingsRequest
 }
 
-func (r RadioApiUpdateDeviceApplianceRadioSettingsRequest) UpdateDeviceApplianceRadioSettings(updateDeviceApplianceRadioSettings InlineObject1) RadioApiUpdateDeviceApplianceRadioSettingsRequest {
-	r.updateDeviceApplianceRadioSettings = &updateDeviceApplianceRadioSettings
+func (r RadioApiUpdateDeviceApplianceRadioSettingsRequest) UpdateDeviceApplianceRadioSettingsRequest(updateDeviceApplianceRadioSettingsRequest UpdateDeviceApplianceRadioSettingsRequest) RadioApiUpdateDeviceApplianceRadioSettingsRequest {
+	r.updateDeviceApplianceRadioSettingsRequest = &updateDeviceApplianceRadioSettingsRequest
 	return r
 }
 
-func (r RadioApiUpdateDeviceApplianceRadioSettingsRequest) Execute() (*InlineResponse2001, *http.Response, error) {
+func (r RadioApiUpdateDeviceApplianceRadioSettingsRequest) Execute() (*GetDeviceApplianceRadioSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateDeviceApplianceRadioSettingsExecute(r)
 }
 
@@ -291,13 +291,13 @@ func (a *RadioApiService) UpdateDeviceApplianceRadioSettings(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse2001
-func (a *RadioApiService) UpdateDeviceApplianceRadioSettingsExecute(r RadioApiUpdateDeviceApplianceRadioSettingsRequest) (*InlineResponse2001, *http.Response, error) {
+//  @return GetDeviceApplianceRadioSettings200Response
+func (a *RadioApiService) UpdateDeviceApplianceRadioSettingsExecute(r RadioApiUpdateDeviceApplianceRadioSettingsRequest) (*GetDeviceApplianceRadioSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2001
+		localVarReturnValue  *GetDeviceApplianceRadioSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RadioApiService.UpdateDeviceApplianceRadioSettings")
@@ -330,7 +330,7 @@ func (a *RadioApiService) UpdateDeviceApplianceRadioSettingsExecute(r RadioApiUp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceApplianceRadioSettings
+	localVarPostBody = r.updateDeviceApplianceRadioSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -386,11 +386,11 @@ type RadioApiUpdateDeviceWirelessRadioSettingsRequest struct {
 	ctx context.Context
 	ApiService *RadioApiService
 	serial string
-	updateDeviceWirelessRadioSettings *InlineObject26
+	updateDeviceWirelessRadioSettingsRequest *UpdateDeviceWirelessRadioSettingsRequest
 }
 
-func (r RadioApiUpdateDeviceWirelessRadioSettingsRequest) UpdateDeviceWirelessRadioSettings(updateDeviceWirelessRadioSettings InlineObject26) RadioApiUpdateDeviceWirelessRadioSettingsRequest {
-	r.updateDeviceWirelessRadioSettings = &updateDeviceWirelessRadioSettings
+func (r RadioApiUpdateDeviceWirelessRadioSettingsRequest) UpdateDeviceWirelessRadioSettingsRequest(updateDeviceWirelessRadioSettingsRequest UpdateDeviceWirelessRadioSettingsRequest) RadioApiUpdateDeviceWirelessRadioSettingsRequest {
+	r.updateDeviceWirelessRadioSettingsRequest = &updateDeviceWirelessRadioSettingsRequest
 	return r
 }
 
@@ -455,7 +455,7 @@ func (a *RadioApiService) UpdateDeviceWirelessRadioSettingsExecute(r RadioApiUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceWirelessRadioSettings
+	localVarPostBody = r.updateDeviceWirelessRadioSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

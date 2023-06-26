@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -29,7 +29,7 @@ type DscpToCosMappingsApiGetNetworkSwitchDscpToCosMappingsRequest struct {
 	networkId string
 }
 
-func (r DscpToCosMappingsApiGetNetworkSwitchDscpToCosMappingsRequest) Execute() (*InlineResponse20074, *http.Response, error) {
+func (r DscpToCosMappingsApiGetNetworkSwitchDscpToCosMappingsRequest) Execute() (*GetNetworkSwitchDscpToCosMappings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchDscpToCosMappingsExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *DscpToCosMappingsApiService) GetNetworkSwitchDscpToCosMappings(ctx cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20074
-func (a *DscpToCosMappingsApiService) GetNetworkSwitchDscpToCosMappingsExecute(r DscpToCosMappingsApiGetNetworkSwitchDscpToCosMappingsRequest) (*InlineResponse20074, *http.Response, error) {
+//  @return GetNetworkSwitchDscpToCosMappings200Response
+func (a *DscpToCosMappingsApiService) GetNetworkSwitchDscpToCosMappingsExecute(r DscpToCosMappingsApiGetNetworkSwitchDscpToCosMappingsRequest) (*GetNetworkSwitchDscpToCosMappings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20074
+		localVarReturnValue  *GetNetworkSwitchDscpToCosMappings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DscpToCosMappingsApiService.GetNetworkSwitchDscpToCosMappings")
@@ -144,11 +144,11 @@ type DscpToCosMappingsApiUpdateNetworkSwitchDscpToCosMappingsRequest struct {
 	ctx context.Context
 	ApiService *DscpToCosMappingsApiService
 	networkId string
-	updateNetworkSwitchDscpToCosMappings *InlineObject119
+	updateNetworkSwitchDscpToCosMappingsRequest *UpdateNetworkSwitchDscpToCosMappingsRequest
 }
 
-func (r DscpToCosMappingsApiUpdateNetworkSwitchDscpToCosMappingsRequest) UpdateNetworkSwitchDscpToCosMappings(updateNetworkSwitchDscpToCosMappings InlineObject119) DscpToCosMappingsApiUpdateNetworkSwitchDscpToCosMappingsRequest {
-	r.updateNetworkSwitchDscpToCosMappings = &updateNetworkSwitchDscpToCosMappings
+func (r DscpToCosMappingsApiUpdateNetworkSwitchDscpToCosMappingsRequest) UpdateNetworkSwitchDscpToCosMappingsRequest(updateNetworkSwitchDscpToCosMappingsRequest UpdateNetworkSwitchDscpToCosMappingsRequest) DscpToCosMappingsApiUpdateNetworkSwitchDscpToCosMappingsRequest {
+	r.updateNetworkSwitchDscpToCosMappingsRequest = &updateNetworkSwitchDscpToCosMappingsRequest
 	return r
 }
 
@@ -194,8 +194,8 @@ func (a *DscpToCosMappingsApiService) UpdateNetworkSwitchDscpToCosMappingsExecut
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSwitchDscpToCosMappings == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSwitchDscpToCosMappings is required and must be specified")
+	if r.updateNetworkSwitchDscpToCosMappingsRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSwitchDscpToCosMappingsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -216,7 +216,7 @@ func (a *DscpToCosMappingsApiService) UpdateNetworkSwitchDscpToCosMappingsExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchDscpToCosMappings
+	localVarPostBody = r.updateNetworkSwitchDscpToCosMappingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

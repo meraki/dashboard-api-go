@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -852,7 +852,7 @@ type FirewallApiGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesR
 	networkId string
 }
 
-func (r FirewallApiGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesRequest) Execute() (*InlineResponse20014, *http.Response, error) {
+func (r FirewallApiGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesRequest) Execute() (*GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesExecute(r)
 }
 
@@ -874,13 +874,13 @@ func (a *FirewallApiService) GetNetworkApplianceFirewallL7FirewallRulesApplicati
 }
 
 // Execute executes the request
-//  @return InlineResponse20014
-func (a *FirewallApiService) GetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesExecute(r FirewallApiGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesRequest) (*InlineResponse20014, *http.Response, error) {
+//  @return GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Response
+func (a *FirewallApiService) GetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesExecute(r FirewallApiGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesRequest) (*GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20014
+		localVarReturnValue  *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirewallApiService.GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories")
@@ -1677,11 +1677,11 @@ type FirewallApiUpdateNetworkApplianceFirewallCellularFirewallRulesRequest struc
 	ctx context.Context
 	ApiService *FirewallApiService
 	networkId string
-	updateNetworkApplianceFirewallCellularFirewallRules *InlineObject31
+	updateNetworkApplianceFirewallCellularFirewallRulesRequest *UpdateNetworkApplianceFirewallCellularFirewallRulesRequest
 }
 
-func (r FirewallApiUpdateNetworkApplianceFirewallCellularFirewallRulesRequest) UpdateNetworkApplianceFirewallCellularFirewallRules(updateNetworkApplianceFirewallCellularFirewallRules InlineObject31) FirewallApiUpdateNetworkApplianceFirewallCellularFirewallRulesRequest {
-	r.updateNetworkApplianceFirewallCellularFirewallRules = &updateNetworkApplianceFirewallCellularFirewallRules
+func (r FirewallApiUpdateNetworkApplianceFirewallCellularFirewallRulesRequest) UpdateNetworkApplianceFirewallCellularFirewallRulesRequest(updateNetworkApplianceFirewallCellularFirewallRulesRequest UpdateNetworkApplianceFirewallCellularFirewallRulesRequest) FirewallApiUpdateNetworkApplianceFirewallCellularFirewallRulesRequest {
+	r.updateNetworkApplianceFirewallCellularFirewallRulesRequest = &updateNetworkApplianceFirewallCellularFirewallRulesRequest
 	return r
 }
 
@@ -1746,7 +1746,7 @@ func (a *FirewallApiService) UpdateNetworkApplianceFirewallCellularFirewallRules
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallCellularFirewallRules
+	localVarPostBody = r.updateNetworkApplianceFirewallCellularFirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1803,11 +1803,11 @@ type FirewallApiUpdateNetworkApplianceFirewallFirewalledServiceRequest struct {
 	ApiService *FirewallApiService
 	networkId string
 	service string
-	updateNetworkApplianceFirewallFirewalledService *InlineObject32
+	updateNetworkApplianceFirewallFirewalledServiceRequest *UpdateNetworkApplianceFirewallFirewalledServiceRequest
 }
 
-func (r FirewallApiUpdateNetworkApplianceFirewallFirewalledServiceRequest) UpdateNetworkApplianceFirewallFirewalledService(updateNetworkApplianceFirewallFirewalledService InlineObject32) FirewallApiUpdateNetworkApplianceFirewallFirewalledServiceRequest {
-	r.updateNetworkApplianceFirewallFirewalledService = &updateNetworkApplianceFirewallFirewalledService
+func (r FirewallApiUpdateNetworkApplianceFirewallFirewalledServiceRequest) UpdateNetworkApplianceFirewallFirewalledServiceRequest(updateNetworkApplianceFirewallFirewalledServiceRequest UpdateNetworkApplianceFirewallFirewalledServiceRequest) FirewallApiUpdateNetworkApplianceFirewallFirewalledServiceRequest {
+	r.updateNetworkApplianceFirewallFirewalledServiceRequest = &updateNetworkApplianceFirewallFirewalledServiceRequest
 	return r
 }
 
@@ -1856,8 +1856,8 @@ func (a *FirewallApiService) UpdateNetworkApplianceFirewallFirewalledServiceExec
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceFirewallFirewalledService == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallFirewalledService is required and must be specified")
+	if r.updateNetworkApplianceFirewallFirewalledServiceRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallFirewalledServiceRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1878,7 +1878,7 @@ func (a *FirewallApiService) UpdateNetworkApplianceFirewallFirewalledServiceExec
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallFirewalledService
+	localVarPostBody = r.updateNetworkApplianceFirewallFirewalledServiceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1934,11 +1934,11 @@ type FirewallApiUpdateNetworkApplianceFirewallInboundCellularFirewallRulesReques
 	ctx context.Context
 	ApiService *FirewallApiService
 	networkId string
-	updateNetworkApplianceFirewallInboundCellularFirewallRules *InlineObject33
+	updateNetworkApplianceFirewallCellularFirewallRulesRequest *UpdateNetworkApplianceFirewallCellularFirewallRulesRequest
 }
 
-func (r FirewallApiUpdateNetworkApplianceFirewallInboundCellularFirewallRulesRequest) UpdateNetworkApplianceFirewallInboundCellularFirewallRules(updateNetworkApplianceFirewallInboundCellularFirewallRules InlineObject33) FirewallApiUpdateNetworkApplianceFirewallInboundCellularFirewallRulesRequest {
-	r.updateNetworkApplianceFirewallInboundCellularFirewallRules = &updateNetworkApplianceFirewallInboundCellularFirewallRules
+func (r FirewallApiUpdateNetworkApplianceFirewallInboundCellularFirewallRulesRequest) UpdateNetworkApplianceFirewallCellularFirewallRulesRequest(updateNetworkApplianceFirewallCellularFirewallRulesRequest UpdateNetworkApplianceFirewallCellularFirewallRulesRequest) FirewallApiUpdateNetworkApplianceFirewallInboundCellularFirewallRulesRequest {
+	r.updateNetworkApplianceFirewallCellularFirewallRulesRequest = &updateNetworkApplianceFirewallCellularFirewallRulesRequest
 	return r
 }
 
@@ -2003,7 +2003,7 @@ func (a *FirewallApiService) UpdateNetworkApplianceFirewallInboundCellularFirewa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallInboundCellularFirewallRules
+	localVarPostBody = r.updateNetworkApplianceFirewallCellularFirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2059,11 +2059,11 @@ type FirewallApiUpdateNetworkApplianceFirewallInboundFirewallRulesRequest struct
 	ctx context.Context
 	ApiService *FirewallApiService
 	networkId string
-	updateNetworkApplianceFirewallInboundFirewallRules *InlineObject34
+	updateNetworkApplianceFirewallInboundFirewallRulesRequest *UpdateNetworkApplianceFirewallInboundFirewallRulesRequest
 }
 
-func (r FirewallApiUpdateNetworkApplianceFirewallInboundFirewallRulesRequest) UpdateNetworkApplianceFirewallInboundFirewallRules(updateNetworkApplianceFirewallInboundFirewallRules InlineObject34) FirewallApiUpdateNetworkApplianceFirewallInboundFirewallRulesRequest {
-	r.updateNetworkApplianceFirewallInboundFirewallRules = &updateNetworkApplianceFirewallInboundFirewallRules
+func (r FirewallApiUpdateNetworkApplianceFirewallInboundFirewallRulesRequest) UpdateNetworkApplianceFirewallInboundFirewallRulesRequest(updateNetworkApplianceFirewallInboundFirewallRulesRequest UpdateNetworkApplianceFirewallInboundFirewallRulesRequest) FirewallApiUpdateNetworkApplianceFirewallInboundFirewallRulesRequest {
+	r.updateNetworkApplianceFirewallInboundFirewallRulesRequest = &updateNetworkApplianceFirewallInboundFirewallRulesRequest
 	return r
 }
 
@@ -2128,7 +2128,7 @@ func (a *FirewallApiService) UpdateNetworkApplianceFirewallInboundFirewallRulesE
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallInboundFirewallRules
+	localVarPostBody = r.updateNetworkApplianceFirewallInboundFirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2184,11 +2184,11 @@ type FirewallApiUpdateNetworkApplianceFirewallL3FirewallRulesRequest struct {
 	ctx context.Context
 	ApiService *FirewallApiService
 	networkId string
-	updateNetworkApplianceFirewallL3FirewallRules *InlineObject35
+	updateNetworkApplianceFirewallInboundFirewallRulesRequest *UpdateNetworkApplianceFirewallInboundFirewallRulesRequest
 }
 
-func (r FirewallApiUpdateNetworkApplianceFirewallL3FirewallRulesRequest) UpdateNetworkApplianceFirewallL3FirewallRules(updateNetworkApplianceFirewallL3FirewallRules InlineObject35) FirewallApiUpdateNetworkApplianceFirewallL3FirewallRulesRequest {
-	r.updateNetworkApplianceFirewallL3FirewallRules = &updateNetworkApplianceFirewallL3FirewallRules
+func (r FirewallApiUpdateNetworkApplianceFirewallL3FirewallRulesRequest) UpdateNetworkApplianceFirewallInboundFirewallRulesRequest(updateNetworkApplianceFirewallInboundFirewallRulesRequest UpdateNetworkApplianceFirewallInboundFirewallRulesRequest) FirewallApiUpdateNetworkApplianceFirewallL3FirewallRulesRequest {
+	r.updateNetworkApplianceFirewallInboundFirewallRulesRequest = &updateNetworkApplianceFirewallInboundFirewallRulesRequest
 	return r
 }
 
@@ -2253,7 +2253,7 @@ func (a *FirewallApiService) UpdateNetworkApplianceFirewallL3FirewallRulesExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallL3FirewallRules
+	localVarPostBody = r.updateNetworkApplianceFirewallInboundFirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2309,11 +2309,11 @@ type FirewallApiUpdateNetworkApplianceFirewallL7FirewallRulesRequest struct {
 	ctx context.Context
 	ApiService *FirewallApiService
 	networkId string
-	updateNetworkApplianceFirewallL7FirewallRules *InlineObject36
+	updateNetworkApplianceFirewallL7FirewallRulesRequest *UpdateNetworkApplianceFirewallL7FirewallRulesRequest
 }
 
-func (r FirewallApiUpdateNetworkApplianceFirewallL7FirewallRulesRequest) UpdateNetworkApplianceFirewallL7FirewallRules(updateNetworkApplianceFirewallL7FirewallRules InlineObject36) FirewallApiUpdateNetworkApplianceFirewallL7FirewallRulesRequest {
-	r.updateNetworkApplianceFirewallL7FirewallRules = &updateNetworkApplianceFirewallL7FirewallRules
+func (r FirewallApiUpdateNetworkApplianceFirewallL7FirewallRulesRequest) UpdateNetworkApplianceFirewallL7FirewallRulesRequest(updateNetworkApplianceFirewallL7FirewallRulesRequest UpdateNetworkApplianceFirewallL7FirewallRulesRequest) FirewallApiUpdateNetworkApplianceFirewallL7FirewallRulesRequest {
+	r.updateNetworkApplianceFirewallL7FirewallRulesRequest = &updateNetworkApplianceFirewallL7FirewallRulesRequest
 	return r
 }
 
@@ -2378,7 +2378,7 @@ func (a *FirewallApiService) UpdateNetworkApplianceFirewallL7FirewallRulesExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallL7FirewallRules
+	localVarPostBody = r.updateNetworkApplianceFirewallL7FirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2434,11 +2434,11 @@ type FirewallApiUpdateNetworkApplianceFirewallOneToManyNatRulesRequest struct {
 	ctx context.Context
 	ApiService *FirewallApiService
 	networkId string
-	updateNetworkApplianceFirewallOneToManyNatRules *InlineObject37
+	updateNetworkApplianceFirewallOneToManyNatRulesRequest *UpdateNetworkApplianceFirewallOneToManyNatRulesRequest
 }
 
-func (r FirewallApiUpdateNetworkApplianceFirewallOneToManyNatRulesRequest) UpdateNetworkApplianceFirewallOneToManyNatRules(updateNetworkApplianceFirewallOneToManyNatRules InlineObject37) FirewallApiUpdateNetworkApplianceFirewallOneToManyNatRulesRequest {
-	r.updateNetworkApplianceFirewallOneToManyNatRules = &updateNetworkApplianceFirewallOneToManyNatRules
+func (r FirewallApiUpdateNetworkApplianceFirewallOneToManyNatRulesRequest) UpdateNetworkApplianceFirewallOneToManyNatRulesRequest(updateNetworkApplianceFirewallOneToManyNatRulesRequest UpdateNetworkApplianceFirewallOneToManyNatRulesRequest) FirewallApiUpdateNetworkApplianceFirewallOneToManyNatRulesRequest {
+	r.updateNetworkApplianceFirewallOneToManyNatRulesRequest = &updateNetworkApplianceFirewallOneToManyNatRulesRequest
 	return r
 }
 
@@ -2484,8 +2484,8 @@ func (a *FirewallApiService) UpdateNetworkApplianceFirewallOneToManyNatRulesExec
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceFirewallOneToManyNatRules == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallOneToManyNatRules is required and must be specified")
+	if r.updateNetworkApplianceFirewallOneToManyNatRulesRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallOneToManyNatRulesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2506,7 +2506,7 @@ func (a *FirewallApiService) UpdateNetworkApplianceFirewallOneToManyNatRulesExec
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallOneToManyNatRules
+	localVarPostBody = r.updateNetworkApplianceFirewallOneToManyNatRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2562,11 +2562,11 @@ type FirewallApiUpdateNetworkApplianceFirewallOneToOneNatRulesRequest struct {
 	ctx context.Context
 	ApiService *FirewallApiService
 	networkId string
-	updateNetworkApplianceFirewallOneToOneNatRules *InlineObject38
+	updateNetworkApplianceFirewallOneToOneNatRulesRequest *UpdateNetworkApplianceFirewallOneToOneNatRulesRequest
 }
 
-func (r FirewallApiUpdateNetworkApplianceFirewallOneToOneNatRulesRequest) UpdateNetworkApplianceFirewallOneToOneNatRules(updateNetworkApplianceFirewallOneToOneNatRules InlineObject38) FirewallApiUpdateNetworkApplianceFirewallOneToOneNatRulesRequest {
-	r.updateNetworkApplianceFirewallOneToOneNatRules = &updateNetworkApplianceFirewallOneToOneNatRules
+func (r FirewallApiUpdateNetworkApplianceFirewallOneToOneNatRulesRequest) UpdateNetworkApplianceFirewallOneToOneNatRulesRequest(updateNetworkApplianceFirewallOneToOneNatRulesRequest UpdateNetworkApplianceFirewallOneToOneNatRulesRequest) FirewallApiUpdateNetworkApplianceFirewallOneToOneNatRulesRequest {
+	r.updateNetworkApplianceFirewallOneToOneNatRulesRequest = &updateNetworkApplianceFirewallOneToOneNatRulesRequest
 	return r
 }
 
@@ -2612,8 +2612,8 @@ func (a *FirewallApiService) UpdateNetworkApplianceFirewallOneToOneNatRulesExecu
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceFirewallOneToOneNatRules == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallOneToOneNatRules is required and must be specified")
+	if r.updateNetworkApplianceFirewallOneToOneNatRulesRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallOneToOneNatRulesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2634,7 +2634,7 @@ func (a *FirewallApiService) UpdateNetworkApplianceFirewallOneToOneNatRulesExecu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallOneToOneNatRules
+	localVarPostBody = r.updateNetworkApplianceFirewallOneToOneNatRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2690,11 +2690,11 @@ type FirewallApiUpdateNetworkApplianceFirewallPortForwardingRulesRequest struct 
 	ctx context.Context
 	ApiService *FirewallApiService
 	networkId string
-	updateNetworkApplianceFirewallPortForwardingRules *InlineObject39
+	updateNetworkApplianceFirewallPortForwardingRulesRequest *UpdateNetworkApplianceFirewallPortForwardingRulesRequest
 }
 
-func (r FirewallApiUpdateNetworkApplianceFirewallPortForwardingRulesRequest) UpdateNetworkApplianceFirewallPortForwardingRules(updateNetworkApplianceFirewallPortForwardingRules InlineObject39) FirewallApiUpdateNetworkApplianceFirewallPortForwardingRulesRequest {
-	r.updateNetworkApplianceFirewallPortForwardingRules = &updateNetworkApplianceFirewallPortForwardingRules
+func (r FirewallApiUpdateNetworkApplianceFirewallPortForwardingRulesRequest) UpdateNetworkApplianceFirewallPortForwardingRulesRequest(updateNetworkApplianceFirewallPortForwardingRulesRequest UpdateNetworkApplianceFirewallPortForwardingRulesRequest) FirewallApiUpdateNetworkApplianceFirewallPortForwardingRulesRequest {
+	r.updateNetworkApplianceFirewallPortForwardingRulesRequest = &updateNetworkApplianceFirewallPortForwardingRulesRequest
 	return r
 }
 
@@ -2740,8 +2740,8 @@ func (a *FirewallApiService) UpdateNetworkApplianceFirewallPortForwardingRulesEx
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceFirewallPortForwardingRules == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallPortForwardingRules is required and must be specified")
+	if r.updateNetworkApplianceFirewallPortForwardingRulesRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallPortForwardingRulesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2762,7 +2762,7 @@ func (a *FirewallApiService) UpdateNetworkApplianceFirewallPortForwardingRulesEx
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallPortForwardingRules
+	localVarPostBody = r.updateNetworkApplianceFirewallPortForwardingRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2818,11 +2818,11 @@ type FirewallApiUpdateNetworkApplianceFirewallSettingsRequest struct {
 	ctx context.Context
 	ApiService *FirewallApiService
 	networkId string
-	updateNetworkApplianceFirewallSettings *InlineObject40
+	updateNetworkApplianceFirewallSettingsRequest *UpdateNetworkApplianceFirewallSettingsRequest
 }
 
-func (r FirewallApiUpdateNetworkApplianceFirewallSettingsRequest) UpdateNetworkApplianceFirewallSettings(updateNetworkApplianceFirewallSettings InlineObject40) FirewallApiUpdateNetworkApplianceFirewallSettingsRequest {
-	r.updateNetworkApplianceFirewallSettings = &updateNetworkApplianceFirewallSettings
+func (r FirewallApiUpdateNetworkApplianceFirewallSettingsRequest) UpdateNetworkApplianceFirewallSettingsRequest(updateNetworkApplianceFirewallSettingsRequest UpdateNetworkApplianceFirewallSettingsRequest) FirewallApiUpdateNetworkApplianceFirewallSettingsRequest {
+	r.updateNetworkApplianceFirewallSettingsRequest = &updateNetworkApplianceFirewallSettingsRequest
 	return r
 }
 
@@ -2887,7 +2887,7 @@ func (a *FirewallApiService) UpdateNetworkApplianceFirewallSettingsExecute(r Fir
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallSettings
+	localVarPostBody = r.updateNetworkApplianceFirewallSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2944,11 +2944,11 @@ type FirewallApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest struct {
 	ApiService *FirewallApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidFirewallL3FirewallRules *InlineObject161
+	updateNetworkWirelessSsidFirewallL3FirewallRulesRequest *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest
 }
 
-func (r FirewallApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) UpdateNetworkWirelessSsidFirewallL3FirewallRules(updateNetworkWirelessSsidFirewallL3FirewallRules InlineObject161) FirewallApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest {
-	r.updateNetworkWirelessSsidFirewallL3FirewallRules = &updateNetworkWirelessSsidFirewallL3FirewallRules
+func (r FirewallApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest(updateNetworkWirelessSsidFirewallL3FirewallRulesRequest UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) FirewallApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest {
+	r.updateNetworkWirelessSsidFirewallL3FirewallRulesRequest = &updateNetworkWirelessSsidFirewallL3FirewallRulesRequest
 	return r
 }
 
@@ -3016,7 +3016,7 @@ func (a *FirewallApiService) UpdateNetworkWirelessSsidFirewallL3FirewallRulesExe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidFirewallL3FirewallRules
+	localVarPostBody = r.updateNetworkWirelessSsidFirewallL3FirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3073,11 +3073,11 @@ type FirewallApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest struct {
 	ApiService *FirewallApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidFirewallL7FirewallRules *InlineObject162
+	updateNetworkWirelessSsidFirewallL7FirewallRulesRequest *UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest
 }
 
-func (r FirewallApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) UpdateNetworkWirelessSsidFirewallL7FirewallRules(updateNetworkWirelessSsidFirewallL7FirewallRules InlineObject162) FirewallApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest {
-	r.updateNetworkWirelessSsidFirewallL7FirewallRules = &updateNetworkWirelessSsidFirewallL7FirewallRules
+func (r FirewallApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest(updateNetworkWirelessSsidFirewallL7FirewallRulesRequest UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) FirewallApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest {
+	r.updateNetworkWirelessSsidFirewallL7FirewallRulesRequest = &updateNetworkWirelessSsidFirewallL7FirewallRulesRequest
 	return r
 }
 
@@ -3145,7 +3145,7 @@ func (a *FirewallApiService) UpdateNetworkWirelessSsidFirewallL7FirewallRulesExe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidFirewallL7FirewallRules
+	localVarPostBody = r.updateNetworkWirelessSsidFirewallL7FirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

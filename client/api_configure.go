@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -18,6 +18,7 @@ import (
 	"net/url"
 	"strings"
 	"time"
+	"reflect"
 )
 
 
@@ -29,15 +30,15 @@ type ConfigureApiAddNetworkSwitchStackRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	switchStackId string
-	addNetworkSwitchStack *InlineObject134
+	addNetworkSwitchStackRequest *AddNetworkSwitchStackRequest
 }
 
-func (r ConfigureApiAddNetworkSwitchStackRequest) AddNetworkSwitchStack(addNetworkSwitchStack InlineObject134) ConfigureApiAddNetworkSwitchStackRequest {
-	r.addNetworkSwitchStack = &addNetworkSwitchStack
+func (r ConfigureApiAddNetworkSwitchStackRequest) AddNetworkSwitchStackRequest(addNetworkSwitchStackRequest AddNetworkSwitchStackRequest) ConfigureApiAddNetworkSwitchStackRequest {
+	r.addNetworkSwitchStackRequest = &addNetworkSwitchStackRequest
 	return r
 }
 
-func (r ConfigureApiAddNetworkSwitchStackRequest) Execute() (*InlineResponse20079, *http.Response, error) {
+func (r ConfigureApiAddNetworkSwitchStackRequest) Execute() (*GetNetworkSwitchStack200Response, *http.Response, error) {
 	return r.ApiService.AddNetworkSwitchStackExecute(r)
 }
 
@@ -61,13 +62,13 @@ func (a *ConfigureApiService) AddNetworkSwitchStack(ctx context.Context, network
 }
 
 // Execute executes the request
-//  @return InlineResponse20079
-func (a *ConfigureApiService) AddNetworkSwitchStackExecute(r ConfigureApiAddNetworkSwitchStackRequest) (*InlineResponse20079, *http.Response, error) {
+//  @return GetNetworkSwitchStack200Response
+func (a *ConfigureApiService) AddNetworkSwitchStackExecute(r ConfigureApiAddNetworkSwitchStackRequest) (*GetNetworkSwitchStack200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20079
+		localVarReturnValue  *GetNetworkSwitchStack200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.AddNetworkSwitchStack")
@@ -82,8 +83,8 @@ func (a *ConfigureApiService) AddNetworkSwitchStackExecute(r ConfigureApiAddNetw
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.addNetworkSwitchStack == nil {
-		return localVarReturnValue, nil, reportError("addNetworkSwitchStack is required and must be specified")
+	if r.addNetworkSwitchStackRequest == nil {
+		return localVarReturnValue, nil, reportError("addNetworkSwitchStackRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -104,7 +105,7 @@ func (a *ConfigureApiService) AddNetworkSwitchStackExecute(r ConfigureApiAddNetw
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.addNetworkSwitchStack
+	localVarPostBody = r.addNetworkSwitchStackRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -160,15 +161,15 @@ type ConfigureApiAssignOrganizationLicensesSeatsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	assignOrganizationLicensesSeats *InlineObject207
+	assignOrganizationLicensesSeatsRequest *AssignOrganizationLicensesSeatsRequest
 }
 
-func (r ConfigureApiAssignOrganizationLicensesSeatsRequest) AssignOrganizationLicensesSeats(assignOrganizationLicensesSeats InlineObject207) ConfigureApiAssignOrganizationLicensesSeatsRequest {
-	r.assignOrganizationLicensesSeats = &assignOrganizationLicensesSeats
+func (r ConfigureApiAssignOrganizationLicensesSeatsRequest) AssignOrganizationLicensesSeatsRequest(assignOrganizationLicensesSeatsRequest AssignOrganizationLicensesSeatsRequest) ConfigureApiAssignOrganizationLicensesSeatsRequest {
+	r.assignOrganizationLicensesSeatsRequest = &assignOrganizationLicensesSeatsRequest
 	return r
 }
 
-func (r ConfigureApiAssignOrganizationLicensesSeatsRequest) Execute() (*InlineResponse200131, *http.Response, error) {
+func (r ConfigureApiAssignOrganizationLicensesSeatsRequest) Execute() (*AssignOrganizationLicensesSeats200Response, *http.Response, error) {
 	return r.ApiService.AssignOrganizationLicensesSeatsExecute(r)
 }
 
@@ -190,13 +191,13 @@ func (a *ConfigureApiService) AssignOrganizationLicensesSeats(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse200131
-func (a *ConfigureApiService) AssignOrganizationLicensesSeatsExecute(r ConfigureApiAssignOrganizationLicensesSeatsRequest) (*InlineResponse200131, *http.Response, error) {
+//  @return AssignOrganizationLicensesSeats200Response
+func (a *ConfigureApiService) AssignOrganizationLicensesSeatsExecute(r ConfigureApiAssignOrganizationLicensesSeatsRequest) (*AssignOrganizationLicensesSeats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200131
+		localVarReturnValue  *AssignOrganizationLicensesSeats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.AssignOrganizationLicensesSeats")
@@ -210,8 +211,8 @@ func (a *ConfigureApiService) AssignOrganizationLicensesSeatsExecute(r Configure
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.assignOrganizationLicensesSeats == nil {
-		return localVarReturnValue, nil, reportError("assignOrganizationLicensesSeats is required and must be specified")
+	if r.assignOrganizationLicensesSeatsRequest == nil {
+		return localVarReturnValue, nil, reportError("assignOrganizationLicensesSeatsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -232,7 +233,7 @@ func (a *ConfigureApiService) AssignOrganizationLicensesSeatsExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.assignOrganizationLicensesSeats
+	localVarPostBody = r.assignOrganizationLicensesSeatsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -288,11 +289,11 @@ type ConfigureApiBindNetworkRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	bindNetwork *InlineObject65
+	bindNetworkRequest *BindNetworkRequest
 }
 
-func (r ConfigureApiBindNetworkRequest) BindNetwork(bindNetwork InlineObject65) ConfigureApiBindNetworkRequest {
-	r.bindNetwork = &bindNetwork
+func (r ConfigureApiBindNetworkRequest) BindNetworkRequest(bindNetworkRequest BindNetworkRequest) ConfigureApiBindNetworkRequest {
+	r.bindNetworkRequest = &bindNetworkRequest
 	return r
 }
 
@@ -338,8 +339,8 @@ func (a *ConfigureApiService) BindNetworkExecute(r ConfigureApiBindNetworkReques
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.bindNetwork == nil {
-		return localVarReturnValue, nil, reportError("bindNetwork is required and must be specified")
+	if r.bindNetworkRequest == nil {
+		return localVarReturnValue, nil, reportError("bindNetworkRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -360,7 +361,7 @@ func (a *ConfigureApiService) BindNetworkExecute(r ConfigureApiBindNetworkReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.bindNetwork
+	localVarPostBody = r.bindNetworkRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -416,15 +417,15 @@ type ConfigureApiCheckinNetworkSmDevicesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	checkinNetworkSmDevices *InlineObject103
+	checkinNetworkSmDevicesRequest *CheckinNetworkSmDevicesRequest
 }
 
-func (r ConfigureApiCheckinNetworkSmDevicesRequest) CheckinNetworkSmDevices(checkinNetworkSmDevices InlineObject103) ConfigureApiCheckinNetworkSmDevicesRequest {
-	r.checkinNetworkSmDevices = &checkinNetworkSmDevices
+func (r ConfigureApiCheckinNetworkSmDevicesRequest) CheckinNetworkSmDevicesRequest(checkinNetworkSmDevicesRequest CheckinNetworkSmDevicesRequest) ConfigureApiCheckinNetworkSmDevicesRequest {
+	r.checkinNetworkSmDevicesRequest = &checkinNetworkSmDevicesRequest
 	return r
 }
 
-func (r ConfigureApiCheckinNetworkSmDevicesRequest) Execute() (*InlineResponse20046, *http.Response, error) {
+func (r ConfigureApiCheckinNetworkSmDevicesRequest) Execute() (*CheckinNetworkSmDevices200Response, *http.Response, error) {
 	return r.ApiService.CheckinNetworkSmDevicesExecute(r)
 }
 
@@ -446,13 +447,13 @@ func (a *ConfigureApiService) CheckinNetworkSmDevices(ctx context.Context, netwo
 }
 
 // Execute executes the request
-//  @return InlineResponse20046
-func (a *ConfigureApiService) CheckinNetworkSmDevicesExecute(r ConfigureApiCheckinNetworkSmDevicesRequest) (*InlineResponse20046, *http.Response, error) {
+//  @return CheckinNetworkSmDevices200Response
+func (a *ConfigureApiService) CheckinNetworkSmDevicesExecute(r ConfigureApiCheckinNetworkSmDevicesRequest) (*CheckinNetworkSmDevices200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20046
+		localVarReturnValue  *CheckinNetworkSmDevices200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CheckinNetworkSmDevices")
@@ -485,7 +486,7 @@ func (a *ConfigureApiService) CheckinNetworkSmDevicesExecute(r ConfigureApiCheck
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.checkinNetworkSmDevices
+	localVarPostBody = r.checkinNetworkSmDevicesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -541,11 +542,11 @@ type ConfigureApiClaimIntoOrganizationRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	claimIntoOrganization *InlineObject193
+	claimIntoOrganizationRequest *ClaimIntoOrganizationRequest
 }
 
-func (r ConfigureApiClaimIntoOrganizationRequest) ClaimIntoOrganization(claimIntoOrganization InlineObject193) ConfigureApiClaimIntoOrganizationRequest {
-	r.claimIntoOrganization = &claimIntoOrganization
+func (r ConfigureApiClaimIntoOrganizationRequest) ClaimIntoOrganizationRequest(claimIntoOrganizationRequest ClaimIntoOrganizationRequest) ConfigureApiClaimIntoOrganizationRequest {
+	r.claimIntoOrganizationRequest = &claimIntoOrganizationRequest
 	return r
 }
 
@@ -610,7 +611,7 @@ func (a *ConfigureApiService) ClaimIntoOrganizationExecute(r ConfigureApiClaimIn
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.claimIntoOrganization
+	localVarPostBody = r.claimIntoOrganizationRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -666,11 +667,11 @@ type ConfigureApiClaimIntoOrganizationInventoryRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	claimIntoOrganizationInventory *InlineObject202
+	claimIntoOrganizationInventoryRequest *ClaimIntoOrganizationInventoryRequest
 }
 
-func (r ConfigureApiClaimIntoOrganizationInventoryRequest) ClaimIntoOrganizationInventory(claimIntoOrganizationInventory InlineObject202) ConfigureApiClaimIntoOrganizationInventoryRequest {
-	r.claimIntoOrganizationInventory = &claimIntoOrganizationInventory
+func (r ConfigureApiClaimIntoOrganizationInventoryRequest) ClaimIntoOrganizationInventoryRequest(claimIntoOrganizationInventoryRequest ClaimIntoOrganizationInventoryRequest) ConfigureApiClaimIntoOrganizationInventoryRequest {
+	r.claimIntoOrganizationInventoryRequest = &claimIntoOrganizationInventoryRequest
 	return r
 }
 
@@ -735,7 +736,7 @@ func (a *ConfigureApiService) ClaimIntoOrganizationInventoryExecute(r ConfigureA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.claimIntoOrganizationInventory
+	localVarPostBody = r.claimIntoOrganizationInventoryRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -791,11 +792,11 @@ type ConfigureApiClaimNetworkDevicesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	claimNetworkDevices *InlineObject77
+	claimNetworkDevicesRequest *ClaimNetworkDevicesRequest
 }
 
-func (r ConfigureApiClaimNetworkDevicesRequest) ClaimNetworkDevices(claimNetworkDevices InlineObject77) ConfigureApiClaimNetworkDevicesRequest {
-	r.claimNetworkDevices = &claimNetworkDevices
+func (r ConfigureApiClaimNetworkDevicesRequest) ClaimNetworkDevicesRequest(claimNetworkDevicesRequest ClaimNetworkDevicesRequest) ConfigureApiClaimNetworkDevicesRequest {
+	r.claimNetworkDevicesRequest = &claimNetworkDevicesRequest
 	return r
 }
 
@@ -839,8 +840,8 @@ func (a *ConfigureApiService) ClaimNetworkDevicesExecute(r ConfigureApiClaimNetw
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.claimNetworkDevices == nil {
-		return nil, reportError("claimNetworkDevices is required and must be specified")
+	if r.claimNetworkDevicesRequest == nil {
+		return nil, reportError("claimNetworkDevicesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -861,7 +862,7 @@ func (a *ConfigureApiService) ClaimNetworkDevicesExecute(r ConfigureApiClaimNetw
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.claimNetworkDevices
+	localVarPostBody = r.claimNetworkDevicesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -908,15 +909,15 @@ type ConfigureApiCloneOrganizationRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	cloneOrganization *InlineObject194
+	cloneOrganizationRequest *CloneOrganizationRequest
 }
 
-func (r ConfigureApiCloneOrganizationRequest) CloneOrganization(cloneOrganization InlineObject194) ConfigureApiCloneOrganizationRequest {
-	r.cloneOrganization = &cloneOrganization
+func (r ConfigureApiCloneOrganizationRequest) CloneOrganizationRequest(cloneOrganizationRequest CloneOrganizationRequest) ConfigureApiCloneOrganizationRequest {
+	r.cloneOrganizationRequest = &cloneOrganizationRequest
 	return r
 }
 
-func (r ConfigureApiCloneOrganizationRequest) Execute() (*InlineResponse20099, *http.Response, error) {
+func (r ConfigureApiCloneOrganizationRequest) Execute() (*GetOrganizations200ResponseInner, *http.Response, error) {
 	return r.ApiService.CloneOrganizationExecute(r)
 }
 
@@ -938,13 +939,13 @@ func (a *ConfigureApiService) CloneOrganization(ctx context.Context, organizatio
 }
 
 // Execute executes the request
-//  @return InlineResponse20099
-func (a *ConfigureApiService) CloneOrganizationExecute(r ConfigureApiCloneOrganizationRequest) (*InlineResponse20099, *http.Response, error) {
+//  @return GetOrganizations200ResponseInner
+func (a *ConfigureApiService) CloneOrganizationExecute(r ConfigureApiCloneOrganizationRequest) (*GetOrganizations200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20099
+		localVarReturnValue  *GetOrganizations200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CloneOrganization")
@@ -958,8 +959,8 @@ func (a *ConfigureApiService) CloneOrganizationExecute(r ConfigureApiCloneOrgani
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.cloneOrganization == nil {
-		return localVarReturnValue, nil, reportError("cloneOrganization is required and must be specified")
+	if r.cloneOrganizationRequest == nil {
+		return localVarReturnValue, nil, reportError("cloneOrganizationRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -980,7 +981,7 @@ func (a *ConfigureApiService) CloneOrganizationExecute(r ConfigureApiCloneOrgani
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.cloneOrganization
+	localVarPostBody = r.cloneOrganizationRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1036,11 +1037,11 @@ type ConfigureApiCloneOrganizationSwitchDevicesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	cloneOrganizationSwitchDevices *InlineObject226
+	cloneOrganizationSwitchDevicesRequest *CloneOrganizationSwitchDevicesRequest
 }
 
-func (r ConfigureApiCloneOrganizationSwitchDevicesRequest) CloneOrganizationSwitchDevices(cloneOrganizationSwitchDevices InlineObject226) ConfigureApiCloneOrganizationSwitchDevicesRequest {
-	r.cloneOrganizationSwitchDevices = &cloneOrganizationSwitchDevices
+func (r ConfigureApiCloneOrganizationSwitchDevicesRequest) CloneOrganizationSwitchDevicesRequest(cloneOrganizationSwitchDevicesRequest CloneOrganizationSwitchDevicesRequest) ConfigureApiCloneOrganizationSwitchDevicesRequest {
+	r.cloneOrganizationSwitchDevicesRequest = &cloneOrganizationSwitchDevicesRequest
 	return r
 }
 
@@ -1086,8 +1087,8 @@ func (a *ConfigureApiService) CloneOrganizationSwitchDevicesExecute(r ConfigureA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.cloneOrganizationSwitchDevices == nil {
-		return localVarReturnValue, nil, reportError("cloneOrganizationSwitchDevices is required and must be specified")
+	if r.cloneOrganizationSwitchDevicesRequest == nil {
+		return localVarReturnValue, nil, reportError("cloneOrganizationSwitchDevicesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1108,7 +1109,7 @@ func (a *ConfigureApiService) CloneOrganizationSwitchDevicesExecute(r ConfigureA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.cloneOrganizationSwitchDevices
+	localVarPostBody = r.cloneOrganizationSwitchDevicesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1164,15 +1165,15 @@ type ConfigureApiCombineOrganizationNetworksRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	combineOrganizationNetworks *InlineObject215
+	combineOrganizationNetworksRequest *CombineOrganizationNetworksRequest
 }
 
-func (r ConfigureApiCombineOrganizationNetworksRequest) CombineOrganizationNetworks(combineOrganizationNetworks InlineObject215) ConfigureApiCombineOrganizationNetworksRequest {
-	r.combineOrganizationNetworks = &combineOrganizationNetworks
+func (r ConfigureApiCombineOrganizationNetworksRequest) CombineOrganizationNetworksRequest(combineOrganizationNetworksRequest CombineOrganizationNetworksRequest) ConfigureApiCombineOrganizationNetworksRequest {
+	r.combineOrganizationNetworksRequest = &combineOrganizationNetworksRequest
 	return r
 }
 
-func (r ConfigureApiCombineOrganizationNetworksRequest) Execute() (*InlineResponse200137, *http.Response, error) {
+func (r ConfigureApiCombineOrganizationNetworksRequest) Execute() (*CombineOrganizationNetworks200Response, *http.Response, error) {
 	return r.ApiService.CombineOrganizationNetworksExecute(r)
 }
 
@@ -1194,13 +1195,13 @@ func (a *ConfigureApiService) CombineOrganizationNetworks(ctx context.Context, o
 }
 
 // Execute executes the request
-//  @return InlineResponse200137
-func (a *ConfigureApiService) CombineOrganizationNetworksExecute(r ConfigureApiCombineOrganizationNetworksRequest) (*InlineResponse200137, *http.Response, error) {
+//  @return CombineOrganizationNetworks200Response
+func (a *ConfigureApiService) CombineOrganizationNetworksExecute(r ConfigureApiCombineOrganizationNetworksRequest) (*CombineOrganizationNetworks200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200137
+		localVarReturnValue  *CombineOrganizationNetworks200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CombineOrganizationNetworks")
@@ -1214,8 +1215,8 @@ func (a *ConfigureApiService) CombineOrganizationNetworksExecute(r ConfigureApiC
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.combineOrganizationNetworks == nil {
-		return localVarReturnValue, nil, reportError("combineOrganizationNetworks is required and must be specified")
+	if r.combineOrganizationNetworksRequest == nil {
+		return localVarReturnValue, nil, reportError("combineOrganizationNetworksRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1236,7 +1237,7 @@ func (a *ConfigureApiService) CombineOrganizationNetworksExecute(r ConfigureApiC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.combineOrganizationNetworks
+	localVarPostBody = r.combineOrganizationNetworksRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1294,7 +1295,7 @@ type ConfigureApiCreateDeviceApplianceVmxAuthenticationTokenRequest struct {
 	serial string
 }
 
-func (r ConfigureApiCreateDeviceApplianceVmxAuthenticationTokenRequest) Execute() (*InlineResponse201, *http.Response, error) {
+func (r ConfigureApiCreateDeviceApplianceVmxAuthenticationTokenRequest) Execute() (*CreateDeviceApplianceVmxAuthenticationToken201Response, *http.Response, error) {
 	return r.ApiService.CreateDeviceApplianceVmxAuthenticationTokenExecute(r)
 }
 
@@ -1316,13 +1317,13 @@ func (a *ConfigureApiService) CreateDeviceApplianceVmxAuthenticationToken(ctx co
 }
 
 // Execute executes the request
-//  @return InlineResponse201
-func (a *ConfigureApiService) CreateDeviceApplianceVmxAuthenticationTokenExecute(r ConfigureApiCreateDeviceApplianceVmxAuthenticationTokenRequest) (*InlineResponse201, *http.Response, error) {
+//  @return CreateDeviceApplianceVmxAuthenticationToken201Response
+func (a *ConfigureApiService) CreateDeviceApplianceVmxAuthenticationTokenExecute(r ConfigureApiCreateDeviceApplianceVmxAuthenticationTokenRequest) (*CreateDeviceApplianceVmxAuthenticationToken201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse201
+		localVarReturnValue  *CreateDeviceApplianceVmxAuthenticationToken201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateDeviceApplianceVmxAuthenticationToken")
@@ -1409,15 +1410,15 @@ type ConfigureApiCreateDeviceSwitchRoutingInterfaceRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	createDeviceSwitchRoutingInterface *InlineObject19
+	createDeviceSwitchRoutingInterfaceRequest *CreateDeviceSwitchRoutingInterfaceRequest
 }
 
-func (r ConfigureApiCreateDeviceSwitchRoutingInterfaceRequest) CreateDeviceSwitchRoutingInterface(createDeviceSwitchRoutingInterface InlineObject19) ConfigureApiCreateDeviceSwitchRoutingInterfaceRequest {
-	r.createDeviceSwitchRoutingInterface = &createDeviceSwitchRoutingInterface
+func (r ConfigureApiCreateDeviceSwitchRoutingInterfaceRequest) CreateDeviceSwitchRoutingInterfaceRequest(createDeviceSwitchRoutingInterfaceRequest CreateDeviceSwitchRoutingInterfaceRequest) ConfigureApiCreateDeviceSwitchRoutingInterfaceRequest {
+	r.createDeviceSwitchRoutingInterfaceRequest = &createDeviceSwitchRoutingInterfaceRequest
 	return r
 }
 
-func (r ConfigureApiCreateDeviceSwitchRoutingInterfaceRequest) Execute() (*InlineResponse2008, *http.Response, error) {
+func (r ConfigureApiCreateDeviceSwitchRoutingInterfaceRequest) Execute() (*GetDeviceSwitchRoutingInterfaces200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateDeviceSwitchRoutingInterfaceExecute(r)
 }
 
@@ -1439,13 +1440,13 @@ func (a *ConfigureApiService) CreateDeviceSwitchRoutingInterface(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InlineResponse2008
-func (a *ConfigureApiService) CreateDeviceSwitchRoutingInterfaceExecute(r ConfigureApiCreateDeviceSwitchRoutingInterfaceRequest) (*InlineResponse2008, *http.Response, error) {
+//  @return GetDeviceSwitchRoutingInterfaces200ResponseInner
+func (a *ConfigureApiService) CreateDeviceSwitchRoutingInterfaceExecute(r ConfigureApiCreateDeviceSwitchRoutingInterfaceRequest) (*GetDeviceSwitchRoutingInterfaces200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2008
+		localVarReturnValue  *GetDeviceSwitchRoutingInterfaces200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateDeviceSwitchRoutingInterface")
@@ -1478,7 +1479,7 @@ func (a *ConfigureApiService) CreateDeviceSwitchRoutingInterfaceExecute(r Config
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createDeviceSwitchRoutingInterface
+	localVarPostBody = r.createDeviceSwitchRoutingInterfaceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1534,11 +1535,11 @@ type ConfigureApiCreateDeviceSwitchRoutingStaticRouteRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	createDeviceSwitchRoutingStaticRoute *InlineObject22
+	createDeviceSwitchRoutingStaticRouteRequest *CreateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r ConfigureApiCreateDeviceSwitchRoutingStaticRouteRequest) CreateDeviceSwitchRoutingStaticRoute(createDeviceSwitchRoutingStaticRoute InlineObject22) ConfigureApiCreateDeviceSwitchRoutingStaticRouteRequest {
-	r.createDeviceSwitchRoutingStaticRoute = &createDeviceSwitchRoutingStaticRoute
+func (r ConfigureApiCreateDeviceSwitchRoutingStaticRouteRequest) CreateDeviceSwitchRoutingStaticRouteRequest(createDeviceSwitchRoutingStaticRouteRequest CreateDeviceSwitchRoutingStaticRouteRequest) ConfigureApiCreateDeviceSwitchRoutingStaticRouteRequest {
+	r.createDeviceSwitchRoutingStaticRouteRequest = &createDeviceSwitchRoutingStaticRouteRequest
 	return r
 }
 
@@ -1584,8 +1585,8 @@ func (a *ConfigureApiService) CreateDeviceSwitchRoutingStaticRouteExecute(r Conf
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createDeviceSwitchRoutingStaticRoute == nil {
-		return localVarReturnValue, nil, reportError("createDeviceSwitchRoutingStaticRoute is required and must be specified")
+	if r.createDeviceSwitchRoutingStaticRouteRequest == nil {
+		return localVarReturnValue, nil, reportError("createDeviceSwitchRoutingStaticRouteRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1606,7 +1607,7 @@ func (a *ConfigureApiService) CreateDeviceSwitchRoutingStaticRouteExecute(r Conf
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createDeviceSwitchRoutingStaticRoute
+	localVarPostBody = r.createDeviceSwitchRoutingStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1662,11 +1663,11 @@ type ConfigureApiCreateNetworkAppliancePrefixesDelegatedStaticRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkAppliancePrefixesDelegatedStatic *InlineObject42
+	createNetworkAppliancePrefixesDelegatedStaticRequest *CreateNetworkAppliancePrefixesDelegatedStaticRequest
 }
 
-func (r ConfigureApiCreateNetworkAppliancePrefixesDelegatedStaticRequest) CreateNetworkAppliancePrefixesDelegatedStatic(createNetworkAppliancePrefixesDelegatedStatic InlineObject42) ConfigureApiCreateNetworkAppliancePrefixesDelegatedStaticRequest {
-	r.createNetworkAppliancePrefixesDelegatedStatic = &createNetworkAppliancePrefixesDelegatedStatic
+func (r ConfigureApiCreateNetworkAppliancePrefixesDelegatedStaticRequest) CreateNetworkAppliancePrefixesDelegatedStaticRequest(createNetworkAppliancePrefixesDelegatedStaticRequest CreateNetworkAppliancePrefixesDelegatedStaticRequest) ConfigureApiCreateNetworkAppliancePrefixesDelegatedStaticRequest {
+	r.createNetworkAppliancePrefixesDelegatedStaticRequest = &createNetworkAppliancePrefixesDelegatedStaticRequest
 	return r
 }
 
@@ -1712,8 +1713,8 @@ func (a *ConfigureApiService) CreateNetworkAppliancePrefixesDelegatedStaticExecu
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkAppliancePrefixesDelegatedStatic == nil {
-		return localVarReturnValue, nil, reportError("createNetworkAppliancePrefixesDelegatedStatic is required and must be specified")
+	if r.createNetworkAppliancePrefixesDelegatedStaticRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkAppliancePrefixesDelegatedStaticRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1734,7 +1735,7 @@ func (a *ConfigureApiService) CreateNetworkAppliancePrefixesDelegatedStaticExecu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkAppliancePrefixesDelegatedStatic
+	localVarPostBody = r.createNetworkAppliancePrefixesDelegatedStaticRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1790,15 +1791,15 @@ type ConfigureApiCreateNetworkApplianceRfProfileRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkApplianceRfProfile *InlineObject44
+	createNetworkApplianceRfProfileRequest *CreateNetworkApplianceRfProfileRequest
 }
 
-func (r ConfigureApiCreateNetworkApplianceRfProfileRequest) CreateNetworkApplianceRfProfile(createNetworkApplianceRfProfile InlineObject44) ConfigureApiCreateNetworkApplianceRfProfileRequest {
-	r.createNetworkApplianceRfProfile = &createNetworkApplianceRfProfile
+func (r ConfigureApiCreateNetworkApplianceRfProfileRequest) CreateNetworkApplianceRfProfileRequest(createNetworkApplianceRfProfileRequest CreateNetworkApplianceRfProfileRequest) ConfigureApiCreateNetworkApplianceRfProfileRequest {
+	r.createNetworkApplianceRfProfileRequest = &createNetworkApplianceRfProfileRequest
 	return r
 }
 
-func (r ConfigureApiCreateNetworkApplianceRfProfileRequest) Execute() (*InlineResponse20017Assigned, *http.Response, error) {
+func (r ConfigureApiCreateNetworkApplianceRfProfileRequest) Execute() (*GetNetworkApplianceRfProfiles200ResponseAssignedInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkApplianceRfProfileExecute(r)
 }
 
@@ -1820,13 +1821,13 @@ func (a *ConfigureApiService) CreateNetworkApplianceRfProfile(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20017Assigned
-func (a *ConfigureApiService) CreateNetworkApplianceRfProfileExecute(r ConfigureApiCreateNetworkApplianceRfProfileRequest) (*InlineResponse20017Assigned, *http.Response, error) {
+//  @return GetNetworkApplianceRfProfiles200ResponseAssignedInner
+func (a *ConfigureApiService) CreateNetworkApplianceRfProfileExecute(r ConfigureApiCreateNetworkApplianceRfProfileRequest) (*GetNetworkApplianceRfProfiles200ResponseAssignedInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20017Assigned
+		localVarReturnValue  *GetNetworkApplianceRfProfiles200ResponseAssignedInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateNetworkApplianceRfProfile")
@@ -1840,8 +1841,8 @@ func (a *ConfigureApiService) CreateNetworkApplianceRfProfileExecute(r Configure
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkApplianceRfProfile == nil {
-		return localVarReturnValue, nil, reportError("createNetworkApplianceRfProfile is required and must be specified")
+	if r.createNetworkApplianceRfProfileRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkApplianceRfProfileRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1862,7 +1863,7 @@ func (a *ConfigureApiService) CreateNetworkApplianceRfProfileExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkApplianceRfProfile
+	localVarPostBody = r.createNetworkApplianceRfProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1918,11 +1919,11 @@ type ConfigureApiCreateNetworkApplianceStaticRouteRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkApplianceStaticRoute *InlineObject51
+	createNetworkApplianceStaticRouteRequest *CreateNetworkApplianceStaticRouteRequest
 }
 
-func (r ConfigureApiCreateNetworkApplianceStaticRouteRequest) CreateNetworkApplianceStaticRoute(createNetworkApplianceStaticRoute InlineObject51) ConfigureApiCreateNetworkApplianceStaticRouteRequest {
-	r.createNetworkApplianceStaticRoute = &createNetworkApplianceStaticRoute
+func (r ConfigureApiCreateNetworkApplianceStaticRouteRequest) CreateNetworkApplianceStaticRouteRequest(createNetworkApplianceStaticRouteRequest CreateNetworkApplianceStaticRouteRequest) ConfigureApiCreateNetworkApplianceStaticRouteRequest {
+	r.createNetworkApplianceStaticRouteRequest = &createNetworkApplianceStaticRouteRequest
 	return r
 }
 
@@ -1968,8 +1969,8 @@ func (a *ConfigureApiService) CreateNetworkApplianceStaticRouteExecute(r Configu
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkApplianceStaticRoute == nil {
-		return localVarReturnValue, nil, reportError("createNetworkApplianceStaticRoute is required and must be specified")
+	if r.createNetworkApplianceStaticRouteRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkApplianceStaticRouteRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1990,7 +1991,7 @@ func (a *ConfigureApiService) CreateNetworkApplianceStaticRouteExecute(r Configu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkApplianceStaticRoute
+	localVarPostBody = r.createNetworkApplianceStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2046,11 +2047,11 @@ type ConfigureApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassReque
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkApplianceTrafficShapingCustomPerformanceClass *InlineObject54
+	createNetworkApplianceTrafficShapingCustomPerformanceClassRequest *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 }
 
-func (r ConfigureApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) CreateNetworkApplianceTrafficShapingCustomPerformanceClass(createNetworkApplianceTrafficShapingCustomPerformanceClass InlineObject54) ConfigureApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest {
-	r.createNetworkApplianceTrafficShapingCustomPerformanceClass = &createNetworkApplianceTrafficShapingCustomPerformanceClass
+func (r ConfigureApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest(createNetworkApplianceTrafficShapingCustomPerformanceClassRequest CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) ConfigureApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest {
+	r.createNetworkApplianceTrafficShapingCustomPerformanceClassRequest = &createNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 	return r
 }
 
@@ -2096,8 +2097,8 @@ func (a *ConfigureApiService) CreateNetworkApplianceTrafficShapingCustomPerforma
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkApplianceTrafficShapingCustomPerformanceClass == nil {
-		return localVarReturnValue, nil, reportError("createNetworkApplianceTrafficShapingCustomPerformanceClass is required and must be specified")
+	if r.createNetworkApplianceTrafficShapingCustomPerformanceClassRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkApplianceTrafficShapingCustomPerformanceClassRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2118,7 +2119,7 @@ func (a *ConfigureApiService) CreateNetworkApplianceTrafficShapingCustomPerforma
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkApplianceTrafficShapingCustomPerformanceClass
+	localVarPostBody = r.createNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2174,15 +2175,15 @@ type ConfigureApiCreateNetworkApplianceVlanRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkApplianceVlan *InlineObject59
+	createNetworkApplianceVlanRequest *CreateNetworkApplianceVlanRequest
 }
 
-func (r ConfigureApiCreateNetworkApplianceVlanRequest) CreateNetworkApplianceVlan(createNetworkApplianceVlan InlineObject59) ConfigureApiCreateNetworkApplianceVlanRequest {
-	r.createNetworkApplianceVlan = &createNetworkApplianceVlan
+func (r ConfigureApiCreateNetworkApplianceVlanRequest) CreateNetworkApplianceVlanRequest(createNetworkApplianceVlanRequest CreateNetworkApplianceVlanRequest) ConfigureApiCreateNetworkApplianceVlanRequest {
+	r.createNetworkApplianceVlanRequest = &createNetworkApplianceVlanRequest
 	return r
 }
 
-func (r ConfigureApiCreateNetworkApplianceVlanRequest) Execute() (*InlineResponse2012, *http.Response, error) {
+func (r ConfigureApiCreateNetworkApplianceVlanRequest) Execute() (*CreateNetworkApplianceVlan201Response, *http.Response, error) {
 	return r.ApiService.CreateNetworkApplianceVlanExecute(r)
 }
 
@@ -2204,13 +2205,13 @@ func (a *ConfigureApiService) CreateNetworkApplianceVlan(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return InlineResponse2012
-func (a *ConfigureApiService) CreateNetworkApplianceVlanExecute(r ConfigureApiCreateNetworkApplianceVlanRequest) (*InlineResponse2012, *http.Response, error) {
+//  @return CreateNetworkApplianceVlan201Response
+func (a *ConfigureApiService) CreateNetworkApplianceVlanExecute(r ConfigureApiCreateNetworkApplianceVlanRequest) (*CreateNetworkApplianceVlan201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2012
+		localVarReturnValue  *CreateNetworkApplianceVlan201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateNetworkApplianceVlan")
@@ -2224,8 +2225,8 @@ func (a *ConfigureApiService) CreateNetworkApplianceVlanExecute(r ConfigureApiCr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkApplianceVlan == nil {
-		return localVarReturnValue, nil, reportError("createNetworkApplianceVlan is required and must be specified")
+	if r.createNetworkApplianceVlanRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkApplianceVlanRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2246,7 +2247,7 @@ func (a *ConfigureApiService) CreateNetworkApplianceVlanExecute(r ConfigureApiCr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkApplianceVlan
+	localVarPostBody = r.createNetworkApplianceVlanRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2302,11 +2303,11 @@ type ConfigureApiCreateNetworkCameraQualityRetentionProfileRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkCameraQualityRetentionProfile *InlineObject66
+	createNetworkCameraQualityRetentionProfileRequest *CreateNetworkCameraQualityRetentionProfileRequest
 }
 
-func (r ConfigureApiCreateNetworkCameraQualityRetentionProfileRequest) CreateNetworkCameraQualityRetentionProfile(createNetworkCameraQualityRetentionProfile InlineObject66) ConfigureApiCreateNetworkCameraQualityRetentionProfileRequest {
-	r.createNetworkCameraQualityRetentionProfile = &createNetworkCameraQualityRetentionProfile
+func (r ConfigureApiCreateNetworkCameraQualityRetentionProfileRequest) CreateNetworkCameraQualityRetentionProfileRequest(createNetworkCameraQualityRetentionProfileRequest CreateNetworkCameraQualityRetentionProfileRequest) ConfigureApiCreateNetworkCameraQualityRetentionProfileRequest {
+	r.createNetworkCameraQualityRetentionProfileRequest = &createNetworkCameraQualityRetentionProfileRequest
 	return r
 }
 
@@ -2352,8 +2353,8 @@ func (a *ConfigureApiService) CreateNetworkCameraQualityRetentionProfileExecute(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkCameraQualityRetentionProfile == nil {
-		return localVarReturnValue, nil, reportError("createNetworkCameraQualityRetentionProfile is required and must be specified")
+	if r.createNetworkCameraQualityRetentionProfileRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkCameraQualityRetentionProfileRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2374,7 +2375,7 @@ func (a *ConfigureApiService) CreateNetworkCameraQualityRetentionProfileExecute(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkCameraQualityRetentionProfile
+	localVarPostBody = r.createNetworkCameraQualityRetentionProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2430,11 +2431,11 @@ type ConfigureApiCreateNetworkCameraWirelessProfileRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkCameraWirelessProfile *InlineObject68
+	createNetworkCameraWirelessProfileRequest *CreateNetworkCameraWirelessProfileRequest
 }
 
-func (r ConfigureApiCreateNetworkCameraWirelessProfileRequest) CreateNetworkCameraWirelessProfile(createNetworkCameraWirelessProfile InlineObject68) ConfigureApiCreateNetworkCameraWirelessProfileRequest {
-	r.createNetworkCameraWirelessProfile = &createNetworkCameraWirelessProfile
+func (r ConfigureApiCreateNetworkCameraWirelessProfileRequest) CreateNetworkCameraWirelessProfileRequest(createNetworkCameraWirelessProfileRequest CreateNetworkCameraWirelessProfileRequest) ConfigureApiCreateNetworkCameraWirelessProfileRequest {
+	r.createNetworkCameraWirelessProfileRequest = &createNetworkCameraWirelessProfileRequest
 	return r
 }
 
@@ -2480,8 +2481,8 @@ func (a *ConfigureApiService) CreateNetworkCameraWirelessProfileExecute(r Config
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkCameraWirelessProfile == nil {
-		return localVarReturnValue, nil, reportError("createNetworkCameraWirelessProfile is required and must be specified")
+	if r.createNetworkCameraWirelessProfileRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkCameraWirelessProfileRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2502,7 +2503,7 @@ func (a *ConfigureApiService) CreateNetworkCameraWirelessProfileExecute(r Config
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkCameraWirelessProfile
+	localVarPostBody = r.createNetworkCameraWirelessProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2558,15 +2559,15 @@ type ConfigureApiCreateNetworkFirmwareUpgradesRollbackRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkFirmwareUpgradesRollback *InlineObject81
+	createNetworkFirmwareUpgradesRollbackRequest *CreateNetworkFirmwareUpgradesRollbackRequest
 }
 
-func (r ConfigureApiCreateNetworkFirmwareUpgradesRollbackRequest) CreateNetworkFirmwareUpgradesRollback(createNetworkFirmwareUpgradesRollback InlineObject81) ConfigureApiCreateNetworkFirmwareUpgradesRollbackRequest {
-	r.createNetworkFirmwareUpgradesRollback = &createNetworkFirmwareUpgradesRollback
+func (r ConfigureApiCreateNetworkFirmwareUpgradesRollbackRequest) CreateNetworkFirmwareUpgradesRollbackRequest(createNetworkFirmwareUpgradesRollbackRequest CreateNetworkFirmwareUpgradesRollbackRequest) ConfigureApiCreateNetworkFirmwareUpgradesRollbackRequest {
+	r.createNetworkFirmwareUpgradesRollbackRequest = &createNetworkFirmwareUpgradesRollbackRequest
 	return r
 }
 
-func (r ConfigureApiCreateNetworkFirmwareUpgradesRollbackRequest) Execute() (*InlineResponse20031, *http.Response, error) {
+func (r ConfigureApiCreateNetworkFirmwareUpgradesRollbackRequest) Execute() (*CreateNetworkFirmwareUpgradesRollback200Response, *http.Response, error) {
 	return r.ApiService.CreateNetworkFirmwareUpgradesRollbackExecute(r)
 }
 
@@ -2588,13 +2589,13 @@ func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesRollback(ctx context.
 }
 
 // Execute executes the request
-//  @return InlineResponse20031
-func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesRollbackExecute(r ConfigureApiCreateNetworkFirmwareUpgradesRollbackRequest) (*InlineResponse20031, *http.Response, error) {
+//  @return CreateNetworkFirmwareUpgradesRollback200Response
+func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesRollbackExecute(r ConfigureApiCreateNetworkFirmwareUpgradesRollbackRequest) (*CreateNetworkFirmwareUpgradesRollback200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20031
+		localVarReturnValue  *CreateNetworkFirmwareUpgradesRollback200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateNetworkFirmwareUpgradesRollback")
@@ -2608,8 +2609,8 @@ func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesRollbackExecute(r Con
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkFirmwareUpgradesRollback == nil {
-		return localVarReturnValue, nil, reportError("createNetworkFirmwareUpgradesRollback is required and must be specified")
+	if r.createNetworkFirmwareUpgradesRollbackRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkFirmwareUpgradesRollbackRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2630,7 +2631,7 @@ func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesRollbackExecute(r Con
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkFirmwareUpgradesRollback
+	localVarPostBody = r.createNetworkFirmwareUpgradesRollbackRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2686,15 +2687,15 @@ type ConfigureApiCreateNetworkFirmwareUpgradesStagedEventRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkFirmwareUpgradesStagedEvent *InlineObject83
+	createNetworkFirmwareUpgradesStagedEventRequest *CreateNetworkFirmwareUpgradesStagedEventRequest
 }
 
-func (r ConfigureApiCreateNetworkFirmwareUpgradesStagedEventRequest) CreateNetworkFirmwareUpgradesStagedEvent(createNetworkFirmwareUpgradesStagedEvent InlineObject83) ConfigureApiCreateNetworkFirmwareUpgradesStagedEventRequest {
-	r.createNetworkFirmwareUpgradesStagedEvent = &createNetworkFirmwareUpgradesStagedEvent
+func (r ConfigureApiCreateNetworkFirmwareUpgradesStagedEventRequest) CreateNetworkFirmwareUpgradesStagedEventRequest(createNetworkFirmwareUpgradesStagedEventRequest CreateNetworkFirmwareUpgradesStagedEventRequest) ConfigureApiCreateNetworkFirmwareUpgradesStagedEventRequest {
+	r.createNetworkFirmwareUpgradesStagedEventRequest = &createNetworkFirmwareUpgradesStagedEventRequest
 	return r
 }
 
-func (r ConfigureApiCreateNetworkFirmwareUpgradesStagedEventRequest) Execute() (*InlineResponse20032, *http.Response, error) {
+func (r ConfigureApiCreateNetworkFirmwareUpgradesStagedEventRequest) Execute() (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	return r.ApiService.CreateNetworkFirmwareUpgradesStagedEventExecute(r)
 }
 
@@ -2716,13 +2717,13 @@ func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesStagedEvent(ctx conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20032
-func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesStagedEventExecute(r ConfigureApiCreateNetworkFirmwareUpgradesStagedEventRequest) (*InlineResponse20032, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgradesStagedEvents200Response
+func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesStagedEventExecute(r ConfigureApiCreateNetworkFirmwareUpgradesStagedEventRequest) (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20032
+		localVarReturnValue  *GetNetworkFirmwareUpgradesStagedEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateNetworkFirmwareUpgradesStagedEvent")
@@ -2736,8 +2737,8 @@ func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesStagedEventExecute(r 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkFirmwareUpgradesStagedEvent == nil {
-		return localVarReturnValue, nil, reportError("createNetworkFirmwareUpgradesStagedEvent is required and must be specified")
+	if r.createNetworkFirmwareUpgradesStagedEventRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkFirmwareUpgradesStagedEventRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2758,7 +2759,7 @@ func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesStagedEventExecute(r 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkFirmwareUpgradesStagedEvent
+	localVarPostBody = r.createNetworkFirmwareUpgradesStagedEventRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2814,11 +2815,11 @@ type ConfigureApiCreateNetworkFirmwareUpgradesStagedGroupRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkFirmwareUpgradesStagedGroup *InlineObject85
+	createNetworkFirmwareUpgradesStagedGroupRequest *CreateNetworkFirmwareUpgradesStagedGroupRequest
 }
 
-func (r ConfigureApiCreateNetworkFirmwareUpgradesStagedGroupRequest) CreateNetworkFirmwareUpgradesStagedGroup(createNetworkFirmwareUpgradesStagedGroup InlineObject85) ConfigureApiCreateNetworkFirmwareUpgradesStagedGroupRequest {
-	r.createNetworkFirmwareUpgradesStagedGroup = &createNetworkFirmwareUpgradesStagedGroup
+func (r ConfigureApiCreateNetworkFirmwareUpgradesStagedGroupRequest) CreateNetworkFirmwareUpgradesStagedGroupRequest(createNetworkFirmwareUpgradesStagedGroupRequest CreateNetworkFirmwareUpgradesStagedGroupRequest) ConfigureApiCreateNetworkFirmwareUpgradesStagedGroupRequest {
+	r.createNetworkFirmwareUpgradesStagedGroupRequest = &createNetworkFirmwareUpgradesStagedGroupRequest
 	return r
 }
 
@@ -2864,8 +2865,8 @@ func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesStagedGroupExecute(r 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkFirmwareUpgradesStagedGroup == nil {
-		return localVarReturnValue, nil, reportError("createNetworkFirmwareUpgradesStagedGroup is required and must be specified")
+	if r.createNetworkFirmwareUpgradesStagedGroupRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkFirmwareUpgradesStagedGroupRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2886,7 +2887,7 @@ func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesStagedGroupExecute(r 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkFirmwareUpgradesStagedGroup
+	localVarPostBody = r.createNetworkFirmwareUpgradesStagedGroupRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2942,11 +2943,11 @@ type ConfigureApiCreateNetworkFloorPlanRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkFloorPlan *InlineObject88
+	createNetworkFloorPlanRequest *CreateNetworkFloorPlanRequest
 }
 
-func (r ConfigureApiCreateNetworkFloorPlanRequest) CreateNetworkFloorPlan(createNetworkFloorPlan InlineObject88) ConfigureApiCreateNetworkFloorPlanRequest {
-	r.createNetworkFloorPlan = &createNetworkFloorPlan
+func (r ConfigureApiCreateNetworkFloorPlanRequest) CreateNetworkFloorPlanRequest(createNetworkFloorPlanRequest CreateNetworkFloorPlanRequest) ConfigureApiCreateNetworkFloorPlanRequest {
+	r.createNetworkFloorPlanRequest = &createNetworkFloorPlanRequest
 	return r
 }
 
@@ -2992,8 +2993,8 @@ func (a *ConfigureApiService) CreateNetworkFloorPlanExecute(r ConfigureApiCreate
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkFloorPlan == nil {
-		return localVarReturnValue, nil, reportError("createNetworkFloorPlan is required and must be specified")
+	if r.createNetworkFloorPlanRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkFloorPlanRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -3014,7 +3015,7 @@ func (a *ConfigureApiService) CreateNetworkFloorPlanExecute(r ConfigureApiCreate
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkFloorPlan
+	localVarPostBody = r.createNetworkFloorPlanRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3070,11 +3071,11 @@ type ConfigureApiCreateNetworkGroupPolicyRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkGroupPolicy *InlineObject90
+	createNetworkGroupPolicyRequest *CreateNetworkGroupPolicyRequest
 }
 
-func (r ConfigureApiCreateNetworkGroupPolicyRequest) CreateNetworkGroupPolicy(createNetworkGroupPolicy InlineObject90) ConfigureApiCreateNetworkGroupPolicyRequest {
-	r.createNetworkGroupPolicy = &createNetworkGroupPolicy
+func (r ConfigureApiCreateNetworkGroupPolicyRequest) CreateNetworkGroupPolicyRequest(createNetworkGroupPolicyRequest CreateNetworkGroupPolicyRequest) ConfigureApiCreateNetworkGroupPolicyRequest {
+	r.createNetworkGroupPolicyRequest = &createNetworkGroupPolicyRequest
 	return r
 }
 
@@ -3120,8 +3121,8 @@ func (a *ConfigureApiService) CreateNetworkGroupPolicyExecute(r ConfigureApiCrea
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkGroupPolicy == nil {
-		return localVarReturnValue, nil, reportError("createNetworkGroupPolicy is required and must be specified")
+	if r.createNetworkGroupPolicyRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkGroupPolicyRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -3142,7 +3143,7 @@ func (a *ConfigureApiService) CreateNetworkGroupPolicyExecute(r ConfigureApiCrea
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkGroupPolicy
+	localVarPostBody = r.createNetworkGroupPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3198,15 +3199,15 @@ type ConfigureApiCreateNetworkMerakiAuthUserRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkMerakiAuthUser *InlineObject92
+	createNetworkMerakiAuthUserRequest *CreateNetworkMerakiAuthUserRequest
 }
 
-func (r ConfigureApiCreateNetworkMerakiAuthUserRequest) CreateNetworkMerakiAuthUser(createNetworkMerakiAuthUser InlineObject92) ConfigureApiCreateNetworkMerakiAuthUserRequest {
-	r.createNetworkMerakiAuthUser = &createNetworkMerakiAuthUser
+func (r ConfigureApiCreateNetworkMerakiAuthUserRequest) CreateNetworkMerakiAuthUserRequest(createNetworkMerakiAuthUserRequest CreateNetworkMerakiAuthUserRequest) ConfigureApiCreateNetworkMerakiAuthUserRequest {
+	r.createNetworkMerakiAuthUserRequest = &createNetworkMerakiAuthUserRequest
 	return r
 }
 
-func (r ConfigureApiCreateNetworkMerakiAuthUserRequest) Execute() (*InlineResponse20037, *http.Response, error) {
+func (r ConfigureApiCreateNetworkMerakiAuthUserRequest) Execute() (*GetNetworkMerakiAuthUsers200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkMerakiAuthUserExecute(r)
 }
 
@@ -3228,13 +3229,13 @@ func (a *ConfigureApiService) CreateNetworkMerakiAuthUser(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return InlineResponse20037
-func (a *ConfigureApiService) CreateNetworkMerakiAuthUserExecute(r ConfigureApiCreateNetworkMerakiAuthUserRequest) (*InlineResponse20037, *http.Response, error) {
+//  @return GetNetworkMerakiAuthUsers200ResponseInner
+func (a *ConfigureApiService) CreateNetworkMerakiAuthUserExecute(r ConfigureApiCreateNetworkMerakiAuthUserRequest) (*GetNetworkMerakiAuthUsers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20037
+		localVarReturnValue  *GetNetworkMerakiAuthUsers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateNetworkMerakiAuthUser")
@@ -3248,8 +3249,8 @@ func (a *ConfigureApiService) CreateNetworkMerakiAuthUserExecute(r ConfigureApiC
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkMerakiAuthUser == nil {
-		return localVarReturnValue, nil, reportError("createNetworkMerakiAuthUser is required and must be specified")
+	if r.createNetworkMerakiAuthUserRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkMerakiAuthUserRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -3270,7 +3271,7 @@ func (a *ConfigureApiService) CreateNetworkMerakiAuthUserExecute(r ConfigureApiC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkMerakiAuthUser
+	localVarPostBody = r.createNetworkMerakiAuthUserRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3326,11 +3327,11 @@ type ConfigureApiCreateNetworkMqttBrokerRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkMqttBroker *InlineObject94
+	createNetworkMqttBrokerRequest *CreateNetworkMqttBrokerRequest
 }
 
-func (r ConfigureApiCreateNetworkMqttBrokerRequest) CreateNetworkMqttBroker(createNetworkMqttBroker InlineObject94) ConfigureApiCreateNetworkMqttBrokerRequest {
-	r.createNetworkMqttBroker = &createNetworkMqttBroker
+func (r ConfigureApiCreateNetworkMqttBrokerRequest) CreateNetworkMqttBrokerRequest(createNetworkMqttBrokerRequest CreateNetworkMqttBrokerRequest) ConfigureApiCreateNetworkMqttBrokerRequest {
+	r.createNetworkMqttBrokerRequest = &createNetworkMqttBrokerRequest
 	return r
 }
 
@@ -3376,8 +3377,8 @@ func (a *ConfigureApiService) CreateNetworkMqttBrokerExecute(r ConfigureApiCreat
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkMqttBroker == nil {
-		return localVarReturnValue, nil, reportError("createNetworkMqttBroker is required and must be specified")
+	if r.createNetworkMqttBrokerRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkMqttBrokerRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -3398,7 +3399,7 @@ func (a *ConfigureApiService) CreateNetworkMqttBrokerExecute(r ConfigureApiCreat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkMqttBroker
+	localVarPostBody = r.createNetworkMqttBrokerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3454,11 +3455,11 @@ type ConfigureApiCreateNetworkPiiRequestRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkPiiRequest *InlineObject97
+	createNetworkPiiRequestRequest *CreateNetworkPiiRequestRequest
 }
 
-func (r ConfigureApiCreateNetworkPiiRequestRequest) CreateNetworkPiiRequest(createNetworkPiiRequest InlineObject97) ConfigureApiCreateNetworkPiiRequestRequest {
-	r.createNetworkPiiRequest = &createNetworkPiiRequest
+func (r ConfigureApiCreateNetworkPiiRequestRequest) CreateNetworkPiiRequestRequest(createNetworkPiiRequestRequest CreateNetworkPiiRequestRequest) ConfigureApiCreateNetworkPiiRequestRequest {
+	r.createNetworkPiiRequestRequest = &createNetworkPiiRequestRequest
 	return r
 }
 
@@ -3529,7 +3530,7 @@ func (a *ConfigureApiService) CreateNetworkPiiRequestExecute(r ConfigureApiCreat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkPiiRequest
+	localVarPostBody = r.createNetworkPiiRequestRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3585,15 +3586,15 @@ type ConfigureApiCreateNetworkSensorAlertsProfileRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkSensorAlertsProfile *InlineObject98
+	createNetworkSensorAlertsProfileRequest *CreateNetworkSensorAlertsProfileRequest
 }
 
-func (r ConfigureApiCreateNetworkSensorAlertsProfileRequest) CreateNetworkSensorAlertsProfile(createNetworkSensorAlertsProfile InlineObject98) ConfigureApiCreateNetworkSensorAlertsProfileRequest {
-	r.createNetworkSensorAlertsProfile = &createNetworkSensorAlertsProfile
+func (r ConfigureApiCreateNetworkSensorAlertsProfileRequest) CreateNetworkSensorAlertsProfileRequest(createNetworkSensorAlertsProfileRequest CreateNetworkSensorAlertsProfileRequest) ConfigureApiCreateNetworkSensorAlertsProfileRequest {
+	r.createNetworkSensorAlertsProfileRequest = &createNetworkSensorAlertsProfileRequest
 	return r
 }
 
-func (r ConfigureApiCreateNetworkSensorAlertsProfileRequest) Execute() (*InlineResponse20041, *http.Response, error) {
+func (r ConfigureApiCreateNetworkSensorAlertsProfileRequest) Execute() (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkSensorAlertsProfileExecute(r)
 }
 
@@ -3615,13 +3616,13 @@ func (a *ConfigureApiService) CreateNetworkSensorAlertsProfile(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20041
-func (a *ConfigureApiService) CreateNetworkSensorAlertsProfileExecute(r ConfigureApiCreateNetworkSensorAlertsProfileRequest) (*InlineResponse20041, *http.Response, error) {
+//  @return GetNetworkSensorAlertsProfiles200ResponseInner
+func (a *ConfigureApiService) CreateNetworkSensorAlertsProfileExecute(r ConfigureApiCreateNetworkSensorAlertsProfileRequest) (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20041
+		localVarReturnValue  *GetNetworkSensorAlertsProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateNetworkSensorAlertsProfile")
@@ -3635,8 +3636,8 @@ func (a *ConfigureApiService) CreateNetworkSensorAlertsProfileExecute(r Configur
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSensorAlertsProfile == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSensorAlertsProfile is required and must be specified")
+	if r.createNetworkSensorAlertsProfileRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSensorAlertsProfileRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -3657,7 +3658,7 @@ func (a *ConfigureApiService) CreateNetworkSensorAlertsProfileExecute(r Configur
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSensorAlertsProfile
+	localVarPostBody = r.createNetworkSensorAlertsProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3713,11 +3714,11 @@ type ConfigureApiCreateNetworkSmBypassActivationLockAttemptRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkSmBypassActivationLockAttempt *InlineObject102
+	createNetworkSmBypassActivationLockAttemptRequest *CreateNetworkSmBypassActivationLockAttemptRequest
 }
 
-func (r ConfigureApiCreateNetworkSmBypassActivationLockAttemptRequest) CreateNetworkSmBypassActivationLockAttempt(createNetworkSmBypassActivationLockAttempt InlineObject102) ConfigureApiCreateNetworkSmBypassActivationLockAttemptRequest {
-	r.createNetworkSmBypassActivationLockAttempt = &createNetworkSmBypassActivationLockAttempt
+func (r ConfigureApiCreateNetworkSmBypassActivationLockAttemptRequest) CreateNetworkSmBypassActivationLockAttemptRequest(createNetworkSmBypassActivationLockAttemptRequest CreateNetworkSmBypassActivationLockAttemptRequest) ConfigureApiCreateNetworkSmBypassActivationLockAttemptRequest {
+	r.createNetworkSmBypassActivationLockAttemptRequest = &createNetworkSmBypassActivationLockAttemptRequest
 	return r
 }
 
@@ -3763,8 +3764,8 @@ func (a *ConfigureApiService) CreateNetworkSmBypassActivationLockAttemptExecute(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSmBypassActivationLockAttempt == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSmBypassActivationLockAttempt is required and must be specified")
+	if r.createNetworkSmBypassActivationLockAttemptRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSmBypassActivationLockAttemptRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -3785,7 +3786,7 @@ func (a *ConfigureApiService) CreateNetworkSmBypassActivationLockAttemptExecute(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSmBypassActivationLockAttempt
+	localVarPostBody = r.createNetworkSmBypassActivationLockAttemptRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3841,11 +3842,11 @@ type ConfigureApiCreateNetworkSmTargetGroupRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkSmTargetGroup *InlineObject109
+	createNetworkSmTargetGroupRequest *CreateNetworkSmTargetGroupRequest
 }
 
-func (r ConfigureApiCreateNetworkSmTargetGroupRequest) CreateNetworkSmTargetGroup(createNetworkSmTargetGroup InlineObject109) ConfigureApiCreateNetworkSmTargetGroupRequest {
-	r.createNetworkSmTargetGroup = &createNetworkSmTargetGroup
+func (r ConfigureApiCreateNetworkSmTargetGroupRequest) CreateNetworkSmTargetGroupRequest(createNetworkSmTargetGroupRequest CreateNetworkSmTargetGroupRequest) ConfigureApiCreateNetworkSmTargetGroupRequest {
+	r.createNetworkSmTargetGroupRequest = &createNetworkSmTargetGroupRequest
 	return r
 }
 
@@ -3910,7 +3911,7 @@ func (a *ConfigureApiService) CreateNetworkSmTargetGroupExecute(r ConfigureApiCr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSmTargetGroup
+	localVarPostBody = r.createNetworkSmTargetGroupRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3966,15 +3967,15 @@ type ConfigureApiCreateNetworkSwitchAccessPolicyRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkSwitchAccessPolicy *InlineObject113
+	createNetworkSwitchAccessPolicyRequest *CreateNetworkSwitchAccessPolicyRequest
 }
 
-func (r ConfigureApiCreateNetworkSwitchAccessPolicyRequest) CreateNetworkSwitchAccessPolicy(createNetworkSwitchAccessPolicy InlineObject113) ConfigureApiCreateNetworkSwitchAccessPolicyRequest {
-	r.createNetworkSwitchAccessPolicy = &createNetworkSwitchAccessPolicy
+func (r ConfigureApiCreateNetworkSwitchAccessPolicyRequest) CreateNetworkSwitchAccessPolicyRequest(createNetworkSwitchAccessPolicyRequest CreateNetworkSwitchAccessPolicyRequest) ConfigureApiCreateNetworkSwitchAccessPolicyRequest {
+	r.createNetworkSwitchAccessPolicyRequest = &createNetworkSwitchAccessPolicyRequest
 	return r
 }
 
-func (r ConfigureApiCreateNetworkSwitchAccessPolicyRequest) Execute() (*InlineResponse20068, *http.Response, error) {
+func (r ConfigureApiCreateNetworkSwitchAccessPolicyRequest) Execute() (*GetNetworkSwitchAccessPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkSwitchAccessPolicyExecute(r)
 }
 
@@ -3996,13 +3997,13 @@ func (a *ConfigureApiService) CreateNetworkSwitchAccessPolicy(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20068
-func (a *ConfigureApiService) CreateNetworkSwitchAccessPolicyExecute(r ConfigureApiCreateNetworkSwitchAccessPolicyRequest) (*InlineResponse20068, *http.Response, error) {
+//  @return GetNetworkSwitchAccessPolicies200ResponseInner
+func (a *ConfigureApiService) CreateNetworkSwitchAccessPolicyExecute(r ConfigureApiCreateNetworkSwitchAccessPolicyRequest) (*GetNetworkSwitchAccessPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20068
+		localVarReturnValue  *GetNetworkSwitchAccessPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateNetworkSwitchAccessPolicy")
@@ -4016,8 +4017,8 @@ func (a *ConfigureApiService) CreateNetworkSwitchAccessPolicyExecute(r Configure
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchAccessPolicy == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchAccessPolicy is required and must be specified")
+	if r.createNetworkSwitchAccessPolicyRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSwitchAccessPolicyRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -4038,7 +4039,7 @@ func (a *ConfigureApiService) CreateNetworkSwitchAccessPolicyExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchAccessPolicy
+	localVarPostBody = r.createNetworkSwitchAccessPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4094,15 +4095,15 @@ type ConfigureApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRe
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer *InlineObject117
+	createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest *CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest
 }
 
-func (r ConfigureApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer InlineObject117) ConfigureApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest {
-	r.createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer = &createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer
+func (r ConfigureApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest(createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) ConfigureApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest {
+	r.createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest = &createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest
 	return r
 }
 
-func (r ConfigureApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) Execute() (*InlineResponse20072, *http.Response, error) {
+func (r ConfigureApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) Execute() (*GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerExecute(r)
 }
 
@@ -4124,13 +4125,13 @@ func (a *ConfigureApiService) CreateNetworkSwitchDhcpServerPolicyArpInspectionTr
 }
 
 // Execute executes the request
-//  @return InlineResponse20072
-func (a *ConfigureApiService) CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerExecute(r ConfigureApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) (*InlineResponse20072, *http.Response, error) {
+//  @return GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner
+func (a *ConfigureApiService) CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerExecute(r ConfigureApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) (*GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20072
+		localVarReturnValue  *GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer")
@@ -4144,8 +4145,8 @@ func (a *ConfigureApiService) CreateNetworkSwitchDhcpServerPolicyArpInspectionTr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer is required and must be specified")
+	if r.createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -4166,7 +4167,7 @@ func (a *ConfigureApiService) CreateNetworkSwitchDhcpServerPolicyArpInspectionTr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer
+	localVarPostBody = r.createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4222,11 +4223,11 @@ type ConfigureApiCreateNetworkSwitchLinkAggregationRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkSwitchLinkAggregation *InlineObject120
+	createNetworkSwitchLinkAggregationRequest *CreateNetworkSwitchLinkAggregationRequest
 }
 
-func (r ConfigureApiCreateNetworkSwitchLinkAggregationRequest) CreateNetworkSwitchLinkAggregation(createNetworkSwitchLinkAggregation InlineObject120) ConfigureApiCreateNetworkSwitchLinkAggregationRequest {
-	r.createNetworkSwitchLinkAggregation = &createNetworkSwitchLinkAggregation
+func (r ConfigureApiCreateNetworkSwitchLinkAggregationRequest) CreateNetworkSwitchLinkAggregationRequest(createNetworkSwitchLinkAggregationRequest CreateNetworkSwitchLinkAggregationRequest) ConfigureApiCreateNetworkSwitchLinkAggregationRequest {
+	r.createNetworkSwitchLinkAggregationRequest = &createNetworkSwitchLinkAggregationRequest
 	return r
 }
 
@@ -4291,7 +4292,7 @@ func (a *ConfigureApiService) CreateNetworkSwitchLinkAggregationExecute(r Config
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchLinkAggregation
+	localVarPostBody = r.createNetworkSwitchLinkAggregationRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4347,11 +4348,11 @@ type ConfigureApiCreateNetworkSwitchPortScheduleRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkSwitchPortSchedule *InlineObject123
+	createNetworkSwitchPortScheduleRequest *CreateNetworkSwitchPortScheduleRequest
 }
 
-func (r ConfigureApiCreateNetworkSwitchPortScheduleRequest) CreateNetworkSwitchPortSchedule(createNetworkSwitchPortSchedule InlineObject123) ConfigureApiCreateNetworkSwitchPortScheduleRequest {
-	r.createNetworkSwitchPortSchedule = &createNetworkSwitchPortSchedule
+func (r ConfigureApiCreateNetworkSwitchPortScheduleRequest) CreateNetworkSwitchPortScheduleRequest(createNetworkSwitchPortScheduleRequest CreateNetworkSwitchPortScheduleRequest) ConfigureApiCreateNetworkSwitchPortScheduleRequest {
+	r.createNetworkSwitchPortScheduleRequest = &createNetworkSwitchPortScheduleRequest
 	return r
 }
 
@@ -4397,8 +4398,8 @@ func (a *ConfigureApiService) CreateNetworkSwitchPortScheduleExecute(r Configure
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchPortSchedule == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchPortSchedule is required and must be specified")
+	if r.createNetworkSwitchPortScheduleRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSwitchPortScheduleRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -4419,7 +4420,7 @@ func (a *ConfigureApiService) CreateNetworkSwitchPortScheduleExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchPortSchedule
+	localVarPostBody = r.createNetworkSwitchPortScheduleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4475,11 +4476,11 @@ type ConfigureApiCreateNetworkSwitchQosRuleRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkSwitchQosRule *InlineObject125
+	createNetworkSwitchQosRuleRequest *CreateNetworkSwitchQosRuleRequest
 }
 
-func (r ConfigureApiCreateNetworkSwitchQosRuleRequest) CreateNetworkSwitchQosRule(createNetworkSwitchQosRule InlineObject125) ConfigureApiCreateNetworkSwitchQosRuleRequest {
-	r.createNetworkSwitchQosRule = &createNetworkSwitchQosRule
+func (r ConfigureApiCreateNetworkSwitchQosRuleRequest) CreateNetworkSwitchQosRuleRequest(createNetworkSwitchQosRuleRequest CreateNetworkSwitchQosRuleRequest) ConfigureApiCreateNetworkSwitchQosRuleRequest {
+	r.createNetworkSwitchQosRuleRequest = &createNetworkSwitchQosRuleRequest
 	return r
 }
 
@@ -4525,8 +4526,8 @@ func (a *ConfigureApiService) CreateNetworkSwitchQosRuleExecute(r ConfigureApiCr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchQosRule == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchQosRule is required and must be specified")
+	if r.createNetworkSwitchQosRuleRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSwitchQosRuleRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -4547,7 +4548,7 @@ func (a *ConfigureApiService) CreateNetworkSwitchQosRuleExecute(r ConfigureApiCr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchQosRule
+	localVarPostBody = r.createNetworkSwitchQosRuleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4603,11 +4604,11 @@ type ConfigureApiCreateNetworkSwitchRoutingMulticastRendezvousPointRequest struc
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkSwitchRoutingMulticastRendezvousPoint *InlineObject129
+	createNetworkSwitchRoutingMulticastRendezvousPointRequest *CreateNetworkSwitchRoutingMulticastRendezvousPointRequest
 }
 
-func (r ConfigureApiCreateNetworkSwitchRoutingMulticastRendezvousPointRequest) CreateNetworkSwitchRoutingMulticastRendezvousPoint(createNetworkSwitchRoutingMulticastRendezvousPoint InlineObject129) ConfigureApiCreateNetworkSwitchRoutingMulticastRendezvousPointRequest {
-	r.createNetworkSwitchRoutingMulticastRendezvousPoint = &createNetworkSwitchRoutingMulticastRendezvousPoint
+func (r ConfigureApiCreateNetworkSwitchRoutingMulticastRendezvousPointRequest) CreateNetworkSwitchRoutingMulticastRendezvousPointRequest(createNetworkSwitchRoutingMulticastRendezvousPointRequest CreateNetworkSwitchRoutingMulticastRendezvousPointRequest) ConfigureApiCreateNetworkSwitchRoutingMulticastRendezvousPointRequest {
+	r.createNetworkSwitchRoutingMulticastRendezvousPointRequest = &createNetworkSwitchRoutingMulticastRendezvousPointRequest
 	return r
 }
 
@@ -4653,8 +4654,8 @@ func (a *ConfigureApiService) CreateNetworkSwitchRoutingMulticastRendezvousPoint
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchRoutingMulticastRendezvousPoint == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchRoutingMulticastRendezvousPoint is required and must be specified")
+	if r.createNetworkSwitchRoutingMulticastRendezvousPointRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSwitchRoutingMulticastRendezvousPointRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -4675,7 +4676,7 @@ func (a *ConfigureApiService) CreateNetworkSwitchRoutingMulticastRendezvousPoint
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchRoutingMulticastRendezvousPoint
+	localVarPostBody = r.createNetworkSwitchRoutingMulticastRendezvousPointRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4731,11 +4732,11 @@ type ConfigureApiCreateNetworkSwitchStackRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkSwitchStack *InlineObject133
+	createNetworkSwitchStackRequest *CreateNetworkSwitchStackRequest
 }
 
-func (r ConfigureApiCreateNetworkSwitchStackRequest) CreateNetworkSwitchStack(createNetworkSwitchStack InlineObject133) ConfigureApiCreateNetworkSwitchStackRequest {
-	r.createNetworkSwitchStack = &createNetworkSwitchStack
+func (r ConfigureApiCreateNetworkSwitchStackRequest) CreateNetworkSwitchStackRequest(createNetworkSwitchStackRequest CreateNetworkSwitchStackRequest) ConfigureApiCreateNetworkSwitchStackRequest {
+	r.createNetworkSwitchStackRequest = &createNetworkSwitchStackRequest
 	return r
 }
 
@@ -4781,8 +4782,8 @@ func (a *ConfigureApiService) CreateNetworkSwitchStackExecute(r ConfigureApiCrea
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchStack == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchStack is required and must be specified")
+	if r.createNetworkSwitchStackRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSwitchStackRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -4803,7 +4804,7 @@ func (a *ConfigureApiService) CreateNetworkSwitchStackExecute(r ConfigureApiCrea
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchStack
+	localVarPostBody = r.createNetworkSwitchStackRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4860,11 +4861,11 @@ type ConfigureApiCreateNetworkSwitchStackRoutingInterfaceRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	switchStackId string
-	createNetworkSwitchStackRoutingInterface *InlineObject136
+	createNetworkSwitchStackRoutingInterfaceRequest *CreateNetworkSwitchStackRoutingInterfaceRequest
 }
 
-func (r ConfigureApiCreateNetworkSwitchStackRoutingInterfaceRequest) CreateNetworkSwitchStackRoutingInterface(createNetworkSwitchStackRoutingInterface InlineObject136) ConfigureApiCreateNetworkSwitchStackRoutingInterfaceRequest {
-	r.createNetworkSwitchStackRoutingInterface = &createNetworkSwitchStackRoutingInterface
+func (r ConfigureApiCreateNetworkSwitchStackRoutingInterfaceRequest) CreateNetworkSwitchStackRoutingInterfaceRequest(createNetworkSwitchStackRoutingInterfaceRequest CreateNetworkSwitchStackRoutingInterfaceRequest) ConfigureApiCreateNetworkSwitchStackRoutingInterfaceRequest {
+	r.createNetworkSwitchStackRoutingInterfaceRequest = &createNetworkSwitchStackRoutingInterfaceRequest
 	return r
 }
 
@@ -4913,8 +4914,8 @@ func (a *ConfigureApiService) CreateNetworkSwitchStackRoutingInterfaceExecute(r 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchStackRoutingInterface == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchStackRoutingInterface is required and must be specified")
+	if r.createNetworkSwitchStackRoutingInterfaceRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSwitchStackRoutingInterfaceRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -4935,7 +4936,7 @@ func (a *ConfigureApiService) CreateNetworkSwitchStackRoutingInterfaceExecute(r 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchStackRoutingInterface
+	localVarPostBody = r.createNetworkSwitchStackRoutingInterfaceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4992,11 +4993,11 @@ type ConfigureApiCreateNetworkSwitchStackRoutingStaticRouteRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	switchStackId string
-	createNetworkSwitchStackRoutingStaticRoute *InlineObject139
+	createDeviceSwitchRoutingStaticRouteRequest *CreateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r ConfigureApiCreateNetworkSwitchStackRoutingStaticRouteRequest) CreateNetworkSwitchStackRoutingStaticRoute(createNetworkSwitchStackRoutingStaticRoute InlineObject139) ConfigureApiCreateNetworkSwitchStackRoutingStaticRouteRequest {
-	r.createNetworkSwitchStackRoutingStaticRoute = &createNetworkSwitchStackRoutingStaticRoute
+func (r ConfigureApiCreateNetworkSwitchStackRoutingStaticRouteRequest) CreateDeviceSwitchRoutingStaticRouteRequest(createDeviceSwitchRoutingStaticRouteRequest CreateDeviceSwitchRoutingStaticRouteRequest) ConfigureApiCreateNetworkSwitchStackRoutingStaticRouteRequest {
+	r.createDeviceSwitchRoutingStaticRouteRequest = &createDeviceSwitchRoutingStaticRouteRequest
 	return r
 }
 
@@ -5045,8 +5046,8 @@ func (a *ConfigureApiService) CreateNetworkSwitchStackRoutingStaticRouteExecute(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchStackRoutingStaticRoute == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchStackRoutingStaticRoute is required and must be specified")
+	if r.createDeviceSwitchRoutingStaticRouteRequest == nil {
+		return localVarReturnValue, nil, reportError("createDeviceSwitchRoutingStaticRouteRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -5067,7 +5068,7 @@ func (a *ConfigureApiService) CreateNetworkSwitchStackRoutingStaticRouteExecute(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchStackRoutingStaticRoute
+	localVarPostBody = r.createDeviceSwitchRoutingStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -5123,15 +5124,15 @@ type ConfigureApiCreateNetworkWebhooksHttpServerRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkWebhooksHttpServer *InlineObject146
+	createNetworkWebhooksHttpServerRequest *CreateNetworkWebhooksHttpServerRequest
 }
 
-func (r ConfigureApiCreateNetworkWebhooksHttpServerRequest) CreateNetworkWebhooksHttpServer(createNetworkWebhooksHttpServer InlineObject146) ConfigureApiCreateNetworkWebhooksHttpServerRequest {
-	r.createNetworkWebhooksHttpServer = &createNetworkWebhooksHttpServer
+func (r ConfigureApiCreateNetworkWebhooksHttpServerRequest) CreateNetworkWebhooksHttpServerRequest(createNetworkWebhooksHttpServerRequest CreateNetworkWebhooksHttpServerRequest) ConfigureApiCreateNetworkWebhooksHttpServerRequest {
+	r.createNetworkWebhooksHttpServerRequest = &createNetworkWebhooksHttpServerRequest
 	return r
 }
 
-func (r ConfigureApiCreateNetworkWebhooksHttpServerRequest) Execute() (*InlineResponse20083, *http.Response, error) {
+func (r ConfigureApiCreateNetworkWebhooksHttpServerRequest) Execute() (*GetNetworkWebhooksHttpServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkWebhooksHttpServerExecute(r)
 }
 
@@ -5153,13 +5154,13 @@ func (a *ConfigureApiService) CreateNetworkWebhooksHttpServer(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20083
-func (a *ConfigureApiService) CreateNetworkWebhooksHttpServerExecute(r ConfigureApiCreateNetworkWebhooksHttpServerRequest) (*InlineResponse20083, *http.Response, error) {
+//  @return GetNetworkWebhooksHttpServers200ResponseInner
+func (a *ConfigureApiService) CreateNetworkWebhooksHttpServerExecute(r ConfigureApiCreateNetworkWebhooksHttpServerRequest) (*GetNetworkWebhooksHttpServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20083
+		localVarReturnValue  *GetNetworkWebhooksHttpServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateNetworkWebhooksHttpServer")
@@ -5173,8 +5174,8 @@ func (a *ConfigureApiService) CreateNetworkWebhooksHttpServerExecute(r Configure
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkWebhooksHttpServer == nil {
-		return localVarReturnValue, nil, reportError("createNetworkWebhooksHttpServer is required and must be specified")
+	if r.createNetworkWebhooksHttpServerRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkWebhooksHttpServerRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -5195,7 +5196,7 @@ func (a *ConfigureApiService) CreateNetworkWebhooksHttpServerExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkWebhooksHttpServer
+	localVarPostBody = r.createNetworkWebhooksHttpServerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -5251,15 +5252,15 @@ type ConfigureApiCreateNetworkWebhooksPayloadTemplateRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkWebhooksPayloadTemplate *InlineObject148
+	createNetworkWebhooksPayloadTemplateRequest *CreateNetworkWebhooksPayloadTemplateRequest
 }
 
-func (r ConfigureApiCreateNetworkWebhooksPayloadTemplateRequest) CreateNetworkWebhooksPayloadTemplate(createNetworkWebhooksPayloadTemplate InlineObject148) ConfigureApiCreateNetworkWebhooksPayloadTemplateRequest {
-	r.createNetworkWebhooksPayloadTemplate = &createNetworkWebhooksPayloadTemplate
+func (r ConfigureApiCreateNetworkWebhooksPayloadTemplateRequest) CreateNetworkWebhooksPayloadTemplateRequest(createNetworkWebhooksPayloadTemplateRequest CreateNetworkWebhooksPayloadTemplateRequest) ConfigureApiCreateNetworkWebhooksPayloadTemplateRequest {
+	r.createNetworkWebhooksPayloadTemplateRequest = &createNetworkWebhooksPayloadTemplateRequest
 	return r
 }
 
-func (r ConfigureApiCreateNetworkWebhooksPayloadTemplateRequest) Execute() (*InlineResponse20084, *http.Response, error) {
+func (r ConfigureApiCreateNetworkWebhooksPayloadTemplateRequest) Execute() (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkWebhooksPayloadTemplateExecute(r)
 }
 
@@ -5281,13 +5282,13 @@ func (a *ConfigureApiService) CreateNetworkWebhooksPayloadTemplate(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse20084
-func (a *ConfigureApiService) CreateNetworkWebhooksPayloadTemplateExecute(r ConfigureApiCreateNetworkWebhooksPayloadTemplateRequest) (*InlineResponse20084, *http.Response, error) {
+//  @return GetNetworkWebhooksPayloadTemplates200ResponseInner
+func (a *ConfigureApiService) CreateNetworkWebhooksPayloadTemplateExecute(r ConfigureApiCreateNetworkWebhooksPayloadTemplateRequest) (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20084
+		localVarReturnValue  *GetNetworkWebhooksPayloadTemplates200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateNetworkWebhooksPayloadTemplate")
@@ -5301,8 +5302,8 @@ func (a *ConfigureApiService) CreateNetworkWebhooksPayloadTemplateExecute(r Conf
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkWebhooksPayloadTemplate == nil {
-		return localVarReturnValue, nil, reportError("createNetworkWebhooksPayloadTemplate is required and must be specified")
+	if r.createNetworkWebhooksPayloadTemplateRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkWebhooksPayloadTemplateRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -5323,7 +5324,7 @@ func (a *ConfigureApiService) CreateNetworkWebhooksPayloadTemplateExecute(r Conf
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkWebhooksPayloadTemplate
+	localVarPostBody = r.createNetworkWebhooksPayloadTemplateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -5379,15 +5380,15 @@ type ConfigureApiCreateNetworkWebhooksWebhookTestRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkWebhooksWebhookTest *InlineObject150
+	createNetworkWebhooksWebhookTestRequest *CreateNetworkWebhooksWebhookTestRequest
 }
 
-func (r ConfigureApiCreateNetworkWebhooksWebhookTestRequest) CreateNetworkWebhooksWebhookTest(createNetworkWebhooksWebhookTest InlineObject150) ConfigureApiCreateNetworkWebhooksWebhookTestRequest {
-	r.createNetworkWebhooksWebhookTest = &createNetworkWebhooksWebhookTest
+func (r ConfigureApiCreateNetworkWebhooksWebhookTestRequest) CreateNetworkWebhooksWebhookTestRequest(createNetworkWebhooksWebhookTestRequest CreateNetworkWebhooksWebhookTestRequest) ConfigureApiCreateNetworkWebhooksWebhookTestRequest {
+	r.createNetworkWebhooksWebhookTestRequest = &createNetworkWebhooksWebhookTestRequest
 	return r
 }
 
-func (r ConfigureApiCreateNetworkWebhooksWebhookTestRequest) Execute() (*InlineResponse2013, *http.Response, error) {
+func (r ConfigureApiCreateNetworkWebhooksWebhookTestRequest) Execute() (*CreateNetworkWebhooksWebhookTest201Response, *http.Response, error) {
 	return r.ApiService.CreateNetworkWebhooksWebhookTestExecute(r)
 }
 
@@ -5409,13 +5410,13 @@ func (a *ConfigureApiService) CreateNetworkWebhooksWebhookTest(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse2013
-func (a *ConfigureApiService) CreateNetworkWebhooksWebhookTestExecute(r ConfigureApiCreateNetworkWebhooksWebhookTestRequest) (*InlineResponse2013, *http.Response, error) {
+//  @return CreateNetworkWebhooksWebhookTest201Response
+func (a *ConfigureApiService) CreateNetworkWebhooksWebhookTestExecute(r ConfigureApiCreateNetworkWebhooksWebhookTestRequest) (*CreateNetworkWebhooksWebhookTest201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2013
+		localVarReturnValue  *CreateNetworkWebhooksWebhookTest201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateNetworkWebhooksWebhookTest")
@@ -5429,8 +5430,8 @@ func (a *ConfigureApiService) CreateNetworkWebhooksWebhookTestExecute(r Configur
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkWebhooksWebhookTest == nil {
-		return localVarReturnValue, nil, reportError("createNetworkWebhooksWebhookTest is required and must be specified")
+	if r.createNetworkWebhooksWebhookTestRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkWebhooksWebhookTestRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -5451,7 +5452,7 @@ func (a *ConfigureApiService) CreateNetworkWebhooksWebhookTestExecute(r Configur
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkWebhooksWebhookTest
+	localVarPostBody = r.createNetworkWebhooksWebhookTestRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -5507,15 +5508,15 @@ type ConfigureApiCreateNetworkWirelessRfProfileRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	createNetworkWirelessRfProfile *InlineObject154
+	createNetworkWirelessRfProfileRequest *CreateNetworkWirelessRfProfileRequest
 }
 
-func (r ConfigureApiCreateNetworkWirelessRfProfileRequest) CreateNetworkWirelessRfProfile(createNetworkWirelessRfProfile InlineObject154) ConfigureApiCreateNetworkWirelessRfProfileRequest {
-	r.createNetworkWirelessRfProfile = &createNetworkWirelessRfProfile
+func (r ConfigureApiCreateNetworkWirelessRfProfileRequest) CreateNetworkWirelessRfProfileRequest(createNetworkWirelessRfProfileRequest CreateNetworkWirelessRfProfileRequest) ConfigureApiCreateNetworkWirelessRfProfileRequest {
+	r.createNetworkWirelessRfProfileRequest = &createNetworkWirelessRfProfileRequest
 	return r
 }
 
-func (r ConfigureApiCreateNetworkWirelessRfProfileRequest) Execute() (*InlineResponse20092, *http.Response, error) {
+func (r ConfigureApiCreateNetworkWirelessRfProfileRequest) Execute() (*GetNetworkWirelessRfProfiles200Response, *http.Response, error) {
 	return r.ApiService.CreateNetworkWirelessRfProfileExecute(r)
 }
 
@@ -5537,13 +5538,13 @@ func (a *ConfigureApiService) CreateNetworkWirelessRfProfile(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse20092
-func (a *ConfigureApiService) CreateNetworkWirelessRfProfileExecute(r ConfigureApiCreateNetworkWirelessRfProfileRequest) (*InlineResponse20092, *http.Response, error) {
+//  @return GetNetworkWirelessRfProfiles200Response
+func (a *ConfigureApiService) CreateNetworkWirelessRfProfileExecute(r ConfigureApiCreateNetworkWirelessRfProfileRequest) (*GetNetworkWirelessRfProfiles200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20092
+		localVarReturnValue  *GetNetworkWirelessRfProfiles200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateNetworkWirelessRfProfile")
@@ -5557,8 +5558,8 @@ func (a *ConfigureApiService) CreateNetworkWirelessRfProfileExecute(r ConfigureA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkWirelessRfProfile == nil {
-		return localVarReturnValue, nil, reportError("createNetworkWirelessRfProfile is required and must be specified")
+	if r.createNetworkWirelessRfProfileRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkWirelessRfProfileRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -5579,7 +5580,7 @@ func (a *ConfigureApiService) CreateNetworkWirelessRfProfileExecute(r ConfigureA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkWirelessRfProfile
+	localVarPostBody = r.createNetworkWirelessRfProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -5636,11 +5637,11 @@ type ConfigureApiCreateNetworkWirelessSsidIdentityPskRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	number string
-	createNetworkWirelessSsidIdentityPsk *InlineObject164
+	createNetworkWirelessSsidIdentityPskRequest *CreateNetworkWirelessSsidIdentityPskRequest
 }
 
-func (r ConfigureApiCreateNetworkWirelessSsidIdentityPskRequest) CreateNetworkWirelessSsidIdentityPsk(createNetworkWirelessSsidIdentityPsk InlineObject164) ConfigureApiCreateNetworkWirelessSsidIdentityPskRequest {
-	r.createNetworkWirelessSsidIdentityPsk = &createNetworkWirelessSsidIdentityPsk
+func (r ConfigureApiCreateNetworkWirelessSsidIdentityPskRequest) CreateNetworkWirelessSsidIdentityPskRequest(createNetworkWirelessSsidIdentityPskRequest CreateNetworkWirelessSsidIdentityPskRequest) ConfigureApiCreateNetworkWirelessSsidIdentityPskRequest {
+	r.createNetworkWirelessSsidIdentityPskRequest = &createNetworkWirelessSsidIdentityPskRequest
 	return r
 }
 
@@ -5689,8 +5690,8 @@ func (a *ConfigureApiService) CreateNetworkWirelessSsidIdentityPskExecute(r Conf
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkWirelessSsidIdentityPsk == nil {
-		return localVarReturnValue, nil, reportError("createNetworkWirelessSsidIdentityPsk is required and must be specified")
+	if r.createNetworkWirelessSsidIdentityPskRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkWirelessSsidIdentityPskRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -5711,7 +5712,7 @@ func (a *ConfigureApiService) CreateNetworkWirelessSsidIdentityPskExecute(r Conf
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkWirelessSsidIdentityPsk
+	localVarPostBody = r.createNetworkWirelessSsidIdentityPskRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -5766,15 +5767,15 @@ func (a *ConfigureApiService) CreateNetworkWirelessSsidIdentityPskExecute(r Conf
 type ConfigureApiCreateOrganizationRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
-	createOrganization *InlineObject170
+	createOrganizationRequest *CreateOrganizationRequest
 }
 
-func (r ConfigureApiCreateOrganizationRequest) CreateOrganization(createOrganization InlineObject170) ConfigureApiCreateOrganizationRequest {
-	r.createOrganization = &createOrganization
+func (r ConfigureApiCreateOrganizationRequest) CreateOrganizationRequest(createOrganizationRequest CreateOrganizationRequest) ConfigureApiCreateOrganizationRequest {
+	r.createOrganizationRequest = &createOrganizationRequest
 	return r
 }
 
-func (r ConfigureApiCreateOrganizationRequest) Execute() (*InlineResponse20099, *http.Response, error) {
+func (r ConfigureApiCreateOrganizationRequest) Execute() (*GetOrganizations200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationExecute(r)
 }
 
@@ -5794,13 +5795,13 @@ func (a *ConfigureApiService) CreateOrganization(ctx context.Context) ConfigureA
 }
 
 // Execute executes the request
-//  @return InlineResponse20099
-func (a *ConfigureApiService) CreateOrganizationExecute(r ConfigureApiCreateOrganizationRequest) (*InlineResponse20099, *http.Response, error) {
+//  @return GetOrganizations200ResponseInner
+func (a *ConfigureApiService) CreateOrganizationExecute(r ConfigureApiCreateOrganizationRequest) (*GetOrganizations200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20099
+		localVarReturnValue  *GetOrganizations200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateOrganization")
@@ -5813,8 +5814,8 @@ func (a *ConfigureApiService) CreateOrganizationExecute(r ConfigureApiCreateOrga
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganization == nil {
-		return localVarReturnValue, nil, reportError("createOrganization is required and must be specified")
+	if r.createOrganizationRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -5835,7 +5836,7 @@ func (a *ConfigureApiService) CreateOrganizationExecute(r ConfigureApiCreateOrga
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganization
+	localVarPostBody = r.createOrganizationRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -5891,15 +5892,15 @@ type ConfigureApiCreateOrganizationActionBatchRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationActionBatch *InlineObject172
+	createOrganizationActionBatchRequest *CreateOrganizationActionBatchRequest
 }
 
-func (r ConfigureApiCreateOrganizationActionBatchRequest) CreateOrganizationActionBatch(createOrganizationActionBatch InlineObject172) ConfigureApiCreateOrganizationActionBatchRequest {
-	r.createOrganizationActionBatch = &createOrganizationActionBatch
+func (r ConfigureApiCreateOrganizationActionBatchRequest) CreateOrganizationActionBatchRequest(createOrganizationActionBatchRequest CreateOrganizationActionBatchRequest) ConfigureApiCreateOrganizationActionBatchRequest {
+	r.createOrganizationActionBatchRequest = &createOrganizationActionBatchRequest
 	return r
 }
 
-func (r ConfigureApiCreateOrganizationActionBatchRequest) Execute() (*InlineResponse2014, *http.Response, error) {
+func (r ConfigureApiCreateOrganizationActionBatchRequest) Execute() (*CreateOrganizationActionBatch201Response, *http.Response, error) {
 	return r.ApiService.CreateOrganizationActionBatchExecute(r)
 }
 
@@ -5921,13 +5922,13 @@ func (a *ConfigureApiService) CreateOrganizationActionBatch(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse2014
-func (a *ConfigureApiService) CreateOrganizationActionBatchExecute(r ConfigureApiCreateOrganizationActionBatchRequest) (*InlineResponse2014, *http.Response, error) {
+//  @return CreateOrganizationActionBatch201Response
+func (a *ConfigureApiService) CreateOrganizationActionBatchExecute(r ConfigureApiCreateOrganizationActionBatchRequest) (*CreateOrganizationActionBatch201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2014
+		localVarReturnValue  *CreateOrganizationActionBatch201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateOrganizationActionBatch")
@@ -5941,8 +5942,8 @@ func (a *ConfigureApiService) CreateOrganizationActionBatchExecute(r ConfigureAp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationActionBatch == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationActionBatch is required and must be specified")
+	if r.createOrganizationActionBatchRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationActionBatchRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -5963,7 +5964,7 @@ func (a *ConfigureApiService) CreateOrganizationActionBatchExecute(r ConfigureAp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationActionBatch
+	localVarPostBody = r.createOrganizationActionBatchRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -6019,15 +6020,15 @@ type ConfigureApiCreateOrganizationAdaptivePolicyAclRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationAdaptivePolicyAcl *InlineObject174
+	createOrganizationAdaptivePolicyAclRequest *CreateOrganizationAdaptivePolicyAclRequest
 }
 
-func (r ConfigureApiCreateOrganizationAdaptivePolicyAclRequest) CreateOrganizationAdaptivePolicyAcl(createOrganizationAdaptivePolicyAcl InlineObject174) ConfigureApiCreateOrganizationAdaptivePolicyAclRequest {
-	r.createOrganizationAdaptivePolicyAcl = &createOrganizationAdaptivePolicyAcl
+func (r ConfigureApiCreateOrganizationAdaptivePolicyAclRequest) CreateOrganizationAdaptivePolicyAclRequest(createOrganizationAdaptivePolicyAclRequest CreateOrganizationAdaptivePolicyAclRequest) ConfigureApiCreateOrganizationAdaptivePolicyAclRequest {
+	r.createOrganizationAdaptivePolicyAclRequest = &createOrganizationAdaptivePolicyAclRequest
 	return r
 }
 
-func (r ConfigureApiCreateOrganizationAdaptivePolicyAclRequest) Execute() (*InlineResponse200100, *http.Response, error) {
+func (r ConfigureApiCreateOrganizationAdaptivePolicyAclRequest) Execute() (*GetOrganizationAdaptivePolicyAcls200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationAdaptivePolicyAclExecute(r)
 }
 
@@ -6049,13 +6050,13 @@ func (a *ConfigureApiService) CreateOrganizationAdaptivePolicyAcl(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse200100
-func (a *ConfigureApiService) CreateOrganizationAdaptivePolicyAclExecute(r ConfigureApiCreateOrganizationAdaptivePolicyAclRequest) (*InlineResponse200100, *http.Response, error) {
+//  @return GetOrganizationAdaptivePolicyAcls200ResponseInner
+func (a *ConfigureApiService) CreateOrganizationAdaptivePolicyAclExecute(r ConfigureApiCreateOrganizationAdaptivePolicyAclRequest) (*GetOrganizationAdaptivePolicyAcls200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200100
+		localVarReturnValue  *GetOrganizationAdaptivePolicyAcls200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateOrganizationAdaptivePolicyAcl")
@@ -6069,8 +6070,8 @@ func (a *ConfigureApiService) CreateOrganizationAdaptivePolicyAclExecute(r Confi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationAdaptivePolicyAcl == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationAdaptivePolicyAcl is required and must be specified")
+	if r.createOrganizationAdaptivePolicyAclRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationAdaptivePolicyAclRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -6091,7 +6092,7 @@ func (a *ConfigureApiService) CreateOrganizationAdaptivePolicyAclExecute(r Confi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationAdaptivePolicyAcl
+	localVarPostBody = r.createOrganizationAdaptivePolicyAclRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -6147,11 +6148,11 @@ type ConfigureApiCreateOrganizationAdaptivePolicyGroupRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationAdaptivePolicyGroup *InlineObject176
+	createOrganizationAdaptivePolicyGroupRequest *CreateOrganizationAdaptivePolicyGroupRequest
 }
 
-func (r ConfigureApiCreateOrganizationAdaptivePolicyGroupRequest) CreateOrganizationAdaptivePolicyGroup(createOrganizationAdaptivePolicyGroup InlineObject176) ConfigureApiCreateOrganizationAdaptivePolicyGroupRequest {
-	r.createOrganizationAdaptivePolicyGroup = &createOrganizationAdaptivePolicyGroup
+func (r ConfigureApiCreateOrganizationAdaptivePolicyGroupRequest) CreateOrganizationAdaptivePolicyGroupRequest(createOrganizationAdaptivePolicyGroupRequest CreateOrganizationAdaptivePolicyGroupRequest) ConfigureApiCreateOrganizationAdaptivePolicyGroupRequest {
+	r.createOrganizationAdaptivePolicyGroupRequest = &createOrganizationAdaptivePolicyGroupRequest
 	return r
 }
 
@@ -6197,8 +6198,8 @@ func (a *ConfigureApiService) CreateOrganizationAdaptivePolicyGroupExecute(r Con
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationAdaptivePolicyGroup == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationAdaptivePolicyGroup is required and must be specified")
+	if r.createOrganizationAdaptivePolicyGroupRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationAdaptivePolicyGroupRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -6219,7 +6220,7 @@ func (a *ConfigureApiService) CreateOrganizationAdaptivePolicyGroupExecute(r Con
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationAdaptivePolicyGroup
+	localVarPostBody = r.createOrganizationAdaptivePolicyGroupRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -6275,11 +6276,11 @@ type ConfigureApiCreateOrganizationAdaptivePolicyPolicyRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationAdaptivePolicyPolicy *InlineObject178
+	createOrganizationAdaptivePolicyPolicyRequest *CreateOrganizationAdaptivePolicyPolicyRequest
 }
 
-func (r ConfigureApiCreateOrganizationAdaptivePolicyPolicyRequest) CreateOrganizationAdaptivePolicyPolicy(createOrganizationAdaptivePolicyPolicy InlineObject178) ConfigureApiCreateOrganizationAdaptivePolicyPolicyRequest {
-	r.createOrganizationAdaptivePolicyPolicy = &createOrganizationAdaptivePolicyPolicy
+func (r ConfigureApiCreateOrganizationAdaptivePolicyPolicyRequest) CreateOrganizationAdaptivePolicyPolicyRequest(createOrganizationAdaptivePolicyPolicyRequest CreateOrganizationAdaptivePolicyPolicyRequest) ConfigureApiCreateOrganizationAdaptivePolicyPolicyRequest {
+	r.createOrganizationAdaptivePolicyPolicyRequest = &createOrganizationAdaptivePolicyPolicyRequest
 	return r
 }
 
@@ -6325,8 +6326,8 @@ func (a *ConfigureApiService) CreateOrganizationAdaptivePolicyPolicyExecute(r Co
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationAdaptivePolicyPolicy == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationAdaptivePolicyPolicy is required and must be specified")
+	if r.createOrganizationAdaptivePolicyPolicyRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationAdaptivePolicyPolicyRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -6347,7 +6348,7 @@ func (a *ConfigureApiService) CreateOrganizationAdaptivePolicyPolicyExecute(r Co
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationAdaptivePolicyPolicy
+	localVarPostBody = r.createOrganizationAdaptivePolicyPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -6403,15 +6404,15 @@ type ConfigureApiCreateOrganizationAdminRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationAdmin *InlineObject181
+	createOrganizationAdminRequest *CreateOrganizationAdminRequest
 }
 
-func (r ConfigureApiCreateOrganizationAdminRequest) CreateOrganizationAdmin(createOrganizationAdmin InlineObject181) ConfigureApiCreateOrganizationAdminRequest {
-	r.createOrganizationAdmin = &createOrganizationAdmin
+func (r ConfigureApiCreateOrganizationAdminRequest) CreateOrganizationAdminRequest(createOrganizationAdminRequest CreateOrganizationAdminRequest) ConfigureApiCreateOrganizationAdminRequest {
+	r.createOrganizationAdminRequest = &createOrganizationAdminRequest
 	return r
 }
 
-func (r ConfigureApiCreateOrganizationAdminRequest) Execute() (*InlineResponse200102, *http.Response, error) {
+func (r ConfigureApiCreateOrganizationAdminRequest) Execute() (*GetOrganizationAdmins200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationAdminExecute(r)
 }
 
@@ -6433,13 +6434,13 @@ func (a *ConfigureApiService) CreateOrganizationAdmin(ctx context.Context, organ
 }
 
 // Execute executes the request
-//  @return InlineResponse200102
-func (a *ConfigureApiService) CreateOrganizationAdminExecute(r ConfigureApiCreateOrganizationAdminRequest) (*InlineResponse200102, *http.Response, error) {
+//  @return GetOrganizationAdmins200ResponseInner
+func (a *ConfigureApiService) CreateOrganizationAdminExecute(r ConfigureApiCreateOrganizationAdminRequest) (*GetOrganizationAdmins200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200102
+		localVarReturnValue  *GetOrganizationAdmins200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateOrganizationAdmin")
@@ -6453,8 +6454,8 @@ func (a *ConfigureApiService) CreateOrganizationAdminExecute(r ConfigureApiCreat
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationAdmin == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationAdmin is required and must be specified")
+	if r.createOrganizationAdminRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationAdminRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -6475,7 +6476,7 @@ func (a *ConfigureApiService) CreateOrganizationAdminExecute(r ConfigureApiCreat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationAdmin
+	localVarPostBody = r.createOrganizationAdminRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -6531,11 +6532,11 @@ type ConfigureApiCreateOrganizationAlertsProfileRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationAlertsProfile *InlineObject183
+	createOrganizationAlertsProfileRequest *CreateOrganizationAlertsProfileRequest
 }
 
-func (r ConfigureApiCreateOrganizationAlertsProfileRequest) CreateOrganizationAlertsProfile(createOrganizationAlertsProfile InlineObject183) ConfigureApiCreateOrganizationAlertsProfileRequest {
-	r.createOrganizationAlertsProfile = &createOrganizationAlertsProfile
+func (r ConfigureApiCreateOrganizationAlertsProfileRequest) CreateOrganizationAlertsProfileRequest(createOrganizationAlertsProfileRequest CreateOrganizationAlertsProfileRequest) ConfigureApiCreateOrganizationAlertsProfileRequest {
+	r.createOrganizationAlertsProfileRequest = &createOrganizationAlertsProfileRequest
 	return r
 }
 
@@ -6581,8 +6582,8 @@ func (a *ConfigureApiService) CreateOrganizationAlertsProfileExecute(r Configure
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationAlertsProfile == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationAlertsProfile is required and must be specified")
+	if r.createOrganizationAlertsProfileRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationAlertsProfileRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -6603,7 +6604,7 @@ func (a *ConfigureApiService) CreateOrganizationAlertsProfileExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationAlertsProfile
+	localVarPostBody = r.createOrganizationAlertsProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -6659,15 +6660,15 @@ type ConfigureApiCreateOrganizationBrandingPolicyRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationBrandingPolicy *InlineObject188
+	createOrganizationBrandingPolicyRequest *CreateOrganizationBrandingPolicyRequest
 }
 
-func (r ConfigureApiCreateOrganizationBrandingPolicyRequest) CreateOrganizationBrandingPolicy(createOrganizationBrandingPolicy InlineObject188) ConfigureApiCreateOrganizationBrandingPolicyRequest {
-	r.createOrganizationBrandingPolicy = &createOrganizationBrandingPolicy
+func (r ConfigureApiCreateOrganizationBrandingPolicyRequest) CreateOrganizationBrandingPolicyRequest(createOrganizationBrandingPolicyRequest CreateOrganizationBrandingPolicyRequest) ConfigureApiCreateOrganizationBrandingPolicyRequest {
+	r.createOrganizationBrandingPolicyRequest = &createOrganizationBrandingPolicyRequest
 	return r
 }
 
-func (r ConfigureApiCreateOrganizationBrandingPolicyRequest) Execute() (*InlineResponse2015, *http.Response, error) {
+func (r ConfigureApiCreateOrganizationBrandingPolicyRequest) Execute() (*CreateOrganizationBrandingPolicy201Response, *http.Response, error) {
 	return r.ApiService.CreateOrganizationBrandingPolicyExecute(r)
 }
 
@@ -6689,13 +6690,13 @@ func (a *ConfigureApiService) CreateOrganizationBrandingPolicy(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse2015
-func (a *ConfigureApiService) CreateOrganizationBrandingPolicyExecute(r ConfigureApiCreateOrganizationBrandingPolicyRequest) (*InlineResponse2015, *http.Response, error) {
+//  @return CreateOrganizationBrandingPolicy201Response
+func (a *ConfigureApiService) CreateOrganizationBrandingPolicyExecute(r ConfigureApiCreateOrganizationBrandingPolicyRequest) (*CreateOrganizationBrandingPolicy201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2015
+		localVarReturnValue  *CreateOrganizationBrandingPolicy201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateOrganizationBrandingPolicy")
@@ -6728,7 +6729,7 @@ func (a *ConfigureApiService) CreateOrganizationBrandingPolicyExecute(r Configur
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationBrandingPolicy
+	localVarPostBody = r.createOrganizationBrandingPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -6784,11 +6785,11 @@ type ConfigureApiCreateOrganizationCameraCustomAnalyticsArtifactRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationCameraCustomAnalyticsArtifact *InlineObject191
+	createOrganizationCameraCustomAnalyticsArtifactRequest *CreateOrganizationCameraCustomAnalyticsArtifactRequest
 }
 
-func (r ConfigureApiCreateOrganizationCameraCustomAnalyticsArtifactRequest) CreateOrganizationCameraCustomAnalyticsArtifact(createOrganizationCameraCustomAnalyticsArtifact InlineObject191) ConfigureApiCreateOrganizationCameraCustomAnalyticsArtifactRequest {
-	r.createOrganizationCameraCustomAnalyticsArtifact = &createOrganizationCameraCustomAnalyticsArtifact
+func (r ConfigureApiCreateOrganizationCameraCustomAnalyticsArtifactRequest) CreateOrganizationCameraCustomAnalyticsArtifactRequest(createOrganizationCameraCustomAnalyticsArtifactRequest CreateOrganizationCameraCustomAnalyticsArtifactRequest) ConfigureApiCreateOrganizationCameraCustomAnalyticsArtifactRequest {
+	r.createOrganizationCameraCustomAnalyticsArtifactRequest = &createOrganizationCameraCustomAnalyticsArtifactRequest
 	return r
 }
 
@@ -6853,7 +6854,7 @@ func (a *ConfigureApiService) CreateOrganizationCameraCustomAnalyticsArtifactExe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationCameraCustomAnalyticsArtifact
+	localVarPostBody = r.createOrganizationCameraCustomAnalyticsArtifactRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -6909,11 +6910,11 @@ type ConfigureApiCreateOrganizationConfigTemplateRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationConfigTemplate *InlineObject195
+	createOrganizationConfigTemplateRequest *CreateOrganizationConfigTemplateRequest
 }
 
-func (r ConfigureApiCreateOrganizationConfigTemplateRequest) CreateOrganizationConfigTemplate(createOrganizationConfigTemplate InlineObject195) ConfigureApiCreateOrganizationConfigTemplateRequest {
-	r.createOrganizationConfigTemplate = &createOrganizationConfigTemplate
+func (r ConfigureApiCreateOrganizationConfigTemplateRequest) CreateOrganizationConfigTemplateRequest(createOrganizationConfigTemplateRequest CreateOrganizationConfigTemplateRequest) ConfigureApiCreateOrganizationConfigTemplateRequest {
+	r.createOrganizationConfigTemplateRequest = &createOrganizationConfigTemplateRequest
 	return r
 }
 
@@ -6959,8 +6960,8 @@ func (a *ConfigureApiService) CreateOrganizationConfigTemplateExecute(r Configur
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationConfigTemplate == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationConfigTemplate is required and must be specified")
+	if r.createOrganizationConfigTemplateRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationConfigTemplateRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -6981,7 +6982,7 @@ func (a *ConfigureApiService) CreateOrganizationConfigTemplateExecute(r Configur
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationConfigTemplate
+	localVarPostBody = r.createOrganizationConfigTemplateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -7037,11 +7038,11 @@ type ConfigureApiCreateOrganizationEarlyAccessFeaturesOptInRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationEarlyAccessFeaturesOptIn *InlineObject198
+	createOrganizationEarlyAccessFeaturesOptInRequest *CreateOrganizationEarlyAccessFeaturesOptInRequest
 }
 
-func (r ConfigureApiCreateOrganizationEarlyAccessFeaturesOptInRequest) CreateOrganizationEarlyAccessFeaturesOptIn(createOrganizationEarlyAccessFeaturesOptIn InlineObject198) ConfigureApiCreateOrganizationEarlyAccessFeaturesOptInRequest {
-	r.createOrganizationEarlyAccessFeaturesOptIn = &createOrganizationEarlyAccessFeaturesOptIn
+func (r ConfigureApiCreateOrganizationEarlyAccessFeaturesOptInRequest) CreateOrganizationEarlyAccessFeaturesOptInRequest(createOrganizationEarlyAccessFeaturesOptInRequest CreateOrganizationEarlyAccessFeaturesOptInRequest) ConfigureApiCreateOrganizationEarlyAccessFeaturesOptInRequest {
+	r.createOrganizationEarlyAccessFeaturesOptInRequest = &createOrganizationEarlyAccessFeaturesOptInRequest
 	return r
 }
 
@@ -7087,8 +7088,8 @@ func (a *ConfigureApiService) CreateOrganizationEarlyAccessFeaturesOptInExecute(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationEarlyAccessFeaturesOptIn == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationEarlyAccessFeaturesOptIn is required and must be specified")
+	if r.createOrganizationEarlyAccessFeaturesOptInRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationEarlyAccessFeaturesOptInRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -7109,7 +7110,7 @@ func (a *ConfigureApiService) CreateOrganizationEarlyAccessFeaturesOptInExecute(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationEarlyAccessFeaturesOptIn
+	localVarPostBody = r.createOrganizationEarlyAccessFeaturesOptInRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -7165,11 +7166,11 @@ type ConfigureApiCreateOrganizationInsightMonitoredMediaServerRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationInsightMonitoredMediaServer *InlineObject200
+	createOrganizationInsightMonitoredMediaServerRequest *CreateOrganizationInsightMonitoredMediaServerRequest
 }
 
-func (r ConfigureApiCreateOrganizationInsightMonitoredMediaServerRequest) CreateOrganizationInsightMonitoredMediaServer(createOrganizationInsightMonitoredMediaServer InlineObject200) ConfigureApiCreateOrganizationInsightMonitoredMediaServerRequest {
-	r.createOrganizationInsightMonitoredMediaServer = &createOrganizationInsightMonitoredMediaServer
+func (r ConfigureApiCreateOrganizationInsightMonitoredMediaServerRequest) CreateOrganizationInsightMonitoredMediaServerRequest(createOrganizationInsightMonitoredMediaServerRequest CreateOrganizationInsightMonitoredMediaServerRequest) ConfigureApiCreateOrganizationInsightMonitoredMediaServerRequest {
+	r.createOrganizationInsightMonitoredMediaServerRequest = &createOrganizationInsightMonitoredMediaServerRequest
 	return r
 }
 
@@ -7215,8 +7216,8 @@ func (a *ConfigureApiService) CreateOrganizationInsightMonitoredMediaServerExecu
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationInsightMonitoredMediaServer == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationInsightMonitoredMediaServer is required and must be specified")
+	if r.createOrganizationInsightMonitoredMediaServerRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationInsightMonitoredMediaServerRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -7237,7 +7238,7 @@ func (a *ConfigureApiService) CreateOrganizationInsightMonitoredMediaServerExecu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationInsightMonitoredMediaServer
+	localVarPostBody = r.createOrganizationInsightMonitoredMediaServerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -7293,11 +7294,11 @@ type ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEvent
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringExportEvent *InlineObject203
+	createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest
 }
 
-func (r ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) CreateOrganizationInventoryOnboardingCloudMonitoringExportEvent(createOrganizationInventoryOnboardingCloudMonitoringExportEvent InlineObject203) ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest {
-	r.createOrganizationInventoryOnboardingCloudMonitoringExportEvent = &createOrganizationInventoryOnboardingCloudMonitoringExportEvent
+func (r ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest(createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest {
+	r.createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest = &createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest
 	return r
 }
 
@@ -7343,8 +7344,8 @@ func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationInventoryOnboardingCloudMonitoringExportEvent == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringExportEvent is required and must be specified")
+	if r.createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -7365,7 +7366,7 @@ func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringExportEvent
+	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -7421,15 +7422,15 @@ type ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringImportReque
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringImport *InlineObject204
+	createOrganizationInventoryOnboardingCloudMonitoringImportRequest *CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest
 }
 
-func (r ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) CreateOrganizationInventoryOnboardingCloudMonitoringImport(createOrganizationInventoryOnboardingCloudMonitoringImport InlineObject204) ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest {
-	r.createOrganizationInventoryOnboardingCloudMonitoringImport = &createOrganizationInventoryOnboardingCloudMonitoringImport
+func (r ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest(createOrganizationInventoryOnboardingCloudMonitoringImportRequest CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest {
+	r.createOrganizationInventoryOnboardingCloudMonitoringImportRequest = &createOrganizationInventoryOnboardingCloudMonitoringImportRequest
 	return r
 }
 
-func (r ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) Execute() ([]InlineResponse2016, *http.Response, error) {
+func (r ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) Execute() ([]CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r)
 }
 
@@ -7451,13 +7452,13 @@ func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 }
 
 // Execute executes the request
-//  @return []InlineResponse2016
-func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) ([]InlineResponse2016, *http.Response, error) {
+//  @return []CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner
+func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) ([]CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2016
+		localVarReturnValue  []CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateOrganizationInventoryOnboardingCloudMonitoringImport")
@@ -7471,8 +7472,8 @@ func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationInventoryOnboardingCloudMonitoringImport == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringImport is required and must be specified")
+	if r.createOrganizationInventoryOnboardingCloudMonitoringImportRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringImportRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -7493,7 +7494,7 @@ func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringImport
+	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringImportRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -7549,15 +7550,15 @@ type ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequ
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringPrepare *InlineObject205
+	createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest
 }
 
-func (r ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(createOrganizationInventoryOnboardingCloudMonitoringPrepare InlineObject205) ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest {
-	r.createOrganizationInventoryOnboardingCloudMonitoringPrepare = &createOrganizationInventoryOnboardingCloudMonitoringPrepare
+func (r ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest(createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest {
+	r.createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest = &createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest
 	return r
 }
 
-func (r ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) Execute() ([]InlineResponse2017, *http.Response, error) {
+func (r ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) Execute() ([]CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r)
 }
 
@@ -7579,13 +7580,13 @@ func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 }
 
 // Execute executes the request
-//  @return []InlineResponse2017
-func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) ([]InlineResponse2017, *http.Response, error) {
+//  @return []CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner
+func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r ConfigureApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) ([]CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2017
+		localVarReturnValue  []CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateOrganizationInventoryOnboardingCloudMonitoringPrepare")
@@ -7599,8 +7600,8 @@ func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationInventoryOnboardingCloudMonitoringPrepare == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringPrepare is required and must be specified")
+	if r.createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -7621,7 +7622,7 @@ func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringPrepare
+	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -7677,15 +7678,15 @@ type ConfigureApiCreateOrganizationNetworkRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationNetwork *InlineObject214
+	createOrganizationNetworkRequest *CreateOrganizationNetworkRequest
 }
 
-func (r ConfigureApiCreateOrganizationNetworkRequest) CreateOrganizationNetwork(createOrganizationNetwork InlineObject214) ConfigureApiCreateOrganizationNetworkRequest {
-	r.createOrganizationNetwork = &createOrganizationNetwork
+func (r ConfigureApiCreateOrganizationNetworkRequest) CreateOrganizationNetworkRequest(createOrganizationNetworkRequest CreateOrganizationNetworkRequest) ConfigureApiCreateOrganizationNetworkRequest {
+	r.createOrganizationNetworkRequest = &createOrganizationNetworkRequest
 	return r
 }
 
-func (r ConfigureApiCreateOrganizationNetworkRequest) Execute() (*InlineResponse20012, *http.Response, error) {
+func (r ConfigureApiCreateOrganizationNetworkRequest) Execute() (*GetNetwork200Response, *http.Response, error) {
 	return r.ApiService.CreateOrganizationNetworkExecute(r)
 }
 
@@ -7707,13 +7708,13 @@ func (a *ConfigureApiService) CreateOrganizationNetwork(ctx context.Context, org
 }
 
 // Execute executes the request
-//  @return InlineResponse20012
-func (a *ConfigureApiService) CreateOrganizationNetworkExecute(r ConfigureApiCreateOrganizationNetworkRequest) (*InlineResponse20012, *http.Response, error) {
+//  @return GetNetwork200Response
+func (a *ConfigureApiService) CreateOrganizationNetworkExecute(r ConfigureApiCreateOrganizationNetworkRequest) (*GetNetwork200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20012
+		localVarReturnValue  *GetNetwork200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateOrganizationNetwork")
@@ -7727,8 +7728,8 @@ func (a *ConfigureApiService) CreateOrganizationNetworkExecute(r ConfigureApiCre
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationNetwork == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationNetwork is required and must be specified")
+	if r.createOrganizationNetworkRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationNetworkRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -7749,7 +7750,7 @@ func (a *ConfigureApiService) CreateOrganizationNetworkExecute(r ConfigureApiCre
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationNetwork
+	localVarPostBody = r.createOrganizationNetworkRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -7805,11 +7806,11 @@ type ConfigureApiCreateOrganizationPolicyObjectRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationPolicyObject *InlineObject216
+	createOrganizationPolicyObjectRequest *CreateOrganizationPolicyObjectRequest
 }
 
-func (r ConfigureApiCreateOrganizationPolicyObjectRequest) CreateOrganizationPolicyObject(createOrganizationPolicyObject InlineObject216) ConfigureApiCreateOrganizationPolicyObjectRequest {
-	r.createOrganizationPolicyObject = &createOrganizationPolicyObject
+func (r ConfigureApiCreateOrganizationPolicyObjectRequest) CreateOrganizationPolicyObjectRequest(createOrganizationPolicyObjectRequest CreateOrganizationPolicyObjectRequest) ConfigureApiCreateOrganizationPolicyObjectRequest {
+	r.createOrganizationPolicyObjectRequest = &createOrganizationPolicyObjectRequest
 	return r
 }
 
@@ -7855,8 +7856,8 @@ func (a *ConfigureApiService) CreateOrganizationPolicyObjectExecute(r ConfigureA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationPolicyObject == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationPolicyObject is required and must be specified")
+	if r.createOrganizationPolicyObjectRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationPolicyObjectRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -7877,7 +7878,7 @@ func (a *ConfigureApiService) CreateOrganizationPolicyObjectExecute(r ConfigureA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationPolicyObject
+	localVarPostBody = r.createOrganizationPolicyObjectRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -7933,11 +7934,11 @@ type ConfigureApiCreateOrganizationPolicyObjectsGroupRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationPolicyObjectsGroup *InlineObject217
+	createOrganizationPolicyObjectsGroupRequest *CreateOrganizationPolicyObjectsGroupRequest
 }
 
-func (r ConfigureApiCreateOrganizationPolicyObjectsGroupRequest) CreateOrganizationPolicyObjectsGroup(createOrganizationPolicyObjectsGroup InlineObject217) ConfigureApiCreateOrganizationPolicyObjectsGroupRequest {
-	r.createOrganizationPolicyObjectsGroup = &createOrganizationPolicyObjectsGroup
+func (r ConfigureApiCreateOrganizationPolicyObjectsGroupRequest) CreateOrganizationPolicyObjectsGroupRequest(createOrganizationPolicyObjectsGroupRequest CreateOrganizationPolicyObjectsGroupRequest) ConfigureApiCreateOrganizationPolicyObjectsGroupRequest {
+	r.createOrganizationPolicyObjectsGroupRequest = &createOrganizationPolicyObjectsGroupRequest
 	return r
 }
 
@@ -7983,8 +7984,8 @@ func (a *ConfigureApiService) CreateOrganizationPolicyObjectsGroupExecute(r Conf
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationPolicyObjectsGroup == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationPolicyObjectsGroup is required and must be specified")
+	if r.createOrganizationPolicyObjectsGroupRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationPolicyObjectsGroupRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -8005,7 +8006,7 @@ func (a *ConfigureApiService) CreateOrganizationPolicyObjectsGroupExecute(r Conf
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationPolicyObjectsGroup
+	localVarPostBody = r.createOrganizationPolicyObjectsGroupRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -8061,15 +8062,15 @@ type ConfigureApiCreateOrganizationSamlIdpRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationSamlIdp *InlineObject221
+	createOrganizationSamlIdpRequest *CreateOrganizationSamlIdpRequest
 }
 
-func (r ConfigureApiCreateOrganizationSamlIdpRequest) CreateOrganizationSamlIdp(createOrganizationSamlIdp InlineObject221) ConfigureApiCreateOrganizationSamlIdpRequest {
-	r.createOrganizationSamlIdp = &createOrganizationSamlIdp
+func (r ConfigureApiCreateOrganizationSamlIdpRequest) CreateOrganizationSamlIdpRequest(createOrganizationSamlIdpRequest CreateOrganizationSamlIdpRequest) ConfigureApiCreateOrganizationSamlIdpRequest {
+	r.createOrganizationSamlIdpRequest = &createOrganizationSamlIdpRequest
 	return r
 }
 
-func (r ConfigureApiCreateOrganizationSamlIdpRequest) Execute() ([]InlineResponse200139, *http.Response, error) {
+func (r ConfigureApiCreateOrganizationSamlIdpRequest) Execute() ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationSamlIdpExecute(r)
 }
 
@@ -8091,13 +8092,13 @@ func (a *ConfigureApiService) CreateOrganizationSamlIdp(ctx context.Context, org
 }
 
 // Execute executes the request
-//  @return []InlineResponse200139
-func (a *ConfigureApiService) CreateOrganizationSamlIdpExecute(r ConfigureApiCreateOrganizationSamlIdpRequest) ([]InlineResponse200139, *http.Response, error) {
+//  @return []GetOrganizationSamlIdps200ResponseInner
+func (a *ConfigureApiService) CreateOrganizationSamlIdpExecute(r ConfigureApiCreateOrganizationSamlIdpRequest) ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200139
+		localVarReturnValue  []GetOrganizationSamlIdps200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.CreateOrganizationSamlIdp")
@@ -8111,8 +8112,8 @@ func (a *ConfigureApiService) CreateOrganizationSamlIdpExecute(r ConfigureApiCre
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationSamlIdp == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationSamlIdp is required and must be specified")
+	if r.createOrganizationSamlIdpRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationSamlIdpRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -8133,7 +8134,7 @@ func (a *ConfigureApiService) CreateOrganizationSamlIdpExecute(r ConfigureApiCre
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationSamlIdp
+	localVarPostBody = r.createOrganizationSamlIdpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -8189,11 +8190,11 @@ type ConfigureApiCreateOrganizationSamlRoleRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	createOrganizationSamlRole *InlineObject223
+	createOrganizationSamlRoleRequest *CreateOrganizationSamlRoleRequest
 }
 
-func (r ConfigureApiCreateOrganizationSamlRoleRequest) CreateOrganizationSamlRole(createOrganizationSamlRole InlineObject223) ConfigureApiCreateOrganizationSamlRoleRequest {
-	r.createOrganizationSamlRole = &createOrganizationSamlRole
+func (r ConfigureApiCreateOrganizationSamlRoleRequest) CreateOrganizationSamlRoleRequest(createOrganizationSamlRoleRequest CreateOrganizationSamlRoleRequest) ConfigureApiCreateOrganizationSamlRoleRequest {
+	r.createOrganizationSamlRoleRequest = &createOrganizationSamlRoleRequest
 	return r
 }
 
@@ -8239,8 +8240,8 @@ func (a *ConfigureApiService) CreateOrganizationSamlRoleExecute(r ConfigureApiCr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationSamlRole == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationSamlRole is required and must be specified")
+	if r.createOrganizationSamlRoleRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationSamlRoleRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -8261,7 +8262,7 @@ func (a *ConfigureApiService) CreateOrganizationSamlRoleExecute(r ConfigureApiCr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationSamlRole
+	localVarPostBody = r.createOrganizationSamlRoleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -8319,7 +8320,7 @@ type ConfigureApiDeferNetworkFirmwareUpgradesStagedEventsRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiDeferNetworkFirmwareUpgradesStagedEventsRequest) Execute() (*InlineResponse20032, *http.Response, error) {
+func (r ConfigureApiDeferNetworkFirmwareUpgradesStagedEventsRequest) Execute() (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	return r.ApiService.DeferNetworkFirmwareUpgradesStagedEventsExecute(r)
 }
 
@@ -8341,13 +8342,13 @@ func (a *ConfigureApiService) DeferNetworkFirmwareUpgradesStagedEvents(ctx conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20032
-func (a *ConfigureApiService) DeferNetworkFirmwareUpgradesStagedEventsExecute(r ConfigureApiDeferNetworkFirmwareUpgradesStagedEventsRequest) (*InlineResponse20032, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgradesStagedEvents200Response
+func (a *ConfigureApiService) DeferNetworkFirmwareUpgradesStagedEventsExecute(r ConfigureApiDeferNetworkFirmwareUpgradesStagedEventsRequest) (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20032
+		localVarReturnValue  *GetNetworkFirmwareUpgradesStagedEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.DeferNetworkFirmwareUpgradesStagedEvents")
@@ -13953,7 +13954,7 @@ type ConfigureApiGetDeviceApplianceRadioSettingsRequest struct {
 	serial string
 }
 
-func (r ConfigureApiGetDeviceApplianceRadioSettingsRequest) Execute() (*InlineResponse2001, *http.Response, error) {
+func (r ConfigureApiGetDeviceApplianceRadioSettingsRequest) Execute() (*GetDeviceApplianceRadioSettings200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceApplianceRadioSettingsExecute(r)
 }
 
@@ -13975,13 +13976,13 @@ func (a *ConfigureApiService) GetDeviceApplianceRadioSettings(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse2001
-func (a *ConfigureApiService) GetDeviceApplianceRadioSettingsExecute(r ConfigureApiGetDeviceApplianceRadioSettingsRequest) (*InlineResponse2001, *http.Response, error) {
+//  @return GetDeviceApplianceRadioSettings200Response
+func (a *ConfigureApiService) GetDeviceApplianceRadioSettingsExecute(r ConfigureApiGetDeviceApplianceRadioSettingsRequest) (*GetDeviceApplianceRadioSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2001
+		localVarReturnValue  *GetDeviceApplianceRadioSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetDeviceApplianceRadioSettings")
@@ -14070,7 +14071,7 @@ type ConfigureApiGetDeviceApplianceUplinksSettingsRequest struct {
 	serial string
 }
 
-func (r ConfigureApiGetDeviceApplianceUplinksSettingsRequest) Execute() (*InlineResponse2002, *http.Response, error) {
+func (r ConfigureApiGetDeviceApplianceUplinksSettingsRequest) Execute() (*GetDeviceApplianceUplinksSettings200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceApplianceUplinksSettingsExecute(r)
 }
 
@@ -14092,13 +14093,13 @@ func (a *ConfigureApiService) GetDeviceApplianceUplinksSettings(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse2002
-func (a *ConfigureApiService) GetDeviceApplianceUplinksSettingsExecute(r ConfigureApiGetDeviceApplianceUplinksSettingsRequest) (*InlineResponse2002, *http.Response, error) {
+//  @return GetDeviceApplianceUplinksSettings200Response
+func (a *ConfigureApiService) GetDeviceApplianceUplinksSettingsExecute(r ConfigureApiGetDeviceApplianceUplinksSettingsRequest) (*GetDeviceApplianceUplinksSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2002
+		localVarReturnValue  *GetDeviceApplianceUplinksSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetDeviceApplianceUplinksSettings")
@@ -15484,7 +15485,7 @@ type ConfigureApiGetDeviceSensorRelationshipsRequest struct {
 	serial string
 }
 
-func (r ConfigureApiGetDeviceSensorRelationshipsRequest) Execute() ([]InlineResponse2004, *http.Response, error) {
+func (r ConfigureApiGetDeviceSensorRelationshipsRequest) Execute() ([]GetDeviceSensorRelationships200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetDeviceSensorRelationshipsExecute(r)
 }
 
@@ -15506,13 +15507,13 @@ func (a *ConfigureApiService) GetDeviceSensorRelationships(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return []InlineResponse2004
-func (a *ConfigureApiService) GetDeviceSensorRelationshipsExecute(r ConfigureApiGetDeviceSensorRelationshipsRequest) ([]InlineResponse2004, *http.Response, error) {
+//  @return []GetDeviceSensorRelationships200ResponseInner
+func (a *ConfigureApiService) GetDeviceSensorRelationshipsExecute(r ConfigureApiGetDeviceSensorRelationshipsRequest) ([]GetDeviceSensorRelationships200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2004
+		localVarReturnValue  []GetDeviceSensorRelationships200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetDeviceSensorRelationships")
@@ -15602,7 +15603,7 @@ type ConfigureApiGetDeviceSwitchPortRequest struct {
 	portId string
 }
 
-func (r ConfigureApiGetDeviceSwitchPortRequest) Execute() (*InlineResponse2005, *http.Response, error) {
+func (r ConfigureApiGetDeviceSwitchPortRequest) Execute() (*GetDeviceSwitchPorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetDeviceSwitchPortExecute(r)
 }
 
@@ -15626,13 +15627,13 @@ func (a *ConfigureApiService) GetDeviceSwitchPort(ctx context.Context, serial st
 }
 
 // Execute executes the request
-//  @return InlineResponse2005
-func (a *ConfigureApiService) GetDeviceSwitchPortExecute(r ConfigureApiGetDeviceSwitchPortRequest) (*InlineResponse2005, *http.Response, error) {
+//  @return GetDeviceSwitchPorts200ResponseInner
+func (a *ConfigureApiService) GetDeviceSwitchPortExecute(r ConfigureApiGetDeviceSwitchPortRequest) (*GetDeviceSwitchPorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2005
+		localVarReturnValue  *GetDeviceSwitchPorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetDeviceSwitchPort")
@@ -15722,7 +15723,7 @@ type ConfigureApiGetDeviceSwitchPortsRequest struct {
 	serial string
 }
 
-func (r ConfigureApiGetDeviceSwitchPortsRequest) Execute() ([]InlineResponse2005, *http.Response, error) {
+func (r ConfigureApiGetDeviceSwitchPortsRequest) Execute() ([]GetDeviceSwitchPorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetDeviceSwitchPortsExecute(r)
 }
 
@@ -15744,13 +15745,13 @@ func (a *ConfigureApiService) GetDeviceSwitchPorts(ctx context.Context, serial s
 }
 
 // Execute executes the request
-//  @return []InlineResponse2005
-func (a *ConfigureApiService) GetDeviceSwitchPortsExecute(r ConfigureApiGetDeviceSwitchPortsRequest) ([]InlineResponse2005, *http.Response, error) {
+//  @return []GetDeviceSwitchPorts200ResponseInner
+func (a *ConfigureApiService) GetDeviceSwitchPortsExecute(r ConfigureApiGetDeviceSwitchPortsRequest) ([]GetDeviceSwitchPorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2005
+		localVarReturnValue  []GetDeviceSwitchPorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetDeviceSwitchPorts")
@@ -15840,7 +15841,7 @@ type ConfigureApiGetDeviceSwitchRoutingInterfaceRequest struct {
 	interfaceId string
 }
 
-func (r ConfigureApiGetDeviceSwitchRoutingInterfaceRequest) Execute() (*InlineResponse2008, *http.Response, error) {
+func (r ConfigureApiGetDeviceSwitchRoutingInterfaceRequest) Execute() (*GetDeviceSwitchRoutingInterfaces200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetDeviceSwitchRoutingInterfaceExecute(r)
 }
 
@@ -15864,13 +15865,13 @@ func (a *ConfigureApiService) GetDeviceSwitchRoutingInterface(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse2008
-func (a *ConfigureApiService) GetDeviceSwitchRoutingInterfaceExecute(r ConfigureApiGetDeviceSwitchRoutingInterfaceRequest) (*InlineResponse2008, *http.Response, error) {
+//  @return GetDeviceSwitchRoutingInterfaces200ResponseInner
+func (a *ConfigureApiService) GetDeviceSwitchRoutingInterfaceExecute(r ConfigureApiGetDeviceSwitchRoutingInterfaceRequest) (*GetDeviceSwitchRoutingInterfaces200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2008
+		localVarReturnValue  *GetDeviceSwitchRoutingInterfaces200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetDeviceSwitchRoutingInterface")
@@ -16081,7 +16082,7 @@ type ConfigureApiGetDeviceSwitchRoutingInterfacesRequest struct {
 	serial string
 }
 
-func (r ConfigureApiGetDeviceSwitchRoutingInterfacesRequest) Execute() ([]InlineResponse2008, *http.Response, error) {
+func (r ConfigureApiGetDeviceSwitchRoutingInterfacesRequest) Execute() ([]GetDeviceSwitchRoutingInterfaces200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetDeviceSwitchRoutingInterfacesExecute(r)
 }
 
@@ -16103,13 +16104,13 @@ func (a *ConfigureApiService) GetDeviceSwitchRoutingInterfaces(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return []InlineResponse2008
-func (a *ConfigureApiService) GetDeviceSwitchRoutingInterfacesExecute(r ConfigureApiGetDeviceSwitchRoutingInterfacesRequest) ([]InlineResponse2008, *http.Response, error) {
+//  @return []GetDeviceSwitchRoutingInterfaces200ResponseInner
+func (a *ConfigureApiService) GetDeviceSwitchRoutingInterfacesExecute(r ConfigureApiGetDeviceSwitchRoutingInterfacesRequest) ([]GetDeviceSwitchRoutingInterfaces200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2008
+		localVarReturnValue  []GetDeviceSwitchRoutingInterfaces200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetDeviceSwitchRoutingInterfaces")
@@ -16199,7 +16200,7 @@ type ConfigureApiGetDeviceSwitchRoutingStaticRouteRequest struct {
 	staticRouteId string
 }
 
-func (r ConfigureApiGetDeviceSwitchRoutingStaticRouteRequest) Execute() (*InlineResponse2009, *http.Response, error) {
+func (r ConfigureApiGetDeviceSwitchRoutingStaticRouteRequest) Execute() (*GetDeviceSwitchRoutingStaticRoute200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceSwitchRoutingStaticRouteExecute(r)
 }
 
@@ -16223,13 +16224,13 @@ func (a *ConfigureApiService) GetDeviceSwitchRoutingStaticRoute(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse2009
-func (a *ConfigureApiService) GetDeviceSwitchRoutingStaticRouteExecute(r ConfigureApiGetDeviceSwitchRoutingStaticRouteRequest) (*InlineResponse2009, *http.Response, error) {
+//  @return GetDeviceSwitchRoutingStaticRoute200Response
+func (a *ConfigureApiService) GetDeviceSwitchRoutingStaticRouteExecute(r ConfigureApiGetDeviceSwitchRoutingStaticRouteRequest) (*GetDeviceSwitchRoutingStaticRoute200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2009
+		localVarReturnValue  *GetDeviceSwitchRoutingStaticRoute200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetDeviceSwitchRoutingStaticRoute")
@@ -16553,7 +16554,7 @@ type ConfigureApiGetDeviceWirelessBluetoothSettingsRequest struct {
 	serial string
 }
 
-func (r ConfigureApiGetDeviceWirelessBluetoothSettingsRequest) Execute() (*InlineResponse20010, *http.Response, error) {
+func (r ConfigureApiGetDeviceWirelessBluetoothSettingsRequest) Execute() (*GetDeviceWirelessBluetoothSettings200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceWirelessBluetoothSettingsExecute(r)
 }
 
@@ -16575,13 +16576,13 @@ func (a *ConfigureApiService) GetDeviceWirelessBluetoothSettings(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InlineResponse20010
-func (a *ConfigureApiService) GetDeviceWirelessBluetoothSettingsExecute(r ConfigureApiGetDeviceWirelessBluetoothSettingsRequest) (*InlineResponse20010, *http.Response, error) {
+//  @return GetDeviceWirelessBluetoothSettings200Response
+func (a *ConfigureApiService) GetDeviceWirelessBluetoothSettingsExecute(r ConfigureApiGetDeviceWirelessBluetoothSettingsRequest) (*GetDeviceWirelessBluetoothSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20010
+		localVarReturnValue  *GetDeviceWirelessBluetoothSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetDeviceWirelessBluetoothSettings")
@@ -16787,7 +16788,7 @@ type ConfigureApiGetNetworkRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkRequest) Execute() (*InlineResponse20012, *http.Response, error) {
+func (r ConfigureApiGetNetworkRequest) Execute() (*GetNetwork200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkExecute(r)
 }
 
@@ -16809,13 +16810,13 @@ func (a *ConfigureApiService) GetNetwork(ctx context.Context, networkId string) 
 }
 
 // Execute executes the request
-//  @return InlineResponse20012
-func (a *ConfigureApiService) GetNetworkExecute(r ConfigureApiGetNetworkRequest) (*InlineResponse20012, *http.Response, error) {
+//  @return GetNetwork200Response
+func (a *ConfigureApiService) GetNetworkExecute(r ConfigureApiGetNetworkRequest) (*GetNetwork200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20012
+		localVarReturnValue  *GetNetwork200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetwork")
@@ -18195,7 +18196,7 @@ type ConfigureApiGetNetworkApplianceFirewallL7FirewallRulesApplicationCategories
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesRequest) Execute() (*InlineResponse20014, *http.Response, error) {
+func (r ConfigureApiGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesRequest) Execute() (*GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesExecute(r)
 }
 
@@ -18217,13 +18218,13 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallL7FirewallRulesApplicat
 }
 
 // Execute executes the request
-//  @return InlineResponse20014
-func (a *ConfigureApiService) GetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesExecute(r ConfigureApiGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesRequest) (*InlineResponse20014, *http.Response, error) {
+//  @return GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Response
+func (a *ConfigureApiService) GetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesExecute(r ConfigureApiGetNetworkApplianceFirewallL7FirewallRulesApplicationCategoriesRequest) (*GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20014
+		localVarReturnValue  *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories")
@@ -18781,7 +18782,7 @@ type ConfigureApiGetNetworkAppliancePortRequest struct {
 	portId string
 }
 
-func (r ConfigureApiGetNetworkAppliancePortRequest) Execute() (*InlineResponse20015, *http.Response, error) {
+func (r ConfigureApiGetNetworkAppliancePortRequest) Execute() (*GetNetworkAppliancePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkAppliancePortExecute(r)
 }
 
@@ -18805,13 +18806,13 @@ func (a *ConfigureApiService) GetNetworkAppliancePort(ctx context.Context, netwo
 }
 
 // Execute executes the request
-//  @return InlineResponse20015
-func (a *ConfigureApiService) GetNetworkAppliancePortExecute(r ConfigureApiGetNetworkAppliancePortRequest) (*InlineResponse20015, *http.Response, error) {
+//  @return GetNetworkAppliancePorts200ResponseInner
+func (a *ConfigureApiService) GetNetworkAppliancePortExecute(r ConfigureApiGetNetworkAppliancePortRequest) (*GetNetworkAppliancePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20015
+		localVarReturnValue  *GetNetworkAppliancePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkAppliancePort")
@@ -18901,7 +18902,7 @@ type ConfigureApiGetNetworkAppliancePortsRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkAppliancePortsRequest) Execute() ([]InlineResponse20015, *http.Response, error) {
+func (r ConfigureApiGetNetworkAppliancePortsRequest) Execute() ([]GetNetworkAppliancePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkAppliancePortsExecute(r)
 }
 
@@ -18923,13 +18924,13 @@ func (a *ConfigureApiService) GetNetworkAppliancePorts(ctx context.Context, netw
 }
 
 // Execute executes the request
-//  @return []InlineResponse20015
-func (a *ConfigureApiService) GetNetworkAppliancePortsExecute(r ConfigureApiGetNetworkAppliancePortsRequest) ([]InlineResponse20015, *http.Response, error) {
+//  @return []GetNetworkAppliancePorts200ResponseInner
+func (a *ConfigureApiService) GetNetworkAppliancePortsExecute(r ConfigureApiGetNetworkAppliancePortsRequest) ([]GetNetworkAppliancePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20015
+		localVarReturnValue  []GetNetworkAppliancePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkAppliancePorts")
@@ -19019,7 +19020,7 @@ type ConfigureApiGetNetworkAppliancePrefixesDelegatedStaticRequest struct {
 	staticDelegatedPrefixId string
 }
 
-func (r ConfigureApiGetNetworkAppliancePrefixesDelegatedStaticRequest) Execute() (*InlineResponse20016, *http.Response, error) {
+func (r ConfigureApiGetNetworkAppliancePrefixesDelegatedStaticRequest) Execute() (*GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkAppliancePrefixesDelegatedStaticExecute(r)
 }
 
@@ -19043,13 +19044,13 @@ func (a *ConfigureApiService) GetNetworkAppliancePrefixesDelegatedStatic(ctx con
 }
 
 // Execute executes the request
-//  @return InlineResponse20016
-func (a *ConfigureApiService) GetNetworkAppliancePrefixesDelegatedStaticExecute(r ConfigureApiGetNetworkAppliancePrefixesDelegatedStaticRequest) (*InlineResponse20016, *http.Response, error) {
+//  @return GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
+func (a *ConfigureApiService) GetNetworkAppliancePrefixesDelegatedStaticExecute(r ConfigureApiGetNetworkAppliancePrefixesDelegatedStaticRequest) (*GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20016
+		localVarReturnValue  *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkAppliancePrefixesDelegatedStatic")
@@ -19139,7 +19140,7 @@ type ConfigureApiGetNetworkAppliancePrefixesDelegatedStaticsRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkAppliancePrefixesDelegatedStaticsRequest) Execute() ([]InlineResponse20016, *http.Response, error) {
+func (r ConfigureApiGetNetworkAppliancePrefixesDelegatedStaticsRequest) Execute() ([]GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkAppliancePrefixesDelegatedStaticsExecute(r)
 }
 
@@ -19161,13 +19162,13 @@ func (a *ConfigureApiService) GetNetworkAppliancePrefixesDelegatedStatics(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20016
-func (a *ConfigureApiService) GetNetworkAppliancePrefixesDelegatedStaticsExecute(r ConfigureApiGetNetworkAppliancePrefixesDelegatedStaticsRequest) ([]InlineResponse20016, *http.Response, error) {
+//  @return []GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
+func (a *ConfigureApiService) GetNetworkAppliancePrefixesDelegatedStaticsExecute(r ConfigureApiGetNetworkAppliancePrefixesDelegatedStaticsRequest) ([]GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20016
+		localVarReturnValue  []GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkAppliancePrefixesDelegatedStatics")
@@ -19257,7 +19258,7 @@ type ConfigureApiGetNetworkApplianceRfProfileRequest struct {
 	rfProfileId string
 }
 
-func (r ConfigureApiGetNetworkApplianceRfProfileRequest) Execute() (*InlineResponse20017Assigned, *http.Response, error) {
+func (r ConfigureApiGetNetworkApplianceRfProfileRequest) Execute() (*GetNetworkApplianceRfProfiles200ResponseAssignedInner, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceRfProfileExecute(r)
 }
 
@@ -19281,13 +19282,13 @@ func (a *ConfigureApiService) GetNetworkApplianceRfProfile(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse20017Assigned
-func (a *ConfigureApiService) GetNetworkApplianceRfProfileExecute(r ConfigureApiGetNetworkApplianceRfProfileRequest) (*InlineResponse20017Assigned, *http.Response, error) {
+//  @return GetNetworkApplianceRfProfiles200ResponseAssignedInner
+func (a *ConfigureApiService) GetNetworkApplianceRfProfileExecute(r ConfigureApiGetNetworkApplianceRfProfileRequest) (*GetNetworkApplianceRfProfiles200ResponseAssignedInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20017Assigned
+		localVarReturnValue  *GetNetworkApplianceRfProfiles200ResponseAssignedInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkApplianceRfProfile")
@@ -19377,7 +19378,7 @@ type ConfigureApiGetNetworkApplianceRfProfilesRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkApplianceRfProfilesRequest) Execute() (*InlineResponse20017, *http.Response, error) {
+func (r ConfigureApiGetNetworkApplianceRfProfilesRequest) Execute() (*GetNetworkApplianceRfProfiles200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceRfProfilesExecute(r)
 }
 
@@ -19399,13 +19400,13 @@ func (a *ConfigureApiService) GetNetworkApplianceRfProfiles(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20017
-func (a *ConfigureApiService) GetNetworkApplianceRfProfilesExecute(r ConfigureApiGetNetworkApplianceRfProfilesRequest) (*InlineResponse20017, *http.Response, error) {
+//  @return GetNetworkApplianceRfProfiles200Response
+func (a *ConfigureApiService) GetNetworkApplianceRfProfilesExecute(r ConfigureApiGetNetworkApplianceRfProfilesRequest) (*GetNetworkApplianceRfProfiles200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20017
+		localVarReturnValue  *GetNetworkApplianceRfProfiles200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkApplianceRfProfiles")
@@ -19728,7 +19729,7 @@ type ConfigureApiGetNetworkApplianceSettingsRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkApplianceSettingsRequest) Execute() (*InlineResponse20018, *http.Response, error) {
+func (r ConfigureApiGetNetworkApplianceSettingsRequest) Execute() (*GetNetworkApplianceSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceSettingsExecute(r)
 }
 
@@ -19750,13 +19751,13 @@ func (a *ConfigureApiService) GetNetworkApplianceSettings(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return InlineResponse20018
-func (a *ConfigureApiService) GetNetworkApplianceSettingsExecute(r ConfigureApiGetNetworkApplianceSettingsRequest) (*InlineResponse20018, *http.Response, error) {
+//  @return GetNetworkApplianceSettings200Response
+func (a *ConfigureApiService) GetNetworkApplianceSettingsExecute(r ConfigureApiGetNetworkApplianceSettingsRequest) (*GetNetworkApplianceSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20018
+		localVarReturnValue  *GetNetworkApplianceSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkApplianceSettings")
@@ -19845,7 +19846,7 @@ type ConfigureApiGetNetworkApplianceSingleLanRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkApplianceSingleLanRequest) Execute() (*InlineResponse20019, *http.Response, error) {
+func (r ConfigureApiGetNetworkApplianceSingleLanRequest) Execute() (*GetNetworkApplianceSingleLan200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceSingleLanExecute(r)
 }
 
@@ -19867,13 +19868,13 @@ func (a *ConfigureApiService) GetNetworkApplianceSingleLan(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse20019
-func (a *ConfigureApiService) GetNetworkApplianceSingleLanExecute(r ConfigureApiGetNetworkApplianceSingleLanRequest) (*InlineResponse20019, *http.Response, error) {
+//  @return GetNetworkApplianceSingleLan200Response
+func (a *ConfigureApiService) GetNetworkApplianceSingleLanExecute(r ConfigureApiGetNetworkApplianceSingleLanRequest) (*GetNetworkApplianceSingleLan200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20019
+		localVarReturnValue  *GetNetworkApplianceSingleLan200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkApplianceSingleLan")
@@ -19963,7 +19964,7 @@ type ConfigureApiGetNetworkApplianceSsidRequest struct {
 	number string
 }
 
-func (r ConfigureApiGetNetworkApplianceSsidRequest) Execute() (*InlineResponse20020, *http.Response, error) {
+func (r ConfigureApiGetNetworkApplianceSsidRequest) Execute() (*GetNetworkApplianceSsids200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceSsidExecute(r)
 }
 
@@ -19987,13 +19988,13 @@ func (a *ConfigureApiService) GetNetworkApplianceSsid(ctx context.Context, netwo
 }
 
 // Execute executes the request
-//  @return InlineResponse20020
-func (a *ConfigureApiService) GetNetworkApplianceSsidExecute(r ConfigureApiGetNetworkApplianceSsidRequest) (*InlineResponse20020, *http.Response, error) {
+//  @return GetNetworkApplianceSsids200ResponseInner
+func (a *ConfigureApiService) GetNetworkApplianceSsidExecute(r ConfigureApiGetNetworkApplianceSsidRequest) (*GetNetworkApplianceSsids200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20020
+		localVarReturnValue  *GetNetworkApplianceSsids200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkApplianceSsid")
@@ -20083,7 +20084,7 @@ type ConfigureApiGetNetworkApplianceSsidsRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkApplianceSsidsRequest) Execute() ([]InlineResponse20020, *http.Response, error) {
+func (r ConfigureApiGetNetworkApplianceSsidsRequest) Execute() ([]GetNetworkApplianceSsids200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceSsidsExecute(r)
 }
 
@@ -20105,13 +20106,13 @@ func (a *ConfigureApiService) GetNetworkApplianceSsids(ctx context.Context, netw
 }
 
 // Execute executes the request
-//  @return []InlineResponse20020
-func (a *ConfigureApiService) GetNetworkApplianceSsidsExecute(r ConfigureApiGetNetworkApplianceSsidsRequest) ([]InlineResponse20020, *http.Response, error) {
+//  @return []GetNetworkApplianceSsids200ResponseInner
+func (a *ConfigureApiService) GetNetworkApplianceSsidsExecute(r ConfigureApiGetNetworkApplianceSsidsRequest) ([]GetNetworkApplianceSsids200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20020
+		localVarReturnValue  []GetNetworkApplianceSsids200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkApplianceSsids")
@@ -20910,7 +20911,7 @@ type ConfigureApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest struct 
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) Execute() (*InlineResponse20021, *http.Response, error) {
+func (r ConfigureApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) Execute() (*GetNetworkApplianceTrafficShapingUplinkBandwidth200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceTrafficShapingUplinkBandwidthExecute(r)
 }
 
@@ -20932,13 +20933,13 @@ func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingUplinkBandwidth(c
 }
 
 // Execute executes the request
-//  @return InlineResponse20021
-func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingUplinkBandwidthExecute(r ConfigureApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) (*InlineResponse20021, *http.Response, error) {
+//  @return GetNetworkApplianceTrafficShapingUplinkBandwidth200Response
+func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingUplinkBandwidthExecute(r ConfigureApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) (*GetNetworkApplianceTrafficShapingUplinkBandwidth200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20021
+		localVarReturnValue  *GetNetworkApplianceTrafficShapingUplinkBandwidth200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkApplianceTrafficShapingUplinkBandwidth")
@@ -21027,7 +21028,7 @@ type ConfigureApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest struct 
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest) Execute() (*InlineResponse20022, *http.Response, error) {
+func (r ConfigureApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest) Execute() (*GetNetworkApplianceTrafficShapingUplinkSelection200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceTrafficShapingUplinkSelectionExecute(r)
 }
 
@@ -21049,13 +21050,13 @@ func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingUplinkSelection(c
 }
 
 // Execute executes the request
-//  @return InlineResponse20022
-func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingUplinkSelectionExecute(r ConfigureApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest) (*InlineResponse20022, *http.Response, error) {
+//  @return GetNetworkApplianceTrafficShapingUplinkSelection200Response
+func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingUplinkSelectionExecute(r ConfigureApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest) (*GetNetworkApplianceTrafficShapingUplinkSelection200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20022
+		localVarReturnValue  *GetNetworkApplianceTrafficShapingUplinkSelection200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkApplianceTrafficShapingUplinkSelection")
@@ -21145,7 +21146,7 @@ type ConfigureApiGetNetworkApplianceVlanRequest struct {
 	vlanId string
 }
 
-func (r ConfigureApiGetNetworkApplianceVlanRequest) Execute() (*InlineResponse20023, *http.Response, error) {
+func (r ConfigureApiGetNetworkApplianceVlanRequest) Execute() (*GetNetworkApplianceVlans200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceVlanExecute(r)
 }
 
@@ -21169,13 +21170,13 @@ func (a *ConfigureApiService) GetNetworkApplianceVlan(ctx context.Context, netwo
 }
 
 // Execute executes the request
-//  @return InlineResponse20023
-func (a *ConfigureApiService) GetNetworkApplianceVlanExecute(r ConfigureApiGetNetworkApplianceVlanRequest) (*InlineResponse20023, *http.Response, error) {
+//  @return GetNetworkApplianceVlans200ResponseInner
+func (a *ConfigureApiService) GetNetworkApplianceVlanExecute(r ConfigureApiGetNetworkApplianceVlanRequest) (*GetNetworkApplianceVlans200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20023
+		localVarReturnValue  *GetNetworkApplianceVlans200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkApplianceVlan")
@@ -21265,7 +21266,7 @@ type ConfigureApiGetNetworkApplianceVlansRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkApplianceVlansRequest) Execute() ([]InlineResponse20023, *http.Response, error) {
+func (r ConfigureApiGetNetworkApplianceVlansRequest) Execute() ([]GetNetworkApplianceVlans200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceVlansExecute(r)
 }
 
@@ -21287,13 +21288,13 @@ func (a *ConfigureApiService) GetNetworkApplianceVlans(ctx context.Context, netw
 }
 
 // Execute executes the request
-//  @return []InlineResponse20023
-func (a *ConfigureApiService) GetNetworkApplianceVlansExecute(r ConfigureApiGetNetworkApplianceVlansRequest) ([]InlineResponse20023, *http.Response, error) {
+//  @return []GetNetworkApplianceVlans200ResponseInner
+func (a *ConfigureApiService) GetNetworkApplianceVlansExecute(r ConfigureApiGetNetworkApplianceVlansRequest) ([]GetNetworkApplianceVlans200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20023
+		localVarReturnValue  []GetNetworkApplianceVlans200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkApplianceVlans")
@@ -21616,7 +21617,7 @@ type ConfigureApiGetNetworkApplianceVpnSiteToSiteVpnRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkApplianceVpnSiteToSiteVpnRequest) Execute() (*InlineResponse20024, *http.Response, error) {
+func (r ConfigureApiGetNetworkApplianceVpnSiteToSiteVpnRequest) Execute() (*GetNetworkApplianceVpnSiteToSiteVpn200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceVpnSiteToSiteVpnExecute(r)
 }
 
@@ -21638,13 +21639,13 @@ func (a *ConfigureApiService) GetNetworkApplianceVpnSiteToSiteVpn(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse20024
-func (a *ConfigureApiService) GetNetworkApplianceVpnSiteToSiteVpnExecute(r ConfigureApiGetNetworkApplianceVpnSiteToSiteVpnRequest) (*InlineResponse20024, *http.Response, error) {
+//  @return GetNetworkApplianceVpnSiteToSiteVpn200Response
+func (a *ConfigureApiService) GetNetworkApplianceVpnSiteToSiteVpnExecute(r ConfigureApiGetNetworkApplianceVpnSiteToSiteVpnRequest) (*GetNetworkApplianceVpnSiteToSiteVpn200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20024
+		localVarReturnValue  *GetNetworkApplianceVpnSiteToSiteVpn200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkApplianceVpnSiteToSiteVpn")
@@ -22560,7 +22561,7 @@ type ConfigureApiGetNetworkCellularGatewayDhcpRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkCellularGatewayDhcpRequest) Execute() (*InlineResponse20025, *http.Response, error) {
+func (r ConfigureApiGetNetworkCellularGatewayDhcpRequest) Execute() (*GetNetworkCellularGatewayDhcp200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkCellularGatewayDhcpExecute(r)
 }
 
@@ -22582,13 +22583,13 @@ func (a *ConfigureApiService) GetNetworkCellularGatewayDhcp(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20025
-func (a *ConfigureApiService) GetNetworkCellularGatewayDhcpExecute(r ConfigureApiGetNetworkCellularGatewayDhcpRequest) (*InlineResponse20025, *http.Response, error) {
+//  @return GetNetworkCellularGatewayDhcp200Response
+func (a *ConfigureApiService) GetNetworkCellularGatewayDhcpExecute(r ConfigureApiGetNetworkCellularGatewayDhcpRequest) (*GetNetworkCellularGatewayDhcp200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20025
+		localVarReturnValue  *GetNetworkCellularGatewayDhcp200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkCellularGatewayDhcp")
@@ -23270,7 +23271,7 @@ type ConfigureApiGetNetworkFirmwareUpgradesRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkFirmwareUpgradesRequest) Execute() (*InlineResponse20030, *http.Response, error) {
+func (r ConfigureApiGetNetworkFirmwareUpgradesRequest) Execute() (*GetNetworkFirmwareUpgrades200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkFirmwareUpgradesExecute(r)
 }
 
@@ -23292,13 +23293,13 @@ func (a *ConfigureApiService) GetNetworkFirmwareUpgrades(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return InlineResponse20030
-func (a *ConfigureApiService) GetNetworkFirmwareUpgradesExecute(r ConfigureApiGetNetworkFirmwareUpgradesRequest) (*InlineResponse20030, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgrades200Response
+func (a *ConfigureApiService) GetNetworkFirmwareUpgradesExecute(r ConfigureApiGetNetworkFirmwareUpgradesRequest) (*GetNetworkFirmwareUpgrades200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20030
+		localVarReturnValue  *GetNetworkFirmwareUpgrades200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkFirmwareUpgrades")
@@ -23387,7 +23388,7 @@ type ConfigureApiGetNetworkFirmwareUpgradesStagedEventsRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkFirmwareUpgradesStagedEventsRequest) Execute() (*InlineResponse20032, *http.Response, error) {
+func (r ConfigureApiGetNetworkFirmwareUpgradesStagedEventsRequest) Execute() (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkFirmwareUpgradesStagedEventsExecute(r)
 }
 
@@ -23409,13 +23410,13 @@ func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedEvents(ctx context
 }
 
 // Execute executes the request
-//  @return InlineResponse20032
-func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedEventsExecute(r ConfigureApiGetNetworkFirmwareUpgradesStagedEventsRequest) (*InlineResponse20032, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgradesStagedEvents200Response
+func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedEventsExecute(r ConfigureApiGetNetworkFirmwareUpgradesStagedEventsRequest) (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20032
+		localVarReturnValue  *GetNetworkFirmwareUpgradesStagedEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkFirmwareUpgradesStagedEvents")
@@ -23505,7 +23506,7 @@ type ConfigureApiGetNetworkFirmwareUpgradesStagedGroupRequest struct {
 	groupId string
 }
 
-func (r ConfigureApiGetNetworkFirmwareUpgradesStagedGroupRequest) Execute() (*InlineResponse20033, *http.Response, error) {
+func (r ConfigureApiGetNetworkFirmwareUpgradesStagedGroupRequest) Execute() (*GetNetworkFirmwareUpgradesStagedGroups200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkFirmwareUpgradesStagedGroupExecute(r)
 }
 
@@ -23529,13 +23530,13 @@ func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedGroup(ctx context.
 }
 
 // Execute executes the request
-//  @return InlineResponse20033
-func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedGroupExecute(r ConfigureApiGetNetworkFirmwareUpgradesStagedGroupRequest) (*InlineResponse20033, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
+func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedGroupExecute(r ConfigureApiGetNetworkFirmwareUpgradesStagedGroupRequest) (*GetNetworkFirmwareUpgradesStagedGroups200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20033
+		localVarReturnValue  *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkFirmwareUpgradesStagedGroup")
@@ -23625,7 +23626,7 @@ type ConfigureApiGetNetworkFirmwareUpgradesStagedGroupsRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkFirmwareUpgradesStagedGroupsRequest) Execute() ([]InlineResponse20033, *http.Response, error) {
+func (r ConfigureApiGetNetworkFirmwareUpgradesStagedGroupsRequest) Execute() ([]GetNetworkFirmwareUpgradesStagedGroups200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkFirmwareUpgradesStagedGroupsExecute(r)
 }
 
@@ -23647,13 +23648,13 @@ func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedGroups(ctx context
 }
 
 // Execute executes the request
-//  @return []InlineResponse20033
-func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedGroupsExecute(r ConfigureApiGetNetworkFirmwareUpgradesStagedGroupsRequest) ([]InlineResponse20033, *http.Response, error) {
+//  @return []GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
+func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedGroupsExecute(r ConfigureApiGetNetworkFirmwareUpgradesStagedGroupsRequest) ([]GetNetworkFirmwareUpgradesStagedGroups200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20033
+		localVarReturnValue  []GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkFirmwareUpgradesStagedGroups")
@@ -23742,7 +23743,7 @@ type ConfigureApiGetNetworkFirmwareUpgradesStagedStagesRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkFirmwareUpgradesStagedStagesRequest) Execute() ([]InlineResponse20034, *http.Response, error) {
+func (r ConfigureApiGetNetworkFirmwareUpgradesStagedStagesRequest) Execute() ([]GetNetworkFirmwareUpgradesStagedStages200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkFirmwareUpgradesStagedStagesExecute(r)
 }
 
@@ -23764,13 +23765,13 @@ func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedStages(ctx context
 }
 
 // Execute executes the request
-//  @return []InlineResponse20034
-func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedStagesExecute(r ConfigureApiGetNetworkFirmwareUpgradesStagedStagesRequest) ([]InlineResponse20034, *http.Response, error) {
+//  @return []GetNetworkFirmwareUpgradesStagedStages200ResponseInner
+func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedStagesExecute(r ConfigureApiGetNetworkFirmwareUpgradesStagedStagesRequest) ([]GetNetworkFirmwareUpgradesStagedStages200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20034
+		localVarReturnValue  []GetNetworkFirmwareUpgradesStagedStages200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkFirmwareUpgradesStagedStages")
@@ -24335,7 +24336,7 @@ type ConfigureApiGetNetworkHealthAlertsRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkHealthAlertsRequest) Execute() ([]InlineResponse20035, *http.Response, error) {
+func (r ConfigureApiGetNetworkHealthAlertsRequest) Execute() ([]GetNetworkHealthAlerts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkHealthAlertsExecute(r)
 }
 
@@ -24357,13 +24358,13 @@ func (a *ConfigureApiService) GetNetworkHealthAlerts(ctx context.Context, networ
 }
 
 // Execute executes the request
-//  @return []InlineResponse20035
-func (a *ConfigureApiService) GetNetworkHealthAlertsExecute(r ConfigureApiGetNetworkHealthAlertsRequest) ([]InlineResponse20035, *http.Response, error) {
+//  @return []GetNetworkHealthAlerts200ResponseInner
+func (a *ConfigureApiService) GetNetworkHealthAlertsExecute(r ConfigureApiGetNetworkHealthAlertsRequest) ([]GetNetworkHealthAlerts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20035
+		localVarReturnValue  []GetNetworkHealthAlerts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkHealthAlerts")
@@ -24453,7 +24454,7 @@ type ConfigureApiGetNetworkMerakiAuthUserRequest struct {
 	merakiAuthUserId string
 }
 
-func (r ConfigureApiGetNetworkMerakiAuthUserRequest) Execute() (*InlineResponse20037, *http.Response, error) {
+func (r ConfigureApiGetNetworkMerakiAuthUserRequest) Execute() (*GetNetworkMerakiAuthUsers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkMerakiAuthUserExecute(r)
 }
 
@@ -24477,13 +24478,13 @@ func (a *ConfigureApiService) GetNetworkMerakiAuthUser(ctx context.Context, netw
 }
 
 // Execute executes the request
-//  @return InlineResponse20037
-func (a *ConfigureApiService) GetNetworkMerakiAuthUserExecute(r ConfigureApiGetNetworkMerakiAuthUserRequest) (*InlineResponse20037, *http.Response, error) {
+//  @return GetNetworkMerakiAuthUsers200ResponseInner
+func (a *ConfigureApiService) GetNetworkMerakiAuthUserExecute(r ConfigureApiGetNetworkMerakiAuthUserRequest) (*GetNetworkMerakiAuthUsers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20037
+		localVarReturnValue  *GetNetworkMerakiAuthUsers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkMerakiAuthUser")
@@ -24573,7 +24574,7 @@ type ConfigureApiGetNetworkMerakiAuthUsersRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkMerakiAuthUsersRequest) Execute() ([]InlineResponse20037, *http.Response, error) {
+func (r ConfigureApiGetNetworkMerakiAuthUsersRequest) Execute() ([]GetNetworkMerakiAuthUsers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkMerakiAuthUsersExecute(r)
 }
 
@@ -24595,13 +24596,13 @@ func (a *ConfigureApiService) GetNetworkMerakiAuthUsers(ctx context.Context, net
 }
 
 // Execute executes the request
-//  @return []InlineResponse20037
-func (a *ConfigureApiService) GetNetworkMerakiAuthUsersExecute(r ConfigureApiGetNetworkMerakiAuthUsersRequest) ([]InlineResponse20037, *http.Response, error) {
+//  @return []GetNetworkMerakiAuthUsers200ResponseInner
+func (a *ConfigureApiService) GetNetworkMerakiAuthUsersExecute(r ConfigureApiGetNetworkMerakiAuthUsersRequest) ([]GetNetworkMerakiAuthUsers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20037
+		localVarReturnValue  []GetNetworkMerakiAuthUsers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkMerakiAuthUsers")
@@ -25879,7 +25880,7 @@ func (r ConfigureApiGetNetworkPoliciesByClientRequest) Timespan(timespan float32
 	return r
 }
 
-func (r ConfigureApiGetNetworkPoliciesByClientRequest) Execute() ([]InlineResponse20038, *http.Response, error) {
+func (r ConfigureApiGetNetworkPoliciesByClientRequest) Execute() ([]GetNetworkPoliciesByClient200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkPoliciesByClientExecute(r)
 }
 
@@ -25901,13 +25902,13 @@ func (a *ConfigureApiService) GetNetworkPoliciesByClient(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return []InlineResponse20038
-func (a *ConfigureApiService) GetNetworkPoliciesByClientExecute(r ConfigureApiGetNetworkPoliciesByClientRequest) ([]InlineResponse20038, *http.Response, error) {
+//  @return []GetNetworkPoliciesByClient200ResponseInner
+func (a *ConfigureApiService) GetNetworkPoliciesByClientExecute(r ConfigureApiGetNetworkPoliciesByClientRequest) ([]GetNetworkPoliciesByClient200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20038
+		localVarReturnValue  []GetNetworkPoliciesByClient200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkPoliciesByClient")
@@ -26012,7 +26013,7 @@ type ConfigureApiGetNetworkSensorAlertsProfileRequest struct {
 	id string
 }
 
-func (r ConfigureApiGetNetworkSensorAlertsProfileRequest) Execute() (*InlineResponse20041, *http.Response, error) {
+func (r ConfigureApiGetNetworkSensorAlertsProfileRequest) Execute() (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsProfileExecute(r)
 }
 
@@ -26036,13 +26037,13 @@ func (a *ConfigureApiService) GetNetworkSensorAlertsProfile(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20041
-func (a *ConfigureApiService) GetNetworkSensorAlertsProfileExecute(r ConfigureApiGetNetworkSensorAlertsProfileRequest) (*InlineResponse20041, *http.Response, error) {
+//  @return GetNetworkSensorAlertsProfiles200ResponseInner
+func (a *ConfigureApiService) GetNetworkSensorAlertsProfileExecute(r ConfigureApiGetNetworkSensorAlertsProfileRequest) (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20041
+		localVarReturnValue  *GetNetworkSensorAlertsProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSensorAlertsProfile")
@@ -26132,7 +26133,7 @@ type ConfigureApiGetNetworkSensorAlertsProfilesRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkSensorAlertsProfilesRequest) Execute() ([]InlineResponse20041, *http.Response, error) {
+func (r ConfigureApiGetNetworkSensorAlertsProfilesRequest) Execute() ([]GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsProfilesExecute(r)
 }
 
@@ -26154,13 +26155,13 @@ func (a *ConfigureApiService) GetNetworkSensorAlertsProfiles(ctx context.Context
 }
 
 // Execute executes the request
-//  @return []InlineResponse20041
-func (a *ConfigureApiService) GetNetworkSensorAlertsProfilesExecute(r ConfigureApiGetNetworkSensorAlertsProfilesRequest) ([]InlineResponse20041, *http.Response, error) {
+//  @return []GetNetworkSensorAlertsProfiles200ResponseInner
+func (a *ConfigureApiService) GetNetworkSensorAlertsProfilesExecute(r ConfigureApiGetNetworkSensorAlertsProfilesRequest) ([]GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20041
+		localVarReturnValue  []GetNetworkSensorAlertsProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSensorAlertsProfiles")
@@ -26250,7 +26251,7 @@ type ConfigureApiGetNetworkSensorMqttBrokerRequest struct {
 	mqttBrokerId string
 }
 
-func (r ConfigureApiGetNetworkSensorMqttBrokerRequest) Execute() (*InlineResponse20042, *http.Response, error) {
+func (r ConfigureApiGetNetworkSensorMqttBrokerRequest) Execute() (*GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorMqttBrokerExecute(r)
 }
 
@@ -26274,13 +26275,13 @@ func (a *ConfigureApiService) GetNetworkSensorMqttBroker(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return InlineResponse20042
-func (a *ConfigureApiService) GetNetworkSensorMqttBrokerExecute(r ConfigureApiGetNetworkSensorMqttBrokerRequest) (*InlineResponse20042, *http.Response, error) {
+//  @return GetNetworkSensorMqttBrokers200ResponseInner
+func (a *ConfigureApiService) GetNetworkSensorMqttBrokerExecute(r ConfigureApiGetNetworkSensorMqttBrokerRequest) (*GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20042
+		localVarReturnValue  *GetNetworkSensorMqttBrokers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSensorMqttBroker")
@@ -26370,7 +26371,7 @@ type ConfigureApiGetNetworkSensorMqttBrokersRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkSensorMqttBrokersRequest) Execute() ([]InlineResponse20042, *http.Response, error) {
+func (r ConfigureApiGetNetworkSensorMqttBrokersRequest) Execute() ([]GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorMqttBrokersExecute(r)
 }
 
@@ -26392,13 +26393,13 @@ func (a *ConfigureApiService) GetNetworkSensorMqttBrokers(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return []InlineResponse20042
-func (a *ConfigureApiService) GetNetworkSensorMqttBrokersExecute(r ConfigureApiGetNetworkSensorMqttBrokersRequest) ([]InlineResponse20042, *http.Response, error) {
+//  @return []GetNetworkSensorMqttBrokers200ResponseInner
+func (a *ConfigureApiService) GetNetworkSensorMqttBrokersExecute(r ConfigureApiGetNetworkSensorMqttBrokersRequest) ([]GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20042
+		localVarReturnValue  []GetNetworkSensorMqttBrokers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSensorMqttBrokers")
@@ -26487,7 +26488,7 @@ type ConfigureApiGetNetworkSensorRelationshipsRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkSensorRelationshipsRequest) Execute() ([]InlineResponse20043, *http.Response, error) {
+func (r ConfigureApiGetNetworkSensorRelationshipsRequest) Execute() ([]GetNetworkSensorRelationships200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorRelationshipsExecute(r)
 }
 
@@ -26509,13 +26510,13 @@ func (a *ConfigureApiService) GetNetworkSensorRelationships(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return []InlineResponse20043
-func (a *ConfigureApiService) GetNetworkSensorRelationshipsExecute(r ConfigureApiGetNetworkSensorRelationshipsRequest) ([]InlineResponse20043, *http.Response, error) {
+//  @return []GetNetworkSensorRelationships200ResponseInner
+func (a *ConfigureApiService) GetNetworkSensorRelationshipsExecute(r ConfigureApiGetNetworkSensorRelationshipsRequest) ([]GetNetworkSensorRelationships200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20043
+		localVarReturnValue  []GetNetworkSensorRelationships200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSensorRelationships")
@@ -26604,7 +26605,7 @@ type ConfigureApiGetNetworkSettingsRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkSettingsRequest) Execute() (*InlineResponse20044, *http.Response, error) {
+func (r ConfigureApiGetNetworkSettingsRequest) Execute() (*GetNetworkSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSettingsExecute(r)
 }
 
@@ -26626,13 +26627,13 @@ func (a *ConfigureApiService) GetNetworkSettings(ctx context.Context, networkId 
 }
 
 // Execute executes the request
-//  @return InlineResponse20044
-func (a *ConfigureApiService) GetNetworkSettingsExecute(r ConfigureApiGetNetworkSettingsRequest) (*InlineResponse20044, *http.Response, error) {
+//  @return GetNetworkSettings200Response
+func (a *ConfigureApiService) GetNetworkSettingsExecute(r ConfigureApiGetNetworkSettingsRequest) (*GetNetworkSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20044
+		localVarReturnValue  *GetNetworkSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSettings")
@@ -26843,7 +26844,7 @@ type ConfigureApiGetNetworkSmDeviceCertsRequest struct {
 	deviceId string
 }
 
-func (r ConfigureApiGetNetworkSmDeviceCertsRequest) Execute() ([]InlineResponse20052, *http.Response, error) {
+func (r ConfigureApiGetNetworkSmDeviceCertsRequest) Execute() ([]GetNetworkSmDeviceCerts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceCertsExecute(r)
 }
 
@@ -26867,13 +26868,13 @@ func (a *ConfigureApiService) GetNetworkSmDeviceCerts(ctx context.Context, netwo
 }
 
 // Execute executes the request
-//  @return []InlineResponse20052
-func (a *ConfigureApiService) GetNetworkSmDeviceCertsExecute(r ConfigureApiGetNetworkSmDeviceCertsRequest) ([]InlineResponse20052, *http.Response, error) {
+//  @return []GetNetworkSmDeviceCerts200ResponseInner
+func (a *ConfigureApiService) GetNetworkSmDeviceCertsExecute(r ConfigureApiGetNetworkSmDeviceCertsRequest) ([]GetNetworkSmDeviceCerts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20052
+		localVarReturnValue  []GetNetworkSmDeviceCerts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSmDeviceCerts")
@@ -26964,7 +26965,7 @@ type ConfigureApiGetNetworkSmDeviceDeviceProfilesRequest struct {
 	deviceId string
 }
 
-func (r ConfigureApiGetNetworkSmDeviceDeviceProfilesRequest) Execute() ([]InlineResponse20056, *http.Response, error) {
+func (r ConfigureApiGetNetworkSmDeviceDeviceProfilesRequest) Execute() ([]GetNetworkSmDeviceDeviceProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceDeviceProfilesExecute(r)
 }
 
@@ -26988,13 +26989,13 @@ func (a *ConfigureApiService) GetNetworkSmDeviceDeviceProfiles(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return []InlineResponse20056
-func (a *ConfigureApiService) GetNetworkSmDeviceDeviceProfilesExecute(r ConfigureApiGetNetworkSmDeviceDeviceProfilesRequest) ([]InlineResponse20056, *http.Response, error) {
+//  @return []GetNetworkSmDeviceDeviceProfiles200ResponseInner
+func (a *ConfigureApiService) GetNetworkSmDeviceDeviceProfilesExecute(r ConfigureApiGetNetworkSmDeviceDeviceProfilesRequest) ([]GetNetworkSmDeviceDeviceProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20056
+		localVarReturnValue  []GetNetworkSmDeviceDeviceProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSmDeviceDeviceProfiles")
@@ -27085,7 +27086,7 @@ type ConfigureApiGetNetworkSmDeviceNetworkAdaptersRequest struct {
 	deviceId string
 }
 
-func (r ConfigureApiGetNetworkSmDeviceNetworkAdaptersRequest) Execute() ([]InlineResponse20057, *http.Response, error) {
+func (r ConfigureApiGetNetworkSmDeviceNetworkAdaptersRequest) Execute() ([]GetNetworkSmDeviceNetworkAdapters200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceNetworkAdaptersExecute(r)
 }
 
@@ -27109,13 +27110,13 @@ func (a *ConfigureApiService) GetNetworkSmDeviceNetworkAdapters(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20057
-func (a *ConfigureApiService) GetNetworkSmDeviceNetworkAdaptersExecute(r ConfigureApiGetNetworkSmDeviceNetworkAdaptersRequest) ([]InlineResponse20057, *http.Response, error) {
+//  @return []GetNetworkSmDeviceNetworkAdapters200ResponseInner
+func (a *ConfigureApiService) GetNetworkSmDeviceNetworkAdaptersExecute(r ConfigureApiGetNetworkSmDeviceNetworkAdaptersRequest) ([]GetNetworkSmDeviceNetworkAdapters200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20057
+		localVarReturnValue  []GetNetworkSmDeviceNetworkAdapters200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSmDeviceNetworkAdapters")
@@ -27327,7 +27328,7 @@ type ConfigureApiGetNetworkSmDeviceSecurityCentersRequest struct {
 	deviceId string
 }
 
-func (r ConfigureApiGetNetworkSmDeviceSecurityCentersRequest) Execute() ([]InlineResponse20059, *http.Response, error) {
+func (r ConfigureApiGetNetworkSmDeviceSecurityCentersRequest) Execute() ([]GetNetworkSmDeviceSecurityCenters200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceSecurityCentersExecute(r)
 }
 
@@ -27351,13 +27352,13 @@ func (a *ConfigureApiService) GetNetworkSmDeviceSecurityCenters(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20059
-func (a *ConfigureApiService) GetNetworkSmDeviceSecurityCentersExecute(r ConfigureApiGetNetworkSmDeviceSecurityCentersRequest) ([]InlineResponse20059, *http.Response, error) {
+//  @return []GetNetworkSmDeviceSecurityCenters200ResponseInner
+func (a *ConfigureApiService) GetNetworkSmDeviceSecurityCentersExecute(r ConfigureApiGetNetworkSmDeviceSecurityCentersRequest) ([]GetNetworkSmDeviceSecurityCenters200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20059
+		localVarReturnValue  []GetNetworkSmDeviceSecurityCenters200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSmDeviceSecurityCenters")
@@ -27448,7 +27449,7 @@ type ConfigureApiGetNetworkSmDeviceSoftwaresRequest struct {
 	deviceId string
 }
 
-func (r ConfigureApiGetNetworkSmDeviceSoftwaresRequest) Execute() ([]InlineResponse20060, *http.Response, error) {
+func (r ConfigureApiGetNetworkSmDeviceSoftwaresRequest) Execute() ([]GetNetworkSmDeviceSoftwares200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceSoftwaresExecute(r)
 }
 
@@ -27472,13 +27473,13 @@ func (a *ConfigureApiService) GetNetworkSmDeviceSoftwares(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return []InlineResponse20060
-func (a *ConfigureApiService) GetNetworkSmDeviceSoftwaresExecute(r ConfigureApiGetNetworkSmDeviceSoftwaresRequest) ([]InlineResponse20060, *http.Response, error) {
+//  @return []GetNetworkSmDeviceSoftwares200ResponseInner
+func (a *ConfigureApiService) GetNetworkSmDeviceSoftwaresExecute(r ConfigureApiGetNetworkSmDeviceSoftwaresRequest) ([]GetNetworkSmDeviceSoftwares200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20060
+		localVarReturnValue  []GetNetworkSmDeviceSoftwares200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSmDeviceSoftwares")
@@ -27569,7 +27570,7 @@ type ConfigureApiGetNetworkSmDeviceWlanListsRequest struct {
 	deviceId string
 }
 
-func (r ConfigureApiGetNetworkSmDeviceWlanListsRequest) Execute() ([]InlineResponse20061, *http.Response, error) {
+func (r ConfigureApiGetNetworkSmDeviceWlanListsRequest) Execute() ([]GetNetworkSmDeviceWlanLists200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceWlanListsExecute(r)
 }
 
@@ -27593,13 +27594,13 @@ func (a *ConfigureApiService) GetNetworkSmDeviceWlanLists(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return []InlineResponse20061
-func (a *ConfigureApiService) GetNetworkSmDeviceWlanListsExecute(r ConfigureApiGetNetworkSmDeviceWlanListsRequest) ([]InlineResponse20061, *http.Response, error) {
+//  @return []GetNetworkSmDeviceWlanLists200ResponseInner
+func (a *ConfigureApiService) GetNetworkSmDeviceWlanListsExecute(r ConfigureApiGetNetworkSmDeviceWlanListsRequest) ([]GetNetworkSmDeviceWlanLists200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20061
+		localVarReturnValue  []GetNetworkSmDeviceWlanLists200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSmDeviceWlanLists")
@@ -27745,7 +27746,7 @@ func (r ConfigureApiGetNetworkSmDevicesRequest) EndingBefore(endingBefore string
 	return r
 }
 
-func (r ConfigureApiGetNetworkSmDevicesRequest) Execute() ([]InlineResponse20045, *http.Response, error) {
+func (r ConfigureApiGetNetworkSmDevicesRequest) Execute() ([]GetNetworkSmDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDevicesExecute(r)
 }
 
@@ -27767,13 +27768,13 @@ func (a *ConfigureApiService) GetNetworkSmDevices(ctx context.Context, networkId
 }
 
 // Execute executes the request
-//  @return []InlineResponse20045
-func (a *ConfigureApiService) GetNetworkSmDevicesExecute(r ConfigureApiGetNetworkSmDevicesRequest) ([]InlineResponse20045, *http.Response, error) {
+//  @return []GetNetworkSmDevices200ResponseInner
+func (a *ConfigureApiService) GetNetworkSmDevicesExecute(r ConfigureApiGetNetworkSmDevicesRequest) ([]GetNetworkSmDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20045
+		localVarReturnValue  []GetNetworkSmDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSmDevices")
@@ -27789,19 +27790,59 @@ func (a *ConfigureApiService) GetNetworkSmDevicesExecute(r ConfigureApiGetNetwor
 	localVarFormParams := url.Values{}
 
 	if r.fields != nil {
-		localVarQueryParams.Add("fields", parameterToString(*r.fields, "csv"))
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("fields", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("fields", parameterToString(t, "multi"))
+		}
 	}
 	if r.wifiMacs != nil {
-		localVarQueryParams.Add("wifiMacs", parameterToString(*r.wifiMacs, "csv"))
+		t := *r.wifiMacs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("wifiMacs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("wifiMacs", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.ids != nil {
-		localVarQueryParams.Add("ids", parameterToString(*r.ids, "csv"))
+		t := *r.ids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("ids", parameterToString(t, "multi"))
+		}
 	}
 	if r.scope != nil {
-		localVarQueryParams.Add("scope", parameterToString(*r.scope, "csv"))
+		t := *r.scope
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("scope", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("scope", parameterToString(t, "multi"))
+		}
 	}
 	if r.perPage != nil {
 		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
@@ -27886,7 +27927,7 @@ type ConfigureApiGetNetworkSmProfilesRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkSmProfilesRequest) Execute() ([]InlineResponse20062, *http.Response, error) {
+func (r ConfigureApiGetNetworkSmProfilesRequest) Execute() ([]GetNetworkSmProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmProfilesExecute(r)
 }
 
@@ -27908,13 +27949,13 @@ func (a *ConfigureApiService) GetNetworkSmProfiles(ctx context.Context, networkI
 }
 
 // Execute executes the request
-//  @return []InlineResponse20062
-func (a *ConfigureApiService) GetNetworkSmProfilesExecute(r ConfigureApiGetNetworkSmProfilesRequest) ([]InlineResponse20062, *http.Response, error) {
+//  @return []GetNetworkSmProfiles200ResponseInner
+func (a *ConfigureApiService) GetNetworkSmProfilesExecute(r ConfigureApiGetNetworkSmProfilesRequest) ([]GetNetworkSmProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20062
+		localVarReturnValue  []GetNetworkSmProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSmProfiles")
@@ -28282,7 +28323,7 @@ func (r ConfigureApiGetNetworkSmTrustedAccessConfigsRequest) EndingBefore(ending
 	return r
 }
 
-func (r ConfigureApiGetNetworkSmTrustedAccessConfigsRequest) Execute() ([]InlineResponse20063, *http.Response, error) {
+func (r ConfigureApiGetNetworkSmTrustedAccessConfigsRequest) Execute() ([]GetNetworkSmTrustedAccessConfigs200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmTrustedAccessConfigsExecute(r)
 }
 
@@ -28304,13 +28345,13 @@ func (a *ConfigureApiService) GetNetworkSmTrustedAccessConfigs(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return []InlineResponse20063
-func (a *ConfigureApiService) GetNetworkSmTrustedAccessConfigsExecute(r ConfigureApiGetNetworkSmTrustedAccessConfigsRequest) ([]InlineResponse20063, *http.Response, error) {
+//  @return []GetNetworkSmTrustedAccessConfigs200ResponseInner
+func (a *ConfigureApiService) GetNetworkSmTrustedAccessConfigsExecute(r ConfigureApiGetNetworkSmTrustedAccessConfigsRequest) ([]GetNetworkSmTrustedAccessConfigs200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20063
+		localVarReturnValue  []GetNetworkSmTrustedAccessConfigs200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSmTrustedAccessConfigs")
@@ -28429,7 +28470,7 @@ func (r ConfigureApiGetNetworkSmUserAccessDevicesRequest) EndingBefore(endingBef
 	return r
 }
 
-func (r ConfigureApiGetNetworkSmUserAccessDevicesRequest) Execute() ([]InlineResponse20064, *http.Response, error) {
+func (r ConfigureApiGetNetworkSmUserAccessDevicesRequest) Execute() ([]GetNetworkSmUserAccessDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmUserAccessDevicesExecute(r)
 }
 
@@ -28451,13 +28492,13 @@ func (a *ConfigureApiService) GetNetworkSmUserAccessDevices(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return []InlineResponse20064
-func (a *ConfigureApiService) GetNetworkSmUserAccessDevicesExecute(r ConfigureApiGetNetworkSmUserAccessDevicesRequest) ([]InlineResponse20064, *http.Response, error) {
+//  @return []GetNetworkSmUserAccessDevices200ResponseInner
+func (a *ConfigureApiService) GetNetworkSmUserAccessDevicesExecute(r ConfigureApiGetNetworkSmUserAccessDevicesRequest) ([]GetNetworkSmUserAccessDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20064
+		localVarReturnValue  []GetNetworkSmUserAccessDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSmUserAccessDevices")
@@ -28556,7 +28597,7 @@ type ConfigureApiGetNetworkSmUserDeviceProfilesRequest struct {
 	userId string
 }
 
-func (r ConfigureApiGetNetworkSmUserDeviceProfilesRequest) Execute() ([]InlineResponse20056, *http.Response, error) {
+func (r ConfigureApiGetNetworkSmUserDeviceProfilesRequest) Execute() ([]GetNetworkSmDeviceDeviceProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmUserDeviceProfilesExecute(r)
 }
 
@@ -28580,13 +28621,13 @@ func (a *ConfigureApiService) GetNetworkSmUserDeviceProfiles(ctx context.Context
 }
 
 // Execute executes the request
-//  @return []InlineResponse20056
-func (a *ConfigureApiService) GetNetworkSmUserDeviceProfilesExecute(r ConfigureApiGetNetworkSmUserDeviceProfilesRequest) ([]InlineResponse20056, *http.Response, error) {
+//  @return []GetNetworkSmDeviceDeviceProfiles200ResponseInner
+func (a *ConfigureApiService) GetNetworkSmUserDeviceProfilesExecute(r ConfigureApiGetNetworkSmUserDeviceProfilesRequest) ([]GetNetworkSmDeviceDeviceProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20056
+		localVarReturnValue  []GetNetworkSmDeviceDeviceProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSmUserDeviceProfiles")
@@ -28677,7 +28718,7 @@ type ConfigureApiGetNetworkSmUserSoftwaresRequest struct {
 	userId string
 }
 
-func (r ConfigureApiGetNetworkSmUserSoftwaresRequest) Execute() ([]InlineResponse20060, *http.Response, error) {
+func (r ConfigureApiGetNetworkSmUserSoftwaresRequest) Execute() ([]GetNetworkSmDeviceSoftwares200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmUserSoftwaresExecute(r)
 }
 
@@ -28701,13 +28742,13 @@ func (a *ConfigureApiService) GetNetworkSmUserSoftwares(ctx context.Context, net
 }
 
 // Execute executes the request
-//  @return []InlineResponse20060
-func (a *ConfigureApiService) GetNetworkSmUserSoftwaresExecute(r ConfigureApiGetNetworkSmUserSoftwaresRequest) ([]InlineResponse20060, *http.Response, error) {
+//  @return []GetNetworkSmDeviceSoftwares200ResponseInner
+func (a *ConfigureApiService) GetNetworkSmUserSoftwaresExecute(r ConfigureApiGetNetworkSmUserSoftwaresRequest) ([]GetNetworkSmDeviceSoftwares200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20060
+		localVarReturnValue  []GetNetworkSmDeviceSoftwares200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSmUserSoftwares")
@@ -28825,7 +28866,7 @@ func (r ConfigureApiGetNetworkSmUsersRequest) Scope(scope []string) ConfigureApi
 	return r
 }
 
-func (r ConfigureApiGetNetworkSmUsersRequest) Execute() ([]InlineResponse20065, *http.Response, error) {
+func (r ConfigureApiGetNetworkSmUsersRequest) Execute() ([]GetNetworkSmUsers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmUsersExecute(r)
 }
 
@@ -28847,13 +28888,13 @@ func (a *ConfigureApiService) GetNetworkSmUsers(ctx context.Context, networkId s
 }
 
 // Execute executes the request
-//  @return []InlineResponse20065
-func (a *ConfigureApiService) GetNetworkSmUsersExecute(r ConfigureApiGetNetworkSmUsersRequest) ([]InlineResponse20065, *http.Response, error) {
+//  @return []GetNetworkSmUsers200ResponseInner
+func (a *ConfigureApiService) GetNetworkSmUsersExecute(r ConfigureApiGetNetworkSmUsersRequest) ([]GetNetworkSmUsers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20065
+		localVarReturnValue  []GetNetworkSmUsers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSmUsers")
@@ -28869,16 +28910,48 @@ func (a *ConfigureApiService) GetNetworkSmUsersExecute(r ConfigureApiGetNetworkS
 	localVarFormParams := url.Values{}
 
 	if r.ids != nil {
-		localVarQueryParams.Add("ids", parameterToString(*r.ids, "csv"))
+		t := *r.ids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("ids", parameterToString(t, "multi"))
+		}
 	}
 	if r.usernames != nil {
-		localVarQueryParams.Add("usernames", parameterToString(*r.usernames, "csv"))
+		t := *r.usernames
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("usernames", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("usernames", parameterToString(t, "multi"))
+		}
 	}
 	if r.emails != nil {
-		localVarQueryParams.Add("emails", parameterToString(*r.emails, "csv"))
+		t := *r.emails
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("emails", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("emails", parameterToString(t, "multi"))
+		}
 	}
 	if r.scope != nil {
-		localVarQueryParams.Add("scope", parameterToString(*r.scope, "csv"))
+		t := *r.scope
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("scope", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("scope", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -29071,7 +29144,7 @@ type ConfigureApiGetNetworkSwitchAccessControlListsRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkSwitchAccessControlListsRequest) Execute() (*InlineResponse20067, *http.Response, error) {
+func (r ConfigureApiGetNetworkSwitchAccessControlListsRequest) Execute() (*GetNetworkSwitchAccessControlLists200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchAccessControlListsExecute(r)
 }
 
@@ -29093,13 +29166,13 @@ func (a *ConfigureApiService) GetNetworkSwitchAccessControlLists(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InlineResponse20067
-func (a *ConfigureApiService) GetNetworkSwitchAccessControlListsExecute(r ConfigureApiGetNetworkSwitchAccessControlListsRequest) (*InlineResponse20067, *http.Response, error) {
+//  @return GetNetworkSwitchAccessControlLists200Response
+func (a *ConfigureApiService) GetNetworkSwitchAccessControlListsExecute(r ConfigureApiGetNetworkSwitchAccessControlListsRequest) (*GetNetworkSwitchAccessControlLists200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20067
+		localVarReturnValue  *GetNetworkSwitchAccessControlLists200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSwitchAccessControlLists")
@@ -29188,7 +29261,7 @@ type ConfigureApiGetNetworkSwitchAccessPoliciesRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkSwitchAccessPoliciesRequest) Execute() ([]InlineResponse20068, *http.Response, error) {
+func (r ConfigureApiGetNetworkSwitchAccessPoliciesRequest) Execute() ([]GetNetworkSwitchAccessPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchAccessPoliciesExecute(r)
 }
 
@@ -29210,13 +29283,13 @@ func (a *ConfigureApiService) GetNetworkSwitchAccessPolicies(ctx context.Context
 }
 
 // Execute executes the request
-//  @return []InlineResponse20068
-func (a *ConfigureApiService) GetNetworkSwitchAccessPoliciesExecute(r ConfigureApiGetNetworkSwitchAccessPoliciesRequest) ([]InlineResponse20068, *http.Response, error) {
+//  @return []GetNetworkSwitchAccessPolicies200ResponseInner
+func (a *ConfigureApiService) GetNetworkSwitchAccessPoliciesExecute(r ConfigureApiGetNetworkSwitchAccessPoliciesRequest) ([]GetNetworkSwitchAccessPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20068
+		localVarReturnValue  []GetNetworkSwitchAccessPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSwitchAccessPolicies")
@@ -29306,7 +29379,7 @@ type ConfigureApiGetNetworkSwitchAccessPolicyRequest struct {
 	accessPolicyNumber string
 }
 
-func (r ConfigureApiGetNetworkSwitchAccessPolicyRequest) Execute() (*InlineResponse20068, *http.Response, error) {
+func (r ConfigureApiGetNetworkSwitchAccessPolicyRequest) Execute() (*GetNetworkSwitchAccessPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchAccessPolicyExecute(r)
 }
 
@@ -29330,13 +29403,13 @@ func (a *ConfigureApiService) GetNetworkSwitchAccessPolicy(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse20068
-func (a *ConfigureApiService) GetNetworkSwitchAccessPolicyExecute(r ConfigureApiGetNetworkSwitchAccessPolicyRequest) (*InlineResponse20068, *http.Response, error) {
+//  @return GetNetworkSwitchAccessPolicies200ResponseInner
+func (a *ConfigureApiService) GetNetworkSwitchAccessPolicyExecute(r ConfigureApiGetNetworkSwitchAccessPolicyRequest) (*GetNetworkSwitchAccessPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20068
+		localVarReturnValue  *GetNetworkSwitchAccessPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSwitchAccessPolicy")
@@ -29426,7 +29499,7 @@ type ConfigureApiGetNetworkSwitchAlternateManagementInterfaceRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkSwitchAlternateManagementInterfaceRequest) Execute() (*InlineResponse20069, *http.Response, error) {
+func (r ConfigureApiGetNetworkSwitchAlternateManagementInterfaceRequest) Execute() (*GetNetworkSwitchAlternateManagementInterface200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchAlternateManagementInterfaceExecute(r)
 }
 
@@ -29448,13 +29521,13 @@ func (a *ConfigureApiService) GetNetworkSwitchAlternateManagementInterface(ctx c
 }
 
 // Execute executes the request
-//  @return InlineResponse20069
-func (a *ConfigureApiService) GetNetworkSwitchAlternateManagementInterfaceExecute(r ConfigureApiGetNetworkSwitchAlternateManagementInterfaceRequest) (*InlineResponse20069, *http.Response, error) {
+//  @return GetNetworkSwitchAlternateManagementInterface200Response
+func (a *ConfigureApiService) GetNetworkSwitchAlternateManagementInterfaceExecute(r ConfigureApiGetNetworkSwitchAlternateManagementInterfaceRequest) (*GetNetworkSwitchAlternateManagementInterface200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20069
+		localVarReturnValue  *GetNetworkSwitchAlternateManagementInterface200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSwitchAlternateManagementInterface")
@@ -29543,7 +29616,7 @@ type ConfigureApiGetNetworkSwitchDhcpServerPolicyRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkSwitchDhcpServerPolicyRequest) Execute() (*InlineResponse20071, *http.Response, error) {
+func (r ConfigureApiGetNetworkSwitchDhcpServerPolicyRequest) Execute() (*GetNetworkSwitchDhcpServerPolicy200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchDhcpServerPolicyExecute(r)
 }
 
@@ -29565,13 +29638,13 @@ func (a *ConfigureApiService) GetNetworkSwitchDhcpServerPolicy(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20071
-func (a *ConfigureApiService) GetNetworkSwitchDhcpServerPolicyExecute(r ConfigureApiGetNetworkSwitchDhcpServerPolicyRequest) (*InlineResponse20071, *http.Response, error) {
+//  @return GetNetworkSwitchDhcpServerPolicy200Response
+func (a *ConfigureApiService) GetNetworkSwitchDhcpServerPolicyExecute(r ConfigureApiGetNetworkSwitchDhcpServerPolicyRequest) (*GetNetworkSwitchDhcpServerPolicy200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20071
+		localVarReturnValue  *GetNetworkSwitchDhcpServerPolicy200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSwitchDhcpServerPolicy")
@@ -29681,7 +29754,7 @@ func (r ConfigureApiGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersR
 	return r
 }
 
-func (r ConfigureApiGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersRequest) Execute() ([]InlineResponse20072, *http.Response, error) {
+func (r ConfigureApiGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersRequest) Execute() ([]GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersExecute(r)
 }
 
@@ -29703,13 +29776,13 @@ func (a *ConfigureApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionTrust
 }
 
 // Execute executes the request
-//  @return []InlineResponse20072
-func (a *ConfigureApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersExecute(r ConfigureApiGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersRequest) ([]InlineResponse20072, *http.Response, error) {
+//  @return []GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner
+func (a *ConfigureApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersExecute(r ConfigureApiGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersRequest) ([]GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20072
+		localVarReturnValue  []GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers")
@@ -29828,7 +29901,7 @@ func (r ConfigureApiGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevic
 	return r
 }
 
-func (r ConfigureApiGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceRequest) Execute() ([]InlineResponse20073, *http.Response, error) {
+func (r ConfigureApiGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceRequest) Execute() ([]GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceExecute(r)
 }
 
@@ -29850,13 +29923,13 @@ func (a *ConfigureApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarni
 }
 
 // Execute executes the request
-//  @return []InlineResponse20073
-func (a *ConfigureApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceExecute(r ConfigureApiGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceRequest) ([]InlineResponse20073, *http.Response, error) {
+//  @return []GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner
+func (a *ConfigureApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceExecute(r ConfigureApiGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceRequest) ([]GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20073
+		localVarReturnValue  []GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice")
@@ -29989,7 +30062,7 @@ func (r ConfigureApiGetNetworkSwitchDhcpV4ServersSeenRequest) EndingBefore(endin
 	return r
 }
 
-func (r ConfigureApiGetNetworkSwitchDhcpV4ServersSeenRequest) Execute() ([]InlineResponse20070, *http.Response, error) {
+func (r ConfigureApiGetNetworkSwitchDhcpV4ServersSeenRequest) Execute() ([]GetNetworkSwitchDhcpV4ServersSeen200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchDhcpV4ServersSeenExecute(r)
 }
 
@@ -30011,13 +30084,13 @@ func (a *ConfigureApiService) GetNetworkSwitchDhcpV4ServersSeen(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20070
-func (a *ConfigureApiService) GetNetworkSwitchDhcpV4ServersSeenExecute(r ConfigureApiGetNetworkSwitchDhcpV4ServersSeenRequest) ([]InlineResponse20070, *http.Response, error) {
+//  @return []GetNetworkSwitchDhcpV4ServersSeen200ResponseInner
+func (a *ConfigureApiService) GetNetworkSwitchDhcpV4ServersSeenExecute(r ConfigureApiGetNetworkSwitchDhcpV4ServersSeenRequest) ([]GetNetworkSwitchDhcpV4ServersSeen200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20070
+		localVarReturnValue  []GetNetworkSwitchDhcpV4ServersSeen200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSwitchDhcpV4ServersSeen")
@@ -30121,7 +30194,7 @@ type ConfigureApiGetNetworkSwitchDscpToCosMappingsRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkSwitchDscpToCosMappingsRequest) Execute() (*InlineResponse20074, *http.Response, error) {
+func (r ConfigureApiGetNetworkSwitchDscpToCosMappingsRequest) Execute() (*GetNetworkSwitchDscpToCosMappings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchDscpToCosMappingsExecute(r)
 }
 
@@ -30143,13 +30216,13 @@ func (a *ConfigureApiService) GetNetworkSwitchDscpToCosMappings(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20074
-func (a *ConfigureApiService) GetNetworkSwitchDscpToCosMappingsExecute(r ConfigureApiGetNetworkSwitchDscpToCosMappingsRequest) (*InlineResponse20074, *http.Response, error) {
+//  @return GetNetworkSwitchDscpToCosMappings200Response
+func (a *ConfigureApiService) GetNetworkSwitchDscpToCosMappingsExecute(r ConfigureApiGetNetworkSwitchDscpToCosMappingsRequest) (*GetNetworkSwitchDscpToCosMappings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20074
+		localVarReturnValue  *GetNetworkSwitchDscpToCosMappings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSwitchDscpToCosMappings")
@@ -30355,7 +30428,7 @@ type ConfigureApiGetNetworkSwitchMtuRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkSwitchMtuRequest) Execute() (*InlineResponse20075, *http.Response, error) {
+func (r ConfigureApiGetNetworkSwitchMtuRequest) Execute() (*GetNetworkSwitchMtu200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchMtuExecute(r)
 }
 
@@ -30377,13 +30450,13 @@ func (a *ConfigureApiService) GetNetworkSwitchMtu(ctx context.Context, networkId
 }
 
 // Execute executes the request
-//  @return InlineResponse20075
-func (a *ConfigureApiService) GetNetworkSwitchMtuExecute(r ConfigureApiGetNetworkSwitchMtuRequest) (*InlineResponse20075, *http.Response, error) {
+//  @return GetNetworkSwitchMtu200Response
+func (a *ConfigureApiService) GetNetworkSwitchMtuExecute(r ConfigureApiGetNetworkSwitchMtuRequest) (*GetNetworkSwitchMtu200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20075
+		localVarReturnValue  *GetNetworkSwitchMtu200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSwitchMtu")
@@ -30590,7 +30663,7 @@ type ConfigureApiGetNetworkSwitchQosRuleRequest struct {
 	qosRuleId string
 }
 
-func (r ConfigureApiGetNetworkSwitchQosRuleRequest) Execute() (*InlineResponse20076, *http.Response, error) {
+func (r ConfigureApiGetNetworkSwitchQosRuleRequest) Execute() (*GetNetworkSwitchQosRule200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchQosRuleExecute(r)
 }
 
@@ -30614,13 +30687,13 @@ func (a *ConfigureApiService) GetNetworkSwitchQosRule(ctx context.Context, netwo
 }
 
 // Execute executes the request
-//  @return InlineResponse20076
-func (a *ConfigureApiService) GetNetworkSwitchQosRuleExecute(r ConfigureApiGetNetworkSwitchQosRuleRequest) (*InlineResponse20076, *http.Response, error) {
+//  @return GetNetworkSwitchQosRule200Response
+func (a *ConfigureApiService) GetNetworkSwitchQosRuleExecute(r ConfigureApiGetNetworkSwitchQosRuleRequest) (*GetNetworkSwitchQosRule200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20076
+		localVarReturnValue  *GetNetworkSwitchQosRule200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSwitchQosRule")
@@ -30944,7 +31017,7 @@ type ConfigureApiGetNetworkSwitchRoutingMulticastRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkSwitchRoutingMulticastRequest) Execute() (*InlineResponse20077, *http.Response, error) {
+func (r ConfigureApiGetNetworkSwitchRoutingMulticastRequest) Execute() (*GetNetworkSwitchRoutingMulticast200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchRoutingMulticastExecute(r)
 }
 
@@ -30966,13 +31039,13 @@ func (a *ConfigureApiService) GetNetworkSwitchRoutingMulticast(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20077
-func (a *ConfigureApiService) GetNetworkSwitchRoutingMulticastExecute(r ConfigureApiGetNetworkSwitchRoutingMulticastRequest) (*InlineResponse20077, *http.Response, error) {
+//  @return GetNetworkSwitchRoutingMulticast200Response
+func (a *ConfigureApiService) GetNetworkSwitchRoutingMulticastExecute(r ConfigureApiGetNetworkSwitchRoutingMulticastRequest) (*GetNetworkSwitchRoutingMulticast200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20077
+		localVarReturnValue  *GetNetworkSwitchRoutingMulticast200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSwitchRoutingMulticast")
@@ -31416,7 +31489,7 @@ type ConfigureApiGetNetworkSwitchSettingsRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkSwitchSettingsRequest) Execute() (*InlineResponse20078, *http.Response, error) {
+func (r ConfigureApiGetNetworkSwitchSettingsRequest) Execute() (*GetNetworkSwitchSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchSettingsExecute(r)
 }
 
@@ -31438,13 +31511,13 @@ func (a *ConfigureApiService) GetNetworkSwitchSettings(ctx context.Context, netw
 }
 
 // Execute executes the request
-//  @return InlineResponse20078
-func (a *ConfigureApiService) GetNetworkSwitchSettingsExecute(r ConfigureApiGetNetworkSwitchSettingsRequest) (*InlineResponse20078, *http.Response, error) {
+//  @return GetNetworkSwitchSettings200Response
+func (a *ConfigureApiService) GetNetworkSwitchSettingsExecute(r ConfigureApiGetNetworkSwitchSettingsRequest) (*GetNetworkSwitchSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20078
+		localVarReturnValue  *GetNetworkSwitchSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSwitchSettings")
@@ -31534,7 +31607,7 @@ type ConfigureApiGetNetworkSwitchStackRequest struct {
 	switchStackId string
 }
 
-func (r ConfigureApiGetNetworkSwitchStackRequest) Execute() (*InlineResponse20079, *http.Response, error) {
+func (r ConfigureApiGetNetworkSwitchStackRequest) Execute() (*GetNetworkSwitchStack200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchStackExecute(r)
 }
 
@@ -31558,13 +31631,13 @@ func (a *ConfigureApiService) GetNetworkSwitchStack(ctx context.Context, network
 }
 
 // Execute executes the request
-//  @return InlineResponse20079
-func (a *ConfigureApiService) GetNetworkSwitchStackExecute(r ConfigureApiGetNetworkSwitchStackRequest) (*InlineResponse20079, *http.Response, error) {
+//  @return GetNetworkSwitchStack200Response
+func (a *ConfigureApiService) GetNetworkSwitchStackExecute(r ConfigureApiGetNetworkSwitchStackRequest) (*GetNetworkSwitchStack200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20079
+		localVarReturnValue  *GetNetworkSwitchStack200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSwitchStack")
@@ -31781,7 +31854,7 @@ type ConfigureApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest struct {
 	interfaceId string
 }
 
-func (r ConfigureApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest) Execute() (*InlineResponse20080, *http.Response, error) {
+func (r ConfigureApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest) Execute() (*GetNetworkSwitchStackRoutingInterfaceDhcp200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchStackRoutingInterfaceDhcpExecute(r)
 }
 
@@ -31807,13 +31880,13 @@ func (a *ConfigureApiService) GetNetworkSwitchStackRoutingInterfaceDhcp(ctx cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20080
-func (a *ConfigureApiService) GetNetworkSwitchStackRoutingInterfaceDhcpExecute(r ConfigureApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest) (*InlineResponse20080, *http.Response, error) {
+//  @return GetNetworkSwitchStackRoutingInterfaceDhcp200Response
+func (a *ConfigureApiService) GetNetworkSwitchStackRoutingInterfaceDhcpExecute(r ConfigureApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest) (*GetNetworkSwitchStackRoutingInterfaceDhcp200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20080
+		localVarReturnValue  *GetNetworkSwitchStackRoutingInterfaceDhcp200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSwitchStackRoutingInterfaceDhcp")
@@ -32388,7 +32461,7 @@ type ConfigureApiGetNetworkSwitchStormControlRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkSwitchStormControlRequest) Execute() (*InlineResponse20081, *http.Response, error) {
+func (r ConfigureApiGetNetworkSwitchStormControlRequest) Execute() (*GetNetworkSwitchStormControl200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchStormControlExecute(r)
 }
 
@@ -32410,13 +32483,13 @@ func (a *ConfigureApiService) GetNetworkSwitchStormControl(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse20081
-func (a *ConfigureApiService) GetNetworkSwitchStormControlExecute(r ConfigureApiGetNetworkSwitchStormControlRequest) (*InlineResponse20081, *http.Response, error) {
+//  @return GetNetworkSwitchStormControl200Response
+func (a *ConfigureApiService) GetNetworkSwitchStormControlExecute(r ConfigureApiGetNetworkSwitchStormControlRequest) (*GetNetworkSwitchStormControl200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20081
+		localVarReturnValue  *GetNetworkSwitchStormControl200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSwitchStormControl")
@@ -32622,7 +32695,7 @@ type ConfigureApiGetNetworkSyslogServersRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkSyslogServersRequest) Execute() (*InlineResponse20082, *http.Response, error) {
+func (r ConfigureApiGetNetworkSyslogServersRequest) Execute() (*GetNetworkSyslogServers200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSyslogServersExecute(r)
 }
 
@@ -32644,13 +32717,13 @@ func (a *ConfigureApiService) GetNetworkSyslogServers(ctx context.Context, netwo
 }
 
 // Execute executes the request
-//  @return InlineResponse20082
-func (a *ConfigureApiService) GetNetworkSyslogServersExecute(r ConfigureApiGetNetworkSyslogServersRequest) (*InlineResponse20082, *http.Response, error) {
+//  @return GetNetworkSyslogServers200Response
+func (a *ConfigureApiService) GetNetworkSyslogServersExecute(r ConfigureApiGetNetworkSyslogServersRequest) (*GetNetworkSyslogServers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20082
+		localVarReturnValue  *GetNetworkSyslogServers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkSyslogServers")
@@ -33091,7 +33164,7 @@ type ConfigureApiGetNetworkWebhooksHttpServerRequest struct {
 	httpServerId string
 }
 
-func (r ConfigureApiGetNetworkWebhooksHttpServerRequest) Execute() (*InlineResponse20083, *http.Response, error) {
+func (r ConfigureApiGetNetworkWebhooksHttpServerRequest) Execute() (*GetNetworkWebhooksHttpServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWebhooksHttpServerExecute(r)
 }
 
@@ -33115,13 +33188,13 @@ func (a *ConfigureApiService) GetNetworkWebhooksHttpServer(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse20083
-func (a *ConfigureApiService) GetNetworkWebhooksHttpServerExecute(r ConfigureApiGetNetworkWebhooksHttpServerRequest) (*InlineResponse20083, *http.Response, error) {
+//  @return GetNetworkWebhooksHttpServers200ResponseInner
+func (a *ConfigureApiService) GetNetworkWebhooksHttpServerExecute(r ConfigureApiGetNetworkWebhooksHttpServerRequest) (*GetNetworkWebhooksHttpServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20083
+		localVarReturnValue  *GetNetworkWebhooksHttpServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkWebhooksHttpServer")
@@ -33211,7 +33284,7 @@ type ConfigureApiGetNetworkWebhooksHttpServersRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkWebhooksHttpServersRequest) Execute() ([]InlineResponse20083, *http.Response, error) {
+func (r ConfigureApiGetNetworkWebhooksHttpServersRequest) Execute() ([]GetNetworkWebhooksHttpServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWebhooksHttpServersExecute(r)
 }
 
@@ -33233,13 +33306,13 @@ func (a *ConfigureApiService) GetNetworkWebhooksHttpServers(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return []InlineResponse20083
-func (a *ConfigureApiService) GetNetworkWebhooksHttpServersExecute(r ConfigureApiGetNetworkWebhooksHttpServersRequest) ([]InlineResponse20083, *http.Response, error) {
+//  @return []GetNetworkWebhooksHttpServers200ResponseInner
+func (a *ConfigureApiService) GetNetworkWebhooksHttpServersExecute(r ConfigureApiGetNetworkWebhooksHttpServersRequest) ([]GetNetworkWebhooksHttpServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20083
+		localVarReturnValue  []GetNetworkWebhooksHttpServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkWebhooksHttpServers")
@@ -33329,7 +33402,7 @@ type ConfigureApiGetNetworkWebhooksPayloadTemplateRequest struct {
 	payloadTemplateId string
 }
 
-func (r ConfigureApiGetNetworkWebhooksPayloadTemplateRequest) Execute() (*InlineResponse20084, *http.Response, error) {
+func (r ConfigureApiGetNetworkWebhooksPayloadTemplateRequest) Execute() (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWebhooksPayloadTemplateExecute(r)
 }
 
@@ -33353,13 +33426,13 @@ func (a *ConfigureApiService) GetNetworkWebhooksPayloadTemplate(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20084
-func (a *ConfigureApiService) GetNetworkWebhooksPayloadTemplateExecute(r ConfigureApiGetNetworkWebhooksPayloadTemplateRequest) (*InlineResponse20084, *http.Response, error) {
+//  @return GetNetworkWebhooksPayloadTemplates200ResponseInner
+func (a *ConfigureApiService) GetNetworkWebhooksPayloadTemplateExecute(r ConfigureApiGetNetworkWebhooksPayloadTemplateRequest) (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20084
+		localVarReturnValue  *GetNetworkWebhooksPayloadTemplates200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkWebhooksPayloadTemplate")
@@ -33449,7 +33522,7 @@ type ConfigureApiGetNetworkWebhooksPayloadTemplatesRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkWebhooksPayloadTemplatesRequest) Execute() ([]InlineResponse20084, *http.Response, error) {
+func (r ConfigureApiGetNetworkWebhooksPayloadTemplatesRequest) Execute() ([]GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWebhooksPayloadTemplatesExecute(r)
 }
 
@@ -33471,13 +33544,13 @@ func (a *ConfigureApiService) GetNetworkWebhooksPayloadTemplates(ctx context.Con
 }
 
 // Execute executes the request
-//  @return []InlineResponse20084
-func (a *ConfigureApiService) GetNetworkWebhooksPayloadTemplatesExecute(r ConfigureApiGetNetworkWebhooksPayloadTemplatesRequest) ([]InlineResponse20084, *http.Response, error) {
+//  @return []GetNetworkWebhooksPayloadTemplates200ResponseInner
+func (a *ConfigureApiService) GetNetworkWebhooksPayloadTemplatesExecute(r ConfigureApiGetNetworkWebhooksPayloadTemplatesRequest) ([]GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20084
+		localVarReturnValue  []GetNetworkWebhooksPayloadTemplates200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkWebhooksPayloadTemplates")
@@ -33567,7 +33640,7 @@ type ConfigureApiGetNetworkWebhooksWebhookTestRequest struct {
 	webhookTestId string
 }
 
-func (r ConfigureApiGetNetworkWebhooksWebhookTestRequest) Execute() (*InlineResponse2013, *http.Response, error) {
+func (r ConfigureApiGetNetworkWebhooksWebhookTestRequest) Execute() (*CreateNetworkWebhooksWebhookTest201Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWebhooksWebhookTestExecute(r)
 }
 
@@ -33591,13 +33664,13 @@ func (a *ConfigureApiService) GetNetworkWebhooksWebhookTest(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse2013
-func (a *ConfigureApiService) GetNetworkWebhooksWebhookTestExecute(r ConfigureApiGetNetworkWebhooksWebhookTestRequest) (*InlineResponse2013, *http.Response, error) {
+//  @return CreateNetworkWebhooksWebhookTest201Response
+func (a *ConfigureApiService) GetNetworkWebhooksWebhookTestExecute(r ConfigureApiGetNetworkWebhooksWebhookTestRequest) (*CreateNetworkWebhooksWebhookTest201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2013
+		localVarReturnValue  *CreateNetworkWebhooksWebhookTest201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkWebhooksWebhookTest")
@@ -33921,7 +33994,7 @@ type ConfigureApiGetNetworkWirelessBluetoothSettingsRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkWirelessBluetoothSettingsRequest) Execute() (*InlineResponse20085, *http.Response, error) {
+func (r ConfigureApiGetNetworkWirelessBluetoothSettingsRequest) Execute() (*GetNetworkWirelessBluetoothSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessBluetoothSettingsExecute(r)
 }
 
@@ -33943,13 +34016,13 @@ func (a *ConfigureApiService) GetNetworkWirelessBluetoothSettings(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse20085
-func (a *ConfigureApiService) GetNetworkWirelessBluetoothSettingsExecute(r ConfigureApiGetNetworkWirelessBluetoothSettingsRequest) (*InlineResponse20085, *http.Response, error) {
+//  @return GetNetworkWirelessBluetoothSettings200Response
+func (a *ConfigureApiService) GetNetworkWirelessBluetoothSettingsExecute(r ConfigureApiGetNetworkWirelessBluetoothSettingsRequest) (*GetNetworkWirelessBluetoothSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20085
+		localVarReturnValue  *GetNetworkWirelessBluetoothSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkWirelessBluetoothSettings")
@@ -34039,7 +34112,7 @@ type ConfigureApiGetNetworkWirelessRfProfileRequest struct {
 	rfProfileId string
 }
 
-func (r ConfigureApiGetNetworkWirelessRfProfileRequest) Execute() (*InlineResponse20092, *http.Response, error) {
+func (r ConfigureApiGetNetworkWirelessRfProfileRequest) Execute() (*GetNetworkWirelessRfProfiles200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessRfProfileExecute(r)
 }
 
@@ -34063,13 +34136,13 @@ func (a *ConfigureApiService) GetNetworkWirelessRfProfile(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return InlineResponse20092
-func (a *ConfigureApiService) GetNetworkWirelessRfProfileExecute(r ConfigureApiGetNetworkWirelessRfProfileRequest) (*InlineResponse20092, *http.Response, error) {
+//  @return GetNetworkWirelessRfProfiles200Response
+func (a *ConfigureApiService) GetNetworkWirelessRfProfileExecute(r ConfigureApiGetNetworkWirelessRfProfileRequest) (*GetNetworkWirelessRfProfiles200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20092
+		localVarReturnValue  *GetNetworkWirelessRfProfiles200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkWirelessRfProfile")
@@ -34166,7 +34239,7 @@ func (r ConfigureApiGetNetworkWirelessRfProfilesRequest) IncludeTemplateProfiles
 	return r
 }
 
-func (r ConfigureApiGetNetworkWirelessRfProfilesRequest) Execute() (*InlineResponse20092, *http.Response, error) {
+func (r ConfigureApiGetNetworkWirelessRfProfilesRequest) Execute() (*GetNetworkWirelessRfProfiles200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessRfProfilesExecute(r)
 }
 
@@ -34188,13 +34261,13 @@ func (a *ConfigureApiService) GetNetworkWirelessRfProfiles(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse20092
-func (a *ConfigureApiService) GetNetworkWirelessRfProfilesExecute(r ConfigureApiGetNetworkWirelessRfProfilesRequest) (*InlineResponse20092, *http.Response, error) {
+//  @return GetNetworkWirelessRfProfiles200Response
+func (a *ConfigureApiService) GetNetworkWirelessRfProfilesExecute(r ConfigureApiGetNetworkWirelessRfProfilesRequest) (*GetNetworkWirelessRfProfiles200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20092
+		localVarReturnValue  *GetNetworkWirelessRfProfiles200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkWirelessRfProfiles")
@@ -34286,7 +34359,7 @@ type ConfigureApiGetNetworkWirelessSettingsRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiGetNetworkWirelessSettingsRequest) Execute() (*InlineResponse20093, *http.Response, error) {
+func (r ConfigureApiGetNetworkWirelessSettingsRequest) Execute() (*GetNetworkWirelessSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSettingsExecute(r)
 }
 
@@ -34308,13 +34381,13 @@ func (a *ConfigureApiService) GetNetworkWirelessSettings(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return InlineResponse20093
-func (a *ConfigureApiService) GetNetworkWirelessSettingsExecute(r ConfigureApiGetNetworkWirelessSettingsRequest) (*InlineResponse20093, *http.Response, error) {
+//  @return GetNetworkWirelessSettings200Response
+func (a *ConfigureApiService) GetNetworkWirelessSettingsExecute(r ConfigureApiGetNetworkWirelessSettingsRequest) (*GetNetworkWirelessSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20093
+		localVarReturnValue  *GetNetworkWirelessSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkWirelessSettings")
@@ -34767,7 +34840,7 @@ type ConfigureApiGetNetworkWirelessSsidEapOverrideRequest struct {
 	number string
 }
 
-func (r ConfigureApiGetNetworkWirelessSsidEapOverrideRequest) Execute() (*InlineResponse20095, *http.Response, error) {
+func (r ConfigureApiGetNetworkWirelessSsidEapOverrideRequest) Execute() (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidEapOverrideExecute(r)
 }
 
@@ -34791,13 +34864,13 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidEapOverride(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20095
-func (a *ConfigureApiService) GetNetworkWirelessSsidEapOverrideExecute(r ConfigureApiGetNetworkWirelessSsidEapOverrideRequest) (*InlineResponse20095, *http.Response, error) {
+//  @return GetNetworkWirelessSsidEapOverride200Response
+func (a *ConfigureApiService) GetNetworkWirelessSsidEapOverrideExecute(r ConfigureApiGetNetworkWirelessSsidEapOverrideRequest) (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20095
+		localVarReturnValue  *GetNetworkWirelessSsidEapOverride200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkWirelessSsidEapOverride")
@@ -35252,7 +35325,7 @@ type ConfigureApiGetNetworkWirelessSsidIdentityPskRequest struct {
 	identityPskId string
 }
 
-func (r ConfigureApiGetNetworkWirelessSsidIdentityPskRequest) Execute() (*InlineResponse20096, *http.Response, error) {
+func (r ConfigureApiGetNetworkWirelessSsidIdentityPskRequest) Execute() (*GetNetworkWirelessSsidIdentityPsks200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidIdentityPskExecute(r)
 }
 
@@ -35278,13 +35351,13 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidIdentityPsk(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20096
-func (a *ConfigureApiService) GetNetworkWirelessSsidIdentityPskExecute(r ConfigureApiGetNetworkWirelessSsidIdentityPskRequest) (*InlineResponse20096, *http.Response, error) {
+//  @return GetNetworkWirelessSsidIdentityPsks200ResponseInner
+func (a *ConfigureApiService) GetNetworkWirelessSsidIdentityPskExecute(r ConfigureApiGetNetworkWirelessSsidIdentityPskRequest) (*GetNetworkWirelessSsidIdentityPsks200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20096
+		localVarReturnValue  *GetNetworkWirelessSsidIdentityPsks200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkWirelessSsidIdentityPsk")
@@ -35376,7 +35449,7 @@ type ConfigureApiGetNetworkWirelessSsidIdentityPsksRequest struct {
 	number string
 }
 
-func (r ConfigureApiGetNetworkWirelessSsidIdentityPsksRequest) Execute() ([]InlineResponse20096, *http.Response, error) {
+func (r ConfigureApiGetNetworkWirelessSsidIdentityPsksRequest) Execute() ([]GetNetworkWirelessSsidIdentityPsks200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidIdentityPsksExecute(r)
 }
 
@@ -35400,13 +35473,13 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidIdentityPsks(ctx context.Con
 }
 
 // Execute executes the request
-//  @return []InlineResponse20096
-func (a *ConfigureApiService) GetNetworkWirelessSsidIdentityPsksExecute(r ConfigureApiGetNetworkWirelessSsidIdentityPsksRequest) ([]InlineResponse20096, *http.Response, error) {
+//  @return []GetNetworkWirelessSsidIdentityPsks200ResponseInner
+func (a *ConfigureApiService) GetNetworkWirelessSsidIdentityPsksExecute(r ConfigureApiGetNetworkWirelessSsidIdentityPsksRequest) ([]GetNetworkWirelessSsidIdentityPsks200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20096
+		localVarReturnValue  []GetNetworkWirelessSsidIdentityPsks200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkWirelessSsidIdentityPsks")
@@ -35618,7 +35691,7 @@ type ConfigureApiGetNetworkWirelessSsidSplashSettingsRequest struct {
 	number string
 }
 
-func (r ConfigureApiGetNetworkWirelessSsidSplashSettingsRequest) Execute() (*InlineResponse20097, *http.Response, error) {
+func (r ConfigureApiGetNetworkWirelessSsidSplashSettingsRequest) Execute() (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidSplashSettingsExecute(r)
 }
 
@@ -35642,13 +35715,13 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidSplashSettings(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse20097
-func (a *ConfigureApiService) GetNetworkWirelessSsidSplashSettingsExecute(r ConfigureApiGetNetworkWirelessSsidSplashSettingsRequest) (*InlineResponse20097, *http.Response, error) {
+//  @return GetNetworkWirelessSsidSplashSettings200Response
+func (a *ConfigureApiService) GetNetworkWirelessSsidSplashSettingsExecute(r ConfigureApiGetNetworkWirelessSsidSplashSettingsRequest) (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20097
+		localVarReturnValue  *GetNetworkWirelessSsidSplashSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetNetworkWirelessSsidSplashSettings")
@@ -36097,7 +36170,7 @@ type ConfigureApiGetOrganizationRequest struct {
 	organizationId string
 }
 
-func (r ConfigureApiGetOrganizationRequest) Execute() (*InlineResponse20099, *http.Response, error) {
+func (r ConfigureApiGetOrganizationRequest) Execute() (*GetOrganizations200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationExecute(r)
 }
 
@@ -36119,13 +36192,13 @@ func (a *ConfigureApiService) GetOrganization(ctx context.Context, organizationI
 }
 
 // Execute executes the request
-//  @return InlineResponse20099
-func (a *ConfigureApiService) GetOrganizationExecute(r ConfigureApiGetOrganizationRequest) (*InlineResponse20099, *http.Response, error) {
+//  @return GetOrganizations200ResponseInner
+func (a *ConfigureApiService) GetOrganizationExecute(r ConfigureApiGetOrganizationRequest) (*GetOrganizations200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20099
+		localVarReturnValue  *GetOrganizations200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganization")
@@ -36215,7 +36288,7 @@ type ConfigureApiGetOrganizationActionBatchRequest struct {
 	actionBatchId string
 }
 
-func (r ConfigureApiGetOrganizationActionBatchRequest) Execute() (*InlineResponse2014, *http.Response, error) {
+func (r ConfigureApiGetOrganizationActionBatchRequest) Execute() (*CreateOrganizationActionBatch201Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationActionBatchExecute(r)
 }
 
@@ -36239,13 +36312,13 @@ func (a *ConfigureApiService) GetOrganizationActionBatch(ctx context.Context, or
 }
 
 // Execute executes the request
-//  @return InlineResponse2014
-func (a *ConfigureApiService) GetOrganizationActionBatchExecute(r ConfigureApiGetOrganizationActionBatchRequest) (*InlineResponse2014, *http.Response, error) {
+//  @return CreateOrganizationActionBatch201Response
+func (a *ConfigureApiService) GetOrganizationActionBatchExecute(r ConfigureApiGetOrganizationActionBatchRequest) (*CreateOrganizationActionBatch201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2014
+		localVarReturnValue  *CreateOrganizationActionBatch201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationActionBatch")
@@ -36463,7 +36536,7 @@ type ConfigureApiGetOrganizationAdaptivePolicyAclRequest struct {
 	aclId string
 }
 
-func (r ConfigureApiGetOrganizationAdaptivePolicyAclRequest) Execute() (*InlineResponse200100, *http.Response, error) {
+func (r ConfigureApiGetOrganizationAdaptivePolicyAclRequest) Execute() (*GetOrganizationAdaptivePolicyAcls200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationAdaptivePolicyAclExecute(r)
 }
 
@@ -36487,13 +36560,13 @@ func (a *ConfigureApiService) GetOrganizationAdaptivePolicyAcl(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse200100
-func (a *ConfigureApiService) GetOrganizationAdaptivePolicyAclExecute(r ConfigureApiGetOrganizationAdaptivePolicyAclRequest) (*InlineResponse200100, *http.Response, error) {
+//  @return GetOrganizationAdaptivePolicyAcls200ResponseInner
+func (a *ConfigureApiService) GetOrganizationAdaptivePolicyAclExecute(r ConfigureApiGetOrganizationAdaptivePolicyAclRequest) (*GetOrganizationAdaptivePolicyAcls200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200100
+		localVarReturnValue  *GetOrganizationAdaptivePolicyAcls200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationAdaptivePolicyAcl")
@@ -36583,7 +36656,7 @@ type ConfigureApiGetOrganizationAdaptivePolicyAclsRequest struct {
 	organizationId string
 }
 
-func (r ConfigureApiGetOrganizationAdaptivePolicyAclsRequest) Execute() ([]InlineResponse200100, *http.Response, error) {
+func (r ConfigureApiGetOrganizationAdaptivePolicyAclsRequest) Execute() ([]GetOrganizationAdaptivePolicyAcls200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationAdaptivePolicyAclsExecute(r)
 }
 
@@ -36605,13 +36678,13 @@ func (a *ConfigureApiService) GetOrganizationAdaptivePolicyAcls(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse200100
-func (a *ConfigureApiService) GetOrganizationAdaptivePolicyAclsExecute(r ConfigureApiGetOrganizationAdaptivePolicyAclsRequest) ([]InlineResponse200100, *http.Response, error) {
+//  @return []GetOrganizationAdaptivePolicyAcls200ResponseInner
+func (a *ConfigureApiService) GetOrganizationAdaptivePolicyAclsExecute(r ConfigureApiGetOrganizationAdaptivePolicyAclsRequest) ([]GetOrganizationAdaptivePolicyAcls200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200100
+		localVarReturnValue  []GetOrganizationAdaptivePolicyAcls200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationAdaptivePolicyAcls")
@@ -37293,7 +37366,7 @@ type ConfigureApiGetOrganizationAdminsRequest struct {
 	organizationId string
 }
 
-func (r ConfigureApiGetOrganizationAdminsRequest) Execute() ([]InlineResponse200102, *http.Response, error) {
+func (r ConfigureApiGetOrganizationAdminsRequest) Execute() ([]GetOrganizationAdmins200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationAdminsExecute(r)
 }
 
@@ -37315,13 +37388,13 @@ func (a *ConfigureApiService) GetOrganizationAdmins(ctx context.Context, organiz
 }
 
 // Execute executes the request
-//  @return []InlineResponse200102
-func (a *ConfigureApiService) GetOrganizationAdminsExecute(r ConfigureApiGetOrganizationAdminsRequest) ([]InlineResponse200102, *http.Response, error) {
+//  @return []GetOrganizationAdmins200ResponseInner
+func (a *ConfigureApiService) GetOrganizationAdminsExecute(r ConfigureApiGetOrganizationAdminsRequest) ([]GetOrganizationAdmins200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200102
+		localVarReturnValue  []GetOrganizationAdmins200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationAdmins")
@@ -37644,7 +37717,7 @@ type ConfigureApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest struct {
 	organizationId string
 }
 
-func (r ConfigureApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest) Execute() (*InlineResponse200106, *http.Response, error) {
+func (r ConfigureApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest) Execute() (*GetOrganizationApplianceVpnThirdPartyVPNPeers200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationApplianceVpnThirdPartyVPNPeersExecute(r)
 }
 
@@ -37666,13 +37739,13 @@ func (a *ConfigureApiService) GetOrganizationApplianceVpnThirdPartyVPNPeers(ctx 
 }
 
 // Execute executes the request
-//  @return InlineResponse200106
-func (a *ConfigureApiService) GetOrganizationApplianceVpnThirdPartyVPNPeersExecute(r ConfigureApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest) (*InlineResponse200106, *http.Response, error) {
+//  @return GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
+func (a *ConfigureApiService) GetOrganizationApplianceVpnThirdPartyVPNPeersExecute(r ConfigureApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest) (*GetOrganizationApplianceVpnThirdPartyVPNPeers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200106
+		localVarReturnValue  *GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationApplianceVpnThirdPartyVPNPeers")
@@ -37878,7 +37951,7 @@ type ConfigureApiGetOrganizationBrandingPoliciesRequest struct {
 	organizationId string
 }
 
-func (r ConfigureApiGetOrganizationBrandingPoliciesRequest) Execute() ([]InlineResponse200108, *http.Response, error) {
+func (r ConfigureApiGetOrganizationBrandingPoliciesRequest) Execute() ([]GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationBrandingPoliciesExecute(r)
 }
 
@@ -37900,13 +37973,13 @@ func (a *ConfigureApiService) GetOrganizationBrandingPolicies(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse200108
-func (a *ConfigureApiService) GetOrganizationBrandingPoliciesExecute(r ConfigureApiGetOrganizationBrandingPoliciesRequest) ([]InlineResponse200108, *http.Response, error) {
+//  @return []GetOrganizationBrandingPolicies200ResponseInner
+func (a *ConfigureApiService) GetOrganizationBrandingPoliciesExecute(r ConfigureApiGetOrganizationBrandingPoliciesRequest) ([]GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200108
+		localVarReturnValue  []GetOrganizationBrandingPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationBrandingPolicies")
@@ -37995,7 +38068,7 @@ type ConfigureApiGetOrganizationBrandingPoliciesPrioritiesRequest struct {
 	organizationId string
 }
 
-func (r ConfigureApiGetOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*InlineResponse200109, *http.Response, error) {
+func (r ConfigureApiGetOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationBrandingPoliciesPrioritiesExecute(r)
 }
 
@@ -38017,13 +38090,13 @@ func (a *ConfigureApiService) GetOrganizationBrandingPoliciesPriorities(ctx cont
 }
 
 // Execute executes the request
-//  @return InlineResponse200109
-func (a *ConfigureApiService) GetOrganizationBrandingPoliciesPrioritiesExecute(r ConfigureApiGetOrganizationBrandingPoliciesPrioritiesRequest) (*InlineResponse200109, *http.Response, error) {
+//  @return GetOrganizationBrandingPoliciesPriorities200Response
+func (a *ConfigureApiService) GetOrganizationBrandingPoliciesPrioritiesExecute(r ConfigureApiGetOrganizationBrandingPoliciesPrioritiesRequest) (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200109
+		localVarReturnValue  *GetOrganizationBrandingPoliciesPriorities200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationBrandingPoliciesPriorities")
@@ -38113,7 +38186,7 @@ type ConfigureApiGetOrganizationBrandingPolicyRequest struct {
 	brandingPolicyId string
 }
 
-func (r ConfigureApiGetOrganizationBrandingPolicyRequest) Execute() (*InlineResponse200108, *http.Response, error) {
+func (r ConfigureApiGetOrganizationBrandingPolicyRequest) Execute() (*GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationBrandingPolicyExecute(r)
 }
 
@@ -38137,13 +38210,13 @@ func (a *ConfigureApiService) GetOrganizationBrandingPolicy(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse200108
-func (a *ConfigureApiService) GetOrganizationBrandingPolicyExecute(r ConfigureApiGetOrganizationBrandingPolicyRequest) (*InlineResponse200108, *http.Response, error) {
+//  @return GetOrganizationBrandingPolicies200ResponseInner
+func (a *ConfigureApiService) GetOrganizationBrandingPolicyExecute(r ConfigureApiGetOrganizationBrandingPolicyRequest) (*GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200108
+		localVarReturnValue  *GetOrganizationBrandingPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationBrandingPolicy")
@@ -38529,10 +38602,26 @@ func (a *ConfigureApiService) GetOrganizationCameraOnboardingStatusesExecute(r C
 	localVarFormParams := url.Values{}
 
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -38890,7 +38979,7 @@ type ConfigureApiGetOrganizationConfigTemplateSwitchProfilePortRequest struct {
 	portId string
 }
 
-func (r ConfigureApiGetOrganizationConfigTemplateSwitchProfilePortRequest) Execute() (*InlineResponse200114, *http.Response, error) {
+func (r ConfigureApiGetOrganizationConfigTemplateSwitchProfilePortRequest) Execute() (*GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationConfigTemplateSwitchProfilePortExecute(r)
 }
 
@@ -38918,13 +39007,13 @@ func (a *ConfigureApiService) GetOrganizationConfigTemplateSwitchProfilePort(ctx
 }
 
 // Execute executes the request
-//  @return InlineResponse200114
-func (a *ConfigureApiService) GetOrganizationConfigTemplateSwitchProfilePortExecute(r ConfigureApiGetOrganizationConfigTemplateSwitchProfilePortRequest) (*InlineResponse200114, *http.Response, error) {
+//  @return GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
+func (a *ConfigureApiService) GetOrganizationConfigTemplateSwitchProfilePortExecute(r ConfigureApiGetOrganizationConfigTemplateSwitchProfilePortRequest) (*GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200114
+		localVarReturnValue  *GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationConfigTemplateSwitchProfilePort")
@@ -39018,7 +39107,7 @@ type ConfigureApiGetOrganizationConfigTemplateSwitchProfilePortsRequest struct {
 	profileId string
 }
 
-func (r ConfigureApiGetOrganizationConfigTemplateSwitchProfilePortsRequest) Execute() ([]InlineResponse200114, *http.Response, error) {
+func (r ConfigureApiGetOrganizationConfigTemplateSwitchProfilePortsRequest) Execute() ([]GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationConfigTemplateSwitchProfilePortsExecute(r)
 }
 
@@ -39044,13 +39133,13 @@ func (a *ConfigureApiService) GetOrganizationConfigTemplateSwitchProfilePorts(ct
 }
 
 // Execute executes the request
-//  @return []InlineResponse200114
-func (a *ConfigureApiService) GetOrganizationConfigTemplateSwitchProfilePortsExecute(r ConfigureApiGetOrganizationConfigTemplateSwitchProfilePortsRequest) ([]InlineResponse200114, *http.Response, error) {
+//  @return []GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
+func (a *ConfigureApiService) GetOrganizationConfigTemplateSwitchProfilePortsExecute(r ConfigureApiGetOrganizationConfigTemplateSwitchProfilePortsRequest) ([]GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200114
+		localVarReturnValue  []GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationConfigTemplateSwitchProfilePorts")
@@ -39142,7 +39231,7 @@ type ConfigureApiGetOrganizationConfigTemplateSwitchProfilesRequest struct {
 	configTemplateId string
 }
 
-func (r ConfigureApiGetOrganizationConfigTemplateSwitchProfilesRequest) Execute() ([]InlineResponse200113, *http.Response, error) {
+func (r ConfigureApiGetOrganizationConfigTemplateSwitchProfilesRequest) Execute() ([]GetOrganizationConfigTemplateSwitchProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationConfigTemplateSwitchProfilesExecute(r)
 }
 
@@ -39166,13 +39255,13 @@ func (a *ConfigureApiService) GetOrganizationConfigTemplateSwitchProfiles(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse200113
-func (a *ConfigureApiService) GetOrganizationConfigTemplateSwitchProfilesExecute(r ConfigureApiGetOrganizationConfigTemplateSwitchProfilesRequest) ([]InlineResponse200113, *http.Response, error) {
+//  @return []GetOrganizationConfigTemplateSwitchProfiles200ResponseInner
+func (a *ConfigureApiService) GetOrganizationConfigTemplateSwitchProfilesExecute(r ConfigureApiGetOrganizationConfigTemplateSwitchProfilesRequest) ([]GetOrganizationConfigTemplateSwitchProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200113
+		localVarReturnValue  []GetOrganizationConfigTemplateSwitchProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationConfigTemplateSwitchProfiles")
@@ -39498,7 +39587,7 @@ func (r ConfigureApiGetOrganizationDevicesRequest) Models(models []string) Confi
 	return r
 }
 
-func (r ConfigureApiGetOrganizationDevicesRequest) Execute() ([]InlineResponse200115, *http.Response, error) {
+func (r ConfigureApiGetOrganizationDevicesRequest) Execute() ([]GetOrganizationDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesExecute(r)
 }
 
@@ -39520,13 +39609,13 @@ func (a *ConfigureApiService) GetOrganizationDevices(ctx context.Context, organi
 }
 
 // Execute executes the request
-//  @return []InlineResponse200115
-func (a *ConfigureApiService) GetOrganizationDevicesExecute(r ConfigureApiGetOrganizationDevicesRequest) ([]InlineResponse200115, *http.Response, error) {
+//  @return []GetOrganizationDevices200ResponseInner
+func (a *ConfigureApiService) GetOrganizationDevicesExecute(r ConfigureApiGetOrganizationDevicesRequest) ([]GetOrganizationDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200115
+		localVarReturnValue  []GetOrganizationDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationDevices")
@@ -39554,13 +39643,37 @@ func (a *ConfigureApiService) GetOrganizationDevicesExecute(r ConfigureApiGetOrg
 		localVarQueryParams.Add("configurationUpdatedAfter", parameterToString(*r.configurationUpdatedAfter, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, "csv"))
+		t := *r.tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
 	}
 	if r.tagsFilterType != nil {
 		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
@@ -39578,19 +39691,59 @@ func (a *ConfigureApiService) GetOrganizationDevicesExecute(r ConfigureApiGetOrg
 		localVarQueryParams.Add("model", parameterToString(*r.model, ""))
 	}
 	if r.macs != nil {
-		localVarQueryParams.Add("macs", parameterToString(*r.macs, "csv"))
+		t := *r.macs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("macs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("macs", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.sensorMetrics != nil {
-		localVarQueryParams.Add("sensorMetrics", parameterToString(*r.sensorMetrics, "csv"))
+		t := *r.sensorMetrics
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("sensorMetrics", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("sensorMetrics", parameterToString(t, "multi"))
+		}
 	}
 	if r.sensorAlertProfileIds != nil {
-		localVarQueryParams.Add("sensorAlertProfileIds", parameterToString(*r.sensorAlertProfileIds, "csv"))
+		t := *r.sensorAlertProfileIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("sensorAlertProfileIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("sensorAlertProfileIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.models != nil {
-		localVarQueryParams.Add("models", parameterToString(*r.models, "csv"))
+		t := *r.models
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("models", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("models", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -39666,7 +39819,7 @@ type ConfigureApiGetOrganizationEarlyAccessFeaturesRequest struct {
 	organizationId string
 }
 
-func (r ConfigureApiGetOrganizationEarlyAccessFeaturesRequest) Execute() ([]InlineResponse200123, *http.Response, error) {
+func (r ConfigureApiGetOrganizationEarlyAccessFeaturesRequest) Execute() ([]GetOrganizationEarlyAccessFeatures200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationEarlyAccessFeaturesExecute(r)
 }
 
@@ -39688,13 +39841,13 @@ func (a *ConfigureApiService) GetOrganizationEarlyAccessFeatures(ctx context.Con
 }
 
 // Execute executes the request
-//  @return []InlineResponse200123
-func (a *ConfigureApiService) GetOrganizationEarlyAccessFeaturesExecute(r ConfigureApiGetOrganizationEarlyAccessFeaturesRequest) ([]InlineResponse200123, *http.Response, error) {
+//  @return []GetOrganizationEarlyAccessFeatures200ResponseInner
+func (a *ConfigureApiService) GetOrganizationEarlyAccessFeaturesExecute(r ConfigureApiGetOrganizationEarlyAccessFeaturesRequest) ([]GetOrganizationEarlyAccessFeatures200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200123
+		localVarReturnValue  []GetOrganizationEarlyAccessFeatures200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationEarlyAccessFeatures")
@@ -40035,7 +40188,7 @@ func (r ConfigureApiGetOrganizationFirmwareUpgradesRequest) ProductType(productT
 	return r
 }
 
-func (r ConfigureApiGetOrganizationFirmwareUpgradesRequest) Execute() ([]InlineResponse200124, *http.Response, error) {
+func (r ConfigureApiGetOrganizationFirmwareUpgradesRequest) Execute() ([]GetOrganizationFirmwareUpgrades200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationFirmwareUpgradesExecute(r)
 }
 
@@ -40057,13 +40210,13 @@ func (a *ConfigureApiService) GetOrganizationFirmwareUpgrades(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse200124
-func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesExecute(r ConfigureApiGetOrganizationFirmwareUpgradesRequest) ([]InlineResponse200124, *http.Response, error) {
+//  @return []GetOrganizationFirmwareUpgrades200ResponseInner
+func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesExecute(r ConfigureApiGetOrganizationFirmwareUpgradesRequest) ([]GetOrganizationFirmwareUpgrades200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200124
+		localVarReturnValue  []GetOrganizationFirmwareUpgrades200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationFirmwareUpgrades")
@@ -40079,10 +40232,26 @@ func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesExecute(r Configure
 	localVarFormParams := url.Values{}
 
 	if r.status != nil {
-		localVarQueryParams.Add("status", parameterToString(*r.status, "csv"))
+		t := *r.status
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("status", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("status", parameterToString(t, "multi"))
+		}
 	}
 	if r.productType != nil {
-		localVarQueryParams.Add("productType", parameterToString(*r.productType, "csv"))
+		t := *r.productType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productType", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productType", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -40214,7 +40383,7 @@ func (r ConfigureApiGetOrganizationFirmwareUpgradesByDeviceRequest) FirmwareUpgr
 	return r
 }
 
-func (r ConfigureApiGetOrganizationFirmwareUpgradesByDeviceRequest) Execute() ([]InlineResponse200125, *http.Response, error) {
+func (r ConfigureApiGetOrganizationFirmwareUpgradesByDeviceRequest) Execute() ([]GetOrganizationFirmwareUpgradesByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationFirmwareUpgradesByDeviceExecute(r)
 }
 
@@ -40236,13 +40405,13 @@ func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesByDevice(ctx contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse200125
-func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r ConfigureApiGetOrganizationFirmwareUpgradesByDeviceRequest) ([]InlineResponse200125, *http.Response, error) {
+//  @return []GetOrganizationFirmwareUpgradesByDevice200ResponseInner
+func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r ConfigureApiGetOrganizationFirmwareUpgradesByDeviceRequest) ([]GetOrganizationFirmwareUpgradesByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200125
+		localVarReturnValue  []GetOrganizationFirmwareUpgradesByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationFirmwareUpgradesByDevice")
@@ -40267,19 +40436,59 @@ func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r C
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.macs != nil {
-		localVarQueryParams.Add("macs", parameterToString(*r.macs, "csv"))
+		t := *r.macs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("macs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("macs", parameterToString(t, "multi"))
+		}
 	}
 	if r.firmwareUpgradeIds != nil {
-		localVarQueryParams.Add("firmwareUpgradeIds", parameterToString(*r.firmwareUpgradeIds, "csv"))
+		t := *r.firmwareUpgradeIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("firmwareUpgradeIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("firmwareUpgradeIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.firmwareUpgradeBatchIds != nil {
-		localVarQueryParams.Add("firmwareUpgradeBatchIds", parameterToString(*r.firmwareUpgradeBatchIds, "csv"))
+		t := *r.firmwareUpgradeBatchIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("firmwareUpgradeBatchIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("firmwareUpgradeBatchIds", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -40355,7 +40564,7 @@ type ConfigureApiGetOrganizationInsightApplicationsRequest struct {
 	organizationId string
 }
 
-func (r ConfigureApiGetOrganizationInsightApplicationsRequest) Execute() ([]InlineResponse200126, *http.Response, error) {
+func (r ConfigureApiGetOrganizationInsightApplicationsRequest) Execute() ([]GetOrganizationInsightApplications200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInsightApplicationsExecute(r)
 }
 
@@ -40377,13 +40586,13 @@ func (a *ConfigureApiService) GetOrganizationInsightApplications(ctx context.Con
 }
 
 // Execute executes the request
-//  @return []InlineResponse200126
-func (a *ConfigureApiService) GetOrganizationInsightApplicationsExecute(r ConfigureApiGetOrganizationInsightApplicationsRequest) ([]InlineResponse200126, *http.Response, error) {
+//  @return []GetOrganizationInsightApplications200ResponseInner
+func (a *ConfigureApiService) GetOrganizationInsightApplicationsExecute(r ConfigureApiGetOrganizationInsightApplicationsRequest) ([]GetOrganizationInsightApplications200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200126
+		localVarReturnValue  []GetOrganizationInsightApplications200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationInsightApplications")
@@ -40593,7 +40802,7 @@ type ConfigureApiGetOrganizationInsightMonitoredMediaServersRequest struct {
 	organizationId string
 }
 
-func (r ConfigureApiGetOrganizationInsightMonitoredMediaServersRequest) Execute() ([]InlineResponse200127, *http.Response, error) {
+func (r ConfigureApiGetOrganizationInsightMonitoredMediaServersRequest) Execute() ([]GetOrganizationInsightMonitoredMediaServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInsightMonitoredMediaServersExecute(r)
 }
 
@@ -40615,13 +40824,13 @@ func (a *ConfigureApiService) GetOrganizationInsightMonitoredMediaServers(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse200127
-func (a *ConfigureApiService) GetOrganizationInsightMonitoredMediaServersExecute(r ConfigureApiGetOrganizationInsightMonitoredMediaServersRequest) ([]InlineResponse200127, *http.Response, error) {
+//  @return []GetOrganizationInsightMonitoredMediaServers200ResponseInner
+func (a *ConfigureApiService) GetOrganizationInsightMonitoredMediaServersExecute(r ConfigureApiGetOrganizationInsightMonitoredMediaServersRequest) ([]GetOrganizationInsightMonitoredMediaServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200127
+		localVarReturnValue  []GetOrganizationInsightMonitoredMediaServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationInsightMonitoredMediaServers")
@@ -40711,7 +40920,7 @@ type ConfigureApiGetOrganizationInventoryDeviceRequest struct {
 	serial string
 }
 
-func (r ConfigureApiGetOrganizationInventoryDeviceRequest) Execute() (*InlineResponse200128, *http.Response, error) {
+func (r ConfigureApiGetOrganizationInventoryDeviceRequest) Execute() (*GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryDeviceExecute(r)
 }
 
@@ -40735,13 +40944,13 @@ func (a *ConfigureApiService) GetOrganizationInventoryDevice(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse200128
-func (a *ConfigureApiService) GetOrganizationInventoryDeviceExecute(r ConfigureApiGetOrganizationInventoryDeviceRequest) (*InlineResponse200128, *http.Response, error) {
+//  @return GetOrganizationInventoryDevices200ResponseInner
+func (a *ConfigureApiService) GetOrganizationInventoryDeviceExecute(r ConfigureApiGetOrganizationInventoryDeviceRequest) (*GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200128
+		localVarReturnValue  *GetOrganizationInventoryDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationInventoryDevice")
@@ -40922,7 +41131,7 @@ func (r ConfigureApiGetOrganizationInventoryDevicesRequest) ProductTypes(product
 	return r
 }
 
-func (r ConfigureApiGetOrganizationInventoryDevicesRequest) Execute() ([]InlineResponse200128, *http.Response, error) {
+func (r ConfigureApiGetOrganizationInventoryDevicesRequest) Execute() ([]GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryDevicesExecute(r)
 }
 
@@ -40944,13 +41153,13 @@ func (a *ConfigureApiService) GetOrganizationInventoryDevices(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse200128
-func (a *ConfigureApiService) GetOrganizationInventoryDevicesExecute(r ConfigureApiGetOrganizationInventoryDevicesRequest) ([]InlineResponse200128, *http.Response, error) {
+//  @return []GetOrganizationInventoryDevices200ResponseInner
+func (a *ConfigureApiService) GetOrganizationInventoryDevicesExecute(r ConfigureApiGetOrganizationInventoryDevicesRequest) ([]GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200128
+		localVarReturnValue  []GetOrganizationInventoryDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationInventoryDevices")
@@ -40981,28 +41190,84 @@ func (a *ConfigureApiService) GetOrganizationInventoryDevicesExecute(r Configure
 		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
 	}
 	if r.macs != nil {
-		localVarQueryParams.Add("macs", parameterToString(*r.macs, "csv"))
+		t := *r.macs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("macs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("macs", parameterToString(t, "multi"))
+		}
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.models != nil {
-		localVarQueryParams.Add("models", parameterToString(*r.models, "csv"))
+		t := *r.models
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("models", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("models", parameterToString(t, "multi"))
+		}
 	}
 	if r.orderNumbers != nil {
-		localVarQueryParams.Add("orderNumbers", parameterToString(*r.orderNumbers, "csv"))
+		t := *r.orderNumbers
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("orderNumbers", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("orderNumbers", parameterToString(t, "multi"))
+		}
 	}
 	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, "csv"))
+		t := *r.tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
 	}
 	if r.tagsFilterType != nil {
 		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
 	}
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -41085,7 +41350,7 @@ func (r ConfigureApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequ
 	return r
 }
 
-func (r ConfigureApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) Execute() ([]InlineResponse200129, *http.Response, error) {
+func (r ConfigureApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) Execute() ([]GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r)
 }
 
@@ -41107,13 +41372,13 @@ func (a *ConfigureApiService) GetOrganizationInventoryOnboardingCloudMonitoringI
 }
 
 // Execute executes the request
-//  @return []InlineResponse200129
-func (a *ConfigureApiService) GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r ConfigureApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) ([]InlineResponse200129, *http.Response, error) {
+//  @return []GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner
+func (a *ConfigureApiService) GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r ConfigureApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) ([]GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200129
+		localVarReturnValue  []GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationInventoryOnboardingCloudMonitoringImports")
@@ -41131,7 +41396,17 @@ func (a *ConfigureApiService) GetOrganizationInventoryOnboardingCloudMonitoringI
 		return localVarReturnValue, nil, reportError("importIds is required and must be specified")
 	}
 
-	localVarQueryParams.Add("importIds", parameterToString(*r.importIds, "csv"))
+	{
+		t := *r.importIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("importIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("importIds", parameterToString(t, "multi"))
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -41234,7 +41509,7 @@ func (r ConfigureApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksReq
 	return r
 }
 
-func (r ConfigureApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRequest) Execute() ([]InlineResponse20012, *http.Response, error) {
+func (r ConfigureApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRequest) Execute() ([]GetNetwork200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryOnboardingCloudMonitoringNetworksExecute(r)
 }
 
@@ -41256,13 +41531,13 @@ func (a *ConfigureApiService) GetOrganizationInventoryOnboardingCloudMonitoringN
 }
 
 // Execute executes the request
-//  @return []InlineResponse20012
-func (a *ConfigureApiService) GetOrganizationInventoryOnboardingCloudMonitoringNetworksExecute(r ConfigureApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRequest) ([]InlineResponse20012, *http.Response, error) {
+//  @return []GetNetwork200Response
+func (a *ConfigureApiService) GetOrganizationInventoryOnboardingCloudMonitoringNetworksExecute(r ConfigureApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRequest) ([]GetNetwork200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20012
+		localVarReturnValue  []GetNetwork200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationInventoryOnboardingCloudMonitoringNetworks")
@@ -41365,7 +41640,7 @@ type ConfigureApiGetOrganizationLicenseRequest struct {
 	licenseId string
 }
 
-func (r ConfigureApiGetOrganizationLicenseRequest) Execute() (*InlineResponse200130, *http.Response, error) {
+func (r ConfigureApiGetOrganizationLicenseRequest) Execute() (*GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationLicenseExecute(r)
 }
 
@@ -41389,13 +41664,13 @@ func (a *ConfigureApiService) GetOrganizationLicense(ctx context.Context, organi
 }
 
 // Execute executes the request
-//  @return InlineResponse200130
-func (a *ConfigureApiService) GetOrganizationLicenseExecute(r ConfigureApiGetOrganizationLicenseRequest) (*InlineResponse200130, *http.Response, error) {
+//  @return GetOrganizationLicenses200ResponseInner
+func (a *ConfigureApiService) GetOrganizationLicenseExecute(r ConfigureApiGetOrganizationLicenseRequest) (*GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200130
+		localVarReturnValue  *GetOrganizationLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationLicense")
@@ -41527,7 +41802,7 @@ func (r ConfigureApiGetOrganizationLicensesRequest) State(state string) Configur
 	return r
 }
 
-func (r ConfigureApiGetOrganizationLicensesRequest) Execute() ([]InlineResponse200130, *http.Response, error) {
+func (r ConfigureApiGetOrganizationLicensesRequest) Execute() ([]GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationLicensesExecute(r)
 }
 
@@ -41549,13 +41824,13 @@ func (a *ConfigureApiService) GetOrganizationLicenses(ctx context.Context, organ
 }
 
 // Execute executes the request
-//  @return []InlineResponse200130
-func (a *ConfigureApiService) GetOrganizationLicensesExecute(r ConfigureApiGetOrganizationLicensesRequest) ([]InlineResponse200130, *http.Response, error) {
+//  @return []GetOrganizationLicenses200ResponseInner
+func (a *ConfigureApiService) GetOrganizationLicensesExecute(r ConfigureApiGetOrganizationLicensesRequest) ([]GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200130
+		localVarReturnValue  []GetOrganizationLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationLicenses")
@@ -41697,7 +41972,7 @@ func (r ConfigureApiGetOrganizationLicensingCotermLicensesRequest) Expired(expir
 	return r
 }
 
-func (r ConfigureApiGetOrganizationLicensingCotermLicensesRequest) Execute() ([]InlineResponse200134, *http.Response, error) {
+func (r ConfigureApiGetOrganizationLicensingCotermLicensesRequest) Execute() ([]GetOrganizationLicensingCotermLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationLicensingCotermLicensesExecute(r)
 }
 
@@ -41719,13 +41994,13 @@ func (a *ConfigureApiService) GetOrganizationLicensingCotermLicenses(ctx context
 }
 
 // Execute executes the request
-//  @return []InlineResponse200134
-func (a *ConfigureApiService) GetOrganizationLicensingCotermLicensesExecute(r ConfigureApiGetOrganizationLicensingCotermLicensesRequest) ([]InlineResponse200134, *http.Response, error) {
+//  @return []GetOrganizationLicensingCotermLicenses200ResponseInner
+func (a *ConfigureApiService) GetOrganizationLicensingCotermLicensesExecute(r ConfigureApiGetOrganizationLicensingCotermLicensesRequest) ([]GetOrganizationLicensingCotermLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200134
+		localVarReturnValue  []GetOrganizationLicensingCotermLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationLicensingCotermLicenses")
@@ -41829,7 +42104,7 @@ type ConfigureApiGetOrganizationLoginSecurityRequest struct {
 	organizationId string
 }
 
-func (r ConfigureApiGetOrganizationLoginSecurityRequest) Execute() (*InlineResponse200136, *http.Response, error) {
+func (r ConfigureApiGetOrganizationLoginSecurityRequest) Execute() (*GetOrganizationLoginSecurity200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationLoginSecurityExecute(r)
 }
 
@@ -41851,13 +42126,13 @@ func (a *ConfigureApiService) GetOrganizationLoginSecurity(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse200136
-func (a *ConfigureApiService) GetOrganizationLoginSecurityExecute(r ConfigureApiGetOrganizationLoginSecurityRequest) (*InlineResponse200136, *http.Response, error) {
+//  @return GetOrganizationLoginSecurity200Response
+func (a *ConfigureApiService) GetOrganizationLoginSecurityExecute(r ConfigureApiGetOrganizationLoginSecurityRequest) (*GetOrganizationLoginSecurity200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200136
+		localVarReturnValue  *GetOrganizationLoginSecurity200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationLoginSecurity")
@@ -41995,7 +42270,7 @@ func (r ConfigureApiGetOrganizationNetworksRequest) EndingBefore(endingBefore st
 	return r
 }
 
-func (r ConfigureApiGetOrganizationNetworksRequest) Execute() ([]InlineResponse20012, *http.Response, error) {
+func (r ConfigureApiGetOrganizationNetworksRequest) Execute() ([]GetNetwork200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationNetworksExecute(r)
 }
 
@@ -42017,13 +42292,13 @@ func (a *ConfigureApiService) GetOrganizationNetworks(ctx context.Context, organ
 }
 
 // Execute executes the request
-//  @return []InlineResponse20012
-func (a *ConfigureApiService) GetOrganizationNetworksExecute(r ConfigureApiGetOrganizationNetworksRequest) ([]InlineResponse20012, *http.Response, error) {
+//  @return []GetNetwork200Response
+func (a *ConfigureApiService) GetOrganizationNetworksExecute(r ConfigureApiGetOrganizationNetworksRequest) ([]GetNetwork200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20012
+		localVarReturnValue  []GetNetwork200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationNetworks")
@@ -42045,7 +42320,15 @@ func (a *ConfigureApiService) GetOrganizationNetworksExecute(r ConfigureApiGetOr
 		localVarQueryParams.Add("isBoundToConfigTemplate", parameterToString(*r.isBoundToConfigTemplate, ""))
 	}
 	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, "csv"))
+		t := *r.tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
 	}
 	if r.tagsFilterType != nil {
 		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
@@ -42669,7 +42952,7 @@ type ConfigureApiGetOrganizationSamlRequest struct {
 	organizationId string
 }
 
-func (r ConfigureApiGetOrganizationSamlRequest) Execute() (*InlineResponse200138, *http.Response, error) {
+func (r ConfigureApiGetOrganizationSamlRequest) Execute() (*GetOrganizationSaml200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationSamlExecute(r)
 }
 
@@ -42691,13 +42974,13 @@ func (a *ConfigureApiService) GetOrganizationSaml(ctx context.Context, organizat
 }
 
 // Execute executes the request
-//  @return InlineResponse200138
-func (a *ConfigureApiService) GetOrganizationSamlExecute(r ConfigureApiGetOrganizationSamlRequest) (*InlineResponse200138, *http.Response, error) {
+//  @return GetOrganizationSaml200Response
+func (a *ConfigureApiService) GetOrganizationSamlExecute(r ConfigureApiGetOrganizationSamlRequest) (*GetOrganizationSaml200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200138
+		localVarReturnValue  *GetOrganizationSaml200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationSaml")
@@ -42787,7 +43070,7 @@ type ConfigureApiGetOrganizationSamlIdpRequest struct {
 	idpId string
 }
 
-func (r ConfigureApiGetOrganizationSamlIdpRequest) Execute() (*InlineResponse200139, *http.Response, error) {
+func (r ConfigureApiGetOrganizationSamlIdpRequest) Execute() (*GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSamlIdpExecute(r)
 }
 
@@ -42811,13 +43094,13 @@ func (a *ConfigureApiService) GetOrganizationSamlIdp(ctx context.Context, organi
 }
 
 // Execute executes the request
-//  @return InlineResponse200139
-func (a *ConfigureApiService) GetOrganizationSamlIdpExecute(r ConfigureApiGetOrganizationSamlIdpRequest) (*InlineResponse200139, *http.Response, error) {
+//  @return GetOrganizationSamlIdps200ResponseInner
+func (a *ConfigureApiService) GetOrganizationSamlIdpExecute(r ConfigureApiGetOrganizationSamlIdpRequest) (*GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200139
+		localVarReturnValue  *GetOrganizationSamlIdps200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationSamlIdp")
@@ -42907,7 +43190,7 @@ type ConfigureApiGetOrganizationSamlIdpsRequest struct {
 	organizationId string
 }
 
-func (r ConfigureApiGetOrganizationSamlIdpsRequest) Execute() ([]InlineResponse200139, *http.Response, error) {
+func (r ConfigureApiGetOrganizationSamlIdpsRequest) Execute() ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSamlIdpsExecute(r)
 }
 
@@ -42929,13 +43212,13 @@ func (a *ConfigureApiService) GetOrganizationSamlIdps(ctx context.Context, organ
 }
 
 // Execute executes the request
-//  @return []InlineResponse200139
-func (a *ConfigureApiService) GetOrganizationSamlIdpsExecute(r ConfigureApiGetOrganizationSamlIdpsRequest) ([]InlineResponse200139, *http.Response, error) {
+//  @return []GetOrganizationSamlIdps200ResponseInner
+func (a *ConfigureApiService) GetOrganizationSamlIdpsExecute(r ConfigureApiGetOrganizationSamlIdpsRequest) ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200139
+		localVarReturnValue  []GetOrganizationSamlIdps200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationSamlIdps")
@@ -43025,7 +43308,7 @@ type ConfigureApiGetOrganizationSamlRoleRequest struct {
 	samlRoleId string
 }
 
-func (r ConfigureApiGetOrganizationSamlRoleRequest) Execute() (*InlineResponse200140, *http.Response, error) {
+func (r ConfigureApiGetOrganizationSamlRoleRequest) Execute() (*GetOrganizationSamlRoles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSamlRoleExecute(r)
 }
 
@@ -43049,13 +43332,13 @@ func (a *ConfigureApiService) GetOrganizationSamlRole(ctx context.Context, organ
 }
 
 // Execute executes the request
-//  @return InlineResponse200140
-func (a *ConfigureApiService) GetOrganizationSamlRoleExecute(r ConfigureApiGetOrganizationSamlRoleRequest) (*InlineResponse200140, *http.Response, error) {
+//  @return GetOrganizationSamlRoles200ResponseInner
+func (a *ConfigureApiService) GetOrganizationSamlRoleExecute(r ConfigureApiGetOrganizationSamlRoleRequest) (*GetOrganizationSamlRoles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200140
+		localVarReturnValue  *GetOrganizationSamlRoles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationSamlRole")
@@ -43145,7 +43428,7 @@ type ConfigureApiGetOrganizationSamlRolesRequest struct {
 	organizationId string
 }
 
-func (r ConfigureApiGetOrganizationSamlRolesRequest) Execute() ([]InlineResponse200140, *http.Response, error) {
+func (r ConfigureApiGetOrganizationSamlRolesRequest) Execute() ([]GetOrganizationSamlRoles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSamlRolesExecute(r)
 }
 
@@ -43167,13 +43450,13 @@ func (a *ConfigureApiService) GetOrganizationSamlRoles(ctx context.Context, orga
 }
 
 // Execute executes the request
-//  @return []InlineResponse200140
-func (a *ConfigureApiService) GetOrganizationSamlRolesExecute(r ConfigureApiGetOrganizationSamlRolesRequest) ([]InlineResponse200140, *http.Response, error) {
+//  @return []GetOrganizationSamlRoles200ResponseInner
+func (a *ConfigureApiService) GetOrganizationSamlRolesExecute(r ConfigureApiGetOrganizationSamlRolesRequest) ([]GetOrganizationSamlRoles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200140
+		localVarReturnValue  []GetOrganizationSamlRoles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationSamlRoles")
@@ -43262,7 +43545,7 @@ type ConfigureApiGetOrganizationSmApnsCertRequest struct {
 	organizationId string
 }
 
-func (r ConfigureApiGetOrganizationSmApnsCertRequest) Execute() (*InlineResponse200143, *http.Response, error) {
+func (r ConfigureApiGetOrganizationSmApnsCertRequest) Execute() (*GetOrganizationSmApnsCert200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationSmApnsCertExecute(r)
 }
 
@@ -43284,13 +43567,13 @@ func (a *ConfigureApiService) GetOrganizationSmApnsCert(ctx context.Context, org
 }
 
 // Execute executes the request
-//  @return InlineResponse200143
-func (a *ConfigureApiService) GetOrganizationSmApnsCertExecute(r ConfigureApiGetOrganizationSmApnsCertRequest) (*InlineResponse200143, *http.Response, error) {
+//  @return GetOrganizationSmApnsCert200Response
+func (a *ConfigureApiService) GetOrganizationSmApnsCertExecute(r ConfigureApiGetOrganizationSmApnsCertRequest) (*GetOrganizationSmApnsCert200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200143
+		localVarReturnValue  *GetOrganizationSmApnsCert200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationSmApnsCert")
@@ -43380,7 +43663,7 @@ type ConfigureApiGetOrganizationSmVppAccountRequest struct {
 	vppAccountId string
 }
 
-func (r ConfigureApiGetOrganizationSmVppAccountRequest) Execute() (*InlineResponse200144, *http.Response, error) {
+func (r ConfigureApiGetOrganizationSmVppAccountRequest) Execute() (*GetOrganizationSmVppAccounts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSmVppAccountExecute(r)
 }
 
@@ -43404,13 +43687,13 @@ func (a *ConfigureApiService) GetOrganizationSmVppAccount(ctx context.Context, o
 }
 
 // Execute executes the request
-//  @return InlineResponse200144
-func (a *ConfigureApiService) GetOrganizationSmVppAccountExecute(r ConfigureApiGetOrganizationSmVppAccountRequest) (*InlineResponse200144, *http.Response, error) {
+//  @return GetOrganizationSmVppAccounts200ResponseInner
+func (a *ConfigureApiService) GetOrganizationSmVppAccountExecute(r ConfigureApiGetOrganizationSmVppAccountRequest) (*GetOrganizationSmVppAccounts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200144
+		localVarReturnValue  *GetOrganizationSmVppAccounts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationSmVppAccount")
@@ -43500,7 +43783,7 @@ type ConfigureApiGetOrganizationSmVppAccountsRequest struct {
 	organizationId string
 }
 
-func (r ConfigureApiGetOrganizationSmVppAccountsRequest) Execute() ([]InlineResponse200144, *http.Response, error) {
+func (r ConfigureApiGetOrganizationSmVppAccountsRequest) Execute() ([]GetOrganizationSmVppAccounts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSmVppAccountsExecute(r)
 }
 
@@ -43522,13 +43805,13 @@ func (a *ConfigureApiService) GetOrganizationSmVppAccounts(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return []InlineResponse200144
-func (a *ConfigureApiService) GetOrganizationSmVppAccountsExecute(r ConfigureApiGetOrganizationSmVppAccountsRequest) ([]InlineResponse200144, *http.Response, error) {
+//  @return []GetOrganizationSmVppAccounts200ResponseInner
+func (a *ConfigureApiService) GetOrganizationSmVppAccountsExecute(r ConfigureApiGetOrganizationSmVppAccountsRequest) ([]GetOrganizationSmVppAccounts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200144
+		localVarReturnValue  []GetOrganizationSmVppAccounts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationSmVppAccounts")
@@ -43811,7 +44094,7 @@ func (r ConfigureApiGetOrganizationSwitchPortsBySwitchRequest) ConfigurationUpda
 	return r
 }
 
-func (r ConfigureApiGetOrganizationSwitchPortsBySwitchRequest) Execute() ([]InlineResponse200152, *http.Response, error) {
+func (r ConfigureApiGetOrganizationSwitchPortsBySwitchRequest) Execute() ([]GetOrganizationSwitchPortsBySwitch200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSwitchPortsBySwitchExecute(r)
 }
 
@@ -43833,13 +44116,13 @@ func (a *ConfigureApiService) GetOrganizationSwitchPortsBySwitch(ctx context.Con
 }
 
 // Execute executes the request
-//  @return []InlineResponse200152
-func (a *ConfigureApiService) GetOrganizationSwitchPortsBySwitchExecute(r ConfigureApiGetOrganizationSwitchPortsBySwitchRequest) ([]InlineResponse200152, *http.Response, error) {
+//  @return []GetOrganizationSwitchPortsBySwitch200ResponseInner
+func (a *ConfigureApiService) GetOrganizationSwitchPortsBySwitchExecute(r ConfigureApiGetOrganizationSwitchPortsBySwitchRequest) ([]GetOrganizationSwitchPortsBySwitch200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200152
+		localVarReturnValue  []GetOrganizationSwitchPortsBySwitch200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizationSwitchPortsBySwitch")
@@ -43864,10 +44147,26 @@ func (a *ConfigureApiService) GetOrganizationSwitchPortsBySwitchExecute(r Config
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.portProfileIds != nil {
-		localVarQueryParams.Add("portProfileIds", parameterToString(*r.portProfileIds, "csv"))
+		t := *r.portProfileIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("portProfileIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("portProfileIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.name != nil {
 		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
@@ -43876,13 +44175,29 @@ func (a *ConfigureApiService) GetOrganizationSwitchPortsBySwitchExecute(r Config
 		localVarQueryParams.Add("mac", parameterToString(*r.mac, ""))
 	}
 	if r.macs != nil {
-		localVarQueryParams.Add("macs", parameterToString(*r.macs, "csv"))
+		t := *r.macs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("macs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("macs", parameterToString(t, "multi"))
+		}
 	}
 	if r.serial != nil {
 		localVarQueryParams.Add("serial", parameterToString(*r.serial, ""))
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.configurationUpdatedAfter != nil {
 		localVarQueryParams.Add("configurationUpdatedAfter", parameterToString(*r.configurationUpdatedAfter, ""))
@@ -43960,7 +44275,7 @@ type ConfigureApiGetOrganizationsRequest struct {
 	ApiService *ConfigureApiService
 }
 
-func (r ConfigureApiGetOrganizationsRequest) Execute() ([]InlineResponse20099, *http.Response, error) {
+func (r ConfigureApiGetOrganizationsRequest) Execute() ([]GetOrganizations200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationsExecute(r)
 }
 
@@ -43980,13 +44295,13 @@ func (a *ConfigureApiService) GetOrganizations(ctx context.Context) ConfigureApi
 }
 
 // Execute executes the request
-//  @return []InlineResponse20099
-func (a *ConfigureApiService) GetOrganizationsExecute(r ConfigureApiGetOrganizationsRequest) ([]InlineResponse20099, *http.Response, error) {
+//  @return []GetOrganizations200ResponseInner
+func (a *ConfigureApiService) GetOrganizationsExecute(r ConfigureApiGetOrganizationsRequest) ([]GetOrganizations200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20099
+		localVarReturnValue  []GetOrganizations200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.GetOrganizations")
@@ -44072,15 +44387,15 @@ type ConfigureApiLockNetworkSmDevicesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	lockNetworkSmDevices *InlineObject105
+	lockNetworkSmDevicesRequest *LockNetworkSmDevicesRequest
 }
 
-func (r ConfigureApiLockNetworkSmDevicesRequest) LockNetworkSmDevices(lockNetworkSmDevices InlineObject105) ConfigureApiLockNetworkSmDevicesRequest {
-	r.lockNetworkSmDevices = &lockNetworkSmDevices
+func (r ConfigureApiLockNetworkSmDevicesRequest) LockNetworkSmDevicesRequest(lockNetworkSmDevicesRequest LockNetworkSmDevicesRequest) ConfigureApiLockNetworkSmDevicesRequest {
+	r.lockNetworkSmDevicesRequest = &lockNetworkSmDevicesRequest
 	return r
 }
 
-func (r ConfigureApiLockNetworkSmDevicesRequest) Execute() (*InlineResponse20046, *http.Response, error) {
+func (r ConfigureApiLockNetworkSmDevicesRequest) Execute() (*CheckinNetworkSmDevices200Response, *http.Response, error) {
 	return r.ApiService.LockNetworkSmDevicesExecute(r)
 }
 
@@ -44102,13 +44417,13 @@ func (a *ConfigureApiService) LockNetworkSmDevices(ctx context.Context, networkI
 }
 
 // Execute executes the request
-//  @return InlineResponse20046
-func (a *ConfigureApiService) LockNetworkSmDevicesExecute(r ConfigureApiLockNetworkSmDevicesRequest) (*InlineResponse20046, *http.Response, error) {
+//  @return CheckinNetworkSmDevices200Response
+func (a *ConfigureApiService) LockNetworkSmDevicesExecute(r ConfigureApiLockNetworkSmDevicesRequest) (*CheckinNetworkSmDevices200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20046
+		localVarReturnValue  *CheckinNetworkSmDevices200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.LockNetworkSmDevices")
@@ -44141,7 +44456,7 @@ func (a *ConfigureApiService) LockNetworkSmDevicesExecute(r ConfigureApiLockNetw
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.lockNetworkSmDevices
+	localVarPostBody = r.lockNetworkSmDevicesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -44197,15 +44512,15 @@ type ConfigureApiModifyNetworkSmDevicesTagsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	modifyNetworkSmDevicesTags *InlineObject106
+	modifyNetworkSmDevicesTagsRequest *ModifyNetworkSmDevicesTagsRequest
 }
 
-func (r ConfigureApiModifyNetworkSmDevicesTagsRequest) ModifyNetworkSmDevicesTags(modifyNetworkSmDevicesTags InlineObject106) ConfigureApiModifyNetworkSmDevicesTagsRequest {
-	r.modifyNetworkSmDevicesTags = &modifyNetworkSmDevicesTags
+func (r ConfigureApiModifyNetworkSmDevicesTagsRequest) ModifyNetworkSmDevicesTagsRequest(modifyNetworkSmDevicesTagsRequest ModifyNetworkSmDevicesTagsRequest) ConfigureApiModifyNetworkSmDevicesTagsRequest {
+	r.modifyNetworkSmDevicesTagsRequest = &modifyNetworkSmDevicesTagsRequest
 	return r
 }
 
-func (r ConfigureApiModifyNetworkSmDevicesTagsRequest) Execute() ([]InlineResponse20048, *http.Response, error) {
+func (r ConfigureApiModifyNetworkSmDevicesTagsRequest) Execute() ([]ModifyNetworkSmDevicesTags200ResponseInner, *http.Response, error) {
 	return r.ApiService.ModifyNetworkSmDevicesTagsExecute(r)
 }
 
@@ -44227,13 +44542,13 @@ func (a *ConfigureApiService) ModifyNetworkSmDevicesTags(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return []InlineResponse20048
-func (a *ConfigureApiService) ModifyNetworkSmDevicesTagsExecute(r ConfigureApiModifyNetworkSmDevicesTagsRequest) ([]InlineResponse20048, *http.Response, error) {
+//  @return []ModifyNetworkSmDevicesTags200ResponseInner
+func (a *ConfigureApiService) ModifyNetworkSmDevicesTagsExecute(r ConfigureApiModifyNetworkSmDevicesTagsRequest) ([]ModifyNetworkSmDevicesTags200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20048
+		localVarReturnValue  []ModifyNetworkSmDevicesTags200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.ModifyNetworkSmDevicesTags")
@@ -44247,8 +44562,8 @@ func (a *ConfigureApiService) ModifyNetworkSmDevicesTagsExecute(r ConfigureApiMo
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.modifyNetworkSmDevicesTags == nil {
-		return localVarReturnValue, nil, reportError("modifyNetworkSmDevicesTags is required and must be specified")
+	if r.modifyNetworkSmDevicesTagsRequest == nil {
+		return localVarReturnValue, nil, reportError("modifyNetworkSmDevicesTagsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -44269,7 +44584,7 @@ func (a *ConfigureApiService) ModifyNetworkSmDevicesTagsExecute(r ConfigureApiMo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.modifyNetworkSmDevicesTags
+	localVarPostBody = r.modifyNetworkSmDevicesTagsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -44325,15 +44640,15 @@ type ConfigureApiMoveNetworkSmDevicesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	moveNetworkSmDevices *InlineObject107
+	moveNetworkSmDevicesRequest *MoveNetworkSmDevicesRequest
 }
 
-func (r ConfigureApiMoveNetworkSmDevicesRequest) MoveNetworkSmDevices(moveNetworkSmDevices InlineObject107) ConfigureApiMoveNetworkSmDevicesRequest {
-	r.moveNetworkSmDevices = &moveNetworkSmDevices
+func (r ConfigureApiMoveNetworkSmDevicesRequest) MoveNetworkSmDevicesRequest(moveNetworkSmDevicesRequest MoveNetworkSmDevicesRequest) ConfigureApiMoveNetworkSmDevicesRequest {
+	r.moveNetworkSmDevicesRequest = &moveNetworkSmDevicesRequest
 	return r
 }
 
-func (r ConfigureApiMoveNetworkSmDevicesRequest) Execute() (*InlineResponse20049, *http.Response, error) {
+func (r ConfigureApiMoveNetworkSmDevicesRequest) Execute() (*MoveNetworkSmDevices200Response, *http.Response, error) {
 	return r.ApiService.MoveNetworkSmDevicesExecute(r)
 }
 
@@ -44355,13 +44670,13 @@ func (a *ConfigureApiService) MoveNetworkSmDevices(ctx context.Context, networkI
 }
 
 // Execute executes the request
-//  @return InlineResponse20049
-func (a *ConfigureApiService) MoveNetworkSmDevicesExecute(r ConfigureApiMoveNetworkSmDevicesRequest) (*InlineResponse20049, *http.Response, error) {
+//  @return MoveNetworkSmDevices200Response
+func (a *ConfigureApiService) MoveNetworkSmDevicesExecute(r ConfigureApiMoveNetworkSmDevicesRequest) (*MoveNetworkSmDevices200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20049
+		localVarReturnValue  *MoveNetworkSmDevices200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.MoveNetworkSmDevices")
@@ -44375,8 +44690,8 @@ func (a *ConfigureApiService) MoveNetworkSmDevicesExecute(r ConfigureApiMoveNetw
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.moveNetworkSmDevices == nil {
-		return localVarReturnValue, nil, reportError("moveNetworkSmDevices is required and must be specified")
+	if r.moveNetworkSmDevicesRequest == nil {
+		return localVarReturnValue, nil, reportError("moveNetworkSmDevicesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -44397,7 +44712,7 @@ func (a *ConfigureApiService) MoveNetworkSmDevicesExecute(r ConfigureApiMoveNetw
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.moveNetworkSmDevices
+	localVarPostBody = r.moveNetworkSmDevicesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -44453,15 +44768,15 @@ type ConfigureApiMoveOrganizationLicensesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	moveOrganizationLicenses *InlineObject208
+	moveOrganizationLicensesRequest *MoveOrganizationLicensesRequest
 }
 
-func (r ConfigureApiMoveOrganizationLicensesRequest) MoveOrganizationLicenses(moveOrganizationLicenses InlineObject208) ConfigureApiMoveOrganizationLicensesRequest {
-	r.moveOrganizationLicenses = &moveOrganizationLicenses
+func (r ConfigureApiMoveOrganizationLicensesRequest) MoveOrganizationLicensesRequest(moveOrganizationLicensesRequest MoveOrganizationLicensesRequest) ConfigureApiMoveOrganizationLicensesRequest {
+	r.moveOrganizationLicensesRequest = &moveOrganizationLicensesRequest
 	return r
 }
 
-func (r ConfigureApiMoveOrganizationLicensesRequest) Execute() (*InlineResponse200132, *http.Response, error) {
+func (r ConfigureApiMoveOrganizationLicensesRequest) Execute() (*MoveOrganizationLicenses200Response, *http.Response, error) {
 	return r.ApiService.MoveOrganizationLicensesExecute(r)
 }
 
@@ -44483,13 +44798,13 @@ func (a *ConfigureApiService) MoveOrganizationLicenses(ctx context.Context, orga
 }
 
 // Execute executes the request
-//  @return InlineResponse200132
-func (a *ConfigureApiService) MoveOrganizationLicensesExecute(r ConfigureApiMoveOrganizationLicensesRequest) (*InlineResponse200132, *http.Response, error) {
+//  @return MoveOrganizationLicenses200Response
+func (a *ConfigureApiService) MoveOrganizationLicensesExecute(r ConfigureApiMoveOrganizationLicensesRequest) (*MoveOrganizationLicenses200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200132
+		localVarReturnValue  *MoveOrganizationLicenses200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.MoveOrganizationLicenses")
@@ -44503,8 +44818,8 @@ func (a *ConfigureApiService) MoveOrganizationLicensesExecute(r ConfigureApiMove
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.moveOrganizationLicenses == nil {
-		return localVarReturnValue, nil, reportError("moveOrganizationLicenses is required and must be specified")
+	if r.moveOrganizationLicensesRequest == nil {
+		return localVarReturnValue, nil, reportError("moveOrganizationLicensesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -44525,7 +44840,7 @@ func (a *ConfigureApiService) MoveOrganizationLicensesExecute(r ConfigureApiMove
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.moveOrganizationLicenses
+	localVarPostBody = r.moveOrganizationLicensesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -44581,15 +44896,15 @@ type ConfigureApiMoveOrganizationLicensesSeatsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	moveOrganizationLicensesSeats *InlineObject209
+	moveOrganizationLicensesSeatsRequest *MoveOrganizationLicensesSeatsRequest
 }
 
-func (r ConfigureApiMoveOrganizationLicensesSeatsRequest) MoveOrganizationLicensesSeats(moveOrganizationLicensesSeats InlineObject209) ConfigureApiMoveOrganizationLicensesSeatsRequest {
-	r.moveOrganizationLicensesSeats = &moveOrganizationLicensesSeats
+func (r ConfigureApiMoveOrganizationLicensesSeatsRequest) MoveOrganizationLicensesSeatsRequest(moveOrganizationLicensesSeatsRequest MoveOrganizationLicensesSeatsRequest) ConfigureApiMoveOrganizationLicensesSeatsRequest {
+	r.moveOrganizationLicensesSeatsRequest = &moveOrganizationLicensesSeatsRequest
 	return r
 }
 
-func (r ConfigureApiMoveOrganizationLicensesSeatsRequest) Execute() (*InlineResponse200133, *http.Response, error) {
+func (r ConfigureApiMoveOrganizationLicensesSeatsRequest) Execute() (*MoveOrganizationLicensesSeats200Response, *http.Response, error) {
 	return r.ApiService.MoveOrganizationLicensesSeatsExecute(r)
 }
 
@@ -44611,13 +44926,13 @@ func (a *ConfigureApiService) MoveOrganizationLicensesSeats(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse200133
-func (a *ConfigureApiService) MoveOrganizationLicensesSeatsExecute(r ConfigureApiMoveOrganizationLicensesSeatsRequest) (*InlineResponse200133, *http.Response, error) {
+//  @return MoveOrganizationLicensesSeats200Response
+func (a *ConfigureApiService) MoveOrganizationLicensesSeatsExecute(r ConfigureApiMoveOrganizationLicensesSeatsRequest) (*MoveOrganizationLicensesSeats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200133
+		localVarReturnValue  *MoveOrganizationLicensesSeats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.MoveOrganizationLicensesSeats")
@@ -44631,8 +44946,8 @@ func (a *ConfigureApiService) MoveOrganizationLicensesSeatsExecute(r ConfigureAp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.moveOrganizationLicensesSeats == nil {
-		return localVarReturnValue, nil, reportError("moveOrganizationLicensesSeats is required and must be specified")
+	if r.moveOrganizationLicensesSeatsRequest == nil {
+		return localVarReturnValue, nil, reportError("moveOrganizationLicensesSeatsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -44653,7 +44968,7 @@ func (a *ConfigureApiService) MoveOrganizationLicensesSeatsExecute(r ConfigureAp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.moveOrganizationLicensesSeats
+	localVarPostBody = r.moveOrganizationLicensesSeatsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -44709,15 +45024,15 @@ type ConfigureApiMoveOrganizationLicensingCotermLicensesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	moveOrganizationLicensingCotermLicenses *InlineObject212
+	moveOrganizationLicensingCotermLicensesRequest *MoveOrganizationLicensingCotermLicensesRequest
 }
 
-func (r ConfigureApiMoveOrganizationLicensingCotermLicensesRequest) MoveOrganizationLicensingCotermLicenses(moveOrganizationLicensingCotermLicenses InlineObject212) ConfigureApiMoveOrganizationLicensingCotermLicensesRequest {
-	r.moveOrganizationLicensingCotermLicenses = &moveOrganizationLicensingCotermLicenses
+func (r ConfigureApiMoveOrganizationLicensingCotermLicensesRequest) MoveOrganizationLicensingCotermLicensesRequest(moveOrganizationLicensingCotermLicensesRequest MoveOrganizationLicensingCotermLicensesRequest) ConfigureApiMoveOrganizationLicensingCotermLicensesRequest {
+	r.moveOrganizationLicensingCotermLicensesRequest = &moveOrganizationLicensingCotermLicensesRequest
 	return r
 }
 
-func (r ConfigureApiMoveOrganizationLicensingCotermLicensesRequest) Execute() (*InlineResponse200135, *http.Response, error) {
+func (r ConfigureApiMoveOrganizationLicensingCotermLicensesRequest) Execute() (*MoveOrganizationLicensingCotermLicenses200Response, *http.Response, error) {
 	return r.ApiService.MoveOrganizationLicensingCotermLicensesExecute(r)
 }
 
@@ -44739,13 +45054,13 @@ func (a *ConfigureApiService) MoveOrganizationLicensingCotermLicenses(ctx contex
 }
 
 // Execute executes the request
-//  @return InlineResponse200135
-func (a *ConfigureApiService) MoveOrganizationLicensingCotermLicensesExecute(r ConfigureApiMoveOrganizationLicensingCotermLicensesRequest) (*InlineResponse200135, *http.Response, error) {
+//  @return MoveOrganizationLicensingCotermLicenses200Response
+func (a *ConfigureApiService) MoveOrganizationLicensingCotermLicensesExecute(r ConfigureApiMoveOrganizationLicensingCotermLicensesRequest) (*MoveOrganizationLicensingCotermLicenses200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200135
+		localVarReturnValue  *MoveOrganizationLicensingCotermLicenses200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.MoveOrganizationLicensingCotermLicenses")
@@ -44759,8 +45074,8 @@ func (a *ConfigureApiService) MoveOrganizationLicensingCotermLicensesExecute(r C
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.moveOrganizationLicensingCotermLicenses == nil {
-		return localVarReturnValue, nil, reportError("moveOrganizationLicensingCotermLicenses is required and must be specified")
+	if r.moveOrganizationLicensingCotermLicensesRequest == nil {
+		return localVarReturnValue, nil, reportError("moveOrganizationLicensingCotermLicensesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -44781,7 +45096,7 @@ func (a *ConfigureApiService) MoveOrganizationLicensingCotermLicensesExecute(r C
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.moveOrganizationLicensingCotermLicenses
+	localVarPostBody = r.moveOrganizationLicensingCotermLicensesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -44837,11 +45152,11 @@ type ConfigureApiProvisionNetworkClientsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	provisionNetworkClients *InlineObject74
+	provisionNetworkClientsRequest *ProvisionNetworkClientsRequest
 }
 
-func (r ConfigureApiProvisionNetworkClientsRequest) ProvisionNetworkClients(provisionNetworkClients InlineObject74) ConfigureApiProvisionNetworkClientsRequest {
-	r.provisionNetworkClients = &provisionNetworkClients
+func (r ConfigureApiProvisionNetworkClientsRequest) ProvisionNetworkClientsRequest(provisionNetworkClientsRequest ProvisionNetworkClientsRequest) ConfigureApiProvisionNetworkClientsRequest {
+	r.provisionNetworkClientsRequest = &provisionNetworkClientsRequest
 	return r
 }
 
@@ -44887,8 +45202,8 @@ func (a *ConfigureApiService) ProvisionNetworkClientsExecute(r ConfigureApiProvi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.provisionNetworkClients == nil {
-		return localVarReturnValue, nil, reportError("provisionNetworkClients is required and must be specified")
+	if r.provisionNetworkClientsRequest == nil {
+		return localVarReturnValue, nil, reportError("provisionNetworkClientsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -44909,7 +45224,7 @@ func (a *ConfigureApiService) ProvisionNetworkClientsExecute(r ConfigureApiProvi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.provisionNetworkClients
+	localVarPostBody = r.provisionNetworkClientsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -45075,11 +45390,11 @@ type ConfigureApiReleaseFromOrganizationInventoryRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	releaseFromOrganizationInventory *InlineObject206
+	releaseFromOrganizationInventoryRequest *ReleaseFromOrganizationInventoryRequest
 }
 
-func (r ConfigureApiReleaseFromOrganizationInventoryRequest) ReleaseFromOrganizationInventory(releaseFromOrganizationInventory InlineObject206) ConfigureApiReleaseFromOrganizationInventoryRequest {
-	r.releaseFromOrganizationInventory = &releaseFromOrganizationInventory
+func (r ConfigureApiReleaseFromOrganizationInventoryRequest) ReleaseFromOrganizationInventoryRequest(releaseFromOrganizationInventoryRequest ReleaseFromOrganizationInventoryRequest) ConfigureApiReleaseFromOrganizationInventoryRequest {
+	r.releaseFromOrganizationInventoryRequest = &releaseFromOrganizationInventoryRequest
 	return r
 }
 
@@ -45144,7 +45459,7 @@ func (a *ConfigureApiService) ReleaseFromOrganizationInventoryExecute(r Configur
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.releaseFromOrganizationInventory
+	localVarPostBody = r.releaseFromOrganizationInventoryRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -45200,11 +45515,11 @@ type ConfigureApiRemoveNetworkDevicesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	removeNetworkDevices *InlineObject79
+	removeNetworkDevicesRequest *RemoveNetworkDevicesRequest
 }
 
-func (r ConfigureApiRemoveNetworkDevicesRequest) RemoveNetworkDevices(removeNetworkDevices InlineObject79) ConfigureApiRemoveNetworkDevicesRequest {
-	r.removeNetworkDevices = &removeNetworkDevices
+func (r ConfigureApiRemoveNetworkDevicesRequest) RemoveNetworkDevicesRequest(removeNetworkDevicesRequest RemoveNetworkDevicesRequest) ConfigureApiRemoveNetworkDevicesRequest {
+	r.removeNetworkDevicesRequest = &removeNetworkDevicesRequest
 	return r
 }
 
@@ -45248,8 +45563,8 @@ func (a *ConfigureApiService) RemoveNetworkDevicesExecute(r ConfigureApiRemoveNe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.removeNetworkDevices == nil {
-		return nil, reportError("removeNetworkDevices is required and must be specified")
+	if r.removeNetworkDevicesRequest == nil {
+		return nil, reportError("removeNetworkDevicesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -45270,7 +45585,7 @@ func (a *ConfigureApiService) RemoveNetworkDevicesExecute(r ConfigureApiRemoveNe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.removeNetworkDevices
+	localVarPostBody = r.removeNetworkDevicesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -45318,11 +45633,11 @@ type ConfigureApiRemoveNetworkSwitchStackRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	switchStackId string
-	removeNetworkSwitchStack *InlineObject135
+	removeNetworkSwitchStackRequest *RemoveNetworkSwitchStackRequest
 }
 
-func (r ConfigureApiRemoveNetworkSwitchStackRequest) RemoveNetworkSwitchStack(removeNetworkSwitchStack InlineObject135) ConfigureApiRemoveNetworkSwitchStackRequest {
-	r.removeNetworkSwitchStack = &removeNetworkSwitchStack
+func (r ConfigureApiRemoveNetworkSwitchStackRequest) RemoveNetworkSwitchStackRequest(removeNetworkSwitchStackRequest RemoveNetworkSwitchStackRequest) ConfigureApiRemoveNetworkSwitchStackRequest {
+	r.removeNetworkSwitchStackRequest = &removeNetworkSwitchStackRequest
 	return r
 }
 
@@ -45371,8 +45686,8 @@ func (a *ConfigureApiService) RemoveNetworkSwitchStackExecute(r ConfigureApiRemo
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.removeNetworkSwitchStack == nil {
-		return localVarReturnValue, nil, reportError("removeNetworkSwitchStack is required and must be specified")
+	if r.removeNetworkSwitchStackRequest == nil {
+		return localVarReturnValue, nil, reportError("removeNetworkSwitchStackRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -45393,7 +45708,7 @@ func (a *ConfigureApiService) RemoveNetworkSwitchStackExecute(r ConfigureApiRemo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.removeNetworkSwitchStack
+	localVarPostBody = r.removeNetworkSwitchStackRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -45449,15 +45764,15 @@ type ConfigureApiRenewOrganizationLicensesSeatsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	renewOrganizationLicensesSeats *InlineObject210
+	renewOrganizationLicensesSeatsRequest *RenewOrganizationLicensesSeatsRequest
 }
 
-func (r ConfigureApiRenewOrganizationLicensesSeatsRequest) RenewOrganizationLicensesSeats(renewOrganizationLicensesSeats InlineObject210) ConfigureApiRenewOrganizationLicensesSeatsRequest {
-	r.renewOrganizationLicensesSeats = &renewOrganizationLicensesSeats
+func (r ConfigureApiRenewOrganizationLicensesSeatsRequest) RenewOrganizationLicensesSeatsRequest(renewOrganizationLicensesSeatsRequest RenewOrganizationLicensesSeatsRequest) ConfigureApiRenewOrganizationLicensesSeatsRequest {
+	r.renewOrganizationLicensesSeatsRequest = &renewOrganizationLicensesSeatsRequest
 	return r
 }
 
-func (r ConfigureApiRenewOrganizationLicensesSeatsRequest) Execute() (*InlineResponse200131, *http.Response, error) {
+func (r ConfigureApiRenewOrganizationLicensesSeatsRequest) Execute() (*AssignOrganizationLicensesSeats200Response, *http.Response, error) {
 	return r.ApiService.RenewOrganizationLicensesSeatsExecute(r)
 }
 
@@ -45479,13 +45794,13 @@ func (a *ConfigureApiService) RenewOrganizationLicensesSeats(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse200131
-func (a *ConfigureApiService) RenewOrganizationLicensesSeatsExecute(r ConfigureApiRenewOrganizationLicensesSeatsRequest) (*InlineResponse200131, *http.Response, error) {
+//  @return AssignOrganizationLicensesSeats200Response
+func (a *ConfigureApiService) RenewOrganizationLicensesSeatsExecute(r ConfigureApiRenewOrganizationLicensesSeatsRequest) (*AssignOrganizationLicensesSeats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200131
+		localVarReturnValue  *AssignOrganizationLicensesSeats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.RenewOrganizationLicensesSeats")
@@ -45499,8 +45814,8 @@ func (a *ConfigureApiService) RenewOrganizationLicensesSeatsExecute(r ConfigureA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.renewOrganizationLicensesSeats == nil {
-		return localVarReturnValue, nil, reportError("renewOrganizationLicensesSeats is required and must be specified")
+	if r.renewOrganizationLicensesSeatsRequest == nil {
+		return localVarReturnValue, nil, reportError("renewOrganizationLicensesSeatsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -45521,7 +45836,7 @@ func (a *ConfigureApiService) RenewOrganizationLicensesSeatsExecute(r ConfigureA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.renewOrganizationLicensesSeats
+	localVarPostBody = r.renewOrganizationLicensesSeatsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -45577,15 +45892,15 @@ type ConfigureApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	rollbacksNetworkFirmwareUpgradesStagedEvents *InlineObject84
+	rollbacksNetworkFirmwareUpgradesStagedEventsRequest *RollbacksNetworkFirmwareUpgradesStagedEventsRequest
 }
 
-func (r ConfigureApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest) RollbacksNetworkFirmwareUpgradesStagedEvents(rollbacksNetworkFirmwareUpgradesStagedEvents InlineObject84) ConfigureApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest {
-	r.rollbacksNetworkFirmwareUpgradesStagedEvents = &rollbacksNetworkFirmwareUpgradesStagedEvents
+func (r ConfigureApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest) RollbacksNetworkFirmwareUpgradesStagedEventsRequest(rollbacksNetworkFirmwareUpgradesStagedEventsRequest RollbacksNetworkFirmwareUpgradesStagedEventsRequest) ConfigureApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest {
+	r.rollbacksNetworkFirmwareUpgradesStagedEventsRequest = &rollbacksNetworkFirmwareUpgradesStagedEventsRequest
 	return r
 }
 
-func (r ConfigureApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest) Execute() (*InlineResponse20032, *http.Response, error) {
+func (r ConfigureApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest) Execute() (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	return r.ApiService.RollbacksNetworkFirmwareUpgradesStagedEventsExecute(r)
 }
 
@@ -45607,13 +45922,13 @@ func (a *ConfigureApiService) RollbacksNetworkFirmwareUpgradesStagedEvents(ctx c
 }
 
 // Execute executes the request
-//  @return InlineResponse20032
-func (a *ConfigureApiService) RollbacksNetworkFirmwareUpgradesStagedEventsExecute(r ConfigureApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest) (*InlineResponse20032, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgradesStagedEvents200Response
+func (a *ConfigureApiService) RollbacksNetworkFirmwareUpgradesStagedEventsExecute(r ConfigureApiRollbacksNetworkFirmwareUpgradesStagedEventsRequest) (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20032
+		localVarReturnValue  *GetNetworkFirmwareUpgradesStagedEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.RollbacksNetworkFirmwareUpgradesStagedEvents")
@@ -45627,8 +45942,8 @@ func (a *ConfigureApiService) RollbacksNetworkFirmwareUpgradesStagedEventsExecut
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.rollbacksNetworkFirmwareUpgradesStagedEvents == nil {
-		return localVarReturnValue, nil, reportError("rollbacksNetworkFirmwareUpgradesStagedEvents is required and must be specified")
+	if r.rollbacksNetworkFirmwareUpgradesStagedEventsRequest == nil {
+		return localVarReturnValue, nil, reportError("rollbacksNetworkFirmwareUpgradesStagedEventsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -45649,7 +45964,7 @@ func (a *ConfigureApiService) RollbacksNetworkFirmwareUpgradesStagedEventsExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.rollbacksNetworkFirmwareUpgradesStagedEvents
+	localVarPostBody = r.rollbacksNetworkFirmwareUpgradesStagedEventsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -45707,7 +46022,7 @@ type ConfigureApiSplitNetworkRequest struct {
 	networkId string
 }
 
-func (r ConfigureApiSplitNetworkRequest) Execute() (*InlineResponse20066, *http.Response, error) {
+func (r ConfigureApiSplitNetworkRequest) Execute() (*SplitNetwork200Response, *http.Response, error) {
 	return r.ApiService.SplitNetworkExecute(r)
 }
 
@@ -45729,13 +46044,13 @@ func (a *ConfigureApiService) SplitNetwork(ctx context.Context, networkId string
 }
 
 // Execute executes the request
-//  @return InlineResponse20066
-func (a *ConfigureApiService) SplitNetworkExecute(r ConfigureApiSplitNetworkRequest) (*InlineResponse20066, *http.Response, error) {
+//  @return SplitNetwork200Response
+func (a *ConfigureApiService) SplitNetworkExecute(r ConfigureApiSplitNetworkRequest) (*SplitNetwork200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20066
+		localVarReturnValue  *SplitNetwork200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.SplitNetwork")
@@ -45939,15 +46254,15 @@ type ConfigureApiUnbindNetworkRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	unbindNetwork *InlineObject145
+	unbindNetworkRequest *UnbindNetworkRequest
 }
 
-func (r ConfigureApiUnbindNetworkRequest) UnbindNetwork(unbindNetwork InlineObject145) ConfigureApiUnbindNetworkRequest {
-	r.unbindNetwork = &unbindNetwork
+func (r ConfigureApiUnbindNetworkRequest) UnbindNetworkRequest(unbindNetworkRequest UnbindNetworkRequest) ConfigureApiUnbindNetworkRequest {
+	r.unbindNetworkRequest = &unbindNetworkRequest
 	return r
 }
 
-func (r ConfigureApiUnbindNetworkRequest) Execute() (*InlineResponse20012, *http.Response, error) {
+func (r ConfigureApiUnbindNetworkRequest) Execute() (*GetNetwork200Response, *http.Response, error) {
 	return r.ApiService.UnbindNetworkExecute(r)
 }
 
@@ -45969,13 +46284,13 @@ func (a *ConfigureApiService) UnbindNetwork(ctx context.Context, networkId strin
 }
 
 // Execute executes the request
-//  @return InlineResponse20012
-func (a *ConfigureApiService) UnbindNetworkExecute(r ConfigureApiUnbindNetworkRequest) (*InlineResponse20012, *http.Response, error) {
+//  @return GetNetwork200Response
+func (a *ConfigureApiService) UnbindNetworkExecute(r ConfigureApiUnbindNetworkRequest) (*GetNetwork200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20012
+		localVarReturnValue  *GetNetwork200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UnbindNetwork")
@@ -46008,7 +46323,7 @@ func (a *ConfigureApiService) UnbindNetworkExecute(r ConfigureApiUnbindNetworkRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.unbindNetwork
+	localVarPostBody = r.unbindNetworkRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -46185,11 +46500,11 @@ type ConfigureApiUpdateDeviceRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	updateDevice *InlineObject
+	updateDeviceRequest *UpdateDeviceRequest
 }
 
-func (r ConfigureApiUpdateDeviceRequest) UpdateDevice(updateDevice InlineObject) ConfigureApiUpdateDeviceRequest {
-	r.updateDevice = &updateDevice
+func (r ConfigureApiUpdateDeviceRequest) UpdateDeviceRequest(updateDeviceRequest UpdateDeviceRequest) ConfigureApiUpdateDeviceRequest {
+	r.updateDeviceRequest = &updateDeviceRequest
 	return r
 }
 
@@ -46254,7 +46569,7 @@ func (a *ConfigureApiService) UpdateDeviceExecute(r ConfigureApiUpdateDeviceRequ
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDevice
+	localVarPostBody = r.updateDeviceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -46310,15 +46625,15 @@ type ConfigureApiUpdateDeviceApplianceRadioSettingsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	updateDeviceApplianceRadioSettings *InlineObject1
+	updateDeviceApplianceRadioSettingsRequest *UpdateDeviceApplianceRadioSettingsRequest
 }
 
-func (r ConfigureApiUpdateDeviceApplianceRadioSettingsRequest) UpdateDeviceApplianceRadioSettings(updateDeviceApplianceRadioSettings InlineObject1) ConfigureApiUpdateDeviceApplianceRadioSettingsRequest {
-	r.updateDeviceApplianceRadioSettings = &updateDeviceApplianceRadioSettings
+func (r ConfigureApiUpdateDeviceApplianceRadioSettingsRequest) UpdateDeviceApplianceRadioSettingsRequest(updateDeviceApplianceRadioSettingsRequest UpdateDeviceApplianceRadioSettingsRequest) ConfigureApiUpdateDeviceApplianceRadioSettingsRequest {
+	r.updateDeviceApplianceRadioSettingsRequest = &updateDeviceApplianceRadioSettingsRequest
 	return r
 }
 
-func (r ConfigureApiUpdateDeviceApplianceRadioSettingsRequest) Execute() (*InlineResponse2001, *http.Response, error) {
+func (r ConfigureApiUpdateDeviceApplianceRadioSettingsRequest) Execute() (*GetDeviceApplianceRadioSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateDeviceApplianceRadioSettingsExecute(r)
 }
 
@@ -46340,13 +46655,13 @@ func (a *ConfigureApiService) UpdateDeviceApplianceRadioSettings(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InlineResponse2001
-func (a *ConfigureApiService) UpdateDeviceApplianceRadioSettingsExecute(r ConfigureApiUpdateDeviceApplianceRadioSettingsRequest) (*InlineResponse2001, *http.Response, error) {
+//  @return GetDeviceApplianceRadioSettings200Response
+func (a *ConfigureApiService) UpdateDeviceApplianceRadioSettingsExecute(r ConfigureApiUpdateDeviceApplianceRadioSettingsRequest) (*GetDeviceApplianceRadioSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2001
+		localVarReturnValue  *GetDeviceApplianceRadioSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateDeviceApplianceRadioSettings")
@@ -46379,7 +46694,7 @@ func (a *ConfigureApiService) UpdateDeviceApplianceRadioSettingsExecute(r Config
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceApplianceRadioSettings
+	localVarPostBody = r.updateDeviceApplianceRadioSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -46435,15 +46750,15 @@ type ConfigureApiUpdateDeviceApplianceUplinksSettingsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	updateDeviceApplianceUplinksSettings *InlineObject2
+	updateDeviceApplianceUplinksSettingsRequest *UpdateDeviceApplianceUplinksSettingsRequest
 }
 
-func (r ConfigureApiUpdateDeviceApplianceUplinksSettingsRequest) UpdateDeviceApplianceUplinksSettings(updateDeviceApplianceUplinksSettings InlineObject2) ConfigureApiUpdateDeviceApplianceUplinksSettingsRequest {
-	r.updateDeviceApplianceUplinksSettings = &updateDeviceApplianceUplinksSettings
+func (r ConfigureApiUpdateDeviceApplianceUplinksSettingsRequest) UpdateDeviceApplianceUplinksSettingsRequest(updateDeviceApplianceUplinksSettingsRequest UpdateDeviceApplianceUplinksSettingsRequest) ConfigureApiUpdateDeviceApplianceUplinksSettingsRequest {
+	r.updateDeviceApplianceUplinksSettingsRequest = &updateDeviceApplianceUplinksSettingsRequest
 	return r
 }
 
-func (r ConfigureApiUpdateDeviceApplianceUplinksSettingsRequest) Execute() (*InlineResponse2002, *http.Response, error) {
+func (r ConfigureApiUpdateDeviceApplianceUplinksSettingsRequest) Execute() (*GetDeviceApplianceUplinksSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateDeviceApplianceUplinksSettingsExecute(r)
 }
 
@@ -46465,13 +46780,13 @@ func (a *ConfigureApiService) UpdateDeviceApplianceUplinksSettings(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse2002
-func (a *ConfigureApiService) UpdateDeviceApplianceUplinksSettingsExecute(r ConfigureApiUpdateDeviceApplianceUplinksSettingsRequest) (*InlineResponse2002, *http.Response, error) {
+//  @return GetDeviceApplianceUplinksSettings200Response
+func (a *ConfigureApiService) UpdateDeviceApplianceUplinksSettingsExecute(r ConfigureApiUpdateDeviceApplianceUplinksSettingsRequest) (*GetDeviceApplianceUplinksSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2002
+		localVarReturnValue  *GetDeviceApplianceUplinksSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateDeviceApplianceUplinksSettings")
@@ -46485,8 +46800,8 @@ func (a *ConfigureApiService) UpdateDeviceApplianceUplinksSettingsExecute(r Conf
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateDeviceApplianceUplinksSettings == nil {
-		return localVarReturnValue, nil, reportError("updateDeviceApplianceUplinksSettings is required and must be specified")
+	if r.updateDeviceApplianceUplinksSettingsRequest == nil {
+		return localVarReturnValue, nil, reportError("updateDeviceApplianceUplinksSettingsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -46507,7 +46822,7 @@ func (a *ConfigureApiService) UpdateDeviceApplianceUplinksSettingsExecute(r Conf
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceApplianceUplinksSettings
+	localVarPostBody = r.updateDeviceApplianceUplinksSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -46563,11 +46878,11 @@ type ConfigureApiUpdateDeviceCameraCustomAnalyticsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	updateDeviceCameraCustomAnalytics *InlineObject4
+	updateDeviceCameraCustomAnalyticsRequest *UpdateDeviceCameraCustomAnalyticsRequest
 }
 
-func (r ConfigureApiUpdateDeviceCameraCustomAnalyticsRequest) UpdateDeviceCameraCustomAnalytics(updateDeviceCameraCustomAnalytics InlineObject4) ConfigureApiUpdateDeviceCameraCustomAnalyticsRequest {
-	r.updateDeviceCameraCustomAnalytics = &updateDeviceCameraCustomAnalytics
+func (r ConfigureApiUpdateDeviceCameraCustomAnalyticsRequest) UpdateDeviceCameraCustomAnalyticsRequest(updateDeviceCameraCustomAnalyticsRequest UpdateDeviceCameraCustomAnalyticsRequest) ConfigureApiUpdateDeviceCameraCustomAnalyticsRequest {
+	r.updateDeviceCameraCustomAnalyticsRequest = &updateDeviceCameraCustomAnalyticsRequest
 	return r
 }
 
@@ -46632,7 +46947,7 @@ func (a *ConfigureApiService) UpdateDeviceCameraCustomAnalyticsExecute(r Configu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCameraCustomAnalytics
+	localVarPostBody = r.updateDeviceCameraCustomAnalyticsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -46688,11 +47003,11 @@ type ConfigureApiUpdateDeviceCameraQualityAndRetentionRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	updateDeviceCameraQualityAndRetention *InlineObject6
+	updateDeviceCameraQualityAndRetentionRequest *UpdateDeviceCameraQualityAndRetentionRequest
 }
 
-func (r ConfigureApiUpdateDeviceCameraQualityAndRetentionRequest) UpdateDeviceCameraQualityAndRetention(updateDeviceCameraQualityAndRetention InlineObject6) ConfigureApiUpdateDeviceCameraQualityAndRetentionRequest {
-	r.updateDeviceCameraQualityAndRetention = &updateDeviceCameraQualityAndRetention
+func (r ConfigureApiUpdateDeviceCameraQualityAndRetentionRequest) UpdateDeviceCameraQualityAndRetentionRequest(updateDeviceCameraQualityAndRetentionRequest UpdateDeviceCameraQualityAndRetentionRequest) ConfigureApiUpdateDeviceCameraQualityAndRetentionRequest {
+	r.updateDeviceCameraQualityAndRetentionRequest = &updateDeviceCameraQualityAndRetentionRequest
 	return r
 }
 
@@ -46757,7 +47072,7 @@ func (a *ConfigureApiService) UpdateDeviceCameraQualityAndRetentionExecute(r Con
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCameraQualityAndRetention
+	localVarPostBody = r.updateDeviceCameraQualityAndRetentionRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -46813,11 +47128,11 @@ type ConfigureApiUpdateDeviceCameraSenseRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	updateDeviceCameraSense *InlineObject7
+	updateDeviceCameraSenseRequest *UpdateDeviceCameraSenseRequest
 }
 
-func (r ConfigureApiUpdateDeviceCameraSenseRequest) UpdateDeviceCameraSense(updateDeviceCameraSense InlineObject7) ConfigureApiUpdateDeviceCameraSenseRequest {
-	r.updateDeviceCameraSense = &updateDeviceCameraSense
+func (r ConfigureApiUpdateDeviceCameraSenseRequest) UpdateDeviceCameraSenseRequest(updateDeviceCameraSenseRequest UpdateDeviceCameraSenseRequest) ConfigureApiUpdateDeviceCameraSenseRequest {
+	r.updateDeviceCameraSenseRequest = &updateDeviceCameraSenseRequest
 	return r
 }
 
@@ -46882,7 +47197,7 @@ func (a *ConfigureApiService) UpdateDeviceCameraSenseExecute(r ConfigureApiUpdat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCameraSense
+	localVarPostBody = r.updateDeviceCameraSenseRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -46938,11 +47253,11 @@ type ConfigureApiUpdateDeviceCameraVideoSettingsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	updateDeviceCameraVideoSettings *InlineObject8
+	updateDeviceCameraVideoSettingsRequest *UpdateDeviceCameraVideoSettingsRequest
 }
 
-func (r ConfigureApiUpdateDeviceCameraVideoSettingsRequest) UpdateDeviceCameraVideoSettings(updateDeviceCameraVideoSettings InlineObject8) ConfigureApiUpdateDeviceCameraVideoSettingsRequest {
-	r.updateDeviceCameraVideoSettings = &updateDeviceCameraVideoSettings
+func (r ConfigureApiUpdateDeviceCameraVideoSettingsRequest) UpdateDeviceCameraVideoSettingsRequest(updateDeviceCameraVideoSettingsRequest UpdateDeviceCameraVideoSettingsRequest) ConfigureApiUpdateDeviceCameraVideoSettingsRequest {
+	r.updateDeviceCameraVideoSettingsRequest = &updateDeviceCameraVideoSettingsRequest
 	return r
 }
 
@@ -47007,7 +47322,7 @@ func (a *ConfigureApiService) UpdateDeviceCameraVideoSettingsExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCameraVideoSettings
+	localVarPostBody = r.updateDeviceCameraVideoSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -47063,11 +47378,11 @@ type ConfigureApiUpdateDeviceCameraWirelessProfilesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	updateDeviceCameraWirelessProfiles *InlineObject9
+	updateDeviceCameraWirelessProfilesRequest *UpdateDeviceCameraWirelessProfilesRequest
 }
 
-func (r ConfigureApiUpdateDeviceCameraWirelessProfilesRequest) UpdateDeviceCameraWirelessProfiles(updateDeviceCameraWirelessProfiles InlineObject9) ConfigureApiUpdateDeviceCameraWirelessProfilesRequest {
-	r.updateDeviceCameraWirelessProfiles = &updateDeviceCameraWirelessProfiles
+func (r ConfigureApiUpdateDeviceCameraWirelessProfilesRequest) UpdateDeviceCameraWirelessProfilesRequest(updateDeviceCameraWirelessProfilesRequest UpdateDeviceCameraWirelessProfilesRequest) ConfigureApiUpdateDeviceCameraWirelessProfilesRequest {
+	r.updateDeviceCameraWirelessProfilesRequest = &updateDeviceCameraWirelessProfilesRequest
 	return r
 }
 
@@ -47113,8 +47428,8 @@ func (a *ConfigureApiService) UpdateDeviceCameraWirelessProfilesExecute(r Config
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateDeviceCameraWirelessProfiles == nil {
-		return localVarReturnValue, nil, reportError("updateDeviceCameraWirelessProfiles is required and must be specified")
+	if r.updateDeviceCameraWirelessProfilesRequest == nil {
+		return localVarReturnValue, nil, reportError("updateDeviceCameraWirelessProfilesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -47135,7 +47450,7 @@ func (a *ConfigureApiService) UpdateDeviceCameraWirelessProfilesExecute(r Config
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCameraWirelessProfiles
+	localVarPostBody = r.updateDeviceCameraWirelessProfilesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -47191,11 +47506,11 @@ type ConfigureApiUpdateDeviceCellularGatewayLanRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	updateDeviceCellularGatewayLan *InlineObject11
+	updateDeviceCellularGatewayLanRequest *UpdateDeviceCellularGatewayLanRequest
 }
 
-func (r ConfigureApiUpdateDeviceCellularGatewayLanRequest) UpdateDeviceCellularGatewayLan(updateDeviceCellularGatewayLan InlineObject11) ConfigureApiUpdateDeviceCellularGatewayLanRequest {
-	r.updateDeviceCellularGatewayLan = &updateDeviceCellularGatewayLan
+func (r ConfigureApiUpdateDeviceCellularGatewayLanRequest) UpdateDeviceCellularGatewayLanRequest(updateDeviceCellularGatewayLanRequest UpdateDeviceCellularGatewayLanRequest) ConfigureApiUpdateDeviceCellularGatewayLanRequest {
+	r.updateDeviceCellularGatewayLanRequest = &updateDeviceCellularGatewayLanRequest
 	return r
 }
 
@@ -47260,7 +47575,7 @@ func (a *ConfigureApiService) UpdateDeviceCellularGatewayLanExecute(r ConfigureA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCellularGatewayLan
+	localVarPostBody = r.updateDeviceCellularGatewayLanRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -47316,11 +47631,11 @@ type ConfigureApiUpdateDeviceCellularGatewayPortForwardingRulesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	updateDeviceCellularGatewayPortForwardingRules *InlineObject12
+	updateDeviceCellularGatewayPortForwardingRulesRequest *UpdateDeviceCellularGatewayPortForwardingRulesRequest
 }
 
-func (r ConfigureApiUpdateDeviceCellularGatewayPortForwardingRulesRequest) UpdateDeviceCellularGatewayPortForwardingRules(updateDeviceCellularGatewayPortForwardingRules InlineObject12) ConfigureApiUpdateDeviceCellularGatewayPortForwardingRulesRequest {
-	r.updateDeviceCellularGatewayPortForwardingRules = &updateDeviceCellularGatewayPortForwardingRules
+func (r ConfigureApiUpdateDeviceCellularGatewayPortForwardingRulesRequest) UpdateDeviceCellularGatewayPortForwardingRulesRequest(updateDeviceCellularGatewayPortForwardingRulesRequest UpdateDeviceCellularGatewayPortForwardingRulesRequest) ConfigureApiUpdateDeviceCellularGatewayPortForwardingRulesRequest {
+	r.updateDeviceCellularGatewayPortForwardingRulesRequest = &updateDeviceCellularGatewayPortForwardingRulesRequest
 	return r
 }
 
@@ -47385,7 +47700,7 @@ func (a *ConfigureApiService) UpdateDeviceCellularGatewayPortForwardingRulesExec
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCellularGatewayPortForwardingRules
+	localVarPostBody = r.updateDeviceCellularGatewayPortForwardingRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -47441,11 +47756,11 @@ type ConfigureApiUpdateDeviceCellularSimsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	updateDeviceCellularSims *InlineObject10
+	updateDeviceCellularSimsRequest *UpdateDeviceCellularSimsRequest
 }
 
-func (r ConfigureApiUpdateDeviceCellularSimsRequest) UpdateDeviceCellularSims(updateDeviceCellularSims InlineObject10) ConfigureApiUpdateDeviceCellularSimsRequest {
-	r.updateDeviceCellularSims = &updateDeviceCellularSims
+func (r ConfigureApiUpdateDeviceCellularSimsRequest) UpdateDeviceCellularSimsRequest(updateDeviceCellularSimsRequest UpdateDeviceCellularSimsRequest) ConfigureApiUpdateDeviceCellularSimsRequest {
+	r.updateDeviceCellularSimsRequest = &updateDeviceCellularSimsRequest
 	return r
 }
 
@@ -47510,7 +47825,7 @@ func (a *ConfigureApiService) UpdateDeviceCellularSimsExecute(r ConfigureApiUpda
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCellularSims
+	localVarPostBody = r.updateDeviceCellularSimsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -47566,11 +47881,11 @@ type ConfigureApiUpdateDeviceManagementInterfaceRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	updateDeviceManagementInterface *InlineObject15
+	updateDeviceManagementInterfaceRequest *UpdateDeviceManagementInterfaceRequest
 }
 
-func (r ConfigureApiUpdateDeviceManagementInterfaceRequest) UpdateDeviceManagementInterface(updateDeviceManagementInterface InlineObject15) ConfigureApiUpdateDeviceManagementInterfaceRequest {
-	r.updateDeviceManagementInterface = &updateDeviceManagementInterface
+func (r ConfigureApiUpdateDeviceManagementInterfaceRequest) UpdateDeviceManagementInterfaceRequest(updateDeviceManagementInterfaceRequest UpdateDeviceManagementInterfaceRequest) ConfigureApiUpdateDeviceManagementInterfaceRequest {
+	r.updateDeviceManagementInterfaceRequest = &updateDeviceManagementInterfaceRequest
 	return r
 }
 
@@ -47635,7 +47950,7 @@ func (a *ConfigureApiService) UpdateDeviceManagementInterfaceExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceManagementInterface
+	localVarPostBody = r.updateDeviceManagementInterfaceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -47691,15 +48006,15 @@ type ConfigureApiUpdateDeviceSensorRelationshipsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	updateDeviceSensorRelationships *InlineObject16
+	updateDeviceSensorRelationshipsRequest *UpdateDeviceSensorRelationshipsRequest
 }
 
-func (r ConfigureApiUpdateDeviceSensorRelationshipsRequest) UpdateDeviceSensorRelationships(updateDeviceSensorRelationships InlineObject16) ConfigureApiUpdateDeviceSensorRelationshipsRequest {
-	r.updateDeviceSensorRelationships = &updateDeviceSensorRelationships
+func (r ConfigureApiUpdateDeviceSensorRelationshipsRequest) UpdateDeviceSensorRelationshipsRequest(updateDeviceSensorRelationshipsRequest UpdateDeviceSensorRelationshipsRequest) ConfigureApiUpdateDeviceSensorRelationshipsRequest {
+	r.updateDeviceSensorRelationshipsRequest = &updateDeviceSensorRelationshipsRequest
 	return r
 }
 
-func (r ConfigureApiUpdateDeviceSensorRelationshipsRequest) Execute() (*InlineResponse2004, *http.Response, error) {
+func (r ConfigureApiUpdateDeviceSensorRelationshipsRequest) Execute() (*GetDeviceSensorRelationships200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateDeviceSensorRelationshipsExecute(r)
 }
 
@@ -47721,13 +48036,13 @@ func (a *ConfigureApiService) UpdateDeviceSensorRelationships(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse2004
-func (a *ConfigureApiService) UpdateDeviceSensorRelationshipsExecute(r ConfigureApiUpdateDeviceSensorRelationshipsRequest) (*InlineResponse2004, *http.Response, error) {
+//  @return GetDeviceSensorRelationships200ResponseInner
+func (a *ConfigureApiService) UpdateDeviceSensorRelationshipsExecute(r ConfigureApiUpdateDeviceSensorRelationshipsRequest) (*GetDeviceSensorRelationships200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2004
+		localVarReturnValue  *GetDeviceSensorRelationships200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateDeviceSensorRelationships")
@@ -47760,7 +48075,7 @@ func (a *ConfigureApiService) UpdateDeviceSensorRelationshipsExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceSensorRelationships
+	localVarPostBody = r.updateDeviceSensorRelationshipsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -47817,15 +48132,15 @@ type ConfigureApiUpdateDeviceSwitchPortRequest struct {
 	ApiService *ConfigureApiService
 	serial string
 	portId string
-	updateDeviceSwitchPort *InlineObject18
+	updateDeviceSwitchPortRequest *UpdateDeviceSwitchPortRequest
 }
 
-func (r ConfigureApiUpdateDeviceSwitchPortRequest) UpdateDeviceSwitchPort(updateDeviceSwitchPort InlineObject18) ConfigureApiUpdateDeviceSwitchPortRequest {
-	r.updateDeviceSwitchPort = &updateDeviceSwitchPort
+func (r ConfigureApiUpdateDeviceSwitchPortRequest) UpdateDeviceSwitchPortRequest(updateDeviceSwitchPortRequest UpdateDeviceSwitchPortRequest) ConfigureApiUpdateDeviceSwitchPortRequest {
+	r.updateDeviceSwitchPortRequest = &updateDeviceSwitchPortRequest
 	return r
 }
 
-func (r ConfigureApiUpdateDeviceSwitchPortRequest) Execute() (*InlineResponse2005, *http.Response, error) {
+func (r ConfigureApiUpdateDeviceSwitchPortRequest) Execute() (*GetDeviceSwitchPorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateDeviceSwitchPortExecute(r)
 }
 
@@ -47849,13 +48164,13 @@ func (a *ConfigureApiService) UpdateDeviceSwitchPort(ctx context.Context, serial
 }
 
 // Execute executes the request
-//  @return InlineResponse2005
-func (a *ConfigureApiService) UpdateDeviceSwitchPortExecute(r ConfigureApiUpdateDeviceSwitchPortRequest) (*InlineResponse2005, *http.Response, error) {
+//  @return GetDeviceSwitchPorts200ResponseInner
+func (a *ConfigureApiService) UpdateDeviceSwitchPortExecute(r ConfigureApiUpdateDeviceSwitchPortRequest) (*GetDeviceSwitchPorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2005
+		localVarReturnValue  *GetDeviceSwitchPorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateDeviceSwitchPort")
@@ -47889,7 +48204,7 @@ func (a *ConfigureApiService) UpdateDeviceSwitchPortExecute(r ConfigureApiUpdate
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceSwitchPort
+	localVarPostBody = r.updateDeviceSwitchPortRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -47946,15 +48261,15 @@ type ConfigureApiUpdateDeviceSwitchRoutingInterfaceRequest struct {
 	ApiService *ConfigureApiService
 	serial string
 	interfaceId string
-	updateDeviceSwitchRoutingInterface *InlineObject20
+	createDeviceSwitchRoutingInterfaceRequest *CreateDeviceSwitchRoutingInterfaceRequest
 }
 
-func (r ConfigureApiUpdateDeviceSwitchRoutingInterfaceRequest) UpdateDeviceSwitchRoutingInterface(updateDeviceSwitchRoutingInterface InlineObject20) ConfigureApiUpdateDeviceSwitchRoutingInterfaceRequest {
-	r.updateDeviceSwitchRoutingInterface = &updateDeviceSwitchRoutingInterface
+func (r ConfigureApiUpdateDeviceSwitchRoutingInterfaceRequest) CreateDeviceSwitchRoutingInterfaceRequest(createDeviceSwitchRoutingInterfaceRequest CreateDeviceSwitchRoutingInterfaceRequest) ConfigureApiUpdateDeviceSwitchRoutingInterfaceRequest {
+	r.createDeviceSwitchRoutingInterfaceRequest = &createDeviceSwitchRoutingInterfaceRequest
 	return r
 }
 
-func (r ConfigureApiUpdateDeviceSwitchRoutingInterfaceRequest) Execute() (*InlineResponse2008, *http.Response, error) {
+func (r ConfigureApiUpdateDeviceSwitchRoutingInterfaceRequest) Execute() (*GetDeviceSwitchRoutingInterfaces200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateDeviceSwitchRoutingInterfaceExecute(r)
 }
 
@@ -47978,13 +48293,13 @@ func (a *ConfigureApiService) UpdateDeviceSwitchRoutingInterface(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InlineResponse2008
-func (a *ConfigureApiService) UpdateDeviceSwitchRoutingInterfaceExecute(r ConfigureApiUpdateDeviceSwitchRoutingInterfaceRequest) (*InlineResponse2008, *http.Response, error) {
+//  @return GetDeviceSwitchRoutingInterfaces200ResponseInner
+func (a *ConfigureApiService) UpdateDeviceSwitchRoutingInterfaceExecute(r ConfigureApiUpdateDeviceSwitchRoutingInterfaceRequest) (*GetDeviceSwitchRoutingInterfaces200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2008
+		localVarReturnValue  *GetDeviceSwitchRoutingInterfaces200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateDeviceSwitchRoutingInterface")
@@ -48018,7 +48333,7 @@ func (a *ConfigureApiService) UpdateDeviceSwitchRoutingInterfaceExecute(r Config
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceSwitchRoutingInterface
+	localVarPostBody = r.createDeviceSwitchRoutingInterfaceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -48075,11 +48390,11 @@ type ConfigureApiUpdateDeviceSwitchRoutingInterfaceDhcpRequest struct {
 	ApiService *ConfigureApiService
 	serial string
 	interfaceId string
-	updateDeviceSwitchRoutingInterfaceDhcp *InlineObject21
+	updateDeviceSwitchRoutingInterfaceDhcpRequest *UpdateDeviceSwitchRoutingInterfaceDhcpRequest
 }
 
-func (r ConfigureApiUpdateDeviceSwitchRoutingInterfaceDhcpRequest) UpdateDeviceSwitchRoutingInterfaceDhcp(updateDeviceSwitchRoutingInterfaceDhcp InlineObject21) ConfigureApiUpdateDeviceSwitchRoutingInterfaceDhcpRequest {
-	r.updateDeviceSwitchRoutingInterfaceDhcp = &updateDeviceSwitchRoutingInterfaceDhcp
+func (r ConfigureApiUpdateDeviceSwitchRoutingInterfaceDhcpRequest) UpdateDeviceSwitchRoutingInterfaceDhcpRequest(updateDeviceSwitchRoutingInterfaceDhcpRequest UpdateDeviceSwitchRoutingInterfaceDhcpRequest) ConfigureApiUpdateDeviceSwitchRoutingInterfaceDhcpRequest {
+	r.updateDeviceSwitchRoutingInterfaceDhcpRequest = &updateDeviceSwitchRoutingInterfaceDhcpRequest
 	return r
 }
 
@@ -48147,7 +48462,7 @@ func (a *ConfigureApiService) UpdateDeviceSwitchRoutingInterfaceDhcpExecute(r Co
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceSwitchRoutingInterfaceDhcp
+	localVarPostBody = r.updateDeviceSwitchRoutingInterfaceDhcpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -48204,11 +48519,11 @@ type ConfigureApiUpdateDeviceSwitchRoutingStaticRouteRequest struct {
 	ApiService *ConfigureApiService
 	serial string
 	staticRouteId string
-	updateDeviceSwitchRoutingStaticRoute *InlineObject23
+	updateDeviceSwitchRoutingStaticRouteRequest *UpdateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r ConfigureApiUpdateDeviceSwitchRoutingStaticRouteRequest) UpdateDeviceSwitchRoutingStaticRoute(updateDeviceSwitchRoutingStaticRoute InlineObject23) ConfigureApiUpdateDeviceSwitchRoutingStaticRouteRequest {
-	r.updateDeviceSwitchRoutingStaticRoute = &updateDeviceSwitchRoutingStaticRoute
+func (r ConfigureApiUpdateDeviceSwitchRoutingStaticRouteRequest) UpdateDeviceSwitchRoutingStaticRouteRequest(updateDeviceSwitchRoutingStaticRouteRequest UpdateDeviceSwitchRoutingStaticRouteRequest) ConfigureApiUpdateDeviceSwitchRoutingStaticRouteRequest {
+	r.updateDeviceSwitchRoutingStaticRouteRequest = &updateDeviceSwitchRoutingStaticRouteRequest
 	return r
 }
 
@@ -48276,7 +48591,7 @@ func (a *ConfigureApiService) UpdateDeviceSwitchRoutingStaticRouteExecute(r Conf
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceSwitchRoutingStaticRoute
+	localVarPostBody = r.updateDeviceSwitchRoutingStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -48332,11 +48647,11 @@ type ConfigureApiUpdateDeviceSwitchWarmSpareRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	updateDeviceSwitchWarmSpare *InlineObject24
+	updateDeviceSwitchWarmSpareRequest *UpdateDeviceSwitchWarmSpareRequest
 }
 
-func (r ConfigureApiUpdateDeviceSwitchWarmSpareRequest) UpdateDeviceSwitchWarmSpare(updateDeviceSwitchWarmSpare InlineObject24) ConfigureApiUpdateDeviceSwitchWarmSpareRequest {
-	r.updateDeviceSwitchWarmSpare = &updateDeviceSwitchWarmSpare
+func (r ConfigureApiUpdateDeviceSwitchWarmSpareRequest) UpdateDeviceSwitchWarmSpareRequest(updateDeviceSwitchWarmSpareRequest UpdateDeviceSwitchWarmSpareRequest) ConfigureApiUpdateDeviceSwitchWarmSpareRequest {
+	r.updateDeviceSwitchWarmSpareRequest = &updateDeviceSwitchWarmSpareRequest
 	return r
 }
 
@@ -48382,8 +48697,8 @@ func (a *ConfigureApiService) UpdateDeviceSwitchWarmSpareExecute(r ConfigureApiU
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateDeviceSwitchWarmSpare == nil {
-		return localVarReturnValue, nil, reportError("updateDeviceSwitchWarmSpare is required and must be specified")
+	if r.updateDeviceSwitchWarmSpareRequest == nil {
+		return localVarReturnValue, nil, reportError("updateDeviceSwitchWarmSpareRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -48404,7 +48719,7 @@ func (a *ConfigureApiService) UpdateDeviceSwitchWarmSpareExecute(r ConfigureApiU
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceSwitchWarmSpare
+	localVarPostBody = r.updateDeviceSwitchWarmSpareRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -48460,15 +48775,15 @@ type ConfigureApiUpdateDeviceWirelessBluetoothSettingsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	updateDeviceWirelessBluetoothSettings *InlineObject25
+	updateDeviceWirelessBluetoothSettingsRequest *UpdateDeviceWirelessBluetoothSettingsRequest
 }
 
-func (r ConfigureApiUpdateDeviceWirelessBluetoothSettingsRequest) UpdateDeviceWirelessBluetoothSettings(updateDeviceWirelessBluetoothSettings InlineObject25) ConfigureApiUpdateDeviceWirelessBluetoothSettingsRequest {
-	r.updateDeviceWirelessBluetoothSettings = &updateDeviceWirelessBluetoothSettings
+func (r ConfigureApiUpdateDeviceWirelessBluetoothSettingsRequest) UpdateDeviceWirelessBluetoothSettingsRequest(updateDeviceWirelessBluetoothSettingsRequest UpdateDeviceWirelessBluetoothSettingsRequest) ConfigureApiUpdateDeviceWirelessBluetoothSettingsRequest {
+	r.updateDeviceWirelessBluetoothSettingsRequest = &updateDeviceWirelessBluetoothSettingsRequest
 	return r
 }
 
-func (r ConfigureApiUpdateDeviceWirelessBluetoothSettingsRequest) Execute() (*InlineResponse20010, *http.Response, error) {
+func (r ConfigureApiUpdateDeviceWirelessBluetoothSettingsRequest) Execute() (*GetDeviceWirelessBluetoothSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateDeviceWirelessBluetoothSettingsExecute(r)
 }
 
@@ -48490,13 +48805,13 @@ func (a *ConfigureApiService) UpdateDeviceWirelessBluetoothSettings(ctx context.
 }
 
 // Execute executes the request
-//  @return InlineResponse20010
-func (a *ConfigureApiService) UpdateDeviceWirelessBluetoothSettingsExecute(r ConfigureApiUpdateDeviceWirelessBluetoothSettingsRequest) (*InlineResponse20010, *http.Response, error) {
+//  @return GetDeviceWirelessBluetoothSettings200Response
+func (a *ConfigureApiService) UpdateDeviceWirelessBluetoothSettingsExecute(r ConfigureApiUpdateDeviceWirelessBluetoothSettingsRequest) (*GetDeviceWirelessBluetoothSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20010
+		localVarReturnValue  *GetDeviceWirelessBluetoothSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateDeviceWirelessBluetoothSettings")
@@ -48529,7 +48844,7 @@ func (a *ConfigureApiService) UpdateDeviceWirelessBluetoothSettingsExecute(r Con
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceWirelessBluetoothSettings
+	localVarPostBody = r.updateDeviceWirelessBluetoothSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -48585,11 +48900,11 @@ type ConfigureApiUpdateDeviceWirelessRadioSettingsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	serial string
-	updateDeviceWirelessRadioSettings *InlineObject26
+	updateDeviceWirelessRadioSettingsRequest *UpdateDeviceWirelessRadioSettingsRequest
 }
 
-func (r ConfigureApiUpdateDeviceWirelessRadioSettingsRequest) UpdateDeviceWirelessRadioSettings(updateDeviceWirelessRadioSettings InlineObject26) ConfigureApiUpdateDeviceWirelessRadioSettingsRequest {
-	r.updateDeviceWirelessRadioSettings = &updateDeviceWirelessRadioSettings
+func (r ConfigureApiUpdateDeviceWirelessRadioSettingsRequest) UpdateDeviceWirelessRadioSettingsRequest(updateDeviceWirelessRadioSettingsRequest UpdateDeviceWirelessRadioSettingsRequest) ConfigureApiUpdateDeviceWirelessRadioSettingsRequest {
+	r.updateDeviceWirelessRadioSettingsRequest = &updateDeviceWirelessRadioSettingsRequest
 	return r
 }
 
@@ -48654,7 +48969,7 @@ func (a *ConfigureApiService) UpdateDeviceWirelessRadioSettingsExecute(r Configu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceWirelessRadioSettings
+	localVarPostBody = r.updateDeviceWirelessRadioSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -48710,15 +49025,15 @@ type ConfigureApiUpdateNetworkRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetwork *InlineObject27
+	updateNetworkRequest *UpdateNetworkRequest
 }
 
-func (r ConfigureApiUpdateNetworkRequest) UpdateNetwork(updateNetwork InlineObject27) ConfigureApiUpdateNetworkRequest {
-	r.updateNetwork = &updateNetwork
+func (r ConfigureApiUpdateNetworkRequest) UpdateNetworkRequest(updateNetworkRequest UpdateNetworkRequest) ConfigureApiUpdateNetworkRequest {
+	r.updateNetworkRequest = &updateNetworkRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkRequest) Execute() (*InlineResponse20012, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkRequest) Execute() (*GetNetwork200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkExecute(r)
 }
 
@@ -48740,13 +49055,13 @@ func (a *ConfigureApiService) UpdateNetwork(ctx context.Context, networkId strin
 }
 
 // Execute executes the request
-//  @return InlineResponse20012
-func (a *ConfigureApiService) UpdateNetworkExecute(r ConfigureApiUpdateNetworkRequest) (*InlineResponse20012, *http.Response, error) {
+//  @return GetNetwork200Response
+func (a *ConfigureApiService) UpdateNetworkExecute(r ConfigureApiUpdateNetworkRequest) (*GetNetwork200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20012
+		localVarReturnValue  *GetNetwork200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetwork")
@@ -48779,7 +49094,7 @@ func (a *ConfigureApiService) UpdateNetworkExecute(r ConfigureApiUpdateNetworkRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetwork
+	localVarPostBody = r.updateNetworkRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -48835,11 +49150,11 @@ type ConfigureApiUpdateNetworkAlertsSettingsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkAlertsSettings *InlineObject28
+	updateNetworkAlertsSettingsRequest *UpdateNetworkAlertsSettingsRequest
 }
 
-func (r ConfigureApiUpdateNetworkAlertsSettingsRequest) UpdateNetworkAlertsSettings(updateNetworkAlertsSettings InlineObject28) ConfigureApiUpdateNetworkAlertsSettingsRequest {
-	r.updateNetworkAlertsSettings = &updateNetworkAlertsSettings
+func (r ConfigureApiUpdateNetworkAlertsSettingsRequest) UpdateNetworkAlertsSettingsRequest(updateNetworkAlertsSettingsRequest UpdateNetworkAlertsSettingsRequest) ConfigureApiUpdateNetworkAlertsSettingsRequest {
+	r.updateNetworkAlertsSettingsRequest = &updateNetworkAlertsSettingsRequest
 	return r
 }
 
@@ -48904,7 +49219,7 @@ func (a *ConfigureApiService) UpdateNetworkAlertsSettingsExecute(r ConfigureApiU
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkAlertsSettings
+	localVarPostBody = r.updateNetworkAlertsSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -48960,11 +49275,11 @@ type ConfigureApiUpdateNetworkApplianceConnectivityMonitoringDestinationsRequest
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceConnectivityMonitoringDestinations *InlineObject29
+	updateNetworkApplianceConnectivityMonitoringDestinationsRequest *UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceConnectivityMonitoringDestinationsRequest) UpdateNetworkApplianceConnectivityMonitoringDestinations(updateNetworkApplianceConnectivityMonitoringDestinations InlineObject29) ConfigureApiUpdateNetworkApplianceConnectivityMonitoringDestinationsRequest {
-	r.updateNetworkApplianceConnectivityMonitoringDestinations = &updateNetworkApplianceConnectivityMonitoringDestinations
+func (r ConfigureApiUpdateNetworkApplianceConnectivityMonitoringDestinationsRequest) UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest(updateNetworkApplianceConnectivityMonitoringDestinationsRequest UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest) ConfigureApiUpdateNetworkApplianceConnectivityMonitoringDestinationsRequest {
+	r.updateNetworkApplianceConnectivityMonitoringDestinationsRequest = &updateNetworkApplianceConnectivityMonitoringDestinationsRequest
 	return r
 }
 
@@ -49029,7 +49344,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceConnectivityMonitoringDestin
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceConnectivityMonitoringDestinations
+	localVarPostBody = r.updateNetworkApplianceConnectivityMonitoringDestinationsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -49085,11 +49400,11 @@ type ConfigureApiUpdateNetworkApplianceContentFilteringRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceContentFiltering *InlineObject30
+	updateNetworkApplianceContentFilteringRequest *UpdateNetworkApplianceContentFilteringRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceContentFilteringRequest) UpdateNetworkApplianceContentFiltering(updateNetworkApplianceContentFiltering InlineObject30) ConfigureApiUpdateNetworkApplianceContentFilteringRequest {
-	r.updateNetworkApplianceContentFiltering = &updateNetworkApplianceContentFiltering
+func (r ConfigureApiUpdateNetworkApplianceContentFilteringRequest) UpdateNetworkApplianceContentFilteringRequest(updateNetworkApplianceContentFilteringRequest UpdateNetworkApplianceContentFilteringRequest) ConfigureApiUpdateNetworkApplianceContentFilteringRequest {
+	r.updateNetworkApplianceContentFilteringRequest = &updateNetworkApplianceContentFilteringRequest
 	return r
 }
 
@@ -49154,7 +49469,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceContentFilteringExecute(r Co
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceContentFiltering
+	localVarPostBody = r.updateNetworkApplianceContentFilteringRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -49210,11 +49525,11 @@ type ConfigureApiUpdateNetworkApplianceFirewallCellularFirewallRulesRequest stru
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceFirewallCellularFirewallRules *InlineObject31
+	updateNetworkApplianceFirewallCellularFirewallRulesRequest *UpdateNetworkApplianceFirewallCellularFirewallRulesRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceFirewallCellularFirewallRulesRequest) UpdateNetworkApplianceFirewallCellularFirewallRules(updateNetworkApplianceFirewallCellularFirewallRules InlineObject31) ConfigureApiUpdateNetworkApplianceFirewallCellularFirewallRulesRequest {
-	r.updateNetworkApplianceFirewallCellularFirewallRules = &updateNetworkApplianceFirewallCellularFirewallRules
+func (r ConfigureApiUpdateNetworkApplianceFirewallCellularFirewallRulesRequest) UpdateNetworkApplianceFirewallCellularFirewallRulesRequest(updateNetworkApplianceFirewallCellularFirewallRulesRequest UpdateNetworkApplianceFirewallCellularFirewallRulesRequest) ConfigureApiUpdateNetworkApplianceFirewallCellularFirewallRulesRequest {
+	r.updateNetworkApplianceFirewallCellularFirewallRulesRequest = &updateNetworkApplianceFirewallCellularFirewallRulesRequest
 	return r
 }
 
@@ -49279,7 +49594,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallCellularFirewallRule
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallCellularFirewallRules
+	localVarPostBody = r.updateNetworkApplianceFirewallCellularFirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -49336,11 +49651,11 @@ type ConfigureApiUpdateNetworkApplianceFirewallFirewalledServiceRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	service string
-	updateNetworkApplianceFirewallFirewalledService *InlineObject32
+	updateNetworkApplianceFirewallFirewalledServiceRequest *UpdateNetworkApplianceFirewallFirewalledServiceRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceFirewallFirewalledServiceRequest) UpdateNetworkApplianceFirewallFirewalledService(updateNetworkApplianceFirewallFirewalledService InlineObject32) ConfigureApiUpdateNetworkApplianceFirewallFirewalledServiceRequest {
-	r.updateNetworkApplianceFirewallFirewalledService = &updateNetworkApplianceFirewallFirewalledService
+func (r ConfigureApiUpdateNetworkApplianceFirewallFirewalledServiceRequest) UpdateNetworkApplianceFirewallFirewalledServiceRequest(updateNetworkApplianceFirewallFirewalledServiceRequest UpdateNetworkApplianceFirewallFirewalledServiceRequest) ConfigureApiUpdateNetworkApplianceFirewallFirewalledServiceRequest {
+	r.updateNetworkApplianceFirewallFirewalledServiceRequest = &updateNetworkApplianceFirewallFirewalledServiceRequest
 	return r
 }
 
@@ -49389,8 +49704,8 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallFirewalledServiceExe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceFirewallFirewalledService == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallFirewalledService is required and must be specified")
+	if r.updateNetworkApplianceFirewallFirewalledServiceRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallFirewalledServiceRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -49411,7 +49726,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallFirewalledServiceExe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallFirewalledService
+	localVarPostBody = r.updateNetworkApplianceFirewallFirewalledServiceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -49467,11 +49782,11 @@ type ConfigureApiUpdateNetworkApplianceFirewallInboundCellularFirewallRulesReque
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceFirewallInboundCellularFirewallRules *InlineObject33
+	updateNetworkApplianceFirewallCellularFirewallRulesRequest *UpdateNetworkApplianceFirewallCellularFirewallRulesRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceFirewallInboundCellularFirewallRulesRequest) UpdateNetworkApplianceFirewallInboundCellularFirewallRules(updateNetworkApplianceFirewallInboundCellularFirewallRules InlineObject33) ConfigureApiUpdateNetworkApplianceFirewallInboundCellularFirewallRulesRequest {
-	r.updateNetworkApplianceFirewallInboundCellularFirewallRules = &updateNetworkApplianceFirewallInboundCellularFirewallRules
+func (r ConfigureApiUpdateNetworkApplianceFirewallInboundCellularFirewallRulesRequest) UpdateNetworkApplianceFirewallCellularFirewallRulesRequest(updateNetworkApplianceFirewallCellularFirewallRulesRequest UpdateNetworkApplianceFirewallCellularFirewallRulesRequest) ConfigureApiUpdateNetworkApplianceFirewallInboundCellularFirewallRulesRequest {
+	r.updateNetworkApplianceFirewallCellularFirewallRulesRequest = &updateNetworkApplianceFirewallCellularFirewallRulesRequest
 	return r
 }
 
@@ -49536,7 +49851,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallInboundCellularFirew
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallInboundCellularFirewallRules
+	localVarPostBody = r.updateNetworkApplianceFirewallCellularFirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -49592,11 +49907,11 @@ type ConfigureApiUpdateNetworkApplianceFirewallInboundFirewallRulesRequest struc
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceFirewallInboundFirewallRules *InlineObject34
+	updateNetworkApplianceFirewallInboundFirewallRulesRequest *UpdateNetworkApplianceFirewallInboundFirewallRulesRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceFirewallInboundFirewallRulesRequest) UpdateNetworkApplianceFirewallInboundFirewallRules(updateNetworkApplianceFirewallInboundFirewallRules InlineObject34) ConfigureApiUpdateNetworkApplianceFirewallInboundFirewallRulesRequest {
-	r.updateNetworkApplianceFirewallInboundFirewallRules = &updateNetworkApplianceFirewallInboundFirewallRules
+func (r ConfigureApiUpdateNetworkApplianceFirewallInboundFirewallRulesRequest) UpdateNetworkApplianceFirewallInboundFirewallRulesRequest(updateNetworkApplianceFirewallInboundFirewallRulesRequest UpdateNetworkApplianceFirewallInboundFirewallRulesRequest) ConfigureApiUpdateNetworkApplianceFirewallInboundFirewallRulesRequest {
+	r.updateNetworkApplianceFirewallInboundFirewallRulesRequest = &updateNetworkApplianceFirewallInboundFirewallRulesRequest
 	return r
 }
 
@@ -49661,7 +49976,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallInboundFirewallRules
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallInboundFirewallRules
+	localVarPostBody = r.updateNetworkApplianceFirewallInboundFirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -49717,11 +50032,11 @@ type ConfigureApiUpdateNetworkApplianceFirewallL3FirewallRulesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceFirewallL3FirewallRules *InlineObject35
+	updateNetworkApplianceFirewallInboundFirewallRulesRequest *UpdateNetworkApplianceFirewallInboundFirewallRulesRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceFirewallL3FirewallRulesRequest) UpdateNetworkApplianceFirewallL3FirewallRules(updateNetworkApplianceFirewallL3FirewallRules InlineObject35) ConfigureApiUpdateNetworkApplianceFirewallL3FirewallRulesRequest {
-	r.updateNetworkApplianceFirewallL3FirewallRules = &updateNetworkApplianceFirewallL3FirewallRules
+func (r ConfigureApiUpdateNetworkApplianceFirewallL3FirewallRulesRequest) UpdateNetworkApplianceFirewallInboundFirewallRulesRequest(updateNetworkApplianceFirewallInboundFirewallRulesRequest UpdateNetworkApplianceFirewallInboundFirewallRulesRequest) ConfigureApiUpdateNetworkApplianceFirewallL3FirewallRulesRequest {
+	r.updateNetworkApplianceFirewallInboundFirewallRulesRequest = &updateNetworkApplianceFirewallInboundFirewallRulesRequest
 	return r
 }
 
@@ -49786,7 +50101,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallL3FirewallRulesExecu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallL3FirewallRules
+	localVarPostBody = r.updateNetworkApplianceFirewallInboundFirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -49842,11 +50157,11 @@ type ConfigureApiUpdateNetworkApplianceFirewallL7FirewallRulesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceFirewallL7FirewallRules *InlineObject36
+	updateNetworkApplianceFirewallL7FirewallRulesRequest *UpdateNetworkApplianceFirewallL7FirewallRulesRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceFirewallL7FirewallRulesRequest) UpdateNetworkApplianceFirewallL7FirewallRules(updateNetworkApplianceFirewallL7FirewallRules InlineObject36) ConfigureApiUpdateNetworkApplianceFirewallL7FirewallRulesRequest {
-	r.updateNetworkApplianceFirewallL7FirewallRules = &updateNetworkApplianceFirewallL7FirewallRules
+func (r ConfigureApiUpdateNetworkApplianceFirewallL7FirewallRulesRequest) UpdateNetworkApplianceFirewallL7FirewallRulesRequest(updateNetworkApplianceFirewallL7FirewallRulesRequest UpdateNetworkApplianceFirewallL7FirewallRulesRequest) ConfigureApiUpdateNetworkApplianceFirewallL7FirewallRulesRequest {
+	r.updateNetworkApplianceFirewallL7FirewallRulesRequest = &updateNetworkApplianceFirewallL7FirewallRulesRequest
 	return r
 }
 
@@ -49911,7 +50226,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallL7FirewallRulesExecu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallL7FirewallRules
+	localVarPostBody = r.updateNetworkApplianceFirewallL7FirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -49967,11 +50282,11 @@ type ConfigureApiUpdateNetworkApplianceFirewallOneToManyNatRulesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceFirewallOneToManyNatRules *InlineObject37
+	updateNetworkApplianceFirewallOneToManyNatRulesRequest *UpdateNetworkApplianceFirewallOneToManyNatRulesRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceFirewallOneToManyNatRulesRequest) UpdateNetworkApplianceFirewallOneToManyNatRules(updateNetworkApplianceFirewallOneToManyNatRules InlineObject37) ConfigureApiUpdateNetworkApplianceFirewallOneToManyNatRulesRequest {
-	r.updateNetworkApplianceFirewallOneToManyNatRules = &updateNetworkApplianceFirewallOneToManyNatRules
+func (r ConfigureApiUpdateNetworkApplianceFirewallOneToManyNatRulesRequest) UpdateNetworkApplianceFirewallOneToManyNatRulesRequest(updateNetworkApplianceFirewallOneToManyNatRulesRequest UpdateNetworkApplianceFirewallOneToManyNatRulesRequest) ConfigureApiUpdateNetworkApplianceFirewallOneToManyNatRulesRequest {
+	r.updateNetworkApplianceFirewallOneToManyNatRulesRequest = &updateNetworkApplianceFirewallOneToManyNatRulesRequest
 	return r
 }
 
@@ -50017,8 +50332,8 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallOneToManyNatRulesExe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceFirewallOneToManyNatRules == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallOneToManyNatRules is required and must be specified")
+	if r.updateNetworkApplianceFirewallOneToManyNatRulesRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallOneToManyNatRulesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -50039,7 +50354,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallOneToManyNatRulesExe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallOneToManyNatRules
+	localVarPostBody = r.updateNetworkApplianceFirewallOneToManyNatRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -50095,11 +50410,11 @@ type ConfigureApiUpdateNetworkApplianceFirewallOneToOneNatRulesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceFirewallOneToOneNatRules *InlineObject38
+	updateNetworkApplianceFirewallOneToOneNatRulesRequest *UpdateNetworkApplianceFirewallOneToOneNatRulesRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceFirewallOneToOneNatRulesRequest) UpdateNetworkApplianceFirewallOneToOneNatRules(updateNetworkApplianceFirewallOneToOneNatRules InlineObject38) ConfigureApiUpdateNetworkApplianceFirewallOneToOneNatRulesRequest {
-	r.updateNetworkApplianceFirewallOneToOneNatRules = &updateNetworkApplianceFirewallOneToOneNatRules
+func (r ConfigureApiUpdateNetworkApplianceFirewallOneToOneNatRulesRequest) UpdateNetworkApplianceFirewallOneToOneNatRulesRequest(updateNetworkApplianceFirewallOneToOneNatRulesRequest UpdateNetworkApplianceFirewallOneToOneNatRulesRequest) ConfigureApiUpdateNetworkApplianceFirewallOneToOneNatRulesRequest {
+	r.updateNetworkApplianceFirewallOneToOneNatRulesRequest = &updateNetworkApplianceFirewallOneToOneNatRulesRequest
 	return r
 }
 
@@ -50145,8 +50460,8 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallOneToOneNatRulesExec
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceFirewallOneToOneNatRules == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallOneToOneNatRules is required and must be specified")
+	if r.updateNetworkApplianceFirewallOneToOneNatRulesRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallOneToOneNatRulesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -50167,7 +50482,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallOneToOneNatRulesExec
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallOneToOneNatRules
+	localVarPostBody = r.updateNetworkApplianceFirewallOneToOneNatRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -50223,11 +50538,11 @@ type ConfigureApiUpdateNetworkApplianceFirewallPortForwardingRulesRequest struct
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceFirewallPortForwardingRules *InlineObject39
+	updateNetworkApplianceFirewallPortForwardingRulesRequest *UpdateNetworkApplianceFirewallPortForwardingRulesRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceFirewallPortForwardingRulesRequest) UpdateNetworkApplianceFirewallPortForwardingRules(updateNetworkApplianceFirewallPortForwardingRules InlineObject39) ConfigureApiUpdateNetworkApplianceFirewallPortForwardingRulesRequest {
-	r.updateNetworkApplianceFirewallPortForwardingRules = &updateNetworkApplianceFirewallPortForwardingRules
+func (r ConfigureApiUpdateNetworkApplianceFirewallPortForwardingRulesRequest) UpdateNetworkApplianceFirewallPortForwardingRulesRequest(updateNetworkApplianceFirewallPortForwardingRulesRequest UpdateNetworkApplianceFirewallPortForwardingRulesRequest) ConfigureApiUpdateNetworkApplianceFirewallPortForwardingRulesRequest {
+	r.updateNetworkApplianceFirewallPortForwardingRulesRequest = &updateNetworkApplianceFirewallPortForwardingRulesRequest
 	return r
 }
 
@@ -50273,8 +50588,8 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallPortForwardingRulesE
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceFirewallPortForwardingRules == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallPortForwardingRules is required and must be specified")
+	if r.updateNetworkApplianceFirewallPortForwardingRulesRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallPortForwardingRulesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -50295,7 +50610,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallPortForwardingRulesE
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallPortForwardingRules
+	localVarPostBody = r.updateNetworkApplianceFirewallPortForwardingRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -50351,11 +50666,11 @@ type ConfigureApiUpdateNetworkApplianceFirewallSettingsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceFirewallSettings *InlineObject40
+	updateNetworkApplianceFirewallSettingsRequest *UpdateNetworkApplianceFirewallSettingsRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceFirewallSettingsRequest) UpdateNetworkApplianceFirewallSettings(updateNetworkApplianceFirewallSettings InlineObject40) ConfigureApiUpdateNetworkApplianceFirewallSettingsRequest {
-	r.updateNetworkApplianceFirewallSettings = &updateNetworkApplianceFirewallSettings
+func (r ConfigureApiUpdateNetworkApplianceFirewallSettingsRequest) UpdateNetworkApplianceFirewallSettingsRequest(updateNetworkApplianceFirewallSettingsRequest UpdateNetworkApplianceFirewallSettingsRequest) ConfigureApiUpdateNetworkApplianceFirewallSettingsRequest {
+	r.updateNetworkApplianceFirewallSettingsRequest = &updateNetworkApplianceFirewallSettingsRequest
 	return r
 }
 
@@ -50420,7 +50735,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallSettingsExecute(r Co
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallSettings
+	localVarPostBody = r.updateNetworkApplianceFirewallSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -50477,15 +50792,15 @@ type ConfigureApiUpdateNetworkAppliancePortRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	portId string
-	updateNetworkAppliancePort *InlineObject41
+	updateNetworkAppliancePortRequest *UpdateNetworkAppliancePortRequest
 }
 
-func (r ConfigureApiUpdateNetworkAppliancePortRequest) UpdateNetworkAppliancePort(updateNetworkAppliancePort InlineObject41) ConfigureApiUpdateNetworkAppliancePortRequest {
-	r.updateNetworkAppliancePort = &updateNetworkAppliancePort
+func (r ConfigureApiUpdateNetworkAppliancePortRequest) UpdateNetworkAppliancePortRequest(updateNetworkAppliancePortRequest UpdateNetworkAppliancePortRequest) ConfigureApiUpdateNetworkAppliancePortRequest {
+	r.updateNetworkAppliancePortRequest = &updateNetworkAppliancePortRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkAppliancePortRequest) Execute() (*InlineResponse20015, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkAppliancePortRequest) Execute() (*GetNetworkAppliancePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkAppliancePortExecute(r)
 }
 
@@ -50509,13 +50824,13 @@ func (a *ConfigureApiService) UpdateNetworkAppliancePort(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return InlineResponse20015
-func (a *ConfigureApiService) UpdateNetworkAppliancePortExecute(r ConfigureApiUpdateNetworkAppliancePortRequest) (*InlineResponse20015, *http.Response, error) {
+//  @return GetNetworkAppliancePorts200ResponseInner
+func (a *ConfigureApiService) UpdateNetworkAppliancePortExecute(r ConfigureApiUpdateNetworkAppliancePortRequest) (*GetNetworkAppliancePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20015
+		localVarReturnValue  *GetNetworkAppliancePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkAppliancePort")
@@ -50549,7 +50864,7 @@ func (a *ConfigureApiService) UpdateNetworkAppliancePortExecute(r ConfigureApiUp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkAppliancePort
+	localVarPostBody = r.updateNetworkAppliancePortRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -50606,11 +50921,11 @@ type ConfigureApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	staticDelegatedPrefixId string
-	updateNetworkAppliancePrefixesDelegatedStatic *InlineObject43
+	updateNetworkAppliancePrefixesDelegatedStaticRequest *UpdateNetworkAppliancePrefixesDelegatedStaticRequest
 }
 
-func (r ConfigureApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest) UpdateNetworkAppliancePrefixesDelegatedStatic(updateNetworkAppliancePrefixesDelegatedStatic InlineObject43) ConfigureApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest {
-	r.updateNetworkAppliancePrefixesDelegatedStatic = &updateNetworkAppliancePrefixesDelegatedStatic
+func (r ConfigureApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest) UpdateNetworkAppliancePrefixesDelegatedStaticRequest(updateNetworkAppliancePrefixesDelegatedStaticRequest UpdateNetworkAppliancePrefixesDelegatedStaticRequest) ConfigureApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest {
+	r.updateNetworkAppliancePrefixesDelegatedStaticRequest = &updateNetworkAppliancePrefixesDelegatedStaticRequest
 	return r
 }
 
@@ -50678,7 +50993,7 @@ func (a *ConfigureApiService) UpdateNetworkAppliancePrefixesDelegatedStaticExecu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkAppliancePrefixesDelegatedStatic
+	localVarPostBody = r.updateNetworkAppliancePrefixesDelegatedStaticRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -50735,15 +51050,15 @@ type ConfigureApiUpdateNetworkApplianceRfProfileRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	rfProfileId string
-	updateNetworkApplianceRfProfile *InlineObject45
+	updateNetworkApplianceRfProfileRequest *UpdateNetworkApplianceRfProfileRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceRfProfileRequest) UpdateNetworkApplianceRfProfile(updateNetworkApplianceRfProfile InlineObject45) ConfigureApiUpdateNetworkApplianceRfProfileRequest {
-	r.updateNetworkApplianceRfProfile = &updateNetworkApplianceRfProfile
+func (r ConfigureApiUpdateNetworkApplianceRfProfileRequest) UpdateNetworkApplianceRfProfileRequest(updateNetworkApplianceRfProfileRequest UpdateNetworkApplianceRfProfileRequest) ConfigureApiUpdateNetworkApplianceRfProfileRequest {
+	r.updateNetworkApplianceRfProfileRequest = &updateNetworkApplianceRfProfileRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkApplianceRfProfileRequest) Execute() (*InlineResponse20017Assigned, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkApplianceRfProfileRequest) Execute() (*GetNetworkApplianceRfProfiles200ResponseAssignedInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceRfProfileExecute(r)
 }
 
@@ -50767,13 +51082,13 @@ func (a *ConfigureApiService) UpdateNetworkApplianceRfProfile(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20017Assigned
-func (a *ConfigureApiService) UpdateNetworkApplianceRfProfileExecute(r ConfigureApiUpdateNetworkApplianceRfProfileRequest) (*InlineResponse20017Assigned, *http.Response, error) {
+//  @return GetNetworkApplianceRfProfiles200ResponseAssignedInner
+func (a *ConfigureApiService) UpdateNetworkApplianceRfProfileExecute(r ConfigureApiUpdateNetworkApplianceRfProfileRequest) (*GetNetworkApplianceRfProfiles200ResponseAssignedInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20017Assigned
+		localVarReturnValue  *GetNetworkApplianceRfProfiles200ResponseAssignedInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkApplianceRfProfile")
@@ -50807,7 +51122,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceRfProfileExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceRfProfile
+	localVarPostBody = r.updateNetworkApplianceRfProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -50863,11 +51178,11 @@ type ConfigureApiUpdateNetworkApplianceSecurityIntrusionRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceSecurityIntrusion *InlineObject46
+	updateNetworkApplianceSecurityIntrusionRequest *UpdateNetworkApplianceSecurityIntrusionRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceSecurityIntrusionRequest) UpdateNetworkApplianceSecurityIntrusion(updateNetworkApplianceSecurityIntrusion InlineObject46) ConfigureApiUpdateNetworkApplianceSecurityIntrusionRequest {
-	r.updateNetworkApplianceSecurityIntrusion = &updateNetworkApplianceSecurityIntrusion
+func (r ConfigureApiUpdateNetworkApplianceSecurityIntrusionRequest) UpdateNetworkApplianceSecurityIntrusionRequest(updateNetworkApplianceSecurityIntrusionRequest UpdateNetworkApplianceSecurityIntrusionRequest) ConfigureApiUpdateNetworkApplianceSecurityIntrusionRequest {
+	r.updateNetworkApplianceSecurityIntrusionRequest = &updateNetworkApplianceSecurityIntrusionRequest
 	return r
 }
 
@@ -50932,7 +51247,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSecurityIntrusionExecute(r C
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceSecurityIntrusion
+	localVarPostBody = r.updateNetworkApplianceSecurityIntrusionRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -50988,11 +51303,11 @@ type ConfigureApiUpdateNetworkApplianceSecurityMalwareRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceSecurityMalware *InlineObject47
+	updateNetworkApplianceSecurityMalwareRequest *UpdateNetworkApplianceSecurityMalwareRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceSecurityMalwareRequest) UpdateNetworkApplianceSecurityMalware(updateNetworkApplianceSecurityMalware InlineObject47) ConfigureApiUpdateNetworkApplianceSecurityMalwareRequest {
-	r.updateNetworkApplianceSecurityMalware = &updateNetworkApplianceSecurityMalware
+func (r ConfigureApiUpdateNetworkApplianceSecurityMalwareRequest) UpdateNetworkApplianceSecurityMalwareRequest(updateNetworkApplianceSecurityMalwareRequest UpdateNetworkApplianceSecurityMalwareRequest) ConfigureApiUpdateNetworkApplianceSecurityMalwareRequest {
+	r.updateNetworkApplianceSecurityMalwareRequest = &updateNetworkApplianceSecurityMalwareRequest
 	return r
 }
 
@@ -51038,8 +51353,8 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSecurityMalwareExecute(r Con
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceSecurityMalware == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceSecurityMalware is required and must be specified")
+	if r.updateNetworkApplianceSecurityMalwareRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceSecurityMalwareRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -51060,7 +51375,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSecurityMalwareExecute(r Con
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceSecurityMalware
+	localVarPostBody = r.updateNetworkApplianceSecurityMalwareRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -51116,15 +51431,15 @@ type ConfigureApiUpdateNetworkApplianceSettingsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceSettings *InlineObject48
+	updateNetworkApplianceSettingsRequest *UpdateNetworkApplianceSettingsRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceSettingsRequest) UpdateNetworkApplianceSettings(updateNetworkApplianceSettings InlineObject48) ConfigureApiUpdateNetworkApplianceSettingsRequest {
-	r.updateNetworkApplianceSettings = &updateNetworkApplianceSettings
+func (r ConfigureApiUpdateNetworkApplianceSettingsRequest) UpdateNetworkApplianceSettingsRequest(updateNetworkApplianceSettingsRequest UpdateNetworkApplianceSettingsRequest) ConfigureApiUpdateNetworkApplianceSettingsRequest {
+	r.updateNetworkApplianceSettingsRequest = &updateNetworkApplianceSettingsRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkApplianceSettingsRequest) Execute() (*InlineResponse20018, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkApplianceSettingsRequest) Execute() (*GetNetworkApplianceSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceSettingsExecute(r)
 }
 
@@ -51146,13 +51461,13 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSettings(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse20018
-func (a *ConfigureApiService) UpdateNetworkApplianceSettingsExecute(r ConfigureApiUpdateNetworkApplianceSettingsRequest) (*InlineResponse20018, *http.Response, error) {
+//  @return GetNetworkApplianceSettings200Response
+func (a *ConfigureApiService) UpdateNetworkApplianceSettingsExecute(r ConfigureApiUpdateNetworkApplianceSettingsRequest) (*GetNetworkApplianceSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20018
+		localVarReturnValue  *GetNetworkApplianceSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkApplianceSettings")
@@ -51185,7 +51500,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSettingsExecute(r ConfigureA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceSettings
+	localVarPostBody = r.updateNetworkApplianceSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -51241,15 +51556,15 @@ type ConfigureApiUpdateNetworkApplianceSingleLanRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceSingleLan *InlineObject49
+	updateNetworkApplianceSingleLanRequest *UpdateNetworkApplianceSingleLanRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceSingleLanRequest) UpdateNetworkApplianceSingleLan(updateNetworkApplianceSingleLan InlineObject49) ConfigureApiUpdateNetworkApplianceSingleLanRequest {
-	r.updateNetworkApplianceSingleLan = &updateNetworkApplianceSingleLan
+func (r ConfigureApiUpdateNetworkApplianceSingleLanRequest) UpdateNetworkApplianceSingleLanRequest(updateNetworkApplianceSingleLanRequest UpdateNetworkApplianceSingleLanRequest) ConfigureApiUpdateNetworkApplianceSingleLanRequest {
+	r.updateNetworkApplianceSingleLanRequest = &updateNetworkApplianceSingleLanRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkApplianceSingleLanRequest) Execute() (*InlineResponse20019, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkApplianceSingleLanRequest) Execute() (*GetNetworkApplianceSingleLan200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceSingleLanExecute(r)
 }
 
@@ -51271,13 +51586,13 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSingleLan(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20019
-func (a *ConfigureApiService) UpdateNetworkApplianceSingleLanExecute(r ConfigureApiUpdateNetworkApplianceSingleLanRequest) (*InlineResponse20019, *http.Response, error) {
+//  @return GetNetworkApplianceSingleLan200Response
+func (a *ConfigureApiService) UpdateNetworkApplianceSingleLanExecute(r ConfigureApiUpdateNetworkApplianceSingleLanRequest) (*GetNetworkApplianceSingleLan200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20019
+		localVarReturnValue  *GetNetworkApplianceSingleLan200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkApplianceSingleLan")
@@ -51310,7 +51625,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSingleLanExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceSingleLan
+	localVarPostBody = r.updateNetworkApplianceSingleLanRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -51367,15 +51682,15 @@ type ConfigureApiUpdateNetworkApplianceSsidRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	number string
-	updateNetworkApplianceSsid *InlineObject50
+	updateNetworkApplianceSsidRequest *UpdateNetworkApplianceSsidRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceSsidRequest) UpdateNetworkApplianceSsid(updateNetworkApplianceSsid InlineObject50) ConfigureApiUpdateNetworkApplianceSsidRequest {
-	r.updateNetworkApplianceSsid = &updateNetworkApplianceSsid
+func (r ConfigureApiUpdateNetworkApplianceSsidRequest) UpdateNetworkApplianceSsidRequest(updateNetworkApplianceSsidRequest UpdateNetworkApplianceSsidRequest) ConfigureApiUpdateNetworkApplianceSsidRequest {
+	r.updateNetworkApplianceSsidRequest = &updateNetworkApplianceSsidRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkApplianceSsidRequest) Execute() (*InlineResponse20020, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkApplianceSsidRequest) Execute() (*GetNetworkApplianceSsids200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceSsidExecute(r)
 }
 
@@ -51399,13 +51714,13 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSsid(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return InlineResponse20020
-func (a *ConfigureApiService) UpdateNetworkApplianceSsidExecute(r ConfigureApiUpdateNetworkApplianceSsidRequest) (*InlineResponse20020, *http.Response, error) {
+//  @return GetNetworkApplianceSsids200ResponseInner
+func (a *ConfigureApiService) UpdateNetworkApplianceSsidExecute(r ConfigureApiUpdateNetworkApplianceSsidRequest) (*GetNetworkApplianceSsids200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20020
+		localVarReturnValue  *GetNetworkApplianceSsids200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkApplianceSsid")
@@ -51439,7 +51754,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSsidExecute(r ConfigureApiUp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceSsid
+	localVarPostBody = r.updateNetworkApplianceSsidRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -51496,11 +51811,11 @@ type ConfigureApiUpdateNetworkApplianceStaticRouteRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	staticRouteId string
-	updateNetworkApplianceStaticRoute *InlineObject52
+	updateNetworkApplianceStaticRouteRequest *UpdateNetworkApplianceStaticRouteRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceStaticRouteRequest) UpdateNetworkApplianceStaticRoute(updateNetworkApplianceStaticRoute InlineObject52) ConfigureApiUpdateNetworkApplianceStaticRouteRequest {
-	r.updateNetworkApplianceStaticRoute = &updateNetworkApplianceStaticRoute
+func (r ConfigureApiUpdateNetworkApplianceStaticRouteRequest) UpdateNetworkApplianceStaticRouteRequest(updateNetworkApplianceStaticRouteRequest UpdateNetworkApplianceStaticRouteRequest) ConfigureApiUpdateNetworkApplianceStaticRouteRequest {
+	r.updateNetworkApplianceStaticRouteRequest = &updateNetworkApplianceStaticRouteRequest
 	return r
 }
 
@@ -51568,7 +51883,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceStaticRouteExecute(r Configu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceStaticRoute
+	localVarPostBody = r.updateNetworkApplianceStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -51624,11 +51939,11 @@ type ConfigureApiUpdateNetworkApplianceTrafficShapingRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceTrafficShaping *InlineObject53
+	updateNetworkApplianceTrafficShapingRequest *UpdateNetworkApplianceTrafficShapingRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceTrafficShapingRequest) UpdateNetworkApplianceTrafficShaping(updateNetworkApplianceTrafficShaping InlineObject53) ConfigureApiUpdateNetworkApplianceTrafficShapingRequest {
-	r.updateNetworkApplianceTrafficShaping = &updateNetworkApplianceTrafficShaping
+func (r ConfigureApiUpdateNetworkApplianceTrafficShapingRequest) UpdateNetworkApplianceTrafficShapingRequest(updateNetworkApplianceTrafficShapingRequest UpdateNetworkApplianceTrafficShapingRequest) ConfigureApiUpdateNetworkApplianceTrafficShapingRequest {
+	r.updateNetworkApplianceTrafficShapingRequest = &updateNetworkApplianceTrafficShapingRequest
 	return r
 }
 
@@ -51693,7 +52008,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingExecute(r Conf
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceTrafficShaping
+	localVarPostBody = r.updateNetworkApplianceTrafficShapingRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -51750,11 +52065,11 @@ type ConfigureApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassReque
 	ApiService *ConfigureApiService
 	networkId string
 	customPerformanceClassId string
-	updateNetworkApplianceTrafficShapingCustomPerformanceClass *InlineObject55
+	updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest *UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) UpdateNetworkApplianceTrafficShapingCustomPerformanceClass(updateNetworkApplianceTrafficShapingCustomPerformanceClass InlineObject55) ConfigureApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest {
-	r.updateNetworkApplianceTrafficShapingCustomPerformanceClass = &updateNetworkApplianceTrafficShapingCustomPerformanceClass
+func (r ConfigureApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest(updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) ConfigureApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest {
+	r.updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest = &updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 	return r
 }
 
@@ -51822,7 +52137,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingCustomPerforma
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceTrafficShapingCustomPerformanceClass
+	localVarPostBody = r.updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -51878,11 +52193,11 @@ type ConfigureApiUpdateNetworkApplianceTrafficShapingRulesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceTrafficShapingRules *InlineObject56
+	updateNetworkApplianceTrafficShapingRulesRequest *UpdateNetworkApplianceTrafficShapingRulesRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceTrafficShapingRulesRequest) UpdateNetworkApplianceTrafficShapingRules(updateNetworkApplianceTrafficShapingRules InlineObject56) ConfigureApiUpdateNetworkApplianceTrafficShapingRulesRequest {
-	r.updateNetworkApplianceTrafficShapingRules = &updateNetworkApplianceTrafficShapingRules
+func (r ConfigureApiUpdateNetworkApplianceTrafficShapingRulesRequest) UpdateNetworkApplianceTrafficShapingRulesRequest(updateNetworkApplianceTrafficShapingRulesRequest UpdateNetworkApplianceTrafficShapingRulesRequest) ConfigureApiUpdateNetworkApplianceTrafficShapingRulesRequest {
+	r.updateNetworkApplianceTrafficShapingRulesRequest = &updateNetworkApplianceTrafficShapingRulesRequest
 	return r
 }
 
@@ -51947,7 +52262,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingRulesExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceTrafficShapingRules
+	localVarPostBody = r.updateNetworkApplianceTrafficShapingRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -52003,11 +52318,11 @@ type ConfigureApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest stru
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceTrafficShapingUplinkBandwidth *InlineObject57
+	updateNetworkApplianceTrafficShapingUplinkBandwidthRequest *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) UpdateNetworkApplianceTrafficShapingUplinkBandwidth(updateNetworkApplianceTrafficShapingUplinkBandwidth InlineObject57) ConfigureApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest {
-	r.updateNetworkApplianceTrafficShapingUplinkBandwidth = &updateNetworkApplianceTrafficShapingUplinkBandwidth
+func (r ConfigureApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest(updateNetworkApplianceTrafficShapingUplinkBandwidthRequest UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) ConfigureApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest {
+	r.updateNetworkApplianceTrafficShapingUplinkBandwidthRequest = &updateNetworkApplianceTrafficShapingUplinkBandwidthRequest
 	return r
 }
 
@@ -52072,7 +52387,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingUplinkBandwidt
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceTrafficShapingUplinkBandwidth
+	localVarPostBody = r.updateNetworkApplianceTrafficShapingUplinkBandwidthRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -52128,15 +52443,15 @@ type ConfigureApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest stru
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceTrafficShapingUplinkSelection *InlineObject58
+	updateNetworkApplianceTrafficShapingUplinkSelectionRequest *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) UpdateNetworkApplianceTrafficShapingUplinkSelection(updateNetworkApplianceTrafficShapingUplinkSelection InlineObject58) ConfigureApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest {
-	r.updateNetworkApplianceTrafficShapingUplinkSelection = &updateNetworkApplianceTrafficShapingUplinkSelection
+func (r ConfigureApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest(updateNetworkApplianceTrafficShapingUplinkSelectionRequest UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) ConfigureApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest {
+	r.updateNetworkApplianceTrafficShapingUplinkSelectionRequest = &updateNetworkApplianceTrafficShapingUplinkSelectionRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) Execute() (*InlineResponse20022, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) Execute() (*GetNetworkApplianceTrafficShapingUplinkSelection200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceTrafficShapingUplinkSelectionExecute(r)
 }
 
@@ -52158,13 +52473,13 @@ func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingUplinkSelectio
 }
 
 // Execute executes the request
-//  @return InlineResponse20022
-func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingUplinkSelectionExecute(r ConfigureApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) (*InlineResponse20022, *http.Response, error) {
+//  @return GetNetworkApplianceTrafficShapingUplinkSelection200Response
+func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingUplinkSelectionExecute(r ConfigureApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) (*GetNetworkApplianceTrafficShapingUplinkSelection200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20022
+		localVarReturnValue  *GetNetworkApplianceTrafficShapingUplinkSelection200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkApplianceTrafficShapingUplinkSelection")
@@ -52197,7 +52512,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingUplinkSelectio
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceTrafficShapingUplinkSelection
+	localVarPostBody = r.updateNetworkApplianceTrafficShapingUplinkSelectionRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -52254,15 +52569,15 @@ type ConfigureApiUpdateNetworkApplianceVlanRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	vlanId string
-	updateNetworkApplianceVlan *InlineObject61
+	updateNetworkApplianceVlanRequest *UpdateNetworkApplianceVlanRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceVlanRequest) UpdateNetworkApplianceVlan(updateNetworkApplianceVlan InlineObject61) ConfigureApiUpdateNetworkApplianceVlanRequest {
-	r.updateNetworkApplianceVlan = &updateNetworkApplianceVlan
+func (r ConfigureApiUpdateNetworkApplianceVlanRequest) UpdateNetworkApplianceVlanRequest(updateNetworkApplianceVlanRequest UpdateNetworkApplianceVlanRequest) ConfigureApiUpdateNetworkApplianceVlanRequest {
+	r.updateNetworkApplianceVlanRequest = &updateNetworkApplianceVlanRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkApplianceVlanRequest) Execute() (*InlineResponse20023, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkApplianceVlanRequest) Execute() (*GetNetworkApplianceVlans200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceVlanExecute(r)
 }
 
@@ -52286,13 +52601,13 @@ func (a *ConfigureApiService) UpdateNetworkApplianceVlan(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return InlineResponse20023
-func (a *ConfigureApiService) UpdateNetworkApplianceVlanExecute(r ConfigureApiUpdateNetworkApplianceVlanRequest) (*InlineResponse20023, *http.Response, error) {
+//  @return GetNetworkApplianceVlans200ResponseInner
+func (a *ConfigureApiService) UpdateNetworkApplianceVlanExecute(r ConfigureApiUpdateNetworkApplianceVlanRequest) (*GetNetworkApplianceVlans200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20023
+		localVarReturnValue  *GetNetworkApplianceVlans200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkApplianceVlan")
@@ -52326,7 +52641,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceVlanExecute(r ConfigureApiUp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceVlan
+	localVarPostBody = r.updateNetworkApplianceVlanRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -52382,11 +52697,11 @@ type ConfigureApiUpdateNetworkApplianceVlansSettingsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceVlansSettings *InlineObject60
+	updateNetworkApplianceVlansSettingsRequest *UpdateNetworkApplianceVlansSettingsRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceVlansSettingsRequest) UpdateNetworkApplianceVlansSettings(updateNetworkApplianceVlansSettings InlineObject60) ConfigureApiUpdateNetworkApplianceVlansSettingsRequest {
-	r.updateNetworkApplianceVlansSettings = &updateNetworkApplianceVlansSettings
+func (r ConfigureApiUpdateNetworkApplianceVlansSettingsRequest) UpdateNetworkApplianceVlansSettingsRequest(updateNetworkApplianceVlansSettingsRequest UpdateNetworkApplianceVlansSettingsRequest) ConfigureApiUpdateNetworkApplianceVlansSettingsRequest {
+	r.updateNetworkApplianceVlansSettingsRequest = &updateNetworkApplianceVlansSettingsRequest
 	return r
 }
 
@@ -52451,7 +52766,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceVlansSettingsExecute(r Confi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceVlansSettings
+	localVarPostBody = r.updateNetworkApplianceVlansSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -52507,11 +52822,11 @@ type ConfigureApiUpdateNetworkApplianceVpnBgpRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceVpnBgp *InlineObject62
+	updateNetworkApplianceVpnBgpRequest *UpdateNetworkApplianceVpnBgpRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceVpnBgpRequest) UpdateNetworkApplianceVpnBgp(updateNetworkApplianceVpnBgp InlineObject62) ConfigureApiUpdateNetworkApplianceVpnBgpRequest {
-	r.updateNetworkApplianceVpnBgp = &updateNetworkApplianceVpnBgp
+func (r ConfigureApiUpdateNetworkApplianceVpnBgpRequest) UpdateNetworkApplianceVpnBgpRequest(updateNetworkApplianceVpnBgpRequest UpdateNetworkApplianceVpnBgpRequest) ConfigureApiUpdateNetworkApplianceVpnBgpRequest {
+	r.updateNetworkApplianceVpnBgpRequest = &updateNetworkApplianceVpnBgpRequest
 	return r
 }
 
@@ -52557,8 +52872,8 @@ func (a *ConfigureApiService) UpdateNetworkApplianceVpnBgpExecute(r ConfigureApi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceVpnBgp == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceVpnBgp is required and must be specified")
+	if r.updateNetworkApplianceVpnBgpRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceVpnBgpRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -52579,7 +52894,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceVpnBgpExecute(r ConfigureApi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceVpnBgp
+	localVarPostBody = r.updateNetworkApplianceVpnBgpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -52635,15 +52950,15 @@ type ConfigureApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceVpnSiteToSiteVpn *InlineObject63
+	updateNetworkApplianceVpnSiteToSiteVpnRequest *UpdateNetworkApplianceVpnSiteToSiteVpnRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) UpdateNetworkApplianceVpnSiteToSiteVpn(updateNetworkApplianceVpnSiteToSiteVpn InlineObject63) ConfigureApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest {
-	r.updateNetworkApplianceVpnSiteToSiteVpn = &updateNetworkApplianceVpnSiteToSiteVpn
+func (r ConfigureApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) UpdateNetworkApplianceVpnSiteToSiteVpnRequest(updateNetworkApplianceVpnSiteToSiteVpnRequest UpdateNetworkApplianceVpnSiteToSiteVpnRequest) ConfigureApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest {
+	r.updateNetworkApplianceVpnSiteToSiteVpnRequest = &updateNetworkApplianceVpnSiteToSiteVpnRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) Execute() (*InlineResponse20024, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) Execute() (*GetNetworkApplianceVpnSiteToSiteVpn200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceVpnSiteToSiteVpnExecute(r)
 }
 
@@ -52665,13 +52980,13 @@ func (a *ConfigureApiService) UpdateNetworkApplianceVpnSiteToSiteVpn(ctx context
 }
 
 // Execute executes the request
-//  @return InlineResponse20024
-func (a *ConfigureApiService) UpdateNetworkApplianceVpnSiteToSiteVpnExecute(r ConfigureApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) (*InlineResponse20024, *http.Response, error) {
+//  @return GetNetworkApplianceVpnSiteToSiteVpn200Response
+func (a *ConfigureApiService) UpdateNetworkApplianceVpnSiteToSiteVpnExecute(r ConfigureApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) (*GetNetworkApplianceVpnSiteToSiteVpn200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20024
+		localVarReturnValue  *GetNetworkApplianceVpnSiteToSiteVpn200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkApplianceVpnSiteToSiteVpn")
@@ -52685,8 +53000,8 @@ func (a *ConfigureApiService) UpdateNetworkApplianceVpnSiteToSiteVpnExecute(r Co
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceVpnSiteToSiteVpn == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceVpnSiteToSiteVpn is required and must be specified")
+	if r.updateNetworkApplianceVpnSiteToSiteVpnRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceVpnSiteToSiteVpnRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -52707,7 +53022,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceVpnSiteToSiteVpnExecute(r Co
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceVpnSiteToSiteVpn
+	localVarPostBody = r.updateNetworkApplianceVpnSiteToSiteVpnRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -52763,11 +53078,11 @@ type ConfigureApiUpdateNetworkApplianceWarmSpareRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkApplianceWarmSpare *InlineObject64
+	updateNetworkApplianceWarmSpareRequest *UpdateNetworkApplianceWarmSpareRequest
 }
 
-func (r ConfigureApiUpdateNetworkApplianceWarmSpareRequest) UpdateNetworkApplianceWarmSpare(updateNetworkApplianceWarmSpare InlineObject64) ConfigureApiUpdateNetworkApplianceWarmSpareRequest {
-	r.updateNetworkApplianceWarmSpare = &updateNetworkApplianceWarmSpare
+func (r ConfigureApiUpdateNetworkApplianceWarmSpareRequest) UpdateNetworkApplianceWarmSpareRequest(updateNetworkApplianceWarmSpareRequest UpdateNetworkApplianceWarmSpareRequest) ConfigureApiUpdateNetworkApplianceWarmSpareRequest {
+	r.updateNetworkApplianceWarmSpareRequest = &updateNetworkApplianceWarmSpareRequest
 	return r
 }
 
@@ -52813,8 +53128,8 @@ func (a *ConfigureApiService) UpdateNetworkApplianceWarmSpareExecute(r Configure
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceWarmSpare == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceWarmSpare is required and must be specified")
+	if r.updateNetworkApplianceWarmSpareRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceWarmSpareRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -52835,7 +53150,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceWarmSpareExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceWarmSpare
+	localVarPostBody = r.updateNetworkApplianceWarmSpareRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -52892,11 +53207,11 @@ type ConfigureApiUpdateNetworkCameraQualityRetentionProfileRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	qualityRetentionProfileId string
-	updateNetworkCameraQualityRetentionProfile *InlineObject67
+	updateNetworkCameraQualityRetentionProfileRequest *UpdateNetworkCameraQualityRetentionProfileRequest
 }
 
-func (r ConfigureApiUpdateNetworkCameraQualityRetentionProfileRequest) UpdateNetworkCameraQualityRetentionProfile(updateNetworkCameraQualityRetentionProfile InlineObject67) ConfigureApiUpdateNetworkCameraQualityRetentionProfileRequest {
-	r.updateNetworkCameraQualityRetentionProfile = &updateNetworkCameraQualityRetentionProfile
+func (r ConfigureApiUpdateNetworkCameraQualityRetentionProfileRequest) UpdateNetworkCameraQualityRetentionProfileRequest(updateNetworkCameraQualityRetentionProfileRequest UpdateNetworkCameraQualityRetentionProfileRequest) ConfigureApiUpdateNetworkCameraQualityRetentionProfileRequest {
+	r.updateNetworkCameraQualityRetentionProfileRequest = &updateNetworkCameraQualityRetentionProfileRequest
 	return r
 }
 
@@ -52964,7 +53279,7 @@ func (a *ConfigureApiService) UpdateNetworkCameraQualityRetentionProfileExecute(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkCameraQualityRetentionProfile
+	localVarPostBody = r.updateNetworkCameraQualityRetentionProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -53021,11 +53336,11 @@ type ConfigureApiUpdateNetworkCameraWirelessProfileRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	wirelessProfileId string
-	updateNetworkCameraWirelessProfile *InlineObject69
+	updateNetworkCameraWirelessProfileRequest *UpdateNetworkCameraWirelessProfileRequest
 }
 
-func (r ConfigureApiUpdateNetworkCameraWirelessProfileRequest) UpdateNetworkCameraWirelessProfile(updateNetworkCameraWirelessProfile InlineObject69) ConfigureApiUpdateNetworkCameraWirelessProfileRequest {
-	r.updateNetworkCameraWirelessProfile = &updateNetworkCameraWirelessProfile
+func (r ConfigureApiUpdateNetworkCameraWirelessProfileRequest) UpdateNetworkCameraWirelessProfileRequest(updateNetworkCameraWirelessProfileRequest UpdateNetworkCameraWirelessProfileRequest) ConfigureApiUpdateNetworkCameraWirelessProfileRequest {
+	r.updateNetworkCameraWirelessProfileRequest = &updateNetworkCameraWirelessProfileRequest
 	return r
 }
 
@@ -53093,7 +53408,7 @@ func (a *ConfigureApiService) UpdateNetworkCameraWirelessProfileExecute(r Config
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkCameraWirelessProfile
+	localVarPostBody = r.updateNetworkCameraWirelessProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -53149,11 +53464,11 @@ type ConfigureApiUpdateNetworkCellularGatewayConnectivityMonitoringDestinationsR
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkCellularGatewayConnectivityMonitoringDestinations *InlineObject70
+	updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest *UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest
 }
 
-func (r ConfigureApiUpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest) UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(updateNetworkCellularGatewayConnectivityMonitoringDestinations InlineObject70) ConfigureApiUpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest {
-	r.updateNetworkCellularGatewayConnectivityMonitoringDestinations = &updateNetworkCellularGatewayConnectivityMonitoringDestinations
+func (r ConfigureApiUpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest) UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest(updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest) ConfigureApiUpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest {
+	r.updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest = &updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest
 	return r
 }
 
@@ -53218,7 +53533,7 @@ func (a *ConfigureApiService) UpdateNetworkCellularGatewayConnectivityMonitoring
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkCellularGatewayConnectivityMonitoringDestinations
+	localVarPostBody = r.updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -53274,15 +53589,15 @@ type ConfigureApiUpdateNetworkCellularGatewayDhcpRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkCellularGatewayDhcp *InlineObject71
+	updateNetworkCellularGatewayDhcpRequest *UpdateNetworkCellularGatewayDhcpRequest
 }
 
-func (r ConfigureApiUpdateNetworkCellularGatewayDhcpRequest) UpdateNetworkCellularGatewayDhcp(updateNetworkCellularGatewayDhcp InlineObject71) ConfigureApiUpdateNetworkCellularGatewayDhcpRequest {
-	r.updateNetworkCellularGatewayDhcp = &updateNetworkCellularGatewayDhcp
+func (r ConfigureApiUpdateNetworkCellularGatewayDhcpRequest) UpdateNetworkCellularGatewayDhcpRequest(updateNetworkCellularGatewayDhcpRequest UpdateNetworkCellularGatewayDhcpRequest) ConfigureApiUpdateNetworkCellularGatewayDhcpRequest {
+	r.updateNetworkCellularGatewayDhcpRequest = &updateNetworkCellularGatewayDhcpRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkCellularGatewayDhcpRequest) Execute() (*InlineResponse20025, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkCellularGatewayDhcpRequest) Execute() (*GetNetworkCellularGatewayDhcp200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkCellularGatewayDhcpExecute(r)
 }
 
@@ -53304,13 +53619,13 @@ func (a *ConfigureApiService) UpdateNetworkCellularGatewayDhcp(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20025
-func (a *ConfigureApiService) UpdateNetworkCellularGatewayDhcpExecute(r ConfigureApiUpdateNetworkCellularGatewayDhcpRequest) (*InlineResponse20025, *http.Response, error) {
+//  @return GetNetworkCellularGatewayDhcp200Response
+func (a *ConfigureApiService) UpdateNetworkCellularGatewayDhcpExecute(r ConfigureApiUpdateNetworkCellularGatewayDhcpRequest) (*GetNetworkCellularGatewayDhcp200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20025
+		localVarReturnValue  *GetNetworkCellularGatewayDhcp200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkCellularGatewayDhcp")
@@ -53343,7 +53658,7 @@ func (a *ConfigureApiService) UpdateNetworkCellularGatewayDhcpExecute(r Configur
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkCellularGatewayDhcp
+	localVarPostBody = r.updateNetworkCellularGatewayDhcpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -53399,11 +53714,11 @@ type ConfigureApiUpdateNetworkCellularGatewaySubnetPoolRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkCellularGatewaySubnetPool *InlineObject72
+	updateNetworkCellularGatewaySubnetPoolRequest *UpdateNetworkCellularGatewaySubnetPoolRequest
 }
 
-func (r ConfigureApiUpdateNetworkCellularGatewaySubnetPoolRequest) UpdateNetworkCellularGatewaySubnetPool(updateNetworkCellularGatewaySubnetPool InlineObject72) ConfigureApiUpdateNetworkCellularGatewaySubnetPoolRequest {
-	r.updateNetworkCellularGatewaySubnetPool = &updateNetworkCellularGatewaySubnetPool
+func (r ConfigureApiUpdateNetworkCellularGatewaySubnetPoolRequest) UpdateNetworkCellularGatewaySubnetPoolRequest(updateNetworkCellularGatewaySubnetPoolRequest UpdateNetworkCellularGatewaySubnetPoolRequest) ConfigureApiUpdateNetworkCellularGatewaySubnetPoolRequest {
+	r.updateNetworkCellularGatewaySubnetPoolRequest = &updateNetworkCellularGatewaySubnetPoolRequest
 	return r
 }
 
@@ -53468,7 +53783,7 @@ func (a *ConfigureApiService) UpdateNetworkCellularGatewaySubnetPoolExecute(r Co
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkCellularGatewaySubnetPool
+	localVarPostBody = r.updateNetworkCellularGatewaySubnetPoolRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -53524,11 +53839,11 @@ type ConfigureApiUpdateNetworkCellularGatewayUplinkRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkCellularGatewayUplink *InlineObject73
+	updateNetworkCellularGatewayUplinkRequest *UpdateNetworkCellularGatewayUplinkRequest
 }
 
-func (r ConfigureApiUpdateNetworkCellularGatewayUplinkRequest) UpdateNetworkCellularGatewayUplink(updateNetworkCellularGatewayUplink InlineObject73) ConfigureApiUpdateNetworkCellularGatewayUplinkRequest {
-	r.updateNetworkCellularGatewayUplink = &updateNetworkCellularGatewayUplink
+func (r ConfigureApiUpdateNetworkCellularGatewayUplinkRequest) UpdateNetworkCellularGatewayUplinkRequest(updateNetworkCellularGatewayUplinkRequest UpdateNetworkCellularGatewayUplinkRequest) ConfigureApiUpdateNetworkCellularGatewayUplinkRequest {
+	r.updateNetworkCellularGatewayUplinkRequest = &updateNetworkCellularGatewayUplinkRequest
 	return r
 }
 
@@ -53593,7 +53908,7 @@ func (a *ConfigureApiService) UpdateNetworkCellularGatewayUplinkExecute(r Config
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkCellularGatewayUplink
+	localVarPostBody = r.updateNetworkCellularGatewayUplinkRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -53650,11 +53965,11 @@ type ConfigureApiUpdateNetworkClientPolicyRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	clientId string
-	updateNetworkClientPolicy *InlineObject75
+	updateNetworkClientPolicyRequest *UpdateNetworkClientPolicyRequest
 }
 
-func (r ConfigureApiUpdateNetworkClientPolicyRequest) UpdateNetworkClientPolicy(updateNetworkClientPolicy InlineObject75) ConfigureApiUpdateNetworkClientPolicyRequest {
-	r.updateNetworkClientPolicy = &updateNetworkClientPolicy
+func (r ConfigureApiUpdateNetworkClientPolicyRequest) UpdateNetworkClientPolicyRequest(updateNetworkClientPolicyRequest UpdateNetworkClientPolicyRequest) ConfigureApiUpdateNetworkClientPolicyRequest {
+	r.updateNetworkClientPolicyRequest = &updateNetworkClientPolicyRequest
 	return r
 }
 
@@ -53703,8 +54018,8 @@ func (a *ConfigureApiService) UpdateNetworkClientPolicyExecute(r ConfigureApiUpd
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkClientPolicy == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkClientPolicy is required and must be specified")
+	if r.updateNetworkClientPolicyRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkClientPolicyRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -53725,7 +54040,7 @@ func (a *ConfigureApiService) UpdateNetworkClientPolicyExecute(r ConfigureApiUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkClientPolicy
+	localVarPostBody = r.updateNetworkClientPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -53782,11 +54097,11 @@ type ConfigureApiUpdateNetworkClientSplashAuthorizationStatusRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	clientId string
-	updateNetworkClientSplashAuthorizationStatus *InlineObject76
+	updateNetworkClientSplashAuthorizationStatusRequest *UpdateNetworkClientSplashAuthorizationStatusRequest
 }
 
-func (r ConfigureApiUpdateNetworkClientSplashAuthorizationStatusRequest) UpdateNetworkClientSplashAuthorizationStatus(updateNetworkClientSplashAuthorizationStatus InlineObject76) ConfigureApiUpdateNetworkClientSplashAuthorizationStatusRequest {
-	r.updateNetworkClientSplashAuthorizationStatus = &updateNetworkClientSplashAuthorizationStatus
+func (r ConfigureApiUpdateNetworkClientSplashAuthorizationStatusRequest) UpdateNetworkClientSplashAuthorizationStatusRequest(updateNetworkClientSplashAuthorizationStatusRequest UpdateNetworkClientSplashAuthorizationStatusRequest) ConfigureApiUpdateNetworkClientSplashAuthorizationStatusRequest {
+	r.updateNetworkClientSplashAuthorizationStatusRequest = &updateNetworkClientSplashAuthorizationStatusRequest
 	return r
 }
 
@@ -53835,8 +54150,8 @@ func (a *ConfigureApiService) UpdateNetworkClientSplashAuthorizationStatusExecut
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkClientSplashAuthorizationStatus == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkClientSplashAuthorizationStatus is required and must be specified")
+	if r.updateNetworkClientSplashAuthorizationStatusRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkClientSplashAuthorizationStatusRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -53857,7 +54172,7 @@ func (a *ConfigureApiService) UpdateNetworkClientSplashAuthorizationStatusExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkClientSplashAuthorizationStatus
+	localVarPostBody = r.updateNetworkClientSplashAuthorizationStatusRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -53913,15 +54228,15 @@ type ConfigureApiUpdateNetworkFirmwareUpgradesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkFirmwareUpgrades *InlineObject80
+	updateNetworkFirmwareUpgradesRequest *UpdateNetworkFirmwareUpgradesRequest
 }
 
-func (r ConfigureApiUpdateNetworkFirmwareUpgradesRequest) UpdateNetworkFirmwareUpgrades(updateNetworkFirmwareUpgrades InlineObject80) ConfigureApiUpdateNetworkFirmwareUpgradesRequest {
-	r.updateNetworkFirmwareUpgrades = &updateNetworkFirmwareUpgrades
+func (r ConfigureApiUpdateNetworkFirmwareUpgradesRequest) UpdateNetworkFirmwareUpgradesRequest(updateNetworkFirmwareUpgradesRequest UpdateNetworkFirmwareUpgradesRequest) ConfigureApiUpdateNetworkFirmwareUpgradesRequest {
+	r.updateNetworkFirmwareUpgradesRequest = &updateNetworkFirmwareUpgradesRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkFirmwareUpgradesRequest) Execute() (*InlineResponse20030, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkFirmwareUpgradesRequest) Execute() (*GetNetworkFirmwareUpgrades200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkFirmwareUpgradesExecute(r)
 }
 
@@ -53943,13 +54258,13 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgrades(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20030
-func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesExecute(r ConfigureApiUpdateNetworkFirmwareUpgradesRequest) (*InlineResponse20030, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgrades200Response
+func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesExecute(r ConfigureApiUpdateNetworkFirmwareUpgradesRequest) (*GetNetworkFirmwareUpgrades200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20030
+		localVarReturnValue  *GetNetworkFirmwareUpgrades200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkFirmwareUpgrades")
@@ -53982,7 +54297,7 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesExecute(r ConfigureAp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkFirmwareUpgrades
+	localVarPostBody = r.updateNetworkFirmwareUpgradesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -54038,15 +54353,15 @@ type ConfigureApiUpdateNetworkFirmwareUpgradesStagedEventsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkFirmwareUpgradesStagedEvents *InlineObject82
+	updateNetworkFirmwareUpgradesStagedEventsRequest *UpdateNetworkFirmwareUpgradesStagedEventsRequest
 }
 
-func (r ConfigureApiUpdateNetworkFirmwareUpgradesStagedEventsRequest) UpdateNetworkFirmwareUpgradesStagedEvents(updateNetworkFirmwareUpgradesStagedEvents InlineObject82) ConfigureApiUpdateNetworkFirmwareUpgradesStagedEventsRequest {
-	r.updateNetworkFirmwareUpgradesStagedEvents = &updateNetworkFirmwareUpgradesStagedEvents
+func (r ConfigureApiUpdateNetworkFirmwareUpgradesStagedEventsRequest) UpdateNetworkFirmwareUpgradesStagedEventsRequest(updateNetworkFirmwareUpgradesStagedEventsRequest UpdateNetworkFirmwareUpgradesStagedEventsRequest) ConfigureApiUpdateNetworkFirmwareUpgradesStagedEventsRequest {
+	r.updateNetworkFirmwareUpgradesStagedEventsRequest = &updateNetworkFirmwareUpgradesStagedEventsRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkFirmwareUpgradesStagedEventsRequest) Execute() (*InlineResponse20032, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkFirmwareUpgradesStagedEventsRequest) Execute() (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkFirmwareUpgradesStagedEventsExecute(r)
 }
 
@@ -54068,13 +54383,13 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedEvents(ctx cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20032
-func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedEventsExecute(r ConfigureApiUpdateNetworkFirmwareUpgradesStagedEventsRequest) (*InlineResponse20032, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgradesStagedEvents200Response
+func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedEventsExecute(r ConfigureApiUpdateNetworkFirmwareUpgradesStagedEventsRequest) (*GetNetworkFirmwareUpgradesStagedEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20032
+		localVarReturnValue  *GetNetworkFirmwareUpgradesStagedEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkFirmwareUpgradesStagedEvents")
@@ -54088,8 +54403,8 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedEventsExecute(r
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkFirmwareUpgradesStagedEvents == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkFirmwareUpgradesStagedEvents is required and must be specified")
+	if r.updateNetworkFirmwareUpgradesStagedEventsRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkFirmwareUpgradesStagedEventsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -54110,7 +54425,7 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedEventsExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkFirmwareUpgradesStagedEvents
+	localVarPostBody = r.updateNetworkFirmwareUpgradesStagedEventsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -54167,11 +54482,11 @@ type ConfigureApiUpdateNetworkFirmwareUpgradesStagedGroupRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	groupId string
-	updateNetworkFirmwareUpgradesStagedGroup *InlineObject86
+	createNetworkFirmwareUpgradesStagedGroupRequest *CreateNetworkFirmwareUpgradesStagedGroupRequest
 }
 
-func (r ConfigureApiUpdateNetworkFirmwareUpgradesStagedGroupRequest) UpdateNetworkFirmwareUpgradesStagedGroup(updateNetworkFirmwareUpgradesStagedGroup InlineObject86) ConfigureApiUpdateNetworkFirmwareUpgradesStagedGroupRequest {
-	r.updateNetworkFirmwareUpgradesStagedGroup = &updateNetworkFirmwareUpgradesStagedGroup
+func (r ConfigureApiUpdateNetworkFirmwareUpgradesStagedGroupRequest) CreateNetworkFirmwareUpgradesStagedGroupRequest(createNetworkFirmwareUpgradesStagedGroupRequest CreateNetworkFirmwareUpgradesStagedGroupRequest) ConfigureApiUpdateNetworkFirmwareUpgradesStagedGroupRequest {
+	r.createNetworkFirmwareUpgradesStagedGroupRequest = &createNetworkFirmwareUpgradesStagedGroupRequest
 	return r
 }
 
@@ -54220,8 +54535,8 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedGroupExecute(r 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkFirmwareUpgradesStagedGroup == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkFirmwareUpgradesStagedGroup is required and must be specified")
+	if r.createNetworkFirmwareUpgradesStagedGroupRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkFirmwareUpgradesStagedGroupRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -54242,7 +54557,7 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedGroupExecute(r 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkFirmwareUpgradesStagedGroup
+	localVarPostBody = r.createNetworkFirmwareUpgradesStagedGroupRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -54298,15 +54613,15 @@ type ConfigureApiUpdateNetworkFirmwareUpgradesStagedStagesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkFirmwareUpgradesStagedStages *InlineObject87
+	updateNetworkFirmwareUpgradesStagedStagesRequest *UpdateNetworkFirmwareUpgradesStagedStagesRequest
 }
 
-func (r ConfigureApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) UpdateNetworkFirmwareUpgradesStagedStages(updateNetworkFirmwareUpgradesStagedStages InlineObject87) ConfigureApiUpdateNetworkFirmwareUpgradesStagedStagesRequest {
-	r.updateNetworkFirmwareUpgradesStagedStages = &updateNetworkFirmwareUpgradesStagedStages
+func (r ConfigureApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) UpdateNetworkFirmwareUpgradesStagedStagesRequest(updateNetworkFirmwareUpgradesStagedStagesRequest UpdateNetworkFirmwareUpgradesStagedStagesRequest) ConfigureApiUpdateNetworkFirmwareUpgradesStagedStagesRequest {
+	r.updateNetworkFirmwareUpgradesStagedStagesRequest = &updateNetworkFirmwareUpgradesStagedStagesRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) Execute() ([]InlineResponse20034, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) Execute() ([]GetNetworkFirmwareUpgradesStagedStages200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkFirmwareUpgradesStagedStagesExecute(r)
 }
 
@@ -54328,13 +54643,13 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedStages(ctx cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20034
-func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedStagesExecute(r ConfigureApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) ([]InlineResponse20034, *http.Response, error) {
+//  @return []GetNetworkFirmwareUpgradesStagedStages200ResponseInner
+func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedStagesExecute(r ConfigureApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) ([]GetNetworkFirmwareUpgradesStagedStages200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20034
+		localVarReturnValue  []GetNetworkFirmwareUpgradesStagedStages200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkFirmwareUpgradesStagedStages")
@@ -54367,7 +54682,7 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedStagesExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkFirmwareUpgradesStagedStages
+	localVarPostBody = r.updateNetworkFirmwareUpgradesStagedStagesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -54424,11 +54739,11 @@ type ConfigureApiUpdateNetworkFloorPlanRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	floorPlanId string
-	updateNetworkFloorPlan *InlineObject89
+	updateNetworkFloorPlanRequest *UpdateNetworkFloorPlanRequest
 }
 
-func (r ConfigureApiUpdateNetworkFloorPlanRequest) UpdateNetworkFloorPlan(updateNetworkFloorPlan InlineObject89) ConfigureApiUpdateNetworkFloorPlanRequest {
-	r.updateNetworkFloorPlan = &updateNetworkFloorPlan
+func (r ConfigureApiUpdateNetworkFloorPlanRequest) UpdateNetworkFloorPlanRequest(updateNetworkFloorPlanRequest UpdateNetworkFloorPlanRequest) ConfigureApiUpdateNetworkFloorPlanRequest {
+	r.updateNetworkFloorPlanRequest = &updateNetworkFloorPlanRequest
 	return r
 }
 
@@ -54496,7 +54811,7 @@ func (a *ConfigureApiService) UpdateNetworkFloorPlanExecute(r ConfigureApiUpdate
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkFloorPlan
+	localVarPostBody = r.updateNetworkFloorPlanRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -54553,11 +54868,11 @@ type ConfigureApiUpdateNetworkGroupPolicyRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	groupPolicyId string
-	updateNetworkGroupPolicy *InlineObject91
+	updateNetworkGroupPolicyRequest *UpdateNetworkGroupPolicyRequest
 }
 
-func (r ConfigureApiUpdateNetworkGroupPolicyRequest) UpdateNetworkGroupPolicy(updateNetworkGroupPolicy InlineObject91) ConfigureApiUpdateNetworkGroupPolicyRequest {
-	r.updateNetworkGroupPolicy = &updateNetworkGroupPolicy
+func (r ConfigureApiUpdateNetworkGroupPolicyRequest) UpdateNetworkGroupPolicyRequest(updateNetworkGroupPolicyRequest UpdateNetworkGroupPolicyRequest) ConfigureApiUpdateNetworkGroupPolicyRequest {
+	r.updateNetworkGroupPolicyRequest = &updateNetworkGroupPolicyRequest
 	return r
 }
 
@@ -54625,7 +54940,7 @@ func (a *ConfigureApiService) UpdateNetworkGroupPolicyExecute(r ConfigureApiUpda
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkGroupPolicy
+	localVarPostBody = r.updateNetworkGroupPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -54682,15 +54997,15 @@ type ConfigureApiUpdateNetworkMerakiAuthUserRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	merakiAuthUserId string
-	updateNetworkMerakiAuthUser *InlineObject93
+	updateNetworkMerakiAuthUserRequest *UpdateNetworkMerakiAuthUserRequest
 }
 
-func (r ConfigureApiUpdateNetworkMerakiAuthUserRequest) UpdateNetworkMerakiAuthUser(updateNetworkMerakiAuthUser InlineObject93) ConfigureApiUpdateNetworkMerakiAuthUserRequest {
-	r.updateNetworkMerakiAuthUser = &updateNetworkMerakiAuthUser
+func (r ConfigureApiUpdateNetworkMerakiAuthUserRequest) UpdateNetworkMerakiAuthUserRequest(updateNetworkMerakiAuthUserRequest UpdateNetworkMerakiAuthUserRequest) ConfigureApiUpdateNetworkMerakiAuthUserRequest {
+	r.updateNetworkMerakiAuthUserRequest = &updateNetworkMerakiAuthUserRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkMerakiAuthUserRequest) Execute() (*InlineResponse20037, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkMerakiAuthUserRequest) Execute() (*GetNetworkMerakiAuthUsers200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkMerakiAuthUserExecute(r)
 }
 
@@ -54714,13 +55029,13 @@ func (a *ConfigureApiService) UpdateNetworkMerakiAuthUser(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return InlineResponse20037
-func (a *ConfigureApiService) UpdateNetworkMerakiAuthUserExecute(r ConfigureApiUpdateNetworkMerakiAuthUserRequest) (*InlineResponse20037, *http.Response, error) {
+//  @return GetNetworkMerakiAuthUsers200ResponseInner
+func (a *ConfigureApiService) UpdateNetworkMerakiAuthUserExecute(r ConfigureApiUpdateNetworkMerakiAuthUserRequest) (*GetNetworkMerakiAuthUsers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20037
+		localVarReturnValue  *GetNetworkMerakiAuthUsers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkMerakiAuthUser")
@@ -54754,7 +55069,7 @@ func (a *ConfigureApiService) UpdateNetworkMerakiAuthUserExecute(r ConfigureApiU
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkMerakiAuthUser
+	localVarPostBody = r.updateNetworkMerakiAuthUserRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -54811,11 +55126,11 @@ type ConfigureApiUpdateNetworkMqttBrokerRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	mqttBrokerId string
-	updateNetworkMqttBroker *InlineObject95
+	updateNetworkMqttBrokerRequest *UpdateNetworkMqttBrokerRequest
 }
 
-func (r ConfigureApiUpdateNetworkMqttBrokerRequest) UpdateNetworkMqttBroker(updateNetworkMqttBroker InlineObject95) ConfigureApiUpdateNetworkMqttBrokerRequest {
-	r.updateNetworkMqttBroker = &updateNetworkMqttBroker
+func (r ConfigureApiUpdateNetworkMqttBrokerRequest) UpdateNetworkMqttBrokerRequest(updateNetworkMqttBrokerRequest UpdateNetworkMqttBrokerRequest) ConfigureApiUpdateNetworkMqttBrokerRequest {
+	r.updateNetworkMqttBrokerRequest = &updateNetworkMqttBrokerRequest
 	return r
 }
 
@@ -54883,7 +55198,7 @@ func (a *ConfigureApiService) UpdateNetworkMqttBrokerExecute(r ConfigureApiUpdat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkMqttBroker
+	localVarPostBody = r.updateNetworkMqttBrokerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -54939,11 +55254,11 @@ type ConfigureApiUpdateNetworkNetflowRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkNetflow *InlineObject96
+	updateNetworkNetflowRequest *UpdateNetworkNetflowRequest
 }
 
-func (r ConfigureApiUpdateNetworkNetflowRequest) UpdateNetworkNetflow(updateNetworkNetflow InlineObject96) ConfigureApiUpdateNetworkNetflowRequest {
-	r.updateNetworkNetflow = &updateNetworkNetflow
+func (r ConfigureApiUpdateNetworkNetflowRequest) UpdateNetworkNetflowRequest(updateNetworkNetflowRequest UpdateNetworkNetflowRequest) ConfigureApiUpdateNetworkNetflowRequest {
+	r.updateNetworkNetflowRequest = &updateNetworkNetflowRequest
 	return r
 }
 
@@ -55008,7 +55323,7 @@ func (a *ConfigureApiService) UpdateNetworkNetflowExecute(r ConfigureApiUpdateNe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkNetflow
+	localVarPostBody = r.updateNetworkNetflowRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -55065,15 +55380,15 @@ type ConfigureApiUpdateNetworkSensorAlertsProfileRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	id string
-	updateNetworkSensorAlertsProfile *InlineObject99
+	updateNetworkSensorAlertsProfileRequest *UpdateNetworkSensorAlertsProfileRequest
 }
 
-func (r ConfigureApiUpdateNetworkSensorAlertsProfileRequest) UpdateNetworkSensorAlertsProfile(updateNetworkSensorAlertsProfile InlineObject99) ConfigureApiUpdateNetworkSensorAlertsProfileRequest {
-	r.updateNetworkSensorAlertsProfile = &updateNetworkSensorAlertsProfile
+func (r ConfigureApiUpdateNetworkSensorAlertsProfileRequest) UpdateNetworkSensorAlertsProfileRequest(updateNetworkSensorAlertsProfileRequest UpdateNetworkSensorAlertsProfileRequest) ConfigureApiUpdateNetworkSensorAlertsProfileRequest {
+	r.updateNetworkSensorAlertsProfileRequest = &updateNetworkSensorAlertsProfileRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkSensorAlertsProfileRequest) Execute() (*InlineResponse20041, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkSensorAlertsProfileRequest) Execute() (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSensorAlertsProfileExecute(r)
 }
 
@@ -55097,13 +55412,13 @@ func (a *ConfigureApiService) UpdateNetworkSensorAlertsProfile(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20041
-func (a *ConfigureApiService) UpdateNetworkSensorAlertsProfileExecute(r ConfigureApiUpdateNetworkSensorAlertsProfileRequest) (*InlineResponse20041, *http.Response, error) {
+//  @return GetNetworkSensorAlertsProfiles200ResponseInner
+func (a *ConfigureApiService) UpdateNetworkSensorAlertsProfileExecute(r ConfigureApiUpdateNetworkSensorAlertsProfileRequest) (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20041
+		localVarReturnValue  *GetNetworkSensorAlertsProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkSensorAlertsProfile")
@@ -55137,7 +55452,7 @@ func (a *ConfigureApiService) UpdateNetworkSensorAlertsProfileExecute(r Configur
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSensorAlertsProfile
+	localVarPostBody = r.updateNetworkSensorAlertsProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -55194,15 +55509,15 @@ type ConfigureApiUpdateNetworkSensorMqttBrokerRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	mqttBrokerId string
-	updateNetworkSensorMqttBroker *InlineObject100
+	updateNetworkSensorMqttBrokerRequest *UpdateNetworkSensorMqttBrokerRequest
 }
 
-func (r ConfigureApiUpdateNetworkSensorMqttBrokerRequest) UpdateNetworkSensorMqttBroker(updateNetworkSensorMqttBroker InlineObject100) ConfigureApiUpdateNetworkSensorMqttBrokerRequest {
-	r.updateNetworkSensorMqttBroker = &updateNetworkSensorMqttBroker
+func (r ConfigureApiUpdateNetworkSensorMqttBrokerRequest) UpdateNetworkSensorMqttBrokerRequest(updateNetworkSensorMqttBrokerRequest UpdateNetworkSensorMqttBrokerRequest) ConfigureApiUpdateNetworkSensorMqttBrokerRequest {
+	r.updateNetworkSensorMqttBrokerRequest = &updateNetworkSensorMqttBrokerRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkSensorMqttBrokerRequest) Execute() (*InlineResponse20042, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkSensorMqttBrokerRequest) Execute() (*GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSensorMqttBrokerExecute(r)
 }
 
@@ -55226,13 +55541,13 @@ func (a *ConfigureApiService) UpdateNetworkSensorMqttBroker(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20042
-func (a *ConfigureApiService) UpdateNetworkSensorMqttBrokerExecute(r ConfigureApiUpdateNetworkSensorMqttBrokerRequest) (*InlineResponse20042, *http.Response, error) {
+//  @return GetNetworkSensorMqttBrokers200ResponseInner
+func (a *ConfigureApiService) UpdateNetworkSensorMqttBrokerExecute(r ConfigureApiUpdateNetworkSensorMqttBrokerRequest) (*GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20042
+		localVarReturnValue  *GetNetworkSensorMqttBrokers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkSensorMqttBroker")
@@ -55247,8 +55562,8 @@ func (a *ConfigureApiService) UpdateNetworkSensorMqttBrokerExecute(r ConfigureAp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSensorMqttBroker == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSensorMqttBroker is required and must be specified")
+	if r.updateNetworkSensorMqttBrokerRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSensorMqttBrokerRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -55269,7 +55584,7 @@ func (a *ConfigureApiService) UpdateNetworkSensorMqttBrokerExecute(r ConfigureAp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSensorMqttBroker
+	localVarPostBody = r.updateNetworkSensorMqttBrokerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -55325,15 +55640,15 @@ type ConfigureApiUpdateNetworkSettingsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkSettings *InlineObject101
+	updateNetworkSettingsRequest *UpdateNetworkSettingsRequest
 }
 
-func (r ConfigureApiUpdateNetworkSettingsRequest) UpdateNetworkSettings(updateNetworkSettings InlineObject101) ConfigureApiUpdateNetworkSettingsRequest {
-	r.updateNetworkSettings = &updateNetworkSettings
+func (r ConfigureApiUpdateNetworkSettingsRequest) UpdateNetworkSettingsRequest(updateNetworkSettingsRequest UpdateNetworkSettingsRequest) ConfigureApiUpdateNetworkSettingsRequest {
+	r.updateNetworkSettingsRequest = &updateNetworkSettingsRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkSettingsRequest) Execute() (*InlineResponse20044, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkSettingsRequest) Execute() (*GetNetworkSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSettingsExecute(r)
 }
 
@@ -55355,13 +55670,13 @@ func (a *ConfigureApiService) UpdateNetworkSettings(ctx context.Context, network
 }
 
 // Execute executes the request
-//  @return InlineResponse20044
-func (a *ConfigureApiService) UpdateNetworkSettingsExecute(r ConfigureApiUpdateNetworkSettingsRequest) (*InlineResponse20044, *http.Response, error) {
+//  @return GetNetworkSettings200Response
+func (a *ConfigureApiService) UpdateNetworkSettingsExecute(r ConfigureApiUpdateNetworkSettingsRequest) (*GetNetworkSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20044
+		localVarReturnValue  *GetNetworkSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkSettings")
@@ -55394,7 +55709,7 @@ func (a *ConfigureApiService) UpdateNetworkSettingsExecute(r ConfigureApiUpdateN
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSettings
+	localVarPostBody = r.updateNetworkSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -55450,15 +55765,15 @@ type ConfigureApiUpdateNetworkSmDevicesFieldsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkSmDevicesFields *InlineObject104
+	updateNetworkSmDevicesFieldsRequest *UpdateNetworkSmDevicesFieldsRequest
 }
 
-func (r ConfigureApiUpdateNetworkSmDevicesFieldsRequest) UpdateNetworkSmDevicesFields(updateNetworkSmDevicesFields InlineObject104) ConfigureApiUpdateNetworkSmDevicesFieldsRequest {
-	r.updateNetworkSmDevicesFields = &updateNetworkSmDevicesFields
+func (r ConfigureApiUpdateNetworkSmDevicesFieldsRequest) UpdateNetworkSmDevicesFieldsRequest(updateNetworkSmDevicesFieldsRequest UpdateNetworkSmDevicesFieldsRequest) ConfigureApiUpdateNetworkSmDevicesFieldsRequest {
+	r.updateNetworkSmDevicesFieldsRequest = &updateNetworkSmDevicesFieldsRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkSmDevicesFieldsRequest) Execute() ([]InlineResponse20047, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkSmDevicesFieldsRequest) Execute() ([]UpdateNetworkSmDevicesFields200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSmDevicesFieldsExecute(r)
 }
 
@@ -55480,13 +55795,13 @@ func (a *ConfigureApiService) UpdateNetworkSmDevicesFields(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return []InlineResponse20047
-func (a *ConfigureApiService) UpdateNetworkSmDevicesFieldsExecute(r ConfigureApiUpdateNetworkSmDevicesFieldsRequest) ([]InlineResponse20047, *http.Response, error) {
+//  @return []UpdateNetworkSmDevicesFields200ResponseInner
+func (a *ConfigureApiService) UpdateNetworkSmDevicesFieldsExecute(r ConfigureApiUpdateNetworkSmDevicesFieldsRequest) ([]UpdateNetworkSmDevicesFields200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20047
+		localVarReturnValue  []UpdateNetworkSmDevicesFields200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkSmDevicesFields")
@@ -55500,8 +55815,8 @@ func (a *ConfigureApiService) UpdateNetworkSmDevicesFieldsExecute(r ConfigureApi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSmDevicesFields == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSmDevicesFields is required and must be specified")
+	if r.updateNetworkSmDevicesFieldsRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSmDevicesFieldsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -55522,7 +55837,7 @@ func (a *ConfigureApiService) UpdateNetworkSmDevicesFieldsExecute(r ConfigureApi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSmDevicesFields
+	localVarPostBody = r.updateNetworkSmDevicesFieldsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -55579,11 +55894,11 @@ type ConfigureApiUpdateNetworkSmTargetGroupRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	targetGroupId string
-	updateNetworkSmTargetGroup *InlineObject110
+	createNetworkSmTargetGroupRequest *CreateNetworkSmTargetGroupRequest
 }
 
-func (r ConfigureApiUpdateNetworkSmTargetGroupRequest) UpdateNetworkSmTargetGroup(updateNetworkSmTargetGroup InlineObject110) ConfigureApiUpdateNetworkSmTargetGroupRequest {
-	r.updateNetworkSmTargetGroup = &updateNetworkSmTargetGroup
+func (r ConfigureApiUpdateNetworkSmTargetGroupRequest) CreateNetworkSmTargetGroupRequest(createNetworkSmTargetGroupRequest CreateNetworkSmTargetGroupRequest) ConfigureApiUpdateNetworkSmTargetGroupRequest {
+	r.createNetworkSmTargetGroupRequest = &createNetworkSmTargetGroupRequest
 	return r
 }
 
@@ -55651,7 +55966,7 @@ func (a *ConfigureApiService) UpdateNetworkSmTargetGroupExecute(r ConfigureApiUp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSmTargetGroup
+	localVarPostBody = r.createNetworkSmTargetGroupRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -55707,11 +56022,11 @@ type ConfigureApiUpdateNetworkSnmpRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkSnmp *InlineObject111
+	updateNetworkSnmpRequest *UpdateNetworkSnmpRequest
 }
 
-func (r ConfigureApiUpdateNetworkSnmpRequest) UpdateNetworkSnmp(updateNetworkSnmp InlineObject111) ConfigureApiUpdateNetworkSnmpRequest {
-	r.updateNetworkSnmp = &updateNetworkSnmp
+func (r ConfigureApiUpdateNetworkSnmpRequest) UpdateNetworkSnmpRequest(updateNetworkSnmpRequest UpdateNetworkSnmpRequest) ConfigureApiUpdateNetworkSnmpRequest {
+	r.updateNetworkSnmpRequest = &updateNetworkSnmpRequest
 	return r
 }
 
@@ -55776,7 +56091,7 @@ func (a *ConfigureApiService) UpdateNetworkSnmpExecute(r ConfigureApiUpdateNetwo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSnmp
+	localVarPostBody = r.updateNetworkSnmpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -55832,15 +56147,15 @@ type ConfigureApiUpdateNetworkSwitchAccessControlListsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkSwitchAccessControlLists *InlineObject112
+	updateNetworkSwitchAccessControlListsRequest *UpdateNetworkSwitchAccessControlListsRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchAccessControlListsRequest) UpdateNetworkSwitchAccessControlLists(updateNetworkSwitchAccessControlLists InlineObject112) ConfigureApiUpdateNetworkSwitchAccessControlListsRequest {
-	r.updateNetworkSwitchAccessControlLists = &updateNetworkSwitchAccessControlLists
+func (r ConfigureApiUpdateNetworkSwitchAccessControlListsRequest) UpdateNetworkSwitchAccessControlListsRequest(updateNetworkSwitchAccessControlListsRequest UpdateNetworkSwitchAccessControlListsRequest) ConfigureApiUpdateNetworkSwitchAccessControlListsRequest {
+	r.updateNetworkSwitchAccessControlListsRequest = &updateNetworkSwitchAccessControlListsRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkSwitchAccessControlListsRequest) Execute() (*InlineResponse20067, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkSwitchAccessControlListsRequest) Execute() (*GetNetworkSwitchAccessControlLists200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSwitchAccessControlListsExecute(r)
 }
 
@@ -55862,13 +56177,13 @@ func (a *ConfigureApiService) UpdateNetworkSwitchAccessControlLists(ctx context.
 }
 
 // Execute executes the request
-//  @return InlineResponse20067
-func (a *ConfigureApiService) UpdateNetworkSwitchAccessControlListsExecute(r ConfigureApiUpdateNetworkSwitchAccessControlListsRequest) (*InlineResponse20067, *http.Response, error) {
+//  @return GetNetworkSwitchAccessControlLists200Response
+func (a *ConfigureApiService) UpdateNetworkSwitchAccessControlListsExecute(r ConfigureApiUpdateNetworkSwitchAccessControlListsRequest) (*GetNetworkSwitchAccessControlLists200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20067
+		localVarReturnValue  *GetNetworkSwitchAccessControlLists200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkSwitchAccessControlLists")
@@ -55882,8 +56197,8 @@ func (a *ConfigureApiService) UpdateNetworkSwitchAccessControlListsExecute(r Con
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSwitchAccessControlLists == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSwitchAccessControlLists is required and must be specified")
+	if r.updateNetworkSwitchAccessControlListsRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSwitchAccessControlListsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -55904,7 +56219,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchAccessControlListsExecute(r Con
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchAccessControlLists
+	localVarPostBody = r.updateNetworkSwitchAccessControlListsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -55961,15 +56276,15 @@ type ConfigureApiUpdateNetworkSwitchAccessPolicyRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	accessPolicyNumber string
-	updateNetworkSwitchAccessPolicy *InlineObject114
+	updateNetworkSwitchAccessPolicyRequest *UpdateNetworkSwitchAccessPolicyRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchAccessPolicyRequest) UpdateNetworkSwitchAccessPolicy(updateNetworkSwitchAccessPolicy InlineObject114) ConfigureApiUpdateNetworkSwitchAccessPolicyRequest {
-	r.updateNetworkSwitchAccessPolicy = &updateNetworkSwitchAccessPolicy
+func (r ConfigureApiUpdateNetworkSwitchAccessPolicyRequest) UpdateNetworkSwitchAccessPolicyRequest(updateNetworkSwitchAccessPolicyRequest UpdateNetworkSwitchAccessPolicyRequest) ConfigureApiUpdateNetworkSwitchAccessPolicyRequest {
+	r.updateNetworkSwitchAccessPolicyRequest = &updateNetworkSwitchAccessPolicyRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkSwitchAccessPolicyRequest) Execute() (*InlineResponse20068, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkSwitchAccessPolicyRequest) Execute() (*GetNetworkSwitchAccessPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSwitchAccessPolicyExecute(r)
 }
 
@@ -55993,13 +56308,13 @@ func (a *ConfigureApiService) UpdateNetworkSwitchAccessPolicy(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20068
-func (a *ConfigureApiService) UpdateNetworkSwitchAccessPolicyExecute(r ConfigureApiUpdateNetworkSwitchAccessPolicyRequest) (*InlineResponse20068, *http.Response, error) {
+//  @return GetNetworkSwitchAccessPolicies200ResponseInner
+func (a *ConfigureApiService) UpdateNetworkSwitchAccessPolicyExecute(r ConfigureApiUpdateNetworkSwitchAccessPolicyRequest) (*GetNetworkSwitchAccessPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20068
+		localVarReturnValue  *GetNetworkSwitchAccessPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkSwitchAccessPolicy")
@@ -56033,7 +56348,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchAccessPolicyExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchAccessPolicy
+	localVarPostBody = r.updateNetworkSwitchAccessPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -56089,11 +56404,11 @@ type ConfigureApiUpdateNetworkSwitchAlternateManagementInterfaceRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkSwitchAlternateManagementInterface *InlineObject115
+	updateNetworkSwitchAlternateManagementInterfaceRequest *UpdateNetworkSwitchAlternateManagementInterfaceRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchAlternateManagementInterfaceRequest) UpdateNetworkSwitchAlternateManagementInterface(updateNetworkSwitchAlternateManagementInterface InlineObject115) ConfigureApiUpdateNetworkSwitchAlternateManagementInterfaceRequest {
-	r.updateNetworkSwitchAlternateManagementInterface = &updateNetworkSwitchAlternateManagementInterface
+func (r ConfigureApiUpdateNetworkSwitchAlternateManagementInterfaceRequest) UpdateNetworkSwitchAlternateManagementInterfaceRequest(updateNetworkSwitchAlternateManagementInterfaceRequest UpdateNetworkSwitchAlternateManagementInterfaceRequest) ConfigureApiUpdateNetworkSwitchAlternateManagementInterfaceRequest {
+	r.updateNetworkSwitchAlternateManagementInterfaceRequest = &updateNetworkSwitchAlternateManagementInterfaceRequest
 	return r
 }
 
@@ -56158,7 +56473,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchAlternateManagementInterfaceExe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchAlternateManagementInterface
+	localVarPostBody = r.updateNetworkSwitchAlternateManagementInterfaceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -56214,11 +56529,11 @@ type ConfigureApiUpdateNetworkSwitchDhcpServerPolicyRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkSwitchDhcpServerPolicy *InlineObject116
+	updateNetworkSwitchDhcpServerPolicyRequest *UpdateNetworkSwitchDhcpServerPolicyRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchDhcpServerPolicyRequest) UpdateNetworkSwitchDhcpServerPolicy(updateNetworkSwitchDhcpServerPolicy InlineObject116) ConfigureApiUpdateNetworkSwitchDhcpServerPolicyRequest {
-	r.updateNetworkSwitchDhcpServerPolicy = &updateNetworkSwitchDhcpServerPolicy
+func (r ConfigureApiUpdateNetworkSwitchDhcpServerPolicyRequest) UpdateNetworkSwitchDhcpServerPolicyRequest(updateNetworkSwitchDhcpServerPolicyRequest UpdateNetworkSwitchDhcpServerPolicyRequest) ConfigureApiUpdateNetworkSwitchDhcpServerPolicyRequest {
+	r.updateNetworkSwitchDhcpServerPolicyRequest = &updateNetworkSwitchDhcpServerPolicyRequest
 	return r
 }
 
@@ -56283,7 +56598,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchDhcpServerPolicyExecute(r Confi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchDhcpServerPolicy
+	localVarPostBody = r.updateNetworkSwitchDhcpServerPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -56340,15 +56655,15 @@ type ConfigureApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRe
 	ApiService *ConfigureApiService
 	networkId string
 	trustedServerId string
-	updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer *InlineObject118
+	updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer InlineObject118) ConfigureApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest {
-	r.updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer = &updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer
+func (r ConfigureApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest(updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) ConfigureApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest {
+	r.updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest = &updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) Execute() (*InlineResponse20072, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) Execute() (*GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerExecute(r)
 }
 
@@ -56372,13 +56687,13 @@ func (a *ConfigureApiService) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTr
 }
 
 // Execute executes the request
-//  @return InlineResponse20072
-func (a *ConfigureApiService) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerExecute(r ConfigureApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) (*InlineResponse20072, *http.Response, error) {
+//  @return GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner
+func (a *ConfigureApiService) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerExecute(r ConfigureApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) (*GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20072
+		localVarReturnValue  *GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer")
@@ -56412,7 +56727,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer
+	localVarPostBody = r.updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -56468,11 +56783,11 @@ type ConfigureApiUpdateNetworkSwitchDscpToCosMappingsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkSwitchDscpToCosMappings *InlineObject119
+	updateNetworkSwitchDscpToCosMappingsRequest *UpdateNetworkSwitchDscpToCosMappingsRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchDscpToCosMappingsRequest) UpdateNetworkSwitchDscpToCosMappings(updateNetworkSwitchDscpToCosMappings InlineObject119) ConfigureApiUpdateNetworkSwitchDscpToCosMappingsRequest {
-	r.updateNetworkSwitchDscpToCosMappings = &updateNetworkSwitchDscpToCosMappings
+func (r ConfigureApiUpdateNetworkSwitchDscpToCosMappingsRequest) UpdateNetworkSwitchDscpToCosMappingsRequest(updateNetworkSwitchDscpToCosMappingsRequest UpdateNetworkSwitchDscpToCosMappingsRequest) ConfigureApiUpdateNetworkSwitchDscpToCosMappingsRequest {
+	r.updateNetworkSwitchDscpToCosMappingsRequest = &updateNetworkSwitchDscpToCosMappingsRequest
 	return r
 }
 
@@ -56518,8 +56833,8 @@ func (a *ConfigureApiService) UpdateNetworkSwitchDscpToCosMappingsExecute(r Conf
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSwitchDscpToCosMappings == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSwitchDscpToCosMappings is required and must be specified")
+	if r.updateNetworkSwitchDscpToCosMappingsRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSwitchDscpToCosMappingsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -56540,7 +56855,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchDscpToCosMappingsExecute(r Conf
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchDscpToCosMappings
+	localVarPostBody = r.updateNetworkSwitchDscpToCosMappingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -56597,11 +56912,11 @@ type ConfigureApiUpdateNetworkSwitchLinkAggregationRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	linkAggregationId string
-	updateNetworkSwitchLinkAggregation *InlineObject121
+	updateNetworkSwitchLinkAggregationRequest *UpdateNetworkSwitchLinkAggregationRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchLinkAggregationRequest) UpdateNetworkSwitchLinkAggregation(updateNetworkSwitchLinkAggregation InlineObject121) ConfigureApiUpdateNetworkSwitchLinkAggregationRequest {
-	r.updateNetworkSwitchLinkAggregation = &updateNetworkSwitchLinkAggregation
+func (r ConfigureApiUpdateNetworkSwitchLinkAggregationRequest) UpdateNetworkSwitchLinkAggregationRequest(updateNetworkSwitchLinkAggregationRequest UpdateNetworkSwitchLinkAggregationRequest) ConfigureApiUpdateNetworkSwitchLinkAggregationRequest {
+	r.updateNetworkSwitchLinkAggregationRequest = &updateNetworkSwitchLinkAggregationRequest
 	return r
 }
 
@@ -56669,7 +56984,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchLinkAggregationExecute(r Config
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchLinkAggregation
+	localVarPostBody = r.updateNetworkSwitchLinkAggregationRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -56725,11 +57040,11 @@ type ConfigureApiUpdateNetworkSwitchMtuRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkSwitchMtu *InlineObject122
+	updateNetworkSwitchMtuRequest *UpdateNetworkSwitchMtuRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchMtuRequest) UpdateNetworkSwitchMtu(updateNetworkSwitchMtu InlineObject122) ConfigureApiUpdateNetworkSwitchMtuRequest {
-	r.updateNetworkSwitchMtu = &updateNetworkSwitchMtu
+func (r ConfigureApiUpdateNetworkSwitchMtuRequest) UpdateNetworkSwitchMtuRequest(updateNetworkSwitchMtuRequest UpdateNetworkSwitchMtuRequest) ConfigureApiUpdateNetworkSwitchMtuRequest {
+	r.updateNetworkSwitchMtuRequest = &updateNetworkSwitchMtuRequest
 	return r
 }
 
@@ -56794,7 +57109,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchMtuExecute(r ConfigureApiUpdate
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchMtu
+	localVarPostBody = r.updateNetworkSwitchMtuRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -56851,11 +57166,11 @@ type ConfigureApiUpdateNetworkSwitchPortScheduleRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	portScheduleId string
-	updateNetworkSwitchPortSchedule *InlineObject124
+	updateNetworkSwitchPortScheduleRequest *UpdateNetworkSwitchPortScheduleRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchPortScheduleRequest) UpdateNetworkSwitchPortSchedule(updateNetworkSwitchPortSchedule InlineObject124) ConfigureApiUpdateNetworkSwitchPortScheduleRequest {
-	r.updateNetworkSwitchPortSchedule = &updateNetworkSwitchPortSchedule
+func (r ConfigureApiUpdateNetworkSwitchPortScheduleRequest) UpdateNetworkSwitchPortScheduleRequest(updateNetworkSwitchPortScheduleRequest UpdateNetworkSwitchPortScheduleRequest) ConfigureApiUpdateNetworkSwitchPortScheduleRequest {
+	r.updateNetworkSwitchPortScheduleRequest = &updateNetworkSwitchPortScheduleRequest
 	return r
 }
 
@@ -56923,7 +57238,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchPortScheduleExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchPortSchedule
+	localVarPostBody = r.updateNetworkSwitchPortScheduleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -56980,11 +57295,11 @@ type ConfigureApiUpdateNetworkSwitchQosRuleRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	qosRuleId string
-	updateNetworkSwitchQosRule *InlineObject127
+	updateNetworkSwitchQosRuleRequest *UpdateNetworkSwitchQosRuleRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchQosRuleRequest) UpdateNetworkSwitchQosRule(updateNetworkSwitchQosRule InlineObject127) ConfigureApiUpdateNetworkSwitchQosRuleRequest {
-	r.updateNetworkSwitchQosRule = &updateNetworkSwitchQosRule
+func (r ConfigureApiUpdateNetworkSwitchQosRuleRequest) UpdateNetworkSwitchQosRuleRequest(updateNetworkSwitchQosRuleRequest UpdateNetworkSwitchQosRuleRequest) ConfigureApiUpdateNetworkSwitchQosRuleRequest {
+	r.updateNetworkSwitchQosRuleRequest = &updateNetworkSwitchQosRuleRequest
 	return r
 }
 
@@ -57052,7 +57367,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchQosRuleExecute(r ConfigureApiUp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchQosRule
+	localVarPostBody = r.updateNetworkSwitchQosRuleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -57108,11 +57423,11 @@ type ConfigureApiUpdateNetworkSwitchQosRulesOrderRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkSwitchQosRulesOrder *InlineObject126
+	updateNetworkSwitchQosRulesOrderRequest *UpdateNetworkSwitchQosRulesOrderRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchQosRulesOrderRequest) UpdateNetworkSwitchQosRulesOrder(updateNetworkSwitchQosRulesOrder InlineObject126) ConfigureApiUpdateNetworkSwitchQosRulesOrderRequest {
-	r.updateNetworkSwitchQosRulesOrder = &updateNetworkSwitchQosRulesOrder
+func (r ConfigureApiUpdateNetworkSwitchQosRulesOrderRequest) UpdateNetworkSwitchQosRulesOrderRequest(updateNetworkSwitchQosRulesOrderRequest UpdateNetworkSwitchQosRulesOrderRequest) ConfigureApiUpdateNetworkSwitchQosRulesOrderRequest {
+	r.updateNetworkSwitchQosRulesOrderRequest = &updateNetworkSwitchQosRulesOrderRequest
 	return r
 }
 
@@ -57158,8 +57473,8 @@ func (a *ConfigureApiService) UpdateNetworkSwitchQosRulesOrderExecute(r Configur
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSwitchQosRulesOrder == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSwitchQosRulesOrder is required and must be specified")
+	if r.updateNetworkSwitchQosRulesOrderRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSwitchQosRulesOrderRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -57180,7 +57495,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchQosRulesOrderExecute(r Configur
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchQosRulesOrder
+	localVarPostBody = r.updateNetworkSwitchQosRulesOrderRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -57236,11 +57551,11 @@ type ConfigureApiUpdateNetworkSwitchRoutingMulticastRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkSwitchRoutingMulticast *InlineObject128
+	updateNetworkSwitchRoutingMulticastRequest *UpdateNetworkSwitchRoutingMulticastRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchRoutingMulticastRequest) UpdateNetworkSwitchRoutingMulticast(updateNetworkSwitchRoutingMulticast InlineObject128) ConfigureApiUpdateNetworkSwitchRoutingMulticastRequest {
-	r.updateNetworkSwitchRoutingMulticast = &updateNetworkSwitchRoutingMulticast
+func (r ConfigureApiUpdateNetworkSwitchRoutingMulticastRequest) UpdateNetworkSwitchRoutingMulticastRequest(updateNetworkSwitchRoutingMulticastRequest UpdateNetworkSwitchRoutingMulticastRequest) ConfigureApiUpdateNetworkSwitchRoutingMulticastRequest {
+	r.updateNetworkSwitchRoutingMulticastRequest = &updateNetworkSwitchRoutingMulticastRequest
 	return r
 }
 
@@ -57305,7 +57620,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchRoutingMulticastExecute(r Confi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchRoutingMulticast
+	localVarPostBody = r.updateNetworkSwitchRoutingMulticastRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -57362,11 +57677,11 @@ type ConfigureApiUpdateNetworkSwitchRoutingMulticastRendezvousPointRequest struc
 	ApiService *ConfigureApiService
 	networkId string
 	rendezvousPointId string
-	updateNetworkSwitchRoutingMulticastRendezvousPoint *InlineObject130
+	updateNetworkSwitchRoutingMulticastRendezvousPointRequest *UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchRoutingMulticastRendezvousPointRequest) UpdateNetworkSwitchRoutingMulticastRendezvousPoint(updateNetworkSwitchRoutingMulticastRendezvousPoint InlineObject130) ConfigureApiUpdateNetworkSwitchRoutingMulticastRendezvousPointRequest {
-	r.updateNetworkSwitchRoutingMulticastRendezvousPoint = &updateNetworkSwitchRoutingMulticastRendezvousPoint
+func (r ConfigureApiUpdateNetworkSwitchRoutingMulticastRendezvousPointRequest) UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest(updateNetworkSwitchRoutingMulticastRendezvousPointRequest UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest) ConfigureApiUpdateNetworkSwitchRoutingMulticastRendezvousPointRequest {
+	r.updateNetworkSwitchRoutingMulticastRendezvousPointRequest = &updateNetworkSwitchRoutingMulticastRendezvousPointRequest
 	return r
 }
 
@@ -57415,8 +57730,8 @@ func (a *ConfigureApiService) UpdateNetworkSwitchRoutingMulticastRendezvousPoint
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSwitchRoutingMulticastRendezvousPoint == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSwitchRoutingMulticastRendezvousPoint is required and must be specified")
+	if r.updateNetworkSwitchRoutingMulticastRendezvousPointRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSwitchRoutingMulticastRendezvousPointRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -57437,7 +57752,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchRoutingMulticastRendezvousPoint
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchRoutingMulticastRendezvousPoint
+	localVarPostBody = r.updateNetworkSwitchRoutingMulticastRendezvousPointRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -57493,11 +57808,11 @@ type ConfigureApiUpdateNetworkSwitchRoutingOspfRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkSwitchRoutingOspf *InlineObject131
+	updateNetworkSwitchRoutingOspfRequest *UpdateNetworkSwitchRoutingOspfRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchRoutingOspfRequest) UpdateNetworkSwitchRoutingOspf(updateNetworkSwitchRoutingOspf InlineObject131) ConfigureApiUpdateNetworkSwitchRoutingOspfRequest {
-	r.updateNetworkSwitchRoutingOspf = &updateNetworkSwitchRoutingOspf
+func (r ConfigureApiUpdateNetworkSwitchRoutingOspfRequest) UpdateNetworkSwitchRoutingOspfRequest(updateNetworkSwitchRoutingOspfRequest UpdateNetworkSwitchRoutingOspfRequest) ConfigureApiUpdateNetworkSwitchRoutingOspfRequest {
+	r.updateNetworkSwitchRoutingOspfRequest = &updateNetworkSwitchRoutingOspfRequest
 	return r
 }
 
@@ -57562,7 +57877,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchRoutingOspfExecute(r ConfigureA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchRoutingOspf
+	localVarPostBody = r.updateNetworkSwitchRoutingOspfRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -57618,15 +57933,15 @@ type ConfigureApiUpdateNetworkSwitchSettingsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkSwitchSettings *InlineObject132
+	updateNetworkSwitchSettingsRequest *UpdateNetworkSwitchSettingsRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchSettingsRequest) UpdateNetworkSwitchSettings(updateNetworkSwitchSettings InlineObject132) ConfigureApiUpdateNetworkSwitchSettingsRequest {
-	r.updateNetworkSwitchSettings = &updateNetworkSwitchSettings
+func (r ConfigureApiUpdateNetworkSwitchSettingsRequest) UpdateNetworkSwitchSettingsRequest(updateNetworkSwitchSettingsRequest UpdateNetworkSwitchSettingsRequest) ConfigureApiUpdateNetworkSwitchSettingsRequest {
+	r.updateNetworkSwitchSettingsRequest = &updateNetworkSwitchSettingsRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkSwitchSettingsRequest) Execute() (*InlineResponse20078, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkSwitchSettingsRequest) Execute() (*GetNetworkSwitchSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSwitchSettingsExecute(r)
 }
 
@@ -57648,13 +57963,13 @@ func (a *ConfigureApiService) UpdateNetworkSwitchSettings(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return InlineResponse20078
-func (a *ConfigureApiService) UpdateNetworkSwitchSettingsExecute(r ConfigureApiUpdateNetworkSwitchSettingsRequest) (*InlineResponse20078, *http.Response, error) {
+//  @return GetNetworkSwitchSettings200Response
+func (a *ConfigureApiService) UpdateNetworkSwitchSettingsExecute(r ConfigureApiUpdateNetworkSwitchSettingsRequest) (*GetNetworkSwitchSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20078
+		localVarReturnValue  *GetNetworkSwitchSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkSwitchSettings")
@@ -57687,7 +58002,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchSettingsExecute(r ConfigureApiU
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchSettings
+	localVarPostBody = r.updateNetworkSwitchSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -57745,11 +58060,11 @@ type ConfigureApiUpdateNetworkSwitchStackRoutingInterfaceRequest struct {
 	networkId string
 	switchStackId string
 	interfaceId string
-	updateNetworkSwitchStackRoutingInterface *InlineObject137
+	updateNetworkSwitchStackRoutingInterfaceRequest *UpdateNetworkSwitchStackRoutingInterfaceRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchStackRoutingInterfaceRequest) UpdateNetworkSwitchStackRoutingInterface(updateNetworkSwitchStackRoutingInterface InlineObject137) ConfigureApiUpdateNetworkSwitchStackRoutingInterfaceRequest {
-	r.updateNetworkSwitchStackRoutingInterface = &updateNetworkSwitchStackRoutingInterface
+func (r ConfigureApiUpdateNetworkSwitchStackRoutingInterfaceRequest) UpdateNetworkSwitchStackRoutingInterfaceRequest(updateNetworkSwitchStackRoutingInterfaceRequest UpdateNetworkSwitchStackRoutingInterfaceRequest) ConfigureApiUpdateNetworkSwitchStackRoutingInterfaceRequest {
+	r.updateNetworkSwitchStackRoutingInterfaceRequest = &updateNetworkSwitchStackRoutingInterfaceRequest
 	return r
 }
 
@@ -57820,7 +58135,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchStackRoutingInterfaceExecute(r 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchStackRoutingInterface
+	localVarPostBody = r.updateNetworkSwitchStackRoutingInterfaceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -57878,11 +58193,11 @@ type ConfigureApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest struct {
 	networkId string
 	switchStackId string
 	interfaceId string
-	updateNetworkSwitchStackRoutingInterfaceDhcp *InlineObject138
+	updateNetworkSwitchStackRoutingInterfaceDhcpRequest *UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest) UpdateNetworkSwitchStackRoutingInterfaceDhcp(updateNetworkSwitchStackRoutingInterfaceDhcp InlineObject138) ConfigureApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest {
-	r.updateNetworkSwitchStackRoutingInterfaceDhcp = &updateNetworkSwitchStackRoutingInterfaceDhcp
+func (r ConfigureApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest) UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest(updateNetworkSwitchStackRoutingInterfaceDhcpRequest UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest) ConfigureApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest {
+	r.updateNetworkSwitchStackRoutingInterfaceDhcpRequest = &updateNetworkSwitchStackRoutingInterfaceDhcpRequest
 	return r
 }
 
@@ -57953,7 +58268,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchStackRoutingInterfaceDhcpExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchStackRoutingInterfaceDhcp
+	localVarPostBody = r.updateNetworkSwitchStackRoutingInterfaceDhcpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -58011,11 +58326,11 @@ type ConfigureApiUpdateNetworkSwitchStackRoutingStaticRouteRequest struct {
 	networkId string
 	switchStackId string
 	staticRouteId string
-	updateNetworkSwitchStackRoutingStaticRoute *InlineObject140
+	updateDeviceSwitchRoutingStaticRouteRequest *UpdateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchStackRoutingStaticRouteRequest) UpdateNetworkSwitchStackRoutingStaticRoute(updateNetworkSwitchStackRoutingStaticRoute InlineObject140) ConfigureApiUpdateNetworkSwitchStackRoutingStaticRouteRequest {
-	r.updateNetworkSwitchStackRoutingStaticRoute = &updateNetworkSwitchStackRoutingStaticRoute
+func (r ConfigureApiUpdateNetworkSwitchStackRoutingStaticRouteRequest) UpdateDeviceSwitchRoutingStaticRouteRequest(updateDeviceSwitchRoutingStaticRouteRequest UpdateDeviceSwitchRoutingStaticRouteRequest) ConfigureApiUpdateNetworkSwitchStackRoutingStaticRouteRequest {
+	r.updateDeviceSwitchRoutingStaticRouteRequest = &updateDeviceSwitchRoutingStaticRouteRequest
 	return r
 }
 
@@ -58086,7 +58401,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchStackRoutingStaticRouteExecute(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchStackRoutingStaticRoute
+	localVarPostBody = r.updateDeviceSwitchRoutingStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -58142,11 +58457,11 @@ type ConfigureApiUpdateNetworkSwitchStormControlRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkSwitchStormControl *InlineObject141
+	updateNetworkSwitchStormControlRequest *UpdateNetworkSwitchStormControlRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchStormControlRequest) UpdateNetworkSwitchStormControl(updateNetworkSwitchStormControl InlineObject141) ConfigureApiUpdateNetworkSwitchStormControlRequest {
-	r.updateNetworkSwitchStormControl = &updateNetworkSwitchStormControl
+func (r ConfigureApiUpdateNetworkSwitchStormControlRequest) UpdateNetworkSwitchStormControlRequest(updateNetworkSwitchStormControlRequest UpdateNetworkSwitchStormControlRequest) ConfigureApiUpdateNetworkSwitchStormControlRequest {
+	r.updateNetworkSwitchStormControlRequest = &updateNetworkSwitchStormControlRequest
 	return r
 }
 
@@ -58211,7 +58526,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchStormControlExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchStormControl
+	localVarPostBody = r.updateNetworkSwitchStormControlRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -58267,11 +58582,11 @@ type ConfigureApiUpdateNetworkSwitchStpRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkSwitchStp *InlineObject142
+	updateNetworkSwitchStpRequest *UpdateNetworkSwitchStpRequest
 }
 
-func (r ConfigureApiUpdateNetworkSwitchStpRequest) UpdateNetworkSwitchStp(updateNetworkSwitchStp InlineObject142) ConfigureApiUpdateNetworkSwitchStpRequest {
-	r.updateNetworkSwitchStp = &updateNetworkSwitchStp
+func (r ConfigureApiUpdateNetworkSwitchStpRequest) UpdateNetworkSwitchStpRequest(updateNetworkSwitchStpRequest UpdateNetworkSwitchStpRequest) ConfigureApiUpdateNetworkSwitchStpRequest {
+	r.updateNetworkSwitchStpRequest = &updateNetworkSwitchStpRequest
 	return r
 }
 
@@ -58336,7 +58651,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchStpExecute(r ConfigureApiUpdate
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchStp
+	localVarPostBody = r.updateNetworkSwitchStpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -58392,15 +58707,15 @@ type ConfigureApiUpdateNetworkSyslogServersRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkSyslogServers *InlineObject143
+	updateNetworkSyslogServersRequest *UpdateNetworkSyslogServersRequest
 }
 
-func (r ConfigureApiUpdateNetworkSyslogServersRequest) UpdateNetworkSyslogServers(updateNetworkSyslogServers InlineObject143) ConfigureApiUpdateNetworkSyslogServersRequest {
-	r.updateNetworkSyslogServers = &updateNetworkSyslogServers
+func (r ConfigureApiUpdateNetworkSyslogServersRequest) UpdateNetworkSyslogServersRequest(updateNetworkSyslogServersRequest UpdateNetworkSyslogServersRequest) ConfigureApiUpdateNetworkSyslogServersRequest {
+	r.updateNetworkSyslogServersRequest = &updateNetworkSyslogServersRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkSyslogServersRequest) Execute() (*InlineResponse20082, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkSyslogServersRequest) Execute() (*GetNetworkSyslogServers200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSyslogServersExecute(r)
 }
 
@@ -58422,13 +58737,13 @@ func (a *ConfigureApiService) UpdateNetworkSyslogServers(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return InlineResponse20082
-func (a *ConfigureApiService) UpdateNetworkSyslogServersExecute(r ConfigureApiUpdateNetworkSyslogServersRequest) (*InlineResponse20082, *http.Response, error) {
+//  @return GetNetworkSyslogServers200Response
+func (a *ConfigureApiService) UpdateNetworkSyslogServersExecute(r ConfigureApiUpdateNetworkSyslogServersRequest) (*GetNetworkSyslogServers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20082
+		localVarReturnValue  *GetNetworkSyslogServers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkSyslogServers")
@@ -58442,8 +58757,8 @@ func (a *ConfigureApiService) UpdateNetworkSyslogServersExecute(r ConfigureApiUp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSyslogServers == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSyslogServers is required and must be specified")
+	if r.updateNetworkSyslogServersRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSyslogServersRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -58464,7 +58779,7 @@ func (a *ConfigureApiService) UpdateNetworkSyslogServersExecute(r ConfigureApiUp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSyslogServers
+	localVarPostBody = r.updateNetworkSyslogServersRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -58520,11 +58835,11 @@ type ConfigureApiUpdateNetworkTrafficAnalysisRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkTrafficAnalysis *InlineObject144
+	updateNetworkTrafficAnalysisRequest *UpdateNetworkTrafficAnalysisRequest
 }
 
-func (r ConfigureApiUpdateNetworkTrafficAnalysisRequest) UpdateNetworkTrafficAnalysis(updateNetworkTrafficAnalysis InlineObject144) ConfigureApiUpdateNetworkTrafficAnalysisRequest {
-	r.updateNetworkTrafficAnalysis = &updateNetworkTrafficAnalysis
+func (r ConfigureApiUpdateNetworkTrafficAnalysisRequest) UpdateNetworkTrafficAnalysisRequest(updateNetworkTrafficAnalysisRequest UpdateNetworkTrafficAnalysisRequest) ConfigureApiUpdateNetworkTrafficAnalysisRequest {
+	r.updateNetworkTrafficAnalysisRequest = &updateNetworkTrafficAnalysisRequest
 	return r
 }
 
@@ -58589,7 +58904,7 @@ func (a *ConfigureApiService) UpdateNetworkTrafficAnalysisExecute(r ConfigureApi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkTrafficAnalysis
+	localVarPostBody = r.updateNetworkTrafficAnalysisRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -58646,15 +58961,15 @@ type ConfigureApiUpdateNetworkWebhooksHttpServerRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	httpServerId string
-	updateNetworkWebhooksHttpServer *InlineObject147
+	updateNetworkWebhooksHttpServerRequest *UpdateNetworkWebhooksHttpServerRequest
 }
 
-func (r ConfigureApiUpdateNetworkWebhooksHttpServerRequest) UpdateNetworkWebhooksHttpServer(updateNetworkWebhooksHttpServer InlineObject147) ConfigureApiUpdateNetworkWebhooksHttpServerRequest {
-	r.updateNetworkWebhooksHttpServer = &updateNetworkWebhooksHttpServer
+func (r ConfigureApiUpdateNetworkWebhooksHttpServerRequest) UpdateNetworkWebhooksHttpServerRequest(updateNetworkWebhooksHttpServerRequest UpdateNetworkWebhooksHttpServerRequest) ConfigureApiUpdateNetworkWebhooksHttpServerRequest {
+	r.updateNetworkWebhooksHttpServerRequest = &updateNetworkWebhooksHttpServerRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkWebhooksHttpServerRequest) Execute() (*InlineResponse20083, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkWebhooksHttpServerRequest) Execute() (*GetNetworkWebhooksHttpServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWebhooksHttpServerExecute(r)
 }
 
@@ -58678,13 +58993,13 @@ func (a *ConfigureApiService) UpdateNetworkWebhooksHttpServer(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20083
-func (a *ConfigureApiService) UpdateNetworkWebhooksHttpServerExecute(r ConfigureApiUpdateNetworkWebhooksHttpServerRequest) (*InlineResponse20083, *http.Response, error) {
+//  @return GetNetworkWebhooksHttpServers200ResponseInner
+func (a *ConfigureApiService) UpdateNetworkWebhooksHttpServerExecute(r ConfigureApiUpdateNetworkWebhooksHttpServerRequest) (*GetNetworkWebhooksHttpServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20083
+		localVarReturnValue  *GetNetworkWebhooksHttpServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkWebhooksHttpServer")
@@ -58718,7 +59033,7 @@ func (a *ConfigureApiService) UpdateNetworkWebhooksHttpServerExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWebhooksHttpServer
+	localVarPostBody = r.updateNetworkWebhooksHttpServerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -58775,15 +59090,15 @@ type ConfigureApiUpdateNetworkWebhooksPayloadTemplateRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	payloadTemplateId string
-	updateNetworkWebhooksPayloadTemplate *InlineObject149
+	updateNetworkWebhooksPayloadTemplateRequest *UpdateNetworkWebhooksPayloadTemplateRequest
 }
 
-func (r ConfigureApiUpdateNetworkWebhooksPayloadTemplateRequest) UpdateNetworkWebhooksPayloadTemplate(updateNetworkWebhooksPayloadTemplate InlineObject149) ConfigureApiUpdateNetworkWebhooksPayloadTemplateRequest {
-	r.updateNetworkWebhooksPayloadTemplate = &updateNetworkWebhooksPayloadTemplate
+func (r ConfigureApiUpdateNetworkWebhooksPayloadTemplateRequest) UpdateNetworkWebhooksPayloadTemplateRequest(updateNetworkWebhooksPayloadTemplateRequest UpdateNetworkWebhooksPayloadTemplateRequest) ConfigureApiUpdateNetworkWebhooksPayloadTemplateRequest {
+	r.updateNetworkWebhooksPayloadTemplateRequest = &updateNetworkWebhooksPayloadTemplateRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkWebhooksPayloadTemplateRequest) Execute() (*InlineResponse20084, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkWebhooksPayloadTemplateRequest) Execute() (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWebhooksPayloadTemplateExecute(r)
 }
 
@@ -58807,13 +59122,13 @@ func (a *ConfigureApiService) UpdateNetworkWebhooksPayloadTemplate(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse20084
-func (a *ConfigureApiService) UpdateNetworkWebhooksPayloadTemplateExecute(r ConfigureApiUpdateNetworkWebhooksPayloadTemplateRequest) (*InlineResponse20084, *http.Response, error) {
+//  @return GetNetworkWebhooksPayloadTemplates200ResponseInner
+func (a *ConfigureApiService) UpdateNetworkWebhooksPayloadTemplateExecute(r ConfigureApiUpdateNetworkWebhooksPayloadTemplateRequest) (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20084
+		localVarReturnValue  *GetNetworkWebhooksPayloadTemplates200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkWebhooksPayloadTemplate")
@@ -58847,7 +59162,7 @@ func (a *ConfigureApiService) UpdateNetworkWebhooksPayloadTemplateExecute(r Conf
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWebhooksPayloadTemplate
+	localVarPostBody = r.updateNetworkWebhooksPayloadTemplateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -58903,11 +59218,11 @@ type ConfigureApiUpdateNetworkWirelessAlternateManagementInterfaceRequest struct
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkWirelessAlternateManagementInterface *InlineObject151
+	updateNetworkWirelessAlternateManagementInterfaceRequest *UpdateNetworkWirelessAlternateManagementInterfaceRequest
 }
 
-func (r ConfigureApiUpdateNetworkWirelessAlternateManagementInterfaceRequest) UpdateNetworkWirelessAlternateManagementInterface(updateNetworkWirelessAlternateManagementInterface InlineObject151) ConfigureApiUpdateNetworkWirelessAlternateManagementInterfaceRequest {
-	r.updateNetworkWirelessAlternateManagementInterface = &updateNetworkWirelessAlternateManagementInterface
+func (r ConfigureApiUpdateNetworkWirelessAlternateManagementInterfaceRequest) UpdateNetworkWirelessAlternateManagementInterfaceRequest(updateNetworkWirelessAlternateManagementInterfaceRequest UpdateNetworkWirelessAlternateManagementInterfaceRequest) ConfigureApiUpdateNetworkWirelessAlternateManagementInterfaceRequest {
+	r.updateNetworkWirelessAlternateManagementInterfaceRequest = &updateNetworkWirelessAlternateManagementInterfaceRequest
 	return r
 }
 
@@ -58972,7 +59287,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessAlternateManagementInterfaceE
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessAlternateManagementInterface
+	localVarPostBody = r.updateNetworkWirelessAlternateManagementInterfaceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -59028,11 +59343,11 @@ type ConfigureApiUpdateNetworkWirelessBillingRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkWirelessBilling *InlineObject152
+	updateNetworkWirelessBillingRequest *UpdateNetworkWirelessBillingRequest
 }
 
-func (r ConfigureApiUpdateNetworkWirelessBillingRequest) UpdateNetworkWirelessBilling(updateNetworkWirelessBilling InlineObject152) ConfigureApiUpdateNetworkWirelessBillingRequest {
-	r.updateNetworkWirelessBilling = &updateNetworkWirelessBilling
+func (r ConfigureApiUpdateNetworkWirelessBillingRequest) UpdateNetworkWirelessBillingRequest(updateNetworkWirelessBillingRequest UpdateNetworkWirelessBillingRequest) ConfigureApiUpdateNetworkWirelessBillingRequest {
+	r.updateNetworkWirelessBillingRequest = &updateNetworkWirelessBillingRequest
 	return r
 }
 
@@ -59097,7 +59412,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessBillingExecute(r ConfigureApi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessBilling
+	localVarPostBody = r.updateNetworkWirelessBillingRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -59153,15 +59468,15 @@ type ConfigureApiUpdateNetworkWirelessBluetoothSettingsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkWirelessBluetoothSettings *InlineObject153
+	updateNetworkWirelessBluetoothSettingsRequest *UpdateNetworkWirelessBluetoothSettingsRequest
 }
 
-func (r ConfigureApiUpdateNetworkWirelessBluetoothSettingsRequest) UpdateNetworkWirelessBluetoothSettings(updateNetworkWirelessBluetoothSettings InlineObject153) ConfigureApiUpdateNetworkWirelessBluetoothSettingsRequest {
-	r.updateNetworkWirelessBluetoothSettings = &updateNetworkWirelessBluetoothSettings
+func (r ConfigureApiUpdateNetworkWirelessBluetoothSettingsRequest) UpdateNetworkWirelessBluetoothSettingsRequest(updateNetworkWirelessBluetoothSettingsRequest UpdateNetworkWirelessBluetoothSettingsRequest) ConfigureApiUpdateNetworkWirelessBluetoothSettingsRequest {
+	r.updateNetworkWirelessBluetoothSettingsRequest = &updateNetworkWirelessBluetoothSettingsRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkWirelessBluetoothSettingsRequest) Execute() (*InlineResponse20085, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkWirelessBluetoothSettingsRequest) Execute() (*GetNetworkWirelessBluetoothSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessBluetoothSettingsExecute(r)
 }
 
@@ -59183,13 +59498,13 @@ func (a *ConfigureApiService) UpdateNetworkWirelessBluetoothSettings(ctx context
 }
 
 // Execute executes the request
-//  @return InlineResponse20085
-func (a *ConfigureApiService) UpdateNetworkWirelessBluetoothSettingsExecute(r ConfigureApiUpdateNetworkWirelessBluetoothSettingsRequest) (*InlineResponse20085, *http.Response, error) {
+//  @return GetNetworkWirelessBluetoothSettings200Response
+func (a *ConfigureApiService) UpdateNetworkWirelessBluetoothSettingsExecute(r ConfigureApiUpdateNetworkWirelessBluetoothSettingsRequest) (*GetNetworkWirelessBluetoothSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20085
+		localVarReturnValue  *GetNetworkWirelessBluetoothSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkWirelessBluetoothSettings")
@@ -59222,7 +59537,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessBluetoothSettingsExecute(r Co
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessBluetoothSettings
+	localVarPostBody = r.updateNetworkWirelessBluetoothSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -59279,15 +59594,15 @@ type ConfigureApiUpdateNetworkWirelessRfProfileRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	rfProfileId string
-	updateNetworkWirelessRfProfile *InlineObject155
+	updateNetworkWirelessRfProfileRequest *UpdateNetworkWirelessRfProfileRequest
 }
 
-func (r ConfigureApiUpdateNetworkWirelessRfProfileRequest) UpdateNetworkWirelessRfProfile(updateNetworkWirelessRfProfile InlineObject155) ConfigureApiUpdateNetworkWirelessRfProfileRequest {
-	r.updateNetworkWirelessRfProfile = &updateNetworkWirelessRfProfile
+func (r ConfigureApiUpdateNetworkWirelessRfProfileRequest) UpdateNetworkWirelessRfProfileRequest(updateNetworkWirelessRfProfileRequest UpdateNetworkWirelessRfProfileRequest) ConfigureApiUpdateNetworkWirelessRfProfileRequest {
+	r.updateNetworkWirelessRfProfileRequest = &updateNetworkWirelessRfProfileRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkWirelessRfProfileRequest) Execute() (*InlineResponse20092, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkWirelessRfProfileRequest) Execute() (*GetNetworkWirelessRfProfiles200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessRfProfileExecute(r)
 }
 
@@ -59311,13 +59626,13 @@ func (a *ConfigureApiService) UpdateNetworkWirelessRfProfile(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse20092
-func (a *ConfigureApiService) UpdateNetworkWirelessRfProfileExecute(r ConfigureApiUpdateNetworkWirelessRfProfileRequest) (*InlineResponse20092, *http.Response, error) {
+//  @return GetNetworkWirelessRfProfiles200Response
+func (a *ConfigureApiService) UpdateNetworkWirelessRfProfileExecute(r ConfigureApiUpdateNetworkWirelessRfProfileRequest) (*GetNetworkWirelessRfProfiles200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20092
+		localVarReturnValue  *GetNetworkWirelessRfProfiles200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkWirelessRfProfile")
@@ -59351,7 +59666,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessRfProfileExecute(r ConfigureA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessRfProfile
+	localVarPostBody = r.updateNetworkWirelessRfProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -59407,15 +59722,15 @@ type ConfigureApiUpdateNetworkWirelessSettingsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	updateNetworkWirelessSettings *InlineObject156
+	updateNetworkWirelessSettingsRequest *UpdateNetworkWirelessSettingsRequest
 }
 
-func (r ConfigureApiUpdateNetworkWirelessSettingsRequest) UpdateNetworkWirelessSettings(updateNetworkWirelessSettings InlineObject156) ConfigureApiUpdateNetworkWirelessSettingsRequest {
-	r.updateNetworkWirelessSettings = &updateNetworkWirelessSettings
+func (r ConfigureApiUpdateNetworkWirelessSettingsRequest) UpdateNetworkWirelessSettingsRequest(updateNetworkWirelessSettingsRequest UpdateNetworkWirelessSettingsRequest) ConfigureApiUpdateNetworkWirelessSettingsRequest {
+	r.updateNetworkWirelessSettingsRequest = &updateNetworkWirelessSettingsRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkWirelessSettingsRequest) Execute() (*InlineResponse20093, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkWirelessSettingsRequest) Execute() (*GetNetworkWirelessSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessSettingsExecute(r)
 }
 
@@ -59437,13 +59752,13 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSettings(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20093
-func (a *ConfigureApiService) UpdateNetworkWirelessSettingsExecute(r ConfigureApiUpdateNetworkWirelessSettingsRequest) (*InlineResponse20093, *http.Response, error) {
+//  @return GetNetworkWirelessSettings200Response
+func (a *ConfigureApiService) UpdateNetworkWirelessSettingsExecute(r ConfigureApiUpdateNetworkWirelessSettingsRequest) (*GetNetworkWirelessSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20093
+		localVarReturnValue  *GetNetworkWirelessSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkWirelessSettings")
@@ -59476,7 +59791,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSettingsExecute(r ConfigureAp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSettings
+	localVarPostBody = r.updateNetworkWirelessSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -59533,11 +59848,11 @@ type ConfigureApiUpdateNetworkWirelessSsidRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsid *InlineObject157
+	updateNetworkWirelessSsidRequest *UpdateNetworkWirelessSsidRequest
 }
 
-func (r ConfigureApiUpdateNetworkWirelessSsidRequest) UpdateNetworkWirelessSsid(updateNetworkWirelessSsid InlineObject157) ConfigureApiUpdateNetworkWirelessSsidRequest {
-	r.updateNetworkWirelessSsid = &updateNetworkWirelessSsid
+func (r ConfigureApiUpdateNetworkWirelessSsidRequest) UpdateNetworkWirelessSsidRequest(updateNetworkWirelessSsidRequest UpdateNetworkWirelessSsidRequest) ConfigureApiUpdateNetworkWirelessSsidRequest {
+	r.updateNetworkWirelessSsidRequest = &updateNetworkWirelessSsidRequest
 	return r
 }
 
@@ -59605,7 +59920,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidExecute(r ConfigureApiUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsid
+	localVarPostBody = r.updateNetworkWirelessSsidRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -59662,11 +59977,11 @@ type ConfigureApiUpdateNetworkWirelessSsidBonjourForwardingRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidBonjourForwarding *InlineObject158
+	updateNetworkWirelessSsidBonjourForwardingRequest *UpdateNetworkWirelessSsidBonjourForwardingRequest
 }
 
-func (r ConfigureApiUpdateNetworkWirelessSsidBonjourForwardingRequest) UpdateNetworkWirelessSsidBonjourForwarding(updateNetworkWirelessSsidBonjourForwarding InlineObject158) ConfigureApiUpdateNetworkWirelessSsidBonjourForwardingRequest {
-	r.updateNetworkWirelessSsidBonjourForwarding = &updateNetworkWirelessSsidBonjourForwarding
+func (r ConfigureApiUpdateNetworkWirelessSsidBonjourForwardingRequest) UpdateNetworkWirelessSsidBonjourForwardingRequest(updateNetworkWirelessSsidBonjourForwardingRequest UpdateNetworkWirelessSsidBonjourForwardingRequest) ConfigureApiUpdateNetworkWirelessSsidBonjourForwardingRequest {
+	r.updateNetworkWirelessSsidBonjourForwardingRequest = &updateNetworkWirelessSsidBonjourForwardingRequest
 	return r
 }
 
@@ -59734,7 +60049,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidBonjourForwardingExecute(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidBonjourForwarding
+	localVarPostBody = r.updateNetworkWirelessSsidBonjourForwardingRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -59791,11 +60106,11 @@ type ConfigureApiUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest struct 
 	ApiService *ConfigureApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidDeviceTypeGroupPolicies *InlineObject159
+	updateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest *UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest
 }
 
-func (r ConfigureApiUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest) UpdateNetworkWirelessSsidDeviceTypeGroupPolicies(updateNetworkWirelessSsidDeviceTypeGroupPolicies InlineObject159) ConfigureApiUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest {
-	r.updateNetworkWirelessSsidDeviceTypeGroupPolicies = &updateNetworkWirelessSsidDeviceTypeGroupPolicies
+func (r ConfigureApiUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest) UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest(updateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest) ConfigureApiUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest {
+	r.updateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest = &updateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest
 	return r
 }
 
@@ -59863,7 +60178,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesEx
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidDeviceTypeGroupPolicies
+	localVarPostBody = r.updateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -59920,15 +60235,15 @@ type ConfigureApiUpdateNetworkWirelessSsidEapOverrideRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidEapOverride *InlineObject160
+	updateNetworkWirelessSsidEapOverrideRequest *UpdateNetworkWirelessSsidEapOverrideRequest
 }
 
-func (r ConfigureApiUpdateNetworkWirelessSsidEapOverrideRequest) UpdateNetworkWirelessSsidEapOverride(updateNetworkWirelessSsidEapOverride InlineObject160) ConfigureApiUpdateNetworkWirelessSsidEapOverrideRequest {
-	r.updateNetworkWirelessSsidEapOverride = &updateNetworkWirelessSsidEapOverride
+func (r ConfigureApiUpdateNetworkWirelessSsidEapOverrideRequest) UpdateNetworkWirelessSsidEapOverrideRequest(updateNetworkWirelessSsidEapOverrideRequest UpdateNetworkWirelessSsidEapOverrideRequest) ConfigureApiUpdateNetworkWirelessSsidEapOverrideRequest {
+	r.updateNetworkWirelessSsidEapOverrideRequest = &updateNetworkWirelessSsidEapOverrideRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkWirelessSsidEapOverrideRequest) Execute() (*InlineResponse20095, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkWirelessSsidEapOverrideRequest) Execute() (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessSsidEapOverrideExecute(r)
 }
 
@@ -59952,13 +60267,13 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidEapOverride(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse20095
-func (a *ConfigureApiService) UpdateNetworkWirelessSsidEapOverrideExecute(r ConfigureApiUpdateNetworkWirelessSsidEapOverrideRequest) (*InlineResponse20095, *http.Response, error) {
+//  @return GetNetworkWirelessSsidEapOverride200Response
+func (a *ConfigureApiService) UpdateNetworkWirelessSsidEapOverrideExecute(r ConfigureApiUpdateNetworkWirelessSsidEapOverrideRequest) (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20095
+		localVarReturnValue  *GetNetworkWirelessSsidEapOverride200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkWirelessSsidEapOverride")
@@ -59992,7 +60307,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidEapOverrideExecute(r Conf
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidEapOverride
+	localVarPostBody = r.updateNetworkWirelessSsidEapOverrideRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -60049,11 +60364,11 @@ type ConfigureApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest struct 
 	ApiService *ConfigureApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidFirewallL3FirewallRules *InlineObject161
+	updateNetworkWirelessSsidFirewallL3FirewallRulesRequest *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest
 }
 
-func (r ConfigureApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) UpdateNetworkWirelessSsidFirewallL3FirewallRules(updateNetworkWirelessSsidFirewallL3FirewallRules InlineObject161) ConfigureApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest {
-	r.updateNetworkWirelessSsidFirewallL3FirewallRules = &updateNetworkWirelessSsidFirewallL3FirewallRules
+func (r ConfigureApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest(updateNetworkWirelessSsidFirewallL3FirewallRulesRequest UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) ConfigureApiUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest {
+	r.updateNetworkWirelessSsidFirewallL3FirewallRulesRequest = &updateNetworkWirelessSsidFirewallL3FirewallRulesRequest
 	return r
 }
 
@@ -60121,7 +60436,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidFirewallL3FirewallRulesEx
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidFirewallL3FirewallRules
+	localVarPostBody = r.updateNetworkWirelessSsidFirewallL3FirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -60178,11 +60493,11 @@ type ConfigureApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest struct 
 	ApiService *ConfigureApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidFirewallL7FirewallRules *InlineObject162
+	updateNetworkWirelessSsidFirewallL7FirewallRulesRequest *UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest
 }
 
-func (r ConfigureApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) UpdateNetworkWirelessSsidFirewallL7FirewallRules(updateNetworkWirelessSsidFirewallL7FirewallRules InlineObject162) ConfigureApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest {
-	r.updateNetworkWirelessSsidFirewallL7FirewallRules = &updateNetworkWirelessSsidFirewallL7FirewallRules
+func (r ConfigureApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest(updateNetworkWirelessSsidFirewallL7FirewallRulesRequest UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) ConfigureApiUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest {
+	r.updateNetworkWirelessSsidFirewallL7FirewallRulesRequest = &updateNetworkWirelessSsidFirewallL7FirewallRulesRequest
 	return r
 }
 
@@ -60250,7 +60565,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidFirewallL7FirewallRulesEx
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidFirewallL7FirewallRules
+	localVarPostBody = r.updateNetworkWirelessSsidFirewallL7FirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -60307,11 +60622,11 @@ type ConfigureApiUpdateNetworkWirelessSsidHotspot20Request struct {
 	ApiService *ConfigureApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidHotspot20 *InlineObject163
+	updateNetworkWirelessSsidHotspot20Request *UpdateNetworkWirelessSsidHotspot20Request
 }
 
-func (r ConfigureApiUpdateNetworkWirelessSsidHotspot20Request) UpdateNetworkWirelessSsidHotspot20(updateNetworkWirelessSsidHotspot20 InlineObject163) ConfigureApiUpdateNetworkWirelessSsidHotspot20Request {
-	r.updateNetworkWirelessSsidHotspot20 = &updateNetworkWirelessSsidHotspot20
+func (r ConfigureApiUpdateNetworkWirelessSsidHotspot20Request) UpdateNetworkWirelessSsidHotspot20Request(updateNetworkWirelessSsidHotspot20Request UpdateNetworkWirelessSsidHotspot20Request) ConfigureApiUpdateNetworkWirelessSsidHotspot20Request {
+	r.updateNetworkWirelessSsidHotspot20Request = &updateNetworkWirelessSsidHotspot20Request
 	return r
 }
 
@@ -60379,7 +60694,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidHotspot20Execute(r Config
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidHotspot20
+	localVarPostBody = r.updateNetworkWirelessSsidHotspot20Request
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -60437,11 +60752,11 @@ type ConfigureApiUpdateNetworkWirelessSsidIdentityPskRequest struct {
 	networkId string
 	number string
 	identityPskId string
-	updateNetworkWirelessSsidIdentityPsk *InlineObject165
+	updateNetworkWirelessSsidIdentityPskRequest *UpdateNetworkWirelessSsidIdentityPskRequest
 }
 
-func (r ConfigureApiUpdateNetworkWirelessSsidIdentityPskRequest) UpdateNetworkWirelessSsidIdentityPsk(updateNetworkWirelessSsidIdentityPsk InlineObject165) ConfigureApiUpdateNetworkWirelessSsidIdentityPskRequest {
-	r.updateNetworkWirelessSsidIdentityPsk = &updateNetworkWirelessSsidIdentityPsk
+func (r ConfigureApiUpdateNetworkWirelessSsidIdentityPskRequest) UpdateNetworkWirelessSsidIdentityPskRequest(updateNetworkWirelessSsidIdentityPskRequest UpdateNetworkWirelessSsidIdentityPskRequest) ConfigureApiUpdateNetworkWirelessSsidIdentityPskRequest {
+	r.updateNetworkWirelessSsidIdentityPskRequest = &updateNetworkWirelessSsidIdentityPskRequest
 	return r
 }
 
@@ -60512,7 +60827,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidIdentityPskExecute(r Conf
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidIdentityPsk
+	localVarPostBody = r.updateNetworkWirelessSsidIdentityPskRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -60569,11 +60884,11 @@ type ConfigureApiUpdateNetworkWirelessSsidSchedulesRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidSchedules *InlineObject166
+	updateNetworkWirelessSsidSchedulesRequest *UpdateNetworkWirelessSsidSchedulesRequest
 }
 
-func (r ConfigureApiUpdateNetworkWirelessSsidSchedulesRequest) UpdateNetworkWirelessSsidSchedules(updateNetworkWirelessSsidSchedules InlineObject166) ConfigureApiUpdateNetworkWirelessSsidSchedulesRequest {
-	r.updateNetworkWirelessSsidSchedules = &updateNetworkWirelessSsidSchedules
+func (r ConfigureApiUpdateNetworkWirelessSsidSchedulesRequest) UpdateNetworkWirelessSsidSchedulesRequest(updateNetworkWirelessSsidSchedulesRequest UpdateNetworkWirelessSsidSchedulesRequest) ConfigureApiUpdateNetworkWirelessSsidSchedulesRequest {
+	r.updateNetworkWirelessSsidSchedulesRequest = &updateNetworkWirelessSsidSchedulesRequest
 	return r
 }
 
@@ -60641,7 +60956,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidSchedulesExecute(r Config
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidSchedules
+	localVarPostBody = r.updateNetworkWirelessSsidSchedulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -60698,15 +61013,15 @@ type ConfigureApiUpdateNetworkWirelessSsidSplashSettingsRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidSplashSettings *InlineObject167
+	updateNetworkWirelessSsidSplashSettingsRequest *UpdateNetworkWirelessSsidSplashSettingsRequest
 }
 
-func (r ConfigureApiUpdateNetworkWirelessSsidSplashSettingsRequest) UpdateNetworkWirelessSsidSplashSettings(updateNetworkWirelessSsidSplashSettings InlineObject167) ConfigureApiUpdateNetworkWirelessSsidSplashSettingsRequest {
-	r.updateNetworkWirelessSsidSplashSettings = &updateNetworkWirelessSsidSplashSettings
+func (r ConfigureApiUpdateNetworkWirelessSsidSplashSettingsRequest) UpdateNetworkWirelessSsidSplashSettingsRequest(updateNetworkWirelessSsidSplashSettingsRequest UpdateNetworkWirelessSsidSplashSettingsRequest) ConfigureApiUpdateNetworkWirelessSsidSplashSettingsRequest {
+	r.updateNetworkWirelessSsidSplashSettingsRequest = &updateNetworkWirelessSsidSplashSettingsRequest
 	return r
 }
 
-func (r ConfigureApiUpdateNetworkWirelessSsidSplashSettingsRequest) Execute() (*InlineResponse20097, *http.Response, error) {
+func (r ConfigureApiUpdateNetworkWirelessSsidSplashSettingsRequest) Execute() (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessSsidSplashSettingsExecute(r)
 }
 
@@ -60730,13 +61045,13 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidSplashSettings(ctx contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20097
-func (a *ConfigureApiService) UpdateNetworkWirelessSsidSplashSettingsExecute(r ConfigureApiUpdateNetworkWirelessSsidSplashSettingsRequest) (*InlineResponse20097, *http.Response, error) {
+//  @return GetNetworkWirelessSsidSplashSettings200Response
+func (a *ConfigureApiService) UpdateNetworkWirelessSsidSplashSettingsExecute(r ConfigureApiUpdateNetworkWirelessSsidSplashSettingsRequest) (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20097
+		localVarReturnValue  *GetNetworkWirelessSsidSplashSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateNetworkWirelessSsidSplashSettings")
@@ -60770,7 +61085,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidSplashSettingsExecute(r C
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidSplashSettings
+	localVarPostBody = r.updateNetworkWirelessSsidSplashSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -60827,11 +61142,11 @@ type ConfigureApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidTrafficShapingRules *InlineObject168
+	updateNetworkWirelessSsidTrafficShapingRulesRequest *UpdateNetworkWirelessSsidTrafficShapingRulesRequest
 }
 
-func (r ConfigureApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest) UpdateNetworkWirelessSsidTrafficShapingRules(updateNetworkWirelessSsidTrafficShapingRules InlineObject168) ConfigureApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest {
-	r.updateNetworkWirelessSsidTrafficShapingRules = &updateNetworkWirelessSsidTrafficShapingRules
+func (r ConfigureApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest) UpdateNetworkWirelessSsidTrafficShapingRulesRequest(updateNetworkWirelessSsidTrafficShapingRulesRequest UpdateNetworkWirelessSsidTrafficShapingRulesRequest) ConfigureApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest {
+	r.updateNetworkWirelessSsidTrafficShapingRulesRequest = &updateNetworkWirelessSsidTrafficShapingRulesRequest
 	return r
 }
 
@@ -60899,7 +61214,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidTrafficShapingRulesExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidTrafficShapingRules
+	localVarPostBody = r.updateNetworkWirelessSsidTrafficShapingRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -60956,11 +61271,11 @@ type ConfigureApiUpdateNetworkWirelessSsidVpnRequest struct {
 	ApiService *ConfigureApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidVpn *InlineObject169
+	updateNetworkWirelessSsidVpnRequest *UpdateNetworkWirelessSsidVpnRequest
 }
 
-func (r ConfigureApiUpdateNetworkWirelessSsidVpnRequest) UpdateNetworkWirelessSsidVpn(updateNetworkWirelessSsidVpn InlineObject169) ConfigureApiUpdateNetworkWirelessSsidVpnRequest {
-	r.updateNetworkWirelessSsidVpn = &updateNetworkWirelessSsidVpn
+func (r ConfigureApiUpdateNetworkWirelessSsidVpnRequest) UpdateNetworkWirelessSsidVpnRequest(updateNetworkWirelessSsidVpnRequest UpdateNetworkWirelessSsidVpnRequest) ConfigureApiUpdateNetworkWirelessSsidVpnRequest {
+	r.updateNetworkWirelessSsidVpnRequest = &updateNetworkWirelessSsidVpnRequest
 	return r
 }
 
@@ -61028,7 +61343,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidVpnExecute(r ConfigureApi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidVpn
+	localVarPostBody = r.updateNetworkWirelessSsidVpnRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -61084,15 +61399,15 @@ type ConfigureApiUpdateOrganizationRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	updateOrganization *InlineObject171
+	updateOrganizationRequest *UpdateOrganizationRequest
 }
 
-func (r ConfigureApiUpdateOrganizationRequest) UpdateOrganization(updateOrganization InlineObject171) ConfigureApiUpdateOrganizationRequest {
-	r.updateOrganization = &updateOrganization
+func (r ConfigureApiUpdateOrganizationRequest) UpdateOrganizationRequest(updateOrganizationRequest UpdateOrganizationRequest) ConfigureApiUpdateOrganizationRequest {
+	r.updateOrganizationRequest = &updateOrganizationRequest
 	return r
 }
 
-func (r ConfigureApiUpdateOrganizationRequest) Execute() (*InlineResponse20099, *http.Response, error) {
+func (r ConfigureApiUpdateOrganizationRequest) Execute() (*GetOrganizations200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationExecute(r)
 }
 
@@ -61114,13 +61429,13 @@ func (a *ConfigureApiService) UpdateOrganization(ctx context.Context, organizati
 }
 
 // Execute executes the request
-//  @return InlineResponse20099
-func (a *ConfigureApiService) UpdateOrganizationExecute(r ConfigureApiUpdateOrganizationRequest) (*InlineResponse20099, *http.Response, error) {
+//  @return GetOrganizations200ResponseInner
+func (a *ConfigureApiService) UpdateOrganizationExecute(r ConfigureApiUpdateOrganizationRequest) (*GetOrganizations200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20099
+		localVarReturnValue  *GetOrganizations200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateOrganization")
@@ -61153,7 +61468,7 @@ func (a *ConfigureApiService) UpdateOrganizationExecute(r ConfigureApiUpdateOrga
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganization
+	localVarPostBody = r.updateOrganizationRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -61210,11 +61525,11 @@ type ConfigureApiUpdateOrganizationActionBatchRequest struct {
 	ApiService *ConfigureApiService
 	organizationId string
 	actionBatchId string
-	updateOrganizationActionBatch *InlineObject173
+	updateOrganizationActionBatchRequest *UpdateOrganizationActionBatchRequest
 }
 
-func (r ConfigureApiUpdateOrganizationActionBatchRequest) UpdateOrganizationActionBatch(updateOrganizationActionBatch InlineObject173) ConfigureApiUpdateOrganizationActionBatchRequest {
-	r.updateOrganizationActionBatch = &updateOrganizationActionBatch
+func (r ConfigureApiUpdateOrganizationActionBatchRequest) UpdateOrganizationActionBatchRequest(updateOrganizationActionBatchRequest UpdateOrganizationActionBatchRequest) ConfigureApiUpdateOrganizationActionBatchRequest {
+	r.updateOrganizationActionBatchRequest = &updateOrganizationActionBatchRequest
 	return r
 }
 
@@ -61282,7 +61597,7 @@ func (a *ConfigureApiService) UpdateOrganizationActionBatchExecute(r ConfigureAp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationActionBatch
+	localVarPostBody = r.updateOrganizationActionBatchRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -61339,15 +61654,15 @@ type ConfigureApiUpdateOrganizationAdaptivePolicyAclRequest struct {
 	ApiService *ConfigureApiService
 	organizationId string
 	aclId string
-	updateOrganizationAdaptivePolicyAcl *InlineObject175
+	updateOrganizationAdaptivePolicyAclRequest *UpdateOrganizationAdaptivePolicyAclRequest
 }
 
-func (r ConfigureApiUpdateOrganizationAdaptivePolicyAclRequest) UpdateOrganizationAdaptivePolicyAcl(updateOrganizationAdaptivePolicyAcl InlineObject175) ConfigureApiUpdateOrganizationAdaptivePolicyAclRequest {
-	r.updateOrganizationAdaptivePolicyAcl = &updateOrganizationAdaptivePolicyAcl
+func (r ConfigureApiUpdateOrganizationAdaptivePolicyAclRequest) UpdateOrganizationAdaptivePolicyAclRequest(updateOrganizationAdaptivePolicyAclRequest UpdateOrganizationAdaptivePolicyAclRequest) ConfigureApiUpdateOrganizationAdaptivePolicyAclRequest {
+	r.updateOrganizationAdaptivePolicyAclRequest = &updateOrganizationAdaptivePolicyAclRequest
 	return r
 }
 
-func (r ConfigureApiUpdateOrganizationAdaptivePolicyAclRequest) Execute() (*InlineResponse200100, *http.Response, error) {
+func (r ConfigureApiUpdateOrganizationAdaptivePolicyAclRequest) Execute() (*GetOrganizationAdaptivePolicyAcls200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationAdaptivePolicyAclExecute(r)
 }
 
@@ -61371,13 +61686,13 @@ func (a *ConfigureApiService) UpdateOrganizationAdaptivePolicyAcl(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse200100
-func (a *ConfigureApiService) UpdateOrganizationAdaptivePolicyAclExecute(r ConfigureApiUpdateOrganizationAdaptivePolicyAclRequest) (*InlineResponse200100, *http.Response, error) {
+//  @return GetOrganizationAdaptivePolicyAcls200ResponseInner
+func (a *ConfigureApiService) UpdateOrganizationAdaptivePolicyAclExecute(r ConfigureApiUpdateOrganizationAdaptivePolicyAclRequest) (*GetOrganizationAdaptivePolicyAcls200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200100
+		localVarReturnValue  *GetOrganizationAdaptivePolicyAcls200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateOrganizationAdaptivePolicyAcl")
@@ -61411,7 +61726,7 @@ func (a *ConfigureApiService) UpdateOrganizationAdaptivePolicyAclExecute(r Confi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationAdaptivePolicyAcl
+	localVarPostBody = r.updateOrganizationAdaptivePolicyAclRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -61468,11 +61783,11 @@ type ConfigureApiUpdateOrganizationAdaptivePolicyGroupRequest struct {
 	ApiService *ConfigureApiService
 	organizationId string
 	id string
-	updateOrganizationAdaptivePolicyGroup *InlineObject177
+	updateOrganizationAdaptivePolicyGroupRequest *UpdateOrganizationAdaptivePolicyGroupRequest
 }
 
-func (r ConfigureApiUpdateOrganizationAdaptivePolicyGroupRequest) UpdateOrganizationAdaptivePolicyGroup(updateOrganizationAdaptivePolicyGroup InlineObject177) ConfigureApiUpdateOrganizationAdaptivePolicyGroupRequest {
-	r.updateOrganizationAdaptivePolicyGroup = &updateOrganizationAdaptivePolicyGroup
+func (r ConfigureApiUpdateOrganizationAdaptivePolicyGroupRequest) UpdateOrganizationAdaptivePolicyGroupRequest(updateOrganizationAdaptivePolicyGroupRequest UpdateOrganizationAdaptivePolicyGroupRequest) ConfigureApiUpdateOrganizationAdaptivePolicyGroupRequest {
+	r.updateOrganizationAdaptivePolicyGroupRequest = &updateOrganizationAdaptivePolicyGroupRequest
 	return r
 }
 
@@ -61540,7 +61855,7 @@ func (a *ConfigureApiService) UpdateOrganizationAdaptivePolicyGroupExecute(r Con
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationAdaptivePolicyGroup
+	localVarPostBody = r.updateOrganizationAdaptivePolicyGroupRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -61597,11 +61912,11 @@ type ConfigureApiUpdateOrganizationAdaptivePolicyPolicyRequest struct {
 	ApiService *ConfigureApiService
 	organizationId string
 	id string
-	updateOrganizationAdaptivePolicyPolicy *InlineObject179
+	updateOrganizationAdaptivePolicyPolicyRequest *UpdateOrganizationAdaptivePolicyPolicyRequest
 }
 
-func (r ConfigureApiUpdateOrganizationAdaptivePolicyPolicyRequest) UpdateOrganizationAdaptivePolicyPolicy(updateOrganizationAdaptivePolicyPolicy InlineObject179) ConfigureApiUpdateOrganizationAdaptivePolicyPolicyRequest {
-	r.updateOrganizationAdaptivePolicyPolicy = &updateOrganizationAdaptivePolicyPolicy
+func (r ConfigureApiUpdateOrganizationAdaptivePolicyPolicyRequest) UpdateOrganizationAdaptivePolicyPolicyRequest(updateOrganizationAdaptivePolicyPolicyRequest UpdateOrganizationAdaptivePolicyPolicyRequest) ConfigureApiUpdateOrganizationAdaptivePolicyPolicyRequest {
+	r.updateOrganizationAdaptivePolicyPolicyRequest = &updateOrganizationAdaptivePolicyPolicyRequest
 	return r
 }
 
@@ -61669,7 +61984,7 @@ func (a *ConfigureApiService) UpdateOrganizationAdaptivePolicyPolicyExecute(r Co
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationAdaptivePolicyPolicy
+	localVarPostBody = r.updateOrganizationAdaptivePolicyPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -61725,11 +62040,11 @@ type ConfigureApiUpdateOrganizationAdaptivePolicySettingsRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	updateOrganizationAdaptivePolicySettings *InlineObject180
+	updateOrganizationAdaptivePolicySettingsRequest *UpdateOrganizationAdaptivePolicySettingsRequest
 }
 
-func (r ConfigureApiUpdateOrganizationAdaptivePolicySettingsRequest) UpdateOrganizationAdaptivePolicySettings(updateOrganizationAdaptivePolicySettings InlineObject180) ConfigureApiUpdateOrganizationAdaptivePolicySettingsRequest {
-	r.updateOrganizationAdaptivePolicySettings = &updateOrganizationAdaptivePolicySettings
+func (r ConfigureApiUpdateOrganizationAdaptivePolicySettingsRequest) UpdateOrganizationAdaptivePolicySettingsRequest(updateOrganizationAdaptivePolicySettingsRequest UpdateOrganizationAdaptivePolicySettingsRequest) ConfigureApiUpdateOrganizationAdaptivePolicySettingsRequest {
+	r.updateOrganizationAdaptivePolicySettingsRequest = &updateOrganizationAdaptivePolicySettingsRequest
 	return r
 }
 
@@ -61794,7 +62109,7 @@ func (a *ConfigureApiService) UpdateOrganizationAdaptivePolicySettingsExecute(r 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationAdaptivePolicySettings
+	localVarPostBody = r.updateOrganizationAdaptivePolicySettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -61851,15 +62166,15 @@ type ConfigureApiUpdateOrganizationAdminRequest struct {
 	ApiService *ConfigureApiService
 	organizationId string
 	adminId string
-	updateOrganizationAdmin *InlineObject182
+	updateOrganizationAdminRequest *UpdateOrganizationAdminRequest
 }
 
-func (r ConfigureApiUpdateOrganizationAdminRequest) UpdateOrganizationAdmin(updateOrganizationAdmin InlineObject182) ConfigureApiUpdateOrganizationAdminRequest {
-	r.updateOrganizationAdmin = &updateOrganizationAdmin
+func (r ConfigureApiUpdateOrganizationAdminRequest) UpdateOrganizationAdminRequest(updateOrganizationAdminRequest UpdateOrganizationAdminRequest) ConfigureApiUpdateOrganizationAdminRequest {
+	r.updateOrganizationAdminRequest = &updateOrganizationAdminRequest
 	return r
 }
 
-func (r ConfigureApiUpdateOrganizationAdminRequest) Execute() (*InlineResponse200102, *http.Response, error) {
+func (r ConfigureApiUpdateOrganizationAdminRequest) Execute() (*GetOrganizationAdmins200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationAdminExecute(r)
 }
 
@@ -61883,13 +62198,13 @@ func (a *ConfigureApiService) UpdateOrganizationAdmin(ctx context.Context, organ
 }
 
 // Execute executes the request
-//  @return InlineResponse200102
-func (a *ConfigureApiService) UpdateOrganizationAdminExecute(r ConfigureApiUpdateOrganizationAdminRequest) (*InlineResponse200102, *http.Response, error) {
+//  @return GetOrganizationAdmins200ResponseInner
+func (a *ConfigureApiService) UpdateOrganizationAdminExecute(r ConfigureApiUpdateOrganizationAdminRequest) (*GetOrganizationAdmins200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200102
+		localVarReturnValue  *GetOrganizationAdmins200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateOrganizationAdmin")
@@ -61923,7 +62238,7 @@ func (a *ConfigureApiService) UpdateOrganizationAdminExecute(r ConfigureApiUpdat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationAdmin
+	localVarPostBody = r.updateOrganizationAdminRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -61980,11 +62295,11 @@ type ConfigureApiUpdateOrganizationAlertsProfileRequest struct {
 	ApiService *ConfigureApiService
 	organizationId string
 	alertConfigId string
-	updateOrganizationAlertsProfile *InlineObject184
+	updateOrganizationAlertsProfileRequest *UpdateOrganizationAlertsProfileRequest
 }
 
-func (r ConfigureApiUpdateOrganizationAlertsProfileRequest) UpdateOrganizationAlertsProfile(updateOrganizationAlertsProfile InlineObject184) ConfigureApiUpdateOrganizationAlertsProfileRequest {
-	r.updateOrganizationAlertsProfile = &updateOrganizationAlertsProfile
+func (r ConfigureApiUpdateOrganizationAlertsProfileRequest) UpdateOrganizationAlertsProfileRequest(updateOrganizationAlertsProfileRequest UpdateOrganizationAlertsProfileRequest) ConfigureApiUpdateOrganizationAlertsProfileRequest {
+	r.updateOrganizationAlertsProfileRequest = &updateOrganizationAlertsProfileRequest
 	return r
 }
 
@@ -62052,7 +62367,7 @@ func (a *ConfigureApiService) UpdateOrganizationAlertsProfileExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationAlertsProfile
+	localVarPostBody = r.updateOrganizationAlertsProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -62108,11 +62423,11 @@ type ConfigureApiUpdateOrganizationApplianceSecurityIntrusionRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	updateOrganizationApplianceSecurityIntrusion *InlineObject185
+	updateOrganizationApplianceSecurityIntrusionRequest *UpdateOrganizationApplianceSecurityIntrusionRequest
 }
 
-func (r ConfigureApiUpdateOrganizationApplianceSecurityIntrusionRequest) UpdateOrganizationApplianceSecurityIntrusion(updateOrganizationApplianceSecurityIntrusion InlineObject185) ConfigureApiUpdateOrganizationApplianceSecurityIntrusionRequest {
-	r.updateOrganizationApplianceSecurityIntrusion = &updateOrganizationApplianceSecurityIntrusion
+func (r ConfigureApiUpdateOrganizationApplianceSecurityIntrusionRequest) UpdateOrganizationApplianceSecurityIntrusionRequest(updateOrganizationApplianceSecurityIntrusionRequest UpdateOrganizationApplianceSecurityIntrusionRequest) ConfigureApiUpdateOrganizationApplianceSecurityIntrusionRequest {
+	r.updateOrganizationApplianceSecurityIntrusionRequest = &updateOrganizationApplianceSecurityIntrusionRequest
 	return r
 }
 
@@ -62158,8 +62473,8 @@ func (a *ConfigureApiService) UpdateOrganizationApplianceSecurityIntrusionExecut
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateOrganizationApplianceSecurityIntrusion == nil {
-		return localVarReturnValue, nil, reportError("updateOrganizationApplianceSecurityIntrusion is required and must be specified")
+	if r.updateOrganizationApplianceSecurityIntrusionRequest == nil {
+		return localVarReturnValue, nil, reportError("updateOrganizationApplianceSecurityIntrusionRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -62180,7 +62495,7 @@ func (a *ConfigureApiService) UpdateOrganizationApplianceSecurityIntrusionExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationApplianceSecurityIntrusion
+	localVarPostBody = r.updateOrganizationApplianceSecurityIntrusionRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -62236,15 +62551,15 @@ type ConfigureApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest struct 
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	updateOrganizationApplianceVpnThirdPartyVPNPeers *InlineObject186
+	updateOrganizationApplianceVpnThirdPartyVPNPeersRequest *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest
 }
 
-func (r ConfigureApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) UpdateOrganizationApplianceVpnThirdPartyVPNPeers(updateOrganizationApplianceVpnThirdPartyVPNPeers InlineObject186) ConfigureApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest {
-	r.updateOrganizationApplianceVpnThirdPartyVPNPeers = &updateOrganizationApplianceVpnThirdPartyVPNPeers
+func (r ConfigureApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest(updateOrganizationApplianceVpnThirdPartyVPNPeersRequest UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) ConfigureApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest {
+	r.updateOrganizationApplianceVpnThirdPartyVPNPeersRequest = &updateOrganizationApplianceVpnThirdPartyVPNPeersRequest
 	return r
 }
 
-func (r ConfigureApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) Execute() (*InlineResponse200106, *http.Response, error) {
+func (r ConfigureApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) Execute() (*GetOrganizationApplianceVpnThirdPartyVPNPeers200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationApplianceVpnThirdPartyVPNPeersExecute(r)
 }
 
@@ -62266,13 +62581,13 @@ func (a *ConfigureApiService) UpdateOrganizationApplianceVpnThirdPartyVPNPeers(c
 }
 
 // Execute executes the request
-//  @return InlineResponse200106
-func (a *ConfigureApiService) UpdateOrganizationApplianceVpnThirdPartyVPNPeersExecute(r ConfigureApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) (*InlineResponse200106, *http.Response, error) {
+//  @return GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
+func (a *ConfigureApiService) UpdateOrganizationApplianceVpnThirdPartyVPNPeersExecute(r ConfigureApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) (*GetOrganizationApplianceVpnThirdPartyVPNPeers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200106
+		localVarReturnValue  *GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateOrganizationApplianceVpnThirdPartyVPNPeers")
@@ -62286,8 +62601,8 @@ func (a *ConfigureApiService) UpdateOrganizationApplianceVpnThirdPartyVPNPeersEx
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateOrganizationApplianceVpnThirdPartyVPNPeers == nil {
-		return localVarReturnValue, nil, reportError("updateOrganizationApplianceVpnThirdPartyVPNPeers is required and must be specified")
+	if r.updateOrganizationApplianceVpnThirdPartyVPNPeersRequest == nil {
+		return localVarReturnValue, nil, reportError("updateOrganizationApplianceVpnThirdPartyVPNPeersRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -62308,7 +62623,7 @@ func (a *ConfigureApiService) UpdateOrganizationApplianceVpnThirdPartyVPNPeersEx
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationApplianceVpnThirdPartyVPNPeers
+	localVarPostBody = r.updateOrganizationApplianceVpnThirdPartyVPNPeersRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -62364,15 +62679,15 @@ type ConfigureApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	updateOrganizationApplianceVpnVpnFirewallRules *InlineObject187
+	updateOrganizationApplianceVpnVpnFirewallRulesRequest *UpdateOrganizationApplianceVpnVpnFirewallRulesRequest
 }
 
-func (r ConfigureApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) UpdateOrganizationApplianceVpnVpnFirewallRules(updateOrganizationApplianceVpnVpnFirewallRules InlineObject187) ConfigureApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest {
-	r.updateOrganizationApplianceVpnVpnFirewallRules = &updateOrganizationApplianceVpnVpnFirewallRules
+func (r ConfigureApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) UpdateOrganizationApplianceVpnVpnFirewallRulesRequest(updateOrganizationApplianceVpnVpnFirewallRulesRequest UpdateOrganizationApplianceVpnVpnFirewallRulesRequest) ConfigureApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest {
+	r.updateOrganizationApplianceVpnVpnFirewallRulesRequest = &updateOrganizationApplianceVpnVpnFirewallRulesRequest
 	return r
 }
 
-func (r ConfigureApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) Execute() (*InlineResponse200107, *http.Response, error) {
+func (r ConfigureApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) Execute() (*UpdateOrganizationApplianceVpnVpnFirewallRules200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationApplianceVpnVpnFirewallRulesExecute(r)
 }
 
@@ -62394,13 +62709,13 @@ func (a *ConfigureApiService) UpdateOrganizationApplianceVpnVpnFirewallRules(ctx
 }
 
 // Execute executes the request
-//  @return InlineResponse200107
-func (a *ConfigureApiService) UpdateOrganizationApplianceVpnVpnFirewallRulesExecute(r ConfigureApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) (*InlineResponse200107, *http.Response, error) {
+//  @return UpdateOrganizationApplianceVpnVpnFirewallRules200Response
+func (a *ConfigureApiService) UpdateOrganizationApplianceVpnVpnFirewallRulesExecute(r ConfigureApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) (*UpdateOrganizationApplianceVpnVpnFirewallRules200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200107
+		localVarReturnValue  *UpdateOrganizationApplianceVpnVpnFirewallRules200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateOrganizationApplianceVpnVpnFirewallRules")
@@ -62433,7 +62748,7 @@ func (a *ConfigureApiService) UpdateOrganizationApplianceVpnVpnFirewallRulesExec
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationApplianceVpnVpnFirewallRules
+	localVarPostBody = r.updateOrganizationApplianceVpnVpnFirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -62489,15 +62804,15 @@ type ConfigureApiUpdateOrganizationBrandingPoliciesPrioritiesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	updateOrganizationBrandingPoliciesPriorities *InlineObject189
+	updateOrganizationBrandingPoliciesPrioritiesRequest *UpdateOrganizationBrandingPoliciesPrioritiesRequest
 }
 
-func (r ConfigureApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) UpdateOrganizationBrandingPoliciesPriorities(updateOrganizationBrandingPoliciesPriorities InlineObject189) ConfigureApiUpdateOrganizationBrandingPoliciesPrioritiesRequest {
-	r.updateOrganizationBrandingPoliciesPriorities = &updateOrganizationBrandingPoliciesPriorities
+func (r ConfigureApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) UpdateOrganizationBrandingPoliciesPrioritiesRequest(updateOrganizationBrandingPoliciesPrioritiesRequest UpdateOrganizationBrandingPoliciesPrioritiesRequest) ConfigureApiUpdateOrganizationBrandingPoliciesPrioritiesRequest {
+	r.updateOrganizationBrandingPoliciesPrioritiesRequest = &updateOrganizationBrandingPoliciesPrioritiesRequest
 	return r
 }
 
-func (r ConfigureApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*InlineResponse200109, *http.Response, error) {
+func (r ConfigureApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationBrandingPoliciesPrioritiesExecute(r)
 }
 
@@ -62519,13 +62834,13 @@ func (a *ConfigureApiService) UpdateOrganizationBrandingPoliciesPriorities(ctx c
 }
 
 // Execute executes the request
-//  @return InlineResponse200109
-func (a *ConfigureApiService) UpdateOrganizationBrandingPoliciesPrioritiesExecute(r ConfigureApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) (*InlineResponse200109, *http.Response, error) {
+//  @return GetOrganizationBrandingPoliciesPriorities200Response
+func (a *ConfigureApiService) UpdateOrganizationBrandingPoliciesPrioritiesExecute(r ConfigureApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200109
+		localVarReturnValue  *GetOrganizationBrandingPoliciesPriorities200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateOrganizationBrandingPoliciesPriorities")
@@ -62558,7 +62873,7 @@ func (a *ConfigureApiService) UpdateOrganizationBrandingPoliciesPrioritiesExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationBrandingPoliciesPriorities
+	localVarPostBody = r.updateOrganizationBrandingPoliciesPrioritiesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -62615,15 +62930,15 @@ type ConfigureApiUpdateOrganizationBrandingPolicyRequest struct {
 	ApiService *ConfigureApiService
 	organizationId string
 	brandingPolicyId string
-	updateOrganizationBrandingPolicy *InlineObject190
+	updateOrganizationBrandingPolicyRequest *UpdateOrganizationBrandingPolicyRequest
 }
 
-func (r ConfigureApiUpdateOrganizationBrandingPolicyRequest) UpdateOrganizationBrandingPolicy(updateOrganizationBrandingPolicy InlineObject190) ConfigureApiUpdateOrganizationBrandingPolicyRequest {
-	r.updateOrganizationBrandingPolicy = &updateOrganizationBrandingPolicy
+func (r ConfigureApiUpdateOrganizationBrandingPolicyRequest) UpdateOrganizationBrandingPolicyRequest(updateOrganizationBrandingPolicyRequest UpdateOrganizationBrandingPolicyRequest) ConfigureApiUpdateOrganizationBrandingPolicyRequest {
+	r.updateOrganizationBrandingPolicyRequest = &updateOrganizationBrandingPolicyRequest
 	return r
 }
 
-func (r ConfigureApiUpdateOrganizationBrandingPolicyRequest) Execute() (*InlineResponse200108, *http.Response, error) {
+func (r ConfigureApiUpdateOrganizationBrandingPolicyRequest) Execute() (*GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationBrandingPolicyExecute(r)
 }
 
@@ -62647,13 +62962,13 @@ func (a *ConfigureApiService) UpdateOrganizationBrandingPolicy(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse200108
-func (a *ConfigureApiService) UpdateOrganizationBrandingPolicyExecute(r ConfigureApiUpdateOrganizationBrandingPolicyRequest) (*InlineResponse200108, *http.Response, error) {
+//  @return GetOrganizationBrandingPolicies200ResponseInner
+func (a *ConfigureApiService) UpdateOrganizationBrandingPolicyExecute(r ConfigureApiUpdateOrganizationBrandingPolicyRequest) (*GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200108
+		localVarReturnValue  *GetOrganizationBrandingPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateOrganizationBrandingPolicy")
@@ -62687,7 +63002,7 @@ func (a *ConfigureApiService) UpdateOrganizationBrandingPolicyExecute(r Configur
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationBrandingPolicy
+	localVarPostBody = r.updateOrganizationBrandingPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -62743,11 +63058,11 @@ type ConfigureApiUpdateOrganizationCameraOnboardingStatusesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	updateOrganizationCameraOnboardingStatuses *InlineObject192
+	updateOrganizationCameraOnboardingStatusesRequest *UpdateOrganizationCameraOnboardingStatusesRequest
 }
 
-func (r ConfigureApiUpdateOrganizationCameraOnboardingStatusesRequest) UpdateOrganizationCameraOnboardingStatuses(updateOrganizationCameraOnboardingStatuses InlineObject192) ConfigureApiUpdateOrganizationCameraOnboardingStatusesRequest {
-	r.updateOrganizationCameraOnboardingStatuses = &updateOrganizationCameraOnboardingStatuses
+func (r ConfigureApiUpdateOrganizationCameraOnboardingStatusesRequest) UpdateOrganizationCameraOnboardingStatusesRequest(updateOrganizationCameraOnboardingStatusesRequest UpdateOrganizationCameraOnboardingStatusesRequest) ConfigureApiUpdateOrganizationCameraOnboardingStatusesRequest {
+	r.updateOrganizationCameraOnboardingStatusesRequest = &updateOrganizationCameraOnboardingStatusesRequest
 	return r
 }
 
@@ -62812,7 +63127,7 @@ func (a *ConfigureApiService) UpdateOrganizationCameraOnboardingStatusesExecute(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationCameraOnboardingStatuses
+	localVarPostBody = r.updateOrganizationCameraOnboardingStatusesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -62869,11 +63184,11 @@ type ConfigureApiUpdateOrganizationConfigTemplateRequest struct {
 	ApiService *ConfigureApiService
 	organizationId string
 	configTemplateId string
-	updateOrganizationConfigTemplate *InlineObject196
+	updateOrganizationConfigTemplateRequest *UpdateOrganizationConfigTemplateRequest
 }
 
-func (r ConfigureApiUpdateOrganizationConfigTemplateRequest) UpdateOrganizationConfigTemplate(updateOrganizationConfigTemplate InlineObject196) ConfigureApiUpdateOrganizationConfigTemplateRequest {
-	r.updateOrganizationConfigTemplate = &updateOrganizationConfigTemplate
+func (r ConfigureApiUpdateOrganizationConfigTemplateRequest) UpdateOrganizationConfigTemplateRequest(updateOrganizationConfigTemplateRequest UpdateOrganizationConfigTemplateRequest) ConfigureApiUpdateOrganizationConfigTemplateRequest {
+	r.updateOrganizationConfigTemplateRequest = &updateOrganizationConfigTemplateRequest
 	return r
 }
 
@@ -62941,7 +63256,7 @@ func (a *ConfigureApiService) UpdateOrganizationConfigTemplateExecute(r Configur
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationConfigTemplate
+	localVarPostBody = r.updateOrganizationConfigTemplateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -63000,15 +63315,15 @@ type ConfigureApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest struct
 	configTemplateId string
 	profileId string
 	portId string
-	updateOrganizationConfigTemplateSwitchProfilePort *InlineObject197
+	updateOrganizationConfigTemplateSwitchProfilePortRequest *UpdateOrganizationConfigTemplateSwitchProfilePortRequest
 }
 
-func (r ConfigureApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) UpdateOrganizationConfigTemplateSwitchProfilePort(updateOrganizationConfigTemplateSwitchProfilePort InlineObject197) ConfigureApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest {
-	r.updateOrganizationConfigTemplateSwitchProfilePort = &updateOrganizationConfigTemplateSwitchProfilePort
+func (r ConfigureApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) UpdateOrganizationConfigTemplateSwitchProfilePortRequest(updateOrganizationConfigTemplateSwitchProfilePortRequest UpdateOrganizationConfigTemplateSwitchProfilePortRequest) ConfigureApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest {
+	r.updateOrganizationConfigTemplateSwitchProfilePortRequest = &updateOrganizationConfigTemplateSwitchProfilePortRequest
 	return r
 }
 
-func (r ConfigureApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) Execute() (*InlineResponse200114, *http.Response, error) {
+func (r ConfigureApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) Execute() (*GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationConfigTemplateSwitchProfilePortExecute(r)
 }
 
@@ -63036,13 +63351,13 @@ func (a *ConfigureApiService) UpdateOrganizationConfigTemplateSwitchProfilePort(
 }
 
 // Execute executes the request
-//  @return InlineResponse200114
-func (a *ConfigureApiService) UpdateOrganizationConfigTemplateSwitchProfilePortExecute(r ConfigureApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) (*InlineResponse200114, *http.Response, error) {
+//  @return GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
+func (a *ConfigureApiService) UpdateOrganizationConfigTemplateSwitchProfilePortExecute(r ConfigureApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) (*GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200114
+		localVarReturnValue  *GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateOrganizationConfigTemplateSwitchProfilePort")
@@ -63078,7 +63393,7 @@ func (a *ConfigureApiService) UpdateOrganizationConfigTemplateSwitchProfilePortE
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationConfigTemplateSwitchProfilePort
+	localVarPostBody = r.updateOrganizationConfigTemplateSwitchProfilePortRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -63135,11 +63450,11 @@ type ConfigureApiUpdateOrganizationEarlyAccessFeaturesOptInRequest struct {
 	ApiService *ConfigureApiService
 	organizationId string
 	optInId string
-	updateOrganizationEarlyAccessFeaturesOptIn *InlineObject199
+	updateOrganizationEarlyAccessFeaturesOptInRequest *UpdateOrganizationEarlyAccessFeaturesOptInRequest
 }
 
-func (r ConfigureApiUpdateOrganizationEarlyAccessFeaturesOptInRequest) UpdateOrganizationEarlyAccessFeaturesOptIn(updateOrganizationEarlyAccessFeaturesOptIn InlineObject199) ConfigureApiUpdateOrganizationEarlyAccessFeaturesOptInRequest {
-	r.updateOrganizationEarlyAccessFeaturesOptIn = &updateOrganizationEarlyAccessFeaturesOptIn
+func (r ConfigureApiUpdateOrganizationEarlyAccessFeaturesOptInRequest) UpdateOrganizationEarlyAccessFeaturesOptInRequest(updateOrganizationEarlyAccessFeaturesOptInRequest UpdateOrganizationEarlyAccessFeaturesOptInRequest) ConfigureApiUpdateOrganizationEarlyAccessFeaturesOptInRequest {
+	r.updateOrganizationEarlyAccessFeaturesOptInRequest = &updateOrganizationEarlyAccessFeaturesOptInRequest
 	return r
 }
 
@@ -63207,7 +63522,7 @@ func (a *ConfigureApiService) UpdateOrganizationEarlyAccessFeaturesOptInExecute(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationEarlyAccessFeaturesOptIn
+	localVarPostBody = r.updateOrganizationEarlyAccessFeaturesOptInRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -63264,11 +63579,11 @@ type ConfigureApiUpdateOrganizationInsightMonitoredMediaServerRequest struct {
 	ApiService *ConfigureApiService
 	organizationId string
 	monitoredMediaServerId string
-	updateOrganizationInsightMonitoredMediaServer *InlineObject201
+	updateOrganizationInsightMonitoredMediaServerRequest *UpdateOrganizationInsightMonitoredMediaServerRequest
 }
 
-func (r ConfigureApiUpdateOrganizationInsightMonitoredMediaServerRequest) UpdateOrganizationInsightMonitoredMediaServer(updateOrganizationInsightMonitoredMediaServer InlineObject201) ConfigureApiUpdateOrganizationInsightMonitoredMediaServerRequest {
-	r.updateOrganizationInsightMonitoredMediaServer = &updateOrganizationInsightMonitoredMediaServer
+func (r ConfigureApiUpdateOrganizationInsightMonitoredMediaServerRequest) UpdateOrganizationInsightMonitoredMediaServerRequest(updateOrganizationInsightMonitoredMediaServerRequest UpdateOrganizationInsightMonitoredMediaServerRequest) ConfigureApiUpdateOrganizationInsightMonitoredMediaServerRequest {
+	r.updateOrganizationInsightMonitoredMediaServerRequest = &updateOrganizationInsightMonitoredMediaServerRequest
 	return r
 }
 
@@ -63336,7 +63651,7 @@ func (a *ConfigureApiService) UpdateOrganizationInsightMonitoredMediaServerExecu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationInsightMonitoredMediaServer
+	localVarPostBody = r.updateOrganizationInsightMonitoredMediaServerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -63393,15 +63708,15 @@ type ConfigureApiUpdateOrganizationLicenseRequest struct {
 	ApiService *ConfigureApiService
 	organizationId string
 	licenseId string
-	updateOrganizationLicense *InlineObject211
+	updateOrganizationLicenseRequest *UpdateOrganizationLicenseRequest
 }
 
-func (r ConfigureApiUpdateOrganizationLicenseRequest) UpdateOrganizationLicense(updateOrganizationLicense InlineObject211) ConfigureApiUpdateOrganizationLicenseRequest {
-	r.updateOrganizationLicense = &updateOrganizationLicense
+func (r ConfigureApiUpdateOrganizationLicenseRequest) UpdateOrganizationLicenseRequest(updateOrganizationLicenseRequest UpdateOrganizationLicenseRequest) ConfigureApiUpdateOrganizationLicenseRequest {
+	r.updateOrganizationLicenseRequest = &updateOrganizationLicenseRequest
 	return r
 }
 
-func (r ConfigureApiUpdateOrganizationLicenseRequest) Execute() (*InlineResponse200130, *http.Response, error) {
+func (r ConfigureApiUpdateOrganizationLicenseRequest) Execute() (*GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationLicenseExecute(r)
 }
 
@@ -63425,13 +63740,13 @@ func (a *ConfigureApiService) UpdateOrganizationLicense(ctx context.Context, org
 }
 
 // Execute executes the request
-//  @return InlineResponse200130
-func (a *ConfigureApiService) UpdateOrganizationLicenseExecute(r ConfigureApiUpdateOrganizationLicenseRequest) (*InlineResponse200130, *http.Response, error) {
+//  @return GetOrganizationLicenses200ResponseInner
+func (a *ConfigureApiService) UpdateOrganizationLicenseExecute(r ConfigureApiUpdateOrganizationLicenseRequest) (*GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200130
+		localVarReturnValue  *GetOrganizationLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateOrganizationLicense")
@@ -63465,7 +63780,7 @@ func (a *ConfigureApiService) UpdateOrganizationLicenseExecute(r ConfigureApiUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationLicense
+	localVarPostBody = r.updateOrganizationLicenseRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -63521,15 +63836,15 @@ type ConfigureApiUpdateOrganizationLoginSecurityRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	updateOrganizationLoginSecurity *InlineObject213
+	updateOrganizationLoginSecurityRequest *UpdateOrganizationLoginSecurityRequest
 }
 
-func (r ConfigureApiUpdateOrganizationLoginSecurityRequest) UpdateOrganizationLoginSecurity(updateOrganizationLoginSecurity InlineObject213) ConfigureApiUpdateOrganizationLoginSecurityRequest {
-	r.updateOrganizationLoginSecurity = &updateOrganizationLoginSecurity
+func (r ConfigureApiUpdateOrganizationLoginSecurityRequest) UpdateOrganizationLoginSecurityRequest(updateOrganizationLoginSecurityRequest UpdateOrganizationLoginSecurityRequest) ConfigureApiUpdateOrganizationLoginSecurityRequest {
+	r.updateOrganizationLoginSecurityRequest = &updateOrganizationLoginSecurityRequest
 	return r
 }
 
-func (r ConfigureApiUpdateOrganizationLoginSecurityRequest) Execute() (*InlineResponse200136, *http.Response, error) {
+func (r ConfigureApiUpdateOrganizationLoginSecurityRequest) Execute() (*GetOrganizationLoginSecurity200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationLoginSecurityExecute(r)
 }
 
@@ -63551,13 +63866,13 @@ func (a *ConfigureApiService) UpdateOrganizationLoginSecurity(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse200136
-func (a *ConfigureApiService) UpdateOrganizationLoginSecurityExecute(r ConfigureApiUpdateOrganizationLoginSecurityRequest) (*InlineResponse200136, *http.Response, error) {
+//  @return GetOrganizationLoginSecurity200Response
+func (a *ConfigureApiService) UpdateOrganizationLoginSecurityExecute(r ConfigureApiUpdateOrganizationLoginSecurityRequest) (*GetOrganizationLoginSecurity200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200136
+		localVarReturnValue  *GetOrganizationLoginSecurity200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateOrganizationLoginSecurity")
@@ -63590,7 +63905,7 @@ func (a *ConfigureApiService) UpdateOrganizationLoginSecurityExecute(r Configure
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationLoginSecurity
+	localVarPostBody = r.updateOrganizationLoginSecurityRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -63647,11 +63962,11 @@ type ConfigureApiUpdateOrganizationPolicyObjectRequest struct {
 	ApiService *ConfigureApiService
 	organizationId string
 	policyObjectId string
-	updateOrganizationPolicyObject *InlineObject219
+	updateOrganizationPolicyObjectRequest *UpdateOrganizationPolicyObjectRequest
 }
 
-func (r ConfigureApiUpdateOrganizationPolicyObjectRequest) UpdateOrganizationPolicyObject(updateOrganizationPolicyObject InlineObject219) ConfigureApiUpdateOrganizationPolicyObjectRequest {
-	r.updateOrganizationPolicyObject = &updateOrganizationPolicyObject
+func (r ConfigureApiUpdateOrganizationPolicyObjectRequest) UpdateOrganizationPolicyObjectRequest(updateOrganizationPolicyObjectRequest UpdateOrganizationPolicyObjectRequest) ConfigureApiUpdateOrganizationPolicyObjectRequest {
+	r.updateOrganizationPolicyObjectRequest = &updateOrganizationPolicyObjectRequest
 	return r
 }
 
@@ -63719,7 +64034,7 @@ func (a *ConfigureApiService) UpdateOrganizationPolicyObjectExecute(r ConfigureA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationPolicyObject
+	localVarPostBody = r.updateOrganizationPolicyObjectRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -63776,11 +64091,11 @@ type ConfigureApiUpdateOrganizationPolicyObjectsGroupRequest struct {
 	ApiService *ConfigureApiService
 	organizationId string
 	policyObjectGroupId string
-	updateOrganizationPolicyObjectsGroup *InlineObject218
+	updateOrganizationPolicyObjectsGroupRequest *UpdateOrganizationPolicyObjectsGroupRequest
 }
 
-func (r ConfigureApiUpdateOrganizationPolicyObjectsGroupRequest) UpdateOrganizationPolicyObjectsGroup(updateOrganizationPolicyObjectsGroup InlineObject218) ConfigureApiUpdateOrganizationPolicyObjectsGroupRequest {
-	r.updateOrganizationPolicyObjectsGroup = &updateOrganizationPolicyObjectsGroup
+func (r ConfigureApiUpdateOrganizationPolicyObjectsGroupRequest) UpdateOrganizationPolicyObjectsGroupRequest(updateOrganizationPolicyObjectsGroupRequest UpdateOrganizationPolicyObjectsGroupRequest) ConfigureApiUpdateOrganizationPolicyObjectsGroupRequest {
+	r.updateOrganizationPolicyObjectsGroupRequest = &updateOrganizationPolicyObjectsGroupRequest
 	return r
 }
 
@@ -63848,7 +64163,7 @@ func (a *ConfigureApiService) UpdateOrganizationPolicyObjectsGroupExecute(r Conf
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationPolicyObjectsGroup
+	localVarPostBody = r.updateOrganizationPolicyObjectsGroupRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -63904,15 +64219,15 @@ type ConfigureApiUpdateOrganizationSamlRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	updateOrganizationSaml *InlineObject220
+	updateOrganizationSamlRequest *UpdateOrganizationSamlRequest
 }
 
-func (r ConfigureApiUpdateOrganizationSamlRequest) UpdateOrganizationSaml(updateOrganizationSaml InlineObject220) ConfigureApiUpdateOrganizationSamlRequest {
-	r.updateOrganizationSaml = &updateOrganizationSaml
+func (r ConfigureApiUpdateOrganizationSamlRequest) UpdateOrganizationSamlRequest(updateOrganizationSamlRequest UpdateOrganizationSamlRequest) ConfigureApiUpdateOrganizationSamlRequest {
+	r.updateOrganizationSamlRequest = &updateOrganizationSamlRequest
 	return r
 }
 
-func (r ConfigureApiUpdateOrganizationSamlRequest) Execute() (*InlineResponse200138, *http.Response, error) {
+func (r ConfigureApiUpdateOrganizationSamlRequest) Execute() (*GetOrganizationSaml200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationSamlExecute(r)
 }
 
@@ -63934,13 +64249,13 @@ func (a *ConfigureApiService) UpdateOrganizationSaml(ctx context.Context, organi
 }
 
 // Execute executes the request
-//  @return InlineResponse200138
-func (a *ConfigureApiService) UpdateOrganizationSamlExecute(r ConfigureApiUpdateOrganizationSamlRequest) (*InlineResponse200138, *http.Response, error) {
+//  @return GetOrganizationSaml200Response
+func (a *ConfigureApiService) UpdateOrganizationSamlExecute(r ConfigureApiUpdateOrganizationSamlRequest) (*GetOrganizationSaml200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200138
+		localVarReturnValue  *GetOrganizationSaml200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateOrganizationSaml")
@@ -63973,7 +64288,7 @@ func (a *ConfigureApiService) UpdateOrganizationSamlExecute(r ConfigureApiUpdate
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationSaml
+	localVarPostBody = r.updateOrganizationSamlRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -64030,15 +64345,15 @@ type ConfigureApiUpdateOrganizationSamlIdpRequest struct {
 	ApiService *ConfigureApiService
 	organizationId string
 	idpId string
-	updateOrganizationSamlIdp *InlineObject222
+	updateOrganizationSamlIdpRequest *UpdateOrganizationSamlIdpRequest
 }
 
-func (r ConfigureApiUpdateOrganizationSamlIdpRequest) UpdateOrganizationSamlIdp(updateOrganizationSamlIdp InlineObject222) ConfigureApiUpdateOrganizationSamlIdpRequest {
-	r.updateOrganizationSamlIdp = &updateOrganizationSamlIdp
+func (r ConfigureApiUpdateOrganizationSamlIdpRequest) UpdateOrganizationSamlIdpRequest(updateOrganizationSamlIdpRequest UpdateOrganizationSamlIdpRequest) ConfigureApiUpdateOrganizationSamlIdpRequest {
+	r.updateOrganizationSamlIdpRequest = &updateOrganizationSamlIdpRequest
 	return r
 }
 
-func (r ConfigureApiUpdateOrganizationSamlIdpRequest) Execute() ([]InlineResponse200139, *http.Response, error) {
+func (r ConfigureApiUpdateOrganizationSamlIdpRequest) Execute() ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationSamlIdpExecute(r)
 }
 
@@ -64062,13 +64377,13 @@ func (a *ConfigureApiService) UpdateOrganizationSamlIdp(ctx context.Context, org
 }
 
 // Execute executes the request
-//  @return []InlineResponse200139
-func (a *ConfigureApiService) UpdateOrganizationSamlIdpExecute(r ConfigureApiUpdateOrganizationSamlIdpRequest) ([]InlineResponse200139, *http.Response, error) {
+//  @return []GetOrganizationSamlIdps200ResponseInner
+func (a *ConfigureApiService) UpdateOrganizationSamlIdpExecute(r ConfigureApiUpdateOrganizationSamlIdpRequest) ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200139
+		localVarReturnValue  []GetOrganizationSamlIdps200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateOrganizationSamlIdp")
@@ -64102,7 +64417,7 @@ func (a *ConfigureApiService) UpdateOrganizationSamlIdpExecute(r ConfigureApiUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationSamlIdp
+	localVarPostBody = r.updateOrganizationSamlIdpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -64159,15 +64474,15 @@ type ConfigureApiUpdateOrganizationSamlRoleRequest struct {
 	ApiService *ConfigureApiService
 	organizationId string
 	samlRoleId string
-	updateOrganizationSamlRole *InlineObject224
+	updateOrganizationSamlRoleRequest *UpdateOrganizationSamlRoleRequest
 }
 
-func (r ConfigureApiUpdateOrganizationSamlRoleRequest) UpdateOrganizationSamlRole(updateOrganizationSamlRole InlineObject224) ConfigureApiUpdateOrganizationSamlRoleRequest {
-	r.updateOrganizationSamlRole = &updateOrganizationSamlRole
+func (r ConfigureApiUpdateOrganizationSamlRoleRequest) UpdateOrganizationSamlRoleRequest(updateOrganizationSamlRoleRequest UpdateOrganizationSamlRoleRequest) ConfigureApiUpdateOrganizationSamlRoleRequest {
+	r.updateOrganizationSamlRoleRequest = &updateOrganizationSamlRoleRequest
 	return r
 }
 
-func (r ConfigureApiUpdateOrganizationSamlRoleRequest) Execute() (*InlineResponse200140, *http.Response, error) {
+func (r ConfigureApiUpdateOrganizationSamlRoleRequest) Execute() (*GetOrganizationSamlRoles200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationSamlRoleExecute(r)
 }
 
@@ -64191,13 +64506,13 @@ func (a *ConfigureApiService) UpdateOrganizationSamlRole(ctx context.Context, or
 }
 
 // Execute executes the request
-//  @return InlineResponse200140
-func (a *ConfigureApiService) UpdateOrganizationSamlRoleExecute(r ConfigureApiUpdateOrganizationSamlRoleRequest) (*InlineResponse200140, *http.Response, error) {
+//  @return GetOrganizationSamlRoles200ResponseInner
+func (a *ConfigureApiService) UpdateOrganizationSamlRoleExecute(r ConfigureApiUpdateOrganizationSamlRoleRequest) (*GetOrganizationSamlRoles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200140
+		localVarReturnValue  *GetOrganizationSamlRoles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.UpdateOrganizationSamlRole")
@@ -64231,7 +64546,7 @@ func (a *ConfigureApiService) UpdateOrganizationSamlRoleExecute(r ConfigureApiUp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationSamlRole
+	localVarPostBody = r.updateOrganizationSamlRoleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -64287,11 +64602,11 @@ type ConfigureApiUpdateOrganizationSnmpRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	organizationId string
-	updateOrganizationSnmp *InlineObject225
+	updateOrganizationSnmpRequest *UpdateOrganizationSnmpRequest
 }
 
-func (r ConfigureApiUpdateOrganizationSnmpRequest) UpdateOrganizationSnmp(updateOrganizationSnmp InlineObject225) ConfigureApiUpdateOrganizationSnmpRequest {
-	r.updateOrganizationSnmp = &updateOrganizationSnmp
+func (r ConfigureApiUpdateOrganizationSnmpRequest) UpdateOrganizationSnmpRequest(updateOrganizationSnmpRequest UpdateOrganizationSnmpRequest) ConfigureApiUpdateOrganizationSnmpRequest {
+	r.updateOrganizationSnmpRequest = &updateOrganizationSnmpRequest
 	return r
 }
 
@@ -64356,7 +64671,7 @@ func (a *ConfigureApiService) UpdateOrganizationSnmpExecute(r ConfigureApiUpdate
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationSnmp
+	localVarPostBody = r.updateOrganizationSnmpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -64412,11 +64727,11 @@ type ConfigureApiVmxNetworkDevicesClaimRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	vmxNetworkDevicesClaim *InlineObject78
+	vmxNetworkDevicesClaimRequest *VmxNetworkDevicesClaimRequest
 }
 
-func (r ConfigureApiVmxNetworkDevicesClaimRequest) VmxNetworkDevicesClaim(vmxNetworkDevicesClaim InlineObject78) ConfigureApiVmxNetworkDevicesClaimRequest {
-	r.vmxNetworkDevicesClaim = &vmxNetworkDevicesClaim
+func (r ConfigureApiVmxNetworkDevicesClaimRequest) VmxNetworkDevicesClaimRequest(vmxNetworkDevicesClaimRequest VmxNetworkDevicesClaimRequest) ConfigureApiVmxNetworkDevicesClaimRequest {
+	r.vmxNetworkDevicesClaimRequest = &vmxNetworkDevicesClaimRequest
 	return r
 }
 
@@ -64462,8 +64777,8 @@ func (a *ConfigureApiService) VmxNetworkDevicesClaimExecute(r ConfigureApiVmxNet
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmxNetworkDevicesClaim == nil {
-		return localVarReturnValue, nil, reportError("vmxNetworkDevicesClaim is required and must be specified")
+	if r.vmxNetworkDevicesClaimRequest == nil {
+		return localVarReturnValue, nil, reportError("vmxNetworkDevicesClaimRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -64484,7 +64799,7 @@ func (a *ConfigureApiService) VmxNetworkDevicesClaimExecute(r ConfigureApiVmxNet
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.vmxNetworkDevicesClaim
+	localVarPostBody = r.vmxNetworkDevicesClaimRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -64540,15 +64855,15 @@ type ConfigureApiWipeNetworkSmDevicesRequest struct {
 	ctx context.Context
 	ApiService *ConfigureApiService
 	networkId string
-	wipeNetworkSmDevices *InlineObject108
+	wipeNetworkSmDevicesRequest *WipeNetworkSmDevicesRequest
 }
 
-func (r ConfigureApiWipeNetworkSmDevicesRequest) WipeNetworkSmDevices(wipeNetworkSmDevices InlineObject108) ConfigureApiWipeNetworkSmDevicesRequest {
-	r.wipeNetworkSmDevices = &wipeNetworkSmDevices
+func (r ConfigureApiWipeNetworkSmDevicesRequest) WipeNetworkSmDevicesRequest(wipeNetworkSmDevicesRequest WipeNetworkSmDevicesRequest) ConfigureApiWipeNetworkSmDevicesRequest {
+	r.wipeNetworkSmDevicesRequest = &wipeNetworkSmDevicesRequest
 	return r
 }
 
-func (r ConfigureApiWipeNetworkSmDevicesRequest) Execute() (*InlineResponse20050, *http.Response, error) {
+func (r ConfigureApiWipeNetworkSmDevicesRequest) Execute() (*WipeNetworkSmDevices200Response, *http.Response, error) {
 	return r.ApiService.WipeNetworkSmDevicesExecute(r)
 }
 
@@ -64570,13 +64885,13 @@ func (a *ConfigureApiService) WipeNetworkSmDevices(ctx context.Context, networkI
 }
 
 // Execute executes the request
-//  @return InlineResponse20050
-func (a *ConfigureApiService) WipeNetworkSmDevicesExecute(r ConfigureApiWipeNetworkSmDevicesRequest) (*InlineResponse20050, *http.Response, error) {
+//  @return WipeNetworkSmDevices200Response
+func (a *ConfigureApiService) WipeNetworkSmDevicesExecute(r ConfigureApiWipeNetworkSmDevicesRequest) (*WipeNetworkSmDevices200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20050
+		localVarReturnValue  *WipeNetworkSmDevices200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigureApiService.WipeNetworkSmDevices")
@@ -64609,7 +64924,7 @@ func (a *ConfigureApiService) WipeNetworkSmDevicesExecute(r ConfigureApiWipeNetw
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.wipeNetworkSmDevices
+	localVarPostBody = r.wipeNetworkSmDevicesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

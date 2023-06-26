@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type BrandingPoliciesApiCreateOrganizationBrandingPolicyRequest struct {
 	ctx context.Context
 	ApiService *BrandingPoliciesApiService
 	organizationId string
-	createOrganizationBrandingPolicy *InlineObject188
+	createOrganizationBrandingPolicyRequest *CreateOrganizationBrandingPolicyRequest
 }
 
-func (r BrandingPoliciesApiCreateOrganizationBrandingPolicyRequest) CreateOrganizationBrandingPolicy(createOrganizationBrandingPolicy InlineObject188) BrandingPoliciesApiCreateOrganizationBrandingPolicyRequest {
-	r.createOrganizationBrandingPolicy = &createOrganizationBrandingPolicy
+func (r BrandingPoliciesApiCreateOrganizationBrandingPolicyRequest) CreateOrganizationBrandingPolicyRequest(createOrganizationBrandingPolicyRequest CreateOrganizationBrandingPolicyRequest) BrandingPoliciesApiCreateOrganizationBrandingPolicyRequest {
+	r.createOrganizationBrandingPolicyRequest = &createOrganizationBrandingPolicyRequest
 	return r
 }
 
-func (r BrandingPoliciesApiCreateOrganizationBrandingPolicyRequest) Execute() (*InlineResponse2015, *http.Response, error) {
+func (r BrandingPoliciesApiCreateOrganizationBrandingPolicyRequest) Execute() (*CreateOrganizationBrandingPolicy201Response, *http.Response, error) {
 	return r.ApiService.CreateOrganizationBrandingPolicyExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *BrandingPoliciesApiService) CreateOrganizationBrandingPolicy(ctx contex
 }
 
 // Execute executes the request
-//  @return InlineResponse2015
-func (a *BrandingPoliciesApiService) CreateOrganizationBrandingPolicyExecute(r BrandingPoliciesApiCreateOrganizationBrandingPolicyRequest) (*InlineResponse2015, *http.Response, error) {
+//  @return CreateOrganizationBrandingPolicy201Response
+func (a *BrandingPoliciesApiService) CreateOrganizationBrandingPolicyExecute(r BrandingPoliciesApiCreateOrganizationBrandingPolicyRequest) (*CreateOrganizationBrandingPolicy201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2015
+		localVarReturnValue  *CreateOrganizationBrandingPolicy201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BrandingPoliciesApiService.CreateOrganizationBrandingPolicy")
@@ -96,7 +96,7 @@ func (a *BrandingPoliciesApiService) CreateOrganizationBrandingPolicyExecute(r B
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationBrandingPolicy
+	localVarPostBody = r.createOrganizationBrandingPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -264,7 +264,7 @@ type BrandingPoliciesApiGetOrganizationBrandingPoliciesRequest struct {
 	organizationId string
 }
 
-func (r BrandingPoliciesApiGetOrganizationBrandingPoliciesRequest) Execute() ([]InlineResponse200108, *http.Response, error) {
+func (r BrandingPoliciesApiGetOrganizationBrandingPoliciesRequest) Execute() ([]GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationBrandingPoliciesExecute(r)
 }
 
@@ -286,13 +286,13 @@ func (a *BrandingPoliciesApiService) GetOrganizationBrandingPolicies(ctx context
 }
 
 // Execute executes the request
-//  @return []InlineResponse200108
-func (a *BrandingPoliciesApiService) GetOrganizationBrandingPoliciesExecute(r BrandingPoliciesApiGetOrganizationBrandingPoliciesRequest) ([]InlineResponse200108, *http.Response, error) {
+//  @return []GetOrganizationBrandingPolicies200ResponseInner
+func (a *BrandingPoliciesApiService) GetOrganizationBrandingPoliciesExecute(r BrandingPoliciesApiGetOrganizationBrandingPoliciesRequest) ([]GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200108
+		localVarReturnValue  []GetOrganizationBrandingPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BrandingPoliciesApiService.GetOrganizationBrandingPolicies")
@@ -381,7 +381,7 @@ type BrandingPoliciesApiGetOrganizationBrandingPoliciesPrioritiesRequest struct 
 	organizationId string
 }
 
-func (r BrandingPoliciesApiGetOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*InlineResponse200109, *http.Response, error) {
+func (r BrandingPoliciesApiGetOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationBrandingPoliciesPrioritiesExecute(r)
 }
 
@@ -403,13 +403,13 @@ func (a *BrandingPoliciesApiService) GetOrganizationBrandingPoliciesPriorities(c
 }
 
 // Execute executes the request
-//  @return InlineResponse200109
-func (a *BrandingPoliciesApiService) GetOrganizationBrandingPoliciesPrioritiesExecute(r BrandingPoliciesApiGetOrganizationBrandingPoliciesPrioritiesRequest) (*InlineResponse200109, *http.Response, error) {
+//  @return GetOrganizationBrandingPoliciesPriorities200Response
+func (a *BrandingPoliciesApiService) GetOrganizationBrandingPoliciesPrioritiesExecute(r BrandingPoliciesApiGetOrganizationBrandingPoliciesPrioritiesRequest) (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200109
+		localVarReturnValue  *GetOrganizationBrandingPoliciesPriorities200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BrandingPoliciesApiService.GetOrganizationBrandingPoliciesPriorities")
@@ -499,7 +499,7 @@ type BrandingPoliciesApiGetOrganizationBrandingPolicyRequest struct {
 	brandingPolicyId string
 }
 
-func (r BrandingPoliciesApiGetOrganizationBrandingPolicyRequest) Execute() (*InlineResponse200108, *http.Response, error) {
+func (r BrandingPoliciesApiGetOrganizationBrandingPolicyRequest) Execute() (*GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationBrandingPolicyExecute(r)
 }
 
@@ -523,13 +523,13 @@ func (a *BrandingPoliciesApiService) GetOrganizationBrandingPolicy(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse200108
-func (a *BrandingPoliciesApiService) GetOrganizationBrandingPolicyExecute(r BrandingPoliciesApiGetOrganizationBrandingPolicyRequest) (*InlineResponse200108, *http.Response, error) {
+//  @return GetOrganizationBrandingPolicies200ResponseInner
+func (a *BrandingPoliciesApiService) GetOrganizationBrandingPolicyExecute(r BrandingPoliciesApiGetOrganizationBrandingPolicyRequest) (*GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200108
+		localVarReturnValue  *GetOrganizationBrandingPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BrandingPoliciesApiService.GetOrganizationBrandingPolicy")
@@ -617,15 +617,15 @@ type BrandingPoliciesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest stru
 	ctx context.Context
 	ApiService *BrandingPoliciesApiService
 	organizationId string
-	updateOrganizationBrandingPoliciesPriorities *InlineObject189
+	updateOrganizationBrandingPoliciesPrioritiesRequest *UpdateOrganizationBrandingPoliciesPrioritiesRequest
 }
 
-func (r BrandingPoliciesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) UpdateOrganizationBrandingPoliciesPriorities(updateOrganizationBrandingPoliciesPriorities InlineObject189) BrandingPoliciesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest {
-	r.updateOrganizationBrandingPoliciesPriorities = &updateOrganizationBrandingPoliciesPriorities
+func (r BrandingPoliciesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) UpdateOrganizationBrandingPoliciesPrioritiesRequest(updateOrganizationBrandingPoliciesPrioritiesRequest UpdateOrganizationBrandingPoliciesPrioritiesRequest) BrandingPoliciesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest {
+	r.updateOrganizationBrandingPoliciesPrioritiesRequest = &updateOrganizationBrandingPoliciesPrioritiesRequest
 	return r
 }
 
-func (r BrandingPoliciesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*InlineResponse200109, *http.Response, error) {
+func (r BrandingPoliciesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationBrandingPoliciesPrioritiesExecute(r)
 }
 
@@ -647,13 +647,13 @@ func (a *BrandingPoliciesApiService) UpdateOrganizationBrandingPoliciesPrioritie
 }
 
 // Execute executes the request
-//  @return InlineResponse200109
-func (a *BrandingPoliciesApiService) UpdateOrganizationBrandingPoliciesPrioritiesExecute(r BrandingPoliciesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) (*InlineResponse200109, *http.Response, error) {
+//  @return GetOrganizationBrandingPoliciesPriorities200Response
+func (a *BrandingPoliciesApiService) UpdateOrganizationBrandingPoliciesPrioritiesExecute(r BrandingPoliciesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200109
+		localVarReturnValue  *GetOrganizationBrandingPoliciesPriorities200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BrandingPoliciesApiService.UpdateOrganizationBrandingPoliciesPriorities")
@@ -686,7 +686,7 @@ func (a *BrandingPoliciesApiService) UpdateOrganizationBrandingPoliciesPrioritie
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationBrandingPoliciesPriorities
+	localVarPostBody = r.updateOrganizationBrandingPoliciesPrioritiesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -743,15 +743,15 @@ type BrandingPoliciesApiUpdateOrganizationBrandingPolicyRequest struct {
 	ApiService *BrandingPoliciesApiService
 	organizationId string
 	brandingPolicyId string
-	updateOrganizationBrandingPolicy *InlineObject190
+	updateOrganizationBrandingPolicyRequest *UpdateOrganizationBrandingPolicyRequest
 }
 
-func (r BrandingPoliciesApiUpdateOrganizationBrandingPolicyRequest) UpdateOrganizationBrandingPolicy(updateOrganizationBrandingPolicy InlineObject190) BrandingPoliciesApiUpdateOrganizationBrandingPolicyRequest {
-	r.updateOrganizationBrandingPolicy = &updateOrganizationBrandingPolicy
+func (r BrandingPoliciesApiUpdateOrganizationBrandingPolicyRequest) UpdateOrganizationBrandingPolicyRequest(updateOrganizationBrandingPolicyRequest UpdateOrganizationBrandingPolicyRequest) BrandingPoliciesApiUpdateOrganizationBrandingPolicyRequest {
+	r.updateOrganizationBrandingPolicyRequest = &updateOrganizationBrandingPolicyRequest
 	return r
 }
 
-func (r BrandingPoliciesApiUpdateOrganizationBrandingPolicyRequest) Execute() (*InlineResponse200108, *http.Response, error) {
+func (r BrandingPoliciesApiUpdateOrganizationBrandingPolicyRequest) Execute() (*GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationBrandingPolicyExecute(r)
 }
 
@@ -775,13 +775,13 @@ func (a *BrandingPoliciesApiService) UpdateOrganizationBrandingPolicy(ctx contex
 }
 
 // Execute executes the request
-//  @return InlineResponse200108
-func (a *BrandingPoliciesApiService) UpdateOrganizationBrandingPolicyExecute(r BrandingPoliciesApiUpdateOrganizationBrandingPolicyRequest) (*InlineResponse200108, *http.Response, error) {
+//  @return GetOrganizationBrandingPolicies200ResponseInner
+func (a *BrandingPoliciesApiService) UpdateOrganizationBrandingPolicyExecute(r BrandingPoliciesApiUpdateOrganizationBrandingPolicyRequest) (*GetOrganizationBrandingPolicies200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200108
+		localVarReturnValue  *GetOrganizationBrandingPolicies200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BrandingPoliciesApiService.UpdateOrganizationBrandingPolicy")
@@ -815,7 +815,7 @@ func (a *BrandingPoliciesApiService) UpdateOrganizationBrandingPolicyExecute(r B
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationBrandingPolicy
+	localVarPostBody = r.updateOrganizationBrandingPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -27,11 +28,11 @@ type InventoryApiClaimIntoOrganizationInventoryRequest struct {
 	ctx context.Context
 	ApiService *InventoryApiService
 	organizationId string
-	claimIntoOrganizationInventory *InlineObject202
+	claimIntoOrganizationInventoryRequest *ClaimIntoOrganizationInventoryRequest
 }
 
-func (r InventoryApiClaimIntoOrganizationInventoryRequest) ClaimIntoOrganizationInventory(claimIntoOrganizationInventory InlineObject202) InventoryApiClaimIntoOrganizationInventoryRequest {
-	r.claimIntoOrganizationInventory = &claimIntoOrganizationInventory
+func (r InventoryApiClaimIntoOrganizationInventoryRequest) ClaimIntoOrganizationInventoryRequest(claimIntoOrganizationInventoryRequest ClaimIntoOrganizationInventoryRequest) InventoryApiClaimIntoOrganizationInventoryRequest {
+	r.claimIntoOrganizationInventoryRequest = &claimIntoOrganizationInventoryRequest
 	return r
 }
 
@@ -96,7 +97,7 @@ func (a *InventoryApiService) ClaimIntoOrganizationInventoryExecute(r InventoryA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.claimIntoOrganizationInventory
+	localVarPostBody = r.claimIntoOrganizationInventoryRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -152,11 +153,11 @@ type InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEvent
 	ctx context.Context
 	ApiService *InventoryApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringExportEvent *InlineObject203
+	createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest
 }
 
-func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) CreateOrganizationInventoryOnboardingCloudMonitoringExportEvent(createOrganizationInventoryOnboardingCloudMonitoringExportEvent InlineObject203) InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest {
-	r.createOrganizationInventoryOnboardingCloudMonitoringExportEvent = &createOrganizationInventoryOnboardingCloudMonitoringExportEvent
+func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest(createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest {
+	r.createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest = &createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest
 	return r
 }
 
@@ -202,8 +203,8 @@ func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationInventoryOnboardingCloudMonitoringExportEvent == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringExportEvent is required and must be specified")
+	if r.createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -224,7 +225,7 @@ func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringExportEvent
+	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -280,15 +281,15 @@ type InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportReque
 	ctx context.Context
 	ApiService *InventoryApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringImport *InlineObject204
+	createOrganizationInventoryOnboardingCloudMonitoringImportRequest *CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest
 }
 
-func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) CreateOrganizationInventoryOnboardingCloudMonitoringImport(createOrganizationInventoryOnboardingCloudMonitoringImport InlineObject204) InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest {
-	r.createOrganizationInventoryOnboardingCloudMonitoringImport = &createOrganizationInventoryOnboardingCloudMonitoringImport
+func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest(createOrganizationInventoryOnboardingCloudMonitoringImportRequest CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest {
+	r.createOrganizationInventoryOnboardingCloudMonitoringImportRequest = &createOrganizationInventoryOnboardingCloudMonitoringImportRequest
 	return r
 }
 
-func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) Execute() ([]InlineResponse2016, *http.Response, error) {
+func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) Execute() ([]CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r)
 }
 
@@ -310,13 +311,13 @@ func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 }
 
 // Execute executes the request
-//  @return []InlineResponse2016
-func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) ([]InlineResponse2016, *http.Response, error) {
+//  @return []CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner
+func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) ([]CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2016
+		localVarReturnValue  []CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.CreateOrganizationInventoryOnboardingCloudMonitoringImport")
@@ -330,8 +331,8 @@ func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationInventoryOnboardingCloudMonitoringImport == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringImport is required and must be specified")
+	if r.createOrganizationInventoryOnboardingCloudMonitoringImportRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringImportRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -352,7 +353,7 @@ func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringImport
+	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringImportRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -408,15 +409,15 @@ type InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequ
 	ctx context.Context
 	ApiService *InventoryApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringPrepare *InlineObject205
+	createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest
 }
 
-func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(createOrganizationInventoryOnboardingCloudMonitoringPrepare InlineObject205) InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest {
-	r.createOrganizationInventoryOnboardingCloudMonitoringPrepare = &createOrganizationInventoryOnboardingCloudMonitoringPrepare
+func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest(createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest {
+	r.createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest = &createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest
 	return r
 }
 
-func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) Execute() ([]InlineResponse2017, *http.Response, error) {
+func (r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) Execute() ([]CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r)
 }
 
@@ -438,13 +439,13 @@ func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 }
 
 // Execute executes the request
-//  @return []InlineResponse2017
-func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) ([]InlineResponse2017, *http.Response, error) {
+//  @return []CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner
+func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r InventoryApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) ([]CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2017
+		localVarReturnValue  []CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.CreateOrganizationInventoryOnboardingCloudMonitoringPrepare")
@@ -458,8 +459,8 @@ func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationInventoryOnboardingCloudMonitoringPrepare == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringPrepare is required and must be specified")
+	if r.createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -480,7 +481,7 @@ func (a *InventoryApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringPrepare
+	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -539,7 +540,7 @@ type InventoryApiGetOrganizationInventoryDeviceRequest struct {
 	serial string
 }
 
-func (r InventoryApiGetOrganizationInventoryDeviceRequest) Execute() (*InlineResponse200128, *http.Response, error) {
+func (r InventoryApiGetOrganizationInventoryDeviceRequest) Execute() (*GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryDeviceExecute(r)
 }
 
@@ -563,13 +564,13 @@ func (a *InventoryApiService) GetOrganizationInventoryDevice(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse200128
-func (a *InventoryApiService) GetOrganizationInventoryDeviceExecute(r InventoryApiGetOrganizationInventoryDeviceRequest) (*InlineResponse200128, *http.Response, error) {
+//  @return GetOrganizationInventoryDevices200ResponseInner
+func (a *InventoryApiService) GetOrganizationInventoryDeviceExecute(r InventoryApiGetOrganizationInventoryDeviceRequest) (*GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200128
+		localVarReturnValue  *GetOrganizationInventoryDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.GetOrganizationInventoryDevice")
@@ -750,7 +751,7 @@ func (r InventoryApiGetOrganizationInventoryDevicesRequest) ProductTypes(product
 	return r
 }
 
-func (r InventoryApiGetOrganizationInventoryDevicesRequest) Execute() ([]InlineResponse200128, *http.Response, error) {
+func (r InventoryApiGetOrganizationInventoryDevicesRequest) Execute() ([]GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryDevicesExecute(r)
 }
 
@@ -772,13 +773,13 @@ func (a *InventoryApiService) GetOrganizationInventoryDevices(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse200128
-func (a *InventoryApiService) GetOrganizationInventoryDevicesExecute(r InventoryApiGetOrganizationInventoryDevicesRequest) ([]InlineResponse200128, *http.Response, error) {
+//  @return []GetOrganizationInventoryDevices200ResponseInner
+func (a *InventoryApiService) GetOrganizationInventoryDevicesExecute(r InventoryApiGetOrganizationInventoryDevicesRequest) ([]GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200128
+		localVarReturnValue  []GetOrganizationInventoryDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.GetOrganizationInventoryDevices")
@@ -809,28 +810,84 @@ func (a *InventoryApiService) GetOrganizationInventoryDevicesExecute(r Inventory
 		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
 	}
 	if r.macs != nil {
-		localVarQueryParams.Add("macs", parameterToString(*r.macs, "csv"))
+		t := *r.macs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("macs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("macs", parameterToString(t, "multi"))
+		}
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.models != nil {
-		localVarQueryParams.Add("models", parameterToString(*r.models, "csv"))
+		t := *r.models
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("models", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("models", parameterToString(t, "multi"))
+		}
 	}
 	if r.orderNumbers != nil {
-		localVarQueryParams.Add("orderNumbers", parameterToString(*r.orderNumbers, "csv"))
+		t := *r.orderNumbers
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("orderNumbers", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("orderNumbers", parameterToString(t, "multi"))
+		}
 	}
 	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, "csv"))
+		t := *r.tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
 	}
 	if r.tagsFilterType != nil {
 		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
 	}
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -913,7 +970,7 @@ func (r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequ
 	return r
 }
 
-func (r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) Execute() ([]InlineResponse200129, *http.Response, error) {
+func (r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) Execute() ([]GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r)
 }
 
@@ -935,13 +992,13 @@ func (a *InventoryApiService) GetOrganizationInventoryOnboardingCloudMonitoringI
 }
 
 // Execute executes the request
-//  @return []InlineResponse200129
-func (a *InventoryApiService) GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) ([]InlineResponse200129, *http.Response, error) {
+//  @return []GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner
+func (a *InventoryApiService) GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) ([]GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200129
+		localVarReturnValue  []GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.GetOrganizationInventoryOnboardingCloudMonitoringImports")
@@ -959,7 +1016,17 @@ func (a *InventoryApiService) GetOrganizationInventoryOnboardingCloudMonitoringI
 		return localVarReturnValue, nil, reportError("importIds is required and must be specified")
 	}
 
-	localVarQueryParams.Add("importIds", parameterToString(*r.importIds, "csv"))
+	{
+		t := *r.importIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("importIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("importIds", parameterToString(t, "multi"))
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1062,7 +1129,7 @@ func (r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksReq
 	return r
 }
 
-func (r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRequest) Execute() ([]InlineResponse20012, *http.Response, error) {
+func (r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRequest) Execute() ([]GetNetwork200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryOnboardingCloudMonitoringNetworksExecute(r)
 }
 
@@ -1084,13 +1151,13 @@ func (a *InventoryApiService) GetOrganizationInventoryOnboardingCloudMonitoringN
 }
 
 // Execute executes the request
-//  @return []InlineResponse20012
-func (a *InventoryApiService) GetOrganizationInventoryOnboardingCloudMonitoringNetworksExecute(r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRequest) ([]InlineResponse20012, *http.Response, error) {
+//  @return []GetNetwork200Response
+func (a *InventoryApiService) GetOrganizationInventoryOnboardingCloudMonitoringNetworksExecute(r InventoryApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRequest) ([]GetNetwork200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20012
+		localVarReturnValue  []GetNetwork200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InventoryApiService.GetOrganizationInventoryOnboardingCloudMonitoringNetworks")
@@ -1190,11 +1257,11 @@ type InventoryApiReleaseFromOrganizationInventoryRequest struct {
 	ctx context.Context
 	ApiService *InventoryApiService
 	organizationId string
-	releaseFromOrganizationInventory *InlineObject206
+	releaseFromOrganizationInventoryRequest *ReleaseFromOrganizationInventoryRequest
 }
 
-func (r InventoryApiReleaseFromOrganizationInventoryRequest) ReleaseFromOrganizationInventory(releaseFromOrganizationInventory InlineObject206) InventoryApiReleaseFromOrganizationInventoryRequest {
-	r.releaseFromOrganizationInventory = &releaseFromOrganizationInventory
+func (r InventoryApiReleaseFromOrganizationInventoryRequest) ReleaseFromOrganizationInventoryRequest(releaseFromOrganizationInventoryRequest ReleaseFromOrganizationInventoryRequest) InventoryApiReleaseFromOrganizationInventoryRequest {
+	r.releaseFromOrganizationInventoryRequest = &releaseFromOrganizationInventoryRequest
 	return r
 }
 
@@ -1259,7 +1326,7 @@ func (a *InventoryApiService) ReleaseFromOrganizationInventoryExecute(r Inventor
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.releaseFromOrganizationInventory
+	localVarPostBody = r.releaseFromOrganizationInventoryRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

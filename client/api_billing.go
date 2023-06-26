@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -144,11 +144,11 @@ type BillingApiUpdateNetworkWirelessBillingRequest struct {
 	ctx context.Context
 	ApiService *BillingApiService
 	networkId string
-	updateNetworkWirelessBilling *InlineObject152
+	updateNetworkWirelessBillingRequest *UpdateNetworkWirelessBillingRequest
 }
 
-func (r BillingApiUpdateNetworkWirelessBillingRequest) UpdateNetworkWirelessBilling(updateNetworkWirelessBilling InlineObject152) BillingApiUpdateNetworkWirelessBillingRequest {
-	r.updateNetworkWirelessBilling = &updateNetworkWirelessBilling
+func (r BillingApiUpdateNetworkWirelessBillingRequest) UpdateNetworkWirelessBillingRequest(updateNetworkWirelessBillingRequest UpdateNetworkWirelessBillingRequest) BillingApiUpdateNetworkWirelessBillingRequest {
+	r.updateNetworkWirelessBillingRequest = &updateNetworkWirelessBillingRequest
 	return r
 }
 
@@ -213,7 +213,7 @@ func (a *BillingApiService) UpdateNetworkWirelessBillingExecute(r BillingApiUpda
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessBilling
+	localVarPostBody = r.updateNetworkWirelessBillingRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

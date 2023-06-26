@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type MerakiAuthUsersApiCreateNetworkMerakiAuthUserRequest struct {
 	ctx context.Context
 	ApiService *MerakiAuthUsersApiService
 	networkId string
-	createNetworkMerakiAuthUser *InlineObject92
+	createNetworkMerakiAuthUserRequest *CreateNetworkMerakiAuthUserRequest
 }
 
-func (r MerakiAuthUsersApiCreateNetworkMerakiAuthUserRequest) CreateNetworkMerakiAuthUser(createNetworkMerakiAuthUser InlineObject92) MerakiAuthUsersApiCreateNetworkMerakiAuthUserRequest {
-	r.createNetworkMerakiAuthUser = &createNetworkMerakiAuthUser
+func (r MerakiAuthUsersApiCreateNetworkMerakiAuthUserRequest) CreateNetworkMerakiAuthUserRequest(createNetworkMerakiAuthUserRequest CreateNetworkMerakiAuthUserRequest) MerakiAuthUsersApiCreateNetworkMerakiAuthUserRequest {
+	r.createNetworkMerakiAuthUserRequest = &createNetworkMerakiAuthUserRequest
 	return r
 }
 
-func (r MerakiAuthUsersApiCreateNetworkMerakiAuthUserRequest) Execute() (*InlineResponse20037, *http.Response, error) {
+func (r MerakiAuthUsersApiCreateNetworkMerakiAuthUserRequest) Execute() (*GetNetworkMerakiAuthUsers200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkMerakiAuthUserExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *MerakiAuthUsersApiService) CreateNetworkMerakiAuthUser(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20037
-func (a *MerakiAuthUsersApiService) CreateNetworkMerakiAuthUserExecute(r MerakiAuthUsersApiCreateNetworkMerakiAuthUserRequest) (*InlineResponse20037, *http.Response, error) {
+//  @return GetNetworkMerakiAuthUsers200ResponseInner
+func (a *MerakiAuthUsersApiService) CreateNetworkMerakiAuthUserExecute(r MerakiAuthUsersApiCreateNetworkMerakiAuthUserRequest) (*GetNetworkMerakiAuthUsers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20037
+		localVarReturnValue  *GetNetworkMerakiAuthUsers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MerakiAuthUsersApiService.CreateNetworkMerakiAuthUser")
@@ -77,8 +77,8 @@ func (a *MerakiAuthUsersApiService) CreateNetworkMerakiAuthUserExecute(r MerakiA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkMerakiAuthUser == nil {
-		return localVarReturnValue, nil, reportError("createNetworkMerakiAuthUser is required and must be specified")
+	if r.createNetworkMerakiAuthUserRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkMerakiAuthUserRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *MerakiAuthUsersApiService) CreateNetworkMerakiAuthUserExecute(r MerakiA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkMerakiAuthUser
+	localVarPostBody = r.createNetworkMerakiAuthUserRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -268,7 +268,7 @@ type MerakiAuthUsersApiGetNetworkMerakiAuthUserRequest struct {
 	merakiAuthUserId string
 }
 
-func (r MerakiAuthUsersApiGetNetworkMerakiAuthUserRequest) Execute() (*InlineResponse20037, *http.Response, error) {
+func (r MerakiAuthUsersApiGetNetworkMerakiAuthUserRequest) Execute() (*GetNetworkMerakiAuthUsers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkMerakiAuthUserExecute(r)
 }
 
@@ -292,13 +292,13 @@ func (a *MerakiAuthUsersApiService) GetNetworkMerakiAuthUser(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse20037
-func (a *MerakiAuthUsersApiService) GetNetworkMerakiAuthUserExecute(r MerakiAuthUsersApiGetNetworkMerakiAuthUserRequest) (*InlineResponse20037, *http.Response, error) {
+//  @return GetNetworkMerakiAuthUsers200ResponseInner
+func (a *MerakiAuthUsersApiService) GetNetworkMerakiAuthUserExecute(r MerakiAuthUsersApiGetNetworkMerakiAuthUserRequest) (*GetNetworkMerakiAuthUsers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20037
+		localVarReturnValue  *GetNetworkMerakiAuthUsers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MerakiAuthUsersApiService.GetNetworkMerakiAuthUser")
@@ -388,7 +388,7 @@ type MerakiAuthUsersApiGetNetworkMerakiAuthUsersRequest struct {
 	networkId string
 }
 
-func (r MerakiAuthUsersApiGetNetworkMerakiAuthUsersRequest) Execute() ([]InlineResponse20037, *http.Response, error) {
+func (r MerakiAuthUsersApiGetNetworkMerakiAuthUsersRequest) Execute() ([]GetNetworkMerakiAuthUsers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkMerakiAuthUsersExecute(r)
 }
 
@@ -410,13 +410,13 @@ func (a *MerakiAuthUsersApiService) GetNetworkMerakiAuthUsers(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse20037
-func (a *MerakiAuthUsersApiService) GetNetworkMerakiAuthUsersExecute(r MerakiAuthUsersApiGetNetworkMerakiAuthUsersRequest) ([]InlineResponse20037, *http.Response, error) {
+//  @return []GetNetworkMerakiAuthUsers200ResponseInner
+func (a *MerakiAuthUsersApiService) GetNetworkMerakiAuthUsersExecute(r MerakiAuthUsersApiGetNetworkMerakiAuthUsersRequest) ([]GetNetworkMerakiAuthUsers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20037
+		localVarReturnValue  []GetNetworkMerakiAuthUsers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MerakiAuthUsersApiService.GetNetworkMerakiAuthUsers")
@@ -504,15 +504,15 @@ type MerakiAuthUsersApiUpdateNetworkMerakiAuthUserRequest struct {
 	ApiService *MerakiAuthUsersApiService
 	networkId string
 	merakiAuthUserId string
-	updateNetworkMerakiAuthUser *InlineObject93
+	updateNetworkMerakiAuthUserRequest *UpdateNetworkMerakiAuthUserRequest
 }
 
-func (r MerakiAuthUsersApiUpdateNetworkMerakiAuthUserRequest) UpdateNetworkMerakiAuthUser(updateNetworkMerakiAuthUser InlineObject93) MerakiAuthUsersApiUpdateNetworkMerakiAuthUserRequest {
-	r.updateNetworkMerakiAuthUser = &updateNetworkMerakiAuthUser
+func (r MerakiAuthUsersApiUpdateNetworkMerakiAuthUserRequest) UpdateNetworkMerakiAuthUserRequest(updateNetworkMerakiAuthUserRequest UpdateNetworkMerakiAuthUserRequest) MerakiAuthUsersApiUpdateNetworkMerakiAuthUserRequest {
+	r.updateNetworkMerakiAuthUserRequest = &updateNetworkMerakiAuthUserRequest
 	return r
 }
 
-func (r MerakiAuthUsersApiUpdateNetworkMerakiAuthUserRequest) Execute() (*InlineResponse20037, *http.Response, error) {
+func (r MerakiAuthUsersApiUpdateNetworkMerakiAuthUserRequest) Execute() (*GetNetworkMerakiAuthUsers200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkMerakiAuthUserExecute(r)
 }
 
@@ -536,13 +536,13 @@ func (a *MerakiAuthUsersApiService) UpdateNetworkMerakiAuthUser(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20037
-func (a *MerakiAuthUsersApiService) UpdateNetworkMerakiAuthUserExecute(r MerakiAuthUsersApiUpdateNetworkMerakiAuthUserRequest) (*InlineResponse20037, *http.Response, error) {
+//  @return GetNetworkMerakiAuthUsers200ResponseInner
+func (a *MerakiAuthUsersApiService) UpdateNetworkMerakiAuthUserExecute(r MerakiAuthUsersApiUpdateNetworkMerakiAuthUserRequest) (*GetNetworkMerakiAuthUsers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20037
+		localVarReturnValue  *GetNetworkMerakiAuthUsers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MerakiAuthUsersApiService.UpdateNetworkMerakiAuthUser")
@@ -576,7 +576,7 @@ func (a *MerakiAuthUsersApiService) UpdateNetworkMerakiAuthUserExecute(r MerakiA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkMerakiAuthUser
+	localVarPostBody = r.updateNetworkMerakiAuthUserRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

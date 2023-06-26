@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -29,7 +29,7 @@ type AccessControlListsApiGetNetworkSwitchAccessControlListsRequest struct {
 	networkId string
 }
 
-func (r AccessControlListsApiGetNetworkSwitchAccessControlListsRequest) Execute() (*InlineResponse20067, *http.Response, error) {
+func (r AccessControlListsApiGetNetworkSwitchAccessControlListsRequest) Execute() (*GetNetworkSwitchAccessControlLists200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchAccessControlListsExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *AccessControlListsApiService) GetNetworkSwitchAccessControlLists(ctx co
 }
 
 // Execute executes the request
-//  @return InlineResponse20067
-func (a *AccessControlListsApiService) GetNetworkSwitchAccessControlListsExecute(r AccessControlListsApiGetNetworkSwitchAccessControlListsRequest) (*InlineResponse20067, *http.Response, error) {
+//  @return GetNetworkSwitchAccessControlLists200Response
+func (a *AccessControlListsApiService) GetNetworkSwitchAccessControlListsExecute(r AccessControlListsApiGetNetworkSwitchAccessControlListsRequest) (*GetNetworkSwitchAccessControlLists200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20067
+		localVarReturnValue  *GetNetworkSwitchAccessControlLists200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessControlListsApiService.GetNetworkSwitchAccessControlLists")
@@ -144,15 +144,15 @@ type AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest struct {
 	ctx context.Context
 	ApiService *AccessControlListsApiService
 	networkId string
-	updateNetworkSwitchAccessControlLists *InlineObject112
+	updateNetworkSwitchAccessControlListsRequest *UpdateNetworkSwitchAccessControlListsRequest
 }
 
-func (r AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest) UpdateNetworkSwitchAccessControlLists(updateNetworkSwitchAccessControlLists InlineObject112) AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest {
-	r.updateNetworkSwitchAccessControlLists = &updateNetworkSwitchAccessControlLists
+func (r AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest) UpdateNetworkSwitchAccessControlListsRequest(updateNetworkSwitchAccessControlListsRequest UpdateNetworkSwitchAccessControlListsRequest) AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest {
+	r.updateNetworkSwitchAccessControlListsRequest = &updateNetworkSwitchAccessControlListsRequest
 	return r
 }
 
-func (r AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest) Execute() (*InlineResponse20067, *http.Response, error) {
+func (r AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest) Execute() (*GetNetworkSwitchAccessControlLists200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSwitchAccessControlListsExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *AccessControlListsApiService) UpdateNetworkSwitchAccessControlLists(ctx
 }
 
 // Execute executes the request
-//  @return InlineResponse20067
-func (a *AccessControlListsApiService) UpdateNetworkSwitchAccessControlListsExecute(r AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest) (*InlineResponse20067, *http.Response, error) {
+//  @return GetNetworkSwitchAccessControlLists200Response
+func (a *AccessControlListsApiService) UpdateNetworkSwitchAccessControlListsExecute(r AccessControlListsApiUpdateNetworkSwitchAccessControlListsRequest) (*GetNetworkSwitchAccessControlLists200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20067
+		localVarReturnValue  *GetNetworkSwitchAccessControlLists200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessControlListsApiService.UpdateNetworkSwitchAccessControlLists")
@@ -194,8 +194,8 @@ func (a *AccessControlListsApiService) UpdateNetworkSwitchAccessControlListsExec
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSwitchAccessControlLists == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSwitchAccessControlLists is required and must be specified")
+	if r.updateNetworkSwitchAccessControlListsRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSwitchAccessControlListsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -216,7 +216,7 @@ func (a *AccessControlListsApiService) UpdateNetworkSwitchAccessControlListsExec
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchAccessControlLists
+	localVarPostBody = r.updateNetworkSwitchAccessControlListsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

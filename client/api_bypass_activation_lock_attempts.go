@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type BypassActivationLockAttemptsApiCreateNetworkSmBypassActivationLockAttemptRe
 	ctx context.Context
 	ApiService *BypassActivationLockAttemptsApiService
 	networkId string
-	createNetworkSmBypassActivationLockAttempt *InlineObject102
+	createNetworkSmBypassActivationLockAttemptRequest *CreateNetworkSmBypassActivationLockAttemptRequest
 }
 
-func (r BypassActivationLockAttemptsApiCreateNetworkSmBypassActivationLockAttemptRequest) CreateNetworkSmBypassActivationLockAttempt(createNetworkSmBypassActivationLockAttempt InlineObject102) BypassActivationLockAttemptsApiCreateNetworkSmBypassActivationLockAttemptRequest {
-	r.createNetworkSmBypassActivationLockAttempt = &createNetworkSmBypassActivationLockAttempt
+func (r BypassActivationLockAttemptsApiCreateNetworkSmBypassActivationLockAttemptRequest) CreateNetworkSmBypassActivationLockAttemptRequest(createNetworkSmBypassActivationLockAttemptRequest CreateNetworkSmBypassActivationLockAttemptRequest) BypassActivationLockAttemptsApiCreateNetworkSmBypassActivationLockAttemptRequest {
+	r.createNetworkSmBypassActivationLockAttemptRequest = &createNetworkSmBypassActivationLockAttemptRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *BypassActivationLockAttemptsApiService) CreateNetworkSmBypassActivation
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSmBypassActivationLockAttempt == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSmBypassActivationLockAttempt is required and must be specified")
+	if r.createNetworkSmBypassActivationLockAttemptRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSmBypassActivationLockAttemptRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *BypassActivationLockAttemptsApiService) CreateNetworkSmBypassActivation
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSmBypassActivationLockAttempt
+	localVarPostBody = r.createNetworkSmBypassActivationLockAttemptRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

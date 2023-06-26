@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type AdminsApiCreateOrganizationAdminRequest struct {
 	ctx context.Context
 	ApiService *AdminsApiService
 	organizationId string
-	createOrganizationAdmin *InlineObject181
+	createOrganizationAdminRequest *CreateOrganizationAdminRequest
 }
 
-func (r AdminsApiCreateOrganizationAdminRequest) CreateOrganizationAdmin(createOrganizationAdmin InlineObject181) AdminsApiCreateOrganizationAdminRequest {
-	r.createOrganizationAdmin = &createOrganizationAdmin
+func (r AdminsApiCreateOrganizationAdminRequest) CreateOrganizationAdminRequest(createOrganizationAdminRequest CreateOrganizationAdminRequest) AdminsApiCreateOrganizationAdminRequest {
+	r.createOrganizationAdminRequest = &createOrganizationAdminRequest
 	return r
 }
 
-func (r AdminsApiCreateOrganizationAdminRequest) Execute() (*InlineResponse200102, *http.Response, error) {
+func (r AdminsApiCreateOrganizationAdminRequest) Execute() (*GetOrganizationAdmins200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationAdminExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *AdminsApiService) CreateOrganizationAdmin(ctx context.Context, organiza
 }
 
 // Execute executes the request
-//  @return InlineResponse200102
-func (a *AdminsApiService) CreateOrganizationAdminExecute(r AdminsApiCreateOrganizationAdminRequest) (*InlineResponse200102, *http.Response, error) {
+//  @return GetOrganizationAdmins200ResponseInner
+func (a *AdminsApiService) CreateOrganizationAdminExecute(r AdminsApiCreateOrganizationAdminRequest) (*GetOrganizationAdmins200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200102
+		localVarReturnValue  *GetOrganizationAdmins200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminsApiService.CreateOrganizationAdmin")
@@ -77,8 +77,8 @@ func (a *AdminsApiService) CreateOrganizationAdminExecute(r AdminsApiCreateOrgan
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationAdmin == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationAdmin is required and must be specified")
+	if r.createOrganizationAdminRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationAdminRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *AdminsApiService) CreateOrganizationAdminExecute(r AdminsApiCreateOrgan
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationAdmin
+	localVarPostBody = r.createOrganizationAdminRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -267,7 +267,7 @@ type AdminsApiGetOrganizationAdminsRequest struct {
 	organizationId string
 }
 
-func (r AdminsApiGetOrganizationAdminsRequest) Execute() ([]InlineResponse200102, *http.Response, error) {
+func (r AdminsApiGetOrganizationAdminsRequest) Execute() ([]GetOrganizationAdmins200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationAdminsExecute(r)
 }
 
@@ -289,13 +289,13 @@ func (a *AdminsApiService) GetOrganizationAdmins(ctx context.Context, organizati
 }
 
 // Execute executes the request
-//  @return []InlineResponse200102
-func (a *AdminsApiService) GetOrganizationAdminsExecute(r AdminsApiGetOrganizationAdminsRequest) ([]InlineResponse200102, *http.Response, error) {
+//  @return []GetOrganizationAdmins200ResponseInner
+func (a *AdminsApiService) GetOrganizationAdminsExecute(r AdminsApiGetOrganizationAdminsRequest) ([]GetOrganizationAdmins200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200102
+		localVarReturnValue  []GetOrganizationAdmins200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminsApiService.GetOrganizationAdmins")
@@ -383,15 +383,15 @@ type AdminsApiUpdateOrganizationAdminRequest struct {
 	ApiService *AdminsApiService
 	organizationId string
 	adminId string
-	updateOrganizationAdmin *InlineObject182
+	updateOrganizationAdminRequest *UpdateOrganizationAdminRequest
 }
 
-func (r AdminsApiUpdateOrganizationAdminRequest) UpdateOrganizationAdmin(updateOrganizationAdmin InlineObject182) AdminsApiUpdateOrganizationAdminRequest {
-	r.updateOrganizationAdmin = &updateOrganizationAdmin
+func (r AdminsApiUpdateOrganizationAdminRequest) UpdateOrganizationAdminRequest(updateOrganizationAdminRequest UpdateOrganizationAdminRequest) AdminsApiUpdateOrganizationAdminRequest {
+	r.updateOrganizationAdminRequest = &updateOrganizationAdminRequest
 	return r
 }
 
-func (r AdminsApiUpdateOrganizationAdminRequest) Execute() (*InlineResponse200102, *http.Response, error) {
+func (r AdminsApiUpdateOrganizationAdminRequest) Execute() (*GetOrganizationAdmins200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationAdminExecute(r)
 }
 
@@ -415,13 +415,13 @@ func (a *AdminsApiService) UpdateOrganizationAdmin(ctx context.Context, organiza
 }
 
 // Execute executes the request
-//  @return InlineResponse200102
-func (a *AdminsApiService) UpdateOrganizationAdminExecute(r AdminsApiUpdateOrganizationAdminRequest) (*InlineResponse200102, *http.Response, error) {
+//  @return GetOrganizationAdmins200ResponseInner
+func (a *AdminsApiService) UpdateOrganizationAdminExecute(r AdminsApiUpdateOrganizationAdminRequest) (*GetOrganizationAdmins200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200102
+		localVarReturnValue  *GetOrganizationAdmins200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminsApiService.UpdateOrganizationAdmin")
@@ -455,7 +455,7 @@ func (a *AdminsApiService) UpdateOrganizationAdminExecute(r AdminsApiUpdateOrgan
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationAdmin
+	localVarPostBody = r.updateOrganizationAdminRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type PingApiCreateDeviceLiveToolsPingRequest struct {
 	ctx context.Context
 	ApiService *PingApiService
 	serial string
-	createDeviceLiveToolsPing *InlineObject13
+	createDeviceLiveToolsPingRequest *CreateDeviceLiveToolsPingRequest
 }
 
-func (r PingApiCreateDeviceLiveToolsPingRequest) CreateDeviceLiveToolsPing(createDeviceLiveToolsPing InlineObject13) PingApiCreateDeviceLiveToolsPingRequest {
-	r.createDeviceLiveToolsPing = &createDeviceLiveToolsPing
+func (r PingApiCreateDeviceLiveToolsPingRequest) CreateDeviceLiveToolsPingRequest(createDeviceLiveToolsPingRequest CreateDeviceLiveToolsPingRequest) PingApiCreateDeviceLiveToolsPingRequest {
+	r.createDeviceLiveToolsPingRequest = &createDeviceLiveToolsPingRequest
 	return r
 }
 
-func (r PingApiCreateDeviceLiveToolsPingRequest) Execute() (*InlineResponse2011, *http.Response, error) {
+func (r PingApiCreateDeviceLiveToolsPingRequest) Execute() (*CreateDeviceLiveToolsPing201Response, *http.Response, error) {
 	return r.ApiService.CreateDeviceLiveToolsPingExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *PingApiService) CreateDeviceLiveToolsPing(ctx context.Context, serial s
 }
 
 // Execute executes the request
-//  @return InlineResponse2011
-func (a *PingApiService) CreateDeviceLiveToolsPingExecute(r PingApiCreateDeviceLiveToolsPingRequest) (*InlineResponse2011, *http.Response, error) {
+//  @return CreateDeviceLiveToolsPing201Response
+func (a *PingApiService) CreateDeviceLiveToolsPingExecute(r PingApiCreateDeviceLiveToolsPingRequest) (*CreateDeviceLiveToolsPing201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2011
+		localVarReturnValue  *CreateDeviceLiveToolsPing201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PingApiService.CreateDeviceLiveToolsPing")
@@ -77,8 +77,8 @@ func (a *PingApiService) CreateDeviceLiveToolsPingExecute(r PingApiCreateDeviceL
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createDeviceLiveToolsPing == nil {
-		return localVarReturnValue, nil, reportError("createDeviceLiveToolsPing is required and must be specified")
+	if r.createDeviceLiveToolsPingRequest == nil {
+		return localVarReturnValue, nil, reportError("createDeviceLiveToolsPingRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *PingApiService) CreateDeviceLiveToolsPingExecute(r PingApiCreateDeviceL
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createDeviceLiveToolsPing
+	localVarPostBody = r.createDeviceLiveToolsPingRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -158,7 +158,7 @@ type PingApiGetDeviceLiveToolsPingRequest struct {
 	id string
 }
 
-func (r PingApiGetDeviceLiveToolsPingRequest) Execute() (*InlineResponse2003, *http.Response, error) {
+func (r PingApiGetDeviceLiveToolsPingRequest) Execute() (*GetDeviceLiveToolsPing200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceLiveToolsPingExecute(r)
 }
 
@@ -182,13 +182,13 @@ func (a *PingApiService) GetDeviceLiveToolsPing(ctx context.Context, serial stri
 }
 
 // Execute executes the request
-//  @return InlineResponse2003
-func (a *PingApiService) GetDeviceLiveToolsPingExecute(r PingApiGetDeviceLiveToolsPingRequest) (*InlineResponse2003, *http.Response, error) {
+//  @return GetDeviceLiveToolsPing200Response
+func (a *PingApiService) GetDeviceLiveToolsPingExecute(r PingApiGetDeviceLiveToolsPingRequest) (*GetDeviceLiveToolsPing200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2003
+		localVarReturnValue  *GetDeviceLiveToolsPing200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PingApiService.GetDeviceLiveToolsPing")

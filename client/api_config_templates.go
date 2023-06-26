@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type ConfigTemplatesApiCreateOrganizationConfigTemplateRequest struct {
 	ctx context.Context
 	ApiService *ConfigTemplatesApiService
 	organizationId string
-	createOrganizationConfigTemplate *InlineObject195
+	createOrganizationConfigTemplateRequest *CreateOrganizationConfigTemplateRequest
 }
 
-func (r ConfigTemplatesApiCreateOrganizationConfigTemplateRequest) CreateOrganizationConfigTemplate(createOrganizationConfigTemplate InlineObject195) ConfigTemplatesApiCreateOrganizationConfigTemplateRequest {
-	r.createOrganizationConfigTemplate = &createOrganizationConfigTemplate
+func (r ConfigTemplatesApiCreateOrganizationConfigTemplateRequest) CreateOrganizationConfigTemplateRequest(createOrganizationConfigTemplateRequest CreateOrganizationConfigTemplateRequest) ConfigTemplatesApiCreateOrganizationConfigTemplateRequest {
+	r.createOrganizationConfigTemplateRequest = &createOrganizationConfigTemplateRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *ConfigTemplatesApiService) CreateOrganizationConfigTemplateExecute(r Co
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationConfigTemplate == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationConfigTemplate is required and must be specified")
+	if r.createOrganizationConfigTemplateRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationConfigTemplateRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *ConfigTemplatesApiService) CreateOrganizationConfigTemplateExecute(r Co
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationConfigTemplate
+	localVarPostBody = r.createOrganizationConfigTemplateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -391,7 +391,7 @@ type ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortRequest str
 	portId string
 }
 
-func (r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortRequest) Execute() (*InlineResponse200114, *http.Response, error) {
+func (r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortRequest) Execute() (*GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationConfigTemplateSwitchProfilePortExecute(r)
 }
 
@@ -419,13 +419,13 @@ func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfilePo
 }
 
 // Execute executes the request
-//  @return InlineResponse200114
-func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfilePortExecute(r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortRequest) (*InlineResponse200114, *http.Response, error) {
+//  @return GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
+func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfilePortExecute(r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortRequest) (*GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200114
+		localVarReturnValue  *GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigTemplatesApiService.GetOrganizationConfigTemplateSwitchProfilePort")
@@ -519,7 +519,7 @@ type ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortsRequest st
 	profileId string
 }
 
-func (r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortsRequest) Execute() ([]InlineResponse200114, *http.Response, error) {
+func (r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortsRequest) Execute() ([]GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationConfigTemplateSwitchProfilePortsExecute(r)
 }
 
@@ -545,13 +545,13 @@ func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfilePo
 }
 
 // Execute executes the request
-//  @return []InlineResponse200114
-func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfilePortsExecute(r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortsRequest) ([]InlineResponse200114, *http.Response, error) {
+//  @return []GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
+func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfilePortsExecute(r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilePortsRequest) ([]GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200114
+		localVarReturnValue  []GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigTemplatesApiService.GetOrganizationConfigTemplateSwitchProfilePorts")
@@ -643,7 +643,7 @@ type ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilesRequest struct
 	configTemplateId string
 }
 
-func (r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilesRequest) Execute() ([]InlineResponse200113, *http.Response, error) {
+func (r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilesRequest) Execute() ([]GetOrganizationConfigTemplateSwitchProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationConfigTemplateSwitchProfilesExecute(r)
 }
 
@@ -667,13 +667,13 @@ func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfiles(
 }
 
 // Execute executes the request
-//  @return []InlineResponse200113
-func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfilesExecute(r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilesRequest) ([]InlineResponse200113, *http.Response, error) {
+//  @return []GetOrganizationConfigTemplateSwitchProfiles200ResponseInner
+func (a *ConfigTemplatesApiService) GetOrganizationConfigTemplateSwitchProfilesExecute(r ConfigTemplatesApiGetOrganizationConfigTemplateSwitchProfilesRequest) ([]GetOrganizationConfigTemplateSwitchProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200113
+		localVarReturnValue  []GetOrganizationConfigTemplateSwitchProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigTemplatesApiService.GetOrganizationConfigTemplateSwitchProfiles")
@@ -879,11 +879,11 @@ type ConfigTemplatesApiUpdateOrganizationConfigTemplateRequest struct {
 	ApiService *ConfigTemplatesApiService
 	organizationId string
 	configTemplateId string
-	updateOrganizationConfigTemplate *InlineObject196
+	updateOrganizationConfigTemplateRequest *UpdateOrganizationConfigTemplateRequest
 }
 
-func (r ConfigTemplatesApiUpdateOrganizationConfigTemplateRequest) UpdateOrganizationConfigTemplate(updateOrganizationConfigTemplate InlineObject196) ConfigTemplatesApiUpdateOrganizationConfigTemplateRequest {
-	r.updateOrganizationConfigTemplate = &updateOrganizationConfigTemplate
+func (r ConfigTemplatesApiUpdateOrganizationConfigTemplateRequest) UpdateOrganizationConfigTemplateRequest(updateOrganizationConfigTemplateRequest UpdateOrganizationConfigTemplateRequest) ConfigTemplatesApiUpdateOrganizationConfigTemplateRequest {
+	r.updateOrganizationConfigTemplateRequest = &updateOrganizationConfigTemplateRequest
 	return r
 }
 
@@ -951,7 +951,7 @@ func (a *ConfigTemplatesApiService) UpdateOrganizationConfigTemplateExecute(r Co
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationConfigTemplate
+	localVarPostBody = r.updateOrganizationConfigTemplateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1010,15 +1010,15 @@ type ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest 
 	configTemplateId string
 	profileId string
 	portId string
-	updateOrganizationConfigTemplateSwitchProfilePort *InlineObject197
+	updateOrganizationConfigTemplateSwitchProfilePortRequest *UpdateOrganizationConfigTemplateSwitchProfilePortRequest
 }
 
-func (r ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) UpdateOrganizationConfigTemplateSwitchProfilePort(updateOrganizationConfigTemplateSwitchProfilePort InlineObject197) ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest {
-	r.updateOrganizationConfigTemplateSwitchProfilePort = &updateOrganizationConfigTemplateSwitchProfilePort
+func (r ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) UpdateOrganizationConfigTemplateSwitchProfilePortRequest(updateOrganizationConfigTemplateSwitchProfilePortRequest UpdateOrganizationConfigTemplateSwitchProfilePortRequest) ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest {
+	r.updateOrganizationConfigTemplateSwitchProfilePortRequest = &updateOrganizationConfigTemplateSwitchProfilePortRequest
 	return r
 }
 
-func (r ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) Execute() (*InlineResponse200114, *http.Response, error) {
+func (r ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) Execute() (*GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationConfigTemplateSwitchProfilePortExecute(r)
 }
 
@@ -1046,13 +1046,13 @@ func (a *ConfigTemplatesApiService) UpdateOrganizationConfigTemplateSwitchProfil
 }
 
 // Execute executes the request
-//  @return InlineResponse200114
-func (a *ConfigTemplatesApiService) UpdateOrganizationConfigTemplateSwitchProfilePortExecute(r ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) (*InlineResponse200114, *http.Response, error) {
+//  @return GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
+func (a *ConfigTemplatesApiService) UpdateOrganizationConfigTemplateSwitchProfilePortExecute(r ConfigTemplatesApiUpdateOrganizationConfigTemplateSwitchProfilePortRequest) (*GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200114
+		localVarReturnValue  *GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigTemplatesApiService.UpdateOrganizationConfigTemplateSwitchProfilePort")
@@ -1088,7 +1088,7 @@ func (a *ConfigTemplatesApiService) UpdateOrganizationConfigTemplateSwitchProfil
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationConfigTemplateSwitchProfilePort
+	localVarPostBody = r.updateOrganizationConfigTemplateSwitchProfilePortRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

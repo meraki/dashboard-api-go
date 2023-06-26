@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,7 +17,6 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
-    "github.com/hashicorp/go-retryablehttp"
 	"io"
 	"io/ioutil"
 	"log"
@@ -582,14 +581,9 @@ type service struct {
 // NewAPIClient creates a new API client. Requires a userAgent string describing your application.
 // optionally a custom http.Client to allow for advanced features such as caching.
 func NewAPIClient(cfg *Configuration) *APIClient {
-
-    retryClient := retryablehttp.NewClient()
-    retryClient.RetryMax = 10
-    standardClient := retryClient.StandardClient() // *http.Client
-
-    if cfg.HTTPClient == nil {
-    cfg.HTTPClient = standardClient
-    }
+	if cfg.HTTPClient == nil {
+    		cfg.HTTPClient = &http.Client{}
+    	}
 
 	c := &APIClient{}
 	c.cfg = cfg

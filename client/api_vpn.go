@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -146,7 +147,7 @@ type VpnApiGetNetworkApplianceVpnSiteToSiteVpnRequest struct {
 	networkId string
 }
 
-func (r VpnApiGetNetworkApplianceVpnSiteToSiteVpnRequest) Execute() (*InlineResponse20024, *http.Response, error) {
+func (r VpnApiGetNetworkApplianceVpnSiteToSiteVpnRequest) Execute() (*GetNetworkApplianceVpnSiteToSiteVpn200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceVpnSiteToSiteVpnExecute(r)
 }
 
@@ -168,13 +169,13 @@ func (a *VpnApiService) GetNetworkApplianceVpnSiteToSiteVpn(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20024
-func (a *VpnApiService) GetNetworkApplianceVpnSiteToSiteVpnExecute(r VpnApiGetNetworkApplianceVpnSiteToSiteVpnRequest) (*InlineResponse20024, *http.Response, error) {
+//  @return GetNetworkApplianceVpnSiteToSiteVpn200Response
+func (a *VpnApiService) GetNetworkApplianceVpnSiteToSiteVpnExecute(r VpnApiGetNetworkApplianceVpnSiteToSiteVpnRequest) (*GetNetworkApplianceVpnSiteToSiteVpn200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20024
+		localVarReturnValue  *GetNetworkApplianceVpnSiteToSiteVpn200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VpnApiService.GetNetworkApplianceVpnSiteToSiteVpn")
@@ -486,7 +487,15 @@ func (a *VpnApiService) GetOrganizationApplianceVpnStatsExecute(r VpnApiGetOrgan
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.t0 != nil {
 		localVarQueryParams.Add("t0", parameterToString(*r.t0, ""))
@@ -652,7 +661,15 @@ func (a *VpnApiService) GetOrganizationApplianceVpnStatusesExecute(r VpnApiGetOr
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -728,7 +745,7 @@ type VpnApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest struct {
 	organizationId string
 }
 
-func (r VpnApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest) Execute() (*InlineResponse200106, *http.Response, error) {
+func (r VpnApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest) Execute() (*GetOrganizationApplianceVpnThirdPartyVPNPeers200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationApplianceVpnThirdPartyVPNPeersExecute(r)
 }
 
@@ -750,13 +767,13 @@ func (a *VpnApiService) GetOrganizationApplianceVpnThirdPartyVPNPeers(ctx contex
 }
 
 // Execute executes the request
-//  @return InlineResponse200106
-func (a *VpnApiService) GetOrganizationApplianceVpnThirdPartyVPNPeersExecute(r VpnApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest) (*InlineResponse200106, *http.Response, error) {
+//  @return GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
+func (a *VpnApiService) GetOrganizationApplianceVpnThirdPartyVPNPeersExecute(r VpnApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest) (*GetOrganizationApplianceVpnThirdPartyVPNPeers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200106
+		localVarReturnValue  *GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VpnApiService.GetOrganizationApplianceVpnThirdPartyVPNPeers")
@@ -960,11 +977,11 @@ type VpnApiUpdateNetworkApplianceVpnBgpRequest struct {
 	ctx context.Context
 	ApiService *VpnApiService
 	networkId string
-	updateNetworkApplianceVpnBgp *InlineObject62
+	updateNetworkApplianceVpnBgpRequest *UpdateNetworkApplianceVpnBgpRequest
 }
 
-func (r VpnApiUpdateNetworkApplianceVpnBgpRequest) UpdateNetworkApplianceVpnBgp(updateNetworkApplianceVpnBgp InlineObject62) VpnApiUpdateNetworkApplianceVpnBgpRequest {
-	r.updateNetworkApplianceVpnBgp = &updateNetworkApplianceVpnBgp
+func (r VpnApiUpdateNetworkApplianceVpnBgpRequest) UpdateNetworkApplianceVpnBgpRequest(updateNetworkApplianceVpnBgpRequest UpdateNetworkApplianceVpnBgpRequest) VpnApiUpdateNetworkApplianceVpnBgpRequest {
+	r.updateNetworkApplianceVpnBgpRequest = &updateNetworkApplianceVpnBgpRequest
 	return r
 }
 
@@ -1010,8 +1027,8 @@ func (a *VpnApiService) UpdateNetworkApplianceVpnBgpExecute(r VpnApiUpdateNetwor
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceVpnBgp == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceVpnBgp is required and must be specified")
+	if r.updateNetworkApplianceVpnBgpRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceVpnBgpRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1032,7 +1049,7 @@ func (a *VpnApiService) UpdateNetworkApplianceVpnBgpExecute(r VpnApiUpdateNetwor
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceVpnBgp
+	localVarPostBody = r.updateNetworkApplianceVpnBgpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1088,15 +1105,15 @@ type VpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest struct {
 	ctx context.Context
 	ApiService *VpnApiService
 	networkId string
-	updateNetworkApplianceVpnSiteToSiteVpn *InlineObject63
+	updateNetworkApplianceVpnSiteToSiteVpnRequest *UpdateNetworkApplianceVpnSiteToSiteVpnRequest
 }
 
-func (r VpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) UpdateNetworkApplianceVpnSiteToSiteVpn(updateNetworkApplianceVpnSiteToSiteVpn InlineObject63) VpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest {
-	r.updateNetworkApplianceVpnSiteToSiteVpn = &updateNetworkApplianceVpnSiteToSiteVpn
+func (r VpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) UpdateNetworkApplianceVpnSiteToSiteVpnRequest(updateNetworkApplianceVpnSiteToSiteVpnRequest UpdateNetworkApplianceVpnSiteToSiteVpnRequest) VpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest {
+	r.updateNetworkApplianceVpnSiteToSiteVpnRequest = &updateNetworkApplianceVpnSiteToSiteVpnRequest
 	return r
 }
 
-func (r VpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) Execute() (*InlineResponse20024, *http.Response, error) {
+func (r VpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) Execute() (*GetNetworkApplianceVpnSiteToSiteVpn200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceVpnSiteToSiteVpnExecute(r)
 }
 
@@ -1118,13 +1135,13 @@ func (a *VpnApiService) UpdateNetworkApplianceVpnSiteToSiteVpn(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20024
-func (a *VpnApiService) UpdateNetworkApplianceVpnSiteToSiteVpnExecute(r VpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) (*InlineResponse20024, *http.Response, error) {
+//  @return GetNetworkApplianceVpnSiteToSiteVpn200Response
+func (a *VpnApiService) UpdateNetworkApplianceVpnSiteToSiteVpnExecute(r VpnApiUpdateNetworkApplianceVpnSiteToSiteVpnRequest) (*GetNetworkApplianceVpnSiteToSiteVpn200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20024
+		localVarReturnValue  *GetNetworkApplianceVpnSiteToSiteVpn200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VpnApiService.UpdateNetworkApplianceVpnSiteToSiteVpn")
@@ -1138,8 +1155,8 @@ func (a *VpnApiService) UpdateNetworkApplianceVpnSiteToSiteVpnExecute(r VpnApiUp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceVpnSiteToSiteVpn == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceVpnSiteToSiteVpn is required and must be specified")
+	if r.updateNetworkApplianceVpnSiteToSiteVpnRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceVpnSiteToSiteVpnRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1160,7 +1177,7 @@ func (a *VpnApiService) UpdateNetworkApplianceVpnSiteToSiteVpnExecute(r VpnApiUp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceVpnSiteToSiteVpn
+	localVarPostBody = r.updateNetworkApplianceVpnSiteToSiteVpnRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1217,11 +1234,11 @@ type VpnApiUpdateNetworkWirelessSsidVpnRequest struct {
 	ApiService *VpnApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidVpn *InlineObject169
+	updateNetworkWirelessSsidVpnRequest *UpdateNetworkWirelessSsidVpnRequest
 }
 
-func (r VpnApiUpdateNetworkWirelessSsidVpnRequest) UpdateNetworkWirelessSsidVpn(updateNetworkWirelessSsidVpn InlineObject169) VpnApiUpdateNetworkWirelessSsidVpnRequest {
-	r.updateNetworkWirelessSsidVpn = &updateNetworkWirelessSsidVpn
+func (r VpnApiUpdateNetworkWirelessSsidVpnRequest) UpdateNetworkWirelessSsidVpnRequest(updateNetworkWirelessSsidVpnRequest UpdateNetworkWirelessSsidVpnRequest) VpnApiUpdateNetworkWirelessSsidVpnRequest {
+	r.updateNetworkWirelessSsidVpnRequest = &updateNetworkWirelessSsidVpnRequest
 	return r
 }
 
@@ -1289,7 +1306,7 @@ func (a *VpnApiService) UpdateNetworkWirelessSsidVpnExecute(r VpnApiUpdateNetwor
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidVpn
+	localVarPostBody = r.updateNetworkWirelessSsidVpnRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1345,15 +1362,15 @@ type VpnApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest struct {
 	ctx context.Context
 	ApiService *VpnApiService
 	organizationId string
-	updateOrganizationApplianceVpnThirdPartyVPNPeers *InlineObject186
+	updateOrganizationApplianceVpnThirdPartyVPNPeersRequest *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest
 }
 
-func (r VpnApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) UpdateOrganizationApplianceVpnThirdPartyVPNPeers(updateOrganizationApplianceVpnThirdPartyVPNPeers InlineObject186) VpnApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest {
-	r.updateOrganizationApplianceVpnThirdPartyVPNPeers = &updateOrganizationApplianceVpnThirdPartyVPNPeers
+func (r VpnApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest(updateOrganizationApplianceVpnThirdPartyVPNPeersRequest UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) VpnApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest {
+	r.updateOrganizationApplianceVpnThirdPartyVPNPeersRequest = &updateOrganizationApplianceVpnThirdPartyVPNPeersRequest
 	return r
 }
 
-func (r VpnApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) Execute() (*InlineResponse200106, *http.Response, error) {
+func (r VpnApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) Execute() (*GetOrganizationApplianceVpnThirdPartyVPNPeers200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationApplianceVpnThirdPartyVPNPeersExecute(r)
 }
 
@@ -1375,13 +1392,13 @@ func (a *VpnApiService) UpdateOrganizationApplianceVpnThirdPartyVPNPeers(ctx con
 }
 
 // Execute executes the request
-//  @return InlineResponse200106
-func (a *VpnApiService) UpdateOrganizationApplianceVpnThirdPartyVPNPeersExecute(r VpnApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) (*InlineResponse200106, *http.Response, error) {
+//  @return GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
+func (a *VpnApiService) UpdateOrganizationApplianceVpnThirdPartyVPNPeersExecute(r VpnApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) (*GetOrganizationApplianceVpnThirdPartyVPNPeers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200106
+		localVarReturnValue  *GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VpnApiService.UpdateOrganizationApplianceVpnThirdPartyVPNPeers")
@@ -1395,8 +1412,8 @@ func (a *VpnApiService) UpdateOrganizationApplianceVpnThirdPartyVPNPeersExecute(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateOrganizationApplianceVpnThirdPartyVPNPeers == nil {
-		return localVarReturnValue, nil, reportError("updateOrganizationApplianceVpnThirdPartyVPNPeers is required and must be specified")
+	if r.updateOrganizationApplianceVpnThirdPartyVPNPeersRequest == nil {
+		return localVarReturnValue, nil, reportError("updateOrganizationApplianceVpnThirdPartyVPNPeersRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1417,7 +1434,7 @@ func (a *VpnApiService) UpdateOrganizationApplianceVpnThirdPartyVPNPeersExecute(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationApplianceVpnThirdPartyVPNPeers
+	localVarPostBody = r.updateOrganizationApplianceVpnThirdPartyVPNPeersRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1473,15 +1490,15 @@ type VpnApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest struct {
 	ctx context.Context
 	ApiService *VpnApiService
 	organizationId string
-	updateOrganizationApplianceVpnVpnFirewallRules *InlineObject187
+	updateOrganizationApplianceVpnVpnFirewallRulesRequest *UpdateOrganizationApplianceVpnVpnFirewallRulesRequest
 }
 
-func (r VpnApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) UpdateOrganizationApplianceVpnVpnFirewallRules(updateOrganizationApplianceVpnVpnFirewallRules InlineObject187) VpnApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest {
-	r.updateOrganizationApplianceVpnVpnFirewallRules = &updateOrganizationApplianceVpnVpnFirewallRules
+func (r VpnApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) UpdateOrganizationApplianceVpnVpnFirewallRulesRequest(updateOrganizationApplianceVpnVpnFirewallRulesRequest UpdateOrganizationApplianceVpnVpnFirewallRulesRequest) VpnApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest {
+	r.updateOrganizationApplianceVpnVpnFirewallRulesRequest = &updateOrganizationApplianceVpnVpnFirewallRulesRequest
 	return r
 }
 
-func (r VpnApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) Execute() (*InlineResponse200107, *http.Response, error) {
+func (r VpnApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) Execute() (*UpdateOrganizationApplianceVpnVpnFirewallRules200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationApplianceVpnVpnFirewallRulesExecute(r)
 }
 
@@ -1503,13 +1520,13 @@ func (a *VpnApiService) UpdateOrganizationApplianceVpnVpnFirewallRules(ctx conte
 }
 
 // Execute executes the request
-//  @return InlineResponse200107
-func (a *VpnApiService) UpdateOrganizationApplianceVpnVpnFirewallRulesExecute(r VpnApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) (*InlineResponse200107, *http.Response, error) {
+//  @return UpdateOrganizationApplianceVpnVpnFirewallRules200Response
+func (a *VpnApiService) UpdateOrganizationApplianceVpnVpnFirewallRulesExecute(r VpnApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) (*UpdateOrganizationApplianceVpnVpnFirewallRules200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200107
+		localVarReturnValue  *UpdateOrganizationApplianceVpnVpnFirewallRules200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VpnApiService.UpdateOrganizationApplianceVpnVpnFirewallRules")
@@ -1542,7 +1559,7 @@ func (a *VpnApiService) UpdateOrganizationApplianceVpnVpnFirewallRulesExecute(r 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationApplianceVpnVpnFirewallRules
+	localVarPostBody = r.updateOrganizationApplianceVpnVpnFirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

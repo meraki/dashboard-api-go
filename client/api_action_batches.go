@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type ActionBatchesApiCreateOrganizationActionBatchRequest struct {
 	ctx context.Context
 	ApiService *ActionBatchesApiService
 	organizationId string
-	createOrganizationActionBatch *InlineObject172
+	createOrganizationActionBatchRequest *CreateOrganizationActionBatchRequest
 }
 
-func (r ActionBatchesApiCreateOrganizationActionBatchRequest) CreateOrganizationActionBatch(createOrganizationActionBatch InlineObject172) ActionBatchesApiCreateOrganizationActionBatchRequest {
-	r.createOrganizationActionBatch = &createOrganizationActionBatch
+func (r ActionBatchesApiCreateOrganizationActionBatchRequest) CreateOrganizationActionBatchRequest(createOrganizationActionBatchRequest CreateOrganizationActionBatchRequest) ActionBatchesApiCreateOrganizationActionBatchRequest {
+	r.createOrganizationActionBatchRequest = &createOrganizationActionBatchRequest
 	return r
 }
 
-func (r ActionBatchesApiCreateOrganizationActionBatchRequest) Execute() (*InlineResponse2014, *http.Response, error) {
+func (r ActionBatchesApiCreateOrganizationActionBatchRequest) Execute() (*CreateOrganizationActionBatch201Response, *http.Response, error) {
 	return r.ApiService.CreateOrganizationActionBatchExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *ActionBatchesApiService) CreateOrganizationActionBatch(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse2014
-func (a *ActionBatchesApiService) CreateOrganizationActionBatchExecute(r ActionBatchesApiCreateOrganizationActionBatchRequest) (*InlineResponse2014, *http.Response, error) {
+//  @return CreateOrganizationActionBatch201Response
+func (a *ActionBatchesApiService) CreateOrganizationActionBatchExecute(r ActionBatchesApiCreateOrganizationActionBatchRequest) (*CreateOrganizationActionBatch201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2014
+		localVarReturnValue  *CreateOrganizationActionBatch201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ActionBatchesApiService.CreateOrganizationActionBatch")
@@ -77,8 +77,8 @@ func (a *ActionBatchesApiService) CreateOrganizationActionBatchExecute(r ActionB
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationActionBatch == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationActionBatch is required and must be specified")
+	if r.createOrganizationActionBatchRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationActionBatchRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *ActionBatchesApiService) CreateOrganizationActionBatchExecute(r ActionB
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationActionBatch
+	localVarPostBody = r.createOrganizationActionBatchRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -268,7 +268,7 @@ type ActionBatchesApiGetOrganizationActionBatchRequest struct {
 	actionBatchId string
 }
 
-func (r ActionBatchesApiGetOrganizationActionBatchRequest) Execute() (*InlineResponse2014, *http.Response, error) {
+func (r ActionBatchesApiGetOrganizationActionBatchRequest) Execute() (*CreateOrganizationActionBatch201Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationActionBatchExecute(r)
 }
 
@@ -292,13 +292,13 @@ func (a *ActionBatchesApiService) GetOrganizationActionBatch(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse2014
-func (a *ActionBatchesApiService) GetOrganizationActionBatchExecute(r ActionBatchesApiGetOrganizationActionBatchRequest) (*InlineResponse2014, *http.Response, error) {
+//  @return CreateOrganizationActionBatch201Response
+func (a *ActionBatchesApiService) GetOrganizationActionBatchExecute(r ActionBatchesApiGetOrganizationActionBatchRequest) (*CreateOrganizationActionBatch201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2014
+		localVarReturnValue  *CreateOrganizationActionBatch201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ActionBatchesApiService.GetOrganizationActionBatch")
@@ -514,11 +514,11 @@ type ActionBatchesApiUpdateOrganizationActionBatchRequest struct {
 	ApiService *ActionBatchesApiService
 	organizationId string
 	actionBatchId string
-	updateOrganizationActionBatch *InlineObject173
+	updateOrganizationActionBatchRequest *UpdateOrganizationActionBatchRequest
 }
 
-func (r ActionBatchesApiUpdateOrganizationActionBatchRequest) UpdateOrganizationActionBatch(updateOrganizationActionBatch InlineObject173) ActionBatchesApiUpdateOrganizationActionBatchRequest {
-	r.updateOrganizationActionBatch = &updateOrganizationActionBatch
+func (r ActionBatchesApiUpdateOrganizationActionBatchRequest) UpdateOrganizationActionBatchRequest(updateOrganizationActionBatchRequest UpdateOrganizationActionBatchRequest) ActionBatchesApiUpdateOrganizationActionBatchRequest {
+	r.updateOrganizationActionBatchRequest = &updateOrganizationActionBatchRequest
 	return r
 }
 
@@ -586,7 +586,7 @@ func (a *ActionBatchesApiService) UpdateOrganizationActionBatchExecute(r ActionB
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationActionBatch
+	localVarPostBody = r.updateOrganizationActionBatchRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

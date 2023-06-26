@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -149,11 +149,11 @@ type Hotspot20ApiUpdateNetworkWirelessSsidHotspot20Request struct {
 	ApiService *Hotspot20ApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidHotspot20 *InlineObject163
+	updateNetworkWirelessSsidHotspot20Request *UpdateNetworkWirelessSsidHotspot20Request
 }
 
-func (r Hotspot20ApiUpdateNetworkWirelessSsidHotspot20Request) UpdateNetworkWirelessSsidHotspot20(updateNetworkWirelessSsidHotspot20 InlineObject163) Hotspot20ApiUpdateNetworkWirelessSsidHotspot20Request {
-	r.updateNetworkWirelessSsidHotspot20 = &updateNetworkWirelessSsidHotspot20
+func (r Hotspot20ApiUpdateNetworkWirelessSsidHotspot20Request) UpdateNetworkWirelessSsidHotspot20Request(updateNetworkWirelessSsidHotspot20Request UpdateNetworkWirelessSsidHotspot20Request) Hotspot20ApiUpdateNetworkWirelessSsidHotspot20Request {
+	r.updateNetworkWirelessSsidHotspot20Request = &updateNetworkWirelessSsidHotspot20Request
 	return r
 }
 
@@ -221,7 +221,7 @@ func (a *Hotspot20ApiService) UpdateNetworkWirelessSsidHotspot20Execute(r Hotspo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidHotspot20
+	localVarPostBody = r.updateNetworkWirelessSsidHotspot20Request
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

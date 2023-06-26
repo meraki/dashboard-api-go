@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type MonitoredMediaServersApiCreateOrganizationInsightMonitoredMediaServerReques
 	ctx context.Context
 	ApiService *MonitoredMediaServersApiService
 	organizationId string
-	createOrganizationInsightMonitoredMediaServer *InlineObject200
+	createOrganizationInsightMonitoredMediaServerRequest *CreateOrganizationInsightMonitoredMediaServerRequest
 }
 
-func (r MonitoredMediaServersApiCreateOrganizationInsightMonitoredMediaServerRequest) CreateOrganizationInsightMonitoredMediaServer(createOrganizationInsightMonitoredMediaServer InlineObject200) MonitoredMediaServersApiCreateOrganizationInsightMonitoredMediaServerRequest {
-	r.createOrganizationInsightMonitoredMediaServer = &createOrganizationInsightMonitoredMediaServer
+func (r MonitoredMediaServersApiCreateOrganizationInsightMonitoredMediaServerRequest) CreateOrganizationInsightMonitoredMediaServerRequest(createOrganizationInsightMonitoredMediaServerRequest CreateOrganizationInsightMonitoredMediaServerRequest) MonitoredMediaServersApiCreateOrganizationInsightMonitoredMediaServerRequest {
+	r.createOrganizationInsightMonitoredMediaServerRequest = &createOrganizationInsightMonitoredMediaServerRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *MonitoredMediaServersApiService) CreateOrganizationInsightMonitoredMedi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationInsightMonitoredMediaServer == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationInsightMonitoredMediaServer is required and must be specified")
+	if r.createOrganizationInsightMonitoredMediaServerRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationInsightMonitoredMediaServerRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *MonitoredMediaServersApiService) CreateOrganizationInsightMonitoredMedi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationInsightMonitoredMediaServer
+	localVarPostBody = r.createOrganizationInsightMonitoredMediaServerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -388,7 +388,7 @@ type MonitoredMediaServersApiGetOrganizationInsightMonitoredMediaServersRequest 
 	organizationId string
 }
 
-func (r MonitoredMediaServersApiGetOrganizationInsightMonitoredMediaServersRequest) Execute() ([]InlineResponse200127, *http.Response, error) {
+func (r MonitoredMediaServersApiGetOrganizationInsightMonitoredMediaServersRequest) Execute() ([]GetOrganizationInsightMonitoredMediaServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInsightMonitoredMediaServersExecute(r)
 }
 
@@ -410,13 +410,13 @@ func (a *MonitoredMediaServersApiService) GetOrganizationInsightMonitoredMediaSe
 }
 
 // Execute executes the request
-//  @return []InlineResponse200127
-func (a *MonitoredMediaServersApiService) GetOrganizationInsightMonitoredMediaServersExecute(r MonitoredMediaServersApiGetOrganizationInsightMonitoredMediaServersRequest) ([]InlineResponse200127, *http.Response, error) {
+//  @return []GetOrganizationInsightMonitoredMediaServers200ResponseInner
+func (a *MonitoredMediaServersApiService) GetOrganizationInsightMonitoredMediaServersExecute(r MonitoredMediaServersApiGetOrganizationInsightMonitoredMediaServersRequest) ([]GetOrganizationInsightMonitoredMediaServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200127
+		localVarReturnValue  []GetOrganizationInsightMonitoredMediaServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitoredMediaServersApiService.GetOrganizationInsightMonitoredMediaServers")
@@ -504,11 +504,11 @@ type MonitoredMediaServersApiUpdateOrganizationInsightMonitoredMediaServerReques
 	ApiService *MonitoredMediaServersApiService
 	organizationId string
 	monitoredMediaServerId string
-	updateOrganizationInsightMonitoredMediaServer *InlineObject201
+	updateOrganizationInsightMonitoredMediaServerRequest *UpdateOrganizationInsightMonitoredMediaServerRequest
 }
 
-func (r MonitoredMediaServersApiUpdateOrganizationInsightMonitoredMediaServerRequest) UpdateOrganizationInsightMonitoredMediaServer(updateOrganizationInsightMonitoredMediaServer InlineObject201) MonitoredMediaServersApiUpdateOrganizationInsightMonitoredMediaServerRequest {
-	r.updateOrganizationInsightMonitoredMediaServer = &updateOrganizationInsightMonitoredMediaServer
+func (r MonitoredMediaServersApiUpdateOrganizationInsightMonitoredMediaServerRequest) UpdateOrganizationInsightMonitoredMediaServerRequest(updateOrganizationInsightMonitoredMediaServerRequest UpdateOrganizationInsightMonitoredMediaServerRequest) MonitoredMediaServersApiUpdateOrganizationInsightMonitoredMediaServerRequest {
+	r.updateOrganizationInsightMonitoredMediaServerRequest = &updateOrganizationInsightMonitoredMediaServerRequest
 	return r
 }
 
@@ -576,7 +576,7 @@ func (a *MonitoredMediaServersApiService) UpdateOrganizationInsightMonitoredMedi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationInsightMonitoredMediaServer
+	localVarPostBody = r.updateOrganizationInsightMonitoredMediaServerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

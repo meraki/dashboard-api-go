@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type GroupsApiCreateNetworkFirmwareUpgradesStagedGroupRequest struct {
 	ctx context.Context
 	ApiService *GroupsApiService
 	networkId string
-	createNetworkFirmwareUpgradesStagedGroup *InlineObject85
+	createNetworkFirmwareUpgradesStagedGroupRequest *CreateNetworkFirmwareUpgradesStagedGroupRequest
 }
 
-func (r GroupsApiCreateNetworkFirmwareUpgradesStagedGroupRequest) CreateNetworkFirmwareUpgradesStagedGroup(createNetworkFirmwareUpgradesStagedGroup InlineObject85) GroupsApiCreateNetworkFirmwareUpgradesStagedGroupRequest {
-	r.createNetworkFirmwareUpgradesStagedGroup = &createNetworkFirmwareUpgradesStagedGroup
+func (r GroupsApiCreateNetworkFirmwareUpgradesStagedGroupRequest) CreateNetworkFirmwareUpgradesStagedGroupRequest(createNetworkFirmwareUpgradesStagedGroupRequest CreateNetworkFirmwareUpgradesStagedGroupRequest) GroupsApiCreateNetworkFirmwareUpgradesStagedGroupRequest {
+	r.createNetworkFirmwareUpgradesStagedGroupRequest = &createNetworkFirmwareUpgradesStagedGroupRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *GroupsApiService) CreateNetworkFirmwareUpgradesStagedGroupExecute(r Gro
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkFirmwareUpgradesStagedGroup == nil {
-		return localVarReturnValue, nil, reportError("createNetworkFirmwareUpgradesStagedGroup is required and must be specified")
+	if r.createNetworkFirmwareUpgradesStagedGroupRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkFirmwareUpgradesStagedGroupRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *GroupsApiService) CreateNetworkFirmwareUpgradesStagedGroupExecute(r Gro
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkFirmwareUpgradesStagedGroup
+	localVarPostBody = r.createNetworkFirmwareUpgradesStagedGroupRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -155,11 +155,11 @@ type GroupsApiCreateOrganizationAdaptivePolicyGroupRequest struct {
 	ctx context.Context
 	ApiService *GroupsApiService
 	organizationId string
-	createOrganizationAdaptivePolicyGroup *InlineObject176
+	createOrganizationAdaptivePolicyGroupRequest *CreateOrganizationAdaptivePolicyGroupRequest
 }
 
-func (r GroupsApiCreateOrganizationAdaptivePolicyGroupRequest) CreateOrganizationAdaptivePolicyGroup(createOrganizationAdaptivePolicyGroup InlineObject176) GroupsApiCreateOrganizationAdaptivePolicyGroupRequest {
-	r.createOrganizationAdaptivePolicyGroup = &createOrganizationAdaptivePolicyGroup
+func (r GroupsApiCreateOrganizationAdaptivePolicyGroupRequest) CreateOrganizationAdaptivePolicyGroupRequest(createOrganizationAdaptivePolicyGroupRequest CreateOrganizationAdaptivePolicyGroupRequest) GroupsApiCreateOrganizationAdaptivePolicyGroupRequest {
+	r.createOrganizationAdaptivePolicyGroupRequest = &createOrganizationAdaptivePolicyGroupRequest
 	return r
 }
 
@@ -205,8 +205,8 @@ func (a *GroupsApiService) CreateOrganizationAdaptivePolicyGroupExecute(r Groups
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationAdaptivePolicyGroup == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationAdaptivePolicyGroup is required and must be specified")
+	if r.createOrganizationAdaptivePolicyGroupRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationAdaptivePolicyGroupRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -227,7 +227,7 @@ func (a *GroupsApiService) CreateOrganizationAdaptivePolicyGroupExecute(r Groups
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationAdaptivePolicyGroup
+	localVarPostBody = r.createOrganizationAdaptivePolicyGroupRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -283,11 +283,11 @@ type GroupsApiCreateOrganizationPolicyObjectsGroupRequest struct {
 	ctx context.Context
 	ApiService *GroupsApiService
 	organizationId string
-	createOrganizationPolicyObjectsGroup *InlineObject217
+	createOrganizationPolicyObjectsGroupRequest *CreateOrganizationPolicyObjectsGroupRequest
 }
 
-func (r GroupsApiCreateOrganizationPolicyObjectsGroupRequest) CreateOrganizationPolicyObjectsGroup(createOrganizationPolicyObjectsGroup InlineObject217) GroupsApiCreateOrganizationPolicyObjectsGroupRequest {
-	r.createOrganizationPolicyObjectsGroup = &createOrganizationPolicyObjectsGroup
+func (r GroupsApiCreateOrganizationPolicyObjectsGroupRequest) CreateOrganizationPolicyObjectsGroupRequest(createOrganizationPolicyObjectsGroupRequest CreateOrganizationPolicyObjectsGroupRequest) GroupsApiCreateOrganizationPolicyObjectsGroupRequest {
+	r.createOrganizationPolicyObjectsGroupRequest = &createOrganizationPolicyObjectsGroupRequest
 	return r
 }
 
@@ -333,8 +333,8 @@ func (a *GroupsApiService) CreateOrganizationPolicyObjectsGroupExecute(r GroupsA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationPolicyObjectsGroup == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationPolicyObjectsGroup is required and must be specified")
+	if r.createOrganizationPolicyObjectsGroupRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationPolicyObjectsGroupRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -355,7 +355,7 @@ func (a *GroupsApiService) CreateOrganizationPolicyObjectsGroupExecute(r GroupsA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationPolicyObjectsGroup
+	localVarPostBody = r.createOrganizationPolicyObjectsGroupRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -744,7 +744,7 @@ type GroupsApiGetNetworkFirmwareUpgradesStagedGroupRequest struct {
 	groupId string
 }
 
-func (r GroupsApiGetNetworkFirmwareUpgradesStagedGroupRequest) Execute() (*InlineResponse20033, *http.Response, error) {
+func (r GroupsApiGetNetworkFirmwareUpgradesStagedGroupRequest) Execute() (*GetNetworkFirmwareUpgradesStagedGroups200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkFirmwareUpgradesStagedGroupExecute(r)
 }
 
@@ -768,13 +768,13 @@ func (a *GroupsApiService) GetNetworkFirmwareUpgradesStagedGroup(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InlineResponse20033
-func (a *GroupsApiService) GetNetworkFirmwareUpgradesStagedGroupExecute(r GroupsApiGetNetworkFirmwareUpgradesStagedGroupRequest) (*InlineResponse20033, *http.Response, error) {
+//  @return GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
+func (a *GroupsApiService) GetNetworkFirmwareUpgradesStagedGroupExecute(r GroupsApiGetNetworkFirmwareUpgradesStagedGroupRequest) (*GetNetworkFirmwareUpgradesStagedGroups200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20033
+		localVarReturnValue  *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsApiService.GetNetworkFirmwareUpgradesStagedGroup")
@@ -864,7 +864,7 @@ type GroupsApiGetNetworkFirmwareUpgradesStagedGroupsRequest struct {
 	networkId string
 }
 
-func (r GroupsApiGetNetworkFirmwareUpgradesStagedGroupsRequest) Execute() ([]InlineResponse20033, *http.Response, error) {
+func (r GroupsApiGetNetworkFirmwareUpgradesStagedGroupsRequest) Execute() ([]GetNetworkFirmwareUpgradesStagedGroups200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkFirmwareUpgradesStagedGroupsExecute(r)
 }
 
@@ -886,13 +886,13 @@ func (a *GroupsApiService) GetNetworkFirmwareUpgradesStagedGroups(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20033
-func (a *GroupsApiService) GetNetworkFirmwareUpgradesStagedGroupsExecute(r GroupsApiGetNetworkFirmwareUpgradesStagedGroupsRequest) ([]InlineResponse20033, *http.Response, error) {
+//  @return []GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
+func (a *GroupsApiService) GetNetworkFirmwareUpgradesStagedGroupsExecute(r GroupsApiGetNetworkFirmwareUpgradesStagedGroupsRequest) ([]GetNetworkFirmwareUpgradesStagedGroups200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20033
+		localVarReturnValue  []GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsApiService.GetNetworkFirmwareUpgradesStagedGroups")
@@ -1486,11 +1486,11 @@ type GroupsApiUpdateNetworkFirmwareUpgradesStagedGroupRequest struct {
 	ApiService *GroupsApiService
 	networkId string
 	groupId string
-	updateNetworkFirmwareUpgradesStagedGroup *InlineObject86
+	createNetworkFirmwareUpgradesStagedGroupRequest *CreateNetworkFirmwareUpgradesStagedGroupRequest
 }
 
-func (r GroupsApiUpdateNetworkFirmwareUpgradesStagedGroupRequest) UpdateNetworkFirmwareUpgradesStagedGroup(updateNetworkFirmwareUpgradesStagedGroup InlineObject86) GroupsApiUpdateNetworkFirmwareUpgradesStagedGroupRequest {
-	r.updateNetworkFirmwareUpgradesStagedGroup = &updateNetworkFirmwareUpgradesStagedGroup
+func (r GroupsApiUpdateNetworkFirmwareUpgradesStagedGroupRequest) CreateNetworkFirmwareUpgradesStagedGroupRequest(createNetworkFirmwareUpgradesStagedGroupRequest CreateNetworkFirmwareUpgradesStagedGroupRequest) GroupsApiUpdateNetworkFirmwareUpgradesStagedGroupRequest {
+	r.createNetworkFirmwareUpgradesStagedGroupRequest = &createNetworkFirmwareUpgradesStagedGroupRequest
 	return r
 }
 
@@ -1539,8 +1539,8 @@ func (a *GroupsApiService) UpdateNetworkFirmwareUpgradesStagedGroupExecute(r Gro
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkFirmwareUpgradesStagedGroup == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkFirmwareUpgradesStagedGroup is required and must be specified")
+	if r.createNetworkFirmwareUpgradesStagedGroupRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkFirmwareUpgradesStagedGroupRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1561,7 +1561,7 @@ func (a *GroupsApiService) UpdateNetworkFirmwareUpgradesStagedGroupExecute(r Gro
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkFirmwareUpgradesStagedGroup
+	localVarPostBody = r.createNetworkFirmwareUpgradesStagedGroupRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1618,11 +1618,11 @@ type GroupsApiUpdateOrganizationAdaptivePolicyGroupRequest struct {
 	ApiService *GroupsApiService
 	organizationId string
 	id string
-	updateOrganizationAdaptivePolicyGroup *InlineObject177
+	updateOrganizationAdaptivePolicyGroupRequest *UpdateOrganizationAdaptivePolicyGroupRequest
 }
 
-func (r GroupsApiUpdateOrganizationAdaptivePolicyGroupRequest) UpdateOrganizationAdaptivePolicyGroup(updateOrganizationAdaptivePolicyGroup InlineObject177) GroupsApiUpdateOrganizationAdaptivePolicyGroupRequest {
-	r.updateOrganizationAdaptivePolicyGroup = &updateOrganizationAdaptivePolicyGroup
+func (r GroupsApiUpdateOrganizationAdaptivePolicyGroupRequest) UpdateOrganizationAdaptivePolicyGroupRequest(updateOrganizationAdaptivePolicyGroupRequest UpdateOrganizationAdaptivePolicyGroupRequest) GroupsApiUpdateOrganizationAdaptivePolicyGroupRequest {
+	r.updateOrganizationAdaptivePolicyGroupRequest = &updateOrganizationAdaptivePolicyGroupRequest
 	return r
 }
 
@@ -1690,7 +1690,7 @@ func (a *GroupsApiService) UpdateOrganizationAdaptivePolicyGroupExecute(r Groups
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationAdaptivePolicyGroup
+	localVarPostBody = r.updateOrganizationAdaptivePolicyGroupRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1747,11 +1747,11 @@ type GroupsApiUpdateOrganizationPolicyObjectsGroupRequest struct {
 	ApiService *GroupsApiService
 	organizationId string
 	policyObjectGroupId string
-	updateOrganizationPolicyObjectsGroup *InlineObject218
+	updateOrganizationPolicyObjectsGroupRequest *UpdateOrganizationPolicyObjectsGroupRequest
 }
 
-func (r GroupsApiUpdateOrganizationPolicyObjectsGroupRequest) UpdateOrganizationPolicyObjectsGroup(updateOrganizationPolicyObjectsGroup InlineObject218) GroupsApiUpdateOrganizationPolicyObjectsGroupRequest {
-	r.updateOrganizationPolicyObjectsGroup = &updateOrganizationPolicyObjectsGroup
+func (r GroupsApiUpdateOrganizationPolicyObjectsGroupRequest) UpdateOrganizationPolicyObjectsGroupRequest(updateOrganizationPolicyObjectsGroupRequest UpdateOrganizationPolicyObjectsGroupRequest) GroupsApiUpdateOrganizationPolicyObjectsGroupRequest {
+	r.updateOrganizationPolicyObjectsGroupRequest = &updateOrganizationPolicyObjectsGroupRequest
 	return r
 }
 
@@ -1819,7 +1819,7 @@ func (a *GroupsApiService) UpdateOrganizationPolicyObjectsGroupExecute(r GroupsA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationPolicyObjectsGroup
+	localVarPostBody = r.updateOrganizationPolicyObjectsGroupRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

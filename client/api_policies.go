@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type PoliciesApiCreateOrganizationAdaptivePolicyPolicyRequest struct {
 	ctx context.Context
 	ApiService *PoliciesApiService
 	organizationId string
-	createOrganizationAdaptivePolicyPolicy *InlineObject178
+	createOrganizationAdaptivePolicyPolicyRequest *CreateOrganizationAdaptivePolicyPolicyRequest
 }
 
-func (r PoliciesApiCreateOrganizationAdaptivePolicyPolicyRequest) CreateOrganizationAdaptivePolicyPolicy(createOrganizationAdaptivePolicyPolicy InlineObject178) PoliciesApiCreateOrganizationAdaptivePolicyPolicyRequest {
-	r.createOrganizationAdaptivePolicyPolicy = &createOrganizationAdaptivePolicyPolicy
+func (r PoliciesApiCreateOrganizationAdaptivePolicyPolicyRequest) CreateOrganizationAdaptivePolicyPolicyRequest(createOrganizationAdaptivePolicyPolicyRequest CreateOrganizationAdaptivePolicyPolicyRequest) PoliciesApiCreateOrganizationAdaptivePolicyPolicyRequest {
+	r.createOrganizationAdaptivePolicyPolicyRequest = &createOrganizationAdaptivePolicyPolicyRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *PoliciesApiService) CreateOrganizationAdaptivePolicyPolicyExecute(r Pol
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationAdaptivePolicyPolicy == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationAdaptivePolicyPolicy is required and must be specified")
+	if r.createOrganizationAdaptivePolicyPolicyRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationAdaptivePolicyPolicyRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *PoliciesApiService) CreateOrganizationAdaptivePolicyPolicyExecute(r Pol
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationAdaptivePolicyPolicy
+	localVarPostBody = r.createOrganizationAdaptivePolicyPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -302,7 +302,7 @@ func (r PoliciesApiGetNetworkPoliciesByClientRequest) Timespan(timespan float32)
 	return r
 }
 
-func (r PoliciesApiGetNetworkPoliciesByClientRequest) Execute() ([]InlineResponse20038, *http.Response, error) {
+func (r PoliciesApiGetNetworkPoliciesByClientRequest) Execute() ([]GetNetworkPoliciesByClient200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkPoliciesByClientExecute(r)
 }
 
@@ -324,13 +324,13 @@ func (a *PoliciesApiService) GetNetworkPoliciesByClient(ctx context.Context, net
 }
 
 // Execute executes the request
-//  @return []InlineResponse20038
-func (a *PoliciesApiService) GetNetworkPoliciesByClientExecute(r PoliciesApiGetNetworkPoliciesByClientRequest) ([]InlineResponse20038, *http.Response, error) {
+//  @return []GetNetworkPoliciesByClient200ResponseInner
+func (a *PoliciesApiService) GetNetworkPoliciesByClientExecute(r PoliciesApiGetNetworkPoliciesByClientRequest) ([]GetNetworkPoliciesByClient200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20038
+		localVarReturnValue  []GetNetworkPoliciesByClient200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PoliciesApiService.GetNetworkPoliciesByClient")
@@ -671,11 +671,11 @@ type PoliciesApiUpdateOrganizationAdaptivePolicyPolicyRequest struct {
 	ApiService *PoliciesApiService
 	organizationId string
 	id string
-	updateOrganizationAdaptivePolicyPolicy *InlineObject179
+	updateOrganizationAdaptivePolicyPolicyRequest *UpdateOrganizationAdaptivePolicyPolicyRequest
 }
 
-func (r PoliciesApiUpdateOrganizationAdaptivePolicyPolicyRequest) UpdateOrganizationAdaptivePolicyPolicy(updateOrganizationAdaptivePolicyPolicy InlineObject179) PoliciesApiUpdateOrganizationAdaptivePolicyPolicyRequest {
-	r.updateOrganizationAdaptivePolicyPolicy = &updateOrganizationAdaptivePolicyPolicy
+func (r PoliciesApiUpdateOrganizationAdaptivePolicyPolicyRequest) UpdateOrganizationAdaptivePolicyPolicyRequest(updateOrganizationAdaptivePolicyPolicyRequest UpdateOrganizationAdaptivePolicyPolicyRequest) PoliciesApiUpdateOrganizationAdaptivePolicyPolicyRequest {
+	r.updateOrganizationAdaptivePolicyPolicyRequest = &updateOrganizationAdaptivePolicyPolicyRequest
 	return r
 }
 
@@ -743,7 +743,7 @@ func (a *PoliciesApiService) UpdateOrganizationAdaptivePolicyPolicyExecute(r Pol
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationAdaptivePolicyPolicy
+	localVarPostBody = r.updateOrganizationAdaptivePolicyPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

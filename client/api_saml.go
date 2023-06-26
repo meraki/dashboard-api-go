@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type SamlApiCreateOrganizationSamlIdpRequest struct {
 	ctx context.Context
 	ApiService *SamlApiService
 	organizationId string
-	createOrganizationSamlIdp *InlineObject221
+	createOrganizationSamlIdpRequest *CreateOrganizationSamlIdpRequest
 }
 
-func (r SamlApiCreateOrganizationSamlIdpRequest) CreateOrganizationSamlIdp(createOrganizationSamlIdp InlineObject221) SamlApiCreateOrganizationSamlIdpRequest {
-	r.createOrganizationSamlIdp = &createOrganizationSamlIdp
+func (r SamlApiCreateOrganizationSamlIdpRequest) CreateOrganizationSamlIdpRequest(createOrganizationSamlIdpRequest CreateOrganizationSamlIdpRequest) SamlApiCreateOrganizationSamlIdpRequest {
+	r.createOrganizationSamlIdpRequest = &createOrganizationSamlIdpRequest
 	return r
 }
 
-func (r SamlApiCreateOrganizationSamlIdpRequest) Execute() ([]InlineResponse200139, *http.Response, error) {
+func (r SamlApiCreateOrganizationSamlIdpRequest) Execute() ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationSamlIdpExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *SamlApiService) CreateOrganizationSamlIdp(ctx context.Context, organiza
 }
 
 // Execute executes the request
-//  @return []InlineResponse200139
-func (a *SamlApiService) CreateOrganizationSamlIdpExecute(r SamlApiCreateOrganizationSamlIdpRequest) ([]InlineResponse200139, *http.Response, error) {
+//  @return []GetOrganizationSamlIdps200ResponseInner
+func (a *SamlApiService) CreateOrganizationSamlIdpExecute(r SamlApiCreateOrganizationSamlIdpRequest) ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200139
+		localVarReturnValue  []GetOrganizationSamlIdps200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SamlApiService.CreateOrganizationSamlIdp")
@@ -77,8 +77,8 @@ func (a *SamlApiService) CreateOrganizationSamlIdpExecute(r SamlApiCreateOrganiz
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationSamlIdp == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationSamlIdp is required and must be specified")
+	if r.createOrganizationSamlIdpRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationSamlIdpRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *SamlApiService) CreateOrganizationSamlIdpExecute(r SamlApiCreateOrganiz
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationSamlIdp
+	localVarPostBody = r.createOrganizationSamlIdpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -267,7 +267,7 @@ type SamlApiGetOrganizationSamlRequest struct {
 	organizationId string
 }
 
-func (r SamlApiGetOrganizationSamlRequest) Execute() (*InlineResponse200138, *http.Response, error) {
+func (r SamlApiGetOrganizationSamlRequest) Execute() (*GetOrganizationSaml200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationSamlExecute(r)
 }
 
@@ -289,13 +289,13 @@ func (a *SamlApiService) GetOrganizationSaml(ctx context.Context, organizationId
 }
 
 // Execute executes the request
-//  @return InlineResponse200138
-func (a *SamlApiService) GetOrganizationSamlExecute(r SamlApiGetOrganizationSamlRequest) (*InlineResponse200138, *http.Response, error) {
+//  @return GetOrganizationSaml200Response
+func (a *SamlApiService) GetOrganizationSamlExecute(r SamlApiGetOrganizationSamlRequest) (*GetOrganizationSaml200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200138
+		localVarReturnValue  *GetOrganizationSaml200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SamlApiService.GetOrganizationSaml")
@@ -385,7 +385,7 @@ type SamlApiGetOrganizationSamlIdpRequest struct {
 	idpId string
 }
 
-func (r SamlApiGetOrganizationSamlIdpRequest) Execute() (*InlineResponse200139, *http.Response, error) {
+func (r SamlApiGetOrganizationSamlIdpRequest) Execute() (*GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSamlIdpExecute(r)
 }
 
@@ -409,13 +409,13 @@ func (a *SamlApiService) GetOrganizationSamlIdp(ctx context.Context, organizatio
 }
 
 // Execute executes the request
-//  @return InlineResponse200139
-func (a *SamlApiService) GetOrganizationSamlIdpExecute(r SamlApiGetOrganizationSamlIdpRequest) (*InlineResponse200139, *http.Response, error) {
+//  @return GetOrganizationSamlIdps200ResponseInner
+func (a *SamlApiService) GetOrganizationSamlIdpExecute(r SamlApiGetOrganizationSamlIdpRequest) (*GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200139
+		localVarReturnValue  *GetOrganizationSamlIdps200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SamlApiService.GetOrganizationSamlIdp")
@@ -505,7 +505,7 @@ type SamlApiGetOrganizationSamlIdpsRequest struct {
 	organizationId string
 }
 
-func (r SamlApiGetOrganizationSamlIdpsRequest) Execute() ([]InlineResponse200139, *http.Response, error) {
+func (r SamlApiGetOrganizationSamlIdpsRequest) Execute() ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSamlIdpsExecute(r)
 }
 
@@ -527,13 +527,13 @@ func (a *SamlApiService) GetOrganizationSamlIdps(ctx context.Context, organizati
 }
 
 // Execute executes the request
-//  @return []InlineResponse200139
-func (a *SamlApiService) GetOrganizationSamlIdpsExecute(r SamlApiGetOrganizationSamlIdpsRequest) ([]InlineResponse200139, *http.Response, error) {
+//  @return []GetOrganizationSamlIdps200ResponseInner
+func (a *SamlApiService) GetOrganizationSamlIdpsExecute(r SamlApiGetOrganizationSamlIdpsRequest) ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200139
+		localVarReturnValue  []GetOrganizationSamlIdps200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SamlApiService.GetOrganizationSamlIdps")
@@ -620,15 +620,15 @@ type SamlApiUpdateOrganizationSamlRequest struct {
 	ctx context.Context
 	ApiService *SamlApiService
 	organizationId string
-	updateOrganizationSaml *InlineObject220
+	updateOrganizationSamlRequest *UpdateOrganizationSamlRequest
 }
 
-func (r SamlApiUpdateOrganizationSamlRequest) UpdateOrganizationSaml(updateOrganizationSaml InlineObject220) SamlApiUpdateOrganizationSamlRequest {
-	r.updateOrganizationSaml = &updateOrganizationSaml
+func (r SamlApiUpdateOrganizationSamlRequest) UpdateOrganizationSamlRequest(updateOrganizationSamlRequest UpdateOrganizationSamlRequest) SamlApiUpdateOrganizationSamlRequest {
+	r.updateOrganizationSamlRequest = &updateOrganizationSamlRequest
 	return r
 }
 
-func (r SamlApiUpdateOrganizationSamlRequest) Execute() (*InlineResponse200138, *http.Response, error) {
+func (r SamlApiUpdateOrganizationSamlRequest) Execute() (*GetOrganizationSaml200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationSamlExecute(r)
 }
 
@@ -650,13 +650,13 @@ func (a *SamlApiService) UpdateOrganizationSaml(ctx context.Context, organizatio
 }
 
 // Execute executes the request
-//  @return InlineResponse200138
-func (a *SamlApiService) UpdateOrganizationSamlExecute(r SamlApiUpdateOrganizationSamlRequest) (*InlineResponse200138, *http.Response, error) {
+//  @return GetOrganizationSaml200Response
+func (a *SamlApiService) UpdateOrganizationSamlExecute(r SamlApiUpdateOrganizationSamlRequest) (*GetOrganizationSaml200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200138
+		localVarReturnValue  *GetOrganizationSaml200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SamlApiService.UpdateOrganizationSaml")
@@ -689,7 +689,7 @@ func (a *SamlApiService) UpdateOrganizationSamlExecute(r SamlApiUpdateOrganizati
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationSaml
+	localVarPostBody = r.updateOrganizationSamlRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -746,15 +746,15 @@ type SamlApiUpdateOrganizationSamlIdpRequest struct {
 	ApiService *SamlApiService
 	organizationId string
 	idpId string
-	updateOrganizationSamlIdp *InlineObject222
+	updateOrganizationSamlIdpRequest *UpdateOrganizationSamlIdpRequest
 }
 
-func (r SamlApiUpdateOrganizationSamlIdpRequest) UpdateOrganizationSamlIdp(updateOrganizationSamlIdp InlineObject222) SamlApiUpdateOrganizationSamlIdpRequest {
-	r.updateOrganizationSamlIdp = &updateOrganizationSamlIdp
+func (r SamlApiUpdateOrganizationSamlIdpRequest) UpdateOrganizationSamlIdpRequest(updateOrganizationSamlIdpRequest UpdateOrganizationSamlIdpRequest) SamlApiUpdateOrganizationSamlIdpRequest {
+	r.updateOrganizationSamlIdpRequest = &updateOrganizationSamlIdpRequest
 	return r
 }
 
-func (r SamlApiUpdateOrganizationSamlIdpRequest) Execute() ([]InlineResponse200139, *http.Response, error) {
+func (r SamlApiUpdateOrganizationSamlIdpRequest) Execute() ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationSamlIdpExecute(r)
 }
 
@@ -778,13 +778,13 @@ func (a *SamlApiService) UpdateOrganizationSamlIdp(ctx context.Context, organiza
 }
 
 // Execute executes the request
-//  @return []InlineResponse200139
-func (a *SamlApiService) UpdateOrganizationSamlIdpExecute(r SamlApiUpdateOrganizationSamlIdpRequest) ([]InlineResponse200139, *http.Response, error) {
+//  @return []GetOrganizationSamlIdps200ResponseInner
+func (a *SamlApiService) UpdateOrganizationSamlIdpExecute(r SamlApiUpdateOrganizationSamlIdpRequest) ([]GetOrganizationSamlIdps200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200139
+		localVarReturnValue  []GetOrganizationSamlIdps200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SamlApiService.UpdateOrganizationSamlIdp")
@@ -818,7 +818,7 @@ func (a *SamlApiService) UpdateOrganizationSamlIdpExecute(r SamlApiUpdateOrganiz
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationSamlIdp
+	localVarPostBody = r.updateOrganizationSamlIdpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

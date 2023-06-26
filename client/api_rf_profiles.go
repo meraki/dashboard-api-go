@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type RfProfilesApiCreateNetworkApplianceRfProfileRequest struct {
 	ctx context.Context
 	ApiService *RfProfilesApiService
 	networkId string
-	createNetworkApplianceRfProfile *InlineObject44
+	createNetworkApplianceRfProfileRequest *CreateNetworkApplianceRfProfileRequest
 }
 
-func (r RfProfilesApiCreateNetworkApplianceRfProfileRequest) CreateNetworkApplianceRfProfile(createNetworkApplianceRfProfile InlineObject44) RfProfilesApiCreateNetworkApplianceRfProfileRequest {
-	r.createNetworkApplianceRfProfile = &createNetworkApplianceRfProfile
+func (r RfProfilesApiCreateNetworkApplianceRfProfileRequest) CreateNetworkApplianceRfProfileRequest(createNetworkApplianceRfProfileRequest CreateNetworkApplianceRfProfileRequest) RfProfilesApiCreateNetworkApplianceRfProfileRequest {
+	r.createNetworkApplianceRfProfileRequest = &createNetworkApplianceRfProfileRequest
 	return r
 }
 
-func (r RfProfilesApiCreateNetworkApplianceRfProfileRequest) Execute() (*InlineResponse20017Assigned, *http.Response, error) {
+func (r RfProfilesApiCreateNetworkApplianceRfProfileRequest) Execute() (*GetNetworkApplianceRfProfiles200ResponseAssignedInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkApplianceRfProfileExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *RfProfilesApiService) CreateNetworkApplianceRfProfile(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20017Assigned
-func (a *RfProfilesApiService) CreateNetworkApplianceRfProfileExecute(r RfProfilesApiCreateNetworkApplianceRfProfileRequest) (*InlineResponse20017Assigned, *http.Response, error) {
+//  @return GetNetworkApplianceRfProfiles200ResponseAssignedInner
+func (a *RfProfilesApiService) CreateNetworkApplianceRfProfileExecute(r RfProfilesApiCreateNetworkApplianceRfProfileRequest) (*GetNetworkApplianceRfProfiles200ResponseAssignedInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20017Assigned
+		localVarReturnValue  *GetNetworkApplianceRfProfiles200ResponseAssignedInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RfProfilesApiService.CreateNetworkApplianceRfProfile")
@@ -77,8 +77,8 @@ func (a *RfProfilesApiService) CreateNetworkApplianceRfProfileExecute(r RfProfil
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkApplianceRfProfile == nil {
-		return localVarReturnValue, nil, reportError("createNetworkApplianceRfProfile is required and must be specified")
+	if r.createNetworkApplianceRfProfileRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkApplianceRfProfileRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *RfProfilesApiService) CreateNetworkApplianceRfProfileExecute(r RfProfil
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkApplianceRfProfile
+	localVarPostBody = r.createNetworkApplianceRfProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -155,15 +155,15 @@ type RfProfilesApiCreateNetworkWirelessRfProfileRequest struct {
 	ctx context.Context
 	ApiService *RfProfilesApiService
 	networkId string
-	createNetworkWirelessRfProfile *InlineObject154
+	createNetworkWirelessRfProfileRequest *CreateNetworkWirelessRfProfileRequest
 }
 
-func (r RfProfilesApiCreateNetworkWirelessRfProfileRequest) CreateNetworkWirelessRfProfile(createNetworkWirelessRfProfile InlineObject154) RfProfilesApiCreateNetworkWirelessRfProfileRequest {
-	r.createNetworkWirelessRfProfile = &createNetworkWirelessRfProfile
+func (r RfProfilesApiCreateNetworkWirelessRfProfileRequest) CreateNetworkWirelessRfProfileRequest(createNetworkWirelessRfProfileRequest CreateNetworkWirelessRfProfileRequest) RfProfilesApiCreateNetworkWirelessRfProfileRequest {
+	r.createNetworkWirelessRfProfileRequest = &createNetworkWirelessRfProfileRequest
 	return r
 }
 
-func (r RfProfilesApiCreateNetworkWirelessRfProfileRequest) Execute() (*InlineResponse20092, *http.Response, error) {
+func (r RfProfilesApiCreateNetworkWirelessRfProfileRequest) Execute() (*GetNetworkWirelessRfProfiles200Response, *http.Response, error) {
 	return r.ApiService.CreateNetworkWirelessRfProfileExecute(r)
 }
 
@@ -185,13 +185,13 @@ func (a *RfProfilesApiService) CreateNetworkWirelessRfProfile(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20092
-func (a *RfProfilesApiService) CreateNetworkWirelessRfProfileExecute(r RfProfilesApiCreateNetworkWirelessRfProfileRequest) (*InlineResponse20092, *http.Response, error) {
+//  @return GetNetworkWirelessRfProfiles200Response
+func (a *RfProfilesApiService) CreateNetworkWirelessRfProfileExecute(r RfProfilesApiCreateNetworkWirelessRfProfileRequest) (*GetNetworkWirelessRfProfiles200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20092
+		localVarReturnValue  *GetNetworkWirelessRfProfiles200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RfProfilesApiService.CreateNetworkWirelessRfProfile")
@@ -205,8 +205,8 @@ func (a *RfProfilesApiService) CreateNetworkWirelessRfProfileExecute(r RfProfile
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkWirelessRfProfile == nil {
-		return localVarReturnValue, nil, reportError("createNetworkWirelessRfProfile is required and must be specified")
+	if r.createNetworkWirelessRfProfileRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkWirelessRfProfileRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -227,7 +227,7 @@ func (a *RfProfilesApiService) CreateNetworkWirelessRfProfileExecute(r RfProfile
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkWirelessRfProfile
+	localVarPostBody = r.createNetworkWirelessRfProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -506,7 +506,7 @@ type RfProfilesApiGetNetworkApplianceRfProfileRequest struct {
 	rfProfileId string
 }
 
-func (r RfProfilesApiGetNetworkApplianceRfProfileRequest) Execute() (*InlineResponse20017Assigned, *http.Response, error) {
+func (r RfProfilesApiGetNetworkApplianceRfProfileRequest) Execute() (*GetNetworkApplianceRfProfiles200ResponseAssignedInner, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceRfProfileExecute(r)
 }
 
@@ -530,13 +530,13 @@ func (a *RfProfilesApiService) GetNetworkApplianceRfProfile(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20017Assigned
-func (a *RfProfilesApiService) GetNetworkApplianceRfProfileExecute(r RfProfilesApiGetNetworkApplianceRfProfileRequest) (*InlineResponse20017Assigned, *http.Response, error) {
+//  @return GetNetworkApplianceRfProfiles200ResponseAssignedInner
+func (a *RfProfilesApiService) GetNetworkApplianceRfProfileExecute(r RfProfilesApiGetNetworkApplianceRfProfileRequest) (*GetNetworkApplianceRfProfiles200ResponseAssignedInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20017Assigned
+		localVarReturnValue  *GetNetworkApplianceRfProfiles200ResponseAssignedInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RfProfilesApiService.GetNetworkApplianceRfProfile")
@@ -626,7 +626,7 @@ type RfProfilesApiGetNetworkApplianceRfProfilesRequest struct {
 	networkId string
 }
 
-func (r RfProfilesApiGetNetworkApplianceRfProfilesRequest) Execute() (*InlineResponse20017, *http.Response, error) {
+func (r RfProfilesApiGetNetworkApplianceRfProfilesRequest) Execute() (*GetNetworkApplianceRfProfiles200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceRfProfilesExecute(r)
 }
 
@@ -648,13 +648,13 @@ func (a *RfProfilesApiService) GetNetworkApplianceRfProfiles(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse20017
-func (a *RfProfilesApiService) GetNetworkApplianceRfProfilesExecute(r RfProfilesApiGetNetworkApplianceRfProfilesRequest) (*InlineResponse20017, *http.Response, error) {
+//  @return GetNetworkApplianceRfProfiles200Response
+func (a *RfProfilesApiService) GetNetworkApplianceRfProfilesExecute(r RfProfilesApiGetNetworkApplianceRfProfilesRequest) (*GetNetworkApplianceRfProfiles200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20017
+		localVarReturnValue  *GetNetworkApplianceRfProfiles200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RfProfilesApiService.GetNetworkApplianceRfProfiles")
@@ -744,7 +744,7 @@ type RfProfilesApiGetNetworkWirelessRfProfileRequest struct {
 	rfProfileId string
 }
 
-func (r RfProfilesApiGetNetworkWirelessRfProfileRequest) Execute() (*InlineResponse20092, *http.Response, error) {
+func (r RfProfilesApiGetNetworkWirelessRfProfileRequest) Execute() (*GetNetworkWirelessRfProfiles200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessRfProfileExecute(r)
 }
 
@@ -768,13 +768,13 @@ func (a *RfProfilesApiService) GetNetworkWirelessRfProfile(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse20092
-func (a *RfProfilesApiService) GetNetworkWirelessRfProfileExecute(r RfProfilesApiGetNetworkWirelessRfProfileRequest) (*InlineResponse20092, *http.Response, error) {
+//  @return GetNetworkWirelessRfProfiles200Response
+func (a *RfProfilesApiService) GetNetworkWirelessRfProfileExecute(r RfProfilesApiGetNetworkWirelessRfProfileRequest) (*GetNetworkWirelessRfProfiles200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20092
+		localVarReturnValue  *GetNetworkWirelessRfProfiles200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RfProfilesApiService.GetNetworkWirelessRfProfile")
@@ -871,7 +871,7 @@ func (r RfProfilesApiGetNetworkWirelessRfProfilesRequest) IncludeTemplateProfile
 	return r
 }
 
-func (r RfProfilesApiGetNetworkWirelessRfProfilesRequest) Execute() (*InlineResponse20092, *http.Response, error) {
+func (r RfProfilesApiGetNetworkWirelessRfProfilesRequest) Execute() (*GetNetworkWirelessRfProfiles200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessRfProfilesExecute(r)
 }
 
@@ -893,13 +893,13 @@ func (a *RfProfilesApiService) GetNetworkWirelessRfProfiles(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20092
-func (a *RfProfilesApiService) GetNetworkWirelessRfProfilesExecute(r RfProfilesApiGetNetworkWirelessRfProfilesRequest) (*InlineResponse20092, *http.Response, error) {
+//  @return GetNetworkWirelessRfProfiles200Response
+func (a *RfProfilesApiService) GetNetworkWirelessRfProfilesExecute(r RfProfilesApiGetNetworkWirelessRfProfilesRequest) (*GetNetworkWirelessRfProfiles200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20092
+		localVarReturnValue  *GetNetworkWirelessRfProfiles200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RfProfilesApiService.GetNetworkWirelessRfProfiles")
@@ -990,15 +990,15 @@ type RfProfilesApiUpdateNetworkApplianceRfProfileRequest struct {
 	ApiService *RfProfilesApiService
 	networkId string
 	rfProfileId string
-	updateNetworkApplianceRfProfile *InlineObject45
+	updateNetworkApplianceRfProfileRequest *UpdateNetworkApplianceRfProfileRequest
 }
 
-func (r RfProfilesApiUpdateNetworkApplianceRfProfileRequest) UpdateNetworkApplianceRfProfile(updateNetworkApplianceRfProfile InlineObject45) RfProfilesApiUpdateNetworkApplianceRfProfileRequest {
-	r.updateNetworkApplianceRfProfile = &updateNetworkApplianceRfProfile
+func (r RfProfilesApiUpdateNetworkApplianceRfProfileRequest) UpdateNetworkApplianceRfProfileRequest(updateNetworkApplianceRfProfileRequest UpdateNetworkApplianceRfProfileRequest) RfProfilesApiUpdateNetworkApplianceRfProfileRequest {
+	r.updateNetworkApplianceRfProfileRequest = &updateNetworkApplianceRfProfileRequest
 	return r
 }
 
-func (r RfProfilesApiUpdateNetworkApplianceRfProfileRequest) Execute() (*InlineResponse20017Assigned, *http.Response, error) {
+func (r RfProfilesApiUpdateNetworkApplianceRfProfileRequest) Execute() (*GetNetworkApplianceRfProfiles200ResponseAssignedInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceRfProfileExecute(r)
 }
 
@@ -1022,13 +1022,13 @@ func (a *RfProfilesApiService) UpdateNetworkApplianceRfProfile(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20017Assigned
-func (a *RfProfilesApiService) UpdateNetworkApplianceRfProfileExecute(r RfProfilesApiUpdateNetworkApplianceRfProfileRequest) (*InlineResponse20017Assigned, *http.Response, error) {
+//  @return GetNetworkApplianceRfProfiles200ResponseAssignedInner
+func (a *RfProfilesApiService) UpdateNetworkApplianceRfProfileExecute(r RfProfilesApiUpdateNetworkApplianceRfProfileRequest) (*GetNetworkApplianceRfProfiles200ResponseAssignedInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20017Assigned
+		localVarReturnValue  *GetNetworkApplianceRfProfiles200ResponseAssignedInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RfProfilesApiService.UpdateNetworkApplianceRfProfile")
@@ -1062,7 +1062,7 @@ func (a *RfProfilesApiService) UpdateNetworkApplianceRfProfileExecute(r RfProfil
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceRfProfile
+	localVarPostBody = r.updateNetworkApplianceRfProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1119,15 +1119,15 @@ type RfProfilesApiUpdateNetworkWirelessRfProfileRequest struct {
 	ApiService *RfProfilesApiService
 	networkId string
 	rfProfileId string
-	updateNetworkWirelessRfProfile *InlineObject155
+	updateNetworkWirelessRfProfileRequest *UpdateNetworkWirelessRfProfileRequest
 }
 
-func (r RfProfilesApiUpdateNetworkWirelessRfProfileRequest) UpdateNetworkWirelessRfProfile(updateNetworkWirelessRfProfile InlineObject155) RfProfilesApiUpdateNetworkWirelessRfProfileRequest {
-	r.updateNetworkWirelessRfProfile = &updateNetworkWirelessRfProfile
+func (r RfProfilesApiUpdateNetworkWirelessRfProfileRequest) UpdateNetworkWirelessRfProfileRequest(updateNetworkWirelessRfProfileRequest UpdateNetworkWirelessRfProfileRequest) RfProfilesApiUpdateNetworkWirelessRfProfileRequest {
+	r.updateNetworkWirelessRfProfileRequest = &updateNetworkWirelessRfProfileRequest
 	return r
 }
 
-func (r RfProfilesApiUpdateNetworkWirelessRfProfileRequest) Execute() (*InlineResponse20092, *http.Response, error) {
+func (r RfProfilesApiUpdateNetworkWirelessRfProfileRequest) Execute() (*GetNetworkWirelessRfProfiles200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessRfProfileExecute(r)
 }
 
@@ -1151,13 +1151,13 @@ func (a *RfProfilesApiService) UpdateNetworkWirelessRfProfile(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20092
-func (a *RfProfilesApiService) UpdateNetworkWirelessRfProfileExecute(r RfProfilesApiUpdateNetworkWirelessRfProfileRequest) (*InlineResponse20092, *http.Response, error) {
+//  @return GetNetworkWirelessRfProfiles200Response
+func (a *RfProfilesApiService) UpdateNetworkWirelessRfProfileExecute(r RfProfilesApiUpdateNetworkWirelessRfProfileRequest) (*GetNetworkWirelessRfProfiles200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20092
+		localVarReturnValue  *GetNetworkWirelessRfProfiles200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RfProfilesApiService.UpdateNetworkWirelessRfProfile")
@@ -1191,7 +1191,7 @@ func (a *RfProfilesApiService) UpdateNetworkWirelessRfProfileExecute(r RfProfile
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessRfProfile
+	localVarPostBody = r.updateNetworkWirelessRfProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

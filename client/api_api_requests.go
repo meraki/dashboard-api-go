@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -127,7 +128,7 @@ func (r ApiRequestsApiGetOrganizationApiRequestsRequest) OperationIds(operationI
 	return r
 }
 
-func (r ApiRequestsApiGetOrganizationApiRequestsRequest) Execute() ([]InlineResponse200103, *http.Response, error) {
+func (r ApiRequestsApiGetOrganizationApiRequestsRequest) Execute() ([]GetOrganizationApiRequests200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationApiRequestsExecute(r)
 }
 
@@ -149,13 +150,13 @@ func (a *ApiRequestsApiService) GetOrganizationApiRequests(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return []InlineResponse200103
-func (a *ApiRequestsApiService) GetOrganizationApiRequestsExecute(r ApiRequestsApiGetOrganizationApiRequestsRequest) ([]InlineResponse200103, *http.Response, error) {
+//  @return []GetOrganizationApiRequests200ResponseInner
+func (a *ApiRequestsApiService) GetOrganizationApiRequestsExecute(r ApiRequestsApiGetOrganizationApiRequestsRequest) ([]GetOrganizationApiRequests200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200103
+		localVarReturnValue  []GetOrganizationApiRequests200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiRequestsApiService.GetOrganizationApiRequests")
@@ -210,7 +211,15 @@ func (a *ApiRequestsApiService) GetOrganizationApiRequestsExecute(r ApiRequestsA
 		localVarQueryParams.Add("version", parameterToString(*r.version, ""))
 	}
 	if r.operationIds != nil {
-		localVarQueryParams.Add("operationIds", parameterToString(*r.operationIds, "csv"))
+		t := *r.operationIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("operationIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("operationIds", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -307,7 +316,7 @@ func (r ApiRequestsApiGetOrganizationApiRequestsOverviewRequest) Timespan(timesp
 	return r
 }
 
-func (r ApiRequestsApiGetOrganizationApiRequestsOverviewRequest) Execute() (*InlineResponse200104, *http.Response, error) {
+func (r ApiRequestsApiGetOrganizationApiRequestsOverviewRequest) Execute() (*GetOrganizationApiRequestsOverview200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationApiRequestsOverviewExecute(r)
 }
 
@@ -329,13 +338,13 @@ func (a *ApiRequestsApiService) GetOrganizationApiRequestsOverview(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse200104
-func (a *ApiRequestsApiService) GetOrganizationApiRequestsOverviewExecute(r ApiRequestsApiGetOrganizationApiRequestsOverviewRequest) (*InlineResponse200104, *http.Response, error) {
+//  @return GetOrganizationApiRequestsOverview200Response
+func (a *ApiRequestsApiService) GetOrganizationApiRequestsOverviewExecute(r ApiRequestsApiGetOrganizationApiRequestsOverviewRequest) (*GetOrganizationApiRequestsOverview200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200104
+		localVarReturnValue  *GetOrganizationApiRequestsOverview200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiRequestsApiService.GetOrganizationApiRequestsOverview")
@@ -496,7 +505,7 @@ func (r ApiRequestsApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalR
 	return r
 }
 
-func (r ApiRequestsApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) Execute() ([]InlineResponse200105, *http.Response, error) {
+func (r ApiRequestsApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) Execute() ([]GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationApiRequestsOverviewResponseCodesByIntervalExecute(r)
 }
 
@@ -518,13 +527,13 @@ func (a *ApiRequestsApiService) GetOrganizationApiRequestsOverviewResponseCodesB
 }
 
 // Execute executes the request
-//  @return []InlineResponse200105
-func (a *ApiRequestsApiService) GetOrganizationApiRequestsOverviewResponseCodesByIntervalExecute(r ApiRequestsApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) ([]InlineResponse200105, *http.Response, error) {
+//  @return []GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner
+func (a *ApiRequestsApiService) GetOrganizationApiRequestsOverviewResponseCodesByIntervalExecute(r ApiRequestsApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) ([]GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200105
+		localVarReturnValue  []GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiRequestsApiService.GetOrganizationApiRequestsOverviewResponseCodesByInterval")
@@ -555,13 +564,37 @@ func (a *ApiRequestsApiService) GetOrganizationApiRequestsOverviewResponseCodesB
 		localVarQueryParams.Add("version", parameterToString(*r.version, ""))
 	}
 	if r.operationIds != nil {
-		localVarQueryParams.Add("operationIds", parameterToString(*r.operationIds, "csv"))
+		t := *r.operationIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("operationIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("operationIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.sourceIps != nil {
-		localVarQueryParams.Add("sourceIps", parameterToString(*r.sourceIps, "csv"))
+		t := *r.sourceIps
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("sourceIps", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("sourceIps", parameterToString(t, "multi"))
+		}
 	}
 	if r.adminIds != nil {
-		localVarQueryParams.Add("adminIds", parameterToString(*r.adminIds, "csv"))
+		t := *r.adminIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("adminIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("adminIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.userAgent != nil {
 		localVarQueryParams.Add("userAgent", parameterToString(*r.userAgent, ""))

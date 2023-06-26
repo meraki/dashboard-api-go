@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type CustomAnalyticsApiCreateOrganizationCameraCustomAnalyticsArtifactRequest st
 	ctx context.Context
 	ApiService *CustomAnalyticsApiService
 	organizationId string
-	createOrganizationCameraCustomAnalyticsArtifact *InlineObject191
+	createOrganizationCameraCustomAnalyticsArtifactRequest *CreateOrganizationCameraCustomAnalyticsArtifactRequest
 }
 
-func (r CustomAnalyticsApiCreateOrganizationCameraCustomAnalyticsArtifactRequest) CreateOrganizationCameraCustomAnalyticsArtifact(createOrganizationCameraCustomAnalyticsArtifact InlineObject191) CustomAnalyticsApiCreateOrganizationCameraCustomAnalyticsArtifactRequest {
-	r.createOrganizationCameraCustomAnalyticsArtifact = &createOrganizationCameraCustomAnalyticsArtifact
+func (r CustomAnalyticsApiCreateOrganizationCameraCustomAnalyticsArtifactRequest) CreateOrganizationCameraCustomAnalyticsArtifactRequest(createOrganizationCameraCustomAnalyticsArtifactRequest CreateOrganizationCameraCustomAnalyticsArtifactRequest) CustomAnalyticsApiCreateOrganizationCameraCustomAnalyticsArtifactRequest {
+	r.createOrganizationCameraCustomAnalyticsArtifactRequest = &createOrganizationCameraCustomAnalyticsArtifactRequest
 	return r
 }
 
@@ -96,7 +96,7 @@ func (a *CustomAnalyticsApiService) CreateOrganizationCameraCustomAnalyticsArtif
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationCameraCustomAnalyticsArtifact
+	localVarPostBody = r.createOrganizationCameraCustomAnalyticsArtifactRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -617,11 +617,11 @@ type CustomAnalyticsApiUpdateDeviceCameraCustomAnalyticsRequest struct {
 	ctx context.Context
 	ApiService *CustomAnalyticsApiService
 	serial string
-	updateDeviceCameraCustomAnalytics *InlineObject4
+	updateDeviceCameraCustomAnalyticsRequest *UpdateDeviceCameraCustomAnalyticsRequest
 }
 
-func (r CustomAnalyticsApiUpdateDeviceCameraCustomAnalyticsRequest) UpdateDeviceCameraCustomAnalytics(updateDeviceCameraCustomAnalytics InlineObject4) CustomAnalyticsApiUpdateDeviceCameraCustomAnalyticsRequest {
-	r.updateDeviceCameraCustomAnalytics = &updateDeviceCameraCustomAnalytics
+func (r CustomAnalyticsApiUpdateDeviceCameraCustomAnalyticsRequest) UpdateDeviceCameraCustomAnalyticsRequest(updateDeviceCameraCustomAnalyticsRequest UpdateDeviceCameraCustomAnalyticsRequest) CustomAnalyticsApiUpdateDeviceCameraCustomAnalyticsRequest {
+	r.updateDeviceCameraCustomAnalyticsRequest = &updateDeviceCameraCustomAnalyticsRequest
 	return r
 }
 
@@ -686,7 +686,7 @@ func (a *CustomAnalyticsApiService) UpdateDeviceCameraCustomAnalyticsExecute(r C
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCameraCustomAnalytics
+	localVarPostBody = r.updateDeviceCameraCustomAnalyticsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

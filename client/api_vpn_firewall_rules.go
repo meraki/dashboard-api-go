@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -144,15 +144,15 @@ type VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest st
 	ctx context.Context
 	ApiService *VpnFirewallRulesApiService
 	organizationId string
-	updateOrganizationApplianceVpnVpnFirewallRules *InlineObject187
+	updateOrganizationApplianceVpnVpnFirewallRulesRequest *UpdateOrganizationApplianceVpnVpnFirewallRulesRequest
 }
 
-func (r VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) UpdateOrganizationApplianceVpnVpnFirewallRules(updateOrganizationApplianceVpnVpnFirewallRules InlineObject187) VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest {
-	r.updateOrganizationApplianceVpnVpnFirewallRules = &updateOrganizationApplianceVpnVpnFirewallRules
+func (r VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) UpdateOrganizationApplianceVpnVpnFirewallRulesRequest(updateOrganizationApplianceVpnVpnFirewallRulesRequest UpdateOrganizationApplianceVpnVpnFirewallRulesRequest) VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest {
+	r.updateOrganizationApplianceVpnVpnFirewallRulesRequest = &updateOrganizationApplianceVpnVpnFirewallRulesRequest
 	return r
 }
 
-func (r VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) Execute() (*InlineResponse200107, *http.Response, error) {
+func (r VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) Execute() (*UpdateOrganizationApplianceVpnVpnFirewallRules200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationApplianceVpnVpnFirewallRulesExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *VpnFirewallRulesApiService) UpdateOrganizationApplianceVpnVpnFirewallRu
 }
 
 // Execute executes the request
-//  @return InlineResponse200107
-func (a *VpnFirewallRulesApiService) UpdateOrganizationApplianceVpnVpnFirewallRulesExecute(r VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) (*InlineResponse200107, *http.Response, error) {
+//  @return UpdateOrganizationApplianceVpnVpnFirewallRules200Response
+func (a *VpnFirewallRulesApiService) UpdateOrganizationApplianceVpnVpnFirewallRulesExecute(r VpnFirewallRulesApiUpdateOrganizationApplianceVpnVpnFirewallRulesRequest) (*UpdateOrganizationApplianceVpnVpnFirewallRules200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200107
+		localVarReturnValue  *UpdateOrganizationApplianceVpnVpnFirewallRules200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VpnFirewallRulesApiService.UpdateOrganizationApplianceVpnVpnFirewallRules")
@@ -213,7 +213,7 @@ func (a *VpnFirewallRulesApiService) UpdateOrganizationApplianceVpnVpnFirewallRu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationApplianceVpnVpnFirewallRules
+	localVarPostBody = r.updateOrganizationApplianceVpnVpnFirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

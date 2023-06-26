@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type FeaturesApiCreateOrganizationEarlyAccessFeaturesOptInRequest struct {
 	ctx context.Context
 	ApiService *FeaturesApiService
 	organizationId string
-	createOrganizationEarlyAccessFeaturesOptIn *InlineObject198
+	createOrganizationEarlyAccessFeaturesOptInRequest *CreateOrganizationEarlyAccessFeaturesOptInRequest
 }
 
-func (r FeaturesApiCreateOrganizationEarlyAccessFeaturesOptInRequest) CreateOrganizationEarlyAccessFeaturesOptIn(createOrganizationEarlyAccessFeaturesOptIn InlineObject198) FeaturesApiCreateOrganizationEarlyAccessFeaturesOptInRequest {
-	r.createOrganizationEarlyAccessFeaturesOptIn = &createOrganizationEarlyAccessFeaturesOptIn
+func (r FeaturesApiCreateOrganizationEarlyAccessFeaturesOptInRequest) CreateOrganizationEarlyAccessFeaturesOptInRequest(createOrganizationEarlyAccessFeaturesOptInRequest CreateOrganizationEarlyAccessFeaturesOptInRequest) FeaturesApiCreateOrganizationEarlyAccessFeaturesOptInRequest {
+	r.createOrganizationEarlyAccessFeaturesOptInRequest = &createOrganizationEarlyAccessFeaturesOptInRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *FeaturesApiService) CreateOrganizationEarlyAccessFeaturesOptInExecute(r
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationEarlyAccessFeaturesOptIn == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationEarlyAccessFeaturesOptIn is required and must be specified")
+	if r.createOrganizationEarlyAccessFeaturesOptInRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationEarlyAccessFeaturesOptInRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *FeaturesApiService) CreateOrganizationEarlyAccessFeaturesOptInExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationEarlyAccessFeaturesOptIn
+	localVarPostBody = r.createOrganizationEarlyAccessFeaturesOptInRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -267,7 +267,7 @@ type FeaturesApiGetOrganizationEarlyAccessFeaturesRequest struct {
 	organizationId string
 }
 
-func (r FeaturesApiGetOrganizationEarlyAccessFeaturesRequest) Execute() ([]InlineResponse200123, *http.Response, error) {
+func (r FeaturesApiGetOrganizationEarlyAccessFeaturesRequest) Execute() ([]GetOrganizationEarlyAccessFeatures200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationEarlyAccessFeaturesExecute(r)
 }
 
@@ -289,13 +289,13 @@ func (a *FeaturesApiService) GetOrganizationEarlyAccessFeatures(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse200123
-func (a *FeaturesApiService) GetOrganizationEarlyAccessFeaturesExecute(r FeaturesApiGetOrganizationEarlyAccessFeaturesRequest) ([]InlineResponse200123, *http.Response, error) {
+//  @return []GetOrganizationEarlyAccessFeatures200ResponseInner
+func (a *FeaturesApiService) GetOrganizationEarlyAccessFeaturesExecute(r FeaturesApiGetOrganizationEarlyAccessFeaturesRequest) ([]GetOrganizationEarlyAccessFeatures200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200123
+		localVarReturnValue  []GetOrganizationEarlyAccessFeatures200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FeaturesApiService.GetOrganizationEarlyAccessFeatures")
@@ -621,11 +621,11 @@ type FeaturesApiUpdateOrganizationEarlyAccessFeaturesOptInRequest struct {
 	ApiService *FeaturesApiService
 	organizationId string
 	optInId string
-	updateOrganizationEarlyAccessFeaturesOptIn *InlineObject199
+	updateOrganizationEarlyAccessFeaturesOptInRequest *UpdateOrganizationEarlyAccessFeaturesOptInRequest
 }
 
-func (r FeaturesApiUpdateOrganizationEarlyAccessFeaturesOptInRequest) UpdateOrganizationEarlyAccessFeaturesOptIn(updateOrganizationEarlyAccessFeaturesOptIn InlineObject199) FeaturesApiUpdateOrganizationEarlyAccessFeaturesOptInRequest {
-	r.updateOrganizationEarlyAccessFeaturesOptIn = &updateOrganizationEarlyAccessFeaturesOptIn
+func (r FeaturesApiUpdateOrganizationEarlyAccessFeaturesOptInRequest) UpdateOrganizationEarlyAccessFeaturesOptInRequest(updateOrganizationEarlyAccessFeaturesOptInRequest UpdateOrganizationEarlyAccessFeaturesOptInRequest) FeaturesApiUpdateOrganizationEarlyAccessFeaturesOptInRequest {
+	r.updateOrganizationEarlyAccessFeaturesOptInRequest = &updateOrganizationEarlyAccessFeaturesOptInRequest
 	return r
 }
 
@@ -693,7 +693,7 @@ func (a *FeaturesApiService) UpdateOrganizationEarlyAccessFeaturesOptInExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationEarlyAccessFeaturesOptIn
+	localVarPostBody = r.updateOrganizationEarlyAccessFeaturesOptInRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

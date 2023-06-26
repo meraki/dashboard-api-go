@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -78,7 +78,7 @@ func (r ConnectionStatsApiGetDeviceWirelessConnectionStatsRequest) ApTag(apTag s
 	return r
 }
 
-func (r ConnectionStatsApiGetDeviceWirelessConnectionStatsRequest) Execute() (*InlineResponse20011, *http.Response, error) {
+func (r ConnectionStatsApiGetDeviceWirelessConnectionStatsRequest) Execute() (*GetDeviceWirelessConnectionStats200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceWirelessConnectionStatsExecute(r)
 }
 
@@ -100,13 +100,13 @@ func (a *ConnectionStatsApiService) GetDeviceWirelessConnectionStats(ctx context
 }
 
 // Execute executes the request
-//  @return InlineResponse20011
-func (a *ConnectionStatsApiService) GetDeviceWirelessConnectionStatsExecute(r ConnectionStatsApiGetDeviceWirelessConnectionStatsRequest) (*InlineResponse20011, *http.Response, error) {
+//  @return GetDeviceWirelessConnectionStats200Response
+func (a *ConnectionStatsApiService) GetDeviceWirelessConnectionStatsExecute(r ConnectionStatsApiGetDeviceWirelessConnectionStatsRequest) (*GetDeviceWirelessConnectionStats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20011
+		localVarReturnValue  *GetDeviceWirelessConnectionStats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionStatsApiService.GetDeviceWirelessConnectionStats")
@@ -643,7 +643,7 @@ func (r ConnectionStatsApiGetNetworkWirelessConnectionStatsRequest) ApTag(apTag 
 	return r
 }
 
-func (r ConnectionStatsApiGetNetworkWirelessConnectionStatsRequest) Execute() (*InlineResponse20088, *http.Response, error) {
+func (r ConnectionStatsApiGetNetworkWirelessConnectionStatsRequest) Execute() (*GetNetworkWirelessConnectionStats200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessConnectionStatsExecute(r)
 }
 
@@ -665,13 +665,13 @@ func (a *ConnectionStatsApiService) GetNetworkWirelessConnectionStats(ctx contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20088
-func (a *ConnectionStatsApiService) GetNetworkWirelessConnectionStatsExecute(r ConnectionStatsApiGetNetworkWirelessConnectionStatsRequest) (*InlineResponse20088, *http.Response, error) {
+//  @return GetNetworkWirelessConnectionStats200Response
+func (a *ConnectionStatsApiService) GetNetworkWirelessConnectionStatsExecute(r ConnectionStatsApiGetNetworkWirelessConnectionStatsRequest) (*GetNetworkWirelessConnectionStats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20088
+		localVarReturnValue  *GetNetworkWirelessConnectionStats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionStatsApiService.GetNetworkWirelessConnectionStats")
@@ -830,7 +830,7 @@ func (r ConnectionStatsApiGetNetworkWirelessDevicesConnectionStatsRequest) ApTag
 	return r
 }
 
-func (r ConnectionStatsApiGetNetworkWirelessDevicesConnectionStatsRequest) Execute() ([]InlineResponse20011, *http.Response, error) {
+func (r ConnectionStatsApiGetNetworkWirelessDevicesConnectionStatsRequest) Execute() ([]GetDeviceWirelessConnectionStats200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessDevicesConnectionStatsExecute(r)
 }
 
@@ -852,13 +852,13 @@ func (a *ConnectionStatsApiService) GetNetworkWirelessDevicesConnectionStats(ctx
 }
 
 // Execute executes the request
-//  @return []InlineResponse20011
-func (a *ConnectionStatsApiService) GetNetworkWirelessDevicesConnectionStatsExecute(r ConnectionStatsApiGetNetworkWirelessDevicesConnectionStatsRequest) ([]InlineResponse20011, *http.Response, error) {
+//  @return []GetDeviceWirelessConnectionStats200Response
+func (a *ConnectionStatsApiService) GetNetworkWirelessDevicesConnectionStatsExecute(r ConnectionStatsApiGetNetworkWirelessDevicesConnectionStatsRequest) ([]GetDeviceWirelessConnectionStats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20011
+		localVarReturnValue  []GetDeviceWirelessConnectionStats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionStatsApiService.GetNetworkWirelessDevicesConnectionStats")
