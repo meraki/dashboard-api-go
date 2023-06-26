@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetNetworkHealthAlerts
 
-> []InlineResponse20035 GetNetworkHealthAlerts(ctx, networkId).Execute()
+> []GetNetworkHealthAlerts200ResponseInner GetNetworkHealthAlerts(ctx, networkId).Execute()
 
 Return all global alerts on this network
 
@@ -25,7 +25,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -38,7 +38,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `HealthApi.GetNetworkHealthAlerts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkHealthAlerts`: []InlineResponse20035
+    // response from `GetNetworkHealthAlerts`: []GetNetworkHealthAlerts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `HealthApi.GetNetworkHealthAlerts`: %v\n", resp)
 }
 ```
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20035**](InlineResponse20035.md)
+[**[]GetNetworkHealthAlerts200ResponseInner**](GetNetworkHealthAlerts200ResponseInner.md)
 
 ### Authorization
 

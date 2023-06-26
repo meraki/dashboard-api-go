@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type PrefixesApiCreateNetworkAppliancePrefixesDelegatedStaticRequest struct {
 	ctx context.Context
 	ApiService *PrefixesApiService
 	networkId string
-	createNetworkAppliancePrefixesDelegatedStatic *InlineObject42
+	createNetworkAppliancePrefixesDelegatedStaticRequest *CreateNetworkAppliancePrefixesDelegatedStaticRequest
 }
 
-func (r PrefixesApiCreateNetworkAppliancePrefixesDelegatedStaticRequest) CreateNetworkAppliancePrefixesDelegatedStatic(createNetworkAppliancePrefixesDelegatedStatic InlineObject42) PrefixesApiCreateNetworkAppliancePrefixesDelegatedStaticRequest {
-	r.createNetworkAppliancePrefixesDelegatedStatic = &createNetworkAppliancePrefixesDelegatedStatic
+func (r PrefixesApiCreateNetworkAppliancePrefixesDelegatedStaticRequest) CreateNetworkAppliancePrefixesDelegatedStaticRequest(createNetworkAppliancePrefixesDelegatedStaticRequest CreateNetworkAppliancePrefixesDelegatedStaticRequest) PrefixesApiCreateNetworkAppliancePrefixesDelegatedStaticRequest {
+	r.createNetworkAppliancePrefixesDelegatedStaticRequest = &createNetworkAppliancePrefixesDelegatedStaticRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *PrefixesApiService) CreateNetworkAppliancePrefixesDelegatedStaticExecut
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkAppliancePrefixesDelegatedStatic == nil {
-		return localVarReturnValue, nil, reportError("createNetworkAppliancePrefixesDelegatedStatic is required and must be specified")
+	if r.createNetworkAppliancePrefixesDelegatedStaticRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkAppliancePrefixesDelegatedStaticRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *PrefixesApiService) CreateNetworkAppliancePrefixesDelegatedStaticExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkAppliancePrefixesDelegatedStatic
+	localVarPostBody = r.createNetworkAppliancePrefixesDelegatedStaticRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -502,7 +502,7 @@ type PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticRequest struct {
 	staticDelegatedPrefixId string
 }
 
-func (r PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticRequest) Execute() (*InlineResponse20016, *http.Response, error) {
+func (r PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticRequest) Execute() (*GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkAppliancePrefixesDelegatedStaticExecute(r)
 }
 
@@ -526,13 +526,13 @@ func (a *PrefixesApiService) GetNetworkAppliancePrefixesDelegatedStatic(ctx cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20016
-func (a *PrefixesApiService) GetNetworkAppliancePrefixesDelegatedStaticExecute(r PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticRequest) (*InlineResponse20016, *http.Response, error) {
+//  @return GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
+func (a *PrefixesApiService) GetNetworkAppliancePrefixesDelegatedStaticExecute(r PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticRequest) (*GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20016
+		localVarReturnValue  *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrefixesApiService.GetNetworkAppliancePrefixesDelegatedStatic")
@@ -622,7 +622,7 @@ type PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticsRequest struct {
 	networkId string
 }
 
-func (r PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticsRequest) Execute() ([]InlineResponse20016, *http.Response, error) {
+func (r PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticsRequest) Execute() ([]GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkAppliancePrefixesDelegatedStaticsExecute(r)
 }
 
@@ -644,13 +644,13 @@ func (a *PrefixesApiService) GetNetworkAppliancePrefixesDelegatedStatics(ctx con
 }
 
 // Execute executes the request
-//  @return []InlineResponse20016
-func (a *PrefixesApiService) GetNetworkAppliancePrefixesDelegatedStaticsExecute(r PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticsRequest) ([]InlineResponse20016, *http.Response, error) {
+//  @return []GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
+func (a *PrefixesApiService) GetNetworkAppliancePrefixesDelegatedStaticsExecute(r PrefixesApiGetNetworkAppliancePrefixesDelegatedStaticsRequest) ([]GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20016
+		localVarReturnValue  []GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrefixesApiService.GetNetworkAppliancePrefixesDelegatedStatics")
@@ -738,11 +738,11 @@ type PrefixesApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest struct {
 	ApiService *PrefixesApiService
 	networkId string
 	staticDelegatedPrefixId string
-	updateNetworkAppliancePrefixesDelegatedStatic *InlineObject43
+	updateNetworkAppliancePrefixesDelegatedStaticRequest *UpdateNetworkAppliancePrefixesDelegatedStaticRequest
 }
 
-func (r PrefixesApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest) UpdateNetworkAppliancePrefixesDelegatedStatic(updateNetworkAppliancePrefixesDelegatedStatic InlineObject43) PrefixesApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest {
-	r.updateNetworkAppliancePrefixesDelegatedStatic = &updateNetworkAppliancePrefixesDelegatedStatic
+func (r PrefixesApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest) UpdateNetworkAppliancePrefixesDelegatedStaticRequest(updateNetworkAppliancePrefixesDelegatedStaticRequest UpdateNetworkAppliancePrefixesDelegatedStaticRequest) PrefixesApiUpdateNetworkAppliancePrefixesDelegatedStaticRequest {
+	r.updateNetworkAppliancePrefixesDelegatedStaticRequest = &updateNetworkAppliancePrefixesDelegatedStaticRequest
 	return r
 }
 
@@ -810,7 +810,7 @@ func (a *PrefixesApiService) UpdateNetworkAppliancePrefixesDelegatedStaticExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkAppliancePrefixesDelegatedStatic
+	localVarPostBody = r.updateNetworkAppliancePrefixesDelegatedStaticRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

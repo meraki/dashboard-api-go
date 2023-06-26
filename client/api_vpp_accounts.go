@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -30,7 +30,7 @@ type VppAccountsApiGetOrganizationSmVppAccountRequest struct {
 	vppAccountId string
 }
 
-func (r VppAccountsApiGetOrganizationSmVppAccountRequest) Execute() (*InlineResponse200144, *http.Response, error) {
+func (r VppAccountsApiGetOrganizationSmVppAccountRequest) Execute() (*GetOrganizationSmVppAccounts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSmVppAccountExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *VppAccountsApiService) GetOrganizationSmVppAccount(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse200144
-func (a *VppAccountsApiService) GetOrganizationSmVppAccountExecute(r VppAccountsApiGetOrganizationSmVppAccountRequest) (*InlineResponse200144, *http.Response, error) {
+//  @return GetOrganizationSmVppAccounts200ResponseInner
+func (a *VppAccountsApiService) GetOrganizationSmVppAccountExecute(r VppAccountsApiGetOrganizationSmVppAccountRequest) (*GetOrganizationSmVppAccounts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200144
+		localVarReturnValue  *GetOrganizationSmVppAccounts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VppAccountsApiService.GetOrganizationSmVppAccount")
@@ -150,7 +150,7 @@ type VppAccountsApiGetOrganizationSmVppAccountsRequest struct {
 	organizationId string
 }
 
-func (r VppAccountsApiGetOrganizationSmVppAccountsRequest) Execute() ([]InlineResponse200144, *http.Response, error) {
+func (r VppAccountsApiGetOrganizationSmVppAccountsRequest) Execute() ([]GetOrganizationSmVppAccounts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSmVppAccountsExecute(r)
 }
 
@@ -172,13 +172,13 @@ func (a *VppAccountsApiService) GetOrganizationSmVppAccounts(ctx context.Context
 }
 
 // Execute executes the request
-//  @return []InlineResponse200144
-func (a *VppAccountsApiService) GetOrganizationSmVppAccountsExecute(r VppAccountsApiGetOrganizationSmVppAccountsRequest) ([]InlineResponse200144, *http.Response, error) {
+//  @return []GetOrganizationSmVppAccounts200ResponseInner
+func (a *VppAccountsApiService) GetOrganizationSmVppAccountsExecute(r VppAccountsApiGetOrganizationSmVppAccountsRequest) ([]GetOrganizationSmVppAccounts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200144
+		localVarReturnValue  []GetOrganizationSmVppAccounts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VppAccountsApiService.GetOrganizationSmVppAccounts")

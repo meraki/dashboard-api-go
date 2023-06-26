@@ -27,7 +27,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -97,7 +97,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceCameraSense
 
-> map[string]interface{} UpdateDeviceCameraSense(ctx, serial).UpdateDeviceCameraSense(updateDeviceCameraSense).Execute()
+> map[string]interface{} UpdateDeviceCameraSense(ctx, serial).UpdateDeviceCameraSenseRequest(updateDeviceCameraSenseRequest).Execute()
 
 Update sense settings for the given camera
 
@@ -167,16 +167,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceCameraSense := *openapiclient.NewInlineObject7() // InlineObject7 |  (optional)
+    updateDeviceCameraSenseRequest := *openapiclient.NewUpdateDeviceCameraSenseRequest() // UpdateDeviceCameraSenseRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SenseApi.UpdateDeviceCameraSense(context.Background(), serial).UpdateDeviceCameraSense(updateDeviceCameraSense).Execute()
+    resp, r, err := apiClient.SenseApi.UpdateDeviceCameraSense(context.Background(), serial).UpdateDeviceCameraSenseRequest(updateDeviceCameraSenseRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SenseApi.UpdateDeviceCameraSense``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -202,7 +202,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceCameraSenseReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceCameraSense** | [**InlineObject7**](InlineObject7.md) |  | 
+ **updateDeviceCameraSenseRequest** | [**UpdateDeviceCameraSenseRequest**](UpdateDeviceCameraSenseRequest.md) |  | 
 
 ### Return type
 

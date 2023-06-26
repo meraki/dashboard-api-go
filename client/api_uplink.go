@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -188,7 +189,7 @@ func (r UplinkApiGetOrganizationCellularGatewayUplinkStatusesRequest) Iccids(icc
 	return r
 }
 
-func (r UplinkApiGetOrganizationCellularGatewayUplinkStatusesRequest) Execute() ([]InlineResponse200110, *http.Response, error) {
+func (r UplinkApiGetOrganizationCellularGatewayUplinkStatusesRequest) Execute() ([]GetOrganizationCellularGatewayUplinkStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationCellularGatewayUplinkStatusesExecute(r)
 }
 
@@ -210,13 +211,13 @@ func (a *UplinkApiService) GetOrganizationCellularGatewayUplinkStatuses(ctx cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse200110
-func (a *UplinkApiService) GetOrganizationCellularGatewayUplinkStatusesExecute(r UplinkApiGetOrganizationCellularGatewayUplinkStatusesRequest) ([]InlineResponse200110, *http.Response, error) {
+//  @return []GetOrganizationCellularGatewayUplinkStatuses200ResponseInner
+func (a *UplinkApiService) GetOrganizationCellularGatewayUplinkStatusesExecute(r UplinkApiGetOrganizationCellularGatewayUplinkStatusesRequest) ([]GetOrganizationCellularGatewayUplinkStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200110
+		localVarReturnValue  []GetOrganizationCellularGatewayUplinkStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinkApiService.GetOrganizationCellularGatewayUplinkStatuses")
@@ -241,13 +242,37 @@ func (a *UplinkApiService) GetOrganizationCellularGatewayUplinkStatusesExecute(r
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.iccids != nil {
-		localVarQueryParams.Add("iccids", parameterToString(*r.iccids, "csv"))
+		t := *r.iccids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("iccids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("iccids", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -321,11 +346,11 @@ type UplinkApiUpdateNetworkCellularGatewayUplinkRequest struct {
 	ctx context.Context
 	ApiService *UplinkApiService
 	networkId string
-	updateNetworkCellularGatewayUplink *InlineObject73
+	updateNetworkCellularGatewayUplinkRequest *UpdateNetworkCellularGatewayUplinkRequest
 }
 
-func (r UplinkApiUpdateNetworkCellularGatewayUplinkRequest) UpdateNetworkCellularGatewayUplink(updateNetworkCellularGatewayUplink InlineObject73) UplinkApiUpdateNetworkCellularGatewayUplinkRequest {
-	r.updateNetworkCellularGatewayUplink = &updateNetworkCellularGatewayUplink
+func (r UplinkApiUpdateNetworkCellularGatewayUplinkRequest) UpdateNetworkCellularGatewayUplinkRequest(updateNetworkCellularGatewayUplinkRequest UpdateNetworkCellularGatewayUplinkRequest) UplinkApiUpdateNetworkCellularGatewayUplinkRequest {
+	r.updateNetworkCellularGatewayUplinkRequest = &updateNetworkCellularGatewayUplinkRequest
 	return r
 }
 
@@ -390,7 +415,7 @@ func (a *UplinkApiService) UpdateNetworkCellularGatewayUplinkExecute(r UplinkApi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkCellularGatewayUplink
+	localVarPostBody = r.updateNetworkCellularGatewayUplinkRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

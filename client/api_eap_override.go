@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -30,7 +30,7 @@ type EapOverrideApiGetNetworkWirelessSsidEapOverrideRequest struct {
 	number string
 }
 
-func (r EapOverrideApiGetNetworkWirelessSsidEapOverrideRequest) Execute() (*InlineResponse20095, *http.Response, error) {
+func (r EapOverrideApiGetNetworkWirelessSsidEapOverrideRequest) Execute() (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidEapOverrideExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *EapOverrideApiService) GetNetworkWirelessSsidEapOverride(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse20095
-func (a *EapOverrideApiService) GetNetworkWirelessSsidEapOverrideExecute(r EapOverrideApiGetNetworkWirelessSsidEapOverrideRequest) (*InlineResponse20095, *http.Response, error) {
+//  @return GetNetworkWirelessSsidEapOverride200Response
+func (a *EapOverrideApiService) GetNetworkWirelessSsidEapOverrideExecute(r EapOverrideApiGetNetworkWirelessSsidEapOverrideRequest) (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20095
+		localVarReturnValue  *GetNetworkWirelessSsidEapOverride200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EapOverrideApiService.GetNetworkWirelessSsidEapOverride")
@@ -149,15 +149,15 @@ type EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest struct {
 	ApiService *EapOverrideApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidEapOverride *InlineObject160
+	updateNetworkWirelessSsidEapOverrideRequest *UpdateNetworkWirelessSsidEapOverrideRequest
 }
 
-func (r EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest) UpdateNetworkWirelessSsidEapOverride(updateNetworkWirelessSsidEapOverride InlineObject160) EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest {
-	r.updateNetworkWirelessSsidEapOverride = &updateNetworkWirelessSsidEapOverride
+func (r EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest) UpdateNetworkWirelessSsidEapOverrideRequest(updateNetworkWirelessSsidEapOverrideRequest UpdateNetworkWirelessSsidEapOverrideRequest) EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest {
+	r.updateNetworkWirelessSsidEapOverrideRequest = &updateNetworkWirelessSsidEapOverrideRequest
 	return r
 }
 
-func (r EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest) Execute() (*InlineResponse20095, *http.Response, error) {
+func (r EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest) Execute() (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessSsidEapOverrideExecute(r)
 }
 
@@ -181,13 +181,13 @@ func (a *EapOverrideApiService) UpdateNetworkWirelessSsidEapOverride(ctx context
 }
 
 // Execute executes the request
-//  @return InlineResponse20095
-func (a *EapOverrideApiService) UpdateNetworkWirelessSsidEapOverrideExecute(r EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest) (*InlineResponse20095, *http.Response, error) {
+//  @return GetNetworkWirelessSsidEapOverride200Response
+func (a *EapOverrideApiService) UpdateNetworkWirelessSsidEapOverrideExecute(r EapOverrideApiUpdateNetworkWirelessSsidEapOverrideRequest) (*GetNetworkWirelessSsidEapOverride200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20095
+		localVarReturnValue  *GetNetworkWirelessSsidEapOverride200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EapOverrideApiService.UpdateNetworkWirelessSsidEapOverride")
@@ -221,7 +221,7 @@ func (a *EapOverrideApiService) UpdateNetworkWirelessSsidEapOverrideExecute(r Ea
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidEapOverride
+	localVarPostBody = r.updateNetworkWirelessSsidEapOverrideRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -43,7 +44,7 @@ func (r StatusesApiGetDeviceSwitchPortsStatusesRequest) Timespan(timespan float3
 	return r
 }
 
-func (r StatusesApiGetDeviceSwitchPortsStatusesRequest) Execute() ([]InlineResponse2007, *http.Response, error) {
+func (r StatusesApiGetDeviceSwitchPortsStatusesRequest) Execute() ([]GetDeviceSwitchPortsStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetDeviceSwitchPortsStatusesExecute(r)
 }
 
@@ -65,13 +66,13 @@ func (a *StatusesApiService) GetDeviceSwitchPortsStatuses(ctx context.Context, s
 }
 
 // Execute executes the request
-//  @return []InlineResponse2007
-func (a *StatusesApiService) GetDeviceSwitchPortsStatusesExecute(r StatusesApiGetDeviceSwitchPortsStatusesRequest) ([]InlineResponse2007, *http.Response, error) {
+//  @return []GetDeviceSwitchPortsStatuses200ResponseInner
+func (a *StatusesApiService) GetDeviceSwitchPortsStatusesExecute(r StatusesApiGetDeviceSwitchPortsStatusesRequest) ([]GetDeviceSwitchPortsStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2007
+		localVarReturnValue  []GetDeviceSwitchPortsStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusesApiService.GetDeviceSwitchPortsStatuses")
@@ -398,13 +399,37 @@ func (a *StatusesApiService) GetOrganizationApplianceUplinkStatusesExecute(r Sta
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.iccids != nil {
-		localVarQueryParams.Add("iccids", parameterToString(*r.iccids, "csv"))
+		t := *r.iccids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("iccids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("iccids", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -561,7 +586,15 @@ func (a *StatusesApiService) GetOrganizationApplianceVpnStatusesExecute(r Status
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -695,10 +728,26 @@ func (a *StatusesApiService) GetOrganizationCameraOnboardingStatusesExecute(r St
 	localVarFormParams := url.Values{}
 
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -816,7 +865,7 @@ func (r StatusesApiGetOrganizationCellularGatewayUplinkStatusesRequest) Iccids(i
 	return r
 }
 
-func (r StatusesApiGetOrganizationCellularGatewayUplinkStatusesRequest) Execute() ([]InlineResponse200110, *http.Response, error) {
+func (r StatusesApiGetOrganizationCellularGatewayUplinkStatusesRequest) Execute() ([]GetOrganizationCellularGatewayUplinkStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationCellularGatewayUplinkStatusesExecute(r)
 }
 
@@ -838,13 +887,13 @@ func (a *StatusesApiService) GetOrganizationCellularGatewayUplinkStatuses(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse200110
-func (a *StatusesApiService) GetOrganizationCellularGatewayUplinkStatusesExecute(r StatusesApiGetOrganizationCellularGatewayUplinkStatusesRequest) ([]InlineResponse200110, *http.Response, error) {
+//  @return []GetOrganizationCellularGatewayUplinkStatuses200ResponseInner
+func (a *StatusesApiService) GetOrganizationCellularGatewayUplinkStatusesExecute(r StatusesApiGetOrganizationCellularGatewayUplinkStatusesRequest) ([]GetOrganizationCellularGatewayUplinkStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200110
+		localVarReturnValue  []GetOrganizationCellularGatewayUplinkStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusesApiService.GetOrganizationCellularGatewayUplinkStatuses")
@@ -869,13 +918,37 @@ func (a *StatusesApiService) GetOrganizationCellularGatewayUplinkStatusesExecute
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.iccids != nil {
-		localVarQueryParams.Add("iccids", parameterToString(*r.iccids, "csv"))
+		t := *r.iccids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("iccids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("iccids", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1007,7 +1080,7 @@ func (r StatusesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) Ta
 	return r
 }
 
-func (r StatusesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) Execute() ([]InlineResponse200117, *http.Response, error) {
+func (r StatusesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) Execute() ([]GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r)
 }
 
@@ -1029,13 +1102,13 @@ func (a *StatusesApiService) GetOrganizationDevicesPowerModulesStatusesByDevice(
 }
 
 // Execute executes the request
-//  @return []InlineResponse200117
-func (a *StatusesApiService) GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r StatusesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) ([]InlineResponse200117, *http.Response, error) {
+//  @return []GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner
+func (a *StatusesApiService) GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r StatusesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) ([]GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200117
+		localVarReturnValue  []GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusesApiService.GetOrganizationDevicesPowerModulesStatusesByDevice")
@@ -1060,16 +1133,48 @@ func (a *StatusesApiService) GetOrganizationDevicesPowerModulesStatusesByDeviceE
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, "csv"))
+		t := *r.tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
 	}
 	if r.tagsFilterType != nil {
 		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
@@ -1211,7 +1316,7 @@ func (r StatusesApiGetOrganizationDevicesProvisioningStatusesRequest) TagsFilter
 	return r
 }
 
-func (r StatusesApiGetOrganizationDevicesProvisioningStatusesRequest) Execute() ([]InlineResponse200118, *http.Response, error) {
+func (r StatusesApiGetOrganizationDevicesProvisioningStatusesRequest) Execute() ([]GetOrganizationDevicesProvisioningStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesProvisioningStatusesExecute(r)
 }
 
@@ -1233,13 +1338,13 @@ func (a *StatusesApiService) GetOrganizationDevicesProvisioningStatuses(ctx cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse200118
-func (a *StatusesApiService) GetOrganizationDevicesProvisioningStatusesExecute(r StatusesApiGetOrganizationDevicesProvisioningStatusesRequest) ([]InlineResponse200118, *http.Response, error) {
+//  @return []GetOrganizationDevicesProvisioningStatuses200ResponseInner
+func (a *StatusesApiService) GetOrganizationDevicesProvisioningStatusesExecute(r StatusesApiGetOrganizationDevicesProvisioningStatusesRequest) ([]GetOrganizationDevicesProvisioningStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200118
+		localVarReturnValue  []GetOrganizationDevicesProvisioningStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusesApiService.GetOrganizationDevicesProvisioningStatuses")
@@ -1264,19 +1369,51 @@ func (a *StatusesApiService) GetOrganizationDevicesProvisioningStatusesExecute(r
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.status != nil {
 		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
 	}
 	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, "csv"))
+		t := *r.tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
 	}
 	if r.tagsFilterType != nil {
 		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
@@ -1425,7 +1562,7 @@ func (r StatusesApiGetOrganizationDevicesStatusesRequest) TagsFilterType(tagsFil
 	return r
 }
 
-func (r StatusesApiGetOrganizationDevicesStatusesRequest) Execute() (*InlineResponse200119, *http.Response, error) {
+func (r StatusesApiGetOrganizationDevicesStatusesRequest) Execute() (*GetOrganizationDevicesStatuses200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesStatusesExecute(r)
 }
 
@@ -1447,13 +1584,13 @@ func (a *StatusesApiService) GetOrganizationDevicesStatuses(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse200119
-func (a *StatusesApiService) GetOrganizationDevicesStatusesExecute(r StatusesApiGetOrganizationDevicesStatusesRequest) (*InlineResponse200119, *http.Response, error) {
+//  @return GetOrganizationDevicesStatuses200Response
+func (a *StatusesApiService) GetOrganizationDevicesStatusesExecute(r StatusesApiGetOrganizationDevicesStatusesRequest) (*GetOrganizationDevicesStatuses200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200119
+		localVarReturnValue  *GetOrganizationDevicesStatuses200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusesApiService.GetOrganizationDevicesStatuses")
@@ -1478,22 +1615,70 @@ func (a *StatusesApiService) GetOrganizationDevicesStatusesExecute(r StatusesApi
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.statuses != nil {
-		localVarQueryParams.Add("statuses", parameterToString(*r.statuses, "csv"))
+		t := *r.statuses
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("statuses", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("statuses", parameterToString(t, "multi"))
+		}
 	}
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	if r.models != nil {
-		localVarQueryParams.Add("models", parameterToString(*r.models, "csv"))
+		t := *r.models
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("models", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("models", parameterToString(t, "multi"))
+		}
 	}
 	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, "csv"))
+		t := *r.tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
 	}
 	if r.tagsFilterType != nil {
 		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
@@ -1586,7 +1771,7 @@ func (r StatusesApiGetOrganizationDevicesStatusesOverviewRequest) NetworkIds(net
 	return r
 }
 
-func (r StatusesApiGetOrganizationDevicesStatusesOverviewRequest) Execute() (*InlineResponse200120, *http.Response, error) {
+func (r StatusesApiGetOrganizationDevicesStatusesOverviewRequest) Execute() (*GetOrganizationDevicesStatusesOverview200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesStatusesOverviewExecute(r)
 }
 
@@ -1608,13 +1793,13 @@ func (a *StatusesApiService) GetOrganizationDevicesStatusesOverview(ctx context.
 }
 
 // Execute executes the request
-//  @return InlineResponse200120
-func (a *StatusesApiService) GetOrganizationDevicesStatusesOverviewExecute(r StatusesApiGetOrganizationDevicesStatusesOverviewRequest) (*InlineResponse200120, *http.Response, error) {
+//  @return GetOrganizationDevicesStatusesOverview200Response
+func (a *StatusesApiService) GetOrganizationDevicesStatusesOverviewExecute(r StatusesApiGetOrganizationDevicesStatusesOverviewRequest) (*GetOrganizationDevicesStatusesOverview200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200120
+		localVarReturnValue  *GetOrganizationDevicesStatusesOverview200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusesApiService.GetOrganizationDevicesStatusesOverview")
@@ -1630,10 +1815,26 @@ func (a *StatusesApiService) GetOrganizationDevicesStatusesOverviewExecute(r Sta
 	localVarFormParams := url.Values{}
 
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1751,7 +1952,7 @@ func (r StatusesApiGetOrganizationUplinksStatusesRequest) Iccids(iccids []string
 	return r
 }
 
-func (r StatusesApiGetOrganizationUplinksStatusesRequest) Execute() ([]InlineResponse200153, *http.Response, error) {
+func (r StatusesApiGetOrganizationUplinksStatusesRequest) Execute() ([]GetOrganizationUplinksStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationUplinksStatusesExecute(r)
 }
 
@@ -1773,13 +1974,13 @@ func (a *StatusesApiService) GetOrganizationUplinksStatuses(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return []InlineResponse200153
-func (a *StatusesApiService) GetOrganizationUplinksStatusesExecute(r StatusesApiGetOrganizationUplinksStatusesRequest) ([]InlineResponse200153, *http.Response, error) {
+//  @return []GetOrganizationUplinksStatuses200ResponseInner
+func (a *StatusesApiService) GetOrganizationUplinksStatusesExecute(r StatusesApiGetOrganizationUplinksStatusesRequest) ([]GetOrganizationUplinksStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200153
+		localVarReturnValue  []GetOrganizationUplinksStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusesApiService.GetOrganizationUplinksStatuses")
@@ -1804,13 +2005,37 @@ func (a *StatusesApiService) GetOrganizationUplinksStatusesExecute(r StatusesApi
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.iccids != nil {
-		localVarQueryParams.Add("iccids", parameterToString(*r.iccids, "csv"))
+		t := *r.iccids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("iccids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("iccids", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1914,7 +2139,7 @@ func (r StatusesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Networ
 	return r
 }
 
-func (r StatusesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Execute() ([]InlineResponse200159, *http.Response, error) {
+func (r StatusesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Execute() ([]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWirelessDevicesEthernetStatusesExecute(r)
 }
 
@@ -1936,13 +2161,13 @@ func (a *StatusesApiService) GetOrganizationWirelessDevicesEthernetStatuses(ctx 
 }
 
 // Execute executes the request
-//  @return []InlineResponse200159
-func (a *StatusesApiService) GetOrganizationWirelessDevicesEthernetStatusesExecute(r StatusesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) ([]InlineResponse200159, *http.Response, error) {
+//  @return []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
+func (a *StatusesApiService) GetOrganizationWirelessDevicesEthernetStatusesExecute(r StatusesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) ([]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200159
+		localVarReturnValue  []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusesApiService.GetOrganizationWirelessDevicesEthernetStatuses")
@@ -1967,7 +2192,15 @@ func (a *StatusesApiService) GetOrganizationWirelessDevicesEthernetStatusesExecu
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2041,11 +2274,11 @@ type StatusesApiUpdateOrganizationCameraOnboardingStatusesRequest struct {
 	ctx context.Context
 	ApiService *StatusesApiService
 	organizationId string
-	updateOrganizationCameraOnboardingStatuses *InlineObject192
+	updateOrganizationCameraOnboardingStatusesRequest *UpdateOrganizationCameraOnboardingStatusesRequest
 }
 
-func (r StatusesApiUpdateOrganizationCameraOnboardingStatusesRequest) UpdateOrganizationCameraOnboardingStatuses(updateOrganizationCameraOnboardingStatuses InlineObject192) StatusesApiUpdateOrganizationCameraOnboardingStatusesRequest {
-	r.updateOrganizationCameraOnboardingStatuses = &updateOrganizationCameraOnboardingStatuses
+func (r StatusesApiUpdateOrganizationCameraOnboardingStatusesRequest) UpdateOrganizationCameraOnboardingStatusesRequest(updateOrganizationCameraOnboardingStatusesRequest UpdateOrganizationCameraOnboardingStatusesRequest) StatusesApiUpdateOrganizationCameraOnboardingStatusesRequest {
+	r.updateOrganizationCameraOnboardingStatusesRequest = &updateOrganizationCameraOnboardingStatusesRequest
 	return r
 }
 
@@ -2110,7 +2343,7 @@ func (a *StatusesApiService) UpdateOrganizationCameraOnboardingStatusesExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationCameraOnboardingStatuses
+	localVarPostBody = r.updateOrganizationCameraOnboardingStatusesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

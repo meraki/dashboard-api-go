@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -106,7 +107,7 @@ func (r BySwitchApiGetOrganizationSwitchPortsBySwitchRequest) ConfigurationUpdat
 	return r
 }
 
-func (r BySwitchApiGetOrganizationSwitchPortsBySwitchRequest) Execute() ([]InlineResponse200152, *http.Response, error) {
+func (r BySwitchApiGetOrganizationSwitchPortsBySwitchRequest) Execute() ([]GetOrganizationSwitchPortsBySwitch200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSwitchPortsBySwitchExecute(r)
 }
 
@@ -128,13 +129,13 @@ func (a *BySwitchApiService) GetOrganizationSwitchPortsBySwitch(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse200152
-func (a *BySwitchApiService) GetOrganizationSwitchPortsBySwitchExecute(r BySwitchApiGetOrganizationSwitchPortsBySwitchRequest) ([]InlineResponse200152, *http.Response, error) {
+//  @return []GetOrganizationSwitchPortsBySwitch200ResponseInner
+func (a *BySwitchApiService) GetOrganizationSwitchPortsBySwitchExecute(r BySwitchApiGetOrganizationSwitchPortsBySwitchRequest) ([]GetOrganizationSwitchPortsBySwitch200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200152
+		localVarReturnValue  []GetOrganizationSwitchPortsBySwitch200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BySwitchApiService.GetOrganizationSwitchPortsBySwitch")
@@ -159,10 +160,26 @@ func (a *BySwitchApiService) GetOrganizationSwitchPortsBySwitchExecute(r BySwitc
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.portProfileIds != nil {
-		localVarQueryParams.Add("portProfileIds", parameterToString(*r.portProfileIds, "csv"))
+		t := *r.portProfileIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("portProfileIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("portProfileIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.name != nil {
 		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
@@ -171,13 +188,29 @@ func (a *BySwitchApiService) GetOrganizationSwitchPortsBySwitchExecute(r BySwitc
 		localVarQueryParams.Add("mac", parameterToString(*r.mac, ""))
 	}
 	if r.macs != nil {
-		localVarQueryParams.Add("macs", parameterToString(*r.macs, "csv"))
+		t := *r.macs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("macs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("macs", parameterToString(t, "multi"))
+		}
 	}
 	if r.serial != nil {
 		localVarQueryParams.Add("serial", parameterToString(*r.serial, ""))
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.configurationUpdatedAfter != nil {
 		localVarQueryParams.Add("configurationUpdatedAfter", parameterToString(*r.configurationUpdatedAfter, ""))

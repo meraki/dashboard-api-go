@@ -26,7 +26,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceManagementInterface
 
-> map[string]interface{} UpdateDeviceManagementInterface(ctx, serial).UpdateDeviceManagementInterface(updateDeviceManagementInterface).Execute()
+> map[string]interface{} UpdateDeviceManagementInterface(ctx, serial).UpdateDeviceManagementInterfaceRequest(updateDeviceManagementInterfaceRequest).Execute()
 
 Update the management interface settings for a device
 
@@ -96,16 +96,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceManagementInterface := *openapiclient.NewInlineObject15() // InlineObject15 |  (optional)
+    updateDeviceManagementInterfaceRequest := *openapiclient.NewUpdateDeviceManagementInterfaceRequest() // UpdateDeviceManagementInterfaceRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ManagementInterfaceApi.UpdateDeviceManagementInterface(context.Background(), serial).UpdateDeviceManagementInterface(updateDeviceManagementInterface).Execute()
+    resp, r, err := apiClient.ManagementInterfaceApi.UpdateDeviceManagementInterface(context.Background(), serial).UpdateDeviceManagementInterfaceRequest(updateDeviceManagementInterfaceRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ManagementInterfaceApi.UpdateDeviceManagementInterface``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -131,7 +131,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceManagementInte
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceManagementInterface** | [**InlineObject15**](InlineObject15.md) |  | 
+ **updateDeviceManagementInterfaceRequest** | [**UpdateDeviceManagementInterfaceRequest**](UpdateDeviceManagementInterfaceRequest.md) |  | 
 
 ### Return type
 

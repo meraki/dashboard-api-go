@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type PayloadTemplatesApiCreateNetworkWebhooksPayloadTemplateRequest struct {
 	ctx context.Context
 	ApiService *PayloadTemplatesApiService
 	networkId string
-	createNetworkWebhooksPayloadTemplate *InlineObject148
+	createNetworkWebhooksPayloadTemplateRequest *CreateNetworkWebhooksPayloadTemplateRequest
 }
 
-func (r PayloadTemplatesApiCreateNetworkWebhooksPayloadTemplateRequest) CreateNetworkWebhooksPayloadTemplate(createNetworkWebhooksPayloadTemplate InlineObject148) PayloadTemplatesApiCreateNetworkWebhooksPayloadTemplateRequest {
-	r.createNetworkWebhooksPayloadTemplate = &createNetworkWebhooksPayloadTemplate
+func (r PayloadTemplatesApiCreateNetworkWebhooksPayloadTemplateRequest) CreateNetworkWebhooksPayloadTemplateRequest(createNetworkWebhooksPayloadTemplateRequest CreateNetworkWebhooksPayloadTemplateRequest) PayloadTemplatesApiCreateNetworkWebhooksPayloadTemplateRequest {
+	r.createNetworkWebhooksPayloadTemplateRequest = &createNetworkWebhooksPayloadTemplateRequest
 	return r
 }
 
-func (r PayloadTemplatesApiCreateNetworkWebhooksPayloadTemplateRequest) Execute() (*InlineResponse20084, *http.Response, error) {
+func (r PayloadTemplatesApiCreateNetworkWebhooksPayloadTemplateRequest) Execute() (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkWebhooksPayloadTemplateExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *PayloadTemplatesApiService) CreateNetworkWebhooksPayloadTemplate(ctx co
 }
 
 // Execute executes the request
-//  @return InlineResponse20084
-func (a *PayloadTemplatesApiService) CreateNetworkWebhooksPayloadTemplateExecute(r PayloadTemplatesApiCreateNetworkWebhooksPayloadTemplateRequest) (*InlineResponse20084, *http.Response, error) {
+//  @return GetNetworkWebhooksPayloadTemplates200ResponseInner
+func (a *PayloadTemplatesApiService) CreateNetworkWebhooksPayloadTemplateExecute(r PayloadTemplatesApiCreateNetworkWebhooksPayloadTemplateRequest) (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20084
+		localVarReturnValue  *GetNetworkWebhooksPayloadTemplates200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PayloadTemplatesApiService.CreateNetworkWebhooksPayloadTemplate")
@@ -77,8 +77,8 @@ func (a *PayloadTemplatesApiService) CreateNetworkWebhooksPayloadTemplateExecute
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkWebhooksPayloadTemplate == nil {
-		return localVarReturnValue, nil, reportError("createNetworkWebhooksPayloadTemplate is required and must be specified")
+	if r.createNetworkWebhooksPayloadTemplateRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkWebhooksPayloadTemplateRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *PayloadTemplatesApiService) CreateNetworkWebhooksPayloadTemplateExecute
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkWebhooksPayloadTemplate
+	localVarPostBody = r.createNetworkWebhooksPayloadTemplateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -268,7 +268,7 @@ type PayloadTemplatesApiGetNetworkWebhooksPayloadTemplateRequest struct {
 	payloadTemplateId string
 }
 
-func (r PayloadTemplatesApiGetNetworkWebhooksPayloadTemplateRequest) Execute() (*InlineResponse20084, *http.Response, error) {
+func (r PayloadTemplatesApiGetNetworkWebhooksPayloadTemplateRequest) Execute() (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWebhooksPayloadTemplateExecute(r)
 }
 
@@ -292,13 +292,13 @@ func (a *PayloadTemplatesApiService) GetNetworkWebhooksPayloadTemplate(ctx conte
 }
 
 // Execute executes the request
-//  @return InlineResponse20084
-func (a *PayloadTemplatesApiService) GetNetworkWebhooksPayloadTemplateExecute(r PayloadTemplatesApiGetNetworkWebhooksPayloadTemplateRequest) (*InlineResponse20084, *http.Response, error) {
+//  @return GetNetworkWebhooksPayloadTemplates200ResponseInner
+func (a *PayloadTemplatesApiService) GetNetworkWebhooksPayloadTemplateExecute(r PayloadTemplatesApiGetNetworkWebhooksPayloadTemplateRequest) (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20084
+		localVarReturnValue  *GetNetworkWebhooksPayloadTemplates200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PayloadTemplatesApiService.GetNetworkWebhooksPayloadTemplate")
@@ -388,7 +388,7 @@ type PayloadTemplatesApiGetNetworkWebhooksPayloadTemplatesRequest struct {
 	networkId string
 }
 
-func (r PayloadTemplatesApiGetNetworkWebhooksPayloadTemplatesRequest) Execute() ([]InlineResponse20084, *http.Response, error) {
+func (r PayloadTemplatesApiGetNetworkWebhooksPayloadTemplatesRequest) Execute() ([]GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkWebhooksPayloadTemplatesExecute(r)
 }
 
@@ -410,13 +410,13 @@ func (a *PayloadTemplatesApiService) GetNetworkWebhooksPayloadTemplates(ctx cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20084
-func (a *PayloadTemplatesApiService) GetNetworkWebhooksPayloadTemplatesExecute(r PayloadTemplatesApiGetNetworkWebhooksPayloadTemplatesRequest) ([]InlineResponse20084, *http.Response, error) {
+//  @return []GetNetworkWebhooksPayloadTemplates200ResponseInner
+func (a *PayloadTemplatesApiService) GetNetworkWebhooksPayloadTemplatesExecute(r PayloadTemplatesApiGetNetworkWebhooksPayloadTemplatesRequest) ([]GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20084
+		localVarReturnValue  []GetNetworkWebhooksPayloadTemplates200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PayloadTemplatesApiService.GetNetworkWebhooksPayloadTemplates")
@@ -504,15 +504,15 @@ type PayloadTemplatesApiUpdateNetworkWebhooksPayloadTemplateRequest struct {
 	ApiService *PayloadTemplatesApiService
 	networkId string
 	payloadTemplateId string
-	updateNetworkWebhooksPayloadTemplate *InlineObject149
+	updateNetworkWebhooksPayloadTemplateRequest *UpdateNetworkWebhooksPayloadTemplateRequest
 }
 
-func (r PayloadTemplatesApiUpdateNetworkWebhooksPayloadTemplateRequest) UpdateNetworkWebhooksPayloadTemplate(updateNetworkWebhooksPayloadTemplate InlineObject149) PayloadTemplatesApiUpdateNetworkWebhooksPayloadTemplateRequest {
-	r.updateNetworkWebhooksPayloadTemplate = &updateNetworkWebhooksPayloadTemplate
+func (r PayloadTemplatesApiUpdateNetworkWebhooksPayloadTemplateRequest) UpdateNetworkWebhooksPayloadTemplateRequest(updateNetworkWebhooksPayloadTemplateRequest UpdateNetworkWebhooksPayloadTemplateRequest) PayloadTemplatesApiUpdateNetworkWebhooksPayloadTemplateRequest {
+	r.updateNetworkWebhooksPayloadTemplateRequest = &updateNetworkWebhooksPayloadTemplateRequest
 	return r
 }
 
-func (r PayloadTemplatesApiUpdateNetworkWebhooksPayloadTemplateRequest) Execute() (*InlineResponse20084, *http.Response, error) {
+func (r PayloadTemplatesApiUpdateNetworkWebhooksPayloadTemplateRequest) Execute() (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWebhooksPayloadTemplateExecute(r)
 }
 
@@ -536,13 +536,13 @@ func (a *PayloadTemplatesApiService) UpdateNetworkWebhooksPayloadTemplate(ctx co
 }
 
 // Execute executes the request
-//  @return InlineResponse20084
-func (a *PayloadTemplatesApiService) UpdateNetworkWebhooksPayloadTemplateExecute(r PayloadTemplatesApiUpdateNetworkWebhooksPayloadTemplateRequest) (*InlineResponse20084, *http.Response, error) {
+//  @return GetNetworkWebhooksPayloadTemplates200ResponseInner
+func (a *PayloadTemplatesApiService) UpdateNetworkWebhooksPayloadTemplateExecute(r PayloadTemplatesApiUpdateNetworkWebhooksPayloadTemplateRequest) (*GetNetworkWebhooksPayloadTemplates200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20084
+		localVarReturnValue  *GetNetworkWebhooksPayloadTemplates200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PayloadTemplatesApiService.UpdateNetworkWebhooksPayloadTemplate")
@@ -576,7 +576,7 @@ func (a *PayloadTemplatesApiService) UpdateNetworkWebhooksPayloadTemplateExecute
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWebhooksPayloadTemplate
+	localVarPostBody = r.updateNetworkWebhooksPayloadTemplateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

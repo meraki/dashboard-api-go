@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -265,11 +265,11 @@ type RulesApiUpdateNetworkApplianceTrafficShapingRulesRequest struct {
 	ctx context.Context
 	ApiService *RulesApiService
 	networkId string
-	updateNetworkApplianceTrafficShapingRules *InlineObject56
+	updateNetworkApplianceTrafficShapingRulesRequest *UpdateNetworkApplianceTrafficShapingRulesRequest
 }
 
-func (r RulesApiUpdateNetworkApplianceTrafficShapingRulesRequest) UpdateNetworkApplianceTrafficShapingRules(updateNetworkApplianceTrafficShapingRules InlineObject56) RulesApiUpdateNetworkApplianceTrafficShapingRulesRequest {
-	r.updateNetworkApplianceTrafficShapingRules = &updateNetworkApplianceTrafficShapingRules
+func (r RulesApiUpdateNetworkApplianceTrafficShapingRulesRequest) UpdateNetworkApplianceTrafficShapingRulesRequest(updateNetworkApplianceTrafficShapingRulesRequest UpdateNetworkApplianceTrafficShapingRulesRequest) RulesApiUpdateNetworkApplianceTrafficShapingRulesRequest {
+	r.updateNetworkApplianceTrafficShapingRulesRequest = &updateNetworkApplianceTrafficShapingRulesRequest
 	return r
 }
 
@@ -334,7 +334,7 @@ func (a *RulesApiService) UpdateNetworkApplianceTrafficShapingRulesExecute(r Rul
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceTrafficShapingRules
+	localVarPostBody = r.updateNetworkApplianceTrafficShapingRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -391,11 +391,11 @@ type RulesApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest struct {
 	ApiService *RulesApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidTrafficShapingRules *InlineObject168
+	updateNetworkWirelessSsidTrafficShapingRulesRequest *UpdateNetworkWirelessSsidTrafficShapingRulesRequest
 }
 
-func (r RulesApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest) UpdateNetworkWirelessSsidTrafficShapingRules(updateNetworkWirelessSsidTrafficShapingRules InlineObject168) RulesApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest {
-	r.updateNetworkWirelessSsidTrafficShapingRules = &updateNetworkWirelessSsidTrafficShapingRules
+func (r RulesApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest) UpdateNetworkWirelessSsidTrafficShapingRulesRequest(updateNetworkWirelessSsidTrafficShapingRulesRequest UpdateNetworkWirelessSsidTrafficShapingRulesRequest) RulesApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest {
+	r.updateNetworkWirelessSsidTrafficShapingRulesRequest = &updateNetworkWirelessSsidTrafficShapingRulesRequest
 	return r
 }
 
@@ -463,7 +463,7 @@ func (a *RulesApiService) UpdateNetworkWirelessSsidTrafficShapingRulesExecute(r 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidTrafficShapingRules
+	localVarPostBody = r.updateNetworkWirelessSsidTrafficShapingRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

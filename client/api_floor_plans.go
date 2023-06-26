@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type FloorPlansApiCreateNetworkFloorPlanRequest struct {
 	ctx context.Context
 	ApiService *FloorPlansApiService
 	networkId string
-	createNetworkFloorPlan *InlineObject88
+	createNetworkFloorPlanRequest *CreateNetworkFloorPlanRequest
 }
 
-func (r FloorPlansApiCreateNetworkFloorPlanRequest) CreateNetworkFloorPlan(createNetworkFloorPlan InlineObject88) FloorPlansApiCreateNetworkFloorPlanRequest {
-	r.createNetworkFloorPlan = &createNetworkFloorPlan
+func (r FloorPlansApiCreateNetworkFloorPlanRequest) CreateNetworkFloorPlanRequest(createNetworkFloorPlanRequest CreateNetworkFloorPlanRequest) FloorPlansApiCreateNetworkFloorPlanRequest {
+	r.createNetworkFloorPlanRequest = &createNetworkFloorPlanRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *FloorPlansApiService) CreateNetworkFloorPlanExecute(r FloorPlansApiCrea
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkFloorPlan == nil {
-		return localVarReturnValue, nil, reportError("createNetworkFloorPlan is required and must be specified")
+	if r.createNetworkFloorPlanRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkFloorPlanRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *FloorPlansApiService) CreateNetworkFloorPlanExecute(r FloorPlansApiCrea
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkFloorPlan
+	localVarPostBody = r.createNetworkFloorPlanRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -504,11 +504,11 @@ type FloorPlansApiUpdateNetworkFloorPlanRequest struct {
 	ApiService *FloorPlansApiService
 	networkId string
 	floorPlanId string
-	updateNetworkFloorPlan *InlineObject89
+	updateNetworkFloorPlanRequest *UpdateNetworkFloorPlanRequest
 }
 
-func (r FloorPlansApiUpdateNetworkFloorPlanRequest) UpdateNetworkFloorPlan(updateNetworkFloorPlan InlineObject89) FloorPlansApiUpdateNetworkFloorPlanRequest {
-	r.updateNetworkFloorPlan = &updateNetworkFloorPlan
+func (r FloorPlansApiUpdateNetworkFloorPlanRequest) UpdateNetworkFloorPlanRequest(updateNetworkFloorPlanRequest UpdateNetworkFloorPlanRequest) FloorPlansApiUpdateNetworkFloorPlanRequest {
+	r.updateNetworkFloorPlanRequest = &updateNetworkFloorPlanRequest
 	return r
 }
 
@@ -576,7 +576,7 @@ func (a *FloorPlansApiService) UpdateNetworkFloorPlanExecute(r FloorPlansApiUpda
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkFloorPlan
+	localVarPostBody = r.updateNetworkFloorPlanRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

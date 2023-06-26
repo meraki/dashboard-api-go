@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -51,7 +51,7 @@ func (r ConnectivityApiGetNetworkSmDeviceConnectivityRequest) EndingBefore(endin
 	return r
 }
 
-func (r ConnectivityApiGetNetworkSmDeviceConnectivityRequest) Execute() ([]InlineResponse20053, *http.Response, error) {
+func (r ConnectivityApiGetNetworkSmDeviceConnectivityRequest) Execute() ([]GetNetworkSmDeviceConnectivity200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceConnectivityExecute(r)
 }
 
@@ -75,13 +75,13 @@ func (a *ConnectivityApiService) GetNetworkSmDeviceConnectivity(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20053
-func (a *ConnectivityApiService) GetNetworkSmDeviceConnectivityExecute(r ConnectivityApiGetNetworkSmDeviceConnectivityRequest) ([]InlineResponse20053, *http.Response, error) {
+//  @return []GetNetworkSmDeviceConnectivity200ResponseInner
+func (a *ConnectivityApiService) GetNetworkSmDeviceConnectivityExecute(r ConnectivityApiGetNetworkSmDeviceConnectivityRequest) ([]GetNetworkSmDeviceConnectivity200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20053
+		localVarReturnValue  []GetNetworkSmDeviceConnectivity200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectivityApiService.GetNetworkSmDeviceConnectivity")

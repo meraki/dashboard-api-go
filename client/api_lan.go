@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -144,11 +144,11 @@ type LanApiUpdateDeviceCellularGatewayLanRequest struct {
 	ctx context.Context
 	ApiService *LanApiService
 	serial string
-	updateDeviceCellularGatewayLan *InlineObject11
+	updateDeviceCellularGatewayLanRequest *UpdateDeviceCellularGatewayLanRequest
 }
 
-func (r LanApiUpdateDeviceCellularGatewayLanRequest) UpdateDeviceCellularGatewayLan(updateDeviceCellularGatewayLan InlineObject11) LanApiUpdateDeviceCellularGatewayLanRequest {
-	r.updateDeviceCellularGatewayLan = &updateDeviceCellularGatewayLan
+func (r LanApiUpdateDeviceCellularGatewayLanRequest) UpdateDeviceCellularGatewayLanRequest(updateDeviceCellularGatewayLanRequest UpdateDeviceCellularGatewayLanRequest) LanApiUpdateDeviceCellularGatewayLanRequest {
+	r.updateDeviceCellularGatewayLanRequest = &updateDeviceCellularGatewayLanRequest
 	return r
 }
 
@@ -213,7 +213,7 @@ func (a *LanApiService) UpdateDeviceCellularGatewayLanExecute(r LanApiUpdateDevi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCellularGatewayLan
+	localVarPostBody = r.updateDeviceCellularGatewayLanRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

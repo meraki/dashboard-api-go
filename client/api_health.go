@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -29,7 +29,7 @@ type HealthApiGetNetworkHealthAlertsRequest struct {
 	networkId string
 }
 
-func (r HealthApiGetNetworkHealthAlertsRequest) Execute() ([]InlineResponse20035, *http.Response, error) {
+func (r HealthApiGetNetworkHealthAlertsRequest) Execute() ([]GetNetworkHealthAlerts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkHealthAlertsExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *HealthApiService) GetNetworkHealthAlerts(ctx context.Context, networkId
 }
 
 // Execute executes the request
-//  @return []InlineResponse20035
-func (a *HealthApiService) GetNetworkHealthAlertsExecute(r HealthApiGetNetworkHealthAlertsRequest) ([]InlineResponse20035, *http.Response, error) {
+//  @return []GetNetworkHealthAlerts200ResponseInner
+func (a *HealthApiService) GetNetworkHealthAlertsExecute(r HealthApiGetNetworkHealthAlertsRequest) ([]GetNetworkHealthAlerts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20035
+		localVarReturnValue  []GetNetworkHealthAlerts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HealthApiService.GetNetworkHealthAlerts")

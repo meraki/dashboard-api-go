@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -144,11 +144,11 @@ type InboundCellularFirewallRulesApiUpdateNetworkApplianceFirewallInboundCellula
 	ctx context.Context
 	ApiService *InboundCellularFirewallRulesApiService
 	networkId string
-	updateNetworkApplianceFirewallInboundCellularFirewallRules *InlineObject33
+	updateNetworkApplianceFirewallCellularFirewallRulesRequest *UpdateNetworkApplianceFirewallCellularFirewallRulesRequest
 }
 
-func (r InboundCellularFirewallRulesApiUpdateNetworkApplianceFirewallInboundCellularFirewallRulesRequest) UpdateNetworkApplianceFirewallInboundCellularFirewallRules(updateNetworkApplianceFirewallInboundCellularFirewallRules InlineObject33) InboundCellularFirewallRulesApiUpdateNetworkApplianceFirewallInboundCellularFirewallRulesRequest {
-	r.updateNetworkApplianceFirewallInboundCellularFirewallRules = &updateNetworkApplianceFirewallInboundCellularFirewallRules
+func (r InboundCellularFirewallRulesApiUpdateNetworkApplianceFirewallInboundCellularFirewallRulesRequest) UpdateNetworkApplianceFirewallCellularFirewallRulesRequest(updateNetworkApplianceFirewallCellularFirewallRulesRequest UpdateNetworkApplianceFirewallCellularFirewallRulesRequest) InboundCellularFirewallRulesApiUpdateNetworkApplianceFirewallInboundCellularFirewallRulesRequest {
+	r.updateNetworkApplianceFirewallCellularFirewallRulesRequest = &updateNetworkApplianceFirewallCellularFirewallRulesRequest
 	return r
 }
 
@@ -213,7 +213,7 @@ func (a *InboundCellularFirewallRulesApiService) UpdateNetworkApplianceFirewallI
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallInboundCellularFirewallRules
+	localVarPostBody = r.updateNetworkApplianceFirewallCellularFirewallRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

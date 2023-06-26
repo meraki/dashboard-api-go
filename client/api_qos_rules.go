@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type QosRulesApiCreateNetworkSwitchQosRuleRequest struct {
 	ctx context.Context
 	ApiService *QosRulesApiService
 	networkId string
-	createNetworkSwitchQosRule *InlineObject125
+	createNetworkSwitchQosRuleRequest *CreateNetworkSwitchQosRuleRequest
 }
 
-func (r QosRulesApiCreateNetworkSwitchQosRuleRequest) CreateNetworkSwitchQosRule(createNetworkSwitchQosRule InlineObject125) QosRulesApiCreateNetworkSwitchQosRuleRequest {
-	r.createNetworkSwitchQosRule = &createNetworkSwitchQosRule
+func (r QosRulesApiCreateNetworkSwitchQosRuleRequest) CreateNetworkSwitchQosRuleRequest(createNetworkSwitchQosRuleRequest CreateNetworkSwitchQosRuleRequest) QosRulesApiCreateNetworkSwitchQosRuleRequest {
+	r.createNetworkSwitchQosRuleRequest = &createNetworkSwitchQosRuleRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *QosRulesApiService) CreateNetworkSwitchQosRuleExecute(r QosRulesApiCrea
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchQosRule == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchQosRule is required and must be specified")
+	if r.createNetworkSwitchQosRuleRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSwitchQosRuleRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *QosRulesApiService) CreateNetworkSwitchQosRuleExecute(r QosRulesApiCrea
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchQosRule
+	localVarPostBody = r.createNetworkSwitchQosRuleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -268,7 +268,7 @@ type QosRulesApiGetNetworkSwitchQosRuleRequest struct {
 	qosRuleId string
 }
 
-func (r QosRulesApiGetNetworkSwitchQosRuleRequest) Execute() (*InlineResponse20076, *http.Response, error) {
+func (r QosRulesApiGetNetworkSwitchQosRuleRequest) Execute() (*GetNetworkSwitchQosRule200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchQosRuleExecute(r)
 }
 
@@ -292,13 +292,13 @@ func (a *QosRulesApiService) GetNetworkSwitchQosRule(ctx context.Context, networ
 }
 
 // Execute executes the request
-//  @return InlineResponse20076
-func (a *QosRulesApiService) GetNetworkSwitchQosRuleExecute(r QosRulesApiGetNetworkSwitchQosRuleRequest) (*InlineResponse20076, *http.Response, error) {
+//  @return GetNetworkSwitchQosRule200Response
+func (a *QosRulesApiService) GetNetworkSwitchQosRuleExecute(r QosRulesApiGetNetworkSwitchQosRuleRequest) (*GetNetworkSwitchQosRule200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20076
+		localVarReturnValue  *GetNetworkSwitchQosRule200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "QosRulesApiService.GetNetworkSwitchQosRule")
@@ -621,11 +621,11 @@ type QosRulesApiUpdateNetworkSwitchQosRuleRequest struct {
 	ApiService *QosRulesApiService
 	networkId string
 	qosRuleId string
-	updateNetworkSwitchQosRule *InlineObject127
+	updateNetworkSwitchQosRuleRequest *UpdateNetworkSwitchQosRuleRequest
 }
 
-func (r QosRulesApiUpdateNetworkSwitchQosRuleRequest) UpdateNetworkSwitchQosRule(updateNetworkSwitchQosRule InlineObject127) QosRulesApiUpdateNetworkSwitchQosRuleRequest {
-	r.updateNetworkSwitchQosRule = &updateNetworkSwitchQosRule
+func (r QosRulesApiUpdateNetworkSwitchQosRuleRequest) UpdateNetworkSwitchQosRuleRequest(updateNetworkSwitchQosRuleRequest UpdateNetworkSwitchQosRuleRequest) QosRulesApiUpdateNetworkSwitchQosRuleRequest {
+	r.updateNetworkSwitchQosRuleRequest = &updateNetworkSwitchQosRuleRequest
 	return r
 }
 
@@ -693,7 +693,7 @@ func (a *QosRulesApiService) UpdateNetworkSwitchQosRuleExecute(r QosRulesApiUpda
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchQosRule
+	localVarPostBody = r.updateNetworkSwitchQosRuleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -749,11 +749,11 @@ type QosRulesApiUpdateNetworkSwitchQosRulesOrderRequest struct {
 	ctx context.Context
 	ApiService *QosRulesApiService
 	networkId string
-	updateNetworkSwitchQosRulesOrder *InlineObject126
+	updateNetworkSwitchQosRulesOrderRequest *UpdateNetworkSwitchQosRulesOrderRequest
 }
 
-func (r QosRulesApiUpdateNetworkSwitchQosRulesOrderRequest) UpdateNetworkSwitchQosRulesOrder(updateNetworkSwitchQosRulesOrder InlineObject126) QosRulesApiUpdateNetworkSwitchQosRulesOrderRequest {
-	r.updateNetworkSwitchQosRulesOrder = &updateNetworkSwitchQosRulesOrder
+func (r QosRulesApiUpdateNetworkSwitchQosRulesOrderRequest) UpdateNetworkSwitchQosRulesOrderRequest(updateNetworkSwitchQosRulesOrderRequest UpdateNetworkSwitchQosRulesOrderRequest) QosRulesApiUpdateNetworkSwitchQosRulesOrderRequest {
+	r.updateNetworkSwitchQosRulesOrderRequest = &updateNetworkSwitchQosRulesOrderRequest
 	return r
 }
 
@@ -799,8 +799,8 @@ func (a *QosRulesApiService) UpdateNetworkSwitchQosRulesOrderExecute(r QosRulesA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSwitchQosRulesOrder == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSwitchQosRulesOrder is required and must be specified")
+	if r.updateNetworkSwitchQosRulesOrderRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSwitchQosRulesOrderRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -821,7 +821,7 @@ func (a *QosRulesApiService) UpdateNetworkSwitchQosRulesOrderExecute(r QosRulesA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchQosRulesOrder
+	localVarPostBody = r.updateNetworkSwitchQosRulesOrderRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

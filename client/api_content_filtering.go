@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -261,11 +261,11 @@ type ContentFilteringApiUpdateNetworkApplianceContentFilteringRequest struct {
 	ctx context.Context
 	ApiService *ContentFilteringApiService
 	networkId string
-	updateNetworkApplianceContentFiltering *InlineObject30
+	updateNetworkApplianceContentFilteringRequest *UpdateNetworkApplianceContentFilteringRequest
 }
 
-func (r ContentFilteringApiUpdateNetworkApplianceContentFilteringRequest) UpdateNetworkApplianceContentFiltering(updateNetworkApplianceContentFiltering InlineObject30) ContentFilteringApiUpdateNetworkApplianceContentFilteringRequest {
-	r.updateNetworkApplianceContentFiltering = &updateNetworkApplianceContentFiltering
+func (r ContentFilteringApiUpdateNetworkApplianceContentFilteringRequest) UpdateNetworkApplianceContentFilteringRequest(updateNetworkApplianceContentFilteringRequest UpdateNetworkApplianceContentFilteringRequest) ContentFilteringApiUpdateNetworkApplianceContentFilteringRequest {
+	r.updateNetworkApplianceContentFilteringRequest = &updateNetworkApplianceContentFilteringRequest
 	return r
 }
 
@@ -330,7 +330,7 @@ func (a *ContentFilteringApiService) UpdateNetworkApplianceContentFilteringExecu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceContentFiltering
+	localVarPostBody = r.updateNetworkApplianceContentFilteringRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

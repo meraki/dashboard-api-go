@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -29,7 +29,7 @@ type VmxApiCreateDeviceApplianceVmxAuthenticationTokenRequest struct {
 	serial string
 }
 
-func (r VmxApiCreateDeviceApplianceVmxAuthenticationTokenRequest) Execute() (*InlineResponse201, *http.Response, error) {
+func (r VmxApiCreateDeviceApplianceVmxAuthenticationTokenRequest) Execute() (*CreateDeviceApplianceVmxAuthenticationToken201Response, *http.Response, error) {
 	return r.ApiService.CreateDeviceApplianceVmxAuthenticationTokenExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *VmxApiService) CreateDeviceApplianceVmxAuthenticationToken(ctx context.
 }
 
 // Execute executes the request
-//  @return InlineResponse201
-func (a *VmxApiService) CreateDeviceApplianceVmxAuthenticationTokenExecute(r VmxApiCreateDeviceApplianceVmxAuthenticationTokenRequest) (*InlineResponse201, *http.Response, error) {
+//  @return CreateDeviceApplianceVmxAuthenticationToken201Response
+func (a *VmxApiService) CreateDeviceApplianceVmxAuthenticationTokenExecute(r VmxApiCreateDeviceApplianceVmxAuthenticationTokenRequest) (*CreateDeviceApplianceVmxAuthenticationToken201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse201
+		localVarReturnValue  *CreateDeviceApplianceVmxAuthenticationToken201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VmxApiService.CreateDeviceApplianceVmxAuthenticationToken")

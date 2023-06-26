@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -78,7 +78,7 @@ func (r LogsApiGetOrganizationWebhooksLogsRequest) Url(url string) LogsApiGetOrg
 	return r
 }
 
-func (r LogsApiGetOrganizationWebhooksLogsRequest) Execute() ([]InlineResponse200154, *http.Response, error) {
+func (r LogsApiGetOrganizationWebhooksLogsRequest) Execute() ([]GetOrganizationWebhooksLogs200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWebhooksLogsExecute(r)
 }
 
@@ -100,13 +100,13 @@ func (a *LogsApiService) GetOrganizationWebhooksLogs(ctx context.Context, organi
 }
 
 // Execute executes the request
-//  @return []InlineResponse200154
-func (a *LogsApiService) GetOrganizationWebhooksLogsExecute(r LogsApiGetOrganizationWebhooksLogsRequest) ([]InlineResponse200154, *http.Response, error) {
+//  @return []GetOrganizationWebhooksLogs200ResponseInner
+func (a *LogsApiService) GetOrganizationWebhooksLogsExecute(r LogsApiGetOrganizationWebhooksLogsRequest) ([]GetOrganizationWebhooksLogs200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200154
+		localVarReturnValue  []GetOrganizationWebhooksLogs200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.GetOrganizationWebhooksLogs")

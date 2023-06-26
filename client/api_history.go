@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -221,7 +222,7 @@ func (r HistoryApiGetNetworkAlertsHistoryRequest) EndingBefore(endingBefore stri
 	return r
 }
 
-func (r HistoryApiGetNetworkAlertsHistoryRequest) Execute() ([]InlineResponse20013, *http.Response, error) {
+func (r HistoryApiGetNetworkAlertsHistoryRequest) Execute() ([]GetNetworkAlertsHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkAlertsHistoryExecute(r)
 }
 
@@ -243,13 +244,13 @@ func (a *HistoryApiService) GetNetworkAlertsHistory(ctx context.Context, network
 }
 
 // Execute executes the request
-//  @return []InlineResponse20013
-func (a *HistoryApiService) GetNetworkAlertsHistoryExecute(r HistoryApiGetNetworkAlertsHistoryRequest) ([]InlineResponse20013, *http.Response, error) {
+//  @return []GetNetworkAlertsHistory200ResponseInner
+func (a *HistoryApiService) GetNetworkAlertsHistoryExecute(r HistoryApiGetNetworkAlertsHistoryRequest) ([]GetNetworkAlertsHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20013
+		localVarReturnValue  []GetNetworkAlertsHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryApiService.GetNetworkAlertsHistory")
@@ -410,7 +411,7 @@ func (r HistoryApiGetOrganizationSensorReadingsHistoryRequest) Metrics(metrics [
 	return r
 }
 
-func (r HistoryApiGetOrganizationSensorReadingsHistoryRequest) Execute() ([]InlineResponse200141, *http.Response, error) {
+func (r HistoryApiGetOrganizationSensorReadingsHistoryRequest) Execute() ([]GetOrganizationSensorReadingsHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSensorReadingsHistoryExecute(r)
 }
 
@@ -432,13 +433,13 @@ func (a *HistoryApiService) GetOrganizationSensorReadingsHistory(ctx context.Con
 }
 
 // Execute executes the request
-//  @return []InlineResponse200141
-func (a *HistoryApiService) GetOrganizationSensorReadingsHistoryExecute(r HistoryApiGetOrganizationSensorReadingsHistoryRequest) ([]InlineResponse200141, *http.Response, error) {
+//  @return []GetOrganizationSensorReadingsHistory200ResponseInner
+func (a *HistoryApiService) GetOrganizationSensorReadingsHistoryExecute(r HistoryApiGetOrganizationSensorReadingsHistoryRequest) ([]GetOrganizationSensorReadingsHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200141
+		localVarReturnValue  []GetOrganizationSensorReadingsHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryApiService.GetOrganizationSensorReadingsHistory")
@@ -472,13 +473,37 @@ func (a *HistoryApiService) GetOrganizationSensorReadingsHistoryExecute(r Histor
 		localVarQueryParams.Add("timespan", parameterToString(*r.timespan, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.metrics != nil {
-		localVarQueryParams.Add("metrics", parameterToString(*r.metrics, "csv"))
+		t := *r.metrics
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("metrics", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("metrics", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -617,7 +642,7 @@ func (r HistoryApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByDevic
 	return r
 }
 
-func (r HistoryApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalRequest) Execute() ([]InlineResponse200157, *http.Response, error) {
+func (r HistoryApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalRequest) Execute() ([]GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalExecute(r)
 }
 
@@ -639,13 +664,13 @@ func (a *HistoryApiService) GetOrganizationWirelessDevicesChannelUtilizationHist
 }
 
 // Execute executes the request
-//  @return []InlineResponse200157
-func (a *HistoryApiService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalExecute(r HistoryApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalRequest) ([]InlineResponse200157, *http.Response, error) {
+//  @return []GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval200ResponseInner
+func (a *HistoryApiService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalExecute(r HistoryApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalRequest) ([]GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200157
+		localVarReturnValue  []GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryApiService.GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval")
@@ -661,10 +686,26 @@ func (a *HistoryApiService) GetOrganizationWirelessDevicesChannelUtilizationHist
 	localVarFormParams := url.Values{}
 
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.perPage != nil {
 		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
@@ -824,7 +865,7 @@ func (r HistoryApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetwo
 	return r
 }
 
-func (r HistoryApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalRequest) Execute() ([]InlineResponse200158, *http.Response, error) {
+func (r HistoryApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalRequest) Execute() ([]GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalExecute(r)
 }
 
@@ -846,13 +887,13 @@ func (a *HistoryApiService) GetOrganizationWirelessDevicesChannelUtilizationHist
 }
 
 // Execute executes the request
-//  @return []InlineResponse200158
-func (a *HistoryApiService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalExecute(r HistoryApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalRequest) ([]InlineResponse200158, *http.Response, error) {
+//  @return []GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner
+func (a *HistoryApiService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalExecute(r HistoryApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalRequest) ([]GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200158
+		localVarReturnValue  []GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryApiService.GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval")
@@ -868,10 +909,26 @@ func (a *HistoryApiService) GetOrganizationWirelessDevicesChannelUtilizationHist
 	localVarFormParams := url.Values{}
 
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.perPage != nil {
 		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))

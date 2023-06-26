@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type RequestsApiCreateNetworkPiiRequestRequest struct {
 	ctx context.Context
 	ApiService *RequestsApiService
 	networkId string
-	createNetworkPiiRequest *InlineObject97
+	createNetworkPiiRequestRequest *CreateNetworkPiiRequestRequest
 }
 
-func (r RequestsApiCreateNetworkPiiRequestRequest) CreateNetworkPiiRequest(createNetworkPiiRequest InlineObject97) RequestsApiCreateNetworkPiiRequestRequest {
-	r.createNetworkPiiRequest = &createNetworkPiiRequest
+func (r RequestsApiCreateNetworkPiiRequestRequest) CreateNetworkPiiRequestRequest(createNetworkPiiRequestRequest CreateNetworkPiiRequestRequest) RequestsApiCreateNetworkPiiRequestRequest {
+	r.createNetworkPiiRequestRequest = &createNetworkPiiRequestRequest
 	return r
 }
 
@@ -102,7 +102,7 @@ func (a *RequestsApiService) CreateNetworkPiiRequestExecute(r RequestsApiCreateN
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkPiiRequest
+	localVarPostBody = r.createNetworkPiiRequestRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

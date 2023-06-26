@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -29,7 +29,7 @@ type StagesApiGetNetworkFirmwareUpgradesStagedStagesRequest struct {
 	networkId string
 }
 
-func (r StagesApiGetNetworkFirmwareUpgradesStagedStagesRequest) Execute() ([]InlineResponse20034, *http.Response, error) {
+func (r StagesApiGetNetworkFirmwareUpgradesStagedStagesRequest) Execute() ([]GetNetworkFirmwareUpgradesStagedStages200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkFirmwareUpgradesStagedStagesExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *StagesApiService) GetNetworkFirmwareUpgradesStagedStages(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20034
-func (a *StagesApiService) GetNetworkFirmwareUpgradesStagedStagesExecute(r StagesApiGetNetworkFirmwareUpgradesStagedStagesRequest) ([]InlineResponse20034, *http.Response, error) {
+//  @return []GetNetworkFirmwareUpgradesStagedStages200ResponseInner
+func (a *StagesApiService) GetNetworkFirmwareUpgradesStagedStagesExecute(r StagesApiGetNetworkFirmwareUpgradesStagedStagesRequest) ([]GetNetworkFirmwareUpgradesStagedStages200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20034
+		localVarReturnValue  []GetNetworkFirmwareUpgradesStagedStages200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StagesApiService.GetNetworkFirmwareUpgradesStagedStages")
@@ -144,15 +144,15 @@ type StagesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest struct {
 	ctx context.Context
 	ApiService *StagesApiService
 	networkId string
-	updateNetworkFirmwareUpgradesStagedStages *InlineObject87
+	updateNetworkFirmwareUpgradesStagedStagesRequest *UpdateNetworkFirmwareUpgradesStagedStagesRequest
 }
 
-func (r StagesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) UpdateNetworkFirmwareUpgradesStagedStages(updateNetworkFirmwareUpgradesStagedStages InlineObject87) StagesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest {
-	r.updateNetworkFirmwareUpgradesStagedStages = &updateNetworkFirmwareUpgradesStagedStages
+func (r StagesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) UpdateNetworkFirmwareUpgradesStagedStagesRequest(updateNetworkFirmwareUpgradesStagedStagesRequest UpdateNetworkFirmwareUpgradesStagedStagesRequest) StagesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest {
+	r.updateNetworkFirmwareUpgradesStagedStagesRequest = &updateNetworkFirmwareUpgradesStagedStagesRequest
 	return r
 }
 
-func (r StagesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) Execute() ([]InlineResponse20034, *http.Response, error) {
+func (r StagesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) Execute() ([]GetNetworkFirmwareUpgradesStagedStages200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkFirmwareUpgradesStagedStagesExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *StagesApiService) UpdateNetworkFirmwareUpgradesStagedStages(ctx context
 }
 
 // Execute executes the request
-//  @return []InlineResponse20034
-func (a *StagesApiService) UpdateNetworkFirmwareUpgradesStagedStagesExecute(r StagesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) ([]InlineResponse20034, *http.Response, error) {
+//  @return []GetNetworkFirmwareUpgradesStagedStages200ResponseInner
+func (a *StagesApiService) UpdateNetworkFirmwareUpgradesStagedStagesExecute(r StagesApiUpdateNetworkFirmwareUpgradesStagedStagesRequest) ([]GetNetworkFirmwareUpgradesStagedStages200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20034
+		localVarReturnValue  []GetNetworkFirmwareUpgradesStagedStages200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StagesApiService.UpdateNetworkFirmwareUpgradesStagedStages")
@@ -213,7 +213,7 @@ func (a *StagesApiService) UpdateNetworkFirmwareUpgradesStagedStagesExecute(r St
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkFirmwareUpgradesStagedStages
+	localVarPostBody = r.updateNetworkFirmwareUpgradesStagedStagesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

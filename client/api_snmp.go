@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -261,11 +261,11 @@ type SnmpApiUpdateNetworkSnmpRequest struct {
 	ctx context.Context
 	ApiService *SnmpApiService
 	networkId string
-	updateNetworkSnmp *InlineObject111
+	updateNetworkSnmpRequest *UpdateNetworkSnmpRequest
 }
 
-func (r SnmpApiUpdateNetworkSnmpRequest) UpdateNetworkSnmp(updateNetworkSnmp InlineObject111) SnmpApiUpdateNetworkSnmpRequest {
-	r.updateNetworkSnmp = &updateNetworkSnmp
+func (r SnmpApiUpdateNetworkSnmpRequest) UpdateNetworkSnmpRequest(updateNetworkSnmpRequest UpdateNetworkSnmpRequest) SnmpApiUpdateNetworkSnmpRequest {
+	r.updateNetworkSnmpRequest = &updateNetworkSnmpRequest
 	return r
 }
 
@@ -330,7 +330,7 @@ func (a *SnmpApiService) UpdateNetworkSnmpExecute(r SnmpApiUpdateNetworkSnmpRequ
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSnmp
+	localVarPostBody = r.updateNetworkSnmpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -386,11 +386,11 @@ type SnmpApiUpdateOrganizationSnmpRequest struct {
 	ctx context.Context
 	ApiService *SnmpApiService
 	organizationId string
-	updateOrganizationSnmp *InlineObject225
+	updateOrganizationSnmpRequest *UpdateOrganizationSnmpRequest
 }
 
-func (r SnmpApiUpdateOrganizationSnmpRequest) UpdateOrganizationSnmp(updateOrganizationSnmp InlineObject225) SnmpApiUpdateOrganizationSnmpRequest {
-	r.updateOrganizationSnmp = &updateOrganizationSnmp
+func (r SnmpApiUpdateOrganizationSnmpRequest) UpdateOrganizationSnmpRequest(updateOrganizationSnmpRequest UpdateOrganizationSnmpRequest) SnmpApiUpdateOrganizationSnmpRequest {
+	r.updateOrganizationSnmpRequest = &updateOrganizationSnmpRequest
 	return r
 }
 
@@ -455,7 +455,7 @@ func (a *SnmpApiService) UpdateOrganizationSnmpExecute(r SnmpApiUpdateOrganizati
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationSnmp
+	localVarPostBody = r.updateOrganizationSnmpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

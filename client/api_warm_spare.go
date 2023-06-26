@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -378,11 +378,11 @@ type WarmSpareApiUpdateDeviceSwitchWarmSpareRequest struct {
 	ctx context.Context
 	ApiService *WarmSpareApiService
 	serial string
-	updateDeviceSwitchWarmSpare *InlineObject24
+	updateDeviceSwitchWarmSpareRequest *UpdateDeviceSwitchWarmSpareRequest
 }
 
-func (r WarmSpareApiUpdateDeviceSwitchWarmSpareRequest) UpdateDeviceSwitchWarmSpare(updateDeviceSwitchWarmSpare InlineObject24) WarmSpareApiUpdateDeviceSwitchWarmSpareRequest {
-	r.updateDeviceSwitchWarmSpare = &updateDeviceSwitchWarmSpare
+func (r WarmSpareApiUpdateDeviceSwitchWarmSpareRequest) UpdateDeviceSwitchWarmSpareRequest(updateDeviceSwitchWarmSpareRequest UpdateDeviceSwitchWarmSpareRequest) WarmSpareApiUpdateDeviceSwitchWarmSpareRequest {
+	r.updateDeviceSwitchWarmSpareRequest = &updateDeviceSwitchWarmSpareRequest
 	return r
 }
 
@@ -428,8 +428,8 @@ func (a *WarmSpareApiService) UpdateDeviceSwitchWarmSpareExecute(r WarmSpareApiU
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateDeviceSwitchWarmSpare == nil {
-		return localVarReturnValue, nil, reportError("updateDeviceSwitchWarmSpare is required and must be specified")
+	if r.updateDeviceSwitchWarmSpareRequest == nil {
+		return localVarReturnValue, nil, reportError("updateDeviceSwitchWarmSpareRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -450,7 +450,7 @@ func (a *WarmSpareApiService) UpdateDeviceSwitchWarmSpareExecute(r WarmSpareApiU
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceSwitchWarmSpare
+	localVarPostBody = r.updateDeviceSwitchWarmSpareRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -506,11 +506,11 @@ type WarmSpareApiUpdateNetworkApplianceWarmSpareRequest struct {
 	ctx context.Context
 	ApiService *WarmSpareApiService
 	networkId string
-	updateNetworkApplianceWarmSpare *InlineObject64
+	updateNetworkApplianceWarmSpareRequest *UpdateNetworkApplianceWarmSpareRequest
 }
 
-func (r WarmSpareApiUpdateNetworkApplianceWarmSpareRequest) UpdateNetworkApplianceWarmSpare(updateNetworkApplianceWarmSpare InlineObject64) WarmSpareApiUpdateNetworkApplianceWarmSpareRequest {
-	r.updateNetworkApplianceWarmSpare = &updateNetworkApplianceWarmSpare
+func (r WarmSpareApiUpdateNetworkApplianceWarmSpareRequest) UpdateNetworkApplianceWarmSpareRequest(updateNetworkApplianceWarmSpareRequest UpdateNetworkApplianceWarmSpareRequest) WarmSpareApiUpdateNetworkApplianceWarmSpareRequest {
+	r.updateNetworkApplianceWarmSpareRequest = &updateNetworkApplianceWarmSpareRequest
 	return r
 }
 
@@ -556,8 +556,8 @@ func (a *WarmSpareApiService) UpdateNetworkApplianceWarmSpareExecute(r WarmSpare
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceWarmSpare == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceWarmSpare is required and must be specified")
+	if r.updateNetworkApplianceWarmSpareRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceWarmSpareRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -578,7 +578,7 @@ func (a *WarmSpareApiService) UpdateNetworkApplianceWarmSpareExecute(r WarmSpare
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceWarmSpare
+	localVarPostBody = r.updateNetworkApplianceWarmSpareRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

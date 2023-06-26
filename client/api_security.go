@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -943,11 +943,11 @@ type SecurityApiUpdateNetworkApplianceSecurityIntrusionRequest struct {
 	ctx context.Context
 	ApiService *SecurityApiService
 	networkId string
-	updateNetworkApplianceSecurityIntrusion *InlineObject46
+	updateNetworkApplianceSecurityIntrusionRequest *UpdateNetworkApplianceSecurityIntrusionRequest
 }
 
-func (r SecurityApiUpdateNetworkApplianceSecurityIntrusionRequest) UpdateNetworkApplianceSecurityIntrusion(updateNetworkApplianceSecurityIntrusion InlineObject46) SecurityApiUpdateNetworkApplianceSecurityIntrusionRequest {
-	r.updateNetworkApplianceSecurityIntrusion = &updateNetworkApplianceSecurityIntrusion
+func (r SecurityApiUpdateNetworkApplianceSecurityIntrusionRequest) UpdateNetworkApplianceSecurityIntrusionRequest(updateNetworkApplianceSecurityIntrusionRequest UpdateNetworkApplianceSecurityIntrusionRequest) SecurityApiUpdateNetworkApplianceSecurityIntrusionRequest {
+	r.updateNetworkApplianceSecurityIntrusionRequest = &updateNetworkApplianceSecurityIntrusionRequest
 	return r
 }
 
@@ -1012,7 +1012,7 @@ func (a *SecurityApiService) UpdateNetworkApplianceSecurityIntrusionExecute(r Se
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceSecurityIntrusion
+	localVarPostBody = r.updateNetworkApplianceSecurityIntrusionRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1068,11 +1068,11 @@ type SecurityApiUpdateNetworkApplianceSecurityMalwareRequest struct {
 	ctx context.Context
 	ApiService *SecurityApiService
 	networkId string
-	updateNetworkApplianceSecurityMalware *InlineObject47
+	updateNetworkApplianceSecurityMalwareRequest *UpdateNetworkApplianceSecurityMalwareRequest
 }
 
-func (r SecurityApiUpdateNetworkApplianceSecurityMalwareRequest) UpdateNetworkApplianceSecurityMalware(updateNetworkApplianceSecurityMalware InlineObject47) SecurityApiUpdateNetworkApplianceSecurityMalwareRequest {
-	r.updateNetworkApplianceSecurityMalware = &updateNetworkApplianceSecurityMalware
+func (r SecurityApiUpdateNetworkApplianceSecurityMalwareRequest) UpdateNetworkApplianceSecurityMalwareRequest(updateNetworkApplianceSecurityMalwareRequest UpdateNetworkApplianceSecurityMalwareRequest) SecurityApiUpdateNetworkApplianceSecurityMalwareRequest {
+	r.updateNetworkApplianceSecurityMalwareRequest = &updateNetworkApplianceSecurityMalwareRequest
 	return r
 }
 
@@ -1118,8 +1118,8 @@ func (a *SecurityApiService) UpdateNetworkApplianceSecurityMalwareExecute(r Secu
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceSecurityMalware == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceSecurityMalware is required and must be specified")
+	if r.updateNetworkApplianceSecurityMalwareRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceSecurityMalwareRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1140,7 +1140,7 @@ func (a *SecurityApiService) UpdateNetworkApplianceSecurityMalwareExecute(r Secu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceSecurityMalware
+	localVarPostBody = r.updateNetworkApplianceSecurityMalwareRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1196,11 +1196,11 @@ type SecurityApiUpdateOrganizationApplianceSecurityIntrusionRequest struct {
 	ctx context.Context
 	ApiService *SecurityApiService
 	organizationId string
-	updateOrganizationApplianceSecurityIntrusion *InlineObject185
+	updateOrganizationApplianceSecurityIntrusionRequest *UpdateOrganizationApplianceSecurityIntrusionRequest
 }
 
-func (r SecurityApiUpdateOrganizationApplianceSecurityIntrusionRequest) UpdateOrganizationApplianceSecurityIntrusion(updateOrganizationApplianceSecurityIntrusion InlineObject185) SecurityApiUpdateOrganizationApplianceSecurityIntrusionRequest {
-	r.updateOrganizationApplianceSecurityIntrusion = &updateOrganizationApplianceSecurityIntrusion
+func (r SecurityApiUpdateOrganizationApplianceSecurityIntrusionRequest) UpdateOrganizationApplianceSecurityIntrusionRequest(updateOrganizationApplianceSecurityIntrusionRequest UpdateOrganizationApplianceSecurityIntrusionRequest) SecurityApiUpdateOrganizationApplianceSecurityIntrusionRequest {
+	r.updateOrganizationApplianceSecurityIntrusionRequest = &updateOrganizationApplianceSecurityIntrusionRequest
 	return r
 }
 
@@ -1246,8 +1246,8 @@ func (a *SecurityApiService) UpdateOrganizationApplianceSecurityIntrusionExecute
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateOrganizationApplianceSecurityIntrusion == nil {
-		return localVarReturnValue, nil, reportError("updateOrganizationApplianceSecurityIntrusion is required and must be specified")
+	if r.updateOrganizationApplianceSecurityIntrusionRequest == nil {
+		return localVarReturnValue, nil, reportError("updateOrganizationApplianceSecurityIntrusionRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1268,7 +1268,7 @@ func (a *SecurityApiService) UpdateOrganizationApplianceSecurityIntrusionExecute
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationApplianceSecurityIntrusion
+	localVarPostBody = r.updateOrganizationApplianceSecurityIntrusionRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
