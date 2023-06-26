@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Slot** | Pointer to **string** | SIM slot being configured. Must be &#39;sim1&#39; on single-sim devices. | [optional] 
 **IsPrimary** | Pointer to **bool** | If true, this SIM is used for boot. Must be true on single-sim devices. | [optional] [default to false]
-**Apns** | Pointer to [**[]UpdateDeviceCellularSimsRequestSimsInnerApnsInner**](UpdateDeviceCellularSimsRequestSimsInnerApnsInner.md) | APN configurations. If empty, the default APN will be used. | [optional] 
+**Apns** | Pointer to [**[]UpdateDeviceCellularSimsRequestSimsInnerApnsInner**](UpdateDeviceCellularSimsRequestSimsInnerApnsInner.md) | APN configurations. If empty, the default APN will be used. | [optional] [default to []]
 
 ## Methods
 

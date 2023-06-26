@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RfProfileId** | Pointer to **string** | The ID of an RF profile to assign to the device. If the value of this parameter is null, the appropriate basic RF profile (indoor or outdoor) will be assigned to the device. Assigning an RF profile will clear ALL manually configured overrides on the device (channel width, channel, power). | [optional] 
-**TwoFourGhzSettings** | Pointer to [**UpdateDeviceWirelessRadioSettingsRequestTwoFourGhzSettings**](UpdateDeviceWirelessRadioSettingsRequestTwoFourGhzSettings.md) |  | [optional] 
+**TwoFourGhzSettings** | Pointer to [**UpdateDeviceApplianceRadioSettingsRequestTwoFourGhzSettings**](UpdateDeviceApplianceRadioSettingsRequestTwoFourGhzSettings.md) |  | [optional] 
 **FiveGhzSettings** | Pointer to [**UpdateDeviceWirelessRadioSettingsRequestFiveGhzSettings**](UpdateDeviceWirelessRadioSettingsRequestFiveGhzSettings.md) |  | [optional] 
 
 ## Methods
@@ -54,20 +54,20 @@ HasRfProfileId returns a boolean if a field has been set.
 
 ### GetTwoFourGhzSettings
 
-`func (o *UpdateDeviceWirelessRadioSettingsRequest) GetTwoFourGhzSettings() UpdateDeviceWirelessRadioSettingsRequestTwoFourGhzSettings`
+`func (o *UpdateDeviceWirelessRadioSettingsRequest) GetTwoFourGhzSettings() UpdateDeviceApplianceRadioSettingsRequestTwoFourGhzSettings`
 
 GetTwoFourGhzSettings returns the TwoFourGhzSettings field if non-nil, zero value otherwise.
 
 ### GetTwoFourGhzSettingsOk
 
-`func (o *UpdateDeviceWirelessRadioSettingsRequest) GetTwoFourGhzSettingsOk() (*UpdateDeviceWirelessRadioSettingsRequestTwoFourGhzSettings, bool)`
+`func (o *UpdateDeviceWirelessRadioSettingsRequest) GetTwoFourGhzSettingsOk() (*UpdateDeviceApplianceRadioSettingsRequestTwoFourGhzSettings, bool)`
 
 GetTwoFourGhzSettingsOk returns a tuple with the TwoFourGhzSettings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTwoFourGhzSettings
 
-`func (o *UpdateDeviceWirelessRadioSettingsRequest) SetTwoFourGhzSettings(v UpdateDeviceWirelessRadioSettingsRequestTwoFourGhzSettings)`
+`func (o *UpdateDeviceWirelessRadioSettingsRequest) SetTwoFourGhzSettings(v UpdateDeviceApplianceRadioSettingsRequestTwoFourGhzSettings)`
 
 SetTwoFourGhzSettings sets TwoFourGhzSettings field to given value.
 

@@ -10,6 +10,9 @@ Name | Type | Description | Notes
 **Scope** | Pointer to **string** | scope | [optional] 
 **Tags** | Pointer to **[]string** | device tags | [optional] 
 **TimeboundType** | Pointer to **string** | type of access period, either a static range or a dynamic period | [optional] 
+**SendExpirationEmails** | Pointer to **bool** | Send Email Notifications | [optional] 
+**NotifyTimeBeforeAccessEnds** | Pointer to **int32** | Time before access expiration reminder email sends | [optional] 
+**AdditionalEmailText** | Pointer to **string** | Optional email text | [optional] 
 **AccessStartAt** | Pointer to **time.Time** | time that access starts | [optional] 
 **AccessEndAt** | Pointer to **time.Time** | time that access ends | [optional] 
 
@@ -181,6 +184,81 @@ SetTimeboundType sets TimeboundType field to given value.
 `func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasTimeboundType() bool`
 
 HasTimeboundType returns a boolean if a field has been set.
+
+### GetSendExpirationEmails
+
+`func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetSendExpirationEmails() bool`
+
+GetSendExpirationEmails returns the SendExpirationEmails field if non-nil, zero value otherwise.
+
+### GetSendExpirationEmailsOk
+
+`func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetSendExpirationEmailsOk() (*bool, bool)`
+
+GetSendExpirationEmailsOk returns a tuple with the SendExpirationEmails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSendExpirationEmails
+
+`func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) SetSendExpirationEmails(v bool)`
+
+SetSendExpirationEmails sets SendExpirationEmails field to given value.
+
+### HasSendExpirationEmails
+
+`func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasSendExpirationEmails() bool`
+
+HasSendExpirationEmails returns a boolean if a field has been set.
+
+### GetNotifyTimeBeforeAccessEnds
+
+`func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetNotifyTimeBeforeAccessEnds() int32`
+
+GetNotifyTimeBeforeAccessEnds returns the NotifyTimeBeforeAccessEnds field if non-nil, zero value otherwise.
+
+### GetNotifyTimeBeforeAccessEndsOk
+
+`func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetNotifyTimeBeforeAccessEndsOk() (*int32, bool)`
+
+GetNotifyTimeBeforeAccessEndsOk returns a tuple with the NotifyTimeBeforeAccessEnds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotifyTimeBeforeAccessEnds
+
+`func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) SetNotifyTimeBeforeAccessEnds(v int32)`
+
+SetNotifyTimeBeforeAccessEnds sets NotifyTimeBeforeAccessEnds field to given value.
+
+### HasNotifyTimeBeforeAccessEnds
+
+`func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasNotifyTimeBeforeAccessEnds() bool`
+
+HasNotifyTimeBeforeAccessEnds returns a boolean if a field has been set.
+
+### GetAdditionalEmailText
+
+`func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetAdditionalEmailText() string`
+
+GetAdditionalEmailText returns the AdditionalEmailText field if non-nil, zero value otherwise.
+
+### GetAdditionalEmailTextOk
+
+`func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetAdditionalEmailTextOk() (*string, bool)`
+
+GetAdditionalEmailTextOk returns a tuple with the AdditionalEmailText field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAdditionalEmailText
+
+`func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) SetAdditionalEmailText(v string)`
+
+SetAdditionalEmailText sets AdditionalEmailText field to given value.
+
+### HasAdditionalEmailText
+
+`func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasAdditionalEmailText() bool`
+
+HasAdditionalEmailText returns a boolean if a field has been set.
 
 ### GetAccessStartAt
 

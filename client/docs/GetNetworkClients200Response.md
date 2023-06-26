@@ -31,6 +31,7 @@ Name | Type | Description | Notes
 **Notes** | Pointer to **string** | Notes on the client | [optional] 
 **Ip6Local** | Pointer to **string** | Local IPv6 address of the client | [optional] 
 **GroupPolicy8021x** | Pointer to **string** | 802.1x group policy of the client | [optional] 
+**PskGroup** | Pointer to **string** | iPSK name of the client | [optional] 
 
 ## Methods
 
@@ -725,6 +726,31 @@ SetGroupPolicy8021x sets GroupPolicy8021x field to given value.
 `func (o *GetNetworkClients200Response) HasGroupPolicy8021x() bool`
 
 HasGroupPolicy8021x returns a boolean if a field has been set.
+
+### GetPskGroup
+
+`func (o *GetNetworkClients200Response) GetPskGroup() string`
+
+GetPskGroup returns the PskGroup field if non-nil, zero value otherwise.
+
+### GetPskGroupOk
+
+`func (o *GetNetworkClients200Response) GetPskGroupOk() (*string, bool)`
+
+GetPskGroupOk returns a tuple with the PskGroup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPskGroup
+
+`func (o *GetNetworkClients200Response) SetPskGroup(v string)`
+
+SetPskGroup sets PskGroup field to given value.
+
+### HasPskGroup
+
+`func (o *GetNetworkClients200Response) HasPskGroup() bool`
+
+HasPskGroup returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

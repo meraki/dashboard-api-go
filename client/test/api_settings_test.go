@@ -14,13 +14,27 @@ import (
     "github.com/stretchr/testify/assert"
     "github.com/stretchr/testify/require"
     "testing"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func Test_client_SettingsApiService(t *testing.T) {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
+
+    t.Run("Test SettingsApiService GetDeviceApplianceRadioSettings", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var serial string
+
+        resp, httpRes, err := apiClient.SettingsApi.GetDeviceApplianceRadioSettings(context.Background(), serial).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
 
     t.Run("Test SettingsApiService GetDeviceApplianceUplinksSettings", func(t *testing.T) {
 
@@ -212,6 +226,20 @@ func Test_client_SettingsApiService(t *testing.T) {
         var organizationId string
 
         resp, httpRes, err := apiClient.SettingsApi.GetOrganizationAdaptivePolicySettings(context.Background(), organizationId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test SettingsApiService UpdateDeviceApplianceRadioSettings", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var serial string
+
+        resp, httpRes, err := apiClient.SettingsApi.UpdateDeviceApplianceRadioSettings(context.Background(), serial).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)

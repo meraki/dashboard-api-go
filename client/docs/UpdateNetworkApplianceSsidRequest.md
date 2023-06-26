@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **WpaEncryptionMode** | Pointer to **string** | The types of WPA encryption. (&#39;WPA1 and WPA2&#39;, &#39;WPA2 only&#39;, &#39;WPA3 Transition Mode&#39; or &#39;WPA3 only&#39;). This param is only valid if (1) the authMode is &#39;psk&#39; &amp; the encryptionMode is &#39;wpa&#39; OR (2) the authMode is &#39;8021x-meraki&#39; OR (3) the authMode is &#39;8021x-radius&#39; | [optional] 
 **Visible** | Pointer to **bool** | Boolean indicating whether the MX should advertise or hide this SSID. | [optional] 
 **DhcpEnforcedDeauthentication** | Pointer to [**UpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication**](UpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication.md) |  | [optional] 
+**Dot11w** | Pointer to [**UpdateNetworkApplianceSsidRequestDot11w**](UpdateNetworkApplianceSsidRequestDot11w.md) |  | [optional] 
 
 ## Methods
 
@@ -283,6 +284,31 @@ SetDhcpEnforcedDeauthentication sets DhcpEnforcedDeauthentication field to given
 `func (o *UpdateNetworkApplianceSsidRequest) HasDhcpEnforcedDeauthentication() bool`
 
 HasDhcpEnforcedDeauthentication returns a boolean if a field has been set.
+
+### GetDot11w
+
+`func (o *UpdateNetworkApplianceSsidRequest) GetDot11w() UpdateNetworkApplianceSsidRequestDot11w`
+
+GetDot11w returns the Dot11w field if non-nil, zero value otherwise.
+
+### GetDot11wOk
+
+`func (o *UpdateNetworkApplianceSsidRequest) GetDot11wOk() (*UpdateNetworkApplianceSsidRequestDot11w, bool)`
+
+GetDot11wOk returns a tuple with the Dot11w field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDot11w
+
+`func (o *UpdateNetworkApplianceSsidRequest) SetDot11w(v UpdateNetworkApplianceSsidRequestDot11w)`
+
+SetDot11w sets Dot11w field to given value.
+
+### HasDot11w
+
+`func (o *UpdateNetworkApplianceSsidRequest) HasDot11w() bool`
+
+HasDot11w returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

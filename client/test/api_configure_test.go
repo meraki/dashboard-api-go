@@ -14,7 +14,7 @@ import (
     "github.com/stretchr/testify/assert"
     "github.com/stretchr/testify/require"
     "testing"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func Test_client_ConfigureApiService(t *testing.T) {
@@ -212,6 +212,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
         var networkId string
 
         resp, httpRes, err := apiClient.ConfigureApi.CreateNetworkAppliancePrefixesDelegatedStatic(context.Background(), networkId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test ConfigureApiService CreateNetworkApplianceRfProfile", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var networkId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.CreateNetworkApplianceRfProfile(context.Background(), networkId).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -993,6 +1007,21 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
     })
 
+    t.Run("Test ConfigureApiService DeleteNetworkApplianceRfProfile", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var networkId string
+        var rfProfileId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.DeleteNetworkApplianceRfProfile(context.Background(), networkId, rfProfileId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
     t.Run("Test ConfigureApiService DeleteNetworkApplianceStaticRoute", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
@@ -1669,6 +1698,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
     })
 
+    t.Run("Test ConfigureApiService GetDeviceApplianceRadioSettings", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var serial string
+
+        resp, httpRes, err := apiClient.ConfigureApi.GetDeviceApplianceRadioSettings(context.Background(), serial).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
     t.Run("Test ConfigureApiService GetDeviceApplianceUplinksSettings", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
@@ -2285,6 +2328,35 @@ func Test_client_ConfigureApiService(t *testing.T) {
         var networkId string
 
         resp, httpRes, err := apiClient.ConfigureApi.GetNetworkAppliancePrefixesDelegatedStatics(context.Background(), networkId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test ConfigureApiService GetNetworkApplianceRfProfile", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var networkId string
+        var rfProfileId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.GetNetworkApplianceRfProfile(context.Background(), networkId, rfProfileId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test ConfigureApiService GetNetworkApplianceRfProfiles", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var networkId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.GetNetworkApplianceRfProfiles(context.Background(), networkId).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -5354,6 +5426,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
     })
 
+    t.Run("Test ConfigureApiService UpdateDeviceApplianceRadioSettings", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var serial string
+
+        resp, httpRes, err := apiClient.ConfigureApi.UpdateDeviceApplianceRadioSettings(context.Background(), serial).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
     t.Run("Test ConfigureApiService UpdateDeviceApplianceUplinksSettings", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
@@ -5830,6 +5916,21 @@ func Test_client_ConfigureApiService(t *testing.T) {
         var staticDelegatedPrefixId string
 
         resp, httpRes, err := apiClient.ConfigureApi.UpdateNetworkAppliancePrefixesDelegatedStatic(context.Background(), networkId, staticDelegatedPrefixId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test ConfigureApiService UpdateNetworkApplianceRfProfile", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var networkId string
+        var rfProfileId string
+
+        resp, httpRes, err := apiClient.ConfigureApi.UpdateNetworkApplianceRfProfile(context.Background(), networkId, rfProfileId).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)

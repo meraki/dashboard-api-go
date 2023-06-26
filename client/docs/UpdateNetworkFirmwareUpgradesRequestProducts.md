@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **Camera** | Pointer to [**UpdateNetworkFirmwareUpgradesRequestProductsWireless**](UpdateNetworkFirmwareUpgradesRequestProductsWireless.md) |  | [optional] 
 **CellularGateway** | Pointer to [**UpdateNetworkFirmwareUpgradesRequestProductsWireless**](UpdateNetworkFirmwareUpgradesRequestProductsWireless.md) |  | [optional] 
 **Sensor** | Pointer to [**UpdateNetworkFirmwareUpgradesRequestProductsWireless**](UpdateNetworkFirmwareUpgradesRequestProductsWireless.md) |  | [optional] 
+**CloudGateway** | Pointer to [**UpdateNetworkFirmwareUpgradesRequestProductsWireless**](UpdateNetworkFirmwareUpgradesRequestProductsWireless.md) |  | [optional] 
+**SwitchCatalyst** | Pointer to [**UpdateNetworkFirmwareUpgradesRequestProductsWireless**](UpdateNetworkFirmwareUpgradesRequestProductsWireless.md) |  | [optional] 
 
 ## Methods
 
@@ -179,6 +181,56 @@ SetSensor sets Sensor field to given value.
 `func (o *UpdateNetworkFirmwareUpgradesRequestProducts) HasSensor() bool`
 
 HasSensor returns a boolean if a field has been set.
+
+### GetCloudGateway
+
+`func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetCloudGateway() UpdateNetworkFirmwareUpgradesRequestProductsWireless`
+
+GetCloudGateway returns the CloudGateway field if non-nil, zero value otherwise.
+
+### GetCloudGatewayOk
+
+`func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetCloudGatewayOk() (*UpdateNetworkFirmwareUpgradesRequestProductsWireless, bool)`
+
+GetCloudGatewayOk returns a tuple with the CloudGateway field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCloudGateway
+
+`func (o *UpdateNetworkFirmwareUpgradesRequestProducts) SetCloudGateway(v UpdateNetworkFirmwareUpgradesRequestProductsWireless)`
+
+SetCloudGateway sets CloudGateway field to given value.
+
+### HasCloudGateway
+
+`func (o *UpdateNetworkFirmwareUpgradesRequestProducts) HasCloudGateway() bool`
+
+HasCloudGateway returns a boolean if a field has been set.
+
+### GetSwitchCatalyst
+
+`func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetSwitchCatalyst() UpdateNetworkFirmwareUpgradesRequestProductsWireless`
+
+GetSwitchCatalyst returns the SwitchCatalyst field if non-nil, zero value otherwise.
+
+### GetSwitchCatalystOk
+
+`func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetSwitchCatalystOk() (*UpdateNetworkFirmwareUpgradesRequestProductsWireless, bool)`
+
+GetSwitchCatalystOk returns a tuple with the SwitchCatalyst field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSwitchCatalyst
+
+`func (o *UpdateNetworkFirmwareUpgradesRequestProducts) SetSwitchCatalyst(v UpdateNetworkFirmwareUpgradesRequestProductsWireless)`
+
+SetSwitchCatalyst sets SwitchCatalyst field to given value.
+
+### HasSwitchCatalyst
+
+`func (o *UpdateNetworkFirmwareUpgradesRequestProducts) HasSwitchCatalyst() bool`
+
+HasSwitchCatalyst returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Role** | **string** | The role of the SAML administrator | 
 **OrgAccess** | **string** | The privilege of the SAML administrator on the organization. Can be one of &#39;none&#39;, &#39;read-only&#39;, &#39;full&#39; or &#39;enterprise&#39; | 
-**Tags** | Pointer to [**[]CreateOrganizationSamlRoleRequestTagsInner**](CreateOrganizationSamlRoleRequestTagsInner.md) | The list of tags that the SAML administrator has privleges on | [optional] 
+**Tags** | Pointer to [**[]CreateOrganizationSamlRoleRequestTagsInner**](CreateOrganizationSamlRoleRequestTagsInner.md) | The list of tags that the SAML administrator has privileges on | [optional] 
 **Networks** | Pointer to [**[]CreateOrganizationSamlRoleRequestNetworksInner**](CreateOrganizationSamlRoleRequestNetworksInner.md) | The list of networks that the SAML administrator has privileges on | [optional] 
 
 ## Methods
