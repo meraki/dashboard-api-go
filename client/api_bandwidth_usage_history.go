@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -227,7 +227,7 @@ func (r BandwidthUsageHistoryApiGetOrganizationClientsBandwidthUsageHistoryReque
 	return r
 }
 
-func (r BandwidthUsageHistoryApiGetOrganizationClientsBandwidthUsageHistoryRequest) Execute() ([]InlineResponse200111, *http.Response, error) {
+func (r BandwidthUsageHistoryApiGetOrganizationClientsBandwidthUsageHistoryRequest) Execute() ([]GetOrganizationClientsBandwidthUsageHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationClientsBandwidthUsageHistoryExecute(r)
 }
 
@@ -249,13 +249,13 @@ func (a *BandwidthUsageHistoryApiService) GetOrganizationClientsBandwidthUsageHi
 }
 
 // Execute executes the request
-//  @return []InlineResponse200111
-func (a *BandwidthUsageHistoryApiService) GetOrganizationClientsBandwidthUsageHistoryExecute(r BandwidthUsageHistoryApiGetOrganizationClientsBandwidthUsageHistoryRequest) ([]InlineResponse200111, *http.Response, error) {
+//  @return []GetOrganizationClientsBandwidthUsageHistory200ResponseInner
+func (a *BandwidthUsageHistoryApiService) GetOrganizationClientsBandwidthUsageHistoryExecute(r BandwidthUsageHistoryApiGetOrganizationClientsBandwidthUsageHistoryRequest) ([]GetOrganizationClientsBandwidthUsageHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200111
+		localVarReturnValue  []GetOrganizationClientsBandwidthUsageHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BandwidthUsageHistoryApiService.GetOrganizationClientsBandwidthUsageHistory")

@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -29,7 +30,7 @@ type UplinksApiGetDeviceApplianceUplinksSettingsRequest struct {
 	serial string
 }
 
-func (r UplinksApiGetDeviceApplianceUplinksSettingsRequest) Execute() (*InlineResponse2002, *http.Response, error) {
+func (r UplinksApiGetDeviceApplianceUplinksSettingsRequest) Execute() (*GetDeviceApplianceUplinksSettings200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceApplianceUplinksSettingsExecute(r)
 }
 
@@ -51,13 +52,13 @@ func (a *UplinksApiService) GetDeviceApplianceUplinksSettings(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse2002
-func (a *UplinksApiService) GetDeviceApplianceUplinksSettingsExecute(r UplinksApiGetDeviceApplianceUplinksSettingsRequest) (*InlineResponse2002, *http.Response, error) {
+//  @return GetDeviceApplianceUplinksSettings200Response
+func (a *UplinksApiService) GetDeviceApplianceUplinksSettingsExecute(r UplinksApiGetDeviceApplianceUplinksSettingsRequest) (*GetDeviceApplianceUplinksSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2002
+		localVarReturnValue  *GetDeviceApplianceUplinksSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinksApiService.GetDeviceApplianceUplinksSettings")
@@ -576,13 +577,37 @@ func (a *UplinksApiService) GetOrganizationApplianceUplinkStatusesExecute(r Upli
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.iccids != nil {
-		localVarQueryParams.Add("iccids", parameterToString(*r.iccids, "csv"))
+		t := *r.iccids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("iccids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("iccids", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -714,7 +739,7 @@ func (r UplinksApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) TagsFil
 	return r
 }
 
-func (r UplinksApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) Execute() ([]InlineResponse200121, *http.Response, error) {
+func (r UplinksApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) Execute() ([]GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesUplinksAddressesByDeviceExecute(r)
 }
 
@@ -736,13 +761,13 @@ func (a *UplinksApiService) GetOrganizationDevicesUplinksAddressesByDevice(ctx c
 }
 
 // Execute executes the request
-//  @return []InlineResponse200121
-func (a *UplinksApiService) GetOrganizationDevicesUplinksAddressesByDeviceExecute(r UplinksApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) ([]InlineResponse200121, *http.Response, error) {
+//  @return []GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner
+func (a *UplinksApiService) GetOrganizationDevicesUplinksAddressesByDeviceExecute(r UplinksApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) ([]GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200121
+		localVarReturnValue  []GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinksApiService.GetOrganizationDevicesUplinksAddressesByDevice")
@@ -767,16 +792,48 @@ func (a *UplinksApiService) GetOrganizationDevicesUplinksAddressesByDeviceExecut
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, "csv"))
+		t := *r.tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
 	}
 	if r.tagsFilterType != nil {
 		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
@@ -890,7 +947,7 @@ func (r UplinksApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Ip(ip stri
 	return r
 }
 
-func (r UplinksApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Execute() ([]InlineResponse200122, *http.Response, error) {
+func (r UplinksApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Execute() ([]GetOrganizationDevicesUplinksLossAndLatency200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesUplinksLossAndLatencyExecute(r)
 }
 
@@ -912,13 +969,13 @@ func (a *UplinksApiService) GetOrganizationDevicesUplinksLossAndLatency(ctx cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse200122
-func (a *UplinksApiService) GetOrganizationDevicesUplinksLossAndLatencyExecute(r UplinksApiGetOrganizationDevicesUplinksLossAndLatencyRequest) ([]InlineResponse200122, *http.Response, error) {
+//  @return []GetOrganizationDevicesUplinksLossAndLatency200ResponseInner
+func (a *UplinksApiService) GetOrganizationDevicesUplinksLossAndLatencyExecute(r UplinksApiGetOrganizationDevicesUplinksLossAndLatencyRequest) ([]GetOrganizationDevicesUplinksLossAndLatency200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200122
+		localVarReturnValue  []GetOrganizationDevicesUplinksLossAndLatency200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinksApiService.GetOrganizationDevicesUplinksLossAndLatency")
@@ -1064,7 +1121,7 @@ func (r UplinksApiGetOrganizationUplinksStatusesRequest) Iccids(iccids []string)
 	return r
 }
 
-func (r UplinksApiGetOrganizationUplinksStatusesRequest) Execute() ([]InlineResponse200153, *http.Response, error) {
+func (r UplinksApiGetOrganizationUplinksStatusesRequest) Execute() ([]GetOrganizationUplinksStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationUplinksStatusesExecute(r)
 }
 
@@ -1086,13 +1143,13 @@ func (a *UplinksApiService) GetOrganizationUplinksStatuses(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return []InlineResponse200153
-func (a *UplinksApiService) GetOrganizationUplinksStatusesExecute(r UplinksApiGetOrganizationUplinksStatusesRequest) ([]InlineResponse200153, *http.Response, error) {
+//  @return []GetOrganizationUplinksStatuses200ResponseInner
+func (a *UplinksApiService) GetOrganizationUplinksStatusesExecute(r UplinksApiGetOrganizationUplinksStatusesRequest) ([]GetOrganizationUplinksStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200153
+		localVarReturnValue  []GetOrganizationUplinksStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinksApiService.GetOrganizationUplinksStatuses")
@@ -1117,13 +1174,37 @@ func (a *UplinksApiService) GetOrganizationUplinksStatusesExecute(r UplinksApiGe
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.iccids != nil {
-		localVarQueryParams.Add("iccids", parameterToString(*r.iccids, "csv"))
+		t := *r.iccids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("iccids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("iccids", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1197,15 +1278,15 @@ type UplinksApiUpdateDeviceApplianceUplinksSettingsRequest struct {
 	ctx context.Context
 	ApiService *UplinksApiService
 	serial string
-	updateDeviceApplianceUplinksSettings *InlineObject2
+	updateDeviceApplianceUplinksSettingsRequest *UpdateDeviceApplianceUplinksSettingsRequest
 }
 
-func (r UplinksApiUpdateDeviceApplianceUplinksSettingsRequest) UpdateDeviceApplianceUplinksSettings(updateDeviceApplianceUplinksSettings InlineObject2) UplinksApiUpdateDeviceApplianceUplinksSettingsRequest {
-	r.updateDeviceApplianceUplinksSettings = &updateDeviceApplianceUplinksSettings
+func (r UplinksApiUpdateDeviceApplianceUplinksSettingsRequest) UpdateDeviceApplianceUplinksSettingsRequest(updateDeviceApplianceUplinksSettingsRequest UpdateDeviceApplianceUplinksSettingsRequest) UplinksApiUpdateDeviceApplianceUplinksSettingsRequest {
+	r.updateDeviceApplianceUplinksSettingsRequest = &updateDeviceApplianceUplinksSettingsRequest
 	return r
 }
 
-func (r UplinksApiUpdateDeviceApplianceUplinksSettingsRequest) Execute() (*InlineResponse2002, *http.Response, error) {
+func (r UplinksApiUpdateDeviceApplianceUplinksSettingsRequest) Execute() (*GetDeviceApplianceUplinksSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateDeviceApplianceUplinksSettingsExecute(r)
 }
 
@@ -1227,13 +1308,13 @@ func (a *UplinksApiService) UpdateDeviceApplianceUplinksSettings(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InlineResponse2002
-func (a *UplinksApiService) UpdateDeviceApplianceUplinksSettingsExecute(r UplinksApiUpdateDeviceApplianceUplinksSettingsRequest) (*InlineResponse2002, *http.Response, error) {
+//  @return GetDeviceApplianceUplinksSettings200Response
+func (a *UplinksApiService) UpdateDeviceApplianceUplinksSettingsExecute(r UplinksApiUpdateDeviceApplianceUplinksSettingsRequest) (*GetDeviceApplianceUplinksSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2002
+		localVarReturnValue  *GetDeviceApplianceUplinksSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinksApiService.UpdateDeviceApplianceUplinksSettings")
@@ -1247,8 +1328,8 @@ func (a *UplinksApiService) UpdateDeviceApplianceUplinksSettingsExecute(r Uplink
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateDeviceApplianceUplinksSettings == nil {
-		return localVarReturnValue, nil, reportError("updateDeviceApplianceUplinksSettings is required and must be specified")
+	if r.updateDeviceApplianceUplinksSettingsRequest == nil {
+		return localVarReturnValue, nil, reportError("updateDeviceApplianceUplinksSettingsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1269,7 +1350,7 @@ func (a *UplinksApiService) UpdateDeviceApplianceUplinksSettingsExecute(r Uplink
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceApplianceUplinksSettings
+	localVarPostBody = r.updateDeviceApplianceUplinksSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

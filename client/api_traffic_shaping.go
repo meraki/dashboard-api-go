@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type TrafficShapingApiCreateNetworkApplianceTrafficShapingCustomPerformanceClass
 	ctx context.Context
 	ApiService *TrafficShapingApiService
 	networkId string
-	createNetworkApplianceTrafficShapingCustomPerformanceClass *InlineObject54
+	createNetworkApplianceTrafficShapingCustomPerformanceClassRequest *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 }
 
-func (r TrafficShapingApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) CreateNetworkApplianceTrafficShapingCustomPerformanceClass(createNetworkApplianceTrafficShapingCustomPerformanceClass InlineObject54) TrafficShapingApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest {
-	r.createNetworkApplianceTrafficShapingCustomPerformanceClass = &createNetworkApplianceTrafficShapingCustomPerformanceClass
+func (r TrafficShapingApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest(createNetworkApplianceTrafficShapingCustomPerformanceClassRequest CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) TrafficShapingApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest {
+	r.createNetworkApplianceTrafficShapingCustomPerformanceClassRequest = &createNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *TrafficShapingApiService) CreateNetworkApplianceTrafficShapingCustomPer
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkApplianceTrafficShapingCustomPerformanceClass == nil {
-		return localVarReturnValue, nil, reportError("createNetworkApplianceTrafficShapingCustomPerformanceClass is required and must be specified")
+	if r.createNetworkApplianceTrafficShapingCustomPerformanceClassRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkApplianceTrafficShapingCustomPerformanceClassRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *TrafficShapingApiService) CreateNetworkApplianceTrafficShapingCustomPer
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkApplianceTrafficShapingCustomPerformanceClass
+	localVarPostBody = r.createNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -739,7 +739,7 @@ type TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest st
 	networkId string
 }
 
-func (r TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) Execute() (*InlineResponse20021, *http.Response, error) {
+func (r TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) Execute() (*GetNetworkApplianceTrafficShapingUplinkBandwidth200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceTrafficShapingUplinkBandwidthExecute(r)
 }
 
@@ -761,13 +761,13 @@ func (a *TrafficShapingApiService) GetNetworkApplianceTrafficShapingUplinkBandwi
 }
 
 // Execute executes the request
-//  @return InlineResponse20021
-func (a *TrafficShapingApiService) GetNetworkApplianceTrafficShapingUplinkBandwidthExecute(r TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) (*InlineResponse20021, *http.Response, error) {
+//  @return GetNetworkApplianceTrafficShapingUplinkBandwidth200Response
+func (a *TrafficShapingApiService) GetNetworkApplianceTrafficShapingUplinkBandwidthExecute(r TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) (*GetNetworkApplianceTrafficShapingUplinkBandwidth200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20021
+		localVarReturnValue  *GetNetworkApplianceTrafficShapingUplinkBandwidth200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrafficShapingApiService.GetNetworkApplianceTrafficShapingUplinkBandwidth")
@@ -856,7 +856,7 @@ type TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest st
 	networkId string
 }
 
-func (r TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest) Execute() (*InlineResponse20022, *http.Response, error) {
+func (r TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest) Execute() (*GetNetworkApplianceTrafficShapingUplinkSelection200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceTrafficShapingUplinkSelectionExecute(r)
 }
 
@@ -878,13 +878,13 @@ func (a *TrafficShapingApiService) GetNetworkApplianceTrafficShapingUplinkSelect
 }
 
 // Execute executes the request
-//  @return InlineResponse20022
-func (a *TrafficShapingApiService) GetNetworkApplianceTrafficShapingUplinkSelectionExecute(r TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest) (*InlineResponse20022, *http.Response, error) {
+//  @return GetNetworkApplianceTrafficShapingUplinkSelection200Response
+func (a *TrafficShapingApiService) GetNetworkApplianceTrafficShapingUplinkSelectionExecute(r TrafficShapingApiGetNetworkApplianceTrafficShapingUplinkSelectionRequest) (*GetNetworkApplianceTrafficShapingUplinkSelection200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20022
+		localVarReturnValue  *GetNetworkApplianceTrafficShapingUplinkSelection200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrafficShapingApiService.GetNetworkApplianceTrafficShapingUplinkSelection")
@@ -1326,11 +1326,11 @@ type TrafficShapingApiUpdateNetworkApplianceTrafficShapingRequest struct {
 	ctx context.Context
 	ApiService *TrafficShapingApiService
 	networkId string
-	updateNetworkApplianceTrafficShaping *InlineObject53
+	updateNetworkApplianceTrafficShapingRequest *UpdateNetworkApplianceTrafficShapingRequest
 }
 
-func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingRequest) UpdateNetworkApplianceTrafficShaping(updateNetworkApplianceTrafficShaping InlineObject53) TrafficShapingApiUpdateNetworkApplianceTrafficShapingRequest {
-	r.updateNetworkApplianceTrafficShaping = &updateNetworkApplianceTrafficShaping
+func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingRequest) UpdateNetworkApplianceTrafficShapingRequest(updateNetworkApplianceTrafficShapingRequest UpdateNetworkApplianceTrafficShapingRequest) TrafficShapingApiUpdateNetworkApplianceTrafficShapingRequest {
+	r.updateNetworkApplianceTrafficShapingRequest = &updateNetworkApplianceTrafficShapingRequest
 	return r
 }
 
@@ -1395,7 +1395,7 @@ func (a *TrafficShapingApiService) UpdateNetworkApplianceTrafficShapingExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceTrafficShaping
+	localVarPostBody = r.updateNetworkApplianceTrafficShapingRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1452,11 +1452,11 @@ type TrafficShapingApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClass
 	ApiService *TrafficShapingApiService
 	networkId string
 	customPerformanceClassId string
-	updateNetworkApplianceTrafficShapingCustomPerformanceClass *InlineObject55
+	updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest *UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 }
 
-func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) UpdateNetworkApplianceTrafficShapingCustomPerformanceClass(updateNetworkApplianceTrafficShapingCustomPerformanceClass InlineObject55) TrafficShapingApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest {
-	r.updateNetworkApplianceTrafficShapingCustomPerformanceClass = &updateNetworkApplianceTrafficShapingCustomPerformanceClass
+func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest(updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) TrafficShapingApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest {
+	r.updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest = &updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 	return r
 }
 
@@ -1524,7 +1524,7 @@ func (a *TrafficShapingApiService) UpdateNetworkApplianceTrafficShapingCustomPer
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceTrafficShapingCustomPerformanceClass
+	localVarPostBody = r.updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1580,11 +1580,11 @@ type TrafficShapingApiUpdateNetworkApplianceTrafficShapingRulesRequest struct {
 	ctx context.Context
 	ApiService *TrafficShapingApiService
 	networkId string
-	updateNetworkApplianceTrafficShapingRules *InlineObject56
+	updateNetworkApplianceTrafficShapingRulesRequest *UpdateNetworkApplianceTrafficShapingRulesRequest
 }
 
-func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingRulesRequest) UpdateNetworkApplianceTrafficShapingRules(updateNetworkApplianceTrafficShapingRules InlineObject56) TrafficShapingApiUpdateNetworkApplianceTrafficShapingRulesRequest {
-	r.updateNetworkApplianceTrafficShapingRules = &updateNetworkApplianceTrafficShapingRules
+func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingRulesRequest) UpdateNetworkApplianceTrafficShapingRulesRequest(updateNetworkApplianceTrafficShapingRulesRequest UpdateNetworkApplianceTrafficShapingRulesRequest) TrafficShapingApiUpdateNetworkApplianceTrafficShapingRulesRequest {
+	r.updateNetworkApplianceTrafficShapingRulesRequest = &updateNetworkApplianceTrafficShapingRulesRequest
 	return r
 }
 
@@ -1649,7 +1649,7 @@ func (a *TrafficShapingApiService) UpdateNetworkApplianceTrafficShapingRulesExec
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceTrafficShapingRules
+	localVarPostBody = r.updateNetworkApplianceTrafficShapingRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1705,11 +1705,11 @@ type TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest
 	ctx context.Context
 	ApiService *TrafficShapingApiService
 	networkId string
-	updateNetworkApplianceTrafficShapingUplinkBandwidth *InlineObject57
+	updateNetworkApplianceTrafficShapingUplinkBandwidthRequest *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest
 }
 
-func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) UpdateNetworkApplianceTrafficShapingUplinkBandwidth(updateNetworkApplianceTrafficShapingUplinkBandwidth InlineObject57) TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest {
-	r.updateNetworkApplianceTrafficShapingUplinkBandwidth = &updateNetworkApplianceTrafficShapingUplinkBandwidth
+func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest(updateNetworkApplianceTrafficShapingUplinkBandwidthRequest UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest {
+	r.updateNetworkApplianceTrafficShapingUplinkBandwidthRequest = &updateNetworkApplianceTrafficShapingUplinkBandwidthRequest
 	return r
 }
 
@@ -1774,7 +1774,7 @@ func (a *TrafficShapingApiService) UpdateNetworkApplianceTrafficShapingUplinkBan
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceTrafficShapingUplinkBandwidth
+	localVarPostBody = r.updateNetworkApplianceTrafficShapingUplinkBandwidthRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1830,15 +1830,15 @@ type TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest
 	ctx context.Context
 	ApiService *TrafficShapingApiService
 	networkId string
-	updateNetworkApplianceTrafficShapingUplinkSelection *InlineObject58
+	updateNetworkApplianceTrafficShapingUplinkSelectionRequest *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest
 }
 
-func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) UpdateNetworkApplianceTrafficShapingUplinkSelection(updateNetworkApplianceTrafficShapingUplinkSelection InlineObject58) TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest {
-	r.updateNetworkApplianceTrafficShapingUplinkSelection = &updateNetworkApplianceTrafficShapingUplinkSelection
+func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest(updateNetworkApplianceTrafficShapingUplinkSelectionRequest UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest {
+	r.updateNetworkApplianceTrafficShapingUplinkSelectionRequest = &updateNetworkApplianceTrafficShapingUplinkSelectionRequest
 	return r
 }
 
-func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) Execute() (*InlineResponse20022, *http.Response, error) {
+func (r TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) Execute() (*GetNetworkApplianceTrafficShapingUplinkSelection200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceTrafficShapingUplinkSelectionExecute(r)
 }
 
@@ -1860,13 +1860,13 @@ func (a *TrafficShapingApiService) UpdateNetworkApplianceTrafficShapingUplinkSel
 }
 
 // Execute executes the request
-//  @return InlineResponse20022
-func (a *TrafficShapingApiService) UpdateNetworkApplianceTrafficShapingUplinkSelectionExecute(r TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) (*InlineResponse20022, *http.Response, error) {
+//  @return GetNetworkApplianceTrafficShapingUplinkSelection200Response
+func (a *TrafficShapingApiService) UpdateNetworkApplianceTrafficShapingUplinkSelectionExecute(r TrafficShapingApiUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) (*GetNetworkApplianceTrafficShapingUplinkSelection200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20022
+		localVarReturnValue  *GetNetworkApplianceTrafficShapingUplinkSelection200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrafficShapingApiService.UpdateNetworkApplianceTrafficShapingUplinkSelection")
@@ -1899,7 +1899,7 @@ func (a *TrafficShapingApiService) UpdateNetworkApplianceTrafficShapingUplinkSel
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceTrafficShapingUplinkSelection
+	localVarPostBody = r.updateNetworkApplianceTrafficShapingUplinkSelectionRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1956,11 +1956,11 @@ type TrafficShapingApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest struct
 	ApiService *TrafficShapingApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidTrafficShapingRules *InlineObject168
+	updateNetworkWirelessSsidTrafficShapingRulesRequest *UpdateNetworkWirelessSsidTrafficShapingRulesRequest
 }
 
-func (r TrafficShapingApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest) UpdateNetworkWirelessSsidTrafficShapingRules(updateNetworkWirelessSsidTrafficShapingRules InlineObject168) TrafficShapingApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest {
-	r.updateNetworkWirelessSsidTrafficShapingRules = &updateNetworkWirelessSsidTrafficShapingRules
+func (r TrafficShapingApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest) UpdateNetworkWirelessSsidTrafficShapingRulesRequest(updateNetworkWirelessSsidTrafficShapingRulesRequest UpdateNetworkWirelessSsidTrafficShapingRulesRequest) TrafficShapingApiUpdateNetworkWirelessSsidTrafficShapingRulesRequest {
+	r.updateNetworkWirelessSsidTrafficShapingRulesRequest = &updateNetworkWirelessSsidTrafficShapingRulesRequest
 	return r
 }
 
@@ -2028,7 +2028,7 @@ func (a *TrafficShapingApiService) UpdateNetworkWirelessSsidTrafficShapingRulesE
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidTrafficShapingRules
+	localVarPostBody = r.updateNetworkWirelessSsidTrafficShapingRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

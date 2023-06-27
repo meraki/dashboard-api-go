@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -27,11 +28,11 @@ type OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEven
 	ctx context.Context
 	ApiService *OnboardingApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringExportEvent *InlineObject203
+	createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest
 }
 
-func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) CreateOrganizationInventoryOnboardingCloudMonitoringExportEvent(createOrganizationInventoryOnboardingCloudMonitoringExportEvent InlineObject203) OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest {
-	r.createOrganizationInventoryOnboardingCloudMonitoringExportEvent = &createOrganizationInventoryOnboardingCloudMonitoringExportEvent
+func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest(createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest {
+	r.createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest = &createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest
 	return r
 }
 
@@ -77,8 +78,8 @@ func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitor
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationInventoryOnboardingCloudMonitoringExportEvent == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringExportEvent is required and must be specified")
+	if r.createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +100,7 @@ func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitor
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringExportEvent
+	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -155,15 +156,15 @@ type OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequ
 	ctx context.Context
 	ApiService *OnboardingApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringImport *InlineObject204
+	createOrganizationInventoryOnboardingCloudMonitoringImportRequest *CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest
 }
 
-func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) CreateOrganizationInventoryOnboardingCloudMonitoringImport(createOrganizationInventoryOnboardingCloudMonitoringImport InlineObject204) OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest {
-	r.createOrganizationInventoryOnboardingCloudMonitoringImport = &createOrganizationInventoryOnboardingCloudMonitoringImport
+func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest(createOrganizationInventoryOnboardingCloudMonitoringImportRequest CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest {
+	r.createOrganizationInventoryOnboardingCloudMonitoringImportRequest = &createOrganizationInventoryOnboardingCloudMonitoringImportRequest
 	return r
 }
 
-func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) Execute() ([]InlineResponse2016, *http.Response, error) {
+func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) Execute() ([]CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r)
 }
 
@@ -185,13 +186,13 @@ func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitor
 }
 
 // Execute executes the request
-//  @return []InlineResponse2016
-func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) ([]InlineResponse2016, *http.Response, error) {
+//  @return []CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner
+func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitoringImportExecute(r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) ([]CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2016
+		localVarReturnValue  []CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnboardingApiService.CreateOrganizationInventoryOnboardingCloudMonitoringImport")
@@ -205,8 +206,8 @@ func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitor
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationInventoryOnboardingCloudMonitoringImport == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringImport is required and must be specified")
+	if r.createOrganizationInventoryOnboardingCloudMonitoringImportRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringImportRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -227,7 +228,7 @@ func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitor
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringImport
+	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringImportRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -283,15 +284,15 @@ type OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareReq
 	ctx context.Context
 	ApiService *OnboardingApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringPrepare *InlineObject205
+	createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest
 }
 
-func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(createOrganizationInventoryOnboardingCloudMonitoringPrepare InlineObject205) OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest {
-	r.createOrganizationInventoryOnboardingCloudMonitoringPrepare = &createOrganizationInventoryOnboardingCloudMonitoringPrepare
+func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest(createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest {
+	r.createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest = &createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest
 	return r
 }
 
-func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) Execute() ([]InlineResponse2017, *http.Response, error) {
+func (r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) Execute() ([]CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r)
 }
 
@@ -313,13 +314,13 @@ func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitor
 }
 
 // Execute executes the request
-//  @return []InlineResponse2017
-func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) ([]InlineResponse2017, *http.Response, error) {
+//  @return []CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner
+func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r OnboardingApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) ([]CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2017
+		localVarReturnValue  []CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnboardingApiService.CreateOrganizationInventoryOnboardingCloudMonitoringPrepare")
@@ -333,8 +334,8 @@ func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitor
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationInventoryOnboardingCloudMonitoringPrepare == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringPrepare is required and must be specified")
+	if r.createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -355,7 +356,7 @@ func (a *OnboardingApiService) CreateOrganizationInventoryOnboardingCloudMonitor
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringPrepare
+	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -471,10 +472,26 @@ func (a *OnboardingApiService) GetOrganizationCameraOnboardingStatusesExecute(r 
 	localVarFormParams := url.Values{}
 
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -557,7 +574,7 @@ func (r OnboardingApiGetOrganizationInventoryOnboardingCloudMonitoringImportsReq
 	return r
 }
 
-func (r OnboardingApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) Execute() ([]InlineResponse200129, *http.Response, error) {
+func (r OnboardingApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) Execute() ([]GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r)
 }
 
@@ -579,13 +596,13 @@ func (a *OnboardingApiService) GetOrganizationInventoryOnboardingCloudMonitoring
 }
 
 // Execute executes the request
-//  @return []InlineResponse200129
-func (a *OnboardingApiService) GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r OnboardingApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) ([]InlineResponse200129, *http.Response, error) {
+//  @return []GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner
+func (a *OnboardingApiService) GetOrganizationInventoryOnboardingCloudMonitoringImportsExecute(r OnboardingApiGetOrganizationInventoryOnboardingCloudMonitoringImportsRequest) ([]GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200129
+		localVarReturnValue  []GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnboardingApiService.GetOrganizationInventoryOnboardingCloudMonitoringImports")
@@ -603,7 +620,17 @@ func (a *OnboardingApiService) GetOrganizationInventoryOnboardingCloudMonitoring
 		return localVarReturnValue, nil, reportError("importIds is required and must be specified")
 	}
 
-	localVarQueryParams.Add("importIds", parameterToString(*r.importIds, "csv"))
+	{
+		t := *r.importIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("importIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("importIds", parameterToString(t, "multi"))
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -706,7 +733,7 @@ func (r OnboardingApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRe
 	return r
 }
 
-func (r OnboardingApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRequest) Execute() ([]InlineResponse20012, *http.Response, error) {
+func (r OnboardingApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRequest) Execute() ([]GetNetwork200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryOnboardingCloudMonitoringNetworksExecute(r)
 }
 
@@ -728,13 +755,13 @@ func (a *OnboardingApiService) GetOrganizationInventoryOnboardingCloudMonitoring
 }
 
 // Execute executes the request
-//  @return []InlineResponse20012
-func (a *OnboardingApiService) GetOrganizationInventoryOnboardingCloudMonitoringNetworksExecute(r OnboardingApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRequest) ([]InlineResponse20012, *http.Response, error) {
+//  @return []GetNetwork200Response
+func (a *OnboardingApiService) GetOrganizationInventoryOnboardingCloudMonitoringNetworksExecute(r OnboardingApiGetOrganizationInventoryOnboardingCloudMonitoringNetworksRequest) ([]GetNetwork200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20012
+		localVarReturnValue  []GetNetwork200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnboardingApiService.GetOrganizationInventoryOnboardingCloudMonitoringNetworks")
@@ -834,11 +861,11 @@ type OnboardingApiUpdateOrganizationCameraOnboardingStatusesRequest struct {
 	ctx context.Context
 	ApiService *OnboardingApiService
 	organizationId string
-	updateOrganizationCameraOnboardingStatuses *InlineObject192
+	updateOrganizationCameraOnboardingStatusesRequest *UpdateOrganizationCameraOnboardingStatusesRequest
 }
 
-func (r OnboardingApiUpdateOrganizationCameraOnboardingStatusesRequest) UpdateOrganizationCameraOnboardingStatuses(updateOrganizationCameraOnboardingStatuses InlineObject192) OnboardingApiUpdateOrganizationCameraOnboardingStatusesRequest {
-	r.updateOrganizationCameraOnboardingStatuses = &updateOrganizationCameraOnboardingStatuses
+func (r OnboardingApiUpdateOrganizationCameraOnboardingStatusesRequest) UpdateOrganizationCameraOnboardingStatusesRequest(updateOrganizationCameraOnboardingStatusesRequest UpdateOrganizationCameraOnboardingStatusesRequest) OnboardingApiUpdateOrganizationCameraOnboardingStatusesRequest {
+	r.updateOrganizationCameraOnboardingStatusesRequest = &updateOrganizationCameraOnboardingStatusesRequest
 	return r
 }
 
@@ -903,7 +930,7 @@ func (a *OnboardingApiService) UpdateOrganizationCameraOnboardingStatusesExecute
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationCameraOnboardingStatuses
+	localVarPostBody = r.updateOrganizationCameraOnboardingStatusesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

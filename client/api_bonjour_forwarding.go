@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -149,11 +149,11 @@ type BonjourForwardingApiUpdateNetworkWirelessSsidBonjourForwardingRequest struc
 	ApiService *BonjourForwardingApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidBonjourForwarding *InlineObject158
+	updateNetworkWirelessSsidBonjourForwardingRequest *UpdateNetworkWirelessSsidBonjourForwardingRequest
 }
 
-func (r BonjourForwardingApiUpdateNetworkWirelessSsidBonjourForwardingRequest) UpdateNetworkWirelessSsidBonjourForwarding(updateNetworkWirelessSsidBonjourForwarding InlineObject158) BonjourForwardingApiUpdateNetworkWirelessSsidBonjourForwardingRequest {
-	r.updateNetworkWirelessSsidBonjourForwarding = &updateNetworkWirelessSsidBonjourForwarding
+func (r BonjourForwardingApiUpdateNetworkWirelessSsidBonjourForwardingRequest) UpdateNetworkWirelessSsidBonjourForwardingRequest(updateNetworkWirelessSsidBonjourForwardingRequest UpdateNetworkWirelessSsidBonjourForwardingRequest) BonjourForwardingApiUpdateNetworkWirelessSsidBonjourForwardingRequest {
+	r.updateNetworkWirelessSsidBonjourForwardingRequest = &updateNetworkWirelessSsidBonjourForwardingRequest
 	return r
 }
 
@@ -221,7 +221,7 @@ func (a *BonjourForwardingApiService) UpdateNetworkWirelessSsidBonjourForwarding
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidBonjourForwarding
+	localVarPostBody = r.updateNetworkWirelessSsidBonjourForwardingRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

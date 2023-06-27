@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type OptInsApiCreateOrganizationEarlyAccessFeaturesOptInRequest struct {
 	ctx context.Context
 	ApiService *OptInsApiService
 	organizationId string
-	createOrganizationEarlyAccessFeaturesOptIn *InlineObject198
+	createOrganizationEarlyAccessFeaturesOptInRequest *CreateOrganizationEarlyAccessFeaturesOptInRequest
 }
 
-func (r OptInsApiCreateOrganizationEarlyAccessFeaturesOptInRequest) CreateOrganizationEarlyAccessFeaturesOptIn(createOrganizationEarlyAccessFeaturesOptIn InlineObject198) OptInsApiCreateOrganizationEarlyAccessFeaturesOptInRequest {
-	r.createOrganizationEarlyAccessFeaturesOptIn = &createOrganizationEarlyAccessFeaturesOptIn
+func (r OptInsApiCreateOrganizationEarlyAccessFeaturesOptInRequest) CreateOrganizationEarlyAccessFeaturesOptInRequest(createOrganizationEarlyAccessFeaturesOptInRequest CreateOrganizationEarlyAccessFeaturesOptInRequest) OptInsApiCreateOrganizationEarlyAccessFeaturesOptInRequest {
+	r.createOrganizationEarlyAccessFeaturesOptInRequest = &createOrganizationEarlyAccessFeaturesOptInRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *OptInsApiService) CreateOrganizationEarlyAccessFeaturesOptInExecute(r O
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationEarlyAccessFeaturesOptIn == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationEarlyAccessFeaturesOptIn is required and must be specified")
+	if r.createOrganizationEarlyAccessFeaturesOptInRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationEarlyAccessFeaturesOptInRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *OptInsApiService) CreateOrganizationEarlyAccessFeaturesOptInExecute(r O
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationEarlyAccessFeaturesOptIn
+	localVarPostBody = r.createOrganizationEarlyAccessFeaturesOptInRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -504,11 +504,11 @@ type OptInsApiUpdateOrganizationEarlyAccessFeaturesOptInRequest struct {
 	ApiService *OptInsApiService
 	organizationId string
 	optInId string
-	updateOrganizationEarlyAccessFeaturesOptIn *InlineObject199
+	updateOrganizationEarlyAccessFeaturesOptInRequest *UpdateOrganizationEarlyAccessFeaturesOptInRequest
 }
 
-func (r OptInsApiUpdateOrganizationEarlyAccessFeaturesOptInRequest) UpdateOrganizationEarlyAccessFeaturesOptIn(updateOrganizationEarlyAccessFeaturesOptIn InlineObject199) OptInsApiUpdateOrganizationEarlyAccessFeaturesOptInRequest {
-	r.updateOrganizationEarlyAccessFeaturesOptIn = &updateOrganizationEarlyAccessFeaturesOptIn
+func (r OptInsApiUpdateOrganizationEarlyAccessFeaturesOptInRequest) UpdateOrganizationEarlyAccessFeaturesOptInRequest(updateOrganizationEarlyAccessFeaturesOptInRequest UpdateOrganizationEarlyAccessFeaturesOptInRequest) OptInsApiUpdateOrganizationEarlyAccessFeaturesOptInRequest {
+	r.updateOrganizationEarlyAccessFeaturesOptInRequest = &updateOrganizationEarlyAccessFeaturesOptInRequest
 	return r
 }
 
@@ -576,7 +576,7 @@ func (a *OptInsApiService) UpdateOrganizationEarlyAccessFeaturesOptInExecute(r O
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationEarlyAccessFeaturesOptIn
+	localVarPostBody = r.updateOrganizationEarlyAccessFeaturesOptInRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

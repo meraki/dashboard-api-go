@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type FieldsApiUpdateNetworkSmDevicesFieldsRequest struct {
 	ctx context.Context
 	ApiService *FieldsApiService
 	networkId string
-	updateNetworkSmDevicesFields *InlineObject104
+	updateNetworkSmDevicesFieldsRequest *UpdateNetworkSmDevicesFieldsRequest
 }
 
-func (r FieldsApiUpdateNetworkSmDevicesFieldsRequest) UpdateNetworkSmDevicesFields(updateNetworkSmDevicesFields InlineObject104) FieldsApiUpdateNetworkSmDevicesFieldsRequest {
-	r.updateNetworkSmDevicesFields = &updateNetworkSmDevicesFields
+func (r FieldsApiUpdateNetworkSmDevicesFieldsRequest) UpdateNetworkSmDevicesFieldsRequest(updateNetworkSmDevicesFieldsRequest UpdateNetworkSmDevicesFieldsRequest) FieldsApiUpdateNetworkSmDevicesFieldsRequest {
+	r.updateNetworkSmDevicesFieldsRequest = &updateNetworkSmDevicesFieldsRequest
 	return r
 }
 
-func (r FieldsApiUpdateNetworkSmDevicesFieldsRequest) Execute() ([]InlineResponse20047, *http.Response, error) {
+func (r FieldsApiUpdateNetworkSmDevicesFieldsRequest) Execute() ([]UpdateNetworkSmDevicesFields200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSmDevicesFieldsExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *FieldsApiService) UpdateNetworkSmDevicesFields(ctx context.Context, net
 }
 
 // Execute executes the request
-//  @return []InlineResponse20047
-func (a *FieldsApiService) UpdateNetworkSmDevicesFieldsExecute(r FieldsApiUpdateNetworkSmDevicesFieldsRequest) ([]InlineResponse20047, *http.Response, error) {
+//  @return []UpdateNetworkSmDevicesFields200ResponseInner
+func (a *FieldsApiService) UpdateNetworkSmDevicesFieldsExecute(r FieldsApiUpdateNetworkSmDevicesFieldsRequest) ([]UpdateNetworkSmDevicesFields200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20047
+		localVarReturnValue  []UpdateNetworkSmDevicesFields200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FieldsApiService.UpdateNetworkSmDevicesFields")
@@ -77,8 +77,8 @@ func (a *FieldsApiService) UpdateNetworkSmDevicesFieldsExecute(r FieldsApiUpdate
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSmDevicesFields == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSmDevicesFields is required and must be specified")
+	if r.updateNetworkSmDevicesFieldsRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSmDevicesFieldsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *FieldsApiService) UpdateNetworkSmDevicesFieldsExecute(r FieldsApiUpdate
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSmDevicesFields
+	localVarPostBody = r.updateNetworkSmDevicesFieldsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

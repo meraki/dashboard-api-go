@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type CustomPerformanceClassesApiCreateNetworkApplianceTrafficShapingCustomPerfor
 	ctx context.Context
 	ApiService *CustomPerformanceClassesApiService
 	networkId string
-	createNetworkApplianceTrafficShapingCustomPerformanceClass *InlineObject54
+	createNetworkApplianceTrafficShapingCustomPerformanceClassRequest *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 }
 
-func (r CustomPerformanceClassesApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) CreateNetworkApplianceTrafficShapingCustomPerformanceClass(createNetworkApplianceTrafficShapingCustomPerformanceClass InlineObject54) CustomPerformanceClassesApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest {
-	r.createNetworkApplianceTrafficShapingCustomPerformanceClass = &createNetworkApplianceTrafficShapingCustomPerformanceClass
+func (r CustomPerformanceClassesApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest(createNetworkApplianceTrafficShapingCustomPerformanceClassRequest CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) CustomPerformanceClassesApiCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest {
+	r.createNetworkApplianceTrafficShapingCustomPerformanceClassRequest = &createNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *CustomPerformanceClassesApiService) CreateNetworkApplianceTrafficShapin
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkApplianceTrafficShapingCustomPerformanceClass == nil {
-		return localVarReturnValue, nil, reportError("createNetworkApplianceTrafficShapingCustomPerformanceClass is required and must be specified")
+	if r.createNetworkApplianceTrafficShapingCustomPerformanceClassRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkApplianceTrafficShapingCustomPerformanceClassRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *CustomPerformanceClassesApiService) CreateNetworkApplianceTrafficShapin
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkApplianceTrafficShapingCustomPerformanceClass
+	localVarPostBody = r.createNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -504,11 +504,11 @@ type CustomPerformanceClassesApiUpdateNetworkApplianceTrafficShapingCustomPerfor
 	ApiService *CustomPerformanceClassesApiService
 	networkId string
 	customPerformanceClassId string
-	updateNetworkApplianceTrafficShapingCustomPerformanceClass *InlineObject55
+	updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest *UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 }
 
-func (r CustomPerformanceClassesApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) UpdateNetworkApplianceTrafficShapingCustomPerformanceClass(updateNetworkApplianceTrafficShapingCustomPerformanceClass InlineObject55) CustomPerformanceClassesApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest {
-	r.updateNetworkApplianceTrafficShapingCustomPerformanceClass = &updateNetworkApplianceTrafficShapingCustomPerformanceClass
+func (r CustomPerformanceClassesApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest(updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) CustomPerformanceClassesApiUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest {
+	r.updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest = &updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 	return r
 }
 
@@ -576,7 +576,7 @@ func (a *CustomPerformanceClassesApiService) UpdateNetworkApplianceTrafficShapin
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceTrafficShapingCustomPerformanceClass
+	localVarPostBody = r.updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

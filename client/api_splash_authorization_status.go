@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -149,11 +149,11 @@ type SplashAuthorizationStatusApiUpdateNetworkClientSplashAuthorizationStatusReq
 	ApiService *SplashAuthorizationStatusApiService
 	networkId string
 	clientId string
-	updateNetworkClientSplashAuthorizationStatus *InlineObject76
+	updateNetworkClientSplashAuthorizationStatusRequest *UpdateNetworkClientSplashAuthorizationStatusRequest
 }
 
-func (r SplashAuthorizationStatusApiUpdateNetworkClientSplashAuthorizationStatusRequest) UpdateNetworkClientSplashAuthorizationStatus(updateNetworkClientSplashAuthorizationStatus InlineObject76) SplashAuthorizationStatusApiUpdateNetworkClientSplashAuthorizationStatusRequest {
-	r.updateNetworkClientSplashAuthorizationStatus = &updateNetworkClientSplashAuthorizationStatus
+func (r SplashAuthorizationStatusApiUpdateNetworkClientSplashAuthorizationStatusRequest) UpdateNetworkClientSplashAuthorizationStatusRequest(updateNetworkClientSplashAuthorizationStatusRequest UpdateNetworkClientSplashAuthorizationStatusRequest) SplashAuthorizationStatusApiUpdateNetworkClientSplashAuthorizationStatusRequest {
+	r.updateNetworkClientSplashAuthorizationStatusRequest = &updateNetworkClientSplashAuthorizationStatusRequest
 	return r
 }
 
@@ -202,8 +202,8 @@ func (a *SplashAuthorizationStatusApiService) UpdateNetworkClientSplashAuthoriza
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkClientSplashAuthorizationStatus == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkClientSplashAuthorizationStatus is required and must be specified")
+	if r.updateNetworkClientSplashAuthorizationStatusRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkClientSplashAuthorizationStatusRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -224,7 +224,7 @@ func (a *SplashAuthorizationStatusApiService) UpdateNetworkClientSplashAuthoriza
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkClientSplashAuthorizationStatus
+	localVarPostBody = r.updateNetworkClientSplashAuthorizationStatusRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type LicensesApiAssignOrganizationLicensesSeatsRequest struct {
 	ctx context.Context
 	ApiService *LicensesApiService
 	organizationId string
-	assignOrganizationLicensesSeats *InlineObject207
+	assignOrganizationLicensesSeatsRequest *AssignOrganizationLicensesSeatsRequest
 }
 
-func (r LicensesApiAssignOrganizationLicensesSeatsRequest) AssignOrganizationLicensesSeats(assignOrganizationLicensesSeats InlineObject207) LicensesApiAssignOrganizationLicensesSeatsRequest {
-	r.assignOrganizationLicensesSeats = &assignOrganizationLicensesSeats
+func (r LicensesApiAssignOrganizationLicensesSeatsRequest) AssignOrganizationLicensesSeatsRequest(assignOrganizationLicensesSeatsRequest AssignOrganizationLicensesSeatsRequest) LicensesApiAssignOrganizationLicensesSeatsRequest {
+	r.assignOrganizationLicensesSeatsRequest = &assignOrganizationLicensesSeatsRequest
 	return r
 }
 
-func (r LicensesApiAssignOrganizationLicensesSeatsRequest) Execute() (*InlineResponse200131, *http.Response, error) {
+func (r LicensesApiAssignOrganizationLicensesSeatsRequest) Execute() (*AssignOrganizationLicensesSeats200Response, *http.Response, error) {
 	return r.ApiService.AssignOrganizationLicensesSeatsExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *LicensesApiService) AssignOrganizationLicensesSeats(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse200131
-func (a *LicensesApiService) AssignOrganizationLicensesSeatsExecute(r LicensesApiAssignOrganizationLicensesSeatsRequest) (*InlineResponse200131, *http.Response, error) {
+//  @return AssignOrganizationLicensesSeats200Response
+func (a *LicensesApiService) AssignOrganizationLicensesSeatsExecute(r LicensesApiAssignOrganizationLicensesSeatsRequest) (*AssignOrganizationLicensesSeats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200131
+		localVarReturnValue  *AssignOrganizationLicensesSeats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.AssignOrganizationLicensesSeats")
@@ -77,8 +77,8 @@ func (a *LicensesApiService) AssignOrganizationLicensesSeatsExecute(r LicensesAp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.assignOrganizationLicensesSeats == nil {
-		return localVarReturnValue, nil, reportError("assignOrganizationLicensesSeats is required and must be specified")
+	if r.assignOrganizationLicensesSeatsRequest == nil {
+		return localVarReturnValue, nil, reportError("assignOrganizationLicensesSeatsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *LicensesApiService) AssignOrganizationLicensesSeatsExecute(r LicensesAp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.assignOrganizationLicensesSeats
+	localVarPostBody = r.assignOrganizationLicensesSeatsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -158,7 +158,7 @@ type LicensesApiGetOrganizationLicenseRequest struct {
 	licenseId string
 }
 
-func (r LicensesApiGetOrganizationLicenseRequest) Execute() (*InlineResponse200130, *http.Response, error) {
+func (r LicensesApiGetOrganizationLicenseRequest) Execute() (*GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationLicenseExecute(r)
 }
 
@@ -182,13 +182,13 @@ func (a *LicensesApiService) GetOrganizationLicense(ctx context.Context, organiz
 }
 
 // Execute executes the request
-//  @return InlineResponse200130
-func (a *LicensesApiService) GetOrganizationLicenseExecute(r LicensesApiGetOrganizationLicenseRequest) (*InlineResponse200130, *http.Response, error) {
+//  @return GetOrganizationLicenses200ResponseInner
+func (a *LicensesApiService) GetOrganizationLicenseExecute(r LicensesApiGetOrganizationLicenseRequest) (*GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200130
+		localVarReturnValue  *GetOrganizationLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.GetOrganizationLicense")
@@ -320,7 +320,7 @@ func (r LicensesApiGetOrganizationLicensesRequest) State(state string) LicensesA
 	return r
 }
 
-func (r LicensesApiGetOrganizationLicensesRequest) Execute() ([]InlineResponse200130, *http.Response, error) {
+func (r LicensesApiGetOrganizationLicensesRequest) Execute() ([]GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationLicensesExecute(r)
 }
 
@@ -342,13 +342,13 @@ func (a *LicensesApiService) GetOrganizationLicenses(ctx context.Context, organi
 }
 
 // Execute executes the request
-//  @return []InlineResponse200130
-func (a *LicensesApiService) GetOrganizationLicensesExecute(r LicensesApiGetOrganizationLicensesRequest) ([]InlineResponse200130, *http.Response, error) {
+//  @return []GetOrganizationLicenses200ResponseInner
+func (a *LicensesApiService) GetOrganizationLicensesExecute(r LicensesApiGetOrganizationLicensesRequest) ([]GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200130
+		localVarReturnValue  []GetOrganizationLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.GetOrganizationLicenses")
@@ -607,7 +607,7 @@ func (r LicensesApiGetOrganizationLicensingCotermLicensesRequest) Expired(expire
 	return r
 }
 
-func (r LicensesApiGetOrganizationLicensingCotermLicensesRequest) Execute() ([]InlineResponse200134, *http.Response, error) {
+func (r LicensesApiGetOrganizationLicensingCotermLicensesRequest) Execute() ([]GetOrganizationLicensingCotermLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationLicensingCotermLicensesExecute(r)
 }
 
@@ -629,13 +629,13 @@ func (a *LicensesApiService) GetOrganizationLicensingCotermLicenses(ctx context.
 }
 
 // Execute executes the request
-//  @return []InlineResponse200134
-func (a *LicensesApiService) GetOrganizationLicensingCotermLicensesExecute(r LicensesApiGetOrganizationLicensingCotermLicensesRequest) ([]InlineResponse200134, *http.Response, error) {
+//  @return []GetOrganizationLicensingCotermLicenses200ResponseInner
+func (a *LicensesApiService) GetOrganizationLicensingCotermLicensesExecute(r LicensesApiGetOrganizationLicensingCotermLicensesRequest) ([]GetOrganizationLicensingCotermLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200134
+		localVarReturnValue  []GetOrganizationLicensingCotermLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.GetOrganizationLicensingCotermLicenses")
@@ -737,15 +737,15 @@ type LicensesApiMoveOrganizationLicensesRequest struct {
 	ctx context.Context
 	ApiService *LicensesApiService
 	organizationId string
-	moveOrganizationLicenses *InlineObject208
+	moveOrganizationLicensesRequest *MoveOrganizationLicensesRequest
 }
 
-func (r LicensesApiMoveOrganizationLicensesRequest) MoveOrganizationLicenses(moveOrganizationLicenses InlineObject208) LicensesApiMoveOrganizationLicensesRequest {
-	r.moveOrganizationLicenses = &moveOrganizationLicenses
+func (r LicensesApiMoveOrganizationLicensesRequest) MoveOrganizationLicensesRequest(moveOrganizationLicensesRequest MoveOrganizationLicensesRequest) LicensesApiMoveOrganizationLicensesRequest {
+	r.moveOrganizationLicensesRequest = &moveOrganizationLicensesRequest
 	return r
 }
 
-func (r LicensesApiMoveOrganizationLicensesRequest) Execute() (*InlineResponse200132, *http.Response, error) {
+func (r LicensesApiMoveOrganizationLicensesRequest) Execute() (*MoveOrganizationLicenses200Response, *http.Response, error) {
 	return r.ApiService.MoveOrganizationLicensesExecute(r)
 }
 
@@ -767,13 +767,13 @@ func (a *LicensesApiService) MoveOrganizationLicenses(ctx context.Context, organ
 }
 
 // Execute executes the request
-//  @return InlineResponse200132
-func (a *LicensesApiService) MoveOrganizationLicensesExecute(r LicensesApiMoveOrganizationLicensesRequest) (*InlineResponse200132, *http.Response, error) {
+//  @return MoveOrganizationLicenses200Response
+func (a *LicensesApiService) MoveOrganizationLicensesExecute(r LicensesApiMoveOrganizationLicensesRequest) (*MoveOrganizationLicenses200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200132
+		localVarReturnValue  *MoveOrganizationLicenses200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.MoveOrganizationLicenses")
@@ -787,8 +787,8 @@ func (a *LicensesApiService) MoveOrganizationLicensesExecute(r LicensesApiMoveOr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.moveOrganizationLicenses == nil {
-		return localVarReturnValue, nil, reportError("moveOrganizationLicenses is required and must be specified")
+	if r.moveOrganizationLicensesRequest == nil {
+		return localVarReturnValue, nil, reportError("moveOrganizationLicensesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -809,7 +809,7 @@ func (a *LicensesApiService) MoveOrganizationLicensesExecute(r LicensesApiMoveOr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.moveOrganizationLicenses
+	localVarPostBody = r.moveOrganizationLicensesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -865,15 +865,15 @@ type LicensesApiMoveOrganizationLicensesSeatsRequest struct {
 	ctx context.Context
 	ApiService *LicensesApiService
 	organizationId string
-	moveOrganizationLicensesSeats *InlineObject209
+	moveOrganizationLicensesSeatsRequest *MoveOrganizationLicensesSeatsRequest
 }
 
-func (r LicensesApiMoveOrganizationLicensesSeatsRequest) MoveOrganizationLicensesSeats(moveOrganizationLicensesSeats InlineObject209) LicensesApiMoveOrganizationLicensesSeatsRequest {
-	r.moveOrganizationLicensesSeats = &moveOrganizationLicensesSeats
+func (r LicensesApiMoveOrganizationLicensesSeatsRequest) MoveOrganizationLicensesSeatsRequest(moveOrganizationLicensesSeatsRequest MoveOrganizationLicensesSeatsRequest) LicensesApiMoveOrganizationLicensesSeatsRequest {
+	r.moveOrganizationLicensesSeatsRequest = &moveOrganizationLicensesSeatsRequest
 	return r
 }
 
-func (r LicensesApiMoveOrganizationLicensesSeatsRequest) Execute() (*InlineResponse200133, *http.Response, error) {
+func (r LicensesApiMoveOrganizationLicensesSeatsRequest) Execute() (*MoveOrganizationLicensesSeats200Response, *http.Response, error) {
 	return r.ApiService.MoveOrganizationLicensesSeatsExecute(r)
 }
 
@@ -895,13 +895,13 @@ func (a *LicensesApiService) MoveOrganizationLicensesSeats(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse200133
-func (a *LicensesApiService) MoveOrganizationLicensesSeatsExecute(r LicensesApiMoveOrganizationLicensesSeatsRequest) (*InlineResponse200133, *http.Response, error) {
+//  @return MoveOrganizationLicensesSeats200Response
+func (a *LicensesApiService) MoveOrganizationLicensesSeatsExecute(r LicensesApiMoveOrganizationLicensesSeatsRequest) (*MoveOrganizationLicensesSeats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200133
+		localVarReturnValue  *MoveOrganizationLicensesSeats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.MoveOrganizationLicensesSeats")
@@ -915,8 +915,8 @@ func (a *LicensesApiService) MoveOrganizationLicensesSeatsExecute(r LicensesApiM
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.moveOrganizationLicensesSeats == nil {
-		return localVarReturnValue, nil, reportError("moveOrganizationLicensesSeats is required and must be specified")
+	if r.moveOrganizationLicensesSeatsRequest == nil {
+		return localVarReturnValue, nil, reportError("moveOrganizationLicensesSeatsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -937,7 +937,7 @@ func (a *LicensesApiService) MoveOrganizationLicensesSeatsExecute(r LicensesApiM
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.moveOrganizationLicensesSeats
+	localVarPostBody = r.moveOrganizationLicensesSeatsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -993,15 +993,15 @@ type LicensesApiMoveOrganizationLicensingCotermLicensesRequest struct {
 	ctx context.Context
 	ApiService *LicensesApiService
 	organizationId string
-	moveOrganizationLicensingCotermLicenses *InlineObject212
+	moveOrganizationLicensingCotermLicensesRequest *MoveOrganizationLicensingCotermLicensesRequest
 }
 
-func (r LicensesApiMoveOrganizationLicensingCotermLicensesRequest) MoveOrganizationLicensingCotermLicenses(moveOrganizationLicensingCotermLicenses InlineObject212) LicensesApiMoveOrganizationLicensingCotermLicensesRequest {
-	r.moveOrganizationLicensingCotermLicenses = &moveOrganizationLicensingCotermLicenses
+func (r LicensesApiMoveOrganizationLicensingCotermLicensesRequest) MoveOrganizationLicensingCotermLicensesRequest(moveOrganizationLicensingCotermLicensesRequest MoveOrganizationLicensingCotermLicensesRequest) LicensesApiMoveOrganizationLicensingCotermLicensesRequest {
+	r.moveOrganizationLicensingCotermLicensesRequest = &moveOrganizationLicensingCotermLicensesRequest
 	return r
 }
 
-func (r LicensesApiMoveOrganizationLicensingCotermLicensesRequest) Execute() (*InlineResponse200135, *http.Response, error) {
+func (r LicensesApiMoveOrganizationLicensingCotermLicensesRequest) Execute() (*MoveOrganizationLicensingCotermLicenses200Response, *http.Response, error) {
 	return r.ApiService.MoveOrganizationLicensingCotermLicensesExecute(r)
 }
 
@@ -1023,13 +1023,13 @@ func (a *LicensesApiService) MoveOrganizationLicensingCotermLicenses(ctx context
 }
 
 // Execute executes the request
-//  @return InlineResponse200135
-func (a *LicensesApiService) MoveOrganizationLicensingCotermLicensesExecute(r LicensesApiMoveOrganizationLicensingCotermLicensesRequest) (*InlineResponse200135, *http.Response, error) {
+//  @return MoveOrganizationLicensingCotermLicenses200Response
+func (a *LicensesApiService) MoveOrganizationLicensingCotermLicensesExecute(r LicensesApiMoveOrganizationLicensingCotermLicensesRequest) (*MoveOrganizationLicensingCotermLicenses200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200135
+		localVarReturnValue  *MoveOrganizationLicensingCotermLicenses200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.MoveOrganizationLicensingCotermLicenses")
@@ -1043,8 +1043,8 @@ func (a *LicensesApiService) MoveOrganizationLicensingCotermLicensesExecute(r Li
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.moveOrganizationLicensingCotermLicenses == nil {
-		return localVarReturnValue, nil, reportError("moveOrganizationLicensingCotermLicenses is required and must be specified")
+	if r.moveOrganizationLicensingCotermLicensesRequest == nil {
+		return localVarReturnValue, nil, reportError("moveOrganizationLicensingCotermLicensesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1065,7 +1065,7 @@ func (a *LicensesApiService) MoveOrganizationLicensingCotermLicensesExecute(r Li
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.moveOrganizationLicensingCotermLicenses
+	localVarPostBody = r.moveOrganizationLicensingCotermLicensesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1121,15 +1121,15 @@ type LicensesApiRenewOrganizationLicensesSeatsRequest struct {
 	ctx context.Context
 	ApiService *LicensesApiService
 	organizationId string
-	renewOrganizationLicensesSeats *InlineObject210
+	renewOrganizationLicensesSeatsRequest *RenewOrganizationLicensesSeatsRequest
 }
 
-func (r LicensesApiRenewOrganizationLicensesSeatsRequest) RenewOrganizationLicensesSeats(renewOrganizationLicensesSeats InlineObject210) LicensesApiRenewOrganizationLicensesSeatsRequest {
-	r.renewOrganizationLicensesSeats = &renewOrganizationLicensesSeats
+func (r LicensesApiRenewOrganizationLicensesSeatsRequest) RenewOrganizationLicensesSeatsRequest(renewOrganizationLicensesSeatsRequest RenewOrganizationLicensesSeatsRequest) LicensesApiRenewOrganizationLicensesSeatsRequest {
+	r.renewOrganizationLicensesSeatsRequest = &renewOrganizationLicensesSeatsRequest
 	return r
 }
 
-func (r LicensesApiRenewOrganizationLicensesSeatsRequest) Execute() (*InlineResponse200131, *http.Response, error) {
+func (r LicensesApiRenewOrganizationLicensesSeatsRequest) Execute() (*AssignOrganizationLicensesSeats200Response, *http.Response, error) {
 	return r.ApiService.RenewOrganizationLicensesSeatsExecute(r)
 }
 
@@ -1151,13 +1151,13 @@ func (a *LicensesApiService) RenewOrganizationLicensesSeats(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse200131
-func (a *LicensesApiService) RenewOrganizationLicensesSeatsExecute(r LicensesApiRenewOrganizationLicensesSeatsRequest) (*InlineResponse200131, *http.Response, error) {
+//  @return AssignOrganizationLicensesSeats200Response
+func (a *LicensesApiService) RenewOrganizationLicensesSeatsExecute(r LicensesApiRenewOrganizationLicensesSeatsRequest) (*AssignOrganizationLicensesSeats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200131
+		localVarReturnValue  *AssignOrganizationLicensesSeats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.RenewOrganizationLicensesSeats")
@@ -1171,8 +1171,8 @@ func (a *LicensesApiService) RenewOrganizationLicensesSeatsExecute(r LicensesApi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.renewOrganizationLicensesSeats == nil {
-		return localVarReturnValue, nil, reportError("renewOrganizationLicensesSeats is required and must be specified")
+	if r.renewOrganizationLicensesSeatsRequest == nil {
+		return localVarReturnValue, nil, reportError("renewOrganizationLicensesSeatsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1193,7 +1193,7 @@ func (a *LicensesApiService) RenewOrganizationLicensesSeatsExecute(r LicensesApi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.renewOrganizationLicensesSeats
+	localVarPostBody = r.renewOrganizationLicensesSeatsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1250,15 +1250,15 @@ type LicensesApiUpdateOrganizationLicenseRequest struct {
 	ApiService *LicensesApiService
 	organizationId string
 	licenseId string
-	updateOrganizationLicense *InlineObject211
+	updateOrganizationLicenseRequest *UpdateOrganizationLicenseRequest
 }
 
-func (r LicensesApiUpdateOrganizationLicenseRequest) UpdateOrganizationLicense(updateOrganizationLicense InlineObject211) LicensesApiUpdateOrganizationLicenseRequest {
-	r.updateOrganizationLicense = &updateOrganizationLicense
+func (r LicensesApiUpdateOrganizationLicenseRequest) UpdateOrganizationLicenseRequest(updateOrganizationLicenseRequest UpdateOrganizationLicenseRequest) LicensesApiUpdateOrganizationLicenseRequest {
+	r.updateOrganizationLicenseRequest = &updateOrganizationLicenseRequest
 	return r
 }
 
-func (r LicensesApiUpdateOrganizationLicenseRequest) Execute() (*InlineResponse200130, *http.Response, error) {
+func (r LicensesApiUpdateOrganizationLicenseRequest) Execute() (*GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationLicenseExecute(r)
 }
 
@@ -1282,13 +1282,13 @@ func (a *LicensesApiService) UpdateOrganizationLicense(ctx context.Context, orga
 }
 
 // Execute executes the request
-//  @return InlineResponse200130
-func (a *LicensesApiService) UpdateOrganizationLicenseExecute(r LicensesApiUpdateOrganizationLicenseRequest) (*InlineResponse200130, *http.Response, error) {
+//  @return GetOrganizationLicenses200ResponseInner
+func (a *LicensesApiService) UpdateOrganizationLicenseExecute(r LicensesApiUpdateOrganizationLicenseRequest) (*GetOrganizationLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200130
+		localVarReturnValue  *GetOrganizationLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensesApiService.UpdateOrganizationLicense")
@@ -1322,7 +1322,7 @@ func (a *LicensesApiService) UpdateOrganizationLicenseExecute(r LicensesApiUpdat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationLicense
+	localVarPostBody = r.updateOrganizationLicenseRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

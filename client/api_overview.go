@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -343,7 +344,7 @@ type OverviewApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest struct {
 	networkId string
 }
 
-func (r OverviewApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) Execute() (*InlineResponse20039, *http.Response, error) {
+func (r OverviewApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) Execute() (*GetNetworkSensorAlertsCurrentOverviewByMetric200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsCurrentOverviewByMetricExecute(r)
 }
 
@@ -365,13 +366,13 @@ func (a *OverviewApiService) GetNetworkSensorAlertsCurrentOverviewByMetric(ctx c
 }
 
 // Execute executes the request
-//  @return InlineResponse20039
-func (a *OverviewApiService) GetNetworkSensorAlertsCurrentOverviewByMetricExecute(r OverviewApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) (*InlineResponse20039, *http.Response, error) {
+//  @return GetNetworkSensorAlertsCurrentOverviewByMetric200Response
+func (a *OverviewApiService) GetNetworkSensorAlertsCurrentOverviewByMetricExecute(r OverviewApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) (*GetNetworkSensorAlertsCurrentOverviewByMetric200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20039
+		localVarReturnValue  *GetNetworkSensorAlertsCurrentOverviewByMetric200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OverviewApiService.GetNetworkSensorAlertsCurrentOverviewByMetric")
@@ -488,7 +489,7 @@ func (r OverviewApiGetNetworkSensorAlertsOverviewByMetricRequest) Interval(inter
 	return r
 }
 
-func (r OverviewApiGetNetworkSensorAlertsOverviewByMetricRequest) Execute() ([]InlineResponse20040, *http.Response, error) {
+func (r OverviewApiGetNetworkSensorAlertsOverviewByMetricRequest) Execute() ([]GetNetworkSensorAlertsOverviewByMetric200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsOverviewByMetricExecute(r)
 }
 
@@ -510,13 +511,13 @@ func (a *OverviewApiService) GetNetworkSensorAlertsOverviewByMetric(ctx context.
 }
 
 // Execute executes the request
-//  @return []InlineResponse20040
-func (a *OverviewApiService) GetNetworkSensorAlertsOverviewByMetricExecute(r OverviewApiGetNetworkSensorAlertsOverviewByMetricRequest) ([]InlineResponse20040, *http.Response, error) {
+//  @return []GetNetworkSensorAlertsOverviewByMetric200ResponseInner
+func (a *OverviewApiService) GetNetworkSensorAlertsOverviewByMetricExecute(r OverviewApiGetNetworkSensorAlertsOverviewByMetricRequest) ([]GetNetworkSensorAlertsOverviewByMetric200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20040
+		localVarReturnValue  []GetNetworkSensorAlertsOverviewByMetric200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OverviewApiService.GetNetworkSensorAlertsOverviewByMetric")
@@ -617,7 +618,7 @@ type OverviewApiGetOrganizationAdaptivePolicyOverviewRequest struct {
 	organizationId string
 }
 
-func (r OverviewApiGetOrganizationAdaptivePolicyOverviewRequest) Execute() (*InlineResponse200101, *http.Response, error) {
+func (r OverviewApiGetOrganizationAdaptivePolicyOverviewRequest) Execute() (*GetOrganizationAdaptivePolicyOverview200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationAdaptivePolicyOverviewExecute(r)
 }
 
@@ -639,13 +640,13 @@ func (a *OverviewApiService) GetOrganizationAdaptivePolicyOverview(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse200101
-func (a *OverviewApiService) GetOrganizationAdaptivePolicyOverviewExecute(r OverviewApiGetOrganizationAdaptivePolicyOverviewRequest) (*InlineResponse200101, *http.Response, error) {
+//  @return GetOrganizationAdaptivePolicyOverview200Response
+func (a *OverviewApiService) GetOrganizationAdaptivePolicyOverviewExecute(r OverviewApiGetOrganizationAdaptivePolicyOverviewRequest) (*GetOrganizationAdaptivePolicyOverview200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200101
+		localVarReturnValue  *GetOrganizationAdaptivePolicyOverview200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OverviewApiService.GetOrganizationAdaptivePolicyOverview")
@@ -755,7 +756,7 @@ func (r OverviewApiGetOrganizationApiRequestsOverviewRequest) Timespan(timespan 
 	return r
 }
 
-func (r OverviewApiGetOrganizationApiRequestsOverviewRequest) Execute() (*InlineResponse200104, *http.Response, error) {
+func (r OverviewApiGetOrganizationApiRequestsOverviewRequest) Execute() (*GetOrganizationApiRequestsOverview200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationApiRequestsOverviewExecute(r)
 }
 
@@ -777,13 +778,13 @@ func (a *OverviewApiService) GetOrganizationApiRequestsOverview(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse200104
-func (a *OverviewApiService) GetOrganizationApiRequestsOverviewExecute(r OverviewApiGetOrganizationApiRequestsOverviewRequest) (*InlineResponse200104, *http.Response, error) {
+//  @return GetOrganizationApiRequestsOverview200Response
+func (a *OverviewApiService) GetOrganizationApiRequestsOverviewExecute(r OverviewApiGetOrganizationApiRequestsOverviewRequest) (*GetOrganizationApiRequestsOverview200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200104
+		localVarReturnValue  *GetOrganizationApiRequestsOverview200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OverviewApiService.GetOrganizationApiRequestsOverview")
@@ -944,7 +945,7 @@ func (r OverviewApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequ
 	return r
 }
 
-func (r OverviewApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) Execute() ([]InlineResponse200105, *http.Response, error) {
+func (r OverviewApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) Execute() ([]GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationApiRequestsOverviewResponseCodesByIntervalExecute(r)
 }
 
@@ -966,13 +967,13 @@ func (a *OverviewApiService) GetOrganizationApiRequestsOverviewResponseCodesByIn
 }
 
 // Execute executes the request
-//  @return []InlineResponse200105
-func (a *OverviewApiService) GetOrganizationApiRequestsOverviewResponseCodesByIntervalExecute(r OverviewApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) ([]InlineResponse200105, *http.Response, error) {
+//  @return []GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner
+func (a *OverviewApiService) GetOrganizationApiRequestsOverviewResponseCodesByIntervalExecute(r OverviewApiGetOrganizationApiRequestsOverviewResponseCodesByIntervalRequest) ([]GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200105
+		localVarReturnValue  []GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OverviewApiService.GetOrganizationApiRequestsOverviewResponseCodesByInterval")
@@ -1003,13 +1004,37 @@ func (a *OverviewApiService) GetOrganizationApiRequestsOverviewResponseCodesByIn
 		localVarQueryParams.Add("version", parameterToString(*r.version, ""))
 	}
 	if r.operationIds != nil {
-		localVarQueryParams.Add("operationIds", parameterToString(*r.operationIds, "csv"))
+		t := *r.operationIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("operationIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("operationIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.sourceIps != nil {
-		localVarQueryParams.Add("sourceIps", parameterToString(*r.sourceIps, "csv"))
+		t := *r.sourceIps
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("sourceIps", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("sourceIps", parameterToString(t, "multi"))
+		}
 	}
 	if r.adminIds != nil {
-		localVarQueryParams.Add("adminIds", parameterToString(*r.adminIds, "csv"))
+		t := *r.adminIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("adminIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("adminIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.userAgent != nil {
 		localVarQueryParams.Add("userAgent", parameterToString(*r.userAgent, ""))
@@ -1109,7 +1134,7 @@ func (r OverviewApiGetOrganizationClientsOverviewRequest) Timespan(timespan floa
 	return r
 }
 
-func (r OverviewApiGetOrganizationClientsOverviewRequest) Execute() (*InlineResponse200112, *http.Response, error) {
+func (r OverviewApiGetOrganizationClientsOverviewRequest) Execute() (*GetOrganizationClientsOverview200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationClientsOverviewExecute(r)
 }
 
@@ -1131,13 +1156,13 @@ func (a *OverviewApiService) GetOrganizationClientsOverview(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse200112
-func (a *OverviewApiService) GetOrganizationClientsOverviewExecute(r OverviewApiGetOrganizationClientsOverviewRequest) (*InlineResponse200112, *http.Response, error) {
+//  @return GetOrganizationClientsOverview200Response
+func (a *OverviewApiService) GetOrganizationClientsOverviewExecute(r OverviewApiGetOrganizationClientsOverviewRequest) (*GetOrganizationClientsOverview200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200112
+		localVarReturnValue  *GetOrganizationClientsOverview200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OverviewApiService.GetOrganizationClientsOverview")
@@ -1249,7 +1274,7 @@ func (r OverviewApiGetOrganizationDevicesStatusesOverviewRequest) NetworkIds(net
 	return r
 }
 
-func (r OverviewApiGetOrganizationDevicesStatusesOverviewRequest) Execute() (*InlineResponse200120, *http.Response, error) {
+func (r OverviewApiGetOrganizationDevicesStatusesOverviewRequest) Execute() (*GetOrganizationDevicesStatusesOverview200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesStatusesOverviewExecute(r)
 }
 
@@ -1271,13 +1296,13 @@ func (a *OverviewApiService) GetOrganizationDevicesStatusesOverview(ctx context.
 }
 
 // Execute executes the request
-//  @return InlineResponse200120
-func (a *OverviewApiService) GetOrganizationDevicesStatusesOverviewExecute(r OverviewApiGetOrganizationDevicesStatusesOverviewRequest) (*InlineResponse200120, *http.Response, error) {
+//  @return GetOrganizationDevicesStatusesOverview200Response
+func (a *OverviewApiService) GetOrganizationDevicesStatusesOverviewExecute(r OverviewApiGetOrganizationDevicesStatusesOverviewRequest) (*GetOrganizationDevicesStatusesOverview200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200120
+		localVarReturnValue  *GetOrganizationDevicesStatusesOverview200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OverviewApiService.GetOrganizationDevicesStatusesOverview")
@@ -1293,10 +1318,26 @@ func (a *OverviewApiService) GetOrganizationDevicesStatusesOverviewExecute(r Ove
 	localVarFormParams := url.Values{}
 
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

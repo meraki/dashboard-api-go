@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -261,11 +261,11 @@ type PortForwardingRulesApiUpdateDeviceCellularGatewayPortForwardingRulesRequest
 	ctx context.Context
 	ApiService *PortForwardingRulesApiService
 	serial string
-	updateDeviceCellularGatewayPortForwardingRules *InlineObject12
+	updateDeviceCellularGatewayPortForwardingRulesRequest *UpdateDeviceCellularGatewayPortForwardingRulesRequest
 }
 
-func (r PortForwardingRulesApiUpdateDeviceCellularGatewayPortForwardingRulesRequest) UpdateDeviceCellularGatewayPortForwardingRules(updateDeviceCellularGatewayPortForwardingRules InlineObject12) PortForwardingRulesApiUpdateDeviceCellularGatewayPortForwardingRulesRequest {
-	r.updateDeviceCellularGatewayPortForwardingRules = &updateDeviceCellularGatewayPortForwardingRules
+func (r PortForwardingRulesApiUpdateDeviceCellularGatewayPortForwardingRulesRequest) UpdateDeviceCellularGatewayPortForwardingRulesRequest(updateDeviceCellularGatewayPortForwardingRulesRequest UpdateDeviceCellularGatewayPortForwardingRulesRequest) PortForwardingRulesApiUpdateDeviceCellularGatewayPortForwardingRulesRequest {
+	r.updateDeviceCellularGatewayPortForwardingRulesRequest = &updateDeviceCellularGatewayPortForwardingRulesRequest
 	return r
 }
 
@@ -330,7 +330,7 @@ func (a *PortForwardingRulesApiService) UpdateDeviceCellularGatewayPortForwardin
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCellularGatewayPortForwardingRules
+	localVarPostBody = r.updateDeviceCellularGatewayPortForwardingRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -386,11 +386,11 @@ type PortForwardingRulesApiUpdateNetworkApplianceFirewallPortForwardingRulesRequ
 	ctx context.Context
 	ApiService *PortForwardingRulesApiService
 	networkId string
-	updateNetworkApplianceFirewallPortForwardingRules *InlineObject39
+	updateNetworkApplianceFirewallPortForwardingRulesRequest *UpdateNetworkApplianceFirewallPortForwardingRulesRequest
 }
 
-func (r PortForwardingRulesApiUpdateNetworkApplianceFirewallPortForwardingRulesRequest) UpdateNetworkApplianceFirewallPortForwardingRules(updateNetworkApplianceFirewallPortForwardingRules InlineObject39) PortForwardingRulesApiUpdateNetworkApplianceFirewallPortForwardingRulesRequest {
-	r.updateNetworkApplianceFirewallPortForwardingRules = &updateNetworkApplianceFirewallPortForwardingRules
+func (r PortForwardingRulesApiUpdateNetworkApplianceFirewallPortForwardingRulesRequest) UpdateNetworkApplianceFirewallPortForwardingRulesRequest(updateNetworkApplianceFirewallPortForwardingRulesRequest UpdateNetworkApplianceFirewallPortForwardingRulesRequest) PortForwardingRulesApiUpdateNetworkApplianceFirewallPortForwardingRulesRequest {
+	r.updateNetworkApplianceFirewallPortForwardingRulesRequest = &updateNetworkApplianceFirewallPortForwardingRulesRequest
 	return r
 }
 
@@ -436,8 +436,8 @@ func (a *PortForwardingRulesApiService) UpdateNetworkApplianceFirewallPortForwar
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkApplianceFirewallPortForwardingRules == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallPortForwardingRules is required and must be specified")
+	if r.updateNetworkApplianceFirewallPortForwardingRulesRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkApplianceFirewallPortForwardingRulesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -458,7 +458,7 @@ func (a *PortForwardingRulesApiService) UpdateNetworkApplianceFirewallPortForwar
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallPortForwardingRules
+	localVarPostBody = r.updateNetworkApplianceFirewallPortForwardingRulesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

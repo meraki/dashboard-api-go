@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -57,7 +58,7 @@ func (r EthernetApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Networ
 	return r
 }
 
-func (r EthernetApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Execute() ([]InlineResponse200159, *http.Response, error) {
+func (r EthernetApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Execute() ([]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWirelessDevicesEthernetStatusesExecute(r)
 }
 
@@ -79,13 +80,13 @@ func (a *EthernetApiService) GetOrganizationWirelessDevicesEthernetStatuses(ctx 
 }
 
 // Execute executes the request
-//  @return []InlineResponse200159
-func (a *EthernetApiService) GetOrganizationWirelessDevicesEthernetStatusesExecute(r EthernetApiGetOrganizationWirelessDevicesEthernetStatusesRequest) ([]InlineResponse200159, *http.Response, error) {
+//  @return []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
+func (a *EthernetApiService) GetOrganizationWirelessDevicesEthernetStatusesExecute(r EthernetApiGetOrganizationWirelessDevicesEthernetStatusesRequest) ([]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200159
+		localVarReturnValue  []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EthernetApiService.GetOrganizationWirelessDevicesEthernetStatuses")
@@ -110,7 +111,15 @@ func (a *EthernetApiService) GetOrganizationWirelessDevicesEthernetStatusesExecu
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

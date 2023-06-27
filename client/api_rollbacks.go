@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest struct {
 	ctx context.Context
 	ApiService *RollbacksApiService
 	networkId string
-	createNetworkFirmwareUpgradesRollback *InlineObject81
+	createNetworkFirmwareUpgradesRollbackRequest *CreateNetworkFirmwareUpgradesRollbackRequest
 }
 
-func (r RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest) CreateNetworkFirmwareUpgradesRollback(createNetworkFirmwareUpgradesRollback InlineObject81) RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest {
-	r.createNetworkFirmwareUpgradesRollback = &createNetworkFirmwareUpgradesRollback
+func (r RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest) CreateNetworkFirmwareUpgradesRollbackRequest(createNetworkFirmwareUpgradesRollbackRequest CreateNetworkFirmwareUpgradesRollbackRequest) RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest {
+	r.createNetworkFirmwareUpgradesRollbackRequest = &createNetworkFirmwareUpgradesRollbackRequest
 	return r
 }
 
-func (r RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest) Execute() (*InlineResponse20031, *http.Response, error) {
+func (r RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest) Execute() (*CreateNetworkFirmwareUpgradesRollback200Response, *http.Response, error) {
 	return r.ApiService.CreateNetworkFirmwareUpgradesRollbackExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *RollbacksApiService) CreateNetworkFirmwareUpgradesRollback(ctx context.
 }
 
 // Execute executes the request
-//  @return InlineResponse20031
-func (a *RollbacksApiService) CreateNetworkFirmwareUpgradesRollbackExecute(r RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest) (*InlineResponse20031, *http.Response, error) {
+//  @return CreateNetworkFirmwareUpgradesRollback200Response
+func (a *RollbacksApiService) CreateNetworkFirmwareUpgradesRollbackExecute(r RollbacksApiCreateNetworkFirmwareUpgradesRollbackRequest) (*CreateNetworkFirmwareUpgradesRollback200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20031
+		localVarReturnValue  *CreateNetworkFirmwareUpgradesRollback200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RollbacksApiService.CreateNetworkFirmwareUpgradesRollback")
@@ -77,8 +77,8 @@ func (a *RollbacksApiService) CreateNetworkFirmwareUpgradesRollbackExecute(r Rol
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkFirmwareUpgradesRollback == nil {
-		return localVarReturnValue, nil, reportError("createNetworkFirmwareUpgradesRollback is required and must be specified")
+	if r.createNetworkFirmwareUpgradesRollbackRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkFirmwareUpgradesRollbackRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *RollbacksApiService) CreateNetworkFirmwareUpgradesRollbackExecute(r Rol
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkFirmwareUpgradesRollback
+	localVarPostBody = r.createNetworkFirmwareUpgradesRollbackRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

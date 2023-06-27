@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -29,7 +29,7 @@ type PrioritiesApiGetOrganizationBrandingPoliciesPrioritiesRequest struct {
 	organizationId string
 }
 
-func (r PrioritiesApiGetOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*InlineResponse200109, *http.Response, error) {
+func (r PrioritiesApiGetOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationBrandingPoliciesPrioritiesExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *PrioritiesApiService) GetOrganizationBrandingPoliciesPriorities(ctx con
 }
 
 // Execute executes the request
-//  @return InlineResponse200109
-func (a *PrioritiesApiService) GetOrganizationBrandingPoliciesPrioritiesExecute(r PrioritiesApiGetOrganizationBrandingPoliciesPrioritiesRequest) (*InlineResponse200109, *http.Response, error) {
+//  @return GetOrganizationBrandingPoliciesPriorities200Response
+func (a *PrioritiesApiService) GetOrganizationBrandingPoliciesPrioritiesExecute(r PrioritiesApiGetOrganizationBrandingPoliciesPrioritiesRequest) (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200109
+		localVarReturnValue  *GetOrganizationBrandingPoliciesPriorities200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrioritiesApiService.GetOrganizationBrandingPoliciesPriorities")
@@ -144,15 +144,15 @@ type PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest struct {
 	ctx context.Context
 	ApiService *PrioritiesApiService
 	organizationId string
-	updateOrganizationBrandingPoliciesPriorities *InlineObject189
+	updateOrganizationBrandingPoliciesPrioritiesRequest *UpdateOrganizationBrandingPoliciesPrioritiesRequest
 }
 
-func (r PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) UpdateOrganizationBrandingPoliciesPriorities(updateOrganizationBrandingPoliciesPriorities InlineObject189) PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest {
-	r.updateOrganizationBrandingPoliciesPriorities = &updateOrganizationBrandingPoliciesPriorities
+func (r PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) UpdateOrganizationBrandingPoliciesPrioritiesRequest(updateOrganizationBrandingPoliciesPrioritiesRequest UpdateOrganizationBrandingPoliciesPrioritiesRequest) PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest {
+	r.updateOrganizationBrandingPoliciesPrioritiesRequest = &updateOrganizationBrandingPoliciesPrioritiesRequest
 	return r
 }
 
-func (r PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*InlineResponse200109, *http.Response, error) {
+func (r PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) Execute() (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationBrandingPoliciesPrioritiesExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *PrioritiesApiService) UpdateOrganizationBrandingPoliciesPriorities(ctx 
 }
 
 // Execute executes the request
-//  @return InlineResponse200109
-func (a *PrioritiesApiService) UpdateOrganizationBrandingPoliciesPrioritiesExecute(r PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) (*InlineResponse200109, *http.Response, error) {
+//  @return GetOrganizationBrandingPoliciesPriorities200Response
+func (a *PrioritiesApiService) UpdateOrganizationBrandingPoliciesPrioritiesExecute(r PrioritiesApiUpdateOrganizationBrandingPoliciesPrioritiesRequest) (*GetOrganizationBrandingPoliciesPriorities200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200109
+		localVarReturnValue  *GetOrganizationBrandingPoliciesPriorities200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrioritiesApiService.UpdateOrganizationBrandingPoliciesPriorities")
@@ -213,7 +213,7 @@ func (a *PrioritiesApiService) UpdateOrganizationBrandingPoliciesPrioritiesExecu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationBrandingPoliciesPriorities
+	localVarPostBody = r.updateOrganizationBrandingPoliciesPrioritiesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

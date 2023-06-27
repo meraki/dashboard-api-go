@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -144,11 +144,11 @@ type QualityAndRetentionApiUpdateDeviceCameraQualityAndRetentionRequest struct {
 	ctx context.Context
 	ApiService *QualityAndRetentionApiService
 	serial string
-	updateDeviceCameraQualityAndRetention *InlineObject6
+	updateDeviceCameraQualityAndRetentionRequest *UpdateDeviceCameraQualityAndRetentionRequest
 }
 
-func (r QualityAndRetentionApiUpdateDeviceCameraQualityAndRetentionRequest) UpdateDeviceCameraQualityAndRetention(updateDeviceCameraQualityAndRetention InlineObject6) QualityAndRetentionApiUpdateDeviceCameraQualityAndRetentionRequest {
-	r.updateDeviceCameraQualityAndRetention = &updateDeviceCameraQualityAndRetention
+func (r QualityAndRetentionApiUpdateDeviceCameraQualityAndRetentionRequest) UpdateDeviceCameraQualityAndRetentionRequest(updateDeviceCameraQualityAndRetentionRequest UpdateDeviceCameraQualityAndRetentionRequest) QualityAndRetentionApiUpdateDeviceCameraQualityAndRetentionRequest {
+	r.updateDeviceCameraQualityAndRetentionRequest = &updateDeviceCameraQualityAndRetentionRequest
 	return r
 }
 
@@ -213,7 +213,7 @@ func (a *QualityAndRetentionApiService) UpdateDeviceCameraQualityAndRetentionExe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCameraQualityAndRetention
+	localVarPostBody = r.updateDeviceCameraQualityAndRetentionRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

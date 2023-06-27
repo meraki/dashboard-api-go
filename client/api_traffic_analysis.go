@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -144,11 +144,11 @@ type TrafficAnalysisApiUpdateNetworkTrafficAnalysisRequest struct {
 	ctx context.Context
 	ApiService *TrafficAnalysisApiService
 	networkId string
-	updateNetworkTrafficAnalysis *InlineObject144
+	updateNetworkTrafficAnalysisRequest *UpdateNetworkTrafficAnalysisRequest
 }
 
-func (r TrafficAnalysisApiUpdateNetworkTrafficAnalysisRequest) UpdateNetworkTrafficAnalysis(updateNetworkTrafficAnalysis InlineObject144) TrafficAnalysisApiUpdateNetworkTrafficAnalysisRequest {
-	r.updateNetworkTrafficAnalysis = &updateNetworkTrafficAnalysis
+func (r TrafficAnalysisApiUpdateNetworkTrafficAnalysisRequest) UpdateNetworkTrafficAnalysisRequest(updateNetworkTrafficAnalysisRequest UpdateNetworkTrafficAnalysisRequest) TrafficAnalysisApiUpdateNetworkTrafficAnalysisRequest {
+	r.updateNetworkTrafficAnalysisRequest = &updateNetworkTrafficAnalysisRequest
 	return r
 }
 
@@ -213,7 +213,7 @@ func (a *TrafficAnalysisApiService) UpdateNetworkTrafficAnalysisExecute(r Traffi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkTrafficAnalysis
+	localVarPostBody = r.updateNetworkTrafficAnalysisRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

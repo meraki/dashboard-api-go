@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -28,15 +28,15 @@ type StacksApiAddNetworkSwitchStackRequest struct {
 	ApiService *StacksApiService
 	networkId string
 	switchStackId string
-	addNetworkSwitchStack *InlineObject134
+	addNetworkSwitchStackRequest *AddNetworkSwitchStackRequest
 }
 
-func (r StacksApiAddNetworkSwitchStackRequest) AddNetworkSwitchStack(addNetworkSwitchStack InlineObject134) StacksApiAddNetworkSwitchStackRequest {
-	r.addNetworkSwitchStack = &addNetworkSwitchStack
+func (r StacksApiAddNetworkSwitchStackRequest) AddNetworkSwitchStackRequest(addNetworkSwitchStackRequest AddNetworkSwitchStackRequest) StacksApiAddNetworkSwitchStackRequest {
+	r.addNetworkSwitchStackRequest = &addNetworkSwitchStackRequest
 	return r
 }
 
-func (r StacksApiAddNetworkSwitchStackRequest) Execute() (*InlineResponse20079, *http.Response, error) {
+func (r StacksApiAddNetworkSwitchStackRequest) Execute() (*GetNetworkSwitchStack200Response, *http.Response, error) {
 	return r.ApiService.AddNetworkSwitchStackExecute(r)
 }
 
@@ -60,13 +60,13 @@ func (a *StacksApiService) AddNetworkSwitchStack(ctx context.Context, networkId 
 }
 
 // Execute executes the request
-//  @return InlineResponse20079
-func (a *StacksApiService) AddNetworkSwitchStackExecute(r StacksApiAddNetworkSwitchStackRequest) (*InlineResponse20079, *http.Response, error) {
+//  @return GetNetworkSwitchStack200Response
+func (a *StacksApiService) AddNetworkSwitchStackExecute(r StacksApiAddNetworkSwitchStackRequest) (*GetNetworkSwitchStack200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20079
+		localVarReturnValue  *GetNetworkSwitchStack200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StacksApiService.AddNetworkSwitchStack")
@@ -81,8 +81,8 @@ func (a *StacksApiService) AddNetworkSwitchStackExecute(r StacksApiAddNetworkSwi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.addNetworkSwitchStack == nil {
-		return localVarReturnValue, nil, reportError("addNetworkSwitchStack is required and must be specified")
+	if r.addNetworkSwitchStackRequest == nil {
+		return localVarReturnValue, nil, reportError("addNetworkSwitchStackRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -103,7 +103,7 @@ func (a *StacksApiService) AddNetworkSwitchStackExecute(r StacksApiAddNetworkSwi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.addNetworkSwitchStack
+	localVarPostBody = r.addNetworkSwitchStackRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -159,11 +159,11 @@ type StacksApiCreateNetworkSwitchStackRequest struct {
 	ctx context.Context
 	ApiService *StacksApiService
 	networkId string
-	createNetworkSwitchStack *InlineObject133
+	createNetworkSwitchStackRequest *CreateNetworkSwitchStackRequest
 }
 
-func (r StacksApiCreateNetworkSwitchStackRequest) CreateNetworkSwitchStack(createNetworkSwitchStack InlineObject133) StacksApiCreateNetworkSwitchStackRequest {
-	r.createNetworkSwitchStack = &createNetworkSwitchStack
+func (r StacksApiCreateNetworkSwitchStackRequest) CreateNetworkSwitchStackRequest(createNetworkSwitchStackRequest CreateNetworkSwitchStackRequest) StacksApiCreateNetworkSwitchStackRequest {
+	r.createNetworkSwitchStackRequest = &createNetworkSwitchStackRequest
 	return r
 }
 
@@ -209,8 +209,8 @@ func (a *StacksApiService) CreateNetworkSwitchStackExecute(r StacksApiCreateNetw
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchStack == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchStack is required and must be specified")
+	if r.createNetworkSwitchStackRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSwitchStackRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -231,7 +231,7 @@ func (a *StacksApiService) CreateNetworkSwitchStackExecute(r StacksApiCreateNetw
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchStack
+	localVarPostBody = r.createNetworkSwitchStackRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -288,11 +288,11 @@ type StacksApiCreateNetworkSwitchStackRoutingInterfaceRequest struct {
 	ApiService *StacksApiService
 	networkId string
 	switchStackId string
-	createNetworkSwitchStackRoutingInterface *InlineObject136
+	createNetworkSwitchStackRoutingInterfaceRequest *CreateNetworkSwitchStackRoutingInterfaceRequest
 }
 
-func (r StacksApiCreateNetworkSwitchStackRoutingInterfaceRequest) CreateNetworkSwitchStackRoutingInterface(createNetworkSwitchStackRoutingInterface InlineObject136) StacksApiCreateNetworkSwitchStackRoutingInterfaceRequest {
-	r.createNetworkSwitchStackRoutingInterface = &createNetworkSwitchStackRoutingInterface
+func (r StacksApiCreateNetworkSwitchStackRoutingInterfaceRequest) CreateNetworkSwitchStackRoutingInterfaceRequest(createNetworkSwitchStackRoutingInterfaceRequest CreateNetworkSwitchStackRoutingInterfaceRequest) StacksApiCreateNetworkSwitchStackRoutingInterfaceRequest {
+	r.createNetworkSwitchStackRoutingInterfaceRequest = &createNetworkSwitchStackRoutingInterfaceRequest
 	return r
 }
 
@@ -341,8 +341,8 @@ func (a *StacksApiService) CreateNetworkSwitchStackRoutingInterfaceExecute(r Sta
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchStackRoutingInterface == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchStackRoutingInterface is required and must be specified")
+	if r.createNetworkSwitchStackRoutingInterfaceRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSwitchStackRoutingInterfaceRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -363,7 +363,7 @@ func (a *StacksApiService) CreateNetworkSwitchStackRoutingInterfaceExecute(r Sta
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchStackRoutingInterface
+	localVarPostBody = r.createNetworkSwitchStackRoutingInterfaceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -420,11 +420,11 @@ type StacksApiCreateNetworkSwitchStackRoutingStaticRouteRequest struct {
 	ApiService *StacksApiService
 	networkId string
 	switchStackId string
-	createNetworkSwitchStackRoutingStaticRoute *InlineObject139
+	createDeviceSwitchRoutingStaticRouteRequest *CreateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r StacksApiCreateNetworkSwitchStackRoutingStaticRouteRequest) CreateNetworkSwitchStackRoutingStaticRoute(createNetworkSwitchStackRoutingStaticRoute InlineObject139) StacksApiCreateNetworkSwitchStackRoutingStaticRouteRequest {
-	r.createNetworkSwitchStackRoutingStaticRoute = &createNetworkSwitchStackRoutingStaticRoute
+func (r StacksApiCreateNetworkSwitchStackRoutingStaticRouteRequest) CreateDeviceSwitchRoutingStaticRouteRequest(createDeviceSwitchRoutingStaticRouteRequest CreateDeviceSwitchRoutingStaticRouteRequest) StacksApiCreateNetworkSwitchStackRoutingStaticRouteRequest {
+	r.createDeviceSwitchRoutingStaticRouteRequest = &createDeviceSwitchRoutingStaticRouteRequest
 	return r
 }
 
@@ -473,8 +473,8 @@ func (a *StacksApiService) CreateNetworkSwitchStackRoutingStaticRouteExecute(r S
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchStackRoutingStaticRoute == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchStackRoutingStaticRoute is required and must be specified")
+	if r.createDeviceSwitchRoutingStaticRouteRequest == nil {
+		return localVarReturnValue, nil, reportError("createDeviceSwitchRoutingStaticRouteRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -495,7 +495,7 @@ func (a *StacksApiService) CreateNetworkSwitchStackRoutingStaticRouteExecute(r S
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchStackRoutingStaticRoute
+	localVarPostBody = r.createDeviceSwitchRoutingStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -892,7 +892,7 @@ type StacksApiGetNetworkSwitchStackRequest struct {
 	switchStackId string
 }
 
-func (r StacksApiGetNetworkSwitchStackRequest) Execute() (*InlineResponse20079, *http.Response, error) {
+func (r StacksApiGetNetworkSwitchStackRequest) Execute() (*GetNetworkSwitchStack200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchStackExecute(r)
 }
 
@@ -916,13 +916,13 @@ func (a *StacksApiService) GetNetworkSwitchStack(ctx context.Context, networkId 
 }
 
 // Execute executes the request
-//  @return InlineResponse20079
-func (a *StacksApiService) GetNetworkSwitchStackExecute(r StacksApiGetNetworkSwitchStackRequest) (*InlineResponse20079, *http.Response, error) {
+//  @return GetNetworkSwitchStack200Response
+func (a *StacksApiService) GetNetworkSwitchStackExecute(r StacksApiGetNetworkSwitchStackRequest) (*GetNetworkSwitchStack200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20079
+		localVarReturnValue  *GetNetworkSwitchStack200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StacksApiService.GetNetworkSwitchStack")
@@ -1139,7 +1139,7 @@ type StacksApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest struct {
 	interfaceId string
 }
 
-func (r StacksApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest) Execute() (*InlineResponse20080, *http.Response, error) {
+func (r StacksApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest) Execute() (*GetNetworkSwitchStackRoutingInterfaceDhcp200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchStackRoutingInterfaceDhcpExecute(r)
 }
 
@@ -1165,13 +1165,13 @@ func (a *StacksApiService) GetNetworkSwitchStackRoutingInterfaceDhcp(ctx context
 }
 
 // Execute executes the request
-//  @return InlineResponse20080
-func (a *StacksApiService) GetNetworkSwitchStackRoutingInterfaceDhcpExecute(r StacksApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest) (*InlineResponse20080, *http.Response, error) {
+//  @return GetNetworkSwitchStackRoutingInterfaceDhcp200Response
+func (a *StacksApiService) GetNetworkSwitchStackRoutingInterfaceDhcpExecute(r StacksApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest) (*GetNetworkSwitchStackRoutingInterfaceDhcp200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20080
+		localVarReturnValue  *GetNetworkSwitchStackRoutingInterfaceDhcp200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StacksApiService.GetNetworkSwitchStackRoutingInterfaceDhcp")
@@ -1745,11 +1745,11 @@ type StacksApiRemoveNetworkSwitchStackRequest struct {
 	ApiService *StacksApiService
 	networkId string
 	switchStackId string
-	removeNetworkSwitchStack *InlineObject135
+	removeNetworkSwitchStackRequest *RemoveNetworkSwitchStackRequest
 }
 
-func (r StacksApiRemoveNetworkSwitchStackRequest) RemoveNetworkSwitchStack(removeNetworkSwitchStack InlineObject135) StacksApiRemoveNetworkSwitchStackRequest {
-	r.removeNetworkSwitchStack = &removeNetworkSwitchStack
+func (r StacksApiRemoveNetworkSwitchStackRequest) RemoveNetworkSwitchStackRequest(removeNetworkSwitchStackRequest RemoveNetworkSwitchStackRequest) StacksApiRemoveNetworkSwitchStackRequest {
+	r.removeNetworkSwitchStackRequest = &removeNetworkSwitchStackRequest
 	return r
 }
 
@@ -1798,8 +1798,8 @@ func (a *StacksApiService) RemoveNetworkSwitchStackExecute(r StacksApiRemoveNetw
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.removeNetworkSwitchStack == nil {
-		return localVarReturnValue, nil, reportError("removeNetworkSwitchStack is required and must be specified")
+	if r.removeNetworkSwitchStackRequest == nil {
+		return localVarReturnValue, nil, reportError("removeNetworkSwitchStackRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1820,7 +1820,7 @@ func (a *StacksApiService) RemoveNetworkSwitchStackExecute(r StacksApiRemoveNetw
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.removeNetworkSwitchStack
+	localVarPostBody = r.removeNetworkSwitchStackRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1878,11 +1878,11 @@ type StacksApiUpdateNetworkSwitchStackRoutingInterfaceRequest struct {
 	networkId string
 	switchStackId string
 	interfaceId string
-	updateNetworkSwitchStackRoutingInterface *InlineObject137
+	updateNetworkSwitchStackRoutingInterfaceRequest *UpdateNetworkSwitchStackRoutingInterfaceRequest
 }
 
-func (r StacksApiUpdateNetworkSwitchStackRoutingInterfaceRequest) UpdateNetworkSwitchStackRoutingInterface(updateNetworkSwitchStackRoutingInterface InlineObject137) StacksApiUpdateNetworkSwitchStackRoutingInterfaceRequest {
-	r.updateNetworkSwitchStackRoutingInterface = &updateNetworkSwitchStackRoutingInterface
+func (r StacksApiUpdateNetworkSwitchStackRoutingInterfaceRequest) UpdateNetworkSwitchStackRoutingInterfaceRequest(updateNetworkSwitchStackRoutingInterfaceRequest UpdateNetworkSwitchStackRoutingInterfaceRequest) StacksApiUpdateNetworkSwitchStackRoutingInterfaceRequest {
+	r.updateNetworkSwitchStackRoutingInterfaceRequest = &updateNetworkSwitchStackRoutingInterfaceRequest
 	return r
 }
 
@@ -1953,7 +1953,7 @@ func (a *StacksApiService) UpdateNetworkSwitchStackRoutingInterfaceExecute(r Sta
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchStackRoutingInterface
+	localVarPostBody = r.updateNetworkSwitchStackRoutingInterfaceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2011,11 +2011,11 @@ type StacksApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest struct {
 	networkId string
 	switchStackId string
 	interfaceId string
-	updateNetworkSwitchStackRoutingInterfaceDhcp *InlineObject138
+	updateNetworkSwitchStackRoutingInterfaceDhcpRequest *UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest
 }
 
-func (r StacksApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest) UpdateNetworkSwitchStackRoutingInterfaceDhcp(updateNetworkSwitchStackRoutingInterfaceDhcp InlineObject138) StacksApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest {
-	r.updateNetworkSwitchStackRoutingInterfaceDhcp = &updateNetworkSwitchStackRoutingInterfaceDhcp
+func (r StacksApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest) UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest(updateNetworkSwitchStackRoutingInterfaceDhcpRequest UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest) StacksApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest {
+	r.updateNetworkSwitchStackRoutingInterfaceDhcpRequest = &updateNetworkSwitchStackRoutingInterfaceDhcpRequest
 	return r
 }
 
@@ -2086,7 +2086,7 @@ func (a *StacksApiService) UpdateNetworkSwitchStackRoutingInterfaceDhcpExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchStackRoutingInterfaceDhcp
+	localVarPostBody = r.updateNetworkSwitchStackRoutingInterfaceDhcpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2144,11 +2144,11 @@ type StacksApiUpdateNetworkSwitchStackRoutingStaticRouteRequest struct {
 	networkId string
 	switchStackId string
 	staticRouteId string
-	updateNetworkSwitchStackRoutingStaticRoute *InlineObject140
+	updateDeviceSwitchRoutingStaticRouteRequest *UpdateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r StacksApiUpdateNetworkSwitchStackRoutingStaticRouteRequest) UpdateNetworkSwitchStackRoutingStaticRoute(updateNetworkSwitchStackRoutingStaticRoute InlineObject140) StacksApiUpdateNetworkSwitchStackRoutingStaticRouteRequest {
-	r.updateNetworkSwitchStackRoutingStaticRoute = &updateNetworkSwitchStackRoutingStaticRoute
+func (r StacksApiUpdateNetworkSwitchStackRoutingStaticRouteRequest) UpdateDeviceSwitchRoutingStaticRouteRequest(updateDeviceSwitchRoutingStaticRouteRequest UpdateDeviceSwitchRoutingStaticRouteRequest) StacksApiUpdateNetworkSwitchStackRoutingStaticRouteRequest {
+	r.updateDeviceSwitchRoutingStaticRouteRequest = &updateDeviceSwitchRoutingStaticRouteRequest
 	return r
 }
 
@@ -2219,7 +2219,7 @@ func (a *StacksApiService) UpdateNetworkSwitchStackRoutingStaticRouteExecute(r S
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchStackRoutingStaticRoute
+	localVarPostBody = r.updateDeviceSwitchRoutingStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

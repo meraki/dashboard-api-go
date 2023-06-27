@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type MqttBrokersApiCreateNetworkMqttBrokerRequest struct {
 	ctx context.Context
 	ApiService *MqttBrokersApiService
 	networkId string
-	createNetworkMqttBroker *InlineObject94
+	createNetworkMqttBrokerRequest *CreateNetworkMqttBrokerRequest
 }
 
-func (r MqttBrokersApiCreateNetworkMqttBrokerRequest) CreateNetworkMqttBroker(createNetworkMqttBroker InlineObject94) MqttBrokersApiCreateNetworkMqttBrokerRequest {
-	r.createNetworkMqttBroker = &createNetworkMqttBroker
+func (r MqttBrokersApiCreateNetworkMqttBrokerRequest) CreateNetworkMqttBrokerRequest(createNetworkMqttBrokerRequest CreateNetworkMqttBrokerRequest) MqttBrokersApiCreateNetworkMqttBrokerRequest {
+	r.createNetworkMqttBrokerRequest = &createNetworkMqttBrokerRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *MqttBrokersApiService) CreateNetworkMqttBrokerExecute(r MqttBrokersApiC
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkMqttBroker == nil {
-		return localVarReturnValue, nil, reportError("createNetworkMqttBroker is required and must be specified")
+	if r.createNetworkMqttBrokerRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkMqttBrokerRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *MqttBrokersApiService) CreateNetworkMqttBrokerExecute(r MqttBrokersApiC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkMqttBroker
+	localVarPostBody = r.createNetworkMqttBrokerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -506,7 +506,7 @@ type MqttBrokersApiGetNetworkSensorMqttBrokerRequest struct {
 	mqttBrokerId string
 }
 
-func (r MqttBrokersApiGetNetworkSensorMqttBrokerRequest) Execute() (*InlineResponse20042, *http.Response, error) {
+func (r MqttBrokersApiGetNetworkSensorMqttBrokerRequest) Execute() (*GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorMqttBrokerExecute(r)
 }
 
@@ -530,13 +530,13 @@ func (a *MqttBrokersApiService) GetNetworkSensorMqttBroker(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse20042
-func (a *MqttBrokersApiService) GetNetworkSensorMqttBrokerExecute(r MqttBrokersApiGetNetworkSensorMqttBrokerRequest) (*InlineResponse20042, *http.Response, error) {
+//  @return GetNetworkSensorMqttBrokers200ResponseInner
+func (a *MqttBrokersApiService) GetNetworkSensorMqttBrokerExecute(r MqttBrokersApiGetNetworkSensorMqttBrokerRequest) (*GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20042
+		localVarReturnValue  *GetNetworkSensorMqttBrokers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MqttBrokersApiService.GetNetworkSensorMqttBroker")
@@ -626,7 +626,7 @@ type MqttBrokersApiGetNetworkSensorMqttBrokersRequest struct {
 	networkId string
 }
 
-func (r MqttBrokersApiGetNetworkSensorMqttBrokersRequest) Execute() ([]InlineResponse20042, *http.Response, error) {
+func (r MqttBrokersApiGetNetworkSensorMqttBrokersRequest) Execute() ([]GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorMqttBrokersExecute(r)
 }
 
@@ -648,13 +648,13 @@ func (a *MqttBrokersApiService) GetNetworkSensorMqttBrokers(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return []InlineResponse20042
-func (a *MqttBrokersApiService) GetNetworkSensorMqttBrokersExecute(r MqttBrokersApiGetNetworkSensorMqttBrokersRequest) ([]InlineResponse20042, *http.Response, error) {
+//  @return []GetNetworkSensorMqttBrokers200ResponseInner
+func (a *MqttBrokersApiService) GetNetworkSensorMqttBrokersExecute(r MqttBrokersApiGetNetworkSensorMqttBrokersRequest) ([]GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20042
+		localVarReturnValue  []GetNetworkSensorMqttBrokers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MqttBrokersApiService.GetNetworkSensorMqttBrokers")
@@ -742,11 +742,11 @@ type MqttBrokersApiUpdateNetworkMqttBrokerRequest struct {
 	ApiService *MqttBrokersApiService
 	networkId string
 	mqttBrokerId string
-	updateNetworkMqttBroker *InlineObject95
+	updateNetworkMqttBrokerRequest *UpdateNetworkMqttBrokerRequest
 }
 
-func (r MqttBrokersApiUpdateNetworkMqttBrokerRequest) UpdateNetworkMqttBroker(updateNetworkMqttBroker InlineObject95) MqttBrokersApiUpdateNetworkMqttBrokerRequest {
-	r.updateNetworkMqttBroker = &updateNetworkMqttBroker
+func (r MqttBrokersApiUpdateNetworkMqttBrokerRequest) UpdateNetworkMqttBrokerRequest(updateNetworkMqttBrokerRequest UpdateNetworkMqttBrokerRequest) MqttBrokersApiUpdateNetworkMqttBrokerRequest {
+	r.updateNetworkMqttBrokerRequest = &updateNetworkMqttBrokerRequest
 	return r
 }
 
@@ -814,7 +814,7 @@ func (a *MqttBrokersApiService) UpdateNetworkMqttBrokerExecute(r MqttBrokersApiU
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkMqttBroker
+	localVarPostBody = r.updateNetworkMqttBrokerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -871,15 +871,15 @@ type MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest struct {
 	ApiService *MqttBrokersApiService
 	networkId string
 	mqttBrokerId string
-	updateNetworkSensorMqttBroker *InlineObject100
+	updateNetworkSensorMqttBrokerRequest *UpdateNetworkSensorMqttBrokerRequest
 }
 
-func (r MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest) UpdateNetworkSensorMqttBroker(updateNetworkSensorMqttBroker InlineObject100) MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest {
-	r.updateNetworkSensorMqttBroker = &updateNetworkSensorMqttBroker
+func (r MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest) UpdateNetworkSensorMqttBrokerRequest(updateNetworkSensorMqttBrokerRequest UpdateNetworkSensorMqttBrokerRequest) MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest {
+	r.updateNetworkSensorMqttBrokerRequest = &updateNetworkSensorMqttBrokerRequest
 	return r
 }
 
-func (r MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest) Execute() (*InlineResponse20042, *http.Response, error) {
+func (r MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest) Execute() (*GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSensorMqttBrokerExecute(r)
 }
 
@@ -903,13 +903,13 @@ func (a *MqttBrokersApiService) UpdateNetworkSensorMqttBroker(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20042
-func (a *MqttBrokersApiService) UpdateNetworkSensorMqttBrokerExecute(r MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest) (*InlineResponse20042, *http.Response, error) {
+//  @return GetNetworkSensorMqttBrokers200ResponseInner
+func (a *MqttBrokersApiService) UpdateNetworkSensorMqttBrokerExecute(r MqttBrokersApiUpdateNetworkSensorMqttBrokerRequest) (*GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20042
+		localVarReturnValue  *GetNetworkSensorMqttBrokers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MqttBrokersApiService.UpdateNetworkSensorMqttBroker")
@@ -924,8 +924,8 @@ func (a *MqttBrokersApiService) UpdateNetworkSensorMqttBrokerExecute(r MqttBroke
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSensorMqttBroker == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSensorMqttBroker is required and must be specified")
+	if r.updateNetworkSensorMqttBrokerRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSensorMqttBrokerRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -946,7 +946,7 @@ func (a *MqttBrokersApiService) UpdateNetworkSensorMqttBrokerExecute(r MqttBroke
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSensorMqttBroker
+	localVarPostBody = r.updateNetworkSensorMqttBrokerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -261,11 +261,11 @@ type ConnectivityMonitoringDestinationsApiUpdateNetworkApplianceConnectivityMoni
 	ctx context.Context
 	ApiService *ConnectivityMonitoringDestinationsApiService
 	networkId string
-	updateNetworkApplianceConnectivityMonitoringDestinations *InlineObject29
+	updateNetworkApplianceConnectivityMonitoringDestinationsRequest *UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest
 }
 
-func (r ConnectivityMonitoringDestinationsApiUpdateNetworkApplianceConnectivityMonitoringDestinationsRequest) UpdateNetworkApplianceConnectivityMonitoringDestinations(updateNetworkApplianceConnectivityMonitoringDestinations InlineObject29) ConnectivityMonitoringDestinationsApiUpdateNetworkApplianceConnectivityMonitoringDestinationsRequest {
-	r.updateNetworkApplianceConnectivityMonitoringDestinations = &updateNetworkApplianceConnectivityMonitoringDestinations
+func (r ConnectivityMonitoringDestinationsApiUpdateNetworkApplianceConnectivityMonitoringDestinationsRequest) UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest(updateNetworkApplianceConnectivityMonitoringDestinationsRequest UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest) ConnectivityMonitoringDestinationsApiUpdateNetworkApplianceConnectivityMonitoringDestinationsRequest {
+	r.updateNetworkApplianceConnectivityMonitoringDestinationsRequest = &updateNetworkApplianceConnectivityMonitoringDestinationsRequest
 	return r
 }
 
@@ -330,7 +330,7 @@ func (a *ConnectivityMonitoringDestinationsApiService) UpdateNetworkApplianceCon
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceConnectivityMonitoringDestinations
+	localVarPostBody = r.updateNetworkApplianceConnectivityMonitoringDestinationsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -386,11 +386,11 @@ type ConnectivityMonitoringDestinationsApiUpdateNetworkCellularGatewayConnectivi
 	ctx context.Context
 	ApiService *ConnectivityMonitoringDestinationsApiService
 	networkId string
-	updateNetworkCellularGatewayConnectivityMonitoringDestinations *InlineObject70
+	updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest *UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest
 }
 
-func (r ConnectivityMonitoringDestinationsApiUpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest) UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(updateNetworkCellularGatewayConnectivityMonitoringDestinations InlineObject70) ConnectivityMonitoringDestinationsApiUpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest {
-	r.updateNetworkCellularGatewayConnectivityMonitoringDestinations = &updateNetworkCellularGatewayConnectivityMonitoringDestinations
+func (r ConnectivityMonitoringDestinationsApiUpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest) UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest(updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest) ConnectivityMonitoringDestinationsApiUpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest {
+	r.updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest = &updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest
 	return r
 }
 
@@ -455,7 +455,7 @@ func (a *ConnectivityMonitoringDestinationsApiService) UpdateNetworkCellularGate
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkCellularGatewayConnectivityMonitoringDestinations
+	localVarPostBody = r.updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

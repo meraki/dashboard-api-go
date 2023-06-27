@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -29,7 +29,7 @@ type SettingsApiGetDeviceApplianceRadioSettingsRequest struct {
 	serial string
 }
 
-func (r SettingsApiGetDeviceApplianceRadioSettingsRequest) Execute() (*InlineResponse2001, *http.Response, error) {
+func (r SettingsApiGetDeviceApplianceRadioSettingsRequest) Execute() (*GetDeviceApplianceRadioSettings200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceApplianceRadioSettingsExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *SettingsApiService) GetDeviceApplianceRadioSettings(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse2001
-func (a *SettingsApiService) GetDeviceApplianceRadioSettingsExecute(r SettingsApiGetDeviceApplianceRadioSettingsRequest) (*InlineResponse2001, *http.Response, error) {
+//  @return GetDeviceApplianceRadioSettings200Response
+func (a *SettingsApiService) GetDeviceApplianceRadioSettingsExecute(r SettingsApiGetDeviceApplianceRadioSettingsRequest) (*GetDeviceApplianceRadioSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2001
+		localVarReturnValue  *GetDeviceApplianceRadioSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.GetDeviceApplianceRadioSettings")
@@ -146,7 +146,7 @@ type SettingsApiGetDeviceApplianceUplinksSettingsRequest struct {
 	serial string
 }
 
-func (r SettingsApiGetDeviceApplianceUplinksSettingsRequest) Execute() (*InlineResponse2002, *http.Response, error) {
+func (r SettingsApiGetDeviceApplianceUplinksSettingsRequest) Execute() (*GetDeviceApplianceUplinksSettings200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceApplianceUplinksSettingsExecute(r)
 }
 
@@ -168,13 +168,13 @@ func (a *SettingsApiService) GetDeviceApplianceUplinksSettings(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse2002
-func (a *SettingsApiService) GetDeviceApplianceUplinksSettingsExecute(r SettingsApiGetDeviceApplianceUplinksSettingsRequest) (*InlineResponse2002, *http.Response, error) {
+//  @return GetDeviceApplianceUplinksSettings200Response
+func (a *SettingsApiService) GetDeviceApplianceUplinksSettingsExecute(r SettingsApiGetDeviceApplianceUplinksSettingsRequest) (*GetDeviceApplianceUplinksSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2002
+		localVarReturnValue  *GetDeviceApplianceUplinksSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.GetDeviceApplianceUplinksSettings")
@@ -380,7 +380,7 @@ type SettingsApiGetDeviceWirelessBluetoothSettingsRequest struct {
 	serial string
 }
 
-func (r SettingsApiGetDeviceWirelessBluetoothSettingsRequest) Execute() (*InlineResponse20010, *http.Response, error) {
+func (r SettingsApiGetDeviceWirelessBluetoothSettingsRequest) Execute() (*GetDeviceWirelessBluetoothSettings200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceWirelessBluetoothSettingsExecute(r)
 }
 
@@ -402,13 +402,13 @@ func (a *SettingsApiService) GetDeviceWirelessBluetoothSettings(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse20010
-func (a *SettingsApiService) GetDeviceWirelessBluetoothSettingsExecute(r SettingsApiGetDeviceWirelessBluetoothSettingsRequest) (*InlineResponse20010, *http.Response, error) {
+//  @return GetDeviceWirelessBluetoothSettings200Response
+func (a *SettingsApiService) GetDeviceWirelessBluetoothSettingsExecute(r SettingsApiGetDeviceWirelessBluetoothSettingsRequest) (*GetDeviceWirelessBluetoothSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20010
+		localVarReturnValue  *GetDeviceWirelessBluetoothSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.GetDeviceWirelessBluetoothSettings")
@@ -848,7 +848,7 @@ type SettingsApiGetNetworkApplianceSettingsRequest struct {
 	networkId string
 }
 
-func (r SettingsApiGetNetworkApplianceSettingsRequest) Execute() (*InlineResponse20018, *http.Response, error) {
+func (r SettingsApiGetNetworkApplianceSettingsRequest) Execute() (*GetNetworkApplianceSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceSettingsExecute(r)
 }
 
@@ -870,13 +870,13 @@ func (a *SettingsApiService) GetNetworkApplianceSettings(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return InlineResponse20018
-func (a *SettingsApiService) GetNetworkApplianceSettingsExecute(r SettingsApiGetNetworkApplianceSettingsRequest) (*InlineResponse20018, *http.Response, error) {
+//  @return GetNetworkApplianceSettings200Response
+func (a *SettingsApiService) GetNetworkApplianceSettingsExecute(r SettingsApiGetNetworkApplianceSettingsRequest) (*GetNetworkApplianceSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20018
+		localVarReturnValue  *GetNetworkApplianceSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.GetNetworkApplianceSettings")
@@ -1082,7 +1082,7 @@ type SettingsApiGetNetworkSettingsRequest struct {
 	networkId string
 }
 
-func (r SettingsApiGetNetworkSettingsRequest) Execute() (*InlineResponse20044, *http.Response, error) {
+func (r SettingsApiGetNetworkSettingsRequest) Execute() (*GetNetworkSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSettingsExecute(r)
 }
 
@@ -1104,13 +1104,13 @@ func (a *SettingsApiService) GetNetworkSettings(ctx context.Context, networkId s
 }
 
 // Execute executes the request
-//  @return InlineResponse20044
-func (a *SettingsApiService) GetNetworkSettingsExecute(r SettingsApiGetNetworkSettingsRequest) (*InlineResponse20044, *http.Response, error) {
+//  @return GetNetworkSettings200Response
+func (a *SettingsApiService) GetNetworkSettingsExecute(r SettingsApiGetNetworkSettingsRequest) (*GetNetworkSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20044
+		localVarReturnValue  *GetNetworkSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.GetNetworkSettings")
@@ -1199,7 +1199,7 @@ type SettingsApiGetNetworkSwitchSettingsRequest struct {
 	networkId string
 }
 
-func (r SettingsApiGetNetworkSwitchSettingsRequest) Execute() (*InlineResponse20078, *http.Response, error) {
+func (r SettingsApiGetNetworkSwitchSettingsRequest) Execute() (*GetNetworkSwitchSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchSettingsExecute(r)
 }
 
@@ -1221,13 +1221,13 @@ func (a *SettingsApiService) GetNetworkSwitchSettings(ctx context.Context, netwo
 }
 
 // Execute executes the request
-//  @return InlineResponse20078
-func (a *SettingsApiService) GetNetworkSwitchSettingsExecute(r SettingsApiGetNetworkSwitchSettingsRequest) (*InlineResponse20078, *http.Response, error) {
+//  @return GetNetworkSwitchSettings200Response
+func (a *SettingsApiService) GetNetworkSwitchSettingsExecute(r SettingsApiGetNetworkSwitchSettingsRequest) (*GetNetworkSwitchSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20078
+		localVarReturnValue  *GetNetworkSwitchSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.GetNetworkSwitchSettings")
@@ -1316,7 +1316,7 @@ type SettingsApiGetNetworkWirelessBluetoothSettingsRequest struct {
 	networkId string
 }
 
-func (r SettingsApiGetNetworkWirelessBluetoothSettingsRequest) Execute() (*InlineResponse20085, *http.Response, error) {
+func (r SettingsApiGetNetworkWirelessBluetoothSettingsRequest) Execute() (*GetNetworkWirelessBluetoothSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessBluetoothSettingsExecute(r)
 }
 
@@ -1338,13 +1338,13 @@ func (a *SettingsApiService) GetNetworkWirelessBluetoothSettings(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InlineResponse20085
-func (a *SettingsApiService) GetNetworkWirelessBluetoothSettingsExecute(r SettingsApiGetNetworkWirelessBluetoothSettingsRequest) (*InlineResponse20085, *http.Response, error) {
+//  @return GetNetworkWirelessBluetoothSettings200Response
+func (a *SettingsApiService) GetNetworkWirelessBluetoothSettingsExecute(r SettingsApiGetNetworkWirelessBluetoothSettingsRequest) (*GetNetworkWirelessBluetoothSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20085
+		localVarReturnValue  *GetNetworkWirelessBluetoothSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.GetNetworkWirelessBluetoothSettings")
@@ -1433,7 +1433,7 @@ type SettingsApiGetNetworkWirelessSettingsRequest struct {
 	networkId string
 }
 
-func (r SettingsApiGetNetworkWirelessSettingsRequest) Execute() (*InlineResponse20093, *http.Response, error) {
+func (r SettingsApiGetNetworkWirelessSettingsRequest) Execute() (*GetNetworkWirelessSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSettingsExecute(r)
 }
 
@@ -1455,13 +1455,13 @@ func (a *SettingsApiService) GetNetworkWirelessSettings(ctx context.Context, net
 }
 
 // Execute executes the request
-//  @return InlineResponse20093
-func (a *SettingsApiService) GetNetworkWirelessSettingsExecute(r SettingsApiGetNetworkWirelessSettingsRequest) (*InlineResponse20093, *http.Response, error) {
+//  @return GetNetworkWirelessSettings200Response
+func (a *SettingsApiService) GetNetworkWirelessSettingsExecute(r SettingsApiGetNetworkWirelessSettingsRequest) (*GetNetworkWirelessSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20093
+		localVarReturnValue  *GetNetworkWirelessSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.GetNetworkWirelessSettings")
@@ -1551,7 +1551,7 @@ type SettingsApiGetNetworkWirelessSsidSplashSettingsRequest struct {
 	number string
 }
 
-func (r SettingsApiGetNetworkWirelessSsidSplashSettingsRequest) Execute() (*InlineResponse20097, *http.Response, error) {
+func (r SettingsApiGetNetworkWirelessSsidSplashSettingsRequest) Execute() (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessSsidSplashSettingsExecute(r)
 }
 
@@ -1575,13 +1575,13 @@ func (a *SettingsApiService) GetNetworkWirelessSsidSplashSettings(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse20097
-func (a *SettingsApiService) GetNetworkWirelessSsidSplashSettingsExecute(r SettingsApiGetNetworkWirelessSsidSplashSettingsRequest) (*InlineResponse20097, *http.Response, error) {
+//  @return GetNetworkWirelessSsidSplashSettings200Response
+func (a *SettingsApiService) GetNetworkWirelessSsidSplashSettingsExecute(r SettingsApiGetNetworkWirelessSsidSplashSettingsRequest) (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20097
+		localVarReturnValue  *GetNetworkWirelessSsidSplashSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.GetNetworkWirelessSsidSplashSettings")
@@ -1786,15 +1786,15 @@ type SettingsApiUpdateDeviceApplianceRadioSettingsRequest struct {
 	ctx context.Context
 	ApiService *SettingsApiService
 	serial string
-	updateDeviceApplianceRadioSettings *InlineObject1
+	updateDeviceApplianceRadioSettingsRequest *UpdateDeviceApplianceRadioSettingsRequest
 }
 
-func (r SettingsApiUpdateDeviceApplianceRadioSettingsRequest) UpdateDeviceApplianceRadioSettings(updateDeviceApplianceRadioSettings InlineObject1) SettingsApiUpdateDeviceApplianceRadioSettingsRequest {
-	r.updateDeviceApplianceRadioSettings = &updateDeviceApplianceRadioSettings
+func (r SettingsApiUpdateDeviceApplianceRadioSettingsRequest) UpdateDeviceApplianceRadioSettingsRequest(updateDeviceApplianceRadioSettingsRequest UpdateDeviceApplianceRadioSettingsRequest) SettingsApiUpdateDeviceApplianceRadioSettingsRequest {
+	r.updateDeviceApplianceRadioSettingsRequest = &updateDeviceApplianceRadioSettingsRequest
 	return r
 }
 
-func (r SettingsApiUpdateDeviceApplianceRadioSettingsRequest) Execute() (*InlineResponse2001, *http.Response, error) {
+func (r SettingsApiUpdateDeviceApplianceRadioSettingsRequest) Execute() (*GetDeviceApplianceRadioSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateDeviceApplianceRadioSettingsExecute(r)
 }
 
@@ -1816,13 +1816,13 @@ func (a *SettingsApiService) UpdateDeviceApplianceRadioSettings(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return InlineResponse2001
-func (a *SettingsApiService) UpdateDeviceApplianceRadioSettingsExecute(r SettingsApiUpdateDeviceApplianceRadioSettingsRequest) (*InlineResponse2001, *http.Response, error) {
+//  @return GetDeviceApplianceRadioSettings200Response
+func (a *SettingsApiService) UpdateDeviceApplianceRadioSettingsExecute(r SettingsApiUpdateDeviceApplianceRadioSettingsRequest) (*GetDeviceApplianceRadioSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2001
+		localVarReturnValue  *GetDeviceApplianceRadioSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.UpdateDeviceApplianceRadioSettings")
@@ -1855,7 +1855,7 @@ func (a *SettingsApiService) UpdateDeviceApplianceRadioSettingsExecute(r Setting
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceApplianceRadioSettings
+	localVarPostBody = r.updateDeviceApplianceRadioSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1911,15 +1911,15 @@ type SettingsApiUpdateDeviceApplianceUplinksSettingsRequest struct {
 	ctx context.Context
 	ApiService *SettingsApiService
 	serial string
-	updateDeviceApplianceUplinksSettings *InlineObject2
+	updateDeviceApplianceUplinksSettingsRequest *UpdateDeviceApplianceUplinksSettingsRequest
 }
 
-func (r SettingsApiUpdateDeviceApplianceUplinksSettingsRequest) UpdateDeviceApplianceUplinksSettings(updateDeviceApplianceUplinksSettings InlineObject2) SettingsApiUpdateDeviceApplianceUplinksSettingsRequest {
-	r.updateDeviceApplianceUplinksSettings = &updateDeviceApplianceUplinksSettings
+func (r SettingsApiUpdateDeviceApplianceUplinksSettingsRequest) UpdateDeviceApplianceUplinksSettingsRequest(updateDeviceApplianceUplinksSettingsRequest UpdateDeviceApplianceUplinksSettingsRequest) SettingsApiUpdateDeviceApplianceUplinksSettingsRequest {
+	r.updateDeviceApplianceUplinksSettingsRequest = &updateDeviceApplianceUplinksSettingsRequest
 	return r
 }
 
-func (r SettingsApiUpdateDeviceApplianceUplinksSettingsRequest) Execute() (*InlineResponse2002, *http.Response, error) {
+func (r SettingsApiUpdateDeviceApplianceUplinksSettingsRequest) Execute() (*GetDeviceApplianceUplinksSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateDeviceApplianceUplinksSettingsExecute(r)
 }
 
@@ -1941,13 +1941,13 @@ func (a *SettingsApiService) UpdateDeviceApplianceUplinksSettings(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse2002
-func (a *SettingsApiService) UpdateDeviceApplianceUplinksSettingsExecute(r SettingsApiUpdateDeviceApplianceUplinksSettingsRequest) (*InlineResponse2002, *http.Response, error) {
+//  @return GetDeviceApplianceUplinksSettings200Response
+func (a *SettingsApiService) UpdateDeviceApplianceUplinksSettingsExecute(r SettingsApiUpdateDeviceApplianceUplinksSettingsRequest) (*GetDeviceApplianceUplinksSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2002
+		localVarReturnValue  *GetDeviceApplianceUplinksSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.UpdateDeviceApplianceUplinksSettings")
@@ -1961,8 +1961,8 @@ func (a *SettingsApiService) UpdateDeviceApplianceUplinksSettingsExecute(r Setti
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateDeviceApplianceUplinksSettings == nil {
-		return localVarReturnValue, nil, reportError("updateDeviceApplianceUplinksSettings is required and must be specified")
+	if r.updateDeviceApplianceUplinksSettingsRequest == nil {
+		return localVarReturnValue, nil, reportError("updateDeviceApplianceUplinksSettingsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1983,7 +1983,7 @@ func (a *SettingsApiService) UpdateDeviceApplianceUplinksSettingsExecute(r Setti
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceApplianceUplinksSettings
+	localVarPostBody = r.updateDeviceApplianceUplinksSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2039,11 +2039,11 @@ type SettingsApiUpdateDeviceCameraVideoSettingsRequest struct {
 	ctx context.Context
 	ApiService *SettingsApiService
 	serial string
-	updateDeviceCameraVideoSettings *InlineObject8
+	updateDeviceCameraVideoSettingsRequest *UpdateDeviceCameraVideoSettingsRequest
 }
 
-func (r SettingsApiUpdateDeviceCameraVideoSettingsRequest) UpdateDeviceCameraVideoSettings(updateDeviceCameraVideoSettings InlineObject8) SettingsApiUpdateDeviceCameraVideoSettingsRequest {
-	r.updateDeviceCameraVideoSettings = &updateDeviceCameraVideoSettings
+func (r SettingsApiUpdateDeviceCameraVideoSettingsRequest) UpdateDeviceCameraVideoSettingsRequest(updateDeviceCameraVideoSettingsRequest UpdateDeviceCameraVideoSettingsRequest) SettingsApiUpdateDeviceCameraVideoSettingsRequest {
+	r.updateDeviceCameraVideoSettingsRequest = &updateDeviceCameraVideoSettingsRequest
 	return r
 }
 
@@ -2108,7 +2108,7 @@ func (a *SettingsApiService) UpdateDeviceCameraVideoSettingsExecute(r SettingsAp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCameraVideoSettings
+	localVarPostBody = r.updateDeviceCameraVideoSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2164,15 +2164,15 @@ type SettingsApiUpdateDeviceWirelessBluetoothSettingsRequest struct {
 	ctx context.Context
 	ApiService *SettingsApiService
 	serial string
-	updateDeviceWirelessBluetoothSettings *InlineObject25
+	updateDeviceWirelessBluetoothSettingsRequest *UpdateDeviceWirelessBluetoothSettingsRequest
 }
 
-func (r SettingsApiUpdateDeviceWirelessBluetoothSettingsRequest) UpdateDeviceWirelessBluetoothSettings(updateDeviceWirelessBluetoothSettings InlineObject25) SettingsApiUpdateDeviceWirelessBluetoothSettingsRequest {
-	r.updateDeviceWirelessBluetoothSettings = &updateDeviceWirelessBluetoothSettings
+func (r SettingsApiUpdateDeviceWirelessBluetoothSettingsRequest) UpdateDeviceWirelessBluetoothSettingsRequest(updateDeviceWirelessBluetoothSettingsRequest UpdateDeviceWirelessBluetoothSettingsRequest) SettingsApiUpdateDeviceWirelessBluetoothSettingsRequest {
+	r.updateDeviceWirelessBluetoothSettingsRequest = &updateDeviceWirelessBluetoothSettingsRequest
 	return r
 }
 
-func (r SettingsApiUpdateDeviceWirelessBluetoothSettingsRequest) Execute() (*InlineResponse20010, *http.Response, error) {
+func (r SettingsApiUpdateDeviceWirelessBluetoothSettingsRequest) Execute() (*GetDeviceWirelessBluetoothSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateDeviceWirelessBluetoothSettingsExecute(r)
 }
 
@@ -2194,13 +2194,13 @@ func (a *SettingsApiService) UpdateDeviceWirelessBluetoothSettings(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse20010
-func (a *SettingsApiService) UpdateDeviceWirelessBluetoothSettingsExecute(r SettingsApiUpdateDeviceWirelessBluetoothSettingsRequest) (*InlineResponse20010, *http.Response, error) {
+//  @return GetDeviceWirelessBluetoothSettings200Response
+func (a *SettingsApiService) UpdateDeviceWirelessBluetoothSettingsExecute(r SettingsApiUpdateDeviceWirelessBluetoothSettingsRequest) (*GetDeviceWirelessBluetoothSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20010
+		localVarReturnValue  *GetDeviceWirelessBluetoothSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.UpdateDeviceWirelessBluetoothSettings")
@@ -2233,7 +2233,7 @@ func (a *SettingsApiService) UpdateDeviceWirelessBluetoothSettingsExecute(r Sett
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceWirelessBluetoothSettings
+	localVarPostBody = r.updateDeviceWirelessBluetoothSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2289,11 +2289,11 @@ type SettingsApiUpdateDeviceWirelessRadioSettingsRequest struct {
 	ctx context.Context
 	ApiService *SettingsApiService
 	serial string
-	updateDeviceWirelessRadioSettings *InlineObject26
+	updateDeviceWirelessRadioSettingsRequest *UpdateDeviceWirelessRadioSettingsRequest
 }
 
-func (r SettingsApiUpdateDeviceWirelessRadioSettingsRequest) UpdateDeviceWirelessRadioSettings(updateDeviceWirelessRadioSettings InlineObject26) SettingsApiUpdateDeviceWirelessRadioSettingsRequest {
-	r.updateDeviceWirelessRadioSettings = &updateDeviceWirelessRadioSettings
+func (r SettingsApiUpdateDeviceWirelessRadioSettingsRequest) UpdateDeviceWirelessRadioSettingsRequest(updateDeviceWirelessRadioSettingsRequest UpdateDeviceWirelessRadioSettingsRequest) SettingsApiUpdateDeviceWirelessRadioSettingsRequest {
+	r.updateDeviceWirelessRadioSettingsRequest = &updateDeviceWirelessRadioSettingsRequest
 	return r
 }
 
@@ -2358,7 +2358,7 @@ func (a *SettingsApiService) UpdateDeviceWirelessRadioSettingsExecute(r Settings
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceWirelessRadioSettings
+	localVarPostBody = r.updateDeviceWirelessRadioSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2414,11 +2414,11 @@ type SettingsApiUpdateNetworkAlertsSettingsRequest struct {
 	ctx context.Context
 	ApiService *SettingsApiService
 	networkId string
-	updateNetworkAlertsSettings *InlineObject28
+	updateNetworkAlertsSettingsRequest *UpdateNetworkAlertsSettingsRequest
 }
 
-func (r SettingsApiUpdateNetworkAlertsSettingsRequest) UpdateNetworkAlertsSettings(updateNetworkAlertsSettings InlineObject28) SettingsApiUpdateNetworkAlertsSettingsRequest {
-	r.updateNetworkAlertsSettings = &updateNetworkAlertsSettings
+func (r SettingsApiUpdateNetworkAlertsSettingsRequest) UpdateNetworkAlertsSettingsRequest(updateNetworkAlertsSettingsRequest UpdateNetworkAlertsSettingsRequest) SettingsApiUpdateNetworkAlertsSettingsRequest {
+	r.updateNetworkAlertsSettingsRequest = &updateNetworkAlertsSettingsRequest
 	return r
 }
 
@@ -2483,7 +2483,7 @@ func (a *SettingsApiService) UpdateNetworkAlertsSettingsExecute(r SettingsApiUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkAlertsSettings
+	localVarPostBody = r.updateNetworkAlertsSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2539,11 +2539,11 @@ type SettingsApiUpdateNetworkApplianceFirewallSettingsRequest struct {
 	ctx context.Context
 	ApiService *SettingsApiService
 	networkId string
-	updateNetworkApplianceFirewallSettings *InlineObject40
+	updateNetworkApplianceFirewallSettingsRequest *UpdateNetworkApplianceFirewallSettingsRequest
 }
 
-func (r SettingsApiUpdateNetworkApplianceFirewallSettingsRequest) UpdateNetworkApplianceFirewallSettings(updateNetworkApplianceFirewallSettings InlineObject40) SettingsApiUpdateNetworkApplianceFirewallSettingsRequest {
-	r.updateNetworkApplianceFirewallSettings = &updateNetworkApplianceFirewallSettings
+func (r SettingsApiUpdateNetworkApplianceFirewallSettingsRequest) UpdateNetworkApplianceFirewallSettingsRequest(updateNetworkApplianceFirewallSettingsRequest UpdateNetworkApplianceFirewallSettingsRequest) SettingsApiUpdateNetworkApplianceFirewallSettingsRequest {
+	r.updateNetworkApplianceFirewallSettingsRequest = &updateNetworkApplianceFirewallSettingsRequest
 	return r
 }
 
@@ -2608,7 +2608,7 @@ func (a *SettingsApiService) UpdateNetworkApplianceFirewallSettingsExecute(r Set
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceFirewallSettings
+	localVarPostBody = r.updateNetworkApplianceFirewallSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2664,15 +2664,15 @@ type SettingsApiUpdateNetworkApplianceSettingsRequest struct {
 	ctx context.Context
 	ApiService *SettingsApiService
 	networkId string
-	updateNetworkApplianceSettings *InlineObject48
+	updateNetworkApplianceSettingsRequest *UpdateNetworkApplianceSettingsRequest
 }
 
-func (r SettingsApiUpdateNetworkApplianceSettingsRequest) UpdateNetworkApplianceSettings(updateNetworkApplianceSettings InlineObject48) SettingsApiUpdateNetworkApplianceSettingsRequest {
-	r.updateNetworkApplianceSettings = &updateNetworkApplianceSettings
+func (r SettingsApiUpdateNetworkApplianceSettingsRequest) UpdateNetworkApplianceSettingsRequest(updateNetworkApplianceSettingsRequest UpdateNetworkApplianceSettingsRequest) SettingsApiUpdateNetworkApplianceSettingsRequest {
+	r.updateNetworkApplianceSettingsRequest = &updateNetworkApplianceSettingsRequest
 	return r
 }
 
-func (r SettingsApiUpdateNetworkApplianceSettingsRequest) Execute() (*InlineResponse20018, *http.Response, error) {
+func (r SettingsApiUpdateNetworkApplianceSettingsRequest) Execute() (*GetNetworkApplianceSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceSettingsExecute(r)
 }
 
@@ -2694,13 +2694,13 @@ func (a *SettingsApiService) UpdateNetworkApplianceSettings(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20018
-func (a *SettingsApiService) UpdateNetworkApplianceSettingsExecute(r SettingsApiUpdateNetworkApplianceSettingsRequest) (*InlineResponse20018, *http.Response, error) {
+//  @return GetNetworkApplianceSettings200Response
+func (a *SettingsApiService) UpdateNetworkApplianceSettingsExecute(r SettingsApiUpdateNetworkApplianceSettingsRequest) (*GetNetworkApplianceSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20018
+		localVarReturnValue  *GetNetworkApplianceSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.UpdateNetworkApplianceSettings")
@@ -2733,7 +2733,7 @@ func (a *SettingsApiService) UpdateNetworkApplianceSettingsExecute(r SettingsApi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceSettings
+	localVarPostBody = r.updateNetworkApplianceSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2789,11 +2789,11 @@ type SettingsApiUpdateNetworkApplianceVlansSettingsRequest struct {
 	ctx context.Context
 	ApiService *SettingsApiService
 	networkId string
-	updateNetworkApplianceVlansSettings *InlineObject60
+	updateNetworkApplianceVlansSettingsRequest *UpdateNetworkApplianceVlansSettingsRequest
 }
 
-func (r SettingsApiUpdateNetworkApplianceVlansSettingsRequest) UpdateNetworkApplianceVlansSettings(updateNetworkApplianceVlansSettings InlineObject60) SettingsApiUpdateNetworkApplianceVlansSettingsRequest {
-	r.updateNetworkApplianceVlansSettings = &updateNetworkApplianceVlansSettings
+func (r SettingsApiUpdateNetworkApplianceVlansSettingsRequest) UpdateNetworkApplianceVlansSettingsRequest(updateNetworkApplianceVlansSettingsRequest UpdateNetworkApplianceVlansSettingsRequest) SettingsApiUpdateNetworkApplianceVlansSettingsRequest {
+	r.updateNetworkApplianceVlansSettingsRequest = &updateNetworkApplianceVlansSettingsRequest
 	return r
 }
 
@@ -2858,7 +2858,7 @@ func (a *SettingsApiService) UpdateNetworkApplianceVlansSettingsExecute(r Settin
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceVlansSettings
+	localVarPostBody = r.updateNetworkApplianceVlansSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2914,15 +2914,15 @@ type SettingsApiUpdateNetworkSettingsRequest struct {
 	ctx context.Context
 	ApiService *SettingsApiService
 	networkId string
-	updateNetworkSettings *InlineObject101
+	updateNetworkSettingsRequest *UpdateNetworkSettingsRequest
 }
 
-func (r SettingsApiUpdateNetworkSettingsRequest) UpdateNetworkSettings(updateNetworkSettings InlineObject101) SettingsApiUpdateNetworkSettingsRequest {
-	r.updateNetworkSettings = &updateNetworkSettings
+func (r SettingsApiUpdateNetworkSettingsRequest) UpdateNetworkSettingsRequest(updateNetworkSettingsRequest UpdateNetworkSettingsRequest) SettingsApiUpdateNetworkSettingsRequest {
+	r.updateNetworkSettingsRequest = &updateNetworkSettingsRequest
 	return r
 }
 
-func (r SettingsApiUpdateNetworkSettingsRequest) Execute() (*InlineResponse20044, *http.Response, error) {
+func (r SettingsApiUpdateNetworkSettingsRequest) Execute() (*GetNetworkSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSettingsExecute(r)
 }
 
@@ -2944,13 +2944,13 @@ func (a *SettingsApiService) UpdateNetworkSettings(ctx context.Context, networkI
 }
 
 // Execute executes the request
-//  @return InlineResponse20044
-func (a *SettingsApiService) UpdateNetworkSettingsExecute(r SettingsApiUpdateNetworkSettingsRequest) (*InlineResponse20044, *http.Response, error) {
+//  @return GetNetworkSettings200Response
+func (a *SettingsApiService) UpdateNetworkSettingsExecute(r SettingsApiUpdateNetworkSettingsRequest) (*GetNetworkSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20044
+		localVarReturnValue  *GetNetworkSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.UpdateNetworkSettings")
@@ -2983,7 +2983,7 @@ func (a *SettingsApiService) UpdateNetworkSettingsExecute(r SettingsApiUpdateNet
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSettings
+	localVarPostBody = r.updateNetworkSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3039,15 +3039,15 @@ type SettingsApiUpdateNetworkSwitchSettingsRequest struct {
 	ctx context.Context
 	ApiService *SettingsApiService
 	networkId string
-	updateNetworkSwitchSettings *InlineObject132
+	updateNetworkSwitchSettingsRequest *UpdateNetworkSwitchSettingsRequest
 }
 
-func (r SettingsApiUpdateNetworkSwitchSettingsRequest) UpdateNetworkSwitchSettings(updateNetworkSwitchSettings InlineObject132) SettingsApiUpdateNetworkSwitchSettingsRequest {
-	r.updateNetworkSwitchSettings = &updateNetworkSwitchSettings
+func (r SettingsApiUpdateNetworkSwitchSettingsRequest) UpdateNetworkSwitchSettingsRequest(updateNetworkSwitchSettingsRequest UpdateNetworkSwitchSettingsRequest) SettingsApiUpdateNetworkSwitchSettingsRequest {
+	r.updateNetworkSwitchSettingsRequest = &updateNetworkSwitchSettingsRequest
 	return r
 }
 
-func (r SettingsApiUpdateNetworkSwitchSettingsRequest) Execute() (*InlineResponse20078, *http.Response, error) {
+func (r SettingsApiUpdateNetworkSwitchSettingsRequest) Execute() (*GetNetworkSwitchSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSwitchSettingsExecute(r)
 }
 
@@ -3069,13 +3069,13 @@ func (a *SettingsApiService) UpdateNetworkSwitchSettings(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return InlineResponse20078
-func (a *SettingsApiService) UpdateNetworkSwitchSettingsExecute(r SettingsApiUpdateNetworkSwitchSettingsRequest) (*InlineResponse20078, *http.Response, error) {
+//  @return GetNetworkSwitchSettings200Response
+func (a *SettingsApiService) UpdateNetworkSwitchSettingsExecute(r SettingsApiUpdateNetworkSwitchSettingsRequest) (*GetNetworkSwitchSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20078
+		localVarReturnValue  *GetNetworkSwitchSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.UpdateNetworkSwitchSettings")
@@ -3108,7 +3108,7 @@ func (a *SettingsApiService) UpdateNetworkSwitchSettingsExecute(r SettingsApiUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchSettings
+	localVarPostBody = r.updateNetworkSwitchSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3164,15 +3164,15 @@ type SettingsApiUpdateNetworkWirelessBluetoothSettingsRequest struct {
 	ctx context.Context
 	ApiService *SettingsApiService
 	networkId string
-	updateNetworkWirelessBluetoothSettings *InlineObject153
+	updateNetworkWirelessBluetoothSettingsRequest *UpdateNetworkWirelessBluetoothSettingsRequest
 }
 
-func (r SettingsApiUpdateNetworkWirelessBluetoothSettingsRequest) UpdateNetworkWirelessBluetoothSettings(updateNetworkWirelessBluetoothSettings InlineObject153) SettingsApiUpdateNetworkWirelessBluetoothSettingsRequest {
-	r.updateNetworkWirelessBluetoothSettings = &updateNetworkWirelessBluetoothSettings
+func (r SettingsApiUpdateNetworkWirelessBluetoothSettingsRequest) UpdateNetworkWirelessBluetoothSettingsRequest(updateNetworkWirelessBluetoothSettingsRequest UpdateNetworkWirelessBluetoothSettingsRequest) SettingsApiUpdateNetworkWirelessBluetoothSettingsRequest {
+	r.updateNetworkWirelessBluetoothSettingsRequest = &updateNetworkWirelessBluetoothSettingsRequest
 	return r
 }
 
-func (r SettingsApiUpdateNetworkWirelessBluetoothSettingsRequest) Execute() (*InlineResponse20085, *http.Response, error) {
+func (r SettingsApiUpdateNetworkWirelessBluetoothSettingsRequest) Execute() (*GetNetworkWirelessBluetoothSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessBluetoothSettingsExecute(r)
 }
 
@@ -3194,13 +3194,13 @@ func (a *SettingsApiService) UpdateNetworkWirelessBluetoothSettings(ctx context.
 }
 
 // Execute executes the request
-//  @return InlineResponse20085
-func (a *SettingsApiService) UpdateNetworkWirelessBluetoothSettingsExecute(r SettingsApiUpdateNetworkWirelessBluetoothSettingsRequest) (*InlineResponse20085, *http.Response, error) {
+//  @return GetNetworkWirelessBluetoothSettings200Response
+func (a *SettingsApiService) UpdateNetworkWirelessBluetoothSettingsExecute(r SettingsApiUpdateNetworkWirelessBluetoothSettingsRequest) (*GetNetworkWirelessBluetoothSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20085
+		localVarReturnValue  *GetNetworkWirelessBluetoothSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.UpdateNetworkWirelessBluetoothSettings")
@@ -3233,7 +3233,7 @@ func (a *SettingsApiService) UpdateNetworkWirelessBluetoothSettingsExecute(r Set
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessBluetoothSettings
+	localVarPostBody = r.updateNetworkWirelessBluetoothSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3289,15 +3289,15 @@ type SettingsApiUpdateNetworkWirelessSettingsRequest struct {
 	ctx context.Context
 	ApiService *SettingsApiService
 	networkId string
-	updateNetworkWirelessSettings *InlineObject156
+	updateNetworkWirelessSettingsRequest *UpdateNetworkWirelessSettingsRequest
 }
 
-func (r SettingsApiUpdateNetworkWirelessSettingsRequest) UpdateNetworkWirelessSettings(updateNetworkWirelessSettings InlineObject156) SettingsApiUpdateNetworkWirelessSettingsRequest {
-	r.updateNetworkWirelessSettings = &updateNetworkWirelessSettings
+func (r SettingsApiUpdateNetworkWirelessSettingsRequest) UpdateNetworkWirelessSettingsRequest(updateNetworkWirelessSettingsRequest UpdateNetworkWirelessSettingsRequest) SettingsApiUpdateNetworkWirelessSettingsRequest {
+	r.updateNetworkWirelessSettingsRequest = &updateNetworkWirelessSettingsRequest
 	return r
 }
 
-func (r SettingsApiUpdateNetworkWirelessSettingsRequest) Execute() (*InlineResponse20093, *http.Response, error) {
+func (r SettingsApiUpdateNetworkWirelessSettingsRequest) Execute() (*GetNetworkWirelessSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessSettingsExecute(r)
 }
 
@@ -3319,13 +3319,13 @@ func (a *SettingsApiService) UpdateNetworkWirelessSettings(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse20093
-func (a *SettingsApiService) UpdateNetworkWirelessSettingsExecute(r SettingsApiUpdateNetworkWirelessSettingsRequest) (*InlineResponse20093, *http.Response, error) {
+//  @return GetNetworkWirelessSettings200Response
+func (a *SettingsApiService) UpdateNetworkWirelessSettingsExecute(r SettingsApiUpdateNetworkWirelessSettingsRequest) (*GetNetworkWirelessSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20093
+		localVarReturnValue  *GetNetworkWirelessSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.UpdateNetworkWirelessSettings")
@@ -3358,7 +3358,7 @@ func (a *SettingsApiService) UpdateNetworkWirelessSettingsExecute(r SettingsApiU
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSettings
+	localVarPostBody = r.updateNetworkWirelessSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3415,15 +3415,15 @@ type SettingsApiUpdateNetworkWirelessSsidSplashSettingsRequest struct {
 	ApiService *SettingsApiService
 	networkId string
 	number string
-	updateNetworkWirelessSsidSplashSettings *InlineObject167
+	updateNetworkWirelessSsidSplashSettingsRequest *UpdateNetworkWirelessSsidSplashSettingsRequest
 }
 
-func (r SettingsApiUpdateNetworkWirelessSsidSplashSettingsRequest) UpdateNetworkWirelessSsidSplashSettings(updateNetworkWirelessSsidSplashSettings InlineObject167) SettingsApiUpdateNetworkWirelessSsidSplashSettingsRequest {
-	r.updateNetworkWirelessSsidSplashSettings = &updateNetworkWirelessSsidSplashSettings
+func (r SettingsApiUpdateNetworkWirelessSsidSplashSettingsRequest) UpdateNetworkWirelessSsidSplashSettingsRequest(updateNetworkWirelessSsidSplashSettingsRequest UpdateNetworkWirelessSsidSplashSettingsRequest) SettingsApiUpdateNetworkWirelessSsidSplashSettingsRequest {
+	r.updateNetworkWirelessSsidSplashSettingsRequest = &updateNetworkWirelessSsidSplashSettingsRequest
 	return r
 }
 
-func (r SettingsApiUpdateNetworkWirelessSsidSplashSettingsRequest) Execute() (*InlineResponse20097, *http.Response, error) {
+func (r SettingsApiUpdateNetworkWirelessSsidSplashSettingsRequest) Execute() (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessSsidSplashSettingsExecute(r)
 }
 
@@ -3447,13 +3447,13 @@ func (a *SettingsApiService) UpdateNetworkWirelessSsidSplashSettings(ctx context
 }
 
 // Execute executes the request
-//  @return InlineResponse20097
-func (a *SettingsApiService) UpdateNetworkWirelessSsidSplashSettingsExecute(r SettingsApiUpdateNetworkWirelessSsidSplashSettingsRequest) (*InlineResponse20097, *http.Response, error) {
+//  @return GetNetworkWirelessSsidSplashSettings200Response
+func (a *SettingsApiService) UpdateNetworkWirelessSsidSplashSettingsExecute(r SettingsApiUpdateNetworkWirelessSsidSplashSettingsRequest) (*GetNetworkWirelessSsidSplashSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20097
+		localVarReturnValue  *GetNetworkWirelessSsidSplashSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SettingsApiService.UpdateNetworkWirelessSsidSplashSettings")
@@ -3487,7 +3487,7 @@ func (a *SettingsApiService) UpdateNetworkWirelessSsidSplashSettingsExecute(r Se
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessSsidSplashSettings
+	localVarPostBody = r.updateNetworkWirelessSsidSplashSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3543,11 +3543,11 @@ type SettingsApiUpdateOrganizationAdaptivePolicySettingsRequest struct {
 	ctx context.Context
 	ApiService *SettingsApiService
 	organizationId string
-	updateOrganizationAdaptivePolicySettings *InlineObject180
+	updateOrganizationAdaptivePolicySettingsRequest *UpdateOrganizationAdaptivePolicySettingsRequest
 }
 
-func (r SettingsApiUpdateOrganizationAdaptivePolicySettingsRequest) UpdateOrganizationAdaptivePolicySettings(updateOrganizationAdaptivePolicySettings InlineObject180) SettingsApiUpdateOrganizationAdaptivePolicySettingsRequest {
-	r.updateOrganizationAdaptivePolicySettings = &updateOrganizationAdaptivePolicySettings
+func (r SettingsApiUpdateOrganizationAdaptivePolicySettingsRequest) UpdateOrganizationAdaptivePolicySettingsRequest(updateOrganizationAdaptivePolicySettingsRequest UpdateOrganizationAdaptivePolicySettingsRequest) SettingsApiUpdateOrganizationAdaptivePolicySettingsRequest {
+	r.updateOrganizationAdaptivePolicySettingsRequest = &updateOrganizationAdaptivePolicySettingsRequest
 	return r
 }
 
@@ -3612,7 +3612,7 @@ func (a *SettingsApiService) UpdateOrganizationAdaptivePolicySettingsExecute(r S
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationAdaptivePolicySettings
+	localVarPostBody = r.updateOrganizationAdaptivePolicySettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -58,7 +58,7 @@ func (r ApplicationsApiGetNetworkInsightApplicationHealthByTimeRequest) Resoluti
 	return r
 }
 
-func (r ApplicationsApiGetNetworkInsightApplicationHealthByTimeRequest) Execute() ([]InlineResponse20036, *http.Response, error) {
+func (r ApplicationsApiGetNetworkInsightApplicationHealthByTimeRequest) Execute() ([]GetNetworkInsightApplicationHealthByTime200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkInsightApplicationHealthByTimeExecute(r)
 }
 
@@ -82,13 +82,13 @@ func (a *ApplicationsApiService) GetNetworkInsightApplicationHealthByTime(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20036
-func (a *ApplicationsApiService) GetNetworkInsightApplicationHealthByTimeExecute(r ApplicationsApiGetNetworkInsightApplicationHealthByTimeRequest) ([]InlineResponse20036, *http.Response, error) {
+//  @return []GetNetworkInsightApplicationHealthByTime200ResponseInner
+func (a *ApplicationsApiService) GetNetworkInsightApplicationHealthByTimeExecute(r ApplicationsApiGetNetworkInsightApplicationHealthByTimeRequest) ([]GetNetworkInsightApplicationHealthByTime200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20036
+		localVarReturnValue  []GetNetworkInsightApplicationHealthByTime200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsApiService.GetNetworkInsightApplicationHealthByTime")
@@ -190,7 +190,7 @@ type ApplicationsApiGetOrganizationInsightApplicationsRequest struct {
 	organizationId string
 }
 
-func (r ApplicationsApiGetOrganizationInsightApplicationsRequest) Execute() ([]InlineResponse200126, *http.Response, error) {
+func (r ApplicationsApiGetOrganizationInsightApplicationsRequest) Execute() ([]GetOrganizationInsightApplications200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInsightApplicationsExecute(r)
 }
 
@@ -212,13 +212,13 @@ func (a *ApplicationsApiService) GetOrganizationInsightApplications(ctx context.
 }
 
 // Execute executes the request
-//  @return []InlineResponse200126
-func (a *ApplicationsApiService) GetOrganizationInsightApplicationsExecute(r ApplicationsApiGetOrganizationInsightApplicationsRequest) ([]InlineResponse200126, *http.Response, error) {
+//  @return []GetOrganizationInsightApplications200ResponseInner
+func (a *ApplicationsApiService) GetOrganizationInsightApplicationsExecute(r ApplicationsApiGetOrganizationInsightApplicationsRequest) ([]GetOrganizationInsightApplications200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200126
+		localVarReturnValue  []GetOrganizationInsightApplications200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsApiService.GetOrganizationInsightApplications")

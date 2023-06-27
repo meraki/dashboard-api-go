@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type ExportEventsApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEv
 	ctx context.Context
 	ApiService *ExportEventsApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringExportEvent *InlineObject203
+	createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest
 }
 
-func (r ExportEventsApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) CreateOrganizationInventoryOnboardingCloudMonitoringExportEvent(createOrganizationInventoryOnboardingCloudMonitoringExportEvent InlineObject203) ExportEventsApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest {
-	r.createOrganizationInventoryOnboardingCloudMonitoringExportEvent = &createOrganizationInventoryOnboardingCloudMonitoringExportEvent
+func (r ExportEventsApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest(createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) ExportEventsApiCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest {
+	r.createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest = &createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *ExportEventsApiService) CreateOrganizationInventoryOnboardingCloudMonit
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationInventoryOnboardingCloudMonitoringExportEvent == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringExportEvent is required and must be specified")
+	if r.createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *ExportEventsApiService) CreateOrganizationInventoryOnboardingCloudMonit
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringExportEvent
+	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

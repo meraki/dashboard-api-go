@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -64,7 +64,7 @@ func (r ServersApiGetNetworkSwitchDhcpV4ServersSeenRequest) EndingBefore(endingB
 	return r
 }
 
-func (r ServersApiGetNetworkSwitchDhcpV4ServersSeenRequest) Execute() ([]InlineResponse20070, *http.Response, error) {
+func (r ServersApiGetNetworkSwitchDhcpV4ServersSeenRequest) Execute() ([]GetNetworkSwitchDhcpV4ServersSeen200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchDhcpV4ServersSeenExecute(r)
 }
 
@@ -86,13 +86,13 @@ func (a *ServersApiService) GetNetworkSwitchDhcpV4ServersSeen(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse20070
-func (a *ServersApiService) GetNetworkSwitchDhcpV4ServersSeenExecute(r ServersApiGetNetworkSwitchDhcpV4ServersSeenRequest) ([]InlineResponse20070, *http.Response, error) {
+//  @return []GetNetworkSwitchDhcpV4ServersSeen200ResponseInner
+func (a *ServersApiService) GetNetworkSwitchDhcpV4ServersSeenExecute(r ServersApiGetNetworkSwitchDhcpV4ServersSeenRequest) ([]GetNetworkSwitchDhcpV4ServersSeen200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20070
+		localVarReturnValue  []GetNetworkSwitchDhcpV4ServersSeen200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServersApiService.GetNetworkSwitchDhcpV4ServersSeen")

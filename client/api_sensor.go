@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -27,15 +28,15 @@ type SensorApiCreateNetworkSensorAlertsProfileRequest struct {
 	ctx context.Context
 	ApiService *SensorApiService
 	networkId string
-	createNetworkSensorAlertsProfile *InlineObject98
+	createNetworkSensorAlertsProfileRequest *CreateNetworkSensorAlertsProfileRequest
 }
 
-func (r SensorApiCreateNetworkSensorAlertsProfileRequest) CreateNetworkSensorAlertsProfile(createNetworkSensorAlertsProfile InlineObject98) SensorApiCreateNetworkSensorAlertsProfileRequest {
-	r.createNetworkSensorAlertsProfile = &createNetworkSensorAlertsProfile
+func (r SensorApiCreateNetworkSensorAlertsProfileRequest) CreateNetworkSensorAlertsProfileRequest(createNetworkSensorAlertsProfileRequest CreateNetworkSensorAlertsProfileRequest) SensorApiCreateNetworkSensorAlertsProfileRequest {
+	r.createNetworkSensorAlertsProfileRequest = &createNetworkSensorAlertsProfileRequest
 	return r
 }
 
-func (r SensorApiCreateNetworkSensorAlertsProfileRequest) Execute() (*InlineResponse20041, *http.Response, error) {
+func (r SensorApiCreateNetworkSensorAlertsProfileRequest) Execute() (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkSensorAlertsProfileExecute(r)
 }
 
@@ -57,13 +58,13 @@ func (a *SensorApiService) CreateNetworkSensorAlertsProfile(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20041
-func (a *SensorApiService) CreateNetworkSensorAlertsProfileExecute(r SensorApiCreateNetworkSensorAlertsProfileRequest) (*InlineResponse20041, *http.Response, error) {
+//  @return GetNetworkSensorAlertsProfiles200ResponseInner
+func (a *SensorApiService) CreateNetworkSensorAlertsProfileExecute(r SensorApiCreateNetworkSensorAlertsProfileRequest) (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20041
+		localVarReturnValue  *GetNetworkSensorAlertsProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SensorApiService.CreateNetworkSensorAlertsProfile")
@@ -77,8 +78,8 @@ func (a *SensorApiService) CreateNetworkSensorAlertsProfileExecute(r SensorApiCr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSensorAlertsProfile == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSensorAlertsProfile is required and must be specified")
+	if r.createNetworkSensorAlertsProfileRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSensorAlertsProfileRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +100,7 @@ func (a *SensorApiService) CreateNetworkSensorAlertsProfileExecute(r SensorApiCr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSensorAlertsProfile
+	localVarPostBody = r.createNetworkSensorAlertsProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -267,7 +268,7 @@ type SensorApiGetDeviceSensorRelationshipsRequest struct {
 	serial string
 }
 
-func (r SensorApiGetDeviceSensorRelationshipsRequest) Execute() ([]InlineResponse2004, *http.Response, error) {
+func (r SensorApiGetDeviceSensorRelationshipsRequest) Execute() ([]GetDeviceSensorRelationships200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetDeviceSensorRelationshipsExecute(r)
 }
 
@@ -289,13 +290,13 @@ func (a *SensorApiService) GetDeviceSensorRelationships(ctx context.Context, ser
 }
 
 // Execute executes the request
-//  @return []InlineResponse2004
-func (a *SensorApiService) GetDeviceSensorRelationshipsExecute(r SensorApiGetDeviceSensorRelationshipsRequest) ([]InlineResponse2004, *http.Response, error) {
+//  @return []GetDeviceSensorRelationships200ResponseInner
+func (a *SensorApiService) GetDeviceSensorRelationshipsExecute(r SensorApiGetDeviceSensorRelationshipsRequest) ([]GetDeviceSensorRelationships200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2004
+		localVarReturnValue  []GetDeviceSensorRelationships200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SensorApiService.GetDeviceSensorRelationships")
@@ -384,7 +385,7 @@ type SensorApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest struct {
 	networkId string
 }
 
-func (r SensorApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) Execute() (*InlineResponse20039, *http.Response, error) {
+func (r SensorApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) Execute() (*GetNetworkSensorAlertsCurrentOverviewByMetric200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsCurrentOverviewByMetricExecute(r)
 }
 
@@ -406,13 +407,13 @@ func (a *SensorApiService) GetNetworkSensorAlertsCurrentOverviewByMetric(ctx con
 }
 
 // Execute executes the request
-//  @return InlineResponse20039
-func (a *SensorApiService) GetNetworkSensorAlertsCurrentOverviewByMetricExecute(r SensorApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) (*InlineResponse20039, *http.Response, error) {
+//  @return GetNetworkSensorAlertsCurrentOverviewByMetric200Response
+func (a *SensorApiService) GetNetworkSensorAlertsCurrentOverviewByMetricExecute(r SensorApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) (*GetNetworkSensorAlertsCurrentOverviewByMetric200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20039
+		localVarReturnValue  *GetNetworkSensorAlertsCurrentOverviewByMetric200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SensorApiService.GetNetworkSensorAlertsCurrentOverviewByMetric")
@@ -529,7 +530,7 @@ func (r SensorApiGetNetworkSensorAlertsOverviewByMetricRequest) Interval(interva
 	return r
 }
 
-func (r SensorApiGetNetworkSensorAlertsOverviewByMetricRequest) Execute() ([]InlineResponse20040, *http.Response, error) {
+func (r SensorApiGetNetworkSensorAlertsOverviewByMetricRequest) Execute() ([]GetNetworkSensorAlertsOverviewByMetric200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsOverviewByMetricExecute(r)
 }
 
@@ -551,13 +552,13 @@ func (a *SensorApiService) GetNetworkSensorAlertsOverviewByMetric(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20040
-func (a *SensorApiService) GetNetworkSensorAlertsOverviewByMetricExecute(r SensorApiGetNetworkSensorAlertsOverviewByMetricRequest) ([]InlineResponse20040, *http.Response, error) {
+//  @return []GetNetworkSensorAlertsOverviewByMetric200ResponseInner
+func (a *SensorApiService) GetNetworkSensorAlertsOverviewByMetricExecute(r SensorApiGetNetworkSensorAlertsOverviewByMetricRequest) ([]GetNetworkSensorAlertsOverviewByMetric200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20040
+		localVarReturnValue  []GetNetworkSensorAlertsOverviewByMetric200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SensorApiService.GetNetworkSensorAlertsOverviewByMetric")
@@ -659,7 +660,7 @@ type SensorApiGetNetworkSensorAlertsProfileRequest struct {
 	id string
 }
 
-func (r SensorApiGetNetworkSensorAlertsProfileRequest) Execute() (*InlineResponse20041, *http.Response, error) {
+func (r SensorApiGetNetworkSensorAlertsProfileRequest) Execute() (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsProfileExecute(r)
 }
 
@@ -683,13 +684,13 @@ func (a *SensorApiService) GetNetworkSensorAlertsProfile(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return InlineResponse20041
-func (a *SensorApiService) GetNetworkSensorAlertsProfileExecute(r SensorApiGetNetworkSensorAlertsProfileRequest) (*InlineResponse20041, *http.Response, error) {
+//  @return GetNetworkSensorAlertsProfiles200ResponseInner
+func (a *SensorApiService) GetNetworkSensorAlertsProfileExecute(r SensorApiGetNetworkSensorAlertsProfileRequest) (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20041
+		localVarReturnValue  *GetNetworkSensorAlertsProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SensorApiService.GetNetworkSensorAlertsProfile")
@@ -779,7 +780,7 @@ type SensorApiGetNetworkSensorAlertsProfilesRequest struct {
 	networkId string
 }
 
-func (r SensorApiGetNetworkSensorAlertsProfilesRequest) Execute() ([]InlineResponse20041, *http.Response, error) {
+func (r SensorApiGetNetworkSensorAlertsProfilesRequest) Execute() ([]GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsProfilesExecute(r)
 }
 
@@ -801,13 +802,13 @@ func (a *SensorApiService) GetNetworkSensorAlertsProfiles(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return []InlineResponse20041
-func (a *SensorApiService) GetNetworkSensorAlertsProfilesExecute(r SensorApiGetNetworkSensorAlertsProfilesRequest) ([]InlineResponse20041, *http.Response, error) {
+//  @return []GetNetworkSensorAlertsProfiles200ResponseInner
+func (a *SensorApiService) GetNetworkSensorAlertsProfilesExecute(r SensorApiGetNetworkSensorAlertsProfilesRequest) ([]GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20041
+		localVarReturnValue  []GetNetworkSensorAlertsProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SensorApiService.GetNetworkSensorAlertsProfiles")
@@ -897,7 +898,7 @@ type SensorApiGetNetworkSensorMqttBrokerRequest struct {
 	mqttBrokerId string
 }
 
-func (r SensorApiGetNetworkSensorMqttBrokerRequest) Execute() (*InlineResponse20042, *http.Response, error) {
+func (r SensorApiGetNetworkSensorMqttBrokerRequest) Execute() (*GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorMqttBrokerExecute(r)
 }
 
@@ -921,13 +922,13 @@ func (a *SensorApiService) GetNetworkSensorMqttBroker(ctx context.Context, netwo
 }
 
 // Execute executes the request
-//  @return InlineResponse20042
-func (a *SensorApiService) GetNetworkSensorMqttBrokerExecute(r SensorApiGetNetworkSensorMqttBrokerRequest) (*InlineResponse20042, *http.Response, error) {
+//  @return GetNetworkSensorMqttBrokers200ResponseInner
+func (a *SensorApiService) GetNetworkSensorMqttBrokerExecute(r SensorApiGetNetworkSensorMqttBrokerRequest) (*GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20042
+		localVarReturnValue  *GetNetworkSensorMqttBrokers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SensorApiService.GetNetworkSensorMqttBroker")
@@ -1017,7 +1018,7 @@ type SensorApiGetNetworkSensorMqttBrokersRequest struct {
 	networkId string
 }
 
-func (r SensorApiGetNetworkSensorMqttBrokersRequest) Execute() ([]InlineResponse20042, *http.Response, error) {
+func (r SensorApiGetNetworkSensorMqttBrokersRequest) Execute() ([]GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorMqttBrokersExecute(r)
 }
 
@@ -1039,13 +1040,13 @@ func (a *SensorApiService) GetNetworkSensorMqttBrokers(ctx context.Context, netw
 }
 
 // Execute executes the request
-//  @return []InlineResponse20042
-func (a *SensorApiService) GetNetworkSensorMqttBrokersExecute(r SensorApiGetNetworkSensorMqttBrokersRequest) ([]InlineResponse20042, *http.Response, error) {
+//  @return []GetNetworkSensorMqttBrokers200ResponseInner
+func (a *SensorApiService) GetNetworkSensorMqttBrokersExecute(r SensorApiGetNetworkSensorMqttBrokersRequest) ([]GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20042
+		localVarReturnValue  []GetNetworkSensorMqttBrokers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SensorApiService.GetNetworkSensorMqttBrokers")
@@ -1134,7 +1135,7 @@ type SensorApiGetNetworkSensorRelationshipsRequest struct {
 	networkId string
 }
 
-func (r SensorApiGetNetworkSensorRelationshipsRequest) Execute() ([]InlineResponse20043, *http.Response, error) {
+func (r SensorApiGetNetworkSensorRelationshipsRequest) Execute() ([]GetNetworkSensorRelationships200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorRelationshipsExecute(r)
 }
 
@@ -1156,13 +1157,13 @@ func (a *SensorApiService) GetNetworkSensorRelationships(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return []InlineResponse20043
-func (a *SensorApiService) GetNetworkSensorRelationshipsExecute(r SensorApiGetNetworkSensorRelationshipsRequest) ([]InlineResponse20043, *http.Response, error) {
+//  @return []GetNetworkSensorRelationships200ResponseInner
+func (a *SensorApiService) GetNetworkSensorRelationshipsExecute(r SensorApiGetNetworkSensorRelationshipsRequest) ([]GetNetworkSensorRelationships200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20043
+		localVarReturnValue  []GetNetworkSensorRelationships200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SensorApiService.GetNetworkSensorRelationships")
@@ -1314,7 +1315,7 @@ func (r SensorApiGetOrganizationSensorReadingsHistoryRequest) Metrics(metrics []
 	return r
 }
 
-func (r SensorApiGetOrganizationSensorReadingsHistoryRequest) Execute() ([]InlineResponse200141, *http.Response, error) {
+func (r SensorApiGetOrganizationSensorReadingsHistoryRequest) Execute() ([]GetOrganizationSensorReadingsHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSensorReadingsHistoryExecute(r)
 }
 
@@ -1336,13 +1337,13 @@ func (a *SensorApiService) GetOrganizationSensorReadingsHistory(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse200141
-func (a *SensorApiService) GetOrganizationSensorReadingsHistoryExecute(r SensorApiGetOrganizationSensorReadingsHistoryRequest) ([]InlineResponse200141, *http.Response, error) {
+//  @return []GetOrganizationSensorReadingsHistory200ResponseInner
+func (a *SensorApiService) GetOrganizationSensorReadingsHistoryExecute(r SensorApiGetOrganizationSensorReadingsHistoryRequest) ([]GetOrganizationSensorReadingsHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200141
+		localVarReturnValue  []GetOrganizationSensorReadingsHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SensorApiService.GetOrganizationSensorReadingsHistory")
@@ -1376,13 +1377,37 @@ func (a *SensorApiService) GetOrganizationSensorReadingsHistoryExecute(r SensorA
 		localVarQueryParams.Add("timespan", parameterToString(*r.timespan, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.metrics != nil {
-		localVarQueryParams.Add("metrics", parameterToString(*r.metrics, "csv"))
+		t := *r.metrics
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("metrics", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("metrics", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1500,7 +1525,7 @@ func (r SensorApiGetOrganizationSensorReadingsLatestRequest) Metrics(metrics []s
 	return r
 }
 
-func (r SensorApiGetOrganizationSensorReadingsLatestRequest) Execute() ([]InlineResponse200142, *http.Response, error) {
+func (r SensorApiGetOrganizationSensorReadingsLatestRequest) Execute() ([]GetOrganizationSensorReadingsLatest200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSensorReadingsLatestExecute(r)
 }
 
@@ -1522,13 +1547,13 @@ func (a *SensorApiService) GetOrganizationSensorReadingsLatest(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return []InlineResponse200142
-func (a *SensorApiService) GetOrganizationSensorReadingsLatestExecute(r SensorApiGetOrganizationSensorReadingsLatestRequest) ([]InlineResponse200142, *http.Response, error) {
+//  @return []GetOrganizationSensorReadingsLatest200ResponseInner
+func (a *SensorApiService) GetOrganizationSensorReadingsLatestExecute(r SensorApiGetOrganizationSensorReadingsLatestRequest) ([]GetOrganizationSensorReadingsLatest200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200142
+		localVarReturnValue  []GetOrganizationSensorReadingsLatest200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SensorApiService.GetOrganizationSensorReadingsLatest")
@@ -1553,13 +1578,37 @@ func (a *SensorApiService) GetOrganizationSensorReadingsLatestExecute(r SensorAp
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.metrics != nil {
-		localVarQueryParams.Add("metrics", parameterToString(*r.metrics, "csv"))
+		t := *r.metrics
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("metrics", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("metrics", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1633,15 +1682,15 @@ type SensorApiUpdateDeviceSensorRelationshipsRequest struct {
 	ctx context.Context
 	ApiService *SensorApiService
 	serial string
-	updateDeviceSensorRelationships *InlineObject16
+	updateDeviceSensorRelationshipsRequest *UpdateDeviceSensorRelationshipsRequest
 }
 
-func (r SensorApiUpdateDeviceSensorRelationshipsRequest) UpdateDeviceSensorRelationships(updateDeviceSensorRelationships InlineObject16) SensorApiUpdateDeviceSensorRelationshipsRequest {
-	r.updateDeviceSensorRelationships = &updateDeviceSensorRelationships
+func (r SensorApiUpdateDeviceSensorRelationshipsRequest) UpdateDeviceSensorRelationshipsRequest(updateDeviceSensorRelationshipsRequest UpdateDeviceSensorRelationshipsRequest) SensorApiUpdateDeviceSensorRelationshipsRequest {
+	r.updateDeviceSensorRelationshipsRequest = &updateDeviceSensorRelationshipsRequest
 	return r
 }
 
-func (r SensorApiUpdateDeviceSensorRelationshipsRequest) Execute() (*InlineResponse2004, *http.Response, error) {
+func (r SensorApiUpdateDeviceSensorRelationshipsRequest) Execute() (*GetDeviceSensorRelationships200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateDeviceSensorRelationshipsExecute(r)
 }
 
@@ -1663,13 +1712,13 @@ func (a *SensorApiService) UpdateDeviceSensorRelationships(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse2004
-func (a *SensorApiService) UpdateDeviceSensorRelationshipsExecute(r SensorApiUpdateDeviceSensorRelationshipsRequest) (*InlineResponse2004, *http.Response, error) {
+//  @return GetDeviceSensorRelationships200ResponseInner
+func (a *SensorApiService) UpdateDeviceSensorRelationshipsExecute(r SensorApiUpdateDeviceSensorRelationshipsRequest) (*GetDeviceSensorRelationships200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2004
+		localVarReturnValue  *GetDeviceSensorRelationships200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SensorApiService.UpdateDeviceSensorRelationships")
@@ -1702,7 +1751,7 @@ func (a *SensorApiService) UpdateDeviceSensorRelationshipsExecute(r SensorApiUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceSensorRelationships
+	localVarPostBody = r.updateDeviceSensorRelationshipsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1759,15 +1808,15 @@ type SensorApiUpdateNetworkSensorAlertsProfileRequest struct {
 	ApiService *SensorApiService
 	networkId string
 	id string
-	updateNetworkSensorAlertsProfile *InlineObject99
+	updateNetworkSensorAlertsProfileRequest *UpdateNetworkSensorAlertsProfileRequest
 }
 
-func (r SensorApiUpdateNetworkSensorAlertsProfileRequest) UpdateNetworkSensorAlertsProfile(updateNetworkSensorAlertsProfile InlineObject99) SensorApiUpdateNetworkSensorAlertsProfileRequest {
-	r.updateNetworkSensorAlertsProfile = &updateNetworkSensorAlertsProfile
+func (r SensorApiUpdateNetworkSensorAlertsProfileRequest) UpdateNetworkSensorAlertsProfileRequest(updateNetworkSensorAlertsProfileRequest UpdateNetworkSensorAlertsProfileRequest) SensorApiUpdateNetworkSensorAlertsProfileRequest {
+	r.updateNetworkSensorAlertsProfileRequest = &updateNetworkSensorAlertsProfileRequest
 	return r
 }
 
-func (r SensorApiUpdateNetworkSensorAlertsProfileRequest) Execute() (*InlineResponse20041, *http.Response, error) {
+func (r SensorApiUpdateNetworkSensorAlertsProfileRequest) Execute() (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSensorAlertsProfileExecute(r)
 }
 
@@ -1791,13 +1840,13 @@ func (a *SensorApiService) UpdateNetworkSensorAlertsProfile(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20041
-func (a *SensorApiService) UpdateNetworkSensorAlertsProfileExecute(r SensorApiUpdateNetworkSensorAlertsProfileRequest) (*InlineResponse20041, *http.Response, error) {
+//  @return GetNetworkSensorAlertsProfiles200ResponseInner
+func (a *SensorApiService) UpdateNetworkSensorAlertsProfileExecute(r SensorApiUpdateNetworkSensorAlertsProfileRequest) (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20041
+		localVarReturnValue  *GetNetworkSensorAlertsProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SensorApiService.UpdateNetworkSensorAlertsProfile")
@@ -1831,7 +1880,7 @@ func (a *SensorApiService) UpdateNetworkSensorAlertsProfileExecute(r SensorApiUp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSensorAlertsProfile
+	localVarPostBody = r.updateNetworkSensorAlertsProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1888,15 +1937,15 @@ type SensorApiUpdateNetworkSensorMqttBrokerRequest struct {
 	ApiService *SensorApiService
 	networkId string
 	mqttBrokerId string
-	updateNetworkSensorMqttBroker *InlineObject100
+	updateNetworkSensorMqttBrokerRequest *UpdateNetworkSensorMqttBrokerRequest
 }
 
-func (r SensorApiUpdateNetworkSensorMqttBrokerRequest) UpdateNetworkSensorMqttBroker(updateNetworkSensorMqttBroker InlineObject100) SensorApiUpdateNetworkSensorMqttBrokerRequest {
-	r.updateNetworkSensorMqttBroker = &updateNetworkSensorMqttBroker
+func (r SensorApiUpdateNetworkSensorMqttBrokerRequest) UpdateNetworkSensorMqttBrokerRequest(updateNetworkSensorMqttBrokerRequest UpdateNetworkSensorMqttBrokerRequest) SensorApiUpdateNetworkSensorMqttBrokerRequest {
+	r.updateNetworkSensorMqttBrokerRequest = &updateNetworkSensorMqttBrokerRequest
 	return r
 }
 
-func (r SensorApiUpdateNetworkSensorMqttBrokerRequest) Execute() (*InlineResponse20042, *http.Response, error) {
+func (r SensorApiUpdateNetworkSensorMqttBrokerRequest) Execute() (*GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSensorMqttBrokerExecute(r)
 }
 
@@ -1920,13 +1969,13 @@ func (a *SensorApiService) UpdateNetworkSensorMqttBroker(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return InlineResponse20042
-func (a *SensorApiService) UpdateNetworkSensorMqttBrokerExecute(r SensorApiUpdateNetworkSensorMqttBrokerRequest) (*InlineResponse20042, *http.Response, error) {
+//  @return GetNetworkSensorMqttBrokers200ResponseInner
+func (a *SensorApiService) UpdateNetworkSensorMqttBrokerExecute(r SensorApiUpdateNetworkSensorMqttBrokerRequest) (*GetNetworkSensorMqttBrokers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20042
+		localVarReturnValue  *GetNetworkSensorMqttBrokers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SensorApiService.UpdateNetworkSensorMqttBroker")
@@ -1941,8 +1990,8 @@ func (a *SensorApiService) UpdateNetworkSensorMqttBrokerExecute(r SensorApiUpdat
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSensorMqttBroker == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSensorMqttBroker is required and must be specified")
+	if r.updateNetworkSensorMqttBrokerRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSensorMqttBrokerRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1963,7 +2012,7 @@ func (a *SensorApiService) UpdateNetworkSensorMqttBrokerExecute(r SensorApiUpdat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSensorMqttBroker
+	localVarPostBody = r.updateNetworkSensorMqttBrokerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

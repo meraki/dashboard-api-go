@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -144,11 +144,11 @@ type StpApiUpdateNetworkSwitchStpRequest struct {
 	ctx context.Context
 	ApiService *StpApiService
 	networkId string
-	updateNetworkSwitchStp *InlineObject142
+	updateNetworkSwitchStpRequest *UpdateNetworkSwitchStpRequest
 }
 
-func (r StpApiUpdateNetworkSwitchStpRequest) UpdateNetworkSwitchStp(updateNetworkSwitchStp InlineObject142) StpApiUpdateNetworkSwitchStpRequest {
-	r.updateNetworkSwitchStp = &updateNetworkSwitchStp
+func (r StpApiUpdateNetworkSwitchStpRequest) UpdateNetworkSwitchStpRequest(updateNetworkSwitchStpRequest UpdateNetworkSwitchStpRequest) StpApiUpdateNetworkSwitchStpRequest {
+	r.updateNetworkSwitchStpRequest = &updateNetworkSwitchStpRequest
 	return r
 }
 
@@ -213,7 +213,7 @@ func (a *StpApiService) UpdateNetworkSwitchStpExecute(r StpApiUpdateNetworkSwitc
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchStp
+	localVarPostBody = r.updateNetworkSwitchStpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

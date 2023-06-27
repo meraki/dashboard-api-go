@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type GroupPoliciesApiCreateNetworkGroupPolicyRequest struct {
 	ctx context.Context
 	ApiService *GroupPoliciesApiService
 	networkId string
-	createNetworkGroupPolicy *InlineObject90
+	createNetworkGroupPolicyRequest *CreateNetworkGroupPolicyRequest
 }
 
-func (r GroupPoliciesApiCreateNetworkGroupPolicyRequest) CreateNetworkGroupPolicy(createNetworkGroupPolicy InlineObject90) GroupPoliciesApiCreateNetworkGroupPolicyRequest {
-	r.createNetworkGroupPolicy = &createNetworkGroupPolicy
+func (r GroupPoliciesApiCreateNetworkGroupPolicyRequest) CreateNetworkGroupPolicyRequest(createNetworkGroupPolicyRequest CreateNetworkGroupPolicyRequest) GroupPoliciesApiCreateNetworkGroupPolicyRequest {
+	r.createNetworkGroupPolicyRequest = &createNetworkGroupPolicyRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *GroupPoliciesApiService) CreateNetworkGroupPolicyExecute(r GroupPolicie
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkGroupPolicy == nil {
-		return localVarReturnValue, nil, reportError("createNetworkGroupPolicy is required and must be specified")
+	if r.createNetworkGroupPolicyRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkGroupPolicyRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *GroupPoliciesApiService) CreateNetworkGroupPolicyExecute(r GroupPolicie
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkGroupPolicy
+	localVarPostBody = r.createNetworkGroupPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -504,11 +504,11 @@ type GroupPoliciesApiUpdateNetworkGroupPolicyRequest struct {
 	ApiService *GroupPoliciesApiService
 	networkId string
 	groupPolicyId string
-	updateNetworkGroupPolicy *InlineObject91
+	updateNetworkGroupPolicyRequest *UpdateNetworkGroupPolicyRequest
 }
 
-func (r GroupPoliciesApiUpdateNetworkGroupPolicyRequest) UpdateNetworkGroupPolicy(updateNetworkGroupPolicy InlineObject91) GroupPoliciesApiUpdateNetworkGroupPolicyRequest {
-	r.updateNetworkGroupPolicy = &updateNetworkGroupPolicy
+func (r GroupPoliciesApiUpdateNetworkGroupPolicyRequest) UpdateNetworkGroupPolicyRequest(updateNetworkGroupPolicyRequest UpdateNetworkGroupPolicyRequest) GroupPoliciesApiUpdateNetworkGroupPolicyRequest {
+	r.updateNetworkGroupPolicyRequest = &updateNetworkGroupPolicyRequest
 	return r
 }
 
@@ -576,7 +576,7 @@ func (a *GroupPoliciesApiService) UpdateNetworkGroupPolicyExecute(r GroupPolicie
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkGroupPolicy
+	localVarPostBody = r.updateNetworkGroupPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

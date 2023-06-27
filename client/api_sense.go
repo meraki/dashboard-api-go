@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -261,11 +261,11 @@ type SenseApiUpdateDeviceCameraSenseRequest struct {
 	ctx context.Context
 	ApiService *SenseApiService
 	serial string
-	updateDeviceCameraSense *InlineObject7
+	updateDeviceCameraSenseRequest *UpdateDeviceCameraSenseRequest
 }
 
-func (r SenseApiUpdateDeviceCameraSenseRequest) UpdateDeviceCameraSense(updateDeviceCameraSense InlineObject7) SenseApiUpdateDeviceCameraSenseRequest {
-	r.updateDeviceCameraSense = &updateDeviceCameraSense
+func (r SenseApiUpdateDeviceCameraSenseRequest) UpdateDeviceCameraSenseRequest(updateDeviceCameraSenseRequest UpdateDeviceCameraSenseRequest) SenseApiUpdateDeviceCameraSenseRequest {
+	r.updateDeviceCameraSenseRequest = &updateDeviceCameraSenseRequest
 	return r
 }
 
@@ -330,7 +330,7 @@ func (a *SenseApiService) UpdateDeviceCameraSenseExecute(r SenseApiUpdateDeviceC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCameraSense
+	localVarPostBody = r.updateDeviceCameraSenseRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -92,7 +93,7 @@ func (r ReadingsApiGetOrganizationSensorReadingsHistoryRequest) Metrics(metrics 
 	return r
 }
 
-func (r ReadingsApiGetOrganizationSensorReadingsHistoryRequest) Execute() ([]InlineResponse200141, *http.Response, error) {
+func (r ReadingsApiGetOrganizationSensorReadingsHistoryRequest) Execute() ([]GetOrganizationSensorReadingsHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSensorReadingsHistoryExecute(r)
 }
 
@@ -114,13 +115,13 @@ func (a *ReadingsApiService) GetOrganizationSensorReadingsHistory(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []InlineResponse200141
-func (a *ReadingsApiService) GetOrganizationSensorReadingsHistoryExecute(r ReadingsApiGetOrganizationSensorReadingsHistoryRequest) ([]InlineResponse200141, *http.Response, error) {
+//  @return []GetOrganizationSensorReadingsHistory200ResponseInner
+func (a *ReadingsApiService) GetOrganizationSensorReadingsHistoryExecute(r ReadingsApiGetOrganizationSensorReadingsHistoryRequest) ([]GetOrganizationSensorReadingsHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200141
+		localVarReturnValue  []GetOrganizationSensorReadingsHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReadingsApiService.GetOrganizationSensorReadingsHistory")
@@ -154,13 +155,37 @@ func (a *ReadingsApiService) GetOrganizationSensorReadingsHistoryExecute(r Readi
 		localVarQueryParams.Add("timespan", parameterToString(*r.timespan, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.metrics != nil {
-		localVarQueryParams.Add("metrics", parameterToString(*r.metrics, "csv"))
+		t := *r.metrics
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("metrics", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("metrics", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -278,7 +303,7 @@ func (r ReadingsApiGetOrganizationSensorReadingsLatestRequest) Metrics(metrics [
 	return r
 }
 
-func (r ReadingsApiGetOrganizationSensorReadingsLatestRequest) Execute() ([]InlineResponse200142, *http.Response, error) {
+func (r ReadingsApiGetOrganizationSensorReadingsLatestRequest) Execute() ([]GetOrganizationSensorReadingsLatest200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSensorReadingsLatestExecute(r)
 }
 
@@ -300,13 +325,13 @@ func (a *ReadingsApiService) GetOrganizationSensorReadingsLatest(ctx context.Con
 }
 
 // Execute executes the request
-//  @return []InlineResponse200142
-func (a *ReadingsApiService) GetOrganizationSensorReadingsLatestExecute(r ReadingsApiGetOrganizationSensorReadingsLatestRequest) ([]InlineResponse200142, *http.Response, error) {
+//  @return []GetOrganizationSensorReadingsLatest200ResponseInner
+func (a *ReadingsApiService) GetOrganizationSensorReadingsLatestExecute(r ReadingsApiGetOrganizationSensorReadingsLatestRequest) ([]GetOrganizationSensorReadingsLatest200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200142
+		localVarReturnValue  []GetOrganizationSensorReadingsLatest200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReadingsApiService.GetOrganizationSensorReadingsLatest")
@@ -331,13 +356,37 @@ func (a *ReadingsApiService) GetOrganizationSensorReadingsLatestExecute(r Readin
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.metrics != nil {
-		localVarQueryParams.Add("metrics", parameterToString(*r.metrics, "csv"))
+		t := *r.metrics
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("metrics", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("metrics", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

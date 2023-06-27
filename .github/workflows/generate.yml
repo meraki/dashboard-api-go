@@ -9,7 +9,7 @@ jobs:
   check-for-updates:
     runs-on: ubuntu-latest
     env:
-      OPENAPI_REPO: "https://raw.githubusercontent.com/meraki/openapi/master/openapi/spec2.json"
+      OPENAPI_REPO: "https://raw.githubusercontent.com/meraki/openapi/master/openapi/spec3.json"
       CLIENT_REPO: "https://api.github.com/repos/meraki/dashboard-api-go/releases/latest"
     outputs:
       result: ${{ steps.generate-new-client.outputs.RESULT }}
@@ -62,15 +62,15 @@ jobs:
             echo "NEW_VERSION=${{ needs.check-for-updates.outputs.new }}" >> $GITHUB_ENV
           fi
       - name: "Fetch Specification"
-        run: wget https://github.com/meraki/openapi/archive/refs/tags/${{ env.NEW_VERSION }}.zip && unzip -j ${{ env.NEW_VERSION }}.zip '*/spec2.json'
+        run: wget https://github.com/meraki/openapi/archive/refs/tags/${{ env.NEW_VERSION }}.zip && unzip -j ${{ env.NEW_VERSION }}.zip '*/spec3.json'
       - name: "Install JRE"
         run: sudo apt update && sudo apt install -y default-jre
       - name: "Install OpenAPI Generator"
-        run: wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.3.0/openapi-generator-cli-5.3.0.jar -O .openapi/generator/openapi-generator-cli.jar
+        run: wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/6.2.1/openapi-generator-cli-6.2.1.jar -O .openapi/generator/openapi-generator-cli.jar
       - name: "Run OpenAPI Generator"
-        run: rm -rf client/; java -jar .openapi/generator/openapi-generator-cli.jar generate -i spec2.json -g go -o client -p enumClassPrefix=true -p structPrefix=true --package-name client -p packageVersion=${{ env.NEW_VERSION }} -t .openapi/templates --git-user-id meraki --git-repo-id dashboard-api-go/client --git-host github.com
+        run: rm -rf client/; java -jar .openapi/generator/openapi-generator-cli.jar generate -i spec3.json -g go -o client -p enumClassPrefix=true -p structPrefix=true --package-name client -p packageVersion=${{ env.NEW_VERSION }} -t .openapi/templates --git-user-id meraki --git-repo-id dashboard-api-go/client --git-host github.com
       - name: "Cleanup"
-        run: rm .openapi/generator/openapi-generator-cli.jar; rm spec2.json; rm ${{ env.NEW_VERSION }}.zip
+        run: rm .openapi/generator/openapi-generator-cli.jar; rm spec3.json; rm ${{ env.NEW_VERSION }}.zip
       - name: "Git Config"
         run: |
           git config user.name "GitHub Actions"

@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -29,7 +29,7 @@ type SyslogServersApiGetNetworkSyslogServersRequest struct {
 	networkId string
 }
 
-func (r SyslogServersApiGetNetworkSyslogServersRequest) Execute() (*InlineResponse20082, *http.Response, error) {
+func (r SyslogServersApiGetNetworkSyslogServersRequest) Execute() (*GetNetworkSyslogServers200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSyslogServersExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *SyslogServersApiService) GetNetworkSyslogServers(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return InlineResponse20082
-func (a *SyslogServersApiService) GetNetworkSyslogServersExecute(r SyslogServersApiGetNetworkSyslogServersRequest) (*InlineResponse20082, *http.Response, error) {
+//  @return GetNetworkSyslogServers200Response
+func (a *SyslogServersApiService) GetNetworkSyslogServersExecute(r SyslogServersApiGetNetworkSyslogServersRequest) (*GetNetworkSyslogServers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20082
+		localVarReturnValue  *GetNetworkSyslogServers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyslogServersApiService.GetNetworkSyslogServers")
@@ -144,15 +144,15 @@ type SyslogServersApiUpdateNetworkSyslogServersRequest struct {
 	ctx context.Context
 	ApiService *SyslogServersApiService
 	networkId string
-	updateNetworkSyslogServers *InlineObject143
+	updateNetworkSyslogServersRequest *UpdateNetworkSyslogServersRequest
 }
 
-func (r SyslogServersApiUpdateNetworkSyslogServersRequest) UpdateNetworkSyslogServers(updateNetworkSyslogServers InlineObject143) SyslogServersApiUpdateNetworkSyslogServersRequest {
-	r.updateNetworkSyslogServers = &updateNetworkSyslogServers
+func (r SyslogServersApiUpdateNetworkSyslogServersRequest) UpdateNetworkSyslogServersRequest(updateNetworkSyslogServersRequest UpdateNetworkSyslogServersRequest) SyslogServersApiUpdateNetworkSyslogServersRequest {
+	r.updateNetworkSyslogServersRequest = &updateNetworkSyslogServersRequest
 	return r
 }
 
-func (r SyslogServersApiUpdateNetworkSyslogServersRequest) Execute() (*InlineResponse20082, *http.Response, error) {
+func (r SyslogServersApiUpdateNetworkSyslogServersRequest) Execute() (*GetNetworkSyslogServers200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSyslogServersExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *SyslogServersApiService) UpdateNetworkSyslogServers(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse20082
-func (a *SyslogServersApiService) UpdateNetworkSyslogServersExecute(r SyslogServersApiUpdateNetworkSyslogServersRequest) (*InlineResponse20082, *http.Response, error) {
+//  @return GetNetworkSyslogServers200Response
+func (a *SyslogServersApiService) UpdateNetworkSyslogServersExecute(r SyslogServersApiUpdateNetworkSyslogServersRequest) (*GetNetworkSyslogServers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20082
+		localVarReturnValue  *GetNetworkSyslogServers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyslogServersApiService.UpdateNetworkSyslogServers")
@@ -194,8 +194,8 @@ func (a *SyslogServersApiService) UpdateNetworkSyslogServersExecute(r SyslogServ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSyslogServers == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSyslogServers is required and must be specified")
+	if r.updateNetworkSyslogServersRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSyslogServersRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -216,7 +216,7 @@ func (a *SyslogServersApiService) UpdateNetworkSyslogServersExecute(r SyslogServ
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSyslogServers
+	localVarPostBody = r.updateNetworkSyslogServersRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -51,7 +51,7 @@ func (r DesktopLogsApiGetNetworkSmDeviceDesktopLogsRequest) EndingBefore(endingB
 	return r
 }
 
-func (r DesktopLogsApiGetNetworkSmDeviceDesktopLogsRequest) Execute() ([]InlineResponse20054, *http.Response, error) {
+func (r DesktopLogsApiGetNetworkSmDeviceDesktopLogsRequest) Execute() ([]GetNetworkSmDeviceDesktopLogs200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceDesktopLogsExecute(r)
 }
 
@@ -75,13 +75,13 @@ func (a *DesktopLogsApiService) GetNetworkSmDeviceDesktopLogs(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse20054
-func (a *DesktopLogsApiService) GetNetworkSmDeviceDesktopLogsExecute(r DesktopLogsApiGetNetworkSmDeviceDesktopLogsRequest) ([]InlineResponse20054, *http.Response, error) {
+//  @return []GetNetworkSmDeviceDesktopLogs200ResponseInner
+func (a *DesktopLogsApiService) GetNetworkSmDeviceDesktopLogsExecute(r DesktopLogsApiGetNetworkSmDeviceDesktopLogsRequest) ([]GetNetworkSmDeviceDesktopLogs200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20054
+		localVarReturnValue  []GetNetworkSmDeviceDesktopLogs200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DesktopLogsApiService.GetNetworkSmDeviceDesktopLogs")

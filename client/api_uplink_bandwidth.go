@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -29,7 +29,7 @@ type UplinkBandwidthApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest s
 	networkId string
 }
 
-func (r UplinkBandwidthApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) Execute() (*InlineResponse20021, *http.Response, error) {
+func (r UplinkBandwidthApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) Execute() (*GetNetworkApplianceTrafficShapingUplinkBandwidth200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceTrafficShapingUplinkBandwidthExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *UplinkBandwidthApiService) GetNetworkApplianceTrafficShapingUplinkBandw
 }
 
 // Execute executes the request
-//  @return InlineResponse20021
-func (a *UplinkBandwidthApiService) GetNetworkApplianceTrafficShapingUplinkBandwidthExecute(r UplinkBandwidthApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) (*InlineResponse20021, *http.Response, error) {
+//  @return GetNetworkApplianceTrafficShapingUplinkBandwidth200Response
+func (a *UplinkBandwidthApiService) GetNetworkApplianceTrafficShapingUplinkBandwidthExecute(r UplinkBandwidthApiGetNetworkApplianceTrafficShapingUplinkBandwidthRequest) (*GetNetworkApplianceTrafficShapingUplinkBandwidth200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20021
+		localVarReturnValue  *GetNetworkApplianceTrafficShapingUplinkBandwidth200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UplinkBandwidthApiService.GetNetworkApplianceTrafficShapingUplinkBandwidth")
@@ -144,11 +144,11 @@ type UplinkBandwidthApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthReques
 	ctx context.Context
 	ApiService *UplinkBandwidthApiService
 	networkId string
-	updateNetworkApplianceTrafficShapingUplinkBandwidth *InlineObject57
+	updateNetworkApplianceTrafficShapingUplinkBandwidthRequest *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest
 }
 
-func (r UplinkBandwidthApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) UpdateNetworkApplianceTrafficShapingUplinkBandwidth(updateNetworkApplianceTrafficShapingUplinkBandwidth InlineObject57) UplinkBandwidthApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest {
-	r.updateNetworkApplianceTrafficShapingUplinkBandwidth = &updateNetworkApplianceTrafficShapingUplinkBandwidth
+func (r UplinkBandwidthApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest(updateNetworkApplianceTrafficShapingUplinkBandwidthRequest UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) UplinkBandwidthApiUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest {
+	r.updateNetworkApplianceTrafficShapingUplinkBandwidthRequest = &updateNetworkApplianceTrafficShapingUplinkBandwidthRequest
 	return r
 }
 
@@ -213,7 +213,7 @@ func (a *UplinkBandwidthApiService) UpdateNetworkApplianceTrafficShapingUplinkBa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceTrafficShapingUplinkBandwidth
+	localVarPostBody = r.updateNetworkApplianceTrafficShapingUplinkBandwidthRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type WebhookTestsApiCreateNetworkWebhooksWebhookTestRequest struct {
 	ctx context.Context
 	ApiService *WebhookTestsApiService
 	networkId string
-	createNetworkWebhooksWebhookTest *InlineObject150
+	createNetworkWebhooksWebhookTestRequest *CreateNetworkWebhooksWebhookTestRequest
 }
 
-func (r WebhookTestsApiCreateNetworkWebhooksWebhookTestRequest) CreateNetworkWebhooksWebhookTest(createNetworkWebhooksWebhookTest InlineObject150) WebhookTestsApiCreateNetworkWebhooksWebhookTestRequest {
-	r.createNetworkWebhooksWebhookTest = &createNetworkWebhooksWebhookTest
+func (r WebhookTestsApiCreateNetworkWebhooksWebhookTestRequest) CreateNetworkWebhooksWebhookTestRequest(createNetworkWebhooksWebhookTestRequest CreateNetworkWebhooksWebhookTestRequest) WebhookTestsApiCreateNetworkWebhooksWebhookTestRequest {
+	r.createNetworkWebhooksWebhookTestRequest = &createNetworkWebhooksWebhookTestRequest
 	return r
 }
 
-func (r WebhookTestsApiCreateNetworkWebhooksWebhookTestRequest) Execute() (*InlineResponse2013, *http.Response, error) {
+func (r WebhookTestsApiCreateNetworkWebhooksWebhookTestRequest) Execute() (*CreateNetworkWebhooksWebhookTest201Response, *http.Response, error) {
 	return r.ApiService.CreateNetworkWebhooksWebhookTestExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *WebhookTestsApiService) CreateNetworkWebhooksWebhookTest(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse2013
-func (a *WebhookTestsApiService) CreateNetworkWebhooksWebhookTestExecute(r WebhookTestsApiCreateNetworkWebhooksWebhookTestRequest) (*InlineResponse2013, *http.Response, error) {
+//  @return CreateNetworkWebhooksWebhookTest201Response
+func (a *WebhookTestsApiService) CreateNetworkWebhooksWebhookTestExecute(r WebhookTestsApiCreateNetworkWebhooksWebhookTestRequest) (*CreateNetworkWebhooksWebhookTest201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2013
+		localVarReturnValue  *CreateNetworkWebhooksWebhookTest201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookTestsApiService.CreateNetworkWebhooksWebhookTest")
@@ -77,8 +77,8 @@ func (a *WebhookTestsApiService) CreateNetworkWebhooksWebhookTestExecute(r Webho
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkWebhooksWebhookTest == nil {
-		return localVarReturnValue, nil, reportError("createNetworkWebhooksWebhookTest is required and must be specified")
+	if r.createNetworkWebhooksWebhookTestRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkWebhooksWebhookTestRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *WebhookTestsApiService) CreateNetworkWebhooksWebhookTestExecute(r Webho
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkWebhooksWebhookTest
+	localVarPostBody = r.createNetworkWebhooksWebhookTestRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -158,7 +158,7 @@ type WebhookTestsApiGetNetworkWebhooksWebhookTestRequest struct {
 	webhookTestId string
 }
 
-func (r WebhookTestsApiGetNetworkWebhooksWebhookTestRequest) Execute() (*InlineResponse2013, *http.Response, error) {
+func (r WebhookTestsApiGetNetworkWebhooksWebhookTestRequest) Execute() (*CreateNetworkWebhooksWebhookTest201Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWebhooksWebhookTestExecute(r)
 }
 
@@ -182,13 +182,13 @@ func (a *WebhookTestsApiService) GetNetworkWebhooksWebhookTest(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse2013
-func (a *WebhookTestsApiService) GetNetworkWebhooksWebhookTestExecute(r WebhookTestsApiGetNetworkWebhooksWebhookTestRequest) (*InlineResponse2013, *http.Response, error) {
+//  @return CreateNetworkWebhooksWebhookTest201Response
+func (a *WebhookTestsApiService) GetNetworkWebhooksWebhookTestExecute(r WebhookTestsApiGetNetworkWebhooksWebhookTestRequest) (*CreateNetworkWebhooksWebhookTest201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2013
+		localVarReturnValue  *CreateNetworkWebhooksWebhookTest201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookTestsApiService.GetNetworkWebhooksWebhookTest")

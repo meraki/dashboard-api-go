@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type AlertsApiCreateNetworkSensorAlertsProfileRequest struct {
 	ctx context.Context
 	ApiService *AlertsApiService
 	networkId string
-	createNetworkSensorAlertsProfile *InlineObject98
+	createNetworkSensorAlertsProfileRequest *CreateNetworkSensorAlertsProfileRequest
 }
 
-func (r AlertsApiCreateNetworkSensorAlertsProfileRequest) CreateNetworkSensorAlertsProfile(createNetworkSensorAlertsProfile InlineObject98) AlertsApiCreateNetworkSensorAlertsProfileRequest {
-	r.createNetworkSensorAlertsProfile = &createNetworkSensorAlertsProfile
+func (r AlertsApiCreateNetworkSensorAlertsProfileRequest) CreateNetworkSensorAlertsProfileRequest(createNetworkSensorAlertsProfileRequest CreateNetworkSensorAlertsProfileRequest) AlertsApiCreateNetworkSensorAlertsProfileRequest {
+	r.createNetworkSensorAlertsProfileRequest = &createNetworkSensorAlertsProfileRequest
 	return r
 }
 
-func (r AlertsApiCreateNetworkSensorAlertsProfileRequest) Execute() (*InlineResponse20041, *http.Response, error) {
+func (r AlertsApiCreateNetworkSensorAlertsProfileRequest) Execute() (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkSensorAlertsProfileExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *AlertsApiService) CreateNetworkSensorAlertsProfile(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20041
-func (a *AlertsApiService) CreateNetworkSensorAlertsProfileExecute(r AlertsApiCreateNetworkSensorAlertsProfileRequest) (*InlineResponse20041, *http.Response, error) {
+//  @return GetNetworkSensorAlertsProfiles200ResponseInner
+func (a *AlertsApiService) CreateNetworkSensorAlertsProfileExecute(r AlertsApiCreateNetworkSensorAlertsProfileRequest) (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20041
+		localVarReturnValue  *GetNetworkSensorAlertsProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.CreateNetworkSensorAlertsProfile")
@@ -77,8 +77,8 @@ func (a *AlertsApiService) CreateNetworkSensorAlertsProfileExecute(r AlertsApiCr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSensorAlertsProfile == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSensorAlertsProfile is required and must be specified")
+	if r.createNetworkSensorAlertsProfileRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSensorAlertsProfileRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *AlertsApiService) CreateNetworkSensorAlertsProfileExecute(r AlertsApiCr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSensorAlertsProfile
+	localVarPostBody = r.createNetworkSensorAlertsProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -155,11 +155,11 @@ type AlertsApiCreateOrganizationAlertsProfileRequest struct {
 	ctx context.Context
 	ApiService *AlertsApiService
 	organizationId string
-	createOrganizationAlertsProfile *InlineObject183
+	createOrganizationAlertsProfileRequest *CreateOrganizationAlertsProfileRequest
 }
 
-func (r AlertsApiCreateOrganizationAlertsProfileRequest) CreateOrganizationAlertsProfile(createOrganizationAlertsProfile InlineObject183) AlertsApiCreateOrganizationAlertsProfileRequest {
-	r.createOrganizationAlertsProfile = &createOrganizationAlertsProfile
+func (r AlertsApiCreateOrganizationAlertsProfileRequest) CreateOrganizationAlertsProfileRequest(createOrganizationAlertsProfileRequest CreateOrganizationAlertsProfileRequest) AlertsApiCreateOrganizationAlertsProfileRequest {
+	r.createOrganizationAlertsProfileRequest = &createOrganizationAlertsProfileRequest
 	return r
 }
 
@@ -205,8 +205,8 @@ func (a *AlertsApiService) CreateOrganizationAlertsProfileExecute(r AlertsApiCre
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationAlertsProfile == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationAlertsProfile is required and must be specified")
+	if r.createOrganizationAlertsProfileRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationAlertsProfileRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -227,7 +227,7 @@ func (a *AlertsApiService) CreateOrganizationAlertsProfileExecute(r AlertsApiCre
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationAlertsProfile
+	localVarPostBody = r.createOrganizationAlertsProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -526,7 +526,7 @@ func (r AlertsApiGetNetworkAlertsHistoryRequest) EndingBefore(endingBefore strin
 	return r
 }
 
-func (r AlertsApiGetNetworkAlertsHistoryRequest) Execute() ([]InlineResponse20013, *http.Response, error) {
+func (r AlertsApiGetNetworkAlertsHistoryRequest) Execute() ([]GetNetworkAlertsHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkAlertsHistoryExecute(r)
 }
 
@@ -548,13 +548,13 @@ func (a *AlertsApiService) GetNetworkAlertsHistory(ctx context.Context, networkI
 }
 
 // Execute executes the request
-//  @return []InlineResponse20013
-func (a *AlertsApiService) GetNetworkAlertsHistoryExecute(r AlertsApiGetNetworkAlertsHistoryRequest) ([]InlineResponse20013, *http.Response, error) {
+//  @return []GetNetworkAlertsHistory200ResponseInner
+func (a *AlertsApiService) GetNetworkAlertsHistoryExecute(r AlertsApiGetNetworkAlertsHistoryRequest) ([]GetNetworkAlertsHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20013
+		localVarReturnValue  []GetNetworkAlertsHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.GetNetworkAlertsHistory")
@@ -769,7 +769,7 @@ type AlertsApiGetNetworkHealthAlertsRequest struct {
 	networkId string
 }
 
-func (r AlertsApiGetNetworkHealthAlertsRequest) Execute() ([]InlineResponse20035, *http.Response, error) {
+func (r AlertsApiGetNetworkHealthAlertsRequest) Execute() ([]GetNetworkHealthAlerts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkHealthAlertsExecute(r)
 }
 
@@ -791,13 +791,13 @@ func (a *AlertsApiService) GetNetworkHealthAlerts(ctx context.Context, networkId
 }
 
 // Execute executes the request
-//  @return []InlineResponse20035
-func (a *AlertsApiService) GetNetworkHealthAlertsExecute(r AlertsApiGetNetworkHealthAlertsRequest) ([]InlineResponse20035, *http.Response, error) {
+//  @return []GetNetworkHealthAlerts200ResponseInner
+func (a *AlertsApiService) GetNetworkHealthAlertsExecute(r AlertsApiGetNetworkHealthAlertsRequest) ([]GetNetworkHealthAlerts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20035
+		localVarReturnValue  []GetNetworkHealthAlerts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.GetNetworkHealthAlerts")
@@ -886,7 +886,7 @@ type AlertsApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest struct {
 	networkId string
 }
 
-func (r AlertsApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) Execute() (*InlineResponse20039, *http.Response, error) {
+func (r AlertsApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) Execute() (*GetNetworkSensorAlertsCurrentOverviewByMetric200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsCurrentOverviewByMetricExecute(r)
 }
 
@@ -908,13 +908,13 @@ func (a *AlertsApiService) GetNetworkSensorAlertsCurrentOverviewByMetric(ctx con
 }
 
 // Execute executes the request
-//  @return InlineResponse20039
-func (a *AlertsApiService) GetNetworkSensorAlertsCurrentOverviewByMetricExecute(r AlertsApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) (*InlineResponse20039, *http.Response, error) {
+//  @return GetNetworkSensorAlertsCurrentOverviewByMetric200Response
+func (a *AlertsApiService) GetNetworkSensorAlertsCurrentOverviewByMetricExecute(r AlertsApiGetNetworkSensorAlertsCurrentOverviewByMetricRequest) (*GetNetworkSensorAlertsCurrentOverviewByMetric200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20039
+		localVarReturnValue  *GetNetworkSensorAlertsCurrentOverviewByMetric200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.GetNetworkSensorAlertsCurrentOverviewByMetric")
@@ -1031,7 +1031,7 @@ func (r AlertsApiGetNetworkSensorAlertsOverviewByMetricRequest) Interval(interva
 	return r
 }
 
-func (r AlertsApiGetNetworkSensorAlertsOverviewByMetricRequest) Execute() ([]InlineResponse20040, *http.Response, error) {
+func (r AlertsApiGetNetworkSensorAlertsOverviewByMetricRequest) Execute() ([]GetNetworkSensorAlertsOverviewByMetric200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsOverviewByMetricExecute(r)
 }
 
@@ -1053,13 +1053,13 @@ func (a *AlertsApiService) GetNetworkSensorAlertsOverviewByMetric(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20040
-func (a *AlertsApiService) GetNetworkSensorAlertsOverviewByMetricExecute(r AlertsApiGetNetworkSensorAlertsOverviewByMetricRequest) ([]InlineResponse20040, *http.Response, error) {
+//  @return []GetNetworkSensorAlertsOverviewByMetric200ResponseInner
+func (a *AlertsApiService) GetNetworkSensorAlertsOverviewByMetricExecute(r AlertsApiGetNetworkSensorAlertsOverviewByMetricRequest) ([]GetNetworkSensorAlertsOverviewByMetric200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20040
+		localVarReturnValue  []GetNetworkSensorAlertsOverviewByMetric200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.GetNetworkSensorAlertsOverviewByMetric")
@@ -1161,7 +1161,7 @@ type AlertsApiGetNetworkSensorAlertsProfileRequest struct {
 	id string
 }
 
-func (r AlertsApiGetNetworkSensorAlertsProfileRequest) Execute() (*InlineResponse20041, *http.Response, error) {
+func (r AlertsApiGetNetworkSensorAlertsProfileRequest) Execute() (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsProfileExecute(r)
 }
 
@@ -1185,13 +1185,13 @@ func (a *AlertsApiService) GetNetworkSensorAlertsProfile(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return InlineResponse20041
-func (a *AlertsApiService) GetNetworkSensorAlertsProfileExecute(r AlertsApiGetNetworkSensorAlertsProfileRequest) (*InlineResponse20041, *http.Response, error) {
+//  @return GetNetworkSensorAlertsProfiles200ResponseInner
+func (a *AlertsApiService) GetNetworkSensorAlertsProfileExecute(r AlertsApiGetNetworkSensorAlertsProfileRequest) (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20041
+		localVarReturnValue  *GetNetworkSensorAlertsProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.GetNetworkSensorAlertsProfile")
@@ -1281,7 +1281,7 @@ type AlertsApiGetNetworkSensorAlertsProfilesRequest struct {
 	networkId string
 }
 
-func (r AlertsApiGetNetworkSensorAlertsProfilesRequest) Execute() ([]InlineResponse20041, *http.Response, error) {
+func (r AlertsApiGetNetworkSensorAlertsProfilesRequest) Execute() ([]GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSensorAlertsProfilesExecute(r)
 }
 
@@ -1303,13 +1303,13 @@ func (a *AlertsApiService) GetNetworkSensorAlertsProfiles(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return []InlineResponse20041
-func (a *AlertsApiService) GetNetworkSensorAlertsProfilesExecute(r AlertsApiGetNetworkSensorAlertsProfilesRequest) ([]InlineResponse20041, *http.Response, error) {
+//  @return []GetNetworkSensorAlertsProfiles200ResponseInner
+func (a *AlertsApiService) GetNetworkSensorAlertsProfilesExecute(r AlertsApiGetNetworkSensorAlertsProfilesRequest) ([]GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20041
+		localVarReturnValue  []GetNetworkSensorAlertsProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.GetNetworkSensorAlertsProfiles")
@@ -1513,11 +1513,11 @@ type AlertsApiUpdateNetworkAlertsSettingsRequest struct {
 	ctx context.Context
 	ApiService *AlertsApiService
 	networkId string
-	updateNetworkAlertsSettings *InlineObject28
+	updateNetworkAlertsSettingsRequest *UpdateNetworkAlertsSettingsRequest
 }
 
-func (r AlertsApiUpdateNetworkAlertsSettingsRequest) UpdateNetworkAlertsSettings(updateNetworkAlertsSettings InlineObject28) AlertsApiUpdateNetworkAlertsSettingsRequest {
-	r.updateNetworkAlertsSettings = &updateNetworkAlertsSettings
+func (r AlertsApiUpdateNetworkAlertsSettingsRequest) UpdateNetworkAlertsSettingsRequest(updateNetworkAlertsSettingsRequest UpdateNetworkAlertsSettingsRequest) AlertsApiUpdateNetworkAlertsSettingsRequest {
+	r.updateNetworkAlertsSettingsRequest = &updateNetworkAlertsSettingsRequest
 	return r
 }
 
@@ -1582,7 +1582,7 @@ func (a *AlertsApiService) UpdateNetworkAlertsSettingsExecute(r AlertsApiUpdateN
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkAlertsSettings
+	localVarPostBody = r.updateNetworkAlertsSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1639,15 +1639,15 @@ type AlertsApiUpdateNetworkSensorAlertsProfileRequest struct {
 	ApiService *AlertsApiService
 	networkId string
 	id string
-	updateNetworkSensorAlertsProfile *InlineObject99
+	updateNetworkSensorAlertsProfileRequest *UpdateNetworkSensorAlertsProfileRequest
 }
 
-func (r AlertsApiUpdateNetworkSensorAlertsProfileRequest) UpdateNetworkSensorAlertsProfile(updateNetworkSensorAlertsProfile InlineObject99) AlertsApiUpdateNetworkSensorAlertsProfileRequest {
-	r.updateNetworkSensorAlertsProfile = &updateNetworkSensorAlertsProfile
+func (r AlertsApiUpdateNetworkSensorAlertsProfileRequest) UpdateNetworkSensorAlertsProfileRequest(updateNetworkSensorAlertsProfileRequest UpdateNetworkSensorAlertsProfileRequest) AlertsApiUpdateNetworkSensorAlertsProfileRequest {
+	r.updateNetworkSensorAlertsProfileRequest = &updateNetworkSensorAlertsProfileRequest
 	return r
 }
 
-func (r AlertsApiUpdateNetworkSensorAlertsProfileRequest) Execute() (*InlineResponse20041, *http.Response, error) {
+func (r AlertsApiUpdateNetworkSensorAlertsProfileRequest) Execute() (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSensorAlertsProfileExecute(r)
 }
 
@@ -1671,13 +1671,13 @@ func (a *AlertsApiService) UpdateNetworkSensorAlertsProfile(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse20041
-func (a *AlertsApiService) UpdateNetworkSensorAlertsProfileExecute(r AlertsApiUpdateNetworkSensorAlertsProfileRequest) (*InlineResponse20041, *http.Response, error) {
+//  @return GetNetworkSensorAlertsProfiles200ResponseInner
+func (a *AlertsApiService) UpdateNetworkSensorAlertsProfileExecute(r AlertsApiUpdateNetworkSensorAlertsProfileRequest) (*GetNetworkSensorAlertsProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20041
+		localVarReturnValue  *GetNetworkSensorAlertsProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlertsApiService.UpdateNetworkSensorAlertsProfile")
@@ -1711,7 +1711,7 @@ func (a *AlertsApiService) UpdateNetworkSensorAlertsProfileExecute(r AlertsApiUp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSensorAlertsProfile
+	localVarPostBody = r.updateNetworkSensorAlertsProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1768,11 +1768,11 @@ type AlertsApiUpdateOrganizationAlertsProfileRequest struct {
 	ApiService *AlertsApiService
 	organizationId string
 	alertConfigId string
-	updateOrganizationAlertsProfile *InlineObject184
+	updateOrganizationAlertsProfileRequest *UpdateOrganizationAlertsProfileRequest
 }
 
-func (r AlertsApiUpdateOrganizationAlertsProfileRequest) UpdateOrganizationAlertsProfile(updateOrganizationAlertsProfile InlineObject184) AlertsApiUpdateOrganizationAlertsProfileRequest {
-	r.updateOrganizationAlertsProfile = &updateOrganizationAlertsProfile
+func (r AlertsApiUpdateOrganizationAlertsProfileRequest) UpdateOrganizationAlertsProfileRequest(updateOrganizationAlertsProfileRequest UpdateOrganizationAlertsProfileRequest) AlertsApiUpdateOrganizationAlertsProfileRequest {
+	r.updateOrganizationAlertsProfileRequest = &updateOrganizationAlertsProfileRequest
 	return r
 }
 
@@ -1840,7 +1840,7 @@ func (a *AlertsApiService) UpdateOrganizationAlertsProfileExecute(r AlertsApiUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationAlertsProfile
+	localVarPostBody = r.updateOrganizationAlertsProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

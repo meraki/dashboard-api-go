@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type RoutingApiCreateDeviceSwitchRoutingInterfaceRequest struct {
 	ctx context.Context
 	ApiService *RoutingApiService
 	serial string
-	createDeviceSwitchRoutingInterface *InlineObject19
+	createDeviceSwitchRoutingInterfaceRequest *CreateDeviceSwitchRoutingInterfaceRequest
 }
 
-func (r RoutingApiCreateDeviceSwitchRoutingInterfaceRequest) CreateDeviceSwitchRoutingInterface(createDeviceSwitchRoutingInterface InlineObject19) RoutingApiCreateDeviceSwitchRoutingInterfaceRequest {
-	r.createDeviceSwitchRoutingInterface = &createDeviceSwitchRoutingInterface
+func (r RoutingApiCreateDeviceSwitchRoutingInterfaceRequest) CreateDeviceSwitchRoutingInterfaceRequest(createDeviceSwitchRoutingInterfaceRequest CreateDeviceSwitchRoutingInterfaceRequest) RoutingApiCreateDeviceSwitchRoutingInterfaceRequest {
+	r.createDeviceSwitchRoutingInterfaceRequest = &createDeviceSwitchRoutingInterfaceRequest
 	return r
 }
 
-func (r RoutingApiCreateDeviceSwitchRoutingInterfaceRequest) Execute() (*InlineResponse2008, *http.Response, error) {
+func (r RoutingApiCreateDeviceSwitchRoutingInterfaceRequest) Execute() (*GetDeviceSwitchRoutingInterfaces200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateDeviceSwitchRoutingInterfaceExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *RoutingApiService) CreateDeviceSwitchRoutingInterface(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse2008
-func (a *RoutingApiService) CreateDeviceSwitchRoutingInterfaceExecute(r RoutingApiCreateDeviceSwitchRoutingInterfaceRequest) (*InlineResponse2008, *http.Response, error) {
+//  @return GetDeviceSwitchRoutingInterfaces200ResponseInner
+func (a *RoutingApiService) CreateDeviceSwitchRoutingInterfaceExecute(r RoutingApiCreateDeviceSwitchRoutingInterfaceRequest) (*GetDeviceSwitchRoutingInterfaces200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2008
+		localVarReturnValue  *GetDeviceSwitchRoutingInterfaces200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RoutingApiService.CreateDeviceSwitchRoutingInterface")
@@ -96,7 +96,7 @@ func (a *RoutingApiService) CreateDeviceSwitchRoutingInterfaceExecute(r RoutingA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createDeviceSwitchRoutingInterface
+	localVarPostBody = r.createDeviceSwitchRoutingInterfaceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -152,11 +152,11 @@ type RoutingApiCreateDeviceSwitchRoutingStaticRouteRequest struct {
 	ctx context.Context
 	ApiService *RoutingApiService
 	serial string
-	createDeviceSwitchRoutingStaticRoute *InlineObject22
+	createDeviceSwitchRoutingStaticRouteRequest *CreateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r RoutingApiCreateDeviceSwitchRoutingStaticRouteRequest) CreateDeviceSwitchRoutingStaticRoute(createDeviceSwitchRoutingStaticRoute InlineObject22) RoutingApiCreateDeviceSwitchRoutingStaticRouteRequest {
-	r.createDeviceSwitchRoutingStaticRoute = &createDeviceSwitchRoutingStaticRoute
+func (r RoutingApiCreateDeviceSwitchRoutingStaticRouteRequest) CreateDeviceSwitchRoutingStaticRouteRequest(createDeviceSwitchRoutingStaticRouteRequest CreateDeviceSwitchRoutingStaticRouteRequest) RoutingApiCreateDeviceSwitchRoutingStaticRouteRequest {
+	r.createDeviceSwitchRoutingStaticRouteRequest = &createDeviceSwitchRoutingStaticRouteRequest
 	return r
 }
 
@@ -202,8 +202,8 @@ func (a *RoutingApiService) CreateDeviceSwitchRoutingStaticRouteExecute(r Routin
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createDeviceSwitchRoutingStaticRoute == nil {
-		return localVarReturnValue, nil, reportError("createDeviceSwitchRoutingStaticRoute is required and must be specified")
+	if r.createDeviceSwitchRoutingStaticRouteRequest == nil {
+		return localVarReturnValue, nil, reportError("createDeviceSwitchRoutingStaticRouteRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -224,7 +224,7 @@ func (a *RoutingApiService) CreateDeviceSwitchRoutingStaticRouteExecute(r Routin
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createDeviceSwitchRoutingStaticRoute
+	localVarPostBody = r.createDeviceSwitchRoutingStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -280,11 +280,11 @@ type RoutingApiCreateNetworkSwitchRoutingMulticastRendezvousPointRequest struct 
 	ctx context.Context
 	ApiService *RoutingApiService
 	networkId string
-	createNetworkSwitchRoutingMulticastRendezvousPoint *InlineObject129
+	createNetworkSwitchRoutingMulticastRendezvousPointRequest *CreateNetworkSwitchRoutingMulticastRendezvousPointRequest
 }
 
-func (r RoutingApiCreateNetworkSwitchRoutingMulticastRendezvousPointRequest) CreateNetworkSwitchRoutingMulticastRendezvousPoint(createNetworkSwitchRoutingMulticastRendezvousPoint InlineObject129) RoutingApiCreateNetworkSwitchRoutingMulticastRendezvousPointRequest {
-	r.createNetworkSwitchRoutingMulticastRendezvousPoint = &createNetworkSwitchRoutingMulticastRendezvousPoint
+func (r RoutingApiCreateNetworkSwitchRoutingMulticastRendezvousPointRequest) CreateNetworkSwitchRoutingMulticastRendezvousPointRequest(createNetworkSwitchRoutingMulticastRendezvousPointRequest CreateNetworkSwitchRoutingMulticastRendezvousPointRequest) RoutingApiCreateNetworkSwitchRoutingMulticastRendezvousPointRequest {
+	r.createNetworkSwitchRoutingMulticastRendezvousPointRequest = &createNetworkSwitchRoutingMulticastRendezvousPointRequest
 	return r
 }
 
@@ -330,8 +330,8 @@ func (a *RoutingApiService) CreateNetworkSwitchRoutingMulticastRendezvousPointEx
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchRoutingMulticastRendezvousPoint == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchRoutingMulticastRendezvousPoint is required and must be specified")
+	if r.createNetworkSwitchRoutingMulticastRendezvousPointRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSwitchRoutingMulticastRendezvousPointRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -352,7 +352,7 @@ func (a *RoutingApiService) CreateNetworkSwitchRoutingMulticastRendezvousPointEx
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchRoutingMulticastRendezvousPoint
+	localVarPostBody = r.createNetworkSwitchRoutingMulticastRendezvousPointRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -409,11 +409,11 @@ type RoutingApiCreateNetworkSwitchStackRoutingInterfaceRequest struct {
 	ApiService *RoutingApiService
 	networkId string
 	switchStackId string
-	createNetworkSwitchStackRoutingInterface *InlineObject136
+	createNetworkSwitchStackRoutingInterfaceRequest *CreateNetworkSwitchStackRoutingInterfaceRequest
 }
 
-func (r RoutingApiCreateNetworkSwitchStackRoutingInterfaceRequest) CreateNetworkSwitchStackRoutingInterface(createNetworkSwitchStackRoutingInterface InlineObject136) RoutingApiCreateNetworkSwitchStackRoutingInterfaceRequest {
-	r.createNetworkSwitchStackRoutingInterface = &createNetworkSwitchStackRoutingInterface
+func (r RoutingApiCreateNetworkSwitchStackRoutingInterfaceRequest) CreateNetworkSwitchStackRoutingInterfaceRequest(createNetworkSwitchStackRoutingInterfaceRequest CreateNetworkSwitchStackRoutingInterfaceRequest) RoutingApiCreateNetworkSwitchStackRoutingInterfaceRequest {
+	r.createNetworkSwitchStackRoutingInterfaceRequest = &createNetworkSwitchStackRoutingInterfaceRequest
 	return r
 }
 
@@ -462,8 +462,8 @@ func (a *RoutingApiService) CreateNetworkSwitchStackRoutingInterfaceExecute(r Ro
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchStackRoutingInterface == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchStackRoutingInterface is required and must be specified")
+	if r.createNetworkSwitchStackRoutingInterfaceRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSwitchStackRoutingInterfaceRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -484,7 +484,7 @@ func (a *RoutingApiService) CreateNetworkSwitchStackRoutingInterfaceExecute(r Ro
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchStackRoutingInterface
+	localVarPostBody = r.createNetworkSwitchStackRoutingInterfaceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -541,11 +541,11 @@ type RoutingApiCreateNetworkSwitchStackRoutingStaticRouteRequest struct {
 	ApiService *RoutingApiService
 	networkId string
 	switchStackId string
-	createNetworkSwitchStackRoutingStaticRoute *InlineObject139
+	createDeviceSwitchRoutingStaticRouteRequest *CreateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r RoutingApiCreateNetworkSwitchStackRoutingStaticRouteRequest) CreateNetworkSwitchStackRoutingStaticRoute(createNetworkSwitchStackRoutingStaticRoute InlineObject139) RoutingApiCreateNetworkSwitchStackRoutingStaticRouteRequest {
-	r.createNetworkSwitchStackRoutingStaticRoute = &createNetworkSwitchStackRoutingStaticRoute
+func (r RoutingApiCreateNetworkSwitchStackRoutingStaticRouteRequest) CreateDeviceSwitchRoutingStaticRouteRequest(createDeviceSwitchRoutingStaticRouteRequest CreateDeviceSwitchRoutingStaticRouteRequest) RoutingApiCreateNetworkSwitchStackRoutingStaticRouteRequest {
+	r.createDeviceSwitchRoutingStaticRouteRequest = &createDeviceSwitchRoutingStaticRouteRequest
 	return r
 }
 
@@ -594,8 +594,8 @@ func (a *RoutingApiService) CreateNetworkSwitchStackRoutingStaticRouteExecute(r 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchStackRoutingStaticRoute == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchStackRoutingStaticRoute is required and must be specified")
+	if r.createDeviceSwitchRoutingStaticRouteRequest == nil {
+		return localVarReturnValue, nil, reportError("createDeviceSwitchRoutingStaticRouteRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -616,7 +616,7 @@ func (a *RoutingApiService) CreateNetworkSwitchStackRoutingStaticRouteExecute(r 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchStackRoutingStaticRoute
+	localVarPostBody = r.createDeviceSwitchRoutingStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1233,7 +1233,7 @@ type RoutingApiGetDeviceSwitchRoutingInterfaceRequest struct {
 	interfaceId string
 }
 
-func (r RoutingApiGetDeviceSwitchRoutingInterfaceRequest) Execute() (*InlineResponse2008, *http.Response, error) {
+func (r RoutingApiGetDeviceSwitchRoutingInterfaceRequest) Execute() (*GetDeviceSwitchRoutingInterfaces200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetDeviceSwitchRoutingInterfaceExecute(r)
 }
 
@@ -1257,13 +1257,13 @@ func (a *RoutingApiService) GetDeviceSwitchRoutingInterface(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse2008
-func (a *RoutingApiService) GetDeviceSwitchRoutingInterfaceExecute(r RoutingApiGetDeviceSwitchRoutingInterfaceRequest) (*InlineResponse2008, *http.Response, error) {
+//  @return GetDeviceSwitchRoutingInterfaces200ResponseInner
+func (a *RoutingApiService) GetDeviceSwitchRoutingInterfaceExecute(r RoutingApiGetDeviceSwitchRoutingInterfaceRequest) (*GetDeviceSwitchRoutingInterfaces200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2008
+		localVarReturnValue  *GetDeviceSwitchRoutingInterfaces200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RoutingApiService.GetDeviceSwitchRoutingInterface")
@@ -1474,7 +1474,7 @@ type RoutingApiGetDeviceSwitchRoutingInterfacesRequest struct {
 	serial string
 }
 
-func (r RoutingApiGetDeviceSwitchRoutingInterfacesRequest) Execute() ([]InlineResponse2008, *http.Response, error) {
+func (r RoutingApiGetDeviceSwitchRoutingInterfacesRequest) Execute() ([]GetDeviceSwitchRoutingInterfaces200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetDeviceSwitchRoutingInterfacesExecute(r)
 }
 
@@ -1496,13 +1496,13 @@ func (a *RoutingApiService) GetDeviceSwitchRoutingInterfaces(ctx context.Context
 }
 
 // Execute executes the request
-//  @return []InlineResponse2008
-func (a *RoutingApiService) GetDeviceSwitchRoutingInterfacesExecute(r RoutingApiGetDeviceSwitchRoutingInterfacesRequest) ([]InlineResponse2008, *http.Response, error) {
+//  @return []GetDeviceSwitchRoutingInterfaces200ResponseInner
+func (a *RoutingApiService) GetDeviceSwitchRoutingInterfacesExecute(r RoutingApiGetDeviceSwitchRoutingInterfacesRequest) ([]GetDeviceSwitchRoutingInterfaces200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2008
+		localVarReturnValue  []GetDeviceSwitchRoutingInterfaces200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RoutingApiService.GetDeviceSwitchRoutingInterfaces")
@@ -1592,7 +1592,7 @@ type RoutingApiGetDeviceSwitchRoutingStaticRouteRequest struct {
 	staticRouteId string
 }
 
-func (r RoutingApiGetDeviceSwitchRoutingStaticRouteRequest) Execute() (*InlineResponse2009, *http.Response, error) {
+func (r RoutingApiGetDeviceSwitchRoutingStaticRouteRequest) Execute() (*GetDeviceSwitchRoutingStaticRoute200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceSwitchRoutingStaticRouteExecute(r)
 }
 
@@ -1616,13 +1616,13 @@ func (a *RoutingApiService) GetDeviceSwitchRoutingStaticRoute(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse2009
-func (a *RoutingApiService) GetDeviceSwitchRoutingStaticRouteExecute(r RoutingApiGetDeviceSwitchRoutingStaticRouteRequest) (*InlineResponse2009, *http.Response, error) {
+//  @return GetDeviceSwitchRoutingStaticRoute200Response
+func (a *RoutingApiService) GetDeviceSwitchRoutingStaticRouteExecute(r RoutingApiGetDeviceSwitchRoutingStaticRouteRequest) (*GetDeviceSwitchRoutingStaticRoute200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2009
+		localVarReturnValue  *GetDeviceSwitchRoutingStaticRoute200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RoutingApiService.GetDeviceSwitchRoutingStaticRoute")
@@ -1829,7 +1829,7 @@ type RoutingApiGetNetworkSwitchRoutingMulticastRequest struct {
 	networkId string
 }
 
-func (r RoutingApiGetNetworkSwitchRoutingMulticastRequest) Execute() (*InlineResponse20077, *http.Response, error) {
+func (r RoutingApiGetNetworkSwitchRoutingMulticastRequest) Execute() (*GetNetworkSwitchRoutingMulticast200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchRoutingMulticastExecute(r)
 }
 
@@ -1851,13 +1851,13 @@ func (a *RoutingApiService) GetNetworkSwitchRoutingMulticast(ctx context.Context
 }
 
 // Execute executes the request
-//  @return InlineResponse20077
-func (a *RoutingApiService) GetNetworkSwitchRoutingMulticastExecute(r RoutingApiGetNetworkSwitchRoutingMulticastRequest) (*InlineResponse20077, *http.Response, error) {
+//  @return GetNetworkSwitchRoutingMulticast200Response
+func (a *RoutingApiService) GetNetworkSwitchRoutingMulticastExecute(r RoutingApiGetNetworkSwitchRoutingMulticastRequest) (*GetNetworkSwitchRoutingMulticast200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20077
+		localVarReturnValue  *GetNetworkSwitchRoutingMulticast200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RoutingApiService.GetNetworkSwitchRoutingMulticast")
@@ -2428,7 +2428,7 @@ type RoutingApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest struct {
 	interfaceId string
 }
 
-func (r RoutingApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest) Execute() (*InlineResponse20080, *http.Response, error) {
+func (r RoutingApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest) Execute() (*GetNetworkSwitchStackRoutingInterfaceDhcp200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchStackRoutingInterfaceDhcpExecute(r)
 }
 
@@ -2454,13 +2454,13 @@ func (a *RoutingApiService) GetNetworkSwitchStackRoutingInterfaceDhcp(ctx contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20080
-func (a *RoutingApiService) GetNetworkSwitchStackRoutingInterfaceDhcpExecute(r RoutingApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest) (*InlineResponse20080, *http.Response, error) {
+//  @return GetNetworkSwitchStackRoutingInterfaceDhcp200Response
+func (a *RoutingApiService) GetNetworkSwitchStackRoutingInterfaceDhcpExecute(r RoutingApiGetNetworkSwitchStackRoutingInterfaceDhcpRequest) (*GetNetworkSwitchStackRoutingInterfaceDhcp200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20080
+		localVarReturnValue  *GetNetworkSwitchStackRoutingInterfaceDhcp200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RoutingApiService.GetNetworkSwitchStackRoutingInterfaceDhcp")
@@ -2917,15 +2917,15 @@ type RoutingApiUpdateDeviceSwitchRoutingInterfaceRequest struct {
 	ApiService *RoutingApiService
 	serial string
 	interfaceId string
-	updateDeviceSwitchRoutingInterface *InlineObject20
+	createDeviceSwitchRoutingInterfaceRequest *CreateDeviceSwitchRoutingInterfaceRequest
 }
 
-func (r RoutingApiUpdateDeviceSwitchRoutingInterfaceRequest) UpdateDeviceSwitchRoutingInterface(updateDeviceSwitchRoutingInterface InlineObject20) RoutingApiUpdateDeviceSwitchRoutingInterfaceRequest {
-	r.updateDeviceSwitchRoutingInterface = &updateDeviceSwitchRoutingInterface
+func (r RoutingApiUpdateDeviceSwitchRoutingInterfaceRequest) CreateDeviceSwitchRoutingInterfaceRequest(createDeviceSwitchRoutingInterfaceRequest CreateDeviceSwitchRoutingInterfaceRequest) RoutingApiUpdateDeviceSwitchRoutingInterfaceRequest {
+	r.createDeviceSwitchRoutingInterfaceRequest = &createDeviceSwitchRoutingInterfaceRequest
 	return r
 }
 
-func (r RoutingApiUpdateDeviceSwitchRoutingInterfaceRequest) Execute() (*InlineResponse2008, *http.Response, error) {
+func (r RoutingApiUpdateDeviceSwitchRoutingInterfaceRequest) Execute() (*GetDeviceSwitchRoutingInterfaces200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateDeviceSwitchRoutingInterfaceExecute(r)
 }
 
@@ -2949,13 +2949,13 @@ func (a *RoutingApiService) UpdateDeviceSwitchRoutingInterface(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse2008
-func (a *RoutingApiService) UpdateDeviceSwitchRoutingInterfaceExecute(r RoutingApiUpdateDeviceSwitchRoutingInterfaceRequest) (*InlineResponse2008, *http.Response, error) {
+//  @return GetDeviceSwitchRoutingInterfaces200ResponseInner
+func (a *RoutingApiService) UpdateDeviceSwitchRoutingInterfaceExecute(r RoutingApiUpdateDeviceSwitchRoutingInterfaceRequest) (*GetDeviceSwitchRoutingInterfaces200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2008
+		localVarReturnValue  *GetDeviceSwitchRoutingInterfaces200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RoutingApiService.UpdateDeviceSwitchRoutingInterface")
@@ -2989,7 +2989,7 @@ func (a *RoutingApiService) UpdateDeviceSwitchRoutingInterfaceExecute(r RoutingA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceSwitchRoutingInterface
+	localVarPostBody = r.createDeviceSwitchRoutingInterfaceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3046,11 +3046,11 @@ type RoutingApiUpdateDeviceSwitchRoutingInterfaceDhcpRequest struct {
 	ApiService *RoutingApiService
 	serial string
 	interfaceId string
-	updateDeviceSwitchRoutingInterfaceDhcp *InlineObject21
+	updateDeviceSwitchRoutingInterfaceDhcpRequest *UpdateDeviceSwitchRoutingInterfaceDhcpRequest
 }
 
-func (r RoutingApiUpdateDeviceSwitchRoutingInterfaceDhcpRequest) UpdateDeviceSwitchRoutingInterfaceDhcp(updateDeviceSwitchRoutingInterfaceDhcp InlineObject21) RoutingApiUpdateDeviceSwitchRoutingInterfaceDhcpRequest {
-	r.updateDeviceSwitchRoutingInterfaceDhcp = &updateDeviceSwitchRoutingInterfaceDhcp
+func (r RoutingApiUpdateDeviceSwitchRoutingInterfaceDhcpRequest) UpdateDeviceSwitchRoutingInterfaceDhcpRequest(updateDeviceSwitchRoutingInterfaceDhcpRequest UpdateDeviceSwitchRoutingInterfaceDhcpRequest) RoutingApiUpdateDeviceSwitchRoutingInterfaceDhcpRequest {
+	r.updateDeviceSwitchRoutingInterfaceDhcpRequest = &updateDeviceSwitchRoutingInterfaceDhcpRequest
 	return r
 }
 
@@ -3118,7 +3118,7 @@ func (a *RoutingApiService) UpdateDeviceSwitchRoutingInterfaceDhcpExecute(r Rout
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceSwitchRoutingInterfaceDhcp
+	localVarPostBody = r.updateDeviceSwitchRoutingInterfaceDhcpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3175,11 +3175,11 @@ type RoutingApiUpdateDeviceSwitchRoutingStaticRouteRequest struct {
 	ApiService *RoutingApiService
 	serial string
 	staticRouteId string
-	updateDeviceSwitchRoutingStaticRoute *InlineObject23
+	updateDeviceSwitchRoutingStaticRouteRequest *UpdateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r RoutingApiUpdateDeviceSwitchRoutingStaticRouteRequest) UpdateDeviceSwitchRoutingStaticRoute(updateDeviceSwitchRoutingStaticRoute InlineObject23) RoutingApiUpdateDeviceSwitchRoutingStaticRouteRequest {
-	r.updateDeviceSwitchRoutingStaticRoute = &updateDeviceSwitchRoutingStaticRoute
+func (r RoutingApiUpdateDeviceSwitchRoutingStaticRouteRequest) UpdateDeviceSwitchRoutingStaticRouteRequest(updateDeviceSwitchRoutingStaticRouteRequest UpdateDeviceSwitchRoutingStaticRouteRequest) RoutingApiUpdateDeviceSwitchRoutingStaticRouteRequest {
+	r.updateDeviceSwitchRoutingStaticRouteRequest = &updateDeviceSwitchRoutingStaticRouteRequest
 	return r
 }
 
@@ -3247,7 +3247,7 @@ func (a *RoutingApiService) UpdateDeviceSwitchRoutingStaticRouteExecute(r Routin
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceSwitchRoutingStaticRoute
+	localVarPostBody = r.updateDeviceSwitchRoutingStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3303,11 +3303,11 @@ type RoutingApiUpdateNetworkSwitchRoutingMulticastRequest struct {
 	ctx context.Context
 	ApiService *RoutingApiService
 	networkId string
-	updateNetworkSwitchRoutingMulticast *InlineObject128
+	updateNetworkSwitchRoutingMulticastRequest *UpdateNetworkSwitchRoutingMulticastRequest
 }
 
-func (r RoutingApiUpdateNetworkSwitchRoutingMulticastRequest) UpdateNetworkSwitchRoutingMulticast(updateNetworkSwitchRoutingMulticast InlineObject128) RoutingApiUpdateNetworkSwitchRoutingMulticastRequest {
-	r.updateNetworkSwitchRoutingMulticast = &updateNetworkSwitchRoutingMulticast
+func (r RoutingApiUpdateNetworkSwitchRoutingMulticastRequest) UpdateNetworkSwitchRoutingMulticastRequest(updateNetworkSwitchRoutingMulticastRequest UpdateNetworkSwitchRoutingMulticastRequest) RoutingApiUpdateNetworkSwitchRoutingMulticastRequest {
+	r.updateNetworkSwitchRoutingMulticastRequest = &updateNetworkSwitchRoutingMulticastRequest
 	return r
 }
 
@@ -3372,7 +3372,7 @@ func (a *RoutingApiService) UpdateNetworkSwitchRoutingMulticastExecute(r Routing
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchRoutingMulticast
+	localVarPostBody = r.updateNetworkSwitchRoutingMulticastRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3429,11 +3429,11 @@ type RoutingApiUpdateNetworkSwitchRoutingMulticastRendezvousPointRequest struct 
 	ApiService *RoutingApiService
 	networkId string
 	rendezvousPointId string
-	updateNetworkSwitchRoutingMulticastRendezvousPoint *InlineObject130
+	updateNetworkSwitchRoutingMulticastRendezvousPointRequest *UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest
 }
 
-func (r RoutingApiUpdateNetworkSwitchRoutingMulticastRendezvousPointRequest) UpdateNetworkSwitchRoutingMulticastRendezvousPoint(updateNetworkSwitchRoutingMulticastRendezvousPoint InlineObject130) RoutingApiUpdateNetworkSwitchRoutingMulticastRendezvousPointRequest {
-	r.updateNetworkSwitchRoutingMulticastRendezvousPoint = &updateNetworkSwitchRoutingMulticastRendezvousPoint
+func (r RoutingApiUpdateNetworkSwitchRoutingMulticastRendezvousPointRequest) UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest(updateNetworkSwitchRoutingMulticastRendezvousPointRequest UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest) RoutingApiUpdateNetworkSwitchRoutingMulticastRendezvousPointRequest {
+	r.updateNetworkSwitchRoutingMulticastRendezvousPointRequest = &updateNetworkSwitchRoutingMulticastRendezvousPointRequest
 	return r
 }
 
@@ -3482,8 +3482,8 @@ func (a *RoutingApiService) UpdateNetworkSwitchRoutingMulticastRendezvousPointEx
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSwitchRoutingMulticastRendezvousPoint == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSwitchRoutingMulticastRendezvousPoint is required and must be specified")
+	if r.updateNetworkSwitchRoutingMulticastRendezvousPointRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSwitchRoutingMulticastRendezvousPointRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -3504,7 +3504,7 @@ func (a *RoutingApiService) UpdateNetworkSwitchRoutingMulticastRendezvousPointEx
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchRoutingMulticastRendezvousPoint
+	localVarPostBody = r.updateNetworkSwitchRoutingMulticastRendezvousPointRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3560,11 +3560,11 @@ type RoutingApiUpdateNetworkSwitchRoutingOspfRequest struct {
 	ctx context.Context
 	ApiService *RoutingApiService
 	networkId string
-	updateNetworkSwitchRoutingOspf *InlineObject131
+	updateNetworkSwitchRoutingOspfRequest *UpdateNetworkSwitchRoutingOspfRequest
 }
 
-func (r RoutingApiUpdateNetworkSwitchRoutingOspfRequest) UpdateNetworkSwitchRoutingOspf(updateNetworkSwitchRoutingOspf InlineObject131) RoutingApiUpdateNetworkSwitchRoutingOspfRequest {
-	r.updateNetworkSwitchRoutingOspf = &updateNetworkSwitchRoutingOspf
+func (r RoutingApiUpdateNetworkSwitchRoutingOspfRequest) UpdateNetworkSwitchRoutingOspfRequest(updateNetworkSwitchRoutingOspfRequest UpdateNetworkSwitchRoutingOspfRequest) RoutingApiUpdateNetworkSwitchRoutingOspfRequest {
+	r.updateNetworkSwitchRoutingOspfRequest = &updateNetworkSwitchRoutingOspfRequest
 	return r
 }
 
@@ -3629,7 +3629,7 @@ func (a *RoutingApiService) UpdateNetworkSwitchRoutingOspfExecute(r RoutingApiUp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchRoutingOspf
+	localVarPostBody = r.updateNetworkSwitchRoutingOspfRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3687,11 +3687,11 @@ type RoutingApiUpdateNetworkSwitchStackRoutingInterfaceRequest struct {
 	networkId string
 	switchStackId string
 	interfaceId string
-	updateNetworkSwitchStackRoutingInterface *InlineObject137
+	updateNetworkSwitchStackRoutingInterfaceRequest *UpdateNetworkSwitchStackRoutingInterfaceRequest
 }
 
-func (r RoutingApiUpdateNetworkSwitchStackRoutingInterfaceRequest) UpdateNetworkSwitchStackRoutingInterface(updateNetworkSwitchStackRoutingInterface InlineObject137) RoutingApiUpdateNetworkSwitchStackRoutingInterfaceRequest {
-	r.updateNetworkSwitchStackRoutingInterface = &updateNetworkSwitchStackRoutingInterface
+func (r RoutingApiUpdateNetworkSwitchStackRoutingInterfaceRequest) UpdateNetworkSwitchStackRoutingInterfaceRequest(updateNetworkSwitchStackRoutingInterfaceRequest UpdateNetworkSwitchStackRoutingInterfaceRequest) RoutingApiUpdateNetworkSwitchStackRoutingInterfaceRequest {
+	r.updateNetworkSwitchStackRoutingInterfaceRequest = &updateNetworkSwitchStackRoutingInterfaceRequest
 	return r
 }
 
@@ -3762,7 +3762,7 @@ func (a *RoutingApiService) UpdateNetworkSwitchStackRoutingInterfaceExecute(r Ro
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchStackRoutingInterface
+	localVarPostBody = r.updateNetworkSwitchStackRoutingInterfaceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3820,11 +3820,11 @@ type RoutingApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest struct {
 	networkId string
 	switchStackId string
 	interfaceId string
-	updateNetworkSwitchStackRoutingInterfaceDhcp *InlineObject138
+	updateNetworkSwitchStackRoutingInterfaceDhcpRequest *UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest
 }
 
-func (r RoutingApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest) UpdateNetworkSwitchStackRoutingInterfaceDhcp(updateNetworkSwitchStackRoutingInterfaceDhcp InlineObject138) RoutingApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest {
-	r.updateNetworkSwitchStackRoutingInterfaceDhcp = &updateNetworkSwitchStackRoutingInterfaceDhcp
+func (r RoutingApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest) UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest(updateNetworkSwitchStackRoutingInterfaceDhcpRequest UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest) RoutingApiUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest {
+	r.updateNetworkSwitchStackRoutingInterfaceDhcpRequest = &updateNetworkSwitchStackRoutingInterfaceDhcpRequest
 	return r
 }
 
@@ -3895,7 +3895,7 @@ func (a *RoutingApiService) UpdateNetworkSwitchStackRoutingInterfaceDhcpExecute(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchStackRoutingInterfaceDhcp
+	localVarPostBody = r.updateNetworkSwitchStackRoutingInterfaceDhcpRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3953,11 +3953,11 @@ type RoutingApiUpdateNetworkSwitchStackRoutingStaticRouteRequest struct {
 	networkId string
 	switchStackId string
 	staticRouteId string
-	updateNetworkSwitchStackRoutingStaticRoute *InlineObject140
+	updateDeviceSwitchRoutingStaticRouteRequest *UpdateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r RoutingApiUpdateNetworkSwitchStackRoutingStaticRouteRequest) UpdateNetworkSwitchStackRoutingStaticRoute(updateNetworkSwitchStackRoutingStaticRoute InlineObject140) RoutingApiUpdateNetworkSwitchStackRoutingStaticRouteRequest {
-	r.updateNetworkSwitchStackRoutingStaticRoute = &updateNetworkSwitchStackRoutingStaticRoute
+func (r RoutingApiUpdateNetworkSwitchStackRoutingStaticRouteRequest) UpdateDeviceSwitchRoutingStaticRouteRequest(updateDeviceSwitchRoutingStaticRouteRequest UpdateDeviceSwitchRoutingStaticRouteRequest) RoutingApiUpdateNetworkSwitchStackRoutingStaticRouteRequest {
+	r.updateDeviceSwitchRoutingStaticRouteRequest = &updateDeviceSwitchRoutingStaticRouteRequest
 	return r
 }
 
@@ -4028,7 +4028,7 @@ func (a *RoutingApiService) UpdateNetworkSwitchStackRoutingStaticRouteExecute(r 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchStackRoutingStaticRoute
+	localVarPostBody = r.updateDeviceSwitchRoutingStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type PortSchedulesApiCreateNetworkSwitchPortScheduleRequest struct {
 	ctx context.Context
 	ApiService *PortSchedulesApiService
 	networkId string
-	createNetworkSwitchPortSchedule *InlineObject123
+	createNetworkSwitchPortScheduleRequest *CreateNetworkSwitchPortScheduleRequest
 }
 
-func (r PortSchedulesApiCreateNetworkSwitchPortScheduleRequest) CreateNetworkSwitchPortSchedule(createNetworkSwitchPortSchedule InlineObject123) PortSchedulesApiCreateNetworkSwitchPortScheduleRequest {
-	r.createNetworkSwitchPortSchedule = &createNetworkSwitchPortSchedule
+func (r PortSchedulesApiCreateNetworkSwitchPortScheduleRequest) CreateNetworkSwitchPortScheduleRequest(createNetworkSwitchPortScheduleRequest CreateNetworkSwitchPortScheduleRequest) PortSchedulesApiCreateNetworkSwitchPortScheduleRequest {
+	r.createNetworkSwitchPortScheduleRequest = &createNetworkSwitchPortScheduleRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *PortSchedulesApiService) CreateNetworkSwitchPortScheduleExecute(r PortS
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchPortSchedule == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchPortSchedule is required and must be specified")
+	if r.createNetworkSwitchPortScheduleRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSwitchPortScheduleRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *PortSchedulesApiService) CreateNetworkSwitchPortScheduleExecute(r PortS
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchPortSchedule
+	localVarPostBody = r.createNetworkSwitchPortScheduleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -383,11 +383,11 @@ type PortSchedulesApiUpdateNetworkSwitchPortScheduleRequest struct {
 	ApiService *PortSchedulesApiService
 	networkId string
 	portScheduleId string
-	updateNetworkSwitchPortSchedule *InlineObject124
+	updateNetworkSwitchPortScheduleRequest *UpdateNetworkSwitchPortScheduleRequest
 }
 
-func (r PortSchedulesApiUpdateNetworkSwitchPortScheduleRequest) UpdateNetworkSwitchPortSchedule(updateNetworkSwitchPortSchedule InlineObject124) PortSchedulesApiUpdateNetworkSwitchPortScheduleRequest {
-	r.updateNetworkSwitchPortSchedule = &updateNetworkSwitchPortSchedule
+func (r PortSchedulesApiUpdateNetworkSwitchPortScheduleRequest) UpdateNetworkSwitchPortScheduleRequest(updateNetworkSwitchPortScheduleRequest UpdateNetworkSwitchPortScheduleRequest) PortSchedulesApiUpdateNetworkSwitchPortScheduleRequest {
+	r.updateNetworkSwitchPortScheduleRequest = &updateNetworkSwitchPortScheduleRequest
 	return r
 }
 
@@ -455,7 +455,7 @@ func (a *PortSchedulesApiService) UpdateNetworkSwitchPortScheduleExecute(r PortS
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchPortSchedule
+	localVarPostBody = r.updateNetworkSwitchPortScheduleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

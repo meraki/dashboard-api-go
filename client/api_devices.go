@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -27,11 +28,11 @@ type DevicesApiBlinkDeviceLedsRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	serial string
-	blinkDeviceLeds *InlineObject3
+	blinkDeviceLedsRequest *BlinkDeviceLedsRequest
 }
 
-func (r DevicesApiBlinkDeviceLedsRequest) BlinkDeviceLeds(blinkDeviceLeds InlineObject3) DevicesApiBlinkDeviceLedsRequest {
-	r.blinkDeviceLeds = &blinkDeviceLeds
+func (r DevicesApiBlinkDeviceLedsRequest) BlinkDeviceLedsRequest(blinkDeviceLedsRequest BlinkDeviceLedsRequest) DevicesApiBlinkDeviceLedsRequest {
+	r.blinkDeviceLedsRequest = &blinkDeviceLedsRequest
 	return r
 }
 
@@ -96,7 +97,7 @@ func (a *DevicesApiService) BlinkDeviceLedsExecute(r DevicesApiBlinkDeviceLedsRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.blinkDeviceLeds
+	localVarPostBody = r.blinkDeviceLedsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -152,15 +153,15 @@ type DevicesApiCheckinNetworkSmDevicesRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	checkinNetworkSmDevices *InlineObject103
+	checkinNetworkSmDevicesRequest *CheckinNetworkSmDevicesRequest
 }
 
-func (r DevicesApiCheckinNetworkSmDevicesRequest) CheckinNetworkSmDevices(checkinNetworkSmDevices InlineObject103) DevicesApiCheckinNetworkSmDevicesRequest {
-	r.checkinNetworkSmDevices = &checkinNetworkSmDevices
+func (r DevicesApiCheckinNetworkSmDevicesRequest) CheckinNetworkSmDevicesRequest(checkinNetworkSmDevicesRequest CheckinNetworkSmDevicesRequest) DevicesApiCheckinNetworkSmDevicesRequest {
+	r.checkinNetworkSmDevicesRequest = &checkinNetworkSmDevicesRequest
 	return r
 }
 
-func (r DevicesApiCheckinNetworkSmDevicesRequest) Execute() (*InlineResponse20046, *http.Response, error) {
+func (r DevicesApiCheckinNetworkSmDevicesRequest) Execute() (*CheckinNetworkSmDevices200Response, *http.Response, error) {
 	return r.ApiService.CheckinNetworkSmDevicesExecute(r)
 }
 
@@ -182,13 +183,13 @@ func (a *DevicesApiService) CheckinNetworkSmDevices(ctx context.Context, network
 }
 
 // Execute executes the request
-//  @return InlineResponse20046
-func (a *DevicesApiService) CheckinNetworkSmDevicesExecute(r DevicesApiCheckinNetworkSmDevicesRequest) (*InlineResponse20046, *http.Response, error) {
+//  @return CheckinNetworkSmDevices200Response
+func (a *DevicesApiService) CheckinNetworkSmDevicesExecute(r DevicesApiCheckinNetworkSmDevicesRequest) (*CheckinNetworkSmDevices200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20046
+		localVarReturnValue  *CheckinNetworkSmDevices200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.CheckinNetworkSmDevices")
@@ -221,7 +222,7 @@ func (a *DevicesApiService) CheckinNetworkSmDevicesExecute(r DevicesApiCheckinNe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.checkinNetworkSmDevices
+	localVarPostBody = r.checkinNetworkSmDevicesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -277,11 +278,11 @@ type DevicesApiClaimNetworkDevicesRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	claimNetworkDevices *InlineObject77
+	claimNetworkDevicesRequest *ClaimNetworkDevicesRequest
 }
 
-func (r DevicesApiClaimNetworkDevicesRequest) ClaimNetworkDevices(claimNetworkDevices InlineObject77) DevicesApiClaimNetworkDevicesRequest {
-	r.claimNetworkDevices = &claimNetworkDevices
+func (r DevicesApiClaimNetworkDevicesRequest) ClaimNetworkDevicesRequest(claimNetworkDevicesRequest ClaimNetworkDevicesRequest) DevicesApiClaimNetworkDevicesRequest {
+	r.claimNetworkDevicesRequest = &claimNetworkDevicesRequest
 	return r
 }
 
@@ -325,8 +326,8 @@ func (a *DevicesApiService) ClaimNetworkDevicesExecute(r DevicesApiClaimNetworkD
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.claimNetworkDevices == nil {
-		return nil, reportError("claimNetworkDevices is required and must be specified")
+	if r.claimNetworkDevicesRequest == nil {
+		return nil, reportError("claimNetworkDevicesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -347,7 +348,7 @@ func (a *DevicesApiService) ClaimNetworkDevicesExecute(r DevicesApiClaimNetworkD
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.claimNetworkDevices
+	localVarPostBody = r.claimNetworkDevicesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -394,11 +395,11 @@ type DevicesApiCloneOrganizationSwitchDevicesRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	organizationId string
-	cloneOrganizationSwitchDevices *InlineObject226
+	cloneOrganizationSwitchDevicesRequest *CloneOrganizationSwitchDevicesRequest
 }
 
-func (r DevicesApiCloneOrganizationSwitchDevicesRequest) CloneOrganizationSwitchDevices(cloneOrganizationSwitchDevices InlineObject226) DevicesApiCloneOrganizationSwitchDevicesRequest {
-	r.cloneOrganizationSwitchDevices = &cloneOrganizationSwitchDevices
+func (r DevicesApiCloneOrganizationSwitchDevicesRequest) CloneOrganizationSwitchDevicesRequest(cloneOrganizationSwitchDevicesRequest CloneOrganizationSwitchDevicesRequest) DevicesApiCloneOrganizationSwitchDevicesRequest {
+	r.cloneOrganizationSwitchDevicesRequest = &cloneOrganizationSwitchDevicesRequest
 	return r
 }
 
@@ -444,8 +445,8 @@ func (a *DevicesApiService) CloneOrganizationSwitchDevicesExecute(r DevicesApiCl
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.cloneOrganizationSwitchDevices == nil {
-		return localVarReturnValue, nil, reportError("cloneOrganizationSwitchDevices is required and must be specified")
+	if r.cloneOrganizationSwitchDevicesRequest == nil {
+		return localVarReturnValue, nil, reportError("cloneOrganizationSwitchDevicesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -466,7 +467,7 @@ func (a *DevicesApiService) CloneOrganizationSwitchDevicesExecute(r DevicesApiCl
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.cloneOrganizationSwitchDevices
+	localVarPostBody = r.cloneOrganizationSwitchDevicesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -522,15 +523,15 @@ type DevicesApiCreateDeviceLiveToolsPingRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	serial string
-	createDeviceLiveToolsPing *InlineObject13
+	createDeviceLiveToolsPingRequest *CreateDeviceLiveToolsPingRequest
 }
 
-func (r DevicesApiCreateDeviceLiveToolsPingRequest) CreateDeviceLiveToolsPing(createDeviceLiveToolsPing InlineObject13) DevicesApiCreateDeviceLiveToolsPingRequest {
-	r.createDeviceLiveToolsPing = &createDeviceLiveToolsPing
+func (r DevicesApiCreateDeviceLiveToolsPingRequest) CreateDeviceLiveToolsPingRequest(createDeviceLiveToolsPingRequest CreateDeviceLiveToolsPingRequest) DevicesApiCreateDeviceLiveToolsPingRequest {
+	r.createDeviceLiveToolsPingRequest = &createDeviceLiveToolsPingRequest
 	return r
 }
 
-func (r DevicesApiCreateDeviceLiveToolsPingRequest) Execute() (*InlineResponse2011, *http.Response, error) {
+func (r DevicesApiCreateDeviceLiveToolsPingRequest) Execute() (*CreateDeviceLiveToolsPing201Response, *http.Response, error) {
 	return r.ApiService.CreateDeviceLiveToolsPingExecute(r)
 }
 
@@ -552,13 +553,13 @@ func (a *DevicesApiService) CreateDeviceLiveToolsPing(ctx context.Context, seria
 }
 
 // Execute executes the request
-//  @return InlineResponse2011
-func (a *DevicesApiService) CreateDeviceLiveToolsPingExecute(r DevicesApiCreateDeviceLiveToolsPingRequest) (*InlineResponse2011, *http.Response, error) {
+//  @return CreateDeviceLiveToolsPing201Response
+func (a *DevicesApiService) CreateDeviceLiveToolsPingExecute(r DevicesApiCreateDeviceLiveToolsPingRequest) (*CreateDeviceLiveToolsPing201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2011
+		localVarReturnValue  *CreateDeviceLiveToolsPing201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.CreateDeviceLiveToolsPing")
@@ -572,8 +573,8 @@ func (a *DevicesApiService) CreateDeviceLiveToolsPingExecute(r DevicesApiCreateD
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createDeviceLiveToolsPing == nil {
-		return localVarReturnValue, nil, reportError("createDeviceLiveToolsPing is required and must be specified")
+	if r.createDeviceLiveToolsPingRequest == nil {
+		return localVarReturnValue, nil, reportError("createDeviceLiveToolsPingRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -594,7 +595,7 @@ func (a *DevicesApiService) CreateDeviceLiveToolsPingExecute(r DevicesApiCreateD
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createDeviceLiveToolsPing
+	localVarPostBody = r.createDeviceLiveToolsPingRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -650,15 +651,15 @@ type DevicesApiCreateDeviceLiveToolsPingDeviceRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	serial string
-	createDeviceLiveToolsPingDevice *InlineObject14
+	createDeviceLiveToolsPingDeviceRequest *CreateDeviceLiveToolsPingDeviceRequest
 }
 
-func (r DevicesApiCreateDeviceLiveToolsPingDeviceRequest) CreateDeviceLiveToolsPingDevice(createDeviceLiveToolsPingDevice InlineObject14) DevicesApiCreateDeviceLiveToolsPingDeviceRequest {
-	r.createDeviceLiveToolsPingDevice = &createDeviceLiveToolsPingDevice
+func (r DevicesApiCreateDeviceLiveToolsPingDeviceRequest) CreateDeviceLiveToolsPingDeviceRequest(createDeviceLiveToolsPingDeviceRequest CreateDeviceLiveToolsPingDeviceRequest) DevicesApiCreateDeviceLiveToolsPingDeviceRequest {
+	r.createDeviceLiveToolsPingDeviceRequest = &createDeviceLiveToolsPingDeviceRequest
 	return r
 }
 
-func (r DevicesApiCreateDeviceLiveToolsPingDeviceRequest) Execute() (*InlineResponse2011, *http.Response, error) {
+func (r DevicesApiCreateDeviceLiveToolsPingDeviceRequest) Execute() (*CreateDeviceLiveToolsPing201Response, *http.Response, error) {
 	return r.ApiService.CreateDeviceLiveToolsPingDeviceExecute(r)
 }
 
@@ -680,13 +681,13 @@ func (a *DevicesApiService) CreateDeviceLiveToolsPingDevice(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse2011
-func (a *DevicesApiService) CreateDeviceLiveToolsPingDeviceExecute(r DevicesApiCreateDeviceLiveToolsPingDeviceRequest) (*InlineResponse2011, *http.Response, error) {
+//  @return CreateDeviceLiveToolsPing201Response
+func (a *DevicesApiService) CreateDeviceLiveToolsPingDeviceExecute(r DevicesApiCreateDeviceLiveToolsPingDeviceRequest) (*CreateDeviceLiveToolsPing201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2011
+		localVarReturnValue  *CreateDeviceLiveToolsPing201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.CreateDeviceLiveToolsPingDevice")
@@ -719,7 +720,7 @@ func (a *DevicesApiService) CreateDeviceLiveToolsPingDeviceExecute(r DevicesApiC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createDeviceLiveToolsPingDevice
+	localVarPostBody = r.createDeviceLiveToolsPingDeviceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1149,7 +1150,7 @@ type DevicesApiGetDeviceLiveToolsPingRequest struct {
 	id string
 }
 
-func (r DevicesApiGetDeviceLiveToolsPingRequest) Execute() (*InlineResponse2003, *http.Response, error) {
+func (r DevicesApiGetDeviceLiveToolsPingRequest) Execute() (*GetDeviceLiveToolsPing200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceLiveToolsPingExecute(r)
 }
 
@@ -1173,13 +1174,13 @@ func (a *DevicesApiService) GetDeviceLiveToolsPing(ctx context.Context, serial s
 }
 
 // Execute executes the request
-//  @return InlineResponse2003
-func (a *DevicesApiService) GetDeviceLiveToolsPingExecute(r DevicesApiGetDeviceLiveToolsPingRequest) (*InlineResponse2003, *http.Response, error) {
+//  @return GetDeviceLiveToolsPing200Response
+func (a *DevicesApiService) GetDeviceLiveToolsPingExecute(r DevicesApiGetDeviceLiveToolsPingRequest) (*GetDeviceLiveToolsPing200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2003
+		localVarReturnValue  *GetDeviceLiveToolsPing200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetDeviceLiveToolsPing")
@@ -1270,7 +1271,7 @@ type DevicesApiGetDeviceLiveToolsPingDeviceRequest struct {
 	id string
 }
 
-func (r DevicesApiGetDeviceLiveToolsPingDeviceRequest) Execute() (*InlineResponse2003, *http.Response, error) {
+func (r DevicesApiGetDeviceLiveToolsPingDeviceRequest) Execute() (*GetDeviceLiveToolsPing200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceLiveToolsPingDeviceExecute(r)
 }
 
@@ -1294,13 +1295,13 @@ func (a *DevicesApiService) GetDeviceLiveToolsPingDevice(ctx context.Context, se
 }
 
 // Execute executes the request
-//  @return InlineResponse2003
-func (a *DevicesApiService) GetDeviceLiveToolsPingDeviceExecute(r DevicesApiGetDeviceLiveToolsPingDeviceRequest) (*InlineResponse2003, *http.Response, error) {
+//  @return GetDeviceLiveToolsPing200Response
+func (a *DevicesApiService) GetDeviceLiveToolsPingDeviceExecute(r DevicesApiGetDeviceLiveToolsPingDeviceRequest) (*GetDeviceLiveToolsPing200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2003
+		localVarReturnValue  *GetDeviceLiveToolsPing200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetDeviceLiveToolsPingDevice")
@@ -1920,7 +1921,7 @@ type DevicesApiGetNetworkSmDeviceCellularUsageHistoryRequest struct {
 	deviceId string
 }
 
-func (r DevicesApiGetNetworkSmDeviceCellularUsageHistoryRequest) Execute() ([]InlineResponse20051, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceCellularUsageHistoryRequest) Execute() ([]GetNetworkSmDeviceCellularUsageHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceCellularUsageHistoryExecute(r)
 }
 
@@ -1944,13 +1945,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceCellularUsageHistory(ctx context.C
 }
 
 // Execute executes the request
-//  @return []InlineResponse20051
-func (a *DevicesApiService) GetNetworkSmDeviceCellularUsageHistoryExecute(r DevicesApiGetNetworkSmDeviceCellularUsageHistoryRequest) ([]InlineResponse20051, *http.Response, error) {
+//  @return []GetNetworkSmDeviceCellularUsageHistory200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceCellularUsageHistoryExecute(r DevicesApiGetNetworkSmDeviceCellularUsageHistoryRequest) ([]GetNetworkSmDeviceCellularUsageHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20051
+		localVarReturnValue  []GetNetworkSmDeviceCellularUsageHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceCellularUsageHistory")
@@ -2041,7 +2042,7 @@ type DevicesApiGetNetworkSmDeviceCertsRequest struct {
 	deviceId string
 }
 
-func (r DevicesApiGetNetworkSmDeviceCertsRequest) Execute() ([]InlineResponse20052, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceCertsRequest) Execute() ([]GetNetworkSmDeviceCerts200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceCertsExecute(r)
 }
 
@@ -2065,13 +2066,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceCerts(ctx context.Context, network
 }
 
 // Execute executes the request
-//  @return []InlineResponse20052
-func (a *DevicesApiService) GetNetworkSmDeviceCertsExecute(r DevicesApiGetNetworkSmDeviceCertsRequest) ([]InlineResponse20052, *http.Response, error) {
+//  @return []GetNetworkSmDeviceCerts200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceCertsExecute(r DevicesApiGetNetworkSmDeviceCertsRequest) ([]GetNetworkSmDeviceCerts200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20052
+		localVarReturnValue  []GetNetworkSmDeviceCerts200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceCerts")
@@ -2183,7 +2184,7 @@ func (r DevicesApiGetNetworkSmDeviceConnectivityRequest) EndingBefore(endingBefo
 	return r
 }
 
-func (r DevicesApiGetNetworkSmDeviceConnectivityRequest) Execute() ([]InlineResponse20053, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceConnectivityRequest) Execute() ([]GetNetworkSmDeviceConnectivity200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceConnectivityExecute(r)
 }
 
@@ -2207,13 +2208,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceConnectivity(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return []InlineResponse20053
-func (a *DevicesApiService) GetNetworkSmDeviceConnectivityExecute(r DevicesApiGetNetworkSmDeviceConnectivityRequest) ([]InlineResponse20053, *http.Response, error) {
+//  @return []GetNetworkSmDeviceConnectivity200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceConnectivityExecute(r DevicesApiGetNetworkSmDeviceConnectivityRequest) ([]GetNetworkSmDeviceConnectivity200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20053
+		localVarReturnValue  []GetNetworkSmDeviceConnectivity200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceConnectivity")
@@ -2334,7 +2335,7 @@ func (r DevicesApiGetNetworkSmDeviceDesktopLogsRequest) EndingBefore(endingBefor
 	return r
 }
 
-func (r DevicesApiGetNetworkSmDeviceDesktopLogsRequest) Execute() ([]InlineResponse20054, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceDesktopLogsRequest) Execute() ([]GetNetworkSmDeviceDesktopLogs200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceDesktopLogsExecute(r)
 }
 
@@ -2358,13 +2359,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceDesktopLogs(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return []InlineResponse20054
-func (a *DevicesApiService) GetNetworkSmDeviceDesktopLogsExecute(r DevicesApiGetNetworkSmDeviceDesktopLogsRequest) ([]InlineResponse20054, *http.Response, error) {
+//  @return []GetNetworkSmDeviceDesktopLogs200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceDesktopLogsExecute(r DevicesApiGetNetworkSmDeviceDesktopLogsRequest) ([]GetNetworkSmDeviceDesktopLogs200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20054
+		localVarReturnValue  []GetNetworkSmDeviceDesktopLogs200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceDesktopLogs")
@@ -2485,7 +2486,7 @@ func (r DevicesApiGetNetworkSmDeviceDeviceCommandLogsRequest) EndingBefore(endin
 	return r
 }
 
-func (r DevicesApiGetNetworkSmDeviceDeviceCommandLogsRequest) Execute() ([]InlineResponse20055, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceDeviceCommandLogsRequest) Execute() ([]GetNetworkSmDeviceDeviceCommandLogs200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceDeviceCommandLogsExecute(r)
 }
 
@@ -2509,13 +2510,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceDeviceCommandLogs(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse20055
-func (a *DevicesApiService) GetNetworkSmDeviceDeviceCommandLogsExecute(r DevicesApiGetNetworkSmDeviceDeviceCommandLogsRequest) ([]InlineResponse20055, *http.Response, error) {
+//  @return []GetNetworkSmDeviceDeviceCommandLogs200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceDeviceCommandLogsExecute(r DevicesApiGetNetworkSmDeviceDeviceCommandLogsRequest) ([]GetNetworkSmDeviceDeviceCommandLogs200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20055
+		localVarReturnValue  []GetNetworkSmDeviceDeviceCommandLogs200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceDeviceCommandLogs")
@@ -2615,7 +2616,7 @@ type DevicesApiGetNetworkSmDeviceDeviceProfilesRequest struct {
 	deviceId string
 }
 
-func (r DevicesApiGetNetworkSmDeviceDeviceProfilesRequest) Execute() ([]InlineResponse20056, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceDeviceProfilesRequest) Execute() ([]GetNetworkSmDeviceDeviceProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceDeviceProfilesExecute(r)
 }
 
@@ -2639,13 +2640,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceDeviceProfiles(ctx context.Context
 }
 
 // Execute executes the request
-//  @return []InlineResponse20056
-func (a *DevicesApiService) GetNetworkSmDeviceDeviceProfilesExecute(r DevicesApiGetNetworkSmDeviceDeviceProfilesRequest) ([]InlineResponse20056, *http.Response, error) {
+//  @return []GetNetworkSmDeviceDeviceProfiles200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceDeviceProfilesExecute(r DevicesApiGetNetworkSmDeviceDeviceProfilesRequest) ([]GetNetworkSmDeviceDeviceProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20056
+		localVarReturnValue  []GetNetworkSmDeviceDeviceProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceDeviceProfiles")
@@ -2736,7 +2737,7 @@ type DevicesApiGetNetworkSmDeviceNetworkAdaptersRequest struct {
 	deviceId string
 }
 
-func (r DevicesApiGetNetworkSmDeviceNetworkAdaptersRequest) Execute() ([]InlineResponse20057, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceNetworkAdaptersRequest) Execute() ([]GetNetworkSmDeviceNetworkAdapters200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceNetworkAdaptersExecute(r)
 }
 
@@ -2760,13 +2761,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceNetworkAdapters(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse20057
-func (a *DevicesApiService) GetNetworkSmDeviceNetworkAdaptersExecute(r DevicesApiGetNetworkSmDeviceNetworkAdaptersRequest) ([]InlineResponse20057, *http.Response, error) {
+//  @return []GetNetworkSmDeviceNetworkAdapters200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceNetworkAdaptersExecute(r DevicesApiGetNetworkSmDeviceNetworkAdaptersRequest) ([]GetNetworkSmDeviceNetworkAdapters200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20057
+		localVarReturnValue  []GetNetworkSmDeviceNetworkAdapters200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceNetworkAdapters")
@@ -2878,7 +2879,7 @@ func (r DevicesApiGetNetworkSmDevicePerformanceHistoryRequest) EndingBefore(endi
 	return r
 }
 
-func (r DevicesApiGetNetworkSmDevicePerformanceHistoryRequest) Execute() ([]InlineResponse20058, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDevicePerformanceHistoryRequest) Execute() ([]GetNetworkSmDevicePerformanceHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDevicePerformanceHistoryExecute(r)
 }
 
@@ -2902,13 +2903,13 @@ func (a *DevicesApiService) GetNetworkSmDevicePerformanceHistory(ctx context.Con
 }
 
 // Execute executes the request
-//  @return []InlineResponse20058
-func (a *DevicesApiService) GetNetworkSmDevicePerformanceHistoryExecute(r DevicesApiGetNetworkSmDevicePerformanceHistoryRequest) ([]InlineResponse20058, *http.Response, error) {
+//  @return []GetNetworkSmDevicePerformanceHistory200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDevicePerformanceHistoryExecute(r DevicesApiGetNetworkSmDevicePerformanceHistoryRequest) ([]GetNetworkSmDevicePerformanceHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20058
+		localVarReturnValue  []GetNetworkSmDevicePerformanceHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDevicePerformanceHistory")
@@ -3129,7 +3130,7 @@ type DevicesApiGetNetworkSmDeviceSecurityCentersRequest struct {
 	deviceId string
 }
 
-func (r DevicesApiGetNetworkSmDeviceSecurityCentersRequest) Execute() ([]InlineResponse20059, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceSecurityCentersRequest) Execute() ([]GetNetworkSmDeviceSecurityCenters200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceSecurityCentersExecute(r)
 }
 
@@ -3153,13 +3154,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceSecurityCenters(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return []InlineResponse20059
-func (a *DevicesApiService) GetNetworkSmDeviceSecurityCentersExecute(r DevicesApiGetNetworkSmDeviceSecurityCentersRequest) ([]InlineResponse20059, *http.Response, error) {
+//  @return []GetNetworkSmDeviceSecurityCenters200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceSecurityCentersExecute(r DevicesApiGetNetworkSmDeviceSecurityCentersRequest) ([]GetNetworkSmDeviceSecurityCenters200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20059
+		localVarReturnValue  []GetNetworkSmDeviceSecurityCenters200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceSecurityCenters")
@@ -3250,7 +3251,7 @@ type DevicesApiGetNetworkSmDeviceSoftwaresRequest struct {
 	deviceId string
 }
 
-func (r DevicesApiGetNetworkSmDeviceSoftwaresRequest) Execute() ([]InlineResponse20060, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceSoftwaresRequest) Execute() ([]GetNetworkSmDeviceSoftwares200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceSoftwaresExecute(r)
 }
 
@@ -3274,13 +3275,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceSoftwares(ctx context.Context, net
 }
 
 // Execute executes the request
-//  @return []InlineResponse20060
-func (a *DevicesApiService) GetNetworkSmDeviceSoftwaresExecute(r DevicesApiGetNetworkSmDeviceSoftwaresRequest) ([]InlineResponse20060, *http.Response, error) {
+//  @return []GetNetworkSmDeviceSoftwares200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceSoftwaresExecute(r DevicesApiGetNetworkSmDeviceSoftwaresRequest) ([]GetNetworkSmDeviceSoftwares200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20060
+		localVarReturnValue  []GetNetworkSmDeviceSoftwares200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceSoftwares")
@@ -3371,7 +3372,7 @@ type DevicesApiGetNetworkSmDeviceWlanListsRequest struct {
 	deviceId string
 }
 
-func (r DevicesApiGetNetworkSmDeviceWlanListsRequest) Execute() ([]InlineResponse20061, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDeviceWlanListsRequest) Execute() ([]GetNetworkSmDeviceWlanLists200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceWlanListsExecute(r)
 }
 
@@ -3395,13 +3396,13 @@ func (a *DevicesApiService) GetNetworkSmDeviceWlanLists(ctx context.Context, net
 }
 
 // Execute executes the request
-//  @return []InlineResponse20061
-func (a *DevicesApiService) GetNetworkSmDeviceWlanListsExecute(r DevicesApiGetNetworkSmDeviceWlanListsRequest) ([]InlineResponse20061, *http.Response, error) {
+//  @return []GetNetworkSmDeviceWlanLists200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDeviceWlanListsExecute(r DevicesApiGetNetworkSmDeviceWlanListsRequest) ([]GetNetworkSmDeviceWlanLists200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20061
+		localVarReturnValue  []GetNetworkSmDeviceWlanLists200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDeviceWlanLists")
@@ -3547,7 +3548,7 @@ func (r DevicesApiGetNetworkSmDevicesRequest) EndingBefore(endingBefore string) 
 	return r
 }
 
-func (r DevicesApiGetNetworkSmDevicesRequest) Execute() ([]InlineResponse20045, *http.Response, error) {
+func (r DevicesApiGetNetworkSmDevicesRequest) Execute() ([]GetNetworkSmDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDevicesExecute(r)
 }
 
@@ -3569,13 +3570,13 @@ func (a *DevicesApiService) GetNetworkSmDevices(ctx context.Context, networkId s
 }
 
 // Execute executes the request
-//  @return []InlineResponse20045
-func (a *DevicesApiService) GetNetworkSmDevicesExecute(r DevicesApiGetNetworkSmDevicesRequest) ([]InlineResponse20045, *http.Response, error) {
+//  @return []GetNetworkSmDevices200ResponseInner
+func (a *DevicesApiService) GetNetworkSmDevicesExecute(r DevicesApiGetNetworkSmDevicesRequest) ([]GetNetworkSmDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20045
+		localVarReturnValue  []GetNetworkSmDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkSmDevices")
@@ -3591,19 +3592,59 @@ func (a *DevicesApiService) GetNetworkSmDevicesExecute(r DevicesApiGetNetworkSmD
 	localVarFormParams := url.Values{}
 
 	if r.fields != nil {
-		localVarQueryParams.Add("fields", parameterToString(*r.fields, "csv"))
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("fields", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("fields", parameterToString(t, "multi"))
+		}
 	}
 	if r.wifiMacs != nil {
-		localVarQueryParams.Add("wifiMacs", parameterToString(*r.wifiMacs, "csv"))
+		t := *r.wifiMacs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("wifiMacs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("wifiMacs", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.ids != nil {
-		localVarQueryParams.Add("ids", parameterToString(*r.ids, "csv"))
+		t := *r.ids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("ids", parameterToString(t, "multi"))
+		}
 	}
 	if r.scope != nil {
-		localVarQueryParams.Add("scope", parameterToString(*r.scope, "csv"))
+		t := *r.scope
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("scope", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("scope", parameterToString(t, "multi"))
+		}
 	}
 	if r.perPage != nil {
 		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
@@ -3737,7 +3778,7 @@ func (r DevicesApiGetNetworkWirelessDevicesConnectionStatsRequest) ApTag(apTag s
 	return r
 }
 
-func (r DevicesApiGetNetworkWirelessDevicesConnectionStatsRequest) Execute() ([]InlineResponse20011, *http.Response, error) {
+func (r DevicesApiGetNetworkWirelessDevicesConnectionStatsRequest) Execute() ([]GetDeviceWirelessConnectionStats200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessDevicesConnectionStatsExecute(r)
 }
 
@@ -3759,13 +3800,13 @@ func (a *DevicesApiService) GetNetworkWirelessDevicesConnectionStats(ctx context
 }
 
 // Execute executes the request
-//  @return []InlineResponse20011
-func (a *DevicesApiService) GetNetworkWirelessDevicesConnectionStatsExecute(r DevicesApiGetNetworkWirelessDevicesConnectionStatsRequest) ([]InlineResponse20011, *http.Response, error) {
+//  @return []GetDeviceWirelessConnectionStats200Response
+func (a *DevicesApiService) GetNetworkWirelessDevicesConnectionStatsExecute(r DevicesApiGetNetworkWirelessDevicesConnectionStatsRequest) ([]GetDeviceWirelessConnectionStats200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20011
+		localVarReturnValue  []GetDeviceWirelessConnectionStats200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetNetworkWirelessDevicesConnectionStats")
@@ -4191,7 +4232,7 @@ func (r DevicesApiGetOrganizationDevicesRequest) Models(models []string) Devices
 	return r
 }
 
-func (r DevicesApiGetOrganizationDevicesRequest) Execute() ([]InlineResponse200115, *http.Response, error) {
+func (r DevicesApiGetOrganizationDevicesRequest) Execute() ([]GetOrganizationDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesExecute(r)
 }
 
@@ -4213,13 +4254,13 @@ func (a *DevicesApiService) GetOrganizationDevices(ctx context.Context, organiza
 }
 
 // Execute executes the request
-//  @return []InlineResponse200115
-func (a *DevicesApiService) GetOrganizationDevicesExecute(r DevicesApiGetOrganizationDevicesRequest) ([]InlineResponse200115, *http.Response, error) {
+//  @return []GetOrganizationDevices200ResponseInner
+func (a *DevicesApiService) GetOrganizationDevicesExecute(r DevicesApiGetOrganizationDevicesRequest) ([]GetOrganizationDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200115
+		localVarReturnValue  []GetOrganizationDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationDevices")
@@ -4247,13 +4288,37 @@ func (a *DevicesApiService) GetOrganizationDevicesExecute(r DevicesApiGetOrganiz
 		localVarQueryParams.Add("configurationUpdatedAfter", parameterToString(*r.configurationUpdatedAfter, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, "csv"))
+		t := *r.tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
 	}
 	if r.tagsFilterType != nil {
 		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
@@ -4271,19 +4336,59 @@ func (a *DevicesApiService) GetOrganizationDevicesExecute(r DevicesApiGetOrganiz
 		localVarQueryParams.Add("model", parameterToString(*r.model, ""))
 	}
 	if r.macs != nil {
-		localVarQueryParams.Add("macs", parameterToString(*r.macs, "csv"))
+		t := *r.macs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("macs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("macs", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.sensorMetrics != nil {
-		localVarQueryParams.Add("sensorMetrics", parameterToString(*r.sensorMetrics, "csv"))
+		t := *r.sensorMetrics
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("sensorMetrics", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("sensorMetrics", parameterToString(t, "multi"))
+		}
 	}
 	if r.sensorAlertProfileIds != nil {
-		localVarQueryParams.Add("sensorAlertProfileIds", parameterToString(*r.sensorAlertProfileIds, "csv"))
+		t := *r.sensorAlertProfileIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("sensorAlertProfileIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("sensorAlertProfileIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.models != nil {
-		localVarQueryParams.Add("models", parameterToString(*r.models, "csv"))
+		t := *r.models
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("models", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("models", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -4415,7 +4520,7 @@ func (r DevicesApiGetOrganizationDevicesAvailabilitiesRequest) TagsFilterType(ta
 	return r
 }
 
-func (r DevicesApiGetOrganizationDevicesAvailabilitiesRequest) Execute() ([]InlineResponse200116, *http.Response, error) {
+func (r DevicesApiGetOrganizationDevicesAvailabilitiesRequest) Execute() ([]GetOrganizationDevicesAvailabilities200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesAvailabilitiesExecute(r)
 }
 
@@ -4437,13 +4542,13 @@ func (a *DevicesApiService) GetOrganizationDevicesAvailabilities(ctx context.Con
 }
 
 // Execute executes the request
-//  @return []InlineResponse200116
-func (a *DevicesApiService) GetOrganizationDevicesAvailabilitiesExecute(r DevicesApiGetOrganizationDevicesAvailabilitiesRequest) ([]InlineResponse200116, *http.Response, error) {
+//  @return []GetOrganizationDevicesAvailabilities200ResponseInner
+func (a *DevicesApiService) GetOrganizationDevicesAvailabilitiesExecute(r DevicesApiGetOrganizationDevicesAvailabilitiesRequest) ([]GetOrganizationDevicesAvailabilities200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200116
+		localVarReturnValue  []GetOrganizationDevicesAvailabilities200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationDevicesAvailabilities")
@@ -4468,16 +4573,48 @@ func (a *DevicesApiService) GetOrganizationDevicesAvailabilitiesExecute(r Device
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, "csv"))
+		t := *r.tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
 	}
 	if r.tagsFilterType != nil {
 		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
@@ -4612,7 +4749,7 @@ func (r DevicesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) Tag
 	return r
 }
 
-func (r DevicesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) Execute() ([]InlineResponse200117, *http.Response, error) {
+func (r DevicesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) Execute() ([]GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r)
 }
 
@@ -4634,13 +4771,13 @@ func (a *DevicesApiService) GetOrganizationDevicesPowerModulesStatusesByDevice(c
 }
 
 // Execute executes the request
-//  @return []InlineResponse200117
-func (a *DevicesApiService) GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r DevicesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) ([]InlineResponse200117, *http.Response, error) {
+//  @return []GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner
+func (a *DevicesApiService) GetOrganizationDevicesPowerModulesStatusesByDeviceExecute(r DevicesApiGetOrganizationDevicesPowerModulesStatusesByDeviceRequest) ([]GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200117
+		localVarReturnValue  []GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationDevicesPowerModulesStatusesByDevice")
@@ -4665,16 +4802,48 @@ func (a *DevicesApiService) GetOrganizationDevicesPowerModulesStatusesByDeviceEx
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, "csv"))
+		t := *r.tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
 	}
 	if r.tagsFilterType != nil {
 		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
@@ -4816,7 +4985,7 @@ func (r DevicesApiGetOrganizationDevicesProvisioningStatusesRequest) TagsFilterT
 	return r
 }
 
-func (r DevicesApiGetOrganizationDevicesProvisioningStatusesRequest) Execute() ([]InlineResponse200118, *http.Response, error) {
+func (r DevicesApiGetOrganizationDevicesProvisioningStatusesRequest) Execute() ([]GetOrganizationDevicesProvisioningStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesProvisioningStatusesExecute(r)
 }
 
@@ -4838,13 +5007,13 @@ func (a *DevicesApiService) GetOrganizationDevicesProvisioningStatuses(ctx conte
 }
 
 // Execute executes the request
-//  @return []InlineResponse200118
-func (a *DevicesApiService) GetOrganizationDevicesProvisioningStatusesExecute(r DevicesApiGetOrganizationDevicesProvisioningStatusesRequest) ([]InlineResponse200118, *http.Response, error) {
+//  @return []GetOrganizationDevicesProvisioningStatuses200ResponseInner
+func (a *DevicesApiService) GetOrganizationDevicesProvisioningStatusesExecute(r DevicesApiGetOrganizationDevicesProvisioningStatusesRequest) ([]GetOrganizationDevicesProvisioningStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200118
+		localVarReturnValue  []GetOrganizationDevicesProvisioningStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationDevicesProvisioningStatuses")
@@ -4869,19 +5038,51 @@ func (a *DevicesApiService) GetOrganizationDevicesProvisioningStatusesExecute(r 
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.status != nil {
 		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
 	}
 	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, "csv"))
+		t := *r.tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
 	}
 	if r.tagsFilterType != nil {
 		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
@@ -5030,7 +5231,7 @@ func (r DevicesApiGetOrganizationDevicesStatusesRequest) TagsFilterType(tagsFilt
 	return r
 }
 
-func (r DevicesApiGetOrganizationDevicesStatusesRequest) Execute() (*InlineResponse200119, *http.Response, error) {
+func (r DevicesApiGetOrganizationDevicesStatusesRequest) Execute() (*GetOrganizationDevicesStatuses200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesStatusesExecute(r)
 }
 
@@ -5052,13 +5253,13 @@ func (a *DevicesApiService) GetOrganizationDevicesStatuses(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse200119
-func (a *DevicesApiService) GetOrganizationDevicesStatusesExecute(r DevicesApiGetOrganizationDevicesStatusesRequest) (*InlineResponse200119, *http.Response, error) {
+//  @return GetOrganizationDevicesStatuses200Response
+func (a *DevicesApiService) GetOrganizationDevicesStatusesExecute(r DevicesApiGetOrganizationDevicesStatusesRequest) (*GetOrganizationDevicesStatuses200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200119
+		localVarReturnValue  *GetOrganizationDevicesStatuses200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationDevicesStatuses")
@@ -5083,22 +5284,70 @@ func (a *DevicesApiService) GetOrganizationDevicesStatusesExecute(r DevicesApiGe
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.statuses != nil {
-		localVarQueryParams.Add("statuses", parameterToString(*r.statuses, "csv"))
+		t := *r.statuses
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("statuses", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("statuses", parameterToString(t, "multi"))
+		}
 	}
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	if r.models != nil {
-		localVarQueryParams.Add("models", parameterToString(*r.models, "csv"))
+		t := *r.models
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("models", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("models", parameterToString(t, "multi"))
+		}
 	}
 	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, "csv"))
+		t := *r.tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
 	}
 	if r.tagsFilterType != nil {
 		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
@@ -5191,7 +5440,7 @@ func (r DevicesApiGetOrganizationDevicesStatusesOverviewRequest) NetworkIds(netw
 	return r
 }
 
-func (r DevicesApiGetOrganizationDevicesStatusesOverviewRequest) Execute() (*InlineResponse200120, *http.Response, error) {
+func (r DevicesApiGetOrganizationDevicesStatusesOverviewRequest) Execute() (*GetOrganizationDevicesStatusesOverview200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesStatusesOverviewExecute(r)
 }
 
@@ -5213,13 +5462,13 @@ func (a *DevicesApiService) GetOrganizationDevicesStatusesOverview(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse200120
-func (a *DevicesApiService) GetOrganizationDevicesStatusesOverviewExecute(r DevicesApiGetOrganizationDevicesStatusesOverviewRequest) (*InlineResponse200120, *http.Response, error) {
+//  @return GetOrganizationDevicesStatusesOverview200Response
+func (a *DevicesApiService) GetOrganizationDevicesStatusesOverviewExecute(r DevicesApiGetOrganizationDevicesStatusesOverviewRequest) (*GetOrganizationDevicesStatusesOverview200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200120
+		localVarReturnValue  *GetOrganizationDevicesStatusesOverview200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationDevicesStatusesOverview")
@@ -5235,10 +5484,26 @@ func (a *DevicesApiService) GetOrganizationDevicesStatusesOverviewExecute(r Devi
 	localVarFormParams := url.Values{}
 
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5370,7 +5635,7 @@ func (r DevicesApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) TagsFil
 	return r
 }
 
-func (r DevicesApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) Execute() ([]InlineResponse200121, *http.Response, error) {
+func (r DevicesApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) Execute() ([]GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesUplinksAddressesByDeviceExecute(r)
 }
 
@@ -5392,13 +5657,13 @@ func (a *DevicesApiService) GetOrganizationDevicesUplinksAddressesByDevice(ctx c
 }
 
 // Execute executes the request
-//  @return []InlineResponse200121
-func (a *DevicesApiService) GetOrganizationDevicesUplinksAddressesByDeviceExecute(r DevicesApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) ([]InlineResponse200121, *http.Response, error) {
+//  @return []GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner
+func (a *DevicesApiService) GetOrganizationDevicesUplinksAddressesByDeviceExecute(r DevicesApiGetOrganizationDevicesUplinksAddressesByDeviceRequest) ([]GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200121
+		localVarReturnValue  []GetOrganizationDevicesUplinksAddressesByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationDevicesUplinksAddressesByDevice")
@@ -5423,16 +5688,48 @@ func (a *DevicesApiService) GetOrganizationDevicesUplinksAddressesByDeviceExecut
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, "csv"))
+		t := *r.tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
 	}
 	if r.tagsFilterType != nil {
 		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
@@ -5546,7 +5843,7 @@ func (r DevicesApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Ip(ip stri
 	return r
 }
 
-func (r DevicesApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Execute() ([]InlineResponse200122, *http.Response, error) {
+func (r DevicesApiGetOrganizationDevicesUplinksLossAndLatencyRequest) Execute() ([]GetOrganizationDevicesUplinksLossAndLatency200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationDevicesUplinksLossAndLatencyExecute(r)
 }
 
@@ -5568,13 +5865,13 @@ func (a *DevicesApiService) GetOrganizationDevicesUplinksLossAndLatency(ctx cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse200122
-func (a *DevicesApiService) GetOrganizationDevicesUplinksLossAndLatencyExecute(r DevicesApiGetOrganizationDevicesUplinksLossAndLatencyRequest) ([]InlineResponse200122, *http.Response, error) {
+//  @return []GetOrganizationDevicesUplinksLossAndLatency200ResponseInner
+func (a *DevicesApiService) GetOrganizationDevicesUplinksLossAndLatencyExecute(r DevicesApiGetOrganizationDevicesUplinksLossAndLatencyRequest) ([]GetOrganizationDevicesUplinksLossAndLatency200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200122
+		localVarReturnValue  []GetOrganizationDevicesUplinksLossAndLatency200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationDevicesUplinksLossAndLatency")
@@ -5679,7 +5976,7 @@ type DevicesApiGetOrganizationInventoryDeviceRequest struct {
 	serial string
 }
 
-func (r DevicesApiGetOrganizationInventoryDeviceRequest) Execute() (*InlineResponse200128, *http.Response, error) {
+func (r DevicesApiGetOrganizationInventoryDeviceRequest) Execute() (*GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryDeviceExecute(r)
 }
 
@@ -5703,13 +6000,13 @@ func (a *DevicesApiService) GetOrganizationInventoryDevice(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse200128
-func (a *DevicesApiService) GetOrganizationInventoryDeviceExecute(r DevicesApiGetOrganizationInventoryDeviceRequest) (*InlineResponse200128, *http.Response, error) {
+//  @return GetOrganizationInventoryDevices200ResponseInner
+func (a *DevicesApiService) GetOrganizationInventoryDeviceExecute(r DevicesApiGetOrganizationInventoryDeviceRequest) (*GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200128
+		localVarReturnValue  *GetOrganizationInventoryDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationInventoryDevice")
@@ -5890,7 +6187,7 @@ func (r DevicesApiGetOrganizationInventoryDevicesRequest) ProductTypes(productTy
 	return r
 }
 
-func (r DevicesApiGetOrganizationInventoryDevicesRequest) Execute() ([]InlineResponse200128, *http.Response, error) {
+func (r DevicesApiGetOrganizationInventoryDevicesRequest) Execute() ([]GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationInventoryDevicesExecute(r)
 }
 
@@ -5912,13 +6209,13 @@ func (a *DevicesApiService) GetOrganizationInventoryDevices(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return []InlineResponse200128
-func (a *DevicesApiService) GetOrganizationInventoryDevicesExecute(r DevicesApiGetOrganizationInventoryDevicesRequest) ([]InlineResponse200128, *http.Response, error) {
+//  @return []GetOrganizationInventoryDevices200ResponseInner
+func (a *DevicesApiService) GetOrganizationInventoryDevicesExecute(r DevicesApiGetOrganizationInventoryDevicesRequest) ([]GetOrganizationInventoryDevices200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200128
+		localVarReturnValue  []GetOrganizationInventoryDevices200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationInventoryDevices")
@@ -5949,28 +6246,84 @@ func (a *DevicesApiService) GetOrganizationInventoryDevicesExecute(r DevicesApiG
 		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
 	}
 	if r.macs != nil {
-		localVarQueryParams.Add("macs", parameterToString(*r.macs, "csv"))
+		t := *r.macs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("macs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("macs", parameterToString(t, "multi"))
+		}
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.models != nil {
-		localVarQueryParams.Add("models", parameterToString(*r.models, "csv"))
+		t := *r.models
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("models", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("models", parameterToString(t, "multi"))
+		}
 	}
 	if r.orderNumbers != nil {
-		localVarQueryParams.Add("orderNumbers", parameterToString(*r.orderNumbers, "csv"))
+		t := *r.orderNumbers
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("orderNumbers", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("orderNumbers", parameterToString(t, "multi"))
+		}
 	}
 	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, "csv"))
+		t := *r.tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+		}
 	}
 	if r.tagsFilterType != nil {
 		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
 	}
 	if r.productTypes != nil {
-		localVarQueryParams.Add("productTypes", parameterToString(*r.productTypes, "csv"))
+		t := *r.productTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -6067,7 +6420,7 @@ func (r DevicesApiGetOrganizationSummaryTopDevicesByUsageRequest) Timespan(times
 	return r
 }
 
-func (r DevicesApiGetOrganizationSummaryTopDevicesByUsageRequest) Execute() ([]InlineResponse200148, *http.Response, error) {
+func (r DevicesApiGetOrganizationSummaryTopDevicesByUsageRequest) Execute() ([]GetOrganizationSummaryTopDevicesByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopDevicesByUsageExecute(r)
 }
 
@@ -6089,13 +6442,13 @@ func (a *DevicesApiService) GetOrganizationSummaryTopDevicesByUsage(ctx context.
 }
 
 // Execute executes the request
-//  @return []InlineResponse200148
-func (a *DevicesApiService) GetOrganizationSummaryTopDevicesByUsageExecute(r DevicesApiGetOrganizationSummaryTopDevicesByUsageRequest) ([]InlineResponse200148, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopDevicesByUsage200ResponseInner
+func (a *DevicesApiService) GetOrganizationSummaryTopDevicesByUsageExecute(r DevicesApiGetOrganizationSummaryTopDevicesByUsageRequest) ([]GetOrganizationSummaryTopDevicesByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200148
+		localVarReturnValue  []GetOrganizationSummaryTopDevicesByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationSummaryTopDevicesByUsage")
@@ -6214,7 +6567,7 @@ func (r DevicesApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) Timespan
 	return r
 }
 
-func (r DevicesApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) Execute() ([]InlineResponse200149, *http.Response, error) {
+func (r DevicesApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) Execute() ([]GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopDevicesModelsByUsageExecute(r)
 }
 
@@ -6236,13 +6589,13 @@ func (a *DevicesApiService) GetOrganizationSummaryTopDevicesModelsByUsage(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse200149
-func (a *DevicesApiService) GetOrganizationSummaryTopDevicesModelsByUsageExecute(r DevicesApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) ([]InlineResponse200149, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner
+func (a *DevicesApiService) GetOrganizationSummaryTopDevicesModelsByUsageExecute(r DevicesApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) ([]GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200149
+		localVarReturnValue  []GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationSummaryTopDevicesModelsByUsage")
@@ -6403,7 +6756,7 @@ func (r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationByDeviceReques
 	return r
 }
 
-func (r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationByDeviceRequest) Execute() ([]InlineResponse200155, *http.Response, error) {
+func (r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationByDeviceRequest) Execute() ([]GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWirelessDevicesChannelUtilizationByDeviceExecute(r)
 }
 
@@ -6425,13 +6778,13 @@ func (a *DevicesApiService) GetOrganizationWirelessDevicesChannelUtilizationByDe
 }
 
 // Execute executes the request
-//  @return []InlineResponse200155
-func (a *DevicesApiService) GetOrganizationWirelessDevicesChannelUtilizationByDeviceExecute(r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationByDeviceRequest) ([]InlineResponse200155, *http.Response, error) {
+//  @return []GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInner
+func (a *DevicesApiService) GetOrganizationWirelessDevicesChannelUtilizationByDeviceExecute(r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationByDeviceRequest) ([]GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200155
+		localVarReturnValue  []GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationWirelessDevicesChannelUtilizationByDevice")
@@ -6447,10 +6800,26 @@ func (a *DevicesApiService) GetOrganizationWirelessDevicesChannelUtilizationByDe
 	localVarFormParams := url.Values{}
 
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.perPage != nil {
 		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
@@ -6610,7 +6979,7 @@ func (r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationByNetworkReque
 	return r
 }
 
-func (r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationByNetworkRequest) Execute() ([]InlineResponse200156, *http.Response, error) {
+func (r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationByNetworkRequest) Execute() ([]GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWirelessDevicesChannelUtilizationByNetworkExecute(r)
 }
 
@@ -6632,13 +7001,13 @@ func (a *DevicesApiService) GetOrganizationWirelessDevicesChannelUtilizationByNe
 }
 
 // Execute executes the request
-//  @return []InlineResponse200156
-func (a *DevicesApiService) GetOrganizationWirelessDevicesChannelUtilizationByNetworkExecute(r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationByNetworkRequest) ([]InlineResponse200156, *http.Response, error) {
+//  @return []GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner
+func (a *DevicesApiService) GetOrganizationWirelessDevicesChannelUtilizationByNetworkExecute(r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationByNetworkRequest) ([]GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200156
+		localVarReturnValue  []GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationWirelessDevicesChannelUtilizationByNetwork")
@@ -6654,10 +7023,26 @@ func (a *DevicesApiService) GetOrganizationWirelessDevicesChannelUtilizationByNe
 	localVarFormParams := url.Values{}
 
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.perPage != nil {
 		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
@@ -6817,7 +7202,7 @@ func (r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByDevic
 	return r
 }
 
-func (r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalRequest) Execute() ([]InlineResponse200157, *http.Response, error) {
+func (r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalRequest) Execute() ([]GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalExecute(r)
 }
 
@@ -6839,13 +7224,13 @@ func (a *DevicesApiService) GetOrganizationWirelessDevicesChannelUtilizationHist
 }
 
 // Execute executes the request
-//  @return []InlineResponse200157
-func (a *DevicesApiService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalExecute(r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalRequest) ([]InlineResponse200157, *http.Response, error) {
+//  @return []GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval200ResponseInner
+func (a *DevicesApiService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalExecute(r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByIntervalRequest) ([]GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200157
+		localVarReturnValue  []GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval")
@@ -6861,10 +7246,26 @@ func (a *DevicesApiService) GetOrganizationWirelessDevicesChannelUtilizationHist
 	localVarFormParams := url.Values{}
 
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.perPage != nil {
 		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
@@ -7024,7 +7425,7 @@ func (r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetwo
 	return r
 }
 
-func (r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalRequest) Execute() ([]InlineResponse200158, *http.Response, error) {
+func (r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalRequest) Execute() ([]GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalExecute(r)
 }
 
@@ -7046,13 +7447,13 @@ func (a *DevicesApiService) GetOrganizationWirelessDevicesChannelUtilizationHist
 }
 
 // Execute executes the request
-//  @return []InlineResponse200158
-func (a *DevicesApiService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalExecute(r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalRequest) ([]InlineResponse200158, *http.Response, error) {
+//  @return []GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner
+func (a *DevicesApiService) GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalExecute(r DevicesApiGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByIntervalRequest) ([]GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200158
+		localVarReturnValue  []GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval")
@@ -7068,10 +7469,26 @@ func (a *DevicesApiService) GetOrganizationWirelessDevicesChannelUtilizationHist
 	localVarFormParams := url.Values{}
 
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.perPage != nil {
 		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
@@ -7196,7 +7613,7 @@ func (r DevicesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Network
 	return r
 }
 
-func (r DevicesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Execute() ([]InlineResponse200159, *http.Response, error) {
+func (r DevicesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) Execute() ([]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationWirelessDevicesEthernetStatusesExecute(r)
 }
 
@@ -7218,13 +7635,13 @@ func (a *DevicesApiService) GetOrganizationWirelessDevicesEthernetStatuses(ctx c
 }
 
 // Execute executes the request
-//  @return []InlineResponse200159
-func (a *DevicesApiService) GetOrganizationWirelessDevicesEthernetStatusesExecute(r DevicesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) ([]InlineResponse200159, *http.Response, error) {
+//  @return []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
+func (a *DevicesApiService) GetOrganizationWirelessDevicesEthernetStatusesExecute(r DevicesApiGetOrganizationWirelessDevicesEthernetStatusesRequest) ([]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200159
+		localVarReturnValue  []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.GetOrganizationWirelessDevicesEthernetStatuses")
@@ -7249,7 +7666,15 @@ func (a *DevicesApiService) GetOrganizationWirelessDevicesEthernetStatusesExecut
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -7323,15 +7748,15 @@ type DevicesApiLockNetworkSmDevicesRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	lockNetworkSmDevices *InlineObject105
+	lockNetworkSmDevicesRequest *LockNetworkSmDevicesRequest
 }
 
-func (r DevicesApiLockNetworkSmDevicesRequest) LockNetworkSmDevices(lockNetworkSmDevices InlineObject105) DevicesApiLockNetworkSmDevicesRequest {
-	r.lockNetworkSmDevices = &lockNetworkSmDevices
+func (r DevicesApiLockNetworkSmDevicesRequest) LockNetworkSmDevicesRequest(lockNetworkSmDevicesRequest LockNetworkSmDevicesRequest) DevicesApiLockNetworkSmDevicesRequest {
+	r.lockNetworkSmDevicesRequest = &lockNetworkSmDevicesRequest
 	return r
 }
 
-func (r DevicesApiLockNetworkSmDevicesRequest) Execute() (*InlineResponse20046, *http.Response, error) {
+func (r DevicesApiLockNetworkSmDevicesRequest) Execute() (*CheckinNetworkSmDevices200Response, *http.Response, error) {
 	return r.ApiService.LockNetworkSmDevicesExecute(r)
 }
 
@@ -7353,13 +7778,13 @@ func (a *DevicesApiService) LockNetworkSmDevices(ctx context.Context, networkId 
 }
 
 // Execute executes the request
-//  @return InlineResponse20046
-func (a *DevicesApiService) LockNetworkSmDevicesExecute(r DevicesApiLockNetworkSmDevicesRequest) (*InlineResponse20046, *http.Response, error) {
+//  @return CheckinNetworkSmDevices200Response
+func (a *DevicesApiService) LockNetworkSmDevicesExecute(r DevicesApiLockNetworkSmDevicesRequest) (*CheckinNetworkSmDevices200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20046
+		localVarReturnValue  *CheckinNetworkSmDevices200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.LockNetworkSmDevices")
@@ -7392,7 +7817,7 @@ func (a *DevicesApiService) LockNetworkSmDevicesExecute(r DevicesApiLockNetworkS
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.lockNetworkSmDevices
+	localVarPostBody = r.lockNetworkSmDevicesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -7448,15 +7873,15 @@ type DevicesApiModifyNetworkSmDevicesTagsRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	modifyNetworkSmDevicesTags *InlineObject106
+	modifyNetworkSmDevicesTagsRequest *ModifyNetworkSmDevicesTagsRequest
 }
 
-func (r DevicesApiModifyNetworkSmDevicesTagsRequest) ModifyNetworkSmDevicesTags(modifyNetworkSmDevicesTags InlineObject106) DevicesApiModifyNetworkSmDevicesTagsRequest {
-	r.modifyNetworkSmDevicesTags = &modifyNetworkSmDevicesTags
+func (r DevicesApiModifyNetworkSmDevicesTagsRequest) ModifyNetworkSmDevicesTagsRequest(modifyNetworkSmDevicesTagsRequest ModifyNetworkSmDevicesTagsRequest) DevicesApiModifyNetworkSmDevicesTagsRequest {
+	r.modifyNetworkSmDevicesTagsRequest = &modifyNetworkSmDevicesTagsRequest
 	return r
 }
 
-func (r DevicesApiModifyNetworkSmDevicesTagsRequest) Execute() ([]InlineResponse20048, *http.Response, error) {
+func (r DevicesApiModifyNetworkSmDevicesTagsRequest) Execute() ([]ModifyNetworkSmDevicesTags200ResponseInner, *http.Response, error) {
 	return r.ApiService.ModifyNetworkSmDevicesTagsExecute(r)
 }
 
@@ -7478,13 +7903,13 @@ func (a *DevicesApiService) ModifyNetworkSmDevicesTags(ctx context.Context, netw
 }
 
 // Execute executes the request
-//  @return []InlineResponse20048
-func (a *DevicesApiService) ModifyNetworkSmDevicesTagsExecute(r DevicesApiModifyNetworkSmDevicesTagsRequest) ([]InlineResponse20048, *http.Response, error) {
+//  @return []ModifyNetworkSmDevicesTags200ResponseInner
+func (a *DevicesApiService) ModifyNetworkSmDevicesTagsExecute(r DevicesApiModifyNetworkSmDevicesTagsRequest) ([]ModifyNetworkSmDevicesTags200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20048
+		localVarReturnValue  []ModifyNetworkSmDevicesTags200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.ModifyNetworkSmDevicesTags")
@@ -7498,8 +7923,8 @@ func (a *DevicesApiService) ModifyNetworkSmDevicesTagsExecute(r DevicesApiModify
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.modifyNetworkSmDevicesTags == nil {
-		return localVarReturnValue, nil, reportError("modifyNetworkSmDevicesTags is required and must be specified")
+	if r.modifyNetworkSmDevicesTagsRequest == nil {
+		return localVarReturnValue, nil, reportError("modifyNetworkSmDevicesTagsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -7520,7 +7945,7 @@ func (a *DevicesApiService) ModifyNetworkSmDevicesTagsExecute(r DevicesApiModify
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.modifyNetworkSmDevicesTags
+	localVarPostBody = r.modifyNetworkSmDevicesTagsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -7576,15 +8001,15 @@ type DevicesApiMoveNetworkSmDevicesRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	moveNetworkSmDevices *InlineObject107
+	moveNetworkSmDevicesRequest *MoveNetworkSmDevicesRequest
 }
 
-func (r DevicesApiMoveNetworkSmDevicesRequest) MoveNetworkSmDevices(moveNetworkSmDevices InlineObject107) DevicesApiMoveNetworkSmDevicesRequest {
-	r.moveNetworkSmDevices = &moveNetworkSmDevices
+func (r DevicesApiMoveNetworkSmDevicesRequest) MoveNetworkSmDevicesRequest(moveNetworkSmDevicesRequest MoveNetworkSmDevicesRequest) DevicesApiMoveNetworkSmDevicesRequest {
+	r.moveNetworkSmDevicesRequest = &moveNetworkSmDevicesRequest
 	return r
 }
 
-func (r DevicesApiMoveNetworkSmDevicesRequest) Execute() (*InlineResponse20049, *http.Response, error) {
+func (r DevicesApiMoveNetworkSmDevicesRequest) Execute() (*MoveNetworkSmDevices200Response, *http.Response, error) {
 	return r.ApiService.MoveNetworkSmDevicesExecute(r)
 }
 
@@ -7606,13 +8031,13 @@ func (a *DevicesApiService) MoveNetworkSmDevices(ctx context.Context, networkId 
 }
 
 // Execute executes the request
-//  @return InlineResponse20049
-func (a *DevicesApiService) MoveNetworkSmDevicesExecute(r DevicesApiMoveNetworkSmDevicesRequest) (*InlineResponse20049, *http.Response, error) {
+//  @return MoveNetworkSmDevices200Response
+func (a *DevicesApiService) MoveNetworkSmDevicesExecute(r DevicesApiMoveNetworkSmDevicesRequest) (*MoveNetworkSmDevices200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20049
+		localVarReturnValue  *MoveNetworkSmDevices200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.MoveNetworkSmDevices")
@@ -7626,8 +8051,8 @@ func (a *DevicesApiService) MoveNetworkSmDevicesExecute(r DevicesApiMoveNetworkS
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.moveNetworkSmDevices == nil {
-		return localVarReturnValue, nil, reportError("moveNetworkSmDevices is required and must be specified")
+	if r.moveNetworkSmDevicesRequest == nil {
+		return localVarReturnValue, nil, reportError("moveNetworkSmDevicesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -7648,7 +8073,7 @@ func (a *DevicesApiService) MoveNetworkSmDevicesExecute(r DevicesApiMoveNetworkS
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.moveNetworkSmDevices
+	localVarPostBody = r.moveNetworkSmDevicesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -7931,11 +8356,11 @@ type DevicesApiRemoveNetworkDevicesRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	removeNetworkDevices *InlineObject79
+	removeNetworkDevicesRequest *RemoveNetworkDevicesRequest
 }
 
-func (r DevicesApiRemoveNetworkDevicesRequest) RemoveNetworkDevices(removeNetworkDevices InlineObject79) DevicesApiRemoveNetworkDevicesRequest {
-	r.removeNetworkDevices = &removeNetworkDevices
+func (r DevicesApiRemoveNetworkDevicesRequest) RemoveNetworkDevicesRequest(removeNetworkDevicesRequest RemoveNetworkDevicesRequest) DevicesApiRemoveNetworkDevicesRequest {
+	r.removeNetworkDevicesRequest = &removeNetworkDevicesRequest
 	return r
 }
 
@@ -7979,8 +8404,8 @@ func (a *DevicesApiService) RemoveNetworkDevicesExecute(r DevicesApiRemoveNetwor
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.removeNetworkDevices == nil {
-		return nil, reportError("removeNetworkDevices is required and must be specified")
+	if r.removeNetworkDevicesRequest == nil {
+		return nil, reportError("removeNetworkDevicesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -8001,7 +8426,7 @@ func (a *DevicesApiService) RemoveNetworkDevicesExecute(r DevicesApiRemoveNetwor
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.removeNetworkDevices
+	localVarPostBody = r.removeNetworkDevicesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -8169,11 +8594,11 @@ type DevicesApiUpdateDeviceRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	serial string
-	updateDevice *InlineObject
+	updateDeviceRequest *UpdateDeviceRequest
 }
 
-func (r DevicesApiUpdateDeviceRequest) UpdateDevice(updateDevice InlineObject) DevicesApiUpdateDeviceRequest {
-	r.updateDevice = &updateDevice
+func (r DevicesApiUpdateDeviceRequest) UpdateDeviceRequest(updateDeviceRequest UpdateDeviceRequest) DevicesApiUpdateDeviceRequest {
+	r.updateDeviceRequest = &updateDeviceRequest
 	return r
 }
 
@@ -8238,7 +8663,7 @@ func (a *DevicesApiService) UpdateDeviceExecute(r DevicesApiUpdateDeviceRequest)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDevice
+	localVarPostBody = r.updateDeviceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -8294,11 +8719,11 @@ type DevicesApiUpdateDeviceCellularSimsRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	serial string
-	updateDeviceCellularSims *InlineObject10
+	updateDeviceCellularSimsRequest *UpdateDeviceCellularSimsRequest
 }
 
-func (r DevicesApiUpdateDeviceCellularSimsRequest) UpdateDeviceCellularSims(updateDeviceCellularSims InlineObject10) DevicesApiUpdateDeviceCellularSimsRequest {
-	r.updateDeviceCellularSims = &updateDeviceCellularSims
+func (r DevicesApiUpdateDeviceCellularSimsRequest) UpdateDeviceCellularSimsRequest(updateDeviceCellularSimsRequest UpdateDeviceCellularSimsRequest) DevicesApiUpdateDeviceCellularSimsRequest {
+	r.updateDeviceCellularSimsRequest = &updateDeviceCellularSimsRequest
 	return r
 }
 
@@ -8363,7 +8788,7 @@ func (a *DevicesApiService) UpdateDeviceCellularSimsExecute(r DevicesApiUpdateDe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCellularSims
+	localVarPostBody = r.updateDeviceCellularSimsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -8419,11 +8844,11 @@ type DevicesApiUpdateDeviceManagementInterfaceRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	serial string
-	updateDeviceManagementInterface *InlineObject15
+	updateDeviceManagementInterfaceRequest *UpdateDeviceManagementInterfaceRequest
 }
 
-func (r DevicesApiUpdateDeviceManagementInterfaceRequest) UpdateDeviceManagementInterface(updateDeviceManagementInterface InlineObject15) DevicesApiUpdateDeviceManagementInterfaceRequest {
-	r.updateDeviceManagementInterface = &updateDeviceManagementInterface
+func (r DevicesApiUpdateDeviceManagementInterfaceRequest) UpdateDeviceManagementInterfaceRequest(updateDeviceManagementInterfaceRequest UpdateDeviceManagementInterfaceRequest) DevicesApiUpdateDeviceManagementInterfaceRequest {
+	r.updateDeviceManagementInterfaceRequest = &updateDeviceManagementInterfaceRequest
 	return r
 }
 
@@ -8488,7 +8913,7 @@ func (a *DevicesApiService) UpdateDeviceManagementInterfaceExecute(r DevicesApiU
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceManagementInterface
+	localVarPostBody = r.updateDeviceManagementInterfaceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -8544,15 +8969,15 @@ type DevicesApiUpdateNetworkSmDevicesFieldsRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	updateNetworkSmDevicesFields *InlineObject104
+	updateNetworkSmDevicesFieldsRequest *UpdateNetworkSmDevicesFieldsRequest
 }
 
-func (r DevicesApiUpdateNetworkSmDevicesFieldsRequest) UpdateNetworkSmDevicesFields(updateNetworkSmDevicesFields InlineObject104) DevicesApiUpdateNetworkSmDevicesFieldsRequest {
-	r.updateNetworkSmDevicesFields = &updateNetworkSmDevicesFields
+func (r DevicesApiUpdateNetworkSmDevicesFieldsRequest) UpdateNetworkSmDevicesFieldsRequest(updateNetworkSmDevicesFieldsRequest UpdateNetworkSmDevicesFieldsRequest) DevicesApiUpdateNetworkSmDevicesFieldsRequest {
+	r.updateNetworkSmDevicesFieldsRequest = &updateNetworkSmDevicesFieldsRequest
 	return r
 }
 
-func (r DevicesApiUpdateNetworkSmDevicesFieldsRequest) Execute() ([]InlineResponse20047, *http.Response, error) {
+func (r DevicesApiUpdateNetworkSmDevicesFieldsRequest) Execute() ([]UpdateNetworkSmDevicesFields200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSmDevicesFieldsExecute(r)
 }
 
@@ -8574,13 +8999,13 @@ func (a *DevicesApiService) UpdateNetworkSmDevicesFields(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return []InlineResponse20047
-func (a *DevicesApiService) UpdateNetworkSmDevicesFieldsExecute(r DevicesApiUpdateNetworkSmDevicesFieldsRequest) ([]InlineResponse20047, *http.Response, error) {
+//  @return []UpdateNetworkSmDevicesFields200ResponseInner
+func (a *DevicesApiService) UpdateNetworkSmDevicesFieldsExecute(r DevicesApiUpdateNetworkSmDevicesFieldsRequest) ([]UpdateNetworkSmDevicesFields200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20047
+		localVarReturnValue  []UpdateNetworkSmDevicesFields200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.UpdateNetworkSmDevicesFields")
@@ -8594,8 +9019,8 @@ func (a *DevicesApiService) UpdateNetworkSmDevicesFieldsExecute(r DevicesApiUpda
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSmDevicesFields == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSmDevicesFields is required and must be specified")
+	if r.updateNetworkSmDevicesFieldsRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSmDevicesFieldsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -8616,7 +9041,7 @@ func (a *DevicesApiService) UpdateNetworkSmDevicesFieldsExecute(r DevicesApiUpda
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSmDevicesFields
+	localVarPostBody = r.updateNetworkSmDevicesFieldsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -8672,11 +9097,11 @@ type DevicesApiVmxNetworkDevicesClaimRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	vmxNetworkDevicesClaim *InlineObject78
+	vmxNetworkDevicesClaimRequest *VmxNetworkDevicesClaimRequest
 }
 
-func (r DevicesApiVmxNetworkDevicesClaimRequest) VmxNetworkDevicesClaim(vmxNetworkDevicesClaim InlineObject78) DevicesApiVmxNetworkDevicesClaimRequest {
-	r.vmxNetworkDevicesClaim = &vmxNetworkDevicesClaim
+func (r DevicesApiVmxNetworkDevicesClaimRequest) VmxNetworkDevicesClaimRequest(vmxNetworkDevicesClaimRequest VmxNetworkDevicesClaimRequest) DevicesApiVmxNetworkDevicesClaimRequest {
+	r.vmxNetworkDevicesClaimRequest = &vmxNetworkDevicesClaimRequest
 	return r
 }
 
@@ -8722,8 +9147,8 @@ func (a *DevicesApiService) VmxNetworkDevicesClaimExecute(r DevicesApiVmxNetwork
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmxNetworkDevicesClaim == nil {
-		return localVarReturnValue, nil, reportError("vmxNetworkDevicesClaim is required and must be specified")
+	if r.vmxNetworkDevicesClaimRequest == nil {
+		return localVarReturnValue, nil, reportError("vmxNetworkDevicesClaimRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -8744,7 +9169,7 @@ func (a *DevicesApiService) VmxNetworkDevicesClaimExecute(r DevicesApiVmxNetwork
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.vmxNetworkDevicesClaim
+	localVarPostBody = r.vmxNetworkDevicesClaimRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -8800,15 +9225,15 @@ type DevicesApiWipeNetworkSmDevicesRequest struct {
 	ctx context.Context
 	ApiService *DevicesApiService
 	networkId string
-	wipeNetworkSmDevices *InlineObject108
+	wipeNetworkSmDevicesRequest *WipeNetworkSmDevicesRequest
 }
 
-func (r DevicesApiWipeNetworkSmDevicesRequest) WipeNetworkSmDevices(wipeNetworkSmDevices InlineObject108) DevicesApiWipeNetworkSmDevicesRequest {
-	r.wipeNetworkSmDevices = &wipeNetworkSmDevices
+func (r DevicesApiWipeNetworkSmDevicesRequest) WipeNetworkSmDevicesRequest(wipeNetworkSmDevicesRequest WipeNetworkSmDevicesRequest) DevicesApiWipeNetworkSmDevicesRequest {
+	r.wipeNetworkSmDevicesRequest = &wipeNetworkSmDevicesRequest
 	return r
 }
 
-func (r DevicesApiWipeNetworkSmDevicesRequest) Execute() (*InlineResponse20050, *http.Response, error) {
+func (r DevicesApiWipeNetworkSmDevicesRequest) Execute() (*WipeNetworkSmDevices200Response, *http.Response, error) {
 	return r.ApiService.WipeNetworkSmDevicesExecute(r)
 }
 
@@ -8830,13 +9255,13 @@ func (a *DevicesApiService) WipeNetworkSmDevices(ctx context.Context, networkId 
 }
 
 // Execute executes the request
-//  @return InlineResponse20050
-func (a *DevicesApiService) WipeNetworkSmDevicesExecute(r DevicesApiWipeNetworkSmDevicesRequest) (*InlineResponse20050, *http.Response, error) {
+//  @return WipeNetworkSmDevices200Response
+func (a *DevicesApiService) WipeNetworkSmDevicesExecute(r DevicesApiWipeNetworkSmDevicesRequest) (*WipeNetworkSmDevices200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20050
+		localVarReturnValue  *WipeNetworkSmDevices200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DevicesApiService.WipeNetworkSmDevices")
@@ -8869,7 +9294,7 @@ func (a *DevicesApiService) WipeNetworkSmDevicesExecute(r DevicesApiWipeNetworkS
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.wipeNetworkSmDevices
+	localVarPostBody = r.wipeNetworkSmDevicesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
