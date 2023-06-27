@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -18,6 +18,7 @@ import (
 	"net/url"
 	"strings"
 	"time"
+	"reflect"
 )
 
 
@@ -28,11 +29,11 @@ type CameraApiCreateNetworkCameraQualityRetentionProfileRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	networkId string
-	createNetworkCameraQualityRetentionProfile *InlineObject66
+	createNetworkCameraQualityRetentionProfileRequest *CreateNetworkCameraQualityRetentionProfileRequest
 }
 
-func (r CameraApiCreateNetworkCameraQualityRetentionProfileRequest) CreateNetworkCameraQualityRetentionProfile(createNetworkCameraQualityRetentionProfile InlineObject66) CameraApiCreateNetworkCameraQualityRetentionProfileRequest {
-	r.createNetworkCameraQualityRetentionProfile = &createNetworkCameraQualityRetentionProfile
+func (r CameraApiCreateNetworkCameraQualityRetentionProfileRequest) CreateNetworkCameraQualityRetentionProfileRequest(createNetworkCameraQualityRetentionProfileRequest CreateNetworkCameraQualityRetentionProfileRequest) CameraApiCreateNetworkCameraQualityRetentionProfileRequest {
+	r.createNetworkCameraQualityRetentionProfileRequest = &createNetworkCameraQualityRetentionProfileRequest
 	return r
 }
 
@@ -78,8 +79,8 @@ func (a *CameraApiService) CreateNetworkCameraQualityRetentionProfileExecute(r C
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkCameraQualityRetentionProfile == nil {
-		return localVarReturnValue, nil, reportError("createNetworkCameraQualityRetentionProfile is required and must be specified")
+	if r.createNetworkCameraQualityRetentionProfileRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkCameraQualityRetentionProfileRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -100,7 +101,7 @@ func (a *CameraApiService) CreateNetworkCameraQualityRetentionProfileExecute(r C
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkCameraQualityRetentionProfile
+	localVarPostBody = r.createNetworkCameraQualityRetentionProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -156,11 +157,11 @@ type CameraApiCreateNetworkCameraWirelessProfileRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	networkId string
-	createNetworkCameraWirelessProfile *InlineObject68
+	createNetworkCameraWirelessProfileRequest *CreateNetworkCameraWirelessProfileRequest
 }
 
-func (r CameraApiCreateNetworkCameraWirelessProfileRequest) CreateNetworkCameraWirelessProfile(createNetworkCameraWirelessProfile InlineObject68) CameraApiCreateNetworkCameraWirelessProfileRequest {
-	r.createNetworkCameraWirelessProfile = &createNetworkCameraWirelessProfile
+func (r CameraApiCreateNetworkCameraWirelessProfileRequest) CreateNetworkCameraWirelessProfileRequest(createNetworkCameraWirelessProfileRequest CreateNetworkCameraWirelessProfileRequest) CameraApiCreateNetworkCameraWirelessProfileRequest {
+	r.createNetworkCameraWirelessProfileRequest = &createNetworkCameraWirelessProfileRequest
 	return r
 }
 
@@ -206,8 +207,8 @@ func (a *CameraApiService) CreateNetworkCameraWirelessProfileExecute(r CameraApi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkCameraWirelessProfile == nil {
-		return localVarReturnValue, nil, reportError("createNetworkCameraWirelessProfile is required and must be specified")
+	if r.createNetworkCameraWirelessProfileRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkCameraWirelessProfileRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -228,7 +229,7 @@ func (a *CameraApiService) CreateNetworkCameraWirelessProfileExecute(r CameraApi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkCameraWirelessProfile
+	localVarPostBody = r.createNetworkCameraWirelessProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -284,11 +285,11 @@ type CameraApiCreateOrganizationCameraCustomAnalyticsArtifactRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	organizationId string
-	createOrganizationCameraCustomAnalyticsArtifact *InlineObject191
+	createOrganizationCameraCustomAnalyticsArtifactRequest *CreateOrganizationCameraCustomAnalyticsArtifactRequest
 }
 
-func (r CameraApiCreateOrganizationCameraCustomAnalyticsArtifactRequest) CreateOrganizationCameraCustomAnalyticsArtifact(createOrganizationCameraCustomAnalyticsArtifact InlineObject191) CameraApiCreateOrganizationCameraCustomAnalyticsArtifactRequest {
-	r.createOrganizationCameraCustomAnalyticsArtifact = &createOrganizationCameraCustomAnalyticsArtifact
+func (r CameraApiCreateOrganizationCameraCustomAnalyticsArtifactRequest) CreateOrganizationCameraCustomAnalyticsArtifactRequest(createOrganizationCameraCustomAnalyticsArtifactRequest CreateOrganizationCameraCustomAnalyticsArtifactRequest) CameraApiCreateOrganizationCameraCustomAnalyticsArtifactRequest {
+	r.createOrganizationCameraCustomAnalyticsArtifactRequest = &createOrganizationCameraCustomAnalyticsArtifactRequest
 	return r
 }
 
@@ -353,7 +354,7 @@ func (a *CameraApiService) CreateOrganizationCameraCustomAnalyticsArtifactExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationCameraCustomAnalyticsArtifact
+	localVarPostBody = r.createOrganizationCameraCustomAnalyticsArtifactRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -739,11 +740,11 @@ type CameraApiGenerateDeviceCameraSnapshotRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	serial string
-	generateDeviceCameraSnapshot *InlineObject5
+	generateDeviceCameraSnapshotRequest *GenerateDeviceCameraSnapshotRequest
 }
 
-func (r CameraApiGenerateDeviceCameraSnapshotRequest) GenerateDeviceCameraSnapshot(generateDeviceCameraSnapshot InlineObject5) CameraApiGenerateDeviceCameraSnapshotRequest {
-	r.generateDeviceCameraSnapshot = &generateDeviceCameraSnapshot
+func (r CameraApiGenerateDeviceCameraSnapshotRequest) GenerateDeviceCameraSnapshotRequest(generateDeviceCameraSnapshotRequest GenerateDeviceCameraSnapshotRequest) CameraApiGenerateDeviceCameraSnapshotRequest {
+	r.generateDeviceCameraSnapshotRequest = &generateDeviceCameraSnapshotRequest
 	return r
 }
 
@@ -808,7 +809,7 @@ func (a *CameraApiService) GenerateDeviceCameraSnapshotExecute(r CameraApiGenera
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.generateDeviceCameraSnapshot
+	localVarPostBody = r.generateDeviceCameraSnapshotRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3273,10 +3274,26 @@ func (a *CameraApiService) GetOrganizationCameraOnboardingStatusesExecute(r Came
 	localVarFormParams := url.Values{}
 
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3350,11 +3367,11 @@ type CameraApiUpdateDeviceCameraCustomAnalyticsRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	serial string
-	updateDeviceCameraCustomAnalytics *InlineObject4
+	updateDeviceCameraCustomAnalyticsRequest *UpdateDeviceCameraCustomAnalyticsRequest
 }
 
-func (r CameraApiUpdateDeviceCameraCustomAnalyticsRequest) UpdateDeviceCameraCustomAnalytics(updateDeviceCameraCustomAnalytics InlineObject4) CameraApiUpdateDeviceCameraCustomAnalyticsRequest {
-	r.updateDeviceCameraCustomAnalytics = &updateDeviceCameraCustomAnalytics
+func (r CameraApiUpdateDeviceCameraCustomAnalyticsRequest) UpdateDeviceCameraCustomAnalyticsRequest(updateDeviceCameraCustomAnalyticsRequest UpdateDeviceCameraCustomAnalyticsRequest) CameraApiUpdateDeviceCameraCustomAnalyticsRequest {
+	r.updateDeviceCameraCustomAnalyticsRequest = &updateDeviceCameraCustomAnalyticsRequest
 	return r
 }
 
@@ -3419,7 +3436,7 @@ func (a *CameraApiService) UpdateDeviceCameraCustomAnalyticsExecute(r CameraApiU
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCameraCustomAnalytics
+	localVarPostBody = r.updateDeviceCameraCustomAnalyticsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3475,11 +3492,11 @@ type CameraApiUpdateDeviceCameraQualityAndRetentionRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	serial string
-	updateDeviceCameraQualityAndRetention *InlineObject6
+	updateDeviceCameraQualityAndRetentionRequest *UpdateDeviceCameraQualityAndRetentionRequest
 }
 
-func (r CameraApiUpdateDeviceCameraQualityAndRetentionRequest) UpdateDeviceCameraQualityAndRetention(updateDeviceCameraQualityAndRetention InlineObject6) CameraApiUpdateDeviceCameraQualityAndRetentionRequest {
-	r.updateDeviceCameraQualityAndRetention = &updateDeviceCameraQualityAndRetention
+func (r CameraApiUpdateDeviceCameraQualityAndRetentionRequest) UpdateDeviceCameraQualityAndRetentionRequest(updateDeviceCameraQualityAndRetentionRequest UpdateDeviceCameraQualityAndRetentionRequest) CameraApiUpdateDeviceCameraQualityAndRetentionRequest {
+	r.updateDeviceCameraQualityAndRetentionRequest = &updateDeviceCameraQualityAndRetentionRequest
 	return r
 }
 
@@ -3544,7 +3561,7 @@ func (a *CameraApiService) UpdateDeviceCameraQualityAndRetentionExecute(r Camera
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCameraQualityAndRetention
+	localVarPostBody = r.updateDeviceCameraQualityAndRetentionRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3600,11 +3617,11 @@ type CameraApiUpdateDeviceCameraSenseRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	serial string
-	updateDeviceCameraSense *InlineObject7
+	updateDeviceCameraSenseRequest *UpdateDeviceCameraSenseRequest
 }
 
-func (r CameraApiUpdateDeviceCameraSenseRequest) UpdateDeviceCameraSense(updateDeviceCameraSense InlineObject7) CameraApiUpdateDeviceCameraSenseRequest {
-	r.updateDeviceCameraSense = &updateDeviceCameraSense
+func (r CameraApiUpdateDeviceCameraSenseRequest) UpdateDeviceCameraSenseRequest(updateDeviceCameraSenseRequest UpdateDeviceCameraSenseRequest) CameraApiUpdateDeviceCameraSenseRequest {
+	r.updateDeviceCameraSenseRequest = &updateDeviceCameraSenseRequest
 	return r
 }
 
@@ -3669,7 +3686,7 @@ func (a *CameraApiService) UpdateDeviceCameraSenseExecute(r CameraApiUpdateDevic
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCameraSense
+	localVarPostBody = r.updateDeviceCameraSenseRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3725,11 +3742,11 @@ type CameraApiUpdateDeviceCameraVideoSettingsRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	serial string
-	updateDeviceCameraVideoSettings *InlineObject8
+	updateDeviceCameraVideoSettingsRequest *UpdateDeviceCameraVideoSettingsRequest
 }
 
-func (r CameraApiUpdateDeviceCameraVideoSettingsRequest) UpdateDeviceCameraVideoSettings(updateDeviceCameraVideoSettings InlineObject8) CameraApiUpdateDeviceCameraVideoSettingsRequest {
-	r.updateDeviceCameraVideoSettings = &updateDeviceCameraVideoSettings
+func (r CameraApiUpdateDeviceCameraVideoSettingsRequest) UpdateDeviceCameraVideoSettingsRequest(updateDeviceCameraVideoSettingsRequest UpdateDeviceCameraVideoSettingsRequest) CameraApiUpdateDeviceCameraVideoSettingsRequest {
+	r.updateDeviceCameraVideoSettingsRequest = &updateDeviceCameraVideoSettingsRequest
 	return r
 }
 
@@ -3794,7 +3811,7 @@ func (a *CameraApiService) UpdateDeviceCameraVideoSettingsExecute(r CameraApiUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCameraVideoSettings
+	localVarPostBody = r.updateDeviceCameraVideoSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3850,11 +3867,11 @@ type CameraApiUpdateDeviceCameraWirelessProfilesRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	serial string
-	updateDeviceCameraWirelessProfiles *InlineObject9
+	updateDeviceCameraWirelessProfilesRequest *UpdateDeviceCameraWirelessProfilesRequest
 }
 
-func (r CameraApiUpdateDeviceCameraWirelessProfilesRequest) UpdateDeviceCameraWirelessProfiles(updateDeviceCameraWirelessProfiles InlineObject9) CameraApiUpdateDeviceCameraWirelessProfilesRequest {
-	r.updateDeviceCameraWirelessProfiles = &updateDeviceCameraWirelessProfiles
+func (r CameraApiUpdateDeviceCameraWirelessProfilesRequest) UpdateDeviceCameraWirelessProfilesRequest(updateDeviceCameraWirelessProfilesRequest UpdateDeviceCameraWirelessProfilesRequest) CameraApiUpdateDeviceCameraWirelessProfilesRequest {
+	r.updateDeviceCameraWirelessProfilesRequest = &updateDeviceCameraWirelessProfilesRequest
 	return r
 }
 
@@ -3900,8 +3917,8 @@ func (a *CameraApiService) UpdateDeviceCameraWirelessProfilesExecute(r CameraApi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateDeviceCameraWirelessProfiles == nil {
-		return localVarReturnValue, nil, reportError("updateDeviceCameraWirelessProfiles is required and must be specified")
+	if r.updateDeviceCameraWirelessProfilesRequest == nil {
+		return localVarReturnValue, nil, reportError("updateDeviceCameraWirelessProfilesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -3922,7 +3939,7 @@ func (a *CameraApiService) UpdateDeviceCameraWirelessProfilesExecute(r CameraApi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceCameraWirelessProfiles
+	localVarPostBody = r.updateDeviceCameraWirelessProfilesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3979,11 +3996,11 @@ type CameraApiUpdateNetworkCameraQualityRetentionProfileRequest struct {
 	ApiService *CameraApiService
 	networkId string
 	qualityRetentionProfileId string
-	updateNetworkCameraQualityRetentionProfile *InlineObject67
+	updateNetworkCameraQualityRetentionProfileRequest *UpdateNetworkCameraQualityRetentionProfileRequest
 }
 
-func (r CameraApiUpdateNetworkCameraQualityRetentionProfileRequest) UpdateNetworkCameraQualityRetentionProfile(updateNetworkCameraQualityRetentionProfile InlineObject67) CameraApiUpdateNetworkCameraQualityRetentionProfileRequest {
-	r.updateNetworkCameraQualityRetentionProfile = &updateNetworkCameraQualityRetentionProfile
+func (r CameraApiUpdateNetworkCameraQualityRetentionProfileRequest) UpdateNetworkCameraQualityRetentionProfileRequest(updateNetworkCameraQualityRetentionProfileRequest UpdateNetworkCameraQualityRetentionProfileRequest) CameraApiUpdateNetworkCameraQualityRetentionProfileRequest {
+	r.updateNetworkCameraQualityRetentionProfileRequest = &updateNetworkCameraQualityRetentionProfileRequest
 	return r
 }
 
@@ -4051,7 +4068,7 @@ func (a *CameraApiService) UpdateNetworkCameraQualityRetentionProfileExecute(r C
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkCameraQualityRetentionProfile
+	localVarPostBody = r.updateNetworkCameraQualityRetentionProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4108,11 +4125,11 @@ type CameraApiUpdateNetworkCameraWirelessProfileRequest struct {
 	ApiService *CameraApiService
 	networkId string
 	wirelessProfileId string
-	updateNetworkCameraWirelessProfile *InlineObject69
+	updateNetworkCameraWirelessProfileRequest *UpdateNetworkCameraWirelessProfileRequest
 }
 
-func (r CameraApiUpdateNetworkCameraWirelessProfileRequest) UpdateNetworkCameraWirelessProfile(updateNetworkCameraWirelessProfile InlineObject69) CameraApiUpdateNetworkCameraWirelessProfileRequest {
-	r.updateNetworkCameraWirelessProfile = &updateNetworkCameraWirelessProfile
+func (r CameraApiUpdateNetworkCameraWirelessProfileRequest) UpdateNetworkCameraWirelessProfileRequest(updateNetworkCameraWirelessProfileRequest UpdateNetworkCameraWirelessProfileRequest) CameraApiUpdateNetworkCameraWirelessProfileRequest {
+	r.updateNetworkCameraWirelessProfileRequest = &updateNetworkCameraWirelessProfileRequest
 	return r
 }
 
@@ -4180,7 +4197,7 @@ func (a *CameraApiService) UpdateNetworkCameraWirelessProfileExecute(r CameraApi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkCameraWirelessProfile
+	localVarPostBody = r.updateNetworkCameraWirelessProfileRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4236,11 +4253,11 @@ type CameraApiUpdateOrganizationCameraOnboardingStatusesRequest struct {
 	ctx context.Context
 	ApiService *CameraApiService
 	organizationId string
-	updateOrganizationCameraOnboardingStatuses *InlineObject192
+	updateOrganizationCameraOnboardingStatusesRequest *UpdateOrganizationCameraOnboardingStatusesRequest
 }
 
-func (r CameraApiUpdateOrganizationCameraOnboardingStatusesRequest) UpdateOrganizationCameraOnboardingStatuses(updateOrganizationCameraOnboardingStatuses InlineObject192) CameraApiUpdateOrganizationCameraOnboardingStatusesRequest {
-	r.updateOrganizationCameraOnboardingStatuses = &updateOrganizationCameraOnboardingStatuses
+func (r CameraApiUpdateOrganizationCameraOnboardingStatusesRequest) UpdateOrganizationCameraOnboardingStatusesRequest(updateOrganizationCameraOnboardingStatusesRequest UpdateOrganizationCameraOnboardingStatusesRequest) CameraApiUpdateOrganizationCameraOnboardingStatusesRequest {
+	r.updateOrganizationCameraOnboardingStatusesRequest = &updateOrganizationCameraOnboardingStatusesRequest
 	return r
 }
 
@@ -4305,7 +4322,7 @@ func (a *CameraApiService) UpdateOrganizationCameraOnboardingStatusesExecute(r C
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationCameraOnboardingStatuses
+	localVarPostBody = r.updateOrganizationCameraOnboardingStatusesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

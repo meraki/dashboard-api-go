@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -29,7 +29,7 @@ type SingleLanApiGetNetworkApplianceSingleLanRequest struct {
 	networkId string
 }
 
-func (r SingleLanApiGetNetworkApplianceSingleLanRequest) Execute() (*InlineResponse20019, *http.Response, error) {
+func (r SingleLanApiGetNetworkApplianceSingleLanRequest) Execute() (*GetNetworkApplianceSingleLan200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkApplianceSingleLanExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *SingleLanApiService) GetNetworkApplianceSingleLan(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse20019
-func (a *SingleLanApiService) GetNetworkApplianceSingleLanExecute(r SingleLanApiGetNetworkApplianceSingleLanRequest) (*InlineResponse20019, *http.Response, error) {
+//  @return GetNetworkApplianceSingleLan200Response
+func (a *SingleLanApiService) GetNetworkApplianceSingleLanExecute(r SingleLanApiGetNetworkApplianceSingleLanRequest) (*GetNetworkApplianceSingleLan200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20019
+		localVarReturnValue  *GetNetworkApplianceSingleLan200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SingleLanApiService.GetNetworkApplianceSingleLan")
@@ -144,15 +144,15 @@ type SingleLanApiUpdateNetworkApplianceSingleLanRequest struct {
 	ctx context.Context
 	ApiService *SingleLanApiService
 	networkId string
-	updateNetworkApplianceSingleLan *InlineObject49
+	updateNetworkApplianceSingleLanRequest *UpdateNetworkApplianceSingleLanRequest
 }
 
-func (r SingleLanApiUpdateNetworkApplianceSingleLanRequest) UpdateNetworkApplianceSingleLan(updateNetworkApplianceSingleLan InlineObject49) SingleLanApiUpdateNetworkApplianceSingleLanRequest {
-	r.updateNetworkApplianceSingleLan = &updateNetworkApplianceSingleLan
+func (r SingleLanApiUpdateNetworkApplianceSingleLanRequest) UpdateNetworkApplianceSingleLanRequest(updateNetworkApplianceSingleLanRequest UpdateNetworkApplianceSingleLanRequest) SingleLanApiUpdateNetworkApplianceSingleLanRequest {
+	r.updateNetworkApplianceSingleLanRequest = &updateNetworkApplianceSingleLanRequest
 	return r
 }
 
-func (r SingleLanApiUpdateNetworkApplianceSingleLanRequest) Execute() (*InlineResponse20019, *http.Response, error) {
+func (r SingleLanApiUpdateNetworkApplianceSingleLanRequest) Execute() (*GetNetworkApplianceSingleLan200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkApplianceSingleLanExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *SingleLanApiService) UpdateNetworkApplianceSingleLan(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20019
-func (a *SingleLanApiService) UpdateNetworkApplianceSingleLanExecute(r SingleLanApiUpdateNetworkApplianceSingleLanRequest) (*InlineResponse20019, *http.Response, error) {
+//  @return GetNetworkApplianceSingleLan200Response
+func (a *SingleLanApiService) UpdateNetworkApplianceSingleLanExecute(r SingleLanApiUpdateNetworkApplianceSingleLanRequest) (*GetNetworkApplianceSingleLan200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20019
+		localVarReturnValue  *GetNetworkApplianceSingleLan200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SingleLanApiService.UpdateNetworkApplianceSingleLan")
@@ -213,7 +213,7 @@ func (a *SingleLanApiService) UpdateNetworkApplianceSingleLanExecute(r SingleLan
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceSingleLan
+	localVarPostBody = r.updateNetworkApplianceSingleLanRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

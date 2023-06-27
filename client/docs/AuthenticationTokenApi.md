@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## CreateDeviceApplianceVmxAuthenticationToken
 
-> InlineResponse201 CreateDeviceApplianceVmxAuthenticationToken(ctx, serial).Execute()
+> CreateDeviceApplianceVmxAuthenticationToken201Response CreateDeviceApplianceVmxAuthenticationToken(ctx, serial).Execute()
 
 Generate a new vMX authentication token
 
@@ -25,7 +25,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -38,7 +38,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationTokenApi.CreateDeviceApplianceVmxAuthenticationToken``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateDeviceApplianceVmxAuthenticationToken`: InlineResponse201
+    // response from `CreateDeviceApplianceVmxAuthenticationToken`: CreateDeviceApplianceVmxAuthenticationToken201Response
     fmt.Fprintf(os.Stdout, "Response from `AuthenticationTokenApi.CreateDeviceApplianceVmxAuthenticationToken`: %v\n", resp)
 }
 ```
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse201**](InlineResponse201.md)
+[**CreateDeviceApplianceVmxAuthenticationToken201Response**](CreateDeviceApplianceVmxAuthenticationToken201Response.md)
 
 ### Authorization
 

@@ -32,7 +32,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -102,7 +102,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkCellularGatewayDhcp
 
-> InlineResponse20025 GetNetworkCellularGatewayDhcp(ctx, networkId).Execute()
+> GetNetworkCellularGatewayDhcp200Response GetNetworkCellularGatewayDhcp(ctx, networkId).Execute()
 
 List common DHCP settings of MGs
 
@@ -175,7 +175,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -188,7 +188,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DhcpApi.GetNetworkCellularGatewayDhcp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkCellularGatewayDhcp`: InlineResponse20025
+    // response from `GetNetworkCellularGatewayDhcp`: GetNetworkCellularGatewayDhcp200Response
     fmt.Fprintf(os.Stdout, "Response from `DhcpApi.GetNetworkCellularGatewayDhcp`: %v\n", resp)
 }
 ```
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20025**](InlineResponse20025.md)
+[**GetNetworkCellularGatewayDhcp200Response**](GetNetworkCellularGatewayDhcp200Response.md)
 
 ### Authorization
 
@@ -230,7 +230,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchDhcpV4ServersSeen
 
-> []InlineResponse20070 GetNetworkSwitchDhcpV4ServersSeen(ctx, networkId).T0(t0).Timespan(timespan).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSwitchDhcpV4ServersSeen200ResponseInner GetNetworkSwitchDhcpV4ServersSeen(ctx, networkId).T0(t0).Timespan(timespan).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 Return the network's DHCPv4 servers seen within the selected timeframe (default 1 day)
 
@@ -245,7 +245,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -263,7 +263,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DhcpApi.GetNetworkSwitchDhcpV4ServersSeen``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchDhcpV4ServersSeen`: []InlineResponse20070
+    // response from `GetNetworkSwitchDhcpV4ServersSeen`: []GetNetworkSwitchDhcpV4ServersSeen200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `DhcpApi.GetNetworkSwitchDhcpV4ServersSeen`: %v\n", resp)
 }
 ```
@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20070**](InlineResponse20070.md)
+[**[]GetNetworkSwitchDhcpV4ServersSeen200ResponseInner**](GetNetworkSwitchDhcpV4ServersSeen200ResponseInner.md)
 
 ### Authorization
 
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchStackRoutingInterfaceDhcp
 
-> InlineResponse20080 GetNetworkSwitchStackRoutingInterfaceDhcp(ctx, networkId, switchStackId, interfaceId).Execute()
+> GetNetworkSwitchStackRoutingInterfaceDhcp200Response GetNetworkSwitchStackRoutingInterfaceDhcp(ctx, networkId, switchStackId, interfaceId).Execute()
 
 Return a layer 3 interface DHCP configuration for a switch stack
 
@@ -325,7 +325,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -340,7 +340,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DhcpApi.GetNetworkSwitchStackRoutingInterfaceDhcp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchStackRoutingInterfaceDhcp`: InlineResponse20080
+    // response from `GetNetworkSwitchStackRoutingInterfaceDhcp`: GetNetworkSwitchStackRoutingInterfaceDhcp200Response
     fmt.Fprintf(os.Stdout, "Response from `DhcpApi.GetNetworkSwitchStackRoutingInterfaceDhcp`: %v\n", resp)
 }
 ```
@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20080**](InlineResponse20080.md)
+[**GetNetworkSwitchStackRoutingInterfaceDhcp200Response**](GetNetworkSwitchStackRoutingInterfaceDhcp200Response.md)
 
 ### Authorization
 
@@ -386,7 +386,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceSwitchRoutingInterfaceDhcp
 
-> map[string]interface{} UpdateDeviceSwitchRoutingInterfaceDhcp(ctx, serial, interfaceId).UpdateDeviceSwitchRoutingInterfaceDhcp(updateDeviceSwitchRoutingInterfaceDhcp).Execute()
+> map[string]interface{} UpdateDeviceSwitchRoutingInterfaceDhcp(ctx, serial, interfaceId).UpdateDeviceSwitchRoutingInterfaceDhcpRequest(updateDeviceSwitchRoutingInterfaceDhcpRequest).Execute()
 
 Update a layer 3 interface DHCP configuration for a switch
 
@@ -401,17 +401,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
     interfaceId := "interfaceId_example" // string | Interface ID
-    updateDeviceSwitchRoutingInterfaceDhcp := *openapiclient.NewInlineObject21() // InlineObject21 |  (optional)
+    updateDeviceSwitchRoutingInterfaceDhcpRequest := *openapiclient.NewUpdateDeviceSwitchRoutingInterfaceDhcpRequest() // UpdateDeviceSwitchRoutingInterfaceDhcpRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DhcpApi.UpdateDeviceSwitchRoutingInterfaceDhcp(context.Background(), serial, interfaceId).UpdateDeviceSwitchRoutingInterfaceDhcp(updateDeviceSwitchRoutingInterfaceDhcp).Execute()
+    resp, r, err := apiClient.DhcpApi.UpdateDeviceSwitchRoutingInterfaceDhcp(context.Background(), serial, interfaceId).UpdateDeviceSwitchRoutingInterfaceDhcpRequest(updateDeviceSwitchRoutingInterfaceDhcpRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DhcpApi.UpdateDeviceSwitchRoutingInterfaceDhcp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -439,7 +439,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateDeviceSwitchRoutingInterfaceDhcp** | [**InlineObject21**](InlineObject21.md) |  | 
+ **updateDeviceSwitchRoutingInterfaceDhcpRequest** | [**UpdateDeviceSwitchRoutingInterfaceDhcpRequest**](UpdateDeviceSwitchRoutingInterfaceDhcpRequest.md) |  | 
 
 ### Return type
 
@@ -461,7 +461,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkCellularGatewayDhcp
 
-> InlineResponse20025 UpdateNetworkCellularGatewayDhcp(ctx, networkId).UpdateNetworkCellularGatewayDhcp(updateNetworkCellularGatewayDhcp).Execute()
+> GetNetworkCellularGatewayDhcp200Response UpdateNetworkCellularGatewayDhcp(ctx, networkId).UpdateNetworkCellularGatewayDhcpRequest(updateNetworkCellularGatewayDhcpRequest).Execute()
 
 Update common DHCP settings of MGs
 
@@ -476,21 +476,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkCellularGatewayDhcp := *openapiclient.NewInlineObject71() // InlineObject71 |  (optional)
+    updateNetworkCellularGatewayDhcpRequest := *openapiclient.NewUpdateNetworkCellularGatewayDhcpRequest() // UpdateNetworkCellularGatewayDhcpRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DhcpApi.UpdateNetworkCellularGatewayDhcp(context.Background(), networkId).UpdateNetworkCellularGatewayDhcp(updateNetworkCellularGatewayDhcp).Execute()
+    resp, r, err := apiClient.DhcpApi.UpdateNetworkCellularGatewayDhcp(context.Background(), networkId).UpdateNetworkCellularGatewayDhcpRequest(updateNetworkCellularGatewayDhcpRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DhcpApi.UpdateNetworkCellularGatewayDhcp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkCellularGatewayDhcp`: InlineResponse20025
+    // response from `UpdateNetworkCellularGatewayDhcp`: GetNetworkCellularGatewayDhcp200Response
     fmt.Fprintf(os.Stdout, "Response from `DhcpApi.UpdateNetworkCellularGatewayDhcp`: %v\n", resp)
 }
 ```
@@ -511,11 +511,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkCellularGatew
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkCellularGatewayDhcp** | [**InlineObject71**](InlineObject71.md) |  | 
+ **updateNetworkCellularGatewayDhcpRequest** | [**UpdateNetworkCellularGatewayDhcpRequest**](UpdateNetworkCellularGatewayDhcpRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20025**](InlineResponse20025.md)
+[**GetNetworkCellularGatewayDhcp200Response**](GetNetworkCellularGatewayDhcp200Response.md)
 
 ### Authorization
 
@@ -533,7 +533,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchStackRoutingInterfaceDhcp
 
-> map[string]interface{} UpdateNetworkSwitchStackRoutingInterfaceDhcp(ctx, networkId, switchStackId, interfaceId).UpdateNetworkSwitchStackRoutingInterfaceDhcp(updateNetworkSwitchStackRoutingInterfaceDhcp).Execute()
+> map[string]interface{} UpdateNetworkSwitchStackRoutingInterfaceDhcp(ctx, networkId, switchStackId, interfaceId).UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest(updateNetworkSwitchStackRoutingInterfaceDhcpRequest).Execute()
 
 Update a layer 3 interface DHCP configuration for a switch stack
 
@@ -548,18 +548,18 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     switchStackId := "switchStackId_example" // string | Switch stack ID
     interfaceId := "interfaceId_example" // string | Interface ID
-    updateNetworkSwitchStackRoutingInterfaceDhcp := *openapiclient.NewInlineObject138() // InlineObject138 |  (optional)
+    updateNetworkSwitchStackRoutingInterfaceDhcpRequest := *openapiclient.NewUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest() // UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DhcpApi.UpdateNetworkSwitchStackRoutingInterfaceDhcp(context.Background(), networkId, switchStackId, interfaceId).UpdateNetworkSwitchStackRoutingInterfaceDhcp(updateNetworkSwitchStackRoutingInterfaceDhcp).Execute()
+    resp, r, err := apiClient.DhcpApi.UpdateNetworkSwitchStackRoutingInterfaceDhcp(context.Background(), networkId, switchStackId, interfaceId).UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest(updateNetworkSwitchStackRoutingInterfaceDhcpRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DhcpApi.UpdateNetworkSwitchStackRoutingInterfaceDhcp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -589,7 +589,7 @@ Name | Type | Description  | Notes
 
 
 
- **updateNetworkSwitchStackRoutingInterfaceDhcp** | [**InlineObject138**](InlineObject138.md) |  | 
+ **updateNetworkSwitchStackRoutingInterfaceDhcpRequest** | [**UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest**](UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest.md) |  | 
 
 ### Return type
 

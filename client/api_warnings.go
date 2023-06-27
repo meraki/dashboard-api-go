@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -50,7 +50,7 @@ func (r WarningsApiGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice
 	return r
 }
 
-func (r WarningsApiGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceRequest) Execute() ([]InlineResponse20073, *http.Response, error) {
+func (r WarningsApiGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceRequest) Execute() ([]GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceExecute(r)
 }
 
@@ -72,13 +72,13 @@ func (a *WarningsApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarnin
 }
 
 // Execute executes the request
-//  @return []InlineResponse20073
-func (a *WarningsApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceExecute(r WarningsApiGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceRequest) ([]InlineResponse20073, *http.Response, error) {
+//  @return []GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner
+func (a *WarningsApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceExecute(r WarningsApiGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDeviceRequest) ([]GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20073
+		localVarReturnValue  []GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WarningsApiService.GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice")

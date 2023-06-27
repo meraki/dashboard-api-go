@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type TargetGroupsApiCreateNetworkSmTargetGroupRequest struct {
 	ctx context.Context
 	ApiService *TargetGroupsApiService
 	networkId string
-	createNetworkSmTargetGroup *InlineObject109
+	createNetworkSmTargetGroupRequest *CreateNetworkSmTargetGroupRequest
 }
 
-func (r TargetGroupsApiCreateNetworkSmTargetGroupRequest) CreateNetworkSmTargetGroup(createNetworkSmTargetGroup InlineObject109) TargetGroupsApiCreateNetworkSmTargetGroupRequest {
-	r.createNetworkSmTargetGroup = &createNetworkSmTargetGroup
+func (r TargetGroupsApiCreateNetworkSmTargetGroupRequest) CreateNetworkSmTargetGroupRequest(createNetworkSmTargetGroupRequest CreateNetworkSmTargetGroupRequest) TargetGroupsApiCreateNetworkSmTargetGroupRequest {
+	r.createNetworkSmTargetGroupRequest = &createNetworkSmTargetGroupRequest
 	return r
 }
 
@@ -96,7 +96,7 @@ func (a *TargetGroupsApiService) CreateNetworkSmTargetGroupExecute(r TargetGroup
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSmTargetGroup
+	localVarPostBody = r.createNetworkSmTargetGroupRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -521,11 +521,11 @@ type TargetGroupsApiUpdateNetworkSmTargetGroupRequest struct {
 	ApiService *TargetGroupsApiService
 	networkId string
 	targetGroupId string
-	updateNetworkSmTargetGroup *InlineObject110
+	createNetworkSmTargetGroupRequest *CreateNetworkSmTargetGroupRequest
 }
 
-func (r TargetGroupsApiUpdateNetworkSmTargetGroupRequest) UpdateNetworkSmTargetGroup(updateNetworkSmTargetGroup InlineObject110) TargetGroupsApiUpdateNetworkSmTargetGroupRequest {
-	r.updateNetworkSmTargetGroup = &updateNetworkSmTargetGroup
+func (r TargetGroupsApiUpdateNetworkSmTargetGroupRequest) CreateNetworkSmTargetGroupRequest(createNetworkSmTargetGroupRequest CreateNetworkSmTargetGroupRequest) TargetGroupsApiUpdateNetworkSmTargetGroupRequest {
+	r.createNetworkSmTargetGroupRequest = &createNetworkSmTargetGroupRequest
 	return r
 }
 
@@ -593,7 +593,7 @@ func (a *TargetGroupsApiService) UpdateNetworkSmTargetGroupExecute(r TargetGroup
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSmTargetGroup
+	localVarPostBody = r.createNetworkSmTargetGroupRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -64,7 +64,7 @@ func (r LicensingApiGetOrganizationLicensingCotermLicensesRequest) Expired(expir
 	return r
 }
 
-func (r LicensingApiGetOrganizationLicensingCotermLicensesRequest) Execute() ([]InlineResponse200134, *http.Response, error) {
+func (r LicensingApiGetOrganizationLicensingCotermLicensesRequest) Execute() ([]GetOrganizationLicensingCotermLicenses200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationLicensingCotermLicensesExecute(r)
 }
 
@@ -86,13 +86,13 @@ func (a *LicensingApiService) GetOrganizationLicensingCotermLicenses(ctx context
 }
 
 // Execute executes the request
-//  @return []InlineResponse200134
-func (a *LicensingApiService) GetOrganizationLicensingCotermLicensesExecute(r LicensingApiGetOrganizationLicensingCotermLicensesRequest) ([]InlineResponse200134, *http.Response, error) {
+//  @return []GetOrganizationLicensingCotermLicenses200ResponseInner
+func (a *LicensingApiService) GetOrganizationLicensingCotermLicensesExecute(r LicensingApiGetOrganizationLicensingCotermLicensesRequest) ([]GetOrganizationLicensingCotermLicenses200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200134
+		localVarReturnValue  []GetOrganizationLicensingCotermLicenses200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensingApiService.GetOrganizationLicensingCotermLicenses")
@@ -194,15 +194,15 @@ type LicensingApiMoveOrganizationLicensingCotermLicensesRequest struct {
 	ctx context.Context
 	ApiService *LicensingApiService
 	organizationId string
-	moveOrganizationLicensingCotermLicenses *InlineObject212
+	moveOrganizationLicensingCotermLicensesRequest *MoveOrganizationLicensingCotermLicensesRequest
 }
 
-func (r LicensingApiMoveOrganizationLicensingCotermLicensesRequest) MoveOrganizationLicensingCotermLicenses(moveOrganizationLicensingCotermLicenses InlineObject212) LicensingApiMoveOrganizationLicensingCotermLicensesRequest {
-	r.moveOrganizationLicensingCotermLicenses = &moveOrganizationLicensingCotermLicenses
+func (r LicensingApiMoveOrganizationLicensingCotermLicensesRequest) MoveOrganizationLicensingCotermLicensesRequest(moveOrganizationLicensingCotermLicensesRequest MoveOrganizationLicensingCotermLicensesRequest) LicensingApiMoveOrganizationLicensingCotermLicensesRequest {
+	r.moveOrganizationLicensingCotermLicensesRequest = &moveOrganizationLicensingCotermLicensesRequest
 	return r
 }
 
-func (r LicensingApiMoveOrganizationLicensingCotermLicensesRequest) Execute() (*InlineResponse200135, *http.Response, error) {
+func (r LicensingApiMoveOrganizationLicensingCotermLicensesRequest) Execute() (*MoveOrganizationLicensingCotermLicenses200Response, *http.Response, error) {
 	return r.ApiService.MoveOrganizationLicensingCotermLicensesExecute(r)
 }
 
@@ -224,13 +224,13 @@ func (a *LicensingApiService) MoveOrganizationLicensingCotermLicenses(ctx contex
 }
 
 // Execute executes the request
-//  @return InlineResponse200135
-func (a *LicensingApiService) MoveOrganizationLicensingCotermLicensesExecute(r LicensingApiMoveOrganizationLicensingCotermLicensesRequest) (*InlineResponse200135, *http.Response, error) {
+//  @return MoveOrganizationLicensingCotermLicenses200Response
+func (a *LicensingApiService) MoveOrganizationLicensingCotermLicensesExecute(r LicensingApiMoveOrganizationLicensingCotermLicensesRequest) (*MoveOrganizationLicensingCotermLicenses200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200135
+		localVarReturnValue  *MoveOrganizationLicensingCotermLicenses200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LicensingApiService.MoveOrganizationLicensingCotermLicenses")
@@ -244,8 +244,8 @@ func (a *LicensingApiService) MoveOrganizationLicensingCotermLicensesExecute(r L
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.moveOrganizationLicensingCotermLicenses == nil {
-		return localVarReturnValue, nil, reportError("moveOrganizationLicensingCotermLicenses is required and must be specified")
+	if r.moveOrganizationLicensingCotermLicensesRequest == nil {
+		return localVarReturnValue, nil, reportError("moveOrganizationLicensingCotermLicensesRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -266,7 +266,7 @@ func (a *LicensingApiService) MoveOrganizationLicensingCotermLicensesExecute(r L
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.moveOrganizationLicensingCotermLicenses
+	localVarPostBody = r.moveOrganizationLicensingCotermLicensesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

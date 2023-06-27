@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## GetNetworkSwitchMtu
 
-> InlineResponse20075 GetNetworkSwitchMtu(ctx, networkId).Execute()
+> GetNetworkSwitchMtu200Response GetNetworkSwitchMtu(ctx, networkId).Execute()
 
 Return the MTU configuration
 
@@ -26,7 +26,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -39,7 +39,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MtuApi.GetNetworkSwitchMtu``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchMtu`: InlineResponse20075
+    // response from `GetNetworkSwitchMtu`: GetNetworkSwitchMtu200Response
     fmt.Fprintf(os.Stdout, "Response from `MtuApi.GetNetworkSwitchMtu`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20075**](InlineResponse20075.md)
+[**GetNetworkSwitchMtu200Response**](GetNetworkSwitchMtu200Response.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchMtu
 
-> map[string]interface{} UpdateNetworkSwitchMtu(ctx, networkId).UpdateNetworkSwitchMtu(updateNetworkSwitchMtu).Execute()
+> map[string]interface{} UpdateNetworkSwitchMtu(ctx, networkId).UpdateNetworkSwitchMtuRequest(updateNetworkSwitchMtuRequest).Execute()
 
 Update the MTU configuration
 
@@ -96,16 +96,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSwitchMtu := *openapiclient.NewInlineObject122() // InlineObject122 |  (optional)
+    updateNetworkSwitchMtuRequest := *openapiclient.NewUpdateNetworkSwitchMtuRequest() // UpdateNetworkSwitchMtuRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MtuApi.UpdateNetworkSwitchMtu(context.Background(), networkId).UpdateNetworkSwitchMtu(updateNetworkSwitchMtu).Execute()
+    resp, r, err := apiClient.MtuApi.UpdateNetworkSwitchMtu(context.Background(), networkId).UpdateNetworkSwitchMtuRequest(updateNetworkSwitchMtuRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MtuApi.UpdateNetworkSwitchMtu``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -131,7 +131,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSwitchMtuRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSwitchMtu** | [**InlineObject122**](InlineObject122.md) |  | 
+ **updateNetworkSwitchMtuRequest** | [**UpdateNetworkSwitchMtuRequest**](UpdateNetworkSwitchMtuRequest.md) |  | 
 
 ### Return type
 

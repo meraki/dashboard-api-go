@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -29,7 +29,7 @@ type ThirdPartyVPNPeersApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest s
 	organizationId string
 }
 
-func (r ThirdPartyVPNPeersApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest) Execute() (*InlineResponse200106, *http.Response, error) {
+func (r ThirdPartyVPNPeersApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest) Execute() (*GetOrganizationApplianceVpnThirdPartyVPNPeers200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationApplianceVpnThirdPartyVPNPeersExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *ThirdPartyVPNPeersApiService) GetOrganizationApplianceVpnThirdPartyVPNP
 }
 
 // Execute executes the request
-//  @return InlineResponse200106
-func (a *ThirdPartyVPNPeersApiService) GetOrganizationApplianceVpnThirdPartyVPNPeersExecute(r ThirdPartyVPNPeersApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest) (*InlineResponse200106, *http.Response, error) {
+//  @return GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
+func (a *ThirdPartyVPNPeersApiService) GetOrganizationApplianceVpnThirdPartyVPNPeersExecute(r ThirdPartyVPNPeersApiGetOrganizationApplianceVpnThirdPartyVPNPeersRequest) (*GetOrganizationApplianceVpnThirdPartyVPNPeers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200106
+		localVarReturnValue  *GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyVPNPeersApiService.GetOrganizationApplianceVpnThirdPartyVPNPeers")
@@ -144,15 +144,15 @@ type ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersReques
 	ctx context.Context
 	ApiService *ThirdPartyVPNPeersApiService
 	organizationId string
-	updateOrganizationApplianceVpnThirdPartyVPNPeers *InlineObject186
+	updateOrganizationApplianceVpnThirdPartyVPNPeersRequest *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest
 }
 
-func (r ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) UpdateOrganizationApplianceVpnThirdPartyVPNPeers(updateOrganizationApplianceVpnThirdPartyVPNPeers InlineObject186) ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest {
-	r.updateOrganizationApplianceVpnThirdPartyVPNPeers = &updateOrganizationApplianceVpnThirdPartyVPNPeers
+func (r ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest(updateOrganizationApplianceVpnThirdPartyVPNPeersRequest UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest {
+	r.updateOrganizationApplianceVpnThirdPartyVPNPeersRequest = &updateOrganizationApplianceVpnThirdPartyVPNPeersRequest
 	return r
 }
 
-func (r ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) Execute() (*InlineResponse200106, *http.Response, error) {
+func (r ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) Execute() (*GetOrganizationApplianceVpnThirdPartyVPNPeers200Response, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationApplianceVpnThirdPartyVPNPeersExecute(r)
 }
 
@@ -174,13 +174,13 @@ func (a *ThirdPartyVPNPeersApiService) UpdateOrganizationApplianceVpnThirdPartyV
 }
 
 // Execute executes the request
-//  @return InlineResponse200106
-func (a *ThirdPartyVPNPeersApiService) UpdateOrganizationApplianceVpnThirdPartyVPNPeersExecute(r ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) (*InlineResponse200106, *http.Response, error) {
+//  @return GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
+func (a *ThirdPartyVPNPeersApiService) UpdateOrganizationApplianceVpnThirdPartyVPNPeersExecute(r ThirdPartyVPNPeersApiUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) (*GetOrganizationApplianceVpnThirdPartyVPNPeers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200106
+		localVarReturnValue  *GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ThirdPartyVPNPeersApiService.UpdateOrganizationApplianceVpnThirdPartyVPNPeers")
@@ -194,8 +194,8 @@ func (a *ThirdPartyVPNPeersApiService) UpdateOrganizationApplianceVpnThirdPartyV
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateOrganizationApplianceVpnThirdPartyVPNPeers == nil {
-		return localVarReturnValue, nil, reportError("updateOrganizationApplianceVpnThirdPartyVPNPeers is required and must be specified")
+	if r.updateOrganizationApplianceVpnThirdPartyVPNPeersRequest == nil {
+		return localVarReturnValue, nil, reportError("updateOrganizationApplianceVpnThirdPartyVPNPeersRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -216,7 +216,7 @@ func (a *ThirdPartyVPNPeersApiService) UpdateOrganizationApplianceVpnThirdPartyV
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationApplianceVpnThirdPartyVPNPeers
+	localVarPostBody = r.updateOrganizationApplianceVpnThirdPartyVPNPeersRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -50,7 +50,7 @@ func (r SummaryApiGetOrganizationSummaryTopAppliancesByUtilizationRequest) Times
 	return r
 }
 
-func (r SummaryApiGetOrganizationSummaryTopAppliancesByUtilizationRequest) Execute() ([]InlineResponse200145, *http.Response, error) {
+func (r SummaryApiGetOrganizationSummaryTopAppliancesByUtilizationRequest) Execute() ([]GetOrganizationSummaryTopAppliancesByUtilization200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopAppliancesByUtilizationExecute(r)
 }
 
@@ -72,13 +72,13 @@ func (a *SummaryApiService) GetOrganizationSummaryTopAppliancesByUtilization(ctx
 }
 
 // Execute executes the request
-//  @return []InlineResponse200145
-func (a *SummaryApiService) GetOrganizationSummaryTopAppliancesByUtilizationExecute(r SummaryApiGetOrganizationSummaryTopAppliancesByUtilizationRequest) ([]InlineResponse200145, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopAppliancesByUtilization200ResponseInner
+func (a *SummaryApiService) GetOrganizationSummaryTopAppliancesByUtilizationExecute(r SummaryApiGetOrganizationSummaryTopAppliancesByUtilizationRequest) ([]GetOrganizationSummaryTopAppliancesByUtilization200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200145
+		localVarReturnValue  []GetOrganizationSummaryTopAppliancesByUtilization200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SummaryApiService.GetOrganizationSummaryTopAppliancesByUtilization")
@@ -197,7 +197,7 @@ func (r SummaryApiGetOrganizationSummaryTopClientsByUsageRequest) Timespan(times
 	return r
 }
 
-func (r SummaryApiGetOrganizationSummaryTopClientsByUsageRequest) Execute() ([]InlineResponse200146, *http.Response, error) {
+func (r SummaryApiGetOrganizationSummaryTopClientsByUsageRequest) Execute() ([]GetOrganizationSummaryTopClientsByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopClientsByUsageExecute(r)
 }
 
@@ -219,13 +219,13 @@ func (a *SummaryApiService) GetOrganizationSummaryTopClientsByUsage(ctx context.
 }
 
 // Execute executes the request
-//  @return []InlineResponse200146
-func (a *SummaryApiService) GetOrganizationSummaryTopClientsByUsageExecute(r SummaryApiGetOrganizationSummaryTopClientsByUsageRequest) ([]InlineResponse200146, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopClientsByUsage200ResponseInner
+func (a *SummaryApiService) GetOrganizationSummaryTopClientsByUsageExecute(r SummaryApiGetOrganizationSummaryTopClientsByUsageRequest) ([]GetOrganizationSummaryTopClientsByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200146
+		localVarReturnValue  []GetOrganizationSummaryTopClientsByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SummaryApiService.GetOrganizationSummaryTopClientsByUsage")
@@ -344,7 +344,7 @@ func (r SummaryApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) T
 	return r
 }
 
-func (r SummaryApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) Execute() ([]InlineResponse200147, *http.Response, error) {
+func (r SummaryApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) Execute() ([]GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopClientsManufacturersByUsageExecute(r)
 }
 
@@ -366,13 +366,13 @@ func (a *SummaryApiService) GetOrganizationSummaryTopClientsManufacturersByUsage
 }
 
 // Execute executes the request
-//  @return []InlineResponse200147
-func (a *SummaryApiService) GetOrganizationSummaryTopClientsManufacturersByUsageExecute(r SummaryApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) ([]InlineResponse200147, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner
+func (a *SummaryApiService) GetOrganizationSummaryTopClientsManufacturersByUsageExecute(r SummaryApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) ([]GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200147
+		localVarReturnValue  []GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SummaryApiService.GetOrganizationSummaryTopClientsManufacturersByUsage")
@@ -491,7 +491,7 @@ func (r SummaryApiGetOrganizationSummaryTopDevicesByUsageRequest) Timespan(times
 	return r
 }
 
-func (r SummaryApiGetOrganizationSummaryTopDevicesByUsageRequest) Execute() ([]InlineResponse200148, *http.Response, error) {
+func (r SummaryApiGetOrganizationSummaryTopDevicesByUsageRequest) Execute() ([]GetOrganizationSummaryTopDevicesByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopDevicesByUsageExecute(r)
 }
 
@@ -513,13 +513,13 @@ func (a *SummaryApiService) GetOrganizationSummaryTopDevicesByUsage(ctx context.
 }
 
 // Execute executes the request
-//  @return []InlineResponse200148
-func (a *SummaryApiService) GetOrganizationSummaryTopDevicesByUsageExecute(r SummaryApiGetOrganizationSummaryTopDevicesByUsageRequest) ([]InlineResponse200148, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopDevicesByUsage200ResponseInner
+func (a *SummaryApiService) GetOrganizationSummaryTopDevicesByUsageExecute(r SummaryApiGetOrganizationSummaryTopDevicesByUsageRequest) ([]GetOrganizationSummaryTopDevicesByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200148
+		localVarReturnValue  []GetOrganizationSummaryTopDevicesByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SummaryApiService.GetOrganizationSummaryTopDevicesByUsage")
@@ -638,7 +638,7 @@ func (r SummaryApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) Timespan
 	return r
 }
 
-func (r SummaryApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) Execute() ([]InlineResponse200149, *http.Response, error) {
+func (r SummaryApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) Execute() ([]GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopDevicesModelsByUsageExecute(r)
 }
 
@@ -660,13 +660,13 @@ func (a *SummaryApiService) GetOrganizationSummaryTopDevicesModelsByUsage(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse200149
-func (a *SummaryApiService) GetOrganizationSummaryTopDevicesModelsByUsageExecute(r SummaryApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) ([]InlineResponse200149, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner
+func (a *SummaryApiService) GetOrganizationSummaryTopDevicesModelsByUsageExecute(r SummaryApiGetOrganizationSummaryTopDevicesModelsByUsageRequest) ([]GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200149
+		localVarReturnValue  []GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SummaryApiService.GetOrganizationSummaryTopDevicesModelsByUsage")
@@ -785,7 +785,7 @@ func (r SummaryApiGetOrganizationSummaryTopSsidsByUsageRequest) Timespan(timespa
 	return r
 }
 
-func (r SummaryApiGetOrganizationSummaryTopSsidsByUsageRequest) Execute() ([]InlineResponse200150, *http.Response, error) {
+func (r SummaryApiGetOrganizationSummaryTopSsidsByUsageRequest) Execute() ([]GetOrganizationSummaryTopSsidsByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopSsidsByUsageExecute(r)
 }
 
@@ -807,13 +807,13 @@ func (a *SummaryApiService) GetOrganizationSummaryTopSsidsByUsage(ctx context.Co
 }
 
 // Execute executes the request
-//  @return []InlineResponse200150
-func (a *SummaryApiService) GetOrganizationSummaryTopSsidsByUsageExecute(r SummaryApiGetOrganizationSummaryTopSsidsByUsageRequest) ([]InlineResponse200150, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopSsidsByUsage200ResponseInner
+func (a *SummaryApiService) GetOrganizationSummaryTopSsidsByUsageExecute(r SummaryApiGetOrganizationSummaryTopSsidsByUsageRequest) ([]GetOrganizationSummaryTopSsidsByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200150
+		localVarReturnValue  []GetOrganizationSummaryTopSsidsByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SummaryApiService.GetOrganizationSummaryTopSsidsByUsage")
@@ -932,7 +932,7 @@ func (r SummaryApiGetOrganizationSummaryTopSwitchesByEnergyUsageRequest) Timespa
 	return r
 }
 
-func (r SummaryApiGetOrganizationSummaryTopSwitchesByEnergyUsageRequest) Execute() ([]InlineResponse200151, *http.Response, error) {
+func (r SummaryApiGetOrganizationSummaryTopSwitchesByEnergyUsageRequest) Execute() ([]GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopSwitchesByEnergyUsageExecute(r)
 }
 
@@ -954,13 +954,13 @@ func (a *SummaryApiService) GetOrganizationSummaryTopSwitchesByEnergyUsage(ctx c
 }
 
 // Execute executes the request
-//  @return []InlineResponse200151
-func (a *SummaryApiService) GetOrganizationSummaryTopSwitchesByEnergyUsageExecute(r SummaryApiGetOrganizationSummaryTopSwitchesByEnergyUsageRequest) ([]InlineResponse200151, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner
+func (a *SummaryApiService) GetOrganizationSummaryTopSwitchesByEnergyUsageExecute(r SummaryApiGetOrganizationSummaryTopSwitchesByEnergyUsageRequest) ([]GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200151
+		localVarReturnValue  []GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SummaryApiService.GetOrganizationSummaryTopSwitchesByEnergyUsage")

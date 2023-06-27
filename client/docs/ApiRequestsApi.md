@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## GetOrganizationApiRequests
 
-> []InlineResponse200103 GetOrganizationApiRequests(ctx, organizationId).T0(t0).T1(t1).Timespan(timespan).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).AdminId(adminId).Path(path).Method(method).ResponseCode(responseCode).SourceIp(sourceIp).UserAgent(userAgent).Version(version).OperationIds(operationIds).Execute()
+> []GetOrganizationApiRequests200ResponseInner GetOrganizationApiRequests(ctx, organizationId).T0(t0).T1(t1).Timespan(timespan).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).AdminId(adminId).Path(path).Method(method).ResponseCode(responseCode).SourceIp(sourceIp).UserAgent(userAgent).Version(version).OperationIds(operationIds).Execute()
 
 List the API requests made by an organization
 
@@ -27,7 +27,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -54,7 +54,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ApiRequestsApi.GetOrganizationApiRequests``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationApiRequests`: []InlineResponse200103
+    // response from `GetOrganizationApiRequests`: []GetOrganizationApiRequests200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ApiRequestsApi.GetOrganizationApiRequests`: %v\n", resp)
 }
 ```
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200103**](InlineResponse200103.md)
+[**[]GetOrganizationApiRequests200ResponseInner**](GetOrganizationApiRequests200ResponseInner.md)
 
 ### Authorization
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationApiRequestsOverview
 
-> InlineResponse200104 GetOrganizationApiRequestsOverview(ctx, organizationId).T0(t0).T1(t1).Timespan(timespan).Execute()
+> GetOrganizationApiRequestsOverview200Response GetOrganizationApiRequestsOverview(ctx, organizationId).T0(t0).T1(t1).Timespan(timespan).Execute()
 
 Return an aggregated overview of API requests data
 
@@ -125,7 +125,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -141,7 +141,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ApiRequestsApi.GetOrganizationApiRequestsOverview``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationApiRequestsOverview`: InlineResponse200104
+    // response from `GetOrganizationApiRequestsOverview`: GetOrganizationApiRequestsOverview200Response
     fmt.Fprintf(os.Stdout, "Response from `ApiRequestsApi.GetOrganizationApiRequestsOverview`: %v\n", resp)
 }
 ```
@@ -168,7 +168,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200104**](InlineResponse200104.md)
+[**GetOrganizationApiRequestsOverview200Response**](GetOrganizationApiRequestsOverview200Response.md)
 
 ### Authorization
 
@@ -186,7 +186,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationApiRequestsOverviewResponseCodesByInterval
 
-> []InlineResponse200105 GetOrganizationApiRequestsOverviewResponseCodesByInterval(ctx, organizationId).T0(t0).T1(t1).Timespan(timespan).Interval(interval).Version(version).OperationIds(operationIds).SourceIps(sourceIps).AdminIds(adminIds).UserAgent(userAgent).Execute()
+> []GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner GetOrganizationApiRequestsOverviewResponseCodesByInterval(ctx, organizationId).T0(t0).T1(t1).Timespan(timespan).Interval(interval).Version(version).OperationIds(operationIds).SourceIps(sourceIps).AdminIds(adminIds).UserAgent(userAgent).Execute()
 
 Tracks organizations' API requests by response code across a given time period
 
@@ -201,7 +201,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -223,7 +223,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ApiRequestsApi.GetOrganizationApiRequestsOverviewResponseCodesByInterval``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationApiRequestsOverviewResponseCodesByInterval`: []InlineResponse200105
+    // response from `GetOrganizationApiRequestsOverviewResponseCodesByInterval`: []GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ApiRequestsApi.GetOrganizationApiRequestsOverviewResponseCodesByInterval`: %v\n", resp)
 }
 ```
@@ -256,7 +256,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200105**](InlineResponse200105.md)
+[**[]GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner**](GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner.md)
 
 ### Authorization
 

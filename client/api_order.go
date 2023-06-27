@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -144,11 +144,11 @@ type OrderApiUpdateNetworkSwitchQosRulesOrderRequest struct {
 	ctx context.Context
 	ApiService *OrderApiService
 	networkId string
-	updateNetworkSwitchQosRulesOrder *InlineObject126
+	updateNetworkSwitchQosRulesOrderRequest *UpdateNetworkSwitchQosRulesOrderRequest
 }
 
-func (r OrderApiUpdateNetworkSwitchQosRulesOrderRequest) UpdateNetworkSwitchQosRulesOrder(updateNetworkSwitchQosRulesOrder InlineObject126) OrderApiUpdateNetworkSwitchQosRulesOrderRequest {
-	r.updateNetworkSwitchQosRulesOrder = &updateNetworkSwitchQosRulesOrder
+func (r OrderApiUpdateNetworkSwitchQosRulesOrderRequest) UpdateNetworkSwitchQosRulesOrderRequest(updateNetworkSwitchQosRulesOrderRequest UpdateNetworkSwitchQosRulesOrderRequest) OrderApiUpdateNetworkSwitchQosRulesOrderRequest {
+	r.updateNetworkSwitchQosRulesOrderRequest = &updateNetworkSwitchQosRulesOrderRequest
 	return r
 }
 
@@ -194,8 +194,8 @@ func (a *OrderApiService) UpdateNetworkSwitchQosRulesOrderExecute(r OrderApiUpda
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkSwitchQosRulesOrder == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkSwitchQosRulesOrder is required and must be specified")
+	if r.updateNetworkSwitchQosRulesOrderRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkSwitchQosRulesOrderRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -216,7 +216,7 @@ func (a *OrderApiService) UpdateNetworkSwitchQosRulesOrderExecute(r OrderApiUpda
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchQosRulesOrder
+	localVarPostBody = r.updateNetworkSwitchQosRulesOrderRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

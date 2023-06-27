@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateNetworkSwitchPortSchedule
 
-> map[string]interface{} CreateNetworkSwitchPortSchedule(ctx, networkId).CreateNetworkSwitchPortSchedule(createNetworkSwitchPortSchedule).Execute()
+> map[string]interface{} CreateNetworkSwitchPortSchedule(ctx, networkId).CreateNetworkSwitchPortScheduleRequest(createNetworkSwitchPortScheduleRequest).Execute()
 
 Add a switch port schedule
 
@@ -28,16 +28,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkSwitchPortSchedule := *openapiclient.NewInlineObject123("Name_example") // InlineObject123 | 
+    createNetworkSwitchPortScheduleRequest := *openapiclient.NewCreateNetworkSwitchPortScheduleRequest("Name_example") // CreateNetworkSwitchPortScheduleRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortSchedulesApi.CreateNetworkSwitchPortSchedule(context.Background(), networkId).CreateNetworkSwitchPortSchedule(createNetworkSwitchPortSchedule).Execute()
+    resp, r, err := apiClient.PortSchedulesApi.CreateNetworkSwitchPortSchedule(context.Background(), networkId).CreateNetworkSwitchPortScheduleRequest(createNetworkSwitchPortScheduleRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortSchedulesApi.CreateNetworkSwitchPortSchedule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,7 +63,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkSwitchPortSch
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkSwitchPortSchedule** | [**InlineObject123**](InlineObject123.md) |  | 
+ **createNetworkSwitchPortScheduleRequest** | [**CreateNetworkSwitchPortScheduleRequest**](CreateNetworkSwitchPortScheduleRequest.md) |  | 
 
 ### Return type
 
@@ -100,7 +100,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -171,7 +171,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchPortSchedule
 
-> map[string]interface{} UpdateNetworkSwitchPortSchedule(ctx, networkId, portScheduleId).UpdateNetworkSwitchPortSchedule(updateNetworkSwitchPortSchedule).Execute()
+> map[string]interface{} UpdateNetworkSwitchPortSchedule(ctx, networkId, portScheduleId).UpdateNetworkSwitchPortScheduleRequest(updateNetworkSwitchPortScheduleRequest).Execute()
 
 Update a switch port schedule
 
@@ -241,17 +241,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     portScheduleId := "portScheduleId_example" // string | Port schedule ID
-    updateNetworkSwitchPortSchedule := *openapiclient.NewInlineObject124() // InlineObject124 |  (optional)
+    updateNetworkSwitchPortScheduleRequest := *openapiclient.NewUpdateNetworkSwitchPortScheduleRequest() // UpdateNetworkSwitchPortScheduleRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PortSchedulesApi.UpdateNetworkSwitchPortSchedule(context.Background(), networkId, portScheduleId).UpdateNetworkSwitchPortSchedule(updateNetworkSwitchPortSchedule).Execute()
+    resp, r, err := apiClient.PortSchedulesApi.UpdateNetworkSwitchPortSchedule(context.Background(), networkId, portScheduleId).UpdateNetworkSwitchPortScheduleRequest(updateNetworkSwitchPortScheduleRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PortSchedulesApi.UpdateNetworkSwitchPortSchedule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -279,7 +279,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkSwitchPortSchedule** | [**InlineObject124**](InlineObject124.md) |  | 
+ **updateNetworkSwitchPortScheduleRequest** | [**UpdateNetworkSwitchPortScheduleRequest**](UpdateNetworkSwitchPortScheduleRequest.md) |  | 
 
 ### Return type
 

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateNetworkFloorPlan
 
-> map[string]interface{} CreateNetworkFloorPlan(ctx, networkId).CreateNetworkFloorPlan(createNetworkFloorPlan).Execute()
+> map[string]interface{} CreateNetworkFloorPlan(ctx, networkId).CreateNetworkFloorPlanRequest(createNetworkFloorPlanRequest).Execute()
 
 Upload a floor plan
 
@@ -29,16 +29,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkFloorPlan := *openapiclient.NewInlineObject88("Name_example", "ImageContents_example") // InlineObject88 | 
+    createNetworkFloorPlanRequest := *openapiclient.NewCreateNetworkFloorPlanRequest("Name_example", string(123)) // CreateNetworkFloorPlanRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FloorPlansApi.CreateNetworkFloorPlan(context.Background(), networkId).CreateNetworkFloorPlan(createNetworkFloorPlan).Execute()
+    resp, r, err := apiClient.FloorPlansApi.CreateNetworkFloorPlan(context.Background(), networkId).CreateNetworkFloorPlanRequest(createNetworkFloorPlanRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FloorPlansApi.CreateNetworkFloorPlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -64,7 +64,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkFloorPlanRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkFloorPlan** | [**InlineObject88**](InlineObject88.md) |  | 
+ **createNetworkFloorPlanRequest** | [**CreateNetworkFloorPlanRequest**](CreateNetworkFloorPlanRequest.md) |  | 
 
 ### Return type
 
@@ -101,7 +101,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -172,7 +172,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -245,7 +245,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -300,7 +300,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkFloorPlan
 
-> map[string]interface{} UpdateNetworkFloorPlan(ctx, networkId, floorPlanId).UpdateNetworkFloorPlan(updateNetworkFloorPlan).Execute()
+> map[string]interface{} UpdateNetworkFloorPlan(ctx, networkId, floorPlanId).UpdateNetworkFloorPlanRequest(updateNetworkFloorPlanRequest).Execute()
 
 Update a floor plan's geolocation and other meta data
 
@@ -315,17 +315,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     floorPlanId := "floorPlanId_example" // string | Floor plan ID
-    updateNetworkFloorPlan := *openapiclient.NewInlineObject89() // InlineObject89 |  (optional)
+    updateNetworkFloorPlanRequest := *openapiclient.NewUpdateNetworkFloorPlanRequest() // UpdateNetworkFloorPlanRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.FloorPlansApi.UpdateNetworkFloorPlan(context.Background(), networkId, floorPlanId).UpdateNetworkFloorPlan(updateNetworkFloorPlan).Execute()
+    resp, r, err := apiClient.FloorPlansApi.UpdateNetworkFloorPlan(context.Background(), networkId, floorPlanId).UpdateNetworkFloorPlanRequest(updateNetworkFloorPlanRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `FloorPlansApi.UpdateNetworkFloorPlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -353,7 +353,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkFloorPlan** | [**InlineObject89**](InlineObject89.md) |  | 
+ **updateNetworkFloorPlanRequest** | [**UpdateNetworkFloorPlanRequest**](UpdateNetworkFloorPlanRequest.md) |  | 
 
 ### Return type
 

@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -71,7 +72,7 @@ func (r LatestApiGetOrganizationSensorReadingsLatestRequest) Metrics(metrics []s
 	return r
 }
 
-func (r LatestApiGetOrganizationSensorReadingsLatestRequest) Execute() ([]InlineResponse200142, *http.Response, error) {
+func (r LatestApiGetOrganizationSensorReadingsLatestRequest) Execute() ([]GetOrganizationSensorReadingsLatest200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSensorReadingsLatestExecute(r)
 }
 
@@ -93,13 +94,13 @@ func (a *LatestApiService) GetOrganizationSensorReadingsLatest(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return []InlineResponse200142
-func (a *LatestApiService) GetOrganizationSensorReadingsLatestExecute(r LatestApiGetOrganizationSensorReadingsLatestRequest) ([]InlineResponse200142, *http.Response, error) {
+//  @return []GetOrganizationSensorReadingsLatest200ResponseInner
+func (a *LatestApiService) GetOrganizationSensorReadingsLatestExecute(r LatestApiGetOrganizationSensorReadingsLatestRequest) ([]GetOrganizationSensorReadingsLatest200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200142
+		localVarReturnValue  []GetOrganizationSensorReadingsLatest200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LatestApiService.GetOrganizationSensorReadingsLatest")
@@ -124,13 +125,37 @@ func (a *LatestApiService) GetOrganizationSensorReadingsLatestExecute(r LatestAp
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.networkIds != nil {
-		localVarQueryParams.Add("networkIds", parameterToString(*r.networkIds, "csv"))
+		t := *r.networkIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+		}
 	}
 	if r.serials != nil {
-		localVarQueryParams.Add("serials", parameterToString(*r.serials, "csv"))
+		t := *r.serials
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+		}
 	}
 	if r.metrics != nil {
-		localVarQueryParams.Add("metrics", parameterToString(*r.metrics, "csv"))
+		t := *r.metrics
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("metrics", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("metrics", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

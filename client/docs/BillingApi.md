@@ -26,7 +26,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessBilling
 
-> map[string]interface{} UpdateNetworkWirelessBilling(ctx, networkId).UpdateNetworkWirelessBilling(updateNetworkWirelessBilling).Execute()
+> map[string]interface{} UpdateNetworkWirelessBilling(ctx, networkId).UpdateNetworkWirelessBillingRequest(updateNetworkWirelessBillingRequest).Execute()
 
 Update the billing settings
 
@@ -96,16 +96,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkWirelessBilling := *openapiclient.NewInlineObject152() // InlineObject152 |  (optional)
+    updateNetworkWirelessBillingRequest := *openapiclient.NewUpdateNetworkWirelessBillingRequest() // UpdateNetworkWirelessBillingRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BillingApi.UpdateNetworkWirelessBilling(context.Background(), networkId).UpdateNetworkWirelessBilling(updateNetworkWirelessBilling).Execute()
+    resp, r, err := apiClient.BillingApi.UpdateNetworkWirelessBilling(context.Background(), networkId).UpdateNetworkWirelessBillingRequest(updateNetworkWirelessBillingRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BillingApi.UpdateNetworkWirelessBilling``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -131,7 +131,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkWirelessBilli
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkWirelessBilling** | [**InlineObject152**](InlineObject152.md) |  | 
+ **updateNetworkWirelessBillingRequest** | [**UpdateNetworkWirelessBillingRequest**](UpdateNetworkWirelessBillingRequest.md) |  | 
 
 ### Return type
 

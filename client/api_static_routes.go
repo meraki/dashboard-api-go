@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type StaticRoutesApiCreateDeviceSwitchRoutingStaticRouteRequest struct {
 	ctx context.Context
 	ApiService *StaticRoutesApiService
 	serial string
-	createDeviceSwitchRoutingStaticRoute *InlineObject22
+	createDeviceSwitchRoutingStaticRouteRequest *CreateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r StaticRoutesApiCreateDeviceSwitchRoutingStaticRouteRequest) CreateDeviceSwitchRoutingStaticRoute(createDeviceSwitchRoutingStaticRoute InlineObject22) StaticRoutesApiCreateDeviceSwitchRoutingStaticRouteRequest {
-	r.createDeviceSwitchRoutingStaticRoute = &createDeviceSwitchRoutingStaticRoute
+func (r StaticRoutesApiCreateDeviceSwitchRoutingStaticRouteRequest) CreateDeviceSwitchRoutingStaticRouteRequest(createDeviceSwitchRoutingStaticRouteRequest CreateDeviceSwitchRoutingStaticRouteRequest) StaticRoutesApiCreateDeviceSwitchRoutingStaticRouteRequest {
+	r.createDeviceSwitchRoutingStaticRouteRequest = &createDeviceSwitchRoutingStaticRouteRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *StaticRoutesApiService) CreateDeviceSwitchRoutingStaticRouteExecute(r S
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createDeviceSwitchRoutingStaticRoute == nil {
-		return localVarReturnValue, nil, reportError("createDeviceSwitchRoutingStaticRoute is required and must be specified")
+	if r.createDeviceSwitchRoutingStaticRouteRequest == nil {
+		return localVarReturnValue, nil, reportError("createDeviceSwitchRoutingStaticRouteRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *StaticRoutesApiService) CreateDeviceSwitchRoutingStaticRouteExecute(r S
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createDeviceSwitchRoutingStaticRoute
+	localVarPostBody = r.createDeviceSwitchRoutingStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -155,11 +155,11 @@ type StaticRoutesApiCreateNetworkApplianceStaticRouteRequest struct {
 	ctx context.Context
 	ApiService *StaticRoutesApiService
 	networkId string
-	createNetworkApplianceStaticRoute *InlineObject51
+	createNetworkApplianceStaticRouteRequest *CreateNetworkApplianceStaticRouteRequest
 }
 
-func (r StaticRoutesApiCreateNetworkApplianceStaticRouteRequest) CreateNetworkApplianceStaticRoute(createNetworkApplianceStaticRoute InlineObject51) StaticRoutesApiCreateNetworkApplianceStaticRouteRequest {
-	r.createNetworkApplianceStaticRoute = &createNetworkApplianceStaticRoute
+func (r StaticRoutesApiCreateNetworkApplianceStaticRouteRequest) CreateNetworkApplianceStaticRouteRequest(createNetworkApplianceStaticRouteRequest CreateNetworkApplianceStaticRouteRequest) StaticRoutesApiCreateNetworkApplianceStaticRouteRequest {
+	r.createNetworkApplianceStaticRouteRequest = &createNetworkApplianceStaticRouteRequest
 	return r
 }
 
@@ -205,8 +205,8 @@ func (a *StaticRoutesApiService) CreateNetworkApplianceStaticRouteExecute(r Stat
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkApplianceStaticRoute == nil {
-		return localVarReturnValue, nil, reportError("createNetworkApplianceStaticRoute is required and must be specified")
+	if r.createNetworkApplianceStaticRouteRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkApplianceStaticRouteRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -227,7 +227,7 @@ func (a *StaticRoutesApiService) CreateNetworkApplianceStaticRouteExecute(r Stat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkApplianceStaticRoute
+	localVarPostBody = r.createNetworkApplianceStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -284,11 +284,11 @@ type StaticRoutesApiCreateNetworkSwitchStackRoutingStaticRouteRequest struct {
 	ApiService *StaticRoutesApiService
 	networkId string
 	switchStackId string
-	createNetworkSwitchStackRoutingStaticRoute *InlineObject139
+	createDeviceSwitchRoutingStaticRouteRequest *CreateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r StaticRoutesApiCreateNetworkSwitchStackRoutingStaticRouteRequest) CreateNetworkSwitchStackRoutingStaticRoute(createNetworkSwitchStackRoutingStaticRoute InlineObject139) StaticRoutesApiCreateNetworkSwitchStackRoutingStaticRouteRequest {
-	r.createNetworkSwitchStackRoutingStaticRoute = &createNetworkSwitchStackRoutingStaticRoute
+func (r StaticRoutesApiCreateNetworkSwitchStackRoutingStaticRouteRequest) CreateDeviceSwitchRoutingStaticRouteRequest(createDeviceSwitchRoutingStaticRouteRequest CreateDeviceSwitchRoutingStaticRouteRequest) StaticRoutesApiCreateNetworkSwitchStackRoutingStaticRouteRequest {
+	r.createDeviceSwitchRoutingStaticRouteRequest = &createDeviceSwitchRoutingStaticRouteRequest
 	return r
 }
 
@@ -337,8 +337,8 @@ func (a *StaticRoutesApiService) CreateNetworkSwitchStackRoutingStaticRouteExecu
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchStackRoutingStaticRoute == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchStackRoutingStaticRoute is required and must be specified")
+	if r.createDeviceSwitchRoutingStaticRouteRequest == nil {
+		return localVarReturnValue, nil, reportError("createDeviceSwitchRoutingStaticRouteRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -359,7 +359,7 @@ func (a *StaticRoutesApiService) CreateNetworkSwitchStackRoutingStaticRouteExecu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchStackRoutingStaticRoute
+	localVarPostBody = r.createDeviceSwitchRoutingStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -752,7 +752,7 @@ type StaticRoutesApiGetDeviceSwitchRoutingStaticRouteRequest struct {
 	staticRouteId string
 }
 
-func (r StaticRoutesApiGetDeviceSwitchRoutingStaticRouteRequest) Execute() (*InlineResponse2009, *http.Response, error) {
+func (r StaticRoutesApiGetDeviceSwitchRoutingStaticRouteRequest) Execute() (*GetDeviceSwitchRoutingStaticRoute200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceSwitchRoutingStaticRouteExecute(r)
 }
 
@@ -776,13 +776,13 @@ func (a *StaticRoutesApiService) GetDeviceSwitchRoutingStaticRoute(ctx context.C
 }
 
 // Execute executes the request
-//  @return InlineResponse2009
-func (a *StaticRoutesApiService) GetDeviceSwitchRoutingStaticRouteExecute(r StaticRoutesApiGetDeviceSwitchRoutingStaticRouteRequest) (*InlineResponse2009, *http.Response, error) {
+//  @return GetDeviceSwitchRoutingStaticRoute200Response
+func (a *StaticRoutesApiService) GetDeviceSwitchRoutingStaticRouteExecute(r StaticRoutesApiGetDeviceSwitchRoutingStaticRouteRequest) (*GetDeviceSwitchRoutingStaticRoute200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2009
+		localVarReturnValue  *GetDeviceSwitchRoutingStaticRoute200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StaticRoutesApiService.GetDeviceSwitchRoutingStaticRoute")
@@ -1472,11 +1472,11 @@ type StaticRoutesApiUpdateDeviceSwitchRoutingStaticRouteRequest struct {
 	ApiService *StaticRoutesApiService
 	serial string
 	staticRouteId string
-	updateDeviceSwitchRoutingStaticRoute *InlineObject23
+	updateDeviceSwitchRoutingStaticRouteRequest *UpdateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r StaticRoutesApiUpdateDeviceSwitchRoutingStaticRouteRequest) UpdateDeviceSwitchRoutingStaticRoute(updateDeviceSwitchRoutingStaticRoute InlineObject23) StaticRoutesApiUpdateDeviceSwitchRoutingStaticRouteRequest {
-	r.updateDeviceSwitchRoutingStaticRoute = &updateDeviceSwitchRoutingStaticRoute
+func (r StaticRoutesApiUpdateDeviceSwitchRoutingStaticRouteRequest) UpdateDeviceSwitchRoutingStaticRouteRequest(updateDeviceSwitchRoutingStaticRouteRequest UpdateDeviceSwitchRoutingStaticRouteRequest) StaticRoutesApiUpdateDeviceSwitchRoutingStaticRouteRequest {
+	r.updateDeviceSwitchRoutingStaticRouteRequest = &updateDeviceSwitchRoutingStaticRouteRequest
 	return r
 }
 
@@ -1544,7 +1544,7 @@ func (a *StaticRoutesApiService) UpdateDeviceSwitchRoutingStaticRouteExecute(r S
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceSwitchRoutingStaticRoute
+	localVarPostBody = r.updateDeviceSwitchRoutingStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1601,11 +1601,11 @@ type StaticRoutesApiUpdateNetworkApplianceStaticRouteRequest struct {
 	ApiService *StaticRoutesApiService
 	networkId string
 	staticRouteId string
-	updateNetworkApplianceStaticRoute *InlineObject52
+	updateNetworkApplianceStaticRouteRequest *UpdateNetworkApplianceStaticRouteRequest
 }
 
-func (r StaticRoutesApiUpdateNetworkApplianceStaticRouteRequest) UpdateNetworkApplianceStaticRoute(updateNetworkApplianceStaticRoute InlineObject52) StaticRoutesApiUpdateNetworkApplianceStaticRouteRequest {
-	r.updateNetworkApplianceStaticRoute = &updateNetworkApplianceStaticRoute
+func (r StaticRoutesApiUpdateNetworkApplianceStaticRouteRequest) UpdateNetworkApplianceStaticRouteRequest(updateNetworkApplianceStaticRouteRequest UpdateNetworkApplianceStaticRouteRequest) StaticRoutesApiUpdateNetworkApplianceStaticRouteRequest {
+	r.updateNetworkApplianceStaticRouteRequest = &updateNetworkApplianceStaticRouteRequest
 	return r
 }
 
@@ -1673,7 +1673,7 @@ func (a *StaticRoutesApiService) UpdateNetworkApplianceStaticRouteExecute(r Stat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkApplianceStaticRoute
+	localVarPostBody = r.updateNetworkApplianceStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1731,11 +1731,11 @@ type StaticRoutesApiUpdateNetworkSwitchStackRoutingStaticRouteRequest struct {
 	networkId string
 	switchStackId string
 	staticRouteId string
-	updateNetworkSwitchStackRoutingStaticRoute *InlineObject140
+	updateDeviceSwitchRoutingStaticRouteRequest *UpdateDeviceSwitchRoutingStaticRouteRequest
 }
 
-func (r StaticRoutesApiUpdateNetworkSwitchStackRoutingStaticRouteRequest) UpdateNetworkSwitchStackRoutingStaticRoute(updateNetworkSwitchStackRoutingStaticRoute InlineObject140) StaticRoutesApiUpdateNetworkSwitchStackRoutingStaticRouteRequest {
-	r.updateNetworkSwitchStackRoutingStaticRoute = &updateNetworkSwitchStackRoutingStaticRoute
+func (r StaticRoutesApiUpdateNetworkSwitchStackRoutingStaticRouteRequest) UpdateDeviceSwitchRoutingStaticRouteRequest(updateDeviceSwitchRoutingStaticRouteRequest UpdateDeviceSwitchRoutingStaticRouteRequest) StaticRoutesApiUpdateNetworkSwitchStackRoutingStaticRouteRequest {
+	r.updateDeviceSwitchRoutingStaticRouteRequest = &updateDeviceSwitchRoutingStaticRouteRequest
 	return r
 }
 
@@ -1806,7 +1806,7 @@ func (a *StaticRoutesApiService) UpdateNetworkSwitchStackRoutingStaticRouteExecu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchStackRoutingStaticRoute
+	localVarPostBody = r.updateDeviceSwitchRoutingStaticRouteRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

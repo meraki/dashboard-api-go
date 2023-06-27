@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -358,7 +359,7 @@ type ClientsApiGetNetworkClientRequest struct {
 	clientId string
 }
 
-func (r ClientsApiGetNetworkClientRequest) Execute() (*InlineResponse20027, *http.Response, error) {
+func (r ClientsApiGetNetworkClientRequest) Execute() (*GetNetworkClient200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkClientExecute(r)
 }
 
@@ -382,13 +383,13 @@ func (a *ClientsApiService) GetNetworkClient(ctx context.Context, networkId stri
 }
 
 // Execute executes the request
-//  @return InlineResponse20027
-func (a *ClientsApiService) GetNetworkClientExecute(r ClientsApiGetNetworkClientRequest) (*InlineResponse20027, *http.Response, error) {
+//  @return GetNetworkClient200Response
+func (a *ClientsApiService) GetNetworkClientExecute(r ClientsApiGetNetworkClientRequest) (*GetNetworkClient200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20027
+		localVarReturnValue  *GetNetworkClient200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClientsApiService.GetNetworkClient")
@@ -1097,7 +1098,7 @@ func (r ClientsApiGetNetworkClientsRequest) RecentDeviceConnections(recentDevice
 	return r
 }
 
-func (r ClientsApiGetNetworkClientsRequest) Execute() (*InlineResponse20026, *http.Response, error) {
+func (r ClientsApiGetNetworkClientsRequest) Execute() (*GetNetworkClients200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkClientsExecute(r)
 }
 
@@ -1119,13 +1120,13 @@ func (a *ClientsApiService) GetNetworkClients(ctx context.Context, networkId str
 }
 
 // Execute executes the request
-//  @return InlineResponse20026
-func (a *ClientsApiService) GetNetworkClientsExecute(r ClientsApiGetNetworkClientsRequest) (*InlineResponse20026, *http.Response, error) {
+//  @return GetNetworkClients200Response
+func (a *ClientsApiService) GetNetworkClientsExecute(r ClientsApiGetNetworkClientsRequest) (*GetNetworkClients200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20026
+		localVarReturnValue  *GetNetworkClients200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClientsApiService.GetNetworkClients")
@@ -1156,7 +1157,15 @@ func (a *ClientsApiService) GetNetworkClientsExecute(r ClientsApiGetNetworkClien
 		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
 	}
 	if r.statuses != nil {
-		localVarQueryParams.Add("statuses", parameterToString(*r.statuses, "csv"))
+		t := *r.statuses
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("statuses", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("statuses", parameterToString(t, "multi"))
+		}
 	}
 	if r.ip != nil {
 		localVarQueryParams.Add("ip", parameterToString(*r.ip, ""))
@@ -1183,7 +1192,15 @@ func (a *ClientsApiService) GetNetworkClientsExecute(r ClientsApiGetNetworkClien
 		localVarQueryParams.Add("vlan", parameterToString(*r.vlan, ""))
 	}
 	if r.recentDeviceConnections != nil {
-		localVarQueryParams.Add("recentDeviceConnections", parameterToString(*r.recentDeviceConnections, "csv"))
+		t := *r.recentDeviceConnections
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("recentDeviceConnections", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("recentDeviceConnections", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2323,10 +2340,26 @@ func (a *ClientsApiService) GetNetworkWirelessClientConnectivityEventsExecute(r 
 		localVarQueryParams.Add("timespan", parameterToString(*r.timespan, ""))
 	}
 	if r.types != nil {
-		localVarQueryParams.Add("types", parameterToString(*r.types, "csv"))
+		t := *r.types
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("types", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("types", parameterToString(t, "multi"))
+		}
 	}
 	if r.includedSeverities != nil {
-		localVarQueryParams.Add("includedSeverities", parameterToString(*r.includedSeverities, "csv"))
+		t := *r.includedSeverities
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("includedSeverities", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("includedSeverities", parameterToString(t, "multi"))
+		}
 	}
 	if r.band != nil {
 		localVarQueryParams.Add("band", parameterToString(*r.band, ""))
@@ -3178,7 +3211,7 @@ func (r ClientsApiGetOrganizationClientsBandwidthUsageHistoryRequest) Timespan(t
 	return r
 }
 
-func (r ClientsApiGetOrganizationClientsBandwidthUsageHistoryRequest) Execute() ([]InlineResponse200111, *http.Response, error) {
+func (r ClientsApiGetOrganizationClientsBandwidthUsageHistoryRequest) Execute() ([]GetOrganizationClientsBandwidthUsageHistory200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationClientsBandwidthUsageHistoryExecute(r)
 }
 
@@ -3200,13 +3233,13 @@ func (a *ClientsApiService) GetOrganizationClientsBandwidthUsageHistory(ctx cont
 }
 
 // Execute executes the request
-//  @return []InlineResponse200111
-func (a *ClientsApiService) GetOrganizationClientsBandwidthUsageHistoryExecute(r ClientsApiGetOrganizationClientsBandwidthUsageHistoryRequest) ([]InlineResponse200111, *http.Response, error) {
+//  @return []GetOrganizationClientsBandwidthUsageHistory200ResponseInner
+func (a *ClientsApiService) GetOrganizationClientsBandwidthUsageHistoryExecute(r ClientsApiGetOrganizationClientsBandwidthUsageHistoryRequest) ([]GetOrganizationClientsBandwidthUsageHistory200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200111
+		localVarReturnValue  []GetOrganizationClientsBandwidthUsageHistory200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClientsApiService.GetOrganizationClientsBandwidthUsageHistory")
@@ -3325,7 +3358,7 @@ func (r ClientsApiGetOrganizationClientsOverviewRequest) Timespan(timespan float
 	return r
 }
 
-func (r ClientsApiGetOrganizationClientsOverviewRequest) Execute() (*InlineResponse200112, *http.Response, error) {
+func (r ClientsApiGetOrganizationClientsOverviewRequest) Execute() (*GetOrganizationClientsOverview200Response, *http.Response, error) {
 	return r.ApiService.GetOrganizationClientsOverviewExecute(r)
 }
 
@@ -3347,13 +3380,13 @@ func (a *ClientsApiService) GetOrganizationClientsOverview(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return InlineResponse200112
-func (a *ClientsApiService) GetOrganizationClientsOverviewExecute(r ClientsApiGetOrganizationClientsOverviewRequest) (*InlineResponse200112, *http.Response, error) {
+//  @return GetOrganizationClientsOverview200Response
+func (a *ClientsApiService) GetOrganizationClientsOverviewExecute(r ClientsApiGetOrganizationClientsOverviewRequest) (*GetOrganizationClientsOverview200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200112
+		localVarReturnValue  *GetOrganizationClientsOverview200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClientsApiService.GetOrganizationClientsOverview")
@@ -3630,7 +3663,7 @@ func (r ClientsApiGetOrganizationSummaryTopClientsByUsageRequest) Timespan(times
 	return r
 }
 
-func (r ClientsApiGetOrganizationSummaryTopClientsByUsageRequest) Execute() ([]InlineResponse200146, *http.Response, error) {
+func (r ClientsApiGetOrganizationSummaryTopClientsByUsageRequest) Execute() ([]GetOrganizationSummaryTopClientsByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopClientsByUsageExecute(r)
 }
 
@@ -3652,13 +3685,13 @@ func (a *ClientsApiService) GetOrganizationSummaryTopClientsByUsage(ctx context.
 }
 
 // Execute executes the request
-//  @return []InlineResponse200146
-func (a *ClientsApiService) GetOrganizationSummaryTopClientsByUsageExecute(r ClientsApiGetOrganizationSummaryTopClientsByUsageRequest) ([]InlineResponse200146, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopClientsByUsage200ResponseInner
+func (a *ClientsApiService) GetOrganizationSummaryTopClientsByUsageExecute(r ClientsApiGetOrganizationSummaryTopClientsByUsageRequest) ([]GetOrganizationSummaryTopClientsByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200146
+		localVarReturnValue  []GetOrganizationSummaryTopClientsByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClientsApiService.GetOrganizationSummaryTopClientsByUsage")
@@ -3777,7 +3810,7 @@ func (r ClientsApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) T
 	return r
 }
 
-func (r ClientsApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) Execute() ([]InlineResponse200147, *http.Response, error) {
+func (r ClientsApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) Execute() ([]GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSummaryTopClientsManufacturersByUsageExecute(r)
 }
 
@@ -3799,13 +3832,13 @@ func (a *ClientsApiService) GetOrganizationSummaryTopClientsManufacturersByUsage
 }
 
 // Execute executes the request
-//  @return []InlineResponse200147
-func (a *ClientsApiService) GetOrganizationSummaryTopClientsManufacturersByUsageExecute(r ClientsApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) ([]InlineResponse200147, *http.Response, error) {
+//  @return []GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner
+func (a *ClientsApiService) GetOrganizationSummaryTopClientsManufacturersByUsageExecute(r ClientsApiGetOrganizationSummaryTopClientsManufacturersByUsageRequest) ([]GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200147
+		localVarReturnValue  []GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClientsApiService.GetOrganizationSummaryTopClientsManufacturersByUsage")
@@ -3901,11 +3934,11 @@ type ClientsApiProvisionNetworkClientsRequest struct {
 	ctx context.Context
 	ApiService *ClientsApiService
 	networkId string
-	provisionNetworkClients *InlineObject74
+	provisionNetworkClientsRequest *ProvisionNetworkClientsRequest
 }
 
-func (r ClientsApiProvisionNetworkClientsRequest) ProvisionNetworkClients(provisionNetworkClients InlineObject74) ClientsApiProvisionNetworkClientsRequest {
-	r.provisionNetworkClients = &provisionNetworkClients
+func (r ClientsApiProvisionNetworkClientsRequest) ProvisionNetworkClientsRequest(provisionNetworkClientsRequest ProvisionNetworkClientsRequest) ClientsApiProvisionNetworkClientsRequest {
+	r.provisionNetworkClientsRequest = &provisionNetworkClientsRequest
 	return r
 }
 
@@ -3951,8 +3984,8 @@ func (a *ClientsApiService) ProvisionNetworkClientsExecute(r ClientsApiProvision
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.provisionNetworkClients == nil {
-		return localVarReturnValue, nil, reportError("provisionNetworkClients is required and must be specified")
+	if r.provisionNetworkClientsRequest == nil {
+		return localVarReturnValue, nil, reportError("provisionNetworkClientsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -3973,7 +4006,7 @@ func (a *ClientsApiService) ProvisionNetworkClientsExecute(r ClientsApiProvision
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.provisionNetworkClients
+	localVarPostBody = r.provisionNetworkClientsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4030,11 +4063,11 @@ type ClientsApiUpdateNetworkClientPolicyRequest struct {
 	ApiService *ClientsApiService
 	networkId string
 	clientId string
-	updateNetworkClientPolicy *InlineObject75
+	updateNetworkClientPolicyRequest *UpdateNetworkClientPolicyRequest
 }
 
-func (r ClientsApiUpdateNetworkClientPolicyRequest) UpdateNetworkClientPolicy(updateNetworkClientPolicy InlineObject75) ClientsApiUpdateNetworkClientPolicyRequest {
-	r.updateNetworkClientPolicy = &updateNetworkClientPolicy
+func (r ClientsApiUpdateNetworkClientPolicyRequest) UpdateNetworkClientPolicyRequest(updateNetworkClientPolicyRequest UpdateNetworkClientPolicyRequest) ClientsApiUpdateNetworkClientPolicyRequest {
+	r.updateNetworkClientPolicyRequest = &updateNetworkClientPolicyRequest
 	return r
 }
 
@@ -4083,8 +4116,8 @@ func (a *ClientsApiService) UpdateNetworkClientPolicyExecute(r ClientsApiUpdateN
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkClientPolicy == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkClientPolicy is required and must be specified")
+	if r.updateNetworkClientPolicyRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkClientPolicyRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -4105,7 +4138,7 @@ func (a *ClientsApiService) UpdateNetworkClientPolicyExecute(r ClientsApiUpdateN
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkClientPolicy
+	localVarPostBody = r.updateNetworkClientPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4162,11 +4195,11 @@ type ClientsApiUpdateNetworkClientSplashAuthorizationStatusRequest struct {
 	ApiService *ClientsApiService
 	networkId string
 	clientId string
-	updateNetworkClientSplashAuthorizationStatus *InlineObject76
+	updateNetworkClientSplashAuthorizationStatusRequest *UpdateNetworkClientSplashAuthorizationStatusRequest
 }
 
-func (r ClientsApiUpdateNetworkClientSplashAuthorizationStatusRequest) UpdateNetworkClientSplashAuthorizationStatus(updateNetworkClientSplashAuthorizationStatus InlineObject76) ClientsApiUpdateNetworkClientSplashAuthorizationStatusRequest {
-	r.updateNetworkClientSplashAuthorizationStatus = &updateNetworkClientSplashAuthorizationStatus
+func (r ClientsApiUpdateNetworkClientSplashAuthorizationStatusRequest) UpdateNetworkClientSplashAuthorizationStatusRequest(updateNetworkClientSplashAuthorizationStatusRequest UpdateNetworkClientSplashAuthorizationStatusRequest) ClientsApiUpdateNetworkClientSplashAuthorizationStatusRequest {
+	r.updateNetworkClientSplashAuthorizationStatusRequest = &updateNetworkClientSplashAuthorizationStatusRequest
 	return r
 }
 
@@ -4215,8 +4248,8 @@ func (a *ClientsApiService) UpdateNetworkClientSplashAuthorizationStatusExecute(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkClientSplashAuthorizationStatus == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkClientSplashAuthorizationStatus is required and must be specified")
+	if r.updateNetworkClientSplashAuthorizationStatusRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkClientSplashAuthorizationStatusRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -4237,7 +4270,7 @@ func (a *ClientsApiService) UpdateNetworkClientSplashAuthorizationStatusExecute(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkClientSplashAuthorizationStatus
+	localVarPostBody = r.updateNetworkClientSplashAuthorizationStatusRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

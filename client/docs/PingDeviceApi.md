@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## CreateDeviceLiveToolsPingDevice
 
-> InlineResponse2011 CreateDeviceLiveToolsPingDevice(ctx, serial).CreateDeviceLiveToolsPingDevice(createDeviceLiveToolsPingDevice).Execute()
+> CreateDeviceLiveToolsPing201Response CreateDeviceLiveToolsPingDevice(ctx, serial).CreateDeviceLiveToolsPingDeviceRequest(createDeviceLiveToolsPingDeviceRequest).Execute()
 
 Enqueue a job to check connectivity status to the device
 
@@ -26,21 +26,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    createDeviceLiveToolsPingDevice := *openapiclient.NewInlineObject14() // InlineObject14 |  (optional)
+    createDeviceLiveToolsPingDeviceRequest := *openapiclient.NewCreateDeviceLiveToolsPingDeviceRequest() // CreateDeviceLiveToolsPingDeviceRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PingDeviceApi.CreateDeviceLiveToolsPingDevice(context.Background(), serial).CreateDeviceLiveToolsPingDevice(createDeviceLiveToolsPingDevice).Execute()
+    resp, r, err := apiClient.PingDeviceApi.CreateDeviceLiveToolsPingDevice(context.Background(), serial).CreateDeviceLiveToolsPingDeviceRequest(createDeviceLiveToolsPingDeviceRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PingDeviceApi.CreateDeviceLiveToolsPingDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateDeviceLiveToolsPingDevice`: InlineResponse2011
+    // response from `CreateDeviceLiveToolsPingDevice`: CreateDeviceLiveToolsPing201Response
     fmt.Fprintf(os.Stdout, "Response from `PingDeviceApi.CreateDeviceLiveToolsPingDevice`: %v\n", resp)
 }
 ```
@@ -61,11 +61,11 @@ Other parameters are passed through a pointer to a apiCreateDeviceLiveToolsPingD
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createDeviceLiveToolsPingDevice** | [**InlineObject14**](InlineObject14.md) |  | 
+ **createDeviceLiveToolsPingDeviceRequest** | [**CreateDeviceLiveToolsPingDeviceRequest**](CreateDeviceLiveToolsPingDeviceRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse2011**](InlineResponse2011.md)
+[**CreateDeviceLiveToolsPing201Response**](CreateDeviceLiveToolsPing201Response.md)
 
 ### Authorization
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceLiveToolsPingDevice
 
-> InlineResponse2003 GetDeviceLiveToolsPingDevice(ctx, serial, id).Execute()
+> GetDeviceLiveToolsPing200Response GetDeviceLiveToolsPingDevice(ctx, serial, id).Execute()
 
 Return a ping device job
 
@@ -98,7 +98,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -112,7 +112,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PingDeviceApi.GetDeviceLiveToolsPingDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceLiveToolsPingDevice`: InlineResponse2003
+    // response from `GetDeviceLiveToolsPingDevice`: GetDeviceLiveToolsPing200Response
     fmt.Fprintf(os.Stdout, "Response from `PingDeviceApi.GetDeviceLiveToolsPingDevice`: %v\n", resp)
 }
 ```
@@ -138,7 +138,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2003**](InlineResponse2003.md)
+[**GetDeviceLiveToolsPing200Response**](GetDeviceLiveToolsPing200Response.md)
 
 ### Authorization
 

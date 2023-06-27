@@ -26,7 +26,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationClientsBandwidthUsageHistory
 
-> []InlineResponse200111 GetOrganizationClientsBandwidthUsageHistory(ctx, organizationId).T0(t0).T1(t1).Timespan(timespan).Execute()
+> []GetOrganizationClientsBandwidthUsageHistory200ResponseInner GetOrganizationClientsBandwidthUsageHistory(ctx, organizationId).T0(t0).T1(t1).Timespan(timespan).Execute()
 
 Return data usage (in megabits per second) over time for all clients in the given organization within a given time range.
 
@@ -108,7 +108,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -124,7 +124,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `BandwidthUsageHistoryApi.GetOrganizationClientsBandwidthUsageHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationClientsBandwidthUsageHistory`: []InlineResponse200111
+    // response from `GetOrganizationClientsBandwidthUsageHistory`: []GetOrganizationClientsBandwidthUsageHistory200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `BandwidthUsageHistoryApi.GetOrganizationClientsBandwidthUsageHistory`: %v\n", resp)
 }
 ```
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200111**](InlineResponse200111.md)
+[**[]GetOrganizationClientsBandwidthUsageHistory200ResponseInner**](GetOrganizationClientsBandwidthUsageHistory200ResponseInner.md)
 
 ### Authorization
 

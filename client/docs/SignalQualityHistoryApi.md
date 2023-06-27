@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetNetworkWirelessSignalQualityHistory
 
-> []InlineResponse20094 GetNetworkWirelessSignalQualityHistory(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).AutoResolution(autoResolution).ClientId(clientId).DeviceSerial(deviceSerial).ApTag(apTag).Band(band).Ssid(ssid).Execute()
+> []GetNetworkWirelessSignalQualityHistory200ResponseInner GetNetworkWirelessSignalQualityHistory(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).AutoResolution(autoResolution).ClientId(clientId).DeviceSerial(deviceSerial).ApTag(apTag).Band(band).Ssid(ssid).Execute()
 
 Return signal quality (SNR/RSSI) over time for a device or network client
 
@@ -25,7 +25,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -48,7 +48,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SignalQualityHistoryApi.GetNetworkWirelessSignalQualityHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessSignalQualityHistory`: []InlineResponse20094
+    // response from `GetNetworkWirelessSignalQualityHistory`: []GetNetworkWirelessSignalQualityHistory200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SignalQualityHistoryApi.GetNetworkWirelessSignalQualityHistory`: %v\n", resp)
 }
 ```
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20094**](InlineResponse20094.md)
+[**[]GetNetworkWirelessSignalQualityHistory200ResponseInner**](GetNetworkWirelessSignalQualityHistory200ResponseInner.md)
 
 ### Authorization
 

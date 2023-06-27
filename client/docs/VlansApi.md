@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CreateNetworkApplianceVlan
 
-> InlineResponse2012 CreateNetworkApplianceVlan(ctx, networkId).CreateNetworkApplianceVlan(createNetworkApplianceVlan).Execute()
+> CreateNetworkApplianceVlan201Response CreateNetworkApplianceVlan(ctx, networkId).CreateNetworkApplianceVlanRequest(createNetworkApplianceVlanRequest).Execute()
 
 Add a VLAN
 
@@ -31,21 +31,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkApplianceVlan := *openapiclient.NewInlineObject59("Id_example", "Name_example") // InlineObject59 | 
+    createNetworkApplianceVlanRequest := *openapiclient.NewCreateNetworkApplianceVlanRequest("Id_example", "Name_example") // CreateNetworkApplianceVlanRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VlansApi.CreateNetworkApplianceVlan(context.Background(), networkId).CreateNetworkApplianceVlan(createNetworkApplianceVlan).Execute()
+    resp, r, err := apiClient.VlansApi.CreateNetworkApplianceVlan(context.Background(), networkId).CreateNetworkApplianceVlanRequest(createNetworkApplianceVlanRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VlansApi.CreateNetworkApplianceVlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkApplianceVlan`: InlineResponse2012
+    // response from `CreateNetworkApplianceVlan`: CreateNetworkApplianceVlan201Response
     fmt.Fprintf(os.Stdout, "Response from `VlansApi.CreateNetworkApplianceVlan`: %v\n", resp)
 }
 ```
@@ -66,11 +66,11 @@ Other parameters are passed through a pointer to a apiCreateNetworkApplianceVlan
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkApplianceVlan** | [**InlineObject59**](InlineObject59.md) |  | 
+ **createNetworkApplianceVlanRequest** | [**CreateNetworkApplianceVlanRequest**](CreateNetworkApplianceVlanRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse2012**](InlineResponse2012.md)
+[**CreateNetworkApplianceVlan201Response**](CreateNetworkApplianceVlan201Response.md)
 
 ### Authorization
 
@@ -103,7 +103,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -159,7 +159,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkApplianceVlan
 
-> InlineResponse20023 GetNetworkApplianceVlan(ctx, networkId, vlanId).Execute()
+> GetNetworkApplianceVlans200ResponseInner GetNetworkApplianceVlan(ctx, networkId, vlanId).Execute()
 
 Return a VLAN
 
@@ -174,7 +174,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -188,7 +188,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `VlansApi.GetNetworkApplianceVlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceVlan`: InlineResponse20023
+    // response from `GetNetworkApplianceVlan`: GetNetworkApplianceVlans200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `VlansApi.GetNetworkApplianceVlan`: %v\n", resp)
 }
 ```
@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20023**](InlineResponse20023.md)
+[**GetNetworkApplianceVlans200ResponseInner**](GetNetworkApplianceVlans200ResponseInner.md)
 
 ### Authorization
 
@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkApplianceVlans
 
-> []InlineResponse20023 GetNetworkApplianceVlans(ctx, networkId).Execute()
+> []GetNetworkApplianceVlans200ResponseInner GetNetworkApplianceVlans(ctx, networkId).Execute()
 
 List the VLANs for an MX network
 
@@ -247,7 +247,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -260,7 +260,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `VlansApi.GetNetworkApplianceVlans``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceVlans`: []InlineResponse20023
+    // response from `GetNetworkApplianceVlans`: []GetNetworkApplianceVlans200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `VlansApi.GetNetworkApplianceVlans`: %v\n", resp)
 }
 ```
@@ -284,7 +284,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20023**](InlineResponse20023.md)
+[**[]GetNetworkApplianceVlans200ResponseInner**](GetNetworkApplianceVlans200ResponseInner.md)
 
 ### Authorization
 
@@ -317,7 +317,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -372,7 +372,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceVlan
 
-> InlineResponse20023 UpdateNetworkApplianceVlan(ctx, networkId, vlanId).UpdateNetworkApplianceVlan(updateNetworkApplianceVlan).Execute()
+> GetNetworkApplianceVlans200ResponseInner UpdateNetworkApplianceVlan(ctx, networkId, vlanId).UpdateNetworkApplianceVlanRequest(updateNetworkApplianceVlanRequest).Execute()
 
 Update a VLAN
 
@@ -387,22 +387,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     vlanId := "vlanId_example" // string | Vlan ID
-    updateNetworkApplianceVlan := *openapiclient.NewInlineObject61() // InlineObject61 |  (optional)
+    updateNetworkApplianceVlanRequest := *openapiclient.NewUpdateNetworkApplianceVlanRequest() // UpdateNetworkApplianceVlanRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VlansApi.UpdateNetworkApplianceVlan(context.Background(), networkId, vlanId).UpdateNetworkApplianceVlan(updateNetworkApplianceVlan).Execute()
+    resp, r, err := apiClient.VlansApi.UpdateNetworkApplianceVlan(context.Background(), networkId, vlanId).UpdateNetworkApplianceVlanRequest(updateNetworkApplianceVlanRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VlansApi.UpdateNetworkApplianceVlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkApplianceVlan`: InlineResponse20023
+    // response from `UpdateNetworkApplianceVlan`: GetNetworkApplianceVlans200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `VlansApi.UpdateNetworkApplianceVlan`: %v\n", resp)
 }
 ```
@@ -425,11 +425,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkApplianceVlan** | [**InlineObject61**](InlineObject61.md) |  | 
+ **updateNetworkApplianceVlanRequest** | [**UpdateNetworkApplianceVlanRequest**](UpdateNetworkApplianceVlanRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20023**](InlineResponse20023.md)
+[**GetNetworkApplianceVlans200ResponseInner**](GetNetworkApplianceVlans200ResponseInner.md)
 
 ### Authorization
 
@@ -447,7 +447,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceVlansSettings
 
-> map[string]interface{} UpdateNetworkApplianceVlansSettings(ctx, networkId).UpdateNetworkApplianceVlansSettings(updateNetworkApplianceVlansSettings).Execute()
+> map[string]interface{} UpdateNetworkApplianceVlansSettings(ctx, networkId).UpdateNetworkApplianceVlansSettingsRequest(updateNetworkApplianceVlansSettingsRequest).Execute()
 
 Enable/Disable VLANs for the given network
 
@@ -462,16 +462,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceVlansSettings := *openapiclient.NewInlineObject60() // InlineObject60 |  (optional)
+    updateNetworkApplianceVlansSettingsRequest := *openapiclient.NewUpdateNetworkApplianceVlansSettingsRequest() // UpdateNetworkApplianceVlansSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VlansApi.UpdateNetworkApplianceVlansSettings(context.Background(), networkId).UpdateNetworkApplianceVlansSettings(updateNetworkApplianceVlansSettings).Execute()
+    resp, r, err := apiClient.VlansApi.UpdateNetworkApplianceVlansSettings(context.Background(), networkId).UpdateNetworkApplianceVlansSettingsRequest(updateNetworkApplianceVlansSettingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VlansApi.UpdateNetworkApplianceVlansSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -497,7 +497,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceVlan
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceVlansSettings** | [**InlineObject60**](InlineObject60.md) |  | 
+ **updateNetworkApplianceVlansSettingsRequest** | [**UpdateNetworkApplianceVlansSettingsRequest**](UpdateNetworkApplianceVlansSettingsRequest.md) |  | 
 
 ### Return type
 

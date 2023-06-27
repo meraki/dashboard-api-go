@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -51,7 +51,7 @@ func (r DeviceCommandLogsApiGetNetworkSmDeviceDeviceCommandLogsRequest) EndingBe
 	return r
 }
 
-func (r DeviceCommandLogsApiGetNetworkSmDeviceDeviceCommandLogsRequest) Execute() ([]InlineResponse20055, *http.Response, error) {
+func (r DeviceCommandLogsApiGetNetworkSmDeviceDeviceCommandLogsRequest) Execute() ([]GetNetworkSmDeviceDeviceCommandLogs200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmDeviceDeviceCommandLogsExecute(r)
 }
 
@@ -75,13 +75,13 @@ func (a *DeviceCommandLogsApiService) GetNetworkSmDeviceDeviceCommandLogs(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20055
-func (a *DeviceCommandLogsApiService) GetNetworkSmDeviceDeviceCommandLogsExecute(r DeviceCommandLogsApiGetNetworkSmDeviceDeviceCommandLogsRequest) ([]InlineResponse20055, *http.Response, error) {
+//  @return []GetNetworkSmDeviceDeviceCommandLogs200ResponseInner
+func (a *DeviceCommandLogsApiService) GetNetworkSmDeviceDeviceCommandLogsExecute(r DeviceCommandLogsApiGetNetworkSmDeviceDeviceCommandLogsRequest) ([]GetNetworkSmDeviceDeviceCommandLogs200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20055
+		localVarReturnValue  []GetNetworkSmDeviceDeviceCommandLogs200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceCommandLogsApiService.GetNetworkSmDeviceDeviceCommandLogs")

@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ## GetDeviceSwitchPortsStatuses
 
-> []InlineResponse2007 GetDeviceSwitchPortsStatuses(ctx, serial).T0(t0).Timespan(timespan).Execute()
+> []GetDeviceSwitchPortsStatuses200ResponseInner GetDeviceSwitchPortsStatuses(ctx, serial).T0(t0).Timespan(timespan).Execute()
 
 Return the status for all the ports of a switch
 
@@ -37,7 +37,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -52,7 +52,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `StatusesApi.GetDeviceSwitchPortsStatuses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceSwitchPortsStatuses`: []InlineResponse2007
+    // response from `GetDeviceSwitchPortsStatuses`: []GetDeviceSwitchPortsStatuses200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `StatusesApi.GetDeviceSwitchPortsStatuses`: %v\n", resp)
 }
 ```
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse2007**](InlineResponse2007.md)
+[**[]GetDeviceSwitchPortsStatuses200ResponseInner**](GetDeviceSwitchPortsStatuses200ResponseInner.md)
 
 ### Authorization
 
@@ -111,7 +111,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -185,7 +185,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -267,7 +267,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -345,7 +345,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -404,7 +404,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationCellularGatewayUplinkStatuses
 
-> []InlineResponse200110 GetOrganizationCellularGatewayUplinkStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Iccids(iccids).Execute()
+> []GetOrganizationCellularGatewayUplinkStatuses200ResponseInner GetOrganizationCellularGatewayUplinkStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Iccids(iccids).Execute()
 
 List the uplink status of every Meraki MG cellular gateway in the organization
 
@@ -419,7 +419,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -438,7 +438,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `StatusesApi.GetOrganizationCellularGatewayUplinkStatuses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationCellularGatewayUplinkStatuses`: []InlineResponse200110
+    // response from `GetOrganizationCellularGatewayUplinkStatuses`: []GetOrganizationCellularGatewayUplinkStatuses200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `StatusesApi.GetOrganizationCellularGatewayUplinkStatuses`: %v\n", resp)
 }
 ```
@@ -468,7 +468,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200110**](InlineResponse200110.md)
+[**[]GetOrganizationCellularGatewayUplinkStatuses200ResponseInner**](GetOrganizationCellularGatewayUplinkStatuses200ResponseInner.md)
 
 ### Authorization
 
@@ -486,7 +486,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationDevicesPowerModulesStatusesByDevice
 
-> []InlineResponse200117 GetOrganizationDevicesPowerModulesStatusesByDevice(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).ProductTypes(productTypes).Serials(serials).Tags(tags).TagsFilterType(tagsFilterType).Execute()
+> []GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner GetOrganizationDevicesPowerModulesStatusesByDevice(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).ProductTypes(productTypes).Serials(serials).Tags(tags).TagsFilterType(tagsFilterType).Execute()
 
 List the power status information for devices in an organization
 
@@ -501,7 +501,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -522,7 +522,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `StatusesApi.GetOrganizationDevicesPowerModulesStatusesByDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationDevicesPowerModulesStatusesByDevice`: []InlineResponse200117
+    // response from `GetOrganizationDevicesPowerModulesStatusesByDevice`: []GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `StatusesApi.GetOrganizationDevicesPowerModulesStatusesByDevice`: %v\n", resp)
 }
 ```
@@ -554,7 +554,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200117**](InlineResponse200117.md)
+[**[]GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner**](GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInner.md)
 
 ### Authorization
 
@@ -572,7 +572,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationDevicesProvisioningStatuses
 
-> []InlineResponse200118 GetOrganizationDevicesProvisioningStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).ProductTypes(productTypes).Serials(serials).Status(status).Tags(tags).TagsFilterType(tagsFilterType).Execute()
+> []GetOrganizationDevicesProvisioningStatuses200ResponseInner GetOrganizationDevicesProvisioningStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).ProductTypes(productTypes).Serials(serials).Status(status).Tags(tags).TagsFilterType(tagsFilterType).Execute()
 
 List the provisioning statuses information for devices in an organization.
 
@@ -587,7 +587,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -609,7 +609,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `StatusesApi.GetOrganizationDevicesProvisioningStatuses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationDevicesProvisioningStatuses`: []InlineResponse200118
+    // response from `GetOrganizationDevicesProvisioningStatuses`: []GetOrganizationDevicesProvisioningStatuses200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `StatusesApi.GetOrganizationDevicesProvisioningStatuses`: %v\n", resp)
 }
 ```
@@ -642,7 +642,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200118**](InlineResponse200118.md)
+[**[]GetOrganizationDevicesProvisioningStatuses200ResponseInner**](GetOrganizationDevicesProvisioningStatuses200ResponseInner.md)
 
 ### Authorization
 
@@ -660,7 +660,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationDevicesStatuses
 
-> InlineResponse200119 GetOrganizationDevicesStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Statuses(statuses).ProductTypes(productTypes).Models(models).Tags(tags).TagsFilterType(tagsFilterType).Execute()
+> GetOrganizationDevicesStatuses200Response GetOrganizationDevicesStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Statuses(statuses).ProductTypes(productTypes).Models(models).Tags(tags).TagsFilterType(tagsFilterType).Execute()
 
 List the status of every Meraki device in the organization
 
@@ -675,7 +675,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -698,7 +698,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `StatusesApi.GetOrganizationDevicesStatuses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationDevicesStatuses`: InlineResponse200119
+    // response from `GetOrganizationDevicesStatuses`: GetOrganizationDevicesStatuses200Response
     fmt.Fprintf(os.Stdout, "Response from `StatusesApi.GetOrganizationDevicesStatuses`: %v\n", resp)
 }
 ```
@@ -732,7 +732,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200119**](InlineResponse200119.md)
+[**GetOrganizationDevicesStatuses200Response**](GetOrganizationDevicesStatuses200Response.md)
 
 ### Authorization
 
@@ -750,7 +750,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationDevicesStatusesOverview
 
-> InlineResponse200120 GetOrganizationDevicesStatusesOverview(ctx, organizationId).ProductTypes(productTypes).NetworkIds(networkIds).Execute()
+> GetOrganizationDevicesStatusesOverview200Response GetOrganizationDevicesStatusesOverview(ctx, organizationId).ProductTypes(productTypes).NetworkIds(networkIds).Execute()
 
 Return an overview of current device statuses
 
@@ -765,7 +765,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -780,7 +780,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `StatusesApi.GetOrganizationDevicesStatusesOverview``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationDevicesStatusesOverview`: InlineResponse200120
+    // response from `GetOrganizationDevicesStatusesOverview`: GetOrganizationDevicesStatusesOverview200Response
     fmt.Fprintf(os.Stdout, "Response from `StatusesApi.GetOrganizationDevicesStatusesOverview`: %v\n", resp)
 }
 ```
@@ -806,7 +806,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200120**](InlineResponse200120.md)
+[**GetOrganizationDevicesStatusesOverview200Response**](GetOrganizationDevicesStatusesOverview200Response.md)
 
 ### Authorization
 
@@ -824,7 +824,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationUplinksStatuses
 
-> []InlineResponse200153 GetOrganizationUplinksStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Iccids(iccids).Execute()
+> []GetOrganizationUplinksStatuses200ResponseInner GetOrganizationUplinksStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Iccids(iccids).Execute()
 
 List the uplink status of every Meraki MX, MG and Z series devices in the organization
 
@@ -839,7 +839,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -858,7 +858,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `StatusesApi.GetOrganizationUplinksStatuses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationUplinksStatuses`: []InlineResponse200153
+    // response from `GetOrganizationUplinksStatuses`: []GetOrganizationUplinksStatuses200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `StatusesApi.GetOrganizationUplinksStatuses`: %v\n", resp)
 }
 ```
@@ -888,7 +888,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200153**](InlineResponse200153.md)
+[**[]GetOrganizationUplinksStatuses200ResponseInner**](GetOrganizationUplinksStatuses200ResponseInner.md)
 
 ### Authorization
 
@@ -906,7 +906,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationWirelessDevicesEthernetStatuses
 
-> []InlineResponse200159 GetOrganizationWirelessDevicesEthernetStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Execute()
+> []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner GetOrganizationWirelessDevicesEthernetStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Execute()
 
 Endpoint to see power status for wireless devices
 
@@ -921,7 +921,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -938,7 +938,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `StatusesApi.GetOrganizationWirelessDevicesEthernetStatuses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationWirelessDevicesEthernetStatuses`: []InlineResponse200159
+    // response from `GetOrganizationWirelessDevicesEthernetStatuses`: []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `StatusesApi.GetOrganizationWirelessDevicesEthernetStatuses`: %v\n", resp)
 }
 ```
@@ -966,7 +966,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200159**](InlineResponse200159.md)
+[**[]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner**](GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner.md)
 
 ### Authorization
 
@@ -984,7 +984,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationCameraOnboardingStatuses
 
-> map[string]interface{} UpdateOrganizationCameraOnboardingStatuses(ctx, organizationId).UpdateOrganizationCameraOnboardingStatuses(updateOrganizationCameraOnboardingStatuses).Execute()
+> map[string]interface{} UpdateOrganizationCameraOnboardingStatuses(ctx, organizationId).UpdateOrganizationCameraOnboardingStatusesRequest(updateOrganizationCameraOnboardingStatusesRequest).Execute()
 
 Notify that credential handoff to camera has completed
 
@@ -999,16 +999,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    updateOrganizationCameraOnboardingStatuses := *openapiclient.NewInlineObject192() // InlineObject192 |  (optional)
+    updateOrganizationCameraOnboardingStatusesRequest := *openapiclient.NewUpdateOrganizationCameraOnboardingStatusesRequest() // UpdateOrganizationCameraOnboardingStatusesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StatusesApi.UpdateOrganizationCameraOnboardingStatuses(context.Background(), organizationId).UpdateOrganizationCameraOnboardingStatuses(updateOrganizationCameraOnboardingStatuses).Execute()
+    resp, r, err := apiClient.StatusesApi.UpdateOrganizationCameraOnboardingStatuses(context.Background(), organizationId).UpdateOrganizationCameraOnboardingStatusesRequest(updateOrganizationCameraOnboardingStatusesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `StatusesApi.UpdateOrganizationCameraOnboardingStatuses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1034,7 +1034,7 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationCameraOn
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateOrganizationCameraOnboardingStatuses** | [**InlineObject192**](InlineObject192.md) |  | 
+ **updateOrganizationCameraOnboardingStatusesRequest** | [**UpdateOrganizationCameraOnboardingStatusesRequest**](UpdateOrganizationCameraOnboardingStatusesRequest.md) |  | 
 
 ### Return type
 

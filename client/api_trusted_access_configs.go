@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -50,7 +50,7 @@ func (r TrustedAccessConfigsApiGetNetworkSmTrustedAccessConfigsRequest) EndingBe
 	return r
 }
 
-func (r TrustedAccessConfigsApiGetNetworkSmTrustedAccessConfigsRequest) Execute() ([]InlineResponse20063, *http.Response, error) {
+func (r TrustedAccessConfigsApiGetNetworkSmTrustedAccessConfigsRequest) Execute() ([]GetNetworkSmTrustedAccessConfigs200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmTrustedAccessConfigsExecute(r)
 }
 
@@ -72,13 +72,13 @@ func (a *TrustedAccessConfigsApiService) GetNetworkSmTrustedAccessConfigs(ctx co
 }
 
 // Execute executes the request
-//  @return []InlineResponse20063
-func (a *TrustedAccessConfigsApiService) GetNetworkSmTrustedAccessConfigsExecute(r TrustedAccessConfigsApiGetNetworkSmTrustedAccessConfigsRequest) ([]InlineResponse20063, *http.Response, error) {
+//  @return []GetNetworkSmTrustedAccessConfigs200ResponseInner
+func (a *TrustedAccessConfigsApiService) GetNetworkSmTrustedAccessConfigsExecute(r TrustedAccessConfigsApiGetNetworkSmTrustedAccessConfigsRequest) ([]GetNetworkSmTrustedAccessConfigs200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20063
+		localVarReturnValue  []GetNetworkSmTrustedAccessConfigs200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrustedAccessConfigsApiService.GetNetworkSmTrustedAccessConfigs")

@@ -26,7 +26,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationApplianceVpnVpnFirewallRules
 
-> InlineResponse200107 UpdateOrganizationApplianceVpnVpnFirewallRules(ctx, organizationId).UpdateOrganizationApplianceVpnVpnFirewallRules(updateOrganizationApplianceVpnVpnFirewallRules).Execute()
+> UpdateOrganizationApplianceVpnVpnFirewallRules200Response UpdateOrganizationApplianceVpnVpnFirewallRules(ctx, organizationId).UpdateOrganizationApplianceVpnVpnFirewallRulesRequest(updateOrganizationApplianceVpnVpnFirewallRulesRequest).Execute()
 
 Update the firewall rules of an organization's site-to-site VPN
 
@@ -96,21 +96,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    updateOrganizationApplianceVpnVpnFirewallRules := *openapiclient.NewInlineObject187() // InlineObject187 |  (optional)
+    updateOrganizationApplianceVpnVpnFirewallRulesRequest := *openapiclient.NewUpdateOrganizationApplianceVpnVpnFirewallRulesRequest() // UpdateOrganizationApplianceVpnVpnFirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VpnFirewallRulesApi.UpdateOrganizationApplianceVpnVpnFirewallRules(context.Background(), organizationId).UpdateOrganizationApplianceVpnVpnFirewallRules(updateOrganizationApplianceVpnVpnFirewallRules).Execute()
+    resp, r, err := apiClient.VpnFirewallRulesApi.UpdateOrganizationApplianceVpnVpnFirewallRules(context.Background(), organizationId).UpdateOrganizationApplianceVpnVpnFirewallRulesRequest(updateOrganizationApplianceVpnVpnFirewallRulesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VpnFirewallRulesApi.UpdateOrganizationApplianceVpnVpnFirewallRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationApplianceVpnVpnFirewallRules`: InlineResponse200107
+    // response from `UpdateOrganizationApplianceVpnVpnFirewallRules`: UpdateOrganizationApplianceVpnVpnFirewallRules200Response
     fmt.Fprintf(os.Stdout, "Response from `VpnFirewallRulesApi.UpdateOrganizationApplianceVpnVpnFirewallRules`: %v\n", resp)
 }
 ```
@@ -131,11 +131,11 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationApplianc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateOrganizationApplianceVpnVpnFirewallRules** | [**InlineObject187**](InlineObject187.md) |  | 
+ **updateOrganizationApplianceVpnVpnFirewallRulesRequest** | [**UpdateOrganizationApplianceVpnVpnFirewallRulesRequest**](UpdateOrganizationApplianceVpnVpnFirewallRulesRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200107**](InlineResponse200107.md)
+[**UpdateOrganizationApplianceVpnVpnFirewallRules200Response**](UpdateOrganizationApplianceVpnVpnFirewallRules200Response.md)
 
 ### Authorization
 

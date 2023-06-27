@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -140,7 +141,7 @@ type UsersApiGetNetworkSmUserDeviceProfilesRequest struct {
 	userId string
 }
 
-func (r UsersApiGetNetworkSmUserDeviceProfilesRequest) Execute() ([]InlineResponse20056, *http.Response, error) {
+func (r UsersApiGetNetworkSmUserDeviceProfilesRequest) Execute() ([]GetNetworkSmDeviceDeviceProfiles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmUserDeviceProfilesExecute(r)
 }
 
@@ -164,13 +165,13 @@ func (a *UsersApiService) GetNetworkSmUserDeviceProfiles(ctx context.Context, ne
 }
 
 // Execute executes the request
-//  @return []InlineResponse20056
-func (a *UsersApiService) GetNetworkSmUserDeviceProfilesExecute(r UsersApiGetNetworkSmUserDeviceProfilesRequest) ([]InlineResponse20056, *http.Response, error) {
+//  @return []GetNetworkSmDeviceDeviceProfiles200ResponseInner
+func (a *UsersApiService) GetNetworkSmUserDeviceProfilesExecute(r UsersApiGetNetworkSmUserDeviceProfilesRequest) ([]GetNetworkSmDeviceDeviceProfiles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20056
+		localVarReturnValue  []GetNetworkSmDeviceDeviceProfiles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.GetNetworkSmUserDeviceProfiles")
@@ -261,7 +262,7 @@ type UsersApiGetNetworkSmUserSoftwaresRequest struct {
 	userId string
 }
 
-func (r UsersApiGetNetworkSmUserSoftwaresRequest) Execute() ([]InlineResponse20060, *http.Response, error) {
+func (r UsersApiGetNetworkSmUserSoftwaresRequest) Execute() ([]GetNetworkSmDeviceSoftwares200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmUserSoftwaresExecute(r)
 }
 
@@ -285,13 +286,13 @@ func (a *UsersApiService) GetNetworkSmUserSoftwares(ctx context.Context, network
 }
 
 // Execute executes the request
-//  @return []InlineResponse20060
-func (a *UsersApiService) GetNetworkSmUserSoftwaresExecute(r UsersApiGetNetworkSmUserSoftwaresRequest) ([]InlineResponse20060, *http.Response, error) {
+//  @return []GetNetworkSmDeviceSoftwares200ResponseInner
+func (a *UsersApiService) GetNetworkSmUserSoftwaresExecute(r UsersApiGetNetworkSmUserSoftwaresRequest) ([]GetNetworkSmDeviceSoftwares200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20060
+		localVarReturnValue  []GetNetworkSmDeviceSoftwares200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.GetNetworkSmUserSoftwares")
@@ -409,7 +410,7 @@ func (r UsersApiGetNetworkSmUsersRequest) Scope(scope []string) UsersApiGetNetwo
 	return r
 }
 
-func (r UsersApiGetNetworkSmUsersRequest) Execute() ([]InlineResponse20065, *http.Response, error) {
+func (r UsersApiGetNetworkSmUsersRequest) Execute() ([]GetNetworkSmUsers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSmUsersExecute(r)
 }
 
@@ -431,13 +432,13 @@ func (a *UsersApiService) GetNetworkSmUsers(ctx context.Context, networkId strin
 }
 
 // Execute executes the request
-//  @return []InlineResponse20065
-func (a *UsersApiService) GetNetworkSmUsersExecute(r UsersApiGetNetworkSmUsersRequest) ([]InlineResponse20065, *http.Response, error) {
+//  @return []GetNetworkSmUsers200ResponseInner
+func (a *UsersApiService) GetNetworkSmUsersExecute(r UsersApiGetNetworkSmUsersRequest) ([]GetNetworkSmUsers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20065
+		localVarReturnValue  []GetNetworkSmUsers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.GetNetworkSmUsers")
@@ -453,16 +454,48 @@ func (a *UsersApiService) GetNetworkSmUsersExecute(r UsersApiGetNetworkSmUsersRe
 	localVarFormParams := url.Values{}
 
 	if r.ids != nil {
-		localVarQueryParams.Add("ids", parameterToString(*r.ids, "csv"))
+		t := *r.ids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("ids", parameterToString(t, "multi"))
+		}
 	}
 	if r.usernames != nil {
-		localVarQueryParams.Add("usernames", parameterToString(*r.usernames, "csv"))
+		t := *r.usernames
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("usernames", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("usernames", parameterToString(t, "multi"))
+		}
 	}
 	if r.emails != nil {
-		localVarQueryParams.Add("emails", parameterToString(*r.emails, "csv"))
+		t := *r.emails
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("emails", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("emails", parameterToString(t, "multi"))
+		}
 	}
 	if r.scope != nil {
-		localVarQueryParams.Add("scope", parameterToString(*r.scope, "csv"))
+		t := *r.scope
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("scope", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("scope", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

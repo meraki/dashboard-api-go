@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type TrustedServersApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedSer
 	ctx context.Context
 	ApiService *TrustedServersApiService
 	networkId string
-	createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer *InlineObject117
+	createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest *CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest
 }
 
-func (r TrustedServersApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer InlineObject117) TrustedServersApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest {
-	r.createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer = &createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer
+func (r TrustedServersApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest(createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) TrustedServersApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest {
+	r.createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest = &createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest
 	return r
 }
 
-func (r TrustedServersApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) Execute() (*InlineResponse20072, *http.Response, error) {
+func (r TrustedServersApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) Execute() (*GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *TrustedServersApiService) CreateNetworkSwitchDhcpServerPolicyArpInspect
 }
 
 // Execute executes the request
-//  @return InlineResponse20072
-func (a *TrustedServersApiService) CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerExecute(r TrustedServersApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) (*InlineResponse20072, *http.Response, error) {
+//  @return GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner
+func (a *TrustedServersApiService) CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerExecute(r TrustedServersApiCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) (*GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20072
+		localVarReturnValue  *GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrustedServersApiService.CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer")
@@ -77,8 +77,8 @@ func (a *TrustedServersApiService) CreateNetworkSwitchDhcpServerPolicyArpInspect
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer == nil {
-		return localVarReturnValue, nil, reportError("createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer is required and must be specified")
+	if r.createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest == nil {
+		return localVarReturnValue, nil, reportError("createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *TrustedServersApiService) CreateNetworkSwitchDhcpServerPolicyArpInspect
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer
+	localVarPostBody = r.createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -288,7 +288,7 @@ func (r TrustedServersApiGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedSer
 	return r
 }
 
-func (r TrustedServersApiGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersRequest) Execute() ([]InlineResponse20072, *http.Response, error) {
+func (r TrustedServersApiGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersRequest) Execute() ([]GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersExecute(r)
 }
 
@@ -310,13 +310,13 @@ func (a *TrustedServersApiService) GetNetworkSwitchDhcpServerPolicyArpInspection
 }
 
 // Execute executes the request
-//  @return []InlineResponse20072
-func (a *TrustedServersApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersExecute(r TrustedServersApiGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersRequest) ([]InlineResponse20072, *http.Response, error) {
+//  @return []GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner
+func (a *TrustedServersApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersExecute(r TrustedServersApiGetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServersRequest) ([]GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse20072
+		localVarReturnValue  []GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrustedServersApiService.GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers")
@@ -413,15 +413,15 @@ type TrustedServersApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedSer
 	ApiService *TrustedServersApiService
 	networkId string
 	trustedServerId string
-	updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer *InlineObject118
+	updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest
 }
 
-func (r TrustedServersApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer InlineObject118) TrustedServersApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest {
-	r.updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer = &updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer
+func (r TrustedServersApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest(updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) TrustedServersApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest {
+	r.updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest = &updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest
 	return r
 }
 
-func (r TrustedServersApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) Execute() (*InlineResponse20072, *http.Response, error) {
+func (r TrustedServersApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) Execute() (*GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerExecute(r)
 }
 
@@ -445,13 +445,13 @@ func (a *TrustedServersApiService) UpdateNetworkSwitchDhcpServerPolicyArpInspect
 }
 
 // Execute executes the request
-//  @return InlineResponse20072
-func (a *TrustedServersApiService) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerExecute(r TrustedServersApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) (*InlineResponse20072, *http.Response, error) {
+//  @return GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner
+func (a *TrustedServersApiService) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerExecute(r TrustedServersApiUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) (*GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20072
+		localVarReturnValue  *GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TrustedServersApiService.UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer")
@@ -485,7 +485,7 @@ func (a *TrustedServersApiService) UpdateNetworkSwitchDhcpServerPolicyArpInspect
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer
+	localVarPostBody = r.updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

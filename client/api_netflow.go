@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -144,11 +144,11 @@ type NetflowApiUpdateNetworkNetflowRequest struct {
 	ctx context.Context
 	ApiService *NetflowApiService
 	networkId string
-	updateNetworkNetflow *InlineObject96
+	updateNetworkNetflowRequest *UpdateNetworkNetflowRequest
 }
 
-func (r NetflowApiUpdateNetworkNetflowRequest) UpdateNetworkNetflow(updateNetworkNetflow InlineObject96) NetflowApiUpdateNetworkNetflowRequest {
-	r.updateNetworkNetflow = &updateNetworkNetflow
+func (r NetflowApiUpdateNetworkNetflowRequest) UpdateNetworkNetflowRequest(updateNetworkNetflowRequest UpdateNetworkNetflowRequest) NetflowApiUpdateNetworkNetflowRequest {
+	r.updateNetworkNetflowRequest = &updateNetworkNetflowRequest
 	return r
 }
 
@@ -213,7 +213,7 @@ func (a *NetflowApiService) UpdateNetworkNetflowExecute(r NetflowApiUpdateNetwor
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkNetflow
+	localVarPostBody = r.updateNetworkNetflowRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

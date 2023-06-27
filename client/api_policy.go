@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -149,11 +149,11 @@ type PolicyApiUpdateNetworkClientPolicyRequest struct {
 	ApiService *PolicyApiService
 	networkId string
 	clientId string
-	updateNetworkClientPolicy *InlineObject75
+	updateNetworkClientPolicyRequest *UpdateNetworkClientPolicyRequest
 }
 
-func (r PolicyApiUpdateNetworkClientPolicyRequest) UpdateNetworkClientPolicy(updateNetworkClientPolicy InlineObject75) PolicyApiUpdateNetworkClientPolicyRequest {
-	r.updateNetworkClientPolicy = &updateNetworkClientPolicy
+func (r PolicyApiUpdateNetworkClientPolicyRequest) UpdateNetworkClientPolicyRequest(updateNetworkClientPolicyRequest UpdateNetworkClientPolicyRequest) PolicyApiUpdateNetworkClientPolicyRequest {
+	r.updateNetworkClientPolicyRequest = &updateNetworkClientPolicyRequest
 	return r
 }
 
@@ -202,8 +202,8 @@ func (a *PolicyApiService) UpdateNetworkClientPolicyExecute(r PolicyApiUpdateNet
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateNetworkClientPolicy == nil {
-		return localVarReturnValue, nil, reportError("updateNetworkClientPolicy is required and must be specified")
+	if r.updateNetworkClientPolicyRequest == nil {
+		return localVarReturnValue, nil, reportError("updateNetworkClientPolicyRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -224,7 +224,7 @@ func (a *PolicyApiService) UpdateNetworkClientPolicyExecute(r PolicyApiUpdateNet
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkClientPolicy
+	localVarPostBody = r.updateNetworkClientPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

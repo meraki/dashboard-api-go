@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## GetOrganizationSmVppAccount
 
-> InlineResponse200144 GetOrganizationSmVppAccount(ctx, organizationId, vppAccountId).Execute()
+> GetOrganizationSmVppAccounts200ResponseInner GetOrganizationSmVppAccount(ctx, organizationId, vppAccountId).Execute()
 
 Get a hash containing the unparsed token of the VPP account with the given ID
 
@@ -26,7 +26,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -40,7 +40,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `VppAccountsApi.GetOrganizationSmVppAccount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSmVppAccount`: InlineResponse200144
+    // response from `GetOrganizationSmVppAccount`: GetOrganizationSmVppAccounts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `VppAccountsApi.GetOrganizationSmVppAccount`: %v\n", resp)
 }
 ```
@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200144**](InlineResponse200144.md)
+[**GetOrganizationSmVppAccounts200ResponseInner**](GetOrganizationSmVppAccounts200ResponseInner.md)
 
 ### Authorization
 
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationSmVppAccounts
 
-> []InlineResponse200144 GetOrganizationSmVppAccounts(ctx, organizationId).Execute()
+> []GetOrganizationSmVppAccounts200ResponseInner GetOrganizationSmVppAccounts(ctx, organizationId).Execute()
 
 List the VPP accounts in the organization
 
@@ -99,7 +99,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -112,7 +112,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `VppAccountsApi.GetOrganizationSmVppAccounts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSmVppAccounts`: []InlineResponse200144
+    // response from `GetOrganizationSmVppAccounts`: []GetOrganizationSmVppAccounts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `VppAccountsApi.GetOrganizationSmVppAccounts`: %v\n", resp)
 }
 ```
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200144**](InlineResponse200144.md)
+[**[]GetOrganizationSmVppAccounts200ResponseInner**](GetOrganizationSmVppAccounts200ResponseInner.md)
 
 ### Authorization
 

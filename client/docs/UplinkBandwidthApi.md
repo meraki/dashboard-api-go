@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## GetNetworkApplianceTrafficShapingUplinkBandwidth
 
-> InlineResponse20021 GetNetworkApplianceTrafficShapingUplinkBandwidth(ctx, networkId).Execute()
+> GetNetworkApplianceTrafficShapingUplinkBandwidth200Response GetNetworkApplianceTrafficShapingUplinkBandwidth(ctx, networkId).Execute()
 
 Returns the uplink bandwidth limits for your MX network
 
@@ -26,7 +26,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -39,7 +39,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UplinkBandwidthApi.GetNetworkApplianceTrafficShapingUplinkBandwidth``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceTrafficShapingUplinkBandwidth`: InlineResponse20021
+    // response from `GetNetworkApplianceTrafficShapingUplinkBandwidth`: GetNetworkApplianceTrafficShapingUplinkBandwidth200Response
     fmt.Fprintf(os.Stdout, "Response from `UplinkBandwidthApi.GetNetworkApplianceTrafficShapingUplinkBandwidth`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20021**](InlineResponse20021.md)
+[**GetNetworkApplianceTrafficShapingUplinkBandwidth200Response**](GetNetworkApplianceTrafficShapingUplinkBandwidth200Response.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceTrafficShapingUplinkBandwidth
 
-> map[string]interface{} UpdateNetworkApplianceTrafficShapingUplinkBandwidth(ctx, networkId).UpdateNetworkApplianceTrafficShapingUplinkBandwidth(updateNetworkApplianceTrafficShapingUplinkBandwidth).Execute()
+> map[string]interface{} UpdateNetworkApplianceTrafficShapingUplinkBandwidth(ctx, networkId).UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest(updateNetworkApplianceTrafficShapingUplinkBandwidthRequest).Execute()
 
 Updates the uplink bandwidth settings for your MX network.
 
@@ -96,16 +96,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceTrafficShapingUplinkBandwidth := *openapiclient.NewInlineObject57() // InlineObject57 |  (optional)
+    updateNetworkApplianceTrafficShapingUplinkBandwidthRequest := *openapiclient.NewUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest() // UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UplinkBandwidthApi.UpdateNetworkApplianceTrafficShapingUplinkBandwidth(context.Background(), networkId).UpdateNetworkApplianceTrafficShapingUplinkBandwidth(updateNetworkApplianceTrafficShapingUplinkBandwidth).Execute()
+    resp, r, err := apiClient.UplinkBandwidthApi.UpdateNetworkApplianceTrafficShapingUplinkBandwidth(context.Background(), networkId).UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest(updateNetworkApplianceTrafficShapingUplinkBandwidthRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UplinkBandwidthApi.UpdateNetworkApplianceTrafficShapingUplinkBandwidth``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -131,7 +131,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceTraf
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceTrafficShapingUplinkBandwidth** | [**InlineObject57**](InlineObject57.md) |  | 
+ **updateNetworkApplianceTrafficShapingUplinkBandwidthRequest** | [**UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest**](UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest.md) |  | 
 
 ### Return type
 

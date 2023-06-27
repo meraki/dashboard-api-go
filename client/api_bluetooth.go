@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -29,7 +29,7 @@ type BluetoothApiGetDeviceWirelessBluetoothSettingsRequest struct {
 	serial string
 }
 
-func (r BluetoothApiGetDeviceWirelessBluetoothSettingsRequest) Execute() (*InlineResponse20010, *http.Response, error) {
+func (r BluetoothApiGetDeviceWirelessBluetoothSettingsRequest) Execute() (*GetDeviceWirelessBluetoothSettings200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceWirelessBluetoothSettingsExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *BluetoothApiService) GetDeviceWirelessBluetoothSettings(ctx context.Con
 }
 
 // Execute executes the request
-//  @return InlineResponse20010
-func (a *BluetoothApiService) GetDeviceWirelessBluetoothSettingsExecute(r BluetoothApiGetDeviceWirelessBluetoothSettingsRequest) (*InlineResponse20010, *http.Response, error) {
+//  @return GetDeviceWirelessBluetoothSettings200Response
+func (a *BluetoothApiService) GetDeviceWirelessBluetoothSettingsExecute(r BluetoothApiGetDeviceWirelessBluetoothSettingsRequest) (*GetDeviceWirelessBluetoothSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20010
+		localVarReturnValue  *GetDeviceWirelessBluetoothSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BluetoothApiService.GetDeviceWirelessBluetoothSettings")
@@ -146,7 +146,7 @@ type BluetoothApiGetNetworkWirelessBluetoothSettingsRequest struct {
 	networkId string
 }
 
-func (r BluetoothApiGetNetworkWirelessBluetoothSettingsRequest) Execute() (*InlineResponse20085, *http.Response, error) {
+func (r BluetoothApiGetNetworkWirelessBluetoothSettingsRequest) Execute() (*GetNetworkWirelessBluetoothSettings200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkWirelessBluetoothSettingsExecute(r)
 }
 
@@ -168,13 +168,13 @@ func (a *BluetoothApiService) GetNetworkWirelessBluetoothSettings(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InlineResponse20085
-func (a *BluetoothApiService) GetNetworkWirelessBluetoothSettingsExecute(r BluetoothApiGetNetworkWirelessBluetoothSettingsRequest) (*InlineResponse20085, *http.Response, error) {
+//  @return GetNetworkWirelessBluetoothSettings200Response
+func (a *BluetoothApiService) GetNetworkWirelessBluetoothSettingsExecute(r BluetoothApiGetNetworkWirelessBluetoothSettingsRequest) (*GetNetworkWirelessBluetoothSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20085
+		localVarReturnValue  *GetNetworkWirelessBluetoothSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BluetoothApiService.GetNetworkWirelessBluetoothSettings")
@@ -261,15 +261,15 @@ type BluetoothApiUpdateDeviceWirelessBluetoothSettingsRequest struct {
 	ctx context.Context
 	ApiService *BluetoothApiService
 	serial string
-	updateDeviceWirelessBluetoothSettings *InlineObject25
+	updateDeviceWirelessBluetoothSettingsRequest *UpdateDeviceWirelessBluetoothSettingsRequest
 }
 
-func (r BluetoothApiUpdateDeviceWirelessBluetoothSettingsRequest) UpdateDeviceWirelessBluetoothSettings(updateDeviceWirelessBluetoothSettings InlineObject25) BluetoothApiUpdateDeviceWirelessBluetoothSettingsRequest {
-	r.updateDeviceWirelessBluetoothSettings = &updateDeviceWirelessBluetoothSettings
+func (r BluetoothApiUpdateDeviceWirelessBluetoothSettingsRequest) UpdateDeviceWirelessBluetoothSettingsRequest(updateDeviceWirelessBluetoothSettingsRequest UpdateDeviceWirelessBluetoothSettingsRequest) BluetoothApiUpdateDeviceWirelessBluetoothSettingsRequest {
+	r.updateDeviceWirelessBluetoothSettingsRequest = &updateDeviceWirelessBluetoothSettingsRequest
 	return r
 }
 
-func (r BluetoothApiUpdateDeviceWirelessBluetoothSettingsRequest) Execute() (*InlineResponse20010, *http.Response, error) {
+func (r BluetoothApiUpdateDeviceWirelessBluetoothSettingsRequest) Execute() (*GetDeviceWirelessBluetoothSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateDeviceWirelessBluetoothSettingsExecute(r)
 }
 
@@ -291,13 +291,13 @@ func (a *BluetoothApiService) UpdateDeviceWirelessBluetoothSettings(ctx context.
 }
 
 // Execute executes the request
-//  @return InlineResponse20010
-func (a *BluetoothApiService) UpdateDeviceWirelessBluetoothSettingsExecute(r BluetoothApiUpdateDeviceWirelessBluetoothSettingsRequest) (*InlineResponse20010, *http.Response, error) {
+//  @return GetDeviceWirelessBluetoothSettings200Response
+func (a *BluetoothApiService) UpdateDeviceWirelessBluetoothSettingsExecute(r BluetoothApiUpdateDeviceWirelessBluetoothSettingsRequest) (*GetDeviceWirelessBluetoothSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20010
+		localVarReturnValue  *GetDeviceWirelessBluetoothSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BluetoothApiService.UpdateDeviceWirelessBluetoothSettings")
@@ -330,7 +330,7 @@ func (a *BluetoothApiService) UpdateDeviceWirelessBluetoothSettingsExecute(r Blu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateDeviceWirelessBluetoothSettings
+	localVarPostBody = r.updateDeviceWirelessBluetoothSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -386,15 +386,15 @@ type BluetoothApiUpdateNetworkWirelessBluetoothSettingsRequest struct {
 	ctx context.Context
 	ApiService *BluetoothApiService
 	networkId string
-	updateNetworkWirelessBluetoothSettings *InlineObject153
+	updateNetworkWirelessBluetoothSettingsRequest *UpdateNetworkWirelessBluetoothSettingsRequest
 }
 
-func (r BluetoothApiUpdateNetworkWirelessBluetoothSettingsRequest) UpdateNetworkWirelessBluetoothSettings(updateNetworkWirelessBluetoothSettings InlineObject153) BluetoothApiUpdateNetworkWirelessBluetoothSettingsRequest {
-	r.updateNetworkWirelessBluetoothSettings = &updateNetworkWirelessBluetoothSettings
+func (r BluetoothApiUpdateNetworkWirelessBluetoothSettingsRequest) UpdateNetworkWirelessBluetoothSettingsRequest(updateNetworkWirelessBluetoothSettingsRequest UpdateNetworkWirelessBluetoothSettingsRequest) BluetoothApiUpdateNetworkWirelessBluetoothSettingsRequest {
+	r.updateNetworkWirelessBluetoothSettingsRequest = &updateNetworkWirelessBluetoothSettingsRequest
 	return r
 }
 
-func (r BluetoothApiUpdateNetworkWirelessBluetoothSettingsRequest) Execute() (*InlineResponse20085, *http.Response, error) {
+func (r BluetoothApiUpdateNetworkWirelessBluetoothSettingsRequest) Execute() (*GetNetworkWirelessBluetoothSettings200Response, *http.Response, error) {
 	return r.ApiService.UpdateNetworkWirelessBluetoothSettingsExecute(r)
 }
 
@@ -416,13 +416,13 @@ func (a *BluetoothApiService) UpdateNetworkWirelessBluetoothSettings(ctx context
 }
 
 // Execute executes the request
-//  @return InlineResponse20085
-func (a *BluetoothApiService) UpdateNetworkWirelessBluetoothSettingsExecute(r BluetoothApiUpdateNetworkWirelessBluetoothSettingsRequest) (*InlineResponse20085, *http.Response, error) {
+//  @return GetNetworkWirelessBluetoothSettings200Response
+func (a *BluetoothApiService) UpdateNetworkWirelessBluetoothSettingsExecute(r BluetoothApiUpdateNetworkWirelessBluetoothSettingsRequest) (*GetNetworkWirelessBluetoothSettings200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20085
+		localVarReturnValue  *GetNetworkWirelessBluetoothSettings200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BluetoothApiService.UpdateNetworkWirelessBluetoothSettings")
@@ -455,7 +455,7 @@ func (a *BluetoothApiService) UpdateNetworkWirelessBluetoothSettingsExecute(r Bl
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkWirelessBluetoothSettings
+	localVarPostBody = r.updateNetworkWirelessBluetoothSettingsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -529,7 +529,7 @@ Method | HTTP request | Description
 
 ## AddNetworkSwitchStack
 
-> InlineResponse20079 AddNetworkSwitchStack(ctx, networkId, switchStackId).AddNetworkSwitchStack(addNetworkSwitchStack).Execute()
+> GetNetworkSwitchStack200Response AddNetworkSwitchStack(ctx, networkId, switchStackId).AddNetworkSwitchStackRequest(addNetworkSwitchStackRequest).Execute()
 
 Add a switch to a stack
 
@@ -544,22 +544,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     switchStackId := "switchStackId_example" // string | Switch stack ID
-    addNetworkSwitchStack := *openapiclient.NewInlineObject134("Serial_example") // InlineObject134 | 
+    addNetworkSwitchStackRequest := *openapiclient.NewAddNetworkSwitchStackRequest("Serial_example") // AddNetworkSwitchStackRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.AddNetworkSwitchStack(context.Background(), networkId, switchStackId).AddNetworkSwitchStack(addNetworkSwitchStack).Execute()
+    resp, r, err := apiClient.ConfigureApi.AddNetworkSwitchStack(context.Background(), networkId, switchStackId).AddNetworkSwitchStackRequest(addNetworkSwitchStackRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.AddNetworkSwitchStack``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AddNetworkSwitchStack`: InlineResponse20079
+    // response from `AddNetworkSwitchStack`: GetNetworkSwitchStack200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.AddNetworkSwitchStack`: %v\n", resp)
 }
 ```
@@ -582,11 +582,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **addNetworkSwitchStack** | [**InlineObject134**](InlineObject134.md) |  | 
+ **addNetworkSwitchStackRequest** | [**AddNetworkSwitchStackRequest**](AddNetworkSwitchStackRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20079**](InlineResponse20079.md)
+[**GetNetworkSwitchStack200Response**](GetNetworkSwitchStack200Response.md)
 
 ### Authorization
 
@@ -604,7 +604,7 @@ Name | Type | Description  | Notes
 
 ## AssignOrganizationLicensesSeats
 
-> InlineResponse200131 AssignOrganizationLicensesSeats(ctx, organizationId).AssignOrganizationLicensesSeats(assignOrganizationLicensesSeats).Execute()
+> AssignOrganizationLicensesSeats200Response AssignOrganizationLicensesSeats(ctx, organizationId).AssignOrganizationLicensesSeatsRequest(assignOrganizationLicensesSeatsRequest).Execute()
 
 Assign SM seats to a network
 
@@ -619,21 +619,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    assignOrganizationLicensesSeats := *openapiclient.NewInlineObject207("LicenseId_example", "NetworkId_example", int32(123)) // InlineObject207 | 
+    assignOrganizationLicensesSeatsRequest := *openapiclient.NewAssignOrganizationLicensesSeatsRequest("LicenseId_example", "NetworkId_example", int32(123)) // AssignOrganizationLicensesSeatsRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.AssignOrganizationLicensesSeats(context.Background(), organizationId).AssignOrganizationLicensesSeats(assignOrganizationLicensesSeats).Execute()
+    resp, r, err := apiClient.ConfigureApi.AssignOrganizationLicensesSeats(context.Background(), organizationId).AssignOrganizationLicensesSeatsRequest(assignOrganizationLicensesSeatsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.AssignOrganizationLicensesSeats``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AssignOrganizationLicensesSeats`: InlineResponse200131
+    // response from `AssignOrganizationLicensesSeats`: AssignOrganizationLicensesSeats200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.AssignOrganizationLicensesSeats`: %v\n", resp)
 }
 ```
@@ -654,11 +654,11 @@ Other parameters are passed through a pointer to a apiAssignOrganizationLicenses
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **assignOrganizationLicensesSeats** | [**InlineObject207**](InlineObject207.md) |  | 
+ **assignOrganizationLicensesSeatsRequest** | [**AssignOrganizationLicensesSeatsRequest**](AssignOrganizationLicensesSeatsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200131**](InlineResponse200131.md)
+[**AssignOrganizationLicensesSeats200Response**](AssignOrganizationLicensesSeats200Response.md)
 
 ### Authorization
 
@@ -676,7 +676,7 @@ Name | Type | Description  | Notes
 
 ## BindNetwork
 
-> map[string]interface{} BindNetwork(ctx, networkId).BindNetwork(bindNetwork).Execute()
+> map[string]interface{} BindNetwork(ctx, networkId).BindNetworkRequest(bindNetworkRequest).Execute()
 
 Bind a network to a template.
 
@@ -691,16 +691,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    bindNetwork := *openapiclient.NewInlineObject65("ConfigTemplateId_example") // InlineObject65 | 
+    bindNetworkRequest := *openapiclient.NewBindNetworkRequest("ConfigTemplateId_example") // BindNetworkRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.BindNetwork(context.Background(), networkId).BindNetwork(bindNetwork).Execute()
+    resp, r, err := apiClient.ConfigureApi.BindNetwork(context.Background(), networkId).BindNetworkRequest(bindNetworkRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.BindNetwork``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -726,7 +726,7 @@ Other parameters are passed through a pointer to a apiBindNetworkRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **bindNetwork** | [**InlineObject65**](InlineObject65.md) |  | 
+ **bindNetworkRequest** | [**BindNetworkRequest**](BindNetworkRequest.md) |  | 
 
 ### Return type
 
@@ -748,7 +748,7 @@ Name | Type | Description  | Notes
 
 ## CheckinNetworkSmDevices
 
-> InlineResponse20046 CheckinNetworkSmDevices(ctx, networkId).CheckinNetworkSmDevices(checkinNetworkSmDevices).Execute()
+> CheckinNetworkSmDevices200Response CheckinNetworkSmDevices(ctx, networkId).CheckinNetworkSmDevicesRequest(checkinNetworkSmDevicesRequest).Execute()
 
 Force check-in a set of devices
 
@@ -763,21 +763,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    checkinNetworkSmDevices := *openapiclient.NewInlineObject103() // InlineObject103 |  (optional)
+    checkinNetworkSmDevicesRequest := *openapiclient.NewCheckinNetworkSmDevicesRequest() // CheckinNetworkSmDevicesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CheckinNetworkSmDevices(context.Background(), networkId).CheckinNetworkSmDevices(checkinNetworkSmDevices).Execute()
+    resp, r, err := apiClient.ConfigureApi.CheckinNetworkSmDevices(context.Background(), networkId).CheckinNetworkSmDevicesRequest(checkinNetworkSmDevicesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CheckinNetworkSmDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CheckinNetworkSmDevices`: InlineResponse20046
+    // response from `CheckinNetworkSmDevices`: CheckinNetworkSmDevices200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CheckinNetworkSmDevices`: %v\n", resp)
 }
 ```
@@ -798,11 +798,11 @@ Other parameters are passed through a pointer to a apiCheckinNetworkSmDevicesReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **checkinNetworkSmDevices** | [**InlineObject103**](InlineObject103.md) |  | 
+ **checkinNetworkSmDevicesRequest** | [**CheckinNetworkSmDevicesRequest**](CheckinNetworkSmDevicesRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20046**](InlineResponse20046.md)
+[**CheckinNetworkSmDevices200Response**](CheckinNetworkSmDevices200Response.md)
 
 ### Authorization
 
@@ -820,7 +820,7 @@ Name | Type | Description  | Notes
 
 ## ClaimIntoOrganization
 
-> map[string]interface{} ClaimIntoOrganization(ctx, organizationId).ClaimIntoOrganization(claimIntoOrganization).Execute()
+> map[string]interface{} ClaimIntoOrganization(ctx, organizationId).ClaimIntoOrganizationRequest(claimIntoOrganizationRequest).Execute()
 
 Claim a list of devices, licenses, and/or orders into an organization
 
@@ -835,16 +835,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    claimIntoOrganization := *openapiclient.NewInlineObject193() // InlineObject193 |  (optional)
+    claimIntoOrganizationRequest := *openapiclient.NewClaimIntoOrganizationRequest() // ClaimIntoOrganizationRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.ClaimIntoOrganization(context.Background(), organizationId).ClaimIntoOrganization(claimIntoOrganization).Execute()
+    resp, r, err := apiClient.ConfigureApi.ClaimIntoOrganization(context.Background(), organizationId).ClaimIntoOrganizationRequest(claimIntoOrganizationRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.ClaimIntoOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -870,7 +870,7 @@ Other parameters are passed through a pointer to a apiClaimIntoOrganizationReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **claimIntoOrganization** | [**InlineObject193**](InlineObject193.md) |  | 
+ **claimIntoOrganizationRequest** | [**ClaimIntoOrganizationRequest**](ClaimIntoOrganizationRequest.md) |  | 
 
 ### Return type
 
@@ -892,7 +892,7 @@ Name | Type | Description  | Notes
 
 ## ClaimIntoOrganizationInventory
 
-> map[string]interface{} ClaimIntoOrganizationInventory(ctx, organizationId).ClaimIntoOrganizationInventory(claimIntoOrganizationInventory).Execute()
+> map[string]interface{} ClaimIntoOrganizationInventory(ctx, organizationId).ClaimIntoOrganizationInventoryRequest(claimIntoOrganizationInventoryRequest).Execute()
 
 Claim a list of devices, licenses, and/or orders into an organization inventory
 
@@ -907,16 +907,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    claimIntoOrganizationInventory := *openapiclient.NewInlineObject202() // InlineObject202 |  (optional)
+    claimIntoOrganizationInventoryRequest := *openapiclient.NewClaimIntoOrganizationInventoryRequest() // ClaimIntoOrganizationInventoryRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.ClaimIntoOrganizationInventory(context.Background(), organizationId).ClaimIntoOrganizationInventory(claimIntoOrganizationInventory).Execute()
+    resp, r, err := apiClient.ConfigureApi.ClaimIntoOrganizationInventory(context.Background(), organizationId).ClaimIntoOrganizationInventoryRequest(claimIntoOrganizationInventoryRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.ClaimIntoOrganizationInventory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -942,7 +942,7 @@ Other parameters are passed through a pointer to a apiClaimIntoOrganizationInven
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **claimIntoOrganizationInventory** | [**InlineObject202**](InlineObject202.md) |  | 
+ **claimIntoOrganizationInventoryRequest** | [**ClaimIntoOrganizationInventoryRequest**](ClaimIntoOrganizationInventoryRequest.md) |  | 
 
 ### Return type
 
@@ -964,7 +964,7 @@ Name | Type | Description  | Notes
 
 ## ClaimNetworkDevices
 
-> ClaimNetworkDevices(ctx, networkId).ClaimNetworkDevices(claimNetworkDevices).Execute()
+> ClaimNetworkDevices(ctx, networkId).ClaimNetworkDevicesRequest(claimNetworkDevicesRequest).Execute()
 
 Claim devices into a network. (Note: for recently claimed devices, it may take a few minutes for API requsts against that device to succeed)
 
@@ -979,16 +979,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    claimNetworkDevices := *openapiclient.NewInlineObject77([]string{"Serials_example"}) // InlineObject77 | 
+    claimNetworkDevicesRequest := *openapiclient.NewClaimNetworkDevicesRequest([]string{"Serials_example"}) // ClaimNetworkDevicesRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.ClaimNetworkDevices(context.Background(), networkId).ClaimNetworkDevices(claimNetworkDevices).Execute()
+    resp, r, err := apiClient.ConfigureApi.ClaimNetworkDevices(context.Background(), networkId).ClaimNetworkDevicesRequest(claimNetworkDevicesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.ClaimNetworkDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1012,7 +1012,7 @@ Other parameters are passed through a pointer to a apiClaimNetworkDevicesRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **claimNetworkDevices** | [**InlineObject77**](InlineObject77.md) |  | 
+ **claimNetworkDevicesRequest** | [**ClaimNetworkDevicesRequest**](ClaimNetworkDevicesRequest.md) |  | 
 
 ### Return type
 
@@ -1034,7 +1034,7 @@ Name | Type | Description  | Notes
 
 ## CloneOrganization
 
-> InlineResponse20099 CloneOrganization(ctx, organizationId).CloneOrganization(cloneOrganization).Execute()
+> GetOrganizations200ResponseInner CloneOrganization(ctx, organizationId).CloneOrganizationRequest(cloneOrganizationRequest).Execute()
 
 Create a new organization by cloning the addressed organization
 
@@ -1049,21 +1049,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    cloneOrganization := *openapiclient.NewInlineObject194("Name_example") // InlineObject194 | 
+    cloneOrganizationRequest := *openapiclient.NewCloneOrganizationRequest("Name_example") // CloneOrganizationRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CloneOrganization(context.Background(), organizationId).CloneOrganization(cloneOrganization).Execute()
+    resp, r, err := apiClient.ConfigureApi.CloneOrganization(context.Background(), organizationId).CloneOrganizationRequest(cloneOrganizationRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CloneOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CloneOrganization`: InlineResponse20099
+    // response from `CloneOrganization`: GetOrganizations200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CloneOrganization`: %v\n", resp)
 }
 ```
@@ -1084,11 +1084,11 @@ Other parameters are passed through a pointer to a apiCloneOrganizationRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **cloneOrganization** | [**InlineObject194**](InlineObject194.md) |  | 
+ **cloneOrganizationRequest** | [**CloneOrganizationRequest**](CloneOrganizationRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20099**](InlineResponse20099.md)
+[**GetOrganizations200ResponseInner**](GetOrganizations200ResponseInner.md)
 
 ### Authorization
 
@@ -1106,7 +1106,7 @@ Name | Type | Description  | Notes
 
 ## CloneOrganizationSwitchDevices
 
-> map[string]interface{} CloneOrganizationSwitchDevices(ctx, organizationId).CloneOrganizationSwitchDevices(cloneOrganizationSwitchDevices).Execute()
+> map[string]interface{} CloneOrganizationSwitchDevices(ctx, organizationId).CloneOrganizationSwitchDevicesRequest(cloneOrganizationSwitchDevicesRequest).Execute()
 
 Clone port-level and some switch-level configuration settings from a source switch to one or more target switches
 
@@ -1121,16 +1121,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    cloneOrganizationSwitchDevices := *openapiclient.NewInlineObject226("SourceSerial_example", []string{"TargetSerials_example"}) // InlineObject226 | 
+    cloneOrganizationSwitchDevicesRequest := *openapiclient.NewCloneOrganizationSwitchDevicesRequest("SourceSerial_example", []string{"TargetSerials_example"}) // CloneOrganizationSwitchDevicesRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CloneOrganizationSwitchDevices(context.Background(), organizationId).CloneOrganizationSwitchDevices(cloneOrganizationSwitchDevices).Execute()
+    resp, r, err := apiClient.ConfigureApi.CloneOrganizationSwitchDevices(context.Background(), organizationId).CloneOrganizationSwitchDevicesRequest(cloneOrganizationSwitchDevicesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CloneOrganizationSwitchDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1156,7 +1156,7 @@ Other parameters are passed through a pointer to a apiCloneOrganizationSwitchDev
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **cloneOrganizationSwitchDevices** | [**InlineObject226**](InlineObject226.md) |  | 
+ **cloneOrganizationSwitchDevicesRequest** | [**CloneOrganizationSwitchDevicesRequest**](CloneOrganizationSwitchDevicesRequest.md) |  | 
 
 ### Return type
 
@@ -1178,7 +1178,7 @@ Name | Type | Description  | Notes
 
 ## CombineOrganizationNetworks
 
-> InlineResponse200137 CombineOrganizationNetworks(ctx, organizationId).CombineOrganizationNetworks(combineOrganizationNetworks).Execute()
+> CombineOrganizationNetworks200Response CombineOrganizationNetworks(ctx, organizationId).CombineOrganizationNetworksRequest(combineOrganizationNetworksRequest).Execute()
 
 Combine multiple networks into a single network
 
@@ -1193,21 +1193,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    combineOrganizationNetworks := *openapiclient.NewInlineObject215("Name_example", []string{"NetworkIds_example"}) // InlineObject215 | 
+    combineOrganizationNetworksRequest := *openapiclient.NewCombineOrganizationNetworksRequest("Name_example", []string{"NetworkIds_example"}) // CombineOrganizationNetworksRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CombineOrganizationNetworks(context.Background(), organizationId).CombineOrganizationNetworks(combineOrganizationNetworks).Execute()
+    resp, r, err := apiClient.ConfigureApi.CombineOrganizationNetworks(context.Background(), organizationId).CombineOrganizationNetworksRequest(combineOrganizationNetworksRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CombineOrganizationNetworks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CombineOrganizationNetworks`: InlineResponse200137
+    // response from `CombineOrganizationNetworks`: CombineOrganizationNetworks200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CombineOrganizationNetworks`: %v\n", resp)
 }
 ```
@@ -1228,11 +1228,11 @@ Other parameters are passed through a pointer to a apiCombineOrganizationNetwork
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **combineOrganizationNetworks** | [**InlineObject215**](InlineObject215.md) |  | 
+ **combineOrganizationNetworksRequest** | [**CombineOrganizationNetworksRequest**](CombineOrganizationNetworksRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200137**](InlineResponse200137.md)
+[**CombineOrganizationNetworks200Response**](CombineOrganizationNetworks200Response.md)
 
 ### Authorization
 
@@ -1250,7 +1250,7 @@ Name | Type | Description  | Notes
 
 ## CreateDeviceApplianceVmxAuthenticationToken
 
-> InlineResponse201 CreateDeviceApplianceVmxAuthenticationToken(ctx, serial).Execute()
+> CreateDeviceApplianceVmxAuthenticationToken201Response CreateDeviceApplianceVmxAuthenticationToken(ctx, serial).Execute()
 
 Generate a new vMX authentication token
 
@@ -1265,7 +1265,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -1278,7 +1278,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateDeviceApplianceVmxAuthenticationToken``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateDeviceApplianceVmxAuthenticationToken`: InlineResponse201
+    // response from `CreateDeviceApplianceVmxAuthenticationToken`: CreateDeviceApplianceVmxAuthenticationToken201Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateDeviceApplianceVmxAuthenticationToken`: %v\n", resp)
 }
 ```
@@ -1302,7 +1302,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse201**](InlineResponse201.md)
+[**CreateDeviceApplianceVmxAuthenticationToken201Response**](CreateDeviceApplianceVmxAuthenticationToken201Response.md)
 
 ### Authorization
 
@@ -1320,7 +1320,7 @@ Name | Type | Description  | Notes
 
 ## CreateDeviceSwitchRoutingInterface
 
-> InlineResponse2008 CreateDeviceSwitchRoutingInterface(ctx, serial).CreateDeviceSwitchRoutingInterface(createDeviceSwitchRoutingInterface).Execute()
+> GetDeviceSwitchRoutingInterfaces200ResponseInner CreateDeviceSwitchRoutingInterface(ctx, serial).CreateDeviceSwitchRoutingInterfaceRequest(createDeviceSwitchRoutingInterfaceRequest).Execute()
 
 Create a layer 3 interface for a switch
 
@@ -1335,21 +1335,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    createDeviceSwitchRoutingInterface := *openapiclient.NewInlineObject19() // InlineObject19 |  (optional)
+    createDeviceSwitchRoutingInterfaceRequest := *openapiclient.NewCreateDeviceSwitchRoutingInterfaceRequest() // CreateDeviceSwitchRoutingInterfaceRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateDeviceSwitchRoutingInterface(context.Background(), serial).CreateDeviceSwitchRoutingInterface(createDeviceSwitchRoutingInterface).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateDeviceSwitchRoutingInterface(context.Background(), serial).CreateDeviceSwitchRoutingInterfaceRequest(createDeviceSwitchRoutingInterfaceRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateDeviceSwitchRoutingInterface``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateDeviceSwitchRoutingInterface`: InlineResponse2008
+    // response from `CreateDeviceSwitchRoutingInterface`: GetDeviceSwitchRoutingInterfaces200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateDeviceSwitchRoutingInterface`: %v\n", resp)
 }
 ```
@@ -1370,11 +1370,11 @@ Other parameters are passed through a pointer to a apiCreateDeviceSwitchRoutingI
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createDeviceSwitchRoutingInterface** | [**InlineObject19**](InlineObject19.md) |  | 
+ **createDeviceSwitchRoutingInterfaceRequest** | [**CreateDeviceSwitchRoutingInterfaceRequest**](CreateDeviceSwitchRoutingInterfaceRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse2008**](InlineResponse2008.md)
+[**GetDeviceSwitchRoutingInterfaces200ResponseInner**](GetDeviceSwitchRoutingInterfaces200ResponseInner.md)
 
 ### Authorization
 
@@ -1392,7 +1392,7 @@ Name | Type | Description  | Notes
 
 ## CreateDeviceSwitchRoutingStaticRoute
 
-> map[string]interface{} CreateDeviceSwitchRoutingStaticRoute(ctx, serial).CreateDeviceSwitchRoutingStaticRoute(createDeviceSwitchRoutingStaticRoute).Execute()
+> map[string]interface{} CreateDeviceSwitchRoutingStaticRoute(ctx, serial).CreateDeviceSwitchRoutingStaticRouteRequest(createDeviceSwitchRoutingStaticRouteRequest).Execute()
 
 Create a layer 3 static route for a switch
 
@@ -1407,16 +1407,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    createDeviceSwitchRoutingStaticRoute := *openapiclient.NewInlineObject22("Subnet_example", "NextHopIp_example") // InlineObject22 | 
+    createDeviceSwitchRoutingStaticRouteRequest := *openapiclient.NewCreateDeviceSwitchRoutingStaticRouteRequest("Subnet_example", "NextHopIp_example") // CreateDeviceSwitchRoutingStaticRouteRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateDeviceSwitchRoutingStaticRoute(context.Background(), serial).CreateDeviceSwitchRoutingStaticRoute(createDeviceSwitchRoutingStaticRoute).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateDeviceSwitchRoutingStaticRoute(context.Background(), serial).CreateDeviceSwitchRoutingStaticRouteRequest(createDeviceSwitchRoutingStaticRouteRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateDeviceSwitchRoutingStaticRoute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1442,7 +1442,7 @@ Other parameters are passed through a pointer to a apiCreateDeviceSwitchRoutingS
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createDeviceSwitchRoutingStaticRoute** | [**InlineObject22**](InlineObject22.md) |  | 
+ **createDeviceSwitchRoutingStaticRouteRequest** | [**CreateDeviceSwitchRoutingStaticRouteRequest**](CreateDeviceSwitchRoutingStaticRouteRequest.md) |  | 
 
 ### Return type
 
@@ -1464,7 +1464,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkAppliancePrefixesDelegatedStatic
 
-> map[string]interface{} CreateNetworkAppliancePrefixesDelegatedStatic(ctx, networkId).CreateNetworkAppliancePrefixesDelegatedStatic(createNetworkAppliancePrefixesDelegatedStatic).Execute()
+> map[string]interface{} CreateNetworkAppliancePrefixesDelegatedStatic(ctx, networkId).CreateNetworkAppliancePrefixesDelegatedStaticRequest(createNetworkAppliancePrefixesDelegatedStaticRequest).Execute()
 
 Add a static delegated prefix from a network
 
@@ -1479,16 +1479,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkAppliancePrefixesDelegatedStatic := *openapiclient.NewInlineObject42("Prefix_example", *openapiclient.NewNetworksNetworkIdAppliancePrefixesDelegatedStaticsOrigin1()) // InlineObject42 | 
+    createNetworkAppliancePrefixesDelegatedStaticRequest := *openapiclient.NewCreateNetworkAppliancePrefixesDelegatedStaticRequest("Prefix_example", *openapiclient.NewCreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin()) // CreateNetworkAppliancePrefixesDelegatedStaticRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkAppliancePrefixesDelegatedStatic(context.Background(), networkId).CreateNetworkAppliancePrefixesDelegatedStatic(createNetworkAppliancePrefixesDelegatedStatic).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkAppliancePrefixesDelegatedStatic(context.Background(), networkId).CreateNetworkAppliancePrefixesDelegatedStaticRequest(createNetworkAppliancePrefixesDelegatedStaticRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkAppliancePrefixesDelegatedStatic``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1514,7 +1514,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkAppliancePref
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkAppliancePrefixesDelegatedStatic** | [**InlineObject42**](InlineObject42.md) |  | 
+ **createNetworkAppliancePrefixesDelegatedStaticRequest** | [**CreateNetworkAppliancePrefixesDelegatedStaticRequest**](CreateNetworkAppliancePrefixesDelegatedStaticRequest.md) |  | 
 
 ### Return type
 
@@ -1536,7 +1536,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkApplianceRfProfile
 
-> InlineResponse20017Assigned CreateNetworkApplianceRfProfile(ctx, networkId).CreateNetworkApplianceRfProfile(createNetworkApplianceRfProfile).Execute()
+> GetNetworkApplianceRfProfiles200ResponseAssignedInner CreateNetworkApplianceRfProfile(ctx, networkId).CreateNetworkApplianceRfProfileRequest(createNetworkApplianceRfProfileRequest).Execute()
 
 Creates new RF profile for this network
 
@@ -1551,21 +1551,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkApplianceRfProfile := *openapiclient.NewInlineObject44("Name_example") // InlineObject44 | 
+    createNetworkApplianceRfProfileRequest := *openapiclient.NewCreateNetworkApplianceRfProfileRequest("Name_example") // CreateNetworkApplianceRfProfileRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkApplianceRfProfile(context.Background(), networkId).CreateNetworkApplianceRfProfile(createNetworkApplianceRfProfile).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkApplianceRfProfile(context.Background(), networkId).CreateNetworkApplianceRfProfileRequest(createNetworkApplianceRfProfileRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkApplianceRfProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkApplianceRfProfile`: InlineResponse20017Assigned
+    // response from `CreateNetworkApplianceRfProfile`: GetNetworkApplianceRfProfiles200ResponseAssignedInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateNetworkApplianceRfProfile`: %v\n", resp)
 }
 ```
@@ -1586,11 +1586,11 @@ Other parameters are passed through a pointer to a apiCreateNetworkApplianceRfPr
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkApplianceRfProfile** | [**InlineObject44**](InlineObject44.md) |  | 
+ **createNetworkApplianceRfProfileRequest** | [**CreateNetworkApplianceRfProfileRequest**](CreateNetworkApplianceRfProfileRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20017Assigned**](InlineResponse20017Assigned.md)
+[**GetNetworkApplianceRfProfiles200ResponseAssignedInner**](GetNetworkApplianceRfProfiles200ResponseAssignedInner.md)
 
 ### Authorization
 
@@ -1608,7 +1608,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkApplianceStaticRoute
 
-> map[string]interface{} CreateNetworkApplianceStaticRoute(ctx, networkId).CreateNetworkApplianceStaticRoute(createNetworkApplianceStaticRoute).Execute()
+> map[string]interface{} CreateNetworkApplianceStaticRoute(ctx, networkId).CreateNetworkApplianceStaticRouteRequest(createNetworkApplianceStaticRouteRequest).Execute()
 
 Add a static route for an MX or teleworker network
 
@@ -1623,16 +1623,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkApplianceStaticRoute := *openapiclient.NewInlineObject51("Name_example", "Subnet_example", "GatewayIp_example") // InlineObject51 | 
+    createNetworkApplianceStaticRouteRequest := *openapiclient.NewCreateNetworkApplianceStaticRouteRequest("Name_example", "Subnet_example", "GatewayIp_example") // CreateNetworkApplianceStaticRouteRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkApplianceStaticRoute(context.Background(), networkId).CreateNetworkApplianceStaticRoute(createNetworkApplianceStaticRoute).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkApplianceStaticRoute(context.Background(), networkId).CreateNetworkApplianceStaticRouteRequest(createNetworkApplianceStaticRouteRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkApplianceStaticRoute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1658,7 +1658,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkApplianceStat
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkApplianceStaticRoute** | [**InlineObject51**](InlineObject51.md) |  | 
+ **createNetworkApplianceStaticRouteRequest** | [**CreateNetworkApplianceStaticRouteRequest**](CreateNetworkApplianceStaticRouteRequest.md) |  | 
 
 ### Return type
 
@@ -1680,7 +1680,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkApplianceTrafficShapingCustomPerformanceClass
 
-> map[string]interface{} CreateNetworkApplianceTrafficShapingCustomPerformanceClass(ctx, networkId).CreateNetworkApplianceTrafficShapingCustomPerformanceClass(createNetworkApplianceTrafficShapingCustomPerformanceClass).Execute()
+> map[string]interface{} CreateNetworkApplianceTrafficShapingCustomPerformanceClass(ctx, networkId).CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest(createNetworkApplianceTrafficShapingCustomPerformanceClassRequest).Execute()
 
 Add a custom performance class for an MX network
 
@@ -1695,16 +1695,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkApplianceTrafficShapingCustomPerformanceClass := *openapiclient.NewInlineObject54("Name_example") // InlineObject54 | 
+    createNetworkApplianceTrafficShapingCustomPerformanceClassRequest := *openapiclient.NewCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest("Name_example") // CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkApplianceTrafficShapingCustomPerformanceClass(context.Background(), networkId).CreateNetworkApplianceTrafficShapingCustomPerformanceClass(createNetworkApplianceTrafficShapingCustomPerformanceClass).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkApplianceTrafficShapingCustomPerformanceClass(context.Background(), networkId).CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest(createNetworkApplianceTrafficShapingCustomPerformanceClassRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkApplianceTrafficShapingCustomPerformanceClass``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1730,7 +1730,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkApplianceTraf
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkApplianceTrafficShapingCustomPerformanceClass** | [**InlineObject54**](InlineObject54.md) |  | 
+ **createNetworkApplianceTrafficShapingCustomPerformanceClassRequest** | [**CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest**](CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest.md) |  | 
 
 ### Return type
 
@@ -1752,7 +1752,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkApplianceVlan
 
-> InlineResponse2012 CreateNetworkApplianceVlan(ctx, networkId).CreateNetworkApplianceVlan(createNetworkApplianceVlan).Execute()
+> CreateNetworkApplianceVlan201Response CreateNetworkApplianceVlan(ctx, networkId).CreateNetworkApplianceVlanRequest(createNetworkApplianceVlanRequest).Execute()
 
 Add a VLAN
 
@@ -1767,21 +1767,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkApplianceVlan := *openapiclient.NewInlineObject59("Id_example", "Name_example") // InlineObject59 | 
+    createNetworkApplianceVlanRequest := *openapiclient.NewCreateNetworkApplianceVlanRequest("Id_example", "Name_example") // CreateNetworkApplianceVlanRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkApplianceVlan(context.Background(), networkId).CreateNetworkApplianceVlan(createNetworkApplianceVlan).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkApplianceVlan(context.Background(), networkId).CreateNetworkApplianceVlanRequest(createNetworkApplianceVlanRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkApplianceVlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkApplianceVlan`: InlineResponse2012
+    // response from `CreateNetworkApplianceVlan`: CreateNetworkApplianceVlan201Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateNetworkApplianceVlan`: %v\n", resp)
 }
 ```
@@ -1802,11 +1802,11 @@ Other parameters are passed through a pointer to a apiCreateNetworkApplianceVlan
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkApplianceVlan** | [**InlineObject59**](InlineObject59.md) |  | 
+ **createNetworkApplianceVlanRequest** | [**CreateNetworkApplianceVlanRequest**](CreateNetworkApplianceVlanRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse2012**](InlineResponse2012.md)
+[**CreateNetworkApplianceVlan201Response**](CreateNetworkApplianceVlan201Response.md)
 
 ### Authorization
 
@@ -1824,7 +1824,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkCameraQualityRetentionProfile
 
-> map[string]interface{} CreateNetworkCameraQualityRetentionProfile(ctx, networkId).CreateNetworkCameraQualityRetentionProfile(createNetworkCameraQualityRetentionProfile).Execute()
+> map[string]interface{} CreateNetworkCameraQualityRetentionProfile(ctx, networkId).CreateNetworkCameraQualityRetentionProfileRequest(createNetworkCameraQualityRetentionProfileRequest).Execute()
 
 Creates new quality retention profile for this network.
 
@@ -1839,16 +1839,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkCameraQualityRetentionProfile := *openapiclient.NewInlineObject66("Name_example") // InlineObject66 | 
+    createNetworkCameraQualityRetentionProfileRequest := *openapiclient.NewCreateNetworkCameraQualityRetentionProfileRequest("Name_example") // CreateNetworkCameraQualityRetentionProfileRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkCameraQualityRetentionProfile(context.Background(), networkId).CreateNetworkCameraQualityRetentionProfile(createNetworkCameraQualityRetentionProfile).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkCameraQualityRetentionProfile(context.Background(), networkId).CreateNetworkCameraQualityRetentionProfileRequest(createNetworkCameraQualityRetentionProfileRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkCameraQualityRetentionProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1874,7 +1874,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkCameraQuality
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkCameraQualityRetentionProfile** | [**InlineObject66**](InlineObject66.md) |  | 
+ **createNetworkCameraQualityRetentionProfileRequest** | [**CreateNetworkCameraQualityRetentionProfileRequest**](CreateNetworkCameraQualityRetentionProfileRequest.md) |  | 
 
 ### Return type
 
@@ -1896,7 +1896,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkCameraWirelessProfile
 
-> map[string]interface{} CreateNetworkCameraWirelessProfile(ctx, networkId).CreateNetworkCameraWirelessProfile(createNetworkCameraWirelessProfile).Execute()
+> map[string]interface{} CreateNetworkCameraWirelessProfile(ctx, networkId).CreateNetworkCameraWirelessProfileRequest(createNetworkCameraWirelessProfileRequest).Execute()
 
 Creates a new camera wireless profile for this network.
 
@@ -1911,16 +1911,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkCameraWirelessProfile := *openapiclient.NewInlineObject68("Name_example", *openapiclient.NewNetworksNetworkIdCameraWirelessProfilesSsid()) // InlineObject68 | 
+    createNetworkCameraWirelessProfileRequest := *openapiclient.NewCreateNetworkCameraWirelessProfileRequest("Name_example", *openapiclient.NewCreateNetworkCameraWirelessProfileRequestSsid()) // CreateNetworkCameraWirelessProfileRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkCameraWirelessProfile(context.Background(), networkId).CreateNetworkCameraWirelessProfile(createNetworkCameraWirelessProfile).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkCameraWirelessProfile(context.Background(), networkId).CreateNetworkCameraWirelessProfileRequest(createNetworkCameraWirelessProfileRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkCameraWirelessProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1946,7 +1946,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkCameraWireles
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkCameraWirelessProfile** | [**InlineObject68**](InlineObject68.md) |  | 
+ **createNetworkCameraWirelessProfileRequest** | [**CreateNetworkCameraWirelessProfileRequest**](CreateNetworkCameraWirelessProfileRequest.md) |  | 
 
 ### Return type
 
@@ -1968,7 +1968,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkFirmwareUpgradesRollback
 
-> InlineResponse20031 CreateNetworkFirmwareUpgradesRollback(ctx, networkId).CreateNetworkFirmwareUpgradesRollback(createNetworkFirmwareUpgradesRollback).Execute()
+> CreateNetworkFirmwareUpgradesRollback200Response CreateNetworkFirmwareUpgradesRollback(ctx, networkId).CreateNetworkFirmwareUpgradesRollbackRequest(createNetworkFirmwareUpgradesRollbackRequest).Execute()
 
 Rollback a Firmware Upgrade For A Network
 
@@ -1983,21 +1983,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkFirmwareUpgradesRollback := *openapiclient.NewInlineObject81([]openapiclient.NetworksNetworkIdFirmwareUpgradesRollbacksReasons{*openapiclient.NewNetworksNetworkIdFirmwareUpgradesRollbacksReasons("Category_example", "Comment_example")}) // InlineObject81 | 
+    createNetworkFirmwareUpgradesRollbackRequest := *openapiclient.NewCreateNetworkFirmwareUpgradesRollbackRequest([]openapiclient.CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner{*openapiclient.NewCreateNetworkFirmwareUpgradesRollbackRequestReasonsInner("Category_example", "Comment_example")}) // CreateNetworkFirmwareUpgradesRollbackRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkFirmwareUpgradesRollback(context.Background(), networkId).CreateNetworkFirmwareUpgradesRollback(createNetworkFirmwareUpgradesRollback).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkFirmwareUpgradesRollback(context.Background(), networkId).CreateNetworkFirmwareUpgradesRollbackRequest(createNetworkFirmwareUpgradesRollbackRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkFirmwareUpgradesRollback``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkFirmwareUpgradesRollback`: InlineResponse20031
+    // response from `CreateNetworkFirmwareUpgradesRollback`: CreateNetworkFirmwareUpgradesRollback200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateNetworkFirmwareUpgradesRollback`: %v\n", resp)
 }
 ```
@@ -2018,11 +2018,11 @@ Other parameters are passed through a pointer to a apiCreateNetworkFirmwareUpgra
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkFirmwareUpgradesRollback** | [**InlineObject81**](InlineObject81.md) |  | 
+ **createNetworkFirmwareUpgradesRollbackRequest** | [**CreateNetworkFirmwareUpgradesRollbackRequest**](CreateNetworkFirmwareUpgradesRollbackRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20031**](InlineResponse20031.md)
+[**CreateNetworkFirmwareUpgradesRollback200Response**](CreateNetworkFirmwareUpgradesRollback200Response.md)
 
 ### Authorization
 
@@ -2040,7 +2040,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkFirmwareUpgradesStagedEvent
 
-> InlineResponse20032 CreateNetworkFirmwareUpgradesStagedEvent(ctx, networkId).CreateNetworkFirmwareUpgradesStagedEvent(createNetworkFirmwareUpgradesStagedEvent).Execute()
+> GetNetworkFirmwareUpgradesStagedEvents200Response CreateNetworkFirmwareUpgradesStagedEvent(ctx, networkId).CreateNetworkFirmwareUpgradesStagedEventRequest(createNetworkFirmwareUpgradesStagedEventRequest).Execute()
 
 Create a Staged Upgrade Event for a network
 
@@ -2055,21 +2055,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkFirmwareUpgradesStagedEvent := *openapiclient.NewInlineObject83([]openapiclient.NetworksNetworkIdFirmwareUpgradesStagedEventsStages{*openapiclient.NewNetworksNetworkIdFirmwareUpgradesStagedEventsStages()}) // InlineObject83 | 
+    createNetworkFirmwareUpgradesStagedEventRequest := *openapiclient.NewCreateNetworkFirmwareUpgradesStagedEventRequest([]openapiclient.UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner{*openapiclient.NewUpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner()}) // CreateNetworkFirmwareUpgradesStagedEventRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkFirmwareUpgradesStagedEvent(context.Background(), networkId).CreateNetworkFirmwareUpgradesStagedEvent(createNetworkFirmwareUpgradesStagedEvent).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkFirmwareUpgradesStagedEvent(context.Background(), networkId).CreateNetworkFirmwareUpgradesStagedEventRequest(createNetworkFirmwareUpgradesStagedEventRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkFirmwareUpgradesStagedEvent``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkFirmwareUpgradesStagedEvent`: InlineResponse20032
+    // response from `CreateNetworkFirmwareUpgradesStagedEvent`: GetNetworkFirmwareUpgradesStagedEvents200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateNetworkFirmwareUpgradesStagedEvent`: %v\n", resp)
 }
 ```
@@ -2090,11 +2090,11 @@ Other parameters are passed through a pointer to a apiCreateNetworkFirmwareUpgra
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkFirmwareUpgradesStagedEvent** | [**InlineObject83**](InlineObject83.md) |  | 
+ **createNetworkFirmwareUpgradesStagedEventRequest** | [**CreateNetworkFirmwareUpgradesStagedEventRequest**](CreateNetworkFirmwareUpgradesStagedEventRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20032**](InlineResponse20032.md)
+[**GetNetworkFirmwareUpgradesStagedEvents200Response**](GetNetworkFirmwareUpgradesStagedEvents200Response.md)
 
 ### Authorization
 
@@ -2112,7 +2112,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkFirmwareUpgradesStagedGroup
 
-> map[string]interface{} CreateNetworkFirmwareUpgradesStagedGroup(ctx, networkId).CreateNetworkFirmwareUpgradesStagedGroup(createNetworkFirmwareUpgradesStagedGroup).Execute()
+> map[string]interface{} CreateNetworkFirmwareUpgradesStagedGroup(ctx, networkId).CreateNetworkFirmwareUpgradesStagedGroupRequest(createNetworkFirmwareUpgradesStagedGroupRequest).Execute()
 
 Create a Staged Upgrade Group for a network
 
@@ -2127,16 +2127,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkFirmwareUpgradesStagedGroup := *openapiclient.NewInlineObject85("Name_example", false) // InlineObject85 | 
+    createNetworkFirmwareUpgradesStagedGroupRequest := *openapiclient.NewCreateNetworkFirmwareUpgradesStagedGroupRequest("Name_example", false) // CreateNetworkFirmwareUpgradesStagedGroupRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId).CreateNetworkFirmwareUpgradesStagedGroup(createNetworkFirmwareUpgradesStagedGroup).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId).CreateNetworkFirmwareUpgradesStagedGroupRequest(createNetworkFirmwareUpgradesStagedGroupRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkFirmwareUpgradesStagedGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2162,7 +2162,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkFirmwareUpgra
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkFirmwareUpgradesStagedGroup** | [**InlineObject85**](InlineObject85.md) |  | 
+ **createNetworkFirmwareUpgradesStagedGroupRequest** | [**CreateNetworkFirmwareUpgradesStagedGroupRequest**](CreateNetworkFirmwareUpgradesStagedGroupRequest.md) |  | 
 
 ### Return type
 
@@ -2184,7 +2184,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkFloorPlan
 
-> map[string]interface{} CreateNetworkFloorPlan(ctx, networkId).CreateNetworkFloorPlan(createNetworkFloorPlan).Execute()
+> map[string]interface{} CreateNetworkFloorPlan(ctx, networkId).CreateNetworkFloorPlanRequest(createNetworkFloorPlanRequest).Execute()
 
 Upload a floor plan
 
@@ -2199,16 +2199,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkFloorPlan := *openapiclient.NewInlineObject88("Name_example", "ImageContents_example") // InlineObject88 | 
+    createNetworkFloorPlanRequest := *openapiclient.NewCreateNetworkFloorPlanRequest("Name_example", string(123)) // CreateNetworkFloorPlanRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkFloorPlan(context.Background(), networkId).CreateNetworkFloorPlan(createNetworkFloorPlan).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkFloorPlan(context.Background(), networkId).CreateNetworkFloorPlanRequest(createNetworkFloorPlanRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkFloorPlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2234,7 +2234,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkFloorPlanRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkFloorPlan** | [**InlineObject88**](InlineObject88.md) |  | 
+ **createNetworkFloorPlanRequest** | [**CreateNetworkFloorPlanRequest**](CreateNetworkFloorPlanRequest.md) |  | 
 
 ### Return type
 
@@ -2256,7 +2256,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkGroupPolicy
 
-> map[string]interface{} CreateNetworkGroupPolicy(ctx, networkId).CreateNetworkGroupPolicy(createNetworkGroupPolicy).Execute()
+> map[string]interface{} CreateNetworkGroupPolicy(ctx, networkId).CreateNetworkGroupPolicyRequest(createNetworkGroupPolicyRequest).Execute()
 
 Create a group policy
 
@@ -2271,16 +2271,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkGroupPolicy := *openapiclient.NewInlineObject90("Name_example") // InlineObject90 | 
+    createNetworkGroupPolicyRequest := *openapiclient.NewCreateNetworkGroupPolicyRequest("Name_example") // CreateNetworkGroupPolicyRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkGroupPolicy(context.Background(), networkId).CreateNetworkGroupPolicy(createNetworkGroupPolicy).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkGroupPolicy(context.Background(), networkId).CreateNetworkGroupPolicyRequest(createNetworkGroupPolicyRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkGroupPolicy``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2306,7 +2306,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkGroupPolicyRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkGroupPolicy** | [**InlineObject90**](InlineObject90.md) |  | 
+ **createNetworkGroupPolicyRequest** | [**CreateNetworkGroupPolicyRequest**](CreateNetworkGroupPolicyRequest.md) |  | 
 
 ### Return type
 
@@ -2328,7 +2328,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkMerakiAuthUser
 
-> InlineResponse20037 CreateNetworkMerakiAuthUser(ctx, networkId).CreateNetworkMerakiAuthUser(createNetworkMerakiAuthUser).Execute()
+> GetNetworkMerakiAuthUsers200ResponseInner CreateNetworkMerakiAuthUser(ctx, networkId).CreateNetworkMerakiAuthUserRequest(createNetworkMerakiAuthUserRequest).Execute()
 
 Authorize a user configured with Meraki Authentication for a network (currently supports 802.1X, splash guest, and client VPN users, and currently, organizations have a 50,000 user cap)
 
@@ -2343,21 +2343,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkMerakiAuthUser := *openapiclient.NewInlineObject92("Email_example", []openapiclient.NetworksNetworkIdMerakiAuthUsersAuthorizations1{*openapiclient.NewNetworksNetworkIdMerakiAuthUsersAuthorizations1()}) // InlineObject92 | 
+    createNetworkMerakiAuthUserRequest := *openapiclient.NewCreateNetworkMerakiAuthUserRequest("Email_example", []openapiclient.CreateNetworkMerakiAuthUserRequestAuthorizationsInner{*openapiclient.NewCreateNetworkMerakiAuthUserRequestAuthorizationsInner()}) // CreateNetworkMerakiAuthUserRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkMerakiAuthUser(context.Background(), networkId).CreateNetworkMerakiAuthUser(createNetworkMerakiAuthUser).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkMerakiAuthUser(context.Background(), networkId).CreateNetworkMerakiAuthUserRequest(createNetworkMerakiAuthUserRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkMerakiAuthUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkMerakiAuthUser`: InlineResponse20037
+    // response from `CreateNetworkMerakiAuthUser`: GetNetworkMerakiAuthUsers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateNetworkMerakiAuthUser`: %v\n", resp)
 }
 ```
@@ -2378,11 +2378,11 @@ Other parameters are passed through a pointer to a apiCreateNetworkMerakiAuthUse
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkMerakiAuthUser** | [**InlineObject92**](InlineObject92.md) |  | 
+ **createNetworkMerakiAuthUserRequest** | [**CreateNetworkMerakiAuthUserRequest**](CreateNetworkMerakiAuthUserRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20037**](InlineResponse20037.md)
+[**GetNetworkMerakiAuthUsers200ResponseInner**](GetNetworkMerakiAuthUsers200ResponseInner.md)
 
 ### Authorization
 
@@ -2400,7 +2400,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkMqttBroker
 
-> map[string]interface{} CreateNetworkMqttBroker(ctx, networkId).CreateNetworkMqttBroker(createNetworkMqttBroker).Execute()
+> map[string]interface{} CreateNetworkMqttBroker(ctx, networkId).CreateNetworkMqttBrokerRequest(createNetworkMqttBrokerRequest).Execute()
 
 Add an MQTT broker
 
@@ -2415,16 +2415,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkMqttBroker := *openapiclient.NewInlineObject94("Name_example", "Host_example", int32(123)) // InlineObject94 | 
+    createNetworkMqttBrokerRequest := *openapiclient.NewCreateNetworkMqttBrokerRequest("Name_example", "Host_example", int32(123)) // CreateNetworkMqttBrokerRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkMqttBroker(context.Background(), networkId).CreateNetworkMqttBroker(createNetworkMqttBroker).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkMqttBroker(context.Background(), networkId).CreateNetworkMqttBrokerRequest(createNetworkMqttBrokerRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkMqttBroker``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2450,7 +2450,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkMqttBrokerReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkMqttBroker** | [**InlineObject94**](InlineObject94.md) |  | 
+ **createNetworkMqttBrokerRequest** | [**CreateNetworkMqttBrokerRequest**](CreateNetworkMqttBrokerRequest.md) |  | 
 
 ### Return type
 
@@ -2472,7 +2472,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkPiiRequest
 
-> map[string]interface{} CreateNetworkPiiRequest(ctx, networkId).CreateNetworkPiiRequest(createNetworkPiiRequest).Execute()
+> map[string]interface{} CreateNetworkPiiRequest(ctx, networkId).CreateNetworkPiiRequestRequest(createNetworkPiiRequestRequest).Execute()
 
 Submit a new delete or restrict processing PII request
 
@@ -2487,16 +2487,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkPiiRequest := *openapiclient.NewInlineObject97() // InlineObject97 |  (optional)
+    createNetworkPiiRequestRequest := *openapiclient.NewCreateNetworkPiiRequestRequest() // CreateNetworkPiiRequestRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkPiiRequest(context.Background(), networkId).CreateNetworkPiiRequest(createNetworkPiiRequest).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkPiiRequest(context.Background(), networkId).CreateNetworkPiiRequestRequest(createNetworkPiiRequestRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkPiiRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2522,7 +2522,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkPiiRequestReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkPiiRequest** | [**InlineObject97**](InlineObject97.md) |  | 
+ **createNetworkPiiRequestRequest** | [**CreateNetworkPiiRequestRequest**](CreateNetworkPiiRequestRequest.md) |  | 
 
 ### Return type
 
@@ -2544,7 +2544,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkSensorAlertsProfile
 
-> InlineResponse20041 CreateNetworkSensorAlertsProfile(ctx, networkId).CreateNetworkSensorAlertsProfile(createNetworkSensorAlertsProfile).Execute()
+> GetNetworkSensorAlertsProfiles200ResponseInner CreateNetworkSensorAlertsProfile(ctx, networkId).CreateNetworkSensorAlertsProfileRequest(createNetworkSensorAlertsProfileRequest).Execute()
 
 Creates a sensor alert profile for a network.
 
@@ -2559,21 +2559,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkSensorAlertsProfile := *openapiclient.NewInlineObject98("Name_example", []openapiclient.NetworksNetworkIdSensorAlertsProfilesConditions{*openapiclient.NewNetworksNetworkIdSensorAlertsProfilesConditions("Metric_example", *openapiclient.NewNetworksNetworkIdSensorAlertsProfilesThreshold())}) // InlineObject98 | 
+    createNetworkSensorAlertsProfileRequest := *openapiclient.NewCreateNetworkSensorAlertsProfileRequest("Name_example", []openapiclient.GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner{*openapiclient.NewGetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner("Metric_example", *openapiclient.NewGetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold())}) // CreateNetworkSensorAlertsProfileRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkSensorAlertsProfile(context.Background(), networkId).CreateNetworkSensorAlertsProfile(createNetworkSensorAlertsProfile).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkSensorAlertsProfile(context.Background(), networkId).CreateNetworkSensorAlertsProfileRequest(createNetworkSensorAlertsProfileRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkSensorAlertsProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkSensorAlertsProfile`: InlineResponse20041
+    // response from `CreateNetworkSensorAlertsProfile`: GetNetworkSensorAlertsProfiles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateNetworkSensorAlertsProfile`: %v\n", resp)
 }
 ```
@@ -2594,11 +2594,11 @@ Other parameters are passed through a pointer to a apiCreateNetworkSensorAlertsP
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkSensorAlertsProfile** | [**InlineObject98**](InlineObject98.md) |  | 
+ **createNetworkSensorAlertsProfileRequest** | [**CreateNetworkSensorAlertsProfileRequest**](CreateNetworkSensorAlertsProfileRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20041**](InlineResponse20041.md)
+[**GetNetworkSensorAlertsProfiles200ResponseInner**](GetNetworkSensorAlertsProfiles200ResponseInner.md)
 
 ### Authorization
 
@@ -2616,7 +2616,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkSmBypassActivationLockAttempt
 
-> map[string]interface{} CreateNetworkSmBypassActivationLockAttempt(ctx, networkId).CreateNetworkSmBypassActivationLockAttempt(createNetworkSmBypassActivationLockAttempt).Execute()
+> map[string]interface{} CreateNetworkSmBypassActivationLockAttempt(ctx, networkId).CreateNetworkSmBypassActivationLockAttemptRequest(createNetworkSmBypassActivationLockAttemptRequest).Execute()
 
 Bypass activation lock attempt
 
@@ -2631,16 +2631,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkSmBypassActivationLockAttempt := *openapiclient.NewInlineObject102([]string{"Ids_example"}) // InlineObject102 | 
+    createNetworkSmBypassActivationLockAttemptRequest := *openapiclient.NewCreateNetworkSmBypassActivationLockAttemptRequest([]string{"Ids_example"}) // CreateNetworkSmBypassActivationLockAttemptRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkSmBypassActivationLockAttempt(context.Background(), networkId).CreateNetworkSmBypassActivationLockAttempt(createNetworkSmBypassActivationLockAttempt).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkSmBypassActivationLockAttempt(context.Background(), networkId).CreateNetworkSmBypassActivationLockAttemptRequest(createNetworkSmBypassActivationLockAttemptRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkSmBypassActivationLockAttempt``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2666,7 +2666,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkSmBypassActiv
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkSmBypassActivationLockAttempt** | [**InlineObject102**](InlineObject102.md) |  | 
+ **createNetworkSmBypassActivationLockAttemptRequest** | [**CreateNetworkSmBypassActivationLockAttemptRequest**](CreateNetworkSmBypassActivationLockAttemptRequest.md) |  | 
 
 ### Return type
 
@@ -2688,7 +2688,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkSmTargetGroup
 
-> map[string]interface{} CreateNetworkSmTargetGroup(ctx, networkId).CreateNetworkSmTargetGroup(createNetworkSmTargetGroup).Execute()
+> map[string]interface{} CreateNetworkSmTargetGroup(ctx, networkId).CreateNetworkSmTargetGroupRequest(createNetworkSmTargetGroupRequest).Execute()
 
 Add a target group
 
@@ -2703,16 +2703,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkSmTargetGroup := *openapiclient.NewInlineObject109() // InlineObject109 |  (optional)
+    createNetworkSmTargetGroupRequest := *openapiclient.NewCreateNetworkSmTargetGroupRequest() // CreateNetworkSmTargetGroupRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkSmTargetGroup(context.Background(), networkId).CreateNetworkSmTargetGroup(createNetworkSmTargetGroup).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkSmTargetGroup(context.Background(), networkId).CreateNetworkSmTargetGroupRequest(createNetworkSmTargetGroupRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkSmTargetGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2738,7 +2738,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkSmTargetGroup
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkSmTargetGroup** | [**InlineObject109**](InlineObject109.md) |  | 
+ **createNetworkSmTargetGroupRequest** | [**CreateNetworkSmTargetGroupRequest**](CreateNetworkSmTargetGroupRequest.md) |  | 
 
 ### Return type
 
@@ -2760,7 +2760,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkSwitchAccessPolicy
 
-> InlineResponse20068 CreateNetworkSwitchAccessPolicy(ctx, networkId).CreateNetworkSwitchAccessPolicy(createNetworkSwitchAccessPolicy).Execute()
+> GetNetworkSwitchAccessPolicies200ResponseInner CreateNetworkSwitchAccessPolicy(ctx, networkId).CreateNetworkSwitchAccessPolicyRequest(createNetworkSwitchAccessPolicyRequest).Execute()
 
 Create an access policy for a switch network
 
@@ -2775,21 +2775,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkSwitchAccessPolicy := *openapiclient.NewInlineObject113("Name_example", []openapiclient.NetworksNetworkIdSwitchAccessPoliciesRadiusServers1{*openapiclient.NewNetworksNetworkIdSwitchAccessPoliciesRadiusServers1("Host_example", int32(123), "Secret_example")}, false, false, false, "HostMode_example", false) // InlineObject113 | 
+    createNetworkSwitchAccessPolicyRequest := *openapiclient.NewCreateNetworkSwitchAccessPolicyRequest("Name_example", []openapiclient.CreateNetworkSwitchAccessPolicyRequestRadiusServersInner{*openapiclient.NewCreateNetworkSwitchAccessPolicyRequestRadiusServersInner("Host_example", int32(123), "Secret_example")}, false, false, false, "HostMode_example", false) // CreateNetworkSwitchAccessPolicyRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchAccessPolicy(context.Background(), networkId).CreateNetworkSwitchAccessPolicy(createNetworkSwitchAccessPolicy).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchAccessPolicy(context.Background(), networkId).CreateNetworkSwitchAccessPolicyRequest(createNetworkSwitchAccessPolicyRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkSwitchAccessPolicy``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkSwitchAccessPolicy`: InlineResponse20068
+    // response from `CreateNetworkSwitchAccessPolicy`: GetNetworkSwitchAccessPolicies200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateNetworkSwitchAccessPolicy`: %v\n", resp)
 }
 ```
@@ -2810,11 +2810,11 @@ Other parameters are passed through a pointer to a apiCreateNetworkSwitchAccessP
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkSwitchAccessPolicy** | [**InlineObject113**](InlineObject113.md) |  | 
+ **createNetworkSwitchAccessPolicyRequest** | [**CreateNetworkSwitchAccessPolicyRequest**](CreateNetworkSwitchAccessPolicyRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20068**](InlineResponse20068.md)
+[**GetNetworkSwitchAccessPolicies200ResponseInner**](GetNetworkSwitchAccessPolicies200ResponseInner.md)
 
 ### Authorization
 
@@ -2832,7 +2832,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer
 
-> InlineResponse20072 CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(ctx, networkId).CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer).Execute()
+> GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(ctx, networkId).CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest(createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest).Execute()
 
 Add a server to be trusted by Dynamic ARP Inspection on this network
 
@@ -2847,21 +2847,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer := *openapiclient.NewInlineObject117("Mac_example", int32(123), *openapiclient.NewNetworksNetworkIdSwitchDhcpServerPolicyArpInspectionTrustedServersIpv41()) // InlineObject117 | 
+    createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest := *openapiclient.NewCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest("Mac_example", int32(123), *openapiclient.NewCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4()) // CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(context.Background(), networkId).CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(context.Background(), networkId).CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest(createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer`: InlineResponse20072
+    // response from `CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer`: GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer`: %v\n", resp)
 }
 ```
@@ -2882,11 +2882,11 @@ Other parameters are passed through a pointer to a apiCreateNetworkSwitchDhcpSer
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer** | [**InlineObject117**](InlineObject117.md) |  | 
+ **createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest** | [**CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest**](CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20072**](InlineResponse20072.md)
+[**GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner**](GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner.md)
 
 ### Authorization
 
@@ -2904,7 +2904,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkSwitchLinkAggregation
 
-> map[string]interface{} CreateNetworkSwitchLinkAggregation(ctx, networkId).CreateNetworkSwitchLinkAggregation(createNetworkSwitchLinkAggregation).Execute()
+> map[string]interface{} CreateNetworkSwitchLinkAggregation(ctx, networkId).CreateNetworkSwitchLinkAggregationRequest(createNetworkSwitchLinkAggregationRequest).Execute()
 
 Create a link aggregation group
 
@@ -2919,16 +2919,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkSwitchLinkAggregation := *openapiclient.NewInlineObject120() // InlineObject120 |  (optional)
+    createNetworkSwitchLinkAggregationRequest := *openapiclient.NewCreateNetworkSwitchLinkAggregationRequest() // CreateNetworkSwitchLinkAggregationRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchLinkAggregation(context.Background(), networkId).CreateNetworkSwitchLinkAggregation(createNetworkSwitchLinkAggregation).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchLinkAggregation(context.Background(), networkId).CreateNetworkSwitchLinkAggregationRequest(createNetworkSwitchLinkAggregationRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkSwitchLinkAggregation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2954,7 +2954,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkSwitchLinkAgg
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkSwitchLinkAggregation** | [**InlineObject120**](InlineObject120.md) |  | 
+ **createNetworkSwitchLinkAggregationRequest** | [**CreateNetworkSwitchLinkAggregationRequest**](CreateNetworkSwitchLinkAggregationRequest.md) |  | 
 
 ### Return type
 
@@ -2976,7 +2976,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkSwitchPortSchedule
 
-> map[string]interface{} CreateNetworkSwitchPortSchedule(ctx, networkId).CreateNetworkSwitchPortSchedule(createNetworkSwitchPortSchedule).Execute()
+> map[string]interface{} CreateNetworkSwitchPortSchedule(ctx, networkId).CreateNetworkSwitchPortScheduleRequest(createNetworkSwitchPortScheduleRequest).Execute()
 
 Add a switch port schedule
 
@@ -2991,16 +2991,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkSwitchPortSchedule := *openapiclient.NewInlineObject123("Name_example") // InlineObject123 | 
+    createNetworkSwitchPortScheduleRequest := *openapiclient.NewCreateNetworkSwitchPortScheduleRequest("Name_example") // CreateNetworkSwitchPortScheduleRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchPortSchedule(context.Background(), networkId).CreateNetworkSwitchPortSchedule(createNetworkSwitchPortSchedule).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchPortSchedule(context.Background(), networkId).CreateNetworkSwitchPortScheduleRequest(createNetworkSwitchPortScheduleRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkSwitchPortSchedule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3026,7 +3026,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkSwitchPortSch
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkSwitchPortSchedule** | [**InlineObject123**](InlineObject123.md) |  | 
+ **createNetworkSwitchPortScheduleRequest** | [**CreateNetworkSwitchPortScheduleRequest**](CreateNetworkSwitchPortScheduleRequest.md) |  | 
 
 ### Return type
 
@@ -3048,7 +3048,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkSwitchQosRule
 
-> map[string]interface{} CreateNetworkSwitchQosRule(ctx, networkId).CreateNetworkSwitchQosRule(createNetworkSwitchQosRule).Execute()
+> map[string]interface{} CreateNetworkSwitchQosRule(ctx, networkId).CreateNetworkSwitchQosRuleRequest(createNetworkSwitchQosRuleRequest).Execute()
 
 Add a quality of service rule
 
@@ -3063,16 +3063,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkSwitchQosRule := *openapiclient.NewInlineObject125(int32(123)) // InlineObject125 | 
+    createNetworkSwitchQosRuleRequest := *openapiclient.NewCreateNetworkSwitchQosRuleRequest(int32(123)) // CreateNetworkSwitchQosRuleRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchQosRule(context.Background(), networkId).CreateNetworkSwitchQosRule(createNetworkSwitchQosRule).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchQosRule(context.Background(), networkId).CreateNetworkSwitchQosRuleRequest(createNetworkSwitchQosRuleRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkSwitchQosRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3098,7 +3098,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkSwitchQosRule
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkSwitchQosRule** | [**InlineObject125**](InlineObject125.md) |  | 
+ **createNetworkSwitchQosRuleRequest** | [**CreateNetworkSwitchQosRuleRequest**](CreateNetworkSwitchQosRuleRequest.md) |  | 
 
 ### Return type
 
@@ -3120,7 +3120,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkSwitchRoutingMulticastRendezvousPoint
 
-> map[string]interface{} CreateNetworkSwitchRoutingMulticastRendezvousPoint(ctx, networkId).CreateNetworkSwitchRoutingMulticastRendezvousPoint(createNetworkSwitchRoutingMulticastRendezvousPoint).Execute()
+> map[string]interface{} CreateNetworkSwitchRoutingMulticastRendezvousPoint(ctx, networkId).CreateNetworkSwitchRoutingMulticastRendezvousPointRequest(createNetworkSwitchRoutingMulticastRendezvousPointRequest).Execute()
 
 Create a multicast rendezvous point
 
@@ -3135,16 +3135,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkSwitchRoutingMulticastRendezvousPoint := *openapiclient.NewInlineObject129("InterfaceIp_example", "MulticastGroup_example") // InlineObject129 | 
+    createNetworkSwitchRoutingMulticastRendezvousPointRequest := *openapiclient.NewCreateNetworkSwitchRoutingMulticastRendezvousPointRequest("InterfaceIp_example", "MulticastGroup_example") // CreateNetworkSwitchRoutingMulticastRendezvousPointRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchRoutingMulticastRendezvousPoint(context.Background(), networkId).CreateNetworkSwitchRoutingMulticastRendezvousPoint(createNetworkSwitchRoutingMulticastRendezvousPoint).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchRoutingMulticastRendezvousPoint(context.Background(), networkId).CreateNetworkSwitchRoutingMulticastRendezvousPointRequest(createNetworkSwitchRoutingMulticastRendezvousPointRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkSwitchRoutingMulticastRendezvousPoint``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3170,7 +3170,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkSwitchRouting
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkSwitchRoutingMulticastRendezvousPoint** | [**InlineObject129**](InlineObject129.md) |  | 
+ **createNetworkSwitchRoutingMulticastRendezvousPointRequest** | [**CreateNetworkSwitchRoutingMulticastRendezvousPointRequest**](CreateNetworkSwitchRoutingMulticastRendezvousPointRequest.md) |  | 
 
 ### Return type
 
@@ -3192,7 +3192,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkSwitchStack
 
-> map[string]interface{} CreateNetworkSwitchStack(ctx, networkId).CreateNetworkSwitchStack(createNetworkSwitchStack).Execute()
+> map[string]interface{} CreateNetworkSwitchStack(ctx, networkId).CreateNetworkSwitchStackRequest(createNetworkSwitchStackRequest).Execute()
 
 Create a stack
 
@@ -3207,16 +3207,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkSwitchStack := *openapiclient.NewInlineObject133("Name_example", []string{"Serials_example"}) // InlineObject133 | 
+    createNetworkSwitchStackRequest := *openapiclient.NewCreateNetworkSwitchStackRequest("Name_example", []string{"Serials_example"}) // CreateNetworkSwitchStackRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchStack(context.Background(), networkId).CreateNetworkSwitchStack(createNetworkSwitchStack).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchStack(context.Background(), networkId).CreateNetworkSwitchStackRequest(createNetworkSwitchStackRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkSwitchStack``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3242,7 +3242,7 @@ Other parameters are passed through a pointer to a apiCreateNetworkSwitchStackRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkSwitchStack** | [**InlineObject133**](InlineObject133.md) |  | 
+ **createNetworkSwitchStackRequest** | [**CreateNetworkSwitchStackRequest**](CreateNetworkSwitchStackRequest.md) |  | 
 
 ### Return type
 
@@ -3264,7 +3264,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkSwitchStackRoutingInterface
 
-> map[string]interface{} CreateNetworkSwitchStackRoutingInterface(ctx, networkId, switchStackId).CreateNetworkSwitchStackRoutingInterface(createNetworkSwitchStackRoutingInterface).Execute()
+> map[string]interface{} CreateNetworkSwitchStackRoutingInterface(ctx, networkId, switchStackId).CreateNetworkSwitchStackRoutingInterfaceRequest(createNetworkSwitchStackRoutingInterfaceRequest).Execute()
 
 Create a layer 3 interface for a switch stack
 
@@ -3279,17 +3279,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     switchStackId := "switchStackId_example" // string | Switch stack ID
-    createNetworkSwitchStackRoutingInterface := *openapiclient.NewInlineObject136("Name_example", int32(123)) // InlineObject136 | 
+    createNetworkSwitchStackRoutingInterfaceRequest := *openapiclient.NewCreateNetworkSwitchStackRoutingInterfaceRequest("Name_example", int32(123)) // CreateNetworkSwitchStackRoutingInterfaceRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId).CreateNetworkSwitchStackRoutingInterface(createNetworkSwitchStackRoutingInterface).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId).CreateNetworkSwitchStackRoutingInterfaceRequest(createNetworkSwitchStackRoutingInterfaceRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkSwitchStackRoutingInterface``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3317,7 +3317,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **createNetworkSwitchStackRoutingInterface** | [**InlineObject136**](InlineObject136.md) |  | 
+ **createNetworkSwitchStackRoutingInterfaceRequest** | [**CreateNetworkSwitchStackRoutingInterfaceRequest**](CreateNetworkSwitchStackRoutingInterfaceRequest.md) |  | 
 
 ### Return type
 
@@ -3339,7 +3339,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkSwitchStackRoutingStaticRoute
 
-> map[string]interface{} CreateNetworkSwitchStackRoutingStaticRoute(ctx, networkId, switchStackId).CreateNetworkSwitchStackRoutingStaticRoute(createNetworkSwitchStackRoutingStaticRoute).Execute()
+> map[string]interface{} CreateNetworkSwitchStackRoutingStaticRoute(ctx, networkId, switchStackId).CreateDeviceSwitchRoutingStaticRouteRequest(createDeviceSwitchRoutingStaticRouteRequest).Execute()
 
 Create a layer 3 static route for a switch stack
 
@@ -3354,17 +3354,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     switchStackId := "switchStackId_example" // string | Switch stack ID
-    createNetworkSwitchStackRoutingStaticRoute := *openapiclient.NewInlineObject139("Subnet_example", "NextHopIp_example") // InlineObject139 | 
+    createDeviceSwitchRoutingStaticRouteRequest := *openapiclient.NewCreateDeviceSwitchRoutingStaticRouteRequest("Subnet_example", "NextHopIp_example") // CreateDeviceSwitchRoutingStaticRouteRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId).CreateNetworkSwitchStackRoutingStaticRoute(createNetworkSwitchStackRoutingStaticRoute).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId).CreateDeviceSwitchRoutingStaticRouteRequest(createDeviceSwitchRoutingStaticRouteRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkSwitchStackRoutingStaticRoute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3392,7 +3392,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **createNetworkSwitchStackRoutingStaticRoute** | [**InlineObject139**](InlineObject139.md) |  | 
+ **createDeviceSwitchRoutingStaticRouteRequest** | [**CreateDeviceSwitchRoutingStaticRouteRequest**](CreateDeviceSwitchRoutingStaticRouteRequest.md) |  | 
 
 ### Return type
 
@@ -3414,7 +3414,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkWebhooksHttpServer
 
-> InlineResponse20083 CreateNetworkWebhooksHttpServer(ctx, networkId).CreateNetworkWebhooksHttpServer(createNetworkWebhooksHttpServer).Execute()
+> GetNetworkWebhooksHttpServers200ResponseInner CreateNetworkWebhooksHttpServer(ctx, networkId).CreateNetworkWebhooksHttpServerRequest(createNetworkWebhooksHttpServerRequest).Execute()
 
 Add an HTTP server to a network
 
@@ -3429,21 +3429,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkWebhooksHttpServer := *openapiclient.NewInlineObject146("Name_example", "Url_example") // InlineObject146 | 
+    createNetworkWebhooksHttpServerRequest := *openapiclient.NewCreateNetworkWebhooksHttpServerRequest("Name_example", "Url_example") // CreateNetworkWebhooksHttpServerRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkWebhooksHttpServer(context.Background(), networkId).CreateNetworkWebhooksHttpServer(createNetworkWebhooksHttpServer).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkWebhooksHttpServer(context.Background(), networkId).CreateNetworkWebhooksHttpServerRequest(createNetworkWebhooksHttpServerRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkWebhooksHttpServer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkWebhooksHttpServer`: InlineResponse20083
+    // response from `CreateNetworkWebhooksHttpServer`: GetNetworkWebhooksHttpServers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateNetworkWebhooksHttpServer`: %v\n", resp)
 }
 ```
@@ -3464,11 +3464,11 @@ Other parameters are passed through a pointer to a apiCreateNetworkWebhooksHttpS
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkWebhooksHttpServer** | [**InlineObject146**](InlineObject146.md) |  | 
+ **createNetworkWebhooksHttpServerRequest** | [**CreateNetworkWebhooksHttpServerRequest**](CreateNetworkWebhooksHttpServerRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20083**](InlineResponse20083.md)
+[**GetNetworkWebhooksHttpServers200ResponseInner**](GetNetworkWebhooksHttpServers200ResponseInner.md)
 
 ### Authorization
 
@@ -3486,7 +3486,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkWebhooksPayloadTemplate
 
-> InlineResponse20084 CreateNetworkWebhooksPayloadTemplate(ctx, networkId).CreateNetworkWebhooksPayloadTemplate(createNetworkWebhooksPayloadTemplate).Execute()
+> GetNetworkWebhooksPayloadTemplates200ResponseInner CreateNetworkWebhooksPayloadTemplate(ctx, networkId).CreateNetworkWebhooksPayloadTemplateRequest(createNetworkWebhooksPayloadTemplateRequest).Execute()
 
 Create a webhook payload template for a network
 
@@ -3501,21 +3501,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkWebhooksPayloadTemplate := *openapiclient.NewInlineObject148("Name_example") // InlineObject148 | 
+    createNetworkWebhooksPayloadTemplateRequest := *openapiclient.NewCreateNetworkWebhooksPayloadTemplateRequest("Name_example") // CreateNetworkWebhooksPayloadTemplateRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkWebhooksPayloadTemplate(context.Background(), networkId).CreateNetworkWebhooksPayloadTemplate(createNetworkWebhooksPayloadTemplate).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkWebhooksPayloadTemplate(context.Background(), networkId).CreateNetworkWebhooksPayloadTemplateRequest(createNetworkWebhooksPayloadTemplateRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkWebhooksPayloadTemplate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkWebhooksPayloadTemplate`: InlineResponse20084
+    // response from `CreateNetworkWebhooksPayloadTemplate`: GetNetworkWebhooksPayloadTemplates200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateNetworkWebhooksPayloadTemplate`: %v\n", resp)
 }
 ```
@@ -3536,11 +3536,11 @@ Other parameters are passed through a pointer to a apiCreateNetworkWebhooksPaylo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkWebhooksPayloadTemplate** | [**InlineObject148**](InlineObject148.md) |  | 
+ **createNetworkWebhooksPayloadTemplateRequest** | [**CreateNetworkWebhooksPayloadTemplateRequest**](CreateNetworkWebhooksPayloadTemplateRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20084**](InlineResponse20084.md)
+[**GetNetworkWebhooksPayloadTemplates200ResponseInner**](GetNetworkWebhooksPayloadTemplates200ResponseInner.md)
 
 ### Authorization
 
@@ -3558,7 +3558,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkWebhooksWebhookTest
 
-> InlineResponse2013 CreateNetworkWebhooksWebhookTest(ctx, networkId).CreateNetworkWebhooksWebhookTest(createNetworkWebhooksWebhookTest).Execute()
+> CreateNetworkWebhooksWebhookTest201Response CreateNetworkWebhooksWebhookTest(ctx, networkId).CreateNetworkWebhooksWebhookTestRequest(createNetworkWebhooksWebhookTestRequest).Execute()
 
 Send a test webhook for a network
 
@@ -3573,21 +3573,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkWebhooksWebhookTest := *openapiclient.NewInlineObject150("Url_example") // InlineObject150 | 
+    createNetworkWebhooksWebhookTestRequest := *openapiclient.NewCreateNetworkWebhooksWebhookTestRequest("Url_example") // CreateNetworkWebhooksWebhookTestRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkWebhooksWebhookTest(context.Background(), networkId).CreateNetworkWebhooksWebhookTest(createNetworkWebhooksWebhookTest).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkWebhooksWebhookTest(context.Background(), networkId).CreateNetworkWebhooksWebhookTestRequest(createNetworkWebhooksWebhookTestRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkWebhooksWebhookTest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkWebhooksWebhookTest`: InlineResponse2013
+    // response from `CreateNetworkWebhooksWebhookTest`: CreateNetworkWebhooksWebhookTest201Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateNetworkWebhooksWebhookTest`: %v\n", resp)
 }
 ```
@@ -3608,11 +3608,11 @@ Other parameters are passed through a pointer to a apiCreateNetworkWebhooksWebho
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkWebhooksWebhookTest** | [**InlineObject150**](InlineObject150.md) |  | 
+ **createNetworkWebhooksWebhookTestRequest** | [**CreateNetworkWebhooksWebhookTestRequest**](CreateNetworkWebhooksWebhookTestRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse2013**](InlineResponse2013.md)
+[**CreateNetworkWebhooksWebhookTest201Response**](CreateNetworkWebhooksWebhookTest201Response.md)
 
 ### Authorization
 
@@ -3630,7 +3630,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkWirelessRfProfile
 
-> InlineResponse20092 CreateNetworkWirelessRfProfile(ctx, networkId).CreateNetworkWirelessRfProfile(createNetworkWirelessRfProfile).Execute()
+> GetNetworkWirelessRfProfiles200Response CreateNetworkWirelessRfProfile(ctx, networkId).CreateNetworkWirelessRfProfileRequest(createNetworkWirelessRfProfileRequest).Execute()
 
 Creates new RF profile for this network
 
@@ -3645,21 +3645,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkWirelessRfProfile := *openapiclient.NewInlineObject154("Name_example", "BandSelectionType_example") // InlineObject154 | 
+    createNetworkWirelessRfProfileRequest := *openapiclient.NewCreateNetworkWirelessRfProfileRequest("Name_example", "BandSelectionType_example") // CreateNetworkWirelessRfProfileRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkWirelessRfProfile(context.Background(), networkId).CreateNetworkWirelessRfProfile(createNetworkWirelessRfProfile).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkWirelessRfProfile(context.Background(), networkId).CreateNetworkWirelessRfProfileRequest(createNetworkWirelessRfProfileRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkWirelessRfProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkWirelessRfProfile`: InlineResponse20092
+    // response from `CreateNetworkWirelessRfProfile`: GetNetworkWirelessRfProfiles200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateNetworkWirelessRfProfile`: %v\n", resp)
 }
 ```
@@ -3680,11 +3680,11 @@ Other parameters are passed through a pointer to a apiCreateNetworkWirelessRfPro
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkWirelessRfProfile** | [**InlineObject154**](InlineObject154.md) |  | 
+ **createNetworkWirelessRfProfileRequest** | [**CreateNetworkWirelessRfProfileRequest**](CreateNetworkWirelessRfProfileRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20092**](InlineResponse20092.md)
+[**GetNetworkWirelessRfProfiles200Response**](GetNetworkWirelessRfProfiles200Response.md)
 
 ### Authorization
 
@@ -3702,7 +3702,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkWirelessSsidIdentityPsk
 
-> map[string]interface{} CreateNetworkWirelessSsidIdentityPsk(ctx, networkId, number).CreateNetworkWirelessSsidIdentityPsk(createNetworkWirelessSsidIdentityPsk).Execute()
+> map[string]interface{} CreateNetworkWirelessSsidIdentityPsk(ctx, networkId, number).CreateNetworkWirelessSsidIdentityPskRequest(createNetworkWirelessSsidIdentityPskRequest).Execute()
 
 Create an Identity PSK
 
@@ -3717,17 +3717,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     number := "number_example" // string | Number
-    createNetworkWirelessSsidIdentityPsk := *openapiclient.NewInlineObject164("Name_example", "GroupPolicyId_example") // InlineObject164 | 
+    createNetworkWirelessSsidIdentityPskRequest := *openapiclient.NewCreateNetworkWirelessSsidIdentityPskRequest("Name_example", "GroupPolicyId_example") // CreateNetworkWirelessSsidIdentityPskRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateNetworkWirelessSsidIdentityPsk(context.Background(), networkId, number).CreateNetworkWirelessSsidIdentityPsk(createNetworkWirelessSsidIdentityPsk).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateNetworkWirelessSsidIdentityPsk(context.Background(), networkId, number).CreateNetworkWirelessSsidIdentityPskRequest(createNetworkWirelessSsidIdentityPskRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkWirelessSsidIdentityPsk``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3755,7 +3755,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **createNetworkWirelessSsidIdentityPsk** | [**InlineObject164**](InlineObject164.md) |  | 
+ **createNetworkWirelessSsidIdentityPskRequest** | [**CreateNetworkWirelessSsidIdentityPskRequest**](CreateNetworkWirelessSsidIdentityPskRequest.md) |  | 
 
 ### Return type
 
@@ -3777,7 +3777,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganization
 
-> InlineResponse20099 CreateOrganization(ctx).CreateOrganization(createOrganization).Execute()
+> GetOrganizations200ResponseInner CreateOrganization(ctx).CreateOrganizationRequest(createOrganizationRequest).Execute()
 
 Create a new organization
 
@@ -3792,20 +3792,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
-    createOrganization := *openapiclient.NewInlineObject170("Name_example") // InlineObject170 | 
+    createOrganizationRequest := *openapiclient.NewCreateOrganizationRequest("Name_example") // CreateOrganizationRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganization(context.Background()).CreateOrganization(createOrganization).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganization(context.Background()).CreateOrganizationRequest(createOrganizationRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganization`: InlineResponse20099
+    // response from `CreateOrganization`: GetOrganizations200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateOrganization`: %v\n", resp)
 }
 ```
@@ -3821,11 +3821,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createOrganization** | [**InlineObject170**](InlineObject170.md) |  | 
+ **createOrganizationRequest** | [**CreateOrganizationRequest**](CreateOrganizationRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20099**](InlineResponse20099.md)
+[**GetOrganizations200ResponseInner**](GetOrganizations200ResponseInner.md)
 
 ### Authorization
 
@@ -3843,7 +3843,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationActionBatch
 
-> InlineResponse2014 CreateOrganizationActionBatch(ctx, organizationId).CreateOrganizationActionBatch(createOrganizationActionBatch).Execute()
+> CreateOrganizationActionBatch201Response CreateOrganizationActionBatch(ctx, organizationId).CreateOrganizationActionBatchRequest(createOrganizationActionBatchRequest).Execute()
 
 Create an action batch
 
@@ -3858,21 +3858,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationActionBatch := *openapiclient.NewInlineObject172([]openapiclient.OrganizationsOrganizationIdActionBatchesActions{*openapiclient.NewOrganizationsOrganizationIdActionBatchesActions("Resource_example", "Operation_example")}) // InlineObject172 | 
+    createOrganizationActionBatchRequest := *openapiclient.NewCreateOrganizationActionBatchRequest([]openapiclient.CreateOrganizationActionBatchRequestActionsInner{*openapiclient.NewCreateOrganizationActionBatchRequestActionsInner("Resource_example", "Operation_example")}) // CreateOrganizationActionBatchRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationActionBatch(context.Background(), organizationId).CreateOrganizationActionBatch(createOrganizationActionBatch).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationActionBatch(context.Background(), organizationId).CreateOrganizationActionBatchRequest(createOrganizationActionBatchRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationActionBatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganizationActionBatch`: InlineResponse2014
+    // response from `CreateOrganizationActionBatch`: CreateOrganizationActionBatch201Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateOrganizationActionBatch`: %v\n", resp)
 }
 ```
@@ -3893,11 +3893,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationActionBa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationActionBatch** | [**InlineObject172**](InlineObject172.md) |  | 
+ **createOrganizationActionBatchRequest** | [**CreateOrganizationActionBatchRequest**](CreateOrganizationActionBatchRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse2014**](InlineResponse2014.md)
+[**CreateOrganizationActionBatch201Response**](CreateOrganizationActionBatch201Response.md)
 
 ### Authorization
 
@@ -3915,7 +3915,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationAdaptivePolicyAcl
 
-> InlineResponse200100 CreateOrganizationAdaptivePolicyAcl(ctx, organizationId).CreateOrganizationAdaptivePolicyAcl(createOrganizationAdaptivePolicyAcl).Execute()
+> GetOrganizationAdaptivePolicyAcls200ResponseInner CreateOrganizationAdaptivePolicyAcl(ctx, organizationId).CreateOrganizationAdaptivePolicyAclRequest(createOrganizationAdaptivePolicyAclRequest).Execute()
 
 Creates new adaptive policy ACL
 
@@ -3930,21 +3930,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationAdaptivePolicyAcl := *openapiclient.NewInlineObject174("Name_example", []openapiclient.OrganizationsOrganizationIdAdaptivePolicyAclsRules1{*openapiclient.NewOrganizationsOrganizationIdAdaptivePolicyAclsRules1("Policy_example", "Protocol_example")}, "IpVersion_example") // InlineObject174 | 
+    createOrganizationAdaptivePolicyAclRequest := *openapiclient.NewCreateOrganizationAdaptivePolicyAclRequest("Name_example", []openapiclient.CreateOrganizationAdaptivePolicyAclRequestRulesInner{*openapiclient.NewCreateOrganizationAdaptivePolicyAclRequestRulesInner("Policy_example", "Protocol_example")}, "IpVersion_example") // CreateOrganizationAdaptivePolicyAclRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationAdaptivePolicyAcl(context.Background(), organizationId).CreateOrganizationAdaptivePolicyAcl(createOrganizationAdaptivePolicyAcl).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationAdaptivePolicyAcl(context.Background(), organizationId).CreateOrganizationAdaptivePolicyAclRequest(createOrganizationAdaptivePolicyAclRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationAdaptivePolicyAcl``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganizationAdaptivePolicyAcl`: InlineResponse200100
+    // response from `CreateOrganizationAdaptivePolicyAcl`: GetOrganizationAdaptivePolicyAcls200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateOrganizationAdaptivePolicyAcl`: %v\n", resp)
 }
 ```
@@ -3965,11 +3965,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationAdaptive
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationAdaptivePolicyAcl** | [**InlineObject174**](InlineObject174.md) |  | 
+ **createOrganizationAdaptivePolicyAclRequest** | [**CreateOrganizationAdaptivePolicyAclRequest**](CreateOrganizationAdaptivePolicyAclRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200100**](InlineResponse200100.md)
+[**GetOrganizationAdaptivePolicyAcls200ResponseInner**](GetOrganizationAdaptivePolicyAcls200ResponseInner.md)
 
 ### Authorization
 
@@ -3987,7 +3987,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationAdaptivePolicyGroup
 
-> map[string]interface{} CreateOrganizationAdaptivePolicyGroup(ctx, organizationId).CreateOrganizationAdaptivePolicyGroup(createOrganizationAdaptivePolicyGroup).Execute()
+> map[string]interface{} CreateOrganizationAdaptivePolicyGroup(ctx, organizationId).CreateOrganizationAdaptivePolicyGroupRequest(createOrganizationAdaptivePolicyGroupRequest).Execute()
 
 Creates a new adaptive policy group
 
@@ -4002,16 +4002,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationAdaptivePolicyGroup := *openapiclient.NewInlineObject176("Name_example", int32(123)) // InlineObject176 | 
+    createOrganizationAdaptivePolicyGroupRequest := *openapiclient.NewCreateOrganizationAdaptivePolicyGroupRequest("Name_example", int32(123)) // CreateOrganizationAdaptivePolicyGroupRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationAdaptivePolicyGroup(context.Background(), organizationId).CreateOrganizationAdaptivePolicyGroup(createOrganizationAdaptivePolicyGroup).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationAdaptivePolicyGroup(context.Background(), organizationId).CreateOrganizationAdaptivePolicyGroupRequest(createOrganizationAdaptivePolicyGroupRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationAdaptivePolicyGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -4037,7 +4037,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationAdaptive
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationAdaptivePolicyGroup** | [**InlineObject176**](InlineObject176.md) |  | 
+ **createOrganizationAdaptivePolicyGroupRequest** | [**CreateOrganizationAdaptivePolicyGroupRequest**](CreateOrganizationAdaptivePolicyGroupRequest.md) |  | 
 
 ### Return type
 
@@ -4059,7 +4059,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationAdaptivePolicyPolicy
 
-> map[string]interface{} CreateOrganizationAdaptivePolicyPolicy(ctx, organizationId).CreateOrganizationAdaptivePolicyPolicy(createOrganizationAdaptivePolicyPolicy).Execute()
+> map[string]interface{} CreateOrganizationAdaptivePolicyPolicy(ctx, organizationId).CreateOrganizationAdaptivePolicyPolicyRequest(createOrganizationAdaptivePolicyPolicyRequest).Execute()
 
 Add an Adaptive Policy
 
@@ -4074,16 +4074,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationAdaptivePolicyPolicy := *openapiclient.NewInlineObject178(*openapiclient.NewOrganizationsOrganizationIdAdaptivePolicyPoliciesSourceGroup(), *openapiclient.NewOrganizationsOrganizationIdAdaptivePolicyPoliciesDestinationGroup()) // InlineObject178 | 
+    createOrganizationAdaptivePolicyPolicyRequest := *openapiclient.NewCreateOrganizationAdaptivePolicyPolicyRequest(*openapiclient.NewCreateOrganizationAdaptivePolicyPolicyRequestSourceGroup(), *openapiclient.NewCreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup()) // CreateOrganizationAdaptivePolicyPolicyRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationAdaptivePolicyPolicy(context.Background(), organizationId).CreateOrganizationAdaptivePolicyPolicy(createOrganizationAdaptivePolicyPolicy).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationAdaptivePolicyPolicy(context.Background(), organizationId).CreateOrganizationAdaptivePolicyPolicyRequest(createOrganizationAdaptivePolicyPolicyRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationAdaptivePolicyPolicy``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -4109,7 +4109,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationAdaptive
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationAdaptivePolicyPolicy** | [**InlineObject178**](InlineObject178.md) |  | 
+ **createOrganizationAdaptivePolicyPolicyRequest** | [**CreateOrganizationAdaptivePolicyPolicyRequest**](CreateOrganizationAdaptivePolicyPolicyRequest.md) |  | 
 
 ### Return type
 
@@ -4131,7 +4131,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationAdmin
 
-> InlineResponse200102 CreateOrganizationAdmin(ctx, organizationId).CreateOrganizationAdmin(createOrganizationAdmin).Execute()
+> GetOrganizationAdmins200ResponseInner CreateOrganizationAdmin(ctx, organizationId).CreateOrganizationAdminRequest(createOrganizationAdminRequest).Execute()
 
 Create a new dashboard administrator
 
@@ -4146,21 +4146,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationAdmin := *openapiclient.NewInlineObject181("Email_example", "Name_example", "OrgAccess_example") // InlineObject181 | 
+    createOrganizationAdminRequest := *openapiclient.NewCreateOrganizationAdminRequest("Email_example", "Name_example", "OrgAccess_example") // CreateOrganizationAdminRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationAdmin(context.Background(), organizationId).CreateOrganizationAdmin(createOrganizationAdmin).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationAdmin(context.Background(), organizationId).CreateOrganizationAdminRequest(createOrganizationAdminRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationAdmin``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganizationAdmin`: InlineResponse200102
+    // response from `CreateOrganizationAdmin`: GetOrganizationAdmins200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateOrganizationAdmin`: %v\n", resp)
 }
 ```
@@ -4181,11 +4181,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationAdminReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationAdmin** | [**InlineObject181**](InlineObject181.md) |  | 
+ **createOrganizationAdminRequest** | [**CreateOrganizationAdminRequest**](CreateOrganizationAdminRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200102**](InlineResponse200102.md)
+[**GetOrganizationAdmins200ResponseInner**](GetOrganizationAdmins200ResponseInner.md)
 
 ### Authorization
 
@@ -4203,7 +4203,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationAlertsProfile
 
-> map[string]interface{} CreateOrganizationAlertsProfile(ctx, organizationId).CreateOrganizationAlertsProfile(createOrganizationAlertsProfile).Execute()
+> map[string]interface{} CreateOrganizationAlertsProfile(ctx, organizationId).CreateOrganizationAlertsProfileRequest(createOrganizationAlertsProfileRequest).Execute()
 
 Create an organization-wide alert configuration
 
@@ -4218,16 +4218,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationAlertsProfile := *openapiclient.NewInlineObject183("Type_example", *openapiclient.NewOrganizationsOrganizationIdAlertsProfilesAlertCondition(), *openapiclient.NewOrganizationsOrganizationIdAlertsProfilesRecipients(), []string{"NetworkTags_example"}) // InlineObject183 | 
+    createOrganizationAlertsProfileRequest := *openapiclient.NewCreateOrganizationAlertsProfileRequest("Type_example", *openapiclient.NewCreateOrganizationAlertsProfileRequestAlertCondition(), *openapiclient.NewCreateOrganizationAlertsProfileRequestRecipients(), []string{"NetworkTags_example"}) // CreateOrganizationAlertsProfileRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationAlertsProfile(context.Background(), organizationId).CreateOrganizationAlertsProfile(createOrganizationAlertsProfile).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationAlertsProfile(context.Background(), organizationId).CreateOrganizationAlertsProfileRequest(createOrganizationAlertsProfileRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationAlertsProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -4253,7 +4253,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationAlertsPr
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationAlertsProfile** | [**InlineObject183**](InlineObject183.md) |  | 
+ **createOrganizationAlertsProfileRequest** | [**CreateOrganizationAlertsProfileRequest**](CreateOrganizationAlertsProfileRequest.md) |  | 
 
 ### Return type
 
@@ -4275,7 +4275,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationBrandingPolicy
 
-> InlineResponse2015 CreateOrganizationBrandingPolicy(ctx, organizationId).CreateOrganizationBrandingPolicy(createOrganizationBrandingPolicy).Execute()
+> CreateOrganizationBrandingPolicy201Response CreateOrganizationBrandingPolicy(ctx, organizationId).CreateOrganizationBrandingPolicyRequest(createOrganizationBrandingPolicyRequest).Execute()
 
 Add a new branding policy to an organization
 
@@ -4290,21 +4290,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationBrandingPolicy := *openapiclient.NewInlineObject188() // InlineObject188 |  (optional)
+    createOrganizationBrandingPolicyRequest := *openapiclient.NewCreateOrganizationBrandingPolicyRequest() // CreateOrganizationBrandingPolicyRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationBrandingPolicy(context.Background(), organizationId).CreateOrganizationBrandingPolicy(createOrganizationBrandingPolicy).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationBrandingPolicy(context.Background(), organizationId).CreateOrganizationBrandingPolicyRequest(createOrganizationBrandingPolicyRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationBrandingPolicy``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganizationBrandingPolicy`: InlineResponse2015
+    // response from `CreateOrganizationBrandingPolicy`: CreateOrganizationBrandingPolicy201Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateOrganizationBrandingPolicy`: %v\n", resp)
 }
 ```
@@ -4325,11 +4325,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationBranding
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationBrandingPolicy** | [**InlineObject188**](InlineObject188.md) |  | 
+ **createOrganizationBrandingPolicyRequest** | [**CreateOrganizationBrandingPolicyRequest**](CreateOrganizationBrandingPolicyRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse2015**](InlineResponse2015.md)
+[**CreateOrganizationBrandingPolicy201Response**](CreateOrganizationBrandingPolicy201Response.md)
 
 ### Authorization
 
@@ -4347,7 +4347,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationCameraCustomAnalyticsArtifact
 
-> map[string]interface{} CreateOrganizationCameraCustomAnalyticsArtifact(ctx, organizationId).CreateOrganizationCameraCustomAnalyticsArtifact(createOrganizationCameraCustomAnalyticsArtifact).Execute()
+> map[string]interface{} CreateOrganizationCameraCustomAnalyticsArtifact(ctx, organizationId).CreateOrganizationCameraCustomAnalyticsArtifactRequest(createOrganizationCameraCustomAnalyticsArtifactRequest).Execute()
 
 Create custom analytics artifact
 
@@ -4362,16 +4362,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationCameraCustomAnalyticsArtifact := *openapiclient.NewInlineObject191() // InlineObject191 |  (optional)
+    createOrganizationCameraCustomAnalyticsArtifactRequest := *openapiclient.NewCreateOrganizationCameraCustomAnalyticsArtifactRequest() // CreateOrganizationCameraCustomAnalyticsArtifactRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationCameraCustomAnalyticsArtifact(context.Background(), organizationId).CreateOrganizationCameraCustomAnalyticsArtifact(createOrganizationCameraCustomAnalyticsArtifact).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationCameraCustomAnalyticsArtifact(context.Background(), organizationId).CreateOrganizationCameraCustomAnalyticsArtifactRequest(createOrganizationCameraCustomAnalyticsArtifactRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationCameraCustomAnalyticsArtifact``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -4397,7 +4397,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationCameraCu
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationCameraCustomAnalyticsArtifact** | [**InlineObject191**](InlineObject191.md) |  | 
+ **createOrganizationCameraCustomAnalyticsArtifactRequest** | [**CreateOrganizationCameraCustomAnalyticsArtifactRequest**](CreateOrganizationCameraCustomAnalyticsArtifactRequest.md) |  | 
 
 ### Return type
 
@@ -4419,7 +4419,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationConfigTemplate
 
-> map[string]interface{} CreateOrganizationConfigTemplate(ctx, organizationId).CreateOrganizationConfigTemplate(createOrganizationConfigTemplate).Execute()
+> map[string]interface{} CreateOrganizationConfigTemplate(ctx, organizationId).CreateOrganizationConfigTemplateRequest(createOrganizationConfigTemplateRequest).Execute()
 
 Create a new configuration template
 
@@ -4434,16 +4434,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationConfigTemplate := *openapiclient.NewInlineObject195("Name_example") // InlineObject195 | 
+    createOrganizationConfigTemplateRequest := *openapiclient.NewCreateOrganizationConfigTemplateRequest("Name_example") // CreateOrganizationConfigTemplateRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationConfigTemplate(context.Background(), organizationId).CreateOrganizationConfigTemplate(createOrganizationConfigTemplate).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationConfigTemplate(context.Background(), organizationId).CreateOrganizationConfigTemplateRequest(createOrganizationConfigTemplateRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationConfigTemplate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -4469,7 +4469,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationConfigTe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationConfigTemplate** | [**InlineObject195**](InlineObject195.md) |  | 
+ **createOrganizationConfigTemplateRequest** | [**CreateOrganizationConfigTemplateRequest**](CreateOrganizationConfigTemplateRequest.md) |  | 
 
 ### Return type
 
@@ -4491,7 +4491,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationEarlyAccessFeaturesOptIn
 
-> map[string]interface{} CreateOrganizationEarlyAccessFeaturesOptIn(ctx, organizationId).CreateOrganizationEarlyAccessFeaturesOptIn(createOrganizationEarlyAccessFeaturesOptIn).Execute()
+> map[string]interface{} CreateOrganizationEarlyAccessFeaturesOptIn(ctx, organizationId).CreateOrganizationEarlyAccessFeaturesOptInRequest(createOrganizationEarlyAccessFeaturesOptInRequest).Execute()
 
 Create a new early access feature opt-in for an organization
 
@@ -4506,16 +4506,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationEarlyAccessFeaturesOptIn := *openapiclient.NewInlineObject198("ShortName_example") // InlineObject198 | 
+    createOrganizationEarlyAccessFeaturesOptInRequest := *openapiclient.NewCreateOrganizationEarlyAccessFeaturesOptInRequest("ShortName_example") // CreateOrganizationEarlyAccessFeaturesOptInRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationEarlyAccessFeaturesOptIn(context.Background(), organizationId).CreateOrganizationEarlyAccessFeaturesOptIn(createOrganizationEarlyAccessFeaturesOptIn).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationEarlyAccessFeaturesOptIn(context.Background(), organizationId).CreateOrganizationEarlyAccessFeaturesOptInRequest(createOrganizationEarlyAccessFeaturesOptInRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationEarlyAccessFeaturesOptIn``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -4541,7 +4541,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationEarlyAcc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationEarlyAccessFeaturesOptIn** | [**InlineObject198**](InlineObject198.md) |  | 
+ **createOrganizationEarlyAccessFeaturesOptInRequest** | [**CreateOrganizationEarlyAccessFeaturesOptInRequest**](CreateOrganizationEarlyAccessFeaturesOptInRequest.md) |  | 
 
 ### Return type
 
@@ -4563,7 +4563,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationInsightMonitoredMediaServer
 
-> map[string]interface{} CreateOrganizationInsightMonitoredMediaServer(ctx, organizationId).CreateOrganizationInsightMonitoredMediaServer(createOrganizationInsightMonitoredMediaServer).Execute()
+> map[string]interface{} CreateOrganizationInsightMonitoredMediaServer(ctx, organizationId).CreateOrganizationInsightMonitoredMediaServerRequest(createOrganizationInsightMonitoredMediaServerRequest).Execute()
 
 Add a media server to be monitored for this organization
 
@@ -4578,16 +4578,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationInsightMonitoredMediaServer := *openapiclient.NewInlineObject200("Name_example", "Address_example") // InlineObject200 | 
+    createOrganizationInsightMonitoredMediaServerRequest := *openapiclient.NewCreateOrganizationInsightMonitoredMediaServerRequest("Name_example", "Address_example") // CreateOrganizationInsightMonitoredMediaServerRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationInsightMonitoredMediaServer(context.Background(), organizationId).CreateOrganizationInsightMonitoredMediaServer(createOrganizationInsightMonitoredMediaServer).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationInsightMonitoredMediaServer(context.Background(), organizationId).CreateOrganizationInsightMonitoredMediaServerRequest(createOrganizationInsightMonitoredMediaServerRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationInsightMonitoredMediaServer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -4613,7 +4613,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationInsightM
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationInsightMonitoredMediaServer** | [**InlineObject200**](InlineObject200.md) |  | 
+ **createOrganizationInsightMonitoredMediaServerRequest** | [**CreateOrganizationInsightMonitoredMediaServerRequest**](CreateOrganizationInsightMonitoredMediaServerRequest.md) |  | 
 
 ### Return type
 
@@ -4635,7 +4635,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationInventoryOnboardingCloudMonitoringExportEvent
 
-> map[string]interface{} CreateOrganizationInventoryOnboardingCloudMonitoringExportEvent(ctx, organizationId).CreateOrganizationInventoryOnboardingCloudMonitoringExportEvent(createOrganizationInventoryOnboardingCloudMonitoringExportEvent).Execute()
+> map[string]interface{} CreateOrganizationInventoryOnboardingCloudMonitoringExportEvent(ctx, organizationId).CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest(createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest).Execute()
 
 Imports event logs related to the onboarding app into elastisearch
 
@@ -4650,16 +4650,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationInventoryOnboardingCloudMonitoringExportEvent := *openapiclient.NewInlineObject203("LogEvent_example", int32(123)) // InlineObject203 | 
+    createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest := *openapiclient.NewCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest("LogEvent_example", int32(123)) // CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationInventoryOnboardingCloudMonitoringExportEvent(context.Background(), organizationId).CreateOrganizationInventoryOnboardingCloudMonitoringExportEvent(createOrganizationInventoryOnboardingCloudMonitoringExportEvent).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationInventoryOnboardingCloudMonitoringExportEvent(context.Background(), organizationId).CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest(createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationInventoryOnboardingCloudMonitoringExportEvent``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -4685,7 +4685,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationInventor
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationInventoryOnboardingCloudMonitoringExportEvent** | [**InlineObject203**](InlineObject203.md) |  | 
+ **createOrganizationInventoryOnboardingCloudMonitoringExportEventRequest** | [**CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest**](CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest.md) |  | 
 
 ### Return type
 
@@ -4707,7 +4707,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationInventoryOnboardingCloudMonitoringImport
 
-> []InlineResponse2016 CreateOrganizationInventoryOnboardingCloudMonitoringImport(ctx, organizationId).CreateOrganizationInventoryOnboardingCloudMonitoringImport(createOrganizationInventoryOnboardingCloudMonitoringImport).Execute()
+> []CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner CreateOrganizationInventoryOnboardingCloudMonitoringImport(ctx, organizationId).CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest(createOrganizationInventoryOnboardingCloudMonitoringImportRequest).Execute()
 
 Commits the import operation to complete the onboarding of a device into Dashboard for monitoring.
 
@@ -4722,21 +4722,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationInventoryOnboardingCloudMonitoringImport := *openapiclient.NewInlineObject204([]openapiclient.OrganizationsOrganizationIdInventoryOnboardingCloudMonitoringImportsDevices{*openapiclient.NewOrganizationsOrganizationIdInventoryOnboardingCloudMonitoringImportsDevices("DeviceId_example", "Udi_example", "NetworkId_example")}) // InlineObject204 | 
+    createOrganizationInventoryOnboardingCloudMonitoringImportRequest := *openapiclient.NewCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest([]openapiclient.CreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevicesInner{*openapiclient.NewCreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevicesInner("DeviceId_example", "Udi_example", "NetworkId_example")}) // CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationInventoryOnboardingCloudMonitoringImport(context.Background(), organizationId).CreateOrganizationInventoryOnboardingCloudMonitoringImport(createOrganizationInventoryOnboardingCloudMonitoringImport).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationInventoryOnboardingCloudMonitoringImport(context.Background(), organizationId).CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest(createOrganizationInventoryOnboardingCloudMonitoringImportRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationInventoryOnboardingCloudMonitoringImport``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganizationInventoryOnboardingCloudMonitoringImport`: []InlineResponse2016
+    // response from `CreateOrganizationInventoryOnboardingCloudMonitoringImport`: []CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateOrganizationInventoryOnboardingCloudMonitoringImport`: %v\n", resp)
 }
 ```
@@ -4757,11 +4757,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationInventor
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationInventoryOnboardingCloudMonitoringImport** | [**InlineObject204**](InlineObject204.md) |  | 
+ **createOrganizationInventoryOnboardingCloudMonitoringImportRequest** | [**CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest**](CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest.md) |  | 
 
 ### Return type
 
-[**[]InlineResponse2016**](InlineResponse2016.md)
+[**[]CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner**](CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner.md)
 
 ### Authorization
 
@@ -4779,7 +4779,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationInventoryOnboardingCloudMonitoringPrepare
 
-> []InlineResponse2017 CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(ctx, organizationId).CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(createOrganizationInventoryOnboardingCloudMonitoringPrepare).Execute()
+> []CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(ctx, organizationId).CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest(createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest).Execute()
 
 Initiates or updates an import session
 
@@ -4794,21 +4794,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationInventoryOnboardingCloudMonitoringPrepare := *openapiclient.NewInlineObject205([]openapiclient.OrganizationsOrganizationIdInventoryOnboardingCloudMonitoringPrepareDevices{*openapiclient.NewOrganizationsOrganizationIdInventoryOnboardingCloudMonitoringPrepareDevices("Sudi_example")}) // InlineObject205 | 
+    createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest := *openapiclient.NewCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest([]openapiclient.CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner{*openapiclient.NewCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner("Sudi_example")}) // CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(context.Background(), organizationId).CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(createOrganizationInventoryOnboardingCloudMonitoringPrepare).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(context.Background(), organizationId).CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest(createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationInventoryOnboardingCloudMonitoringPrepare``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganizationInventoryOnboardingCloudMonitoringPrepare`: []InlineResponse2017
+    // response from `CreateOrganizationInventoryOnboardingCloudMonitoringPrepare`: []CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateOrganizationInventoryOnboardingCloudMonitoringPrepare`: %v\n", resp)
 }
 ```
@@ -4829,11 +4829,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationInventor
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationInventoryOnboardingCloudMonitoringPrepare** | [**InlineObject205**](InlineObject205.md) |  | 
+ **createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest** | [**CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest**](CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest.md) |  | 
 
 ### Return type
 
-[**[]InlineResponse2017**](InlineResponse2017.md)
+[**[]CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner**](CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner.md)
 
 ### Authorization
 
@@ -4851,7 +4851,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationNetwork
 
-> InlineResponse20012 CreateOrganizationNetwork(ctx, organizationId).CreateOrganizationNetwork(createOrganizationNetwork).Execute()
+> GetNetwork200Response CreateOrganizationNetwork(ctx, organizationId).CreateOrganizationNetworkRequest(createOrganizationNetworkRequest).Execute()
 
 Create a network
 
@@ -4866,21 +4866,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationNetwork := *openapiclient.NewInlineObject214("Name_example", []string{"ProductTypes_example"}) // InlineObject214 | 
+    createOrganizationNetworkRequest := *openapiclient.NewCreateOrganizationNetworkRequest("Name_example", []string{"ProductTypes_example"}) // CreateOrganizationNetworkRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationNetwork(context.Background(), organizationId).CreateOrganizationNetwork(createOrganizationNetwork).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationNetwork(context.Background(), organizationId).CreateOrganizationNetworkRequest(createOrganizationNetworkRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationNetwork``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganizationNetwork`: InlineResponse20012
+    // response from `CreateOrganizationNetwork`: GetNetwork200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateOrganizationNetwork`: %v\n", resp)
 }
 ```
@@ -4901,11 +4901,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationNetworkR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationNetwork** | [**InlineObject214**](InlineObject214.md) |  | 
+ **createOrganizationNetworkRequest** | [**CreateOrganizationNetworkRequest**](CreateOrganizationNetworkRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**GetNetwork200Response**](GetNetwork200Response.md)
 
 ### Authorization
 
@@ -4923,7 +4923,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationPolicyObject
 
-> map[string]interface{} CreateOrganizationPolicyObject(ctx, organizationId).CreateOrganizationPolicyObject(createOrganizationPolicyObject).Execute()
+> map[string]interface{} CreateOrganizationPolicyObject(ctx, organizationId).CreateOrganizationPolicyObjectRequest(createOrganizationPolicyObjectRequest).Execute()
 
 Creates a new Policy Object.
 
@@ -4938,16 +4938,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationPolicyObject := *openapiclient.NewInlineObject216("Name_example", "Category_example", "Type_example") // InlineObject216 | 
+    createOrganizationPolicyObjectRequest := *openapiclient.NewCreateOrganizationPolicyObjectRequest("Name_example", "Category_example", "Type_example") // CreateOrganizationPolicyObjectRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationPolicyObject(context.Background(), organizationId).CreateOrganizationPolicyObject(createOrganizationPolicyObject).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationPolicyObject(context.Background(), organizationId).CreateOrganizationPolicyObjectRequest(createOrganizationPolicyObjectRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationPolicyObject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -4973,7 +4973,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationPolicyOb
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationPolicyObject** | [**InlineObject216**](InlineObject216.md) |  | 
+ **createOrganizationPolicyObjectRequest** | [**CreateOrganizationPolicyObjectRequest**](CreateOrganizationPolicyObjectRequest.md) |  | 
 
 ### Return type
 
@@ -4995,7 +4995,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationPolicyObjectsGroup
 
-> map[string]interface{} CreateOrganizationPolicyObjectsGroup(ctx, organizationId).CreateOrganizationPolicyObjectsGroup(createOrganizationPolicyObjectsGroup).Execute()
+> map[string]interface{} CreateOrganizationPolicyObjectsGroup(ctx, organizationId).CreateOrganizationPolicyObjectsGroupRequest(createOrganizationPolicyObjectsGroupRequest).Execute()
 
 Creates a new Policy Object Group.
 
@@ -5010,16 +5010,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationPolicyObjectsGroup := *openapiclient.NewInlineObject217("Name_example") // InlineObject217 | 
+    createOrganizationPolicyObjectsGroupRequest := *openapiclient.NewCreateOrganizationPolicyObjectsGroupRequest("Name_example") // CreateOrganizationPolicyObjectsGroupRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationPolicyObjectsGroup(context.Background(), organizationId).CreateOrganizationPolicyObjectsGroup(createOrganizationPolicyObjectsGroup).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationPolicyObjectsGroup(context.Background(), organizationId).CreateOrganizationPolicyObjectsGroupRequest(createOrganizationPolicyObjectsGroupRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationPolicyObjectsGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -5045,7 +5045,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationPolicyOb
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationPolicyObjectsGroup** | [**InlineObject217**](InlineObject217.md) |  | 
+ **createOrganizationPolicyObjectsGroupRequest** | [**CreateOrganizationPolicyObjectsGroupRequest**](CreateOrganizationPolicyObjectsGroupRequest.md) |  | 
 
 ### Return type
 
@@ -5067,7 +5067,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationSamlIdp
 
-> []InlineResponse200139 CreateOrganizationSamlIdp(ctx, organizationId).CreateOrganizationSamlIdp(createOrganizationSamlIdp).Execute()
+> []GetOrganizationSamlIdps200ResponseInner CreateOrganizationSamlIdp(ctx, organizationId).CreateOrganizationSamlIdpRequest(createOrganizationSamlIdpRequest).Execute()
 
 Create a SAML IdP for your organization.
 
@@ -5082,21 +5082,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationSamlIdp := *openapiclient.NewInlineObject221("X509certSha1Fingerprint_example") // InlineObject221 | 
+    createOrganizationSamlIdpRequest := *openapiclient.NewCreateOrganizationSamlIdpRequest("X509certSha1Fingerprint_example") // CreateOrganizationSamlIdpRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationSamlIdp(context.Background(), organizationId).CreateOrganizationSamlIdp(createOrganizationSamlIdp).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationSamlIdp(context.Background(), organizationId).CreateOrganizationSamlIdpRequest(createOrganizationSamlIdpRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationSamlIdp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateOrganizationSamlIdp`: []InlineResponse200139
+    // response from `CreateOrganizationSamlIdp`: []GetOrganizationSamlIdps200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateOrganizationSamlIdp`: %v\n", resp)
 }
 ```
@@ -5117,11 +5117,11 @@ Other parameters are passed through a pointer to a apiCreateOrganizationSamlIdpR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationSamlIdp** | [**InlineObject221**](InlineObject221.md) |  | 
+ **createOrganizationSamlIdpRequest** | [**CreateOrganizationSamlIdpRequest**](CreateOrganizationSamlIdpRequest.md) |  | 
 
 ### Return type
 
-[**[]InlineResponse200139**](InlineResponse200139.md)
+[**[]GetOrganizationSamlIdps200ResponseInner**](GetOrganizationSamlIdps200ResponseInner.md)
 
 ### Authorization
 
@@ -5139,7 +5139,7 @@ Name | Type | Description  | Notes
 
 ## CreateOrganizationSamlRole
 
-> map[string]interface{} CreateOrganizationSamlRole(ctx, organizationId).CreateOrganizationSamlRole(createOrganizationSamlRole).Execute()
+> map[string]interface{} CreateOrganizationSamlRole(ctx, organizationId).CreateOrganizationSamlRoleRequest(createOrganizationSamlRoleRequest).Execute()
 
 Create a SAML role
 
@@ -5154,16 +5154,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    createOrganizationSamlRole := *openapiclient.NewInlineObject223("Role_example", "OrgAccess_example") // InlineObject223 | 
+    createOrganizationSamlRoleRequest := *openapiclient.NewCreateOrganizationSamlRoleRequest("Role_example", "OrgAccess_example") // CreateOrganizationSamlRoleRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.CreateOrganizationSamlRole(context.Background(), organizationId).CreateOrganizationSamlRole(createOrganizationSamlRole).Execute()
+    resp, r, err := apiClient.ConfigureApi.CreateOrganizationSamlRole(context.Background(), organizationId).CreateOrganizationSamlRoleRequest(createOrganizationSamlRoleRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateOrganizationSamlRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -5189,7 +5189,7 @@ Other parameters are passed through a pointer to a apiCreateOrganizationSamlRole
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createOrganizationSamlRole** | [**InlineObject223**](InlineObject223.md) |  | 
+ **createOrganizationSamlRoleRequest** | [**CreateOrganizationSamlRoleRequest**](CreateOrganizationSamlRoleRequest.md) |  | 
 
 ### Return type
 
@@ -5211,7 +5211,7 @@ Name | Type | Description  | Notes
 
 ## DeferNetworkFirmwareUpgradesStagedEvents
 
-> InlineResponse20032 DeferNetworkFirmwareUpgradesStagedEvents(ctx, networkId).Execute()
+> GetNetworkFirmwareUpgradesStagedEvents200Response DeferNetworkFirmwareUpgradesStagedEvents(ctx, networkId).Execute()
 
 Postpone by 1 week all pending staged upgrade stages for a network
 
@@ -5226,7 +5226,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -5239,7 +5239,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.DeferNetworkFirmwareUpgradesStagedEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeferNetworkFirmwareUpgradesStagedEvents`: InlineResponse20032
+    // response from `DeferNetworkFirmwareUpgradesStagedEvents`: GetNetworkFirmwareUpgradesStagedEvents200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.DeferNetworkFirmwareUpgradesStagedEvents`: %v\n", resp)
 }
 ```
@@ -5263,7 +5263,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20032**](InlineResponse20032.md)
+[**GetNetworkFirmwareUpgradesStagedEvents200Response**](GetNetworkFirmwareUpgradesStagedEvents200Response.md)
 
 ### Authorization
 
@@ -5296,7 +5296,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -5367,7 +5367,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -5438,7 +5438,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -5506,7 +5506,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -5577,7 +5577,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -5648,7 +5648,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -5719,7 +5719,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -5790,7 +5790,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -5861,7 +5861,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -5932,7 +5932,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -6003,7 +6003,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -6074,7 +6074,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -6145,7 +6145,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -6216,7 +6216,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -6287,7 +6287,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -6358,7 +6358,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -6429,7 +6429,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -6500,7 +6500,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -6571,7 +6571,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -6642,7 +6642,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -6713,7 +6713,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -6784,7 +6784,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -6855,7 +6855,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -6926,7 +6926,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -6997,7 +6997,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -7068,7 +7068,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -7139,7 +7139,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -7213,7 +7213,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -7287,7 +7287,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -7358,7 +7358,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -7429,7 +7429,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -7500,7 +7500,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -7574,7 +7574,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -7642,7 +7642,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -7713,7 +7713,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -7784,7 +7784,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -7855,7 +7855,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -7926,7 +7926,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -7997,7 +7997,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -8068,7 +8068,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -8139,7 +8139,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -8210,7 +8210,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -8281,7 +8281,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -8352,7 +8352,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -8423,7 +8423,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -8494,7 +8494,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -8565,7 +8565,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -8636,7 +8636,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -8707,7 +8707,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -8778,7 +8778,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -8833,7 +8833,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceApplianceRadioSettings
 
-> InlineResponse2001 GetDeviceApplianceRadioSettings(ctx, serial).Execute()
+> GetDeviceApplianceRadioSettings200Response GetDeviceApplianceRadioSettings(ctx, serial).Execute()
 
 Return the radio settings of an appliance
 
@@ -8848,7 +8848,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -8861,7 +8861,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetDeviceApplianceRadioSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceApplianceRadioSettings`: InlineResponse2001
+    // response from `GetDeviceApplianceRadioSettings`: GetDeviceApplianceRadioSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetDeviceApplianceRadioSettings`: %v\n", resp)
 }
 ```
@@ -8885,7 +8885,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**GetDeviceApplianceRadioSettings200Response**](GetDeviceApplianceRadioSettings200Response.md)
 
 ### Authorization
 
@@ -8903,7 +8903,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceApplianceUplinksSettings
 
-> InlineResponse2002 GetDeviceApplianceUplinksSettings(ctx, serial).Execute()
+> GetDeviceApplianceUplinksSettings200Response GetDeviceApplianceUplinksSettings(ctx, serial).Execute()
 
 Return the uplink settings for an MX appliance
 
@@ -8918,7 +8918,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -8931,7 +8931,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetDeviceApplianceUplinksSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceApplianceUplinksSettings`: InlineResponse2002
+    // response from `GetDeviceApplianceUplinksSettings`: GetDeviceApplianceUplinksSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetDeviceApplianceUplinksSettings`: %v\n", resp)
 }
 ```
@@ -8955,7 +8955,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2002**](InlineResponse2002.md)
+[**GetDeviceApplianceUplinksSettings200Response**](GetDeviceApplianceUplinksSettings200Response.md)
 
 ### Authorization
 
@@ -8988,7 +8988,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -9058,7 +9058,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -9128,7 +9128,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -9198,7 +9198,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -9269,7 +9269,7 @@ import (
     "fmt"
     "os"
     "time"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -9341,7 +9341,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -9411,7 +9411,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -9481,7 +9481,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -9551,7 +9551,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -9621,7 +9621,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -9691,7 +9691,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -9746,7 +9746,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceSensorRelationships
 
-> []InlineResponse2004 GetDeviceSensorRelationships(ctx, serial).Execute()
+> []GetDeviceSensorRelationships200ResponseInner GetDeviceSensorRelationships(ctx, serial).Execute()
 
 List the sensor roles for a given sensor or camera device.
 
@@ -9761,7 +9761,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -9774,7 +9774,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetDeviceSensorRelationships``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceSensorRelationships`: []InlineResponse2004
+    // response from `GetDeviceSensorRelationships`: []GetDeviceSensorRelationships200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetDeviceSensorRelationships`: %v\n", resp)
 }
 ```
@@ -9798,7 +9798,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse2004**](InlineResponse2004.md)
+[**[]GetDeviceSensorRelationships200ResponseInner**](GetDeviceSensorRelationships200ResponseInner.md)
 
 ### Authorization
 
@@ -9816,7 +9816,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceSwitchPort
 
-> InlineResponse2005 GetDeviceSwitchPort(ctx, serial, portId).Execute()
+> GetDeviceSwitchPorts200ResponseInner GetDeviceSwitchPort(ctx, serial, portId).Execute()
 
 Return a switch port
 
@@ -9831,7 +9831,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -9845,7 +9845,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetDeviceSwitchPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceSwitchPort`: InlineResponse2005
+    // response from `GetDeviceSwitchPort`: GetDeviceSwitchPorts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetDeviceSwitchPort`: %v\n", resp)
 }
 ```
@@ -9871,7 +9871,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**GetDeviceSwitchPorts200ResponseInner**](GetDeviceSwitchPorts200ResponseInner.md)
 
 ### Authorization
 
@@ -9889,7 +9889,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceSwitchPorts
 
-> []InlineResponse2005 GetDeviceSwitchPorts(ctx, serial).Execute()
+> []GetDeviceSwitchPorts200ResponseInner GetDeviceSwitchPorts(ctx, serial).Execute()
 
 List the switch ports for a switch
 
@@ -9904,7 +9904,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -9917,7 +9917,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetDeviceSwitchPorts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceSwitchPorts`: []InlineResponse2005
+    // response from `GetDeviceSwitchPorts`: []GetDeviceSwitchPorts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetDeviceSwitchPorts`: %v\n", resp)
 }
 ```
@@ -9941,7 +9941,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse2005**](InlineResponse2005.md)
+[**[]GetDeviceSwitchPorts200ResponseInner**](GetDeviceSwitchPorts200ResponseInner.md)
 
 ### Authorization
 
@@ -9959,7 +9959,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceSwitchRoutingInterface
 
-> InlineResponse2008 GetDeviceSwitchRoutingInterface(ctx, serial, interfaceId).Execute()
+> GetDeviceSwitchRoutingInterfaces200ResponseInner GetDeviceSwitchRoutingInterface(ctx, serial, interfaceId).Execute()
 
 Return a layer 3 interface for a switch
 
@@ -9974,7 +9974,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -9988,7 +9988,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetDeviceSwitchRoutingInterface``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceSwitchRoutingInterface`: InlineResponse2008
+    // response from `GetDeviceSwitchRoutingInterface`: GetDeviceSwitchRoutingInterfaces200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetDeviceSwitchRoutingInterface`: %v\n", resp)
 }
 ```
@@ -10014,7 +10014,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2008**](InlineResponse2008.md)
+[**GetDeviceSwitchRoutingInterfaces200ResponseInner**](GetDeviceSwitchRoutingInterfaces200ResponseInner.md)
 
 ### Authorization
 
@@ -10047,7 +10047,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -10105,7 +10105,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceSwitchRoutingInterfaces
 
-> []InlineResponse2008 GetDeviceSwitchRoutingInterfaces(ctx, serial).Execute()
+> []GetDeviceSwitchRoutingInterfaces200ResponseInner GetDeviceSwitchRoutingInterfaces(ctx, serial).Execute()
 
 List layer 3 interfaces for a switch
 
@@ -10120,7 +10120,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -10133,7 +10133,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetDeviceSwitchRoutingInterfaces``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceSwitchRoutingInterfaces`: []InlineResponse2008
+    // response from `GetDeviceSwitchRoutingInterfaces`: []GetDeviceSwitchRoutingInterfaces200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetDeviceSwitchRoutingInterfaces`: %v\n", resp)
 }
 ```
@@ -10157,7 +10157,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse2008**](InlineResponse2008.md)
+[**[]GetDeviceSwitchRoutingInterfaces200ResponseInner**](GetDeviceSwitchRoutingInterfaces200ResponseInner.md)
 
 ### Authorization
 
@@ -10175,7 +10175,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceSwitchRoutingStaticRoute
 
-> InlineResponse2009 GetDeviceSwitchRoutingStaticRoute(ctx, serial, staticRouteId).Execute()
+> GetDeviceSwitchRoutingStaticRoute200Response GetDeviceSwitchRoutingStaticRoute(ctx, serial, staticRouteId).Execute()
 
 Return a layer 3 static route for a switch
 
@@ -10190,7 +10190,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -10204,7 +10204,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetDeviceSwitchRoutingStaticRoute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceSwitchRoutingStaticRoute`: InlineResponse2009
+    // response from `GetDeviceSwitchRoutingStaticRoute`: GetDeviceSwitchRoutingStaticRoute200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetDeviceSwitchRoutingStaticRoute`: %v\n", resp)
 }
 ```
@@ -10230,7 +10230,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](InlineResponse2009.md)
+[**GetDeviceSwitchRoutingStaticRoute200Response**](GetDeviceSwitchRoutingStaticRoute200Response.md)
 
 ### Authorization
 
@@ -10263,7 +10263,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -10333,7 +10333,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -10388,7 +10388,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceWirelessBluetoothSettings
 
-> InlineResponse20010 GetDeviceWirelessBluetoothSettings(ctx, serial).Execute()
+> GetDeviceWirelessBluetoothSettings200Response GetDeviceWirelessBluetoothSettings(ctx, serial).Execute()
 
 Return the bluetooth settings for a wireless device
 
@@ -10403,7 +10403,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -10416,7 +10416,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetDeviceWirelessBluetoothSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceWirelessBluetoothSettings`: InlineResponse20010
+    // response from `GetDeviceWirelessBluetoothSettings`: GetDeviceWirelessBluetoothSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetDeviceWirelessBluetoothSettings`: %v\n", resp)
 }
 ```
@@ -10440,7 +10440,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](InlineResponse20010.md)
+[**GetDeviceWirelessBluetoothSettings200Response**](GetDeviceWirelessBluetoothSettings200Response.md)
 
 ### Authorization
 
@@ -10473,7 +10473,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -10528,7 +10528,7 @@ Name | Type | Description  | Notes
 
 ## GetNetwork
 
-> InlineResponse20012 GetNetwork(ctx, networkId).Execute()
+> GetNetwork200Response GetNetwork(ctx, networkId).Execute()
 
 Return a network
 
@@ -10543,7 +10543,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -10556,7 +10556,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetwork``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetwork`: InlineResponse20012
+    // response from `GetNetwork`: GetNetwork200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetwork`: %v\n", resp)
 }
 ```
@@ -10580,7 +10580,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**GetNetwork200Response**](GetNetwork200Response.md)
 
 ### Authorization
 
@@ -10613,7 +10613,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -10683,7 +10683,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -10753,7 +10753,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -10823,7 +10823,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -10893,7 +10893,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -10963,7 +10963,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -11036,7 +11036,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -11106,7 +11106,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -11176,7 +11176,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -11246,7 +11246,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -11316,7 +11316,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -11371,7 +11371,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories
 
-> InlineResponse20014 GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories(ctx, networkId).Execute()
+> GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Response GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories(ctx, networkId).Execute()
 
 Return the L7 firewall application categories and their associated applications for an MX network
 
@@ -11386,7 +11386,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -11399,7 +11399,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories`: InlineResponse20014
+    // response from `GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories`: GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories`: %v\n", resp)
 }
 ```
@@ -11423,7 +11423,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20014**](InlineResponse20014.md)
+[**GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Response**](GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Response.md)
 
 ### Authorization
 
@@ -11456,7 +11456,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -11526,7 +11526,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -11596,7 +11596,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -11666,7 +11666,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -11721,7 +11721,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkAppliancePort
 
-> InlineResponse20015 GetNetworkAppliancePort(ctx, networkId, portId).Execute()
+> GetNetworkAppliancePorts200ResponseInner GetNetworkAppliancePort(ctx, networkId, portId).Execute()
 
 Return per-port VLAN settings for a single MX port.
 
@@ -11736,7 +11736,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -11750,7 +11750,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkAppliancePort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkAppliancePort`: InlineResponse20015
+    // response from `GetNetworkAppliancePort`: GetNetworkAppliancePorts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkAppliancePort`: %v\n", resp)
 }
 ```
@@ -11776,7 +11776,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20015**](InlineResponse20015.md)
+[**GetNetworkAppliancePorts200ResponseInner**](GetNetworkAppliancePorts200ResponseInner.md)
 
 ### Authorization
 
@@ -11794,7 +11794,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkAppliancePorts
 
-> []InlineResponse20015 GetNetworkAppliancePorts(ctx, networkId).Execute()
+> []GetNetworkAppliancePorts200ResponseInner GetNetworkAppliancePorts(ctx, networkId).Execute()
 
 List per-port VLAN settings for all ports of a MX.
 
@@ -11809,7 +11809,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -11822,7 +11822,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkAppliancePorts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkAppliancePorts`: []InlineResponse20015
+    // response from `GetNetworkAppliancePorts`: []GetNetworkAppliancePorts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkAppliancePorts`: %v\n", resp)
 }
 ```
@@ -11846,7 +11846,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20015**](InlineResponse20015.md)
+[**[]GetNetworkAppliancePorts200ResponseInner**](GetNetworkAppliancePorts200ResponseInner.md)
 
 ### Authorization
 
@@ -11864,7 +11864,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkAppliancePrefixesDelegatedStatic
 
-> InlineResponse20016 GetNetworkAppliancePrefixesDelegatedStatic(ctx, networkId, staticDelegatedPrefixId).Execute()
+> GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner GetNetworkAppliancePrefixesDelegatedStatic(ctx, networkId, staticDelegatedPrefixId).Execute()
 
 Return a static delegated prefix from a network
 
@@ -11879,7 +11879,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -11893,7 +11893,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkAppliancePrefixesDelegatedStatic``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkAppliancePrefixesDelegatedStatic`: InlineResponse20016
+    // response from `GetNetworkAppliancePrefixesDelegatedStatic`: GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkAppliancePrefixesDelegatedStatic`: %v\n", resp)
 }
 ```
@@ -11919,7 +11919,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20016**](InlineResponse20016.md)
+[**GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner**](GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner.md)
 
 ### Authorization
 
@@ -11937,7 +11937,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkAppliancePrefixesDelegatedStatics
 
-> []InlineResponse20016 GetNetworkAppliancePrefixesDelegatedStatics(ctx, networkId).Execute()
+> []GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner GetNetworkAppliancePrefixesDelegatedStatics(ctx, networkId).Execute()
 
 List static delegated prefixes for a network
 
@@ -11952,7 +11952,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -11965,7 +11965,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkAppliancePrefixesDelegatedStatics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkAppliancePrefixesDelegatedStatics`: []InlineResponse20016
+    // response from `GetNetworkAppliancePrefixesDelegatedStatics`: []GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkAppliancePrefixesDelegatedStatics`: %v\n", resp)
 }
 ```
@@ -11989,7 +11989,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20016**](InlineResponse20016.md)
+[**[]GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner**](GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner.md)
 
 ### Authorization
 
@@ -12007,7 +12007,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkApplianceRfProfile
 
-> InlineResponse20017Assigned GetNetworkApplianceRfProfile(ctx, networkId, rfProfileId).Execute()
+> GetNetworkApplianceRfProfiles200ResponseAssignedInner GetNetworkApplianceRfProfile(ctx, networkId, rfProfileId).Execute()
 
 Return a RF profile
 
@@ -12022,7 +12022,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -12036,7 +12036,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkApplianceRfProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceRfProfile`: InlineResponse20017Assigned
+    // response from `GetNetworkApplianceRfProfile`: GetNetworkApplianceRfProfiles200ResponseAssignedInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkApplianceRfProfile`: %v\n", resp)
 }
 ```
@@ -12062,7 +12062,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20017Assigned**](InlineResponse20017Assigned.md)
+[**GetNetworkApplianceRfProfiles200ResponseAssignedInner**](GetNetworkApplianceRfProfiles200ResponseAssignedInner.md)
 
 ### Authorization
 
@@ -12080,7 +12080,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkApplianceRfProfiles
 
-> InlineResponse20017 GetNetworkApplianceRfProfiles(ctx, networkId).Execute()
+> GetNetworkApplianceRfProfiles200Response GetNetworkApplianceRfProfiles(ctx, networkId).Execute()
 
 List the RF profiles for this network
 
@@ -12095,7 +12095,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -12108,7 +12108,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkApplianceRfProfiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceRfProfiles`: InlineResponse20017
+    // response from `GetNetworkApplianceRfProfiles`: GetNetworkApplianceRfProfiles200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkApplianceRfProfiles`: %v\n", resp)
 }
 ```
@@ -12132,7 +12132,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20017**](InlineResponse20017.md)
+[**GetNetworkApplianceRfProfiles200Response**](GetNetworkApplianceRfProfiles200Response.md)
 
 ### Authorization
 
@@ -12165,7 +12165,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -12235,7 +12235,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -12290,7 +12290,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkApplianceSettings
 
-> InlineResponse20018 GetNetworkApplianceSettings(ctx, networkId).Execute()
+> GetNetworkApplianceSettings200Response GetNetworkApplianceSettings(ctx, networkId).Execute()
 
 Return the appliance settings for a network
 
@@ -12305,7 +12305,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -12318,7 +12318,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkApplianceSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceSettings`: InlineResponse20018
+    // response from `GetNetworkApplianceSettings`: GetNetworkApplianceSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkApplianceSettings`: %v\n", resp)
 }
 ```
@@ -12342,7 +12342,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20018**](InlineResponse20018.md)
+[**GetNetworkApplianceSettings200Response**](GetNetworkApplianceSettings200Response.md)
 
 ### Authorization
 
@@ -12360,7 +12360,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkApplianceSingleLan
 
-> InlineResponse20019 GetNetworkApplianceSingleLan(ctx, networkId).Execute()
+> GetNetworkApplianceSingleLan200Response GetNetworkApplianceSingleLan(ctx, networkId).Execute()
 
 Return single LAN configuration
 
@@ -12375,7 +12375,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -12388,7 +12388,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkApplianceSingleLan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceSingleLan`: InlineResponse20019
+    // response from `GetNetworkApplianceSingleLan`: GetNetworkApplianceSingleLan200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkApplianceSingleLan`: %v\n", resp)
 }
 ```
@@ -12412,7 +12412,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20019**](InlineResponse20019.md)
+[**GetNetworkApplianceSingleLan200Response**](GetNetworkApplianceSingleLan200Response.md)
 
 ### Authorization
 
@@ -12430,7 +12430,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkApplianceSsid
 
-> InlineResponse20020 GetNetworkApplianceSsid(ctx, networkId, number).Execute()
+> GetNetworkApplianceSsids200ResponseInner GetNetworkApplianceSsid(ctx, networkId, number).Execute()
 
 Return a single MX SSID
 
@@ -12445,7 +12445,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -12459,7 +12459,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkApplianceSsid``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceSsid`: InlineResponse20020
+    // response from `GetNetworkApplianceSsid`: GetNetworkApplianceSsids200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkApplianceSsid`: %v\n", resp)
 }
 ```
@@ -12485,7 +12485,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20020**](InlineResponse20020.md)
+[**GetNetworkApplianceSsids200ResponseInner**](GetNetworkApplianceSsids200ResponseInner.md)
 
 ### Authorization
 
@@ -12503,7 +12503,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkApplianceSsids
 
-> []InlineResponse20020 GetNetworkApplianceSsids(ctx, networkId).Execute()
+> []GetNetworkApplianceSsids200ResponseInner GetNetworkApplianceSsids(ctx, networkId).Execute()
 
 List the MX SSIDs in a network
 
@@ -12518,7 +12518,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -12531,7 +12531,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkApplianceSsids``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceSsids`: []InlineResponse20020
+    // response from `GetNetworkApplianceSsids`: []GetNetworkApplianceSsids200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkApplianceSsids`: %v\n", resp)
 }
 ```
@@ -12555,7 +12555,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20020**](InlineResponse20020.md)
+[**[]GetNetworkApplianceSsids200ResponseInner**](GetNetworkApplianceSsids200ResponseInner.md)
 
 ### Authorization
 
@@ -12588,7 +12588,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -12661,7 +12661,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -12731,7 +12731,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -12801,7 +12801,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -12874,7 +12874,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -12944,7 +12944,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -12999,7 +12999,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkApplianceTrafficShapingUplinkBandwidth
 
-> InlineResponse20021 GetNetworkApplianceTrafficShapingUplinkBandwidth(ctx, networkId).Execute()
+> GetNetworkApplianceTrafficShapingUplinkBandwidth200Response GetNetworkApplianceTrafficShapingUplinkBandwidth(ctx, networkId).Execute()
 
 Returns the uplink bandwidth limits for your MX network
 
@@ -13014,7 +13014,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -13027,7 +13027,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkApplianceTrafficShapingUplinkBandwidth``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceTrafficShapingUplinkBandwidth`: InlineResponse20021
+    // response from `GetNetworkApplianceTrafficShapingUplinkBandwidth`: GetNetworkApplianceTrafficShapingUplinkBandwidth200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkApplianceTrafficShapingUplinkBandwidth`: %v\n", resp)
 }
 ```
@@ -13051,7 +13051,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20021**](InlineResponse20021.md)
+[**GetNetworkApplianceTrafficShapingUplinkBandwidth200Response**](GetNetworkApplianceTrafficShapingUplinkBandwidth200Response.md)
 
 ### Authorization
 
@@ -13069,7 +13069,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkApplianceTrafficShapingUplinkSelection
 
-> InlineResponse20022 GetNetworkApplianceTrafficShapingUplinkSelection(ctx, networkId).Execute()
+> GetNetworkApplianceTrafficShapingUplinkSelection200Response GetNetworkApplianceTrafficShapingUplinkSelection(ctx, networkId).Execute()
 
 Show uplink selection settings for an MX network
 
@@ -13084,7 +13084,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -13097,7 +13097,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkApplianceTrafficShapingUplinkSelection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceTrafficShapingUplinkSelection`: InlineResponse20022
+    // response from `GetNetworkApplianceTrafficShapingUplinkSelection`: GetNetworkApplianceTrafficShapingUplinkSelection200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkApplianceTrafficShapingUplinkSelection`: %v\n", resp)
 }
 ```
@@ -13121,7 +13121,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20022**](InlineResponse20022.md)
+[**GetNetworkApplianceTrafficShapingUplinkSelection200Response**](GetNetworkApplianceTrafficShapingUplinkSelection200Response.md)
 
 ### Authorization
 
@@ -13139,7 +13139,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkApplianceVlan
 
-> InlineResponse20023 GetNetworkApplianceVlan(ctx, networkId, vlanId).Execute()
+> GetNetworkApplianceVlans200ResponseInner GetNetworkApplianceVlan(ctx, networkId, vlanId).Execute()
 
 Return a VLAN
 
@@ -13154,7 +13154,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -13168,7 +13168,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkApplianceVlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceVlan`: InlineResponse20023
+    // response from `GetNetworkApplianceVlan`: GetNetworkApplianceVlans200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkApplianceVlan`: %v\n", resp)
 }
 ```
@@ -13194,7 +13194,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20023**](InlineResponse20023.md)
+[**GetNetworkApplianceVlans200ResponseInner**](GetNetworkApplianceVlans200ResponseInner.md)
 
 ### Authorization
 
@@ -13212,7 +13212,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkApplianceVlans
 
-> []InlineResponse20023 GetNetworkApplianceVlans(ctx, networkId).Execute()
+> []GetNetworkApplianceVlans200ResponseInner GetNetworkApplianceVlans(ctx, networkId).Execute()
 
 List the VLANs for an MX network
 
@@ -13227,7 +13227,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -13240,7 +13240,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkApplianceVlans``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceVlans`: []InlineResponse20023
+    // response from `GetNetworkApplianceVlans`: []GetNetworkApplianceVlans200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkApplianceVlans`: %v\n", resp)
 }
 ```
@@ -13264,7 +13264,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20023**](InlineResponse20023.md)
+[**[]GetNetworkApplianceVlans200ResponseInner**](GetNetworkApplianceVlans200ResponseInner.md)
 
 ### Authorization
 
@@ -13297,7 +13297,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -13367,7 +13367,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -13422,7 +13422,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkApplianceVpnSiteToSiteVpn
 
-> InlineResponse20024 GetNetworkApplianceVpnSiteToSiteVpn(ctx, networkId).Execute()
+> GetNetworkApplianceVpnSiteToSiteVpn200Response GetNetworkApplianceVpnSiteToSiteVpn(ctx, networkId).Execute()
 
 Return the site-to-site VPN settings of a network
 
@@ -13437,7 +13437,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -13450,7 +13450,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkApplianceVpnSiteToSiteVpn``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceVpnSiteToSiteVpn`: InlineResponse20024
+    // response from `GetNetworkApplianceVpnSiteToSiteVpn`: GetNetworkApplianceVpnSiteToSiteVpn200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkApplianceVpnSiteToSiteVpn`: %v\n", resp)
 }
 ```
@@ -13474,7 +13474,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20024**](InlineResponse20024.md)
+[**GetNetworkApplianceVpnSiteToSiteVpn200Response**](GetNetworkApplianceVpnSiteToSiteVpn200Response.md)
 
 ### Authorization
 
@@ -13507,7 +13507,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -13577,7 +13577,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -13650,7 +13650,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -13720,7 +13720,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -13790,7 +13790,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -13863,7 +13863,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -13933,7 +13933,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -13988,7 +13988,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkCellularGatewayDhcp
 
-> InlineResponse20025 GetNetworkCellularGatewayDhcp(ctx, networkId).Execute()
+> GetNetworkCellularGatewayDhcp200Response GetNetworkCellularGatewayDhcp(ctx, networkId).Execute()
 
 List common DHCP settings of MGs
 
@@ -14003,7 +14003,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -14016,7 +14016,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkCellularGatewayDhcp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkCellularGatewayDhcp`: InlineResponse20025
+    // response from `GetNetworkCellularGatewayDhcp`: GetNetworkCellularGatewayDhcp200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkCellularGatewayDhcp`: %v\n", resp)
 }
 ```
@@ -14040,7 +14040,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20025**](InlineResponse20025.md)
+[**GetNetworkCellularGatewayDhcp200Response**](GetNetworkCellularGatewayDhcp200Response.md)
 
 ### Authorization
 
@@ -14073,7 +14073,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -14143,7 +14143,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -14213,7 +14213,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -14286,7 +14286,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -14359,7 +14359,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -14414,7 +14414,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkFirmwareUpgrades
 
-> InlineResponse20030 GetNetworkFirmwareUpgrades(ctx, networkId).Execute()
+> GetNetworkFirmwareUpgrades200Response GetNetworkFirmwareUpgrades(ctx, networkId).Execute()
 
 Get firmware upgrade information for a network
 
@@ -14429,7 +14429,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -14442,7 +14442,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkFirmwareUpgrades``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkFirmwareUpgrades`: InlineResponse20030
+    // response from `GetNetworkFirmwareUpgrades`: GetNetworkFirmwareUpgrades200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkFirmwareUpgrades`: %v\n", resp)
 }
 ```
@@ -14466,7 +14466,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20030**](InlineResponse20030.md)
+[**GetNetworkFirmwareUpgrades200Response**](GetNetworkFirmwareUpgrades200Response.md)
 
 ### Authorization
 
@@ -14484,7 +14484,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkFirmwareUpgradesStagedEvents
 
-> InlineResponse20032 GetNetworkFirmwareUpgradesStagedEvents(ctx, networkId).Execute()
+> GetNetworkFirmwareUpgradesStagedEvents200Response GetNetworkFirmwareUpgradesStagedEvents(ctx, networkId).Execute()
 
 Get the Staged Upgrade Event from a network
 
@@ -14499,7 +14499,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -14512,7 +14512,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkFirmwareUpgradesStagedEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkFirmwareUpgradesStagedEvents`: InlineResponse20032
+    // response from `GetNetworkFirmwareUpgradesStagedEvents`: GetNetworkFirmwareUpgradesStagedEvents200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkFirmwareUpgradesStagedEvents`: %v\n", resp)
 }
 ```
@@ -14536,7 +14536,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20032**](InlineResponse20032.md)
+[**GetNetworkFirmwareUpgradesStagedEvents200Response**](GetNetworkFirmwareUpgradesStagedEvents200Response.md)
 
 ### Authorization
 
@@ -14554,7 +14554,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkFirmwareUpgradesStagedGroup
 
-> InlineResponse20033 GetNetworkFirmwareUpgradesStagedGroup(ctx, networkId, groupId).Execute()
+> GetNetworkFirmwareUpgradesStagedGroups200ResponseInner GetNetworkFirmwareUpgradesStagedGroup(ctx, networkId, groupId).Execute()
 
 Get a Staged Upgrade Group from a network
 
@@ -14569,7 +14569,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -14583,7 +14583,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkFirmwareUpgradesStagedGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkFirmwareUpgradesStagedGroup`: InlineResponse20033
+    // response from `GetNetworkFirmwareUpgradesStagedGroup`: GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkFirmwareUpgradesStagedGroup`: %v\n", resp)
 }
 ```
@@ -14609,7 +14609,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20033**](InlineResponse20033.md)
+[**GetNetworkFirmwareUpgradesStagedGroups200ResponseInner**](GetNetworkFirmwareUpgradesStagedGroups200ResponseInner.md)
 
 ### Authorization
 
@@ -14627,7 +14627,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkFirmwareUpgradesStagedGroups
 
-> []InlineResponse20033 GetNetworkFirmwareUpgradesStagedGroups(ctx, networkId).Execute()
+> []GetNetworkFirmwareUpgradesStagedGroups200ResponseInner GetNetworkFirmwareUpgradesStagedGroups(ctx, networkId).Execute()
 
 List of Staged Upgrade Groups in a network
 
@@ -14642,7 +14642,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -14655,7 +14655,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkFirmwareUpgradesStagedGroups``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkFirmwareUpgradesStagedGroups`: []InlineResponse20033
+    // response from `GetNetworkFirmwareUpgradesStagedGroups`: []GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkFirmwareUpgradesStagedGroups`: %v\n", resp)
 }
 ```
@@ -14679,7 +14679,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20033**](InlineResponse20033.md)
+[**[]GetNetworkFirmwareUpgradesStagedGroups200ResponseInner**](GetNetworkFirmwareUpgradesStagedGroups200ResponseInner.md)
 
 ### Authorization
 
@@ -14697,7 +14697,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkFirmwareUpgradesStagedStages
 
-> []InlineResponse20034 GetNetworkFirmwareUpgradesStagedStages(ctx, networkId).Execute()
+> []GetNetworkFirmwareUpgradesStagedStages200ResponseInner GetNetworkFirmwareUpgradesStagedStages(ctx, networkId).Execute()
 
 Order of Staged Upgrade Groups in a network
 
@@ -14712,7 +14712,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -14725,7 +14725,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkFirmwareUpgradesStagedStages``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkFirmwareUpgradesStagedStages`: []InlineResponse20034
+    // response from `GetNetworkFirmwareUpgradesStagedStages`: []GetNetworkFirmwareUpgradesStagedStages200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkFirmwareUpgradesStagedStages`: %v\n", resp)
 }
 ```
@@ -14749,7 +14749,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20034**](InlineResponse20034.md)
+[**[]GetNetworkFirmwareUpgradesStagedStages200ResponseInner**](GetNetworkFirmwareUpgradesStagedStages200ResponseInner.md)
 
 ### Authorization
 
@@ -14782,7 +14782,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -14855,7 +14855,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -14925,7 +14925,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -14995,7 +14995,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -15053,7 +15053,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkHealthAlerts
 
-> []InlineResponse20035 GetNetworkHealthAlerts(ctx, networkId).Execute()
+> []GetNetworkHealthAlerts200ResponseInner GetNetworkHealthAlerts(ctx, networkId).Execute()
 
 Return all global alerts on this network
 
@@ -15068,7 +15068,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -15081,7 +15081,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkHealthAlerts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkHealthAlerts`: []InlineResponse20035
+    // response from `GetNetworkHealthAlerts`: []GetNetworkHealthAlerts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkHealthAlerts`: %v\n", resp)
 }
 ```
@@ -15105,7 +15105,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20035**](InlineResponse20035.md)
+[**[]GetNetworkHealthAlerts200ResponseInner**](GetNetworkHealthAlerts200ResponseInner.md)
 
 ### Authorization
 
@@ -15123,7 +15123,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkMerakiAuthUser
 
-> InlineResponse20037 GetNetworkMerakiAuthUser(ctx, networkId, merakiAuthUserId).Execute()
+> GetNetworkMerakiAuthUsers200ResponseInner GetNetworkMerakiAuthUser(ctx, networkId, merakiAuthUserId).Execute()
 
 Return the Meraki Auth splash guest, RADIUS, or client VPN user
 
@@ -15138,7 +15138,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -15152,7 +15152,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkMerakiAuthUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkMerakiAuthUser`: InlineResponse20037
+    // response from `GetNetworkMerakiAuthUser`: GetNetworkMerakiAuthUsers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkMerakiAuthUser`: %v\n", resp)
 }
 ```
@@ -15178,7 +15178,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20037**](InlineResponse20037.md)
+[**GetNetworkMerakiAuthUsers200ResponseInner**](GetNetworkMerakiAuthUsers200ResponseInner.md)
 
 ### Authorization
 
@@ -15196,7 +15196,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkMerakiAuthUsers
 
-> []InlineResponse20037 GetNetworkMerakiAuthUsers(ctx, networkId).Execute()
+> []GetNetworkMerakiAuthUsers200ResponseInner GetNetworkMerakiAuthUsers(ctx, networkId).Execute()
 
 List the users configured under Meraki Authentication for a network (splash guest or RADIUS users for a wireless network, or client VPN users for a wired network)
 
@@ -15211,7 +15211,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -15224,7 +15224,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkMerakiAuthUsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkMerakiAuthUsers`: []InlineResponse20037
+    // response from `GetNetworkMerakiAuthUsers`: []GetNetworkMerakiAuthUsers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkMerakiAuthUsers`: %v\n", resp)
 }
 ```
@@ -15248,7 +15248,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20037**](InlineResponse20037.md)
+[**[]GetNetworkMerakiAuthUsers200ResponseInner**](GetNetworkMerakiAuthUsers200ResponseInner.md)
 
 ### Authorization
 
@@ -15281,7 +15281,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -15354,7 +15354,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -15424,7 +15424,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -15494,7 +15494,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -15576,7 +15576,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -15649,7 +15649,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -15719,7 +15719,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -15801,7 +15801,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -15868,7 +15868,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkPoliciesByClient
 
-> []InlineResponse20038 GetNetworkPoliciesByClient(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).T0(t0).Timespan(timespan).Execute()
+> []GetNetworkPoliciesByClient200ResponseInner GetNetworkPoliciesByClient(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).T0(t0).Timespan(timespan).Execute()
 
 Get policies for all clients with policies
 
@@ -15883,7 +15883,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -15901,7 +15901,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkPoliciesByClient``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkPoliciesByClient`: []InlineResponse20038
+    // response from `GetNetworkPoliciesByClient`: []GetNetworkPoliciesByClient200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkPoliciesByClient`: %v\n", resp)
 }
 ```
@@ -15930,7 +15930,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20038**](InlineResponse20038.md)
+[**[]GetNetworkPoliciesByClient200ResponseInner**](GetNetworkPoliciesByClient200ResponseInner.md)
 
 ### Authorization
 
@@ -15948,7 +15948,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSensorAlertsProfile
 
-> InlineResponse20041 GetNetworkSensorAlertsProfile(ctx, networkId, id).Execute()
+> GetNetworkSensorAlertsProfiles200ResponseInner GetNetworkSensorAlertsProfile(ctx, networkId, id).Execute()
 
 Show details of a sensor alert profile for a network.
 
@@ -15963,7 +15963,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -15977,7 +15977,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSensorAlertsProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSensorAlertsProfile`: InlineResponse20041
+    // response from `GetNetworkSensorAlertsProfile`: GetNetworkSensorAlertsProfiles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSensorAlertsProfile`: %v\n", resp)
 }
 ```
@@ -16003,7 +16003,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20041**](InlineResponse20041.md)
+[**GetNetworkSensorAlertsProfiles200ResponseInner**](GetNetworkSensorAlertsProfiles200ResponseInner.md)
 
 ### Authorization
 
@@ -16021,7 +16021,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSensorAlertsProfiles
 
-> []InlineResponse20041 GetNetworkSensorAlertsProfiles(ctx, networkId).Execute()
+> []GetNetworkSensorAlertsProfiles200ResponseInner GetNetworkSensorAlertsProfiles(ctx, networkId).Execute()
 
 Lists all sensor alert profiles for a network.
 
@@ -16036,7 +16036,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -16049,7 +16049,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSensorAlertsProfiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSensorAlertsProfiles`: []InlineResponse20041
+    // response from `GetNetworkSensorAlertsProfiles`: []GetNetworkSensorAlertsProfiles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSensorAlertsProfiles`: %v\n", resp)
 }
 ```
@@ -16073,7 +16073,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20041**](InlineResponse20041.md)
+[**[]GetNetworkSensorAlertsProfiles200ResponseInner**](GetNetworkSensorAlertsProfiles200ResponseInner.md)
 
 ### Authorization
 
@@ -16091,7 +16091,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSensorMqttBroker
 
-> InlineResponse20042 GetNetworkSensorMqttBroker(ctx, networkId, mqttBrokerId).Execute()
+> GetNetworkSensorMqttBrokers200ResponseInner GetNetworkSensorMqttBroker(ctx, networkId, mqttBrokerId).Execute()
 
 Return the sensor settings of an MQTT broker
 
@@ -16106,7 +16106,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -16120,7 +16120,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSensorMqttBroker``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSensorMqttBroker`: InlineResponse20042
+    // response from `GetNetworkSensorMqttBroker`: GetNetworkSensorMqttBrokers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSensorMqttBroker`: %v\n", resp)
 }
 ```
@@ -16146,7 +16146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20042**](InlineResponse20042.md)
+[**GetNetworkSensorMqttBrokers200ResponseInner**](GetNetworkSensorMqttBrokers200ResponseInner.md)
 
 ### Authorization
 
@@ -16164,7 +16164,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSensorMqttBrokers
 
-> []InlineResponse20042 GetNetworkSensorMqttBrokers(ctx, networkId).Execute()
+> []GetNetworkSensorMqttBrokers200ResponseInner GetNetworkSensorMqttBrokers(ctx, networkId).Execute()
 
 List the sensor settings of all MQTT brokers for this network
 
@@ -16179,7 +16179,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -16192,7 +16192,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSensorMqttBrokers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSensorMqttBrokers`: []InlineResponse20042
+    // response from `GetNetworkSensorMqttBrokers`: []GetNetworkSensorMqttBrokers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSensorMqttBrokers`: %v\n", resp)
 }
 ```
@@ -16216,7 +16216,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20042**](InlineResponse20042.md)
+[**[]GetNetworkSensorMqttBrokers200ResponseInner**](GetNetworkSensorMqttBrokers200ResponseInner.md)
 
 ### Authorization
 
@@ -16234,7 +16234,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSensorRelationships
 
-> []InlineResponse20043 GetNetworkSensorRelationships(ctx, networkId).Execute()
+> []GetNetworkSensorRelationships200ResponseInner GetNetworkSensorRelationships(ctx, networkId).Execute()
 
 List the sensor roles for devices in a given network
 
@@ -16249,7 +16249,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -16262,7 +16262,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSensorRelationships``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSensorRelationships`: []InlineResponse20043
+    // response from `GetNetworkSensorRelationships`: []GetNetworkSensorRelationships200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSensorRelationships`: %v\n", resp)
 }
 ```
@@ -16286,7 +16286,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20043**](InlineResponse20043.md)
+[**[]GetNetworkSensorRelationships200ResponseInner**](GetNetworkSensorRelationships200ResponseInner.md)
 
 ### Authorization
 
@@ -16304,7 +16304,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSettings
 
-> InlineResponse20044 GetNetworkSettings(ctx, networkId).Execute()
+> GetNetworkSettings200Response GetNetworkSettings(ctx, networkId).Execute()
 
 Return the settings for a network
 
@@ -16319,7 +16319,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -16332,7 +16332,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSettings`: InlineResponse20044
+    // response from `GetNetworkSettings`: GetNetworkSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSettings`: %v\n", resp)
 }
 ```
@@ -16356,7 +16356,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20044**](InlineResponse20044.md)
+[**GetNetworkSettings200Response**](GetNetworkSettings200Response.md)
 
 ### Authorization
 
@@ -16389,7 +16389,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -16447,7 +16447,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDeviceCerts
 
-> []InlineResponse20052 GetNetworkSmDeviceCerts(ctx, networkId, deviceId).Execute()
+> []GetNetworkSmDeviceCerts200ResponseInner GetNetworkSmDeviceCerts(ctx, networkId, deviceId).Execute()
 
 List the certs on a device
 
@@ -16462,7 +16462,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -16476,7 +16476,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSmDeviceCerts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceCerts`: []InlineResponse20052
+    // response from `GetNetworkSmDeviceCerts`: []GetNetworkSmDeviceCerts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSmDeviceCerts`: %v\n", resp)
 }
 ```
@@ -16502,7 +16502,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20052**](InlineResponse20052.md)
+[**[]GetNetworkSmDeviceCerts200ResponseInner**](GetNetworkSmDeviceCerts200ResponseInner.md)
 
 ### Authorization
 
@@ -16520,7 +16520,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDeviceDeviceProfiles
 
-> []InlineResponse20056 GetNetworkSmDeviceDeviceProfiles(ctx, networkId, deviceId).Execute()
+> []GetNetworkSmDeviceDeviceProfiles200ResponseInner GetNetworkSmDeviceDeviceProfiles(ctx, networkId, deviceId).Execute()
 
 Get the installed profiles associated with a device
 
@@ -16535,7 +16535,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -16549,7 +16549,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSmDeviceDeviceProfiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceDeviceProfiles`: []InlineResponse20056
+    // response from `GetNetworkSmDeviceDeviceProfiles`: []GetNetworkSmDeviceDeviceProfiles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSmDeviceDeviceProfiles`: %v\n", resp)
 }
 ```
@@ -16575,7 +16575,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20056**](InlineResponse20056.md)
+[**[]GetNetworkSmDeviceDeviceProfiles200ResponseInner**](GetNetworkSmDeviceDeviceProfiles200ResponseInner.md)
 
 ### Authorization
 
@@ -16593,7 +16593,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDeviceNetworkAdapters
 
-> []InlineResponse20057 GetNetworkSmDeviceNetworkAdapters(ctx, networkId, deviceId).Execute()
+> []GetNetworkSmDeviceNetworkAdapters200ResponseInner GetNetworkSmDeviceNetworkAdapters(ctx, networkId, deviceId).Execute()
 
 List the network adapters of a device
 
@@ -16608,7 +16608,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -16622,7 +16622,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSmDeviceNetworkAdapters``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceNetworkAdapters`: []InlineResponse20057
+    // response from `GetNetworkSmDeviceNetworkAdapters`: []GetNetworkSmDeviceNetworkAdapters200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSmDeviceNetworkAdapters`: %v\n", resp)
 }
 ```
@@ -16648,7 +16648,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20057**](InlineResponse20057.md)
+[**[]GetNetworkSmDeviceNetworkAdapters200ResponseInner**](GetNetworkSmDeviceNetworkAdapters200ResponseInner.md)
 
 ### Authorization
 
@@ -16681,7 +16681,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -16739,7 +16739,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDeviceSecurityCenters
 
-> []InlineResponse20059 GetNetworkSmDeviceSecurityCenters(ctx, networkId, deviceId).Execute()
+> []GetNetworkSmDeviceSecurityCenters200ResponseInner GetNetworkSmDeviceSecurityCenters(ctx, networkId, deviceId).Execute()
 
 List the security centers on a device
 
@@ -16754,7 +16754,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -16768,7 +16768,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSmDeviceSecurityCenters``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceSecurityCenters`: []InlineResponse20059
+    // response from `GetNetworkSmDeviceSecurityCenters`: []GetNetworkSmDeviceSecurityCenters200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSmDeviceSecurityCenters`: %v\n", resp)
 }
 ```
@@ -16794,7 +16794,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20059**](InlineResponse20059.md)
+[**[]GetNetworkSmDeviceSecurityCenters200ResponseInner**](GetNetworkSmDeviceSecurityCenters200ResponseInner.md)
 
 ### Authorization
 
@@ -16812,7 +16812,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDeviceSoftwares
 
-> []InlineResponse20060 GetNetworkSmDeviceSoftwares(ctx, networkId, deviceId).Execute()
+> []GetNetworkSmDeviceSoftwares200ResponseInner GetNetworkSmDeviceSoftwares(ctx, networkId, deviceId).Execute()
 
 Get a list of softwares associated with a device
 
@@ -16827,7 +16827,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -16841,7 +16841,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSmDeviceSoftwares``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceSoftwares`: []InlineResponse20060
+    // response from `GetNetworkSmDeviceSoftwares`: []GetNetworkSmDeviceSoftwares200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSmDeviceSoftwares`: %v\n", resp)
 }
 ```
@@ -16867,7 +16867,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20060**](InlineResponse20060.md)
+[**[]GetNetworkSmDeviceSoftwares200ResponseInner**](GetNetworkSmDeviceSoftwares200ResponseInner.md)
 
 ### Authorization
 
@@ -16885,7 +16885,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDeviceWlanLists
 
-> []InlineResponse20061 GetNetworkSmDeviceWlanLists(ctx, networkId, deviceId).Execute()
+> []GetNetworkSmDeviceWlanLists200ResponseInner GetNetworkSmDeviceWlanLists(ctx, networkId, deviceId).Execute()
 
 List the saved SSID names on a device
 
@@ -16900,7 +16900,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -16914,7 +16914,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSmDeviceWlanLists``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceWlanLists`: []InlineResponse20061
+    // response from `GetNetworkSmDeviceWlanLists`: []GetNetworkSmDeviceWlanLists200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSmDeviceWlanLists`: %v\n", resp)
 }
 ```
@@ -16940,7 +16940,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20061**](InlineResponse20061.md)
+[**[]GetNetworkSmDeviceWlanLists200ResponseInner**](GetNetworkSmDeviceWlanLists200ResponseInner.md)
 
 ### Authorization
 
@@ -16958,7 +16958,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmDevices
 
-> []InlineResponse20045 GetNetworkSmDevices(ctx, networkId).Fields(fields).WifiMacs(wifiMacs).Serials(serials).Ids(ids).Scope(scope).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSmDevices200ResponseInner GetNetworkSmDevices(ctx, networkId).Fields(fields).WifiMacs(wifiMacs).Serials(serials).Ids(ids).Scope(scope).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 List the devices enrolled in an SM network with various specified fields and filters
 
@@ -16973,7 +16973,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -16994,7 +16994,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSmDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDevices`: []InlineResponse20045
+    // response from `GetNetworkSmDevices`: []GetNetworkSmDevices200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSmDevices`: %v\n", resp)
 }
 ```
@@ -17026,7 +17026,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20045**](InlineResponse20045.md)
+[**[]GetNetworkSmDevices200ResponseInner**](GetNetworkSmDevices200ResponseInner.md)
 
 ### Authorization
 
@@ -17044,7 +17044,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmProfiles
 
-> []InlineResponse20062 GetNetworkSmProfiles(ctx, networkId).Execute()
+> []GetNetworkSmProfiles200ResponseInner GetNetworkSmProfiles(ctx, networkId).Execute()
 
 List all profiles in a network
 
@@ -17059,7 +17059,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -17072,7 +17072,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSmProfiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmProfiles`: []InlineResponse20062
+    // response from `GetNetworkSmProfiles`: []GetNetworkSmProfiles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSmProfiles`: %v\n", resp)
 }
 ```
@@ -17096,7 +17096,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20062**](InlineResponse20062.md)
+[**[]GetNetworkSmProfiles200ResponseInner**](GetNetworkSmProfiles200ResponseInner.md)
 
 ### Authorization
 
@@ -17129,7 +17129,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -17204,7 +17204,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -17261,7 +17261,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmTrustedAccessConfigs
 
-> []InlineResponse20063 GetNetworkSmTrustedAccessConfigs(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSmTrustedAccessConfigs200ResponseInner GetNetworkSmTrustedAccessConfigs(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 List Trusted Access Configs
 
@@ -17276,7 +17276,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -17292,7 +17292,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSmTrustedAccessConfigs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmTrustedAccessConfigs`: []InlineResponse20063
+    // response from `GetNetworkSmTrustedAccessConfigs`: []GetNetworkSmTrustedAccessConfigs200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSmTrustedAccessConfigs`: %v\n", resp)
 }
 ```
@@ -17319,7 +17319,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20063**](InlineResponse20063.md)
+[**[]GetNetworkSmTrustedAccessConfigs200ResponseInner**](GetNetworkSmTrustedAccessConfigs200ResponseInner.md)
 
 ### Authorization
 
@@ -17337,7 +17337,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmUserAccessDevices
 
-> []InlineResponse20064 GetNetworkSmUserAccessDevices(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSmUserAccessDevices200ResponseInner GetNetworkSmUserAccessDevices(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 List User Access Devices and its Trusted Access Connections
 
@@ -17352,7 +17352,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -17368,7 +17368,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSmUserAccessDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmUserAccessDevices`: []InlineResponse20064
+    // response from `GetNetworkSmUserAccessDevices`: []GetNetworkSmUserAccessDevices200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSmUserAccessDevices`: %v\n", resp)
 }
 ```
@@ -17395,7 +17395,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20064**](InlineResponse20064.md)
+[**[]GetNetworkSmUserAccessDevices200ResponseInner**](GetNetworkSmUserAccessDevices200ResponseInner.md)
 
 ### Authorization
 
@@ -17413,7 +17413,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmUserDeviceProfiles
 
-> []InlineResponse20056 GetNetworkSmUserDeviceProfiles(ctx, networkId, userId).Execute()
+> []GetNetworkSmDeviceDeviceProfiles200ResponseInner GetNetworkSmUserDeviceProfiles(ctx, networkId, userId).Execute()
 
 Get the profiles associated with a user
 
@@ -17428,7 +17428,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -17442,7 +17442,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSmUserDeviceProfiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmUserDeviceProfiles`: []InlineResponse20056
+    // response from `GetNetworkSmUserDeviceProfiles`: []GetNetworkSmDeviceDeviceProfiles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSmUserDeviceProfiles`: %v\n", resp)
 }
 ```
@@ -17468,7 +17468,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20056**](InlineResponse20056.md)
+[**[]GetNetworkSmDeviceDeviceProfiles200ResponseInner**](GetNetworkSmDeviceDeviceProfiles200ResponseInner.md)
 
 ### Authorization
 
@@ -17486,7 +17486,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmUserSoftwares
 
-> []InlineResponse20060 GetNetworkSmUserSoftwares(ctx, networkId, userId).Execute()
+> []GetNetworkSmDeviceSoftwares200ResponseInner GetNetworkSmUserSoftwares(ctx, networkId, userId).Execute()
 
 Get a list of softwares associated with a user
 
@@ -17501,7 +17501,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -17515,7 +17515,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSmUserSoftwares``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmUserSoftwares`: []InlineResponse20060
+    // response from `GetNetworkSmUserSoftwares`: []GetNetworkSmDeviceSoftwares200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSmUserSoftwares`: %v\n", resp)
 }
 ```
@@ -17541,7 +17541,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20060**](InlineResponse20060.md)
+[**[]GetNetworkSmDeviceSoftwares200ResponseInner**](GetNetworkSmDeviceSoftwares200ResponseInner.md)
 
 ### Authorization
 
@@ -17559,7 +17559,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmUsers
 
-> []InlineResponse20065 GetNetworkSmUsers(ctx, networkId).Ids(ids).Usernames(usernames).Emails(emails).Scope(scope).Execute()
+> []GetNetworkSmUsers200ResponseInner GetNetworkSmUsers(ctx, networkId).Ids(ids).Usernames(usernames).Emails(emails).Scope(scope).Execute()
 
 List the owners in an SM network with various specified fields and filters
 
@@ -17574,7 +17574,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -17591,7 +17591,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSmUsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmUsers`: []InlineResponse20065
+    // response from `GetNetworkSmUsers`: []GetNetworkSmUsers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSmUsers`: %v\n", resp)
 }
 ```
@@ -17619,7 +17619,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20065**](InlineResponse20065.md)
+[**[]GetNetworkSmUsers200ResponseInner**](GetNetworkSmUsers200ResponseInner.md)
 
 ### Authorization
 
@@ -17652,7 +17652,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -17707,7 +17707,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchAccessControlLists
 
-> InlineResponse20067 GetNetworkSwitchAccessControlLists(ctx, networkId).Execute()
+> GetNetworkSwitchAccessControlLists200Response GetNetworkSwitchAccessControlLists(ctx, networkId).Execute()
 
 Return the access control lists for a MS network
 
@@ -17722,7 +17722,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -17735,7 +17735,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchAccessControlLists``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchAccessControlLists`: InlineResponse20067
+    // response from `GetNetworkSwitchAccessControlLists`: GetNetworkSwitchAccessControlLists200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchAccessControlLists`: %v\n", resp)
 }
 ```
@@ -17759,7 +17759,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20067**](InlineResponse20067.md)
+[**GetNetworkSwitchAccessControlLists200Response**](GetNetworkSwitchAccessControlLists200Response.md)
 
 ### Authorization
 
@@ -17777,7 +17777,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchAccessPolicies
 
-> []InlineResponse20068 GetNetworkSwitchAccessPolicies(ctx, networkId).Execute()
+> []GetNetworkSwitchAccessPolicies200ResponseInner GetNetworkSwitchAccessPolicies(ctx, networkId).Execute()
 
 List the access policies for a switch network
 
@@ -17792,7 +17792,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -17805,7 +17805,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchAccessPolicies``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchAccessPolicies`: []InlineResponse20068
+    // response from `GetNetworkSwitchAccessPolicies`: []GetNetworkSwitchAccessPolicies200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchAccessPolicies`: %v\n", resp)
 }
 ```
@@ -17829,7 +17829,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20068**](InlineResponse20068.md)
+[**[]GetNetworkSwitchAccessPolicies200ResponseInner**](GetNetworkSwitchAccessPolicies200ResponseInner.md)
 
 ### Authorization
 
@@ -17847,7 +17847,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchAccessPolicy
 
-> InlineResponse20068 GetNetworkSwitchAccessPolicy(ctx, networkId, accessPolicyNumber).Execute()
+> GetNetworkSwitchAccessPolicies200ResponseInner GetNetworkSwitchAccessPolicy(ctx, networkId, accessPolicyNumber).Execute()
 
 Return a specific access policy for a switch network
 
@@ -17862,7 +17862,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -17876,7 +17876,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchAccessPolicy``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchAccessPolicy`: InlineResponse20068
+    // response from `GetNetworkSwitchAccessPolicy`: GetNetworkSwitchAccessPolicies200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchAccessPolicy`: %v\n", resp)
 }
 ```
@@ -17902,7 +17902,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20068**](InlineResponse20068.md)
+[**GetNetworkSwitchAccessPolicies200ResponseInner**](GetNetworkSwitchAccessPolicies200ResponseInner.md)
 
 ### Authorization
 
@@ -17920,7 +17920,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchAlternateManagementInterface
 
-> InlineResponse20069 GetNetworkSwitchAlternateManagementInterface(ctx, networkId).Execute()
+> GetNetworkSwitchAlternateManagementInterface200Response GetNetworkSwitchAlternateManagementInterface(ctx, networkId).Execute()
 
 Return the switch alternate management interface for the network
 
@@ -17935,7 +17935,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -17948,7 +17948,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchAlternateManagementInterface``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchAlternateManagementInterface`: InlineResponse20069
+    // response from `GetNetworkSwitchAlternateManagementInterface`: GetNetworkSwitchAlternateManagementInterface200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchAlternateManagementInterface`: %v\n", resp)
 }
 ```
@@ -17972,7 +17972,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20069**](InlineResponse20069.md)
+[**GetNetworkSwitchAlternateManagementInterface200Response**](GetNetworkSwitchAlternateManagementInterface200Response.md)
 
 ### Authorization
 
@@ -17990,7 +17990,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchDhcpServerPolicy
 
-> InlineResponse20071 GetNetworkSwitchDhcpServerPolicy(ctx, networkId).Execute()
+> GetNetworkSwitchDhcpServerPolicy200Response GetNetworkSwitchDhcpServerPolicy(ctx, networkId).Execute()
 
 Return the DHCP server settings
 
@@ -18005,7 +18005,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -18018,7 +18018,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchDhcpServerPolicy``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchDhcpServerPolicy`: InlineResponse20071
+    // response from `GetNetworkSwitchDhcpServerPolicy`: GetNetworkSwitchDhcpServerPolicy200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchDhcpServerPolicy`: %v\n", resp)
 }
 ```
@@ -18042,7 +18042,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20071**](InlineResponse20071.md)
+[**GetNetworkSwitchDhcpServerPolicy200Response**](GetNetworkSwitchDhcpServerPolicy200Response.md)
 
 ### Authorization
 
@@ -18060,7 +18060,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers
 
-> []InlineResponse20072 GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 Return the list of servers trusted by Dynamic ARP Inspection on this network
 
@@ -18075,7 +18075,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -18091,7 +18091,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers`: []InlineResponse20072
+    // response from `GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers`: []GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers`: %v\n", resp)
 }
 ```
@@ -18118,7 +18118,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20072**](InlineResponse20072.md)
+[**[]GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner**](GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner.md)
 
 ### Authorization
 
@@ -18136,7 +18136,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice
 
-> []InlineResponse20073 GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice(ctx, networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 Return the devices that have a Dynamic ARP Inspection warning and their warnings
 
@@ -18151,7 +18151,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -18167,7 +18167,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice`: []InlineResponse20073
+    // response from `GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice`: []GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice`: %v\n", resp)
 }
 ```
@@ -18194,7 +18194,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20073**](InlineResponse20073.md)
+[**[]GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner**](GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner.md)
 
 ### Authorization
 
@@ -18212,7 +18212,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchDhcpV4ServersSeen
 
-> []InlineResponse20070 GetNetworkSwitchDhcpV4ServersSeen(ctx, networkId).T0(t0).Timespan(timespan).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSwitchDhcpV4ServersSeen200ResponseInner GetNetworkSwitchDhcpV4ServersSeen(ctx, networkId).T0(t0).Timespan(timespan).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 Return the network's DHCPv4 servers seen within the selected timeframe (default 1 day)
 
@@ -18227,7 +18227,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -18245,7 +18245,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchDhcpV4ServersSeen``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchDhcpV4ServersSeen`: []InlineResponse20070
+    // response from `GetNetworkSwitchDhcpV4ServersSeen`: []GetNetworkSwitchDhcpV4ServersSeen200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchDhcpV4ServersSeen`: %v\n", resp)
 }
 ```
@@ -18274,7 +18274,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20070**](InlineResponse20070.md)
+[**[]GetNetworkSwitchDhcpV4ServersSeen200ResponseInner**](GetNetworkSwitchDhcpV4ServersSeen200ResponseInner.md)
 
 ### Authorization
 
@@ -18292,7 +18292,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchDscpToCosMappings
 
-> InlineResponse20074 GetNetworkSwitchDscpToCosMappings(ctx, networkId).Execute()
+> GetNetworkSwitchDscpToCosMappings200Response GetNetworkSwitchDscpToCosMappings(ctx, networkId).Execute()
 
 Return the DSCP to CoS mappings
 
@@ -18307,7 +18307,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -18320,7 +18320,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchDscpToCosMappings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchDscpToCosMappings`: InlineResponse20074
+    // response from `GetNetworkSwitchDscpToCosMappings`: GetNetworkSwitchDscpToCosMappings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchDscpToCosMappings`: %v\n", resp)
 }
 ```
@@ -18344,7 +18344,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20074**](InlineResponse20074.md)
+[**GetNetworkSwitchDscpToCosMappings200Response**](GetNetworkSwitchDscpToCosMappings200Response.md)
 
 ### Authorization
 
@@ -18377,7 +18377,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -18432,7 +18432,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchMtu
 
-> InlineResponse20075 GetNetworkSwitchMtu(ctx, networkId).Execute()
+> GetNetworkSwitchMtu200Response GetNetworkSwitchMtu(ctx, networkId).Execute()
 
 Return the MTU configuration
 
@@ -18447,7 +18447,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -18460,7 +18460,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchMtu``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchMtu`: InlineResponse20075
+    // response from `GetNetworkSwitchMtu`: GetNetworkSwitchMtu200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchMtu`: %v\n", resp)
 }
 ```
@@ -18484,7 +18484,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20075**](InlineResponse20075.md)
+[**GetNetworkSwitchMtu200Response**](GetNetworkSwitchMtu200Response.md)
 
 ### Authorization
 
@@ -18517,7 +18517,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -18572,7 +18572,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchQosRule
 
-> InlineResponse20076 GetNetworkSwitchQosRule(ctx, networkId, qosRuleId).Execute()
+> GetNetworkSwitchQosRule200Response GetNetworkSwitchQosRule(ctx, networkId, qosRuleId).Execute()
 
 Return a quality of service rule
 
@@ -18587,7 +18587,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -18601,7 +18601,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchQosRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchQosRule`: InlineResponse20076
+    // response from `GetNetworkSwitchQosRule`: GetNetworkSwitchQosRule200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchQosRule`: %v\n", resp)
 }
 ```
@@ -18627,7 +18627,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20076**](InlineResponse20076.md)
+[**GetNetworkSwitchQosRule200Response**](GetNetworkSwitchQosRule200Response.md)
 
 ### Authorization
 
@@ -18660,7 +18660,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -18730,7 +18730,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -18785,7 +18785,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchRoutingMulticast
 
-> InlineResponse20077 GetNetworkSwitchRoutingMulticast(ctx, networkId).Execute()
+> GetNetworkSwitchRoutingMulticast200Response GetNetworkSwitchRoutingMulticast(ctx, networkId).Execute()
 
 Return multicast settings for a network
 
@@ -18800,7 +18800,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -18813,7 +18813,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchRoutingMulticast``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchRoutingMulticast`: InlineResponse20077
+    // response from `GetNetworkSwitchRoutingMulticast`: GetNetworkSwitchRoutingMulticast200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchRoutingMulticast`: %v\n", resp)
 }
 ```
@@ -18837,7 +18837,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20077**](InlineResponse20077.md)
+[**GetNetworkSwitchRoutingMulticast200Response**](GetNetworkSwitchRoutingMulticast200Response.md)
 
 ### Authorization
 
@@ -18870,7 +18870,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -18943,7 +18943,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -19013,7 +19013,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -19068,7 +19068,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchSettings
 
-> InlineResponse20078 GetNetworkSwitchSettings(ctx, networkId).Execute()
+> GetNetworkSwitchSettings200Response GetNetworkSwitchSettings(ctx, networkId).Execute()
 
 Returns the switch network settings
 
@@ -19083,7 +19083,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -19096,7 +19096,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchSettings`: InlineResponse20078
+    // response from `GetNetworkSwitchSettings`: GetNetworkSwitchSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchSettings`: %v\n", resp)
 }
 ```
@@ -19120,7 +19120,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20078**](InlineResponse20078.md)
+[**GetNetworkSwitchSettings200Response**](GetNetworkSwitchSettings200Response.md)
 
 ### Authorization
 
@@ -19138,7 +19138,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchStack
 
-> InlineResponse20079 GetNetworkSwitchStack(ctx, networkId, switchStackId).Execute()
+> GetNetworkSwitchStack200Response GetNetworkSwitchStack(ctx, networkId, switchStackId).Execute()
 
 Show a switch stack
 
@@ -19153,7 +19153,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -19167,7 +19167,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchStack``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchStack`: InlineResponse20079
+    // response from `GetNetworkSwitchStack`: GetNetworkSwitchStack200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchStack`: %v\n", resp)
 }
 ```
@@ -19193,7 +19193,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20079**](InlineResponse20079.md)
+[**GetNetworkSwitchStack200Response**](GetNetworkSwitchStack200Response.md)
 
 ### Authorization
 
@@ -19226,7 +19226,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -19287,7 +19287,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchStackRoutingInterfaceDhcp
 
-> InlineResponse20080 GetNetworkSwitchStackRoutingInterfaceDhcp(ctx, networkId, switchStackId, interfaceId).Execute()
+> GetNetworkSwitchStackRoutingInterfaceDhcp200Response GetNetworkSwitchStackRoutingInterfaceDhcp(ctx, networkId, switchStackId, interfaceId).Execute()
 
 Return a layer 3 interface DHCP configuration for a switch stack
 
@@ -19302,7 +19302,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -19317,7 +19317,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchStackRoutingInterfaceDhcp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchStackRoutingInterfaceDhcp`: InlineResponse20080
+    // response from `GetNetworkSwitchStackRoutingInterfaceDhcp`: GetNetworkSwitchStackRoutingInterfaceDhcp200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchStackRoutingInterfaceDhcp`: %v\n", resp)
 }
 ```
@@ -19345,7 +19345,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20080**](InlineResponse20080.md)
+[**GetNetworkSwitchStackRoutingInterfaceDhcp200Response**](GetNetworkSwitchStackRoutingInterfaceDhcp200Response.md)
 
 ### Authorization
 
@@ -19378,7 +19378,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -19451,7 +19451,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -19527,7 +19527,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -19600,7 +19600,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -19655,7 +19655,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchStormControl
 
-> InlineResponse20081 GetNetworkSwitchStormControl(ctx, networkId).Execute()
+> GetNetworkSwitchStormControl200Response GetNetworkSwitchStormControl(ctx, networkId).Execute()
 
 Return the storm control configuration for a switch network
 
@@ -19670,7 +19670,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -19683,7 +19683,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchStormControl``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchStormControl`: InlineResponse20081
+    // response from `GetNetworkSwitchStormControl`: GetNetworkSwitchStormControl200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchStormControl`: %v\n", resp)
 }
 ```
@@ -19707,7 +19707,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20081**](InlineResponse20081.md)
+[**GetNetworkSwitchStormControl200Response**](GetNetworkSwitchStormControl200Response.md)
 
 ### Authorization
 
@@ -19740,7 +19740,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -19795,7 +19795,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSyslogServers
 
-> InlineResponse20082 GetNetworkSyslogServers(ctx, networkId).Execute()
+> GetNetworkSyslogServers200Response GetNetworkSyslogServers(ctx, networkId).Execute()
 
 List the syslog servers for a network
 
@@ -19810,7 +19810,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -19823,7 +19823,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSyslogServers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSyslogServers`: InlineResponse20082
+    // response from `GetNetworkSyslogServers`: GetNetworkSyslogServers200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSyslogServers`: %v\n", resp)
 }
 ```
@@ -19847,7 +19847,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20082**](InlineResponse20082.md)
+[**GetNetworkSyslogServers200Response**](GetNetworkSyslogServers200Response.md)
 
 ### Authorization
 
@@ -19880,7 +19880,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -19950,7 +19950,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -20020,7 +20020,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -20075,7 +20075,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWebhooksHttpServer
 
-> InlineResponse20083 GetNetworkWebhooksHttpServer(ctx, networkId, httpServerId).Execute()
+> GetNetworkWebhooksHttpServers200ResponseInner GetNetworkWebhooksHttpServer(ctx, networkId, httpServerId).Execute()
 
 Return an HTTP server for a network
 
@@ -20090,7 +20090,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -20104,7 +20104,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkWebhooksHttpServer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWebhooksHttpServer`: InlineResponse20083
+    // response from `GetNetworkWebhooksHttpServer`: GetNetworkWebhooksHttpServers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkWebhooksHttpServer`: %v\n", resp)
 }
 ```
@@ -20130,7 +20130,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20083**](InlineResponse20083.md)
+[**GetNetworkWebhooksHttpServers200ResponseInner**](GetNetworkWebhooksHttpServers200ResponseInner.md)
 
 ### Authorization
 
@@ -20148,7 +20148,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWebhooksHttpServers
 
-> []InlineResponse20083 GetNetworkWebhooksHttpServers(ctx, networkId).Execute()
+> []GetNetworkWebhooksHttpServers200ResponseInner GetNetworkWebhooksHttpServers(ctx, networkId).Execute()
 
 List the HTTP servers for a network
 
@@ -20163,7 +20163,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -20176,7 +20176,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkWebhooksHttpServers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWebhooksHttpServers`: []InlineResponse20083
+    // response from `GetNetworkWebhooksHttpServers`: []GetNetworkWebhooksHttpServers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkWebhooksHttpServers`: %v\n", resp)
 }
 ```
@@ -20200,7 +20200,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20083**](InlineResponse20083.md)
+[**[]GetNetworkWebhooksHttpServers200ResponseInner**](GetNetworkWebhooksHttpServers200ResponseInner.md)
 
 ### Authorization
 
@@ -20218,7 +20218,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWebhooksPayloadTemplate
 
-> InlineResponse20084 GetNetworkWebhooksPayloadTemplate(ctx, networkId, payloadTemplateId).Execute()
+> GetNetworkWebhooksPayloadTemplates200ResponseInner GetNetworkWebhooksPayloadTemplate(ctx, networkId, payloadTemplateId).Execute()
 
 Get the webhook payload template for a network
 
@@ -20233,7 +20233,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -20247,7 +20247,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkWebhooksPayloadTemplate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWebhooksPayloadTemplate`: InlineResponse20084
+    // response from `GetNetworkWebhooksPayloadTemplate`: GetNetworkWebhooksPayloadTemplates200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkWebhooksPayloadTemplate`: %v\n", resp)
 }
 ```
@@ -20273,7 +20273,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20084**](InlineResponse20084.md)
+[**GetNetworkWebhooksPayloadTemplates200ResponseInner**](GetNetworkWebhooksPayloadTemplates200ResponseInner.md)
 
 ### Authorization
 
@@ -20291,7 +20291,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWebhooksPayloadTemplates
 
-> []InlineResponse20084 GetNetworkWebhooksPayloadTemplates(ctx, networkId).Execute()
+> []GetNetworkWebhooksPayloadTemplates200ResponseInner GetNetworkWebhooksPayloadTemplates(ctx, networkId).Execute()
 
 List the webhook payload templates for a network
 
@@ -20306,7 +20306,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -20319,7 +20319,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkWebhooksPayloadTemplates``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWebhooksPayloadTemplates`: []InlineResponse20084
+    // response from `GetNetworkWebhooksPayloadTemplates`: []GetNetworkWebhooksPayloadTemplates200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkWebhooksPayloadTemplates`: %v\n", resp)
 }
 ```
@@ -20343,7 +20343,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20084**](InlineResponse20084.md)
+[**[]GetNetworkWebhooksPayloadTemplates200ResponseInner**](GetNetworkWebhooksPayloadTemplates200ResponseInner.md)
 
 ### Authorization
 
@@ -20361,7 +20361,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWebhooksWebhookTest
 
-> InlineResponse2013 GetNetworkWebhooksWebhookTest(ctx, networkId, webhookTestId).Execute()
+> CreateNetworkWebhooksWebhookTest201Response GetNetworkWebhooksWebhookTest(ctx, networkId, webhookTestId).Execute()
 
 Return the status of a webhook test for a network
 
@@ -20376,7 +20376,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -20390,7 +20390,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkWebhooksWebhookTest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWebhooksWebhookTest`: InlineResponse2013
+    // response from `GetNetworkWebhooksWebhookTest`: CreateNetworkWebhooksWebhookTest201Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkWebhooksWebhookTest`: %v\n", resp)
 }
 ```
@@ -20416,7 +20416,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2013**](InlineResponse2013.md)
+[**CreateNetworkWebhooksWebhookTest201Response**](CreateNetworkWebhooksWebhookTest201Response.md)
 
 ### Authorization
 
@@ -20449,7 +20449,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -20519,7 +20519,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -20574,7 +20574,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessBluetoothSettings
 
-> InlineResponse20085 GetNetworkWirelessBluetoothSettings(ctx, networkId).Execute()
+> GetNetworkWirelessBluetoothSettings200Response GetNetworkWirelessBluetoothSettings(ctx, networkId).Execute()
 
 Return the Bluetooth settings for a network. <a href=\"https://documentation.meraki.com/MR/Bluetooth/Bluetooth_Low_Energy_(BLE)\">Bluetooth settings</a> must be enabled on the network.
 
@@ -20589,7 +20589,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -20602,7 +20602,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkWirelessBluetoothSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessBluetoothSettings`: InlineResponse20085
+    // response from `GetNetworkWirelessBluetoothSettings`: GetNetworkWirelessBluetoothSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkWirelessBluetoothSettings`: %v\n", resp)
 }
 ```
@@ -20626,7 +20626,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20085**](InlineResponse20085.md)
+[**GetNetworkWirelessBluetoothSettings200Response**](GetNetworkWirelessBluetoothSettings200Response.md)
 
 ### Authorization
 
@@ -20644,7 +20644,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessRfProfile
 
-> InlineResponse20092 GetNetworkWirelessRfProfile(ctx, networkId, rfProfileId).Execute()
+> GetNetworkWirelessRfProfiles200Response GetNetworkWirelessRfProfile(ctx, networkId, rfProfileId).Execute()
 
 Return a RF profile
 
@@ -20659,7 +20659,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -20673,7 +20673,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkWirelessRfProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessRfProfile`: InlineResponse20092
+    // response from `GetNetworkWirelessRfProfile`: GetNetworkWirelessRfProfiles200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkWirelessRfProfile`: %v\n", resp)
 }
 ```
@@ -20699,7 +20699,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20092**](InlineResponse20092.md)
+[**GetNetworkWirelessRfProfiles200Response**](GetNetworkWirelessRfProfiles200Response.md)
 
 ### Authorization
 
@@ -20717,7 +20717,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessRfProfiles
 
-> InlineResponse20092 GetNetworkWirelessRfProfiles(ctx, networkId).IncludeTemplateProfiles(includeTemplateProfiles).Execute()
+> GetNetworkWirelessRfProfiles200Response GetNetworkWirelessRfProfiles(ctx, networkId).IncludeTemplateProfiles(includeTemplateProfiles).Execute()
 
 List RF profiles for this network
 
@@ -20732,7 +20732,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -20746,7 +20746,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkWirelessRfProfiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessRfProfiles`: InlineResponse20092
+    // response from `GetNetworkWirelessRfProfiles`: GetNetworkWirelessRfProfiles200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkWirelessRfProfiles`: %v\n", resp)
 }
 ```
@@ -20771,7 +20771,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20092**](InlineResponse20092.md)
+[**GetNetworkWirelessRfProfiles200Response**](GetNetworkWirelessRfProfiles200Response.md)
 
 ### Authorization
 
@@ -20789,7 +20789,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessSettings
 
-> InlineResponse20093 GetNetworkWirelessSettings(ctx, networkId).Execute()
+> GetNetworkWirelessSettings200Response GetNetworkWirelessSettings(ctx, networkId).Execute()
 
 Return the wireless settings for a network
 
@@ -20804,7 +20804,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -20817,7 +20817,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkWirelessSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessSettings`: InlineResponse20093
+    // response from `GetNetworkWirelessSettings`: GetNetworkWirelessSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkWirelessSettings`: %v\n", resp)
 }
 ```
@@ -20841,7 +20841,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20093**](InlineResponse20093.md)
+[**GetNetworkWirelessSettings200Response**](GetNetworkWirelessSettings200Response.md)
 
 ### Authorization
 
@@ -20874,7 +20874,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -20947,7 +20947,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -21020,7 +21020,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -21078,7 +21078,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessSsidEapOverride
 
-> InlineResponse20095 GetNetworkWirelessSsidEapOverride(ctx, networkId, number).Execute()
+> GetNetworkWirelessSsidEapOverride200Response GetNetworkWirelessSsidEapOverride(ctx, networkId, number).Execute()
 
 Return the EAP overridden parameters for an SSID
 
@@ -21093,7 +21093,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -21107,7 +21107,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkWirelessSsidEapOverride``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessSsidEapOverride`: InlineResponse20095
+    // response from `GetNetworkWirelessSsidEapOverride`: GetNetworkWirelessSsidEapOverride200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkWirelessSsidEapOverride`: %v\n", resp)
 }
 ```
@@ -21133,7 +21133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20095**](InlineResponse20095.md)
+[**GetNetworkWirelessSsidEapOverride200Response**](GetNetworkWirelessSsidEapOverride200Response.md)
 
 ### Authorization
 
@@ -21166,7 +21166,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -21239,7 +21239,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -21312,7 +21312,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -21370,7 +21370,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessSsidIdentityPsk
 
-> InlineResponse20096 GetNetworkWirelessSsidIdentityPsk(ctx, networkId, number, identityPskId).Execute()
+> GetNetworkWirelessSsidIdentityPsks200ResponseInner GetNetworkWirelessSsidIdentityPsk(ctx, networkId, number, identityPskId).Execute()
 
 Return an Identity PSK
 
@@ -21385,7 +21385,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -21400,7 +21400,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkWirelessSsidIdentityPsk``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessSsidIdentityPsk`: InlineResponse20096
+    // response from `GetNetworkWirelessSsidIdentityPsk`: GetNetworkWirelessSsidIdentityPsks200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkWirelessSsidIdentityPsk`: %v\n", resp)
 }
 ```
@@ -21428,7 +21428,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20096**](InlineResponse20096.md)
+[**GetNetworkWirelessSsidIdentityPsks200ResponseInner**](GetNetworkWirelessSsidIdentityPsks200ResponseInner.md)
 
 ### Authorization
 
@@ -21446,7 +21446,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessSsidIdentityPsks
 
-> []InlineResponse20096 GetNetworkWirelessSsidIdentityPsks(ctx, networkId, number).Execute()
+> []GetNetworkWirelessSsidIdentityPsks200ResponseInner GetNetworkWirelessSsidIdentityPsks(ctx, networkId, number).Execute()
 
 List all Identity PSKs in a wireless network
 
@@ -21461,7 +21461,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -21475,7 +21475,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkWirelessSsidIdentityPsks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessSsidIdentityPsks`: []InlineResponse20096
+    // response from `GetNetworkWirelessSsidIdentityPsks`: []GetNetworkWirelessSsidIdentityPsks200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkWirelessSsidIdentityPsks`: %v\n", resp)
 }
 ```
@@ -21501,7 +21501,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20096**](InlineResponse20096.md)
+[**[]GetNetworkWirelessSsidIdentityPsks200ResponseInner**](GetNetworkWirelessSsidIdentityPsks200ResponseInner.md)
 
 ### Authorization
 
@@ -21534,7 +21534,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -21592,7 +21592,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessSsidSplashSettings
 
-> InlineResponse20097 GetNetworkWirelessSsidSplashSettings(ctx, networkId, number).Execute()
+> GetNetworkWirelessSsidSplashSettings200Response GetNetworkWirelessSsidSplashSettings(ctx, networkId, number).Execute()
 
 Display the splash page settings for the given SSID
 
@@ -21607,7 +21607,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -21621,7 +21621,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkWirelessSsidSplashSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessSsidSplashSettings`: InlineResponse20097
+    // response from `GetNetworkWirelessSsidSplashSettings`: GetNetworkWirelessSsidSplashSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkWirelessSsidSplashSettings`: %v\n", resp)
 }
 ```
@@ -21647,7 +21647,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20097**](InlineResponse20097.md)
+[**GetNetworkWirelessSsidSplashSettings200Response**](GetNetworkWirelessSsidSplashSettings200Response.md)
 
 ### Authorization
 
@@ -21680,7 +21680,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -21753,7 +21753,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -21826,7 +21826,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -21881,7 +21881,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganization
 
-> InlineResponse20099 GetOrganization(ctx, organizationId).Execute()
+> GetOrganizations200ResponseInner GetOrganization(ctx, organizationId).Execute()
 
 Return an organization
 
@@ -21896,7 +21896,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -21909,7 +21909,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganization`: InlineResponse20099
+    // response from `GetOrganization`: GetOrganizations200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganization`: %v\n", resp)
 }
 ```
@@ -21933,7 +21933,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20099**](InlineResponse20099.md)
+[**GetOrganizations200ResponseInner**](GetOrganizations200ResponseInner.md)
 
 ### Authorization
 
@@ -21951,7 +21951,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationActionBatch
 
-> InlineResponse2014 GetOrganizationActionBatch(ctx, organizationId, actionBatchId).Execute()
+> CreateOrganizationActionBatch201Response GetOrganizationActionBatch(ctx, organizationId, actionBatchId).Execute()
 
 Return an action batch
 
@@ -21966,7 +21966,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -21980,7 +21980,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationActionBatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationActionBatch`: InlineResponse2014
+    // response from `GetOrganizationActionBatch`: CreateOrganizationActionBatch201Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationActionBatch`: %v\n", resp)
 }
 ```
@@ -22006,7 +22006,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2014**](InlineResponse2014.md)
+[**CreateOrganizationActionBatch201Response**](CreateOrganizationActionBatch201Response.md)
 
 ### Authorization
 
@@ -22039,7 +22039,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -22096,7 +22096,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationAdaptivePolicyAcl
 
-> InlineResponse200100 GetOrganizationAdaptivePolicyAcl(ctx, organizationId, aclId).Execute()
+> GetOrganizationAdaptivePolicyAcls200ResponseInner GetOrganizationAdaptivePolicyAcl(ctx, organizationId, aclId).Execute()
 
 Returns the adaptive policy ACL information
 
@@ -22111,7 +22111,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -22125,7 +22125,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationAdaptivePolicyAcl``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationAdaptivePolicyAcl`: InlineResponse200100
+    // response from `GetOrganizationAdaptivePolicyAcl`: GetOrganizationAdaptivePolicyAcls200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationAdaptivePolicyAcl`: %v\n", resp)
 }
 ```
@@ -22151,7 +22151,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200100**](InlineResponse200100.md)
+[**GetOrganizationAdaptivePolicyAcls200ResponseInner**](GetOrganizationAdaptivePolicyAcls200ResponseInner.md)
 
 ### Authorization
 
@@ -22169,7 +22169,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationAdaptivePolicyAcls
 
-> []InlineResponse200100 GetOrganizationAdaptivePolicyAcls(ctx, organizationId).Execute()
+> []GetOrganizationAdaptivePolicyAcls200ResponseInner GetOrganizationAdaptivePolicyAcls(ctx, organizationId).Execute()
 
 List adaptive policy ACLs in a organization
 
@@ -22184,7 +22184,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -22197,7 +22197,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationAdaptivePolicyAcls``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationAdaptivePolicyAcls`: []InlineResponse200100
+    // response from `GetOrganizationAdaptivePolicyAcls`: []GetOrganizationAdaptivePolicyAcls200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationAdaptivePolicyAcls`: %v\n", resp)
 }
 ```
@@ -22221,7 +22221,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200100**](InlineResponse200100.md)
+[**[]GetOrganizationAdaptivePolicyAcls200ResponseInner**](GetOrganizationAdaptivePolicyAcls200ResponseInner.md)
 
 ### Authorization
 
@@ -22254,7 +22254,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -22327,7 +22327,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -22397,7 +22397,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -22467,7 +22467,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -22540,7 +22540,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -22595,7 +22595,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationAdmins
 
-> []InlineResponse200102 GetOrganizationAdmins(ctx, organizationId).Execute()
+> []GetOrganizationAdmins200ResponseInner GetOrganizationAdmins(ctx, organizationId).Execute()
 
 List the dashboard administrators in this organization
 
@@ -22610,7 +22610,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -22623,7 +22623,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationAdmins``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationAdmins`: []InlineResponse200102
+    // response from `GetOrganizationAdmins`: []GetOrganizationAdmins200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationAdmins`: %v\n", resp)
 }
 ```
@@ -22647,7 +22647,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200102**](InlineResponse200102.md)
+[**[]GetOrganizationAdmins200ResponseInner**](GetOrganizationAdmins200ResponseInner.md)
 
 ### Authorization
 
@@ -22680,7 +22680,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -22750,7 +22750,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -22805,7 +22805,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationApplianceVpnThirdPartyVPNPeers
 
-> InlineResponse200106 GetOrganizationApplianceVpnThirdPartyVPNPeers(ctx, organizationId).Execute()
+> GetOrganizationApplianceVpnThirdPartyVPNPeers200Response GetOrganizationApplianceVpnThirdPartyVPNPeers(ctx, organizationId).Execute()
 
 Return the third party VPN peers for an organization
 
@@ -22820,7 +22820,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -22833,7 +22833,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationApplianceVpnThirdPartyVPNPeers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationApplianceVpnThirdPartyVPNPeers`: InlineResponse200106
+    // response from `GetOrganizationApplianceVpnThirdPartyVPNPeers`: GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationApplianceVpnThirdPartyVPNPeers`: %v\n", resp)
 }
 ```
@@ -22857,7 +22857,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200106**](InlineResponse200106.md)
+[**GetOrganizationApplianceVpnThirdPartyVPNPeers200Response**](GetOrganizationApplianceVpnThirdPartyVPNPeers200Response.md)
 
 ### Authorization
 
@@ -22890,7 +22890,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -22945,7 +22945,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationBrandingPolicies
 
-> []InlineResponse200108 GetOrganizationBrandingPolicies(ctx, organizationId).Execute()
+> []GetOrganizationBrandingPolicies200ResponseInner GetOrganizationBrandingPolicies(ctx, organizationId).Execute()
 
 List the branding policies of an organization
 
@@ -22960,7 +22960,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -22973,7 +22973,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationBrandingPolicies``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationBrandingPolicies`: []InlineResponse200108
+    // response from `GetOrganizationBrandingPolicies`: []GetOrganizationBrandingPolicies200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationBrandingPolicies`: %v\n", resp)
 }
 ```
@@ -22997,7 +22997,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200108**](InlineResponse200108.md)
+[**[]GetOrganizationBrandingPolicies200ResponseInner**](GetOrganizationBrandingPolicies200ResponseInner.md)
 
 ### Authorization
 
@@ -23015,7 +23015,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationBrandingPoliciesPriorities
 
-> InlineResponse200109 GetOrganizationBrandingPoliciesPriorities(ctx, organizationId).Execute()
+> GetOrganizationBrandingPoliciesPriorities200Response GetOrganizationBrandingPoliciesPriorities(ctx, organizationId).Execute()
 
 Return the branding policy IDs of an organization in priority order
 
@@ -23030,7 +23030,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -23043,7 +23043,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationBrandingPoliciesPriorities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationBrandingPoliciesPriorities`: InlineResponse200109
+    // response from `GetOrganizationBrandingPoliciesPriorities`: GetOrganizationBrandingPoliciesPriorities200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationBrandingPoliciesPriorities`: %v\n", resp)
 }
 ```
@@ -23067,7 +23067,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200109**](InlineResponse200109.md)
+[**GetOrganizationBrandingPoliciesPriorities200Response**](GetOrganizationBrandingPoliciesPriorities200Response.md)
 
 ### Authorization
 
@@ -23085,7 +23085,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationBrandingPolicy
 
-> InlineResponse200108 GetOrganizationBrandingPolicy(ctx, organizationId, brandingPolicyId).Execute()
+> GetOrganizationBrandingPolicies200ResponseInner GetOrganizationBrandingPolicy(ctx, organizationId, brandingPolicyId).Execute()
 
 Return a branding policy
 
@@ -23100,7 +23100,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -23114,7 +23114,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationBrandingPolicy``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationBrandingPolicy`: InlineResponse200108
+    // response from `GetOrganizationBrandingPolicy`: GetOrganizationBrandingPolicies200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationBrandingPolicy`: %v\n", resp)
 }
 ```
@@ -23140,7 +23140,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200108**](InlineResponse200108.md)
+[**GetOrganizationBrandingPolicies200ResponseInner**](GetOrganizationBrandingPolicies200ResponseInner.md)
 
 ### Authorization
 
@@ -23173,7 +23173,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -23246,7 +23246,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -23316,7 +23316,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -23390,7 +23390,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -23468,7 +23468,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -23526,7 +23526,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationConfigTemplateSwitchProfilePort
 
-> InlineResponse200114 GetOrganizationConfigTemplateSwitchProfilePort(ctx, organizationId, configTemplateId, profileId, portId).Execute()
+> GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner GetOrganizationConfigTemplateSwitchProfilePort(ctx, organizationId, configTemplateId, profileId, portId).Execute()
 
 Return a switch profile port
 
@@ -23541,7 +23541,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -23557,7 +23557,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationConfigTemplateSwitchProfilePort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationConfigTemplateSwitchProfilePort`: InlineResponse200114
+    // response from `GetOrganizationConfigTemplateSwitchProfilePort`: GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationConfigTemplateSwitchProfilePort`: %v\n", resp)
 }
 ```
@@ -23587,7 +23587,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200114**](InlineResponse200114.md)
+[**GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner**](GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner.md)
 
 ### Authorization
 
@@ -23605,7 +23605,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationConfigTemplateSwitchProfilePorts
 
-> []InlineResponse200114 GetOrganizationConfigTemplateSwitchProfilePorts(ctx, organizationId, configTemplateId, profileId).Execute()
+> []GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner GetOrganizationConfigTemplateSwitchProfilePorts(ctx, organizationId, configTemplateId, profileId).Execute()
 
 Return all the ports of a switch profile
 
@@ -23620,7 +23620,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -23635,7 +23635,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationConfigTemplateSwitchProfilePorts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationConfigTemplateSwitchProfilePorts`: []InlineResponse200114
+    // response from `GetOrganizationConfigTemplateSwitchProfilePorts`: []GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationConfigTemplateSwitchProfilePorts`: %v\n", resp)
 }
 ```
@@ -23663,7 +23663,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200114**](InlineResponse200114.md)
+[**[]GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner**](GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner.md)
 
 ### Authorization
 
@@ -23681,7 +23681,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationConfigTemplateSwitchProfiles
 
-> []InlineResponse200113 GetOrganizationConfigTemplateSwitchProfiles(ctx, organizationId, configTemplateId).Execute()
+> []GetOrganizationConfigTemplateSwitchProfiles200ResponseInner GetOrganizationConfigTemplateSwitchProfiles(ctx, organizationId, configTemplateId).Execute()
 
 List the switch profiles for your switch template configuration
 
@@ -23696,7 +23696,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -23710,7 +23710,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationConfigTemplateSwitchProfiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationConfigTemplateSwitchProfiles`: []InlineResponse200113
+    // response from `GetOrganizationConfigTemplateSwitchProfiles`: []GetOrganizationConfigTemplateSwitchProfiles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationConfigTemplateSwitchProfiles`: %v\n", resp)
 }
 ```
@@ -23736,7 +23736,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200113**](InlineResponse200113.md)
+[**[]GetOrganizationConfigTemplateSwitchProfiles200ResponseInner**](GetOrganizationConfigTemplateSwitchProfiles200ResponseInner.md)
 
 ### Authorization
 
@@ -23769,7 +23769,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -23824,7 +23824,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationDevices
 
-> []InlineResponse200115 GetOrganizationDevices(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).ConfigurationUpdatedAfter(configurationUpdatedAfter).NetworkIds(networkIds).ProductTypes(productTypes).Tags(tags).TagsFilterType(tagsFilterType).Name(name).Mac(mac).Serial(serial).Model(model).Macs(macs).Serials(serials).SensorMetrics(sensorMetrics).SensorAlertProfileIds(sensorAlertProfileIds).Models(models).Execute()
+> []GetOrganizationDevices200ResponseInner GetOrganizationDevices(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).ConfigurationUpdatedAfter(configurationUpdatedAfter).NetworkIds(networkIds).ProductTypes(productTypes).Tags(tags).TagsFilterType(tagsFilterType).Name(name).Mac(mac).Serial(serial).Model(model).Macs(macs).Serials(serials).SensorMetrics(sensorMetrics).SensorAlertProfileIds(sensorAlertProfileIds).Models(models).Execute()
 
 List the devices in an organization
 
@@ -23839,7 +23839,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -23869,7 +23869,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationDevices`: []InlineResponse200115
+    // response from `GetOrganizationDevices`: []GetOrganizationDevices200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationDevices`: %v\n", resp)
 }
 ```
@@ -23910,7 +23910,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200115**](InlineResponse200115.md)
+[**[]GetOrganizationDevices200ResponseInner**](GetOrganizationDevices200ResponseInner.md)
 
 ### Authorization
 
@@ -23928,7 +23928,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationEarlyAccessFeatures
 
-> []InlineResponse200123 GetOrganizationEarlyAccessFeatures(ctx, organizationId).Execute()
+> []GetOrganizationEarlyAccessFeatures200ResponseInner GetOrganizationEarlyAccessFeatures(ctx, organizationId).Execute()
 
 List the available early access features for organization
 
@@ -23943,7 +23943,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -23956,7 +23956,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationEarlyAccessFeatures``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationEarlyAccessFeatures`: []InlineResponse200123
+    // response from `GetOrganizationEarlyAccessFeatures`: []GetOrganizationEarlyAccessFeatures200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationEarlyAccessFeatures`: %v\n", resp)
 }
 ```
@@ -23980,7 +23980,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200123**](InlineResponse200123.md)
+[**[]GetOrganizationEarlyAccessFeatures200ResponseInner**](GetOrganizationEarlyAccessFeatures200ResponseInner.md)
 
 ### Authorization
 
@@ -24013,7 +24013,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -24086,7 +24086,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -24141,7 +24141,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationFirmwareUpgrades
 
-> []InlineResponse200124 GetOrganizationFirmwareUpgrades(ctx, organizationId).Status(status).ProductType(productType).Execute()
+> []GetOrganizationFirmwareUpgrades200ResponseInner GetOrganizationFirmwareUpgrades(ctx, organizationId).Status(status).ProductType(productType).Execute()
 
 Get firmware upgrade information for an organization
 
@@ -24156,7 +24156,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -24171,7 +24171,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationFirmwareUpgrades``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationFirmwareUpgrades`: []InlineResponse200124
+    // response from `GetOrganizationFirmwareUpgrades`: []GetOrganizationFirmwareUpgrades200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationFirmwareUpgrades`: %v\n", resp)
 }
 ```
@@ -24197,7 +24197,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200124**](InlineResponse200124.md)
+[**[]GetOrganizationFirmwareUpgrades200ResponseInner**](GetOrganizationFirmwareUpgrades200ResponseInner.md)
 
 ### Authorization
 
@@ -24215,7 +24215,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationFirmwareUpgradesByDevice
 
-> []InlineResponse200125 GetOrganizationFirmwareUpgradesByDevice(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Macs(macs).FirmwareUpgradeIds(firmwareUpgradeIds).FirmwareUpgradeBatchIds(firmwareUpgradeBatchIds).Execute()
+> []GetOrganizationFirmwareUpgradesByDevice200ResponseInner GetOrganizationFirmwareUpgradesByDevice(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Macs(macs).FirmwareUpgradeIds(firmwareUpgradeIds).FirmwareUpgradeBatchIds(firmwareUpgradeBatchIds).Execute()
 
 Get firmware upgrade status for the filtered devices
 
@@ -24230,7 +24230,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -24251,7 +24251,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationFirmwareUpgradesByDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationFirmwareUpgradesByDevice`: []InlineResponse200125
+    // response from `GetOrganizationFirmwareUpgradesByDevice`: []GetOrganizationFirmwareUpgradesByDevice200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationFirmwareUpgradesByDevice`: %v\n", resp)
 }
 ```
@@ -24283,7 +24283,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200125**](InlineResponse200125.md)
+[**[]GetOrganizationFirmwareUpgradesByDevice200ResponseInner**](GetOrganizationFirmwareUpgradesByDevice200ResponseInner.md)
 
 ### Authorization
 
@@ -24301,7 +24301,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationInsightApplications
 
-> []InlineResponse200126 GetOrganizationInsightApplications(ctx, organizationId).Execute()
+> []GetOrganizationInsightApplications200ResponseInner GetOrganizationInsightApplications(ctx, organizationId).Execute()
 
 List all Insight tracked applications
 
@@ -24316,7 +24316,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -24329,7 +24329,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationInsightApplications``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationInsightApplications`: []InlineResponse200126
+    // response from `GetOrganizationInsightApplications`: []GetOrganizationInsightApplications200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationInsightApplications`: %v\n", resp)
 }
 ```
@@ -24353,7 +24353,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200126**](InlineResponse200126.md)
+[**[]GetOrganizationInsightApplications200ResponseInner**](GetOrganizationInsightApplications200ResponseInner.md)
 
 ### Authorization
 
@@ -24386,7 +24386,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -24444,7 +24444,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationInsightMonitoredMediaServers
 
-> []InlineResponse200127 GetOrganizationInsightMonitoredMediaServers(ctx, organizationId).Execute()
+> []GetOrganizationInsightMonitoredMediaServers200ResponseInner GetOrganizationInsightMonitoredMediaServers(ctx, organizationId).Execute()
 
 List the monitored media servers for this organization
 
@@ -24459,7 +24459,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -24472,7 +24472,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationInsightMonitoredMediaServers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationInsightMonitoredMediaServers`: []InlineResponse200127
+    // response from `GetOrganizationInsightMonitoredMediaServers`: []GetOrganizationInsightMonitoredMediaServers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationInsightMonitoredMediaServers`: %v\n", resp)
 }
 ```
@@ -24496,7 +24496,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200127**](InlineResponse200127.md)
+[**[]GetOrganizationInsightMonitoredMediaServers200ResponseInner**](GetOrganizationInsightMonitoredMediaServers200ResponseInner.md)
 
 ### Authorization
 
@@ -24514,7 +24514,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationInventoryDevice
 
-> InlineResponse200128 GetOrganizationInventoryDevice(ctx, organizationId, serial).Execute()
+> GetOrganizationInventoryDevices200ResponseInner GetOrganizationInventoryDevice(ctx, organizationId, serial).Execute()
 
 Return a single device from the inventory of an organization
 
@@ -24529,7 +24529,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -24543,7 +24543,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationInventoryDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationInventoryDevice`: InlineResponse200128
+    // response from `GetOrganizationInventoryDevice`: GetOrganizationInventoryDevices200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationInventoryDevice`: %v\n", resp)
 }
 ```
@@ -24569,7 +24569,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200128**](InlineResponse200128.md)
+[**GetOrganizationInventoryDevices200ResponseInner**](GetOrganizationInventoryDevices200ResponseInner.md)
 
 ### Authorization
 
@@ -24587,7 +24587,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationInventoryDevices
 
-> []InlineResponse200128 GetOrganizationInventoryDevices(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).UsedState(usedState).Search(search).Macs(macs).NetworkIds(networkIds).Serials(serials).Models(models).OrderNumbers(orderNumbers).Tags(tags).TagsFilterType(tagsFilterType).ProductTypes(productTypes).Execute()
+> []GetOrganizationInventoryDevices200ResponseInner GetOrganizationInventoryDevices(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).UsedState(usedState).Search(search).Macs(macs).NetworkIds(networkIds).Serials(serials).Models(models).OrderNumbers(orderNumbers).Tags(tags).TagsFilterType(tagsFilterType).ProductTypes(productTypes).Execute()
 
 Return the device inventory for an organization
 
@@ -24602,7 +24602,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -24628,7 +24628,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationInventoryDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationInventoryDevices`: []InlineResponse200128
+    // response from `GetOrganizationInventoryDevices`: []GetOrganizationInventoryDevices200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationInventoryDevices`: %v\n", resp)
 }
 ```
@@ -24665,7 +24665,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200128**](InlineResponse200128.md)
+[**[]GetOrganizationInventoryDevices200ResponseInner**](GetOrganizationInventoryDevices200ResponseInner.md)
 
 ### Authorization
 
@@ -24683,7 +24683,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationInventoryOnboardingCloudMonitoringImports
 
-> []InlineResponse200129 GetOrganizationInventoryOnboardingCloudMonitoringImports(ctx, organizationId).ImportIds(importIds).Execute()
+> []GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner GetOrganizationInventoryOnboardingCloudMonitoringImports(ctx, organizationId).ImportIds(importIds).Execute()
 
 Check the status of a committed Import operation
 
@@ -24698,7 +24698,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -24712,7 +24712,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationInventoryOnboardingCloudMonitoringImports``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationInventoryOnboardingCloudMonitoringImports`: []InlineResponse200129
+    // response from `GetOrganizationInventoryOnboardingCloudMonitoringImports`: []GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationInventoryOnboardingCloudMonitoringImports`: %v\n", resp)
 }
 ```
@@ -24737,7 +24737,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200129**](InlineResponse200129.md)
+[**[]GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner**](GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner.md)
 
 ### Authorization
 
@@ -24755,7 +24755,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationInventoryOnboardingCloudMonitoringNetworks
 
-> []InlineResponse20012 GetOrganizationInventoryOnboardingCloudMonitoringNetworks(ctx, organizationId).DeviceType(deviceType).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetwork200Response GetOrganizationInventoryOnboardingCloudMonitoringNetworks(ctx, organizationId).DeviceType(deviceType).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 Returns list of networks eligible for adding cloud monitored device
 
@@ -24770,7 +24770,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -24787,7 +24787,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationInventoryOnboardingCloudMonitoringNetworks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationInventoryOnboardingCloudMonitoringNetworks`: []InlineResponse20012
+    // response from `GetOrganizationInventoryOnboardingCloudMonitoringNetworks`: []GetNetwork200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationInventoryOnboardingCloudMonitoringNetworks`: %v\n", resp)
 }
 ```
@@ -24815,7 +24815,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20012**](InlineResponse20012.md)
+[**[]GetNetwork200Response**](GetNetwork200Response.md)
 
 ### Authorization
 
@@ -24833,7 +24833,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationLicense
 
-> InlineResponse200130 GetOrganizationLicense(ctx, organizationId, licenseId).Execute()
+> GetOrganizationLicenses200ResponseInner GetOrganizationLicense(ctx, organizationId, licenseId).Execute()
 
 Display a license
 
@@ -24848,7 +24848,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -24862,7 +24862,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationLicense``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationLicense`: InlineResponse200130
+    // response from `GetOrganizationLicense`: GetOrganizationLicenses200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationLicense`: %v\n", resp)
 }
 ```
@@ -24888,7 +24888,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200130**](InlineResponse200130.md)
+[**GetOrganizationLicenses200ResponseInner**](GetOrganizationLicenses200ResponseInner.md)
 
 ### Authorization
 
@@ -24906,7 +24906,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationLicenses
 
-> []InlineResponse200130 GetOrganizationLicenses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).DeviceSerial(deviceSerial).NetworkId(networkId).State(state).Execute()
+> []GetOrganizationLicenses200ResponseInner GetOrganizationLicenses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).DeviceSerial(deviceSerial).NetworkId(networkId).State(state).Execute()
 
 List the licenses for an organization
 
@@ -24921,7 +24921,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -24940,7 +24940,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationLicenses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationLicenses`: []InlineResponse200130
+    // response from `GetOrganizationLicenses`: []GetOrganizationLicenses200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationLicenses`: %v\n", resp)
 }
 ```
@@ -24970,7 +24970,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200130**](InlineResponse200130.md)
+[**[]GetOrganizationLicenses200ResponseInner**](GetOrganizationLicenses200ResponseInner.md)
 
 ### Authorization
 
@@ -24988,7 +24988,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationLicensingCotermLicenses
 
-> []InlineResponse200134 GetOrganizationLicensingCotermLicenses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Invalidated(invalidated).Expired(expired).Execute()
+> []GetOrganizationLicensingCotermLicenses200ResponseInner GetOrganizationLicensingCotermLicenses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Invalidated(invalidated).Expired(expired).Execute()
 
 List the licenses in a coterm organization
 
@@ -25003,7 +25003,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -25021,7 +25021,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationLicensingCotermLicenses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationLicensingCotermLicenses`: []InlineResponse200134
+    // response from `GetOrganizationLicensingCotermLicenses`: []GetOrganizationLicensingCotermLicenses200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationLicensingCotermLicenses`: %v\n", resp)
 }
 ```
@@ -25050,7 +25050,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200134**](InlineResponse200134.md)
+[**[]GetOrganizationLicensingCotermLicenses200ResponseInner**](GetOrganizationLicensingCotermLicenses200ResponseInner.md)
 
 ### Authorization
 
@@ -25068,7 +25068,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationLoginSecurity
 
-> InlineResponse200136 GetOrganizationLoginSecurity(ctx, organizationId).Execute()
+> GetOrganizationLoginSecurity200Response GetOrganizationLoginSecurity(ctx, organizationId).Execute()
 
 Returns the login security settings for an organization.
 
@@ -25083,7 +25083,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -25096,7 +25096,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationLoginSecurity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationLoginSecurity`: InlineResponse200136
+    // response from `GetOrganizationLoginSecurity`: GetOrganizationLoginSecurity200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationLoginSecurity`: %v\n", resp)
 }
 ```
@@ -25120,7 +25120,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200136**](InlineResponse200136.md)
+[**GetOrganizationLoginSecurity200Response**](GetOrganizationLoginSecurity200Response.md)
 
 ### Authorization
 
@@ -25138,7 +25138,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationNetworks
 
-> []InlineResponse20012 GetOrganizationNetworks(ctx, organizationId).ConfigTemplateId(configTemplateId).IsBoundToConfigTemplate(isBoundToConfigTemplate).Tags(tags).TagsFilterType(tagsFilterType).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetwork200Response GetOrganizationNetworks(ctx, organizationId).ConfigTemplateId(configTemplateId).IsBoundToConfigTemplate(isBoundToConfigTemplate).Tags(tags).TagsFilterType(tagsFilterType).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 List the networks that the user has privileges on in an organization
 
@@ -25153,7 +25153,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -25173,7 +25173,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationNetworks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationNetworks`: []InlineResponse20012
+    // response from `GetOrganizationNetworks`: []GetNetwork200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationNetworks`: %v\n", resp)
 }
 ```
@@ -25204,7 +25204,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20012**](InlineResponse20012.md)
+[**[]GetNetwork200Response**](GetNetwork200Response.md)
 
 ### Authorization
 
@@ -25237,7 +25237,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -25310,7 +25310,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -25386,7 +25386,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -25459,7 +25459,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -25520,7 +25520,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationSaml
 
-> InlineResponse200138 GetOrganizationSaml(ctx, organizationId).Execute()
+> GetOrganizationSaml200Response GetOrganizationSaml(ctx, organizationId).Execute()
 
 Returns the SAML SSO enabled settings for an organization.
 
@@ -25535,7 +25535,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -25548,7 +25548,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationSaml``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSaml`: InlineResponse200138
+    // response from `GetOrganizationSaml`: GetOrganizationSaml200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationSaml`: %v\n", resp)
 }
 ```
@@ -25572,7 +25572,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200138**](InlineResponse200138.md)
+[**GetOrganizationSaml200Response**](GetOrganizationSaml200Response.md)
 
 ### Authorization
 
@@ -25590,7 +25590,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationSamlIdp
 
-> InlineResponse200139 GetOrganizationSamlIdp(ctx, organizationId, idpId).Execute()
+> GetOrganizationSamlIdps200ResponseInner GetOrganizationSamlIdp(ctx, organizationId, idpId).Execute()
 
 Get a SAML IdP from your organization.
 
@@ -25605,7 +25605,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -25619,7 +25619,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationSamlIdp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSamlIdp`: InlineResponse200139
+    // response from `GetOrganizationSamlIdp`: GetOrganizationSamlIdps200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationSamlIdp`: %v\n", resp)
 }
 ```
@@ -25645,7 +25645,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200139**](InlineResponse200139.md)
+[**GetOrganizationSamlIdps200ResponseInner**](GetOrganizationSamlIdps200ResponseInner.md)
 
 ### Authorization
 
@@ -25663,7 +25663,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationSamlIdps
 
-> []InlineResponse200139 GetOrganizationSamlIdps(ctx, organizationId).Execute()
+> []GetOrganizationSamlIdps200ResponseInner GetOrganizationSamlIdps(ctx, organizationId).Execute()
 
 List the SAML IdPs in your organization.
 
@@ -25678,7 +25678,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -25691,7 +25691,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationSamlIdps``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSamlIdps`: []InlineResponse200139
+    // response from `GetOrganizationSamlIdps`: []GetOrganizationSamlIdps200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationSamlIdps`: %v\n", resp)
 }
 ```
@@ -25715,7 +25715,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200139**](InlineResponse200139.md)
+[**[]GetOrganizationSamlIdps200ResponseInner**](GetOrganizationSamlIdps200ResponseInner.md)
 
 ### Authorization
 
@@ -25733,7 +25733,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationSamlRole
 
-> InlineResponse200140 GetOrganizationSamlRole(ctx, organizationId, samlRoleId).Execute()
+> GetOrganizationSamlRoles200ResponseInner GetOrganizationSamlRole(ctx, organizationId, samlRoleId).Execute()
 
 Return a SAML role
 
@@ -25748,7 +25748,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -25762,7 +25762,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationSamlRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSamlRole`: InlineResponse200140
+    // response from `GetOrganizationSamlRole`: GetOrganizationSamlRoles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationSamlRole`: %v\n", resp)
 }
 ```
@@ -25788,7 +25788,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200140**](InlineResponse200140.md)
+[**GetOrganizationSamlRoles200ResponseInner**](GetOrganizationSamlRoles200ResponseInner.md)
 
 ### Authorization
 
@@ -25806,7 +25806,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationSamlRoles
 
-> []InlineResponse200140 GetOrganizationSamlRoles(ctx, organizationId).Execute()
+> []GetOrganizationSamlRoles200ResponseInner GetOrganizationSamlRoles(ctx, organizationId).Execute()
 
 List the SAML roles for this organization
 
@@ -25821,7 +25821,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -25834,7 +25834,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationSamlRoles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSamlRoles`: []InlineResponse200140
+    // response from `GetOrganizationSamlRoles`: []GetOrganizationSamlRoles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationSamlRoles`: %v\n", resp)
 }
 ```
@@ -25858,7 +25858,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200140**](InlineResponse200140.md)
+[**[]GetOrganizationSamlRoles200ResponseInner**](GetOrganizationSamlRoles200ResponseInner.md)
 
 ### Authorization
 
@@ -25876,7 +25876,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationSmApnsCert
 
-> InlineResponse200143 GetOrganizationSmApnsCert(ctx, organizationId).Execute()
+> GetOrganizationSmApnsCert200Response GetOrganizationSmApnsCert(ctx, organizationId).Execute()
 
 Get the organization's APNS certificate
 
@@ -25891,7 +25891,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -25904,7 +25904,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationSmApnsCert``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSmApnsCert`: InlineResponse200143
+    // response from `GetOrganizationSmApnsCert`: GetOrganizationSmApnsCert200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationSmApnsCert`: %v\n", resp)
 }
 ```
@@ -25928,7 +25928,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200143**](InlineResponse200143.md)
+[**GetOrganizationSmApnsCert200Response**](GetOrganizationSmApnsCert200Response.md)
 
 ### Authorization
 
@@ -25946,7 +25946,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationSmVppAccount
 
-> InlineResponse200144 GetOrganizationSmVppAccount(ctx, organizationId, vppAccountId).Execute()
+> GetOrganizationSmVppAccounts200ResponseInner GetOrganizationSmVppAccount(ctx, organizationId, vppAccountId).Execute()
 
 Get a hash containing the unparsed token of the VPP account with the given ID
 
@@ -25961,7 +25961,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -25975,7 +25975,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationSmVppAccount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSmVppAccount`: InlineResponse200144
+    // response from `GetOrganizationSmVppAccount`: GetOrganizationSmVppAccounts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationSmVppAccount`: %v\n", resp)
 }
 ```
@@ -26001,7 +26001,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200144**](InlineResponse200144.md)
+[**GetOrganizationSmVppAccounts200ResponseInner**](GetOrganizationSmVppAccounts200ResponseInner.md)
 
 ### Authorization
 
@@ -26019,7 +26019,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationSmVppAccounts
 
-> []InlineResponse200144 GetOrganizationSmVppAccounts(ctx, organizationId).Execute()
+> []GetOrganizationSmVppAccounts200ResponseInner GetOrganizationSmVppAccounts(ctx, organizationId).Execute()
 
 List the VPP accounts in the organization
 
@@ -26034,7 +26034,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -26047,7 +26047,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationSmVppAccounts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSmVppAccounts`: []InlineResponse200144
+    // response from `GetOrganizationSmVppAccounts`: []GetOrganizationSmVppAccounts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationSmVppAccounts`: %v\n", resp)
 }
 ```
@@ -26071,7 +26071,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200144**](InlineResponse200144.md)
+[**[]GetOrganizationSmVppAccounts200ResponseInner**](GetOrganizationSmVppAccounts200ResponseInner.md)
 
 ### Authorization
 
@@ -26104,7 +26104,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -26159,7 +26159,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationSwitchPortsBySwitch
 
-> []InlineResponse200152 GetOrganizationSwitchPortsBySwitch(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).PortProfileIds(portProfileIds).Name(name).Mac(mac).Macs(macs).Serial(serial).Serials(serials).ConfigurationUpdatedAfter(configurationUpdatedAfter).Execute()
+> []GetOrganizationSwitchPortsBySwitch200ResponseInner GetOrganizationSwitchPortsBySwitch(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).PortProfileIds(portProfileIds).Name(name).Mac(mac).Macs(macs).Serial(serial).Serials(serials).ConfigurationUpdatedAfter(configurationUpdatedAfter).Execute()
 
 List the switchports in an organization by switch
 
@@ -26174,7 +26174,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -26198,7 +26198,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationSwitchPortsBySwitch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSwitchPortsBySwitch`: []InlineResponse200152
+    // response from `GetOrganizationSwitchPortsBySwitch`: []GetOrganizationSwitchPortsBySwitch200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizationSwitchPortsBySwitch`: %v\n", resp)
 }
 ```
@@ -26233,7 +26233,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200152**](InlineResponse200152.md)
+[**[]GetOrganizationSwitchPortsBySwitch200ResponseInner**](GetOrganizationSwitchPortsBySwitch200ResponseInner.md)
 
 ### Authorization
 
@@ -26251,7 +26251,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizations
 
-> []InlineResponse20099 GetOrganizations(ctx).Execute()
+> []GetOrganizations200ResponseInner GetOrganizations(ctx).Execute()
 
 List the organizations that the user has privileges on
 
@@ -26266,7 +26266,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -26278,7 +26278,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizations`: []InlineResponse20099
+    // response from `GetOrganizations`: []GetOrganizations200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetOrganizations`: %v\n", resp)
 }
 ```
@@ -26294,7 +26294,7 @@ Other parameters are passed through a pointer to a apiGetOrganizationsRequest st
 
 ### Return type
 
-[**[]InlineResponse20099**](InlineResponse20099.md)
+[**[]GetOrganizations200ResponseInner**](GetOrganizations200ResponseInner.md)
 
 ### Authorization
 
@@ -26312,7 +26312,7 @@ Other parameters are passed through a pointer to a apiGetOrganizationsRequest st
 
 ## LockNetworkSmDevices
 
-> InlineResponse20046 LockNetworkSmDevices(ctx, networkId).LockNetworkSmDevices(lockNetworkSmDevices).Execute()
+> CheckinNetworkSmDevices200Response LockNetworkSmDevices(ctx, networkId).LockNetworkSmDevicesRequest(lockNetworkSmDevicesRequest).Execute()
 
 Lock a set of devices
 
@@ -26327,21 +26327,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    lockNetworkSmDevices := *openapiclient.NewInlineObject105() // InlineObject105 |  (optional)
+    lockNetworkSmDevicesRequest := *openapiclient.NewLockNetworkSmDevicesRequest() // LockNetworkSmDevicesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.LockNetworkSmDevices(context.Background(), networkId).LockNetworkSmDevices(lockNetworkSmDevices).Execute()
+    resp, r, err := apiClient.ConfigureApi.LockNetworkSmDevices(context.Background(), networkId).LockNetworkSmDevicesRequest(lockNetworkSmDevicesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.LockNetworkSmDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `LockNetworkSmDevices`: InlineResponse20046
+    // response from `LockNetworkSmDevices`: CheckinNetworkSmDevices200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.LockNetworkSmDevices`: %v\n", resp)
 }
 ```
@@ -26362,11 +26362,11 @@ Other parameters are passed through a pointer to a apiLockNetworkSmDevicesReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **lockNetworkSmDevices** | [**InlineObject105**](InlineObject105.md) |  | 
+ **lockNetworkSmDevicesRequest** | [**LockNetworkSmDevicesRequest**](LockNetworkSmDevicesRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20046**](InlineResponse20046.md)
+[**CheckinNetworkSmDevices200Response**](CheckinNetworkSmDevices200Response.md)
 
 ### Authorization
 
@@ -26384,7 +26384,7 @@ Name | Type | Description  | Notes
 
 ## ModifyNetworkSmDevicesTags
 
-> []InlineResponse20048 ModifyNetworkSmDevicesTags(ctx, networkId).ModifyNetworkSmDevicesTags(modifyNetworkSmDevicesTags).Execute()
+> []ModifyNetworkSmDevicesTags200ResponseInner ModifyNetworkSmDevicesTags(ctx, networkId).ModifyNetworkSmDevicesTagsRequest(modifyNetworkSmDevicesTagsRequest).Execute()
 
 Add, delete, or update the tags of a set of devices
 
@@ -26399,21 +26399,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    modifyNetworkSmDevicesTags := *openapiclient.NewInlineObject106([]string{"Tags_example"}, "UpdateAction_example") // InlineObject106 | 
+    modifyNetworkSmDevicesTagsRequest := *openapiclient.NewModifyNetworkSmDevicesTagsRequest([]string{"Tags_example"}, "UpdateAction_example") // ModifyNetworkSmDevicesTagsRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.ModifyNetworkSmDevicesTags(context.Background(), networkId).ModifyNetworkSmDevicesTags(modifyNetworkSmDevicesTags).Execute()
+    resp, r, err := apiClient.ConfigureApi.ModifyNetworkSmDevicesTags(context.Background(), networkId).ModifyNetworkSmDevicesTagsRequest(modifyNetworkSmDevicesTagsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.ModifyNetworkSmDevicesTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ModifyNetworkSmDevicesTags`: []InlineResponse20048
+    // response from `ModifyNetworkSmDevicesTags`: []ModifyNetworkSmDevicesTags200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.ModifyNetworkSmDevicesTags`: %v\n", resp)
 }
 ```
@@ -26434,11 +26434,11 @@ Other parameters are passed through a pointer to a apiModifyNetworkSmDevicesTags
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **modifyNetworkSmDevicesTags** | [**InlineObject106**](InlineObject106.md) |  | 
+ **modifyNetworkSmDevicesTagsRequest** | [**ModifyNetworkSmDevicesTagsRequest**](ModifyNetworkSmDevicesTagsRequest.md) |  | 
 
 ### Return type
 
-[**[]InlineResponse20048**](InlineResponse20048.md)
+[**[]ModifyNetworkSmDevicesTags200ResponseInner**](ModifyNetworkSmDevicesTags200ResponseInner.md)
 
 ### Authorization
 
@@ -26456,7 +26456,7 @@ Name | Type | Description  | Notes
 
 ## MoveNetworkSmDevices
 
-> InlineResponse20049 MoveNetworkSmDevices(ctx, networkId).MoveNetworkSmDevices(moveNetworkSmDevices).Execute()
+> MoveNetworkSmDevices200Response MoveNetworkSmDevices(ctx, networkId).MoveNetworkSmDevicesRequest(moveNetworkSmDevicesRequest).Execute()
 
 Move a set of devices to a new network
 
@@ -26471,21 +26471,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    moveNetworkSmDevices := *openapiclient.NewInlineObject107("NewNetwork_example") // InlineObject107 | 
+    moveNetworkSmDevicesRequest := *openapiclient.NewMoveNetworkSmDevicesRequest("NewNetwork_example") // MoveNetworkSmDevicesRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.MoveNetworkSmDevices(context.Background(), networkId).MoveNetworkSmDevices(moveNetworkSmDevices).Execute()
+    resp, r, err := apiClient.ConfigureApi.MoveNetworkSmDevices(context.Background(), networkId).MoveNetworkSmDevicesRequest(moveNetworkSmDevicesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.MoveNetworkSmDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `MoveNetworkSmDevices`: InlineResponse20049
+    // response from `MoveNetworkSmDevices`: MoveNetworkSmDevices200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.MoveNetworkSmDevices`: %v\n", resp)
 }
 ```
@@ -26506,11 +26506,11 @@ Other parameters are passed through a pointer to a apiMoveNetworkSmDevicesReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **moveNetworkSmDevices** | [**InlineObject107**](InlineObject107.md) |  | 
+ **moveNetworkSmDevicesRequest** | [**MoveNetworkSmDevicesRequest**](MoveNetworkSmDevicesRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20049**](InlineResponse20049.md)
+[**MoveNetworkSmDevices200Response**](MoveNetworkSmDevices200Response.md)
 
 ### Authorization
 
@@ -26528,7 +26528,7 @@ Name | Type | Description  | Notes
 
 ## MoveOrganizationLicenses
 
-> InlineResponse200132 MoveOrganizationLicenses(ctx, organizationId).MoveOrganizationLicenses(moveOrganizationLicenses).Execute()
+> MoveOrganizationLicenses200Response MoveOrganizationLicenses(ctx, organizationId).MoveOrganizationLicensesRequest(moveOrganizationLicensesRequest).Execute()
 
 Move licenses to another organization
 
@@ -26543,21 +26543,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    moveOrganizationLicenses := *openapiclient.NewInlineObject208("DestOrganizationId_example", []string{"LicenseIds_example"}) // InlineObject208 | 
+    moveOrganizationLicensesRequest := *openapiclient.NewMoveOrganizationLicensesRequest("DestOrganizationId_example", []string{"LicenseIds_example"}) // MoveOrganizationLicensesRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.MoveOrganizationLicenses(context.Background(), organizationId).MoveOrganizationLicenses(moveOrganizationLicenses).Execute()
+    resp, r, err := apiClient.ConfigureApi.MoveOrganizationLicenses(context.Background(), organizationId).MoveOrganizationLicensesRequest(moveOrganizationLicensesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.MoveOrganizationLicenses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `MoveOrganizationLicenses`: InlineResponse200132
+    // response from `MoveOrganizationLicenses`: MoveOrganizationLicenses200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.MoveOrganizationLicenses`: %v\n", resp)
 }
 ```
@@ -26578,11 +26578,11 @@ Other parameters are passed through a pointer to a apiMoveOrganizationLicensesRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **moveOrganizationLicenses** | [**InlineObject208**](InlineObject208.md) |  | 
+ **moveOrganizationLicensesRequest** | [**MoveOrganizationLicensesRequest**](MoveOrganizationLicensesRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200132**](InlineResponse200132.md)
+[**MoveOrganizationLicenses200Response**](MoveOrganizationLicenses200Response.md)
 
 ### Authorization
 
@@ -26600,7 +26600,7 @@ Name | Type | Description  | Notes
 
 ## MoveOrganizationLicensesSeats
 
-> InlineResponse200133 MoveOrganizationLicensesSeats(ctx, organizationId).MoveOrganizationLicensesSeats(moveOrganizationLicensesSeats).Execute()
+> MoveOrganizationLicensesSeats200Response MoveOrganizationLicensesSeats(ctx, organizationId).MoveOrganizationLicensesSeatsRequest(moveOrganizationLicensesSeatsRequest).Execute()
 
 Move SM seats to another organization
 
@@ -26615,21 +26615,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    moveOrganizationLicensesSeats := *openapiclient.NewInlineObject209("DestOrganizationId_example", "LicenseId_example", int32(123)) // InlineObject209 | 
+    moveOrganizationLicensesSeatsRequest := *openapiclient.NewMoveOrganizationLicensesSeatsRequest("DestOrganizationId_example", "LicenseId_example", int32(123)) // MoveOrganizationLicensesSeatsRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.MoveOrganizationLicensesSeats(context.Background(), organizationId).MoveOrganizationLicensesSeats(moveOrganizationLicensesSeats).Execute()
+    resp, r, err := apiClient.ConfigureApi.MoveOrganizationLicensesSeats(context.Background(), organizationId).MoveOrganizationLicensesSeatsRequest(moveOrganizationLicensesSeatsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.MoveOrganizationLicensesSeats``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `MoveOrganizationLicensesSeats`: InlineResponse200133
+    // response from `MoveOrganizationLicensesSeats`: MoveOrganizationLicensesSeats200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.MoveOrganizationLicensesSeats`: %v\n", resp)
 }
 ```
@@ -26650,11 +26650,11 @@ Other parameters are passed through a pointer to a apiMoveOrganizationLicensesSe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **moveOrganizationLicensesSeats** | [**InlineObject209**](InlineObject209.md) |  | 
+ **moveOrganizationLicensesSeatsRequest** | [**MoveOrganizationLicensesSeatsRequest**](MoveOrganizationLicensesSeatsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200133**](InlineResponse200133.md)
+[**MoveOrganizationLicensesSeats200Response**](MoveOrganizationLicensesSeats200Response.md)
 
 ### Authorization
 
@@ -26672,7 +26672,7 @@ Name | Type | Description  | Notes
 
 ## MoveOrganizationLicensingCotermLicenses
 
-> InlineResponse200135 MoveOrganizationLicensingCotermLicenses(ctx, organizationId).MoveOrganizationLicensingCotermLicenses(moveOrganizationLicensingCotermLicenses).Execute()
+> MoveOrganizationLicensingCotermLicenses200Response MoveOrganizationLicensingCotermLicenses(ctx, organizationId).MoveOrganizationLicensingCotermLicensesRequest(moveOrganizationLicensingCotermLicensesRequest).Execute()
 
 Moves a license to a different organization (coterm only)
 
@@ -26687,21 +26687,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    moveOrganizationLicensingCotermLicenses := *openapiclient.NewInlineObject212(*openapiclient.NewOrganizationsOrganizationIdLicensingCotermLicensesMoveDestination(), []openapiclient.OrganizationsOrganizationIdLicensingCotermLicensesMoveLicenses{*openapiclient.NewOrganizationsOrganizationIdLicensingCotermLicensesMoveLicenses("Key_example", []openapiclient.OrganizationsOrganizationIdLicensingCotermLicensesMoveCounts{*openapiclient.NewOrganizationsOrganizationIdLicensingCotermLicensesMoveCounts("Model_example", int32(123))})}) // InlineObject212 | 
+    moveOrganizationLicensingCotermLicensesRequest := *openapiclient.NewMoveOrganizationLicensingCotermLicensesRequest(*openapiclient.NewMoveOrganizationLicensingCotermLicensesRequestDestination(), []openapiclient.MoveOrganizationLicensingCotermLicensesRequestLicensesInner{*openapiclient.NewMoveOrganizationLicensingCotermLicensesRequestLicensesInner("Key_example", []openapiclient.MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner{*openapiclient.NewMoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner("Model_example", int32(123))})}) // MoveOrganizationLicensingCotermLicensesRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.MoveOrganizationLicensingCotermLicenses(context.Background(), organizationId).MoveOrganizationLicensingCotermLicenses(moveOrganizationLicensingCotermLicenses).Execute()
+    resp, r, err := apiClient.ConfigureApi.MoveOrganizationLicensingCotermLicenses(context.Background(), organizationId).MoveOrganizationLicensingCotermLicensesRequest(moveOrganizationLicensingCotermLicensesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.MoveOrganizationLicensingCotermLicenses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `MoveOrganizationLicensingCotermLicenses`: InlineResponse200135
+    // response from `MoveOrganizationLicensingCotermLicenses`: MoveOrganizationLicensingCotermLicenses200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.MoveOrganizationLicensingCotermLicenses`: %v\n", resp)
 }
 ```
@@ -26722,11 +26722,11 @@ Other parameters are passed through a pointer to a apiMoveOrganizationLicensingC
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **moveOrganizationLicensingCotermLicenses** | [**InlineObject212**](InlineObject212.md) |  | 
+ **moveOrganizationLicensingCotermLicensesRequest** | [**MoveOrganizationLicensingCotermLicensesRequest**](MoveOrganizationLicensingCotermLicensesRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200135**](InlineResponse200135.md)
+[**MoveOrganizationLicensingCotermLicenses200Response**](MoveOrganizationLicensingCotermLicenses200Response.md)
 
 ### Authorization
 
@@ -26744,7 +26744,7 @@ Name | Type | Description  | Notes
 
 ## ProvisionNetworkClients
 
-> map[string]interface{} ProvisionNetworkClients(ctx, networkId).ProvisionNetworkClients(provisionNetworkClients).Execute()
+> map[string]interface{} ProvisionNetworkClients(ctx, networkId).ProvisionNetworkClientsRequest(provisionNetworkClientsRequest).Execute()
 
 Provisions a client with a name and policy
 
@@ -26759,16 +26759,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    provisionNetworkClients := *openapiclient.NewInlineObject74([]openapiclient.NetworksNetworkIdClientsProvisionClients{*openapiclient.NewNetworksNetworkIdClientsProvisionClients("Mac_example")}, "DevicePolicy_example") // InlineObject74 | 
+    provisionNetworkClientsRequest := *openapiclient.NewProvisionNetworkClientsRequest([]openapiclient.ProvisionNetworkClientsRequestClientsInner{*openapiclient.NewProvisionNetworkClientsRequestClientsInner("Mac_example")}, "DevicePolicy_example") // ProvisionNetworkClientsRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.ProvisionNetworkClients(context.Background(), networkId).ProvisionNetworkClients(provisionNetworkClients).Execute()
+    resp, r, err := apiClient.ConfigureApi.ProvisionNetworkClients(context.Background(), networkId).ProvisionNetworkClientsRequest(provisionNetworkClientsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.ProvisionNetworkClients``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -26794,7 +26794,7 @@ Other parameters are passed through a pointer to a apiProvisionNetworkClientsReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **provisionNetworkClients** | [**InlineObject74**](InlineObject74.md) |  | 
+ **provisionNetworkClientsRequest** | [**ProvisionNetworkClientsRequest**](ProvisionNetworkClientsRequest.md) |  | 
 
 ### Return type
 
@@ -26831,7 +26831,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -26887,7 +26887,7 @@ Name | Type | Description  | Notes
 
 ## ReleaseFromOrganizationInventory
 
-> map[string]interface{} ReleaseFromOrganizationInventory(ctx, organizationId).ReleaseFromOrganizationInventory(releaseFromOrganizationInventory).Execute()
+> map[string]interface{} ReleaseFromOrganizationInventory(ctx, organizationId).ReleaseFromOrganizationInventoryRequest(releaseFromOrganizationInventoryRequest).Execute()
 
 Release a list of claimed devices from an organization.
 
@@ -26902,16 +26902,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    releaseFromOrganizationInventory := *openapiclient.NewInlineObject206() // InlineObject206 |  (optional)
+    releaseFromOrganizationInventoryRequest := *openapiclient.NewReleaseFromOrganizationInventoryRequest() // ReleaseFromOrganizationInventoryRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.ReleaseFromOrganizationInventory(context.Background(), organizationId).ReleaseFromOrganizationInventory(releaseFromOrganizationInventory).Execute()
+    resp, r, err := apiClient.ConfigureApi.ReleaseFromOrganizationInventory(context.Background(), organizationId).ReleaseFromOrganizationInventoryRequest(releaseFromOrganizationInventoryRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.ReleaseFromOrganizationInventory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -26937,7 +26937,7 @@ Other parameters are passed through a pointer to a apiReleaseFromOrganizationInv
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **releaseFromOrganizationInventory** | [**InlineObject206**](InlineObject206.md) |  | 
+ **releaseFromOrganizationInventoryRequest** | [**ReleaseFromOrganizationInventoryRequest**](ReleaseFromOrganizationInventoryRequest.md) |  | 
 
 ### Return type
 
@@ -26959,7 +26959,7 @@ Name | Type | Description  | Notes
 
 ## RemoveNetworkDevices
 
-> RemoveNetworkDevices(ctx, networkId).RemoveNetworkDevices(removeNetworkDevices).Execute()
+> RemoveNetworkDevices(ctx, networkId).RemoveNetworkDevicesRequest(removeNetworkDevicesRequest).Execute()
 
 Remove a single device
 
@@ -26974,16 +26974,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    removeNetworkDevices := *openapiclient.NewInlineObject79("Serial_example") // InlineObject79 | 
+    removeNetworkDevicesRequest := *openapiclient.NewRemoveNetworkDevicesRequest("Serial_example") // RemoveNetworkDevicesRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.RemoveNetworkDevices(context.Background(), networkId).RemoveNetworkDevices(removeNetworkDevices).Execute()
+    resp, r, err := apiClient.ConfigureApi.RemoveNetworkDevices(context.Background(), networkId).RemoveNetworkDevicesRequest(removeNetworkDevicesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.RemoveNetworkDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -27007,7 +27007,7 @@ Other parameters are passed through a pointer to a apiRemoveNetworkDevicesReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **removeNetworkDevices** | [**InlineObject79**](InlineObject79.md) |  | 
+ **removeNetworkDevicesRequest** | [**RemoveNetworkDevicesRequest**](RemoveNetworkDevicesRequest.md) |  | 
 
 ### Return type
 
@@ -27029,7 +27029,7 @@ Name | Type | Description  | Notes
 
 ## RemoveNetworkSwitchStack
 
-> map[string]interface{} RemoveNetworkSwitchStack(ctx, networkId, switchStackId).RemoveNetworkSwitchStack(removeNetworkSwitchStack).Execute()
+> map[string]interface{} RemoveNetworkSwitchStack(ctx, networkId, switchStackId).RemoveNetworkSwitchStackRequest(removeNetworkSwitchStackRequest).Execute()
 
 Remove a switch from a stack
 
@@ -27044,17 +27044,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     switchStackId := "switchStackId_example" // string | Switch stack ID
-    removeNetworkSwitchStack := *openapiclient.NewInlineObject135("Serial_example") // InlineObject135 | 
+    removeNetworkSwitchStackRequest := *openapiclient.NewRemoveNetworkSwitchStackRequest("Serial_example") // RemoveNetworkSwitchStackRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.RemoveNetworkSwitchStack(context.Background(), networkId, switchStackId).RemoveNetworkSwitchStack(removeNetworkSwitchStack).Execute()
+    resp, r, err := apiClient.ConfigureApi.RemoveNetworkSwitchStack(context.Background(), networkId, switchStackId).RemoveNetworkSwitchStackRequest(removeNetworkSwitchStackRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.RemoveNetworkSwitchStack``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -27082,7 +27082,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **removeNetworkSwitchStack** | [**InlineObject135**](InlineObject135.md) |  | 
+ **removeNetworkSwitchStackRequest** | [**RemoveNetworkSwitchStackRequest**](RemoveNetworkSwitchStackRequest.md) |  | 
 
 ### Return type
 
@@ -27104,7 +27104,7 @@ Name | Type | Description  | Notes
 
 ## RenewOrganizationLicensesSeats
 
-> InlineResponse200131 RenewOrganizationLicensesSeats(ctx, organizationId).RenewOrganizationLicensesSeats(renewOrganizationLicensesSeats).Execute()
+> AssignOrganizationLicensesSeats200Response RenewOrganizationLicensesSeats(ctx, organizationId).RenewOrganizationLicensesSeatsRequest(renewOrganizationLicensesSeatsRequest).Execute()
 
 Renew SM seats of a license
 
@@ -27119,21 +27119,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    renewOrganizationLicensesSeats := *openapiclient.NewInlineObject210("LicenseIdToRenew_example", "UnusedLicenseId_example") // InlineObject210 | 
+    renewOrganizationLicensesSeatsRequest := *openapiclient.NewRenewOrganizationLicensesSeatsRequest("LicenseIdToRenew_example", "UnusedLicenseId_example") // RenewOrganizationLicensesSeatsRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.RenewOrganizationLicensesSeats(context.Background(), organizationId).RenewOrganizationLicensesSeats(renewOrganizationLicensesSeats).Execute()
+    resp, r, err := apiClient.ConfigureApi.RenewOrganizationLicensesSeats(context.Background(), organizationId).RenewOrganizationLicensesSeatsRequest(renewOrganizationLicensesSeatsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.RenewOrganizationLicensesSeats``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `RenewOrganizationLicensesSeats`: InlineResponse200131
+    // response from `RenewOrganizationLicensesSeats`: AssignOrganizationLicensesSeats200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.RenewOrganizationLicensesSeats`: %v\n", resp)
 }
 ```
@@ -27154,11 +27154,11 @@ Other parameters are passed through a pointer to a apiRenewOrganizationLicensesS
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **renewOrganizationLicensesSeats** | [**InlineObject210**](InlineObject210.md) |  | 
+ **renewOrganizationLicensesSeatsRequest** | [**RenewOrganizationLicensesSeatsRequest**](RenewOrganizationLicensesSeatsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200131**](InlineResponse200131.md)
+[**AssignOrganizationLicensesSeats200Response**](AssignOrganizationLicensesSeats200Response.md)
 
 ### Authorization
 
@@ -27176,7 +27176,7 @@ Name | Type | Description  | Notes
 
 ## RollbacksNetworkFirmwareUpgradesStagedEvents
 
-> InlineResponse20032 RollbacksNetworkFirmwareUpgradesStagedEvents(ctx, networkId).RollbacksNetworkFirmwareUpgradesStagedEvents(rollbacksNetworkFirmwareUpgradesStagedEvents).Execute()
+> GetNetworkFirmwareUpgradesStagedEvents200Response RollbacksNetworkFirmwareUpgradesStagedEvents(ctx, networkId).RollbacksNetworkFirmwareUpgradesStagedEventsRequest(rollbacksNetworkFirmwareUpgradesStagedEventsRequest).Execute()
 
 Rollback a Staged Upgrade Event for a network
 
@@ -27191,21 +27191,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    rollbacksNetworkFirmwareUpgradesStagedEvents := *openapiclient.NewInlineObject84([]openapiclient.NetworksNetworkIdFirmwareUpgradesStagedEventsStages{*openapiclient.NewNetworksNetworkIdFirmwareUpgradesStagedEventsStages()}) // InlineObject84 | 
+    rollbacksNetworkFirmwareUpgradesStagedEventsRequest := *openapiclient.NewRollbacksNetworkFirmwareUpgradesStagedEventsRequest([]openapiclient.UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner{*openapiclient.NewUpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner()}) // RollbacksNetworkFirmwareUpgradesStagedEventsRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.RollbacksNetworkFirmwareUpgradesStagedEvents(context.Background(), networkId).RollbacksNetworkFirmwareUpgradesStagedEvents(rollbacksNetworkFirmwareUpgradesStagedEvents).Execute()
+    resp, r, err := apiClient.ConfigureApi.RollbacksNetworkFirmwareUpgradesStagedEvents(context.Background(), networkId).RollbacksNetworkFirmwareUpgradesStagedEventsRequest(rollbacksNetworkFirmwareUpgradesStagedEventsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.RollbacksNetworkFirmwareUpgradesStagedEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `RollbacksNetworkFirmwareUpgradesStagedEvents`: InlineResponse20032
+    // response from `RollbacksNetworkFirmwareUpgradesStagedEvents`: GetNetworkFirmwareUpgradesStagedEvents200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.RollbacksNetworkFirmwareUpgradesStagedEvents`: %v\n", resp)
 }
 ```
@@ -27226,11 +27226,11 @@ Other parameters are passed through a pointer to a apiRollbacksNetworkFirmwareUp
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **rollbacksNetworkFirmwareUpgradesStagedEvents** | [**InlineObject84**](InlineObject84.md) |  | 
+ **rollbacksNetworkFirmwareUpgradesStagedEventsRequest** | [**RollbacksNetworkFirmwareUpgradesStagedEventsRequest**](RollbacksNetworkFirmwareUpgradesStagedEventsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20032**](InlineResponse20032.md)
+[**GetNetworkFirmwareUpgradesStagedEvents200Response**](GetNetworkFirmwareUpgradesStagedEvents200Response.md)
 
 ### Authorization
 
@@ -27248,7 +27248,7 @@ Name | Type | Description  | Notes
 
 ## SplitNetwork
 
-> InlineResponse20066 SplitNetwork(ctx, networkId).Execute()
+> SplitNetwork200Response SplitNetwork(ctx, networkId).Execute()
 
 Split a combined network into individual networks for each type of device
 
@@ -27263,7 +27263,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -27276,7 +27276,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.SplitNetwork``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `SplitNetwork`: InlineResponse20066
+    // response from `SplitNetwork`: SplitNetwork200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.SplitNetwork`: %v\n", resp)
 }
 ```
@@ -27300,7 +27300,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20066**](InlineResponse20066.md)
+[**SplitNetwork200Response**](SplitNetwork200Response.md)
 
 ### Authorization
 
@@ -27333,7 +27333,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -27388,7 +27388,7 @@ Name | Type | Description  | Notes
 
 ## UnbindNetwork
 
-> InlineResponse20012 UnbindNetwork(ctx, networkId).UnbindNetwork(unbindNetwork).Execute()
+> GetNetwork200Response UnbindNetwork(ctx, networkId).UnbindNetworkRequest(unbindNetworkRequest).Execute()
 
 Unbind a network from a template.
 
@@ -27403,21 +27403,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    unbindNetwork := *openapiclient.NewInlineObject145() // InlineObject145 |  (optional)
+    unbindNetworkRequest := *openapiclient.NewUnbindNetworkRequest() // UnbindNetworkRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UnbindNetwork(context.Background(), networkId).UnbindNetwork(unbindNetwork).Execute()
+    resp, r, err := apiClient.ConfigureApi.UnbindNetwork(context.Background(), networkId).UnbindNetworkRequest(unbindNetworkRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UnbindNetwork``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UnbindNetwork`: InlineResponse20012
+    // response from `UnbindNetwork`: GetNetwork200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UnbindNetwork`: %v\n", resp)
 }
 ```
@@ -27438,11 +27438,11 @@ Other parameters are passed through a pointer to a apiUnbindNetworkRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **unbindNetwork** | [**InlineObject145**](InlineObject145.md) |  | 
+ **unbindNetworkRequest** | [**UnbindNetworkRequest**](UnbindNetworkRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**GetNetwork200Response**](GetNetwork200Response.md)
 
 ### Authorization
 
@@ -27475,7 +27475,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -27533,7 +27533,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDevice
 
-> map[string]interface{} UpdateDevice(ctx, serial).UpdateDevice(updateDevice).Execute()
+> map[string]interface{} UpdateDevice(ctx, serial).UpdateDeviceRequest(updateDeviceRequest).Execute()
 
 Update the attributes of a device
 
@@ -27548,16 +27548,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDevice := *openapiclient.NewInlineObject() // InlineObject |  (optional)
+    updateDeviceRequest := *openapiclient.NewUpdateDeviceRequest() // UpdateDeviceRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDevice(context.Background(), serial).UpdateDevice(updateDevice).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDevice(context.Background(), serial).UpdateDeviceRequest(updateDeviceRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -27583,7 +27583,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDevice** | [**InlineObject**](InlineObject.md) |  | 
+ **updateDeviceRequest** | [**UpdateDeviceRequest**](UpdateDeviceRequest.md) |  | 
 
 ### Return type
 
@@ -27605,7 +27605,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceApplianceRadioSettings
 
-> InlineResponse2001 UpdateDeviceApplianceRadioSettings(ctx, serial).UpdateDeviceApplianceRadioSettings(updateDeviceApplianceRadioSettings).Execute()
+> GetDeviceApplianceRadioSettings200Response UpdateDeviceApplianceRadioSettings(ctx, serial).UpdateDeviceApplianceRadioSettingsRequest(updateDeviceApplianceRadioSettingsRequest).Execute()
 
 Update the radio settings of an appliance
 
@@ -27620,21 +27620,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceApplianceRadioSettings := *openapiclient.NewInlineObject1() // InlineObject1 |  (optional)
+    updateDeviceApplianceRadioSettingsRequest := *openapiclient.NewUpdateDeviceApplianceRadioSettingsRequest() // UpdateDeviceApplianceRadioSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceApplianceRadioSettings(context.Background(), serial).UpdateDeviceApplianceRadioSettings(updateDeviceApplianceRadioSettings).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceApplianceRadioSettings(context.Background(), serial).UpdateDeviceApplianceRadioSettingsRequest(updateDeviceApplianceRadioSettingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceApplianceRadioSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateDeviceApplianceRadioSettings`: InlineResponse2001
+    // response from `UpdateDeviceApplianceRadioSettings`: GetDeviceApplianceRadioSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateDeviceApplianceRadioSettings`: %v\n", resp)
 }
 ```
@@ -27655,11 +27655,11 @@ Other parameters are passed through a pointer to a apiUpdateDeviceApplianceRadio
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceApplianceRadioSettings** | [**InlineObject1**](InlineObject1.md) |  | 
+ **updateDeviceApplianceRadioSettingsRequest** | [**UpdateDeviceApplianceRadioSettingsRequest**](UpdateDeviceApplianceRadioSettingsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**GetDeviceApplianceRadioSettings200Response**](GetDeviceApplianceRadioSettings200Response.md)
 
 ### Authorization
 
@@ -27677,7 +27677,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceApplianceUplinksSettings
 
-> InlineResponse2002 UpdateDeviceApplianceUplinksSettings(ctx, serial).UpdateDeviceApplianceUplinksSettings(updateDeviceApplianceUplinksSettings).Execute()
+> GetDeviceApplianceUplinksSettings200Response UpdateDeviceApplianceUplinksSettings(ctx, serial).UpdateDeviceApplianceUplinksSettingsRequest(updateDeviceApplianceUplinksSettingsRequest).Execute()
 
 Update the uplink settings for an MX appliance
 
@@ -27692,21 +27692,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceApplianceUplinksSettings := *openapiclient.NewInlineObject2(*openapiclient.NewDevicesSerialApplianceUplinksSettingsInterfaces()) // InlineObject2 | 
+    updateDeviceApplianceUplinksSettingsRequest := *openapiclient.NewUpdateDeviceApplianceUplinksSettingsRequest(*openapiclient.NewUpdateDeviceApplianceUplinksSettingsRequestInterfaces()) // UpdateDeviceApplianceUplinksSettingsRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceApplianceUplinksSettings(context.Background(), serial).UpdateDeviceApplianceUplinksSettings(updateDeviceApplianceUplinksSettings).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceApplianceUplinksSettings(context.Background(), serial).UpdateDeviceApplianceUplinksSettingsRequest(updateDeviceApplianceUplinksSettingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceApplianceUplinksSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateDeviceApplianceUplinksSettings`: InlineResponse2002
+    // response from `UpdateDeviceApplianceUplinksSettings`: GetDeviceApplianceUplinksSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateDeviceApplianceUplinksSettings`: %v\n", resp)
 }
 ```
@@ -27727,11 +27727,11 @@ Other parameters are passed through a pointer to a apiUpdateDeviceApplianceUplin
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceApplianceUplinksSettings** | [**InlineObject2**](InlineObject2.md) |  | 
+ **updateDeviceApplianceUplinksSettingsRequest** | [**UpdateDeviceApplianceUplinksSettingsRequest**](UpdateDeviceApplianceUplinksSettingsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse2002**](InlineResponse2002.md)
+[**GetDeviceApplianceUplinksSettings200Response**](GetDeviceApplianceUplinksSettings200Response.md)
 
 ### Authorization
 
@@ -27749,7 +27749,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceCameraCustomAnalytics
 
-> map[string]interface{} UpdateDeviceCameraCustomAnalytics(ctx, serial).UpdateDeviceCameraCustomAnalytics(updateDeviceCameraCustomAnalytics).Execute()
+> map[string]interface{} UpdateDeviceCameraCustomAnalytics(ctx, serial).UpdateDeviceCameraCustomAnalyticsRequest(updateDeviceCameraCustomAnalyticsRequest).Execute()
 
 Update custom analytics settings for a camera
 
@@ -27764,16 +27764,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceCameraCustomAnalytics := *openapiclient.NewInlineObject4() // InlineObject4 |  (optional)
+    updateDeviceCameraCustomAnalyticsRequest := *openapiclient.NewUpdateDeviceCameraCustomAnalyticsRequest() // UpdateDeviceCameraCustomAnalyticsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceCameraCustomAnalytics(context.Background(), serial).UpdateDeviceCameraCustomAnalytics(updateDeviceCameraCustomAnalytics).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceCameraCustomAnalytics(context.Background(), serial).UpdateDeviceCameraCustomAnalyticsRequest(updateDeviceCameraCustomAnalyticsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceCameraCustomAnalytics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -27799,7 +27799,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceCameraCustomAn
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceCameraCustomAnalytics** | [**InlineObject4**](InlineObject4.md) |  | 
+ **updateDeviceCameraCustomAnalyticsRequest** | [**UpdateDeviceCameraCustomAnalyticsRequest**](UpdateDeviceCameraCustomAnalyticsRequest.md) |  | 
 
 ### Return type
 
@@ -27821,7 +27821,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceCameraQualityAndRetention
 
-> map[string]interface{} UpdateDeviceCameraQualityAndRetention(ctx, serial).UpdateDeviceCameraQualityAndRetention(updateDeviceCameraQualityAndRetention).Execute()
+> map[string]interface{} UpdateDeviceCameraQualityAndRetention(ctx, serial).UpdateDeviceCameraQualityAndRetentionRequest(updateDeviceCameraQualityAndRetentionRequest).Execute()
 
 Update quality and retention settings for the given camera
 
@@ -27836,16 +27836,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceCameraQualityAndRetention := *openapiclient.NewInlineObject6() // InlineObject6 |  (optional)
+    updateDeviceCameraQualityAndRetentionRequest := *openapiclient.NewUpdateDeviceCameraQualityAndRetentionRequest() // UpdateDeviceCameraQualityAndRetentionRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceCameraQualityAndRetention(context.Background(), serial).UpdateDeviceCameraQualityAndRetention(updateDeviceCameraQualityAndRetention).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceCameraQualityAndRetention(context.Background(), serial).UpdateDeviceCameraQualityAndRetentionRequest(updateDeviceCameraQualityAndRetentionRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceCameraQualityAndRetention``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -27871,7 +27871,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceCameraQualityA
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceCameraQualityAndRetention** | [**InlineObject6**](InlineObject6.md) |  | 
+ **updateDeviceCameraQualityAndRetentionRequest** | [**UpdateDeviceCameraQualityAndRetentionRequest**](UpdateDeviceCameraQualityAndRetentionRequest.md) |  | 
 
 ### Return type
 
@@ -27893,7 +27893,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceCameraSense
 
-> map[string]interface{} UpdateDeviceCameraSense(ctx, serial).UpdateDeviceCameraSense(updateDeviceCameraSense).Execute()
+> map[string]interface{} UpdateDeviceCameraSense(ctx, serial).UpdateDeviceCameraSenseRequest(updateDeviceCameraSenseRequest).Execute()
 
 Update sense settings for the given camera
 
@@ -27908,16 +27908,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceCameraSense := *openapiclient.NewInlineObject7() // InlineObject7 |  (optional)
+    updateDeviceCameraSenseRequest := *openapiclient.NewUpdateDeviceCameraSenseRequest() // UpdateDeviceCameraSenseRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceCameraSense(context.Background(), serial).UpdateDeviceCameraSense(updateDeviceCameraSense).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceCameraSense(context.Background(), serial).UpdateDeviceCameraSenseRequest(updateDeviceCameraSenseRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceCameraSense``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -27943,7 +27943,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceCameraSenseReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceCameraSense** | [**InlineObject7**](InlineObject7.md) |  | 
+ **updateDeviceCameraSenseRequest** | [**UpdateDeviceCameraSenseRequest**](UpdateDeviceCameraSenseRequest.md) |  | 
 
 ### Return type
 
@@ -27965,7 +27965,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceCameraVideoSettings
 
-> map[string]interface{} UpdateDeviceCameraVideoSettings(ctx, serial).UpdateDeviceCameraVideoSettings(updateDeviceCameraVideoSettings).Execute()
+> map[string]interface{} UpdateDeviceCameraVideoSettings(ctx, serial).UpdateDeviceCameraVideoSettingsRequest(updateDeviceCameraVideoSettingsRequest).Execute()
 
 Update video settings for the given camera
 
@@ -27980,16 +27980,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceCameraVideoSettings := *openapiclient.NewInlineObject8() // InlineObject8 |  (optional)
+    updateDeviceCameraVideoSettingsRequest := *openapiclient.NewUpdateDeviceCameraVideoSettingsRequest() // UpdateDeviceCameraVideoSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceCameraVideoSettings(context.Background(), serial).UpdateDeviceCameraVideoSettings(updateDeviceCameraVideoSettings).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceCameraVideoSettings(context.Background(), serial).UpdateDeviceCameraVideoSettingsRequest(updateDeviceCameraVideoSettingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceCameraVideoSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -28015,7 +28015,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceCameraVideoSet
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceCameraVideoSettings** | [**InlineObject8**](InlineObject8.md) |  | 
+ **updateDeviceCameraVideoSettingsRequest** | [**UpdateDeviceCameraVideoSettingsRequest**](UpdateDeviceCameraVideoSettingsRequest.md) |  | 
 
 ### Return type
 
@@ -28037,7 +28037,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceCameraWirelessProfiles
 
-> map[string]interface{} UpdateDeviceCameraWirelessProfiles(ctx, serial).UpdateDeviceCameraWirelessProfiles(updateDeviceCameraWirelessProfiles).Execute()
+> map[string]interface{} UpdateDeviceCameraWirelessProfiles(ctx, serial).UpdateDeviceCameraWirelessProfilesRequest(updateDeviceCameraWirelessProfilesRequest).Execute()
 
 Assign wireless profiles to the given camera
 
@@ -28052,16 +28052,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceCameraWirelessProfiles := *openapiclient.NewInlineObject9(*openapiclient.NewDevicesSerialCameraWirelessProfilesIds()) // InlineObject9 | 
+    updateDeviceCameraWirelessProfilesRequest := *openapiclient.NewUpdateDeviceCameraWirelessProfilesRequest(*openapiclient.NewUpdateDeviceCameraWirelessProfilesRequestIds()) // UpdateDeviceCameraWirelessProfilesRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceCameraWirelessProfiles(context.Background(), serial).UpdateDeviceCameraWirelessProfiles(updateDeviceCameraWirelessProfiles).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceCameraWirelessProfiles(context.Background(), serial).UpdateDeviceCameraWirelessProfilesRequest(updateDeviceCameraWirelessProfilesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceCameraWirelessProfiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -28087,7 +28087,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceCameraWireless
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceCameraWirelessProfiles** | [**InlineObject9**](InlineObject9.md) |  | 
+ **updateDeviceCameraWirelessProfilesRequest** | [**UpdateDeviceCameraWirelessProfilesRequest**](UpdateDeviceCameraWirelessProfilesRequest.md) |  | 
 
 ### Return type
 
@@ -28109,7 +28109,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceCellularGatewayLan
 
-> map[string]interface{} UpdateDeviceCellularGatewayLan(ctx, serial).UpdateDeviceCellularGatewayLan(updateDeviceCellularGatewayLan).Execute()
+> map[string]interface{} UpdateDeviceCellularGatewayLan(ctx, serial).UpdateDeviceCellularGatewayLanRequest(updateDeviceCellularGatewayLanRequest).Execute()
 
 Update the LAN Settings for a single MG.
 
@@ -28124,16 +28124,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceCellularGatewayLan := *openapiclient.NewInlineObject11() // InlineObject11 |  (optional)
+    updateDeviceCellularGatewayLanRequest := *openapiclient.NewUpdateDeviceCellularGatewayLanRequest() // UpdateDeviceCellularGatewayLanRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceCellularGatewayLan(context.Background(), serial).UpdateDeviceCellularGatewayLan(updateDeviceCellularGatewayLan).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceCellularGatewayLan(context.Background(), serial).UpdateDeviceCellularGatewayLanRequest(updateDeviceCellularGatewayLanRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceCellularGatewayLan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -28159,7 +28159,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceCellularGatewa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceCellularGatewayLan** | [**InlineObject11**](InlineObject11.md) |  | 
+ **updateDeviceCellularGatewayLanRequest** | [**UpdateDeviceCellularGatewayLanRequest**](UpdateDeviceCellularGatewayLanRequest.md) |  | 
 
 ### Return type
 
@@ -28181,7 +28181,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceCellularGatewayPortForwardingRules
 
-> map[string]interface{} UpdateDeviceCellularGatewayPortForwardingRules(ctx, serial).UpdateDeviceCellularGatewayPortForwardingRules(updateDeviceCellularGatewayPortForwardingRules).Execute()
+> map[string]interface{} UpdateDeviceCellularGatewayPortForwardingRules(ctx, serial).UpdateDeviceCellularGatewayPortForwardingRulesRequest(updateDeviceCellularGatewayPortForwardingRulesRequest).Execute()
 
 Updates the port forwarding rules for a single MG.
 
@@ -28196,16 +28196,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceCellularGatewayPortForwardingRules := *openapiclient.NewInlineObject12() // InlineObject12 |  (optional)
+    updateDeviceCellularGatewayPortForwardingRulesRequest := *openapiclient.NewUpdateDeviceCellularGatewayPortForwardingRulesRequest() // UpdateDeviceCellularGatewayPortForwardingRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceCellularGatewayPortForwardingRules(context.Background(), serial).UpdateDeviceCellularGatewayPortForwardingRules(updateDeviceCellularGatewayPortForwardingRules).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceCellularGatewayPortForwardingRules(context.Background(), serial).UpdateDeviceCellularGatewayPortForwardingRulesRequest(updateDeviceCellularGatewayPortForwardingRulesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceCellularGatewayPortForwardingRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -28231,7 +28231,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceCellularGatewa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceCellularGatewayPortForwardingRules** | [**InlineObject12**](InlineObject12.md) |  | 
+ **updateDeviceCellularGatewayPortForwardingRulesRequest** | [**UpdateDeviceCellularGatewayPortForwardingRulesRequest**](UpdateDeviceCellularGatewayPortForwardingRulesRequest.md) |  | 
 
 ### Return type
 
@@ -28253,7 +28253,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceCellularSims
 
-> map[string]interface{} UpdateDeviceCellularSims(ctx, serial).UpdateDeviceCellularSims(updateDeviceCellularSims).Execute()
+> map[string]interface{} UpdateDeviceCellularSims(ctx, serial).UpdateDeviceCellularSimsRequest(updateDeviceCellularSimsRequest).Execute()
 
 Updates the SIM and APN configurations for a cellular device.
 
@@ -28268,16 +28268,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceCellularSims := *openapiclient.NewInlineObject10() // InlineObject10 |  (optional)
+    updateDeviceCellularSimsRequest := *openapiclient.NewUpdateDeviceCellularSimsRequest() // UpdateDeviceCellularSimsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceCellularSims(context.Background(), serial).UpdateDeviceCellularSims(updateDeviceCellularSims).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceCellularSims(context.Background(), serial).UpdateDeviceCellularSimsRequest(updateDeviceCellularSimsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceCellularSims``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -28303,7 +28303,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceCellularSimsRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceCellularSims** | [**InlineObject10**](InlineObject10.md) |  | 
+ **updateDeviceCellularSimsRequest** | [**UpdateDeviceCellularSimsRequest**](UpdateDeviceCellularSimsRequest.md) |  | 
 
 ### Return type
 
@@ -28325,7 +28325,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceManagementInterface
 
-> map[string]interface{} UpdateDeviceManagementInterface(ctx, serial).UpdateDeviceManagementInterface(updateDeviceManagementInterface).Execute()
+> map[string]interface{} UpdateDeviceManagementInterface(ctx, serial).UpdateDeviceManagementInterfaceRequest(updateDeviceManagementInterfaceRequest).Execute()
 
 Update the management interface settings for a device
 
@@ -28340,16 +28340,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceManagementInterface := *openapiclient.NewInlineObject15() // InlineObject15 |  (optional)
+    updateDeviceManagementInterfaceRequest := *openapiclient.NewUpdateDeviceManagementInterfaceRequest() // UpdateDeviceManagementInterfaceRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceManagementInterface(context.Background(), serial).UpdateDeviceManagementInterface(updateDeviceManagementInterface).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceManagementInterface(context.Background(), serial).UpdateDeviceManagementInterfaceRequest(updateDeviceManagementInterfaceRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceManagementInterface``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -28375,7 +28375,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceManagementInte
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceManagementInterface** | [**InlineObject15**](InlineObject15.md) |  | 
+ **updateDeviceManagementInterfaceRequest** | [**UpdateDeviceManagementInterfaceRequest**](UpdateDeviceManagementInterfaceRequest.md) |  | 
 
 ### Return type
 
@@ -28397,7 +28397,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceSensorRelationships
 
-> InlineResponse2004 UpdateDeviceSensorRelationships(ctx, serial).UpdateDeviceSensorRelationships(updateDeviceSensorRelationships).Execute()
+> GetDeviceSensorRelationships200ResponseInner UpdateDeviceSensorRelationships(ctx, serial).UpdateDeviceSensorRelationshipsRequest(updateDeviceSensorRelationshipsRequest).Execute()
 
 Assign one or more sensor roles to a given sensor or camera device.
 
@@ -28412,21 +28412,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceSensorRelationships := *openapiclient.NewInlineObject16() // InlineObject16 |  (optional)
+    updateDeviceSensorRelationshipsRequest := *openapiclient.NewUpdateDeviceSensorRelationshipsRequest() // UpdateDeviceSensorRelationshipsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceSensorRelationships(context.Background(), serial).UpdateDeviceSensorRelationships(updateDeviceSensorRelationships).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceSensorRelationships(context.Background(), serial).UpdateDeviceSensorRelationshipsRequest(updateDeviceSensorRelationshipsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceSensorRelationships``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateDeviceSensorRelationships`: InlineResponse2004
+    // response from `UpdateDeviceSensorRelationships`: GetDeviceSensorRelationships200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateDeviceSensorRelationships`: %v\n", resp)
 }
 ```
@@ -28447,11 +28447,11 @@ Other parameters are passed through a pointer to a apiUpdateDeviceSensorRelation
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceSensorRelationships** | [**InlineObject16**](InlineObject16.md) |  | 
+ **updateDeviceSensorRelationshipsRequest** | [**UpdateDeviceSensorRelationshipsRequest**](UpdateDeviceSensorRelationshipsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**GetDeviceSensorRelationships200ResponseInner**](GetDeviceSensorRelationships200ResponseInner.md)
 
 ### Authorization
 
@@ -28469,7 +28469,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceSwitchPort
 
-> InlineResponse2005 UpdateDeviceSwitchPort(ctx, serial, portId).UpdateDeviceSwitchPort(updateDeviceSwitchPort).Execute()
+> GetDeviceSwitchPorts200ResponseInner UpdateDeviceSwitchPort(ctx, serial, portId).UpdateDeviceSwitchPortRequest(updateDeviceSwitchPortRequest).Execute()
 
 Update a switch port
 
@@ -28484,22 +28484,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
     portId := "portId_example" // string | Port ID
-    updateDeviceSwitchPort := *openapiclient.NewInlineObject18() // InlineObject18 |  (optional)
+    updateDeviceSwitchPortRequest := *openapiclient.NewUpdateDeviceSwitchPortRequest() // UpdateDeviceSwitchPortRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceSwitchPort(context.Background(), serial, portId).UpdateDeviceSwitchPort(updateDeviceSwitchPort).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceSwitchPort(context.Background(), serial, portId).UpdateDeviceSwitchPortRequest(updateDeviceSwitchPortRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceSwitchPort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateDeviceSwitchPort`: InlineResponse2005
+    // response from `UpdateDeviceSwitchPort`: GetDeviceSwitchPorts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateDeviceSwitchPort`: %v\n", resp)
 }
 ```
@@ -28522,11 +28522,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateDeviceSwitchPort** | [**InlineObject18**](InlineObject18.md) |  | 
+ **updateDeviceSwitchPortRequest** | [**UpdateDeviceSwitchPortRequest**](UpdateDeviceSwitchPortRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**GetDeviceSwitchPorts200ResponseInner**](GetDeviceSwitchPorts200ResponseInner.md)
 
 ### Authorization
 
@@ -28544,7 +28544,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceSwitchRoutingInterface
 
-> InlineResponse2008 UpdateDeviceSwitchRoutingInterface(ctx, serial, interfaceId).UpdateDeviceSwitchRoutingInterface(updateDeviceSwitchRoutingInterface).Execute()
+> GetDeviceSwitchRoutingInterfaces200ResponseInner UpdateDeviceSwitchRoutingInterface(ctx, serial, interfaceId).CreateDeviceSwitchRoutingInterfaceRequest(createDeviceSwitchRoutingInterfaceRequest).Execute()
 
 Update a layer 3 interface for a switch
 
@@ -28559,22 +28559,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
     interfaceId := "interfaceId_example" // string | Interface ID
-    updateDeviceSwitchRoutingInterface := *openapiclient.NewInlineObject20() // InlineObject20 |  (optional)
+    createDeviceSwitchRoutingInterfaceRequest := *openapiclient.NewCreateDeviceSwitchRoutingInterfaceRequest() // CreateDeviceSwitchRoutingInterfaceRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceSwitchRoutingInterface(context.Background(), serial, interfaceId).UpdateDeviceSwitchRoutingInterface(updateDeviceSwitchRoutingInterface).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceSwitchRoutingInterface(context.Background(), serial, interfaceId).CreateDeviceSwitchRoutingInterfaceRequest(createDeviceSwitchRoutingInterfaceRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceSwitchRoutingInterface``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateDeviceSwitchRoutingInterface`: InlineResponse2008
+    // response from `UpdateDeviceSwitchRoutingInterface`: GetDeviceSwitchRoutingInterfaces200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateDeviceSwitchRoutingInterface`: %v\n", resp)
 }
 ```
@@ -28597,11 +28597,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateDeviceSwitchRoutingInterface** | [**InlineObject20**](InlineObject20.md) |  | 
+ **createDeviceSwitchRoutingInterfaceRequest** | [**CreateDeviceSwitchRoutingInterfaceRequest**](CreateDeviceSwitchRoutingInterfaceRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse2008**](InlineResponse2008.md)
+[**GetDeviceSwitchRoutingInterfaces200ResponseInner**](GetDeviceSwitchRoutingInterfaces200ResponseInner.md)
 
 ### Authorization
 
@@ -28619,7 +28619,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceSwitchRoutingInterfaceDhcp
 
-> map[string]interface{} UpdateDeviceSwitchRoutingInterfaceDhcp(ctx, serial, interfaceId).UpdateDeviceSwitchRoutingInterfaceDhcp(updateDeviceSwitchRoutingInterfaceDhcp).Execute()
+> map[string]interface{} UpdateDeviceSwitchRoutingInterfaceDhcp(ctx, serial, interfaceId).UpdateDeviceSwitchRoutingInterfaceDhcpRequest(updateDeviceSwitchRoutingInterfaceDhcpRequest).Execute()
 
 Update a layer 3 interface DHCP configuration for a switch
 
@@ -28634,17 +28634,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
     interfaceId := "interfaceId_example" // string | Interface ID
-    updateDeviceSwitchRoutingInterfaceDhcp := *openapiclient.NewInlineObject21() // InlineObject21 |  (optional)
+    updateDeviceSwitchRoutingInterfaceDhcpRequest := *openapiclient.NewUpdateDeviceSwitchRoutingInterfaceDhcpRequest() // UpdateDeviceSwitchRoutingInterfaceDhcpRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceSwitchRoutingInterfaceDhcp(context.Background(), serial, interfaceId).UpdateDeviceSwitchRoutingInterfaceDhcp(updateDeviceSwitchRoutingInterfaceDhcp).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceSwitchRoutingInterfaceDhcp(context.Background(), serial, interfaceId).UpdateDeviceSwitchRoutingInterfaceDhcpRequest(updateDeviceSwitchRoutingInterfaceDhcpRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceSwitchRoutingInterfaceDhcp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -28672,7 +28672,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateDeviceSwitchRoutingInterfaceDhcp** | [**InlineObject21**](InlineObject21.md) |  | 
+ **updateDeviceSwitchRoutingInterfaceDhcpRequest** | [**UpdateDeviceSwitchRoutingInterfaceDhcpRequest**](UpdateDeviceSwitchRoutingInterfaceDhcpRequest.md) |  | 
 
 ### Return type
 
@@ -28694,7 +28694,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceSwitchRoutingStaticRoute
 
-> map[string]interface{} UpdateDeviceSwitchRoutingStaticRoute(ctx, serial, staticRouteId).UpdateDeviceSwitchRoutingStaticRoute(updateDeviceSwitchRoutingStaticRoute).Execute()
+> map[string]interface{} UpdateDeviceSwitchRoutingStaticRoute(ctx, serial, staticRouteId).UpdateDeviceSwitchRoutingStaticRouteRequest(updateDeviceSwitchRoutingStaticRouteRequest).Execute()
 
 Update a layer 3 static route for a switch
 
@@ -28709,17 +28709,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
     staticRouteId := "staticRouteId_example" // string | Static route ID
-    updateDeviceSwitchRoutingStaticRoute := *openapiclient.NewInlineObject23() // InlineObject23 |  (optional)
+    updateDeviceSwitchRoutingStaticRouteRequest := *openapiclient.NewUpdateDeviceSwitchRoutingStaticRouteRequest() // UpdateDeviceSwitchRoutingStaticRouteRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceSwitchRoutingStaticRoute(context.Background(), serial, staticRouteId).UpdateDeviceSwitchRoutingStaticRoute(updateDeviceSwitchRoutingStaticRoute).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceSwitchRoutingStaticRoute(context.Background(), serial, staticRouteId).UpdateDeviceSwitchRoutingStaticRouteRequest(updateDeviceSwitchRoutingStaticRouteRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceSwitchRoutingStaticRoute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -28747,7 +28747,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateDeviceSwitchRoutingStaticRoute** | [**InlineObject23**](InlineObject23.md) |  | 
+ **updateDeviceSwitchRoutingStaticRouteRequest** | [**UpdateDeviceSwitchRoutingStaticRouteRequest**](UpdateDeviceSwitchRoutingStaticRouteRequest.md) |  | 
 
 ### Return type
 
@@ -28769,7 +28769,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceSwitchWarmSpare
 
-> map[string]interface{} UpdateDeviceSwitchWarmSpare(ctx, serial).UpdateDeviceSwitchWarmSpare(updateDeviceSwitchWarmSpare).Execute()
+> map[string]interface{} UpdateDeviceSwitchWarmSpare(ctx, serial).UpdateDeviceSwitchWarmSpareRequest(updateDeviceSwitchWarmSpareRequest).Execute()
 
 Update warm spare configuration for a switch
 
@@ -28784,16 +28784,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceSwitchWarmSpare := *openapiclient.NewInlineObject24(false) // InlineObject24 | 
+    updateDeviceSwitchWarmSpareRequest := *openapiclient.NewUpdateDeviceSwitchWarmSpareRequest(false) // UpdateDeviceSwitchWarmSpareRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceSwitchWarmSpare(context.Background(), serial).UpdateDeviceSwitchWarmSpare(updateDeviceSwitchWarmSpare).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceSwitchWarmSpare(context.Background(), serial).UpdateDeviceSwitchWarmSpareRequest(updateDeviceSwitchWarmSpareRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceSwitchWarmSpare``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -28819,7 +28819,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceSwitchWarmSpar
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceSwitchWarmSpare** | [**InlineObject24**](InlineObject24.md) |  | 
+ **updateDeviceSwitchWarmSpareRequest** | [**UpdateDeviceSwitchWarmSpareRequest**](UpdateDeviceSwitchWarmSpareRequest.md) |  | 
 
 ### Return type
 
@@ -28841,7 +28841,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceWirelessBluetoothSettings
 
-> InlineResponse20010 UpdateDeviceWirelessBluetoothSettings(ctx, serial).UpdateDeviceWirelessBluetoothSettings(updateDeviceWirelessBluetoothSettings).Execute()
+> GetDeviceWirelessBluetoothSettings200Response UpdateDeviceWirelessBluetoothSettings(ctx, serial).UpdateDeviceWirelessBluetoothSettingsRequest(updateDeviceWirelessBluetoothSettingsRequest).Execute()
 
 Update the bluetooth settings for a wireless device
 
@@ -28856,21 +28856,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceWirelessBluetoothSettings := *openapiclient.NewInlineObject25() // InlineObject25 |  (optional)
+    updateDeviceWirelessBluetoothSettingsRequest := *openapiclient.NewUpdateDeviceWirelessBluetoothSettingsRequest() // UpdateDeviceWirelessBluetoothSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceWirelessBluetoothSettings(context.Background(), serial).UpdateDeviceWirelessBluetoothSettings(updateDeviceWirelessBluetoothSettings).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceWirelessBluetoothSettings(context.Background(), serial).UpdateDeviceWirelessBluetoothSettingsRequest(updateDeviceWirelessBluetoothSettingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceWirelessBluetoothSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateDeviceWirelessBluetoothSettings`: InlineResponse20010
+    // response from `UpdateDeviceWirelessBluetoothSettings`: GetDeviceWirelessBluetoothSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateDeviceWirelessBluetoothSettings`: %v\n", resp)
 }
 ```
@@ -28891,11 +28891,11 @@ Other parameters are passed through a pointer to a apiUpdateDeviceWirelessBlueto
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceWirelessBluetoothSettings** | [**InlineObject25**](InlineObject25.md) |  | 
+ **updateDeviceWirelessBluetoothSettingsRequest** | [**UpdateDeviceWirelessBluetoothSettingsRequest**](UpdateDeviceWirelessBluetoothSettingsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20010**](InlineResponse20010.md)
+[**GetDeviceWirelessBluetoothSettings200Response**](GetDeviceWirelessBluetoothSettings200Response.md)
 
 ### Authorization
 
@@ -28913,7 +28913,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceWirelessRadioSettings
 
-> map[string]interface{} UpdateDeviceWirelessRadioSettings(ctx, serial).UpdateDeviceWirelessRadioSettings(updateDeviceWirelessRadioSettings).Execute()
+> map[string]interface{} UpdateDeviceWirelessRadioSettings(ctx, serial).UpdateDeviceWirelessRadioSettingsRequest(updateDeviceWirelessRadioSettingsRequest).Execute()
 
 Update the radio settings of a device
 
@@ -28928,16 +28928,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceWirelessRadioSettings := *openapiclient.NewInlineObject26() // InlineObject26 |  (optional)
+    updateDeviceWirelessRadioSettingsRequest := *openapiclient.NewUpdateDeviceWirelessRadioSettingsRequest() // UpdateDeviceWirelessRadioSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateDeviceWirelessRadioSettings(context.Background(), serial).UpdateDeviceWirelessRadioSettings(updateDeviceWirelessRadioSettings).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateDeviceWirelessRadioSettings(context.Background(), serial).UpdateDeviceWirelessRadioSettingsRequest(updateDeviceWirelessRadioSettingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateDeviceWirelessRadioSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -28963,7 +28963,7 @@ Other parameters are passed through a pointer to a apiUpdateDeviceWirelessRadioS
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceWirelessRadioSettings** | [**InlineObject26**](InlineObject26.md) |  | 
+ **updateDeviceWirelessRadioSettingsRequest** | [**UpdateDeviceWirelessRadioSettingsRequest**](UpdateDeviceWirelessRadioSettingsRequest.md) |  | 
 
 ### Return type
 
@@ -28985,7 +28985,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetwork
 
-> InlineResponse20012 UpdateNetwork(ctx, networkId).UpdateNetwork(updateNetwork).Execute()
+> GetNetwork200Response UpdateNetwork(ctx, networkId).UpdateNetworkRequest(updateNetworkRequest).Execute()
 
 Update a network
 
@@ -29000,21 +29000,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetwork := *openapiclient.NewInlineObject27() // InlineObject27 |  (optional)
+    updateNetworkRequest := *openapiclient.NewUpdateNetworkRequest() // UpdateNetworkRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetwork(context.Background(), networkId).UpdateNetwork(updateNetwork).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetwork(context.Background(), networkId).UpdateNetworkRequest(updateNetworkRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetwork``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetwork`: InlineResponse20012
+    // response from `UpdateNetwork`: GetNetwork200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetwork`: %v\n", resp)
 }
 ```
@@ -29035,11 +29035,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetwork** | [**InlineObject27**](InlineObject27.md) |  | 
+ **updateNetworkRequest** | [**UpdateNetworkRequest**](UpdateNetworkRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**GetNetwork200Response**](GetNetwork200Response.md)
 
 ### Authorization
 
@@ -29057,7 +29057,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkAlertsSettings
 
-> map[string]interface{} UpdateNetworkAlertsSettings(ctx, networkId).UpdateNetworkAlertsSettings(updateNetworkAlertsSettings).Execute()
+> map[string]interface{} UpdateNetworkAlertsSettings(ctx, networkId).UpdateNetworkAlertsSettingsRequest(updateNetworkAlertsSettingsRequest).Execute()
 
 Update the alert configuration for this network
 
@@ -29072,16 +29072,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkAlertsSettings := *openapiclient.NewInlineObject28() // InlineObject28 |  (optional)
+    updateNetworkAlertsSettingsRequest := *openapiclient.NewUpdateNetworkAlertsSettingsRequest() // UpdateNetworkAlertsSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkAlertsSettings(context.Background(), networkId).UpdateNetworkAlertsSettings(updateNetworkAlertsSettings).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkAlertsSettings(context.Background(), networkId).UpdateNetworkAlertsSettingsRequest(updateNetworkAlertsSettingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkAlertsSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -29107,7 +29107,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkAlertsSetting
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkAlertsSettings** | [**InlineObject28**](InlineObject28.md) |  | 
+ **updateNetworkAlertsSettingsRequest** | [**UpdateNetworkAlertsSettingsRequest**](UpdateNetworkAlertsSettingsRequest.md) |  | 
 
 ### Return type
 
@@ -29129,7 +29129,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceConnectivityMonitoringDestinations
 
-> map[string]interface{} UpdateNetworkApplianceConnectivityMonitoringDestinations(ctx, networkId).UpdateNetworkApplianceConnectivityMonitoringDestinations(updateNetworkApplianceConnectivityMonitoringDestinations).Execute()
+> map[string]interface{} UpdateNetworkApplianceConnectivityMonitoringDestinations(ctx, networkId).UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest(updateNetworkApplianceConnectivityMonitoringDestinationsRequest).Execute()
 
 Update the connectivity testing destinations for an MX network
 
@@ -29144,16 +29144,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceConnectivityMonitoringDestinations := *openapiclient.NewInlineObject29() // InlineObject29 |  (optional)
+    updateNetworkApplianceConnectivityMonitoringDestinationsRequest := *openapiclient.NewUpdateNetworkApplianceConnectivityMonitoringDestinationsRequest() // UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceConnectivityMonitoringDestinations(context.Background(), networkId).UpdateNetworkApplianceConnectivityMonitoringDestinations(updateNetworkApplianceConnectivityMonitoringDestinations).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceConnectivityMonitoringDestinations(context.Background(), networkId).UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest(updateNetworkApplianceConnectivityMonitoringDestinationsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceConnectivityMonitoringDestinations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -29179,7 +29179,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceConn
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceConnectivityMonitoringDestinations** | [**InlineObject29**](InlineObject29.md) |  | 
+ **updateNetworkApplianceConnectivityMonitoringDestinationsRequest** | [**UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest**](UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest.md) |  | 
 
 ### Return type
 
@@ -29201,7 +29201,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceContentFiltering
 
-> map[string]interface{} UpdateNetworkApplianceContentFiltering(ctx, networkId).UpdateNetworkApplianceContentFiltering(updateNetworkApplianceContentFiltering).Execute()
+> map[string]interface{} UpdateNetworkApplianceContentFiltering(ctx, networkId).UpdateNetworkApplianceContentFilteringRequest(updateNetworkApplianceContentFilteringRequest).Execute()
 
 Update the content filtering settings for an MX network
 
@@ -29216,16 +29216,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceContentFiltering := *openapiclient.NewInlineObject30() // InlineObject30 |  (optional)
+    updateNetworkApplianceContentFilteringRequest := *openapiclient.NewUpdateNetworkApplianceContentFilteringRequest() // UpdateNetworkApplianceContentFilteringRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceContentFiltering(context.Background(), networkId).UpdateNetworkApplianceContentFiltering(updateNetworkApplianceContentFiltering).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceContentFiltering(context.Background(), networkId).UpdateNetworkApplianceContentFilteringRequest(updateNetworkApplianceContentFilteringRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceContentFiltering``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -29251,7 +29251,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceCont
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceContentFiltering** | [**InlineObject30**](InlineObject30.md) |  | 
+ **updateNetworkApplianceContentFilteringRequest** | [**UpdateNetworkApplianceContentFilteringRequest**](UpdateNetworkApplianceContentFilteringRequest.md) |  | 
 
 ### Return type
 
@@ -29273,7 +29273,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceFirewallCellularFirewallRules
 
-> map[string]interface{} UpdateNetworkApplianceFirewallCellularFirewallRules(ctx, networkId).UpdateNetworkApplianceFirewallCellularFirewallRules(updateNetworkApplianceFirewallCellularFirewallRules).Execute()
+> map[string]interface{} UpdateNetworkApplianceFirewallCellularFirewallRules(ctx, networkId).UpdateNetworkApplianceFirewallCellularFirewallRulesRequest(updateNetworkApplianceFirewallCellularFirewallRulesRequest).Execute()
 
 Update the cellular firewall rules of an MX network
 
@@ -29288,16 +29288,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceFirewallCellularFirewallRules := *openapiclient.NewInlineObject31() // InlineObject31 |  (optional)
+    updateNetworkApplianceFirewallCellularFirewallRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallCellularFirewallRulesRequest() // UpdateNetworkApplianceFirewallCellularFirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallCellularFirewallRules(context.Background(), networkId).UpdateNetworkApplianceFirewallCellularFirewallRules(updateNetworkApplianceFirewallCellularFirewallRules).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallCellularFirewallRules(context.Background(), networkId).UpdateNetworkApplianceFirewallCellularFirewallRulesRequest(updateNetworkApplianceFirewallCellularFirewallRulesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceFirewallCellularFirewallRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -29323,7 +29323,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceFire
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceFirewallCellularFirewallRules** | [**InlineObject31**](InlineObject31.md) |  | 
+ **updateNetworkApplianceFirewallCellularFirewallRulesRequest** | [**UpdateNetworkApplianceFirewallCellularFirewallRulesRequest**](UpdateNetworkApplianceFirewallCellularFirewallRulesRequest.md) |  | 
 
 ### Return type
 
@@ -29345,7 +29345,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceFirewallFirewalledService
 
-> map[string]interface{} UpdateNetworkApplianceFirewallFirewalledService(ctx, networkId, service).UpdateNetworkApplianceFirewallFirewalledService(updateNetworkApplianceFirewallFirewalledService).Execute()
+> map[string]interface{} UpdateNetworkApplianceFirewallFirewalledService(ctx, networkId, service).UpdateNetworkApplianceFirewallFirewalledServiceRequest(updateNetworkApplianceFirewallFirewalledServiceRequest).Execute()
 
 Updates the accessibility settings for the given service ('ICMP', 'web', or 'SNMP')
 
@@ -29360,17 +29360,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     service := "service_example" // string | Service
-    updateNetworkApplianceFirewallFirewalledService := *openapiclient.NewInlineObject32("Access_example") // InlineObject32 | 
+    updateNetworkApplianceFirewallFirewalledServiceRequest := *openapiclient.NewUpdateNetworkApplianceFirewallFirewalledServiceRequest("Access_example") // UpdateNetworkApplianceFirewallFirewalledServiceRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallFirewalledService(context.Background(), networkId, service).UpdateNetworkApplianceFirewallFirewalledService(updateNetworkApplianceFirewallFirewalledService).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallFirewalledService(context.Background(), networkId, service).UpdateNetworkApplianceFirewallFirewalledServiceRequest(updateNetworkApplianceFirewallFirewalledServiceRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceFirewallFirewalledService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -29398,7 +29398,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkApplianceFirewallFirewalledService** | [**InlineObject32**](InlineObject32.md) |  | 
+ **updateNetworkApplianceFirewallFirewalledServiceRequest** | [**UpdateNetworkApplianceFirewallFirewalledServiceRequest**](UpdateNetworkApplianceFirewallFirewalledServiceRequest.md) |  | 
 
 ### Return type
 
@@ -29420,7 +29420,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceFirewallInboundCellularFirewallRules
 
-> []map[string]interface{} UpdateNetworkApplianceFirewallInboundCellularFirewallRules(ctx, networkId).UpdateNetworkApplianceFirewallInboundCellularFirewallRules(updateNetworkApplianceFirewallInboundCellularFirewallRules).Execute()
+> []map[string]interface{} UpdateNetworkApplianceFirewallInboundCellularFirewallRules(ctx, networkId).UpdateNetworkApplianceFirewallCellularFirewallRulesRequest(updateNetworkApplianceFirewallCellularFirewallRulesRequest).Execute()
 
 Update the inbound cellular firewall rules of an MX network
 
@@ -29435,16 +29435,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceFirewallInboundCellularFirewallRules := *openapiclient.NewInlineObject33() // InlineObject33 |  (optional)
+    updateNetworkApplianceFirewallCellularFirewallRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallCellularFirewallRulesRequest() // UpdateNetworkApplianceFirewallCellularFirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallInboundCellularFirewallRules(context.Background(), networkId).UpdateNetworkApplianceFirewallInboundCellularFirewallRules(updateNetworkApplianceFirewallInboundCellularFirewallRules).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallInboundCellularFirewallRules(context.Background(), networkId).UpdateNetworkApplianceFirewallCellularFirewallRulesRequest(updateNetworkApplianceFirewallCellularFirewallRulesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceFirewallInboundCellularFirewallRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -29470,7 +29470,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceFire
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceFirewallInboundCellularFirewallRules** | [**InlineObject33**](InlineObject33.md) |  | 
+ **updateNetworkApplianceFirewallCellularFirewallRulesRequest** | [**UpdateNetworkApplianceFirewallCellularFirewallRulesRequest**](UpdateNetworkApplianceFirewallCellularFirewallRulesRequest.md) |  | 
 
 ### Return type
 
@@ -29492,7 +29492,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceFirewallInboundFirewallRules
 
-> map[string]interface{} UpdateNetworkApplianceFirewallInboundFirewallRules(ctx, networkId).UpdateNetworkApplianceFirewallInboundFirewallRules(updateNetworkApplianceFirewallInboundFirewallRules).Execute()
+> map[string]interface{} UpdateNetworkApplianceFirewallInboundFirewallRules(ctx, networkId).UpdateNetworkApplianceFirewallInboundFirewallRulesRequest(updateNetworkApplianceFirewallInboundFirewallRulesRequest).Execute()
 
 Update the inbound firewall rules of an MX network
 
@@ -29507,16 +29507,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceFirewallInboundFirewallRules := *openapiclient.NewInlineObject34() // InlineObject34 |  (optional)
+    updateNetworkApplianceFirewallInboundFirewallRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallInboundFirewallRulesRequest() // UpdateNetworkApplianceFirewallInboundFirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallInboundFirewallRules(context.Background(), networkId).UpdateNetworkApplianceFirewallInboundFirewallRules(updateNetworkApplianceFirewallInboundFirewallRules).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallInboundFirewallRules(context.Background(), networkId).UpdateNetworkApplianceFirewallInboundFirewallRulesRequest(updateNetworkApplianceFirewallInboundFirewallRulesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceFirewallInboundFirewallRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -29542,7 +29542,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceFire
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceFirewallInboundFirewallRules** | [**InlineObject34**](InlineObject34.md) |  | 
+ **updateNetworkApplianceFirewallInboundFirewallRulesRequest** | [**UpdateNetworkApplianceFirewallInboundFirewallRulesRequest**](UpdateNetworkApplianceFirewallInboundFirewallRulesRequest.md) |  | 
 
 ### Return type
 
@@ -29564,7 +29564,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceFirewallL3FirewallRules
 
-> map[string]interface{} UpdateNetworkApplianceFirewallL3FirewallRules(ctx, networkId).UpdateNetworkApplianceFirewallL3FirewallRules(updateNetworkApplianceFirewallL3FirewallRules).Execute()
+> map[string]interface{} UpdateNetworkApplianceFirewallL3FirewallRules(ctx, networkId).UpdateNetworkApplianceFirewallInboundFirewallRulesRequest(updateNetworkApplianceFirewallInboundFirewallRulesRequest).Execute()
 
 Update the L3 firewall rules of an MX network
 
@@ -29579,16 +29579,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceFirewallL3FirewallRules := *openapiclient.NewInlineObject35() // InlineObject35 |  (optional)
+    updateNetworkApplianceFirewallInboundFirewallRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallInboundFirewallRulesRequest() // UpdateNetworkApplianceFirewallInboundFirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallL3FirewallRules(context.Background(), networkId).UpdateNetworkApplianceFirewallL3FirewallRules(updateNetworkApplianceFirewallL3FirewallRules).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallL3FirewallRules(context.Background(), networkId).UpdateNetworkApplianceFirewallInboundFirewallRulesRequest(updateNetworkApplianceFirewallInboundFirewallRulesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceFirewallL3FirewallRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -29614,7 +29614,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceFire
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceFirewallL3FirewallRules** | [**InlineObject35**](InlineObject35.md) |  | 
+ **updateNetworkApplianceFirewallInboundFirewallRulesRequest** | [**UpdateNetworkApplianceFirewallInboundFirewallRulesRequest**](UpdateNetworkApplianceFirewallInboundFirewallRulesRequest.md) |  | 
 
 ### Return type
 
@@ -29636,7 +29636,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceFirewallL7FirewallRules
 
-> map[string]interface{} UpdateNetworkApplianceFirewallL7FirewallRules(ctx, networkId).UpdateNetworkApplianceFirewallL7FirewallRules(updateNetworkApplianceFirewallL7FirewallRules).Execute()
+> map[string]interface{} UpdateNetworkApplianceFirewallL7FirewallRules(ctx, networkId).UpdateNetworkApplianceFirewallL7FirewallRulesRequest(updateNetworkApplianceFirewallL7FirewallRulesRequest).Execute()
 
 Update the MX L7 firewall rules for an MX network
 
@@ -29651,16 +29651,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceFirewallL7FirewallRules := *openapiclient.NewInlineObject36() // InlineObject36 |  (optional)
+    updateNetworkApplianceFirewallL7FirewallRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallL7FirewallRulesRequest() // UpdateNetworkApplianceFirewallL7FirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallL7FirewallRules(context.Background(), networkId).UpdateNetworkApplianceFirewallL7FirewallRules(updateNetworkApplianceFirewallL7FirewallRules).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallL7FirewallRules(context.Background(), networkId).UpdateNetworkApplianceFirewallL7FirewallRulesRequest(updateNetworkApplianceFirewallL7FirewallRulesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceFirewallL7FirewallRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -29686,7 +29686,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceFire
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceFirewallL7FirewallRules** | [**InlineObject36**](InlineObject36.md) |  | 
+ **updateNetworkApplianceFirewallL7FirewallRulesRequest** | [**UpdateNetworkApplianceFirewallL7FirewallRulesRequest**](UpdateNetworkApplianceFirewallL7FirewallRulesRequest.md) |  | 
 
 ### Return type
 
@@ -29708,7 +29708,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceFirewallOneToManyNatRules
 
-> map[string]interface{} UpdateNetworkApplianceFirewallOneToManyNatRules(ctx, networkId).UpdateNetworkApplianceFirewallOneToManyNatRules(updateNetworkApplianceFirewallOneToManyNatRules).Execute()
+> map[string]interface{} UpdateNetworkApplianceFirewallOneToManyNatRules(ctx, networkId).UpdateNetworkApplianceFirewallOneToManyNatRulesRequest(updateNetworkApplianceFirewallOneToManyNatRulesRequest).Execute()
 
 Set the 1:Many NAT mapping rules for an MX network
 
@@ -29723,16 +29723,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceFirewallOneToManyNatRules := *openapiclient.NewInlineObject37([]openapiclient.NetworksNetworkIdApplianceFirewallOneToManyNatRulesRules{*openapiclient.NewNetworksNetworkIdApplianceFirewallOneToManyNatRulesRules("PublicIp_example", "Uplink_example", []openapiclient.NetworksNetworkIdApplianceFirewallOneToManyNatRulesPortRules{*openapiclient.NewNetworksNetworkIdApplianceFirewallOneToManyNatRulesPortRules()})}) // InlineObject37 | 
+    updateNetworkApplianceFirewallOneToManyNatRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallOneToManyNatRulesRequest([]openapiclient.UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner{*openapiclient.NewUpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner("PublicIp_example", "Uplink_example", []openapiclient.UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner{*openapiclient.NewUpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner()})}) // UpdateNetworkApplianceFirewallOneToManyNatRulesRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallOneToManyNatRules(context.Background(), networkId).UpdateNetworkApplianceFirewallOneToManyNatRules(updateNetworkApplianceFirewallOneToManyNatRules).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallOneToManyNatRules(context.Background(), networkId).UpdateNetworkApplianceFirewallOneToManyNatRulesRequest(updateNetworkApplianceFirewallOneToManyNatRulesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceFirewallOneToManyNatRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -29758,7 +29758,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceFire
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceFirewallOneToManyNatRules** | [**InlineObject37**](InlineObject37.md) |  | 
+ **updateNetworkApplianceFirewallOneToManyNatRulesRequest** | [**UpdateNetworkApplianceFirewallOneToManyNatRulesRequest**](UpdateNetworkApplianceFirewallOneToManyNatRulesRequest.md) |  | 
 
 ### Return type
 
@@ -29780,7 +29780,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceFirewallOneToOneNatRules
 
-> map[string]interface{} UpdateNetworkApplianceFirewallOneToOneNatRules(ctx, networkId).UpdateNetworkApplianceFirewallOneToOneNatRules(updateNetworkApplianceFirewallOneToOneNatRules).Execute()
+> map[string]interface{} UpdateNetworkApplianceFirewallOneToOneNatRules(ctx, networkId).UpdateNetworkApplianceFirewallOneToOneNatRulesRequest(updateNetworkApplianceFirewallOneToOneNatRulesRequest).Execute()
 
 Set the 1:1 NAT mapping rules for an MX network
 
@@ -29795,16 +29795,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceFirewallOneToOneNatRules := *openapiclient.NewInlineObject38([]openapiclient.NetworksNetworkIdApplianceFirewallOneToOneNatRulesRules{*openapiclient.NewNetworksNetworkIdApplianceFirewallOneToOneNatRulesRules("LanIp_example")}) // InlineObject38 | 
+    updateNetworkApplianceFirewallOneToOneNatRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallOneToOneNatRulesRequest([]openapiclient.UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner{*openapiclient.NewUpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner("LanIp_example")}) // UpdateNetworkApplianceFirewallOneToOneNatRulesRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallOneToOneNatRules(context.Background(), networkId).UpdateNetworkApplianceFirewallOneToOneNatRules(updateNetworkApplianceFirewallOneToOneNatRules).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallOneToOneNatRules(context.Background(), networkId).UpdateNetworkApplianceFirewallOneToOneNatRulesRequest(updateNetworkApplianceFirewallOneToOneNatRulesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceFirewallOneToOneNatRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -29830,7 +29830,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceFire
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceFirewallOneToOneNatRules** | [**InlineObject38**](InlineObject38.md) |  | 
+ **updateNetworkApplianceFirewallOneToOneNatRulesRequest** | [**UpdateNetworkApplianceFirewallOneToOneNatRulesRequest**](UpdateNetworkApplianceFirewallOneToOneNatRulesRequest.md) |  | 
 
 ### Return type
 
@@ -29852,7 +29852,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceFirewallPortForwardingRules
 
-> map[string]interface{} UpdateNetworkApplianceFirewallPortForwardingRules(ctx, networkId).UpdateNetworkApplianceFirewallPortForwardingRules(updateNetworkApplianceFirewallPortForwardingRules).Execute()
+> map[string]interface{} UpdateNetworkApplianceFirewallPortForwardingRules(ctx, networkId).UpdateNetworkApplianceFirewallPortForwardingRulesRequest(updateNetworkApplianceFirewallPortForwardingRulesRequest).Execute()
 
 Update the port forwarding rules for an MX network
 
@@ -29867,16 +29867,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceFirewallPortForwardingRules := *openapiclient.NewInlineObject39([]openapiclient.NetworksNetworkIdApplianceFirewallPortForwardingRulesRules{*openapiclient.NewNetworksNetworkIdApplianceFirewallPortForwardingRulesRules("LanIp_example", "PublicPort_example", "LocalPort_example", []string{"AllowedIps_example"}, "Protocol_example")}) // InlineObject39 | 
+    updateNetworkApplianceFirewallPortForwardingRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallPortForwardingRulesRequest([]openapiclient.UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner{*openapiclient.NewUpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner("LanIp_example", "PublicPort_example", "LocalPort_example", []string{"AllowedIps_example"}, "Protocol_example")}) // UpdateNetworkApplianceFirewallPortForwardingRulesRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallPortForwardingRules(context.Background(), networkId).UpdateNetworkApplianceFirewallPortForwardingRules(updateNetworkApplianceFirewallPortForwardingRules).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallPortForwardingRules(context.Background(), networkId).UpdateNetworkApplianceFirewallPortForwardingRulesRequest(updateNetworkApplianceFirewallPortForwardingRulesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceFirewallPortForwardingRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -29902,7 +29902,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceFire
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceFirewallPortForwardingRules** | [**InlineObject39**](InlineObject39.md) |  | 
+ **updateNetworkApplianceFirewallPortForwardingRulesRequest** | [**UpdateNetworkApplianceFirewallPortForwardingRulesRequest**](UpdateNetworkApplianceFirewallPortForwardingRulesRequest.md) |  | 
 
 ### Return type
 
@@ -29924,7 +29924,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceFirewallSettings
 
-> map[string]interface{} UpdateNetworkApplianceFirewallSettings(ctx, networkId).UpdateNetworkApplianceFirewallSettings(updateNetworkApplianceFirewallSettings).Execute()
+> map[string]interface{} UpdateNetworkApplianceFirewallSettings(ctx, networkId).UpdateNetworkApplianceFirewallSettingsRequest(updateNetworkApplianceFirewallSettingsRequest).Execute()
 
 Update the firewall settings for this network
 
@@ -29939,16 +29939,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceFirewallSettings := *openapiclient.NewInlineObject40() // InlineObject40 |  (optional)
+    updateNetworkApplianceFirewallSettingsRequest := *openapiclient.NewUpdateNetworkApplianceFirewallSettingsRequest() // UpdateNetworkApplianceFirewallSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallSettings(context.Background(), networkId).UpdateNetworkApplianceFirewallSettings(updateNetworkApplianceFirewallSettings).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceFirewallSettings(context.Background(), networkId).UpdateNetworkApplianceFirewallSettingsRequest(updateNetworkApplianceFirewallSettingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceFirewallSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -29974,7 +29974,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceFire
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceFirewallSettings** | [**InlineObject40**](InlineObject40.md) |  | 
+ **updateNetworkApplianceFirewallSettingsRequest** | [**UpdateNetworkApplianceFirewallSettingsRequest**](UpdateNetworkApplianceFirewallSettingsRequest.md) |  | 
 
 ### Return type
 
@@ -29996,7 +29996,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkAppliancePort
 
-> InlineResponse20015 UpdateNetworkAppliancePort(ctx, networkId, portId).UpdateNetworkAppliancePort(updateNetworkAppliancePort).Execute()
+> GetNetworkAppliancePorts200ResponseInner UpdateNetworkAppliancePort(ctx, networkId, portId).UpdateNetworkAppliancePortRequest(updateNetworkAppliancePortRequest).Execute()
 
 Update the per-port VLAN settings for a single MX port.
 
@@ -30011,22 +30011,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     portId := "portId_example" // string | Port ID
-    updateNetworkAppliancePort := *openapiclient.NewInlineObject41() // InlineObject41 |  (optional)
+    updateNetworkAppliancePortRequest := *openapiclient.NewUpdateNetworkAppliancePortRequest() // UpdateNetworkAppliancePortRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkAppliancePort(context.Background(), networkId, portId).UpdateNetworkAppliancePort(updateNetworkAppliancePort).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkAppliancePort(context.Background(), networkId, portId).UpdateNetworkAppliancePortRequest(updateNetworkAppliancePortRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkAppliancePort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkAppliancePort`: InlineResponse20015
+    // response from `UpdateNetworkAppliancePort`: GetNetworkAppliancePorts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkAppliancePort`: %v\n", resp)
 }
 ```
@@ -30049,11 +30049,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkAppliancePort** | [**InlineObject41**](InlineObject41.md) |  | 
+ **updateNetworkAppliancePortRequest** | [**UpdateNetworkAppliancePortRequest**](UpdateNetworkAppliancePortRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20015**](InlineResponse20015.md)
+[**GetNetworkAppliancePorts200ResponseInner**](GetNetworkAppliancePorts200ResponseInner.md)
 
 ### Authorization
 
@@ -30071,7 +30071,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkAppliancePrefixesDelegatedStatic
 
-> map[string]interface{} UpdateNetworkAppliancePrefixesDelegatedStatic(ctx, networkId, staticDelegatedPrefixId).UpdateNetworkAppliancePrefixesDelegatedStatic(updateNetworkAppliancePrefixesDelegatedStatic).Execute()
+> map[string]interface{} UpdateNetworkAppliancePrefixesDelegatedStatic(ctx, networkId, staticDelegatedPrefixId).UpdateNetworkAppliancePrefixesDelegatedStaticRequest(updateNetworkAppliancePrefixesDelegatedStaticRequest).Execute()
 
 Update a static delegated prefix from a network
 
@@ -30086,17 +30086,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     staticDelegatedPrefixId := "staticDelegatedPrefixId_example" // string | Static delegated prefix ID
-    updateNetworkAppliancePrefixesDelegatedStatic := *openapiclient.NewInlineObject43() // InlineObject43 |  (optional)
+    updateNetworkAppliancePrefixesDelegatedStaticRequest := *openapiclient.NewUpdateNetworkAppliancePrefixesDelegatedStaticRequest() // UpdateNetworkAppliancePrefixesDelegatedStaticRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkAppliancePrefixesDelegatedStatic(context.Background(), networkId, staticDelegatedPrefixId).UpdateNetworkAppliancePrefixesDelegatedStatic(updateNetworkAppliancePrefixesDelegatedStatic).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkAppliancePrefixesDelegatedStatic(context.Background(), networkId, staticDelegatedPrefixId).UpdateNetworkAppliancePrefixesDelegatedStaticRequest(updateNetworkAppliancePrefixesDelegatedStaticRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkAppliancePrefixesDelegatedStatic``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -30124,7 +30124,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkAppliancePrefixesDelegatedStatic** | [**InlineObject43**](InlineObject43.md) |  | 
+ **updateNetworkAppliancePrefixesDelegatedStaticRequest** | [**UpdateNetworkAppliancePrefixesDelegatedStaticRequest**](UpdateNetworkAppliancePrefixesDelegatedStaticRequest.md) |  | 
 
 ### Return type
 
@@ -30146,7 +30146,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceRfProfile
 
-> InlineResponse20017Assigned UpdateNetworkApplianceRfProfile(ctx, networkId, rfProfileId).UpdateNetworkApplianceRfProfile(updateNetworkApplianceRfProfile).Execute()
+> GetNetworkApplianceRfProfiles200ResponseAssignedInner UpdateNetworkApplianceRfProfile(ctx, networkId, rfProfileId).UpdateNetworkApplianceRfProfileRequest(updateNetworkApplianceRfProfileRequest).Execute()
 
 Updates specified RF profile for this network
 
@@ -30161,22 +30161,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     rfProfileId := "rfProfileId_example" // string | Rf profile ID
-    updateNetworkApplianceRfProfile := *openapiclient.NewInlineObject45() // InlineObject45 |  (optional)
+    updateNetworkApplianceRfProfileRequest := *openapiclient.NewUpdateNetworkApplianceRfProfileRequest() // UpdateNetworkApplianceRfProfileRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceRfProfile(context.Background(), networkId, rfProfileId).UpdateNetworkApplianceRfProfile(updateNetworkApplianceRfProfile).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceRfProfile(context.Background(), networkId, rfProfileId).UpdateNetworkApplianceRfProfileRequest(updateNetworkApplianceRfProfileRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceRfProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkApplianceRfProfile`: InlineResponse20017Assigned
+    // response from `UpdateNetworkApplianceRfProfile`: GetNetworkApplianceRfProfiles200ResponseAssignedInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkApplianceRfProfile`: %v\n", resp)
 }
 ```
@@ -30199,11 +30199,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkApplianceRfProfile** | [**InlineObject45**](InlineObject45.md) |  | 
+ **updateNetworkApplianceRfProfileRequest** | [**UpdateNetworkApplianceRfProfileRequest**](UpdateNetworkApplianceRfProfileRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20017Assigned**](InlineResponse20017Assigned.md)
+[**GetNetworkApplianceRfProfiles200ResponseAssignedInner**](GetNetworkApplianceRfProfiles200ResponseAssignedInner.md)
 
 ### Authorization
 
@@ -30221,7 +30221,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceSecurityIntrusion
 
-> map[string]interface{} UpdateNetworkApplianceSecurityIntrusion(ctx, networkId).UpdateNetworkApplianceSecurityIntrusion(updateNetworkApplianceSecurityIntrusion).Execute()
+> map[string]interface{} UpdateNetworkApplianceSecurityIntrusion(ctx, networkId).UpdateNetworkApplianceSecurityIntrusionRequest(updateNetworkApplianceSecurityIntrusionRequest).Execute()
 
 Set the supported intrusion settings for an MX network
 
@@ -30236,16 +30236,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceSecurityIntrusion := *openapiclient.NewInlineObject46() // InlineObject46 |  (optional)
+    updateNetworkApplianceSecurityIntrusionRequest := *openapiclient.NewUpdateNetworkApplianceSecurityIntrusionRequest() // UpdateNetworkApplianceSecurityIntrusionRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceSecurityIntrusion(context.Background(), networkId).UpdateNetworkApplianceSecurityIntrusion(updateNetworkApplianceSecurityIntrusion).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceSecurityIntrusion(context.Background(), networkId).UpdateNetworkApplianceSecurityIntrusionRequest(updateNetworkApplianceSecurityIntrusionRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceSecurityIntrusion``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -30271,7 +30271,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceSecu
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceSecurityIntrusion** | [**InlineObject46**](InlineObject46.md) |  | 
+ **updateNetworkApplianceSecurityIntrusionRequest** | [**UpdateNetworkApplianceSecurityIntrusionRequest**](UpdateNetworkApplianceSecurityIntrusionRequest.md) |  | 
 
 ### Return type
 
@@ -30293,7 +30293,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceSecurityMalware
 
-> map[string]interface{} UpdateNetworkApplianceSecurityMalware(ctx, networkId).UpdateNetworkApplianceSecurityMalware(updateNetworkApplianceSecurityMalware).Execute()
+> map[string]interface{} UpdateNetworkApplianceSecurityMalware(ctx, networkId).UpdateNetworkApplianceSecurityMalwareRequest(updateNetworkApplianceSecurityMalwareRequest).Execute()
 
 Set the supported malware settings for an MX network
 
@@ -30308,16 +30308,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceSecurityMalware := *openapiclient.NewInlineObject47("Mode_example") // InlineObject47 | 
+    updateNetworkApplianceSecurityMalwareRequest := *openapiclient.NewUpdateNetworkApplianceSecurityMalwareRequest("Mode_example") // UpdateNetworkApplianceSecurityMalwareRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceSecurityMalware(context.Background(), networkId).UpdateNetworkApplianceSecurityMalware(updateNetworkApplianceSecurityMalware).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceSecurityMalware(context.Background(), networkId).UpdateNetworkApplianceSecurityMalwareRequest(updateNetworkApplianceSecurityMalwareRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceSecurityMalware``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -30343,7 +30343,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceSecu
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceSecurityMalware** | [**InlineObject47**](InlineObject47.md) |  | 
+ **updateNetworkApplianceSecurityMalwareRequest** | [**UpdateNetworkApplianceSecurityMalwareRequest**](UpdateNetworkApplianceSecurityMalwareRequest.md) |  | 
 
 ### Return type
 
@@ -30365,7 +30365,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceSettings
 
-> InlineResponse20018 UpdateNetworkApplianceSettings(ctx, networkId).UpdateNetworkApplianceSettings(updateNetworkApplianceSettings).Execute()
+> GetNetworkApplianceSettings200Response UpdateNetworkApplianceSettings(ctx, networkId).UpdateNetworkApplianceSettingsRequest(updateNetworkApplianceSettingsRequest).Execute()
 
 Update the appliance settings for a network
 
@@ -30380,21 +30380,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceSettings := *openapiclient.NewInlineObject48() // InlineObject48 |  (optional)
+    updateNetworkApplianceSettingsRequest := *openapiclient.NewUpdateNetworkApplianceSettingsRequest() // UpdateNetworkApplianceSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceSettings(context.Background(), networkId).UpdateNetworkApplianceSettings(updateNetworkApplianceSettings).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceSettings(context.Background(), networkId).UpdateNetworkApplianceSettingsRequest(updateNetworkApplianceSettingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkApplianceSettings`: InlineResponse20018
+    // response from `UpdateNetworkApplianceSettings`: GetNetworkApplianceSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkApplianceSettings`: %v\n", resp)
 }
 ```
@@ -30415,11 +30415,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceSett
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceSettings** | [**InlineObject48**](InlineObject48.md) |  | 
+ **updateNetworkApplianceSettingsRequest** | [**UpdateNetworkApplianceSettingsRequest**](UpdateNetworkApplianceSettingsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20018**](InlineResponse20018.md)
+[**GetNetworkApplianceSettings200Response**](GetNetworkApplianceSettings200Response.md)
 
 ### Authorization
 
@@ -30437,7 +30437,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceSingleLan
 
-> InlineResponse20019 UpdateNetworkApplianceSingleLan(ctx, networkId).UpdateNetworkApplianceSingleLan(updateNetworkApplianceSingleLan).Execute()
+> GetNetworkApplianceSingleLan200Response UpdateNetworkApplianceSingleLan(ctx, networkId).UpdateNetworkApplianceSingleLanRequest(updateNetworkApplianceSingleLanRequest).Execute()
 
 Update single LAN configuration
 
@@ -30452,21 +30452,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceSingleLan := *openapiclient.NewInlineObject49() // InlineObject49 |  (optional)
+    updateNetworkApplianceSingleLanRequest := *openapiclient.NewUpdateNetworkApplianceSingleLanRequest() // UpdateNetworkApplianceSingleLanRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceSingleLan(context.Background(), networkId).UpdateNetworkApplianceSingleLan(updateNetworkApplianceSingleLan).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceSingleLan(context.Background(), networkId).UpdateNetworkApplianceSingleLanRequest(updateNetworkApplianceSingleLanRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceSingleLan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkApplianceSingleLan`: InlineResponse20019
+    // response from `UpdateNetworkApplianceSingleLan`: GetNetworkApplianceSingleLan200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkApplianceSingleLan`: %v\n", resp)
 }
 ```
@@ -30487,11 +30487,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceSing
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceSingleLan** | [**InlineObject49**](InlineObject49.md) |  | 
+ **updateNetworkApplianceSingleLanRequest** | [**UpdateNetworkApplianceSingleLanRequest**](UpdateNetworkApplianceSingleLanRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20019**](InlineResponse20019.md)
+[**GetNetworkApplianceSingleLan200Response**](GetNetworkApplianceSingleLan200Response.md)
 
 ### Authorization
 
@@ -30509,7 +30509,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceSsid
 
-> InlineResponse20020 UpdateNetworkApplianceSsid(ctx, networkId, number).UpdateNetworkApplianceSsid(updateNetworkApplianceSsid).Execute()
+> GetNetworkApplianceSsids200ResponseInner UpdateNetworkApplianceSsid(ctx, networkId, number).UpdateNetworkApplianceSsidRequest(updateNetworkApplianceSsidRequest).Execute()
 
 Update the attributes of an MX SSID
 
@@ -30524,22 +30524,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     number := "number_example" // string | Number
-    updateNetworkApplianceSsid := *openapiclient.NewInlineObject50() // InlineObject50 |  (optional)
+    updateNetworkApplianceSsidRequest := *openapiclient.NewUpdateNetworkApplianceSsidRequest() // UpdateNetworkApplianceSsidRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceSsid(context.Background(), networkId, number).UpdateNetworkApplianceSsid(updateNetworkApplianceSsid).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceSsid(context.Background(), networkId, number).UpdateNetworkApplianceSsidRequest(updateNetworkApplianceSsidRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceSsid``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkApplianceSsid`: InlineResponse20020
+    // response from `UpdateNetworkApplianceSsid`: GetNetworkApplianceSsids200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkApplianceSsid`: %v\n", resp)
 }
 ```
@@ -30562,11 +30562,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkApplianceSsid** | [**InlineObject50**](InlineObject50.md) |  | 
+ **updateNetworkApplianceSsidRequest** | [**UpdateNetworkApplianceSsidRequest**](UpdateNetworkApplianceSsidRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20020**](InlineResponse20020.md)
+[**GetNetworkApplianceSsids200ResponseInner**](GetNetworkApplianceSsids200ResponseInner.md)
 
 ### Authorization
 
@@ -30584,7 +30584,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceStaticRoute
 
-> map[string]interface{} UpdateNetworkApplianceStaticRoute(ctx, networkId, staticRouteId).UpdateNetworkApplianceStaticRoute(updateNetworkApplianceStaticRoute).Execute()
+> map[string]interface{} UpdateNetworkApplianceStaticRoute(ctx, networkId, staticRouteId).UpdateNetworkApplianceStaticRouteRequest(updateNetworkApplianceStaticRouteRequest).Execute()
 
 Update a static route for an MX or teleworker network
 
@@ -30599,17 +30599,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     staticRouteId := "staticRouteId_example" // string | Static route ID
-    updateNetworkApplianceStaticRoute := *openapiclient.NewInlineObject52() // InlineObject52 |  (optional)
+    updateNetworkApplianceStaticRouteRequest := *openapiclient.NewUpdateNetworkApplianceStaticRouteRequest() // UpdateNetworkApplianceStaticRouteRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceStaticRoute(context.Background(), networkId, staticRouteId).UpdateNetworkApplianceStaticRoute(updateNetworkApplianceStaticRoute).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceStaticRoute(context.Background(), networkId, staticRouteId).UpdateNetworkApplianceStaticRouteRequest(updateNetworkApplianceStaticRouteRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceStaticRoute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -30637,7 +30637,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkApplianceStaticRoute** | [**InlineObject52**](InlineObject52.md) |  | 
+ **updateNetworkApplianceStaticRouteRequest** | [**UpdateNetworkApplianceStaticRouteRequest**](UpdateNetworkApplianceStaticRouteRequest.md) |  | 
 
 ### Return type
 
@@ -30659,7 +30659,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceTrafficShaping
 
-> map[string]interface{} UpdateNetworkApplianceTrafficShaping(ctx, networkId).UpdateNetworkApplianceTrafficShaping(updateNetworkApplianceTrafficShaping).Execute()
+> map[string]interface{} UpdateNetworkApplianceTrafficShaping(ctx, networkId).UpdateNetworkApplianceTrafficShapingRequest(updateNetworkApplianceTrafficShapingRequest).Execute()
 
 Update the traffic shaping settings for an MX network
 
@@ -30674,16 +30674,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceTrafficShaping := *openapiclient.NewInlineObject53() // InlineObject53 |  (optional)
+    updateNetworkApplianceTrafficShapingRequest := *openapiclient.NewUpdateNetworkApplianceTrafficShapingRequest() // UpdateNetworkApplianceTrafficShapingRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceTrafficShaping(context.Background(), networkId).UpdateNetworkApplianceTrafficShaping(updateNetworkApplianceTrafficShaping).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceTrafficShaping(context.Background(), networkId).UpdateNetworkApplianceTrafficShapingRequest(updateNetworkApplianceTrafficShapingRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceTrafficShaping``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -30709,7 +30709,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceTraf
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceTrafficShaping** | [**InlineObject53**](InlineObject53.md) |  | 
+ **updateNetworkApplianceTrafficShapingRequest** | [**UpdateNetworkApplianceTrafficShapingRequest**](UpdateNetworkApplianceTrafficShapingRequest.md) |  | 
 
 ### Return type
 
@@ -30731,7 +30731,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceTrafficShapingCustomPerformanceClass
 
-> map[string]interface{} UpdateNetworkApplianceTrafficShapingCustomPerformanceClass(ctx, networkId, customPerformanceClassId).UpdateNetworkApplianceTrafficShapingCustomPerformanceClass(updateNetworkApplianceTrafficShapingCustomPerformanceClass).Execute()
+> map[string]interface{} UpdateNetworkApplianceTrafficShapingCustomPerformanceClass(ctx, networkId, customPerformanceClassId).UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest(updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest).Execute()
 
 Update a custom performance class for an MX network
 
@@ -30746,17 +30746,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     customPerformanceClassId := "customPerformanceClassId_example" // string | Custom performance class ID
-    updateNetworkApplianceTrafficShapingCustomPerformanceClass := *openapiclient.NewInlineObject55() // InlineObject55 |  (optional)
+    updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest := *openapiclient.NewUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest() // UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceTrafficShapingCustomPerformanceClass(context.Background(), networkId, customPerformanceClassId).UpdateNetworkApplianceTrafficShapingCustomPerformanceClass(updateNetworkApplianceTrafficShapingCustomPerformanceClass).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceTrafficShapingCustomPerformanceClass(context.Background(), networkId, customPerformanceClassId).UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest(updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceTrafficShapingCustomPerformanceClass``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -30784,7 +30784,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkApplianceTrafficShapingCustomPerformanceClass** | [**InlineObject55**](InlineObject55.md) |  | 
+ **updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest** | [**UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest**](UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest.md) |  | 
 
 ### Return type
 
@@ -30806,7 +30806,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceTrafficShapingRules
 
-> map[string]interface{} UpdateNetworkApplianceTrafficShapingRules(ctx, networkId).UpdateNetworkApplianceTrafficShapingRules(updateNetworkApplianceTrafficShapingRules).Execute()
+> map[string]interface{} UpdateNetworkApplianceTrafficShapingRules(ctx, networkId).UpdateNetworkApplianceTrafficShapingRulesRequest(updateNetworkApplianceTrafficShapingRulesRequest).Execute()
 
 Update the traffic shaping settings rules for an MX network
 
@@ -30821,16 +30821,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceTrafficShapingRules := *openapiclient.NewInlineObject56() // InlineObject56 |  (optional)
+    updateNetworkApplianceTrafficShapingRulesRequest := *openapiclient.NewUpdateNetworkApplianceTrafficShapingRulesRequest() // UpdateNetworkApplianceTrafficShapingRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceTrafficShapingRules(context.Background(), networkId).UpdateNetworkApplianceTrafficShapingRules(updateNetworkApplianceTrafficShapingRules).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceTrafficShapingRules(context.Background(), networkId).UpdateNetworkApplianceTrafficShapingRulesRequest(updateNetworkApplianceTrafficShapingRulesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceTrafficShapingRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -30856,7 +30856,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceTraf
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceTrafficShapingRules** | [**InlineObject56**](InlineObject56.md) |  | 
+ **updateNetworkApplianceTrafficShapingRulesRequest** | [**UpdateNetworkApplianceTrafficShapingRulesRequest**](UpdateNetworkApplianceTrafficShapingRulesRequest.md) |  | 
 
 ### Return type
 
@@ -30878,7 +30878,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceTrafficShapingUplinkBandwidth
 
-> map[string]interface{} UpdateNetworkApplianceTrafficShapingUplinkBandwidth(ctx, networkId).UpdateNetworkApplianceTrafficShapingUplinkBandwidth(updateNetworkApplianceTrafficShapingUplinkBandwidth).Execute()
+> map[string]interface{} UpdateNetworkApplianceTrafficShapingUplinkBandwidth(ctx, networkId).UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest(updateNetworkApplianceTrafficShapingUplinkBandwidthRequest).Execute()
 
 Updates the uplink bandwidth settings for your MX network.
 
@@ -30893,16 +30893,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceTrafficShapingUplinkBandwidth := *openapiclient.NewInlineObject57() // InlineObject57 |  (optional)
+    updateNetworkApplianceTrafficShapingUplinkBandwidthRequest := *openapiclient.NewUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest() // UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceTrafficShapingUplinkBandwidth(context.Background(), networkId).UpdateNetworkApplianceTrafficShapingUplinkBandwidth(updateNetworkApplianceTrafficShapingUplinkBandwidth).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceTrafficShapingUplinkBandwidth(context.Background(), networkId).UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest(updateNetworkApplianceTrafficShapingUplinkBandwidthRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceTrafficShapingUplinkBandwidth``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -30928,7 +30928,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceTraf
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceTrafficShapingUplinkBandwidth** | [**InlineObject57**](InlineObject57.md) |  | 
+ **updateNetworkApplianceTrafficShapingUplinkBandwidthRequest** | [**UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest**](UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest.md) |  | 
 
 ### Return type
 
@@ -30950,7 +30950,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceTrafficShapingUplinkSelection
 
-> InlineResponse20022 UpdateNetworkApplianceTrafficShapingUplinkSelection(ctx, networkId).UpdateNetworkApplianceTrafficShapingUplinkSelection(updateNetworkApplianceTrafficShapingUplinkSelection).Execute()
+> GetNetworkApplianceTrafficShapingUplinkSelection200Response UpdateNetworkApplianceTrafficShapingUplinkSelection(ctx, networkId).UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest(updateNetworkApplianceTrafficShapingUplinkSelectionRequest).Execute()
 
 Update uplink selection settings for an MX network
 
@@ -30965,21 +30965,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceTrafficShapingUplinkSelection := *openapiclient.NewInlineObject58() // InlineObject58 |  (optional)
+    updateNetworkApplianceTrafficShapingUplinkSelectionRequest := *openapiclient.NewUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest() // UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceTrafficShapingUplinkSelection(context.Background(), networkId).UpdateNetworkApplianceTrafficShapingUplinkSelection(updateNetworkApplianceTrafficShapingUplinkSelection).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceTrafficShapingUplinkSelection(context.Background(), networkId).UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest(updateNetworkApplianceTrafficShapingUplinkSelectionRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceTrafficShapingUplinkSelection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkApplianceTrafficShapingUplinkSelection`: InlineResponse20022
+    // response from `UpdateNetworkApplianceTrafficShapingUplinkSelection`: GetNetworkApplianceTrafficShapingUplinkSelection200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkApplianceTrafficShapingUplinkSelection`: %v\n", resp)
 }
 ```
@@ -31000,11 +31000,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceTraf
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceTrafficShapingUplinkSelection** | [**InlineObject58**](InlineObject58.md) |  | 
+ **updateNetworkApplianceTrafficShapingUplinkSelectionRequest** | [**UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest**](UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20022**](InlineResponse20022.md)
+[**GetNetworkApplianceTrafficShapingUplinkSelection200Response**](GetNetworkApplianceTrafficShapingUplinkSelection200Response.md)
 
 ### Authorization
 
@@ -31022,7 +31022,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceVlan
 
-> InlineResponse20023 UpdateNetworkApplianceVlan(ctx, networkId, vlanId).UpdateNetworkApplianceVlan(updateNetworkApplianceVlan).Execute()
+> GetNetworkApplianceVlans200ResponseInner UpdateNetworkApplianceVlan(ctx, networkId, vlanId).UpdateNetworkApplianceVlanRequest(updateNetworkApplianceVlanRequest).Execute()
 
 Update a VLAN
 
@@ -31037,22 +31037,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     vlanId := "vlanId_example" // string | Vlan ID
-    updateNetworkApplianceVlan := *openapiclient.NewInlineObject61() // InlineObject61 |  (optional)
+    updateNetworkApplianceVlanRequest := *openapiclient.NewUpdateNetworkApplianceVlanRequest() // UpdateNetworkApplianceVlanRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceVlan(context.Background(), networkId, vlanId).UpdateNetworkApplianceVlan(updateNetworkApplianceVlan).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceVlan(context.Background(), networkId, vlanId).UpdateNetworkApplianceVlanRequest(updateNetworkApplianceVlanRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceVlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkApplianceVlan`: InlineResponse20023
+    // response from `UpdateNetworkApplianceVlan`: GetNetworkApplianceVlans200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkApplianceVlan`: %v\n", resp)
 }
 ```
@@ -31075,11 +31075,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkApplianceVlan** | [**InlineObject61**](InlineObject61.md) |  | 
+ **updateNetworkApplianceVlanRequest** | [**UpdateNetworkApplianceVlanRequest**](UpdateNetworkApplianceVlanRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20023**](InlineResponse20023.md)
+[**GetNetworkApplianceVlans200ResponseInner**](GetNetworkApplianceVlans200ResponseInner.md)
 
 ### Authorization
 
@@ -31097,7 +31097,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceVlansSettings
 
-> map[string]interface{} UpdateNetworkApplianceVlansSettings(ctx, networkId).UpdateNetworkApplianceVlansSettings(updateNetworkApplianceVlansSettings).Execute()
+> map[string]interface{} UpdateNetworkApplianceVlansSettings(ctx, networkId).UpdateNetworkApplianceVlansSettingsRequest(updateNetworkApplianceVlansSettingsRequest).Execute()
 
 Enable/Disable VLANs for the given network
 
@@ -31112,16 +31112,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceVlansSettings := *openapiclient.NewInlineObject60() // InlineObject60 |  (optional)
+    updateNetworkApplianceVlansSettingsRequest := *openapiclient.NewUpdateNetworkApplianceVlansSettingsRequest() // UpdateNetworkApplianceVlansSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceVlansSettings(context.Background(), networkId).UpdateNetworkApplianceVlansSettings(updateNetworkApplianceVlansSettings).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceVlansSettings(context.Background(), networkId).UpdateNetworkApplianceVlansSettingsRequest(updateNetworkApplianceVlansSettingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceVlansSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -31147,7 +31147,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceVlan
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceVlansSettings** | [**InlineObject60**](InlineObject60.md) |  | 
+ **updateNetworkApplianceVlansSettingsRequest** | [**UpdateNetworkApplianceVlansSettingsRequest**](UpdateNetworkApplianceVlansSettingsRequest.md) |  | 
 
 ### Return type
 
@@ -31169,7 +31169,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceVpnBgp
 
-> map[string]interface{} UpdateNetworkApplianceVpnBgp(ctx, networkId).UpdateNetworkApplianceVpnBgp(updateNetworkApplianceVpnBgp).Execute()
+> map[string]interface{} UpdateNetworkApplianceVpnBgp(ctx, networkId).UpdateNetworkApplianceVpnBgpRequest(updateNetworkApplianceVpnBgpRequest).Execute()
 
 Update a Hub BGP Configuration
 
@@ -31184,16 +31184,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceVpnBgp := *openapiclient.NewInlineObject62(false) // InlineObject62 | 
+    updateNetworkApplianceVpnBgpRequest := *openapiclient.NewUpdateNetworkApplianceVpnBgpRequest(false) // UpdateNetworkApplianceVpnBgpRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceVpnBgp(context.Background(), networkId).UpdateNetworkApplianceVpnBgp(updateNetworkApplianceVpnBgp).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceVpnBgp(context.Background(), networkId).UpdateNetworkApplianceVpnBgpRequest(updateNetworkApplianceVpnBgpRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceVpnBgp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -31219,7 +31219,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceVpnB
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceVpnBgp** | [**InlineObject62**](InlineObject62.md) |  | 
+ **updateNetworkApplianceVpnBgpRequest** | [**UpdateNetworkApplianceVpnBgpRequest**](UpdateNetworkApplianceVpnBgpRequest.md) |  | 
 
 ### Return type
 
@@ -31241,7 +31241,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceVpnSiteToSiteVpn
 
-> InlineResponse20024 UpdateNetworkApplianceVpnSiteToSiteVpn(ctx, networkId).UpdateNetworkApplianceVpnSiteToSiteVpn(updateNetworkApplianceVpnSiteToSiteVpn).Execute()
+> GetNetworkApplianceVpnSiteToSiteVpn200Response UpdateNetworkApplianceVpnSiteToSiteVpn(ctx, networkId).UpdateNetworkApplianceVpnSiteToSiteVpnRequest(updateNetworkApplianceVpnSiteToSiteVpnRequest).Execute()
 
 Update the site-to-site VPN settings of a network
 
@@ -31256,21 +31256,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceVpnSiteToSiteVpn := *openapiclient.NewInlineObject63("Mode_example") // InlineObject63 | 
+    updateNetworkApplianceVpnSiteToSiteVpnRequest := *openapiclient.NewUpdateNetworkApplianceVpnSiteToSiteVpnRequest("Mode_example") // UpdateNetworkApplianceVpnSiteToSiteVpnRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceVpnSiteToSiteVpn(context.Background(), networkId).UpdateNetworkApplianceVpnSiteToSiteVpn(updateNetworkApplianceVpnSiteToSiteVpn).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceVpnSiteToSiteVpn(context.Background(), networkId).UpdateNetworkApplianceVpnSiteToSiteVpnRequest(updateNetworkApplianceVpnSiteToSiteVpnRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceVpnSiteToSiteVpn``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkApplianceVpnSiteToSiteVpn`: InlineResponse20024
+    // response from `UpdateNetworkApplianceVpnSiteToSiteVpn`: GetNetworkApplianceVpnSiteToSiteVpn200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkApplianceVpnSiteToSiteVpn`: %v\n", resp)
 }
 ```
@@ -31291,11 +31291,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceVpnS
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceVpnSiteToSiteVpn** | [**InlineObject63**](InlineObject63.md) |  | 
+ **updateNetworkApplianceVpnSiteToSiteVpnRequest** | [**UpdateNetworkApplianceVpnSiteToSiteVpnRequest**](UpdateNetworkApplianceVpnSiteToSiteVpnRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20024**](InlineResponse20024.md)
+[**GetNetworkApplianceVpnSiteToSiteVpn200Response**](GetNetworkApplianceVpnSiteToSiteVpn200Response.md)
 
 ### Authorization
 
@@ -31313,7 +31313,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceWarmSpare
 
-> map[string]interface{} UpdateNetworkApplianceWarmSpare(ctx, networkId).UpdateNetworkApplianceWarmSpare(updateNetworkApplianceWarmSpare).Execute()
+> map[string]interface{} UpdateNetworkApplianceWarmSpare(ctx, networkId).UpdateNetworkApplianceWarmSpareRequest(updateNetworkApplianceWarmSpareRequest).Execute()
 
 Update MX warm spare settings
 
@@ -31328,16 +31328,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceWarmSpare := *openapiclient.NewInlineObject64(false) // InlineObject64 | 
+    updateNetworkApplianceWarmSpareRequest := *openapiclient.NewUpdateNetworkApplianceWarmSpareRequest(false) // UpdateNetworkApplianceWarmSpareRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceWarmSpare(context.Background(), networkId).UpdateNetworkApplianceWarmSpare(updateNetworkApplianceWarmSpare).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkApplianceWarmSpare(context.Background(), networkId).UpdateNetworkApplianceWarmSpareRequest(updateNetworkApplianceWarmSpareRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkApplianceWarmSpare``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -31363,7 +31363,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceWarm
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceWarmSpare** | [**InlineObject64**](InlineObject64.md) |  | 
+ **updateNetworkApplianceWarmSpareRequest** | [**UpdateNetworkApplianceWarmSpareRequest**](UpdateNetworkApplianceWarmSpareRequest.md) |  | 
 
 ### Return type
 
@@ -31385,7 +31385,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkCameraQualityRetentionProfile
 
-> map[string]interface{} UpdateNetworkCameraQualityRetentionProfile(ctx, networkId, qualityRetentionProfileId).UpdateNetworkCameraQualityRetentionProfile(updateNetworkCameraQualityRetentionProfile).Execute()
+> map[string]interface{} UpdateNetworkCameraQualityRetentionProfile(ctx, networkId, qualityRetentionProfileId).UpdateNetworkCameraQualityRetentionProfileRequest(updateNetworkCameraQualityRetentionProfileRequest).Execute()
 
 Update an existing quality retention profile for this network.
 
@@ -31400,17 +31400,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     qualityRetentionProfileId := "qualityRetentionProfileId_example" // string | Quality retention profile ID
-    updateNetworkCameraQualityRetentionProfile := *openapiclient.NewInlineObject67() // InlineObject67 |  (optional)
+    updateNetworkCameraQualityRetentionProfileRequest := *openapiclient.NewUpdateNetworkCameraQualityRetentionProfileRequest() // UpdateNetworkCameraQualityRetentionProfileRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkCameraQualityRetentionProfile(context.Background(), networkId, qualityRetentionProfileId).UpdateNetworkCameraQualityRetentionProfile(updateNetworkCameraQualityRetentionProfile).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkCameraQualityRetentionProfile(context.Background(), networkId, qualityRetentionProfileId).UpdateNetworkCameraQualityRetentionProfileRequest(updateNetworkCameraQualityRetentionProfileRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkCameraQualityRetentionProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -31438,7 +31438,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkCameraQualityRetentionProfile** | [**InlineObject67**](InlineObject67.md) |  | 
+ **updateNetworkCameraQualityRetentionProfileRequest** | [**UpdateNetworkCameraQualityRetentionProfileRequest**](UpdateNetworkCameraQualityRetentionProfileRequest.md) |  | 
 
 ### Return type
 
@@ -31460,7 +31460,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkCameraWirelessProfile
 
-> map[string]interface{} UpdateNetworkCameraWirelessProfile(ctx, networkId, wirelessProfileId).UpdateNetworkCameraWirelessProfile(updateNetworkCameraWirelessProfile).Execute()
+> map[string]interface{} UpdateNetworkCameraWirelessProfile(ctx, networkId, wirelessProfileId).UpdateNetworkCameraWirelessProfileRequest(updateNetworkCameraWirelessProfileRequest).Execute()
 
 Update an existing camera wireless profile in this network.
 
@@ -31475,17 +31475,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     wirelessProfileId := "wirelessProfileId_example" // string | Wireless profile ID
-    updateNetworkCameraWirelessProfile := *openapiclient.NewInlineObject69() // InlineObject69 |  (optional)
+    updateNetworkCameraWirelessProfileRequest := *openapiclient.NewUpdateNetworkCameraWirelessProfileRequest() // UpdateNetworkCameraWirelessProfileRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkCameraWirelessProfile(context.Background(), networkId, wirelessProfileId).UpdateNetworkCameraWirelessProfile(updateNetworkCameraWirelessProfile).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkCameraWirelessProfile(context.Background(), networkId, wirelessProfileId).UpdateNetworkCameraWirelessProfileRequest(updateNetworkCameraWirelessProfileRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkCameraWirelessProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -31513,7 +31513,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkCameraWirelessProfile** | [**InlineObject69**](InlineObject69.md) |  | 
+ **updateNetworkCameraWirelessProfileRequest** | [**UpdateNetworkCameraWirelessProfileRequest**](UpdateNetworkCameraWirelessProfileRequest.md) |  | 
 
 ### Return type
 
@@ -31535,7 +31535,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkCellularGatewayConnectivityMonitoringDestinations
 
-> map[string]interface{} UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(ctx, networkId).UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(updateNetworkCellularGatewayConnectivityMonitoringDestinations).Execute()
+> map[string]interface{} UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(ctx, networkId).UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest(updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest).Execute()
 
 Update the connectivity testing destinations for an MG network
 
@@ -31550,16 +31550,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkCellularGatewayConnectivityMonitoringDestinations := *openapiclient.NewInlineObject70() // InlineObject70 |  (optional)
+    updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest := *openapiclient.NewUpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest() // UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(context.Background(), networkId).UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(updateNetworkCellularGatewayConnectivityMonitoringDestinations).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(context.Background(), networkId).UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest(updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkCellularGatewayConnectivityMonitoringDestinations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -31585,7 +31585,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkCellularGatew
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkCellularGatewayConnectivityMonitoringDestinations** | [**InlineObject70**](InlineObject70.md) |  | 
+ **updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest** | [**UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest**](UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest.md) |  | 
 
 ### Return type
 
@@ -31607,7 +31607,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkCellularGatewayDhcp
 
-> InlineResponse20025 UpdateNetworkCellularGatewayDhcp(ctx, networkId).UpdateNetworkCellularGatewayDhcp(updateNetworkCellularGatewayDhcp).Execute()
+> GetNetworkCellularGatewayDhcp200Response UpdateNetworkCellularGatewayDhcp(ctx, networkId).UpdateNetworkCellularGatewayDhcpRequest(updateNetworkCellularGatewayDhcpRequest).Execute()
 
 Update common DHCP settings of MGs
 
@@ -31622,21 +31622,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkCellularGatewayDhcp := *openapiclient.NewInlineObject71() // InlineObject71 |  (optional)
+    updateNetworkCellularGatewayDhcpRequest := *openapiclient.NewUpdateNetworkCellularGatewayDhcpRequest() // UpdateNetworkCellularGatewayDhcpRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkCellularGatewayDhcp(context.Background(), networkId).UpdateNetworkCellularGatewayDhcp(updateNetworkCellularGatewayDhcp).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkCellularGatewayDhcp(context.Background(), networkId).UpdateNetworkCellularGatewayDhcpRequest(updateNetworkCellularGatewayDhcpRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkCellularGatewayDhcp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkCellularGatewayDhcp`: InlineResponse20025
+    // response from `UpdateNetworkCellularGatewayDhcp`: GetNetworkCellularGatewayDhcp200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkCellularGatewayDhcp`: %v\n", resp)
 }
 ```
@@ -31657,11 +31657,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkCellularGatew
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkCellularGatewayDhcp** | [**InlineObject71**](InlineObject71.md) |  | 
+ **updateNetworkCellularGatewayDhcpRequest** | [**UpdateNetworkCellularGatewayDhcpRequest**](UpdateNetworkCellularGatewayDhcpRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20025**](InlineResponse20025.md)
+[**GetNetworkCellularGatewayDhcp200Response**](GetNetworkCellularGatewayDhcp200Response.md)
 
 ### Authorization
 
@@ -31679,7 +31679,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkCellularGatewaySubnetPool
 
-> map[string]interface{} UpdateNetworkCellularGatewaySubnetPool(ctx, networkId).UpdateNetworkCellularGatewaySubnetPool(updateNetworkCellularGatewaySubnetPool).Execute()
+> map[string]interface{} UpdateNetworkCellularGatewaySubnetPool(ctx, networkId).UpdateNetworkCellularGatewaySubnetPoolRequest(updateNetworkCellularGatewaySubnetPoolRequest).Execute()
 
 Update the subnet pool and mask configuration for MGs in the network.
 
@@ -31694,16 +31694,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkCellularGatewaySubnetPool := *openapiclient.NewInlineObject72() // InlineObject72 |  (optional)
+    updateNetworkCellularGatewaySubnetPoolRequest := *openapiclient.NewUpdateNetworkCellularGatewaySubnetPoolRequest() // UpdateNetworkCellularGatewaySubnetPoolRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkCellularGatewaySubnetPool(context.Background(), networkId).UpdateNetworkCellularGatewaySubnetPool(updateNetworkCellularGatewaySubnetPool).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkCellularGatewaySubnetPool(context.Background(), networkId).UpdateNetworkCellularGatewaySubnetPoolRequest(updateNetworkCellularGatewaySubnetPoolRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkCellularGatewaySubnetPool``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -31729,7 +31729,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkCellularGatew
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkCellularGatewaySubnetPool** | [**InlineObject72**](InlineObject72.md) |  | 
+ **updateNetworkCellularGatewaySubnetPoolRequest** | [**UpdateNetworkCellularGatewaySubnetPoolRequest**](UpdateNetworkCellularGatewaySubnetPoolRequest.md) |  | 
 
 ### Return type
 
@@ -31751,7 +31751,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkCellularGatewayUplink
 
-> map[string]interface{} UpdateNetworkCellularGatewayUplink(ctx, networkId).UpdateNetworkCellularGatewayUplink(updateNetworkCellularGatewayUplink).Execute()
+> map[string]interface{} UpdateNetworkCellularGatewayUplink(ctx, networkId).UpdateNetworkCellularGatewayUplinkRequest(updateNetworkCellularGatewayUplinkRequest).Execute()
 
 Updates the uplink settings for your MG network.
 
@@ -31766,16 +31766,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkCellularGatewayUplink := *openapiclient.NewInlineObject73() // InlineObject73 |  (optional)
+    updateNetworkCellularGatewayUplinkRequest := *openapiclient.NewUpdateNetworkCellularGatewayUplinkRequest() // UpdateNetworkCellularGatewayUplinkRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkCellularGatewayUplink(context.Background(), networkId).UpdateNetworkCellularGatewayUplink(updateNetworkCellularGatewayUplink).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkCellularGatewayUplink(context.Background(), networkId).UpdateNetworkCellularGatewayUplinkRequest(updateNetworkCellularGatewayUplinkRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkCellularGatewayUplink``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -31801,7 +31801,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkCellularGatew
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkCellularGatewayUplink** | [**InlineObject73**](InlineObject73.md) |  | 
+ **updateNetworkCellularGatewayUplinkRequest** | [**UpdateNetworkCellularGatewayUplinkRequest**](UpdateNetworkCellularGatewayUplinkRequest.md) |  | 
 
 ### Return type
 
@@ -31823,7 +31823,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkClientPolicy
 
-> map[string]interface{} UpdateNetworkClientPolicy(ctx, networkId, clientId).UpdateNetworkClientPolicy(updateNetworkClientPolicy).Execute()
+> map[string]interface{} UpdateNetworkClientPolicy(ctx, networkId, clientId).UpdateNetworkClientPolicyRequest(updateNetworkClientPolicyRequest).Execute()
 
 Update the policy assigned to a client on the network
 
@@ -31838,17 +31838,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     clientId := "clientId_example" // string | Client ID
-    updateNetworkClientPolicy := *openapiclient.NewInlineObject75("DevicePolicy_example") // InlineObject75 | 
+    updateNetworkClientPolicyRequest := *openapiclient.NewUpdateNetworkClientPolicyRequest("DevicePolicy_example") // UpdateNetworkClientPolicyRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkClientPolicy(context.Background(), networkId, clientId).UpdateNetworkClientPolicy(updateNetworkClientPolicy).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkClientPolicy(context.Background(), networkId, clientId).UpdateNetworkClientPolicyRequest(updateNetworkClientPolicyRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkClientPolicy``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -31876,7 +31876,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkClientPolicy** | [**InlineObject75**](InlineObject75.md) |  | 
+ **updateNetworkClientPolicyRequest** | [**UpdateNetworkClientPolicyRequest**](UpdateNetworkClientPolicyRequest.md) |  | 
 
 ### Return type
 
@@ -31898,7 +31898,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkClientSplashAuthorizationStatus
 
-> map[string]interface{} UpdateNetworkClientSplashAuthorizationStatus(ctx, networkId, clientId).UpdateNetworkClientSplashAuthorizationStatus(updateNetworkClientSplashAuthorizationStatus).Execute()
+> map[string]interface{} UpdateNetworkClientSplashAuthorizationStatus(ctx, networkId, clientId).UpdateNetworkClientSplashAuthorizationStatusRequest(updateNetworkClientSplashAuthorizationStatusRequest).Execute()
 
 Update a client's splash authorization
 
@@ -31913,17 +31913,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     clientId := "clientId_example" // string | Client ID
-    updateNetworkClientSplashAuthorizationStatus := *openapiclient.NewInlineObject76(*openapiclient.NewNetworksNetworkIdClientsClientIdSplashAuthorizationStatusSsids()) // InlineObject76 | 
+    updateNetworkClientSplashAuthorizationStatusRequest := *openapiclient.NewUpdateNetworkClientSplashAuthorizationStatusRequest(*openapiclient.NewUpdateNetworkClientSplashAuthorizationStatusRequestSsids()) // UpdateNetworkClientSplashAuthorizationStatusRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkClientSplashAuthorizationStatus(context.Background(), networkId, clientId).UpdateNetworkClientSplashAuthorizationStatus(updateNetworkClientSplashAuthorizationStatus).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkClientSplashAuthorizationStatus(context.Background(), networkId, clientId).UpdateNetworkClientSplashAuthorizationStatusRequest(updateNetworkClientSplashAuthorizationStatusRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkClientSplashAuthorizationStatus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -31951,7 +31951,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkClientSplashAuthorizationStatus** | [**InlineObject76**](InlineObject76.md) |  | 
+ **updateNetworkClientSplashAuthorizationStatusRequest** | [**UpdateNetworkClientSplashAuthorizationStatusRequest**](UpdateNetworkClientSplashAuthorizationStatusRequest.md) |  | 
 
 ### Return type
 
@@ -31973,7 +31973,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkFirmwareUpgrades
 
-> InlineResponse20030 UpdateNetworkFirmwareUpgrades(ctx, networkId).UpdateNetworkFirmwareUpgrades(updateNetworkFirmwareUpgrades).Execute()
+> GetNetworkFirmwareUpgrades200Response UpdateNetworkFirmwareUpgrades(ctx, networkId).UpdateNetworkFirmwareUpgradesRequest(updateNetworkFirmwareUpgradesRequest).Execute()
 
 Update firmware upgrade information for a network
 
@@ -31988,21 +31988,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkFirmwareUpgrades := *openapiclient.NewInlineObject80() // InlineObject80 |  (optional)
+    updateNetworkFirmwareUpgradesRequest := *openapiclient.NewUpdateNetworkFirmwareUpgradesRequest() // UpdateNetworkFirmwareUpgradesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkFirmwareUpgrades(context.Background(), networkId).UpdateNetworkFirmwareUpgrades(updateNetworkFirmwareUpgrades).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkFirmwareUpgrades(context.Background(), networkId).UpdateNetworkFirmwareUpgradesRequest(updateNetworkFirmwareUpgradesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkFirmwareUpgrades``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkFirmwareUpgrades`: InlineResponse20030
+    // response from `UpdateNetworkFirmwareUpgrades`: GetNetworkFirmwareUpgrades200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkFirmwareUpgrades`: %v\n", resp)
 }
 ```
@@ -32023,11 +32023,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkFirmwareUpgra
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkFirmwareUpgrades** | [**InlineObject80**](InlineObject80.md) |  | 
+ **updateNetworkFirmwareUpgradesRequest** | [**UpdateNetworkFirmwareUpgradesRequest**](UpdateNetworkFirmwareUpgradesRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20030**](InlineResponse20030.md)
+[**GetNetworkFirmwareUpgrades200Response**](GetNetworkFirmwareUpgrades200Response.md)
 
 ### Authorization
 
@@ -32045,7 +32045,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkFirmwareUpgradesStagedEvents
 
-> InlineResponse20032 UpdateNetworkFirmwareUpgradesStagedEvents(ctx, networkId).UpdateNetworkFirmwareUpgradesStagedEvents(updateNetworkFirmwareUpgradesStagedEvents).Execute()
+> GetNetworkFirmwareUpgradesStagedEvents200Response UpdateNetworkFirmwareUpgradesStagedEvents(ctx, networkId).UpdateNetworkFirmwareUpgradesStagedEventsRequest(updateNetworkFirmwareUpgradesStagedEventsRequest).Execute()
 
 Update the Staged Upgrade Event for a network
 
@@ -32060,21 +32060,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkFirmwareUpgradesStagedEvents := *openapiclient.NewInlineObject82([]openapiclient.NetworksNetworkIdFirmwareUpgradesStagedEventsStages{*openapiclient.NewNetworksNetworkIdFirmwareUpgradesStagedEventsStages()}) // InlineObject82 | 
+    updateNetworkFirmwareUpgradesStagedEventsRequest := *openapiclient.NewUpdateNetworkFirmwareUpgradesStagedEventsRequest([]openapiclient.UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner{*openapiclient.NewUpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner()}) // UpdateNetworkFirmwareUpgradesStagedEventsRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkFirmwareUpgradesStagedEvents(context.Background(), networkId).UpdateNetworkFirmwareUpgradesStagedEvents(updateNetworkFirmwareUpgradesStagedEvents).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkFirmwareUpgradesStagedEvents(context.Background(), networkId).UpdateNetworkFirmwareUpgradesStagedEventsRequest(updateNetworkFirmwareUpgradesStagedEventsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkFirmwareUpgradesStagedEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkFirmwareUpgradesStagedEvents`: InlineResponse20032
+    // response from `UpdateNetworkFirmwareUpgradesStagedEvents`: GetNetworkFirmwareUpgradesStagedEvents200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkFirmwareUpgradesStagedEvents`: %v\n", resp)
 }
 ```
@@ -32095,11 +32095,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkFirmwareUpgra
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkFirmwareUpgradesStagedEvents** | [**InlineObject82**](InlineObject82.md) |  | 
+ **updateNetworkFirmwareUpgradesStagedEventsRequest** | [**UpdateNetworkFirmwareUpgradesStagedEventsRequest**](UpdateNetworkFirmwareUpgradesStagedEventsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20032**](InlineResponse20032.md)
+[**GetNetworkFirmwareUpgradesStagedEvents200Response**](GetNetworkFirmwareUpgradesStagedEvents200Response.md)
 
 ### Authorization
 
@@ -32117,7 +32117,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkFirmwareUpgradesStagedGroup
 
-> map[string]interface{} UpdateNetworkFirmwareUpgradesStagedGroup(ctx, networkId, groupId).UpdateNetworkFirmwareUpgradesStagedGroup(updateNetworkFirmwareUpgradesStagedGroup).Execute()
+> map[string]interface{} UpdateNetworkFirmwareUpgradesStagedGroup(ctx, networkId, groupId).CreateNetworkFirmwareUpgradesStagedGroupRequest(createNetworkFirmwareUpgradesStagedGroupRequest).Execute()
 
 Update a Staged Upgrade Group for a network
 
@@ -32132,17 +32132,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     groupId := "groupId_example" // string | Group ID
-    updateNetworkFirmwareUpgradesStagedGroup := *openapiclient.NewInlineObject86("Name_example", false) // InlineObject86 | 
+    createNetworkFirmwareUpgradesStagedGroupRequest := *openapiclient.NewCreateNetworkFirmwareUpgradesStagedGroupRequest("Name_example", false) // CreateNetworkFirmwareUpgradesStagedGroupRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId, groupId).UpdateNetworkFirmwareUpgradesStagedGroup(updateNetworkFirmwareUpgradesStagedGroup).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId, groupId).CreateNetworkFirmwareUpgradesStagedGroupRequest(createNetworkFirmwareUpgradesStagedGroupRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkFirmwareUpgradesStagedGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -32170,7 +32170,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkFirmwareUpgradesStagedGroup** | [**InlineObject86**](InlineObject86.md) |  | 
+ **createNetworkFirmwareUpgradesStagedGroupRequest** | [**CreateNetworkFirmwareUpgradesStagedGroupRequest**](CreateNetworkFirmwareUpgradesStagedGroupRequest.md) |  | 
 
 ### Return type
 
@@ -32192,7 +32192,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkFirmwareUpgradesStagedStages
 
-> []InlineResponse20034 UpdateNetworkFirmwareUpgradesStagedStages(ctx, networkId).UpdateNetworkFirmwareUpgradesStagedStages(updateNetworkFirmwareUpgradesStagedStages).Execute()
+> []GetNetworkFirmwareUpgradesStagedStages200ResponseInner UpdateNetworkFirmwareUpgradesStagedStages(ctx, networkId).UpdateNetworkFirmwareUpgradesStagedStagesRequest(updateNetworkFirmwareUpgradesStagedStagesRequest).Execute()
 
 Assign Staged Upgrade Group order in the sequence.
 
@@ -32207,21 +32207,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkFirmwareUpgradesStagedStages := *openapiclient.NewInlineObject87() // InlineObject87 |  (optional)
+    updateNetworkFirmwareUpgradesStagedStagesRequest := *openapiclient.NewUpdateNetworkFirmwareUpgradesStagedStagesRequest() // UpdateNetworkFirmwareUpgradesStagedStagesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkFirmwareUpgradesStagedStages(context.Background(), networkId).UpdateNetworkFirmwareUpgradesStagedStages(updateNetworkFirmwareUpgradesStagedStages).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkFirmwareUpgradesStagedStages(context.Background(), networkId).UpdateNetworkFirmwareUpgradesStagedStagesRequest(updateNetworkFirmwareUpgradesStagedStagesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkFirmwareUpgradesStagedStages``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkFirmwareUpgradesStagedStages`: []InlineResponse20034
+    // response from `UpdateNetworkFirmwareUpgradesStagedStages`: []GetNetworkFirmwareUpgradesStagedStages200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkFirmwareUpgradesStagedStages`: %v\n", resp)
 }
 ```
@@ -32242,11 +32242,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkFirmwareUpgra
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkFirmwareUpgradesStagedStages** | [**InlineObject87**](InlineObject87.md) |  | 
+ **updateNetworkFirmwareUpgradesStagedStagesRequest** | [**UpdateNetworkFirmwareUpgradesStagedStagesRequest**](UpdateNetworkFirmwareUpgradesStagedStagesRequest.md) |  | 
 
 ### Return type
 
-[**[]InlineResponse20034**](InlineResponse20034.md)
+[**[]GetNetworkFirmwareUpgradesStagedStages200ResponseInner**](GetNetworkFirmwareUpgradesStagedStages200ResponseInner.md)
 
 ### Authorization
 
@@ -32264,7 +32264,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkFloorPlan
 
-> map[string]interface{} UpdateNetworkFloorPlan(ctx, networkId, floorPlanId).UpdateNetworkFloorPlan(updateNetworkFloorPlan).Execute()
+> map[string]interface{} UpdateNetworkFloorPlan(ctx, networkId, floorPlanId).UpdateNetworkFloorPlanRequest(updateNetworkFloorPlanRequest).Execute()
 
 Update a floor plan's geolocation and other meta data
 
@@ -32279,17 +32279,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     floorPlanId := "floorPlanId_example" // string | Floor plan ID
-    updateNetworkFloorPlan := *openapiclient.NewInlineObject89() // InlineObject89 |  (optional)
+    updateNetworkFloorPlanRequest := *openapiclient.NewUpdateNetworkFloorPlanRequest() // UpdateNetworkFloorPlanRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkFloorPlan(context.Background(), networkId, floorPlanId).UpdateNetworkFloorPlan(updateNetworkFloorPlan).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkFloorPlan(context.Background(), networkId, floorPlanId).UpdateNetworkFloorPlanRequest(updateNetworkFloorPlanRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkFloorPlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -32317,7 +32317,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkFloorPlan** | [**InlineObject89**](InlineObject89.md) |  | 
+ **updateNetworkFloorPlanRequest** | [**UpdateNetworkFloorPlanRequest**](UpdateNetworkFloorPlanRequest.md) |  | 
 
 ### Return type
 
@@ -32339,7 +32339,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkGroupPolicy
 
-> map[string]interface{} UpdateNetworkGroupPolicy(ctx, networkId, groupPolicyId).UpdateNetworkGroupPolicy(updateNetworkGroupPolicy).Execute()
+> map[string]interface{} UpdateNetworkGroupPolicy(ctx, networkId, groupPolicyId).UpdateNetworkGroupPolicyRequest(updateNetworkGroupPolicyRequest).Execute()
 
 Update a group policy
 
@@ -32354,17 +32354,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     groupPolicyId := "groupPolicyId_example" // string | Group policy ID
-    updateNetworkGroupPolicy := *openapiclient.NewInlineObject91() // InlineObject91 |  (optional)
+    updateNetworkGroupPolicyRequest := *openapiclient.NewUpdateNetworkGroupPolicyRequest() // UpdateNetworkGroupPolicyRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkGroupPolicy(context.Background(), networkId, groupPolicyId).UpdateNetworkGroupPolicy(updateNetworkGroupPolicy).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkGroupPolicy(context.Background(), networkId, groupPolicyId).UpdateNetworkGroupPolicyRequest(updateNetworkGroupPolicyRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkGroupPolicy``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -32392,7 +32392,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkGroupPolicy** | [**InlineObject91**](InlineObject91.md) |  | 
+ **updateNetworkGroupPolicyRequest** | [**UpdateNetworkGroupPolicyRequest**](UpdateNetworkGroupPolicyRequest.md) |  | 
 
 ### Return type
 
@@ -32414,7 +32414,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkMerakiAuthUser
 
-> InlineResponse20037 UpdateNetworkMerakiAuthUser(ctx, networkId, merakiAuthUserId).UpdateNetworkMerakiAuthUser(updateNetworkMerakiAuthUser).Execute()
+> GetNetworkMerakiAuthUsers200ResponseInner UpdateNetworkMerakiAuthUser(ctx, networkId, merakiAuthUserId).UpdateNetworkMerakiAuthUserRequest(updateNetworkMerakiAuthUserRequest).Execute()
 
 Update a user configured with Meraki Authentication (currently, 802.1X RADIUS, splash guest, and client VPN users can be updated)
 
@@ -32429,22 +32429,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     merakiAuthUserId := "merakiAuthUserId_example" // string | Meraki auth user ID
-    updateNetworkMerakiAuthUser := *openapiclient.NewInlineObject93() // InlineObject93 |  (optional)
+    updateNetworkMerakiAuthUserRequest := *openapiclient.NewUpdateNetworkMerakiAuthUserRequest() // UpdateNetworkMerakiAuthUserRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkMerakiAuthUser(context.Background(), networkId, merakiAuthUserId).UpdateNetworkMerakiAuthUser(updateNetworkMerakiAuthUser).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkMerakiAuthUser(context.Background(), networkId, merakiAuthUserId).UpdateNetworkMerakiAuthUserRequest(updateNetworkMerakiAuthUserRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkMerakiAuthUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkMerakiAuthUser`: InlineResponse20037
+    // response from `UpdateNetworkMerakiAuthUser`: GetNetworkMerakiAuthUsers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkMerakiAuthUser`: %v\n", resp)
 }
 ```
@@ -32467,11 +32467,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkMerakiAuthUser** | [**InlineObject93**](InlineObject93.md) |  | 
+ **updateNetworkMerakiAuthUserRequest** | [**UpdateNetworkMerakiAuthUserRequest**](UpdateNetworkMerakiAuthUserRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20037**](InlineResponse20037.md)
+[**GetNetworkMerakiAuthUsers200ResponseInner**](GetNetworkMerakiAuthUsers200ResponseInner.md)
 
 ### Authorization
 
@@ -32489,7 +32489,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkMqttBroker
 
-> map[string]interface{} UpdateNetworkMqttBroker(ctx, networkId, mqttBrokerId).UpdateNetworkMqttBroker(updateNetworkMqttBroker).Execute()
+> map[string]interface{} UpdateNetworkMqttBroker(ctx, networkId, mqttBrokerId).UpdateNetworkMqttBrokerRequest(updateNetworkMqttBrokerRequest).Execute()
 
 Update an MQTT broker
 
@@ -32504,17 +32504,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     mqttBrokerId := "mqttBrokerId_example" // string | Mqtt broker ID
-    updateNetworkMqttBroker := *openapiclient.NewInlineObject95() // InlineObject95 |  (optional)
+    updateNetworkMqttBrokerRequest := *openapiclient.NewUpdateNetworkMqttBrokerRequest() // UpdateNetworkMqttBrokerRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkMqttBroker(context.Background(), networkId, mqttBrokerId).UpdateNetworkMqttBroker(updateNetworkMqttBroker).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkMqttBroker(context.Background(), networkId, mqttBrokerId).UpdateNetworkMqttBrokerRequest(updateNetworkMqttBrokerRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkMqttBroker``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -32542,7 +32542,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkMqttBroker** | [**InlineObject95**](InlineObject95.md) |  | 
+ **updateNetworkMqttBrokerRequest** | [**UpdateNetworkMqttBrokerRequest**](UpdateNetworkMqttBrokerRequest.md) |  | 
 
 ### Return type
 
@@ -32564,7 +32564,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkNetflow
 
-> map[string]interface{} UpdateNetworkNetflow(ctx, networkId).UpdateNetworkNetflow(updateNetworkNetflow).Execute()
+> map[string]interface{} UpdateNetworkNetflow(ctx, networkId).UpdateNetworkNetflowRequest(updateNetworkNetflowRequest).Execute()
 
 Update the NetFlow traffic reporting settings for a network
 
@@ -32579,16 +32579,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkNetflow := *openapiclient.NewInlineObject96() // InlineObject96 |  (optional)
+    updateNetworkNetflowRequest := *openapiclient.NewUpdateNetworkNetflowRequest() // UpdateNetworkNetflowRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkNetflow(context.Background(), networkId).UpdateNetworkNetflow(updateNetworkNetflow).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkNetflow(context.Background(), networkId).UpdateNetworkNetflowRequest(updateNetworkNetflowRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkNetflow``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -32614,7 +32614,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkNetflowReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkNetflow** | [**InlineObject96**](InlineObject96.md) |  | 
+ **updateNetworkNetflowRequest** | [**UpdateNetworkNetflowRequest**](UpdateNetworkNetflowRequest.md) |  | 
 
 ### Return type
 
@@ -32636,7 +32636,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSensorAlertsProfile
 
-> InlineResponse20041 UpdateNetworkSensorAlertsProfile(ctx, networkId, id).UpdateNetworkSensorAlertsProfile(updateNetworkSensorAlertsProfile).Execute()
+> GetNetworkSensorAlertsProfiles200ResponseInner UpdateNetworkSensorAlertsProfile(ctx, networkId, id).UpdateNetworkSensorAlertsProfileRequest(updateNetworkSensorAlertsProfileRequest).Execute()
 
 Updates a sensor alert profile for a network.
 
@@ -32651,22 +32651,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     id := "id_example" // string | ID
-    updateNetworkSensorAlertsProfile := *openapiclient.NewInlineObject99() // InlineObject99 |  (optional)
+    updateNetworkSensorAlertsProfileRequest := *openapiclient.NewUpdateNetworkSensorAlertsProfileRequest() // UpdateNetworkSensorAlertsProfileRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSensorAlertsProfile(context.Background(), networkId, id).UpdateNetworkSensorAlertsProfile(updateNetworkSensorAlertsProfile).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSensorAlertsProfile(context.Background(), networkId, id).UpdateNetworkSensorAlertsProfileRequest(updateNetworkSensorAlertsProfileRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSensorAlertsProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkSensorAlertsProfile`: InlineResponse20041
+    // response from `UpdateNetworkSensorAlertsProfile`: GetNetworkSensorAlertsProfiles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkSensorAlertsProfile`: %v\n", resp)
 }
 ```
@@ -32689,11 +32689,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkSensorAlertsProfile** | [**InlineObject99**](InlineObject99.md) |  | 
+ **updateNetworkSensorAlertsProfileRequest** | [**UpdateNetworkSensorAlertsProfileRequest**](UpdateNetworkSensorAlertsProfileRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20041**](InlineResponse20041.md)
+[**GetNetworkSensorAlertsProfiles200ResponseInner**](GetNetworkSensorAlertsProfiles200ResponseInner.md)
 
 ### Authorization
 
@@ -32711,7 +32711,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSensorMqttBroker
 
-> InlineResponse20042 UpdateNetworkSensorMqttBroker(ctx, networkId, mqttBrokerId).UpdateNetworkSensorMqttBroker(updateNetworkSensorMqttBroker).Execute()
+> GetNetworkSensorMqttBrokers200ResponseInner UpdateNetworkSensorMqttBroker(ctx, networkId, mqttBrokerId).UpdateNetworkSensorMqttBrokerRequest(updateNetworkSensorMqttBrokerRequest).Execute()
 
 Update the sensor settings of an MQTT broker
 
@@ -32726,22 +32726,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     mqttBrokerId := "mqttBrokerId_example" // string | Mqtt broker ID
-    updateNetworkSensorMqttBroker := *openapiclient.NewInlineObject100(false) // InlineObject100 | 
+    updateNetworkSensorMqttBrokerRequest := *openapiclient.NewUpdateNetworkSensorMqttBrokerRequest(false) // UpdateNetworkSensorMqttBrokerRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSensorMqttBroker(context.Background(), networkId, mqttBrokerId).UpdateNetworkSensorMqttBroker(updateNetworkSensorMqttBroker).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSensorMqttBroker(context.Background(), networkId, mqttBrokerId).UpdateNetworkSensorMqttBrokerRequest(updateNetworkSensorMqttBrokerRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSensorMqttBroker``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkSensorMqttBroker`: InlineResponse20042
+    // response from `UpdateNetworkSensorMqttBroker`: GetNetworkSensorMqttBrokers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkSensorMqttBroker`: %v\n", resp)
 }
 ```
@@ -32764,11 +32764,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkSensorMqttBroker** | [**InlineObject100**](InlineObject100.md) |  | 
+ **updateNetworkSensorMqttBrokerRequest** | [**UpdateNetworkSensorMqttBrokerRequest**](UpdateNetworkSensorMqttBrokerRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20042**](InlineResponse20042.md)
+[**GetNetworkSensorMqttBrokers200ResponseInner**](GetNetworkSensorMqttBrokers200ResponseInner.md)
 
 ### Authorization
 
@@ -32786,7 +32786,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSettings
 
-> InlineResponse20044 UpdateNetworkSettings(ctx, networkId).UpdateNetworkSettings(updateNetworkSettings).Execute()
+> GetNetworkSettings200Response UpdateNetworkSettings(ctx, networkId).UpdateNetworkSettingsRequest(updateNetworkSettingsRequest).Execute()
 
 Update the settings for a network
 
@@ -32801,21 +32801,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSettings := *openapiclient.NewInlineObject101() // InlineObject101 |  (optional)
+    updateNetworkSettingsRequest := *openapiclient.NewUpdateNetworkSettingsRequest() // UpdateNetworkSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSettings(context.Background(), networkId).UpdateNetworkSettings(updateNetworkSettings).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSettings(context.Background(), networkId).UpdateNetworkSettingsRequest(updateNetworkSettingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkSettings`: InlineResponse20044
+    // response from `UpdateNetworkSettings`: GetNetworkSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkSettings`: %v\n", resp)
 }
 ```
@@ -32836,11 +32836,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSettingsReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSettings** | [**InlineObject101**](InlineObject101.md) |  | 
+ **updateNetworkSettingsRequest** | [**UpdateNetworkSettingsRequest**](UpdateNetworkSettingsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20044**](InlineResponse20044.md)
+[**GetNetworkSettings200Response**](GetNetworkSettings200Response.md)
 
 ### Authorization
 
@@ -32858,7 +32858,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSmDevicesFields
 
-> []InlineResponse20047 UpdateNetworkSmDevicesFields(ctx, networkId).UpdateNetworkSmDevicesFields(updateNetworkSmDevicesFields).Execute()
+> []UpdateNetworkSmDevicesFields200ResponseInner UpdateNetworkSmDevicesFields(ctx, networkId).UpdateNetworkSmDevicesFieldsRequest(updateNetworkSmDevicesFieldsRequest).Execute()
 
 Modify the fields of a device
 
@@ -32873,21 +32873,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSmDevicesFields := *openapiclient.NewInlineObject104(*openapiclient.NewNetworksNetworkIdSmDevicesFieldsDeviceFields()) // InlineObject104 | 
+    updateNetworkSmDevicesFieldsRequest := *openapiclient.NewUpdateNetworkSmDevicesFieldsRequest(*openapiclient.NewUpdateNetworkSmDevicesFieldsRequestDeviceFields()) // UpdateNetworkSmDevicesFieldsRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSmDevicesFields(context.Background(), networkId).UpdateNetworkSmDevicesFields(updateNetworkSmDevicesFields).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSmDevicesFields(context.Background(), networkId).UpdateNetworkSmDevicesFieldsRequest(updateNetworkSmDevicesFieldsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSmDevicesFields``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkSmDevicesFields`: []InlineResponse20047
+    // response from `UpdateNetworkSmDevicesFields`: []UpdateNetworkSmDevicesFields200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkSmDevicesFields`: %v\n", resp)
 }
 ```
@@ -32908,11 +32908,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSmDevicesFiel
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSmDevicesFields** | [**InlineObject104**](InlineObject104.md) |  | 
+ **updateNetworkSmDevicesFieldsRequest** | [**UpdateNetworkSmDevicesFieldsRequest**](UpdateNetworkSmDevicesFieldsRequest.md) |  | 
 
 ### Return type
 
-[**[]InlineResponse20047**](InlineResponse20047.md)
+[**[]UpdateNetworkSmDevicesFields200ResponseInner**](UpdateNetworkSmDevicesFields200ResponseInner.md)
 
 ### Authorization
 
@@ -32930,7 +32930,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSmTargetGroup
 
-> map[string]interface{} UpdateNetworkSmTargetGroup(ctx, networkId, targetGroupId).UpdateNetworkSmTargetGroup(updateNetworkSmTargetGroup).Execute()
+> map[string]interface{} UpdateNetworkSmTargetGroup(ctx, networkId, targetGroupId).CreateNetworkSmTargetGroupRequest(createNetworkSmTargetGroupRequest).Execute()
 
 Update a target group
 
@@ -32945,17 +32945,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     targetGroupId := "targetGroupId_example" // string | Target group ID
-    updateNetworkSmTargetGroup := *openapiclient.NewInlineObject110() // InlineObject110 |  (optional)
+    createNetworkSmTargetGroupRequest := *openapiclient.NewCreateNetworkSmTargetGroupRequest() // CreateNetworkSmTargetGroupRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSmTargetGroup(context.Background(), networkId, targetGroupId).UpdateNetworkSmTargetGroup(updateNetworkSmTargetGroup).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSmTargetGroup(context.Background(), networkId, targetGroupId).CreateNetworkSmTargetGroupRequest(createNetworkSmTargetGroupRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSmTargetGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -32983,7 +32983,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkSmTargetGroup** | [**InlineObject110**](InlineObject110.md) |  | 
+ **createNetworkSmTargetGroupRequest** | [**CreateNetworkSmTargetGroupRequest**](CreateNetworkSmTargetGroupRequest.md) |  | 
 
 ### Return type
 
@@ -33005,7 +33005,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSnmp
 
-> map[string]interface{} UpdateNetworkSnmp(ctx, networkId).UpdateNetworkSnmp(updateNetworkSnmp).Execute()
+> map[string]interface{} UpdateNetworkSnmp(ctx, networkId).UpdateNetworkSnmpRequest(updateNetworkSnmpRequest).Execute()
 
 Update the SNMP settings for a network
 
@@ -33020,16 +33020,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSnmp := *openapiclient.NewInlineObject111() // InlineObject111 |  (optional)
+    updateNetworkSnmpRequest := *openapiclient.NewUpdateNetworkSnmpRequest() // UpdateNetworkSnmpRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSnmp(context.Background(), networkId).UpdateNetworkSnmp(updateNetworkSnmp).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSnmp(context.Background(), networkId).UpdateNetworkSnmpRequest(updateNetworkSnmpRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSnmp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -33055,7 +33055,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSnmpRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSnmp** | [**InlineObject111**](InlineObject111.md) |  | 
+ **updateNetworkSnmpRequest** | [**UpdateNetworkSnmpRequest**](UpdateNetworkSnmpRequest.md) |  | 
 
 ### Return type
 
@@ -33077,7 +33077,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchAccessControlLists
 
-> InlineResponse20067 UpdateNetworkSwitchAccessControlLists(ctx, networkId).UpdateNetworkSwitchAccessControlLists(updateNetworkSwitchAccessControlLists).Execute()
+> GetNetworkSwitchAccessControlLists200Response UpdateNetworkSwitchAccessControlLists(ctx, networkId).UpdateNetworkSwitchAccessControlListsRequest(updateNetworkSwitchAccessControlListsRequest).Execute()
 
 Update the access control lists for a MS network
 
@@ -33092,21 +33092,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSwitchAccessControlLists := *openapiclient.NewInlineObject112([]openapiclient.NetworksNetworkIdSwitchAccessControlListsRules{*openapiclient.NewNetworksNetworkIdSwitchAccessControlListsRules("Policy_example", "Protocol_example", "SrcCidr_example", "DstCidr_example")}) // InlineObject112 | 
+    updateNetworkSwitchAccessControlListsRequest := *openapiclient.NewUpdateNetworkSwitchAccessControlListsRequest([]openapiclient.UpdateNetworkSwitchAccessControlListsRequestRulesInner{*openapiclient.NewUpdateNetworkSwitchAccessControlListsRequestRulesInner("Policy_example", "Protocol_example", "SrcCidr_example", "DstCidr_example")}) // UpdateNetworkSwitchAccessControlListsRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchAccessControlLists(context.Background(), networkId).UpdateNetworkSwitchAccessControlLists(updateNetworkSwitchAccessControlLists).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchAccessControlLists(context.Background(), networkId).UpdateNetworkSwitchAccessControlListsRequest(updateNetworkSwitchAccessControlListsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchAccessControlLists``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkSwitchAccessControlLists`: InlineResponse20067
+    // response from `UpdateNetworkSwitchAccessControlLists`: GetNetworkSwitchAccessControlLists200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkSwitchAccessControlLists`: %v\n", resp)
 }
 ```
@@ -33127,11 +33127,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSwitchAccessC
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSwitchAccessControlLists** | [**InlineObject112**](InlineObject112.md) |  | 
+ **updateNetworkSwitchAccessControlListsRequest** | [**UpdateNetworkSwitchAccessControlListsRequest**](UpdateNetworkSwitchAccessControlListsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20067**](InlineResponse20067.md)
+[**GetNetworkSwitchAccessControlLists200Response**](GetNetworkSwitchAccessControlLists200Response.md)
 
 ### Authorization
 
@@ -33149,7 +33149,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchAccessPolicy
 
-> InlineResponse20068 UpdateNetworkSwitchAccessPolicy(ctx, networkId, accessPolicyNumber).UpdateNetworkSwitchAccessPolicy(updateNetworkSwitchAccessPolicy).Execute()
+> GetNetworkSwitchAccessPolicies200ResponseInner UpdateNetworkSwitchAccessPolicy(ctx, networkId, accessPolicyNumber).UpdateNetworkSwitchAccessPolicyRequest(updateNetworkSwitchAccessPolicyRequest).Execute()
 
 Update an access policy for a switch network
 
@@ -33164,22 +33164,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     accessPolicyNumber := "accessPolicyNumber_example" // string | Access policy number
-    updateNetworkSwitchAccessPolicy := *openapiclient.NewInlineObject114() // InlineObject114 |  (optional)
+    updateNetworkSwitchAccessPolicyRequest := *openapiclient.NewUpdateNetworkSwitchAccessPolicyRequest() // UpdateNetworkSwitchAccessPolicyRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchAccessPolicy(context.Background(), networkId, accessPolicyNumber).UpdateNetworkSwitchAccessPolicy(updateNetworkSwitchAccessPolicy).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchAccessPolicy(context.Background(), networkId, accessPolicyNumber).UpdateNetworkSwitchAccessPolicyRequest(updateNetworkSwitchAccessPolicyRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchAccessPolicy``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkSwitchAccessPolicy`: InlineResponse20068
+    // response from `UpdateNetworkSwitchAccessPolicy`: GetNetworkSwitchAccessPolicies200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkSwitchAccessPolicy`: %v\n", resp)
 }
 ```
@@ -33202,11 +33202,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkSwitchAccessPolicy** | [**InlineObject114**](InlineObject114.md) |  | 
+ **updateNetworkSwitchAccessPolicyRequest** | [**UpdateNetworkSwitchAccessPolicyRequest**](UpdateNetworkSwitchAccessPolicyRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20068**](InlineResponse20068.md)
+[**GetNetworkSwitchAccessPolicies200ResponseInner**](GetNetworkSwitchAccessPolicies200ResponseInner.md)
 
 ### Authorization
 
@@ -33224,7 +33224,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchAlternateManagementInterface
 
-> map[string]interface{} UpdateNetworkSwitchAlternateManagementInterface(ctx, networkId).UpdateNetworkSwitchAlternateManagementInterface(updateNetworkSwitchAlternateManagementInterface).Execute()
+> map[string]interface{} UpdateNetworkSwitchAlternateManagementInterface(ctx, networkId).UpdateNetworkSwitchAlternateManagementInterfaceRequest(updateNetworkSwitchAlternateManagementInterfaceRequest).Execute()
 
 Update the switch alternate management interface for the network
 
@@ -33239,16 +33239,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSwitchAlternateManagementInterface := *openapiclient.NewInlineObject115() // InlineObject115 |  (optional)
+    updateNetworkSwitchAlternateManagementInterfaceRequest := *openapiclient.NewUpdateNetworkSwitchAlternateManagementInterfaceRequest() // UpdateNetworkSwitchAlternateManagementInterfaceRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchAlternateManagementInterface(context.Background(), networkId).UpdateNetworkSwitchAlternateManagementInterface(updateNetworkSwitchAlternateManagementInterface).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchAlternateManagementInterface(context.Background(), networkId).UpdateNetworkSwitchAlternateManagementInterfaceRequest(updateNetworkSwitchAlternateManagementInterfaceRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchAlternateManagementInterface``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -33274,7 +33274,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSwitchAlterna
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSwitchAlternateManagementInterface** | [**InlineObject115**](InlineObject115.md) |  | 
+ **updateNetworkSwitchAlternateManagementInterfaceRequest** | [**UpdateNetworkSwitchAlternateManagementInterfaceRequest**](UpdateNetworkSwitchAlternateManagementInterfaceRequest.md) |  | 
 
 ### Return type
 
@@ -33296,7 +33296,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchDhcpServerPolicy
 
-> map[string]interface{} UpdateNetworkSwitchDhcpServerPolicy(ctx, networkId).UpdateNetworkSwitchDhcpServerPolicy(updateNetworkSwitchDhcpServerPolicy).Execute()
+> map[string]interface{} UpdateNetworkSwitchDhcpServerPolicy(ctx, networkId).UpdateNetworkSwitchDhcpServerPolicyRequest(updateNetworkSwitchDhcpServerPolicyRequest).Execute()
 
 Update the DHCP server settings
 
@@ -33311,16 +33311,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSwitchDhcpServerPolicy := *openapiclient.NewInlineObject116() // InlineObject116 |  (optional)
+    updateNetworkSwitchDhcpServerPolicyRequest := *openapiclient.NewUpdateNetworkSwitchDhcpServerPolicyRequest() // UpdateNetworkSwitchDhcpServerPolicyRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchDhcpServerPolicy(context.Background(), networkId).UpdateNetworkSwitchDhcpServerPolicy(updateNetworkSwitchDhcpServerPolicy).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchDhcpServerPolicy(context.Background(), networkId).UpdateNetworkSwitchDhcpServerPolicyRequest(updateNetworkSwitchDhcpServerPolicyRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchDhcpServerPolicy``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -33346,7 +33346,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSwitchDhcpSer
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSwitchDhcpServerPolicy** | [**InlineObject116**](InlineObject116.md) |  | 
+ **updateNetworkSwitchDhcpServerPolicyRequest** | [**UpdateNetworkSwitchDhcpServerPolicyRequest**](UpdateNetworkSwitchDhcpServerPolicyRequest.md) |  | 
 
 ### Return type
 
@@ -33368,7 +33368,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer
 
-> InlineResponse20072 UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(ctx, networkId, trustedServerId).UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer).Execute()
+> GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(ctx, networkId, trustedServerId).UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest(updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest).Execute()
 
 Update a server that is trusted by Dynamic ARP Inspection on this network
 
@@ -33383,22 +33383,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     trustedServerId := "trustedServerId_example" // string | Trusted server ID
-    updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer := *openapiclient.NewInlineObject118() // InlineObject118 |  (optional)
+    updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest := *openapiclient.NewUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest() // UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(context.Background(), networkId, trustedServerId).UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(context.Background(), networkId, trustedServerId).UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest(updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer`: InlineResponse20072
+    // response from `UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer`: GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer`: %v\n", resp)
 }
 ```
@@ -33421,11 +33421,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer** | [**InlineObject118**](InlineObject118.md) |  | 
+ **updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest** | [**UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest**](UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20072**](InlineResponse20072.md)
+[**GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner**](GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers200ResponseInner.md)
 
 ### Authorization
 
@@ -33443,7 +33443,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchDscpToCosMappings
 
-> map[string]interface{} UpdateNetworkSwitchDscpToCosMappings(ctx, networkId).UpdateNetworkSwitchDscpToCosMappings(updateNetworkSwitchDscpToCosMappings).Execute()
+> map[string]interface{} UpdateNetworkSwitchDscpToCosMappings(ctx, networkId).UpdateNetworkSwitchDscpToCosMappingsRequest(updateNetworkSwitchDscpToCosMappingsRequest).Execute()
 
 Update the DSCP to CoS mappings
 
@@ -33458,16 +33458,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSwitchDscpToCosMappings := *openapiclient.NewInlineObject119([]openapiclient.NetworksNetworkIdSwitchDscpToCosMappingsMappings{*openapiclient.NewNetworksNetworkIdSwitchDscpToCosMappingsMappings(int32(123), int32(123))}) // InlineObject119 | 
+    updateNetworkSwitchDscpToCosMappingsRequest := *openapiclient.NewUpdateNetworkSwitchDscpToCosMappingsRequest([]openapiclient.UpdateNetworkSwitchDscpToCosMappingsRequestMappingsInner{*openapiclient.NewUpdateNetworkSwitchDscpToCosMappingsRequestMappingsInner(int32(123), int32(123))}) // UpdateNetworkSwitchDscpToCosMappingsRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchDscpToCosMappings(context.Background(), networkId).UpdateNetworkSwitchDscpToCosMappings(updateNetworkSwitchDscpToCosMappings).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchDscpToCosMappings(context.Background(), networkId).UpdateNetworkSwitchDscpToCosMappingsRequest(updateNetworkSwitchDscpToCosMappingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchDscpToCosMappings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -33493,7 +33493,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSwitchDscpToC
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSwitchDscpToCosMappings** | [**InlineObject119**](InlineObject119.md) |  | 
+ **updateNetworkSwitchDscpToCosMappingsRequest** | [**UpdateNetworkSwitchDscpToCosMappingsRequest**](UpdateNetworkSwitchDscpToCosMappingsRequest.md) |  | 
 
 ### Return type
 
@@ -33515,7 +33515,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchLinkAggregation
 
-> map[string]interface{} UpdateNetworkSwitchLinkAggregation(ctx, networkId, linkAggregationId).UpdateNetworkSwitchLinkAggregation(updateNetworkSwitchLinkAggregation).Execute()
+> map[string]interface{} UpdateNetworkSwitchLinkAggregation(ctx, networkId, linkAggregationId).UpdateNetworkSwitchLinkAggregationRequest(updateNetworkSwitchLinkAggregationRequest).Execute()
 
 Update a link aggregation group
 
@@ -33530,17 +33530,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     linkAggregationId := "linkAggregationId_example" // string | Link aggregation ID
-    updateNetworkSwitchLinkAggregation := *openapiclient.NewInlineObject121() // InlineObject121 |  (optional)
+    updateNetworkSwitchLinkAggregationRequest := *openapiclient.NewUpdateNetworkSwitchLinkAggregationRequest() // UpdateNetworkSwitchLinkAggregationRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchLinkAggregation(context.Background(), networkId, linkAggregationId).UpdateNetworkSwitchLinkAggregation(updateNetworkSwitchLinkAggregation).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchLinkAggregation(context.Background(), networkId, linkAggregationId).UpdateNetworkSwitchLinkAggregationRequest(updateNetworkSwitchLinkAggregationRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchLinkAggregation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -33568,7 +33568,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkSwitchLinkAggregation** | [**InlineObject121**](InlineObject121.md) |  | 
+ **updateNetworkSwitchLinkAggregationRequest** | [**UpdateNetworkSwitchLinkAggregationRequest**](UpdateNetworkSwitchLinkAggregationRequest.md) |  | 
 
 ### Return type
 
@@ -33590,7 +33590,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchMtu
 
-> map[string]interface{} UpdateNetworkSwitchMtu(ctx, networkId).UpdateNetworkSwitchMtu(updateNetworkSwitchMtu).Execute()
+> map[string]interface{} UpdateNetworkSwitchMtu(ctx, networkId).UpdateNetworkSwitchMtuRequest(updateNetworkSwitchMtuRequest).Execute()
 
 Update the MTU configuration
 
@@ -33605,16 +33605,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSwitchMtu := *openapiclient.NewInlineObject122() // InlineObject122 |  (optional)
+    updateNetworkSwitchMtuRequest := *openapiclient.NewUpdateNetworkSwitchMtuRequest() // UpdateNetworkSwitchMtuRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchMtu(context.Background(), networkId).UpdateNetworkSwitchMtu(updateNetworkSwitchMtu).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchMtu(context.Background(), networkId).UpdateNetworkSwitchMtuRequest(updateNetworkSwitchMtuRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchMtu``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -33640,7 +33640,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSwitchMtuRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSwitchMtu** | [**InlineObject122**](InlineObject122.md) |  | 
+ **updateNetworkSwitchMtuRequest** | [**UpdateNetworkSwitchMtuRequest**](UpdateNetworkSwitchMtuRequest.md) |  | 
 
 ### Return type
 
@@ -33662,7 +33662,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchPortSchedule
 
-> map[string]interface{} UpdateNetworkSwitchPortSchedule(ctx, networkId, portScheduleId).UpdateNetworkSwitchPortSchedule(updateNetworkSwitchPortSchedule).Execute()
+> map[string]interface{} UpdateNetworkSwitchPortSchedule(ctx, networkId, portScheduleId).UpdateNetworkSwitchPortScheduleRequest(updateNetworkSwitchPortScheduleRequest).Execute()
 
 Update a switch port schedule
 
@@ -33677,17 +33677,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     portScheduleId := "portScheduleId_example" // string | Port schedule ID
-    updateNetworkSwitchPortSchedule := *openapiclient.NewInlineObject124() // InlineObject124 |  (optional)
+    updateNetworkSwitchPortScheduleRequest := *openapiclient.NewUpdateNetworkSwitchPortScheduleRequest() // UpdateNetworkSwitchPortScheduleRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchPortSchedule(context.Background(), networkId, portScheduleId).UpdateNetworkSwitchPortSchedule(updateNetworkSwitchPortSchedule).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchPortSchedule(context.Background(), networkId, portScheduleId).UpdateNetworkSwitchPortScheduleRequest(updateNetworkSwitchPortScheduleRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchPortSchedule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -33715,7 +33715,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkSwitchPortSchedule** | [**InlineObject124**](InlineObject124.md) |  | 
+ **updateNetworkSwitchPortScheduleRequest** | [**UpdateNetworkSwitchPortScheduleRequest**](UpdateNetworkSwitchPortScheduleRequest.md) |  | 
 
 ### Return type
 
@@ -33737,7 +33737,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchQosRule
 
-> map[string]interface{} UpdateNetworkSwitchQosRule(ctx, networkId, qosRuleId).UpdateNetworkSwitchQosRule(updateNetworkSwitchQosRule).Execute()
+> map[string]interface{} UpdateNetworkSwitchQosRule(ctx, networkId, qosRuleId).UpdateNetworkSwitchQosRuleRequest(updateNetworkSwitchQosRuleRequest).Execute()
 
 Update a quality of service rule
 
@@ -33752,17 +33752,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     qosRuleId := "qosRuleId_example" // string | Qos rule ID
-    updateNetworkSwitchQosRule := *openapiclient.NewInlineObject127() // InlineObject127 |  (optional)
+    updateNetworkSwitchQosRuleRequest := *openapiclient.NewUpdateNetworkSwitchQosRuleRequest() // UpdateNetworkSwitchQosRuleRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchQosRule(context.Background(), networkId, qosRuleId).UpdateNetworkSwitchQosRule(updateNetworkSwitchQosRule).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchQosRule(context.Background(), networkId, qosRuleId).UpdateNetworkSwitchQosRuleRequest(updateNetworkSwitchQosRuleRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchQosRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -33790,7 +33790,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkSwitchQosRule** | [**InlineObject127**](InlineObject127.md) |  | 
+ **updateNetworkSwitchQosRuleRequest** | [**UpdateNetworkSwitchQosRuleRequest**](UpdateNetworkSwitchQosRuleRequest.md) |  | 
 
 ### Return type
 
@@ -33812,7 +33812,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchQosRulesOrder
 
-> map[string]interface{} UpdateNetworkSwitchQosRulesOrder(ctx, networkId).UpdateNetworkSwitchQosRulesOrder(updateNetworkSwitchQosRulesOrder).Execute()
+> map[string]interface{} UpdateNetworkSwitchQosRulesOrder(ctx, networkId).UpdateNetworkSwitchQosRulesOrderRequest(updateNetworkSwitchQosRulesOrderRequest).Execute()
 
 Update the order in which the rules should be processed by the switch
 
@@ -33827,16 +33827,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSwitchQosRulesOrder := *openapiclient.NewInlineObject126([]string{"RuleIds_example"}) // InlineObject126 | 
+    updateNetworkSwitchQosRulesOrderRequest := *openapiclient.NewUpdateNetworkSwitchQosRulesOrderRequest([]string{"RuleIds_example"}) // UpdateNetworkSwitchQosRulesOrderRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchQosRulesOrder(context.Background(), networkId).UpdateNetworkSwitchQosRulesOrder(updateNetworkSwitchQosRulesOrder).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchQosRulesOrder(context.Background(), networkId).UpdateNetworkSwitchQosRulesOrderRequest(updateNetworkSwitchQosRulesOrderRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchQosRulesOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -33862,7 +33862,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSwitchQosRule
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSwitchQosRulesOrder** | [**InlineObject126**](InlineObject126.md) |  | 
+ **updateNetworkSwitchQosRulesOrderRequest** | [**UpdateNetworkSwitchQosRulesOrderRequest**](UpdateNetworkSwitchQosRulesOrderRequest.md) |  | 
 
 ### Return type
 
@@ -33884,7 +33884,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchRoutingMulticast
 
-> map[string]interface{} UpdateNetworkSwitchRoutingMulticast(ctx, networkId).UpdateNetworkSwitchRoutingMulticast(updateNetworkSwitchRoutingMulticast).Execute()
+> map[string]interface{} UpdateNetworkSwitchRoutingMulticast(ctx, networkId).UpdateNetworkSwitchRoutingMulticastRequest(updateNetworkSwitchRoutingMulticastRequest).Execute()
 
 Update multicast settings for a network
 
@@ -33899,16 +33899,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSwitchRoutingMulticast := *openapiclient.NewInlineObject128() // InlineObject128 |  (optional)
+    updateNetworkSwitchRoutingMulticastRequest := *openapiclient.NewUpdateNetworkSwitchRoutingMulticastRequest() // UpdateNetworkSwitchRoutingMulticastRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchRoutingMulticast(context.Background(), networkId).UpdateNetworkSwitchRoutingMulticast(updateNetworkSwitchRoutingMulticast).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchRoutingMulticast(context.Background(), networkId).UpdateNetworkSwitchRoutingMulticastRequest(updateNetworkSwitchRoutingMulticastRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchRoutingMulticast``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -33934,7 +33934,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSwitchRouting
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSwitchRoutingMulticast** | [**InlineObject128**](InlineObject128.md) |  | 
+ **updateNetworkSwitchRoutingMulticastRequest** | [**UpdateNetworkSwitchRoutingMulticastRequest**](UpdateNetworkSwitchRoutingMulticastRequest.md) |  | 
 
 ### Return type
 
@@ -33956,7 +33956,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchRoutingMulticastRendezvousPoint
 
-> map[string]interface{} UpdateNetworkSwitchRoutingMulticastRendezvousPoint(ctx, networkId, rendezvousPointId).UpdateNetworkSwitchRoutingMulticastRendezvousPoint(updateNetworkSwitchRoutingMulticastRendezvousPoint).Execute()
+> map[string]interface{} UpdateNetworkSwitchRoutingMulticastRendezvousPoint(ctx, networkId, rendezvousPointId).UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest(updateNetworkSwitchRoutingMulticastRendezvousPointRequest).Execute()
 
 Update a multicast rendezvous point
 
@@ -33971,17 +33971,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     rendezvousPointId := "rendezvousPointId_example" // string | Rendezvous point ID
-    updateNetworkSwitchRoutingMulticastRendezvousPoint := *openapiclient.NewInlineObject130("InterfaceIp_example", "MulticastGroup_example") // InlineObject130 | 
+    updateNetworkSwitchRoutingMulticastRendezvousPointRequest := *openapiclient.NewUpdateNetworkSwitchRoutingMulticastRendezvousPointRequest("InterfaceIp_example", "MulticastGroup_example") // UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchRoutingMulticastRendezvousPoint(context.Background(), networkId, rendezvousPointId).UpdateNetworkSwitchRoutingMulticastRendezvousPoint(updateNetworkSwitchRoutingMulticastRendezvousPoint).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchRoutingMulticastRendezvousPoint(context.Background(), networkId, rendezvousPointId).UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest(updateNetworkSwitchRoutingMulticastRendezvousPointRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchRoutingMulticastRendezvousPoint``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -34009,7 +34009,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkSwitchRoutingMulticastRendezvousPoint** | [**InlineObject130**](InlineObject130.md) |  | 
+ **updateNetworkSwitchRoutingMulticastRendezvousPointRequest** | [**UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest**](UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest.md) |  | 
 
 ### Return type
 
@@ -34031,7 +34031,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchRoutingOspf
 
-> map[string]interface{} UpdateNetworkSwitchRoutingOspf(ctx, networkId).UpdateNetworkSwitchRoutingOspf(updateNetworkSwitchRoutingOspf).Execute()
+> map[string]interface{} UpdateNetworkSwitchRoutingOspf(ctx, networkId).UpdateNetworkSwitchRoutingOspfRequest(updateNetworkSwitchRoutingOspfRequest).Execute()
 
 Update layer 3 OSPF routing configuration
 
@@ -34046,16 +34046,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSwitchRoutingOspf := *openapiclient.NewInlineObject131() // InlineObject131 |  (optional)
+    updateNetworkSwitchRoutingOspfRequest := *openapiclient.NewUpdateNetworkSwitchRoutingOspfRequest() // UpdateNetworkSwitchRoutingOspfRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchRoutingOspf(context.Background(), networkId).UpdateNetworkSwitchRoutingOspf(updateNetworkSwitchRoutingOspf).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchRoutingOspf(context.Background(), networkId).UpdateNetworkSwitchRoutingOspfRequest(updateNetworkSwitchRoutingOspfRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchRoutingOspf``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -34081,7 +34081,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSwitchRouting
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSwitchRoutingOspf** | [**InlineObject131**](InlineObject131.md) |  | 
+ **updateNetworkSwitchRoutingOspfRequest** | [**UpdateNetworkSwitchRoutingOspfRequest**](UpdateNetworkSwitchRoutingOspfRequest.md) |  | 
 
 ### Return type
 
@@ -34103,7 +34103,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchSettings
 
-> InlineResponse20078 UpdateNetworkSwitchSettings(ctx, networkId).UpdateNetworkSwitchSettings(updateNetworkSwitchSettings).Execute()
+> GetNetworkSwitchSettings200Response UpdateNetworkSwitchSettings(ctx, networkId).UpdateNetworkSwitchSettingsRequest(updateNetworkSwitchSettingsRequest).Execute()
 
 Update switch network settings
 
@@ -34118,21 +34118,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSwitchSettings := *openapiclient.NewInlineObject132() // InlineObject132 |  (optional)
+    updateNetworkSwitchSettingsRequest := *openapiclient.NewUpdateNetworkSwitchSettingsRequest() // UpdateNetworkSwitchSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchSettings(context.Background(), networkId).UpdateNetworkSwitchSettings(updateNetworkSwitchSettings).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchSettings(context.Background(), networkId).UpdateNetworkSwitchSettingsRequest(updateNetworkSwitchSettingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkSwitchSettings`: InlineResponse20078
+    // response from `UpdateNetworkSwitchSettings`: GetNetworkSwitchSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkSwitchSettings`: %v\n", resp)
 }
 ```
@@ -34153,11 +34153,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSwitchSetting
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSwitchSettings** | [**InlineObject132**](InlineObject132.md) |  | 
+ **updateNetworkSwitchSettingsRequest** | [**UpdateNetworkSwitchSettingsRequest**](UpdateNetworkSwitchSettingsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20078**](InlineResponse20078.md)
+[**GetNetworkSwitchSettings200Response**](GetNetworkSwitchSettings200Response.md)
 
 ### Authorization
 
@@ -34175,7 +34175,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchStackRoutingInterface
 
-> map[string]interface{} UpdateNetworkSwitchStackRoutingInterface(ctx, networkId, switchStackId, interfaceId).UpdateNetworkSwitchStackRoutingInterface(updateNetworkSwitchStackRoutingInterface).Execute()
+> map[string]interface{} UpdateNetworkSwitchStackRoutingInterface(ctx, networkId, switchStackId, interfaceId).UpdateNetworkSwitchStackRoutingInterfaceRequest(updateNetworkSwitchStackRoutingInterfaceRequest).Execute()
 
 Update a layer 3 interface for a switch stack
 
@@ -34190,18 +34190,18 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     switchStackId := "switchStackId_example" // string | Switch stack ID
     interfaceId := "interfaceId_example" // string | Interface ID
-    updateNetworkSwitchStackRoutingInterface := *openapiclient.NewInlineObject137() // InlineObject137 |  (optional)
+    updateNetworkSwitchStackRoutingInterfaceRequest := *openapiclient.NewUpdateNetworkSwitchStackRoutingInterfaceRequest() // UpdateNetworkSwitchStackRoutingInterfaceRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId, interfaceId).UpdateNetworkSwitchStackRoutingInterface(updateNetworkSwitchStackRoutingInterface).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId, interfaceId).UpdateNetworkSwitchStackRoutingInterfaceRequest(updateNetworkSwitchStackRoutingInterfaceRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchStackRoutingInterface``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -34231,7 +34231,7 @@ Name | Type | Description  | Notes
 
 
 
- **updateNetworkSwitchStackRoutingInterface** | [**InlineObject137**](InlineObject137.md) |  | 
+ **updateNetworkSwitchStackRoutingInterfaceRequest** | [**UpdateNetworkSwitchStackRoutingInterfaceRequest**](UpdateNetworkSwitchStackRoutingInterfaceRequest.md) |  | 
 
 ### Return type
 
@@ -34253,7 +34253,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchStackRoutingInterfaceDhcp
 
-> map[string]interface{} UpdateNetworkSwitchStackRoutingInterfaceDhcp(ctx, networkId, switchStackId, interfaceId).UpdateNetworkSwitchStackRoutingInterfaceDhcp(updateNetworkSwitchStackRoutingInterfaceDhcp).Execute()
+> map[string]interface{} UpdateNetworkSwitchStackRoutingInterfaceDhcp(ctx, networkId, switchStackId, interfaceId).UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest(updateNetworkSwitchStackRoutingInterfaceDhcpRequest).Execute()
 
 Update a layer 3 interface DHCP configuration for a switch stack
 
@@ -34268,18 +34268,18 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     switchStackId := "switchStackId_example" // string | Switch stack ID
     interfaceId := "interfaceId_example" // string | Interface ID
-    updateNetworkSwitchStackRoutingInterfaceDhcp := *openapiclient.NewInlineObject138() // InlineObject138 |  (optional)
+    updateNetworkSwitchStackRoutingInterfaceDhcpRequest := *openapiclient.NewUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest() // UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchStackRoutingInterfaceDhcp(context.Background(), networkId, switchStackId, interfaceId).UpdateNetworkSwitchStackRoutingInterfaceDhcp(updateNetworkSwitchStackRoutingInterfaceDhcp).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchStackRoutingInterfaceDhcp(context.Background(), networkId, switchStackId, interfaceId).UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest(updateNetworkSwitchStackRoutingInterfaceDhcpRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchStackRoutingInterfaceDhcp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -34309,7 +34309,7 @@ Name | Type | Description  | Notes
 
 
 
- **updateNetworkSwitchStackRoutingInterfaceDhcp** | [**InlineObject138**](InlineObject138.md) |  | 
+ **updateNetworkSwitchStackRoutingInterfaceDhcpRequest** | [**UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest**](UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest.md) |  | 
 
 ### Return type
 
@@ -34331,7 +34331,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchStackRoutingStaticRoute
 
-> map[string]interface{} UpdateNetworkSwitchStackRoutingStaticRoute(ctx, networkId, switchStackId, staticRouteId).UpdateNetworkSwitchStackRoutingStaticRoute(updateNetworkSwitchStackRoutingStaticRoute).Execute()
+> map[string]interface{} UpdateNetworkSwitchStackRoutingStaticRoute(ctx, networkId, switchStackId, staticRouteId).UpdateDeviceSwitchRoutingStaticRouteRequest(updateDeviceSwitchRoutingStaticRouteRequest).Execute()
 
 Update a layer 3 static route for a switch stack
 
@@ -34346,18 +34346,18 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     switchStackId := "switchStackId_example" // string | Switch stack ID
     staticRouteId := "staticRouteId_example" // string | Static route ID
-    updateNetworkSwitchStackRoutingStaticRoute := *openapiclient.NewInlineObject140() // InlineObject140 |  (optional)
+    updateDeviceSwitchRoutingStaticRouteRequest := *openapiclient.NewUpdateDeviceSwitchRoutingStaticRouteRequest() // UpdateDeviceSwitchRoutingStaticRouteRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId, staticRouteId).UpdateNetworkSwitchStackRoutingStaticRoute(updateNetworkSwitchStackRoutingStaticRoute).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId, staticRouteId).UpdateDeviceSwitchRoutingStaticRouteRequest(updateDeviceSwitchRoutingStaticRouteRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchStackRoutingStaticRoute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -34387,7 +34387,7 @@ Name | Type | Description  | Notes
 
 
 
- **updateNetworkSwitchStackRoutingStaticRoute** | [**InlineObject140**](InlineObject140.md) |  | 
+ **updateDeviceSwitchRoutingStaticRouteRequest** | [**UpdateDeviceSwitchRoutingStaticRouteRequest**](UpdateDeviceSwitchRoutingStaticRouteRequest.md) |  | 
 
 ### Return type
 
@@ -34409,7 +34409,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchStormControl
 
-> map[string]interface{} UpdateNetworkSwitchStormControl(ctx, networkId).UpdateNetworkSwitchStormControl(updateNetworkSwitchStormControl).Execute()
+> map[string]interface{} UpdateNetworkSwitchStormControl(ctx, networkId).UpdateNetworkSwitchStormControlRequest(updateNetworkSwitchStormControlRequest).Execute()
 
 Update the storm control configuration for a switch network
 
@@ -34424,16 +34424,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSwitchStormControl := *openapiclient.NewInlineObject141() // InlineObject141 |  (optional)
+    updateNetworkSwitchStormControlRequest := *openapiclient.NewUpdateNetworkSwitchStormControlRequest() // UpdateNetworkSwitchStormControlRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchStormControl(context.Background(), networkId).UpdateNetworkSwitchStormControl(updateNetworkSwitchStormControl).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchStormControl(context.Background(), networkId).UpdateNetworkSwitchStormControlRequest(updateNetworkSwitchStormControlRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchStormControl``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -34459,7 +34459,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSwitchStormCo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSwitchStormControl** | [**InlineObject141**](InlineObject141.md) |  | 
+ **updateNetworkSwitchStormControlRequest** | [**UpdateNetworkSwitchStormControlRequest**](UpdateNetworkSwitchStormControlRequest.md) |  | 
 
 ### Return type
 
@@ -34481,7 +34481,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchStp
 
-> map[string]interface{} UpdateNetworkSwitchStp(ctx, networkId).UpdateNetworkSwitchStp(updateNetworkSwitchStp).Execute()
+> map[string]interface{} UpdateNetworkSwitchStp(ctx, networkId).UpdateNetworkSwitchStpRequest(updateNetworkSwitchStpRequest).Execute()
 
 Updates STP settings
 
@@ -34496,16 +34496,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSwitchStp := *openapiclient.NewInlineObject142() // InlineObject142 |  (optional)
+    updateNetworkSwitchStpRequest := *openapiclient.NewUpdateNetworkSwitchStpRequest() // UpdateNetworkSwitchStpRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchStp(context.Background(), networkId).UpdateNetworkSwitchStp(updateNetworkSwitchStp).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSwitchStp(context.Background(), networkId).UpdateNetworkSwitchStpRequest(updateNetworkSwitchStpRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchStp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -34531,7 +34531,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSwitchStpRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSwitchStp** | [**InlineObject142**](InlineObject142.md) |  | 
+ **updateNetworkSwitchStpRequest** | [**UpdateNetworkSwitchStpRequest**](UpdateNetworkSwitchStpRequest.md) |  | 
 
 ### Return type
 
@@ -34553,7 +34553,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSyslogServers
 
-> InlineResponse20082 UpdateNetworkSyslogServers(ctx, networkId).UpdateNetworkSyslogServers(updateNetworkSyslogServers).Execute()
+> GetNetworkSyslogServers200Response UpdateNetworkSyslogServers(ctx, networkId).UpdateNetworkSyslogServersRequest(updateNetworkSyslogServersRequest).Execute()
 
 Update the syslog servers for a network
 
@@ -34568,21 +34568,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkSyslogServers := *openapiclient.NewInlineObject143([]openapiclient.NetworksNetworkIdSyslogServersServers{*openapiclient.NewNetworksNetworkIdSyslogServersServers("Host_example", int32(123), []string{"Roles_example"})}) // InlineObject143 | 
+    updateNetworkSyslogServersRequest := *openapiclient.NewUpdateNetworkSyslogServersRequest([]openapiclient.UpdateNetworkSyslogServersRequestServersInner{*openapiclient.NewUpdateNetworkSyslogServersRequestServersInner("Host_example", int32(123), []string{"Roles_example"})}) // UpdateNetworkSyslogServersRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSyslogServers(context.Background(), networkId).UpdateNetworkSyslogServers(updateNetworkSyslogServers).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkSyslogServers(context.Background(), networkId).UpdateNetworkSyslogServersRequest(updateNetworkSyslogServersRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSyslogServers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkSyslogServers`: InlineResponse20082
+    // response from `UpdateNetworkSyslogServers`: GetNetworkSyslogServers200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkSyslogServers`: %v\n", resp)
 }
 ```
@@ -34603,11 +34603,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkSyslogServers
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkSyslogServers** | [**InlineObject143**](InlineObject143.md) |  | 
+ **updateNetworkSyslogServersRequest** | [**UpdateNetworkSyslogServersRequest**](UpdateNetworkSyslogServersRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20082**](InlineResponse20082.md)
+[**GetNetworkSyslogServers200Response**](GetNetworkSyslogServers200Response.md)
 
 ### Authorization
 
@@ -34625,7 +34625,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkTrafficAnalysis
 
-> map[string]interface{} UpdateNetworkTrafficAnalysis(ctx, networkId).UpdateNetworkTrafficAnalysis(updateNetworkTrafficAnalysis).Execute()
+> map[string]interface{} UpdateNetworkTrafficAnalysis(ctx, networkId).UpdateNetworkTrafficAnalysisRequest(updateNetworkTrafficAnalysisRequest).Execute()
 
 Update the traffic analysis settings for a network
 
@@ -34640,16 +34640,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkTrafficAnalysis := *openapiclient.NewInlineObject144() // InlineObject144 |  (optional)
+    updateNetworkTrafficAnalysisRequest := *openapiclient.NewUpdateNetworkTrafficAnalysisRequest() // UpdateNetworkTrafficAnalysisRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkTrafficAnalysis(context.Background(), networkId).UpdateNetworkTrafficAnalysis(updateNetworkTrafficAnalysis).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkTrafficAnalysis(context.Background(), networkId).UpdateNetworkTrafficAnalysisRequest(updateNetworkTrafficAnalysisRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkTrafficAnalysis``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -34675,7 +34675,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkTrafficAnalys
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkTrafficAnalysis** | [**InlineObject144**](InlineObject144.md) |  | 
+ **updateNetworkTrafficAnalysisRequest** | [**UpdateNetworkTrafficAnalysisRequest**](UpdateNetworkTrafficAnalysisRequest.md) |  | 
 
 ### Return type
 
@@ -34697,7 +34697,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWebhooksHttpServer
 
-> InlineResponse20083 UpdateNetworkWebhooksHttpServer(ctx, networkId, httpServerId).UpdateNetworkWebhooksHttpServer(updateNetworkWebhooksHttpServer).Execute()
+> GetNetworkWebhooksHttpServers200ResponseInner UpdateNetworkWebhooksHttpServer(ctx, networkId, httpServerId).UpdateNetworkWebhooksHttpServerRequest(updateNetworkWebhooksHttpServerRequest).Execute()
 
 Update an HTTP server
 
@@ -34712,22 +34712,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     httpServerId := "httpServerId_example" // string | Http server ID
-    updateNetworkWebhooksHttpServer := *openapiclient.NewInlineObject147() // InlineObject147 |  (optional)
+    updateNetworkWebhooksHttpServerRequest := *openapiclient.NewUpdateNetworkWebhooksHttpServerRequest() // UpdateNetworkWebhooksHttpServerRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWebhooksHttpServer(context.Background(), networkId, httpServerId).UpdateNetworkWebhooksHttpServer(updateNetworkWebhooksHttpServer).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWebhooksHttpServer(context.Background(), networkId, httpServerId).UpdateNetworkWebhooksHttpServerRequest(updateNetworkWebhooksHttpServerRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWebhooksHttpServer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkWebhooksHttpServer`: InlineResponse20083
+    // response from `UpdateNetworkWebhooksHttpServer`: GetNetworkWebhooksHttpServers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkWebhooksHttpServer`: %v\n", resp)
 }
 ```
@@ -34750,11 +34750,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWebhooksHttpServer** | [**InlineObject147**](InlineObject147.md) |  | 
+ **updateNetworkWebhooksHttpServerRequest** | [**UpdateNetworkWebhooksHttpServerRequest**](UpdateNetworkWebhooksHttpServerRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20083**](InlineResponse20083.md)
+[**GetNetworkWebhooksHttpServers200ResponseInner**](GetNetworkWebhooksHttpServers200ResponseInner.md)
 
 ### Authorization
 
@@ -34772,7 +34772,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWebhooksPayloadTemplate
 
-> InlineResponse20084 UpdateNetworkWebhooksPayloadTemplate(ctx, networkId, payloadTemplateId).UpdateNetworkWebhooksPayloadTemplate(updateNetworkWebhooksPayloadTemplate).Execute()
+> GetNetworkWebhooksPayloadTemplates200ResponseInner UpdateNetworkWebhooksPayloadTemplate(ctx, networkId, payloadTemplateId).UpdateNetworkWebhooksPayloadTemplateRequest(updateNetworkWebhooksPayloadTemplateRequest).Execute()
 
 Update a webhook payload template for a network
 
@@ -34787,22 +34787,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     payloadTemplateId := "payloadTemplateId_example" // string | Payload template ID
-    updateNetworkWebhooksPayloadTemplate := *openapiclient.NewInlineObject149() // InlineObject149 |  (optional)
+    updateNetworkWebhooksPayloadTemplateRequest := *openapiclient.NewUpdateNetworkWebhooksPayloadTemplateRequest() // UpdateNetworkWebhooksPayloadTemplateRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWebhooksPayloadTemplate(context.Background(), networkId, payloadTemplateId).UpdateNetworkWebhooksPayloadTemplate(updateNetworkWebhooksPayloadTemplate).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWebhooksPayloadTemplate(context.Background(), networkId, payloadTemplateId).UpdateNetworkWebhooksPayloadTemplateRequest(updateNetworkWebhooksPayloadTemplateRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWebhooksPayloadTemplate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkWebhooksPayloadTemplate`: InlineResponse20084
+    // response from `UpdateNetworkWebhooksPayloadTemplate`: GetNetworkWebhooksPayloadTemplates200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkWebhooksPayloadTemplate`: %v\n", resp)
 }
 ```
@@ -34825,11 +34825,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWebhooksPayloadTemplate** | [**InlineObject149**](InlineObject149.md) |  | 
+ **updateNetworkWebhooksPayloadTemplateRequest** | [**UpdateNetworkWebhooksPayloadTemplateRequest**](UpdateNetworkWebhooksPayloadTemplateRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20084**](InlineResponse20084.md)
+[**GetNetworkWebhooksPayloadTemplates200ResponseInner**](GetNetworkWebhooksPayloadTemplates200ResponseInner.md)
 
 ### Authorization
 
@@ -34847,7 +34847,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessAlternateManagementInterface
 
-> map[string]interface{} UpdateNetworkWirelessAlternateManagementInterface(ctx, networkId).UpdateNetworkWirelessAlternateManagementInterface(updateNetworkWirelessAlternateManagementInterface).Execute()
+> map[string]interface{} UpdateNetworkWirelessAlternateManagementInterface(ctx, networkId).UpdateNetworkWirelessAlternateManagementInterfaceRequest(updateNetworkWirelessAlternateManagementInterfaceRequest).Execute()
 
 Update alternate management interface and device static IP
 
@@ -34862,16 +34862,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkWirelessAlternateManagementInterface := *openapiclient.NewInlineObject151() // InlineObject151 |  (optional)
+    updateNetworkWirelessAlternateManagementInterfaceRequest := *openapiclient.NewUpdateNetworkWirelessAlternateManagementInterfaceRequest() // UpdateNetworkWirelessAlternateManagementInterfaceRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessAlternateManagementInterface(context.Background(), networkId).UpdateNetworkWirelessAlternateManagementInterface(updateNetworkWirelessAlternateManagementInterface).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessAlternateManagementInterface(context.Background(), networkId).UpdateNetworkWirelessAlternateManagementInterfaceRequest(updateNetworkWirelessAlternateManagementInterfaceRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessAlternateManagementInterface``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -34897,7 +34897,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkWirelessAlter
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkWirelessAlternateManagementInterface** | [**InlineObject151**](InlineObject151.md) |  | 
+ **updateNetworkWirelessAlternateManagementInterfaceRequest** | [**UpdateNetworkWirelessAlternateManagementInterfaceRequest**](UpdateNetworkWirelessAlternateManagementInterfaceRequest.md) |  | 
 
 ### Return type
 
@@ -34919,7 +34919,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessBilling
 
-> map[string]interface{} UpdateNetworkWirelessBilling(ctx, networkId).UpdateNetworkWirelessBilling(updateNetworkWirelessBilling).Execute()
+> map[string]interface{} UpdateNetworkWirelessBilling(ctx, networkId).UpdateNetworkWirelessBillingRequest(updateNetworkWirelessBillingRequest).Execute()
 
 Update the billing settings
 
@@ -34934,16 +34934,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkWirelessBilling := *openapiclient.NewInlineObject152() // InlineObject152 |  (optional)
+    updateNetworkWirelessBillingRequest := *openapiclient.NewUpdateNetworkWirelessBillingRequest() // UpdateNetworkWirelessBillingRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessBilling(context.Background(), networkId).UpdateNetworkWirelessBilling(updateNetworkWirelessBilling).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessBilling(context.Background(), networkId).UpdateNetworkWirelessBillingRequest(updateNetworkWirelessBillingRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessBilling``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -34969,7 +34969,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkWirelessBilli
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkWirelessBilling** | [**InlineObject152**](InlineObject152.md) |  | 
+ **updateNetworkWirelessBillingRequest** | [**UpdateNetworkWirelessBillingRequest**](UpdateNetworkWirelessBillingRequest.md) |  | 
 
 ### Return type
 
@@ -34991,7 +34991,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessBluetoothSettings
 
-> InlineResponse20085 UpdateNetworkWirelessBluetoothSettings(ctx, networkId).UpdateNetworkWirelessBluetoothSettings(updateNetworkWirelessBluetoothSettings).Execute()
+> GetNetworkWirelessBluetoothSettings200Response UpdateNetworkWirelessBluetoothSettings(ctx, networkId).UpdateNetworkWirelessBluetoothSettingsRequest(updateNetworkWirelessBluetoothSettingsRequest).Execute()
 
 Update the Bluetooth settings for a network
 
@@ -35006,21 +35006,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkWirelessBluetoothSettings := *openapiclient.NewInlineObject153() // InlineObject153 |  (optional)
+    updateNetworkWirelessBluetoothSettingsRequest := *openapiclient.NewUpdateNetworkWirelessBluetoothSettingsRequest() // UpdateNetworkWirelessBluetoothSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessBluetoothSettings(context.Background(), networkId).UpdateNetworkWirelessBluetoothSettings(updateNetworkWirelessBluetoothSettings).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessBluetoothSettings(context.Background(), networkId).UpdateNetworkWirelessBluetoothSettingsRequest(updateNetworkWirelessBluetoothSettingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessBluetoothSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkWirelessBluetoothSettings`: InlineResponse20085
+    // response from `UpdateNetworkWirelessBluetoothSettings`: GetNetworkWirelessBluetoothSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkWirelessBluetoothSettings`: %v\n", resp)
 }
 ```
@@ -35041,11 +35041,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkWirelessBluet
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkWirelessBluetoothSettings** | [**InlineObject153**](InlineObject153.md) |  | 
+ **updateNetworkWirelessBluetoothSettingsRequest** | [**UpdateNetworkWirelessBluetoothSettingsRequest**](UpdateNetworkWirelessBluetoothSettingsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20085**](InlineResponse20085.md)
+[**GetNetworkWirelessBluetoothSettings200Response**](GetNetworkWirelessBluetoothSettings200Response.md)
 
 ### Authorization
 
@@ -35063,7 +35063,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessRfProfile
 
-> InlineResponse20092 UpdateNetworkWirelessRfProfile(ctx, networkId, rfProfileId).UpdateNetworkWirelessRfProfile(updateNetworkWirelessRfProfile).Execute()
+> GetNetworkWirelessRfProfiles200Response UpdateNetworkWirelessRfProfile(ctx, networkId, rfProfileId).UpdateNetworkWirelessRfProfileRequest(updateNetworkWirelessRfProfileRequest).Execute()
 
 Updates specified RF profile for this network
 
@@ -35078,22 +35078,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     rfProfileId := "rfProfileId_example" // string | Rf profile ID
-    updateNetworkWirelessRfProfile := *openapiclient.NewInlineObject155() // InlineObject155 |  (optional)
+    updateNetworkWirelessRfProfileRequest := *openapiclient.NewUpdateNetworkWirelessRfProfileRequest() // UpdateNetworkWirelessRfProfileRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessRfProfile(context.Background(), networkId, rfProfileId).UpdateNetworkWirelessRfProfile(updateNetworkWirelessRfProfile).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessRfProfile(context.Background(), networkId, rfProfileId).UpdateNetworkWirelessRfProfileRequest(updateNetworkWirelessRfProfileRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessRfProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkWirelessRfProfile`: InlineResponse20092
+    // response from `UpdateNetworkWirelessRfProfile`: GetNetworkWirelessRfProfiles200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkWirelessRfProfile`: %v\n", resp)
 }
 ```
@@ -35116,11 +35116,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessRfProfile** | [**InlineObject155**](InlineObject155.md) |  | 
+ **updateNetworkWirelessRfProfileRequest** | [**UpdateNetworkWirelessRfProfileRequest**](UpdateNetworkWirelessRfProfileRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20092**](InlineResponse20092.md)
+[**GetNetworkWirelessRfProfiles200Response**](GetNetworkWirelessRfProfiles200Response.md)
 
 ### Authorization
 
@@ -35138,7 +35138,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessSettings
 
-> InlineResponse20093 UpdateNetworkWirelessSettings(ctx, networkId).UpdateNetworkWirelessSettings(updateNetworkWirelessSettings).Execute()
+> GetNetworkWirelessSettings200Response UpdateNetworkWirelessSettings(ctx, networkId).UpdateNetworkWirelessSettingsRequest(updateNetworkWirelessSettingsRequest).Execute()
 
 Update the wireless settings for a network
 
@@ -35153,21 +35153,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkWirelessSettings := *openapiclient.NewInlineObject156() // InlineObject156 |  (optional)
+    updateNetworkWirelessSettingsRequest := *openapiclient.NewUpdateNetworkWirelessSettingsRequest() // UpdateNetworkWirelessSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSettings(context.Background(), networkId).UpdateNetworkWirelessSettings(updateNetworkWirelessSettings).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSettings(context.Background(), networkId).UpdateNetworkWirelessSettingsRequest(updateNetworkWirelessSettingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkWirelessSettings`: InlineResponse20093
+    // response from `UpdateNetworkWirelessSettings`: GetNetworkWirelessSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkWirelessSettings`: %v\n", resp)
 }
 ```
@@ -35188,11 +35188,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkWirelessSetti
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkWirelessSettings** | [**InlineObject156**](InlineObject156.md) |  | 
+ **updateNetworkWirelessSettingsRequest** | [**UpdateNetworkWirelessSettingsRequest**](UpdateNetworkWirelessSettingsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20093**](InlineResponse20093.md)
+[**GetNetworkWirelessSettings200Response**](GetNetworkWirelessSettings200Response.md)
 
 ### Authorization
 
@@ -35210,7 +35210,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessSsid
 
-> map[string]interface{} UpdateNetworkWirelessSsid(ctx, networkId, number).UpdateNetworkWirelessSsid(updateNetworkWirelessSsid).Execute()
+> map[string]interface{} UpdateNetworkWirelessSsid(ctx, networkId, number).UpdateNetworkWirelessSsidRequest(updateNetworkWirelessSsidRequest).Execute()
 
 Update the attributes of an MR SSID
 
@@ -35225,17 +35225,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     number := "number_example" // string | Number
-    updateNetworkWirelessSsid := *openapiclient.NewInlineObject157() // InlineObject157 |  (optional)
+    updateNetworkWirelessSsidRequest := *openapiclient.NewUpdateNetworkWirelessSsidRequest() // UpdateNetworkWirelessSsidRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsid(context.Background(), networkId, number).UpdateNetworkWirelessSsid(updateNetworkWirelessSsid).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsid(context.Background(), networkId, number).UpdateNetworkWirelessSsidRequest(updateNetworkWirelessSsidRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessSsid``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -35263,7 +35263,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsid** | [**InlineObject157**](InlineObject157.md) |  | 
+ **updateNetworkWirelessSsidRequest** | [**UpdateNetworkWirelessSsidRequest**](UpdateNetworkWirelessSsidRequest.md) |  | 
 
 ### Return type
 
@@ -35285,7 +35285,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessSsidBonjourForwarding
 
-> map[string]interface{} UpdateNetworkWirelessSsidBonjourForwarding(ctx, networkId, number).UpdateNetworkWirelessSsidBonjourForwarding(updateNetworkWirelessSsidBonjourForwarding).Execute()
+> map[string]interface{} UpdateNetworkWirelessSsidBonjourForwarding(ctx, networkId, number).UpdateNetworkWirelessSsidBonjourForwardingRequest(updateNetworkWirelessSsidBonjourForwardingRequest).Execute()
 
 Update the bonjour forwarding setting and rules for the SSID
 
@@ -35300,17 +35300,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     number := "number_example" // string | Number
-    updateNetworkWirelessSsidBonjourForwarding := *openapiclient.NewInlineObject158() // InlineObject158 |  (optional)
+    updateNetworkWirelessSsidBonjourForwardingRequest := *openapiclient.NewUpdateNetworkWirelessSsidBonjourForwardingRequest() // UpdateNetworkWirelessSsidBonjourForwardingRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidBonjourForwarding(context.Background(), networkId, number).UpdateNetworkWirelessSsidBonjourForwarding(updateNetworkWirelessSsidBonjourForwarding).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidBonjourForwarding(context.Background(), networkId, number).UpdateNetworkWirelessSsidBonjourForwardingRequest(updateNetworkWirelessSsidBonjourForwardingRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessSsidBonjourForwarding``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -35338,7 +35338,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidBonjourForwarding** | [**InlineObject158**](InlineObject158.md) |  | 
+ **updateNetworkWirelessSsidBonjourForwardingRequest** | [**UpdateNetworkWirelessSsidBonjourForwardingRequest**](UpdateNetworkWirelessSsidBonjourForwardingRequest.md) |  | 
 
 ### Return type
 
@@ -35360,7 +35360,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessSsidDeviceTypeGroupPolicies
 
-> map[string]interface{} UpdateNetworkWirelessSsidDeviceTypeGroupPolicies(ctx, networkId, number).UpdateNetworkWirelessSsidDeviceTypeGroupPolicies(updateNetworkWirelessSsidDeviceTypeGroupPolicies).Execute()
+> map[string]interface{} UpdateNetworkWirelessSsidDeviceTypeGroupPolicies(ctx, networkId, number).UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest(updateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest).Execute()
 
 Update the device type group policies for the SSID
 
@@ -35375,17 +35375,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     number := "number_example" // string | Number
-    updateNetworkWirelessSsidDeviceTypeGroupPolicies := *openapiclient.NewInlineObject159() // InlineObject159 |  (optional)
+    updateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest := *openapiclient.NewUpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest() // UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidDeviceTypeGroupPolicies(context.Background(), networkId, number).UpdateNetworkWirelessSsidDeviceTypeGroupPolicies(updateNetworkWirelessSsidDeviceTypeGroupPolicies).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidDeviceTypeGroupPolicies(context.Background(), networkId, number).UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest(updateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessSsidDeviceTypeGroupPolicies``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -35413,7 +35413,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidDeviceTypeGroupPolicies** | [**InlineObject159**](InlineObject159.md) |  | 
+ **updateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest** | [**UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest**](UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesRequest.md) |  | 
 
 ### Return type
 
@@ -35435,7 +35435,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessSsidEapOverride
 
-> InlineResponse20095 UpdateNetworkWirelessSsidEapOverride(ctx, networkId, number).UpdateNetworkWirelessSsidEapOverride(updateNetworkWirelessSsidEapOverride).Execute()
+> GetNetworkWirelessSsidEapOverride200Response UpdateNetworkWirelessSsidEapOverride(ctx, networkId, number).UpdateNetworkWirelessSsidEapOverrideRequest(updateNetworkWirelessSsidEapOverrideRequest).Execute()
 
 Update the EAP overridden parameters for an SSID.
 
@@ -35450,22 +35450,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     number := "number_example" // string | Number
-    updateNetworkWirelessSsidEapOverride := *openapiclient.NewInlineObject160() // InlineObject160 |  (optional)
+    updateNetworkWirelessSsidEapOverrideRequest := *openapiclient.NewUpdateNetworkWirelessSsidEapOverrideRequest() // UpdateNetworkWirelessSsidEapOverrideRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidEapOverride(context.Background(), networkId, number).UpdateNetworkWirelessSsidEapOverride(updateNetworkWirelessSsidEapOverride).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidEapOverride(context.Background(), networkId, number).UpdateNetworkWirelessSsidEapOverrideRequest(updateNetworkWirelessSsidEapOverrideRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessSsidEapOverride``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkWirelessSsidEapOverride`: InlineResponse20095
+    // response from `UpdateNetworkWirelessSsidEapOverride`: GetNetworkWirelessSsidEapOverride200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkWirelessSsidEapOverride`: %v\n", resp)
 }
 ```
@@ -35488,11 +35488,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidEapOverride** | [**InlineObject160**](InlineObject160.md) |  | 
+ **updateNetworkWirelessSsidEapOverrideRequest** | [**UpdateNetworkWirelessSsidEapOverrideRequest**](UpdateNetworkWirelessSsidEapOverrideRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20095**](InlineResponse20095.md)
+[**GetNetworkWirelessSsidEapOverride200Response**](GetNetworkWirelessSsidEapOverride200Response.md)
 
 ### Authorization
 
@@ -35510,7 +35510,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessSsidFirewallL3FirewallRules
 
-> map[string]interface{} UpdateNetworkWirelessSsidFirewallL3FirewallRules(ctx, networkId, number).UpdateNetworkWirelessSsidFirewallL3FirewallRules(updateNetworkWirelessSsidFirewallL3FirewallRules).Execute()
+> map[string]interface{} UpdateNetworkWirelessSsidFirewallL3FirewallRules(ctx, networkId, number).UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest(updateNetworkWirelessSsidFirewallL3FirewallRulesRequest).Execute()
 
 Update the L3 firewall rules of an SSID on an MR network
 
@@ -35525,17 +35525,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     number := "number_example" // string | Number
-    updateNetworkWirelessSsidFirewallL3FirewallRules := *openapiclient.NewInlineObject161() // InlineObject161 |  (optional)
+    updateNetworkWirelessSsidFirewallL3FirewallRulesRequest := *openapiclient.NewUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest() // UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidFirewallL3FirewallRules(context.Background(), networkId, number).UpdateNetworkWirelessSsidFirewallL3FirewallRules(updateNetworkWirelessSsidFirewallL3FirewallRules).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidFirewallL3FirewallRules(context.Background(), networkId, number).UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest(updateNetworkWirelessSsidFirewallL3FirewallRulesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessSsidFirewallL3FirewallRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -35563,7 +35563,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidFirewallL3FirewallRules** | [**InlineObject161**](InlineObject161.md) |  | 
+ **updateNetworkWirelessSsidFirewallL3FirewallRulesRequest** | [**UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest**](UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest.md) |  | 
 
 ### Return type
 
@@ -35585,7 +35585,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessSsidFirewallL7FirewallRules
 
-> map[string]interface{} UpdateNetworkWirelessSsidFirewallL7FirewallRules(ctx, networkId, number).UpdateNetworkWirelessSsidFirewallL7FirewallRules(updateNetworkWirelessSsidFirewallL7FirewallRules).Execute()
+> map[string]interface{} UpdateNetworkWirelessSsidFirewallL7FirewallRules(ctx, networkId, number).UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest(updateNetworkWirelessSsidFirewallL7FirewallRulesRequest).Execute()
 
 Update the L7 firewall rules of an SSID on an MR network
 
@@ -35600,17 +35600,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     number := "number_example" // string | Number
-    updateNetworkWirelessSsidFirewallL7FirewallRules := *openapiclient.NewInlineObject162() // InlineObject162 |  (optional)
+    updateNetworkWirelessSsidFirewallL7FirewallRulesRequest := *openapiclient.NewUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest() // UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidFirewallL7FirewallRules(context.Background(), networkId, number).UpdateNetworkWirelessSsidFirewallL7FirewallRules(updateNetworkWirelessSsidFirewallL7FirewallRules).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidFirewallL7FirewallRules(context.Background(), networkId, number).UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest(updateNetworkWirelessSsidFirewallL7FirewallRulesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessSsidFirewallL7FirewallRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -35638,7 +35638,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidFirewallL7FirewallRules** | [**InlineObject162**](InlineObject162.md) |  | 
+ **updateNetworkWirelessSsidFirewallL7FirewallRulesRequest** | [**UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest**](UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest.md) |  | 
 
 ### Return type
 
@@ -35660,7 +35660,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessSsidHotspot20
 
-> map[string]interface{} UpdateNetworkWirelessSsidHotspot20(ctx, networkId, number).UpdateNetworkWirelessSsidHotspot20(updateNetworkWirelessSsidHotspot20).Execute()
+> map[string]interface{} UpdateNetworkWirelessSsidHotspot20(ctx, networkId, number).UpdateNetworkWirelessSsidHotspot20Request(updateNetworkWirelessSsidHotspot20Request).Execute()
 
 Update the Hotspot 2.0 settings of an SSID
 
@@ -35675,17 +35675,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     number := "number_example" // string | Number
-    updateNetworkWirelessSsidHotspot20 := *openapiclient.NewInlineObject163() // InlineObject163 |  (optional)
+    updateNetworkWirelessSsidHotspot20Request := *openapiclient.NewUpdateNetworkWirelessSsidHotspot20Request() // UpdateNetworkWirelessSsidHotspot20Request |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidHotspot20(context.Background(), networkId, number).UpdateNetworkWirelessSsidHotspot20(updateNetworkWirelessSsidHotspot20).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidHotspot20(context.Background(), networkId, number).UpdateNetworkWirelessSsidHotspot20Request(updateNetworkWirelessSsidHotspot20Request).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessSsidHotspot20``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -35713,7 +35713,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidHotspot20** | [**InlineObject163**](InlineObject163.md) |  | 
+ **updateNetworkWirelessSsidHotspot20Request** | [**UpdateNetworkWirelessSsidHotspot20Request**](UpdateNetworkWirelessSsidHotspot20Request.md) |  | 
 
 ### Return type
 
@@ -35735,7 +35735,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessSsidIdentityPsk
 
-> map[string]interface{} UpdateNetworkWirelessSsidIdentityPsk(ctx, networkId, number, identityPskId).UpdateNetworkWirelessSsidIdentityPsk(updateNetworkWirelessSsidIdentityPsk).Execute()
+> map[string]interface{} UpdateNetworkWirelessSsidIdentityPsk(ctx, networkId, number, identityPskId).UpdateNetworkWirelessSsidIdentityPskRequest(updateNetworkWirelessSsidIdentityPskRequest).Execute()
 
 Update an Identity PSK
 
@@ -35750,18 +35750,18 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     number := "number_example" // string | Number
     identityPskId := "identityPskId_example" // string | Identity psk ID
-    updateNetworkWirelessSsidIdentityPsk := *openapiclient.NewInlineObject165() // InlineObject165 |  (optional)
+    updateNetworkWirelessSsidIdentityPskRequest := *openapiclient.NewUpdateNetworkWirelessSsidIdentityPskRequest() // UpdateNetworkWirelessSsidIdentityPskRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidIdentityPsk(context.Background(), networkId, number, identityPskId).UpdateNetworkWirelessSsidIdentityPsk(updateNetworkWirelessSsidIdentityPsk).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidIdentityPsk(context.Background(), networkId, number, identityPskId).UpdateNetworkWirelessSsidIdentityPskRequest(updateNetworkWirelessSsidIdentityPskRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessSsidIdentityPsk``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -35791,7 +35791,7 @@ Name | Type | Description  | Notes
 
 
 
- **updateNetworkWirelessSsidIdentityPsk** | [**InlineObject165**](InlineObject165.md) |  | 
+ **updateNetworkWirelessSsidIdentityPskRequest** | [**UpdateNetworkWirelessSsidIdentityPskRequest**](UpdateNetworkWirelessSsidIdentityPskRequest.md) |  | 
 
 ### Return type
 
@@ -35813,7 +35813,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessSsidSchedules
 
-> map[string]interface{} UpdateNetworkWirelessSsidSchedules(ctx, networkId, number).UpdateNetworkWirelessSsidSchedules(updateNetworkWirelessSsidSchedules).Execute()
+> map[string]interface{} UpdateNetworkWirelessSsidSchedules(ctx, networkId, number).UpdateNetworkWirelessSsidSchedulesRequest(updateNetworkWirelessSsidSchedulesRequest).Execute()
 
 Update the outage schedule for the SSID
 
@@ -35828,17 +35828,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     number := "number_example" // string | Number
-    updateNetworkWirelessSsidSchedules := *openapiclient.NewInlineObject166() // InlineObject166 |  (optional)
+    updateNetworkWirelessSsidSchedulesRequest := *openapiclient.NewUpdateNetworkWirelessSsidSchedulesRequest() // UpdateNetworkWirelessSsidSchedulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidSchedules(context.Background(), networkId, number).UpdateNetworkWirelessSsidSchedules(updateNetworkWirelessSsidSchedules).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidSchedules(context.Background(), networkId, number).UpdateNetworkWirelessSsidSchedulesRequest(updateNetworkWirelessSsidSchedulesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessSsidSchedules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -35866,7 +35866,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidSchedules** | [**InlineObject166**](InlineObject166.md) |  | 
+ **updateNetworkWirelessSsidSchedulesRequest** | [**UpdateNetworkWirelessSsidSchedulesRequest**](UpdateNetworkWirelessSsidSchedulesRequest.md) |  | 
 
 ### Return type
 
@@ -35888,7 +35888,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessSsidSplashSettings
 
-> InlineResponse20097 UpdateNetworkWirelessSsidSplashSettings(ctx, networkId, number).UpdateNetworkWirelessSsidSplashSettings(updateNetworkWirelessSsidSplashSettings).Execute()
+> GetNetworkWirelessSsidSplashSettings200Response UpdateNetworkWirelessSsidSplashSettings(ctx, networkId, number).UpdateNetworkWirelessSsidSplashSettingsRequest(updateNetworkWirelessSsidSplashSettingsRequest).Execute()
 
 Modify the splash page settings for the given SSID
 
@@ -35903,22 +35903,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     number := "number_example" // string | Number
-    updateNetworkWirelessSsidSplashSettings := *openapiclient.NewInlineObject167() // InlineObject167 |  (optional)
+    updateNetworkWirelessSsidSplashSettingsRequest := *openapiclient.NewUpdateNetworkWirelessSsidSplashSettingsRequest() // UpdateNetworkWirelessSsidSplashSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidSplashSettings(context.Background(), networkId, number).UpdateNetworkWirelessSsidSplashSettings(updateNetworkWirelessSsidSplashSettings).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidSplashSettings(context.Background(), networkId, number).UpdateNetworkWirelessSsidSplashSettingsRequest(updateNetworkWirelessSsidSplashSettingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessSsidSplashSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkWirelessSsidSplashSettings`: InlineResponse20097
+    // response from `UpdateNetworkWirelessSsidSplashSettings`: GetNetworkWirelessSsidSplashSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkWirelessSsidSplashSettings`: %v\n", resp)
 }
 ```
@@ -35941,11 +35941,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidSplashSettings** | [**InlineObject167**](InlineObject167.md) |  | 
+ **updateNetworkWirelessSsidSplashSettingsRequest** | [**UpdateNetworkWirelessSsidSplashSettingsRequest**](UpdateNetworkWirelessSsidSplashSettingsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20097**](InlineResponse20097.md)
+[**GetNetworkWirelessSsidSplashSettings200Response**](GetNetworkWirelessSsidSplashSettings200Response.md)
 
 ### Authorization
 
@@ -35963,7 +35963,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessSsidTrafficShapingRules
 
-> map[string]interface{} UpdateNetworkWirelessSsidTrafficShapingRules(ctx, networkId, number).UpdateNetworkWirelessSsidTrafficShapingRules(updateNetworkWirelessSsidTrafficShapingRules).Execute()
+> map[string]interface{} UpdateNetworkWirelessSsidTrafficShapingRules(ctx, networkId, number).UpdateNetworkWirelessSsidTrafficShapingRulesRequest(updateNetworkWirelessSsidTrafficShapingRulesRequest).Execute()
 
 Update the traffic shaping settings for an SSID on an MR network
 
@@ -35978,17 +35978,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     number := "number_example" // string | Number
-    updateNetworkWirelessSsidTrafficShapingRules := *openapiclient.NewInlineObject168() // InlineObject168 |  (optional)
+    updateNetworkWirelessSsidTrafficShapingRulesRequest := *openapiclient.NewUpdateNetworkWirelessSsidTrafficShapingRulesRequest() // UpdateNetworkWirelessSsidTrafficShapingRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidTrafficShapingRules(context.Background(), networkId, number).UpdateNetworkWirelessSsidTrafficShapingRules(updateNetworkWirelessSsidTrafficShapingRules).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidTrafficShapingRules(context.Background(), networkId, number).UpdateNetworkWirelessSsidTrafficShapingRulesRequest(updateNetworkWirelessSsidTrafficShapingRulesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessSsidTrafficShapingRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -36016,7 +36016,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidTrafficShapingRules** | [**InlineObject168**](InlineObject168.md) |  | 
+ **updateNetworkWirelessSsidTrafficShapingRulesRequest** | [**UpdateNetworkWirelessSsidTrafficShapingRulesRequest**](UpdateNetworkWirelessSsidTrafficShapingRulesRequest.md) |  | 
 
 ### Return type
 
@@ -36038,7 +36038,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessSsidVpn
 
-> map[string]interface{} UpdateNetworkWirelessSsidVpn(ctx, networkId, number).UpdateNetworkWirelessSsidVpn(updateNetworkWirelessSsidVpn).Execute()
+> map[string]interface{} UpdateNetworkWirelessSsidVpn(ctx, networkId, number).UpdateNetworkWirelessSsidVpnRequest(updateNetworkWirelessSsidVpnRequest).Execute()
 
 Update the VPN settings for the SSID
 
@@ -36053,17 +36053,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     number := "number_example" // string | Number
-    updateNetworkWirelessSsidVpn := *openapiclient.NewInlineObject169() // InlineObject169 |  (optional)
+    updateNetworkWirelessSsidVpnRequest := *openapiclient.NewUpdateNetworkWirelessSsidVpnRequest() // UpdateNetworkWirelessSsidVpnRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidVpn(context.Background(), networkId, number).UpdateNetworkWirelessSsidVpn(updateNetworkWirelessSsidVpn).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateNetworkWirelessSsidVpn(context.Background(), networkId, number).UpdateNetworkWirelessSsidVpnRequest(updateNetworkWirelessSsidVpnRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkWirelessSsidVpn``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -36091,7 +36091,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkWirelessSsidVpn** | [**InlineObject169**](InlineObject169.md) |  | 
+ **updateNetworkWirelessSsidVpnRequest** | [**UpdateNetworkWirelessSsidVpnRequest**](UpdateNetworkWirelessSsidVpnRequest.md) |  | 
 
 ### Return type
 
@@ -36113,7 +36113,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganization
 
-> InlineResponse20099 UpdateOrganization(ctx, organizationId).UpdateOrganization(updateOrganization).Execute()
+> GetOrganizations200ResponseInner UpdateOrganization(ctx, organizationId).UpdateOrganizationRequest(updateOrganizationRequest).Execute()
 
 Update an organization
 
@@ -36128,21 +36128,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    updateOrganization := *openapiclient.NewInlineObject171() // InlineObject171 |  (optional)
+    updateOrganizationRequest := *openapiclient.NewUpdateOrganizationRequest() // UpdateOrganizationRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganization(context.Background(), organizationId).UpdateOrganization(updateOrganization).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganization(context.Background(), organizationId).UpdateOrganizationRequest(updateOrganizationRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganization`: InlineResponse20099
+    // response from `UpdateOrganization`: GetOrganizations200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateOrganization`: %v\n", resp)
 }
 ```
@@ -36163,11 +36163,11 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateOrganization** | [**InlineObject171**](InlineObject171.md) |  | 
+ **updateOrganizationRequest** | [**UpdateOrganizationRequest**](UpdateOrganizationRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20099**](InlineResponse20099.md)
+[**GetOrganizations200ResponseInner**](GetOrganizations200ResponseInner.md)
 
 ### Authorization
 
@@ -36185,7 +36185,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationActionBatch
 
-> map[string]interface{} UpdateOrganizationActionBatch(ctx, organizationId, actionBatchId).UpdateOrganizationActionBatch(updateOrganizationActionBatch).Execute()
+> map[string]interface{} UpdateOrganizationActionBatch(ctx, organizationId, actionBatchId).UpdateOrganizationActionBatchRequest(updateOrganizationActionBatchRequest).Execute()
 
 Update an action batch
 
@@ -36200,17 +36200,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     actionBatchId := "actionBatchId_example" // string | Action batch ID
-    updateOrganizationActionBatch := *openapiclient.NewInlineObject173() // InlineObject173 |  (optional)
+    updateOrganizationActionBatchRequest := *openapiclient.NewUpdateOrganizationActionBatchRequest() // UpdateOrganizationActionBatchRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationActionBatch(context.Background(), organizationId, actionBatchId).UpdateOrganizationActionBatch(updateOrganizationActionBatch).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationActionBatch(context.Background(), organizationId, actionBatchId).UpdateOrganizationActionBatchRequest(updateOrganizationActionBatchRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationActionBatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -36238,7 +36238,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationActionBatch** | [**InlineObject173**](InlineObject173.md) |  | 
+ **updateOrganizationActionBatchRequest** | [**UpdateOrganizationActionBatchRequest**](UpdateOrganizationActionBatchRequest.md) |  | 
 
 ### Return type
 
@@ -36260,7 +36260,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationAdaptivePolicyAcl
 
-> InlineResponse200100 UpdateOrganizationAdaptivePolicyAcl(ctx, organizationId, aclId).UpdateOrganizationAdaptivePolicyAcl(updateOrganizationAdaptivePolicyAcl).Execute()
+> GetOrganizationAdaptivePolicyAcls200ResponseInner UpdateOrganizationAdaptivePolicyAcl(ctx, organizationId, aclId).UpdateOrganizationAdaptivePolicyAclRequest(updateOrganizationAdaptivePolicyAclRequest).Execute()
 
 Updates an adaptive policy ACL
 
@@ -36275,22 +36275,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     aclId := "aclId_example" // string | Acl ID
-    updateOrganizationAdaptivePolicyAcl := *openapiclient.NewInlineObject175() // InlineObject175 |  (optional)
+    updateOrganizationAdaptivePolicyAclRequest := *openapiclient.NewUpdateOrganizationAdaptivePolicyAclRequest() // UpdateOrganizationAdaptivePolicyAclRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationAdaptivePolicyAcl(context.Background(), organizationId, aclId).UpdateOrganizationAdaptivePolicyAcl(updateOrganizationAdaptivePolicyAcl).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationAdaptivePolicyAcl(context.Background(), organizationId, aclId).UpdateOrganizationAdaptivePolicyAclRequest(updateOrganizationAdaptivePolicyAclRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationAdaptivePolicyAcl``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationAdaptivePolicyAcl`: InlineResponse200100
+    // response from `UpdateOrganizationAdaptivePolicyAcl`: GetOrganizationAdaptivePolicyAcls200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateOrganizationAdaptivePolicyAcl`: %v\n", resp)
 }
 ```
@@ -36313,11 +36313,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationAdaptivePolicyAcl** | [**InlineObject175**](InlineObject175.md) |  | 
+ **updateOrganizationAdaptivePolicyAclRequest** | [**UpdateOrganizationAdaptivePolicyAclRequest**](UpdateOrganizationAdaptivePolicyAclRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200100**](InlineResponse200100.md)
+[**GetOrganizationAdaptivePolicyAcls200ResponseInner**](GetOrganizationAdaptivePolicyAcls200ResponseInner.md)
 
 ### Authorization
 
@@ -36335,7 +36335,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationAdaptivePolicyGroup
 
-> map[string]interface{} UpdateOrganizationAdaptivePolicyGroup(ctx, organizationId, id).UpdateOrganizationAdaptivePolicyGroup(updateOrganizationAdaptivePolicyGroup).Execute()
+> map[string]interface{} UpdateOrganizationAdaptivePolicyGroup(ctx, organizationId, id).UpdateOrganizationAdaptivePolicyGroupRequest(updateOrganizationAdaptivePolicyGroupRequest).Execute()
 
 Updates an adaptive policy group
 
@@ -36350,17 +36350,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     id := "id_example" // string | ID
-    updateOrganizationAdaptivePolicyGroup := *openapiclient.NewInlineObject177() // InlineObject177 |  (optional)
+    updateOrganizationAdaptivePolicyGroupRequest := *openapiclient.NewUpdateOrganizationAdaptivePolicyGroupRequest() // UpdateOrganizationAdaptivePolicyGroupRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationAdaptivePolicyGroup(context.Background(), organizationId, id).UpdateOrganizationAdaptivePolicyGroup(updateOrganizationAdaptivePolicyGroup).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationAdaptivePolicyGroup(context.Background(), organizationId, id).UpdateOrganizationAdaptivePolicyGroupRequest(updateOrganizationAdaptivePolicyGroupRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationAdaptivePolicyGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -36388,7 +36388,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationAdaptivePolicyGroup** | [**InlineObject177**](InlineObject177.md) |  | 
+ **updateOrganizationAdaptivePolicyGroupRequest** | [**UpdateOrganizationAdaptivePolicyGroupRequest**](UpdateOrganizationAdaptivePolicyGroupRequest.md) |  | 
 
 ### Return type
 
@@ -36410,7 +36410,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationAdaptivePolicyPolicy
 
-> map[string]interface{} UpdateOrganizationAdaptivePolicyPolicy(ctx, organizationId, id).UpdateOrganizationAdaptivePolicyPolicy(updateOrganizationAdaptivePolicyPolicy).Execute()
+> map[string]interface{} UpdateOrganizationAdaptivePolicyPolicy(ctx, organizationId, id).UpdateOrganizationAdaptivePolicyPolicyRequest(updateOrganizationAdaptivePolicyPolicyRequest).Execute()
 
 Update an Adaptive Policy
 
@@ -36425,17 +36425,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     id := "id_example" // string | ID
-    updateOrganizationAdaptivePolicyPolicy := *openapiclient.NewInlineObject179() // InlineObject179 |  (optional)
+    updateOrganizationAdaptivePolicyPolicyRequest := *openapiclient.NewUpdateOrganizationAdaptivePolicyPolicyRequest() // UpdateOrganizationAdaptivePolicyPolicyRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationAdaptivePolicyPolicy(context.Background(), organizationId, id).UpdateOrganizationAdaptivePolicyPolicy(updateOrganizationAdaptivePolicyPolicy).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationAdaptivePolicyPolicy(context.Background(), organizationId, id).UpdateOrganizationAdaptivePolicyPolicyRequest(updateOrganizationAdaptivePolicyPolicyRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationAdaptivePolicyPolicy``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -36463,7 +36463,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationAdaptivePolicyPolicy** | [**InlineObject179**](InlineObject179.md) |  | 
+ **updateOrganizationAdaptivePolicyPolicyRequest** | [**UpdateOrganizationAdaptivePolicyPolicyRequest**](UpdateOrganizationAdaptivePolicyPolicyRequest.md) |  | 
 
 ### Return type
 
@@ -36485,7 +36485,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationAdaptivePolicySettings
 
-> map[string]interface{} UpdateOrganizationAdaptivePolicySettings(ctx, organizationId).UpdateOrganizationAdaptivePolicySettings(updateOrganizationAdaptivePolicySettings).Execute()
+> map[string]interface{} UpdateOrganizationAdaptivePolicySettings(ctx, organizationId).UpdateOrganizationAdaptivePolicySettingsRequest(updateOrganizationAdaptivePolicySettingsRequest).Execute()
 
 Update global adaptive policy settings
 
@@ -36500,16 +36500,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    updateOrganizationAdaptivePolicySettings := *openapiclient.NewInlineObject180() // InlineObject180 |  (optional)
+    updateOrganizationAdaptivePolicySettingsRequest := *openapiclient.NewUpdateOrganizationAdaptivePolicySettingsRequest() // UpdateOrganizationAdaptivePolicySettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationAdaptivePolicySettings(context.Background(), organizationId).UpdateOrganizationAdaptivePolicySettings(updateOrganizationAdaptivePolicySettings).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationAdaptivePolicySettings(context.Background(), organizationId).UpdateOrganizationAdaptivePolicySettingsRequest(updateOrganizationAdaptivePolicySettingsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationAdaptivePolicySettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -36535,7 +36535,7 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationAdaptive
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateOrganizationAdaptivePolicySettings** | [**InlineObject180**](InlineObject180.md) |  | 
+ **updateOrganizationAdaptivePolicySettingsRequest** | [**UpdateOrganizationAdaptivePolicySettingsRequest**](UpdateOrganizationAdaptivePolicySettingsRequest.md) |  | 
 
 ### Return type
 
@@ -36557,7 +36557,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationAdmin
 
-> InlineResponse200102 UpdateOrganizationAdmin(ctx, organizationId, adminId).UpdateOrganizationAdmin(updateOrganizationAdmin).Execute()
+> GetOrganizationAdmins200ResponseInner UpdateOrganizationAdmin(ctx, organizationId, adminId).UpdateOrganizationAdminRequest(updateOrganizationAdminRequest).Execute()
 
 Update an administrator
 
@@ -36572,22 +36572,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     adminId := "adminId_example" // string | Admin ID
-    updateOrganizationAdmin := *openapiclient.NewInlineObject182() // InlineObject182 |  (optional)
+    updateOrganizationAdminRequest := *openapiclient.NewUpdateOrganizationAdminRequest() // UpdateOrganizationAdminRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationAdmin(context.Background(), organizationId, adminId).UpdateOrganizationAdmin(updateOrganizationAdmin).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationAdmin(context.Background(), organizationId, adminId).UpdateOrganizationAdminRequest(updateOrganizationAdminRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationAdmin``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationAdmin`: InlineResponse200102
+    // response from `UpdateOrganizationAdmin`: GetOrganizationAdmins200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateOrganizationAdmin`: %v\n", resp)
 }
 ```
@@ -36610,11 +36610,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationAdmin** | [**InlineObject182**](InlineObject182.md) |  | 
+ **updateOrganizationAdminRequest** | [**UpdateOrganizationAdminRequest**](UpdateOrganizationAdminRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200102**](InlineResponse200102.md)
+[**GetOrganizationAdmins200ResponseInner**](GetOrganizationAdmins200ResponseInner.md)
 
 ### Authorization
 
@@ -36632,7 +36632,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationAlertsProfile
 
-> map[string]interface{} UpdateOrganizationAlertsProfile(ctx, organizationId, alertConfigId).UpdateOrganizationAlertsProfile(updateOrganizationAlertsProfile).Execute()
+> map[string]interface{} UpdateOrganizationAlertsProfile(ctx, organizationId, alertConfigId).UpdateOrganizationAlertsProfileRequest(updateOrganizationAlertsProfileRequest).Execute()
 
 Update an organization-wide alert config
 
@@ -36647,17 +36647,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     alertConfigId := "alertConfigId_example" // string | Alert config ID
-    updateOrganizationAlertsProfile := *openapiclient.NewInlineObject184() // InlineObject184 |  (optional)
+    updateOrganizationAlertsProfileRequest := *openapiclient.NewUpdateOrganizationAlertsProfileRequest() // UpdateOrganizationAlertsProfileRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationAlertsProfile(context.Background(), organizationId, alertConfigId).UpdateOrganizationAlertsProfile(updateOrganizationAlertsProfile).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationAlertsProfile(context.Background(), organizationId, alertConfigId).UpdateOrganizationAlertsProfileRequest(updateOrganizationAlertsProfileRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationAlertsProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -36685,7 +36685,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationAlertsProfile** | [**InlineObject184**](InlineObject184.md) |  | 
+ **updateOrganizationAlertsProfileRequest** | [**UpdateOrganizationAlertsProfileRequest**](UpdateOrganizationAlertsProfileRequest.md) |  | 
 
 ### Return type
 
@@ -36707,7 +36707,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationApplianceSecurityIntrusion
 
-> map[string]interface{} UpdateOrganizationApplianceSecurityIntrusion(ctx, organizationId).UpdateOrganizationApplianceSecurityIntrusion(updateOrganizationApplianceSecurityIntrusion).Execute()
+> map[string]interface{} UpdateOrganizationApplianceSecurityIntrusion(ctx, organizationId).UpdateOrganizationApplianceSecurityIntrusionRequest(updateOrganizationApplianceSecurityIntrusionRequest).Execute()
 
 Sets supported intrusion settings for an organization
 
@@ -36722,16 +36722,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    updateOrganizationApplianceSecurityIntrusion := *openapiclient.NewInlineObject185([]openapiclient.OrganizationsOrganizationIdApplianceSecurityIntrusionAllowedRules{*openapiclient.NewOrganizationsOrganizationIdApplianceSecurityIntrusionAllowedRules("RuleId_example")}) // InlineObject185 | 
+    updateOrganizationApplianceSecurityIntrusionRequest := *openapiclient.NewUpdateOrganizationApplianceSecurityIntrusionRequest([]openapiclient.UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner{*openapiclient.NewUpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner("RuleId_example")}) // UpdateOrganizationApplianceSecurityIntrusionRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationApplianceSecurityIntrusion(context.Background(), organizationId).UpdateOrganizationApplianceSecurityIntrusion(updateOrganizationApplianceSecurityIntrusion).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationApplianceSecurityIntrusion(context.Background(), organizationId).UpdateOrganizationApplianceSecurityIntrusionRequest(updateOrganizationApplianceSecurityIntrusionRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationApplianceSecurityIntrusion``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -36757,7 +36757,7 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationApplianc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateOrganizationApplianceSecurityIntrusion** | [**InlineObject185**](InlineObject185.md) |  | 
+ **updateOrganizationApplianceSecurityIntrusionRequest** | [**UpdateOrganizationApplianceSecurityIntrusionRequest**](UpdateOrganizationApplianceSecurityIntrusionRequest.md) |  | 
 
 ### Return type
 
@@ -36779,7 +36779,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationApplianceVpnThirdPartyVPNPeers
 
-> InlineResponse200106 UpdateOrganizationApplianceVpnThirdPartyVPNPeers(ctx, organizationId).UpdateOrganizationApplianceVpnThirdPartyVPNPeers(updateOrganizationApplianceVpnThirdPartyVPNPeers).Execute()
+> GetOrganizationApplianceVpnThirdPartyVPNPeers200Response UpdateOrganizationApplianceVpnThirdPartyVPNPeers(ctx, organizationId).UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest(updateOrganizationApplianceVpnThirdPartyVPNPeersRequest).Execute()
 
 Update the third party VPN peers for an organization
 
@@ -36794,21 +36794,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    updateOrganizationApplianceVpnThirdPartyVPNPeers := *openapiclient.NewInlineObject186([]openapiclient.OrganizationsOrganizationIdApplianceVpnThirdPartyVPNPeersPeers{*openapiclient.NewOrganizationsOrganizationIdApplianceVpnThirdPartyVPNPeersPeers("Name_example", []string{"PrivateSubnets_example"}, "Secret_example")}) // InlineObject186 | 
+    updateOrganizationApplianceVpnThirdPartyVPNPeersRequest := *openapiclient.NewUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest([]openapiclient.UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner{*openapiclient.NewUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner("Name_example", []string{"PrivateSubnets_example"}, "Secret_example")}) // UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationApplianceVpnThirdPartyVPNPeers(context.Background(), organizationId).UpdateOrganizationApplianceVpnThirdPartyVPNPeers(updateOrganizationApplianceVpnThirdPartyVPNPeers).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationApplianceVpnThirdPartyVPNPeers(context.Background(), organizationId).UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest(updateOrganizationApplianceVpnThirdPartyVPNPeersRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationApplianceVpnThirdPartyVPNPeers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationApplianceVpnThirdPartyVPNPeers`: InlineResponse200106
+    // response from `UpdateOrganizationApplianceVpnThirdPartyVPNPeers`: GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateOrganizationApplianceVpnThirdPartyVPNPeers`: %v\n", resp)
 }
 ```
@@ -36829,11 +36829,11 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationApplianc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateOrganizationApplianceVpnThirdPartyVPNPeers** | [**InlineObject186**](InlineObject186.md) |  | 
+ **updateOrganizationApplianceVpnThirdPartyVPNPeersRequest** | [**UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest**](UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200106**](InlineResponse200106.md)
+[**GetOrganizationApplianceVpnThirdPartyVPNPeers200Response**](GetOrganizationApplianceVpnThirdPartyVPNPeers200Response.md)
 
 ### Authorization
 
@@ -36851,7 +36851,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationApplianceVpnVpnFirewallRules
 
-> InlineResponse200107 UpdateOrganizationApplianceVpnVpnFirewallRules(ctx, organizationId).UpdateOrganizationApplianceVpnVpnFirewallRules(updateOrganizationApplianceVpnVpnFirewallRules).Execute()
+> UpdateOrganizationApplianceVpnVpnFirewallRules200Response UpdateOrganizationApplianceVpnVpnFirewallRules(ctx, organizationId).UpdateOrganizationApplianceVpnVpnFirewallRulesRequest(updateOrganizationApplianceVpnVpnFirewallRulesRequest).Execute()
 
 Update the firewall rules of an organization's site-to-site VPN
 
@@ -36866,21 +36866,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    updateOrganizationApplianceVpnVpnFirewallRules := *openapiclient.NewInlineObject187() // InlineObject187 |  (optional)
+    updateOrganizationApplianceVpnVpnFirewallRulesRequest := *openapiclient.NewUpdateOrganizationApplianceVpnVpnFirewallRulesRequest() // UpdateOrganizationApplianceVpnVpnFirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationApplianceVpnVpnFirewallRules(context.Background(), organizationId).UpdateOrganizationApplianceVpnVpnFirewallRules(updateOrganizationApplianceVpnVpnFirewallRules).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationApplianceVpnVpnFirewallRules(context.Background(), organizationId).UpdateOrganizationApplianceVpnVpnFirewallRulesRequest(updateOrganizationApplianceVpnVpnFirewallRulesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationApplianceVpnVpnFirewallRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationApplianceVpnVpnFirewallRules`: InlineResponse200107
+    // response from `UpdateOrganizationApplianceVpnVpnFirewallRules`: UpdateOrganizationApplianceVpnVpnFirewallRules200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateOrganizationApplianceVpnVpnFirewallRules`: %v\n", resp)
 }
 ```
@@ -36901,11 +36901,11 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationApplianc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateOrganizationApplianceVpnVpnFirewallRules** | [**InlineObject187**](InlineObject187.md) |  | 
+ **updateOrganizationApplianceVpnVpnFirewallRulesRequest** | [**UpdateOrganizationApplianceVpnVpnFirewallRulesRequest**](UpdateOrganizationApplianceVpnVpnFirewallRulesRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200107**](InlineResponse200107.md)
+[**UpdateOrganizationApplianceVpnVpnFirewallRules200Response**](UpdateOrganizationApplianceVpnVpnFirewallRules200Response.md)
 
 ### Authorization
 
@@ -36923,7 +36923,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationBrandingPoliciesPriorities
 
-> InlineResponse200109 UpdateOrganizationBrandingPoliciesPriorities(ctx, organizationId).UpdateOrganizationBrandingPoliciesPriorities(updateOrganizationBrandingPoliciesPriorities).Execute()
+> GetOrganizationBrandingPoliciesPriorities200Response UpdateOrganizationBrandingPoliciesPriorities(ctx, organizationId).UpdateOrganizationBrandingPoliciesPrioritiesRequest(updateOrganizationBrandingPoliciesPrioritiesRequest).Execute()
 
 Update the priority ordering of an organization's branding policies.
 
@@ -36938,21 +36938,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    updateOrganizationBrandingPoliciesPriorities := *openapiclient.NewInlineObject189() // InlineObject189 |  (optional)
+    updateOrganizationBrandingPoliciesPrioritiesRequest := *openapiclient.NewUpdateOrganizationBrandingPoliciesPrioritiesRequest() // UpdateOrganizationBrandingPoliciesPrioritiesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationBrandingPoliciesPriorities(context.Background(), organizationId).UpdateOrganizationBrandingPoliciesPriorities(updateOrganizationBrandingPoliciesPriorities).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationBrandingPoliciesPriorities(context.Background(), organizationId).UpdateOrganizationBrandingPoliciesPrioritiesRequest(updateOrganizationBrandingPoliciesPrioritiesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationBrandingPoliciesPriorities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationBrandingPoliciesPriorities`: InlineResponse200109
+    // response from `UpdateOrganizationBrandingPoliciesPriorities`: GetOrganizationBrandingPoliciesPriorities200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateOrganizationBrandingPoliciesPriorities`: %v\n", resp)
 }
 ```
@@ -36973,11 +36973,11 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationBranding
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateOrganizationBrandingPoliciesPriorities** | [**InlineObject189**](InlineObject189.md) |  | 
+ **updateOrganizationBrandingPoliciesPrioritiesRequest** | [**UpdateOrganizationBrandingPoliciesPrioritiesRequest**](UpdateOrganizationBrandingPoliciesPrioritiesRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200109**](InlineResponse200109.md)
+[**GetOrganizationBrandingPoliciesPriorities200Response**](GetOrganizationBrandingPoliciesPriorities200Response.md)
 
 ### Authorization
 
@@ -36995,7 +36995,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationBrandingPolicy
 
-> InlineResponse200108 UpdateOrganizationBrandingPolicy(ctx, organizationId, brandingPolicyId).UpdateOrganizationBrandingPolicy(updateOrganizationBrandingPolicy).Execute()
+> GetOrganizationBrandingPolicies200ResponseInner UpdateOrganizationBrandingPolicy(ctx, organizationId, brandingPolicyId).UpdateOrganizationBrandingPolicyRequest(updateOrganizationBrandingPolicyRequest).Execute()
 
 Update a branding policy
 
@@ -37010,22 +37010,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     brandingPolicyId := "brandingPolicyId_example" // string | Branding policy ID
-    updateOrganizationBrandingPolicy := *openapiclient.NewInlineObject190() // InlineObject190 |  (optional)
+    updateOrganizationBrandingPolicyRequest := *openapiclient.NewUpdateOrganizationBrandingPolicyRequest() // UpdateOrganizationBrandingPolicyRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationBrandingPolicy(context.Background(), organizationId, brandingPolicyId).UpdateOrganizationBrandingPolicy(updateOrganizationBrandingPolicy).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationBrandingPolicy(context.Background(), organizationId, brandingPolicyId).UpdateOrganizationBrandingPolicyRequest(updateOrganizationBrandingPolicyRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationBrandingPolicy``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationBrandingPolicy`: InlineResponse200108
+    // response from `UpdateOrganizationBrandingPolicy`: GetOrganizationBrandingPolicies200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateOrganizationBrandingPolicy`: %v\n", resp)
 }
 ```
@@ -37048,11 +37048,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationBrandingPolicy** | [**InlineObject190**](InlineObject190.md) |  | 
+ **updateOrganizationBrandingPolicyRequest** | [**UpdateOrganizationBrandingPolicyRequest**](UpdateOrganizationBrandingPolicyRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200108**](InlineResponse200108.md)
+[**GetOrganizationBrandingPolicies200ResponseInner**](GetOrganizationBrandingPolicies200ResponseInner.md)
 
 ### Authorization
 
@@ -37070,7 +37070,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationCameraOnboardingStatuses
 
-> map[string]interface{} UpdateOrganizationCameraOnboardingStatuses(ctx, organizationId).UpdateOrganizationCameraOnboardingStatuses(updateOrganizationCameraOnboardingStatuses).Execute()
+> map[string]interface{} UpdateOrganizationCameraOnboardingStatuses(ctx, organizationId).UpdateOrganizationCameraOnboardingStatusesRequest(updateOrganizationCameraOnboardingStatusesRequest).Execute()
 
 Notify that credential handoff to camera has completed
 
@@ -37085,16 +37085,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    updateOrganizationCameraOnboardingStatuses := *openapiclient.NewInlineObject192() // InlineObject192 |  (optional)
+    updateOrganizationCameraOnboardingStatusesRequest := *openapiclient.NewUpdateOrganizationCameraOnboardingStatusesRequest() // UpdateOrganizationCameraOnboardingStatusesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationCameraOnboardingStatuses(context.Background(), organizationId).UpdateOrganizationCameraOnboardingStatuses(updateOrganizationCameraOnboardingStatuses).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationCameraOnboardingStatuses(context.Background(), organizationId).UpdateOrganizationCameraOnboardingStatusesRequest(updateOrganizationCameraOnboardingStatusesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationCameraOnboardingStatuses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -37120,7 +37120,7 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationCameraOn
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateOrganizationCameraOnboardingStatuses** | [**InlineObject192**](InlineObject192.md) |  | 
+ **updateOrganizationCameraOnboardingStatusesRequest** | [**UpdateOrganizationCameraOnboardingStatusesRequest**](UpdateOrganizationCameraOnboardingStatusesRequest.md) |  | 
 
 ### Return type
 
@@ -37142,7 +37142,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationConfigTemplate
 
-> map[string]interface{} UpdateOrganizationConfigTemplate(ctx, organizationId, configTemplateId).UpdateOrganizationConfigTemplate(updateOrganizationConfigTemplate).Execute()
+> map[string]interface{} UpdateOrganizationConfigTemplate(ctx, organizationId, configTemplateId).UpdateOrganizationConfigTemplateRequest(updateOrganizationConfigTemplateRequest).Execute()
 
 Update a configuration template
 
@@ -37157,17 +37157,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     configTemplateId := "configTemplateId_example" // string | Config template ID
-    updateOrganizationConfigTemplate := *openapiclient.NewInlineObject196() // InlineObject196 |  (optional)
+    updateOrganizationConfigTemplateRequest := *openapiclient.NewUpdateOrganizationConfigTemplateRequest() // UpdateOrganizationConfigTemplateRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationConfigTemplate(context.Background(), organizationId, configTemplateId).UpdateOrganizationConfigTemplate(updateOrganizationConfigTemplate).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationConfigTemplate(context.Background(), organizationId, configTemplateId).UpdateOrganizationConfigTemplateRequest(updateOrganizationConfigTemplateRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationConfigTemplate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -37195,7 +37195,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationConfigTemplate** | [**InlineObject196**](InlineObject196.md) |  | 
+ **updateOrganizationConfigTemplateRequest** | [**UpdateOrganizationConfigTemplateRequest**](UpdateOrganizationConfigTemplateRequest.md) |  | 
 
 ### Return type
 
@@ -37217,7 +37217,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationConfigTemplateSwitchProfilePort
 
-> InlineResponse200114 UpdateOrganizationConfigTemplateSwitchProfilePort(ctx, organizationId, configTemplateId, profileId, portId).UpdateOrganizationConfigTemplateSwitchProfilePort(updateOrganizationConfigTemplateSwitchProfilePort).Execute()
+> GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner UpdateOrganizationConfigTemplateSwitchProfilePort(ctx, organizationId, configTemplateId, profileId, portId).UpdateOrganizationConfigTemplateSwitchProfilePortRequest(updateOrganizationConfigTemplateSwitchProfilePortRequest).Execute()
 
 Update a switch profile port
 
@@ -37232,7 +37232,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -37240,16 +37240,16 @@ func main() {
     configTemplateId := "configTemplateId_example" // string | Config template ID
     profileId := "profileId_example" // string | Profile ID
     portId := "portId_example" // string | Port ID
-    updateOrganizationConfigTemplateSwitchProfilePort := *openapiclient.NewInlineObject197() // InlineObject197 |  (optional)
+    updateOrganizationConfigTemplateSwitchProfilePortRequest := *openapiclient.NewUpdateOrganizationConfigTemplateSwitchProfilePortRequest() // UpdateOrganizationConfigTemplateSwitchProfilePortRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationConfigTemplateSwitchProfilePort(context.Background(), organizationId, configTemplateId, profileId, portId).UpdateOrganizationConfigTemplateSwitchProfilePort(updateOrganizationConfigTemplateSwitchProfilePort).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationConfigTemplateSwitchProfilePort(context.Background(), organizationId, configTemplateId, profileId, portId).UpdateOrganizationConfigTemplateSwitchProfilePortRequest(updateOrganizationConfigTemplateSwitchProfilePortRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationConfigTemplateSwitchProfilePort``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationConfigTemplateSwitchProfilePort`: InlineResponse200114
+    // response from `UpdateOrganizationConfigTemplateSwitchProfilePort`: GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateOrganizationConfigTemplateSwitchProfilePort`: %v\n", resp)
 }
 ```
@@ -37276,11 +37276,11 @@ Name | Type | Description  | Notes
 
 
 
- **updateOrganizationConfigTemplateSwitchProfilePort** | [**InlineObject197**](InlineObject197.md) |  | 
+ **updateOrganizationConfigTemplateSwitchProfilePortRequest** | [**UpdateOrganizationConfigTemplateSwitchProfilePortRequest**](UpdateOrganizationConfigTemplateSwitchProfilePortRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200114**](InlineResponse200114.md)
+[**GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner**](GetOrganizationConfigTemplateSwitchProfilePorts200ResponseInner.md)
 
 ### Authorization
 
@@ -37298,7 +37298,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationEarlyAccessFeaturesOptIn
 
-> map[string]interface{} UpdateOrganizationEarlyAccessFeaturesOptIn(ctx, organizationId, optInId).UpdateOrganizationEarlyAccessFeaturesOptIn(updateOrganizationEarlyAccessFeaturesOptIn).Execute()
+> map[string]interface{} UpdateOrganizationEarlyAccessFeaturesOptIn(ctx, organizationId, optInId).UpdateOrganizationEarlyAccessFeaturesOptInRequest(updateOrganizationEarlyAccessFeaturesOptInRequest).Execute()
 
 Update an early access feature opt-in for an organization
 
@@ -37313,17 +37313,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     optInId := "optInId_example" // string | Opt in ID
-    updateOrganizationEarlyAccessFeaturesOptIn := *openapiclient.NewInlineObject199() // InlineObject199 |  (optional)
+    updateOrganizationEarlyAccessFeaturesOptInRequest := *openapiclient.NewUpdateOrganizationEarlyAccessFeaturesOptInRequest() // UpdateOrganizationEarlyAccessFeaturesOptInRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationEarlyAccessFeaturesOptIn(context.Background(), organizationId, optInId).UpdateOrganizationEarlyAccessFeaturesOptIn(updateOrganizationEarlyAccessFeaturesOptIn).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationEarlyAccessFeaturesOptIn(context.Background(), organizationId, optInId).UpdateOrganizationEarlyAccessFeaturesOptInRequest(updateOrganizationEarlyAccessFeaturesOptInRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationEarlyAccessFeaturesOptIn``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -37351,7 +37351,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationEarlyAccessFeaturesOptIn** | [**InlineObject199**](InlineObject199.md) |  | 
+ **updateOrganizationEarlyAccessFeaturesOptInRequest** | [**UpdateOrganizationEarlyAccessFeaturesOptInRequest**](UpdateOrganizationEarlyAccessFeaturesOptInRequest.md) |  | 
 
 ### Return type
 
@@ -37373,7 +37373,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationInsightMonitoredMediaServer
 
-> map[string]interface{} UpdateOrganizationInsightMonitoredMediaServer(ctx, organizationId, monitoredMediaServerId).UpdateOrganizationInsightMonitoredMediaServer(updateOrganizationInsightMonitoredMediaServer).Execute()
+> map[string]interface{} UpdateOrganizationInsightMonitoredMediaServer(ctx, organizationId, monitoredMediaServerId).UpdateOrganizationInsightMonitoredMediaServerRequest(updateOrganizationInsightMonitoredMediaServerRequest).Execute()
 
 Update a monitored media server for this organization
 
@@ -37388,17 +37388,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     monitoredMediaServerId := "monitoredMediaServerId_example" // string | Monitored media server ID
-    updateOrganizationInsightMonitoredMediaServer := *openapiclient.NewInlineObject201() // InlineObject201 |  (optional)
+    updateOrganizationInsightMonitoredMediaServerRequest := *openapiclient.NewUpdateOrganizationInsightMonitoredMediaServerRequest() // UpdateOrganizationInsightMonitoredMediaServerRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationInsightMonitoredMediaServer(context.Background(), organizationId, monitoredMediaServerId).UpdateOrganizationInsightMonitoredMediaServer(updateOrganizationInsightMonitoredMediaServer).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationInsightMonitoredMediaServer(context.Background(), organizationId, monitoredMediaServerId).UpdateOrganizationInsightMonitoredMediaServerRequest(updateOrganizationInsightMonitoredMediaServerRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationInsightMonitoredMediaServer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -37426,7 +37426,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationInsightMonitoredMediaServer** | [**InlineObject201**](InlineObject201.md) |  | 
+ **updateOrganizationInsightMonitoredMediaServerRequest** | [**UpdateOrganizationInsightMonitoredMediaServerRequest**](UpdateOrganizationInsightMonitoredMediaServerRequest.md) |  | 
 
 ### Return type
 
@@ -37448,7 +37448,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationLicense
 
-> InlineResponse200130 UpdateOrganizationLicense(ctx, organizationId, licenseId).UpdateOrganizationLicense(updateOrganizationLicense).Execute()
+> GetOrganizationLicenses200ResponseInner UpdateOrganizationLicense(ctx, organizationId, licenseId).UpdateOrganizationLicenseRequest(updateOrganizationLicenseRequest).Execute()
 
 Update a license
 
@@ -37463,22 +37463,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     licenseId := "licenseId_example" // string | License ID
-    updateOrganizationLicense := *openapiclient.NewInlineObject211() // InlineObject211 |  (optional)
+    updateOrganizationLicenseRequest := *openapiclient.NewUpdateOrganizationLicenseRequest() // UpdateOrganizationLicenseRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationLicense(context.Background(), organizationId, licenseId).UpdateOrganizationLicense(updateOrganizationLicense).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationLicense(context.Background(), organizationId, licenseId).UpdateOrganizationLicenseRequest(updateOrganizationLicenseRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationLicense``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationLicense`: InlineResponse200130
+    // response from `UpdateOrganizationLicense`: GetOrganizationLicenses200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateOrganizationLicense`: %v\n", resp)
 }
 ```
@@ -37501,11 +37501,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationLicense** | [**InlineObject211**](InlineObject211.md) |  | 
+ **updateOrganizationLicenseRequest** | [**UpdateOrganizationLicenseRequest**](UpdateOrganizationLicenseRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200130**](InlineResponse200130.md)
+[**GetOrganizationLicenses200ResponseInner**](GetOrganizationLicenses200ResponseInner.md)
 
 ### Authorization
 
@@ -37523,7 +37523,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationLoginSecurity
 
-> InlineResponse200136 UpdateOrganizationLoginSecurity(ctx, organizationId).UpdateOrganizationLoginSecurity(updateOrganizationLoginSecurity).Execute()
+> GetOrganizationLoginSecurity200Response UpdateOrganizationLoginSecurity(ctx, organizationId).UpdateOrganizationLoginSecurityRequest(updateOrganizationLoginSecurityRequest).Execute()
 
 Update the login security settings for an organization
 
@@ -37538,21 +37538,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    updateOrganizationLoginSecurity := *openapiclient.NewInlineObject213() // InlineObject213 |  (optional)
+    updateOrganizationLoginSecurityRequest := *openapiclient.NewUpdateOrganizationLoginSecurityRequest() // UpdateOrganizationLoginSecurityRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationLoginSecurity(context.Background(), organizationId).UpdateOrganizationLoginSecurity(updateOrganizationLoginSecurity).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationLoginSecurity(context.Background(), organizationId).UpdateOrganizationLoginSecurityRequest(updateOrganizationLoginSecurityRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationLoginSecurity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationLoginSecurity`: InlineResponse200136
+    // response from `UpdateOrganizationLoginSecurity`: GetOrganizationLoginSecurity200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateOrganizationLoginSecurity`: %v\n", resp)
 }
 ```
@@ -37573,11 +37573,11 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationLoginSec
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateOrganizationLoginSecurity** | [**InlineObject213**](InlineObject213.md) |  | 
+ **updateOrganizationLoginSecurityRequest** | [**UpdateOrganizationLoginSecurityRequest**](UpdateOrganizationLoginSecurityRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200136**](InlineResponse200136.md)
+[**GetOrganizationLoginSecurity200Response**](GetOrganizationLoginSecurity200Response.md)
 
 ### Authorization
 
@@ -37595,7 +37595,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationPolicyObject
 
-> map[string]interface{} UpdateOrganizationPolicyObject(ctx, organizationId, policyObjectId).UpdateOrganizationPolicyObject(updateOrganizationPolicyObject).Execute()
+> map[string]interface{} UpdateOrganizationPolicyObject(ctx, organizationId, policyObjectId).UpdateOrganizationPolicyObjectRequest(updateOrganizationPolicyObjectRequest).Execute()
 
 Updates a Policy Object.
 
@@ -37610,17 +37610,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     policyObjectId := "policyObjectId_example" // string | Policy object ID
-    updateOrganizationPolicyObject := *openapiclient.NewInlineObject219() // InlineObject219 |  (optional)
+    updateOrganizationPolicyObjectRequest := *openapiclient.NewUpdateOrganizationPolicyObjectRequest() // UpdateOrganizationPolicyObjectRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationPolicyObject(context.Background(), organizationId, policyObjectId).UpdateOrganizationPolicyObject(updateOrganizationPolicyObject).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationPolicyObject(context.Background(), organizationId, policyObjectId).UpdateOrganizationPolicyObjectRequest(updateOrganizationPolicyObjectRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationPolicyObject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -37648,7 +37648,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationPolicyObject** | [**InlineObject219**](InlineObject219.md) |  | 
+ **updateOrganizationPolicyObjectRequest** | [**UpdateOrganizationPolicyObjectRequest**](UpdateOrganizationPolicyObjectRequest.md) |  | 
 
 ### Return type
 
@@ -37670,7 +37670,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationPolicyObjectsGroup
 
-> map[string]interface{} UpdateOrganizationPolicyObjectsGroup(ctx, organizationId, policyObjectGroupId).UpdateOrganizationPolicyObjectsGroup(updateOrganizationPolicyObjectsGroup).Execute()
+> map[string]interface{} UpdateOrganizationPolicyObjectsGroup(ctx, organizationId, policyObjectGroupId).UpdateOrganizationPolicyObjectsGroupRequest(updateOrganizationPolicyObjectsGroupRequest).Execute()
 
 Updates a Policy Object Group.
 
@@ -37685,17 +37685,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     policyObjectGroupId := "policyObjectGroupId_example" // string | Policy object group ID
-    updateOrganizationPolicyObjectsGroup := *openapiclient.NewInlineObject218() // InlineObject218 |  (optional)
+    updateOrganizationPolicyObjectsGroupRequest := *openapiclient.NewUpdateOrganizationPolicyObjectsGroupRequest() // UpdateOrganizationPolicyObjectsGroupRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).UpdateOrganizationPolicyObjectsGroup(updateOrganizationPolicyObjectsGroup).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).UpdateOrganizationPolicyObjectsGroupRequest(updateOrganizationPolicyObjectsGroupRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationPolicyObjectsGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -37723,7 +37723,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationPolicyObjectsGroup** | [**InlineObject218**](InlineObject218.md) |  | 
+ **updateOrganizationPolicyObjectsGroupRequest** | [**UpdateOrganizationPolicyObjectsGroupRequest**](UpdateOrganizationPolicyObjectsGroupRequest.md) |  | 
 
 ### Return type
 
@@ -37745,7 +37745,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationSaml
 
-> InlineResponse200138 UpdateOrganizationSaml(ctx, organizationId).UpdateOrganizationSaml(updateOrganizationSaml).Execute()
+> GetOrganizationSaml200Response UpdateOrganizationSaml(ctx, organizationId).UpdateOrganizationSamlRequest(updateOrganizationSamlRequest).Execute()
 
 Updates the SAML SSO enabled settings for an organization.
 
@@ -37760,21 +37760,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    updateOrganizationSaml := *openapiclient.NewInlineObject220() // InlineObject220 |  (optional)
+    updateOrganizationSamlRequest := *openapiclient.NewUpdateOrganizationSamlRequest() // UpdateOrganizationSamlRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationSaml(context.Background(), organizationId).UpdateOrganizationSaml(updateOrganizationSaml).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationSaml(context.Background(), organizationId).UpdateOrganizationSamlRequest(updateOrganizationSamlRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationSaml``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationSaml`: InlineResponse200138
+    // response from `UpdateOrganizationSaml`: GetOrganizationSaml200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateOrganizationSaml`: %v\n", resp)
 }
 ```
@@ -37795,11 +37795,11 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationSamlRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateOrganizationSaml** | [**InlineObject220**](InlineObject220.md) |  | 
+ **updateOrganizationSamlRequest** | [**UpdateOrganizationSamlRequest**](UpdateOrganizationSamlRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200138**](InlineResponse200138.md)
+[**GetOrganizationSaml200Response**](GetOrganizationSaml200Response.md)
 
 ### Authorization
 
@@ -37817,7 +37817,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationSamlIdp
 
-> []InlineResponse200139 UpdateOrganizationSamlIdp(ctx, organizationId, idpId).UpdateOrganizationSamlIdp(updateOrganizationSamlIdp).Execute()
+> []GetOrganizationSamlIdps200ResponseInner UpdateOrganizationSamlIdp(ctx, organizationId, idpId).UpdateOrganizationSamlIdpRequest(updateOrganizationSamlIdpRequest).Execute()
 
 Update a SAML IdP in your organization
 
@@ -37832,22 +37832,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     idpId := "idpId_example" // string | Idp ID
-    updateOrganizationSamlIdp := *openapiclient.NewInlineObject222() // InlineObject222 |  (optional)
+    updateOrganizationSamlIdpRequest := *openapiclient.NewUpdateOrganizationSamlIdpRequest() // UpdateOrganizationSamlIdpRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationSamlIdp(context.Background(), organizationId, idpId).UpdateOrganizationSamlIdp(updateOrganizationSamlIdp).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationSamlIdp(context.Background(), organizationId, idpId).UpdateOrganizationSamlIdpRequest(updateOrganizationSamlIdpRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationSamlIdp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationSamlIdp`: []InlineResponse200139
+    // response from `UpdateOrganizationSamlIdp`: []GetOrganizationSamlIdps200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateOrganizationSamlIdp`: %v\n", resp)
 }
 ```
@@ -37870,11 +37870,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationSamlIdp** | [**InlineObject222**](InlineObject222.md) |  | 
+ **updateOrganizationSamlIdpRequest** | [**UpdateOrganizationSamlIdpRequest**](UpdateOrganizationSamlIdpRequest.md) |  | 
 
 ### Return type
 
-[**[]InlineResponse200139**](InlineResponse200139.md)
+[**[]GetOrganizationSamlIdps200ResponseInner**](GetOrganizationSamlIdps200ResponseInner.md)
 
 ### Authorization
 
@@ -37892,7 +37892,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationSamlRole
 
-> InlineResponse200140 UpdateOrganizationSamlRole(ctx, organizationId, samlRoleId).UpdateOrganizationSamlRole(updateOrganizationSamlRole).Execute()
+> GetOrganizationSamlRoles200ResponseInner UpdateOrganizationSamlRole(ctx, organizationId, samlRoleId).UpdateOrganizationSamlRoleRequest(updateOrganizationSamlRoleRequest).Execute()
 
 Update a SAML role
 
@@ -37907,22 +37907,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     samlRoleId := "samlRoleId_example" // string | Saml role ID
-    updateOrganizationSamlRole := *openapiclient.NewInlineObject224() // InlineObject224 |  (optional)
+    updateOrganizationSamlRoleRequest := *openapiclient.NewUpdateOrganizationSamlRoleRequest() // UpdateOrganizationSamlRoleRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationSamlRole(context.Background(), organizationId, samlRoleId).UpdateOrganizationSamlRole(updateOrganizationSamlRole).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationSamlRole(context.Background(), organizationId, samlRoleId).UpdateOrganizationSamlRoleRequest(updateOrganizationSamlRoleRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationSamlRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationSamlRole`: InlineResponse200140
+    // response from `UpdateOrganizationSamlRole`: GetOrganizationSamlRoles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateOrganizationSamlRole`: %v\n", resp)
 }
 ```
@@ -37945,11 +37945,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationSamlRole** | [**InlineObject224**](InlineObject224.md) |  | 
+ **updateOrganizationSamlRoleRequest** | [**UpdateOrganizationSamlRoleRequest**](UpdateOrganizationSamlRoleRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200140**](InlineResponse200140.md)
+[**GetOrganizationSamlRoles200ResponseInner**](GetOrganizationSamlRoles200ResponseInner.md)
 
 ### Authorization
 
@@ -37967,7 +37967,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationSnmp
 
-> map[string]interface{} UpdateOrganizationSnmp(ctx, organizationId).UpdateOrganizationSnmp(updateOrganizationSnmp).Execute()
+> map[string]interface{} UpdateOrganizationSnmp(ctx, organizationId).UpdateOrganizationSnmpRequest(updateOrganizationSnmpRequest).Execute()
 
 Update the SNMP settings for an organization
 
@@ -37982,16 +37982,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    updateOrganizationSnmp := *openapiclient.NewInlineObject225() // InlineObject225 |  (optional)
+    updateOrganizationSnmpRequest := *openapiclient.NewUpdateOrganizationSnmpRequest() // UpdateOrganizationSnmpRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationSnmp(context.Background(), organizationId).UpdateOrganizationSnmp(updateOrganizationSnmp).Execute()
+    resp, r, err := apiClient.ConfigureApi.UpdateOrganizationSnmp(context.Background(), organizationId).UpdateOrganizationSnmpRequest(updateOrganizationSnmpRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateOrganizationSnmp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -38017,7 +38017,7 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationSnmpRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateOrganizationSnmp** | [**InlineObject225**](InlineObject225.md) |  | 
+ **updateOrganizationSnmpRequest** | [**UpdateOrganizationSnmpRequest**](UpdateOrganizationSnmpRequest.md) |  | 
 
 ### Return type
 
@@ -38039,7 +38039,7 @@ Name | Type | Description  | Notes
 
 ## VmxNetworkDevicesClaim
 
-> map[string]interface{} VmxNetworkDevicesClaim(ctx, networkId).VmxNetworkDevicesClaim(vmxNetworkDevicesClaim).Execute()
+> map[string]interface{} VmxNetworkDevicesClaim(ctx, networkId).VmxNetworkDevicesClaimRequest(vmxNetworkDevicesClaimRequest).Execute()
 
 Claim a vMX into a network
 
@@ -38054,16 +38054,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    vmxNetworkDevicesClaim := *openapiclient.NewInlineObject78("Size_example") // InlineObject78 | 
+    vmxNetworkDevicesClaimRequest := *openapiclient.NewVmxNetworkDevicesClaimRequest("Size_example") // VmxNetworkDevicesClaimRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.VmxNetworkDevicesClaim(context.Background(), networkId).VmxNetworkDevicesClaim(vmxNetworkDevicesClaim).Execute()
+    resp, r, err := apiClient.ConfigureApi.VmxNetworkDevicesClaim(context.Background(), networkId).VmxNetworkDevicesClaimRequest(vmxNetworkDevicesClaimRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.VmxNetworkDevicesClaim``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -38089,7 +38089,7 @@ Other parameters are passed through a pointer to a apiVmxNetworkDevicesClaimRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **vmxNetworkDevicesClaim** | [**InlineObject78**](InlineObject78.md) |  | 
+ **vmxNetworkDevicesClaimRequest** | [**VmxNetworkDevicesClaimRequest**](VmxNetworkDevicesClaimRequest.md) |  | 
 
 ### Return type
 
@@ -38111,7 +38111,7 @@ Name | Type | Description  | Notes
 
 ## WipeNetworkSmDevices
 
-> InlineResponse20050 WipeNetworkSmDevices(ctx, networkId).WipeNetworkSmDevices(wipeNetworkSmDevices).Execute()
+> WipeNetworkSmDevices200Response WipeNetworkSmDevices(ctx, networkId).WipeNetworkSmDevicesRequest(wipeNetworkSmDevicesRequest).Execute()
 
 Wipe a device
 
@@ -38126,21 +38126,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    wipeNetworkSmDevices := *openapiclient.NewInlineObject108() // InlineObject108 |  (optional)
+    wipeNetworkSmDevicesRequest := *openapiclient.NewWipeNetworkSmDevicesRequest() // WipeNetworkSmDevicesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.WipeNetworkSmDevices(context.Background(), networkId).WipeNetworkSmDevices(wipeNetworkSmDevices).Execute()
+    resp, r, err := apiClient.ConfigureApi.WipeNetworkSmDevices(context.Background(), networkId).WipeNetworkSmDevicesRequest(wipeNetworkSmDevicesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.WipeNetworkSmDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `WipeNetworkSmDevices`: InlineResponse20050
+    // response from `WipeNetworkSmDevices`: WipeNetworkSmDevices200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.WipeNetworkSmDevices`: %v\n", resp)
 }
 ```
@@ -38161,11 +38161,11 @@ Other parameters are passed through a pointer to a apiWipeNetworkSmDevicesReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **wipeNetworkSmDevices** | [**InlineObject108**](InlineObject108.md) |  | 
+ **wipeNetworkSmDevicesRequest** | [**WipeNetworkSmDevicesRequest**](WipeNetworkSmDevicesRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20050**](InlineResponse20050.md)
+[**WipeNetworkSmDevices200Response**](WipeNetworkSmDevices200Response.md)
 
 ### Authorization
 

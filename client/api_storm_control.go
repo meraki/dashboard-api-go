@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -29,7 +29,7 @@ type StormControlApiGetNetworkSwitchStormControlRequest struct {
 	networkId string
 }
 
-func (r StormControlApiGetNetworkSwitchStormControlRequest) Execute() (*InlineResponse20081, *http.Response, error) {
+func (r StormControlApiGetNetworkSwitchStormControlRequest) Execute() (*GetNetworkSwitchStormControl200Response, *http.Response, error) {
 	return r.ApiService.GetNetworkSwitchStormControlExecute(r)
 }
 
@@ -51,13 +51,13 @@ func (a *StormControlApiService) GetNetworkSwitchStormControl(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return InlineResponse20081
-func (a *StormControlApiService) GetNetworkSwitchStormControlExecute(r StormControlApiGetNetworkSwitchStormControlRequest) (*InlineResponse20081, *http.Response, error) {
+//  @return GetNetworkSwitchStormControl200Response
+func (a *StormControlApiService) GetNetworkSwitchStormControlExecute(r StormControlApiGetNetworkSwitchStormControlRequest) (*GetNetworkSwitchStormControl200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse20081
+		localVarReturnValue  *GetNetworkSwitchStormControl200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StormControlApiService.GetNetworkSwitchStormControl")
@@ -144,11 +144,11 @@ type StormControlApiUpdateNetworkSwitchStormControlRequest struct {
 	ctx context.Context
 	ApiService *StormControlApiService
 	networkId string
-	updateNetworkSwitchStormControl *InlineObject141
+	updateNetworkSwitchStormControlRequest *UpdateNetworkSwitchStormControlRequest
 }
 
-func (r StormControlApiUpdateNetworkSwitchStormControlRequest) UpdateNetworkSwitchStormControl(updateNetworkSwitchStormControl InlineObject141) StormControlApiUpdateNetworkSwitchStormControlRequest {
-	r.updateNetworkSwitchStormControl = &updateNetworkSwitchStormControl
+func (r StormControlApiUpdateNetworkSwitchStormControlRequest) UpdateNetworkSwitchStormControlRequest(updateNetworkSwitchStormControlRequest UpdateNetworkSwitchStormControlRequest) StormControlApiUpdateNetworkSwitchStormControlRequest {
+	r.updateNetworkSwitchStormControlRequest = &updateNetworkSwitchStormControlRequest
 	return r
 }
 
@@ -213,7 +213,7 @@ func (a *StormControlApiService) UpdateNetworkSwitchStormControlExecute(r StormC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkSwitchStormControl
+	localVarPostBody = r.updateNetworkSwitchStormControlRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

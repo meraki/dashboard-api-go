@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,11 +27,11 @@ type SamlRolesApiCreateOrganizationSamlRoleRequest struct {
 	ctx context.Context
 	ApiService *SamlRolesApiService
 	organizationId string
-	createOrganizationSamlRole *InlineObject223
+	createOrganizationSamlRoleRequest *CreateOrganizationSamlRoleRequest
 }
 
-func (r SamlRolesApiCreateOrganizationSamlRoleRequest) CreateOrganizationSamlRole(createOrganizationSamlRole InlineObject223) SamlRolesApiCreateOrganizationSamlRoleRequest {
-	r.createOrganizationSamlRole = &createOrganizationSamlRole
+func (r SamlRolesApiCreateOrganizationSamlRoleRequest) CreateOrganizationSamlRoleRequest(createOrganizationSamlRoleRequest CreateOrganizationSamlRoleRequest) SamlRolesApiCreateOrganizationSamlRoleRequest {
+	r.createOrganizationSamlRoleRequest = &createOrganizationSamlRoleRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *SamlRolesApiService) CreateOrganizationSamlRoleExecute(r SamlRolesApiCr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationSamlRole == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationSamlRole is required and must be specified")
+	if r.createOrganizationSamlRoleRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationSamlRoleRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *SamlRolesApiService) CreateOrganizationSamlRoleExecute(r SamlRolesApiCr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationSamlRole
+	localVarPostBody = r.createOrganizationSamlRoleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -268,7 +268,7 @@ type SamlRolesApiGetOrganizationSamlRoleRequest struct {
 	samlRoleId string
 }
 
-func (r SamlRolesApiGetOrganizationSamlRoleRequest) Execute() (*InlineResponse200140, *http.Response, error) {
+func (r SamlRolesApiGetOrganizationSamlRoleRequest) Execute() (*GetOrganizationSamlRoles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSamlRoleExecute(r)
 }
 
@@ -292,13 +292,13 @@ func (a *SamlRolesApiService) GetOrganizationSamlRole(ctx context.Context, organ
 }
 
 // Execute executes the request
-//  @return InlineResponse200140
-func (a *SamlRolesApiService) GetOrganizationSamlRoleExecute(r SamlRolesApiGetOrganizationSamlRoleRequest) (*InlineResponse200140, *http.Response, error) {
+//  @return GetOrganizationSamlRoles200ResponseInner
+func (a *SamlRolesApiService) GetOrganizationSamlRoleExecute(r SamlRolesApiGetOrganizationSamlRoleRequest) (*GetOrganizationSamlRoles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200140
+		localVarReturnValue  *GetOrganizationSamlRoles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SamlRolesApiService.GetOrganizationSamlRole")
@@ -388,7 +388,7 @@ type SamlRolesApiGetOrganizationSamlRolesRequest struct {
 	organizationId string
 }
 
-func (r SamlRolesApiGetOrganizationSamlRolesRequest) Execute() ([]InlineResponse200140, *http.Response, error) {
+func (r SamlRolesApiGetOrganizationSamlRolesRequest) Execute() ([]GetOrganizationSamlRoles200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetOrganizationSamlRolesExecute(r)
 }
 
@@ -410,13 +410,13 @@ func (a *SamlRolesApiService) GetOrganizationSamlRoles(ctx context.Context, orga
 }
 
 // Execute executes the request
-//  @return []InlineResponse200140
-func (a *SamlRolesApiService) GetOrganizationSamlRolesExecute(r SamlRolesApiGetOrganizationSamlRolesRequest) ([]InlineResponse200140, *http.Response, error) {
+//  @return []GetOrganizationSamlRoles200ResponseInner
+func (a *SamlRolesApiService) GetOrganizationSamlRolesExecute(r SamlRolesApiGetOrganizationSamlRolesRequest) ([]GetOrganizationSamlRoles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse200140
+		localVarReturnValue  []GetOrganizationSamlRoles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SamlRolesApiService.GetOrganizationSamlRoles")
@@ -504,15 +504,15 @@ type SamlRolesApiUpdateOrganizationSamlRoleRequest struct {
 	ApiService *SamlRolesApiService
 	organizationId string
 	samlRoleId string
-	updateOrganizationSamlRole *InlineObject224
+	updateOrganizationSamlRoleRequest *UpdateOrganizationSamlRoleRequest
 }
 
-func (r SamlRolesApiUpdateOrganizationSamlRoleRequest) UpdateOrganizationSamlRole(updateOrganizationSamlRole InlineObject224) SamlRolesApiUpdateOrganizationSamlRoleRequest {
-	r.updateOrganizationSamlRole = &updateOrganizationSamlRole
+func (r SamlRolesApiUpdateOrganizationSamlRoleRequest) UpdateOrganizationSamlRoleRequest(updateOrganizationSamlRoleRequest UpdateOrganizationSamlRoleRequest) SamlRolesApiUpdateOrganizationSamlRoleRequest {
+	r.updateOrganizationSamlRoleRequest = &updateOrganizationSamlRoleRequest
 	return r
 }
 
-func (r SamlRolesApiUpdateOrganizationSamlRoleRequest) Execute() (*InlineResponse200140, *http.Response, error) {
+func (r SamlRolesApiUpdateOrganizationSamlRoleRequest) Execute() (*GetOrganizationSamlRoles200ResponseInner, *http.Response, error) {
 	return r.ApiService.UpdateOrganizationSamlRoleExecute(r)
 }
 
@@ -536,13 +536,13 @@ func (a *SamlRolesApiService) UpdateOrganizationSamlRole(ctx context.Context, or
 }
 
 // Execute executes the request
-//  @return InlineResponse200140
-func (a *SamlRolesApiService) UpdateOrganizationSamlRoleExecute(r SamlRolesApiUpdateOrganizationSamlRoleRequest) (*InlineResponse200140, *http.Response, error) {
+//  @return GetOrganizationSamlRoles200ResponseInner
+func (a *SamlRolesApiService) UpdateOrganizationSamlRoleExecute(r SamlRolesApiUpdateOrganizationSamlRoleRequest) (*GetOrganizationSamlRoles200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse200140
+		localVarReturnValue  *GetOrganizationSamlRoles200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SamlRolesApiService.UpdateOrganizationSamlRole")
@@ -576,7 +576,7 @@ func (a *SamlRolesApiService) UpdateOrganizationSamlRoleExecute(r SamlRolesApiUp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateOrganizationSamlRole
+	localVarPostBody = r.updateOrganizationSamlRoleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

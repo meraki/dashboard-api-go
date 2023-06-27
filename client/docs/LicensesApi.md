@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## AssignOrganizationLicensesSeats
 
-> InlineResponse200131 AssignOrganizationLicensesSeats(ctx, organizationId).AssignOrganizationLicensesSeats(assignOrganizationLicensesSeats).Execute()
+> AssignOrganizationLicensesSeats200Response AssignOrganizationLicensesSeats(ctx, organizationId).AssignOrganizationLicensesSeatsRequest(assignOrganizationLicensesSeatsRequest).Execute()
 
 Assign SM seats to a network
 
@@ -34,21 +34,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    assignOrganizationLicensesSeats := *openapiclient.NewInlineObject207("LicenseId_example", "NetworkId_example", int32(123)) // InlineObject207 | 
+    assignOrganizationLicensesSeatsRequest := *openapiclient.NewAssignOrganizationLicensesSeatsRequest("LicenseId_example", "NetworkId_example", int32(123)) // AssignOrganizationLicensesSeatsRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LicensesApi.AssignOrganizationLicensesSeats(context.Background(), organizationId).AssignOrganizationLicensesSeats(assignOrganizationLicensesSeats).Execute()
+    resp, r, err := apiClient.LicensesApi.AssignOrganizationLicensesSeats(context.Background(), organizationId).AssignOrganizationLicensesSeatsRequest(assignOrganizationLicensesSeatsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.AssignOrganizationLicensesSeats``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AssignOrganizationLicensesSeats`: InlineResponse200131
+    // response from `AssignOrganizationLicensesSeats`: AssignOrganizationLicensesSeats200Response
     fmt.Fprintf(os.Stdout, "Response from `LicensesApi.AssignOrganizationLicensesSeats`: %v\n", resp)
 }
 ```
@@ -69,11 +69,11 @@ Other parameters are passed through a pointer to a apiAssignOrganizationLicenses
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **assignOrganizationLicensesSeats** | [**InlineObject207**](InlineObject207.md) |  | 
+ **assignOrganizationLicensesSeatsRequest** | [**AssignOrganizationLicensesSeatsRequest**](AssignOrganizationLicensesSeatsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200131**](InlineResponse200131.md)
+[**AssignOrganizationLicensesSeats200Response**](AssignOrganizationLicensesSeats200Response.md)
 
 ### Authorization
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationLicense
 
-> InlineResponse200130 GetOrganizationLicense(ctx, organizationId, licenseId).Execute()
+> GetOrganizationLicenses200ResponseInner GetOrganizationLicense(ctx, organizationId, licenseId).Execute()
 
 Display a license
 
@@ -106,7 +106,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -120,7 +120,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.GetOrganizationLicense``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationLicense`: InlineResponse200130
+    // response from `GetOrganizationLicense`: GetOrganizationLicenses200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `LicensesApi.GetOrganizationLicense`: %v\n", resp)
 }
 ```
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200130**](InlineResponse200130.md)
+[**GetOrganizationLicenses200ResponseInner**](GetOrganizationLicenses200ResponseInner.md)
 
 ### Authorization
 
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationLicenses
 
-> []InlineResponse200130 GetOrganizationLicenses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).DeviceSerial(deviceSerial).NetworkId(networkId).State(state).Execute()
+> []GetOrganizationLicenses200ResponseInner GetOrganizationLicenses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).DeviceSerial(deviceSerial).NetworkId(networkId).State(state).Execute()
 
 List the licenses for an organization
 
@@ -179,7 +179,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -198,7 +198,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.GetOrganizationLicenses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationLicenses`: []InlineResponse200130
+    // response from `GetOrganizationLicenses`: []GetOrganizationLicenses200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `LicensesApi.GetOrganizationLicenses`: %v\n", resp)
 }
 ```
@@ -228,7 +228,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200130**](InlineResponse200130.md)
+[**[]GetOrganizationLicenses200ResponseInner**](GetOrganizationLicenses200ResponseInner.md)
 
 ### Authorization
 
@@ -261,7 +261,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -316,7 +316,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationLicensingCotermLicenses
 
-> []InlineResponse200134 GetOrganizationLicensingCotermLicenses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Invalidated(invalidated).Expired(expired).Execute()
+> []GetOrganizationLicensingCotermLicenses200ResponseInner GetOrganizationLicensingCotermLicenses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Invalidated(invalidated).Expired(expired).Execute()
 
 List the licenses in a coterm organization
 
@@ -331,7 +331,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -349,7 +349,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.GetOrganizationLicensingCotermLicenses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationLicensingCotermLicenses`: []InlineResponse200134
+    // response from `GetOrganizationLicensingCotermLicenses`: []GetOrganizationLicensingCotermLicenses200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `LicensesApi.GetOrganizationLicensingCotermLicenses`: %v\n", resp)
 }
 ```
@@ -378,7 +378,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200134**](InlineResponse200134.md)
+[**[]GetOrganizationLicensingCotermLicenses200ResponseInner**](GetOrganizationLicensingCotermLicenses200ResponseInner.md)
 
 ### Authorization
 
@@ -396,7 +396,7 @@ Name | Type | Description  | Notes
 
 ## MoveOrganizationLicenses
 
-> InlineResponse200132 MoveOrganizationLicenses(ctx, organizationId).MoveOrganizationLicenses(moveOrganizationLicenses).Execute()
+> MoveOrganizationLicenses200Response MoveOrganizationLicenses(ctx, organizationId).MoveOrganizationLicensesRequest(moveOrganizationLicensesRequest).Execute()
 
 Move licenses to another organization
 
@@ -411,21 +411,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    moveOrganizationLicenses := *openapiclient.NewInlineObject208("DestOrganizationId_example", []string{"LicenseIds_example"}) // InlineObject208 | 
+    moveOrganizationLicensesRequest := *openapiclient.NewMoveOrganizationLicensesRequest("DestOrganizationId_example", []string{"LicenseIds_example"}) // MoveOrganizationLicensesRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LicensesApi.MoveOrganizationLicenses(context.Background(), organizationId).MoveOrganizationLicenses(moveOrganizationLicenses).Execute()
+    resp, r, err := apiClient.LicensesApi.MoveOrganizationLicenses(context.Background(), organizationId).MoveOrganizationLicensesRequest(moveOrganizationLicensesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.MoveOrganizationLicenses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `MoveOrganizationLicenses`: InlineResponse200132
+    // response from `MoveOrganizationLicenses`: MoveOrganizationLicenses200Response
     fmt.Fprintf(os.Stdout, "Response from `LicensesApi.MoveOrganizationLicenses`: %v\n", resp)
 }
 ```
@@ -446,11 +446,11 @@ Other parameters are passed through a pointer to a apiMoveOrganizationLicensesRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **moveOrganizationLicenses** | [**InlineObject208**](InlineObject208.md) |  | 
+ **moveOrganizationLicensesRequest** | [**MoveOrganizationLicensesRequest**](MoveOrganizationLicensesRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200132**](InlineResponse200132.md)
+[**MoveOrganizationLicenses200Response**](MoveOrganizationLicenses200Response.md)
 
 ### Authorization
 
@@ -468,7 +468,7 @@ Name | Type | Description  | Notes
 
 ## MoveOrganizationLicensesSeats
 
-> InlineResponse200133 MoveOrganizationLicensesSeats(ctx, organizationId).MoveOrganizationLicensesSeats(moveOrganizationLicensesSeats).Execute()
+> MoveOrganizationLicensesSeats200Response MoveOrganizationLicensesSeats(ctx, organizationId).MoveOrganizationLicensesSeatsRequest(moveOrganizationLicensesSeatsRequest).Execute()
 
 Move SM seats to another organization
 
@@ -483,21 +483,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    moveOrganizationLicensesSeats := *openapiclient.NewInlineObject209("DestOrganizationId_example", "LicenseId_example", int32(123)) // InlineObject209 | 
+    moveOrganizationLicensesSeatsRequest := *openapiclient.NewMoveOrganizationLicensesSeatsRequest("DestOrganizationId_example", "LicenseId_example", int32(123)) // MoveOrganizationLicensesSeatsRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LicensesApi.MoveOrganizationLicensesSeats(context.Background(), organizationId).MoveOrganizationLicensesSeats(moveOrganizationLicensesSeats).Execute()
+    resp, r, err := apiClient.LicensesApi.MoveOrganizationLicensesSeats(context.Background(), organizationId).MoveOrganizationLicensesSeatsRequest(moveOrganizationLicensesSeatsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.MoveOrganizationLicensesSeats``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `MoveOrganizationLicensesSeats`: InlineResponse200133
+    // response from `MoveOrganizationLicensesSeats`: MoveOrganizationLicensesSeats200Response
     fmt.Fprintf(os.Stdout, "Response from `LicensesApi.MoveOrganizationLicensesSeats`: %v\n", resp)
 }
 ```
@@ -518,11 +518,11 @@ Other parameters are passed through a pointer to a apiMoveOrganizationLicensesSe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **moveOrganizationLicensesSeats** | [**InlineObject209**](InlineObject209.md) |  | 
+ **moveOrganizationLicensesSeatsRequest** | [**MoveOrganizationLicensesSeatsRequest**](MoveOrganizationLicensesSeatsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200133**](InlineResponse200133.md)
+[**MoveOrganizationLicensesSeats200Response**](MoveOrganizationLicensesSeats200Response.md)
 
 ### Authorization
 
@@ -540,7 +540,7 @@ Name | Type | Description  | Notes
 
 ## MoveOrganizationLicensingCotermLicenses
 
-> InlineResponse200135 MoveOrganizationLicensingCotermLicenses(ctx, organizationId).MoveOrganizationLicensingCotermLicenses(moveOrganizationLicensingCotermLicenses).Execute()
+> MoveOrganizationLicensingCotermLicenses200Response MoveOrganizationLicensingCotermLicenses(ctx, organizationId).MoveOrganizationLicensingCotermLicensesRequest(moveOrganizationLicensingCotermLicensesRequest).Execute()
 
 Moves a license to a different organization (coterm only)
 
@@ -555,21 +555,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    moveOrganizationLicensingCotermLicenses := *openapiclient.NewInlineObject212(*openapiclient.NewOrganizationsOrganizationIdLicensingCotermLicensesMoveDestination(), []openapiclient.OrganizationsOrganizationIdLicensingCotermLicensesMoveLicenses{*openapiclient.NewOrganizationsOrganizationIdLicensingCotermLicensesMoveLicenses("Key_example", []openapiclient.OrganizationsOrganizationIdLicensingCotermLicensesMoveCounts{*openapiclient.NewOrganizationsOrganizationIdLicensingCotermLicensesMoveCounts("Model_example", int32(123))})}) // InlineObject212 | 
+    moveOrganizationLicensingCotermLicensesRequest := *openapiclient.NewMoveOrganizationLicensingCotermLicensesRequest(*openapiclient.NewMoveOrganizationLicensingCotermLicensesRequestDestination(), []openapiclient.MoveOrganizationLicensingCotermLicensesRequestLicensesInner{*openapiclient.NewMoveOrganizationLicensingCotermLicensesRequestLicensesInner("Key_example", []openapiclient.MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner{*openapiclient.NewMoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner("Model_example", int32(123))})}) // MoveOrganizationLicensingCotermLicensesRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LicensesApi.MoveOrganizationLicensingCotermLicenses(context.Background(), organizationId).MoveOrganizationLicensingCotermLicenses(moveOrganizationLicensingCotermLicenses).Execute()
+    resp, r, err := apiClient.LicensesApi.MoveOrganizationLicensingCotermLicenses(context.Background(), organizationId).MoveOrganizationLicensingCotermLicensesRequest(moveOrganizationLicensingCotermLicensesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.MoveOrganizationLicensingCotermLicenses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `MoveOrganizationLicensingCotermLicenses`: InlineResponse200135
+    // response from `MoveOrganizationLicensingCotermLicenses`: MoveOrganizationLicensingCotermLicenses200Response
     fmt.Fprintf(os.Stdout, "Response from `LicensesApi.MoveOrganizationLicensingCotermLicenses`: %v\n", resp)
 }
 ```
@@ -590,11 +590,11 @@ Other parameters are passed through a pointer to a apiMoveOrganizationLicensingC
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **moveOrganizationLicensingCotermLicenses** | [**InlineObject212**](InlineObject212.md) |  | 
+ **moveOrganizationLicensingCotermLicensesRequest** | [**MoveOrganizationLicensingCotermLicensesRequest**](MoveOrganizationLicensingCotermLicensesRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200135**](InlineResponse200135.md)
+[**MoveOrganizationLicensingCotermLicenses200Response**](MoveOrganizationLicensingCotermLicenses200Response.md)
 
 ### Authorization
 
@@ -612,7 +612,7 @@ Name | Type | Description  | Notes
 
 ## RenewOrganizationLicensesSeats
 
-> InlineResponse200131 RenewOrganizationLicensesSeats(ctx, organizationId).RenewOrganizationLicensesSeats(renewOrganizationLicensesSeats).Execute()
+> AssignOrganizationLicensesSeats200Response RenewOrganizationLicensesSeats(ctx, organizationId).RenewOrganizationLicensesSeatsRequest(renewOrganizationLicensesSeatsRequest).Execute()
 
 Renew SM seats of a license
 
@@ -627,21 +627,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    renewOrganizationLicensesSeats := *openapiclient.NewInlineObject210("LicenseIdToRenew_example", "UnusedLicenseId_example") // InlineObject210 | 
+    renewOrganizationLicensesSeatsRequest := *openapiclient.NewRenewOrganizationLicensesSeatsRequest("LicenseIdToRenew_example", "UnusedLicenseId_example") // RenewOrganizationLicensesSeatsRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LicensesApi.RenewOrganizationLicensesSeats(context.Background(), organizationId).RenewOrganizationLicensesSeats(renewOrganizationLicensesSeats).Execute()
+    resp, r, err := apiClient.LicensesApi.RenewOrganizationLicensesSeats(context.Background(), organizationId).RenewOrganizationLicensesSeatsRequest(renewOrganizationLicensesSeatsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.RenewOrganizationLicensesSeats``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `RenewOrganizationLicensesSeats`: InlineResponse200131
+    // response from `RenewOrganizationLicensesSeats`: AssignOrganizationLicensesSeats200Response
     fmt.Fprintf(os.Stdout, "Response from `LicensesApi.RenewOrganizationLicensesSeats`: %v\n", resp)
 }
 ```
@@ -662,11 +662,11 @@ Other parameters are passed through a pointer to a apiRenewOrganizationLicensesS
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **renewOrganizationLicensesSeats** | [**InlineObject210**](InlineObject210.md) |  | 
+ **renewOrganizationLicensesSeatsRequest** | [**RenewOrganizationLicensesSeatsRequest**](RenewOrganizationLicensesSeatsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200131**](InlineResponse200131.md)
+[**AssignOrganizationLicensesSeats200Response**](AssignOrganizationLicensesSeats200Response.md)
 
 ### Authorization
 
@@ -684,7 +684,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationLicense
 
-> InlineResponse200130 UpdateOrganizationLicense(ctx, organizationId, licenseId).UpdateOrganizationLicense(updateOrganizationLicense).Execute()
+> GetOrganizationLicenses200ResponseInner UpdateOrganizationLicense(ctx, organizationId, licenseId).UpdateOrganizationLicenseRequest(updateOrganizationLicenseRequest).Execute()
 
 Update a license
 
@@ -699,22 +699,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     licenseId := "licenseId_example" // string | License ID
-    updateOrganizationLicense := *openapiclient.NewInlineObject211() // InlineObject211 |  (optional)
+    updateOrganizationLicenseRequest := *openapiclient.NewUpdateOrganizationLicenseRequest() // UpdateOrganizationLicenseRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LicensesApi.UpdateOrganizationLicense(context.Background(), organizationId, licenseId).UpdateOrganizationLicense(updateOrganizationLicense).Execute()
+    resp, r, err := apiClient.LicensesApi.UpdateOrganizationLicense(context.Background(), organizationId, licenseId).UpdateOrganizationLicenseRequest(updateOrganizationLicenseRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LicensesApi.UpdateOrganizationLicense``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationLicense`: InlineResponse200130
+    // response from `UpdateOrganizationLicense`: GetOrganizationLicenses200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `LicensesApi.UpdateOrganizationLicense`: %v\n", resp)
 }
 ```
@@ -737,11 +737,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateOrganizationLicense** | [**InlineObject211**](InlineObject211.md) |  | 
+ **updateOrganizationLicenseRequest** | [**UpdateOrganizationLicenseRequest**](UpdateOrganizationLicenseRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse200130**](InlineResponse200130.md)
+[**GetOrganizationLicenses200ResponseInner**](GetOrganizationLicenses200ResponseInner.md)
 
 ### Authorization
 

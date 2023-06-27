@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetAdministeredIdentitiesMe
 
-> InlineResponse200 GetAdministeredIdentitiesMe(ctx).Execute()
+> GetAdministeredIdentitiesMe200Response GetAdministeredIdentitiesMe(ctx).Execute()
 
 Returns the identity of the current user.
 
@@ -25,7 +25,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -37,7 +37,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `AdministeredApi.GetAdministeredIdentitiesMe``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetAdministeredIdentitiesMe`: InlineResponse200
+    // response from `GetAdministeredIdentitiesMe`: GetAdministeredIdentitiesMe200Response
     fmt.Fprintf(os.Stdout, "Response from `AdministeredApi.GetAdministeredIdentitiesMe`: %v\n", resp)
 }
 ```
@@ -53,7 +53,7 @@ Other parameters are passed through a pointer to a apiGetAdministeredIdentitiesM
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**GetAdministeredIdentitiesMe200Response**](GetAdministeredIdentitiesMe200Response.md)
 
 ### Authorization
 

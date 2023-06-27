@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetNetworkSmDeviceConnectivity
 
-> []InlineResponse20053 GetNetworkSmDeviceConnectivity(ctx, networkId, deviceId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
+> []GetNetworkSmDeviceConnectivity200ResponseInner GetNetworkSmDeviceConnectivity(ctx, networkId, deviceId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
 
 Returns historical connectivity data (whether a device is regularly checking in to Dashboard).
 
@@ -25,7 +25,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -42,7 +42,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectivityApi.GetNetworkSmDeviceConnectivity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmDeviceConnectivity`: []InlineResponse20053
+    // response from `GetNetworkSmDeviceConnectivity`: []GetNetworkSmDeviceConnectivity200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConnectivityApi.GetNetworkSmDeviceConnectivity`: %v\n", resp)
 }
 ```
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20053**](InlineResponse20053.md)
+[**[]GetNetworkSmDeviceConnectivity200ResponseInner**](GetNetworkSmDeviceConnectivity200ResponseInner.md)
 
 ### Authorization
 

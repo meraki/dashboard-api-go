@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 ## CreateNetworkSensorAlertsProfile
 
-> InlineResponse20041 CreateNetworkSensorAlertsProfile(ctx, networkId).CreateNetworkSensorAlertsProfile(createNetworkSensorAlertsProfile).Execute()
+> GetNetworkSensorAlertsProfiles200ResponseInner CreateNetworkSensorAlertsProfile(ctx, networkId).CreateNetworkSensorAlertsProfileRequest(createNetworkSensorAlertsProfileRequest).Execute()
 
 Creates a sensor alert profile for a network.
 
@@ -39,21 +39,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    createNetworkSensorAlertsProfile := *openapiclient.NewInlineObject98("Name_example", []openapiclient.NetworksNetworkIdSensorAlertsProfilesConditions{*openapiclient.NewNetworksNetworkIdSensorAlertsProfilesConditions("Metric_example", *openapiclient.NewNetworksNetworkIdSensorAlertsProfilesThreshold())}) // InlineObject98 | 
+    createNetworkSensorAlertsProfileRequest := *openapiclient.NewCreateNetworkSensorAlertsProfileRequest("Name_example", []openapiclient.GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner{*openapiclient.NewGetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner("Metric_example", *openapiclient.NewGetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold())}) // CreateNetworkSensorAlertsProfileRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SensorApi.CreateNetworkSensorAlertsProfile(context.Background(), networkId).CreateNetworkSensorAlertsProfile(createNetworkSensorAlertsProfile).Execute()
+    resp, r, err := apiClient.SensorApi.CreateNetworkSensorAlertsProfile(context.Background(), networkId).CreateNetworkSensorAlertsProfileRequest(createNetworkSensorAlertsProfileRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SensorApi.CreateNetworkSensorAlertsProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkSensorAlertsProfile`: InlineResponse20041
+    // response from `CreateNetworkSensorAlertsProfile`: GetNetworkSensorAlertsProfiles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SensorApi.CreateNetworkSensorAlertsProfile`: %v\n", resp)
 }
 ```
@@ -74,11 +74,11 @@ Other parameters are passed through a pointer to a apiCreateNetworkSensorAlertsP
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createNetworkSensorAlertsProfile** | [**InlineObject98**](InlineObject98.md) |  | 
+ **createNetworkSensorAlertsProfileRequest** | [**CreateNetworkSensorAlertsProfileRequest**](CreateNetworkSensorAlertsProfileRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20041**](InlineResponse20041.md)
+[**GetNetworkSensorAlertsProfiles200ResponseInner**](GetNetworkSensorAlertsProfiles200ResponseInner.md)
 
 ### Authorization
 
@@ -111,7 +111,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -167,7 +167,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceSensorRelationships
 
-> []InlineResponse2004 GetDeviceSensorRelationships(ctx, serial).Execute()
+> []GetDeviceSensorRelationships200ResponseInner GetDeviceSensorRelationships(ctx, serial).Execute()
 
 List the sensor roles for a given sensor or camera device.
 
@@ -182,7 +182,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -195,7 +195,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SensorApi.GetDeviceSensorRelationships``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceSensorRelationships`: []InlineResponse2004
+    // response from `GetDeviceSensorRelationships`: []GetDeviceSensorRelationships200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SensorApi.GetDeviceSensorRelationships`: %v\n", resp)
 }
 ```
@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse2004**](InlineResponse2004.md)
+[**[]GetDeviceSensorRelationships200ResponseInner**](GetDeviceSensorRelationships200ResponseInner.md)
 
 ### Authorization
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSensorAlertsCurrentOverviewByMetric
 
-> InlineResponse20039 GetNetworkSensorAlertsCurrentOverviewByMetric(ctx, networkId).Execute()
+> GetNetworkSensorAlertsCurrentOverviewByMetric200Response GetNetworkSensorAlertsCurrentOverviewByMetric(ctx, networkId).Execute()
 
 Return an overview of currently alerting sensors by metric
 
@@ -252,7 +252,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -265,7 +265,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SensorApi.GetNetworkSensorAlertsCurrentOverviewByMetric``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSensorAlertsCurrentOverviewByMetric`: InlineResponse20039
+    // response from `GetNetworkSensorAlertsCurrentOverviewByMetric`: GetNetworkSensorAlertsCurrentOverviewByMetric200Response
     fmt.Fprintf(os.Stdout, "Response from `SensorApi.GetNetworkSensorAlertsCurrentOverviewByMetric`: %v\n", resp)
 }
 ```
@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20039**](InlineResponse20039.md)
+[**GetNetworkSensorAlertsCurrentOverviewByMetric200Response**](GetNetworkSensorAlertsCurrentOverviewByMetric200Response.md)
 
 ### Authorization
 
@@ -307,7 +307,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSensorAlertsOverviewByMetric
 
-> []InlineResponse20040 GetNetworkSensorAlertsOverviewByMetric(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Interval(interval).Execute()
+> []GetNetworkSensorAlertsOverviewByMetric200ResponseInner GetNetworkSensorAlertsOverviewByMetric(ctx, networkId).T0(t0).T1(t1).Timespan(timespan).Interval(interval).Execute()
 
 Return an overview of alert occurrences over a timespan, by metric
 
@@ -322,7 +322,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -339,7 +339,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SensorApi.GetNetworkSensorAlertsOverviewByMetric``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSensorAlertsOverviewByMetric`: []InlineResponse20040
+    // response from `GetNetworkSensorAlertsOverviewByMetric`: []GetNetworkSensorAlertsOverviewByMetric200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SensorApi.GetNetworkSensorAlertsOverviewByMetric`: %v\n", resp)
 }
 ```
@@ -367,7 +367,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20040**](InlineResponse20040.md)
+[**[]GetNetworkSensorAlertsOverviewByMetric200ResponseInner**](GetNetworkSensorAlertsOverviewByMetric200ResponseInner.md)
 
 ### Authorization
 
@@ -385,7 +385,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSensorAlertsProfile
 
-> InlineResponse20041 GetNetworkSensorAlertsProfile(ctx, networkId, id).Execute()
+> GetNetworkSensorAlertsProfiles200ResponseInner GetNetworkSensorAlertsProfile(ctx, networkId, id).Execute()
 
 Show details of a sensor alert profile for a network.
 
@@ -400,7 +400,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -414,7 +414,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SensorApi.GetNetworkSensorAlertsProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSensorAlertsProfile`: InlineResponse20041
+    // response from `GetNetworkSensorAlertsProfile`: GetNetworkSensorAlertsProfiles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SensorApi.GetNetworkSensorAlertsProfile`: %v\n", resp)
 }
 ```
@@ -440,7 +440,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20041**](InlineResponse20041.md)
+[**GetNetworkSensorAlertsProfiles200ResponseInner**](GetNetworkSensorAlertsProfiles200ResponseInner.md)
 
 ### Authorization
 
@@ -458,7 +458,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSensorAlertsProfiles
 
-> []InlineResponse20041 GetNetworkSensorAlertsProfiles(ctx, networkId).Execute()
+> []GetNetworkSensorAlertsProfiles200ResponseInner GetNetworkSensorAlertsProfiles(ctx, networkId).Execute()
 
 Lists all sensor alert profiles for a network.
 
@@ -473,7 +473,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -486,7 +486,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SensorApi.GetNetworkSensorAlertsProfiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSensorAlertsProfiles`: []InlineResponse20041
+    // response from `GetNetworkSensorAlertsProfiles`: []GetNetworkSensorAlertsProfiles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SensorApi.GetNetworkSensorAlertsProfiles`: %v\n", resp)
 }
 ```
@@ -510,7 +510,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20041**](InlineResponse20041.md)
+[**[]GetNetworkSensorAlertsProfiles200ResponseInner**](GetNetworkSensorAlertsProfiles200ResponseInner.md)
 
 ### Authorization
 
@@ -528,7 +528,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSensorMqttBroker
 
-> InlineResponse20042 GetNetworkSensorMqttBroker(ctx, networkId, mqttBrokerId).Execute()
+> GetNetworkSensorMqttBrokers200ResponseInner GetNetworkSensorMqttBroker(ctx, networkId, mqttBrokerId).Execute()
 
 Return the sensor settings of an MQTT broker
 
@@ -543,7 +543,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -557,7 +557,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SensorApi.GetNetworkSensorMqttBroker``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSensorMqttBroker`: InlineResponse20042
+    // response from `GetNetworkSensorMqttBroker`: GetNetworkSensorMqttBrokers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SensorApi.GetNetworkSensorMqttBroker`: %v\n", resp)
 }
 ```
@@ -583,7 +583,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20042**](InlineResponse20042.md)
+[**GetNetworkSensorMqttBrokers200ResponseInner**](GetNetworkSensorMqttBrokers200ResponseInner.md)
 
 ### Authorization
 
@@ -601,7 +601,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSensorMqttBrokers
 
-> []InlineResponse20042 GetNetworkSensorMqttBrokers(ctx, networkId).Execute()
+> []GetNetworkSensorMqttBrokers200ResponseInner GetNetworkSensorMqttBrokers(ctx, networkId).Execute()
 
 List the sensor settings of all MQTT brokers for this network
 
@@ -616,7 +616,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -629,7 +629,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SensorApi.GetNetworkSensorMqttBrokers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSensorMqttBrokers`: []InlineResponse20042
+    // response from `GetNetworkSensorMqttBrokers`: []GetNetworkSensorMqttBrokers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SensorApi.GetNetworkSensorMqttBrokers`: %v\n", resp)
 }
 ```
@@ -653,7 +653,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20042**](InlineResponse20042.md)
+[**[]GetNetworkSensorMqttBrokers200ResponseInner**](GetNetworkSensorMqttBrokers200ResponseInner.md)
 
 ### Authorization
 
@@ -671,7 +671,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSensorRelationships
 
-> []InlineResponse20043 GetNetworkSensorRelationships(ctx, networkId).Execute()
+> []GetNetworkSensorRelationships200ResponseInner GetNetworkSensorRelationships(ctx, networkId).Execute()
 
 List the sensor roles for devices in a given network
 
@@ -686,7 +686,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -699,7 +699,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SensorApi.GetNetworkSensorRelationships``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSensorRelationships`: []InlineResponse20043
+    // response from `GetNetworkSensorRelationships`: []GetNetworkSensorRelationships200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SensorApi.GetNetworkSensorRelationships`: %v\n", resp)
 }
 ```
@@ -723,7 +723,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse20043**](InlineResponse20043.md)
+[**[]GetNetworkSensorRelationships200ResponseInner**](GetNetworkSensorRelationships200ResponseInner.md)
 
 ### Authorization
 
@@ -741,7 +741,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationSensorReadingsHistory
 
-> []InlineResponse200141 GetOrganizationSensorReadingsHistory(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).T0(t0).T1(t1).Timespan(timespan).NetworkIds(networkIds).Serials(serials).Metrics(metrics).Execute()
+> []GetOrganizationSensorReadingsHistory200ResponseInner GetOrganizationSensorReadingsHistory(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).T0(t0).T1(t1).Timespan(timespan).NetworkIds(networkIds).Serials(serials).Metrics(metrics).Execute()
 
 Return all reported readings from sensors in a given timespan, sorted by timestamp
 
@@ -756,7 +756,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -778,7 +778,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SensorApi.GetOrganizationSensorReadingsHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSensorReadingsHistory`: []InlineResponse200141
+    // response from `GetOrganizationSensorReadingsHistory`: []GetOrganizationSensorReadingsHistory200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SensorApi.GetOrganizationSensorReadingsHistory`: %v\n", resp)
 }
 ```
@@ -811,7 +811,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200141**](InlineResponse200141.md)
+[**[]GetOrganizationSensorReadingsHistory200ResponseInner**](GetOrganizationSensorReadingsHistory200ResponseInner.md)
 
 ### Authorization
 
@@ -829,7 +829,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationSensorReadingsLatest
 
-> []InlineResponse200142 GetOrganizationSensorReadingsLatest(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Metrics(metrics).Execute()
+> []GetOrganizationSensorReadingsLatest200ResponseInner GetOrganizationSensorReadingsLatest(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Metrics(metrics).Execute()
 
 Return the latest available reading for each metric from each sensor, sorted by sensor serial
 
@@ -844,7 +844,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -863,7 +863,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SensorApi.GetOrganizationSensorReadingsLatest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationSensorReadingsLatest`: []InlineResponse200142
+    // response from `GetOrganizationSensorReadingsLatest`: []GetOrganizationSensorReadingsLatest200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SensorApi.GetOrganizationSensorReadingsLatest`: %v\n", resp)
 }
 ```
@@ -893,7 +893,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]InlineResponse200142**](InlineResponse200142.md)
+[**[]GetOrganizationSensorReadingsLatest200ResponseInner**](GetOrganizationSensorReadingsLatest200ResponseInner.md)
 
 ### Authorization
 
@@ -911,7 +911,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceSensorRelationships
 
-> InlineResponse2004 UpdateDeviceSensorRelationships(ctx, serial).UpdateDeviceSensorRelationships(updateDeviceSensorRelationships).Execute()
+> GetDeviceSensorRelationships200ResponseInner UpdateDeviceSensorRelationships(ctx, serial).UpdateDeviceSensorRelationshipsRequest(updateDeviceSensorRelationshipsRequest).Execute()
 
 Assign one or more sensor roles to a given sensor or camera device.
 
@@ -926,21 +926,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     serial := "serial_example" // string | Serial
-    updateDeviceSensorRelationships := *openapiclient.NewInlineObject16() // InlineObject16 |  (optional)
+    updateDeviceSensorRelationshipsRequest := *openapiclient.NewUpdateDeviceSensorRelationshipsRequest() // UpdateDeviceSensorRelationshipsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SensorApi.UpdateDeviceSensorRelationships(context.Background(), serial).UpdateDeviceSensorRelationships(updateDeviceSensorRelationships).Execute()
+    resp, r, err := apiClient.SensorApi.UpdateDeviceSensorRelationships(context.Background(), serial).UpdateDeviceSensorRelationshipsRequest(updateDeviceSensorRelationshipsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SensorApi.UpdateDeviceSensorRelationships``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateDeviceSensorRelationships`: InlineResponse2004
+    // response from `UpdateDeviceSensorRelationships`: GetDeviceSensorRelationships200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SensorApi.UpdateDeviceSensorRelationships`: %v\n", resp)
 }
 ```
@@ -961,11 +961,11 @@ Other parameters are passed through a pointer to a apiUpdateDeviceSensorRelation
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeviceSensorRelationships** | [**InlineObject16**](InlineObject16.md) |  | 
+ **updateDeviceSensorRelationshipsRequest** | [**UpdateDeviceSensorRelationshipsRequest**](UpdateDeviceSensorRelationshipsRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**GetDeviceSensorRelationships200ResponseInner**](GetDeviceSensorRelationships200ResponseInner.md)
 
 ### Authorization
 
@@ -983,7 +983,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSensorAlertsProfile
 
-> InlineResponse20041 UpdateNetworkSensorAlertsProfile(ctx, networkId, id).UpdateNetworkSensorAlertsProfile(updateNetworkSensorAlertsProfile).Execute()
+> GetNetworkSensorAlertsProfiles200ResponseInner UpdateNetworkSensorAlertsProfile(ctx, networkId, id).UpdateNetworkSensorAlertsProfileRequest(updateNetworkSensorAlertsProfileRequest).Execute()
 
 Updates a sensor alert profile for a network.
 
@@ -998,22 +998,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     id := "id_example" // string | ID
-    updateNetworkSensorAlertsProfile := *openapiclient.NewInlineObject99() // InlineObject99 |  (optional)
+    updateNetworkSensorAlertsProfileRequest := *openapiclient.NewUpdateNetworkSensorAlertsProfileRequest() // UpdateNetworkSensorAlertsProfileRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SensorApi.UpdateNetworkSensorAlertsProfile(context.Background(), networkId, id).UpdateNetworkSensorAlertsProfile(updateNetworkSensorAlertsProfile).Execute()
+    resp, r, err := apiClient.SensorApi.UpdateNetworkSensorAlertsProfile(context.Background(), networkId, id).UpdateNetworkSensorAlertsProfileRequest(updateNetworkSensorAlertsProfileRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SensorApi.UpdateNetworkSensorAlertsProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkSensorAlertsProfile`: InlineResponse20041
+    // response from `UpdateNetworkSensorAlertsProfile`: GetNetworkSensorAlertsProfiles200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SensorApi.UpdateNetworkSensorAlertsProfile`: %v\n", resp)
 }
 ```
@@ -1036,11 +1036,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkSensorAlertsProfile** | [**InlineObject99**](InlineObject99.md) |  | 
+ **updateNetworkSensorAlertsProfileRequest** | [**UpdateNetworkSensorAlertsProfileRequest**](UpdateNetworkSensorAlertsProfileRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20041**](InlineResponse20041.md)
+[**GetNetworkSensorAlertsProfiles200ResponseInner**](GetNetworkSensorAlertsProfiles200ResponseInner.md)
 
 ### Authorization
 
@@ -1058,7 +1058,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSensorMqttBroker
 
-> InlineResponse20042 UpdateNetworkSensorMqttBroker(ctx, networkId, mqttBrokerId).UpdateNetworkSensorMqttBroker(updateNetworkSensorMqttBroker).Execute()
+> GetNetworkSensorMqttBrokers200ResponseInner UpdateNetworkSensorMqttBroker(ctx, networkId, mqttBrokerId).UpdateNetworkSensorMqttBrokerRequest(updateNetworkSensorMqttBrokerRequest).Execute()
 
 Update the sensor settings of an MQTT broker
 
@@ -1073,22 +1073,22 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
     mqttBrokerId := "mqttBrokerId_example" // string | Mqtt broker ID
-    updateNetworkSensorMqttBroker := *openapiclient.NewInlineObject100(false) // InlineObject100 | 
+    updateNetworkSensorMqttBrokerRequest := *openapiclient.NewUpdateNetworkSensorMqttBrokerRequest(false) // UpdateNetworkSensorMqttBrokerRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SensorApi.UpdateNetworkSensorMqttBroker(context.Background(), networkId, mqttBrokerId).UpdateNetworkSensorMqttBroker(updateNetworkSensorMqttBroker).Execute()
+    resp, r, err := apiClient.SensorApi.UpdateNetworkSensorMqttBroker(context.Background(), networkId, mqttBrokerId).UpdateNetworkSensorMqttBrokerRequest(updateNetworkSensorMqttBrokerRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SensorApi.UpdateNetworkSensorMqttBroker``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkSensorMqttBroker`: InlineResponse20042
+    // response from `UpdateNetworkSensorMqttBroker`: GetNetworkSensorMqttBrokers200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SensorApi.UpdateNetworkSensorMqttBroker`: %v\n", resp)
 }
 ```
@@ -1111,11 +1111,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateNetworkSensorMqttBroker** | [**InlineObject100**](InlineObject100.md) |  | 
+ **updateNetworkSensorMqttBrokerRequest** | [**UpdateNetworkSensorMqttBrokerRequest**](UpdateNetworkSensorMqttBrokerRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20042**](InlineResponse20042.md)
+[**GetNetworkSensorMqttBrokers200ResponseInner**](GetNetworkSensorMqttBrokers200ResponseInner.md)
 
 ### Authorization
 

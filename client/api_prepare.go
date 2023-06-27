@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type PrepareApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareReques
 	ctx context.Context
 	ApiService *PrepareApiService
 	organizationId string
-	createOrganizationInventoryOnboardingCloudMonitoringPrepare *InlineObject205
+	createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest
 }
 
-func (r PrepareApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) CreateOrganizationInventoryOnboardingCloudMonitoringPrepare(createOrganizationInventoryOnboardingCloudMonitoringPrepare InlineObject205) PrepareApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest {
-	r.createOrganizationInventoryOnboardingCloudMonitoringPrepare = &createOrganizationInventoryOnboardingCloudMonitoringPrepare
+func (r PrepareApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest(createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) PrepareApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest {
+	r.createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest = &createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest
 	return r
 }
 
-func (r PrepareApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) Execute() ([]InlineResponse2017, *http.Response, error) {
+func (r PrepareApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) Execute() ([]CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner, *http.Response, error) {
 	return r.ApiService.CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *PrepareApiService) CreateOrganizationInventoryOnboardingCloudMonitoring
 }
 
 // Execute executes the request
-//  @return []InlineResponse2017
-func (a *PrepareApiService) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r PrepareApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) ([]InlineResponse2017, *http.Response, error) {
+//  @return []CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner
+func (a *PrepareApiService) CreateOrganizationInventoryOnboardingCloudMonitoringPrepareExecute(r PrepareApiCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequest) ([]CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []InlineResponse2017
+		localVarReturnValue  []CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PrepareApiService.CreateOrganizationInventoryOnboardingCloudMonitoringPrepare")
@@ -77,8 +77,8 @@ func (a *PrepareApiService) CreateOrganizationInventoryOnboardingCloudMonitoring
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createOrganizationInventoryOnboardingCloudMonitoringPrepare == nil {
-		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringPrepare is required and must be specified")
+	if r.createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *PrepareApiService) CreateOrganizationInventoryOnboardingCloudMonitoring
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringPrepare
+	localVarPostBody = r.createOrganizationInventoryOnboardingCloudMonitoringPrepareRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

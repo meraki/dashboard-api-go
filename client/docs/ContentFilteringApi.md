@@ -27,7 +27,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -97,7 +97,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceContentFiltering
 
-> map[string]interface{} UpdateNetworkApplianceContentFiltering(ctx, networkId).UpdateNetworkApplianceContentFiltering(updateNetworkApplianceContentFiltering).Execute()
+> map[string]interface{} UpdateNetworkApplianceContentFiltering(ctx, networkId).UpdateNetworkApplianceContentFilteringRequest(updateNetworkApplianceContentFilteringRequest).Execute()
 
 Update the content filtering settings for an MX network
 
@@ -167,16 +167,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceContentFiltering := *openapiclient.NewInlineObject30() // InlineObject30 |  (optional)
+    updateNetworkApplianceContentFilteringRequest := *openapiclient.NewUpdateNetworkApplianceContentFilteringRequest() // UpdateNetworkApplianceContentFilteringRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentFilteringApi.UpdateNetworkApplianceContentFiltering(context.Background(), networkId).UpdateNetworkApplianceContentFiltering(updateNetworkApplianceContentFiltering).Execute()
+    resp, r, err := apiClient.ContentFilteringApi.UpdateNetworkApplianceContentFiltering(context.Background(), networkId).UpdateNetworkApplianceContentFilteringRequest(updateNetworkApplianceContentFilteringRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContentFilteringApi.UpdateNetworkApplianceContentFiltering``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -202,7 +202,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceCont
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceContentFiltering** | [**InlineObject30**](InlineObject30.md) |  | 
+ **updateNetworkApplianceContentFilteringRequest** | [**UpdateNetworkApplianceContentFilteringRequest**](UpdateNetworkApplianceContentFilteringRequest.md) |  | 
 
 ### Return type
 

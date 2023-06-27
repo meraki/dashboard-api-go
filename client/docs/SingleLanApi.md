@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## GetNetworkApplianceSingleLan
 
-> InlineResponse20019 GetNetworkApplianceSingleLan(ctx, networkId).Execute()
+> GetNetworkApplianceSingleLan200Response GetNetworkApplianceSingleLan(ctx, networkId).Execute()
 
 Return single LAN configuration
 
@@ -26,7 +26,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -39,7 +39,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SingleLanApi.GetNetworkApplianceSingleLan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkApplianceSingleLan`: InlineResponse20019
+    // response from `GetNetworkApplianceSingleLan`: GetNetworkApplianceSingleLan200Response
     fmt.Fprintf(os.Stdout, "Response from `SingleLanApi.GetNetworkApplianceSingleLan`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20019**](InlineResponse20019.md)
+[**GetNetworkApplianceSingleLan200Response**](GetNetworkApplianceSingleLan200Response.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceSingleLan
 
-> InlineResponse20019 UpdateNetworkApplianceSingleLan(ctx, networkId).UpdateNetworkApplianceSingleLan(updateNetworkApplianceSingleLan).Execute()
+> GetNetworkApplianceSingleLan200Response UpdateNetworkApplianceSingleLan(ctx, networkId).UpdateNetworkApplianceSingleLanRequest(updateNetworkApplianceSingleLanRequest).Execute()
 
 Update single LAN configuration
 
@@ -96,21 +96,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceSingleLan := *openapiclient.NewInlineObject49() // InlineObject49 |  (optional)
+    updateNetworkApplianceSingleLanRequest := *openapiclient.NewUpdateNetworkApplianceSingleLanRequest() // UpdateNetworkApplianceSingleLanRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SingleLanApi.UpdateNetworkApplianceSingleLan(context.Background(), networkId).UpdateNetworkApplianceSingleLan(updateNetworkApplianceSingleLan).Execute()
+    resp, r, err := apiClient.SingleLanApi.UpdateNetworkApplianceSingleLan(context.Background(), networkId).UpdateNetworkApplianceSingleLanRequest(updateNetworkApplianceSingleLanRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SingleLanApi.UpdateNetworkApplianceSingleLan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkApplianceSingleLan`: InlineResponse20019
+    // response from `UpdateNetworkApplianceSingleLan`: GetNetworkApplianceSingleLan200Response
     fmt.Fprintf(os.Stdout, "Response from `SingleLanApi.UpdateNetworkApplianceSingleLan`: %v\n", resp)
 }
 ```
@@ -131,11 +131,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceSing
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceSingleLan** | [**InlineObject49**](InlineObject49.md) |  | 
+ **updateNetworkApplianceSingleLanRequest** | [**UpdateNetworkApplianceSingleLanRequest**](UpdateNetworkApplianceSingleLanRequest.md) |  | 
 
 ### Return type
 
-[**InlineResponse20019**](InlineResponse20019.md)
+[**GetNetworkApplianceSingleLan200Response**](GetNetworkApplianceSingleLan200Response.md)
 
 ### Authorization
 

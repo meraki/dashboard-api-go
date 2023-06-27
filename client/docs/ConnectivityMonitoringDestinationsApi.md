@@ -28,7 +28,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -98,7 +98,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkApplianceConnectivityMonitoringDestinations
 
-> map[string]interface{} UpdateNetworkApplianceConnectivityMonitoringDestinations(ctx, networkId).UpdateNetworkApplianceConnectivityMonitoringDestinations(updateNetworkApplianceConnectivityMonitoringDestinations).Execute()
+> map[string]interface{} UpdateNetworkApplianceConnectivityMonitoringDestinations(ctx, networkId).UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest(updateNetworkApplianceConnectivityMonitoringDestinationsRequest).Execute()
 
 Update the connectivity testing destinations for an MX network
 
@@ -168,16 +168,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkApplianceConnectivityMonitoringDestinations := *openapiclient.NewInlineObject29() // InlineObject29 |  (optional)
+    updateNetworkApplianceConnectivityMonitoringDestinationsRequest := *openapiclient.NewUpdateNetworkApplianceConnectivityMonitoringDestinationsRequest() // UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConnectivityMonitoringDestinationsApi.UpdateNetworkApplianceConnectivityMonitoringDestinations(context.Background(), networkId).UpdateNetworkApplianceConnectivityMonitoringDestinations(updateNetworkApplianceConnectivityMonitoringDestinations).Execute()
+    resp, r, err := apiClient.ConnectivityMonitoringDestinationsApi.UpdateNetworkApplianceConnectivityMonitoringDestinations(context.Background(), networkId).UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest(updateNetworkApplianceConnectivityMonitoringDestinationsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectivityMonitoringDestinationsApi.UpdateNetworkApplianceConnectivityMonitoringDestinations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -203,7 +203,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkApplianceConn
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkApplianceConnectivityMonitoringDestinations** | [**InlineObject29**](InlineObject29.md) |  | 
+ **updateNetworkApplianceConnectivityMonitoringDestinationsRequest** | [**UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest**](UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest.md) |  | 
 
 ### Return type
 
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkCellularGatewayConnectivityMonitoringDestinations
 
-> map[string]interface{} UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(ctx, networkId).UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(updateNetworkCellularGatewayConnectivityMonitoringDestinations).Execute()
+> map[string]interface{} UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(ctx, networkId).UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest(updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest).Execute()
 
 Update the connectivity testing destinations for an MG network
 
@@ -240,16 +240,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    updateNetworkCellularGatewayConnectivityMonitoringDestinations := *openapiclient.NewInlineObject70() // InlineObject70 |  (optional)
+    updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest := *openapiclient.NewUpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest() // UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConnectivityMonitoringDestinationsApi.UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(context.Background(), networkId).UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(updateNetworkCellularGatewayConnectivityMonitoringDestinations).Execute()
+    resp, r, err := apiClient.ConnectivityMonitoringDestinationsApi.UpdateNetworkCellularGatewayConnectivityMonitoringDestinations(context.Background(), networkId).UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest(updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConnectivityMonitoringDestinationsApi.UpdateNetworkCellularGatewayConnectivityMonitoringDestinations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -275,7 +275,7 @@ Other parameters are passed through a pointer to a apiUpdateNetworkCellularGatew
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateNetworkCellularGatewayConnectivityMonitoringDestinations** | [**InlineObject70**](InlineObject70.md) |  | 
+ **updateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest** | [**UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest**](UpdateNetworkCellularGatewayConnectivityMonitoringDestinationsRequest.md) |  | 
 
 ### Return type
 

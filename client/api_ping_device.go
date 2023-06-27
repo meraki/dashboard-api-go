@@ -1,7 +1,7 @@
 /*
 Meraki Dashboard API
 
-The Cisco Meraki Dashboard API is a modern REST API based on the OpenAPI specification.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
+A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.  > Date: 07 June, 2023 > > [Recent Updates](https://meraki.io/whats-new/)  ---  [API Documentation](https://meraki.io/api)  [Community Support](https://meraki.io/community)  [Meraki Homepage](https://www.meraki.com) 
 
 API version: 1.34.0
 */
@@ -27,15 +27,15 @@ type PingDeviceApiCreateDeviceLiveToolsPingDeviceRequest struct {
 	ctx context.Context
 	ApiService *PingDeviceApiService
 	serial string
-	createDeviceLiveToolsPingDevice *InlineObject14
+	createDeviceLiveToolsPingDeviceRequest *CreateDeviceLiveToolsPingDeviceRequest
 }
 
-func (r PingDeviceApiCreateDeviceLiveToolsPingDeviceRequest) CreateDeviceLiveToolsPingDevice(createDeviceLiveToolsPingDevice InlineObject14) PingDeviceApiCreateDeviceLiveToolsPingDeviceRequest {
-	r.createDeviceLiveToolsPingDevice = &createDeviceLiveToolsPingDevice
+func (r PingDeviceApiCreateDeviceLiveToolsPingDeviceRequest) CreateDeviceLiveToolsPingDeviceRequest(createDeviceLiveToolsPingDeviceRequest CreateDeviceLiveToolsPingDeviceRequest) PingDeviceApiCreateDeviceLiveToolsPingDeviceRequest {
+	r.createDeviceLiveToolsPingDeviceRequest = &createDeviceLiveToolsPingDeviceRequest
 	return r
 }
 
-func (r PingDeviceApiCreateDeviceLiveToolsPingDeviceRequest) Execute() (*InlineResponse2011, *http.Response, error) {
+func (r PingDeviceApiCreateDeviceLiveToolsPingDeviceRequest) Execute() (*CreateDeviceLiveToolsPing201Response, *http.Response, error) {
 	return r.ApiService.CreateDeviceLiveToolsPingDeviceExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *PingDeviceApiService) CreateDeviceLiveToolsPingDevice(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return InlineResponse2011
-func (a *PingDeviceApiService) CreateDeviceLiveToolsPingDeviceExecute(r PingDeviceApiCreateDeviceLiveToolsPingDeviceRequest) (*InlineResponse2011, *http.Response, error) {
+//  @return CreateDeviceLiveToolsPing201Response
+func (a *PingDeviceApiService) CreateDeviceLiveToolsPingDeviceExecute(r PingDeviceApiCreateDeviceLiveToolsPingDeviceRequest) (*CreateDeviceLiveToolsPing201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2011
+		localVarReturnValue  *CreateDeviceLiveToolsPing201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PingDeviceApiService.CreateDeviceLiveToolsPingDevice")
@@ -96,7 +96,7 @@ func (a *PingDeviceApiService) CreateDeviceLiveToolsPingDeviceExecute(r PingDevi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createDeviceLiveToolsPingDevice
+	localVarPostBody = r.createDeviceLiveToolsPingDeviceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -155,7 +155,7 @@ type PingDeviceApiGetDeviceLiveToolsPingDeviceRequest struct {
 	id string
 }
 
-func (r PingDeviceApiGetDeviceLiveToolsPingDeviceRequest) Execute() (*InlineResponse2003, *http.Response, error) {
+func (r PingDeviceApiGetDeviceLiveToolsPingDeviceRequest) Execute() (*GetDeviceLiveToolsPing200Response, *http.Response, error) {
 	return r.ApiService.GetDeviceLiveToolsPingDeviceExecute(r)
 }
 
@@ -179,13 +179,13 @@ func (a *PingDeviceApiService) GetDeviceLiveToolsPingDevice(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return InlineResponse2003
-func (a *PingDeviceApiService) GetDeviceLiveToolsPingDeviceExecute(r PingDeviceApiGetDeviceLiveToolsPingDeviceRequest) (*InlineResponse2003, *http.Response, error) {
+//  @return GetDeviceLiveToolsPing200Response
+func (a *PingDeviceApiService) GetDeviceLiveToolsPingDeviceExecute(r PingDeviceApiGetDeviceLiveToolsPingDeviceRequest) (*GetDeviceLiveToolsPing200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InlineResponse2003
+		localVarReturnValue  *GetDeviceLiveToolsPing200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PingDeviceApiService.GetDeviceLiveToolsPingDevice")
