@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationClientsOverview200ResponseCounts type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationClientsOverview200ResponseCounts{}
+
 // GetOrganizationClientsOverview200ResponseCounts Client count information
 type GetOrganizationClientsOverview200ResponseCounts struct {
 	// Total number of clients with data usage in organization
@@ -39,7 +42,7 @@ func NewGetOrganizationClientsOverview200ResponseCountsWithDefaults() *GetOrgani
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *GetOrganizationClientsOverview200ResponseCounts) GetTotal() int32 {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		var ret int32
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationClientsOverview200ResponseCounts) GetTotal() int32 {
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationClientsOverview200ResponseCounts) GetTotalOk() (*int32, bool) {
-	if o == nil || isNil(o.Total) {
-    return nil, false
+	if o == nil || IsNil(o.Total) {
+		return nil, false
 	}
 	return o.Total, true
 }
 
 // HasTotal returns a boolean if a field has been set.
 func (o *GetOrganizationClientsOverview200ResponseCounts) HasTotal() bool {
-	if o != nil && !isNil(o.Total) {
+	if o != nil && !IsNil(o.Total) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationClientsOverview200ResponseCounts) SetTotal(v int32) {
 }
 
 func (o GetOrganizationClientsOverview200ResponseCounts) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Total) {
-		toSerialize["total"] = o.Total
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationClientsOverview200ResponseCounts) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Total) {
+		toSerialize["total"] = o.Total
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationClientsOverview200ResponseCounts struct {

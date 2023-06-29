@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch{}
+
 // CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch Version information for the switch network being upgraded
 type CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch struct {
 	NextUpgrade *CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrade `json:"nextUpgrade,omitempty"`
@@ -38,7 +41,7 @@ func NewCreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchWithDefault
 
 // GetNextUpgrade returns the NextUpgrade field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch) GetNextUpgrade() CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrade {
-	if o == nil || isNil(o.NextUpgrade) {
+	if o == nil || IsNil(o.NextUpgrade) {
 		var ret CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrade
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch) GetNextU
 // GetNextUpgradeOk returns a tuple with the NextUpgrade field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch) GetNextUpgradeOk() (*CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrade, bool) {
-	if o == nil || isNil(o.NextUpgrade) {
-    return nil, false
+	if o == nil || IsNil(o.NextUpgrade) {
+		return nil, false
 	}
 	return o.NextUpgrade, true
 }
 
 // HasNextUpgrade returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch) HasNextUpgrade() bool {
-	if o != nil && !isNil(o.NextUpgrade) {
+	if o != nil && !IsNil(o.NextUpgrade) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch) SetNextU
 }
 
 func (o CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.NextUpgrade) {
-		toSerialize["nextUpgrade"] = o.NextUpgrade
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.NextUpgrade) {
+		toSerialize["nextUpgrade"] = o.NextUpgrade
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch struct {

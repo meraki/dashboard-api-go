@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceContentFilteringRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceContentFilteringRequest{}
+
 // UpdateNetworkApplianceContentFilteringRequest struct for UpdateNetworkApplianceContentFilteringRequest
 type UpdateNetworkApplianceContentFilteringRequest struct {
 	// A list of URL patterns that are allowed
@@ -45,7 +48,7 @@ func NewUpdateNetworkApplianceContentFilteringRequestWithDefaults() *UpdateNetwo
 
 // GetAllowedUrlPatterns returns the AllowedUrlPatterns field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceContentFilteringRequest) GetAllowedUrlPatterns() []string {
-	if o == nil || isNil(o.AllowedUrlPatterns) {
+	if o == nil || IsNil(o.AllowedUrlPatterns) {
 		var ret []string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *UpdateNetworkApplianceContentFilteringRequest) GetAllowedUrlPatterns() 
 // GetAllowedUrlPatternsOk returns a tuple with the AllowedUrlPatterns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceContentFilteringRequest) GetAllowedUrlPatternsOk() ([]string, bool) {
-	if o == nil || isNil(o.AllowedUrlPatterns) {
-    return nil, false
+	if o == nil || IsNil(o.AllowedUrlPatterns) {
+		return nil, false
 	}
 	return o.AllowedUrlPatterns, true
 }
 
 // HasAllowedUrlPatterns returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceContentFilteringRequest) HasAllowedUrlPatterns() bool {
-	if o != nil && !isNil(o.AllowedUrlPatterns) {
+	if o != nil && !IsNil(o.AllowedUrlPatterns) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *UpdateNetworkApplianceContentFilteringRequest) SetAllowedUrlPatterns(v 
 
 // GetBlockedUrlPatterns returns the BlockedUrlPatterns field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceContentFilteringRequest) GetBlockedUrlPatterns() []string {
-	if o == nil || isNil(o.BlockedUrlPatterns) {
+	if o == nil || IsNil(o.BlockedUrlPatterns) {
 		var ret []string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *UpdateNetworkApplianceContentFilteringRequest) GetBlockedUrlPatterns() 
 // GetBlockedUrlPatternsOk returns a tuple with the BlockedUrlPatterns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceContentFilteringRequest) GetBlockedUrlPatternsOk() ([]string, bool) {
-	if o == nil || isNil(o.BlockedUrlPatterns) {
-    return nil, false
+	if o == nil || IsNil(o.BlockedUrlPatterns) {
+		return nil, false
 	}
 	return o.BlockedUrlPatterns, true
 }
 
 // HasBlockedUrlPatterns returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceContentFilteringRequest) HasBlockedUrlPatterns() bool {
-	if o != nil && !isNil(o.BlockedUrlPatterns) {
+	if o != nil && !IsNil(o.BlockedUrlPatterns) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *UpdateNetworkApplianceContentFilteringRequest) SetBlockedUrlPatterns(v 
 
 // GetBlockedUrlCategories returns the BlockedUrlCategories field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceContentFilteringRequest) GetBlockedUrlCategories() []string {
-	if o == nil || isNil(o.BlockedUrlCategories) {
+	if o == nil || IsNil(o.BlockedUrlCategories) {
 		var ret []string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *UpdateNetworkApplianceContentFilteringRequest) GetBlockedUrlCategories(
 // GetBlockedUrlCategoriesOk returns a tuple with the BlockedUrlCategories field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceContentFilteringRequest) GetBlockedUrlCategoriesOk() ([]string, bool) {
-	if o == nil || isNil(o.BlockedUrlCategories) {
-    return nil, false
+	if o == nil || IsNil(o.BlockedUrlCategories) {
+		return nil, false
 	}
 	return o.BlockedUrlCategories, true
 }
 
 // HasBlockedUrlCategories returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceContentFilteringRequest) HasBlockedUrlCategories() bool {
-	if o != nil && !isNil(o.BlockedUrlCategories) {
+	if o != nil && !IsNil(o.BlockedUrlCategories) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *UpdateNetworkApplianceContentFilteringRequest) SetBlockedUrlCategories(
 
 // GetUrlCategoryListSize returns the UrlCategoryListSize field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceContentFilteringRequest) GetUrlCategoryListSize() string {
-	if o == nil || isNil(o.UrlCategoryListSize) {
+	if o == nil || IsNil(o.UrlCategoryListSize) {
 		var ret string
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *UpdateNetworkApplianceContentFilteringRequest) GetUrlCategoryListSize()
 // GetUrlCategoryListSizeOk returns a tuple with the UrlCategoryListSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceContentFilteringRequest) GetUrlCategoryListSizeOk() (*string, bool) {
-	if o == nil || isNil(o.UrlCategoryListSize) {
-    return nil, false
+	if o == nil || IsNil(o.UrlCategoryListSize) {
+		return nil, false
 	}
 	return o.UrlCategoryListSize, true
 }
 
 // HasUrlCategoryListSize returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceContentFilteringRequest) HasUrlCategoryListSize() bool {
-	if o != nil && !isNil(o.UrlCategoryListSize) {
+	if o != nil && !IsNil(o.UrlCategoryListSize) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *UpdateNetworkApplianceContentFilteringRequest) SetUrlCategoryListSize(v
 }
 
 func (o UpdateNetworkApplianceContentFilteringRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.AllowedUrlPatterns) {
-		toSerialize["allowedUrlPatterns"] = o.AllowedUrlPatterns
-	}
-	if !isNil(o.BlockedUrlPatterns) {
-		toSerialize["blockedUrlPatterns"] = o.BlockedUrlPatterns
-	}
-	if !isNil(o.BlockedUrlCategories) {
-		toSerialize["blockedUrlCategories"] = o.BlockedUrlCategories
-	}
-	if !isNil(o.UrlCategoryListSize) {
-		toSerialize["urlCategoryListSize"] = o.UrlCategoryListSize
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceContentFilteringRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AllowedUrlPatterns) {
+		toSerialize["allowedUrlPatterns"] = o.AllowedUrlPatterns
+	}
+	if !IsNil(o.BlockedUrlPatterns) {
+		toSerialize["blockedUrlPatterns"] = o.BlockedUrlPatterns
+	}
+	if !IsNil(o.BlockedUrlCategories) {
+		toSerialize["blockedUrlCategories"] = o.BlockedUrlCategories
+	}
+	if !IsNil(o.UrlCategoryListSize) {
+		toSerialize["urlCategoryListSize"] = o.UrlCategoryListSize
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceContentFilteringRequest struct {

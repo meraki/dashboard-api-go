@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner{}
+
 // GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner struct for GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner
 type GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner struct {
 	// Label of the port
@@ -41,7 +44,7 @@ func NewGetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInne
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInne
 
 // GetPoe returns the Poe field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner) GetPoe() GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerPoe {
-	if o == nil || isNil(o.Poe) {
+	if o == nil || IsNil(o.Poe) {
 		var ret GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerPoe
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInne
 // GetPoeOk returns a tuple with the Poe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner) GetPoeOk() (*GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerPoe, bool) {
-	if o == nil || isNil(o.Poe) {
-    return nil, false
+	if o == nil || IsNil(o.Poe) {
+		return nil, false
 	}
 	return o.Poe, true
 }
 
 // HasPoe returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner) HasPoe() bool {
-	if o != nil && !isNil(o.Poe) {
+	if o != nil && !IsNil(o.Poe) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInne
 
 // GetLinkNegotiation returns the LinkNegotiation field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner) GetLinkNegotiation() GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerLinkNegotiation {
-	if o == nil || isNil(o.LinkNegotiation) {
+	if o == nil || IsNil(o.LinkNegotiation) {
 		var ret GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerLinkNegotiation
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInne
 // GetLinkNegotiationOk returns a tuple with the LinkNegotiation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner) GetLinkNegotiationOk() (*GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerLinkNegotiation, bool) {
-	if o == nil || isNil(o.LinkNegotiation) {
-    return nil, false
+	if o == nil || IsNil(o.LinkNegotiation) {
+		return nil, false
 	}
 	return o.LinkNegotiation, true
 }
 
 // HasLinkNegotiation returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner) HasLinkNegotiation() bool {
-	if o != nil && !isNil(o.LinkNegotiation) {
+	if o != nil && !IsNil(o.LinkNegotiation) {
 		return true
 	}
 
@@ -136,17 +139,25 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInne
 }
 
 func (o GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Poe) {
-		toSerialize["poe"] = o.Poe
-	}
-	if !isNil(o.LinkNegotiation) {
-		toSerialize["linkNegotiation"] = o.LinkNegotiation
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Poe) {
+		toSerialize["poe"] = o.Poe
+	}
+	if !IsNil(o.LinkNegotiation) {
+		toSerialize["linkNegotiation"] = o.LinkNegotiation
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner struct {

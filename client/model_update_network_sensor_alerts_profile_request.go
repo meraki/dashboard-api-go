@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSensorAlertsProfileRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSensorAlertsProfileRequest{}
+
 // UpdateNetworkSensorAlertsProfileRequest struct for UpdateNetworkSensorAlertsProfileRequest
 type UpdateNetworkSensorAlertsProfileRequest struct {
 	// Name of the sensor alert profile.
@@ -45,7 +48,7 @@ func NewUpdateNetworkSensorAlertsProfileRequestWithDefaults() *UpdateNetworkSens
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkSensorAlertsProfileRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *UpdateNetworkSensorAlertsProfileRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSensorAlertsProfileRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkSensorAlertsProfileRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *UpdateNetworkSensorAlertsProfileRequest) SetName(v string) {
 
 // GetSchedule returns the Schedule field value if set, zero value otherwise.
 func (o *UpdateNetworkSensorAlertsProfileRequest) GetSchedule() CreateNetworkSensorAlertsProfileRequestSchedule {
-	if o == nil || isNil(o.Schedule) {
+	if o == nil || IsNil(o.Schedule) {
 		var ret CreateNetworkSensorAlertsProfileRequestSchedule
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *UpdateNetworkSensorAlertsProfileRequest) GetSchedule() CreateNetworkSen
 // GetScheduleOk returns a tuple with the Schedule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSensorAlertsProfileRequest) GetScheduleOk() (*CreateNetworkSensorAlertsProfileRequestSchedule, bool) {
-	if o == nil || isNil(o.Schedule) {
-    return nil, false
+	if o == nil || IsNil(o.Schedule) {
+		return nil, false
 	}
 	return o.Schedule, true
 }
 
 // HasSchedule returns a boolean if a field has been set.
 func (o *UpdateNetworkSensorAlertsProfileRequest) HasSchedule() bool {
-	if o != nil && !isNil(o.Schedule) {
+	if o != nil && !IsNil(o.Schedule) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *UpdateNetworkSensorAlertsProfileRequest) SetSchedule(v CreateNetworkSen
 
 // GetConditions returns the Conditions field value if set, zero value otherwise.
 func (o *UpdateNetworkSensorAlertsProfileRequest) GetConditions() []GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner {
-	if o == nil || isNil(o.Conditions) {
+	if o == nil || IsNil(o.Conditions) {
 		var ret []GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *UpdateNetworkSensorAlertsProfileRequest) GetConditions() []GetNetworkSe
 // GetConditionsOk returns a tuple with the Conditions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSensorAlertsProfileRequest) GetConditionsOk() ([]GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner, bool) {
-	if o == nil || isNil(o.Conditions) {
-    return nil, false
+	if o == nil || IsNil(o.Conditions) {
+		return nil, false
 	}
 	return o.Conditions, true
 }
 
 // HasConditions returns a boolean if a field has been set.
 func (o *UpdateNetworkSensorAlertsProfileRequest) HasConditions() bool {
-	if o != nil && !isNil(o.Conditions) {
+	if o != nil && !IsNil(o.Conditions) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *UpdateNetworkSensorAlertsProfileRequest) SetConditions(v []GetNetworkSe
 
 // GetRecipients returns the Recipients field value if set, zero value otherwise.
 func (o *UpdateNetworkSensorAlertsProfileRequest) GetRecipients() GetNetworkSensorAlertsProfiles200ResponseInnerRecipients {
-	if o == nil || isNil(o.Recipients) {
+	if o == nil || IsNil(o.Recipients) {
 		var ret GetNetworkSensorAlertsProfiles200ResponseInnerRecipients
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *UpdateNetworkSensorAlertsProfileRequest) GetRecipients() GetNetworkSens
 // GetRecipientsOk returns a tuple with the Recipients field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSensorAlertsProfileRequest) GetRecipientsOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerRecipients, bool) {
-	if o == nil || isNil(o.Recipients) {
-    return nil, false
+	if o == nil || IsNil(o.Recipients) {
+		return nil, false
 	}
 	return o.Recipients, true
 }
 
 // HasRecipients returns a boolean if a field has been set.
 func (o *UpdateNetworkSensorAlertsProfileRequest) HasRecipients() bool {
-	if o != nil && !isNil(o.Recipients) {
+	if o != nil && !IsNil(o.Recipients) {
 		return true
 	}
 
@@ -173,7 +176,7 @@ func (o *UpdateNetworkSensorAlertsProfileRequest) SetRecipients(v GetNetworkSens
 
 // GetSerials returns the Serials field value if set, zero value otherwise.
 func (o *UpdateNetworkSensorAlertsProfileRequest) GetSerials() []string {
-	if o == nil || isNil(o.Serials) {
+	if o == nil || IsNil(o.Serials) {
 		var ret []string
 		return ret
 	}
@@ -183,15 +186,15 @@ func (o *UpdateNetworkSensorAlertsProfileRequest) GetSerials() []string {
 // GetSerialsOk returns a tuple with the Serials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSensorAlertsProfileRequest) GetSerialsOk() ([]string, bool) {
-	if o == nil || isNil(o.Serials) {
-    return nil, false
+	if o == nil || IsNil(o.Serials) {
+		return nil, false
 	}
 	return o.Serials, true
 }
 
 // HasSerials returns a boolean if a field has been set.
 func (o *UpdateNetworkSensorAlertsProfileRequest) HasSerials() bool {
-	if o != nil && !isNil(o.Serials) {
+	if o != nil && !IsNil(o.Serials) {
 		return true
 	}
 
@@ -204,23 +207,31 @@ func (o *UpdateNetworkSensorAlertsProfileRequest) SetSerials(v []string) {
 }
 
 func (o UpdateNetworkSensorAlertsProfileRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Schedule) {
-		toSerialize["schedule"] = o.Schedule
-	}
-	if !isNil(o.Conditions) {
-		toSerialize["conditions"] = o.Conditions
-	}
-	if !isNil(o.Recipients) {
-		toSerialize["recipients"] = o.Recipients
-	}
-	if !isNil(o.Serials) {
-		toSerialize["serials"] = o.Serials
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSensorAlertsProfileRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Schedule) {
+		toSerialize["schedule"] = o.Schedule
+	}
+	if !IsNil(o.Conditions) {
+		toSerialize["conditions"] = o.Conditions
+	}
+	if !IsNil(o.Recipients) {
+		toSerialize["recipients"] = o.Recipients
+	}
+	if !IsNil(o.Serials) {
+		toSerialize["serials"] = o.Serials
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSensorAlertsProfileRequest struct {

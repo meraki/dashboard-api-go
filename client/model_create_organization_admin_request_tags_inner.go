@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationAdminRequestTagsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationAdminRequestTagsInner{}
+
 // CreateOrganizationAdminRequestTagsInner struct for CreateOrganizationAdminRequestTagsInner
 type CreateOrganizationAdminRequestTagsInner struct {
 	// The name of the tag
@@ -55,7 +58,7 @@ func (o *CreateOrganizationAdminRequestTagsInner) GetTag() string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdminRequestTagsInner) GetTagOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Tag, true
 }
@@ -79,7 +82,7 @@ func (o *CreateOrganizationAdminRequestTagsInner) GetAccess() string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdminRequestTagsInner) GetAccessOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Access, true
 }
@@ -90,14 +93,18 @@ func (o *CreateOrganizationAdminRequestTagsInner) SetAccess(v string) {
 }
 
 func (o CreateOrganizationAdminRequestTagsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["tag"] = o.Tag
-	}
-	if true {
-		toSerialize["access"] = o.Access
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationAdminRequestTagsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["tag"] = o.Tag
+	toSerialize["access"] = o.Access
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationAdminRequestTagsInner struct {

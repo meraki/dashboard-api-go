@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchQosRule200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchQosRule200Response{}
+
 // GetNetworkSwitchQosRule200Response struct for GetNetworkSwitchQosRule200Response
 type GetNetworkSwitchQosRule200Response struct {
 	// Qos Rule id
@@ -53,7 +56,7 @@ func NewGetNetworkSwitchQosRule200ResponseWithDefaults() *GetNetworkSwitchQosRul
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkSwitchQosRule200Response) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -63,15 +66,15 @@ func (o *GetNetworkSwitchQosRule200Response) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchQosRule200Response) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkSwitchQosRule200Response) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -85,7 +88,7 @@ func (o *GetNetworkSwitchQosRule200Response) SetId(v string) {
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
 func (o *GetNetworkSwitchQosRule200Response) GetVlan() int32 {
-	if o == nil || isNil(o.Vlan) {
+	if o == nil || IsNil(o.Vlan) {
 		var ret int32
 		return ret
 	}
@@ -95,15 +98,15 @@ func (o *GetNetworkSwitchQosRule200Response) GetVlan() int32 {
 // GetVlanOk returns a tuple with the Vlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchQosRule200Response) GetVlanOk() (*int32, bool) {
-	if o == nil || isNil(o.Vlan) {
-    return nil, false
+	if o == nil || IsNil(o.Vlan) {
+		return nil, false
 	}
 	return o.Vlan, true
 }
 
 // HasVlan returns a boolean if a field has been set.
 func (o *GetNetworkSwitchQosRule200Response) HasVlan() bool {
-	if o != nil && !isNil(o.Vlan) {
+	if o != nil && !IsNil(o.Vlan) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *GetNetworkSwitchQosRule200Response) SetVlan(v int32) {
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
 func (o *GetNetworkSwitchQosRule200Response) GetProtocol() string {
-	if o == nil || isNil(o.Protocol) {
+	if o == nil || IsNil(o.Protocol) {
 		var ret string
 		return ret
 	}
@@ -127,15 +130,15 @@ func (o *GetNetworkSwitchQosRule200Response) GetProtocol() string {
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchQosRule200Response) GetProtocolOk() (*string, bool) {
-	if o == nil || isNil(o.Protocol) {
-    return nil, false
+	if o == nil || IsNil(o.Protocol) {
+		return nil, false
 	}
 	return o.Protocol, true
 }
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *GetNetworkSwitchQosRule200Response) HasProtocol() bool {
-	if o != nil && !isNil(o.Protocol) {
+	if o != nil && !IsNil(o.Protocol) {
 		return true
 	}
 
@@ -149,7 +152,7 @@ func (o *GetNetworkSwitchQosRule200Response) SetProtocol(v string) {
 
 // GetSrcPort returns the SrcPort field value if set, zero value otherwise.
 func (o *GetNetworkSwitchQosRule200Response) GetSrcPort() int32 {
-	if o == nil || isNil(o.SrcPort) {
+	if o == nil || IsNil(o.SrcPort) {
 		var ret int32
 		return ret
 	}
@@ -159,15 +162,15 @@ func (o *GetNetworkSwitchQosRule200Response) GetSrcPort() int32 {
 // GetSrcPortOk returns a tuple with the SrcPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchQosRule200Response) GetSrcPortOk() (*int32, bool) {
-	if o == nil || isNil(o.SrcPort) {
-    return nil, false
+	if o == nil || IsNil(o.SrcPort) {
+		return nil, false
 	}
 	return o.SrcPort, true
 }
 
 // HasSrcPort returns a boolean if a field has been set.
 func (o *GetNetworkSwitchQosRule200Response) HasSrcPort() bool {
-	if o != nil && !isNil(o.SrcPort) {
+	if o != nil && !IsNil(o.SrcPort) {
 		return true
 	}
 
@@ -181,7 +184,7 @@ func (o *GetNetworkSwitchQosRule200Response) SetSrcPort(v int32) {
 
 // GetSrcPortRange returns the SrcPortRange field value if set, zero value otherwise.
 func (o *GetNetworkSwitchQosRule200Response) GetSrcPortRange() string {
-	if o == nil || isNil(o.SrcPortRange) {
+	if o == nil || IsNil(o.SrcPortRange) {
 		var ret string
 		return ret
 	}
@@ -191,15 +194,15 @@ func (o *GetNetworkSwitchQosRule200Response) GetSrcPortRange() string {
 // GetSrcPortRangeOk returns a tuple with the SrcPortRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchQosRule200Response) GetSrcPortRangeOk() (*string, bool) {
-	if o == nil || isNil(o.SrcPortRange) {
-    return nil, false
+	if o == nil || IsNil(o.SrcPortRange) {
+		return nil, false
 	}
 	return o.SrcPortRange, true
 }
 
 // HasSrcPortRange returns a boolean if a field has been set.
 func (o *GetNetworkSwitchQosRule200Response) HasSrcPortRange() bool {
-	if o != nil && !isNil(o.SrcPortRange) {
+	if o != nil && !IsNil(o.SrcPortRange) {
 		return true
 	}
 
@@ -213,7 +216,7 @@ func (o *GetNetworkSwitchQosRule200Response) SetSrcPortRange(v string) {
 
 // GetDstPort returns the DstPort field value if set, zero value otherwise.
 func (o *GetNetworkSwitchQosRule200Response) GetDstPort() int32 {
-	if o == nil || isNil(o.DstPort) {
+	if o == nil || IsNil(o.DstPort) {
 		var ret int32
 		return ret
 	}
@@ -223,15 +226,15 @@ func (o *GetNetworkSwitchQosRule200Response) GetDstPort() int32 {
 // GetDstPortOk returns a tuple with the DstPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchQosRule200Response) GetDstPortOk() (*int32, bool) {
-	if o == nil || isNil(o.DstPort) {
-    return nil, false
+	if o == nil || IsNil(o.DstPort) {
+		return nil, false
 	}
 	return o.DstPort, true
 }
 
 // HasDstPort returns a boolean if a field has been set.
 func (o *GetNetworkSwitchQosRule200Response) HasDstPort() bool {
-	if o != nil && !isNil(o.DstPort) {
+	if o != nil && !IsNil(o.DstPort) {
 		return true
 	}
 
@@ -245,7 +248,7 @@ func (o *GetNetworkSwitchQosRule200Response) SetDstPort(v int32) {
 
 // GetDstPortRange returns the DstPortRange field value if set, zero value otherwise.
 func (o *GetNetworkSwitchQosRule200Response) GetDstPortRange() string {
-	if o == nil || isNil(o.DstPortRange) {
+	if o == nil || IsNil(o.DstPortRange) {
 		var ret string
 		return ret
 	}
@@ -255,15 +258,15 @@ func (o *GetNetworkSwitchQosRule200Response) GetDstPortRange() string {
 // GetDstPortRangeOk returns a tuple with the DstPortRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchQosRule200Response) GetDstPortRangeOk() (*string, bool) {
-	if o == nil || isNil(o.DstPortRange) {
-    return nil, false
+	if o == nil || IsNil(o.DstPortRange) {
+		return nil, false
 	}
 	return o.DstPortRange, true
 }
 
 // HasDstPortRange returns a boolean if a field has been set.
 func (o *GetNetworkSwitchQosRule200Response) HasDstPortRange() bool {
-	if o != nil && !isNil(o.DstPortRange) {
+	if o != nil && !IsNil(o.DstPortRange) {
 		return true
 	}
 
@@ -277,7 +280,7 @@ func (o *GetNetworkSwitchQosRule200Response) SetDstPortRange(v string) {
 
 // GetDscp returns the Dscp field value if set, zero value otherwise.
 func (o *GetNetworkSwitchQosRule200Response) GetDscp() int32 {
-	if o == nil || isNil(o.Dscp) {
+	if o == nil || IsNil(o.Dscp) {
 		var ret int32
 		return ret
 	}
@@ -287,15 +290,15 @@ func (o *GetNetworkSwitchQosRule200Response) GetDscp() int32 {
 // GetDscpOk returns a tuple with the Dscp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchQosRule200Response) GetDscpOk() (*int32, bool) {
-	if o == nil || isNil(o.Dscp) {
-    return nil, false
+	if o == nil || IsNil(o.Dscp) {
+		return nil, false
 	}
 	return o.Dscp, true
 }
 
 // HasDscp returns a boolean if a field has been set.
 func (o *GetNetworkSwitchQosRule200Response) HasDscp() bool {
-	if o != nil && !isNil(o.Dscp) {
+	if o != nil && !IsNil(o.Dscp) {
 		return true
 	}
 
@@ -308,32 +311,40 @@ func (o *GetNetworkSwitchQosRule200Response) SetDscp(v int32) {
 }
 
 func (o GetNetworkSwitchQosRule200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Vlan) {
-		toSerialize["vlan"] = o.Vlan
-	}
-	if !isNil(o.Protocol) {
-		toSerialize["protocol"] = o.Protocol
-	}
-	if !isNil(o.SrcPort) {
-		toSerialize["srcPort"] = o.SrcPort
-	}
-	if !isNil(o.SrcPortRange) {
-		toSerialize["srcPortRange"] = o.SrcPortRange
-	}
-	if !isNil(o.DstPort) {
-		toSerialize["dstPort"] = o.DstPort
-	}
-	if !isNil(o.DstPortRange) {
-		toSerialize["dstPortRange"] = o.DstPortRange
-	}
-	if !isNil(o.Dscp) {
-		toSerialize["dscp"] = o.Dscp
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchQosRule200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Vlan) {
+		toSerialize["vlan"] = o.Vlan
+	}
+	if !IsNil(o.Protocol) {
+		toSerialize["protocol"] = o.Protocol
+	}
+	if !IsNil(o.SrcPort) {
+		toSerialize["srcPort"] = o.SrcPort
+	}
+	if !IsNil(o.SrcPortRange) {
+		toSerialize["srcPortRange"] = o.SrcPortRange
+	}
+	if !IsNil(o.DstPort) {
+		toSerialize["dstPort"] = o.DstPort
+	}
+	if !IsNil(o.DstPortRange) {
+		toSerialize["dstPortRange"] = o.DstPortRange
+	}
+	if !IsNil(o.Dscp) {
+		toSerialize["dscp"] = o.Dscp
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchQosRule200Response struct {

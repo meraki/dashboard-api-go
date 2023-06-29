@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceFirewallFirewalledServiceRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceFirewallFirewalledServiceRequest{}
+
 // UpdateNetworkApplianceFirewallFirewalledServiceRequest struct for UpdateNetworkApplianceFirewallFirewalledServiceRequest
 type UpdateNetworkApplianceFirewallFirewalledServiceRequest struct {
 	// A string indicating the rule for which IPs are allowed to use the specified service. Acceptable values are \"blocked\" (no remote IPs can access the service), \"restricted\" (only allowed IPs can access the service), and \"unrestriced\" (any remote IP can access the service). This field is required
@@ -54,7 +57,7 @@ func (o *UpdateNetworkApplianceFirewallFirewalledServiceRequest) GetAccess() str
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallFirewalledServiceRequest) GetAccessOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Access, true
 }
@@ -66,7 +69,7 @@ func (o *UpdateNetworkApplianceFirewallFirewalledServiceRequest) SetAccess(v str
 
 // GetAllowedIps returns the AllowedIps field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallFirewalledServiceRequest) GetAllowedIps() []string {
-	if o == nil || isNil(o.AllowedIps) {
+	if o == nil || IsNil(o.AllowedIps) {
 		var ret []string
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *UpdateNetworkApplianceFirewallFirewalledServiceRequest) GetAllowedIps()
 // GetAllowedIpsOk returns a tuple with the AllowedIps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallFirewalledServiceRequest) GetAllowedIpsOk() ([]string, bool) {
-	if o == nil || isNil(o.AllowedIps) {
-    return nil, false
+	if o == nil || IsNil(o.AllowedIps) {
+		return nil, false
 	}
 	return o.AllowedIps, true
 }
 
 // HasAllowedIps returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallFirewalledServiceRequest) HasAllowedIps() bool {
-	if o != nil && !isNil(o.AllowedIps) {
+	if o != nil && !IsNil(o.AllowedIps) {
 		return true
 	}
 
@@ -97,14 +100,20 @@ func (o *UpdateNetworkApplianceFirewallFirewalledServiceRequest) SetAllowedIps(v
 }
 
 func (o UpdateNetworkApplianceFirewallFirewalledServiceRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["access"] = o.Access
-	}
-	if !isNil(o.AllowedIps) {
-		toSerialize["allowedIps"] = o.AllowedIps
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceFirewallFirewalledServiceRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["access"] = o.Access
+	if !IsNil(o.AllowedIps) {
+		toSerialize["allowedIps"] = o.AllowedIps
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceFirewallFirewalledServiceRequest struct {

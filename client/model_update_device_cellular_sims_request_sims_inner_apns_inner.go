@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceCellularSimsRequestSimsInnerApnsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceCellularSimsRequestSimsInnerApnsInner{}
+
 // UpdateDeviceCellularSimsRequestSimsInnerApnsInner struct for UpdateDeviceCellularSimsRequestSimsInnerApnsInner
 type UpdateDeviceCellularSimsRequestSimsInnerApnsInner struct {
 	// APN name.
@@ -56,7 +59,7 @@ func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInner) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInner) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -80,7 +83,7 @@ func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInner) GetAllowedIpTypes() 
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInner) GetAllowedIpTypesOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.AllowedIpTypes, true
 }
@@ -92,7 +95,7 @@ func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInner) SetAllowedIpTypes(v 
 
 // GetAuthentication returns the Authentication field value if set, zero value otherwise.
 func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInner) GetAuthentication() UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication {
-	if o == nil || isNil(o.Authentication) {
+	if o == nil || IsNil(o.Authentication) {
 		var ret UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication
 		return ret
 	}
@@ -102,15 +105,15 @@ func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInner) GetAuthentication() 
 // GetAuthenticationOk returns a tuple with the Authentication field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInner) GetAuthenticationOk() (*UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication, bool) {
-	if o == nil || isNil(o.Authentication) {
-    return nil, false
+	if o == nil || IsNil(o.Authentication) {
+		return nil, false
 	}
 	return o.Authentication, true
 }
 
 // HasAuthentication returns a boolean if a field has been set.
 func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInner) HasAuthentication() bool {
-	if o != nil && !isNil(o.Authentication) {
+	if o != nil && !IsNil(o.Authentication) {
 		return true
 	}
 
@@ -123,17 +126,21 @@ func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInner) SetAuthentication(v 
 }
 
 func (o UpdateDeviceCellularSimsRequestSimsInnerApnsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["allowedIpTypes"] = o.AllowedIpTypes
-	}
-	if !isNil(o.Authentication) {
-		toSerialize["authentication"] = o.Authentication
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceCellularSimsRequestSimsInnerApnsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["allowedIpTypes"] = o.AllowedIpTypes
+	if !IsNil(o.Authentication) {
+		toSerialize["authentication"] = o.Authentication
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceCellularSimsRequestSimsInnerApnsInner struct {

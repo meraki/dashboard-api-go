@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the CreateNetworkFirmwareUpgradesRollbackRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkFirmwareUpgradesRollbackRequest{}
+
 // CreateNetworkFirmwareUpgradesRollbackRequest struct for CreateNetworkFirmwareUpgradesRollbackRequest
 type CreateNetworkFirmwareUpgradesRollbackRequest struct {
 	// Product type to rollback (if the network is a combined network)
@@ -46,7 +49,7 @@ func NewCreateNetworkFirmwareUpgradesRollbackRequestWithDefaults() *CreateNetwor
 
 // GetProduct returns the Product field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesRollbackRequest) GetProduct() string {
-	if o == nil || isNil(o.Product) {
+	if o == nil || IsNil(o.Product) {
 		var ret string
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *CreateNetworkFirmwareUpgradesRollbackRequest) GetProduct() string {
 // GetProductOk returns a tuple with the Product field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesRollbackRequest) GetProductOk() (*string, bool) {
-	if o == nil || isNil(o.Product) {
-    return nil, false
+	if o == nil || IsNil(o.Product) {
+		return nil, false
 	}
 	return o.Product, true
 }
 
 // HasProduct returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesRollbackRequest) HasProduct() bool {
-	if o != nil && !isNil(o.Product) {
+	if o != nil && !IsNil(o.Product) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *CreateNetworkFirmwareUpgradesRollbackRequest) SetProduct(v string) {
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesRollbackRequest) GetTime() time.Time {
-	if o == nil || isNil(o.Time) {
+	if o == nil || IsNil(o.Time) {
 		var ret time.Time
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *CreateNetworkFirmwareUpgradesRollbackRequest) GetTime() time.Time {
 // GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesRollbackRequest) GetTimeOk() (*time.Time, bool) {
-	if o == nil || isNil(o.Time) {
-    return nil, false
+	if o == nil || IsNil(o.Time) {
+		return nil, false
 	}
 	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesRollbackRequest) HasTime() bool {
-	if o != nil && !isNil(o.Time) {
+	if o != nil && !IsNil(o.Time) {
 		return true
 	}
 
@@ -122,7 +125,7 @@ func (o *CreateNetworkFirmwareUpgradesRollbackRequest) GetReasons() []CreateNetw
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesRollbackRequest) GetReasonsOk() ([]CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Reasons, true
 }
@@ -134,7 +137,7 @@ func (o *CreateNetworkFirmwareUpgradesRollbackRequest) SetReasons(v []CreateNetw
 
 // GetToVersion returns the ToVersion field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesRollbackRequest) GetToVersion() CreateNetworkFirmwareUpgradesRollbackRequestToVersion {
-	if o == nil || isNil(o.ToVersion) {
+	if o == nil || IsNil(o.ToVersion) {
 		var ret CreateNetworkFirmwareUpgradesRollbackRequestToVersion
 		return ret
 	}
@@ -144,15 +147,15 @@ func (o *CreateNetworkFirmwareUpgradesRollbackRequest) GetToVersion() CreateNetw
 // GetToVersionOk returns a tuple with the ToVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesRollbackRequest) GetToVersionOk() (*CreateNetworkFirmwareUpgradesRollbackRequestToVersion, bool) {
-	if o == nil || isNil(o.ToVersion) {
-    return nil, false
+	if o == nil || IsNil(o.ToVersion) {
+		return nil, false
 	}
 	return o.ToVersion, true
 }
 
 // HasToVersion returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesRollbackRequest) HasToVersion() bool {
-	if o != nil && !isNil(o.ToVersion) {
+	if o != nil && !IsNil(o.ToVersion) {
 		return true
 	}
 
@@ -165,20 +168,26 @@ func (o *CreateNetworkFirmwareUpgradesRollbackRequest) SetToVersion(v CreateNetw
 }
 
 func (o CreateNetworkFirmwareUpgradesRollbackRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Product) {
-		toSerialize["product"] = o.Product
-	}
-	if !isNil(o.Time) {
-		toSerialize["time"] = o.Time
-	}
-	if true {
-		toSerialize["reasons"] = o.Reasons
-	}
-	if !isNil(o.ToVersion) {
-		toSerialize["toVersion"] = o.ToVersion
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkFirmwareUpgradesRollbackRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Product) {
+		toSerialize["product"] = o.Product
+	}
+	if !IsNil(o.Time) {
+		toSerialize["time"] = o.Time
+	}
+	toSerialize["reasons"] = o.Reasons
+	if !IsNil(o.ToVersion) {
+		toSerialize["toVersion"] = o.ToVersion
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkFirmwareUpgradesRollbackRequest struct {

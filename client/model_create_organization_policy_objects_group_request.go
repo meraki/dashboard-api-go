@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationPolicyObjectsGroupRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationPolicyObjectsGroupRequest{}
+
 // CreateOrganizationPolicyObjectsGroupRequest struct for CreateOrganizationPolicyObjectsGroupRequest
 type CreateOrganizationPolicyObjectsGroupRequest struct {
 	// A name for the group of network addresses, unique within the organization (alphanumeric, space, dash, or underscore characters only)
@@ -56,7 +59,7 @@ func (o *CreateOrganizationPolicyObjectsGroupRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationPolicyObjectsGroupRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -68,7 +71,7 @@ func (o *CreateOrganizationPolicyObjectsGroupRequest) SetName(v string) {
 
 // GetCategory returns the Category field value if set, zero value otherwise.
 func (o *CreateOrganizationPolicyObjectsGroupRequest) GetCategory() string {
-	if o == nil || isNil(o.Category) {
+	if o == nil || IsNil(o.Category) {
 		var ret string
 		return ret
 	}
@@ -78,15 +81,15 @@ func (o *CreateOrganizationPolicyObjectsGroupRequest) GetCategory() string {
 // GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationPolicyObjectsGroupRequest) GetCategoryOk() (*string, bool) {
-	if o == nil || isNil(o.Category) {
-    return nil, false
+	if o == nil || IsNil(o.Category) {
+		return nil, false
 	}
 	return o.Category, true
 }
 
 // HasCategory returns a boolean if a field has been set.
 func (o *CreateOrganizationPolicyObjectsGroupRequest) HasCategory() bool {
-	if o != nil && !isNil(o.Category) {
+	if o != nil && !IsNil(o.Category) {
 		return true
 	}
 
@@ -100,7 +103,7 @@ func (o *CreateOrganizationPolicyObjectsGroupRequest) SetCategory(v string) {
 
 // GetObjectIds returns the ObjectIds field value if set, zero value otherwise.
 func (o *CreateOrganizationPolicyObjectsGroupRequest) GetObjectIds() []int32 {
-	if o == nil || isNil(o.ObjectIds) {
+	if o == nil || IsNil(o.ObjectIds) {
 		var ret []int32
 		return ret
 	}
@@ -110,15 +113,15 @@ func (o *CreateOrganizationPolicyObjectsGroupRequest) GetObjectIds() []int32 {
 // GetObjectIdsOk returns a tuple with the ObjectIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationPolicyObjectsGroupRequest) GetObjectIdsOk() ([]int32, bool) {
-	if o == nil || isNil(o.ObjectIds) {
-    return nil, false
+	if o == nil || IsNil(o.ObjectIds) {
+		return nil, false
 	}
 	return o.ObjectIds, true
 }
 
 // HasObjectIds returns a boolean if a field has been set.
 func (o *CreateOrganizationPolicyObjectsGroupRequest) HasObjectIds() bool {
-	if o != nil && !isNil(o.ObjectIds) {
+	if o != nil && !IsNil(o.ObjectIds) {
 		return true
 	}
 
@@ -131,17 +134,23 @@ func (o *CreateOrganizationPolicyObjectsGroupRequest) SetObjectIds(v []int32) {
 }
 
 func (o CreateOrganizationPolicyObjectsGroupRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Category) {
-		toSerialize["category"] = o.Category
-	}
-	if !isNil(o.ObjectIds) {
-		toSerialize["objectIds"] = o.ObjectIds
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationPolicyObjectsGroupRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Category) {
+		toSerialize["category"] = o.Category
+	}
+	if !IsNil(o.ObjectIds) {
+		toSerialize["objectIds"] = o.ObjectIds
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationPolicyObjectsGroupRequest struct {

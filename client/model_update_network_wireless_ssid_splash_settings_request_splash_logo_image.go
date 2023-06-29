@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage{}
+
 // UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage Properties for setting a new image.
 type UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage struct {
 	// The format of the encoded contents. Supported formats are 'png', 'gif', and jpg'.
@@ -41,7 +44,7 @@ func NewUpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImageWithDefault
 
 // GetFormat returns the Format field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage) GetFormat() string {
-	if o == nil || isNil(o.Format) {
+	if o == nil || IsNil(o.Format) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage) GetForma
 // GetFormatOk returns a tuple with the Format field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage) GetFormatOk() (*string, bool) {
-	if o == nil || isNil(o.Format) {
-    return nil, false
+	if o == nil || IsNil(o.Format) {
+		return nil, false
 	}
 	return o.Format, true
 }
 
 // HasFormat returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage) HasFormat() bool {
-	if o != nil && !isNil(o.Format) {
+	if o != nil && !IsNil(o.Format) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage) SetForma
 
 // GetContents returns the Contents field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage) GetContents() string {
-	if o == nil || isNil(o.Contents) {
+	if o == nil || IsNil(o.Contents) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage) GetConte
 // GetContentsOk returns a tuple with the Contents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage) GetContentsOk() (*string, bool) {
-	if o == nil || isNil(o.Contents) {
-    return nil, false
+	if o == nil || IsNil(o.Contents) {
+		return nil, false
 	}
 	return o.Contents, true
 }
 
 // HasContents returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage) HasContents() bool {
-	if o != nil && !isNil(o.Contents) {
+	if o != nil && !IsNil(o.Contents) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage) SetConte
 }
 
 func (o UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Format) {
-		toSerialize["format"] = o.Format
-	}
-	if !isNil(o.Contents) {
-		toSerialize["contents"] = o.Contents
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Format) {
+		toSerialize["format"] = o.Format
+	}
+	if !IsNil(o.Contents) {
+		toSerialize["contents"] = o.Contents
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidSplashSettingsRequestSplashLogoImage struct {

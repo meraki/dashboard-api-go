@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidRequestLdapServersInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidRequestLdapServersInner{}
+
 // UpdateNetworkWirelessSsidRequestLdapServersInner struct for UpdateNetworkWirelessSsidRequestLdapServersInner
 type UpdateNetworkWirelessSsidRequestLdapServersInner struct {
 	// IP address of your LDAP server.
@@ -55,7 +58,7 @@ func (o *UpdateNetworkWirelessSsidRequestLdapServersInner) GetHost() string {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestLdapServersInner) GetHostOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Host, true
 }
@@ -79,7 +82,7 @@ func (o *UpdateNetworkWirelessSsidRequestLdapServersInner) GetPort() int32 {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestLdapServersInner) GetPortOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Port, true
 }
@@ -90,14 +93,18 @@ func (o *UpdateNetworkWirelessSsidRequestLdapServersInner) SetPort(v int32) {
 }
 
 func (o UpdateNetworkWirelessSsidRequestLdapServersInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["host"] = o.Host
-	}
-	if true {
-		toSerialize["port"] = o.Port
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidRequestLdapServersInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["host"] = o.Host
+	toSerialize["port"] = o.Port
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidRequestLdapServersInner struct {

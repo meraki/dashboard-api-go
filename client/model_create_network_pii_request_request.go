@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkPiiRequestRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkPiiRequestRequest{}
+
 // CreateNetworkPiiRequestRequest struct for CreateNetworkPiiRequestRequest
 type CreateNetworkPiiRequestRequest struct {
 	// One of \"delete\" or \"restrict processing\"
@@ -51,7 +54,7 @@ func NewCreateNetworkPiiRequestRequestWithDefaults() *CreateNetworkPiiRequestReq
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *CreateNetworkPiiRequestRequest) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -61,15 +64,15 @@ func (o *CreateNetworkPiiRequestRequest) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkPiiRequestRequest) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *CreateNetworkPiiRequestRequest) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *CreateNetworkPiiRequestRequest) SetType(v string) {
 
 // GetDatasets returns the Datasets field value if set, zero value otherwise.
 func (o *CreateNetworkPiiRequestRequest) GetDatasets() []string {
-	if o == nil || isNil(o.Datasets) {
+	if o == nil || IsNil(o.Datasets) {
 		var ret []string
 		return ret
 	}
@@ -93,15 +96,15 @@ func (o *CreateNetworkPiiRequestRequest) GetDatasets() []string {
 // GetDatasetsOk returns a tuple with the Datasets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkPiiRequestRequest) GetDatasetsOk() ([]string, bool) {
-	if o == nil || isNil(o.Datasets) {
-    return nil, false
+	if o == nil || IsNil(o.Datasets) {
+		return nil, false
 	}
 	return o.Datasets, true
 }
 
 // HasDatasets returns a boolean if a field has been set.
 func (o *CreateNetworkPiiRequestRequest) HasDatasets() bool {
-	if o != nil && !isNil(o.Datasets) {
+	if o != nil && !IsNil(o.Datasets) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *CreateNetworkPiiRequestRequest) SetDatasets(v []string) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *CreateNetworkPiiRequestRequest) GetUsername() string {
-	if o == nil || isNil(o.Username) {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -125,15 +128,15 @@ func (o *CreateNetworkPiiRequestRequest) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkPiiRequestRequest) GetUsernameOk() (*string, bool) {
-	if o == nil || isNil(o.Username) {
-    return nil, false
+	if o == nil || IsNil(o.Username) {
+		return nil, false
 	}
 	return o.Username, true
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *CreateNetworkPiiRequestRequest) HasUsername() bool {
-	if o != nil && !isNil(o.Username) {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *CreateNetworkPiiRequestRequest) SetUsername(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *CreateNetworkPiiRequestRequest) GetEmail() string {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -157,15 +160,15 @@ func (o *CreateNetworkPiiRequestRequest) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkPiiRequestRequest) GetEmailOk() (*string, bool) {
-	if o == nil || isNil(o.Email) {
-    return nil, false
+	if o == nil || IsNil(o.Email) {
+		return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *CreateNetworkPiiRequestRequest) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *CreateNetworkPiiRequestRequest) SetEmail(v string) {
 
 // GetMac returns the Mac field value if set, zero value otherwise.
 func (o *CreateNetworkPiiRequestRequest) GetMac() string {
-	if o == nil || isNil(o.Mac) {
+	if o == nil || IsNil(o.Mac) {
 		var ret string
 		return ret
 	}
@@ -189,15 +192,15 @@ func (o *CreateNetworkPiiRequestRequest) GetMac() string {
 // GetMacOk returns a tuple with the Mac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkPiiRequestRequest) GetMacOk() (*string, bool) {
-	if o == nil || isNil(o.Mac) {
-    return nil, false
+	if o == nil || IsNil(o.Mac) {
+		return nil, false
 	}
 	return o.Mac, true
 }
 
 // HasMac returns a boolean if a field has been set.
 func (o *CreateNetworkPiiRequestRequest) HasMac() bool {
-	if o != nil && !isNil(o.Mac) {
+	if o != nil && !IsNil(o.Mac) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *CreateNetworkPiiRequestRequest) SetMac(v string) {
 
 // GetSmDeviceId returns the SmDeviceId field value if set, zero value otherwise.
 func (o *CreateNetworkPiiRequestRequest) GetSmDeviceId() string {
-	if o == nil || isNil(o.SmDeviceId) {
+	if o == nil || IsNil(o.SmDeviceId) {
 		var ret string
 		return ret
 	}
@@ -221,15 +224,15 @@ func (o *CreateNetworkPiiRequestRequest) GetSmDeviceId() string {
 // GetSmDeviceIdOk returns a tuple with the SmDeviceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkPiiRequestRequest) GetSmDeviceIdOk() (*string, bool) {
-	if o == nil || isNil(o.SmDeviceId) {
-    return nil, false
+	if o == nil || IsNil(o.SmDeviceId) {
+		return nil, false
 	}
 	return o.SmDeviceId, true
 }
 
 // HasSmDeviceId returns a boolean if a field has been set.
 func (o *CreateNetworkPiiRequestRequest) HasSmDeviceId() bool {
-	if o != nil && !isNil(o.SmDeviceId) {
+	if o != nil && !IsNil(o.SmDeviceId) {
 		return true
 	}
 
@@ -243,7 +246,7 @@ func (o *CreateNetworkPiiRequestRequest) SetSmDeviceId(v string) {
 
 // GetSmUserId returns the SmUserId field value if set, zero value otherwise.
 func (o *CreateNetworkPiiRequestRequest) GetSmUserId() string {
-	if o == nil || isNil(o.SmUserId) {
+	if o == nil || IsNil(o.SmUserId) {
 		var ret string
 		return ret
 	}
@@ -253,15 +256,15 @@ func (o *CreateNetworkPiiRequestRequest) GetSmUserId() string {
 // GetSmUserIdOk returns a tuple with the SmUserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkPiiRequestRequest) GetSmUserIdOk() (*string, bool) {
-	if o == nil || isNil(o.SmUserId) {
-    return nil, false
+	if o == nil || IsNil(o.SmUserId) {
+		return nil, false
 	}
 	return o.SmUserId, true
 }
 
 // HasSmUserId returns a boolean if a field has been set.
 func (o *CreateNetworkPiiRequestRequest) HasSmUserId() bool {
-	if o != nil && !isNil(o.SmUserId) {
+	if o != nil && !IsNil(o.SmUserId) {
 		return true
 	}
 
@@ -274,29 +277,37 @@ func (o *CreateNetworkPiiRequestRequest) SetSmUserId(v string) {
 }
 
 func (o CreateNetworkPiiRequestRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Datasets) {
-		toSerialize["datasets"] = o.Datasets
-	}
-	if !isNil(o.Username) {
-		toSerialize["username"] = o.Username
-	}
-	if !isNil(o.Email) {
-		toSerialize["email"] = o.Email
-	}
-	if !isNil(o.Mac) {
-		toSerialize["mac"] = o.Mac
-	}
-	if !isNil(o.SmDeviceId) {
-		toSerialize["smDeviceId"] = o.SmDeviceId
-	}
-	if !isNil(o.SmUserId) {
-		toSerialize["smUserId"] = o.SmUserId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkPiiRequestRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Datasets) {
+		toSerialize["datasets"] = o.Datasets
+	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.Mac) {
+		toSerialize["mac"] = o.Mac
+	}
+	if !IsNil(o.SmDeviceId) {
+		toSerialize["smDeviceId"] = o.SmDeviceId
+	}
+	if !IsNil(o.SmUserId) {
+		toSerialize["smUserId"] = o.SmUserId
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkPiiRequestRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkHealthAlerts200ResponseInnerScope type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkHealthAlerts200ResponseInnerScope{}
+
 // GetNetworkHealthAlerts200ResponseInnerScope The scope of the alert
 type GetNetworkHealthAlerts200ResponseInnerScope struct {
 	// Devices related to the alert
@@ -43,7 +46,7 @@ func NewGetNetworkHealthAlerts200ResponseInnerScopeWithDefaults() *GetNetworkHea
 
 // GetDevices returns the Devices field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInnerScope) GetDevices() []GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner {
-	if o == nil || isNil(o.Devices) {
+	if o == nil || IsNil(o.Devices) {
 		var ret []GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScope) GetDevices() []GetNetworkH
 // GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScope) GetDevicesOk() ([]GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner, bool) {
-	if o == nil || isNil(o.Devices) {
-    return nil, false
+	if o == nil || IsNil(o.Devices) {
+		return nil, false
 	}
 	return o.Devices, true
 }
 
 // HasDevices returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScope) HasDevices() bool {
-	if o != nil && !isNil(o.Devices) {
+	if o != nil && !IsNil(o.Devices) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScope) SetDevices(v []GetNetworkH
 
 // GetApplications returns the Applications field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInnerScope) GetApplications() []GetNetworkHealthAlerts200ResponseInnerScopeApplicationsInner {
-	if o == nil || isNil(o.Applications) {
+	if o == nil || IsNil(o.Applications) {
 		var ret []GetNetworkHealthAlerts200ResponseInnerScopeApplicationsInner
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScope) GetApplications() []GetNet
 // GetApplicationsOk returns a tuple with the Applications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScope) GetApplicationsOk() ([]GetNetworkHealthAlerts200ResponseInnerScopeApplicationsInner, bool) {
-	if o == nil || isNil(o.Applications) {
-    return nil, false
+	if o == nil || IsNil(o.Applications) {
+		return nil, false
 	}
 	return o.Applications, true
 }
 
 // HasApplications returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScope) HasApplications() bool {
-	if o != nil && !isNil(o.Applications) {
+	if o != nil && !IsNil(o.Applications) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScope) SetApplications(v []GetNet
 
 // GetPeers returns the Peers field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInnerScope) GetPeers() []GetNetworkHealthAlerts200ResponseInnerScopePeersInner {
-	if o == nil || isNil(o.Peers) {
+	if o == nil || IsNil(o.Peers) {
 		var ret []GetNetworkHealthAlerts200ResponseInnerScopePeersInner
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScope) GetPeers() []GetNetworkHea
 // GetPeersOk returns a tuple with the Peers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScope) GetPeersOk() ([]GetNetworkHealthAlerts200ResponseInnerScopePeersInner, bool) {
-	if o == nil || isNil(o.Peers) {
-    return nil, false
+	if o == nil || IsNil(o.Peers) {
+		return nil, false
 	}
 	return o.Peers, true
 }
 
 // HasPeers returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScope) HasPeers() bool {
-	if o != nil && !isNil(o.Peers) {
+	if o != nil && !IsNil(o.Peers) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScope) SetPeers(v []GetNetworkHea
 }
 
 func (o GetNetworkHealthAlerts200ResponseInnerScope) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Devices) {
-		toSerialize["devices"] = o.Devices
-	}
-	if !isNil(o.Applications) {
-		toSerialize["applications"] = o.Applications
-	}
-	if !isNil(o.Peers) {
-		toSerialize["peers"] = o.Peers
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkHealthAlerts200ResponseInnerScope) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Devices) {
+		toSerialize["devices"] = o.Devices
+	}
+	if !IsNil(o.Applications) {
+		toSerialize["applications"] = o.Applications
+	}
+	if !IsNil(o.Peers) {
+		toSerialize["peers"] = o.Peers
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkHealthAlerts200ResponseInnerScope struct {

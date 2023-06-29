@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication{}
+
 // UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication The current setting for certificate verification.
 type UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication struct {
 	// Whether or not to use EAP-TLS certificate-based authentication to validate wireless clients.
@@ -46,7 +49,7 @@ func NewUpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationWith
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) G
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) S
 
 // GetUseLdap returns the UseLdap field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) GetUseLdap() bool {
-	if o == nil || isNil(o.UseLdap) {
+	if o == nil || IsNil(o.UseLdap) {
 		var ret bool
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) G
 // GetUseLdapOk returns a tuple with the UseLdap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) GetUseLdapOk() (*bool, bool) {
-	if o == nil || isNil(o.UseLdap) {
-    return nil, false
+	if o == nil || IsNil(o.UseLdap) {
+		return nil, false
 	}
 	return o.UseLdap, true
 }
 
 // HasUseLdap returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) HasUseLdap() bool {
-	if o != nil && !isNil(o.UseLdap) {
+	if o != nil && !IsNil(o.UseLdap) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) S
 
 // GetUseOcsp returns the UseOcsp field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) GetUseOcsp() bool {
-	if o == nil || isNil(o.UseOcsp) {
+	if o == nil || IsNil(o.UseOcsp) {
 		var ret bool
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) G
 // GetUseOcspOk returns a tuple with the UseOcsp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) GetUseOcspOk() (*bool, bool) {
-	if o == nil || isNil(o.UseOcsp) {
-    return nil, false
+	if o == nil || IsNil(o.UseOcsp) {
+		return nil, false
 	}
 	return o.UseOcsp, true
 }
 
 // HasUseOcsp returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) HasUseOcsp() bool {
-	if o != nil && !isNil(o.UseOcsp) {
+	if o != nil && !IsNil(o.UseOcsp) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) S
 
 // GetOcspResponderUrl returns the OcspResponderUrl field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) GetOcspResponderUrl() string {
-	if o == nil || isNil(o.OcspResponderUrl) {
+	if o == nil || IsNil(o.OcspResponderUrl) {
 		var ret string
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) G
 // GetOcspResponderUrlOk returns a tuple with the OcspResponderUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) GetOcspResponderUrlOk() (*string, bool) {
-	if o == nil || isNil(o.OcspResponderUrl) {
-    return nil, false
+	if o == nil || IsNil(o.OcspResponderUrl) {
+		return nil, false
 	}
 	return o.OcspResponderUrl, true
 }
 
 // HasOcspResponderUrl returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) HasOcspResponderUrl() bool {
-	if o != nil && !isNil(o.OcspResponderUrl) {
+	if o != nil && !IsNil(o.OcspResponderUrl) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) S
 
 // GetClientRootCaCertificate returns the ClientRootCaCertificate field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) GetClientRootCaCertificate() UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationClientRootCaCertificate {
-	if o == nil || isNil(o.ClientRootCaCertificate) {
+	if o == nil || IsNil(o.ClientRootCaCertificate) {
 		var ret UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationClientRootCaCertificate
 		return ret
 	}
@@ -184,15 +187,15 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) G
 // GetClientRootCaCertificateOk returns a tuple with the ClientRootCaCertificate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) GetClientRootCaCertificateOk() (*UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationClientRootCaCertificate, bool) {
-	if o == nil || isNil(o.ClientRootCaCertificate) {
-    return nil, false
+	if o == nil || IsNil(o.ClientRootCaCertificate) {
+		return nil, false
 	}
 	return o.ClientRootCaCertificate, true
 }
 
 // HasClientRootCaCertificate returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) HasClientRootCaCertificate() bool {
-	if o != nil && !isNil(o.ClientRootCaCertificate) {
+	if o != nil && !IsNil(o.ClientRootCaCertificate) {
 		return true
 	}
 
@@ -205,23 +208,31 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) S
 }
 
 func (o UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.UseLdap) {
-		toSerialize["useLdap"] = o.UseLdap
-	}
-	if !isNil(o.UseOcsp) {
-		toSerialize["useOcsp"] = o.UseOcsp
-	}
-	if !isNil(o.OcspResponderUrl) {
-		toSerialize["ocspResponderUrl"] = o.OcspResponderUrl
-	}
-	if !isNil(o.ClientRootCaCertificate) {
-		toSerialize["clientRootCaCertificate"] = o.ClientRootCaCertificate
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.UseLdap) {
+		toSerialize["useLdap"] = o.UseLdap
+	}
+	if !IsNil(o.UseOcsp) {
+		toSerialize["useOcsp"] = o.UseOcsp
+	}
+	if !IsNil(o.OcspResponderUrl) {
+		toSerialize["ocspResponderUrl"] = o.OcspResponderUrl
+	}
+	if !IsNil(o.ClientRootCaCertificate) {
+		toSerialize["clientRootCaCertificate"] = o.ClientRootCaCertificate
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication struct {

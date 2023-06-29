@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner{}
+
 // UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner struct for UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner
 type UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner struct {
 	// Description of the rule
@@ -53,7 +56,7 @@ func NewUpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInnerWithD
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) GetComment() string {
-	if o == nil || isNil(o.Comment) {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -63,15 +66,15 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) Ge
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) GetCommentOk() (*string, bool) {
-	if o == nil || isNil(o.Comment) {
-    return nil, false
+	if o == nil || IsNil(o.Comment) {
+		return nil, false
 	}
 	return o.Comment, true
 }
 
 // HasComment returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) HasComment() bool {
-	if o != nil && !isNil(o.Comment) {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -85,7 +88,7 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) Se
 
 // GetPolicy returns the Policy field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) GetPolicy() string {
-	if o == nil || isNil(o.Policy) {
+	if o == nil || IsNil(o.Policy) {
 		var ret string
 		return ret
 	}
@@ -95,15 +98,15 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) Ge
 // GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) GetPolicyOk() (*string, bool) {
-	if o == nil || isNil(o.Policy) {
-    return nil, false
+	if o == nil || IsNil(o.Policy) {
+		return nil, false
 	}
 	return o.Policy, true
 }
 
 // HasPolicy returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) HasPolicy() bool {
-	if o != nil && !isNil(o.Policy) {
+	if o != nil && !IsNil(o.Policy) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) Se
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) GetProtocol() string {
-	if o == nil || isNil(o.Protocol) {
+	if o == nil || IsNil(o.Protocol) {
 		var ret string
 		return ret
 	}
@@ -127,15 +130,15 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) Ge
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) GetProtocolOk() (*string, bool) {
-	if o == nil || isNil(o.Protocol) {
-    return nil, false
+	if o == nil || IsNil(o.Protocol) {
+		return nil, false
 	}
 	return o.Protocol, true
 }
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) HasProtocol() bool {
-	if o != nil && !isNil(o.Protocol) {
+	if o != nil && !IsNil(o.Protocol) {
 		return true
 	}
 
@@ -149,7 +152,7 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) Se
 
 // GetSrcPort returns the SrcPort field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) GetSrcPort() string {
-	if o == nil || isNil(o.SrcPort) {
+	if o == nil || IsNil(o.SrcPort) {
 		var ret string
 		return ret
 	}
@@ -159,15 +162,15 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) Ge
 // GetSrcPortOk returns a tuple with the SrcPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) GetSrcPortOk() (*string, bool) {
-	if o == nil || isNil(o.SrcPort) {
-    return nil, false
+	if o == nil || IsNil(o.SrcPort) {
+		return nil, false
 	}
 	return o.SrcPort, true
 }
 
 // HasSrcPort returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) HasSrcPort() bool {
-	if o != nil && !isNil(o.SrcPort) {
+	if o != nil && !IsNil(o.SrcPort) {
 		return true
 	}
 
@@ -181,7 +184,7 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) Se
 
 // GetSrcCidr returns the SrcCidr field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) GetSrcCidr() string {
-	if o == nil || isNil(o.SrcCidr) {
+	if o == nil || IsNil(o.SrcCidr) {
 		var ret string
 		return ret
 	}
@@ -191,15 +194,15 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) Ge
 // GetSrcCidrOk returns a tuple with the SrcCidr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) GetSrcCidrOk() (*string, bool) {
-	if o == nil || isNil(o.SrcCidr) {
-    return nil, false
+	if o == nil || IsNil(o.SrcCidr) {
+		return nil, false
 	}
 	return o.SrcCidr, true
 }
 
 // HasSrcCidr returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) HasSrcCidr() bool {
-	if o != nil && !isNil(o.SrcCidr) {
+	if o != nil && !IsNil(o.SrcCidr) {
 		return true
 	}
 
@@ -213,7 +216,7 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) Se
 
 // GetDestPort returns the DestPort field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) GetDestPort() string {
-	if o == nil || isNil(o.DestPort) {
+	if o == nil || IsNil(o.DestPort) {
 		var ret string
 		return ret
 	}
@@ -223,15 +226,15 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) Ge
 // GetDestPortOk returns a tuple with the DestPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) GetDestPortOk() (*string, bool) {
-	if o == nil || isNil(o.DestPort) {
-    return nil, false
+	if o == nil || IsNil(o.DestPort) {
+		return nil, false
 	}
 	return o.DestPort, true
 }
 
 // HasDestPort returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) HasDestPort() bool {
-	if o != nil && !isNil(o.DestPort) {
+	if o != nil && !IsNil(o.DestPort) {
 		return true
 	}
 
@@ -245,7 +248,7 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) Se
 
 // GetDestCidr returns the DestCidr field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) GetDestCidr() string {
-	if o == nil || isNil(o.DestCidr) {
+	if o == nil || IsNil(o.DestCidr) {
 		var ret string
 		return ret
 	}
@@ -255,15 +258,15 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) Ge
 // GetDestCidrOk returns a tuple with the DestCidr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) GetDestCidrOk() (*string, bool) {
-	if o == nil || isNil(o.DestCidr) {
-    return nil, false
+	if o == nil || IsNil(o.DestCidr) {
+		return nil, false
 	}
 	return o.DestCidr, true
 }
 
 // HasDestCidr returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) HasDestCidr() bool {
-	if o != nil && !isNil(o.DestCidr) {
+	if o != nil && !IsNil(o.DestCidr) {
 		return true
 	}
 
@@ -277,7 +280,7 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) Se
 
 // GetSyslogEnabled returns the SyslogEnabled field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) GetSyslogEnabled() bool {
-	if o == nil || isNil(o.SyslogEnabled) {
+	if o == nil || IsNil(o.SyslogEnabled) {
 		var ret bool
 		return ret
 	}
@@ -287,15 +290,15 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) Ge
 // GetSyslogEnabledOk returns a tuple with the SyslogEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) GetSyslogEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.SyslogEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.SyslogEnabled) {
+		return nil, false
 	}
 	return o.SyslogEnabled, true
 }
 
 // HasSyslogEnabled returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) HasSyslogEnabled() bool {
-	if o != nil && !isNil(o.SyslogEnabled) {
+	if o != nil && !IsNil(o.SyslogEnabled) {
 		return true
 	}
 
@@ -308,32 +311,40 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) Se
 }
 
 func (o UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Comment) {
-		toSerialize["comment"] = o.Comment
-	}
-	if !isNil(o.Policy) {
-		toSerialize["policy"] = o.Policy
-	}
-	if !isNil(o.Protocol) {
-		toSerialize["protocol"] = o.Protocol
-	}
-	if !isNil(o.SrcPort) {
-		toSerialize["srcPort"] = o.SrcPort
-	}
-	if !isNil(o.SrcCidr) {
-		toSerialize["srcCidr"] = o.SrcCidr
-	}
-	if !isNil(o.DestPort) {
-		toSerialize["destPort"] = o.DestPort
-	}
-	if !isNil(o.DestCidr) {
-		toSerialize["destCidr"] = o.DestCidr
-	}
-	if !isNil(o.SyslogEnabled) {
-		toSerialize["syslogEnabled"] = o.SyslogEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	if !IsNil(o.Policy) {
+		toSerialize["policy"] = o.Policy
+	}
+	if !IsNil(o.Protocol) {
+		toSerialize["protocol"] = o.Protocol
+	}
+	if !IsNil(o.SrcPort) {
+		toSerialize["srcPort"] = o.SrcPort
+	}
+	if !IsNil(o.SrcCidr) {
+		toSerialize["srcCidr"] = o.SrcCidr
+	}
+	if !IsNil(o.DestPort) {
+		toSerialize["destPort"] = o.DestPort
+	}
+	if !IsNil(o.DestCidr) {
+		toSerialize["destCidr"] = o.DestCidr
+	}
+	if !IsNil(o.SyslogEnabled) {
+		toSerialize["syslogEnabled"] = o.SyslogEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner struct {

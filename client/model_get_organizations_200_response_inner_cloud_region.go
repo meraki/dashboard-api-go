@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizations200ResponseInnerCloudRegion type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizations200ResponseInnerCloudRegion{}
+
 // GetOrganizations200ResponseInnerCloudRegion Region info
 type GetOrganizations200ResponseInnerCloudRegion struct {
 	// Name of region
@@ -39,7 +42,7 @@ func NewGetOrganizations200ResponseInnerCloudRegionWithDefaults() *GetOrganizati
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizations200ResponseInnerCloudRegion) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizations200ResponseInnerCloudRegion) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizations200ResponseInnerCloudRegion) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizations200ResponseInnerCloudRegion) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizations200ResponseInnerCloudRegion) SetName(v string) {
 }
 
 func (o GetOrganizations200ResponseInnerCloudRegion) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizations200ResponseInnerCloudRegion) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizations200ResponseInnerCloudRegion struct {

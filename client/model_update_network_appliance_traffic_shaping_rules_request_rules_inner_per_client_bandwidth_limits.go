@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits{}
+
 // UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits     An object describing the bandwidth settings for your rule. 
 type UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits struct {
 	// How bandwidth limits are applied by your rule. Can be one of 'network default', 'ignore' or 'custom'.
@@ -40,7 +43,7 @@ func NewUpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandw
 
 // GetSettings returns the Settings field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits) GetSettings() string {
-	if o == nil || isNil(o.Settings) {
+	if o == nil || IsNil(o.Settings) {
 		var ret string
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBand
 // GetSettingsOk returns a tuple with the Settings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits) GetSettingsOk() (*string, bool) {
-	if o == nil || isNil(o.Settings) {
-    return nil, false
+	if o == nil || IsNil(o.Settings) {
+		return nil, false
 	}
 	return o.Settings, true
 }
 
 // HasSettings returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits) HasSettings() bool {
-	if o != nil && !isNil(o.Settings) {
+	if o != nil && !IsNil(o.Settings) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBand
 
 // GetBandwidthLimits returns the BandwidthLimits field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits) GetBandwidthLimits() UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimitsBandwidthLimits {
-	if o == nil || isNil(o.BandwidthLimits) {
+	if o == nil || IsNil(o.BandwidthLimits) {
 		var ret UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimitsBandwidthLimits
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBand
 // GetBandwidthLimitsOk returns a tuple with the BandwidthLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits) GetBandwidthLimitsOk() (*UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimitsBandwidthLimits, bool) {
-	if o == nil || isNil(o.BandwidthLimits) {
-    return nil, false
+	if o == nil || IsNil(o.BandwidthLimits) {
+		return nil, false
 	}
 	return o.BandwidthLimits, true
 }
 
 // HasBandwidthLimits returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits) HasBandwidthLimits() bool {
-	if o != nil && !isNil(o.BandwidthLimits) {
+	if o != nil && !IsNil(o.BandwidthLimits) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBand
 }
 
 func (o UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Settings) {
-		toSerialize["settings"] = o.Settings
-	}
-	if !isNil(o.BandwidthLimits) {
-		toSerialize["bandwidthLimits"] = o.BandwidthLimits
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Settings) {
+		toSerialize["settings"] = o.Settings
+	}
+	if !IsNil(o.BandwidthLimits) {
+		toSerialize["bandwidthLimits"] = o.BandwidthLimits
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits struct {

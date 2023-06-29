@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice{}
+
 // GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice Attributes of the server when it's a device.
 type GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice struct {
 	// Device serial.
@@ -44,7 +47,7 @@ func NewGetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDeviceWithDefaults() *G
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) GetSerial() st
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) SetSerial(v st
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) GetName() stri
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) SetName(v stri
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) GetUrl() string {
-	if o == nil || isNil(o.Url) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) GetUrl() strin
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) GetUrlOk() (*string, bool) {
-	if o == nil || isNil(o.Url) {
-    return nil, false
+	if o == nil || IsNil(o.Url) {
+		return nil, false
 	}
 	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) HasUrl() bool {
-	if o != nil && !isNil(o.Url) {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) SetUrl(v strin
 
 // GetInterface returns the Interface field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) GetInterface() GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDeviceInterface {
-	if o == nil || isNil(o.Interface) {
+	if o == nil || IsNil(o.Interface) {
 		var ret GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDeviceInterface
 		return ret
 	}
@@ -150,15 +153,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) GetInterface()
 // GetInterfaceOk returns a tuple with the Interface field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) GetInterfaceOk() (*GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDeviceInterface, bool) {
-	if o == nil || isNil(o.Interface) {
-    return nil, false
+	if o == nil || IsNil(o.Interface) {
+		return nil, false
 	}
 	return o.Interface, true
 }
 
 // HasInterface returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) HasInterface() bool {
-	if o != nil && !isNil(o.Interface) {
+	if o != nil && !IsNil(o.Interface) {
 		return true
 	}
 
@@ -171,20 +174,28 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) SetInterface(v
 }
 
 func (o GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Url) {
-		toSerialize["url"] = o.Url
-	}
-	if !isNil(o.Interface) {
-		toSerialize["interface"] = o.Interface
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.Interface) {
+		toSerialize["interface"] = o.Interface
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchDhcpV4ServersSeen200ResponseInnerDevice struct {

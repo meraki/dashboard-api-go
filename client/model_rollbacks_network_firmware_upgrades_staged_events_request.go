@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the RollbacksNetworkFirmwareUpgradesStagedEventsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RollbacksNetworkFirmwareUpgradesStagedEventsRequest{}
+
 // RollbacksNetworkFirmwareUpgradesStagedEventsRequest struct for RollbacksNetworkFirmwareUpgradesStagedEventsRequest
 type RollbacksNetworkFirmwareUpgradesStagedEventsRequest struct {
 	// All completed or in-progress stages in the network with their new start times. All pending stages will be canceled
@@ -54,7 +57,7 @@ func (o *RollbacksNetworkFirmwareUpgradesStagedEventsRequest) GetStages() []Upda
 // and a boolean to check if the value has been set.
 func (o *RollbacksNetworkFirmwareUpgradesStagedEventsRequest) GetStagesOk() ([]UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Stages, true
 }
@@ -66,7 +69,7 @@ func (o *RollbacksNetworkFirmwareUpgradesStagedEventsRequest) SetStages(v []Upda
 
 // GetReasons returns the Reasons field value if set, zero value otherwise.
 func (o *RollbacksNetworkFirmwareUpgradesStagedEventsRequest) GetReasons() []CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner {
-	if o == nil || isNil(o.Reasons) {
+	if o == nil || IsNil(o.Reasons) {
 		var ret []CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *RollbacksNetworkFirmwareUpgradesStagedEventsRequest) GetReasons() []Cre
 // GetReasonsOk returns a tuple with the Reasons field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RollbacksNetworkFirmwareUpgradesStagedEventsRequest) GetReasonsOk() ([]CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner, bool) {
-	if o == nil || isNil(o.Reasons) {
-    return nil, false
+	if o == nil || IsNil(o.Reasons) {
+		return nil, false
 	}
 	return o.Reasons, true
 }
 
 // HasReasons returns a boolean if a field has been set.
 func (o *RollbacksNetworkFirmwareUpgradesStagedEventsRequest) HasReasons() bool {
-	if o != nil && !isNil(o.Reasons) {
+	if o != nil && !IsNil(o.Reasons) {
 		return true
 	}
 
@@ -97,14 +100,20 @@ func (o *RollbacksNetworkFirmwareUpgradesStagedEventsRequest) SetReasons(v []Cre
 }
 
 func (o RollbacksNetworkFirmwareUpgradesStagedEventsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["stages"] = o.Stages
-	}
-	if !isNil(o.Reasons) {
-		toSerialize["reasons"] = o.Reasons
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RollbacksNetworkFirmwareUpgradesStagedEventsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["stages"] = o.Stages
+	if !IsNil(o.Reasons) {
+		toSerialize["reasons"] = o.Reasons
+	}
+	return toSerialize, nil
 }
 
 type NullableRollbacksNetworkFirmwareUpgradesStagedEventsRequest struct {

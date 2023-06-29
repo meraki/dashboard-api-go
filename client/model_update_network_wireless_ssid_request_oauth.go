@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidRequestOauth type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidRequestOauth{}
+
 // UpdateNetworkWirelessSsidRequestOauth The OAuth settings of this SSID. Only valid if splashPage is 'Google OAuth'.
 type UpdateNetworkWirelessSsidRequestOauth struct {
 	// (Optional) The list of domains allowed access to the network.
@@ -39,7 +42,7 @@ func NewUpdateNetworkWirelessSsidRequestOauthWithDefaults() *UpdateNetworkWirele
 
 // GetAllowedDomains returns the AllowedDomains field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestOauth) GetAllowedDomains() []string {
-	if o == nil || isNil(o.AllowedDomains) {
+	if o == nil || IsNil(o.AllowedDomains) {
 		var ret []string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateNetworkWirelessSsidRequestOauth) GetAllowedDomains() []string {
 // GetAllowedDomainsOk returns a tuple with the AllowedDomains field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestOauth) GetAllowedDomainsOk() ([]string, bool) {
-	if o == nil || isNil(o.AllowedDomains) {
-    return nil, false
+	if o == nil || IsNil(o.AllowedDomains) {
+		return nil, false
 	}
 	return o.AllowedDomains, true
 }
 
 // HasAllowedDomains returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestOauth) HasAllowedDomains() bool {
-	if o != nil && !isNil(o.AllowedDomains) {
+	if o != nil && !IsNil(o.AllowedDomains) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateNetworkWirelessSsidRequestOauth) SetAllowedDomains(v []string) {
 }
 
 func (o UpdateNetworkWirelessSsidRequestOauth) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.AllowedDomains) {
-		toSerialize["allowedDomains"] = o.AllowedDomains
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidRequestOauth) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AllowedDomains) {
+		toSerialize["allowedDomains"] = o.AllowedDomains
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidRequestOauth struct {

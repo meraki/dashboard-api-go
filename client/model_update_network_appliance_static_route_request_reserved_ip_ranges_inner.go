@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner{}
+
 // UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner struct for UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner
 type UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner struct {
 	// The first IP in the reserved range
@@ -58,7 +61,7 @@ func (o *UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner) GetStart
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner) GetStartOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Start, true
 }
@@ -82,7 +85,7 @@ func (o *UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner) GetEnd()
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner) GetEndOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.End, true
 }
@@ -106,7 +109,7 @@ func (o *UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner) GetComme
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner) GetCommentOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Comment, true
 }
@@ -117,17 +120,19 @@ func (o *UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner) SetComme
 }
 
 func (o UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["start"] = o.Start
-	}
-	if true {
-		toSerialize["end"] = o.End
-	}
-	if true {
-		toSerialize["comment"] = o.Comment
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["start"] = o.Start
+	toSerialize["end"] = o.End
+	toSerialize["comment"] = o.Comment
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSnmpRequestUsersInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSnmpRequestUsersInner{}
+
 // UpdateNetworkSnmpRequestUsersInner struct for UpdateNetworkSnmpRequestUsersInner
 type UpdateNetworkSnmpRequestUsersInner struct {
 	// The username for the SNMP user. Required.
@@ -55,7 +58,7 @@ func (o *UpdateNetworkSnmpRequestUsersInner) GetUsername() string {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSnmpRequestUsersInner) GetUsernameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Username, true
 }
@@ -79,7 +82,7 @@ func (o *UpdateNetworkSnmpRequestUsersInner) GetPassphrase() string {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSnmpRequestUsersInner) GetPassphraseOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Passphrase, true
 }
@@ -90,14 +93,18 @@ func (o *UpdateNetworkSnmpRequestUsersInner) SetPassphrase(v string) {
 }
 
 func (o UpdateNetworkSnmpRequestUsersInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["username"] = o.Username
-	}
-	if true {
-		toSerialize["passphrase"] = o.Passphrase
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSnmpRequestUsersInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["username"] = o.Username
+	toSerialize["passphrase"] = o.Passphrase
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSnmpRequestUsersInner struct {

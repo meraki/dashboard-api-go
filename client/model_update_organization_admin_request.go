@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationAdminRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationAdminRequest{}
+
 // UpdateOrganizationAdminRequest struct for UpdateOrganizationAdminRequest
 type UpdateOrganizationAdminRequest struct {
 	// The name of the dashboard administrator
@@ -45,7 +48,7 @@ func NewUpdateOrganizationAdminRequestWithDefaults() *UpdateOrganizationAdminReq
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateOrganizationAdminRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *UpdateOrganizationAdminRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationAdminRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateOrganizationAdminRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *UpdateOrganizationAdminRequest) SetName(v string) {
 
 // GetOrgAccess returns the OrgAccess field value if set, zero value otherwise.
 func (o *UpdateOrganizationAdminRequest) GetOrgAccess() string {
-	if o == nil || isNil(o.OrgAccess) {
+	if o == nil || IsNil(o.OrgAccess) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *UpdateOrganizationAdminRequest) GetOrgAccess() string {
 // GetOrgAccessOk returns a tuple with the OrgAccess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationAdminRequest) GetOrgAccessOk() (*string, bool) {
-	if o == nil || isNil(o.OrgAccess) {
-    return nil, false
+	if o == nil || IsNil(o.OrgAccess) {
+		return nil, false
 	}
 	return o.OrgAccess, true
 }
 
 // HasOrgAccess returns a boolean if a field has been set.
 func (o *UpdateOrganizationAdminRequest) HasOrgAccess() bool {
-	if o != nil && !isNil(o.OrgAccess) {
+	if o != nil && !IsNil(o.OrgAccess) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *UpdateOrganizationAdminRequest) SetOrgAccess(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *UpdateOrganizationAdminRequest) GetTags() []CreateOrganizationAdminRequestTagsInner {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []CreateOrganizationAdminRequestTagsInner
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *UpdateOrganizationAdminRequest) GetTags() []CreateOrganizationAdminRequ
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationAdminRequest) GetTagsOk() ([]CreateOrganizationAdminRequestTagsInner, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
 	}
 	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *UpdateOrganizationAdminRequest) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *UpdateOrganizationAdminRequest) SetTags(v []CreateOrganizationAdminRequ
 
 // GetNetworks returns the Networks field value if set, zero value otherwise.
 func (o *UpdateOrganizationAdminRequest) GetNetworks() []CreateOrganizationAdminRequestNetworksInner {
-	if o == nil || isNil(o.Networks) {
+	if o == nil || IsNil(o.Networks) {
 		var ret []CreateOrganizationAdminRequestNetworksInner
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *UpdateOrganizationAdminRequest) GetNetworks() []CreateOrganizationAdmin
 // GetNetworksOk returns a tuple with the Networks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationAdminRequest) GetNetworksOk() ([]CreateOrganizationAdminRequestNetworksInner, bool) {
-	if o == nil || isNil(o.Networks) {
-    return nil, false
+	if o == nil || IsNil(o.Networks) {
+		return nil, false
 	}
 	return o.Networks, true
 }
 
 // HasNetworks returns a boolean if a field has been set.
 func (o *UpdateOrganizationAdminRequest) HasNetworks() bool {
-	if o != nil && !isNil(o.Networks) {
+	if o != nil && !IsNil(o.Networks) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *UpdateOrganizationAdminRequest) SetNetworks(v []CreateOrganizationAdmin
 }
 
 func (o UpdateOrganizationAdminRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.OrgAccess) {
-		toSerialize["orgAccess"] = o.OrgAccess
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !isNil(o.Networks) {
-		toSerialize["networks"] = o.Networks
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationAdminRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.OrgAccess) {
+		toSerialize["orgAccess"] = o.OrgAccess
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.Networks) {
+		toSerialize["networks"] = o.Networks
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationAdminRequest struct {

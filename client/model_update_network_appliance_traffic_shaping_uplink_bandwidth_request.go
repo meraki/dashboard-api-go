@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest{}
+
 // UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest struct for UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest
 type UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest struct {
 	BandwidthLimits *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimits `json:"bandwidthLimits,omitempty"`
@@ -38,7 +41,7 @@ func NewUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestWithDefaults()
 
 // GetBandwidthLimits returns the BandwidthLimits field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) GetBandwidthLimits() UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimits {
-	if o == nil || isNil(o.BandwidthLimits) {
+	if o == nil || IsNil(o.BandwidthLimits) {
 		var ret UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimits
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) GetBandwidt
 // GetBandwidthLimitsOk returns a tuple with the BandwidthLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) GetBandwidthLimitsOk() (*UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimits, bool) {
-	if o == nil || isNil(o.BandwidthLimits) {
-    return nil, false
+	if o == nil || IsNil(o.BandwidthLimits) {
+		return nil, false
 	}
 	return o.BandwidthLimits, true
 }
 
 // HasBandwidthLimits returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) HasBandwidthLimits() bool {
-	if o != nil && !isNil(o.BandwidthLimits) {
+	if o != nil && !IsNil(o.BandwidthLimits) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) SetBandwidt
 }
 
 func (o UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.BandwidthLimits) {
-		toSerialize["bandwidthLimits"] = o.BandwidthLimits
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BandwidthLimits) {
+		toSerialize["bandwidthLimits"] = o.BandwidthLimits
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest struct {

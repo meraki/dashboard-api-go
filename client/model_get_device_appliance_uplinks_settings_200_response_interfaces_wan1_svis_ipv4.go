@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4{}
+
 // GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4 IPv4 settings for static/dynamic mode.
 type GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4 struct {
 	// The assignment mode for this SVI. Applies only when PPPoE is disabled.
@@ -44,7 +47,7 @@ func NewGetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4WithDe
 
 // GetAssignmentMode returns the AssignmentMode field value if set, zero value otherwise.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) GetAssignmentMode() string {
-	if o == nil || isNil(o.AssignmentMode) {
+	if o == nil || IsNil(o.AssignmentMode) {
 		var ret string
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) Get
 // GetAssignmentModeOk returns a tuple with the AssignmentMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) GetAssignmentModeOk() (*string, bool) {
-	if o == nil || isNil(o.AssignmentMode) {
-    return nil, false
+	if o == nil || IsNil(o.AssignmentMode) {
+		return nil, false
 	}
 	return o.AssignmentMode, true
 }
 
 // HasAssignmentMode returns a boolean if a field has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) HasAssignmentMode() bool {
-	if o != nil && !isNil(o.AssignmentMode) {
+	if o != nil && !IsNil(o.AssignmentMode) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) Set
 
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) GetAddress() string {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		var ret string
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) Get
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) GetAddressOk() (*string, bool) {
-	if o == nil || isNil(o.Address) {
-    return nil, false
+	if o == nil || IsNil(o.Address) {
+		return nil, false
 	}
 	return o.Address, true
 }
 
 // HasAddress returns a boolean if a field has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) HasAddress() bool {
-	if o != nil && !isNil(o.Address) {
+	if o != nil && !IsNil(o.Address) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) Set
 
 // GetGateway returns the Gateway field value if set, zero value otherwise.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) GetGateway() string {
-	if o == nil || isNil(o.Gateway) {
+	if o == nil || IsNil(o.Gateway) {
 		var ret string
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) Get
 // GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) GetGatewayOk() (*string, bool) {
-	if o == nil || isNil(o.Gateway) {
-    return nil, false
+	if o == nil || IsNil(o.Gateway) {
+		return nil, false
 	}
 	return o.Gateway, true
 }
 
 // HasGateway returns a boolean if a field has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) HasGateway() bool {
-	if o != nil && !isNil(o.Gateway) {
+	if o != nil && !IsNil(o.Gateway) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) Set
 
 // GetNameservers returns the Nameservers field value if set, zero value otherwise.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) GetNameservers() GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4Nameservers {
-	if o == nil || isNil(o.Nameservers) {
+	if o == nil || IsNil(o.Nameservers) {
 		var ret GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4Nameservers
 		return ret
 	}
@@ -150,15 +153,15 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) Get
 // GetNameserversOk returns a tuple with the Nameservers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) GetNameserversOk() (*GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4Nameservers, bool) {
-	if o == nil || isNil(o.Nameservers) {
-    return nil, false
+	if o == nil || IsNil(o.Nameservers) {
+		return nil, false
 	}
 	return o.Nameservers, true
 }
 
 // HasNameservers returns a boolean if a field has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) HasNameservers() bool {
-	if o != nil && !isNil(o.Nameservers) {
+	if o != nil && !IsNil(o.Nameservers) {
 		return true
 	}
 
@@ -171,20 +174,28 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) Set
 }
 
 func (o GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.AssignmentMode) {
-		toSerialize["assignmentMode"] = o.AssignmentMode
-	}
-	if !isNil(o.Address) {
-		toSerialize["address"] = o.Address
-	}
-	if !isNil(o.Gateway) {
-		toSerialize["gateway"] = o.Gateway
-	}
-	if !isNil(o.Nameservers) {
-		toSerialize["nameservers"] = o.Nameservers
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AssignmentMode) {
+		toSerialize["assignmentMode"] = o.AssignmentMode
+	}
+	if !IsNil(o.Address) {
+		toSerialize["address"] = o.Address
+	}
+	if !IsNil(o.Gateway) {
+		toSerialize["gateway"] = o.Gateway
+	}
+	if !IsNil(o.Nameservers) {
+		toSerialize["nameservers"] = o.Nameservers
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4 struct {

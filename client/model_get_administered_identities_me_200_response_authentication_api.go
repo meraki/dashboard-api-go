@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetAdministeredIdentitiesMe200ResponseAuthenticationApi type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetAdministeredIdentitiesMe200ResponseAuthenticationApi{}
+
 // GetAdministeredIdentitiesMe200ResponseAuthenticationApi API authentication
 type GetAdministeredIdentitiesMe200ResponseAuthenticationApi struct {
 	Key *GetAdministeredIdentitiesMe200ResponseAuthenticationApiKey `json:"key,omitempty"`
@@ -38,7 +41,7 @@ func NewGetAdministeredIdentitiesMe200ResponseAuthenticationApiWithDefaults() *G
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthenticationApi) GetKey() GetAdministeredIdentitiesMe200ResponseAuthenticationApiKey {
-	if o == nil || isNil(o.Key) {
+	if o == nil || IsNil(o.Key) {
 		var ret GetAdministeredIdentitiesMe200ResponseAuthenticationApiKey
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetAdministeredIdentitiesMe200ResponseAuthenticationApi) GetKey() GetAd
 // GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthenticationApi) GetKeyOk() (*GetAdministeredIdentitiesMe200ResponseAuthenticationApiKey, bool) {
-	if o == nil || isNil(o.Key) {
-    return nil, false
+	if o == nil || IsNil(o.Key) {
+		return nil, false
 	}
 	return o.Key, true
 }
 
 // HasKey returns a boolean if a field has been set.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthenticationApi) HasKey() bool {
-	if o != nil && !isNil(o.Key) {
+	if o != nil && !IsNil(o.Key) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetAdministeredIdentitiesMe200ResponseAuthenticationApi) SetKey(v GetAd
 }
 
 func (o GetAdministeredIdentitiesMe200ResponseAuthenticationApi) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Key) {
-		toSerialize["key"] = o.Key
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetAdministeredIdentitiesMe200ResponseAuthenticationApi) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Key) {
+		toSerialize["key"] = o.Key
+	}
+	return toSerialize, nil
 }
 
 type NullableGetAdministeredIdentitiesMe200ResponseAuthenticationApi struct {

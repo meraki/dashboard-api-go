@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSensorReadingsHistory200ResponseInnerBattery type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSensorReadingsHistory200ResponseInnerBattery{}
+
 // GetOrganizationSensorReadingsHistory200ResponseInnerBattery Reading for the 'battery' metric. This will only be present if the 'metric' property equals 'battery'.
 type GetOrganizationSensorReadingsHistory200ResponseInnerBattery struct {
 	// Remaining battery life.
@@ -39,7 +42,7 @@ func NewGetOrganizationSensorReadingsHistory200ResponseInnerBatteryWithDefaults(
 
 // GetPercentage returns the Percentage field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerBattery) GetPercentage() int32 {
-	if o == nil || isNil(o.Percentage) {
+	if o == nil || IsNil(o.Percentage) {
 		var ret int32
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerBattery) GetPercent
 // GetPercentageOk returns a tuple with the Percentage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerBattery) GetPercentageOk() (*int32, bool) {
-	if o == nil || isNil(o.Percentage) {
-    return nil, false
+	if o == nil || IsNil(o.Percentage) {
+		return nil, false
 	}
 	return o.Percentage, true
 }
 
 // HasPercentage returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerBattery) HasPercentage() bool {
-	if o != nil && !isNil(o.Percentage) {
+	if o != nil && !IsNil(o.Percentage) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerBattery) SetPercent
 }
 
 func (o GetOrganizationSensorReadingsHistory200ResponseInnerBattery) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Percentage) {
-		toSerialize["percentage"] = o.Percentage
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSensorReadingsHistory200ResponseInnerBattery) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Percentage) {
+		toSerialize["percentage"] = o.Percentage
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSensorReadingsHistory200ResponseInnerBattery struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceFirewallSettingsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceFirewallSettingsRequest{}
+
 // UpdateNetworkApplianceFirewallSettingsRequest struct for UpdateNetworkApplianceFirewallSettingsRequest
 type UpdateNetworkApplianceFirewallSettingsRequest struct {
 	SpoofingProtection *UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtection `json:"spoofingProtection,omitempty"`
@@ -38,7 +41,7 @@ func NewUpdateNetworkApplianceFirewallSettingsRequestWithDefaults() *UpdateNetwo
 
 // GetSpoofingProtection returns the SpoofingProtection field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallSettingsRequest) GetSpoofingProtection() UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtection {
-	if o == nil || isNil(o.SpoofingProtection) {
+	if o == nil || IsNil(o.SpoofingProtection) {
 		var ret UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtection
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpdateNetworkApplianceFirewallSettingsRequest) GetSpoofingProtection() 
 // GetSpoofingProtectionOk returns a tuple with the SpoofingProtection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallSettingsRequest) GetSpoofingProtectionOk() (*UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtection, bool) {
-	if o == nil || isNil(o.SpoofingProtection) {
-    return nil, false
+	if o == nil || IsNil(o.SpoofingProtection) {
+		return nil, false
 	}
 	return o.SpoofingProtection, true
 }
 
 // HasSpoofingProtection returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallSettingsRequest) HasSpoofingProtection() bool {
-	if o != nil && !isNil(o.SpoofingProtection) {
+	if o != nil && !IsNil(o.SpoofingProtection) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpdateNetworkApplianceFirewallSettingsRequest) SetSpoofingProtection(v 
 }
 
 func (o UpdateNetworkApplianceFirewallSettingsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.SpoofingProtection) {
-		toSerialize["spoofingProtection"] = o.SpoofingProtection
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceFirewallSettingsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SpoofingProtection) {
+		toSerialize["spoofingProtection"] = o.SpoofingProtection
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceFirewallSettingsRequest struct {

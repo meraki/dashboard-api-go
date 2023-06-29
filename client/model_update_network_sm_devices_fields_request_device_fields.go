@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSmDevicesFieldsRequestDeviceFields type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSmDevicesFieldsRequestDeviceFields{}
+
 // UpdateNetworkSmDevicesFieldsRequestDeviceFields The new fields of the device. Each field of this object is optional.
 type UpdateNetworkSmDevicesFieldsRequestDeviceFields struct {
 	// New name for the device
@@ -41,7 +44,7 @@ func NewUpdateNetworkSmDevicesFieldsRequestDeviceFieldsWithDefaults() *UpdateNet
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkSmDevicesFieldsRequestDeviceFields) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkSmDevicesFieldsRequestDeviceFields) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSmDevicesFieldsRequestDeviceFields) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkSmDevicesFieldsRequestDeviceFields) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkSmDevicesFieldsRequestDeviceFields) SetName(v string) {
 
 // GetNotes returns the Notes field value if set, zero value otherwise.
 func (o *UpdateNetworkSmDevicesFieldsRequestDeviceFields) GetNotes() string {
-	if o == nil || isNil(o.Notes) {
+	if o == nil || IsNil(o.Notes) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkSmDevicesFieldsRequestDeviceFields) GetNotes() string {
 // GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSmDevicesFieldsRequestDeviceFields) GetNotesOk() (*string, bool) {
-	if o == nil || isNil(o.Notes) {
-    return nil, false
+	if o == nil || IsNil(o.Notes) {
+		return nil, false
 	}
 	return o.Notes, true
 }
 
 // HasNotes returns a boolean if a field has been set.
 func (o *UpdateNetworkSmDevicesFieldsRequestDeviceFields) HasNotes() bool {
-	if o != nil && !isNil(o.Notes) {
+	if o != nil && !IsNil(o.Notes) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkSmDevicesFieldsRequestDeviceFields) SetNotes(v string) {
 }
 
 func (o UpdateNetworkSmDevicesFieldsRequestDeviceFields) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Notes) {
-		toSerialize["notes"] = o.Notes
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSmDevicesFieldsRequestDeviceFields) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Notes) {
+		toSerialize["notes"] = o.Notes
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSmDevicesFieldsRequestDeviceFields struct {

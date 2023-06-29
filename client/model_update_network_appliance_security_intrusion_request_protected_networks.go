@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks{}
+
 // UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks Set the included/excluded networks from the intrusion engine (optional - omitting will leave current config unchanged). This is available only in 'passthrough' mode
 type UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks struct {
 	// true/false whether to use special IPv4 addresses: https://tools.ietf.org/html/rfc5735 (required). Default value is true if none currently saved
@@ -43,7 +46,7 @@ func NewUpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworksWithDefau
 
 // GetUseDefault returns the UseDefault field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) GetUseDefault() bool {
-	if o == nil || isNil(o.UseDefault) {
+	if o == nil || IsNil(o.UseDefault) {
 		var ret bool
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) GetUse
 // GetUseDefaultOk returns a tuple with the UseDefault field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) GetUseDefaultOk() (*bool, bool) {
-	if o == nil || isNil(o.UseDefault) {
-    return nil, false
+	if o == nil || IsNil(o.UseDefault) {
+		return nil, false
 	}
 	return o.UseDefault, true
 }
 
 // HasUseDefault returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) HasUseDefault() bool {
-	if o != nil && !isNil(o.UseDefault) {
+	if o != nil && !IsNil(o.UseDefault) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) SetUse
 
 // GetIncludedCidr returns the IncludedCidr field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) GetIncludedCidr() []string {
-	if o == nil || isNil(o.IncludedCidr) {
+	if o == nil || IsNil(o.IncludedCidr) {
 		var ret []string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) GetInc
 // GetIncludedCidrOk returns a tuple with the IncludedCidr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) GetIncludedCidrOk() ([]string, bool) {
-	if o == nil || isNil(o.IncludedCidr) {
-    return nil, false
+	if o == nil || IsNil(o.IncludedCidr) {
+		return nil, false
 	}
 	return o.IncludedCidr, true
 }
 
 // HasIncludedCidr returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) HasIncludedCidr() bool {
-	if o != nil && !isNil(o.IncludedCidr) {
+	if o != nil && !IsNil(o.IncludedCidr) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) SetInc
 
 // GetExcludedCidr returns the ExcludedCidr field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) GetExcludedCidr() []string {
-	if o == nil || isNil(o.ExcludedCidr) {
+	if o == nil || IsNil(o.ExcludedCidr) {
 		var ret []string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) GetExc
 // GetExcludedCidrOk returns a tuple with the ExcludedCidr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) GetExcludedCidrOk() ([]string, bool) {
-	if o == nil || isNil(o.ExcludedCidr) {
-    return nil, false
+	if o == nil || IsNil(o.ExcludedCidr) {
+		return nil, false
 	}
 	return o.ExcludedCidr, true
 }
 
 // HasExcludedCidr returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) HasExcludedCidr() bool {
-	if o != nil && !isNil(o.ExcludedCidr) {
+	if o != nil && !IsNil(o.ExcludedCidr) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) SetExc
 }
 
 func (o UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.UseDefault) {
-		toSerialize["useDefault"] = o.UseDefault
-	}
-	if !isNil(o.IncludedCidr) {
-		toSerialize["includedCidr"] = o.IncludedCidr
-	}
-	if !isNil(o.ExcludedCidr) {
-		toSerialize["excludedCidr"] = o.ExcludedCidr
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.UseDefault) {
+		toSerialize["useDefault"] = o.UseDefault
+	}
+	if !IsNil(o.IncludedCidr) {
+		toSerialize["includedCidr"] = o.IncludedCidr
+	}
+	if !IsNil(o.ExcludedCidr) {
+		toSerialize["excludedCidr"] = o.ExcludedCidr
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks struct {

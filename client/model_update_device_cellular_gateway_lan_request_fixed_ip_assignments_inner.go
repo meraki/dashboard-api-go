@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner{}
+
 // UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner struct for UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner
 type UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner struct {
 	// A descriptive name of the assignment
@@ -45,7 +48,7 @@ func NewUpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInnerWithDefaults
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner) GetName()
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -89,7 +92,7 @@ func (o *UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner) GetIp() s
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner) GetIpOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Ip, true
 }
@@ -113,7 +116,7 @@ func (o *UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner) GetMac() 
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner) GetMacOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Mac, true
 }
@@ -124,17 +127,21 @@ func (o *UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner) SetMac(v 
 }
 
 func (o UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["ip"] = o.Ip
-	}
-	if true {
-		toSerialize["mac"] = o.Mac
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	toSerialize["ip"] = o.Ip
+	toSerialize["mac"] = o.Mac
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner struct {

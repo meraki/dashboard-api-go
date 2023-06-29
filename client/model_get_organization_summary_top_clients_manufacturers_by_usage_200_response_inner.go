@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner{}
+
 // GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner struct for GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner
 type GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner struct {
 	// Name of the manufacturer
@@ -41,7 +44,7 @@ func NewGetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerWith
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) G
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) S
 
 // GetClients returns the Clients field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) GetClients() GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClients {
-	if o == nil || isNil(o.Clients) {
+	if o == nil || IsNil(o.Clients) {
 		var ret GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClients
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) G
 // GetClientsOk returns a tuple with the Clients field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) GetClientsOk() (*GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClients, bool) {
-	if o == nil || isNil(o.Clients) {
-    return nil, false
+	if o == nil || IsNil(o.Clients) {
+		return nil, false
 	}
 	return o.Clients, true
 }
 
 // HasClients returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) HasClients() bool {
-	if o != nil && !isNil(o.Clients) {
+	if o != nil && !IsNil(o.Clients) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) S
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) GetUsage() GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage {
-	if o == nil || isNil(o.Usage) {
+	if o == nil || IsNil(o.Usage) {
 		var ret GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) G
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) GetUsageOk() (*GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage, bool) {
-	if o == nil || isNil(o.Usage) {
-    return nil, false
+	if o == nil || IsNil(o.Usage) {
+		return nil, false
 	}
 	return o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) HasUsage() bool {
-	if o != nil && !isNil(o.Usage) {
+	if o != nil && !IsNil(o.Usage) {
 		return true
 	}
 
@@ -136,17 +139,25 @@ func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) S
 }
 
 func (o GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Clients) {
-		toSerialize["clients"] = o.Clients
-	}
-	if !isNil(o.Usage) {
-		toSerialize["usage"] = o.Usage
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Clients) {
+		toSerialize["clients"] = o.Clients
+	}
+	if !IsNil(o.Usage) {
+		toSerialize["usage"] = o.Usage
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInner struct {

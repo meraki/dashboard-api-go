@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSensorRelationships200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSensorRelationships200ResponseInner{}
+
 // GetNetworkSensorRelationships200ResponseInner struct for GetNetworkSensorRelationships200ResponseInner
 type GetNetworkSensorRelationships200ResponseInner struct {
 	Device *GetNetworkSensorRelationships200ResponseInnerDevice `json:"device,omitempty"`
@@ -39,7 +42,7 @@ func NewGetNetworkSensorRelationships200ResponseInnerWithDefaults() *GetNetworkS
 
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *GetNetworkSensorRelationships200ResponseInner) GetDevice() GetNetworkSensorRelationships200ResponseInnerDevice {
-	if o == nil || isNil(o.Device) {
+	if o == nil || IsNil(o.Device) {
 		var ret GetNetworkSensorRelationships200ResponseInnerDevice
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetNetworkSensorRelationships200ResponseInner) GetDevice() GetNetworkSe
 // GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorRelationships200ResponseInner) GetDeviceOk() (*GetNetworkSensorRelationships200ResponseInnerDevice, bool) {
-	if o == nil || isNil(o.Device) {
-    return nil, false
+	if o == nil || IsNil(o.Device) {
+		return nil, false
 	}
 	return o.Device, true
 }
 
 // HasDevice returns a boolean if a field has been set.
 func (o *GetNetworkSensorRelationships200ResponseInner) HasDevice() bool {
-	if o != nil && !isNil(o.Device) {
+	if o != nil && !IsNil(o.Device) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *GetNetworkSensorRelationships200ResponseInner) SetDevice(v GetNetworkSe
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *GetNetworkSensorRelationships200ResponseInner) GetRelationships() GetNetworkSensorRelationships200ResponseInnerRelationships {
-	if o == nil || isNil(o.Relationships) {
+	if o == nil || IsNil(o.Relationships) {
 		var ret GetNetworkSensorRelationships200ResponseInnerRelationships
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *GetNetworkSensorRelationships200ResponseInner) GetRelationships() GetNe
 // GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorRelationships200ResponseInner) GetRelationshipsOk() (*GetNetworkSensorRelationships200ResponseInnerRelationships, bool) {
-	if o == nil || isNil(o.Relationships) {
-    return nil, false
+	if o == nil || IsNil(o.Relationships) {
+		return nil, false
 	}
 	return o.Relationships, true
 }
 
 // HasRelationships returns a boolean if a field has been set.
 func (o *GetNetworkSensorRelationships200ResponseInner) HasRelationships() bool {
-	if o != nil && !isNil(o.Relationships) {
+	if o != nil && !IsNil(o.Relationships) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *GetNetworkSensorRelationships200ResponseInner) SetRelationships(v GetNe
 }
 
 func (o GetNetworkSensorRelationships200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Device) {
-		toSerialize["device"] = o.Device
-	}
-	if !isNil(o.Relationships) {
-		toSerialize["relationships"] = o.Relationships
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSensorRelationships200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Device) {
+		toSerialize["device"] = o.Device
+	}
+	if !IsNil(o.Relationships) {
+		toSerialize["relationships"] = o.Relationships
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSensorRelationships200ResponseInner struct {

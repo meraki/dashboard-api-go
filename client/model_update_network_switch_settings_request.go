@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchSettingsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchSettingsRequest{}
+
 // UpdateNetworkSwitchSettingsRequest struct for UpdateNetworkSwitchSettingsRequest
 type UpdateNetworkSwitchSettingsRequest struct {
 	// Management VLAN
@@ -44,7 +47,7 @@ func NewUpdateNetworkSwitchSettingsRequestWithDefaults() *UpdateNetworkSwitchSet
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchSettingsRequest) GetVlan() int32 {
-	if o == nil || isNil(o.Vlan) {
+	if o == nil || IsNil(o.Vlan) {
 		var ret int32
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *UpdateNetworkSwitchSettingsRequest) GetVlan() int32 {
 // GetVlanOk returns a tuple with the Vlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchSettingsRequest) GetVlanOk() (*int32, bool) {
-	if o == nil || isNil(o.Vlan) {
-    return nil, false
+	if o == nil || IsNil(o.Vlan) {
+		return nil, false
 	}
 	return o.Vlan, true
 }
 
 // HasVlan returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchSettingsRequest) HasVlan() bool {
-	if o != nil && !isNil(o.Vlan) {
+	if o != nil && !IsNil(o.Vlan) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *UpdateNetworkSwitchSettingsRequest) SetVlan(v int32) {
 
 // GetUseCombinedPower returns the UseCombinedPower field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchSettingsRequest) GetUseCombinedPower() bool {
-	if o == nil || isNil(o.UseCombinedPower) {
+	if o == nil || IsNil(o.UseCombinedPower) {
 		var ret bool
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *UpdateNetworkSwitchSettingsRequest) GetUseCombinedPower() bool {
 // GetUseCombinedPowerOk returns a tuple with the UseCombinedPower field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchSettingsRequest) GetUseCombinedPowerOk() (*bool, bool) {
-	if o == nil || isNil(o.UseCombinedPower) {
-    return nil, false
+	if o == nil || IsNil(o.UseCombinedPower) {
+		return nil, false
 	}
 	return o.UseCombinedPower, true
 }
 
 // HasUseCombinedPower returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchSettingsRequest) HasUseCombinedPower() bool {
-	if o != nil && !isNil(o.UseCombinedPower) {
+	if o != nil && !IsNil(o.UseCombinedPower) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *UpdateNetworkSwitchSettingsRequest) SetUseCombinedPower(v bool) {
 
 // GetPowerExceptions returns the PowerExceptions field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchSettingsRequest) GetPowerExceptions() []UpdateNetworkSwitchSettingsRequestPowerExceptionsInner {
-	if o == nil || isNil(o.PowerExceptions) {
+	if o == nil || IsNil(o.PowerExceptions) {
 		var ret []UpdateNetworkSwitchSettingsRequestPowerExceptionsInner
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *UpdateNetworkSwitchSettingsRequest) GetPowerExceptions() []UpdateNetwor
 // GetPowerExceptionsOk returns a tuple with the PowerExceptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchSettingsRequest) GetPowerExceptionsOk() ([]UpdateNetworkSwitchSettingsRequestPowerExceptionsInner, bool) {
-	if o == nil || isNil(o.PowerExceptions) {
-    return nil, false
+	if o == nil || IsNil(o.PowerExceptions) {
+		return nil, false
 	}
 	return o.PowerExceptions, true
 }
 
 // HasPowerExceptions returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchSettingsRequest) HasPowerExceptions() bool {
-	if o != nil && !isNil(o.PowerExceptions) {
+	if o != nil && !IsNil(o.PowerExceptions) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *UpdateNetworkSwitchSettingsRequest) SetPowerExceptions(v []UpdateNetwor
 
 // GetUplinkClientSampling returns the UplinkClientSampling field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchSettingsRequest) GetUplinkClientSampling() UpdateNetworkSwitchSettingsRequestUplinkClientSampling {
-	if o == nil || isNil(o.UplinkClientSampling) {
+	if o == nil || IsNil(o.UplinkClientSampling) {
 		var ret UpdateNetworkSwitchSettingsRequestUplinkClientSampling
 		return ret
 	}
@@ -150,15 +153,15 @@ func (o *UpdateNetworkSwitchSettingsRequest) GetUplinkClientSampling() UpdateNet
 // GetUplinkClientSamplingOk returns a tuple with the UplinkClientSampling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchSettingsRequest) GetUplinkClientSamplingOk() (*UpdateNetworkSwitchSettingsRequestUplinkClientSampling, bool) {
-	if o == nil || isNil(o.UplinkClientSampling) {
-    return nil, false
+	if o == nil || IsNil(o.UplinkClientSampling) {
+		return nil, false
 	}
 	return o.UplinkClientSampling, true
 }
 
 // HasUplinkClientSampling returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchSettingsRequest) HasUplinkClientSampling() bool {
-	if o != nil && !isNil(o.UplinkClientSampling) {
+	if o != nil && !IsNil(o.UplinkClientSampling) {
 		return true
 	}
 
@@ -171,20 +174,28 @@ func (o *UpdateNetworkSwitchSettingsRequest) SetUplinkClientSampling(v UpdateNet
 }
 
 func (o UpdateNetworkSwitchSettingsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Vlan) {
-		toSerialize["vlan"] = o.Vlan
-	}
-	if !isNil(o.UseCombinedPower) {
-		toSerialize["useCombinedPower"] = o.UseCombinedPower
-	}
-	if !isNil(o.PowerExceptions) {
-		toSerialize["powerExceptions"] = o.PowerExceptions
-	}
-	if !isNil(o.UplinkClientSampling) {
-		toSerialize["uplinkClientSampling"] = o.UplinkClientSampling
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchSettingsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Vlan) {
+		toSerialize["vlan"] = o.Vlan
+	}
+	if !IsNil(o.UseCombinedPower) {
+		toSerialize["useCombinedPower"] = o.UseCombinedPower
+	}
+	if !IsNil(o.PowerExceptions) {
+		toSerialize["powerExceptions"] = o.PowerExceptions
+	}
+	if !IsNil(o.UplinkClientSampling) {
+		toSerialize["uplinkClientSampling"] = o.UplinkClientSampling
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchSettingsRequest struct {

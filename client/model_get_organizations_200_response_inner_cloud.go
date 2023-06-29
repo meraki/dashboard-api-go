@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizations200ResponseInnerCloud type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizations200ResponseInnerCloud{}
+
 // GetOrganizations200ResponseInnerCloud Data for this organization
 type GetOrganizations200ResponseInnerCloud struct {
 	Region *GetOrganizations200ResponseInnerCloudRegion `json:"region,omitempty"`
@@ -38,7 +41,7 @@ func NewGetOrganizations200ResponseInnerCloudWithDefaults() *GetOrganizations200
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *GetOrganizations200ResponseInnerCloud) GetRegion() GetOrganizations200ResponseInnerCloudRegion {
-	if o == nil || isNil(o.Region) {
+	if o == nil || IsNil(o.Region) {
 		var ret GetOrganizations200ResponseInnerCloudRegion
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetOrganizations200ResponseInnerCloud) GetRegion() GetOrganizations200R
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizations200ResponseInnerCloud) GetRegionOk() (*GetOrganizations200ResponseInnerCloudRegion, bool) {
-	if o == nil || isNil(o.Region) {
-    return nil, false
+	if o == nil || IsNil(o.Region) {
+		return nil, false
 	}
 	return o.Region, true
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *GetOrganizations200ResponseInnerCloud) HasRegion() bool {
-	if o != nil && !isNil(o.Region) {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetOrganizations200ResponseInnerCloud) SetRegion(v GetOrganizations200R
 }
 
 func (o GetOrganizations200ResponseInnerCloud) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Region) {
-		toSerialize["region"] = o.Region
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizations200ResponseInnerCloud) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizations200ResponseInnerCloud struct {

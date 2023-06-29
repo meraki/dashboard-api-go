@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkCellularGatewayUplinkRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkCellularGatewayUplinkRequest{}
+
 // UpdateNetworkCellularGatewayUplinkRequest struct for UpdateNetworkCellularGatewayUplinkRequest
 type UpdateNetworkCellularGatewayUplinkRequest struct {
 	BandwidthLimits *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular `json:"bandwidthLimits,omitempty"`
@@ -38,7 +41,7 @@ func NewUpdateNetworkCellularGatewayUplinkRequestWithDefaults() *UpdateNetworkCe
 
 // GetBandwidthLimits returns the BandwidthLimits field value if set, zero value otherwise.
 func (o *UpdateNetworkCellularGatewayUplinkRequest) GetBandwidthLimits() UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular {
-	if o == nil || isNil(o.BandwidthLimits) {
+	if o == nil || IsNil(o.BandwidthLimits) {
 		var ret UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpdateNetworkCellularGatewayUplinkRequest) GetBandwidthLimits() UpdateN
 // GetBandwidthLimitsOk returns a tuple with the BandwidthLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkCellularGatewayUplinkRequest) GetBandwidthLimitsOk() (*UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular, bool) {
-	if o == nil || isNil(o.BandwidthLimits) {
-    return nil, false
+	if o == nil || IsNil(o.BandwidthLimits) {
+		return nil, false
 	}
 	return o.BandwidthLimits, true
 }
 
 // HasBandwidthLimits returns a boolean if a field has been set.
 func (o *UpdateNetworkCellularGatewayUplinkRequest) HasBandwidthLimits() bool {
-	if o != nil && !isNil(o.BandwidthLimits) {
+	if o != nil && !IsNil(o.BandwidthLimits) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpdateNetworkCellularGatewayUplinkRequest) SetBandwidthLimits(v UpdateN
 }
 
 func (o UpdateNetworkCellularGatewayUplinkRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.BandwidthLimits) {
-		toSerialize["bandwidthLimits"] = o.BandwidthLimits
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkCellularGatewayUplinkRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BandwidthLimits) {
+		toSerialize["bandwidthLimits"] = o.BandwidthLimits
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkCellularGatewayUplinkRequest struct {

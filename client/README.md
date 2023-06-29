@@ -29,14 +29,13 @@ Install the following dependencies:
 
 ```shell
 go get github.com/stretchr/testify/assert
-go get golang.org/x/oauth2
 go get golang.org/x/net/context
 ```
 
 Put the package under your project folder and add the following in import:
 
 ```golang
-import client "github.com/meraki/dashboard-api-go/client"
+import client "github.com/meraki/dashboard-api-go"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -3460,22 +3459,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Authorization
 
-- **Header**: "Authorization"
-- **Type**: HTTP Bearer token authentication
 
-Example
-
-```golang
-configuration := client.NewConfiguration()
-configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
-
-apiClient := client.NewAPIClient(configuration)
-```
-
-
-
-
-
+Authentication schemes defined for the API:
 ### meraki_api_key
 
 - **Type**: API key
@@ -3483,6 +3468,14 @@ apiClient := client.NewAPIClient(configuration)
 - **Location**: HTTP header
 
 Note, each API key must be added to a map of `map[string]APIKey` where the key is: X-Cisco-Meraki-API-Key and passed in as the auth context for each request.
+
+Example
+
+```golang
+configuration := openapiclient.NewConfiguration()
+configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+apiClient := openapiclient.NewAPIClient(configuration)
+```
 
 
 ## Documentation for Utility Methods

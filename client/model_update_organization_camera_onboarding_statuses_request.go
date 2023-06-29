@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationCameraOnboardingStatusesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationCameraOnboardingStatusesRequest{}
+
 // UpdateOrganizationCameraOnboardingStatusesRequest struct for UpdateOrganizationCameraOnboardingStatusesRequest
 type UpdateOrganizationCameraOnboardingStatusesRequest struct {
 	// Serial of camera
@@ -41,7 +44,7 @@ func NewUpdateOrganizationCameraOnboardingStatusesRequestWithDefaults() *UpdateO
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *UpdateOrganizationCameraOnboardingStatusesRequest) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateOrganizationCameraOnboardingStatusesRequest) GetSerial() string {
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationCameraOnboardingStatusesRequest) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *UpdateOrganizationCameraOnboardingStatusesRequest) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateOrganizationCameraOnboardingStatusesRequest) SetSerial(v string) 
 
 // GetWirelessCredentialsSent returns the WirelessCredentialsSent field value if set, zero value otherwise.
 func (o *UpdateOrganizationCameraOnboardingStatusesRequest) GetWirelessCredentialsSent() bool {
-	if o == nil || isNil(o.WirelessCredentialsSent) {
+	if o == nil || IsNil(o.WirelessCredentialsSent) {
 		var ret bool
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateOrganizationCameraOnboardingStatusesRequest) GetWirelessCredentia
 // GetWirelessCredentialsSentOk returns a tuple with the WirelessCredentialsSent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationCameraOnboardingStatusesRequest) GetWirelessCredentialsSentOk() (*bool, bool) {
-	if o == nil || isNil(o.WirelessCredentialsSent) {
-    return nil, false
+	if o == nil || IsNil(o.WirelessCredentialsSent) {
+		return nil, false
 	}
 	return o.WirelessCredentialsSent, true
 }
 
 // HasWirelessCredentialsSent returns a boolean if a field has been set.
 func (o *UpdateOrganizationCameraOnboardingStatusesRequest) HasWirelessCredentialsSent() bool {
-	if o != nil && !isNil(o.WirelessCredentialsSent) {
+	if o != nil && !IsNil(o.WirelessCredentialsSent) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateOrganizationCameraOnboardingStatusesRequest) SetWirelessCredentia
 }
 
 func (o UpdateOrganizationCameraOnboardingStatusesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.WirelessCredentialsSent) {
-		toSerialize["wirelessCredentialsSent"] = o.WirelessCredentialsSent
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationCameraOnboardingStatusesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.WirelessCredentialsSent) {
+		toSerialize["wirelessCredentialsSent"] = o.WirelessCredentialsSent
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationCameraOnboardingStatusesRequest struct {

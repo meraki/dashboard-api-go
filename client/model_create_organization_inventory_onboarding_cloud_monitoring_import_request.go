@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest{}
+
 // CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest struct for CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest
 type CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest struct {
 	// A set of device imports to commit
@@ -52,7 +55,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) GetD
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) GetDevicesOk() ([]CreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevicesInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Devices, true
 }
@@ -63,11 +66,17 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) SetD
 }
 
 func (o CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["devices"] = o.Devices
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationInventoryOnboardingCloudMonitoringImportRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["devices"] = o.Devices
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationInventoryOnboardingCloudMonitoringImportRequest struct {

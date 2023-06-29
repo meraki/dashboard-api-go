@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWebhooksHttpServerRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWebhooksHttpServerRequest{}
+
 // UpdateNetworkWebhooksHttpServerRequest struct for UpdateNetworkWebhooksHttpServerRequest
 type UpdateNetworkWebhooksHttpServerRequest struct {
 	// A name for easy reference to the HTTP server
@@ -42,7 +45,7 @@ func NewUpdateNetworkWebhooksHttpServerRequestWithDefaults() *UpdateNetworkWebho
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkWebhooksHttpServerRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *UpdateNetworkWebhooksHttpServerRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWebhooksHttpServerRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkWebhooksHttpServerRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *UpdateNetworkWebhooksHttpServerRequest) SetName(v string) {
 
 // GetSharedSecret returns the SharedSecret field value if set, zero value otherwise.
 func (o *UpdateNetworkWebhooksHttpServerRequest) GetSharedSecret() string {
-	if o == nil || isNil(o.SharedSecret) {
+	if o == nil || IsNil(o.SharedSecret) {
 		var ret string
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *UpdateNetworkWebhooksHttpServerRequest) GetSharedSecret() string {
 // GetSharedSecretOk returns a tuple with the SharedSecret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWebhooksHttpServerRequest) GetSharedSecretOk() (*string, bool) {
-	if o == nil || isNil(o.SharedSecret) {
-    return nil, false
+	if o == nil || IsNil(o.SharedSecret) {
+		return nil, false
 	}
 	return o.SharedSecret, true
 }
 
 // HasSharedSecret returns a boolean if a field has been set.
 func (o *UpdateNetworkWebhooksHttpServerRequest) HasSharedSecret() bool {
-	if o != nil && !isNil(o.SharedSecret) {
+	if o != nil && !IsNil(o.SharedSecret) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *UpdateNetworkWebhooksHttpServerRequest) SetSharedSecret(v string) {
 
 // GetPayloadTemplate returns the PayloadTemplate field value if set, zero value otherwise.
 func (o *UpdateNetworkWebhooksHttpServerRequest) GetPayloadTemplate() UpdateNetworkWebhooksHttpServerRequestPayloadTemplate {
-	if o == nil || isNil(o.PayloadTemplate) {
+	if o == nil || IsNil(o.PayloadTemplate) {
 		var ret UpdateNetworkWebhooksHttpServerRequestPayloadTemplate
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *UpdateNetworkWebhooksHttpServerRequest) GetPayloadTemplate() UpdateNetw
 // GetPayloadTemplateOk returns a tuple with the PayloadTemplate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWebhooksHttpServerRequest) GetPayloadTemplateOk() (*UpdateNetworkWebhooksHttpServerRequestPayloadTemplate, bool) {
-	if o == nil || isNil(o.PayloadTemplate) {
-    return nil, false
+	if o == nil || IsNil(o.PayloadTemplate) {
+		return nil, false
 	}
 	return o.PayloadTemplate, true
 }
 
 // HasPayloadTemplate returns a boolean if a field has been set.
 func (o *UpdateNetworkWebhooksHttpServerRequest) HasPayloadTemplate() bool {
-	if o != nil && !isNil(o.PayloadTemplate) {
+	if o != nil && !IsNil(o.PayloadTemplate) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *UpdateNetworkWebhooksHttpServerRequest) SetPayloadTemplate(v UpdateNetw
 }
 
 func (o UpdateNetworkWebhooksHttpServerRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.SharedSecret) {
-		toSerialize["sharedSecret"] = o.SharedSecret
-	}
-	if !isNil(o.PayloadTemplate) {
-		toSerialize["payloadTemplate"] = o.PayloadTemplate
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWebhooksHttpServerRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.SharedSecret) {
+		toSerialize["sharedSecret"] = o.SharedSecret
+	}
+	if !IsNil(o.PayloadTemplate) {
+		toSerialize["payloadTemplate"] = o.PayloadTemplate
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWebhooksHttpServerRequest struct {

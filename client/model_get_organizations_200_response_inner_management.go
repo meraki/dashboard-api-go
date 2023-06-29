@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizations200ResponseInnerManagement type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizations200ResponseInnerManagement{}
+
 // GetOrganizations200ResponseInnerManagement Information about the organization's management system
 type GetOrganizations200ResponseInnerManagement struct {
 	// Details related to organization management, possibly empty
@@ -39,7 +42,7 @@ func NewGetOrganizations200ResponseInnerManagementWithDefaults() *GetOrganizatio
 
 // GetDetails returns the Details field value if set, zero value otherwise.
 func (o *GetOrganizations200ResponseInnerManagement) GetDetails() []GetOrganizations200ResponseInnerManagementDetailsInner {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		var ret []GetOrganizations200ResponseInnerManagementDetailsInner
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizations200ResponseInnerManagement) GetDetails() []GetOrganizat
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizations200ResponseInnerManagement) GetDetailsOk() ([]GetOrganizations200ResponseInnerManagementDetailsInner, bool) {
-	if o == nil || isNil(o.Details) {
-    return nil, false
+	if o == nil || IsNil(o.Details) {
+		return nil, false
 	}
 	return o.Details, true
 }
 
 // HasDetails returns a boolean if a field has been set.
 func (o *GetOrganizations200ResponseInnerManagement) HasDetails() bool {
-	if o != nil && !isNil(o.Details) {
+	if o != nil && !IsNil(o.Details) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizations200ResponseInnerManagement) SetDetails(v []GetOrganizat
 }
 
 func (o GetOrganizations200ResponseInnerManagement) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Details) {
-		toSerialize["details"] = o.Details
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizations200ResponseInnerManagement) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Details) {
+		toSerialize["details"] = o.Details
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizations200ResponseInnerManagement struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationAlertsProfileRequestRecipients type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationAlertsProfileRequestRecipients{}
+
 // CreateOrganizationAlertsProfileRequestRecipients List of recipients that will recieve the alert.
 type CreateOrganizationAlertsProfileRequestRecipients struct {
 	// A list of emails that will receive information about the alert
@@ -41,7 +44,7 @@ func NewCreateOrganizationAlertsProfileRequestRecipientsWithDefaults() *CreateOr
 
 // GetEmails returns the Emails field value if set, zero value otherwise.
 func (o *CreateOrganizationAlertsProfileRequestRecipients) GetEmails() []string {
-	if o == nil || isNil(o.Emails) {
+	if o == nil || IsNil(o.Emails) {
 		var ret []string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateOrganizationAlertsProfileRequestRecipients) GetEmails() []string 
 // GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAlertsProfileRequestRecipients) GetEmailsOk() ([]string, bool) {
-	if o == nil || isNil(o.Emails) {
-    return nil, false
+	if o == nil || IsNil(o.Emails) {
+		return nil, false
 	}
 	return o.Emails, true
 }
 
 // HasEmails returns a boolean if a field has been set.
 func (o *CreateOrganizationAlertsProfileRequestRecipients) HasEmails() bool {
-	if o != nil && !isNil(o.Emails) {
+	if o != nil && !IsNil(o.Emails) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateOrganizationAlertsProfileRequestRecipients) SetEmails(v []string)
 
 // GetHttpServerIds returns the HttpServerIds field value if set, zero value otherwise.
 func (o *CreateOrganizationAlertsProfileRequestRecipients) GetHttpServerIds() []string {
-	if o == nil || isNil(o.HttpServerIds) {
+	if o == nil || IsNil(o.HttpServerIds) {
 		var ret []string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateOrganizationAlertsProfileRequestRecipients) GetHttpServerIds() []
 // GetHttpServerIdsOk returns a tuple with the HttpServerIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAlertsProfileRequestRecipients) GetHttpServerIdsOk() ([]string, bool) {
-	if o == nil || isNil(o.HttpServerIds) {
-    return nil, false
+	if o == nil || IsNil(o.HttpServerIds) {
+		return nil, false
 	}
 	return o.HttpServerIds, true
 }
 
 // HasHttpServerIds returns a boolean if a field has been set.
 func (o *CreateOrganizationAlertsProfileRequestRecipients) HasHttpServerIds() bool {
-	if o != nil && !isNil(o.HttpServerIds) {
+	if o != nil && !IsNil(o.HttpServerIds) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *CreateOrganizationAlertsProfileRequestRecipients) SetHttpServerIds(v []
 }
 
 func (o CreateOrganizationAlertsProfileRequestRecipients) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Emails) {
-		toSerialize["emails"] = o.Emails
-	}
-	if !isNil(o.HttpServerIds) {
-		toSerialize["httpServerIds"] = o.HttpServerIds
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationAlertsProfileRequestRecipients) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Emails) {
+		toSerialize["emails"] = o.Emails
+	}
+	if !IsNil(o.HttpServerIds) {
+		toSerialize["httpServerIds"] = o.HttpServerIds
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationAlertsProfileRequestRecipients struct {

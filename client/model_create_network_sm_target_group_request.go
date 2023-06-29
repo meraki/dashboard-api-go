@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkSmTargetGroupRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkSmTargetGroupRequest{}
+
 // CreateNetworkSmTargetGroupRequest struct for CreateNetworkSmTargetGroupRequest
 type CreateNetworkSmTargetGroupRequest struct {
 	// The name of this target group
@@ -41,7 +44,7 @@ func NewCreateNetworkSmTargetGroupRequestWithDefaults() *CreateNetworkSmTargetGr
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CreateNetworkSmTargetGroupRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateNetworkSmTargetGroupRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSmTargetGroupRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateNetworkSmTargetGroupRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateNetworkSmTargetGroupRequest) SetName(v string) {
 
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *CreateNetworkSmTargetGroupRequest) GetScope() string {
-	if o == nil || isNil(o.Scope) {
+	if o == nil || IsNil(o.Scope) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateNetworkSmTargetGroupRequest) GetScope() string {
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSmTargetGroupRequest) GetScopeOk() (*string, bool) {
-	if o == nil || isNil(o.Scope) {
-    return nil, false
+	if o == nil || IsNil(o.Scope) {
+		return nil, false
 	}
 	return o.Scope, true
 }
 
 // HasScope returns a boolean if a field has been set.
 func (o *CreateNetworkSmTargetGroupRequest) HasScope() bool {
-	if o != nil && !isNil(o.Scope) {
+	if o != nil && !IsNil(o.Scope) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *CreateNetworkSmTargetGroupRequest) SetScope(v string) {
 }
 
 func (o CreateNetworkSmTargetGroupRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Scope) {
-		toSerialize["scope"] = o.Scope
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkSmTargetGroupRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Scope) {
+		toSerialize["scope"] = o.Scope
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkSmTargetGroupRequest struct {

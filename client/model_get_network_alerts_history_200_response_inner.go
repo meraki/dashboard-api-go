@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkAlertsHistory200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkAlertsHistory200ResponseInner{}
+
 // GetNetworkAlertsHistory200ResponseInner struct for GetNetworkAlertsHistory200ResponseInner
 type GetNetworkAlertsHistory200ResponseInner struct {
 	// time when the event occurred
@@ -47,7 +50,7 @@ func NewGetNetworkAlertsHistory200ResponseInnerWithDefaults() *GetNetworkAlertsH
 
 // GetOccurredAt returns the OccurredAt field value if set, zero value otherwise.
 func (o *GetNetworkAlertsHistory200ResponseInner) GetOccurredAt() string {
-	if o == nil || isNil(o.OccurredAt) {
+	if o == nil || IsNil(o.OccurredAt) {
 		var ret string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *GetNetworkAlertsHistory200ResponseInner) GetOccurredAt() string {
 // GetOccurredAtOk returns a tuple with the OccurredAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAlertsHistory200ResponseInner) GetOccurredAtOk() (*string, bool) {
-	if o == nil || isNil(o.OccurredAt) {
-    return nil, false
+	if o == nil || IsNil(o.OccurredAt) {
+		return nil, false
 	}
 	return o.OccurredAt, true
 }
 
 // HasOccurredAt returns a boolean if a field has been set.
 func (o *GetNetworkAlertsHistory200ResponseInner) HasOccurredAt() bool {
-	if o != nil && !isNil(o.OccurredAt) {
+	if o != nil && !IsNil(o.OccurredAt) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *GetNetworkAlertsHistory200ResponseInner) SetOccurredAt(v string) {
 
 // GetAlertTypeId returns the AlertTypeId field value if set, zero value otherwise.
 func (o *GetNetworkAlertsHistory200ResponseInner) GetAlertTypeId() string {
-	if o == nil || isNil(o.AlertTypeId) {
+	if o == nil || IsNil(o.AlertTypeId) {
 		var ret string
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *GetNetworkAlertsHistory200ResponseInner) GetAlertTypeId() string {
 // GetAlertTypeIdOk returns a tuple with the AlertTypeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAlertsHistory200ResponseInner) GetAlertTypeIdOk() (*string, bool) {
-	if o == nil || isNil(o.AlertTypeId) {
-    return nil, false
+	if o == nil || IsNil(o.AlertTypeId) {
+		return nil, false
 	}
 	return o.AlertTypeId, true
 }
 
 // HasAlertTypeId returns a boolean if a field has been set.
 func (o *GetNetworkAlertsHistory200ResponseInner) HasAlertTypeId() bool {
-	if o != nil && !isNil(o.AlertTypeId) {
+	if o != nil && !IsNil(o.AlertTypeId) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *GetNetworkAlertsHistory200ResponseInner) SetAlertTypeId(v string) {
 
 // GetAlertType returns the AlertType field value if set, zero value otherwise.
 func (o *GetNetworkAlertsHistory200ResponseInner) GetAlertType() string {
-	if o == nil || isNil(o.AlertType) {
+	if o == nil || IsNil(o.AlertType) {
 		var ret string
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *GetNetworkAlertsHistory200ResponseInner) GetAlertType() string {
 // GetAlertTypeOk returns a tuple with the AlertType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAlertsHistory200ResponseInner) GetAlertTypeOk() (*string, bool) {
-	if o == nil || isNil(o.AlertType) {
-    return nil, false
+	if o == nil || IsNil(o.AlertType) {
+		return nil, false
 	}
 	return o.AlertType, true
 }
 
 // HasAlertType returns a boolean if a field has been set.
 func (o *GetNetworkAlertsHistory200ResponseInner) HasAlertType() bool {
-	if o != nil && !isNil(o.AlertType) {
+	if o != nil && !IsNil(o.AlertType) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *GetNetworkAlertsHistory200ResponseInner) SetAlertType(v string) {
 
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *GetNetworkAlertsHistory200ResponseInner) GetDevice() GetNetworkAlertsHistory200ResponseInnerDevice {
-	if o == nil || isNil(o.Device) {
+	if o == nil || IsNil(o.Device) {
 		var ret GetNetworkAlertsHistory200ResponseInnerDevice
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *GetNetworkAlertsHistory200ResponseInner) GetDevice() GetNetworkAlertsHi
 // GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAlertsHistory200ResponseInner) GetDeviceOk() (*GetNetworkAlertsHistory200ResponseInnerDevice, bool) {
-	if o == nil || isNil(o.Device) {
-    return nil, false
+	if o == nil || IsNil(o.Device) {
+		return nil, false
 	}
 	return o.Device, true
 }
 
 // HasDevice returns a boolean if a field has been set.
 func (o *GetNetworkAlertsHistory200ResponseInner) HasDevice() bool {
-	if o != nil && !isNil(o.Device) {
+	if o != nil && !IsNil(o.Device) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *GetNetworkAlertsHistory200ResponseInner) SetDevice(v GetNetworkAlertsHi
 
 // GetDestinations returns the Destinations field value if set, zero value otherwise.
 func (o *GetNetworkAlertsHistory200ResponseInner) GetDestinations() GetNetworkAlertsHistory200ResponseInnerDestinations {
-	if o == nil || isNil(o.Destinations) {
+	if o == nil || IsNil(o.Destinations) {
 		var ret GetNetworkAlertsHistory200ResponseInnerDestinations
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *GetNetworkAlertsHistory200ResponseInner) GetDestinations() GetNetworkAl
 // GetDestinationsOk returns a tuple with the Destinations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAlertsHistory200ResponseInner) GetDestinationsOk() (*GetNetworkAlertsHistory200ResponseInnerDestinations, bool) {
-	if o == nil || isNil(o.Destinations) {
-    return nil, false
+	if o == nil || IsNil(o.Destinations) {
+		return nil, false
 	}
 	return o.Destinations, true
 }
 
 // HasDestinations returns a boolean if a field has been set.
 func (o *GetNetworkAlertsHistory200ResponseInner) HasDestinations() bool {
-	if o != nil && !isNil(o.Destinations) {
+	if o != nil && !IsNil(o.Destinations) {
 		return true
 	}
 
@@ -207,7 +210,7 @@ func (o *GetNetworkAlertsHistory200ResponseInner) SetDestinations(v GetNetworkAl
 
 // GetAlertData returns the AlertData field value if set, zero value otherwise.
 func (o *GetNetworkAlertsHistory200ResponseInner) GetAlertData() map[string]interface{} {
-	if o == nil || isNil(o.AlertData) {
+	if o == nil || IsNil(o.AlertData) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -217,15 +220,15 @@ func (o *GetNetworkAlertsHistory200ResponseInner) GetAlertData() map[string]inte
 // GetAlertDataOk returns a tuple with the AlertData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAlertsHistory200ResponseInner) GetAlertDataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.AlertData) {
-    return map[string]interface{}{}, false
+	if o == nil || IsNil(o.AlertData) {
+		return map[string]interface{}{}, false
 	}
 	return o.AlertData, true
 }
 
 // HasAlertData returns a boolean if a field has been set.
 func (o *GetNetworkAlertsHistory200ResponseInner) HasAlertData() bool {
-	if o != nil && !isNil(o.AlertData) {
+	if o != nil && !IsNil(o.AlertData) {
 		return true
 	}
 
@@ -238,26 +241,34 @@ func (o *GetNetworkAlertsHistory200ResponseInner) SetAlertData(v map[string]inte
 }
 
 func (o GetNetworkAlertsHistory200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.OccurredAt) {
-		toSerialize["occurredAt"] = o.OccurredAt
-	}
-	if !isNil(o.AlertTypeId) {
-		toSerialize["alertTypeId"] = o.AlertTypeId
-	}
-	if !isNil(o.AlertType) {
-		toSerialize["alertType"] = o.AlertType
-	}
-	if !isNil(o.Device) {
-		toSerialize["device"] = o.Device
-	}
-	if !isNil(o.Destinations) {
-		toSerialize["destinations"] = o.Destinations
-	}
-	if !isNil(o.AlertData) {
-		toSerialize["alertData"] = o.AlertData
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkAlertsHistory200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.OccurredAt) {
+		toSerialize["occurredAt"] = o.OccurredAt
+	}
+	if !IsNil(o.AlertTypeId) {
+		toSerialize["alertTypeId"] = o.AlertTypeId
+	}
+	if !IsNil(o.AlertType) {
+		toSerialize["alertType"] = o.AlertType
+	}
+	if !IsNil(o.Device) {
+		toSerialize["device"] = o.Device
+	}
+	if !IsNil(o.Destinations) {
+		toSerialize["destinations"] = o.Destinations
+	}
+	if !IsNil(o.AlertData) {
+		toSerialize["alertData"] = o.AlertData
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkAlertsHistory200ResponseInner struct {

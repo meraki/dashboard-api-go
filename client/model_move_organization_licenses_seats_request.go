@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MoveOrganizationLicensesSeatsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MoveOrganizationLicensesSeatsRequest{}
+
 // MoveOrganizationLicensesSeatsRequest struct for MoveOrganizationLicensesSeatsRequest
 type MoveOrganizationLicensesSeatsRequest struct {
 	// The ID of the organization to move the SM seats to
@@ -58,7 +61,7 @@ func (o *MoveOrganizationLicensesSeatsRequest) GetDestOrganizationId() string {
 // and a boolean to check if the value has been set.
 func (o *MoveOrganizationLicensesSeatsRequest) GetDestOrganizationIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.DestOrganizationId, true
 }
@@ -82,7 +85,7 @@ func (o *MoveOrganizationLicensesSeatsRequest) GetLicenseId() string {
 // and a boolean to check if the value has been set.
 func (o *MoveOrganizationLicensesSeatsRequest) GetLicenseIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.LicenseId, true
 }
@@ -106,7 +109,7 @@ func (o *MoveOrganizationLicensesSeatsRequest) GetSeatCount() int32 {
 // and a boolean to check if the value has been set.
 func (o *MoveOrganizationLicensesSeatsRequest) GetSeatCountOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.SeatCount, true
 }
@@ -117,17 +120,19 @@ func (o *MoveOrganizationLicensesSeatsRequest) SetSeatCount(v int32) {
 }
 
 func (o MoveOrganizationLicensesSeatsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["destOrganizationId"] = o.DestOrganizationId
-	}
-	if true {
-		toSerialize["licenseId"] = o.LicenseId
-	}
-	if true {
-		toSerialize["seatCount"] = o.SeatCount
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MoveOrganizationLicensesSeatsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["destOrganizationId"] = o.DestOrganizationId
+	toSerialize["licenseId"] = o.LicenseId
+	toSerialize["seatCount"] = o.SeatCount
+	return toSerialize, nil
 }
 
 type NullableMoveOrganizationLicensesSeatsRequest struct {

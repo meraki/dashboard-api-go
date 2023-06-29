@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSettingsRequestLocalStatusPage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSettingsRequestLocalStatusPage{}
+
 // UpdateNetworkSettingsRequestLocalStatusPage A hash of Local Status page(s)' authentication options applied to the Network.
 type UpdateNetworkSettingsRequestLocalStatusPage struct {
 	Authentication *UpdateNetworkSettingsRequestLocalStatusPageAuthentication `json:"authentication,omitempty"`
@@ -38,7 +41,7 @@ func NewUpdateNetworkSettingsRequestLocalStatusPageWithDefaults() *UpdateNetwork
 
 // GetAuthentication returns the Authentication field value if set, zero value otherwise.
 func (o *UpdateNetworkSettingsRequestLocalStatusPage) GetAuthentication() UpdateNetworkSettingsRequestLocalStatusPageAuthentication {
-	if o == nil || isNil(o.Authentication) {
+	if o == nil || IsNil(o.Authentication) {
 		var ret UpdateNetworkSettingsRequestLocalStatusPageAuthentication
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpdateNetworkSettingsRequestLocalStatusPage) GetAuthentication() Update
 // GetAuthenticationOk returns a tuple with the Authentication field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSettingsRequestLocalStatusPage) GetAuthenticationOk() (*UpdateNetworkSettingsRequestLocalStatusPageAuthentication, bool) {
-	if o == nil || isNil(o.Authentication) {
-    return nil, false
+	if o == nil || IsNil(o.Authentication) {
+		return nil, false
 	}
 	return o.Authentication, true
 }
 
 // HasAuthentication returns a boolean if a field has been set.
 func (o *UpdateNetworkSettingsRequestLocalStatusPage) HasAuthentication() bool {
-	if o != nil && !isNil(o.Authentication) {
+	if o != nil && !IsNil(o.Authentication) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpdateNetworkSettingsRequestLocalStatusPage) SetAuthentication(v Update
 }
 
 func (o UpdateNetworkSettingsRequestLocalStatusPage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Authentication) {
-		toSerialize["authentication"] = o.Authentication
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSettingsRequestLocalStatusPage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Authentication) {
+		toSerialize["authentication"] = o.Authentication
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSettingsRequestLocalStatusPage struct {

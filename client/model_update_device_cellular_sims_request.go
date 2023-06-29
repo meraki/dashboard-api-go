@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceCellularSimsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceCellularSimsRequest{}
+
 // UpdateDeviceCellularSimsRequest struct for UpdateDeviceCellularSimsRequest
 type UpdateDeviceCellularSimsRequest struct {
 	// List of SIMs. If a SIM was previously configured and not specified in this request, it will remain unchanged.
@@ -40,7 +43,7 @@ func NewUpdateDeviceCellularSimsRequestWithDefaults() *UpdateDeviceCellularSimsR
 
 // GetSims returns the Sims field value if set, zero value otherwise.
 func (o *UpdateDeviceCellularSimsRequest) GetSims() []UpdateDeviceCellularSimsRequestSimsInner {
-	if o == nil || isNil(o.Sims) {
+	if o == nil || IsNil(o.Sims) {
 		var ret []UpdateDeviceCellularSimsRequestSimsInner
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *UpdateDeviceCellularSimsRequest) GetSims() []UpdateDeviceCellularSimsRe
 // GetSimsOk returns a tuple with the Sims field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularSimsRequest) GetSimsOk() ([]UpdateDeviceCellularSimsRequestSimsInner, bool) {
-	if o == nil || isNil(o.Sims) {
-    return nil, false
+	if o == nil || IsNil(o.Sims) {
+		return nil, false
 	}
 	return o.Sims, true
 }
 
 // HasSims returns a boolean if a field has been set.
 func (o *UpdateDeviceCellularSimsRequest) HasSims() bool {
-	if o != nil && !isNil(o.Sims) {
+	if o != nil && !IsNil(o.Sims) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *UpdateDeviceCellularSimsRequest) SetSims(v []UpdateDeviceCellularSimsRe
 
 // GetSimFailover returns the SimFailover field value if set, zero value otherwise.
 func (o *UpdateDeviceCellularSimsRequest) GetSimFailover() UpdateDeviceCellularSimsRequestSimFailover {
-	if o == nil || isNil(o.SimFailover) {
+	if o == nil || IsNil(o.SimFailover) {
 		var ret UpdateDeviceCellularSimsRequestSimFailover
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *UpdateDeviceCellularSimsRequest) GetSimFailover() UpdateDeviceCellularS
 // GetSimFailoverOk returns a tuple with the SimFailover field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularSimsRequest) GetSimFailoverOk() (*UpdateDeviceCellularSimsRequestSimFailover, bool) {
-	if o == nil || isNil(o.SimFailover) {
-    return nil, false
+	if o == nil || IsNil(o.SimFailover) {
+		return nil, false
 	}
 	return o.SimFailover, true
 }
 
 // HasSimFailover returns a boolean if a field has been set.
 func (o *UpdateDeviceCellularSimsRequest) HasSimFailover() bool {
-	if o != nil && !isNil(o.SimFailover) {
+	if o != nil && !IsNil(o.SimFailover) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *UpdateDeviceCellularSimsRequest) SetSimFailover(v UpdateDeviceCellularS
 }
 
 func (o UpdateDeviceCellularSimsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Sims) {
-		toSerialize["sims"] = o.Sims
-	}
-	if !isNil(o.SimFailover) {
-		toSerialize["simFailover"] = o.SimFailover
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceCellularSimsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Sims) {
+		toSerialize["sims"] = o.Sims
+	}
+	if !IsNil(o.SimFailover) {
+		toSerialize["simFailover"] = o.SimFailover
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceCellularSimsRequest struct {

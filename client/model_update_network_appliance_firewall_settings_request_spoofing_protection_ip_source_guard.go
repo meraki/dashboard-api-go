@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSourceGuard type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSourceGuard{}
+
 // UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSourceGuard IP source address spoofing settings
 type UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSourceGuard struct {
 	// Mode of protection
@@ -39,7 +42,7 @@ func NewUpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSourceG
 
 // GetMode returns the Mode field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSourceGuard) GetMode() string {
-	if o == nil || isNil(o.Mode) {
+	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSource
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSourceGuard) GetModeOk() (*string, bool) {
-	if o == nil || isNil(o.Mode) {
-    return nil, false
+	if o == nil || IsNil(o.Mode) {
+		return nil, false
 	}
 	return o.Mode, true
 }
 
 // HasMode returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSourceGuard) HasMode() bool {
-	if o != nil && !isNil(o.Mode) {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSource
 }
 
 func (o UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSourceGuard) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Mode) {
-		toSerialize["mode"] = o.Mode
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSourceGuard) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Mode) {
+		toSerialize["mode"] = o.Mode
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSourceGuard struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkAlertsSettingsRequestAlertsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkAlertsSettingsRequestAlertsInner{}
+
 // UpdateNetworkAlertsSettingsRequestAlertsInner struct for UpdateNetworkAlertsSettingsRequestAlertsInner
 type UpdateNetworkAlertsSettingsRequestAlertsInner struct {
 	// The type of alert
@@ -57,7 +60,7 @@ func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) GetType() string {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) GetTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Type, true
 }
@@ -69,7 +72,7 @@ func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) SetType(v string) {
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -79,15 +82,15 @@ func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -101,7 +104,7 @@ func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) SetEnabled(v bool) {
 
 // GetAlertDestinations returns the AlertDestinations field value if set, zero value otherwise.
 func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) GetAlertDestinations() UpdateNetworkAlertsSettingsRequestAlertsInnerAlertDestinations {
-	if o == nil || isNil(o.AlertDestinations) {
+	if o == nil || IsNil(o.AlertDestinations) {
 		var ret UpdateNetworkAlertsSettingsRequestAlertsInnerAlertDestinations
 		return ret
 	}
@@ -111,15 +114,15 @@ func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) GetAlertDestinations() U
 // GetAlertDestinationsOk returns a tuple with the AlertDestinations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) GetAlertDestinationsOk() (*UpdateNetworkAlertsSettingsRequestAlertsInnerAlertDestinations, bool) {
-	if o == nil || isNil(o.AlertDestinations) {
-    return nil, false
+	if o == nil || IsNil(o.AlertDestinations) {
+		return nil, false
 	}
 	return o.AlertDestinations, true
 }
 
 // HasAlertDestinations returns a boolean if a field has been set.
 func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) HasAlertDestinations() bool {
-	if o != nil && !isNil(o.AlertDestinations) {
+	if o != nil && !IsNil(o.AlertDestinations) {
 		return true
 	}
 
@@ -133,7 +136,7 @@ func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) SetAlertDestinations(v U
 
 // GetFilters returns the Filters field value if set, zero value otherwise.
 func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) GetFilters() map[string]interface{} {
-	if o == nil || isNil(o.Filters) {
+	if o == nil || IsNil(o.Filters) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -143,15 +146,15 @@ func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) GetFilters() map[string]
 // GetFiltersOk returns a tuple with the Filters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) GetFiltersOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Filters) {
-    return map[string]interface{}{}, false
+	if o == nil || IsNil(o.Filters) {
+		return map[string]interface{}{}, false
 	}
 	return o.Filters, true
 }
 
 // HasFilters returns a boolean if a field has been set.
 func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) HasFilters() bool {
-	if o != nil && !isNil(o.Filters) {
+	if o != nil && !IsNil(o.Filters) {
 		return true
 	}
 
@@ -164,20 +167,26 @@ func (o *UpdateNetworkAlertsSettingsRequestAlertsInner) SetFilters(v map[string]
 }
 
 func (o UpdateNetworkAlertsSettingsRequestAlertsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.AlertDestinations) {
-		toSerialize["alertDestinations"] = o.AlertDestinations
-	}
-	if !isNil(o.Filters) {
-		toSerialize["filters"] = o.Filters
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkAlertsSettingsRequestAlertsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.AlertDestinations) {
+		toSerialize["alertDestinations"] = o.AlertDestinations
+	}
+	if !IsNil(o.Filters) {
+		toSerialize["filters"] = o.Filters
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkAlertsSettingsRequestAlertsInner struct {

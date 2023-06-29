@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationSamlIdpRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationSamlIdpRequest{}
+
 // UpdateOrganizationSamlIdpRequest struct for UpdateOrganizationSamlIdpRequest
 type UpdateOrganizationSamlIdpRequest struct {
 	// Fingerprint (SHA1) of the SAML certificate provided by your Identity Provider (IdP). This will be used for encryption / validation.
@@ -41,7 +44,7 @@ func NewUpdateOrganizationSamlIdpRequestWithDefaults() *UpdateOrganizationSamlId
 
 // GetX509certSha1Fingerprint returns the X509certSha1Fingerprint field value if set, zero value otherwise.
 func (o *UpdateOrganizationSamlIdpRequest) GetX509certSha1Fingerprint() string {
-	if o == nil || isNil(o.X509certSha1Fingerprint) {
+	if o == nil || IsNil(o.X509certSha1Fingerprint) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateOrganizationSamlIdpRequest) GetX509certSha1Fingerprint() string {
 // GetX509certSha1FingerprintOk returns a tuple with the X509certSha1Fingerprint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationSamlIdpRequest) GetX509certSha1FingerprintOk() (*string, bool) {
-	if o == nil || isNil(o.X509certSha1Fingerprint) {
-    return nil, false
+	if o == nil || IsNil(o.X509certSha1Fingerprint) {
+		return nil, false
 	}
 	return o.X509certSha1Fingerprint, true
 }
 
 // HasX509certSha1Fingerprint returns a boolean if a field has been set.
 func (o *UpdateOrganizationSamlIdpRequest) HasX509certSha1Fingerprint() bool {
-	if o != nil && !isNil(o.X509certSha1Fingerprint) {
+	if o != nil && !IsNil(o.X509certSha1Fingerprint) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateOrganizationSamlIdpRequest) SetX509certSha1Fingerprint(v string) 
 
 // GetSloLogoutUrl returns the SloLogoutUrl field value if set, zero value otherwise.
 func (o *UpdateOrganizationSamlIdpRequest) GetSloLogoutUrl() string {
-	if o == nil || isNil(o.SloLogoutUrl) {
+	if o == nil || IsNil(o.SloLogoutUrl) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateOrganizationSamlIdpRequest) GetSloLogoutUrl() string {
 // GetSloLogoutUrlOk returns a tuple with the SloLogoutUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationSamlIdpRequest) GetSloLogoutUrlOk() (*string, bool) {
-	if o == nil || isNil(o.SloLogoutUrl) {
-    return nil, false
+	if o == nil || IsNil(o.SloLogoutUrl) {
+		return nil, false
 	}
 	return o.SloLogoutUrl, true
 }
 
 // HasSloLogoutUrl returns a boolean if a field has been set.
 func (o *UpdateOrganizationSamlIdpRequest) HasSloLogoutUrl() bool {
-	if o != nil && !isNil(o.SloLogoutUrl) {
+	if o != nil && !IsNil(o.SloLogoutUrl) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateOrganizationSamlIdpRequest) SetSloLogoutUrl(v string) {
 }
 
 func (o UpdateOrganizationSamlIdpRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.X509certSha1Fingerprint) {
-		toSerialize["x509certSha1Fingerprint"] = o.X509certSha1Fingerprint
-	}
-	if !isNil(o.SloLogoutUrl) {
-		toSerialize["sloLogoutUrl"] = o.SloLogoutUrl
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationSamlIdpRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.X509certSha1Fingerprint) {
+		toSerialize["x509certSha1Fingerprint"] = o.X509certSha1Fingerprint
+	}
+	if !IsNil(o.SloLogoutUrl) {
+		toSerialize["sloLogoutUrl"] = o.SloLogoutUrl
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationSamlIdpRequest struct {

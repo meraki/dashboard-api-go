@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest{}
+
 // UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest struct for UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest
 type UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest struct {
 	// The list of VPN peers
@@ -52,7 +55,7 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) GetPeers() []U
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) GetPeersOk() ([]UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Peers, true
 }
@@ -63,11 +66,17 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) SetPeers(v []U
 }
 
 func (o UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["peers"] = o.Peers
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["peers"] = o.Peers
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest struct {

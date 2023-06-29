@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationDevicesStatuses200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationDevicesStatuses200Response{}
+
 // GetOrganizationDevicesStatuses200Response struct for GetOrganizationDevicesStatuses200Response
 type GetOrganizationDevicesStatuses200Response struct {
 	// Device Name
@@ -68,7 +71,7 @@ func NewGetOrganizationDevicesStatuses200ResponseWithDefaults() *GetOrganization
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200Response) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -78,15 +81,15 @@ func (o *GetOrganizationDevicesStatuses200Response) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200Response) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200Response) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -100,7 +103,7 @@ func (o *GetOrganizationDevicesStatuses200Response) SetName(v string) {
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200Response) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -110,15 +113,15 @@ func (o *GetOrganizationDevicesStatuses200Response) GetSerial() string {
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200Response) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200Response) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -132,7 +135,7 @@ func (o *GetOrganizationDevicesStatuses200Response) SetSerial(v string) {
 
 // GetMac returns the Mac field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200Response) GetMac() string {
-	if o == nil || isNil(o.Mac) {
+	if o == nil || IsNil(o.Mac) {
 		var ret string
 		return ret
 	}
@@ -142,15 +145,15 @@ func (o *GetOrganizationDevicesStatuses200Response) GetMac() string {
 // GetMacOk returns a tuple with the Mac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200Response) GetMacOk() (*string, bool) {
-	if o == nil || isNil(o.Mac) {
-    return nil, false
+	if o == nil || IsNil(o.Mac) {
+		return nil, false
 	}
 	return o.Mac, true
 }
 
 // HasMac returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200Response) HasMac() bool {
-	if o != nil && !isNil(o.Mac) {
+	if o != nil && !IsNil(o.Mac) {
 		return true
 	}
 
@@ -164,7 +167,7 @@ func (o *GetOrganizationDevicesStatuses200Response) SetMac(v string) {
 
 // GetPublicIp returns the PublicIp field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200Response) GetPublicIp() string {
-	if o == nil || isNil(o.PublicIp) {
+	if o == nil || IsNil(o.PublicIp) {
 		var ret string
 		return ret
 	}
@@ -174,15 +177,15 @@ func (o *GetOrganizationDevicesStatuses200Response) GetPublicIp() string {
 // GetPublicIpOk returns a tuple with the PublicIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200Response) GetPublicIpOk() (*string, bool) {
-	if o == nil || isNil(o.PublicIp) {
-    return nil, false
+	if o == nil || IsNil(o.PublicIp) {
+		return nil, false
 	}
 	return o.PublicIp, true
 }
 
 // HasPublicIp returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200Response) HasPublicIp() bool {
-	if o != nil && !isNil(o.PublicIp) {
+	if o != nil && !IsNil(o.PublicIp) {
 		return true
 	}
 
@@ -196,7 +199,7 @@ func (o *GetOrganizationDevicesStatuses200Response) SetPublicIp(v string) {
 
 // GetNetworkId returns the NetworkId field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200Response) GetNetworkId() string {
-	if o == nil || isNil(o.NetworkId) {
+	if o == nil || IsNil(o.NetworkId) {
 		var ret string
 		return ret
 	}
@@ -206,15 +209,15 @@ func (o *GetOrganizationDevicesStatuses200Response) GetNetworkId() string {
 // GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200Response) GetNetworkIdOk() (*string, bool) {
-	if o == nil || isNil(o.NetworkId) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkId) {
+		return nil, false
 	}
 	return o.NetworkId, true
 }
 
 // HasNetworkId returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200Response) HasNetworkId() bool {
-	if o != nil && !isNil(o.NetworkId) {
+	if o != nil && !IsNil(o.NetworkId) {
 		return true
 	}
 
@@ -228,7 +231,7 @@ func (o *GetOrganizationDevicesStatuses200Response) SetNetworkId(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200Response) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -238,15 +241,15 @@ func (o *GetOrganizationDevicesStatuses200Response) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200Response) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200Response) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -260,7 +263,7 @@ func (o *GetOrganizationDevicesStatuses200Response) SetStatus(v string) {
 
 // GetLastReportedAt returns the LastReportedAt field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200Response) GetLastReportedAt() string {
-	if o == nil || isNil(o.LastReportedAt) {
+	if o == nil || IsNil(o.LastReportedAt) {
 		var ret string
 		return ret
 	}
@@ -270,15 +273,15 @@ func (o *GetOrganizationDevicesStatuses200Response) GetLastReportedAt() string {
 // GetLastReportedAtOk returns a tuple with the LastReportedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200Response) GetLastReportedAtOk() (*string, bool) {
-	if o == nil || isNil(o.LastReportedAt) {
-    return nil, false
+	if o == nil || IsNil(o.LastReportedAt) {
+		return nil, false
 	}
 	return o.LastReportedAt, true
 }
 
 // HasLastReportedAt returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200Response) HasLastReportedAt() bool {
-	if o != nil && !isNil(o.LastReportedAt) {
+	if o != nil && !IsNil(o.LastReportedAt) {
 		return true
 	}
 
@@ -292,7 +295,7 @@ func (o *GetOrganizationDevicesStatuses200Response) SetLastReportedAt(v string) 
 
 // GetLanIp returns the LanIp field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200Response) GetLanIp() string {
-	if o == nil || isNil(o.LanIp) {
+	if o == nil || IsNil(o.LanIp) {
 		var ret string
 		return ret
 	}
@@ -302,15 +305,15 @@ func (o *GetOrganizationDevicesStatuses200Response) GetLanIp() string {
 // GetLanIpOk returns a tuple with the LanIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200Response) GetLanIpOk() (*string, bool) {
-	if o == nil || isNil(o.LanIp) {
-    return nil, false
+	if o == nil || IsNil(o.LanIp) {
+		return nil, false
 	}
 	return o.LanIp, true
 }
 
 // HasLanIp returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200Response) HasLanIp() bool {
-	if o != nil && !isNil(o.LanIp) {
+	if o != nil && !IsNil(o.LanIp) {
 		return true
 	}
 
@@ -324,7 +327,7 @@ func (o *GetOrganizationDevicesStatuses200Response) SetLanIp(v string) {
 
 // GetGateway returns the Gateway field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200Response) GetGateway() string {
-	if o == nil || isNil(o.Gateway) {
+	if o == nil || IsNil(o.Gateway) {
 		var ret string
 		return ret
 	}
@@ -334,15 +337,15 @@ func (o *GetOrganizationDevicesStatuses200Response) GetGateway() string {
 // GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200Response) GetGatewayOk() (*string, bool) {
-	if o == nil || isNil(o.Gateway) {
-    return nil, false
+	if o == nil || IsNil(o.Gateway) {
+		return nil, false
 	}
 	return o.Gateway, true
 }
 
 // HasGateway returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200Response) HasGateway() bool {
-	if o != nil && !isNil(o.Gateway) {
+	if o != nil && !IsNil(o.Gateway) {
 		return true
 	}
 
@@ -356,7 +359,7 @@ func (o *GetOrganizationDevicesStatuses200Response) SetGateway(v string) {
 
 // GetIpType returns the IpType field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200Response) GetIpType() string {
-	if o == nil || isNil(o.IpType) {
+	if o == nil || IsNil(o.IpType) {
 		var ret string
 		return ret
 	}
@@ -366,15 +369,15 @@ func (o *GetOrganizationDevicesStatuses200Response) GetIpType() string {
 // GetIpTypeOk returns a tuple with the IpType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200Response) GetIpTypeOk() (*string, bool) {
-	if o == nil || isNil(o.IpType) {
-    return nil, false
+	if o == nil || IsNil(o.IpType) {
+		return nil, false
 	}
 	return o.IpType, true
 }
 
 // HasIpType returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200Response) HasIpType() bool {
-	if o != nil && !isNil(o.IpType) {
+	if o != nil && !IsNil(o.IpType) {
 		return true
 	}
 
@@ -388,7 +391,7 @@ func (o *GetOrganizationDevicesStatuses200Response) SetIpType(v string) {
 
 // GetPrimaryDns returns the PrimaryDns field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200Response) GetPrimaryDns() string {
-	if o == nil || isNil(o.PrimaryDns) {
+	if o == nil || IsNil(o.PrimaryDns) {
 		var ret string
 		return ret
 	}
@@ -398,15 +401,15 @@ func (o *GetOrganizationDevicesStatuses200Response) GetPrimaryDns() string {
 // GetPrimaryDnsOk returns a tuple with the PrimaryDns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200Response) GetPrimaryDnsOk() (*string, bool) {
-	if o == nil || isNil(o.PrimaryDns) {
-    return nil, false
+	if o == nil || IsNil(o.PrimaryDns) {
+		return nil, false
 	}
 	return o.PrimaryDns, true
 }
 
 // HasPrimaryDns returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200Response) HasPrimaryDns() bool {
-	if o != nil && !isNil(o.PrimaryDns) {
+	if o != nil && !IsNil(o.PrimaryDns) {
 		return true
 	}
 
@@ -420,7 +423,7 @@ func (o *GetOrganizationDevicesStatuses200Response) SetPrimaryDns(v string) {
 
 // GetSecondaryDns returns the SecondaryDns field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200Response) GetSecondaryDns() string {
-	if o == nil || isNil(o.SecondaryDns) {
+	if o == nil || IsNil(o.SecondaryDns) {
 		var ret string
 		return ret
 	}
@@ -430,15 +433,15 @@ func (o *GetOrganizationDevicesStatuses200Response) GetSecondaryDns() string {
 // GetSecondaryDnsOk returns a tuple with the SecondaryDns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200Response) GetSecondaryDnsOk() (*string, bool) {
-	if o == nil || isNil(o.SecondaryDns) {
-    return nil, false
+	if o == nil || IsNil(o.SecondaryDns) {
+		return nil, false
 	}
 	return o.SecondaryDns, true
 }
 
 // HasSecondaryDns returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200Response) HasSecondaryDns() bool {
-	if o != nil && !isNil(o.SecondaryDns) {
+	if o != nil && !IsNil(o.SecondaryDns) {
 		return true
 	}
 
@@ -452,7 +455,7 @@ func (o *GetOrganizationDevicesStatuses200Response) SetSecondaryDns(v string) {
 
 // GetProductType returns the ProductType field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200Response) GetProductType() string {
-	if o == nil || isNil(o.ProductType) {
+	if o == nil || IsNil(o.ProductType) {
 		var ret string
 		return ret
 	}
@@ -462,15 +465,15 @@ func (o *GetOrganizationDevicesStatuses200Response) GetProductType() string {
 // GetProductTypeOk returns a tuple with the ProductType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200Response) GetProductTypeOk() (*string, bool) {
-	if o == nil || isNil(o.ProductType) {
-    return nil, false
+	if o == nil || IsNil(o.ProductType) {
+		return nil, false
 	}
 	return o.ProductType, true
 }
 
 // HasProductType returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200Response) HasProductType() bool {
-	if o != nil && !isNil(o.ProductType) {
+	if o != nil && !IsNil(o.ProductType) {
 		return true
 	}
 
@@ -484,7 +487,7 @@ func (o *GetOrganizationDevicesStatuses200Response) SetProductType(v string) {
 
 // GetComponents returns the Components field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200Response) GetComponents() GetOrganizationDevicesStatuses200ResponseComponents {
-	if o == nil || isNil(o.Components) {
+	if o == nil || IsNil(o.Components) {
 		var ret GetOrganizationDevicesStatuses200ResponseComponents
 		return ret
 	}
@@ -494,15 +497,15 @@ func (o *GetOrganizationDevicesStatuses200Response) GetComponents() GetOrganizat
 // GetComponentsOk returns a tuple with the Components field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200Response) GetComponentsOk() (*GetOrganizationDevicesStatuses200ResponseComponents, bool) {
-	if o == nil || isNil(o.Components) {
-    return nil, false
+	if o == nil || IsNil(o.Components) {
+		return nil, false
 	}
 	return o.Components, true
 }
 
 // HasComponents returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200Response) HasComponents() bool {
-	if o != nil && !isNil(o.Components) {
+	if o != nil && !IsNil(o.Components) {
 		return true
 	}
 
@@ -516,7 +519,7 @@ func (o *GetOrganizationDevicesStatuses200Response) SetComponents(v GetOrganizat
 
 // GetModel returns the Model field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200Response) GetModel() string {
-	if o == nil || isNil(o.Model) {
+	if o == nil || IsNil(o.Model) {
 		var ret string
 		return ret
 	}
@@ -526,15 +529,15 @@ func (o *GetOrganizationDevicesStatuses200Response) GetModel() string {
 // GetModelOk returns a tuple with the Model field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200Response) GetModelOk() (*string, bool) {
-	if o == nil || isNil(o.Model) {
-    return nil, false
+	if o == nil || IsNil(o.Model) {
+		return nil, false
 	}
 	return o.Model, true
 }
 
 // HasModel returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200Response) HasModel() bool {
-	if o != nil && !isNil(o.Model) {
+	if o != nil && !IsNil(o.Model) {
 		return true
 	}
 
@@ -548,7 +551,7 @@ func (o *GetOrganizationDevicesStatuses200Response) SetModel(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200Response) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -558,15 +561,15 @@ func (o *GetOrganizationDevicesStatuses200Response) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200Response) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
 	}
 	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200Response) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -579,56 +582,64 @@ func (o *GetOrganizationDevicesStatuses200Response) SetTags(v []string) {
 }
 
 func (o GetOrganizationDevicesStatuses200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Mac) {
-		toSerialize["mac"] = o.Mac
-	}
-	if !isNil(o.PublicIp) {
-		toSerialize["publicIp"] = o.PublicIp
-	}
-	if !isNil(o.NetworkId) {
-		toSerialize["networkId"] = o.NetworkId
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.LastReportedAt) {
-		toSerialize["lastReportedAt"] = o.LastReportedAt
-	}
-	if !isNil(o.LanIp) {
-		toSerialize["lanIp"] = o.LanIp
-	}
-	if !isNil(o.Gateway) {
-		toSerialize["gateway"] = o.Gateway
-	}
-	if !isNil(o.IpType) {
-		toSerialize["ipType"] = o.IpType
-	}
-	if !isNil(o.PrimaryDns) {
-		toSerialize["primaryDns"] = o.PrimaryDns
-	}
-	if !isNil(o.SecondaryDns) {
-		toSerialize["secondaryDns"] = o.SecondaryDns
-	}
-	if !isNil(o.ProductType) {
-		toSerialize["productType"] = o.ProductType
-	}
-	if !isNil(o.Components) {
-		toSerialize["components"] = o.Components
-	}
-	if !isNil(o.Model) {
-		toSerialize["model"] = o.Model
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationDevicesStatuses200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.Mac) {
+		toSerialize["mac"] = o.Mac
+	}
+	if !IsNil(o.PublicIp) {
+		toSerialize["publicIp"] = o.PublicIp
+	}
+	if !IsNil(o.NetworkId) {
+		toSerialize["networkId"] = o.NetworkId
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.LastReportedAt) {
+		toSerialize["lastReportedAt"] = o.LastReportedAt
+	}
+	if !IsNil(o.LanIp) {
+		toSerialize["lanIp"] = o.LanIp
+	}
+	if !IsNil(o.Gateway) {
+		toSerialize["gateway"] = o.Gateway
+	}
+	if !IsNil(o.IpType) {
+		toSerialize["ipType"] = o.IpType
+	}
+	if !IsNil(o.PrimaryDns) {
+		toSerialize["primaryDns"] = o.PrimaryDns
+	}
+	if !IsNil(o.SecondaryDns) {
+		toSerialize["secondaryDns"] = o.SecondaryDns
+	}
+	if !IsNil(o.ProductType) {
+		toSerialize["productType"] = o.ProductType
+	}
+	if !IsNil(o.Components) {
+		toSerialize["components"] = o.Components
+	}
+	if !IsNil(o.Model) {
+		toSerialize["model"] = o.Model
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationDevicesStatuses200Response struct {

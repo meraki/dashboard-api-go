@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationApplianceVpnVpnFirewallRules200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationApplianceVpnVpnFirewallRules200Response{}
+
 // UpdateOrganizationApplianceVpnVpnFirewallRules200Response struct for UpdateOrganizationApplianceVpnVpnFirewallRules200Response
 type UpdateOrganizationApplianceVpnVpnFirewallRules200Response struct {
 	// List of firewall rules
@@ -39,7 +42,7 @@ func NewUpdateOrganizationApplianceVpnVpnFirewallRules200ResponseWithDefaults() 
 
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200Response) GetRules() []UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner {
-	if o == nil || isNil(o.Rules) {
+	if o == nil || IsNil(o.Rules) {
 		var ret []UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200Response) GetRules() [
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200Response) GetRulesOk() ([]UpdateOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner, bool) {
-	if o == nil || isNil(o.Rules) {
-    return nil, false
+	if o == nil || IsNil(o.Rules) {
+		return nil, false
 	}
 	return o.Rules, true
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200Response) HasRules() bool {
-	if o != nil && !isNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRules200Response) SetRules(v [
 }
 
 func (o UpdateOrganizationApplianceVpnVpnFirewallRules200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Rules) {
-		toSerialize["rules"] = o.Rules
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationApplianceVpnVpnFirewallRules200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Rules) {
+		toSerialize["rules"] = o.Rules
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationApplianceVpnVpnFirewallRules200Response struct {

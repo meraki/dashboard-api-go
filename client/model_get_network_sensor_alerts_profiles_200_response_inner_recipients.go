@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSensorAlertsProfiles200ResponseInnerRecipients type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSensorAlertsProfiles200ResponseInnerRecipients{}
+
 // GetNetworkSensorAlertsProfiles200ResponseInnerRecipients List of recipients that will receive the alert.
 type GetNetworkSensorAlertsProfiles200ResponseInnerRecipients struct {
 	// A list of emails that will receive information about the alert.
@@ -43,7 +46,7 @@ func NewGetNetworkSensorAlertsProfiles200ResponseInnerRecipientsWithDefaults() *
 
 // GetEmails returns the Emails field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) GetEmails() []string {
-	if o == nil || isNil(o.Emails) {
+	if o == nil || IsNil(o.Emails) {
 		var ret []string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) GetEmails() [
 // GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) GetEmailsOk() ([]string, bool) {
-	if o == nil || isNil(o.Emails) {
-    return nil, false
+	if o == nil || IsNil(o.Emails) {
+		return nil, false
 	}
 	return o.Emails, true
 }
 
 // HasEmails returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) HasEmails() bool {
-	if o != nil && !isNil(o.Emails) {
+	if o != nil && !IsNil(o.Emails) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) SetEmails(v [
 
 // GetSmsNumbers returns the SmsNumbers field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) GetSmsNumbers() []string {
-	if o == nil || isNil(o.SmsNumbers) {
+	if o == nil || IsNil(o.SmsNumbers) {
 		var ret []string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) GetSmsNumbers
 // GetSmsNumbersOk returns a tuple with the SmsNumbers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) GetSmsNumbersOk() ([]string, bool) {
-	if o == nil || isNil(o.SmsNumbers) {
-    return nil, false
+	if o == nil || IsNil(o.SmsNumbers) {
+		return nil, false
 	}
 	return o.SmsNumbers, true
 }
 
 // HasSmsNumbers returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) HasSmsNumbers() bool {
-	if o != nil && !isNil(o.SmsNumbers) {
+	if o != nil && !IsNil(o.SmsNumbers) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) SetSmsNumbers
 
 // GetHttpServerIds returns the HttpServerIds field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) GetHttpServerIds() []string {
-	if o == nil || isNil(o.HttpServerIds) {
+	if o == nil || IsNil(o.HttpServerIds) {
 		var ret []string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) GetHttpServer
 // GetHttpServerIdsOk returns a tuple with the HttpServerIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) GetHttpServerIdsOk() ([]string, bool) {
-	if o == nil || isNil(o.HttpServerIds) {
-    return nil, false
+	if o == nil || IsNil(o.HttpServerIds) {
+		return nil, false
 	}
 	return o.HttpServerIds, true
 }
 
 // HasHttpServerIds returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) HasHttpServerIds() bool {
-	if o != nil && !isNil(o.HttpServerIds) {
+	if o != nil && !IsNil(o.HttpServerIds) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) SetHttpServer
 }
 
 func (o GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Emails) {
-		toSerialize["emails"] = o.Emails
-	}
-	if !isNil(o.SmsNumbers) {
-		toSerialize["smsNumbers"] = o.SmsNumbers
-	}
-	if !isNil(o.HttpServerIds) {
-		toSerialize["httpServerIds"] = o.HttpServerIds
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSensorAlertsProfiles200ResponseInnerRecipients) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Emails) {
+		toSerialize["emails"] = o.Emails
+	}
+	if !IsNil(o.SmsNumbers) {
+		toSerialize["smsNumbers"] = o.SmsNumbers
+	}
+	if !IsNil(o.HttpServerIds) {
+		toSerialize["httpServerIds"] = o.HttpServerIds
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSensorAlertsProfiles200ResponseInnerRecipients struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkApplianceSettings200ResponseDynamicDns type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkApplianceSettings200ResponseDynamicDns{}
+
 // GetNetworkApplianceSettings200ResponseDynamicDns Dynamic DNS settings for a network
 type GetNetworkApplianceSettings200ResponseDynamicDns struct {
 	// Dynamic DNS enabled
@@ -43,7 +46,7 @@ func NewGetNetworkApplianceSettings200ResponseDynamicDnsWithDefaults() *GetNetwo
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSettings200ResponseDynamicDns) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkApplianceSettings200ResponseDynamicDns) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSettings200ResponseDynamicDns) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSettings200ResponseDynamicDns) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkApplianceSettings200ResponseDynamicDns) SetEnabled(v bool) {
 
 // GetPrefix returns the Prefix field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSettings200ResponseDynamicDns) GetPrefix() string {
-	if o == nil || isNil(o.Prefix) {
+	if o == nil || IsNil(o.Prefix) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkApplianceSettings200ResponseDynamicDns) GetPrefix() string {
 // GetPrefixOk returns a tuple with the Prefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSettings200ResponseDynamicDns) GetPrefixOk() (*string, bool) {
-	if o == nil || isNil(o.Prefix) {
-    return nil, false
+	if o == nil || IsNil(o.Prefix) {
+		return nil, false
 	}
 	return o.Prefix, true
 }
 
 // HasPrefix returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSettings200ResponseDynamicDns) HasPrefix() bool {
-	if o != nil && !isNil(o.Prefix) {
+	if o != nil && !IsNil(o.Prefix) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkApplianceSettings200ResponseDynamicDns) SetPrefix(v string) {
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSettings200ResponseDynamicDns) GetUrl() string {
-	if o == nil || isNil(o.Url) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkApplianceSettings200ResponseDynamicDns) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSettings200ResponseDynamicDns) GetUrlOk() (*string, bool) {
-	if o == nil || isNil(o.Url) {
-    return nil, false
+	if o == nil || IsNil(o.Url) {
+		return nil, false
 	}
 	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSettings200ResponseDynamicDns) HasUrl() bool {
-	if o != nil && !isNil(o.Url) {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkApplianceSettings200ResponseDynamicDns) SetUrl(v string) {
 }
 
 func (o GetNetworkApplianceSettings200ResponseDynamicDns) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.Prefix) {
-		toSerialize["prefix"] = o.Prefix
-	}
-	if !isNil(o.Url) {
-		toSerialize["url"] = o.Url
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkApplianceSettings200ResponseDynamicDns) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Prefix) {
+		toSerialize["prefix"] = o.Prefix
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkApplianceSettings200ResponseDynamicDns struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceApplianceRadioSettingsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceApplianceRadioSettingsRequest{}
+
 // UpdateDeviceApplianceRadioSettingsRequest struct for UpdateDeviceApplianceRadioSettingsRequest
 type UpdateDeviceApplianceRadioSettingsRequest struct {
 	// The ID of an RF profile to assign to the device. If the value of this parameter is null, the appropriate basic RF profile (indoor or outdoor) will be assigned to the device. Assigning an RF profile will clear ALL manually configured overrides on the device (channel width, channel, power).
@@ -41,7 +44,7 @@ func NewUpdateDeviceApplianceRadioSettingsRequestWithDefaults() *UpdateDeviceApp
 
 // GetRfProfileId returns the RfProfileId field value if set, zero value otherwise.
 func (o *UpdateDeviceApplianceRadioSettingsRequest) GetRfProfileId() string {
-	if o == nil || isNil(o.RfProfileId) {
+	if o == nil || IsNil(o.RfProfileId) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateDeviceApplianceRadioSettingsRequest) GetRfProfileId() string {
 // GetRfProfileIdOk returns a tuple with the RfProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceApplianceRadioSettingsRequest) GetRfProfileIdOk() (*string, bool) {
-	if o == nil || isNil(o.RfProfileId) {
-    return nil, false
+	if o == nil || IsNil(o.RfProfileId) {
+		return nil, false
 	}
 	return o.RfProfileId, true
 }
 
 // HasRfProfileId returns a boolean if a field has been set.
 func (o *UpdateDeviceApplianceRadioSettingsRequest) HasRfProfileId() bool {
-	if o != nil && !isNil(o.RfProfileId) {
+	if o != nil && !IsNil(o.RfProfileId) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateDeviceApplianceRadioSettingsRequest) SetRfProfileId(v string) {
 
 // GetTwoFourGhzSettings returns the TwoFourGhzSettings field value if set, zero value otherwise.
 func (o *UpdateDeviceApplianceRadioSettingsRequest) GetTwoFourGhzSettings() UpdateDeviceApplianceRadioSettingsRequestTwoFourGhzSettings {
-	if o == nil || isNil(o.TwoFourGhzSettings) {
+	if o == nil || IsNil(o.TwoFourGhzSettings) {
 		var ret UpdateDeviceApplianceRadioSettingsRequestTwoFourGhzSettings
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateDeviceApplianceRadioSettingsRequest) GetTwoFourGhzSettings() Upda
 // GetTwoFourGhzSettingsOk returns a tuple with the TwoFourGhzSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceApplianceRadioSettingsRequest) GetTwoFourGhzSettingsOk() (*UpdateDeviceApplianceRadioSettingsRequestTwoFourGhzSettings, bool) {
-	if o == nil || isNil(o.TwoFourGhzSettings) {
-    return nil, false
+	if o == nil || IsNil(o.TwoFourGhzSettings) {
+		return nil, false
 	}
 	return o.TwoFourGhzSettings, true
 }
 
 // HasTwoFourGhzSettings returns a boolean if a field has been set.
 func (o *UpdateDeviceApplianceRadioSettingsRequest) HasTwoFourGhzSettings() bool {
-	if o != nil && !isNil(o.TwoFourGhzSettings) {
+	if o != nil && !IsNil(o.TwoFourGhzSettings) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *UpdateDeviceApplianceRadioSettingsRequest) SetTwoFourGhzSettings(v Upda
 
 // GetFiveGhzSettings returns the FiveGhzSettings field value if set, zero value otherwise.
 func (o *UpdateDeviceApplianceRadioSettingsRequest) GetFiveGhzSettings() UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings {
-	if o == nil || isNil(o.FiveGhzSettings) {
+	if o == nil || IsNil(o.FiveGhzSettings) {
 		var ret UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *UpdateDeviceApplianceRadioSettingsRequest) GetFiveGhzSettings() UpdateD
 // GetFiveGhzSettingsOk returns a tuple with the FiveGhzSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceApplianceRadioSettingsRequest) GetFiveGhzSettingsOk() (*UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings, bool) {
-	if o == nil || isNil(o.FiveGhzSettings) {
-    return nil, false
+	if o == nil || IsNil(o.FiveGhzSettings) {
+		return nil, false
 	}
 	return o.FiveGhzSettings, true
 }
 
 // HasFiveGhzSettings returns a boolean if a field has been set.
 func (o *UpdateDeviceApplianceRadioSettingsRequest) HasFiveGhzSettings() bool {
-	if o != nil && !isNil(o.FiveGhzSettings) {
+	if o != nil && !IsNil(o.FiveGhzSettings) {
 		return true
 	}
 
@@ -136,17 +139,25 @@ func (o *UpdateDeviceApplianceRadioSettingsRequest) SetFiveGhzSettings(v UpdateD
 }
 
 func (o UpdateDeviceApplianceRadioSettingsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.RfProfileId) {
-		toSerialize["rfProfileId"] = o.RfProfileId
-	}
-	if !isNil(o.TwoFourGhzSettings) {
-		toSerialize["twoFourGhzSettings"] = o.TwoFourGhzSettings
-	}
-	if !isNil(o.FiveGhzSettings) {
-		toSerialize["fiveGhzSettings"] = o.FiveGhzSettings
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceApplianceRadioSettingsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.RfProfileId) {
+		toSerialize["rfProfileId"] = o.RfProfileId
+	}
+	if !IsNil(o.TwoFourGhzSettings) {
+		toSerialize["twoFourGhzSettings"] = o.TwoFourGhzSettings
+	}
+	if !IsNil(o.FiveGhzSettings) {
+		toSerialize["fiveGhzSettings"] = o.FiveGhzSettings
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceApplianceRadioSettingsRequest struct {

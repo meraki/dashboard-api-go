@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidRequestGreConcentrator type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidRequestGreConcentrator{}
+
 // UpdateNetworkWirelessSsidRequestGreConcentrator The EoGRE concentrator's settings
 type UpdateNetworkWirelessSsidRequestGreConcentrator struct {
 	// The EoGRE concentrator's IP or FQDN. This param is required when ipAssignmentMode is 'Ethernet over GRE'.
@@ -52,7 +55,7 @@ func (o *UpdateNetworkWirelessSsidRequestGreConcentrator) GetHost() string {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestGreConcentrator) GetHostOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Host, true
 }
@@ -63,11 +66,17 @@ func (o *UpdateNetworkWirelessSsidRequestGreConcentrator) SetHost(v string) {
 }
 
 func (o UpdateNetworkWirelessSsidRequestGreConcentrator) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["host"] = o.Host
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidRequestGreConcentrator) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["host"] = o.Host
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidRequestGreConcentrator struct {

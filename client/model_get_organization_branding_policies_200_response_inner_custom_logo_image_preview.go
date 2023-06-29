@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview{}
+
 // GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview Preview of the image
 type GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview struct {
 	// Url of the preview image
@@ -42,7 +45,7 @@ func NewGetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreviewWit
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview) GetUrl() string {
-	if o == nil || isNil(o.Url) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview) 
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview) GetUrlOk() (*string, bool) {
-	if o == nil || isNil(o.Url) {
-    return nil, false
+	if o == nil || IsNil(o.Url) {
+		return nil, false
 	}
 	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview) HasUrl() bool {
-	if o != nil && !isNil(o.Url) {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview) 
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview) GetExpiresAt() time.Time {
-	if o == nil || isNil(o.ExpiresAt) {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview) 
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview) GetExpiresAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.ExpiresAt) {
-    return nil, false
+	if o == nil || IsNil(o.ExpiresAt) {
+		return nil, false
 	}
 	return o.ExpiresAt, true
 }
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview) HasExpiresAt() bool {
-	if o != nil && !isNil(o.ExpiresAt) {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -105,14 +108,22 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview) 
 }
 
 func (o GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Url) {
-		toSerialize["url"] = o.Url
-	}
-	if !isNil(o.ExpiresAt) {
-		toSerialize["expiresAt"] = o.ExpiresAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.ExpiresAt) {
+		toSerialize["expiresAt"] = o.ExpiresAt
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview struct {

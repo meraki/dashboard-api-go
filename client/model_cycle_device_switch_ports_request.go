@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CycleDeviceSwitchPortsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CycleDeviceSwitchPortsRequest{}
+
 // CycleDeviceSwitchPortsRequest struct for CycleDeviceSwitchPortsRequest
 type CycleDeviceSwitchPortsRequest struct {
 	// List of switch ports
@@ -52,7 +55,7 @@ func (o *CycleDeviceSwitchPortsRequest) GetPorts() []string {
 // and a boolean to check if the value has been set.
 func (o *CycleDeviceSwitchPortsRequest) GetPortsOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Ports, true
 }
@@ -63,11 +66,17 @@ func (o *CycleDeviceSwitchPortsRequest) SetPorts(v []string) {
 }
 
 func (o CycleDeviceSwitchPortsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ports"] = o.Ports
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CycleDeviceSwitchPortsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["ports"] = o.Ports
+	return toSerialize, nil
 }
 
 type NullableCycleDeviceSwitchPortsRequest struct {

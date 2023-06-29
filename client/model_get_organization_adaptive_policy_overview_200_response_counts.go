@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationAdaptivePolicyOverview200ResponseCounts type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationAdaptivePolicyOverview200ResponseCounts{}
+
 // GetOrganizationAdaptivePolicyOverview200ResponseCounts The current amount of various adaptive policy objects.
 type GetOrganizationAdaptivePolicyOverview200ResponseCounts struct {
 	// Number of adaptive policy groups currently in the organization.
@@ -51,7 +54,7 @@ func NewGetOrganizationAdaptivePolicyOverview200ResponseCountsWithDefaults() *Ge
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetGroups() int32 {
-	if o == nil || isNil(o.Groups) {
+	if o == nil || IsNil(o.Groups) {
 		var ret int32
 		return ret
 	}
@@ -61,15 +64,15 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetGroups() int
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetGroupsOk() (*int32, bool) {
-	if o == nil || isNil(o.Groups) {
-    return nil, false
+	if o == nil || IsNil(o.Groups) {
+		return nil, false
 	}
 	return o.Groups, true
 }
 
 // HasGroups returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) HasGroups() bool {
-	if o != nil && !isNil(o.Groups) {
+	if o != nil && !IsNil(o.Groups) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) SetGroups(v int
 
 // GetCustomGroups returns the CustomGroups field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetCustomGroups() int32 {
-	if o == nil || isNil(o.CustomGroups) {
+	if o == nil || IsNil(o.CustomGroups) {
 		var ret int32
 		return ret
 	}
@@ -93,15 +96,15 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetCustomGroups
 // GetCustomGroupsOk returns a tuple with the CustomGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetCustomGroupsOk() (*int32, bool) {
-	if o == nil || isNil(o.CustomGroups) {
-    return nil, false
+	if o == nil || IsNil(o.CustomGroups) {
+		return nil, false
 	}
 	return o.CustomGroups, true
 }
 
 // HasCustomGroups returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) HasCustomGroups() bool {
-	if o != nil && !isNil(o.CustomGroups) {
+	if o != nil && !IsNil(o.CustomGroups) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) SetCustomGroups
 
 // GetCustomAcls returns the CustomAcls field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetCustomAcls() int32 {
-	if o == nil || isNil(o.CustomAcls) {
+	if o == nil || IsNil(o.CustomAcls) {
 		var ret int32
 		return ret
 	}
@@ -125,15 +128,15 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetCustomAcls()
 // GetCustomAclsOk returns a tuple with the CustomAcls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetCustomAclsOk() (*int32, bool) {
-	if o == nil || isNil(o.CustomAcls) {
-    return nil, false
+	if o == nil || IsNil(o.CustomAcls) {
+		return nil, false
 	}
 	return o.CustomAcls, true
 }
 
 // HasCustomAcls returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) HasCustomAcls() bool {
-	if o != nil && !isNil(o.CustomAcls) {
+	if o != nil && !IsNil(o.CustomAcls) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) SetCustomAcls(v
 
 // GetPolicies returns the Policies field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetPolicies() int32 {
-	if o == nil || isNil(o.Policies) {
+	if o == nil || IsNil(o.Policies) {
 		var ret int32
 		return ret
 	}
@@ -157,15 +160,15 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetPolicies() i
 // GetPoliciesOk returns a tuple with the Policies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetPoliciesOk() (*int32, bool) {
-	if o == nil || isNil(o.Policies) {
-    return nil, false
+	if o == nil || IsNil(o.Policies) {
+		return nil, false
 	}
 	return o.Policies, true
 }
 
 // HasPolicies returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) HasPolicies() bool {
-	if o != nil && !isNil(o.Policies) {
+	if o != nil && !IsNil(o.Policies) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) SetPolicies(v i
 
 // GetDenyPolicies returns the DenyPolicies field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetDenyPolicies() int32 {
-	if o == nil || isNil(o.DenyPolicies) {
+	if o == nil || IsNil(o.DenyPolicies) {
 		var ret int32
 		return ret
 	}
@@ -189,15 +192,15 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetDenyPolicies
 // GetDenyPoliciesOk returns a tuple with the DenyPolicies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetDenyPoliciesOk() (*int32, bool) {
-	if o == nil || isNil(o.DenyPolicies) {
-    return nil, false
+	if o == nil || IsNil(o.DenyPolicies) {
+		return nil, false
 	}
 	return o.DenyPolicies, true
 }
 
 // HasDenyPolicies returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) HasDenyPolicies() bool {
-	if o != nil && !isNil(o.DenyPolicies) {
+	if o != nil && !IsNil(o.DenyPolicies) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) SetDenyPolicies
 
 // GetAllowPolicies returns the AllowPolicies field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetAllowPolicies() int32 {
-	if o == nil || isNil(o.AllowPolicies) {
+	if o == nil || IsNil(o.AllowPolicies) {
 		var ret int32
 		return ret
 	}
@@ -221,15 +224,15 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetAllowPolicie
 // GetAllowPoliciesOk returns a tuple with the AllowPolicies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetAllowPoliciesOk() (*int32, bool) {
-	if o == nil || isNil(o.AllowPolicies) {
-    return nil, false
+	if o == nil || IsNil(o.AllowPolicies) {
+		return nil, false
 	}
 	return o.AllowPolicies, true
 }
 
 // HasAllowPolicies returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) HasAllowPolicies() bool {
-	if o != nil && !isNil(o.AllowPolicies) {
+	if o != nil && !IsNil(o.AllowPolicies) {
 		return true
 	}
 
@@ -243,7 +246,7 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) SetAllowPolicie
 
 // GetPolicyObjects returns the PolicyObjects field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetPolicyObjects() int32 {
-	if o == nil || isNil(o.PolicyObjects) {
+	if o == nil || IsNil(o.PolicyObjects) {
 		var ret int32
 		return ret
 	}
@@ -253,15 +256,15 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetPolicyObject
 // GetPolicyObjectsOk returns a tuple with the PolicyObjects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) GetPolicyObjectsOk() (*int32, bool) {
-	if o == nil || isNil(o.PolicyObjects) {
-    return nil, false
+	if o == nil || IsNil(o.PolicyObjects) {
+		return nil, false
 	}
 	return o.PolicyObjects, true
 }
 
 // HasPolicyObjects returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) HasPolicyObjects() bool {
-	if o != nil && !isNil(o.PolicyObjects) {
+	if o != nil && !IsNil(o.PolicyObjects) {
 		return true
 	}
 
@@ -274,29 +277,37 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseCounts) SetPolicyObject
 }
 
 func (o GetOrganizationAdaptivePolicyOverview200ResponseCounts) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Groups) {
-		toSerialize["groups"] = o.Groups
-	}
-	if !isNil(o.CustomGroups) {
-		toSerialize["customGroups"] = o.CustomGroups
-	}
-	if !isNil(o.CustomAcls) {
-		toSerialize["customAcls"] = o.CustomAcls
-	}
-	if !isNil(o.Policies) {
-		toSerialize["policies"] = o.Policies
-	}
-	if !isNil(o.DenyPolicies) {
-		toSerialize["denyPolicies"] = o.DenyPolicies
-	}
-	if !isNil(o.AllowPolicies) {
-		toSerialize["allowPolicies"] = o.AllowPolicies
-	}
-	if !isNil(o.PolicyObjects) {
-		toSerialize["policyObjects"] = o.PolicyObjects
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationAdaptivePolicyOverview200ResponseCounts) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Groups) {
+		toSerialize["groups"] = o.Groups
+	}
+	if !IsNil(o.CustomGroups) {
+		toSerialize["customGroups"] = o.CustomGroups
+	}
+	if !IsNil(o.CustomAcls) {
+		toSerialize["customAcls"] = o.CustomAcls
+	}
+	if !IsNil(o.Policies) {
+		toSerialize["policies"] = o.Policies
+	}
+	if !IsNil(o.DenyPolicies) {
+		toSerialize["denyPolicies"] = o.DenyPolicies
+	}
+	if !IsNil(o.AllowPolicies) {
+		toSerialize["allowPolicies"] = o.AllowPolicies
+	}
+	if !IsNil(o.PolicyObjects) {
+		toSerialize["policyObjects"] = o.PolicyObjects
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationAdaptivePolicyOverview200ResponseCounts struct {

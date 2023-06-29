@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSensorReadingsHistory200ResponseInnerDoor type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSensorReadingsHistory200ResponseInnerDoor{}
+
 // GetOrganizationSensorReadingsHistory200ResponseInnerDoor Reading for the 'door' metric. This will only be present if the 'metric' property equals 'door'.
 type GetOrganizationSensorReadingsHistory200ResponseInnerDoor struct {
 	// True if the door is open.
@@ -39,7 +42,7 @@ func NewGetOrganizationSensorReadingsHistory200ResponseInnerDoorWithDefaults() *
 
 // GetOpen returns the Open field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerDoor) GetOpen() bool {
-	if o == nil || isNil(o.Open) {
+	if o == nil || IsNil(o.Open) {
 		var ret bool
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerDoor) GetOpen() boo
 // GetOpenOk returns a tuple with the Open field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerDoor) GetOpenOk() (*bool, bool) {
-	if o == nil || isNil(o.Open) {
-    return nil, false
+	if o == nil || IsNil(o.Open) {
+		return nil, false
 	}
 	return o.Open, true
 }
 
 // HasOpen returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerDoor) HasOpen() bool {
-	if o != nil && !isNil(o.Open) {
+	if o != nil && !IsNil(o.Open) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerDoor) SetOpen(v boo
 }
 
 func (o GetOrganizationSensorReadingsHistory200ResponseInnerDoor) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Open) {
-		toSerialize["open"] = o.Open
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSensorReadingsHistory200ResponseInnerDoor) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Open) {
+		toSerialize["open"] = o.Open
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSensorReadingsHistory200ResponseInnerDoor struct {

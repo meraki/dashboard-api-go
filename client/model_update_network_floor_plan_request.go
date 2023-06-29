@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkFloorPlanRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkFloorPlanRequest{}
+
 // UpdateNetworkFloorPlanRequest struct for UpdateNetworkFloorPlanRequest
 type UpdateNetworkFloorPlanRequest struct {
 	// The name of your floor plan.
@@ -46,7 +49,7 @@ func NewUpdateNetworkFloorPlanRequestWithDefaults() *UpdateNetworkFloorPlanReque
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkFloorPlanRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *UpdateNetworkFloorPlanRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFloorPlanRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkFloorPlanRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *UpdateNetworkFloorPlanRequest) SetName(v string) {
 
 // GetCenter returns the Center field value if set, zero value otherwise.
 func (o *UpdateNetworkFloorPlanRequest) GetCenter() UpdateNetworkFloorPlanRequestCenter {
-	if o == nil || isNil(o.Center) {
+	if o == nil || IsNil(o.Center) {
 		var ret UpdateNetworkFloorPlanRequestCenter
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *UpdateNetworkFloorPlanRequest) GetCenter() UpdateNetworkFloorPlanReques
 // GetCenterOk returns a tuple with the Center field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFloorPlanRequest) GetCenterOk() (*UpdateNetworkFloorPlanRequestCenter, bool) {
-	if o == nil || isNil(o.Center) {
-    return nil, false
+	if o == nil || IsNil(o.Center) {
+		return nil, false
 	}
 	return o.Center, true
 }
 
 // HasCenter returns a boolean if a field has been set.
 func (o *UpdateNetworkFloorPlanRequest) HasCenter() bool {
-	if o != nil && !isNil(o.Center) {
+	if o != nil && !IsNil(o.Center) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *UpdateNetworkFloorPlanRequest) SetCenter(v UpdateNetworkFloorPlanReques
 
 // GetBottomLeftCorner returns the BottomLeftCorner field value if set, zero value otherwise.
 func (o *UpdateNetworkFloorPlanRequest) GetBottomLeftCorner() CreateNetworkFloorPlanRequestBottomLeftCorner {
-	if o == nil || isNil(o.BottomLeftCorner) {
+	if o == nil || IsNil(o.BottomLeftCorner) {
 		var ret CreateNetworkFloorPlanRequestBottomLeftCorner
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *UpdateNetworkFloorPlanRequest) GetBottomLeftCorner() CreateNetworkFloor
 // GetBottomLeftCornerOk returns a tuple with the BottomLeftCorner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFloorPlanRequest) GetBottomLeftCornerOk() (*CreateNetworkFloorPlanRequestBottomLeftCorner, bool) {
-	if o == nil || isNil(o.BottomLeftCorner) {
-    return nil, false
+	if o == nil || IsNil(o.BottomLeftCorner) {
+		return nil, false
 	}
 	return o.BottomLeftCorner, true
 }
 
 // HasBottomLeftCorner returns a boolean if a field has been set.
 func (o *UpdateNetworkFloorPlanRequest) HasBottomLeftCorner() bool {
-	if o != nil && !isNil(o.BottomLeftCorner) {
+	if o != nil && !IsNil(o.BottomLeftCorner) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *UpdateNetworkFloorPlanRequest) SetBottomLeftCorner(v CreateNetworkFloor
 
 // GetBottomRightCorner returns the BottomRightCorner field value if set, zero value otherwise.
 func (o *UpdateNetworkFloorPlanRequest) GetBottomRightCorner() CreateNetworkFloorPlanRequestBottomRightCorner {
-	if o == nil || isNil(o.BottomRightCorner) {
+	if o == nil || IsNil(o.BottomRightCorner) {
 		var ret CreateNetworkFloorPlanRequestBottomRightCorner
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *UpdateNetworkFloorPlanRequest) GetBottomRightCorner() CreateNetworkFloo
 // GetBottomRightCornerOk returns a tuple with the BottomRightCorner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFloorPlanRequest) GetBottomRightCornerOk() (*CreateNetworkFloorPlanRequestBottomRightCorner, bool) {
-	if o == nil || isNil(o.BottomRightCorner) {
-    return nil, false
+	if o == nil || IsNil(o.BottomRightCorner) {
+		return nil, false
 	}
 	return o.BottomRightCorner, true
 }
 
 // HasBottomRightCorner returns a boolean if a field has been set.
 func (o *UpdateNetworkFloorPlanRequest) HasBottomRightCorner() bool {
-	if o != nil && !isNil(o.BottomRightCorner) {
+	if o != nil && !IsNil(o.BottomRightCorner) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *UpdateNetworkFloorPlanRequest) SetBottomRightCorner(v CreateNetworkFloo
 
 // GetTopLeftCorner returns the TopLeftCorner field value if set, zero value otherwise.
 func (o *UpdateNetworkFloorPlanRequest) GetTopLeftCorner() CreateNetworkFloorPlanRequestTopLeftCorner {
-	if o == nil || isNil(o.TopLeftCorner) {
+	if o == nil || IsNil(o.TopLeftCorner) {
 		var ret CreateNetworkFloorPlanRequestTopLeftCorner
 		return ret
 	}
@@ -184,15 +187,15 @@ func (o *UpdateNetworkFloorPlanRequest) GetTopLeftCorner() CreateNetworkFloorPla
 // GetTopLeftCornerOk returns a tuple with the TopLeftCorner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFloorPlanRequest) GetTopLeftCornerOk() (*CreateNetworkFloorPlanRequestTopLeftCorner, bool) {
-	if o == nil || isNil(o.TopLeftCorner) {
-    return nil, false
+	if o == nil || IsNil(o.TopLeftCorner) {
+		return nil, false
 	}
 	return o.TopLeftCorner, true
 }
 
 // HasTopLeftCorner returns a boolean if a field has been set.
 func (o *UpdateNetworkFloorPlanRequest) HasTopLeftCorner() bool {
-	if o != nil && !isNil(o.TopLeftCorner) {
+	if o != nil && !IsNil(o.TopLeftCorner) {
 		return true
 	}
 
@@ -206,7 +209,7 @@ func (o *UpdateNetworkFloorPlanRequest) SetTopLeftCorner(v CreateNetworkFloorPla
 
 // GetTopRightCorner returns the TopRightCorner field value if set, zero value otherwise.
 func (o *UpdateNetworkFloorPlanRequest) GetTopRightCorner() CreateNetworkFloorPlanRequestTopRightCorner {
-	if o == nil || isNil(o.TopRightCorner) {
+	if o == nil || IsNil(o.TopRightCorner) {
 		var ret CreateNetworkFloorPlanRequestTopRightCorner
 		return ret
 	}
@@ -216,15 +219,15 @@ func (o *UpdateNetworkFloorPlanRequest) GetTopRightCorner() CreateNetworkFloorPl
 // GetTopRightCornerOk returns a tuple with the TopRightCorner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFloorPlanRequest) GetTopRightCornerOk() (*CreateNetworkFloorPlanRequestTopRightCorner, bool) {
-	if o == nil || isNil(o.TopRightCorner) {
-    return nil, false
+	if o == nil || IsNil(o.TopRightCorner) {
+		return nil, false
 	}
 	return o.TopRightCorner, true
 }
 
 // HasTopRightCorner returns a boolean if a field has been set.
 func (o *UpdateNetworkFloorPlanRequest) HasTopRightCorner() bool {
-	if o != nil && !isNil(o.TopRightCorner) {
+	if o != nil && !IsNil(o.TopRightCorner) {
 		return true
 	}
 
@@ -238,7 +241,7 @@ func (o *UpdateNetworkFloorPlanRequest) SetTopRightCorner(v CreateNetworkFloorPl
 
 // GetImageContents returns the ImageContents field value if set, zero value otherwise.
 func (o *UpdateNetworkFloorPlanRequest) GetImageContents() string {
-	if o == nil || isNil(o.ImageContents) {
+	if o == nil || IsNil(o.ImageContents) {
 		var ret string
 		return ret
 	}
@@ -248,15 +251,15 @@ func (o *UpdateNetworkFloorPlanRequest) GetImageContents() string {
 // GetImageContentsOk returns a tuple with the ImageContents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFloorPlanRequest) GetImageContentsOk() (*string, bool) {
-	if o == nil || isNil(o.ImageContents) {
-    return nil, false
+	if o == nil || IsNil(o.ImageContents) {
+		return nil, false
 	}
 	return o.ImageContents, true
 }
 
 // HasImageContents returns a boolean if a field has been set.
 func (o *UpdateNetworkFloorPlanRequest) HasImageContents() bool {
-	if o != nil && !isNil(o.ImageContents) {
+	if o != nil && !IsNil(o.ImageContents) {
 		return true
 	}
 
@@ -269,29 +272,37 @@ func (o *UpdateNetworkFloorPlanRequest) SetImageContents(v string) {
 }
 
 func (o UpdateNetworkFloorPlanRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Center) {
-		toSerialize["center"] = o.Center
-	}
-	if !isNil(o.BottomLeftCorner) {
-		toSerialize["bottomLeftCorner"] = o.BottomLeftCorner
-	}
-	if !isNil(o.BottomRightCorner) {
-		toSerialize["bottomRightCorner"] = o.BottomRightCorner
-	}
-	if !isNil(o.TopLeftCorner) {
-		toSerialize["topLeftCorner"] = o.TopLeftCorner
-	}
-	if !isNil(o.TopRightCorner) {
-		toSerialize["topRightCorner"] = o.TopRightCorner
-	}
-	if !isNil(o.ImageContents) {
-		toSerialize["imageContents"] = o.ImageContents
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkFloorPlanRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Center) {
+		toSerialize["center"] = o.Center
+	}
+	if !IsNil(o.BottomLeftCorner) {
+		toSerialize["bottomLeftCorner"] = o.BottomLeftCorner
+	}
+	if !IsNil(o.BottomRightCorner) {
+		toSerialize["bottomRightCorner"] = o.BottomRightCorner
+	}
+	if !IsNil(o.TopLeftCorner) {
+		toSerialize["topLeftCorner"] = o.TopLeftCorner
+	}
+	if !IsNil(o.TopRightCorner) {
+		toSerialize["topRightCorner"] = o.TopRightCorner
+	}
+	if !IsNil(o.ImageContents) {
+		toSerialize["imageContents"] = o.ImageContents
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkFloorPlanRequest struct {

@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck{}
+
 // GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck Attributes of the server's last ack.
 type GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck struct {
 	// Last time the server was acked.
@@ -41,7 +44,7 @@ func NewGetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAckWithDefaults() *
 
 // GetTs returns the Ts field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck) GetTs() time.Time {
-	if o == nil || isNil(o.Ts) {
+	if o == nil || IsNil(o.Ts) {
 		var ret time.Time
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck) GetTs() time.
 // GetTsOk returns a tuple with the Ts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck) GetTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.Ts) {
-    return nil, false
+	if o == nil || IsNil(o.Ts) {
+		return nil, false
 	}
 	return o.Ts, true
 }
 
 // HasTs returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck) HasTs() bool {
-	if o != nil && !isNil(o.Ts) {
+	if o != nil && !IsNil(o.Ts) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck) SetTs(v time.
 
 // GetIpv4 returns the Ipv4 field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck) GetIpv4() GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAckIpv4 {
-	if o == nil || isNil(o.Ipv4) {
+	if o == nil || IsNil(o.Ipv4) {
 		var ret GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAckIpv4
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck) GetIpv4() Get
 // GetIpv4Ok returns a tuple with the Ipv4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck) GetIpv4Ok() (*GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAckIpv4, bool) {
-	if o == nil || isNil(o.Ipv4) {
-    return nil, false
+	if o == nil || IsNil(o.Ipv4) {
+		return nil, false
 	}
 	return o.Ipv4, true
 }
 
 // HasIpv4 returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck) HasIpv4() bool {
-	if o != nil && !isNil(o.Ipv4) {
+	if o != nil && !IsNil(o.Ipv4) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck) SetIpv4(v Get
 }
 
 func (o GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Ts) {
-		toSerialize["ts"] = o.Ts
-	}
-	if !isNil(o.Ipv4) {
-		toSerialize["ipv4"] = o.Ipv4
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Ts) {
+		toSerialize["ts"] = o.Ts
+	}
+	if !IsNil(o.Ipv4) {
+		toSerialize["ipv4"] = o.Ipv4
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastAck struct {

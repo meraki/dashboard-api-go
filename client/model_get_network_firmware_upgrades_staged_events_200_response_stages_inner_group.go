@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup{}
+
 // GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup The staged upgrade group
 type GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup struct {
 	// Id of the Staged Upgrade Group
@@ -43,7 +46,7 @@ func NewGetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroupWithDef
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) GetI
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) SetI
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) GetN
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) SetN
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) GetD
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
-    return nil, false
+	if o == nil || IsNil(o.Description) {
+		return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) SetD
 }
 
 func (o GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Description) {
-		toSerialize["description"] = o.Description
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup struct {

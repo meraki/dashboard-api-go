@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkCameraWirelessProfileRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkCameraWirelessProfileRequest{}
+
 // CreateNetworkCameraWirelessProfileRequest struct for CreateNetworkCameraWirelessProfileRequest
 type CreateNetworkCameraWirelessProfileRequest struct {
 	// The name of the camera wireless profile. This parameter is required.
@@ -55,7 +58,7 @@ func (o *CreateNetworkCameraWirelessProfileRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraWirelessProfileRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -79,7 +82,7 @@ func (o *CreateNetworkCameraWirelessProfileRequest) GetSsid() CreateNetworkCamer
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraWirelessProfileRequest) GetSsidOk() (*CreateNetworkCameraWirelessProfileRequestSsid, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Ssid, true
 }
@@ -91,7 +94,7 @@ func (o *CreateNetworkCameraWirelessProfileRequest) SetSsid(v CreateNetworkCamer
 
 // GetIdentity returns the Identity field value if set, zero value otherwise.
 func (o *CreateNetworkCameraWirelessProfileRequest) GetIdentity() CreateNetworkCameraWirelessProfileRequestIdentity {
-	if o == nil || isNil(o.Identity) {
+	if o == nil || IsNil(o.Identity) {
 		var ret CreateNetworkCameraWirelessProfileRequestIdentity
 		return ret
 	}
@@ -101,15 +104,15 @@ func (o *CreateNetworkCameraWirelessProfileRequest) GetIdentity() CreateNetworkC
 // GetIdentityOk returns a tuple with the Identity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraWirelessProfileRequest) GetIdentityOk() (*CreateNetworkCameraWirelessProfileRequestIdentity, bool) {
-	if o == nil || isNil(o.Identity) {
-    return nil, false
+	if o == nil || IsNil(o.Identity) {
+		return nil, false
 	}
 	return o.Identity, true
 }
 
 // HasIdentity returns a boolean if a field has been set.
 func (o *CreateNetworkCameraWirelessProfileRequest) HasIdentity() bool {
-	if o != nil && !isNil(o.Identity) {
+	if o != nil && !IsNil(o.Identity) {
 		return true
 	}
 
@@ -122,17 +125,21 @@ func (o *CreateNetworkCameraWirelessProfileRequest) SetIdentity(v CreateNetworkC
 }
 
 func (o CreateNetworkCameraWirelessProfileRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["ssid"] = o.Ssid
-	}
-	if !isNil(o.Identity) {
-		toSerialize["identity"] = o.Identity
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkCameraWirelessProfileRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["ssid"] = o.Ssid
+	if !IsNil(o.Identity) {
+		toSerialize["identity"] = o.Identity
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkCameraWirelessProfileRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessAlternateManagementInterfaceRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessAlternateManagementInterfaceRequest{}
+
 // UpdateNetworkWirelessAlternateManagementInterfaceRequest struct for UpdateNetworkWirelessAlternateManagementInterfaceRequest
 type UpdateNetworkWirelessAlternateManagementInterfaceRequest struct {
 	// Boolean value to enable or disable alternate management interface
@@ -45,7 +48,7 @@ func NewUpdateNetworkWirelessAlternateManagementInterfaceRequestWithDefaults() *
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) GetEnabled() 
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) SetEnabled(v 
 
 // GetVlanId returns the VlanId field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) GetVlanId() int32 {
-	if o == nil || isNil(o.VlanId) {
+	if o == nil || IsNil(o.VlanId) {
 		var ret int32
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) GetVlanId() i
 // GetVlanIdOk returns a tuple with the VlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) GetVlanIdOk() (*int32, bool) {
-	if o == nil || isNil(o.VlanId) {
-    return nil, false
+	if o == nil || IsNil(o.VlanId) {
+		return nil, false
 	}
 	return o.VlanId, true
 }
 
 // HasVlanId returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) HasVlanId() bool {
-	if o != nil && !isNil(o.VlanId) {
+	if o != nil && !IsNil(o.VlanId) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) SetVlanId(v i
 
 // GetProtocols returns the Protocols field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) GetProtocols() []string {
-	if o == nil || isNil(o.Protocols) {
+	if o == nil || IsNil(o.Protocols) {
 		var ret []string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) GetProtocols(
 // GetProtocolsOk returns a tuple with the Protocols field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) GetProtocolsOk() ([]string, bool) {
-	if o == nil || isNil(o.Protocols) {
-    return nil, false
+	if o == nil || IsNil(o.Protocols) {
+		return nil, false
 	}
 	return o.Protocols, true
 }
 
 // HasProtocols returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) HasProtocols() bool {
-	if o != nil && !isNil(o.Protocols) {
+	if o != nil && !IsNil(o.Protocols) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) SetProtocols(
 
 // GetAccessPoints returns the AccessPoints field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) GetAccessPoints() []UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner {
-	if o == nil || isNil(o.AccessPoints) {
+	if o == nil || IsNil(o.AccessPoints) {
 		var ret []UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) GetAccessPoin
 // GetAccessPointsOk returns a tuple with the AccessPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) GetAccessPointsOk() ([]UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner, bool) {
-	if o == nil || isNil(o.AccessPoints) {
-    return nil, false
+	if o == nil || IsNil(o.AccessPoints) {
+		return nil, false
 	}
 	return o.AccessPoints, true
 }
 
 // HasAccessPoints returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) HasAccessPoints() bool {
-	if o != nil && !isNil(o.AccessPoints) {
+	if o != nil && !IsNil(o.AccessPoints) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequest) SetAccessPoin
 }
 
 func (o UpdateNetworkWirelessAlternateManagementInterfaceRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.VlanId) {
-		toSerialize["vlanId"] = o.VlanId
-	}
-	if !isNil(o.Protocols) {
-		toSerialize["protocols"] = o.Protocols
-	}
-	if !isNil(o.AccessPoints) {
-		toSerialize["accessPoints"] = o.AccessPoints
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessAlternateManagementInterfaceRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.VlanId) {
+		toSerialize["vlanId"] = o.VlanId
+	}
+	if !IsNil(o.Protocols) {
+		toSerialize["protocols"] = o.Protocols
+	}
+	if !IsNil(o.AccessPoints) {
+		toSerialize["accessPoints"] = o.AccessPoints
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessAlternateManagementInterfaceRequest struct {

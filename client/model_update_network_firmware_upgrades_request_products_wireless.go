@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkFirmwareUpgradesRequestProductsWireless type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkFirmwareUpgradesRequestProductsWireless{}
+
 // UpdateNetworkFirmwareUpgradesRequestProductsWireless The network device to be updated
 type UpdateNetworkFirmwareUpgradesRequestProductsWireless struct {
 	NextUpgrade *UpdateNetworkFirmwareUpgradesRequestProductsWirelessNextUpgrade `json:"nextUpgrade,omitempty"`
@@ -40,7 +43,7 @@ func NewUpdateNetworkFirmwareUpgradesRequestProductsWirelessWithDefaults() *Upda
 
 // GetNextUpgrade returns the NextUpgrade field value if set, zero value otherwise.
 func (o *UpdateNetworkFirmwareUpgradesRequestProductsWireless) GetNextUpgrade() UpdateNetworkFirmwareUpgradesRequestProductsWirelessNextUpgrade {
-	if o == nil || isNil(o.NextUpgrade) {
+	if o == nil || IsNil(o.NextUpgrade) {
 		var ret UpdateNetworkFirmwareUpgradesRequestProductsWirelessNextUpgrade
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProductsWireless) GetNextUpgrade() 
 // GetNextUpgradeOk returns a tuple with the NextUpgrade field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProductsWireless) GetNextUpgradeOk() (*UpdateNetworkFirmwareUpgradesRequestProductsWirelessNextUpgrade, bool) {
-	if o == nil || isNil(o.NextUpgrade) {
-    return nil, false
+	if o == nil || IsNil(o.NextUpgrade) {
+		return nil, false
 	}
 	return o.NextUpgrade, true
 }
 
 // HasNextUpgrade returns a boolean if a field has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProductsWireless) HasNextUpgrade() bool {
-	if o != nil && !isNil(o.NextUpgrade) {
+	if o != nil && !IsNil(o.NextUpgrade) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProductsWireless) SetNextUpgrade(v 
 
 // GetParticipateInNextBetaRelease returns the ParticipateInNextBetaRelease field value if set, zero value otherwise.
 func (o *UpdateNetworkFirmwareUpgradesRequestProductsWireless) GetParticipateInNextBetaRelease() bool {
-	if o == nil || isNil(o.ParticipateInNextBetaRelease) {
+	if o == nil || IsNil(o.ParticipateInNextBetaRelease) {
 		var ret bool
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProductsWireless) GetParticipateInN
 // GetParticipateInNextBetaReleaseOk returns a tuple with the ParticipateInNextBetaRelease field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProductsWireless) GetParticipateInNextBetaReleaseOk() (*bool, bool) {
-	if o == nil || isNil(o.ParticipateInNextBetaRelease) {
-    return nil, false
+	if o == nil || IsNil(o.ParticipateInNextBetaRelease) {
+		return nil, false
 	}
 	return o.ParticipateInNextBetaRelease, true
 }
 
 // HasParticipateInNextBetaRelease returns a boolean if a field has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProductsWireless) HasParticipateInNextBetaRelease() bool {
-	if o != nil && !isNil(o.ParticipateInNextBetaRelease) {
+	if o != nil && !IsNil(o.ParticipateInNextBetaRelease) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProductsWireless) SetParticipateInN
 }
 
 func (o UpdateNetworkFirmwareUpgradesRequestProductsWireless) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.NextUpgrade) {
-		toSerialize["nextUpgrade"] = o.NextUpgrade
-	}
-	if !isNil(o.ParticipateInNextBetaRelease) {
-		toSerialize["participateInNextBetaRelease"] = o.ParticipateInNextBetaRelease
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkFirmwareUpgradesRequestProductsWireless) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.NextUpgrade) {
+		toSerialize["nextUpgrade"] = o.NextUpgrade
+	}
+	if !IsNil(o.ParticipateInNextBetaRelease) {
+		toSerialize["participateInNextBetaRelease"] = o.ParticipateInNextBetaRelease
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkFirmwareUpgradesRequestProductsWireless struct {

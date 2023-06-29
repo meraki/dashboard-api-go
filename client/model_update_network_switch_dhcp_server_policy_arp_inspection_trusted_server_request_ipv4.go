@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4{}
+
 // UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4 The updated IPv4 attributes of the trusted server
 type UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4 struct {
 	// The updated IPv4 address of the trusted server
@@ -39,7 +42,7 @@ func NewUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4
 
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4) GetAddress() string {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4) GetAddressOk() (*string, bool) {
-	if o == nil || isNil(o.Address) {
-    return nil, false
+	if o == nil || IsNil(o.Address) {
+		return nil, false
 	}
 	return o.Address, true
 }
 
 // HasAddress returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4) HasAddress() bool {
-	if o != nil && !isNil(o.Address) {
+	if o != nil && !IsNil(o.Address) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv
 }
 
 func (o UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Address) {
-		toSerialize["address"] = o.Address
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Address) {
+		toSerialize["address"] = o.Address
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4 struct {

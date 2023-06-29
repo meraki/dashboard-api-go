@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AssignOrganizationLicensesSeatsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AssignOrganizationLicensesSeatsRequest{}
+
 // AssignOrganizationLicensesSeatsRequest struct for AssignOrganizationLicensesSeatsRequest
 type AssignOrganizationLicensesSeatsRequest struct {
 	// The ID of the SM license to assign seats from
@@ -58,7 +61,7 @@ func (o *AssignOrganizationLicensesSeatsRequest) GetLicenseId() string {
 // and a boolean to check if the value has been set.
 func (o *AssignOrganizationLicensesSeatsRequest) GetLicenseIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.LicenseId, true
 }
@@ -82,7 +85,7 @@ func (o *AssignOrganizationLicensesSeatsRequest) GetNetworkId() string {
 // and a boolean to check if the value has been set.
 func (o *AssignOrganizationLicensesSeatsRequest) GetNetworkIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.NetworkId, true
 }
@@ -106,7 +109,7 @@ func (o *AssignOrganizationLicensesSeatsRequest) GetSeatCount() int32 {
 // and a boolean to check if the value has been set.
 func (o *AssignOrganizationLicensesSeatsRequest) GetSeatCountOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.SeatCount, true
 }
@@ -117,17 +120,19 @@ func (o *AssignOrganizationLicensesSeatsRequest) SetSeatCount(v int32) {
 }
 
 func (o AssignOrganizationLicensesSeatsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["licenseId"] = o.LicenseId
-	}
-	if true {
-		toSerialize["networkId"] = o.NetworkId
-	}
-	if true {
-		toSerialize["seatCount"] = o.SeatCount
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AssignOrganizationLicensesSeatsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["licenseId"] = o.LicenseId
+	toSerialize["networkId"] = o.NetworkId
+	toSerialize["seatCount"] = o.SeatCount
+	return toSerialize, nil
 }
 
 type NullableAssignOrganizationLicensesSeatsRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner{}
+
 // GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner struct for GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner
 type GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner struct {
 	// The network ID of the hub.
@@ -41,7 +44,7 @@ func NewGetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInnerWithDefaults() *G
 
 // GetHubId returns the HubId field value if set, zero value otherwise.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner) GetHubId() string {
-	if o == nil || isNil(o.HubId) {
+	if o == nil || IsNil(o.HubId) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner) GetHubId() str
 // GetHubIdOk returns a tuple with the HubId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner) GetHubIdOk() (*string, bool) {
-	if o == nil || isNil(o.HubId) {
-    return nil, false
+	if o == nil || IsNil(o.HubId) {
+		return nil, false
 	}
 	return o.HubId, true
 }
 
 // HasHubId returns a boolean if a field has been set.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner) HasHubId() bool {
-	if o != nil && !isNil(o.HubId) {
+	if o != nil && !IsNil(o.HubId) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner) SetHubId(v str
 
 // GetUseDefaultRoute returns the UseDefaultRoute field value if set, zero value otherwise.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner) GetUseDefaultRoute() bool {
-	if o == nil || isNil(o.UseDefaultRoute) {
+	if o == nil || IsNil(o.UseDefaultRoute) {
 		var ret bool
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner) GetUseDefaultR
 // GetUseDefaultRouteOk returns a tuple with the UseDefaultRoute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner) GetUseDefaultRouteOk() (*bool, bool) {
-	if o == nil || isNil(o.UseDefaultRoute) {
-    return nil, false
+	if o == nil || IsNil(o.UseDefaultRoute) {
+		return nil, false
 	}
 	return o.UseDefaultRoute, true
 }
 
 // HasUseDefaultRoute returns a boolean if a field has been set.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner) HasUseDefaultRoute() bool {
-	if o != nil && !isNil(o.UseDefaultRoute) {
+	if o != nil && !IsNil(o.UseDefaultRoute) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner) SetUseDefaultR
 }
 
 func (o GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.HubId) {
-		toSerialize["hubId"] = o.HubId
-	}
-	if !isNil(o.UseDefaultRoute) {
-		toSerialize["useDefaultRoute"] = o.UseDefaultRoute
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.HubId) {
+		toSerialize["hubId"] = o.HubId
+	}
+	if !IsNil(o.UseDefaultRoute) {
+		toSerialize["useDefaultRoute"] = o.UseDefaultRoute
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner struct {

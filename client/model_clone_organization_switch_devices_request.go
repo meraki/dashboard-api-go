@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CloneOrganizationSwitchDevicesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CloneOrganizationSwitchDevicesRequest{}
+
 // CloneOrganizationSwitchDevicesRequest struct for CloneOrganizationSwitchDevicesRequest
 type CloneOrganizationSwitchDevicesRequest struct {
 	// Serial number of the source switch (must be on a network not bound to a template)
@@ -55,7 +58,7 @@ func (o *CloneOrganizationSwitchDevicesRequest) GetSourceSerial() string {
 // and a boolean to check if the value has been set.
 func (o *CloneOrganizationSwitchDevicesRequest) GetSourceSerialOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.SourceSerial, true
 }
@@ -79,7 +82,7 @@ func (o *CloneOrganizationSwitchDevicesRequest) GetTargetSerials() []string {
 // and a boolean to check if the value has been set.
 func (o *CloneOrganizationSwitchDevicesRequest) GetTargetSerialsOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.TargetSerials, true
 }
@@ -90,14 +93,18 @@ func (o *CloneOrganizationSwitchDevicesRequest) SetTargetSerials(v []string) {
 }
 
 func (o CloneOrganizationSwitchDevicesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["sourceSerial"] = o.SourceSerial
-	}
-	if true {
-		toSerialize["targetSerials"] = o.TargetSerials
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CloneOrganizationSwitchDevicesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["sourceSerial"] = o.SourceSerial
+	toSerialize["targetSerials"] = o.TargetSerials
+	return toSerialize, nil
 }
 
 type NullableCloneOrganizationSwitchDevicesRequest struct {

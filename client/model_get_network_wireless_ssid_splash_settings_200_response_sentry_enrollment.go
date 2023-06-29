@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment{}
+
 // GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment Systems Manager sentry enrollment splash settings.
 type GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment struct {
 	SystemsManagerNetwork *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsManagerNetwork `json:"systemsManagerNetwork,omitempty"`
@@ -42,7 +45,7 @@ func NewGetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentWithDefau
 
 // GetSystemsManagerNetwork returns the SystemsManagerNetwork field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) GetSystemsManagerNetwork() GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsManagerNetwork {
-	if o == nil || isNil(o.SystemsManagerNetwork) {
+	if o == nil || IsNil(o.SystemsManagerNetwork) {
 		var ret GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsManagerNetwork
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) GetSys
 // GetSystemsManagerNetworkOk returns a tuple with the SystemsManagerNetwork field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) GetSystemsManagerNetworkOk() (*GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsManagerNetwork, bool) {
-	if o == nil || isNil(o.SystemsManagerNetwork) {
-    return nil, false
+	if o == nil || IsNil(o.SystemsManagerNetwork) {
+		return nil, false
 	}
 	return o.SystemsManagerNetwork, true
 }
 
 // HasSystemsManagerNetwork returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) HasSystemsManagerNetwork() bool {
-	if o != nil && !isNil(o.SystemsManagerNetwork) {
+	if o != nil && !IsNil(o.SystemsManagerNetwork) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) SetSys
 
 // GetStrength returns the Strength field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) GetStrength() string {
-	if o == nil || isNil(o.Strength) {
+	if o == nil || IsNil(o.Strength) {
 		var ret string
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) GetStr
 // GetStrengthOk returns a tuple with the Strength field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) GetStrengthOk() (*string, bool) {
-	if o == nil || isNil(o.Strength) {
-    return nil, false
+	if o == nil || IsNil(o.Strength) {
+		return nil, false
 	}
 	return o.Strength, true
 }
 
 // HasStrength returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) HasStrength() bool {
-	if o != nil && !isNil(o.Strength) {
+	if o != nil && !IsNil(o.Strength) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) SetStr
 
 // GetEnforcedSystems returns the EnforcedSystems field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) GetEnforcedSystems() []string {
-	if o == nil || isNil(o.EnforcedSystems) {
+	if o == nil || IsNil(o.EnforcedSystems) {
 		var ret []string
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) GetEnf
 // GetEnforcedSystemsOk returns a tuple with the EnforcedSystems field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) GetEnforcedSystemsOk() ([]string, bool) {
-	if o == nil || isNil(o.EnforcedSystems) {
-    return nil, false
+	if o == nil || IsNil(o.EnforcedSystems) {
+		return nil, false
 	}
 	return o.EnforcedSystems, true
 }
 
 // HasEnforcedSystems returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) HasEnforcedSystems() bool {
-	if o != nil && !isNil(o.EnforcedSystems) {
+	if o != nil && !IsNil(o.EnforcedSystems) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) SetEnf
 }
 
 func (o GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.SystemsManagerNetwork) {
-		toSerialize["systemsManagerNetwork"] = o.SystemsManagerNetwork
-	}
-	if !isNil(o.Strength) {
-		toSerialize["strength"] = o.Strength
-	}
-	if !isNil(o.EnforcedSystems) {
-		toSerialize["enforcedSystems"] = o.EnforcedSystems
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SystemsManagerNetwork) {
+		toSerialize["systemsManagerNetwork"] = o.SystemsManagerNetwork
+	}
+	if !IsNil(o.Strength) {
+		toSerialize["strength"] = o.Strength
+	}
+	if !IsNil(o.EnforcedSystems) {
+		toSerialize["enforcedSystems"] = o.EnforcedSystems
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollment struct {

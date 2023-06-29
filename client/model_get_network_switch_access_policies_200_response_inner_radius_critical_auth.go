@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth{}
+
 // GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth Critical auth settings for when authentication is rejected by the RADIUS server
 type GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth struct {
 	// VLAN that clients who use data will be placed on when RADIUS authentication fails. Will be null if hostMode is Multi-Auth
@@ -43,7 +46,7 @@ func NewGetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuthWithDefa
 
 // GetDataVlanId returns the DataVlanId field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) GetDataVlanId() int32 {
-	if o == nil || isNil(o.DataVlanId) {
+	if o == nil || IsNil(o.DataVlanId) {
 		var ret int32
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) GetDa
 // GetDataVlanIdOk returns a tuple with the DataVlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) GetDataVlanIdOk() (*int32, bool) {
-	if o == nil || isNil(o.DataVlanId) {
-    return nil, false
+	if o == nil || IsNil(o.DataVlanId) {
+		return nil, false
 	}
 	return o.DataVlanId, true
 }
 
 // HasDataVlanId returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) HasDataVlanId() bool {
-	if o != nil && !isNil(o.DataVlanId) {
+	if o != nil && !IsNil(o.DataVlanId) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) SetDa
 
 // GetVoiceVlanId returns the VoiceVlanId field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) GetVoiceVlanId() int32 {
-	if o == nil || isNil(o.VoiceVlanId) {
+	if o == nil || IsNil(o.VoiceVlanId) {
 		var ret int32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) GetVo
 // GetVoiceVlanIdOk returns a tuple with the VoiceVlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) GetVoiceVlanIdOk() (*int32, bool) {
-	if o == nil || isNil(o.VoiceVlanId) {
-    return nil, false
+	if o == nil || IsNil(o.VoiceVlanId) {
+		return nil, false
 	}
 	return o.VoiceVlanId, true
 }
 
 // HasVoiceVlanId returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) HasVoiceVlanId() bool {
-	if o != nil && !isNil(o.VoiceVlanId) {
+	if o != nil && !IsNil(o.VoiceVlanId) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) SetVo
 
 // GetSuspendPortBounce returns the SuspendPortBounce field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) GetSuspendPortBounce() bool {
-	if o == nil || isNil(o.SuspendPortBounce) {
+	if o == nil || IsNil(o.SuspendPortBounce) {
 		var ret bool
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) GetSu
 // GetSuspendPortBounceOk returns a tuple with the SuspendPortBounce field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) GetSuspendPortBounceOk() (*bool, bool) {
-	if o == nil || isNil(o.SuspendPortBounce) {
-    return nil, false
+	if o == nil || IsNil(o.SuspendPortBounce) {
+		return nil, false
 	}
 	return o.SuspendPortBounce, true
 }
 
 // HasSuspendPortBounce returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) HasSuspendPortBounce() bool {
-	if o != nil && !isNil(o.SuspendPortBounce) {
+	if o != nil && !IsNil(o.SuspendPortBounce) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) SetSu
 }
 
 func (o GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.DataVlanId) {
-		toSerialize["dataVlanId"] = o.DataVlanId
-	}
-	if !isNil(o.VoiceVlanId) {
-		toSerialize["voiceVlanId"] = o.VoiceVlanId
-	}
-	if !isNil(o.SuspendPortBounce) {
-		toSerialize["suspendPortBounce"] = o.SuspendPortBounce
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DataVlanId) {
+		toSerialize["dataVlanId"] = o.DataVlanId
+	}
+	if !IsNil(o.VoiceVlanId) {
+		toSerialize["voiceVlanId"] = o.VoiceVlanId
+	}
+	if !IsNil(o.SuspendPortBounce) {
+		toSerialize["suspendPortBounce"] = o.SuspendPortBounce
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkClient200ResponseClientVpnConnectionsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkClient200ResponseClientVpnConnectionsInner{}
+
 // GetNetworkClient200ResponseClientVpnConnectionsInner struct for GetNetworkClient200ResponseClientVpnConnectionsInner
 type GetNetworkClient200ResponseClientVpnConnectionsInner struct {
 	// The IP address of the VPN the client last connected to
@@ -43,7 +46,7 @@ func NewGetNetworkClient200ResponseClientVpnConnectionsInnerWithDefaults() *GetN
 
 // GetRemoteIp returns the RemoteIp field value if set, zero value otherwise.
 func (o *GetNetworkClient200ResponseClientVpnConnectionsInner) GetRemoteIp() string {
-	if o == nil || isNil(o.RemoteIp) {
+	if o == nil || IsNil(o.RemoteIp) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkClient200ResponseClientVpnConnectionsInner) GetRemoteIp() str
 // GetRemoteIpOk returns a tuple with the RemoteIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkClient200ResponseClientVpnConnectionsInner) GetRemoteIpOk() (*string, bool) {
-	if o == nil || isNil(o.RemoteIp) {
-    return nil, false
+	if o == nil || IsNil(o.RemoteIp) {
+		return nil, false
 	}
 	return o.RemoteIp, true
 }
 
 // HasRemoteIp returns a boolean if a field has been set.
 func (o *GetNetworkClient200ResponseClientVpnConnectionsInner) HasRemoteIp() bool {
-	if o != nil && !isNil(o.RemoteIp) {
+	if o != nil && !IsNil(o.RemoteIp) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkClient200ResponseClientVpnConnectionsInner) SetRemoteIp(v str
 
 // GetConnectedAt returns the ConnectedAt field value if set, zero value otherwise.
 func (o *GetNetworkClient200ResponseClientVpnConnectionsInner) GetConnectedAt() int32 {
-	if o == nil || isNil(o.ConnectedAt) {
+	if o == nil || IsNil(o.ConnectedAt) {
 		var ret int32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkClient200ResponseClientVpnConnectionsInner) GetConnectedAt() 
 // GetConnectedAtOk returns a tuple with the ConnectedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkClient200ResponseClientVpnConnectionsInner) GetConnectedAtOk() (*int32, bool) {
-	if o == nil || isNil(o.ConnectedAt) {
-    return nil, false
+	if o == nil || IsNil(o.ConnectedAt) {
+		return nil, false
 	}
 	return o.ConnectedAt, true
 }
 
 // HasConnectedAt returns a boolean if a field has been set.
 func (o *GetNetworkClient200ResponseClientVpnConnectionsInner) HasConnectedAt() bool {
-	if o != nil && !isNil(o.ConnectedAt) {
+	if o != nil && !IsNil(o.ConnectedAt) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkClient200ResponseClientVpnConnectionsInner) SetConnectedAt(v 
 
 // GetDisconnectedAt returns the DisconnectedAt field value if set, zero value otherwise.
 func (o *GetNetworkClient200ResponseClientVpnConnectionsInner) GetDisconnectedAt() int32 {
-	if o == nil || isNil(o.DisconnectedAt) {
+	if o == nil || IsNil(o.DisconnectedAt) {
 		var ret int32
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkClient200ResponseClientVpnConnectionsInner) GetDisconnectedAt
 // GetDisconnectedAtOk returns a tuple with the DisconnectedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkClient200ResponseClientVpnConnectionsInner) GetDisconnectedAtOk() (*int32, bool) {
-	if o == nil || isNil(o.DisconnectedAt) {
-    return nil, false
+	if o == nil || IsNil(o.DisconnectedAt) {
+		return nil, false
 	}
 	return o.DisconnectedAt, true
 }
 
 // HasDisconnectedAt returns a boolean if a field has been set.
 func (o *GetNetworkClient200ResponseClientVpnConnectionsInner) HasDisconnectedAt() bool {
-	if o != nil && !isNil(o.DisconnectedAt) {
+	if o != nil && !IsNil(o.DisconnectedAt) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkClient200ResponseClientVpnConnectionsInner) SetDisconnectedAt
 }
 
 func (o GetNetworkClient200ResponseClientVpnConnectionsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.RemoteIp) {
-		toSerialize["remoteIp"] = o.RemoteIp
-	}
-	if !isNil(o.ConnectedAt) {
-		toSerialize["connectedAt"] = o.ConnectedAt
-	}
-	if !isNil(o.DisconnectedAt) {
-		toSerialize["disconnectedAt"] = o.DisconnectedAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkClient200ResponseClientVpnConnectionsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.RemoteIp) {
+		toSerialize["remoteIp"] = o.RemoteIp
+	}
+	if !IsNil(o.ConnectedAt) {
+		toSerialize["connectedAt"] = o.ConnectedAt
+	}
+	if !IsNil(o.DisconnectedAt) {
+		toSerialize["disconnectedAt"] = o.DisconnectedAt
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkClient200ResponseClientVpnConnectionsInner struct {

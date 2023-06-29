@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkGroupPolicyRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkGroupPolicyRequest{}
+
 // UpdateNetworkGroupPolicyRequest struct for UpdateNetworkGroupPolicyRequest
 type UpdateNetworkGroupPolicyRequest struct {
 	// The name for your group policy.
@@ -47,7 +50,7 @@ func NewUpdateNetworkGroupPolicyRequestWithDefaults() *UpdateNetworkGroupPolicyR
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkGroupPolicyRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *UpdateNetworkGroupPolicyRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkGroupPolicyRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkGroupPolicyRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *UpdateNetworkGroupPolicyRequest) SetName(v string) {
 
 // GetScheduling returns the Scheduling field value if set, zero value otherwise.
 func (o *UpdateNetworkGroupPolicyRequest) GetScheduling() CreateNetworkGroupPolicyRequestScheduling {
-	if o == nil || isNil(o.Scheduling) {
+	if o == nil || IsNil(o.Scheduling) {
 		var ret CreateNetworkGroupPolicyRequestScheduling
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *UpdateNetworkGroupPolicyRequest) GetScheduling() CreateNetworkGroupPoli
 // GetSchedulingOk returns a tuple with the Scheduling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkGroupPolicyRequest) GetSchedulingOk() (*CreateNetworkGroupPolicyRequestScheduling, bool) {
-	if o == nil || isNil(o.Scheduling) {
-    return nil, false
+	if o == nil || IsNil(o.Scheduling) {
+		return nil, false
 	}
 	return o.Scheduling, true
 }
 
 // HasScheduling returns a boolean if a field has been set.
 func (o *UpdateNetworkGroupPolicyRequest) HasScheduling() bool {
-	if o != nil && !isNil(o.Scheduling) {
+	if o != nil && !IsNil(o.Scheduling) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *UpdateNetworkGroupPolicyRequest) SetScheduling(v CreateNetworkGroupPoli
 
 // GetBandwidth returns the Bandwidth field value if set, zero value otherwise.
 func (o *UpdateNetworkGroupPolicyRequest) GetBandwidth() CreateNetworkGroupPolicyRequestBandwidth {
-	if o == nil || isNil(o.Bandwidth) {
+	if o == nil || IsNil(o.Bandwidth) {
 		var ret CreateNetworkGroupPolicyRequestBandwidth
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *UpdateNetworkGroupPolicyRequest) GetBandwidth() CreateNetworkGroupPolic
 // GetBandwidthOk returns a tuple with the Bandwidth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkGroupPolicyRequest) GetBandwidthOk() (*CreateNetworkGroupPolicyRequestBandwidth, bool) {
-	if o == nil || isNil(o.Bandwidth) {
-    return nil, false
+	if o == nil || IsNil(o.Bandwidth) {
+		return nil, false
 	}
 	return o.Bandwidth, true
 }
 
 // HasBandwidth returns a boolean if a field has been set.
 func (o *UpdateNetworkGroupPolicyRequest) HasBandwidth() bool {
-	if o != nil && !isNil(o.Bandwidth) {
+	if o != nil && !IsNil(o.Bandwidth) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *UpdateNetworkGroupPolicyRequest) SetBandwidth(v CreateNetworkGroupPolic
 
 // GetFirewallAndTrafficShaping returns the FirewallAndTrafficShaping field value if set, zero value otherwise.
 func (o *UpdateNetworkGroupPolicyRequest) GetFirewallAndTrafficShaping() CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping {
-	if o == nil || isNil(o.FirewallAndTrafficShaping) {
+	if o == nil || IsNil(o.FirewallAndTrafficShaping) {
 		var ret CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *UpdateNetworkGroupPolicyRequest) GetFirewallAndTrafficShaping() CreateN
 // GetFirewallAndTrafficShapingOk returns a tuple with the FirewallAndTrafficShaping field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkGroupPolicyRequest) GetFirewallAndTrafficShapingOk() (*CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping, bool) {
-	if o == nil || isNil(o.FirewallAndTrafficShaping) {
-    return nil, false
+	if o == nil || IsNil(o.FirewallAndTrafficShaping) {
+		return nil, false
 	}
 	return o.FirewallAndTrafficShaping, true
 }
 
 // HasFirewallAndTrafficShaping returns a boolean if a field has been set.
 func (o *UpdateNetworkGroupPolicyRequest) HasFirewallAndTrafficShaping() bool {
-	if o != nil && !isNil(o.FirewallAndTrafficShaping) {
+	if o != nil && !IsNil(o.FirewallAndTrafficShaping) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *UpdateNetworkGroupPolicyRequest) SetFirewallAndTrafficShaping(v CreateN
 
 // GetContentFiltering returns the ContentFiltering field value if set, zero value otherwise.
 func (o *UpdateNetworkGroupPolicyRequest) GetContentFiltering() CreateNetworkGroupPolicyRequestContentFiltering {
-	if o == nil || isNil(o.ContentFiltering) {
+	if o == nil || IsNil(o.ContentFiltering) {
 		var ret CreateNetworkGroupPolicyRequestContentFiltering
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *UpdateNetworkGroupPolicyRequest) GetContentFiltering() CreateNetworkGro
 // GetContentFilteringOk returns a tuple with the ContentFiltering field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkGroupPolicyRequest) GetContentFilteringOk() (*CreateNetworkGroupPolicyRequestContentFiltering, bool) {
-	if o == nil || isNil(o.ContentFiltering) {
-    return nil, false
+	if o == nil || IsNil(o.ContentFiltering) {
+		return nil, false
 	}
 	return o.ContentFiltering, true
 }
 
 // HasContentFiltering returns a boolean if a field has been set.
 func (o *UpdateNetworkGroupPolicyRequest) HasContentFiltering() bool {
-	if o != nil && !isNil(o.ContentFiltering) {
+	if o != nil && !IsNil(o.ContentFiltering) {
 		return true
 	}
 
@@ -207,7 +210,7 @@ func (o *UpdateNetworkGroupPolicyRequest) SetContentFiltering(v CreateNetworkGro
 
 // GetSplashAuthSettings returns the SplashAuthSettings field value if set, zero value otherwise.
 func (o *UpdateNetworkGroupPolicyRequest) GetSplashAuthSettings() string {
-	if o == nil || isNil(o.SplashAuthSettings) {
+	if o == nil || IsNil(o.SplashAuthSettings) {
 		var ret string
 		return ret
 	}
@@ -217,15 +220,15 @@ func (o *UpdateNetworkGroupPolicyRequest) GetSplashAuthSettings() string {
 // GetSplashAuthSettingsOk returns a tuple with the SplashAuthSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkGroupPolicyRequest) GetSplashAuthSettingsOk() (*string, bool) {
-	if o == nil || isNil(o.SplashAuthSettings) {
-    return nil, false
+	if o == nil || IsNil(o.SplashAuthSettings) {
+		return nil, false
 	}
 	return o.SplashAuthSettings, true
 }
 
 // HasSplashAuthSettings returns a boolean if a field has been set.
 func (o *UpdateNetworkGroupPolicyRequest) HasSplashAuthSettings() bool {
-	if o != nil && !isNil(o.SplashAuthSettings) {
+	if o != nil && !IsNil(o.SplashAuthSettings) {
 		return true
 	}
 
@@ -239,7 +242,7 @@ func (o *UpdateNetworkGroupPolicyRequest) SetSplashAuthSettings(v string) {
 
 // GetVlanTagging returns the VlanTagging field value if set, zero value otherwise.
 func (o *UpdateNetworkGroupPolicyRequest) GetVlanTagging() CreateNetworkGroupPolicyRequestVlanTagging {
-	if o == nil || isNil(o.VlanTagging) {
+	if o == nil || IsNil(o.VlanTagging) {
 		var ret CreateNetworkGroupPolicyRequestVlanTagging
 		return ret
 	}
@@ -249,15 +252,15 @@ func (o *UpdateNetworkGroupPolicyRequest) GetVlanTagging() CreateNetworkGroupPol
 // GetVlanTaggingOk returns a tuple with the VlanTagging field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkGroupPolicyRequest) GetVlanTaggingOk() (*CreateNetworkGroupPolicyRequestVlanTagging, bool) {
-	if o == nil || isNil(o.VlanTagging) {
-    return nil, false
+	if o == nil || IsNil(o.VlanTagging) {
+		return nil, false
 	}
 	return o.VlanTagging, true
 }
 
 // HasVlanTagging returns a boolean if a field has been set.
 func (o *UpdateNetworkGroupPolicyRequest) HasVlanTagging() bool {
-	if o != nil && !isNil(o.VlanTagging) {
+	if o != nil && !IsNil(o.VlanTagging) {
 		return true
 	}
 
@@ -271,7 +274,7 @@ func (o *UpdateNetworkGroupPolicyRequest) SetVlanTagging(v CreateNetworkGroupPol
 
 // GetBonjourForwarding returns the BonjourForwarding field value if set, zero value otherwise.
 func (o *UpdateNetworkGroupPolicyRequest) GetBonjourForwarding() CreateNetworkGroupPolicyRequestBonjourForwarding {
-	if o == nil || isNil(o.BonjourForwarding) {
+	if o == nil || IsNil(o.BonjourForwarding) {
 		var ret CreateNetworkGroupPolicyRequestBonjourForwarding
 		return ret
 	}
@@ -281,15 +284,15 @@ func (o *UpdateNetworkGroupPolicyRequest) GetBonjourForwarding() CreateNetworkGr
 // GetBonjourForwardingOk returns a tuple with the BonjourForwarding field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkGroupPolicyRequest) GetBonjourForwardingOk() (*CreateNetworkGroupPolicyRequestBonjourForwarding, bool) {
-	if o == nil || isNil(o.BonjourForwarding) {
-    return nil, false
+	if o == nil || IsNil(o.BonjourForwarding) {
+		return nil, false
 	}
 	return o.BonjourForwarding, true
 }
 
 // HasBonjourForwarding returns a boolean if a field has been set.
 func (o *UpdateNetworkGroupPolicyRequest) HasBonjourForwarding() bool {
-	if o != nil && !isNil(o.BonjourForwarding) {
+	if o != nil && !IsNil(o.BonjourForwarding) {
 		return true
 	}
 
@@ -302,32 +305,40 @@ func (o *UpdateNetworkGroupPolicyRequest) SetBonjourForwarding(v CreateNetworkGr
 }
 
 func (o UpdateNetworkGroupPolicyRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Scheduling) {
-		toSerialize["scheduling"] = o.Scheduling
-	}
-	if !isNil(o.Bandwidth) {
-		toSerialize["bandwidth"] = o.Bandwidth
-	}
-	if !isNil(o.FirewallAndTrafficShaping) {
-		toSerialize["firewallAndTrafficShaping"] = o.FirewallAndTrafficShaping
-	}
-	if !isNil(o.ContentFiltering) {
-		toSerialize["contentFiltering"] = o.ContentFiltering
-	}
-	if !isNil(o.SplashAuthSettings) {
-		toSerialize["splashAuthSettings"] = o.SplashAuthSettings
-	}
-	if !isNil(o.VlanTagging) {
-		toSerialize["vlanTagging"] = o.VlanTagging
-	}
-	if !isNil(o.BonjourForwarding) {
-		toSerialize["bonjourForwarding"] = o.BonjourForwarding
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkGroupPolicyRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Scheduling) {
+		toSerialize["scheduling"] = o.Scheduling
+	}
+	if !IsNil(o.Bandwidth) {
+		toSerialize["bandwidth"] = o.Bandwidth
+	}
+	if !IsNil(o.FirewallAndTrafficShaping) {
+		toSerialize["firewallAndTrafficShaping"] = o.FirewallAndTrafficShaping
+	}
+	if !IsNil(o.ContentFiltering) {
+		toSerialize["contentFiltering"] = o.ContentFiltering
+	}
+	if !IsNil(o.SplashAuthSettings) {
+		toSerialize["splashAuthSettings"] = o.SplashAuthSettings
+	}
+	if !IsNil(o.VlanTagging) {
+		toSerialize["vlanTagging"] = o.VlanTagging
+	}
+	if !IsNil(o.BonjourForwarding) {
+		toSerialize["bonjourForwarding"] = o.BonjourForwarding
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkGroupPolicyRequest struct {

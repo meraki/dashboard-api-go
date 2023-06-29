@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkWirelessClientCountHistory200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessClientCountHistory200ResponseInner{}
+
 // GetNetworkWirelessClientCountHistory200ResponseInner struct for GetNetworkWirelessClientCountHistory200ResponseInner
 type GetNetworkWirelessClientCountHistory200ResponseInner struct {
 	// The start time of the query range
@@ -44,7 +47,7 @@ func NewGetNetworkWirelessClientCountHistory200ResponseInnerWithDefaults() *GetN
 
 // GetStartTs returns the StartTs field value if set, zero value otherwise.
 func (o *GetNetworkWirelessClientCountHistory200ResponseInner) GetStartTs() time.Time {
-	if o == nil || isNil(o.StartTs) {
+	if o == nil || IsNil(o.StartTs) {
 		var ret time.Time
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *GetNetworkWirelessClientCountHistory200ResponseInner) GetStartTs() time
 // GetStartTsOk returns a tuple with the StartTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessClientCountHistory200ResponseInner) GetStartTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartTs) {
-    return nil, false
+	if o == nil || IsNil(o.StartTs) {
+		return nil, false
 	}
 	return o.StartTs, true
 }
 
 // HasStartTs returns a boolean if a field has been set.
 func (o *GetNetworkWirelessClientCountHistory200ResponseInner) HasStartTs() bool {
-	if o != nil && !isNil(o.StartTs) {
+	if o != nil && !IsNil(o.StartTs) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *GetNetworkWirelessClientCountHistory200ResponseInner) SetStartTs(v time
 
 // GetEndTs returns the EndTs field value if set, zero value otherwise.
 func (o *GetNetworkWirelessClientCountHistory200ResponseInner) GetEndTs() time.Time {
-	if o == nil || isNil(o.EndTs) {
+	if o == nil || IsNil(o.EndTs) {
 		var ret time.Time
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *GetNetworkWirelessClientCountHistory200ResponseInner) GetEndTs() time.T
 // GetEndTsOk returns a tuple with the EndTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessClientCountHistory200ResponseInner) GetEndTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.EndTs) {
-    return nil, false
+	if o == nil || IsNil(o.EndTs) {
+		return nil, false
 	}
 	return o.EndTs, true
 }
 
 // HasEndTs returns a boolean if a field has been set.
 func (o *GetNetworkWirelessClientCountHistory200ResponseInner) HasEndTs() bool {
-	if o != nil && !isNil(o.EndTs) {
+	if o != nil && !IsNil(o.EndTs) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *GetNetworkWirelessClientCountHistory200ResponseInner) SetEndTs(v time.T
 
 // GetClientCount returns the ClientCount field value if set, zero value otherwise.
 func (o *GetNetworkWirelessClientCountHistory200ResponseInner) GetClientCount() int32 {
-	if o == nil || isNil(o.ClientCount) {
+	if o == nil || IsNil(o.ClientCount) {
 		var ret int32
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *GetNetworkWirelessClientCountHistory200ResponseInner) GetClientCount() 
 // GetClientCountOk returns a tuple with the ClientCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessClientCountHistory200ResponseInner) GetClientCountOk() (*int32, bool) {
-	if o == nil || isNil(o.ClientCount) {
-    return nil, false
+	if o == nil || IsNil(o.ClientCount) {
+		return nil, false
 	}
 	return o.ClientCount, true
 }
 
 // HasClientCount returns a boolean if a field has been set.
 func (o *GetNetworkWirelessClientCountHistory200ResponseInner) HasClientCount() bool {
-	if o != nil && !isNil(o.ClientCount) {
+	if o != nil && !IsNil(o.ClientCount) {
 		return true
 	}
 
@@ -139,17 +142,25 @@ func (o *GetNetworkWirelessClientCountHistory200ResponseInner) SetClientCount(v 
 }
 
 func (o GetNetworkWirelessClientCountHistory200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.StartTs) {
-		toSerialize["startTs"] = o.StartTs
-	}
-	if !isNil(o.EndTs) {
-		toSerialize["endTs"] = o.EndTs
-	}
-	if !isNil(o.ClientCount) {
-		toSerialize["clientCount"] = o.ClientCount
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessClientCountHistory200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.StartTs) {
+		toSerialize["startTs"] = o.StartTs
+	}
+	if !IsNil(o.EndTs) {
+		toSerialize["endTs"] = o.EndTs
+	}
+	if !IsNil(o.ClientCount) {
+		toSerialize["clientCount"] = o.ClientCount
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessClientCountHistory200ResponseInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizations200ResponseInnerManagementDetailsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizations200ResponseInnerManagementDetailsInner{}
+
 // GetOrganizations200ResponseInnerManagementDetailsInner struct for GetOrganizations200ResponseInnerManagementDetailsInner
 type GetOrganizations200ResponseInnerManagementDetailsInner struct {
 	// Name of management data
@@ -41,7 +44,7 @@ func NewGetOrganizations200ResponseInnerManagementDetailsInnerWithDefaults() *Ge
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizations200ResponseInnerManagementDetailsInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetOrganizations200ResponseInnerManagementDetailsInner) GetName() strin
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizations200ResponseInnerManagementDetailsInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizations200ResponseInnerManagementDetailsInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetOrganizations200ResponseInnerManagementDetailsInner) SetName(v strin
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *GetOrganizations200ResponseInnerManagementDetailsInner) GetValue() string {
-	if o == nil || isNil(o.Value) {
+	if o == nil || IsNil(o.Value) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetOrganizations200ResponseInnerManagementDetailsInner) GetValue() stri
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizations200ResponseInnerManagementDetailsInner) GetValueOk() (*string, bool) {
-	if o == nil || isNil(o.Value) {
-    return nil, false
+	if o == nil || IsNil(o.Value) {
+		return nil, false
 	}
 	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
 func (o *GetOrganizations200ResponseInnerManagementDetailsInner) HasValue() bool {
-	if o != nil && !isNil(o.Value) {
+	if o != nil && !IsNil(o.Value) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetOrganizations200ResponseInnerManagementDetailsInner) SetValue(v stri
 }
 
 func (o GetOrganizations200ResponseInnerManagementDetailsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Value) {
-		toSerialize["value"] = o.Value
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizations200ResponseInnerManagementDetailsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Value) {
+		toSerialize["value"] = o.Value
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizations200ResponseInnerManagementDetailsInner struct {

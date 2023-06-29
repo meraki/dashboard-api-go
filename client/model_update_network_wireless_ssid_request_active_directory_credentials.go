@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials{}
+
 // UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials (Optional) The credentials of the user account to be used by the AP to bind to your Active Directory server. The Active Directory account should have permissions on all your Active Directory servers. Only valid if the splashPage is 'Password-protected with Active Directory'.
 type UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials struct {
 	// The logon name of the Active Directory account.
@@ -41,7 +44,7 @@ func NewUpdateNetworkWirelessSsidRequestActiveDirectoryCredentialsWithDefaults()
 
 // GetLogonName returns the LogonName field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials) GetLogonName() string {
-	if o == nil || isNil(o.LogonName) {
+	if o == nil || IsNil(o.LogonName) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials) GetLogonNam
 // GetLogonNameOk returns a tuple with the LogonName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials) GetLogonNameOk() (*string, bool) {
-	if o == nil || isNil(o.LogonName) {
-    return nil, false
+	if o == nil || IsNil(o.LogonName) {
+		return nil, false
 	}
 	return o.LogonName, true
 }
 
 // HasLogonName returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials) HasLogonName() bool {
-	if o != nil && !isNil(o.LogonName) {
+	if o != nil && !IsNil(o.LogonName) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials) SetLogonNam
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials) GetPassword() string {
-	if o == nil || isNil(o.Password) {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials) GetPassword
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials) GetPasswordOk() (*string, bool) {
-	if o == nil || isNil(o.Password) {
-    return nil, false
+	if o == nil || IsNil(o.Password) {
+		return nil, false
 	}
 	return o.Password, true
 }
 
 // HasPassword returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials) HasPassword() bool {
-	if o != nil && !isNil(o.Password) {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials) SetPassword
 }
 
 func (o UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.LogonName) {
-		toSerialize["logonName"] = o.LogonName
-	}
-	if !isNil(o.Password) {
-		toSerialize["password"] = o.Password
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.LogonName) {
+		toSerialize["logonName"] = o.LogonName
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidRequestActiveDirectoryCredentials struct {

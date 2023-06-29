@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceVpnSiteToSiteVpnRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceVpnSiteToSiteVpnRequest{}
+
 // UpdateNetworkApplianceVpnSiteToSiteVpnRequest struct for UpdateNetworkApplianceVpnSiteToSiteVpnRequest
 type UpdateNetworkApplianceVpnSiteToSiteVpnRequest struct {
 	// The site-to-site VPN mode. Can be one of 'none', 'spoke' or 'hub'
@@ -56,7 +59,7 @@ func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequest) GetMode() string {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequest) GetModeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Mode, true
 }
@@ -68,7 +71,7 @@ func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequest) SetMode(v string) {
 
 // GetHubs returns the Hubs field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequest) GetHubs() []UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner {
-	if o == nil || isNil(o.Hubs) {
+	if o == nil || IsNil(o.Hubs) {
 		var ret []UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner
 		return ret
 	}
@@ -78,15 +81,15 @@ func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequest) GetHubs() []UpdateNetwor
 // GetHubsOk returns a tuple with the Hubs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequest) GetHubsOk() ([]UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner, bool) {
-	if o == nil || isNil(o.Hubs) {
-    return nil, false
+	if o == nil || IsNil(o.Hubs) {
+		return nil, false
 	}
 	return o.Hubs, true
 }
 
 // HasHubs returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequest) HasHubs() bool {
-	if o != nil && !isNil(o.Hubs) {
+	if o != nil && !IsNil(o.Hubs) {
 		return true
 	}
 
@@ -100,7 +103,7 @@ func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequest) SetHubs(v []UpdateNetwor
 
 // GetSubnets returns the Subnets field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequest) GetSubnets() []UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner {
-	if o == nil || isNil(o.Subnets) {
+	if o == nil || IsNil(o.Subnets) {
 		var ret []UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner
 		return ret
 	}
@@ -110,15 +113,15 @@ func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequest) GetSubnets() []UpdateNet
 // GetSubnetsOk returns a tuple with the Subnets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequest) GetSubnetsOk() ([]UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner, bool) {
-	if o == nil || isNil(o.Subnets) {
-    return nil, false
+	if o == nil || IsNil(o.Subnets) {
+		return nil, false
 	}
 	return o.Subnets, true
 }
 
 // HasSubnets returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequest) HasSubnets() bool {
-	if o != nil && !isNil(o.Subnets) {
+	if o != nil && !IsNil(o.Subnets) {
 		return true
 	}
 
@@ -131,17 +134,23 @@ func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequest) SetSubnets(v []UpdateNet
 }
 
 func (o UpdateNetworkApplianceVpnSiteToSiteVpnRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["mode"] = o.Mode
-	}
-	if !isNil(o.Hubs) {
-		toSerialize["hubs"] = o.Hubs
-	}
-	if !isNil(o.Subnets) {
-		toSerialize["subnets"] = o.Subnets
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceVpnSiteToSiteVpnRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["mode"] = o.Mode
+	if !IsNil(o.Hubs) {
+		toSerialize["hubs"] = o.Hubs
+	}
+	if !IsNil(o.Subnets) {
+		toSerialize["subnets"] = o.Subnets
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceVpnSiteToSiteVpnRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MoveOrganizationLicensingCotermLicensesRequestDestination type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MoveOrganizationLicensingCotermLicensesRequestDestination{}
+
 // MoveOrganizationLicensingCotermLicensesRequestDestination Destination data for the license move
 type MoveOrganizationLicensingCotermLicensesRequestDestination struct {
 	// The organization to move the license to
@@ -41,7 +44,7 @@ func NewMoveOrganizationLicensingCotermLicensesRequestDestinationWithDefaults() 
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *MoveOrganizationLicensingCotermLicensesRequestDestination) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *MoveOrganizationLicensingCotermLicensesRequestDestination) GetOrganizat
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MoveOrganizationLicensingCotermLicensesRequestDestination) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *MoveOrganizationLicensingCotermLicensesRequestDestination) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *MoveOrganizationLicensingCotermLicensesRequestDestination) SetOrganizat
 
 // GetMode returns the Mode field value if set, zero value otherwise.
 func (o *MoveOrganizationLicensingCotermLicensesRequestDestination) GetMode() string {
-	if o == nil || isNil(o.Mode) {
+	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *MoveOrganizationLicensingCotermLicensesRequestDestination) GetMode() st
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MoveOrganizationLicensingCotermLicensesRequestDestination) GetModeOk() (*string, bool) {
-	if o == nil || isNil(o.Mode) {
-    return nil, false
+	if o == nil || IsNil(o.Mode) {
+		return nil, false
 	}
 	return o.Mode, true
 }
 
 // HasMode returns a boolean if a field has been set.
 func (o *MoveOrganizationLicensingCotermLicensesRequestDestination) HasMode() bool {
-	if o != nil && !isNil(o.Mode) {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *MoveOrganizationLicensingCotermLicensesRequestDestination) SetMode(v st
 }
 
 func (o MoveOrganizationLicensingCotermLicensesRequestDestination) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organizationId"] = o.OrganizationId
-	}
-	if !isNil(o.Mode) {
-		toSerialize["mode"] = o.Mode
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MoveOrganizationLicensingCotermLicensesRequestDestination) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organizationId"] = o.OrganizationId
+	}
+	if !IsNil(o.Mode) {
+		toSerialize["mode"] = o.Mode
+	}
+	return toSerialize, nil
 }
 
 type NullableMoveOrganizationLicensingCotermLicensesRequestDestination struct {

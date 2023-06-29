@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkCameraWirelessProfileRequestSsid type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkCameraWirelessProfileRequestSsid{}
+
 // CreateNetworkCameraWirelessProfileRequestSsid The details of the SSID config.
 type CreateNetworkCameraWirelessProfileRequestSsid struct {
 	// The name of the SSID.
@@ -45,7 +48,7 @@ func NewCreateNetworkCameraWirelessProfileRequestSsidWithDefaults() *CreateNetwo
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CreateNetworkCameraWirelessProfileRequestSsid) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *CreateNetworkCameraWirelessProfileRequestSsid) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraWirelessProfileRequestSsid) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateNetworkCameraWirelessProfileRequestSsid) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *CreateNetworkCameraWirelessProfileRequestSsid) SetName(v string) {
 
 // GetAuthMode returns the AuthMode field value if set, zero value otherwise.
 func (o *CreateNetworkCameraWirelessProfileRequestSsid) GetAuthMode() string {
-	if o == nil || isNil(o.AuthMode) {
+	if o == nil || IsNil(o.AuthMode) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *CreateNetworkCameraWirelessProfileRequestSsid) GetAuthMode() string {
 // GetAuthModeOk returns a tuple with the AuthMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraWirelessProfileRequestSsid) GetAuthModeOk() (*string, bool) {
-	if o == nil || isNil(o.AuthMode) {
-    return nil, false
+	if o == nil || IsNil(o.AuthMode) {
+		return nil, false
 	}
 	return o.AuthMode, true
 }
 
 // HasAuthMode returns a boolean if a field has been set.
 func (o *CreateNetworkCameraWirelessProfileRequestSsid) HasAuthMode() bool {
-	if o != nil && !isNil(o.AuthMode) {
+	if o != nil && !IsNil(o.AuthMode) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *CreateNetworkCameraWirelessProfileRequestSsid) SetAuthMode(v string) {
 
 // GetEncryptionMode returns the EncryptionMode field value if set, zero value otherwise.
 func (o *CreateNetworkCameraWirelessProfileRequestSsid) GetEncryptionMode() string {
-	if o == nil || isNil(o.EncryptionMode) {
+	if o == nil || IsNil(o.EncryptionMode) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *CreateNetworkCameraWirelessProfileRequestSsid) GetEncryptionMode() stri
 // GetEncryptionModeOk returns a tuple with the EncryptionMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraWirelessProfileRequestSsid) GetEncryptionModeOk() (*string, bool) {
-	if o == nil || isNil(o.EncryptionMode) {
-    return nil, false
+	if o == nil || IsNil(o.EncryptionMode) {
+		return nil, false
 	}
 	return o.EncryptionMode, true
 }
 
 // HasEncryptionMode returns a boolean if a field has been set.
 func (o *CreateNetworkCameraWirelessProfileRequestSsid) HasEncryptionMode() bool {
-	if o != nil && !isNil(o.EncryptionMode) {
+	if o != nil && !IsNil(o.EncryptionMode) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *CreateNetworkCameraWirelessProfileRequestSsid) SetEncryptionMode(v stri
 
 // GetPsk returns the Psk field value if set, zero value otherwise.
 func (o *CreateNetworkCameraWirelessProfileRequestSsid) GetPsk() string {
-	if o == nil || isNil(o.Psk) {
+	if o == nil || IsNil(o.Psk) {
 		var ret string
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *CreateNetworkCameraWirelessProfileRequestSsid) GetPsk() string {
 // GetPskOk returns a tuple with the Psk field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraWirelessProfileRequestSsid) GetPskOk() (*string, bool) {
-	if o == nil || isNil(o.Psk) {
-    return nil, false
+	if o == nil || IsNil(o.Psk) {
+		return nil, false
 	}
 	return o.Psk, true
 }
 
 // HasPsk returns a boolean if a field has been set.
 func (o *CreateNetworkCameraWirelessProfileRequestSsid) HasPsk() bool {
-	if o != nil && !isNil(o.Psk) {
+	if o != nil && !IsNil(o.Psk) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *CreateNetworkCameraWirelessProfileRequestSsid) SetPsk(v string) {
 }
 
 func (o CreateNetworkCameraWirelessProfileRequestSsid) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.AuthMode) {
-		toSerialize["authMode"] = o.AuthMode
-	}
-	if !isNil(o.EncryptionMode) {
-		toSerialize["encryptionMode"] = o.EncryptionMode
-	}
-	if !isNil(o.Psk) {
-		toSerialize["psk"] = o.Psk
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkCameraWirelessProfileRequestSsid) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.AuthMode) {
+		toSerialize["authMode"] = o.AuthMode
+	}
+	if !IsNil(o.EncryptionMode) {
+		toSerialize["encryptionMode"] = o.EncryptionMode
+	}
+	if !IsNil(o.Psk) {
+		toSerialize["psk"] = o.Psk
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkCameraWirelessProfileRequestSsid struct {

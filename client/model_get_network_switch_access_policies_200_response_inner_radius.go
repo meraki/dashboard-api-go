@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchAccessPolicies200ResponseInnerRadius type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchAccessPolicies200ResponseInnerRadius{}
+
 // GetNetworkSwitchAccessPolicies200ResponseInnerRadius Object for RADIUS Settings
 type GetNetworkSwitchAccessPolicies200ResponseInnerRadius struct {
 	CriticalAuth *GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth `json:"criticalAuth,omitempty"`
@@ -42,7 +45,7 @@ func NewGetNetworkSwitchAccessPolicies200ResponseInnerRadiusWithDefaults() *GetN
 
 // GetCriticalAuth returns the CriticalAuth field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadius) GetCriticalAuth() GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth {
-	if o == nil || isNil(o.CriticalAuth) {
+	if o == nil || IsNil(o.CriticalAuth) {
 		var ret GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadius) GetCriticalAuth()
 // GetCriticalAuthOk returns a tuple with the CriticalAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadius) GetCriticalAuthOk() (*GetNetworkSwitchAccessPolicies200ResponseInnerRadiusCriticalAuth, bool) {
-	if o == nil || isNil(o.CriticalAuth) {
-    return nil, false
+	if o == nil || IsNil(o.CriticalAuth) {
+		return nil, false
 	}
 	return o.CriticalAuth, true
 }
 
 // HasCriticalAuth returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadius) HasCriticalAuth() bool {
-	if o != nil && !isNil(o.CriticalAuth) {
+	if o != nil && !IsNil(o.CriticalAuth) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadius) SetCriticalAuth(v
 
 // GetFailedAuthVlanId returns the FailedAuthVlanId field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadius) GetFailedAuthVlanId() int32 {
-	if o == nil || isNil(o.FailedAuthVlanId) {
+	if o == nil || IsNil(o.FailedAuthVlanId) {
 		var ret int32
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadius) GetFailedAuthVlan
 // GetFailedAuthVlanIdOk returns a tuple with the FailedAuthVlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadius) GetFailedAuthVlanIdOk() (*int32, bool) {
-	if o == nil || isNil(o.FailedAuthVlanId) {
-    return nil, false
+	if o == nil || IsNil(o.FailedAuthVlanId) {
+		return nil, false
 	}
 	return o.FailedAuthVlanId, true
 }
 
 // HasFailedAuthVlanId returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadius) HasFailedAuthVlanId() bool {
-	if o != nil && !isNil(o.FailedAuthVlanId) {
+	if o != nil && !IsNil(o.FailedAuthVlanId) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadius) SetFailedAuthVlan
 
 // GetReAuthenticationInterval returns the ReAuthenticationInterval field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadius) GetReAuthenticationInterval() int32 {
-	if o == nil || isNil(o.ReAuthenticationInterval) {
+	if o == nil || IsNil(o.ReAuthenticationInterval) {
 		var ret int32
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadius) GetReAuthenticati
 // GetReAuthenticationIntervalOk returns a tuple with the ReAuthenticationInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadius) GetReAuthenticationIntervalOk() (*int32, bool) {
-	if o == nil || isNil(o.ReAuthenticationInterval) {
-    return nil, false
+	if o == nil || IsNil(o.ReAuthenticationInterval) {
+		return nil, false
 	}
 	return o.ReAuthenticationInterval, true
 }
 
 // HasReAuthenticationInterval returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadius) HasReAuthenticationInterval() bool {
-	if o != nil && !isNil(o.ReAuthenticationInterval) {
+	if o != nil && !IsNil(o.ReAuthenticationInterval) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *GetNetworkSwitchAccessPolicies200ResponseInnerRadius) SetReAuthenticati
 }
 
 func (o GetNetworkSwitchAccessPolicies200ResponseInnerRadius) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.CriticalAuth) {
-		toSerialize["criticalAuth"] = o.CriticalAuth
-	}
-	if !isNil(o.FailedAuthVlanId) {
-		toSerialize["failedAuthVlanId"] = o.FailedAuthVlanId
-	}
-	if !isNil(o.ReAuthenticationInterval) {
-		toSerialize["reAuthenticationInterval"] = o.ReAuthenticationInterval
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchAccessPolicies200ResponseInnerRadius) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CriticalAuth) {
+		toSerialize["criticalAuth"] = o.CriticalAuth
+	}
+	if !IsNil(o.FailedAuthVlanId) {
+		toSerialize["failedAuthVlanId"] = o.FailedAuthVlanId
+	}
+	if !IsNil(o.ReAuthenticationInterval) {
+		toSerialize["reAuthenticationInterval"] = o.ReAuthenticationInterval
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchAccessPolicies200ResponseInnerRadius struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchStpRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchStpRequest{}
+
 // UpdateNetworkSwitchStpRequest struct for UpdateNetworkSwitchStpRequest
 type UpdateNetworkSwitchStpRequest struct {
 	// The spanning tree protocol status in network
@@ -41,7 +44,7 @@ func NewUpdateNetworkSwitchStpRequestWithDefaults() *UpdateNetworkSwitchStpReque
 
 // GetRstpEnabled returns the RstpEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchStpRequest) GetRstpEnabled() bool {
-	if o == nil || isNil(o.RstpEnabled) {
+	if o == nil || IsNil(o.RstpEnabled) {
 		var ret bool
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkSwitchStpRequest) GetRstpEnabled() bool {
 // GetRstpEnabledOk returns a tuple with the RstpEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchStpRequest) GetRstpEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.RstpEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.RstpEnabled) {
+		return nil, false
 	}
 	return o.RstpEnabled, true
 }
 
 // HasRstpEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchStpRequest) HasRstpEnabled() bool {
-	if o != nil && !isNil(o.RstpEnabled) {
+	if o != nil && !IsNil(o.RstpEnabled) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkSwitchStpRequest) SetRstpEnabled(v bool) {
 
 // GetStpBridgePriority returns the StpBridgePriority field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchStpRequest) GetStpBridgePriority() []UpdateNetworkSwitchStpRequestStpBridgePriorityInner {
-	if o == nil || isNil(o.StpBridgePriority) {
+	if o == nil || IsNil(o.StpBridgePriority) {
 		var ret []UpdateNetworkSwitchStpRequestStpBridgePriorityInner
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkSwitchStpRequest) GetStpBridgePriority() []UpdateNetworkSw
 // GetStpBridgePriorityOk returns a tuple with the StpBridgePriority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchStpRequest) GetStpBridgePriorityOk() ([]UpdateNetworkSwitchStpRequestStpBridgePriorityInner, bool) {
-	if o == nil || isNil(o.StpBridgePriority) {
-    return nil, false
+	if o == nil || IsNil(o.StpBridgePriority) {
+		return nil, false
 	}
 	return o.StpBridgePriority, true
 }
 
 // HasStpBridgePriority returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchStpRequest) HasStpBridgePriority() bool {
-	if o != nil && !isNil(o.StpBridgePriority) {
+	if o != nil && !IsNil(o.StpBridgePriority) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkSwitchStpRequest) SetStpBridgePriority(v []UpdateNetworkSw
 }
 
 func (o UpdateNetworkSwitchStpRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.RstpEnabled) {
-		toSerialize["rstpEnabled"] = o.RstpEnabled
-	}
-	if !isNil(o.StpBridgePriority) {
-		toSerialize["stpBridgePriority"] = o.StpBridgePriority
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchStpRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.RstpEnabled) {
+		toSerialize["rstpEnabled"] = o.RstpEnabled
+	}
+	if !IsNil(o.StpBridgePriority) {
+		toSerialize["stpBridgePriority"] = o.StpBridgePriority
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchStpRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateDeviceLiveToolsPingDeviceRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateDeviceLiveToolsPingDeviceRequest{}
+
 // CreateDeviceLiveToolsPingDeviceRequest struct for CreateDeviceLiveToolsPingDeviceRequest
 type CreateDeviceLiveToolsPingDeviceRequest struct {
 	// Count parameter to pass to ping. [1..5], default 5
@@ -39,7 +42,7 @@ func NewCreateDeviceLiveToolsPingDeviceRequestWithDefaults() *CreateDeviceLiveTo
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *CreateDeviceLiveToolsPingDeviceRequest) GetCount() int32 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int32
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *CreateDeviceLiveToolsPingDeviceRequest) GetCount() int32 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateDeviceLiveToolsPingDeviceRequest) GetCountOk() (*int32, bool) {
-	if o == nil || isNil(o.Count) {
-    return nil, false
+	if o == nil || IsNil(o.Count) {
+		return nil, false
 	}
 	return o.Count, true
 }
 
 // HasCount returns a boolean if a field has been set.
 func (o *CreateDeviceLiveToolsPingDeviceRequest) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *CreateDeviceLiveToolsPingDeviceRequest) SetCount(v int32) {
 }
 
 func (o CreateDeviceLiveToolsPingDeviceRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Count) {
-		toSerialize["count"] = o.Count
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateDeviceLiveToolsPingDeviceRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateDeviceLiveToolsPingDeviceRequest struct {

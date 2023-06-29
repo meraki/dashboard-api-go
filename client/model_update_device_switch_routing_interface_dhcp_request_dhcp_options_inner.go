@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner{}
+
 // UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner struct for UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner
 type UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner struct {
 	// The code for DHCP option which should be from 2 to 254
@@ -58,7 +61,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner) GetCode(
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner) GetCodeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Code, true
 }
@@ -82,7 +85,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner) GetType(
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner) GetTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Type, true
 }
@@ -106,7 +109,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner) GetValue
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner) GetValueOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Value, true
 }
@@ -117,17 +120,19 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner) SetValue
 }
 
 func (o UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["code"] = o.Code
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["value"] = o.Value
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["code"] = o.Code
+	toSerialize["type"] = o.Type
+	toSerialize["value"] = o.Value
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTvoc type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTvoc{}
+
 // GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTvoc TVOC concentration threshold. One of 'concentration' or 'quality' must be provided.
 type GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTvoc struct {
 	// Alerting threshold as TVOC micrograms per cubic meter.
@@ -41,7 +44,7 @@ func NewGetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTv
 
 // GetConcentration returns the Concentration field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTvoc) GetConcentration() int32 {
-	if o == nil || isNil(o.Concentration) {
+	if o == nil || IsNil(o.Concentration) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdT
 // GetConcentrationOk returns a tuple with the Concentration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTvoc) GetConcentrationOk() (*int32, bool) {
-	if o == nil || isNil(o.Concentration) {
-    return nil, false
+	if o == nil || IsNil(o.Concentration) {
+		return nil, false
 	}
 	return o.Concentration, true
 }
 
 // HasConcentration returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTvoc) HasConcentration() bool {
-	if o != nil && !isNil(o.Concentration) {
+	if o != nil && !IsNil(o.Concentration) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdT
 
 // GetQuality returns the Quality field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTvoc) GetQuality() string {
-	if o == nil || isNil(o.Quality) {
+	if o == nil || IsNil(o.Quality) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdT
 // GetQualityOk returns a tuple with the Quality field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTvoc) GetQualityOk() (*string, bool) {
-	if o == nil || isNil(o.Quality) {
-    return nil, false
+	if o == nil || IsNil(o.Quality) {
+		return nil, false
 	}
 	return o.Quality, true
 }
 
 // HasQuality returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTvoc) HasQuality() bool {
-	if o != nil && !isNil(o.Quality) {
+	if o != nil && !IsNil(o.Quality) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdT
 }
 
 func (o GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTvoc) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Concentration) {
-		toSerialize["concentration"] = o.Concentration
-	}
-	if !isNil(o.Quality) {
-		toSerialize["quality"] = o.Quality
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTvoc) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Concentration) {
+		toSerialize["concentration"] = o.Concentration
+	}
+	if !IsNil(o.Quality) {
+		toSerialize["quality"] = o.Quality
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTvoc struct {

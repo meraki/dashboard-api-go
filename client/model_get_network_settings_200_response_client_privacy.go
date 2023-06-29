@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkSettings200ResponseClientPrivacy type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSettings200ResponseClientPrivacy{}
+
 // GetNetworkSettings200ResponseClientPrivacy Privacy settings
 type GetNetworkSettings200ResponseClientPrivacy struct {
 	// The number of days, weeks, or months in Epoch time to expire the data before
@@ -42,7 +45,7 @@ func NewGetNetworkSettings200ResponseClientPrivacyWithDefaults() *GetNetworkSett
 
 // GetExpireDataOlderThan returns the ExpireDataOlderThan field value if set, zero value otherwise.
 func (o *GetNetworkSettings200ResponseClientPrivacy) GetExpireDataOlderThan() int32 {
-	if o == nil || isNil(o.ExpireDataOlderThan) {
+	if o == nil || IsNil(o.ExpireDataOlderThan) {
 		var ret int32
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *GetNetworkSettings200ResponseClientPrivacy) GetExpireDataOlderThan() in
 // GetExpireDataOlderThanOk returns a tuple with the ExpireDataOlderThan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSettings200ResponseClientPrivacy) GetExpireDataOlderThanOk() (*int32, bool) {
-	if o == nil || isNil(o.ExpireDataOlderThan) {
-    return nil, false
+	if o == nil || IsNil(o.ExpireDataOlderThan) {
+		return nil, false
 	}
 	return o.ExpireDataOlderThan, true
 }
 
 // HasExpireDataOlderThan returns a boolean if a field has been set.
 func (o *GetNetworkSettings200ResponseClientPrivacy) HasExpireDataOlderThan() bool {
-	if o != nil && !isNil(o.ExpireDataOlderThan) {
+	if o != nil && !IsNil(o.ExpireDataOlderThan) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *GetNetworkSettings200ResponseClientPrivacy) SetExpireDataOlderThan(v in
 
 // GetExpireDataBefore returns the ExpireDataBefore field value if set, zero value otherwise.
 func (o *GetNetworkSettings200ResponseClientPrivacy) GetExpireDataBefore() time.Time {
-	if o == nil || isNil(o.ExpireDataBefore) {
+	if o == nil || IsNil(o.ExpireDataBefore) {
 		var ret time.Time
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *GetNetworkSettings200ResponseClientPrivacy) GetExpireDataBefore() time.
 // GetExpireDataBeforeOk returns a tuple with the ExpireDataBefore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSettings200ResponseClientPrivacy) GetExpireDataBeforeOk() (*time.Time, bool) {
-	if o == nil || isNil(o.ExpireDataBefore) {
-    return nil, false
+	if o == nil || IsNil(o.ExpireDataBefore) {
+		return nil, false
 	}
 	return o.ExpireDataBefore, true
 }
 
 // HasExpireDataBefore returns a boolean if a field has been set.
 func (o *GetNetworkSettings200ResponseClientPrivacy) HasExpireDataBefore() bool {
-	if o != nil && !isNil(o.ExpireDataBefore) {
+	if o != nil && !IsNil(o.ExpireDataBefore) {
 		return true
 	}
 
@@ -105,14 +108,22 @@ func (o *GetNetworkSettings200ResponseClientPrivacy) SetExpireDataBefore(v time.
 }
 
 func (o GetNetworkSettings200ResponseClientPrivacy) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ExpireDataOlderThan) {
-		toSerialize["expireDataOlderThan"] = o.ExpireDataOlderThan
-	}
-	if !isNil(o.ExpireDataBefore) {
-		toSerialize["expireDataBefore"] = o.ExpireDataBefore
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSettings200ResponseClientPrivacy) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ExpireDataOlderThan) {
+		toSerialize["expireDataOlderThan"] = o.ExpireDataOlderThan
+	}
+	if !IsNil(o.ExpireDataBefore) {
+		toSerialize["expireDataBefore"] = o.ExpireDataBefore
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSettings200ResponseClientPrivacy struct {

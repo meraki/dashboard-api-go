@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceTrafficShapingRulesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceTrafficShapingRulesRequest{}
+
 // UpdateNetworkApplianceTrafficShapingRulesRequest struct for UpdateNetworkApplianceTrafficShapingRulesRequest
 type UpdateNetworkApplianceTrafficShapingRulesRequest struct {
 	// Whether default traffic shaping rules are enabled (true) or disabled (false). There are 4 default rules, which can be seen on your network's traffic shaping page. Note that default rules count against the rule limit of 8.
@@ -41,7 +44,7 @@ func NewUpdateNetworkApplianceTrafficShapingRulesRequestWithDefaults() *UpdateNe
 
 // GetDefaultRulesEnabled returns the DefaultRulesEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequest) GetDefaultRulesEnabled() bool {
-	if o == nil || isNil(o.DefaultRulesEnabled) {
+	if o == nil || IsNil(o.DefaultRulesEnabled) {
 		var ret bool
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequest) GetDefaultRulesEnable
 // GetDefaultRulesEnabledOk returns a tuple with the DefaultRulesEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequest) GetDefaultRulesEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.DefaultRulesEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.DefaultRulesEnabled) {
+		return nil, false
 	}
 	return o.DefaultRulesEnabled, true
 }
 
 // HasDefaultRulesEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequest) HasDefaultRulesEnabled() bool {
-	if o != nil && !isNil(o.DefaultRulesEnabled) {
+	if o != nil && !IsNil(o.DefaultRulesEnabled) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequest) SetDefaultRulesEnable
 
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequest) GetRules() []UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner {
-	if o == nil || isNil(o.Rules) {
+	if o == nil || IsNil(o.Rules) {
 		var ret []UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequest) GetRules() []UpdateNe
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequest) GetRulesOk() ([]UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner, bool) {
-	if o == nil || isNil(o.Rules) {
-    return nil, false
+	if o == nil || IsNil(o.Rules) {
+		return nil, false
 	}
 	return o.Rules, true
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequest) HasRules() bool {
-	if o != nil && !isNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequest) SetRules(v []UpdateNe
 }
 
 func (o UpdateNetworkApplianceTrafficShapingRulesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.DefaultRulesEnabled) {
-		toSerialize["defaultRulesEnabled"] = o.DefaultRulesEnabled
-	}
-	if !isNil(o.Rules) {
-		toSerialize["rules"] = o.Rules
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceTrafficShapingRulesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DefaultRulesEnabled) {
+		toSerialize["defaultRulesEnabled"] = o.DefaultRulesEnabled
+	}
+	if !IsNil(o.Rules) {
+		toSerialize["rules"] = o.Rules
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceTrafficShapingRulesRequest struct {

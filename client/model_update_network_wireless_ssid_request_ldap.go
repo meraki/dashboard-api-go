@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidRequestLdap type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidRequestLdap{}
+
 // UpdateNetworkWirelessSsidRequestLdap The current setting for LDAP. Only valid if splashPage is 'Password-protected with LDAP'.
 type UpdateNetworkWirelessSsidRequestLdap struct {
 	// The LDAP servers to be used for authentication.
@@ -43,7 +46,7 @@ func NewUpdateNetworkWirelessSsidRequestLdapWithDefaults() *UpdateNetworkWireles
 
 // GetServers returns the Servers field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestLdap) GetServers() []UpdateNetworkWirelessSsidRequestLdapServersInner {
-	if o == nil || isNil(o.Servers) {
+	if o == nil || IsNil(o.Servers) {
 		var ret []UpdateNetworkWirelessSsidRequestLdapServersInner
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateNetworkWirelessSsidRequestLdap) GetServers() []UpdateNetworkWirel
 // GetServersOk returns a tuple with the Servers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestLdap) GetServersOk() ([]UpdateNetworkWirelessSsidRequestLdapServersInner, bool) {
-	if o == nil || isNil(o.Servers) {
-    return nil, false
+	if o == nil || IsNil(o.Servers) {
+		return nil, false
 	}
 	return o.Servers, true
 }
 
 // HasServers returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestLdap) HasServers() bool {
-	if o != nil && !isNil(o.Servers) {
+	if o != nil && !IsNil(o.Servers) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *UpdateNetworkWirelessSsidRequestLdap) SetServers(v []UpdateNetworkWirel
 
 // GetCredentials returns the Credentials field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestLdap) GetCredentials() UpdateNetworkWirelessSsidRequestLdapCredentials {
-	if o == nil || isNil(o.Credentials) {
+	if o == nil || IsNil(o.Credentials) {
 		var ret UpdateNetworkWirelessSsidRequestLdapCredentials
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *UpdateNetworkWirelessSsidRequestLdap) GetCredentials() UpdateNetworkWir
 // GetCredentialsOk returns a tuple with the Credentials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestLdap) GetCredentialsOk() (*UpdateNetworkWirelessSsidRequestLdapCredentials, bool) {
-	if o == nil || isNil(o.Credentials) {
-    return nil, false
+	if o == nil || IsNil(o.Credentials) {
+		return nil, false
 	}
 	return o.Credentials, true
 }
 
 // HasCredentials returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestLdap) HasCredentials() bool {
-	if o != nil && !isNil(o.Credentials) {
+	if o != nil && !IsNil(o.Credentials) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *UpdateNetworkWirelessSsidRequestLdap) SetCredentials(v UpdateNetworkWir
 
 // GetBaseDistinguishedName returns the BaseDistinguishedName field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestLdap) GetBaseDistinguishedName() string {
-	if o == nil || isNil(o.BaseDistinguishedName) {
+	if o == nil || IsNil(o.BaseDistinguishedName) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *UpdateNetworkWirelessSsidRequestLdap) GetBaseDistinguishedName() string
 // GetBaseDistinguishedNameOk returns a tuple with the BaseDistinguishedName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestLdap) GetBaseDistinguishedNameOk() (*string, bool) {
-	if o == nil || isNil(o.BaseDistinguishedName) {
-    return nil, false
+	if o == nil || IsNil(o.BaseDistinguishedName) {
+		return nil, false
 	}
 	return o.BaseDistinguishedName, true
 }
 
 // HasBaseDistinguishedName returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestLdap) HasBaseDistinguishedName() bool {
-	if o != nil && !isNil(o.BaseDistinguishedName) {
+	if o != nil && !IsNil(o.BaseDistinguishedName) {
 		return true
 	}
 
@@ -139,7 +142,7 @@ func (o *UpdateNetworkWirelessSsidRequestLdap) SetBaseDistinguishedName(v string
 
 // GetServerCaCertificate returns the ServerCaCertificate field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestLdap) GetServerCaCertificate() UpdateNetworkWirelessSsidRequestLdapServerCaCertificate {
-	if o == nil || isNil(o.ServerCaCertificate) {
+	if o == nil || IsNil(o.ServerCaCertificate) {
 		var ret UpdateNetworkWirelessSsidRequestLdapServerCaCertificate
 		return ret
 	}
@@ -149,15 +152,15 @@ func (o *UpdateNetworkWirelessSsidRequestLdap) GetServerCaCertificate() UpdateNe
 // GetServerCaCertificateOk returns a tuple with the ServerCaCertificate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestLdap) GetServerCaCertificateOk() (*UpdateNetworkWirelessSsidRequestLdapServerCaCertificate, bool) {
-	if o == nil || isNil(o.ServerCaCertificate) {
-    return nil, false
+	if o == nil || IsNil(o.ServerCaCertificate) {
+		return nil, false
 	}
 	return o.ServerCaCertificate, true
 }
 
 // HasServerCaCertificate returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestLdap) HasServerCaCertificate() bool {
-	if o != nil && !isNil(o.ServerCaCertificate) {
+	if o != nil && !IsNil(o.ServerCaCertificate) {
 		return true
 	}
 
@@ -170,20 +173,28 @@ func (o *UpdateNetworkWirelessSsidRequestLdap) SetServerCaCertificate(v UpdateNe
 }
 
 func (o UpdateNetworkWirelessSsidRequestLdap) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Servers) {
-		toSerialize["servers"] = o.Servers
-	}
-	if !isNil(o.Credentials) {
-		toSerialize["credentials"] = o.Credentials
-	}
-	if !isNil(o.BaseDistinguishedName) {
-		toSerialize["baseDistinguishedName"] = o.BaseDistinguishedName
-	}
-	if !isNil(o.ServerCaCertificate) {
-		toSerialize["serverCaCertificate"] = o.ServerCaCertificate
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidRequestLdap) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Servers) {
+		toSerialize["servers"] = o.Servers
+	}
+	if !IsNil(o.Credentials) {
+		toSerialize["credentials"] = o.Credentials
+	}
+	if !IsNil(o.BaseDistinguishedName) {
+		toSerialize["baseDistinguishedName"] = o.BaseDistinguishedName
+	}
+	if !IsNil(o.ServerCaCertificate) {
+		toSerialize["serverCaCertificate"] = o.ServerCaCertificate
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidRequestLdap struct {

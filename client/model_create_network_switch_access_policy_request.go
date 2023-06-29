@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkSwitchAccessPolicyRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkSwitchAccessPolicyRequest{}
+
 // CreateNetworkSwitchAccessPolicyRequest struct for CreateNetworkSwitchAccessPolicyRequest
 type CreateNetworkSwitchAccessPolicyRequest struct {
 	// Name of the access policy
@@ -88,7 +91,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -112,7 +115,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadiusServers() []CreateNetw
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadiusServersOk() ([]CreateNetworkSwitchAccessPolicyRequestRadiusServersInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.RadiusServers, true
 }
@@ -124,7 +127,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) SetRadiusServers(v []CreateNetw
 
 // GetRadius returns the Radius field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadius() GetNetworkSwitchAccessPolicies200ResponseInnerRadius {
-	if o == nil || isNil(o.Radius) {
+	if o == nil || IsNil(o.Radius) {
 		var ret GetNetworkSwitchAccessPolicies200ResponseInnerRadius
 		return ret
 	}
@@ -134,15 +137,15 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadius() GetNetworkSwitchAcc
 // GetRadiusOk returns a tuple with the Radius field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadiusOk() (*GetNetworkSwitchAccessPolicies200ResponseInnerRadius, bool) {
-	if o == nil || isNil(o.Radius) {
-    return nil, false
+	if o == nil || IsNil(o.Radius) {
+		return nil, false
 	}
 	return o.Radius, true
 }
 
 // HasRadius returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) HasRadius() bool {
-	if o != nil && !isNil(o.Radius) {
+	if o != nil && !IsNil(o.Radius) {
 		return true
 	}
 
@@ -156,7 +159,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) SetRadius(v GetNetworkSwitchAcc
 
 // GetGuestPortBouncing returns the GuestPortBouncing field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetGuestPortBouncing() bool {
-	if o == nil || isNil(o.GuestPortBouncing) {
+	if o == nil || IsNil(o.GuestPortBouncing) {
 		var ret bool
 		return ret
 	}
@@ -166,15 +169,15 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetGuestPortBouncing() bool {
 // GetGuestPortBouncingOk returns a tuple with the GuestPortBouncing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetGuestPortBouncingOk() (*bool, bool) {
-	if o == nil || isNil(o.GuestPortBouncing) {
-    return nil, false
+	if o == nil || IsNil(o.GuestPortBouncing) {
+		return nil, false
 	}
 	return o.GuestPortBouncing, true
 }
 
 // HasGuestPortBouncing returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) HasGuestPortBouncing() bool {
-	if o != nil && !isNil(o.GuestPortBouncing) {
+	if o != nil && !IsNil(o.GuestPortBouncing) {
 		return true
 	}
 
@@ -200,7 +203,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadiusTestingEnabled() bool 
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadiusTestingEnabledOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.RadiusTestingEnabled, true
 }
@@ -224,7 +227,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadiusCoaSupportEnabled() bo
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadiusCoaSupportEnabledOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.RadiusCoaSupportEnabled, true
 }
@@ -248,7 +251,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadiusAccountingEnabled() bo
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadiusAccountingEnabledOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.RadiusAccountingEnabled, true
 }
@@ -260,7 +263,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) SetRadiusAccountingEnabled(v bo
 
 // GetRadiusAccountingServers returns the RadiusAccountingServers field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadiusAccountingServers() []CreateNetworkSwitchAccessPolicyRequestRadiusAccountingServersInner {
-	if o == nil || isNil(o.RadiusAccountingServers) {
+	if o == nil || IsNil(o.RadiusAccountingServers) {
 		var ret []CreateNetworkSwitchAccessPolicyRequestRadiusAccountingServersInner
 		return ret
 	}
@@ -270,15 +273,15 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadiusAccountingServers() []
 // GetRadiusAccountingServersOk returns a tuple with the RadiusAccountingServers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadiusAccountingServersOk() ([]CreateNetworkSwitchAccessPolicyRequestRadiusAccountingServersInner, bool) {
-	if o == nil || isNil(o.RadiusAccountingServers) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusAccountingServers) {
+		return nil, false
 	}
 	return o.RadiusAccountingServers, true
 }
 
 // HasRadiusAccountingServers returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) HasRadiusAccountingServers() bool {
-	if o != nil && !isNil(o.RadiusAccountingServers) {
+	if o != nil && !IsNil(o.RadiusAccountingServers) {
 		return true
 	}
 
@@ -292,7 +295,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) SetRadiusAccountingServers(v []
 
 // GetRadiusGroupAttribute returns the RadiusGroupAttribute field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadiusGroupAttribute() string {
-	if o == nil || isNil(o.RadiusGroupAttribute) {
+	if o == nil || IsNil(o.RadiusGroupAttribute) {
 		var ret string
 		return ret
 	}
@@ -302,15 +305,15 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadiusGroupAttribute() strin
 // GetRadiusGroupAttributeOk returns a tuple with the RadiusGroupAttribute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetRadiusGroupAttributeOk() (*string, bool) {
-	if o == nil || isNil(o.RadiusGroupAttribute) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusGroupAttribute) {
+		return nil, false
 	}
 	return o.RadiusGroupAttribute, true
 }
 
 // HasRadiusGroupAttribute returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) HasRadiusGroupAttribute() bool {
-	if o != nil && !isNil(o.RadiusGroupAttribute) {
+	if o != nil && !IsNil(o.RadiusGroupAttribute) {
 		return true
 	}
 
@@ -336,7 +339,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetHostMode() string {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetHostModeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.HostMode, true
 }
@@ -348,7 +351,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) SetHostMode(v string) {
 
 // GetAccessPolicyType returns the AccessPolicyType field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetAccessPolicyType() string {
-	if o == nil || isNil(o.AccessPolicyType) {
+	if o == nil || IsNil(o.AccessPolicyType) {
 		var ret string
 		return ret
 	}
@@ -358,15 +361,15 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetAccessPolicyType() string {
 // GetAccessPolicyTypeOk returns a tuple with the AccessPolicyType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetAccessPolicyTypeOk() (*string, bool) {
-	if o == nil || isNil(o.AccessPolicyType) {
-    return nil, false
+	if o == nil || IsNil(o.AccessPolicyType) {
+		return nil, false
 	}
 	return o.AccessPolicyType, true
 }
 
 // HasAccessPolicyType returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) HasAccessPolicyType() bool {
-	if o != nil && !isNil(o.AccessPolicyType) {
+	if o != nil && !IsNil(o.AccessPolicyType) {
 		return true
 	}
 
@@ -380,7 +383,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) SetAccessPolicyType(v string) {
 
 // GetIncreaseAccessSpeed returns the IncreaseAccessSpeed field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetIncreaseAccessSpeed() bool {
-	if o == nil || isNil(o.IncreaseAccessSpeed) {
+	if o == nil || IsNil(o.IncreaseAccessSpeed) {
 		var ret bool
 		return ret
 	}
@@ -390,15 +393,15 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetIncreaseAccessSpeed() bool {
 // GetIncreaseAccessSpeedOk returns a tuple with the IncreaseAccessSpeed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetIncreaseAccessSpeedOk() (*bool, bool) {
-	if o == nil || isNil(o.IncreaseAccessSpeed) {
-    return nil, false
+	if o == nil || IsNil(o.IncreaseAccessSpeed) {
+		return nil, false
 	}
 	return o.IncreaseAccessSpeed, true
 }
 
 // HasIncreaseAccessSpeed returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) HasIncreaseAccessSpeed() bool {
-	if o != nil && !isNil(o.IncreaseAccessSpeed) {
+	if o != nil && !IsNil(o.IncreaseAccessSpeed) {
 		return true
 	}
 
@@ -412,7 +415,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) SetIncreaseAccessSpeed(v bool) 
 
 // GetGuestVlanId returns the GuestVlanId field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetGuestVlanId() int32 {
-	if o == nil || isNil(o.GuestVlanId) {
+	if o == nil || IsNil(o.GuestVlanId) {
 		var ret int32
 		return ret
 	}
@@ -422,15 +425,15 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetGuestVlanId() int32 {
 // GetGuestVlanIdOk returns a tuple with the GuestVlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetGuestVlanIdOk() (*int32, bool) {
-	if o == nil || isNil(o.GuestVlanId) {
-    return nil, false
+	if o == nil || IsNil(o.GuestVlanId) {
+		return nil, false
 	}
 	return o.GuestVlanId, true
 }
 
 // HasGuestVlanId returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) HasGuestVlanId() bool {
-	if o != nil && !isNil(o.GuestVlanId) {
+	if o != nil && !IsNil(o.GuestVlanId) {
 		return true
 	}
 
@@ -444,7 +447,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) SetGuestVlanId(v int32) {
 
 // GetDot1x returns the Dot1x field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetDot1x() GetNetworkSwitchAccessPolicies200ResponseInnerDot1x {
-	if o == nil || isNil(o.Dot1x) {
+	if o == nil || IsNil(o.Dot1x) {
 		var ret GetNetworkSwitchAccessPolicies200ResponseInnerDot1x
 		return ret
 	}
@@ -454,15 +457,15 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetDot1x() GetNetworkSwitchAcce
 // GetDot1xOk returns a tuple with the Dot1x field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetDot1xOk() (*GetNetworkSwitchAccessPolicies200ResponseInnerDot1x, bool) {
-	if o == nil || isNil(o.Dot1x) {
-    return nil, false
+	if o == nil || IsNil(o.Dot1x) {
+		return nil, false
 	}
 	return o.Dot1x, true
 }
 
 // HasDot1x returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) HasDot1x() bool {
-	if o != nil && !isNil(o.Dot1x) {
+	if o != nil && !IsNil(o.Dot1x) {
 		return true
 	}
 
@@ -476,7 +479,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) SetDot1x(v GetNetworkSwitchAcce
 
 // GetVoiceVlanClients returns the VoiceVlanClients field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetVoiceVlanClients() bool {
-	if o == nil || isNil(o.VoiceVlanClients) {
+	if o == nil || IsNil(o.VoiceVlanClients) {
 		var ret bool
 		return ret
 	}
@@ -486,15 +489,15 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetVoiceVlanClients() bool {
 // GetVoiceVlanClientsOk returns a tuple with the VoiceVlanClients field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetVoiceVlanClientsOk() (*bool, bool) {
-	if o == nil || isNil(o.VoiceVlanClients) {
-    return nil, false
+	if o == nil || IsNil(o.VoiceVlanClients) {
+		return nil, false
 	}
 	return o.VoiceVlanClients, true
 }
 
 // HasVoiceVlanClients returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) HasVoiceVlanClients() bool {
-	if o != nil && !isNil(o.VoiceVlanClients) {
+	if o != nil && !IsNil(o.VoiceVlanClients) {
 		return true
 	}
 
@@ -520,7 +523,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetUrlRedirectWalledGardenEnabl
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetUrlRedirectWalledGardenEnabledOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.UrlRedirectWalledGardenEnabled, true
 }
@@ -532,7 +535,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) SetUrlRedirectWalledGardenEnabl
 
 // GetUrlRedirectWalledGardenRanges returns the UrlRedirectWalledGardenRanges field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetUrlRedirectWalledGardenRanges() []string {
-	if o == nil || isNil(o.UrlRedirectWalledGardenRanges) {
+	if o == nil || IsNil(o.UrlRedirectWalledGardenRanges) {
 		var ret []string
 		return ret
 	}
@@ -542,15 +545,15 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) GetUrlRedirectWalledGardenRange
 // GetUrlRedirectWalledGardenRangesOk returns a tuple with the UrlRedirectWalledGardenRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) GetUrlRedirectWalledGardenRangesOk() ([]string, bool) {
-	if o == nil || isNil(o.UrlRedirectWalledGardenRanges) {
-    return nil, false
+	if o == nil || IsNil(o.UrlRedirectWalledGardenRanges) {
+		return nil, false
 	}
 	return o.UrlRedirectWalledGardenRanges, true
 }
 
 // HasUrlRedirectWalledGardenRanges returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequest) HasUrlRedirectWalledGardenRanges() bool {
-	if o != nil && !isNil(o.UrlRedirectWalledGardenRanges) {
+	if o != nil && !IsNil(o.UrlRedirectWalledGardenRanges) {
 		return true
 	}
 
@@ -563,59 +566,53 @@ func (o *CreateNetworkSwitchAccessPolicyRequest) SetUrlRedirectWalledGardenRange
 }
 
 func (o CreateNetworkSwitchAccessPolicyRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["radiusServers"] = o.RadiusServers
-	}
-	if !isNil(o.Radius) {
-		toSerialize["radius"] = o.Radius
-	}
-	if !isNil(o.GuestPortBouncing) {
-		toSerialize["guestPortBouncing"] = o.GuestPortBouncing
-	}
-	if true {
-		toSerialize["radiusTestingEnabled"] = o.RadiusTestingEnabled
-	}
-	if true {
-		toSerialize["radiusCoaSupportEnabled"] = o.RadiusCoaSupportEnabled
-	}
-	if true {
-		toSerialize["radiusAccountingEnabled"] = o.RadiusAccountingEnabled
-	}
-	if !isNil(o.RadiusAccountingServers) {
-		toSerialize["radiusAccountingServers"] = o.RadiusAccountingServers
-	}
-	if !isNil(o.RadiusGroupAttribute) {
-		toSerialize["radiusGroupAttribute"] = o.RadiusGroupAttribute
-	}
-	if true {
-		toSerialize["hostMode"] = o.HostMode
-	}
-	if !isNil(o.AccessPolicyType) {
-		toSerialize["accessPolicyType"] = o.AccessPolicyType
-	}
-	if !isNil(o.IncreaseAccessSpeed) {
-		toSerialize["increaseAccessSpeed"] = o.IncreaseAccessSpeed
-	}
-	if !isNil(o.GuestVlanId) {
-		toSerialize["guestVlanId"] = o.GuestVlanId
-	}
-	if !isNil(o.Dot1x) {
-		toSerialize["dot1x"] = o.Dot1x
-	}
-	if !isNil(o.VoiceVlanClients) {
-		toSerialize["voiceVlanClients"] = o.VoiceVlanClients
-	}
-	if true {
-		toSerialize["urlRedirectWalledGardenEnabled"] = o.UrlRedirectWalledGardenEnabled
-	}
-	if !isNil(o.UrlRedirectWalledGardenRanges) {
-		toSerialize["urlRedirectWalledGardenRanges"] = o.UrlRedirectWalledGardenRanges
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkSwitchAccessPolicyRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["radiusServers"] = o.RadiusServers
+	if !IsNil(o.Radius) {
+		toSerialize["radius"] = o.Radius
+	}
+	if !IsNil(o.GuestPortBouncing) {
+		toSerialize["guestPortBouncing"] = o.GuestPortBouncing
+	}
+	toSerialize["radiusTestingEnabled"] = o.RadiusTestingEnabled
+	toSerialize["radiusCoaSupportEnabled"] = o.RadiusCoaSupportEnabled
+	toSerialize["radiusAccountingEnabled"] = o.RadiusAccountingEnabled
+	if !IsNil(o.RadiusAccountingServers) {
+		toSerialize["radiusAccountingServers"] = o.RadiusAccountingServers
+	}
+	if !IsNil(o.RadiusGroupAttribute) {
+		toSerialize["radiusGroupAttribute"] = o.RadiusGroupAttribute
+	}
+	toSerialize["hostMode"] = o.HostMode
+	if !IsNil(o.AccessPolicyType) {
+		toSerialize["accessPolicyType"] = o.AccessPolicyType
+	}
+	if !IsNil(o.IncreaseAccessSpeed) {
+		toSerialize["increaseAccessSpeed"] = o.IncreaseAccessSpeed
+	}
+	if !IsNil(o.GuestVlanId) {
+		toSerialize["guestVlanId"] = o.GuestVlanId
+	}
+	if !IsNil(o.Dot1x) {
+		toSerialize["dot1x"] = o.Dot1x
+	}
+	if !IsNil(o.VoiceVlanClients) {
+		toSerialize["voiceVlanClients"] = o.VoiceVlanClients
+	}
+	toSerialize["urlRedirectWalledGardenEnabled"] = o.UrlRedirectWalledGardenEnabled
+	if !IsNil(o.UrlRedirectWalledGardenRanges) {
+		toSerialize["urlRedirectWalledGardenRanges"] = o.UrlRedirectWalledGardenRanges
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkSwitchAccessPolicyRequest struct {

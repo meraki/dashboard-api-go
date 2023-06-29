@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest{}
+
 // UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest struct for UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest
 type UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest struct {
 	// The list of connectivity monitoring destinations
@@ -39,7 +42,7 @@ func NewUpdateNetworkApplianceConnectivityMonitoringDestinationsRequestWithDefau
 
 // GetDestinations returns the Destinations field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest) GetDestinations() []UpdateNetworkApplianceConnectivityMonitoringDestinationsRequestDestinationsInner {
-	if o == nil || isNil(o.Destinations) {
+	if o == nil || IsNil(o.Destinations) {
 		var ret []UpdateNetworkApplianceConnectivityMonitoringDestinationsRequestDestinationsInner
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest) GetDes
 // GetDestinationsOk returns a tuple with the Destinations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest) GetDestinationsOk() ([]UpdateNetworkApplianceConnectivityMonitoringDestinationsRequestDestinationsInner, bool) {
-	if o == nil || isNil(o.Destinations) {
-    return nil, false
+	if o == nil || IsNil(o.Destinations) {
+		return nil, false
 	}
 	return o.Destinations, true
 }
 
 // HasDestinations returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest) HasDestinations() bool {
-	if o != nil && !isNil(o.Destinations) {
+	if o != nil && !IsNil(o.Destinations) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest) SetDes
 }
 
 func (o UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Destinations) {
-		toSerialize["destinations"] = o.Destinations
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Destinations) {
+		toSerialize["destinations"] = o.Destinations
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceConnectivityMonitoringDestinationsRequest struct {

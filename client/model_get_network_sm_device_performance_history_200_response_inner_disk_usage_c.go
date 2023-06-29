@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC{}
+
 // GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC An object containing current disk usage details.
 type GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC struct {
 	// The used disk space.
@@ -41,7 +44,7 @@ func NewGetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageCWithDefaul
 
 // GetUsed returns the Used field value if set, zero value otherwise.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC) GetUsed() int32 {
-	if o == nil || isNil(o.Used) {
+	if o == nil || IsNil(o.Used) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC) GetUsed
 // GetUsedOk returns a tuple with the Used field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC) GetUsedOk() (*int32, bool) {
-	if o == nil || isNil(o.Used) {
-    return nil, false
+	if o == nil || IsNil(o.Used) {
+		return nil, false
 	}
 	return o.Used, true
 }
 
 // HasUsed returns a boolean if a field has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC) HasUsed() bool {
-	if o != nil && !isNil(o.Used) {
+	if o != nil && !IsNil(o.Used) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC) SetUsed
 
 // GetSpace returns the Space field value if set, zero value otherwise.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC) GetSpace() int32 {
-	if o == nil || isNil(o.Space) {
+	if o == nil || IsNil(o.Space) {
 		var ret int32
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC) GetSpac
 // GetSpaceOk returns a tuple with the Space field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC) GetSpaceOk() (*int32, bool) {
-	if o == nil || isNil(o.Space) {
-    return nil, false
+	if o == nil || IsNil(o.Space) {
+		return nil, false
 	}
 	return o.Space, true
 }
 
 // HasSpace returns a boolean if a field has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC) HasSpace() bool {
-	if o != nil && !isNil(o.Space) {
+	if o != nil && !IsNil(o.Space) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC) SetSpac
 }
 
 func (o GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Used) {
-		toSerialize["used"] = o.Used
-	}
-	if !isNil(o.Space) {
-		toSerialize["space"] = o.Space
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Used) {
+		toSerialize["used"] = o.Used
+	}
+	if !IsNil(o.Space) {
+		toSerialize["space"] = o.Space
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC struct {

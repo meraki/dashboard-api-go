@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchDhcpServerPolicy200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchDhcpServerPolicy200Response{}
+
 // GetNetworkSwitchDhcpServerPolicy200Response struct for GetNetworkSwitchDhcpServerPolicy200Response
 type GetNetworkSwitchDhcpServerPolicy200Response struct {
 	Alerts *GetNetworkSwitchDhcpServerPolicy200ResponseAlerts `json:"alerts,omitempty"`
@@ -45,7 +48,7 @@ func NewGetNetworkSwitchDhcpServerPolicy200ResponseWithDefaults() *GetNetworkSwi
 
 // GetAlerts returns the Alerts field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpServerPolicy200Response) GetAlerts() GetNetworkSwitchDhcpServerPolicy200ResponseAlerts {
-	if o == nil || isNil(o.Alerts) {
+	if o == nil || IsNil(o.Alerts) {
 		var ret GetNetworkSwitchDhcpServerPolicy200ResponseAlerts
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetNetworkSwitchDhcpServerPolicy200Response) GetAlerts() GetNetworkSwit
 // GetAlertsOk returns a tuple with the Alerts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpServerPolicy200Response) GetAlertsOk() (*GetNetworkSwitchDhcpServerPolicy200ResponseAlerts, bool) {
-	if o == nil || isNil(o.Alerts) {
-    return nil, false
+	if o == nil || IsNil(o.Alerts) {
+		return nil, false
 	}
 	return o.Alerts, true
 }
 
 // HasAlerts returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpServerPolicy200Response) HasAlerts() bool {
-	if o != nil && !isNil(o.Alerts) {
+	if o != nil && !IsNil(o.Alerts) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetNetworkSwitchDhcpServerPolicy200Response) SetAlerts(v GetNetworkSwit
 
 // GetDefaultPolicy returns the DefaultPolicy field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpServerPolicy200Response) GetDefaultPolicy() string {
-	if o == nil || isNil(o.DefaultPolicy) {
+	if o == nil || IsNil(o.DefaultPolicy) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetNetworkSwitchDhcpServerPolicy200Response) GetDefaultPolicy() string 
 // GetDefaultPolicyOk returns a tuple with the DefaultPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpServerPolicy200Response) GetDefaultPolicyOk() (*string, bool) {
-	if o == nil || isNil(o.DefaultPolicy) {
-    return nil, false
+	if o == nil || IsNil(o.DefaultPolicy) {
+		return nil, false
 	}
 	return o.DefaultPolicy, true
 }
 
 // HasDefaultPolicy returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpServerPolicy200Response) HasDefaultPolicy() bool {
-	if o != nil && !isNil(o.DefaultPolicy) {
+	if o != nil && !IsNil(o.DefaultPolicy) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetNetworkSwitchDhcpServerPolicy200Response) SetDefaultPolicy(v string)
 
 // GetBlockedServers returns the BlockedServers field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpServerPolicy200Response) GetBlockedServers() []string {
-	if o == nil || isNil(o.BlockedServers) {
+	if o == nil || IsNil(o.BlockedServers) {
 		var ret []string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetNetworkSwitchDhcpServerPolicy200Response) GetBlockedServers() []stri
 // GetBlockedServersOk returns a tuple with the BlockedServers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpServerPolicy200Response) GetBlockedServersOk() ([]string, bool) {
-	if o == nil || isNil(o.BlockedServers) {
-    return nil, false
+	if o == nil || IsNil(o.BlockedServers) {
+		return nil, false
 	}
 	return o.BlockedServers, true
 }
 
 // HasBlockedServers returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpServerPolicy200Response) HasBlockedServers() bool {
-	if o != nil && !isNil(o.BlockedServers) {
+	if o != nil && !IsNil(o.BlockedServers) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetNetworkSwitchDhcpServerPolicy200Response) SetBlockedServers(v []stri
 
 // GetAllowedServers returns the AllowedServers field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpServerPolicy200Response) GetAllowedServers() []string {
-	if o == nil || isNil(o.AllowedServers) {
+	if o == nil || IsNil(o.AllowedServers) {
 		var ret []string
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetNetworkSwitchDhcpServerPolicy200Response) GetAllowedServers() []stri
 // GetAllowedServersOk returns a tuple with the AllowedServers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpServerPolicy200Response) GetAllowedServersOk() ([]string, bool) {
-	if o == nil || isNil(o.AllowedServers) {
-    return nil, false
+	if o == nil || IsNil(o.AllowedServers) {
+		return nil, false
 	}
 	return o.AllowedServers, true
 }
 
 // HasAllowedServers returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpServerPolicy200Response) HasAllowedServers() bool {
-	if o != nil && !isNil(o.AllowedServers) {
+	if o != nil && !IsNil(o.AllowedServers) {
 		return true
 	}
 
@@ -173,7 +176,7 @@ func (o *GetNetworkSwitchDhcpServerPolicy200Response) SetAllowedServers(v []stri
 
 // GetArpInspection returns the ArpInspection field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpServerPolicy200Response) GetArpInspection() GetNetworkSwitchDhcpServerPolicy200ResponseArpInspection {
-	if o == nil || isNil(o.ArpInspection) {
+	if o == nil || IsNil(o.ArpInspection) {
 		var ret GetNetworkSwitchDhcpServerPolicy200ResponseArpInspection
 		return ret
 	}
@@ -183,15 +186,15 @@ func (o *GetNetworkSwitchDhcpServerPolicy200Response) GetArpInspection() GetNetw
 // GetArpInspectionOk returns a tuple with the ArpInspection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpServerPolicy200Response) GetArpInspectionOk() (*GetNetworkSwitchDhcpServerPolicy200ResponseArpInspection, bool) {
-	if o == nil || isNil(o.ArpInspection) {
-    return nil, false
+	if o == nil || IsNil(o.ArpInspection) {
+		return nil, false
 	}
 	return o.ArpInspection, true
 }
 
 // HasArpInspection returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpServerPolicy200Response) HasArpInspection() bool {
-	if o != nil && !isNil(o.ArpInspection) {
+	if o != nil && !IsNil(o.ArpInspection) {
 		return true
 	}
 
@@ -204,23 +207,31 @@ func (o *GetNetworkSwitchDhcpServerPolicy200Response) SetArpInspection(v GetNetw
 }
 
 func (o GetNetworkSwitchDhcpServerPolicy200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Alerts) {
-		toSerialize["alerts"] = o.Alerts
-	}
-	if !isNil(o.DefaultPolicy) {
-		toSerialize["defaultPolicy"] = o.DefaultPolicy
-	}
-	if !isNil(o.BlockedServers) {
-		toSerialize["blockedServers"] = o.BlockedServers
-	}
-	if !isNil(o.AllowedServers) {
-		toSerialize["allowedServers"] = o.AllowedServers
-	}
-	if !isNil(o.ArpInspection) {
-		toSerialize["arpInspection"] = o.ArpInspection
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchDhcpServerPolicy200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Alerts) {
+		toSerialize["alerts"] = o.Alerts
+	}
+	if !IsNil(o.DefaultPolicy) {
+		toSerialize["defaultPolicy"] = o.DefaultPolicy
+	}
+	if !IsNil(o.BlockedServers) {
+		toSerialize["blockedServers"] = o.BlockedServers
+	}
+	if !IsNil(o.AllowedServers) {
+		toSerialize["allowedServers"] = o.AllowedServers
+	}
+	if !IsNil(o.ArpInspection) {
+		toSerialize["arpInspection"] = o.ArpInspection
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchDhcpServerPolicy200Response struct {

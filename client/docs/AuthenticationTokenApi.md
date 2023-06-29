@@ -32,6 +32,7 @@ func main() {
     serial := "serial_example" // string | Serial
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.AuthenticationTokenApi.CreateDeviceApplianceVmxAuthenticationToken(context.Background(), serial).Execute()
     if err != nil {

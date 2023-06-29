@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImage{}
+
 // GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImage Properties of the image.
 type GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImage struct {
 	Preview *GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview `json:"preview,omitempty"`
@@ -38,7 +41,7 @@ func NewGetOrganizationBrandingPolicies200ResponseInnerCustomLogoImageWithDefaul
 
 // GetPreview returns the Preview field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImage) GetPreview() GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview {
-	if o == nil || isNil(o.Preview) {
+	if o == nil || IsNil(o.Preview) {
 		var ret GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImage) GetPrev
 // GetPreviewOk returns a tuple with the Preview field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImage) GetPreviewOk() (*GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImagePreview, bool) {
-	if o == nil || isNil(o.Preview) {
-    return nil, false
+	if o == nil || IsNil(o.Preview) {
+		return nil, false
 	}
 	return o.Preview, true
 }
 
 // HasPreview returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImage) HasPreview() bool {
-	if o != nil && !isNil(o.Preview) {
+	if o != nil && !IsNil(o.Preview) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImage) SetPrev
 }
 
 func (o GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Preview) {
-		toSerialize["preview"] = o.Preview
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Preview) {
+		toSerialize["preview"] = o.Preview
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationBrandingPolicies200ResponseInnerCustomLogoImage struct {

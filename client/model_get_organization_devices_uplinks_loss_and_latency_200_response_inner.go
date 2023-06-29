@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationDevicesUplinksLossAndLatency200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationDevicesUplinksLossAndLatency200ResponseInner{}
+
 // GetOrganizationDevicesUplinksLossAndLatency200ResponseInner struct for GetOrganizationDevicesUplinksLossAndLatency200ResponseInner
 type GetOrganizationDevicesUplinksLossAndLatency200ResponseInner struct {
 	// Network ID
@@ -47,7 +50,7 @@ func NewGetOrganizationDevicesUplinksLossAndLatency200ResponseInnerWithDefaults(
 
 // GetNetworkId returns the NetworkId field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) GetNetworkId() string {
-	if o == nil || isNil(o.NetworkId) {
+	if o == nil || IsNil(o.NetworkId) {
 		var ret string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) GetNetwork
 // GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) GetNetworkIdOk() (*string, bool) {
-	if o == nil || isNil(o.NetworkId) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkId) {
+		return nil, false
 	}
 	return o.NetworkId, true
 }
 
 // HasNetworkId returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) HasNetworkId() bool {
-	if o != nil && !isNil(o.NetworkId) {
+	if o != nil && !IsNil(o.NetworkId) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) SetNetwork
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) GetSerial(
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) SetSerial(
 
 // GetUplink returns the Uplink field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) GetUplink() string {
-	if o == nil || isNil(o.Uplink) {
+	if o == nil || IsNil(o.Uplink) {
 		var ret string
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) GetUplink(
 // GetUplinkOk returns a tuple with the Uplink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) GetUplinkOk() (*string, bool) {
-	if o == nil || isNil(o.Uplink) {
-    return nil, false
+	if o == nil || IsNil(o.Uplink) {
+		return nil, false
 	}
 	return o.Uplink, true
 }
 
 // HasUplink returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) HasUplink() bool {
-	if o != nil && !isNil(o.Uplink) {
+	if o != nil && !IsNil(o.Uplink) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) SetUplink(
 
 // GetIp returns the Ip field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) GetIp() string {
-	if o == nil || isNil(o.Ip) {
+	if o == nil || IsNil(o.Ip) {
 		var ret string
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) GetIp() st
 // GetIpOk returns a tuple with the Ip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) GetIpOk() (*string, bool) {
-	if o == nil || isNil(o.Ip) {
-    return nil, false
+	if o == nil || IsNil(o.Ip) {
+		return nil, false
 	}
 	return o.Ip, true
 }
 
 // HasIp returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) HasIp() bool {
-	if o != nil && !isNil(o.Ip) {
+	if o != nil && !IsNil(o.Ip) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) SetIp(v st
 
 // GetTimeSeries returns the TimeSeries field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) GetTimeSeries() []GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner {
-	if o == nil || isNil(o.TimeSeries) {
+	if o == nil || IsNil(o.TimeSeries) {
 		var ret []GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) GetTimeSer
 // GetTimeSeriesOk returns a tuple with the TimeSeries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) GetTimeSeriesOk() ([]GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner, bool) {
-	if o == nil || isNil(o.TimeSeries) {
-    return nil, false
+	if o == nil || IsNil(o.TimeSeries) {
+		return nil, false
 	}
 	return o.TimeSeries, true
 }
 
 // HasTimeSeries returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) HasTimeSeries() bool {
-	if o != nil && !isNil(o.TimeSeries) {
+	if o != nil && !IsNil(o.TimeSeries) {
 		return true
 	}
 
@@ -206,23 +209,31 @@ func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) SetTimeSer
 }
 
 func (o GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.NetworkId) {
-		toSerialize["networkId"] = o.NetworkId
-	}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Uplink) {
-		toSerialize["uplink"] = o.Uplink
-	}
-	if !isNil(o.Ip) {
-		toSerialize["ip"] = o.Ip
-	}
-	if !isNil(o.TimeSeries) {
-		toSerialize["timeSeries"] = o.TimeSeries
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationDevicesUplinksLossAndLatency200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.NetworkId) {
+		toSerialize["networkId"] = o.NetworkId
+	}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.Uplink) {
+		toSerialize["uplink"] = o.Uplink
+	}
+	if !IsNil(o.Ip) {
+		toSerialize["ip"] = o.Ip
+	}
+	if !IsNil(o.TimeSeries) {
+		toSerialize["timeSeries"] = o.TimeSeries
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationDevicesUplinksLossAndLatency200ResponseInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWirelessRfProfiles200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessRfProfiles200Response{}
+
 // GetNetworkWirelessRfProfiles200Response struct for GetNetworkWirelessRfProfiles200Response
 type GetNetworkWirelessRfProfiles200Response struct {
 	// The name of the new profile. Must be unique.
@@ -55,7 +58,7 @@ func NewGetNetworkWirelessRfProfiles200ResponseWithDefaults() *GetNetworkWireles
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200Response) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -65,15 +68,15 @@ func (o *GetNetworkWirelessRfProfiles200Response) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -87,7 +90,7 @@ func (o *GetNetworkWirelessRfProfiles200Response) SetId(v string) {
 
 // GetNetworkId returns the NetworkId field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200Response) GetNetworkId() string {
-	if o == nil || isNil(o.NetworkId) {
+	if o == nil || IsNil(o.NetworkId) {
 		var ret string
 		return ret
 	}
@@ -97,15 +100,15 @@ func (o *GetNetworkWirelessRfProfiles200Response) GetNetworkId() string {
 // GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) GetNetworkIdOk() (*string, bool) {
-	if o == nil || isNil(o.NetworkId) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkId) {
+		return nil, false
 	}
 	return o.NetworkId, true
 }
 
 // HasNetworkId returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) HasNetworkId() bool {
-	if o != nil && !isNil(o.NetworkId) {
+	if o != nil && !IsNil(o.NetworkId) {
 		return true
 	}
 
@@ -119,7 +122,7 @@ func (o *GetNetworkWirelessRfProfiles200Response) SetNetworkId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200Response) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -129,15 +132,15 @@ func (o *GetNetworkWirelessRfProfiles200Response) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -151,7 +154,7 @@ func (o *GetNetworkWirelessRfProfiles200Response) SetName(v string) {
 
 // GetClientBalancingEnabled returns the ClientBalancingEnabled field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200Response) GetClientBalancingEnabled() bool {
-	if o == nil || isNil(o.ClientBalancingEnabled) {
+	if o == nil || IsNil(o.ClientBalancingEnabled) {
 		var ret bool
 		return ret
 	}
@@ -161,15 +164,15 @@ func (o *GetNetworkWirelessRfProfiles200Response) GetClientBalancingEnabled() bo
 // GetClientBalancingEnabledOk returns a tuple with the ClientBalancingEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) GetClientBalancingEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.ClientBalancingEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.ClientBalancingEnabled) {
+		return nil, false
 	}
 	return o.ClientBalancingEnabled, true
 }
 
 // HasClientBalancingEnabled returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) HasClientBalancingEnabled() bool {
-	if o != nil && !isNil(o.ClientBalancingEnabled) {
+	if o != nil && !IsNil(o.ClientBalancingEnabled) {
 		return true
 	}
 
@@ -183,7 +186,7 @@ func (o *GetNetworkWirelessRfProfiles200Response) SetClientBalancingEnabled(v bo
 
 // GetMinBitrateType returns the MinBitrateType field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200Response) GetMinBitrateType() string {
-	if o == nil || isNil(o.MinBitrateType) {
+	if o == nil || IsNil(o.MinBitrateType) {
 		var ret string
 		return ret
 	}
@@ -193,15 +196,15 @@ func (o *GetNetworkWirelessRfProfiles200Response) GetMinBitrateType() string {
 // GetMinBitrateTypeOk returns a tuple with the MinBitrateType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) GetMinBitrateTypeOk() (*string, bool) {
-	if o == nil || isNil(o.MinBitrateType) {
-    return nil, false
+	if o == nil || IsNil(o.MinBitrateType) {
+		return nil, false
 	}
 	return o.MinBitrateType, true
 }
 
 // HasMinBitrateType returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) HasMinBitrateType() bool {
-	if o != nil && !isNil(o.MinBitrateType) {
+	if o != nil && !IsNil(o.MinBitrateType) {
 		return true
 	}
 
@@ -215,7 +218,7 @@ func (o *GetNetworkWirelessRfProfiles200Response) SetMinBitrateType(v string) {
 
 // GetBandSelectionType returns the BandSelectionType field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200Response) GetBandSelectionType() string {
-	if o == nil || isNil(o.BandSelectionType) {
+	if o == nil || IsNil(o.BandSelectionType) {
 		var ret string
 		return ret
 	}
@@ -225,15 +228,15 @@ func (o *GetNetworkWirelessRfProfiles200Response) GetBandSelectionType() string 
 // GetBandSelectionTypeOk returns a tuple with the BandSelectionType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) GetBandSelectionTypeOk() (*string, bool) {
-	if o == nil || isNil(o.BandSelectionType) {
-    return nil, false
+	if o == nil || IsNil(o.BandSelectionType) {
+		return nil, false
 	}
 	return o.BandSelectionType, true
 }
 
 // HasBandSelectionType returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) HasBandSelectionType() bool {
-	if o != nil && !isNil(o.BandSelectionType) {
+	if o != nil && !IsNil(o.BandSelectionType) {
 		return true
 	}
 
@@ -247,7 +250,7 @@ func (o *GetNetworkWirelessRfProfiles200Response) SetBandSelectionType(v string)
 
 // GetApBandSettings returns the ApBandSettings field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200Response) GetApBandSettings() GetNetworkWirelessRfProfiles200ResponseApBandSettings {
-	if o == nil || isNil(o.ApBandSettings) {
+	if o == nil || IsNil(o.ApBandSettings) {
 		var ret GetNetworkWirelessRfProfiles200ResponseApBandSettings
 		return ret
 	}
@@ -257,15 +260,15 @@ func (o *GetNetworkWirelessRfProfiles200Response) GetApBandSettings() GetNetwork
 // GetApBandSettingsOk returns a tuple with the ApBandSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) GetApBandSettingsOk() (*GetNetworkWirelessRfProfiles200ResponseApBandSettings, bool) {
-	if o == nil || isNil(o.ApBandSettings) {
-    return nil, false
+	if o == nil || IsNil(o.ApBandSettings) {
+		return nil, false
 	}
 	return o.ApBandSettings, true
 }
 
 // HasApBandSettings returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) HasApBandSettings() bool {
-	if o != nil && !isNil(o.ApBandSettings) {
+	if o != nil && !IsNil(o.ApBandSettings) {
 		return true
 	}
 
@@ -279,7 +282,7 @@ func (o *GetNetworkWirelessRfProfiles200Response) SetApBandSettings(v GetNetwork
 
 // GetTwoFourGhzSettings returns the TwoFourGhzSettings field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200Response) GetTwoFourGhzSettings() GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings {
-	if o == nil || isNil(o.TwoFourGhzSettings) {
+	if o == nil || IsNil(o.TwoFourGhzSettings) {
 		var ret GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings
 		return ret
 	}
@@ -289,15 +292,15 @@ func (o *GetNetworkWirelessRfProfiles200Response) GetTwoFourGhzSettings() GetNet
 // GetTwoFourGhzSettingsOk returns a tuple with the TwoFourGhzSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) GetTwoFourGhzSettingsOk() (*GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings, bool) {
-	if o == nil || isNil(o.TwoFourGhzSettings) {
-    return nil, false
+	if o == nil || IsNil(o.TwoFourGhzSettings) {
+		return nil, false
 	}
 	return o.TwoFourGhzSettings, true
 }
 
 // HasTwoFourGhzSettings returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) HasTwoFourGhzSettings() bool {
-	if o != nil && !isNil(o.TwoFourGhzSettings) {
+	if o != nil && !IsNil(o.TwoFourGhzSettings) {
 		return true
 	}
 
@@ -311,7 +314,7 @@ func (o *GetNetworkWirelessRfProfiles200Response) SetTwoFourGhzSettings(v GetNet
 
 // GetFiveGhzSettings returns the FiveGhzSettings field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200Response) GetFiveGhzSettings() GetNetworkWirelessRfProfiles200ResponseFiveGhzSettings {
-	if o == nil || isNil(o.FiveGhzSettings) {
+	if o == nil || IsNil(o.FiveGhzSettings) {
 		var ret GetNetworkWirelessRfProfiles200ResponseFiveGhzSettings
 		return ret
 	}
@@ -321,15 +324,15 @@ func (o *GetNetworkWirelessRfProfiles200Response) GetFiveGhzSettings() GetNetwor
 // GetFiveGhzSettingsOk returns a tuple with the FiveGhzSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) GetFiveGhzSettingsOk() (*GetNetworkWirelessRfProfiles200ResponseFiveGhzSettings, bool) {
-	if o == nil || isNil(o.FiveGhzSettings) {
-    return nil, false
+	if o == nil || IsNil(o.FiveGhzSettings) {
+		return nil, false
 	}
 	return o.FiveGhzSettings, true
 }
 
 // HasFiveGhzSettings returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) HasFiveGhzSettings() bool {
-	if o != nil && !isNil(o.FiveGhzSettings) {
+	if o != nil && !IsNil(o.FiveGhzSettings) {
 		return true
 	}
 
@@ -343,7 +346,7 @@ func (o *GetNetworkWirelessRfProfiles200Response) SetFiveGhzSettings(v GetNetwor
 
 // GetSixGhzSettings returns the SixGhzSettings field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200Response) GetSixGhzSettings() GetNetworkWirelessRfProfiles200ResponseSixGhzSettings {
-	if o == nil || isNil(o.SixGhzSettings) {
+	if o == nil || IsNil(o.SixGhzSettings) {
 		var ret GetNetworkWirelessRfProfiles200ResponseSixGhzSettings
 		return ret
 	}
@@ -353,15 +356,15 @@ func (o *GetNetworkWirelessRfProfiles200Response) GetSixGhzSettings() GetNetwork
 // GetSixGhzSettingsOk returns a tuple with the SixGhzSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) GetSixGhzSettingsOk() (*GetNetworkWirelessRfProfiles200ResponseSixGhzSettings, bool) {
-	if o == nil || isNil(o.SixGhzSettings) {
-    return nil, false
+	if o == nil || IsNil(o.SixGhzSettings) {
+		return nil, false
 	}
 	return o.SixGhzSettings, true
 }
 
 // HasSixGhzSettings returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) HasSixGhzSettings() bool {
-	if o != nil && !isNil(o.SixGhzSettings) {
+	if o != nil && !IsNil(o.SixGhzSettings) {
 		return true
 	}
 
@@ -375,7 +378,7 @@ func (o *GetNetworkWirelessRfProfiles200Response) SetSixGhzSettings(v GetNetwork
 
 // GetTransmission returns the Transmission field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200Response) GetTransmission() GetNetworkWirelessRfProfiles200ResponseTransmission {
-	if o == nil || isNil(o.Transmission) {
+	if o == nil || IsNil(o.Transmission) {
 		var ret GetNetworkWirelessRfProfiles200ResponseTransmission
 		return ret
 	}
@@ -385,15 +388,15 @@ func (o *GetNetworkWirelessRfProfiles200Response) GetTransmission() GetNetworkWi
 // GetTransmissionOk returns a tuple with the Transmission field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) GetTransmissionOk() (*GetNetworkWirelessRfProfiles200ResponseTransmission, bool) {
-	if o == nil || isNil(o.Transmission) {
-    return nil, false
+	if o == nil || IsNil(o.Transmission) {
+		return nil, false
 	}
 	return o.Transmission, true
 }
 
 // HasTransmission returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) HasTransmission() bool {
-	if o != nil && !isNil(o.Transmission) {
+	if o != nil && !IsNil(o.Transmission) {
 		return true
 	}
 
@@ -407,7 +410,7 @@ func (o *GetNetworkWirelessRfProfiles200Response) SetTransmission(v GetNetworkWi
 
 // GetPerSsidSettings returns the PerSsidSettings field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200Response) GetPerSsidSettings() GetNetworkWirelessRfProfiles200ResponsePerSsidSettings {
-	if o == nil || isNil(o.PerSsidSettings) {
+	if o == nil || IsNil(o.PerSsidSettings) {
 		var ret GetNetworkWirelessRfProfiles200ResponsePerSsidSettings
 		return ret
 	}
@@ -417,15 +420,15 @@ func (o *GetNetworkWirelessRfProfiles200Response) GetPerSsidSettings() GetNetwor
 // GetPerSsidSettingsOk returns a tuple with the PerSsidSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) GetPerSsidSettingsOk() (*GetNetworkWirelessRfProfiles200ResponsePerSsidSettings, bool) {
-	if o == nil || isNil(o.PerSsidSettings) {
-    return nil, false
+	if o == nil || IsNil(o.PerSsidSettings) {
+		return nil, false
 	}
 	return o.PerSsidSettings, true
 }
 
 // HasPerSsidSettings returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200Response) HasPerSsidSettings() bool {
-	if o != nil && !isNil(o.PerSsidSettings) {
+	if o != nil && !IsNil(o.PerSsidSettings) {
 		return true
 	}
 
@@ -438,44 +441,52 @@ func (o *GetNetworkWirelessRfProfiles200Response) SetPerSsidSettings(v GetNetwor
 }
 
 func (o GetNetworkWirelessRfProfiles200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.NetworkId) {
-		toSerialize["networkId"] = o.NetworkId
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.ClientBalancingEnabled) {
-		toSerialize["clientBalancingEnabled"] = o.ClientBalancingEnabled
-	}
-	if !isNil(o.MinBitrateType) {
-		toSerialize["minBitrateType"] = o.MinBitrateType
-	}
-	if !isNil(o.BandSelectionType) {
-		toSerialize["bandSelectionType"] = o.BandSelectionType
-	}
-	if !isNil(o.ApBandSettings) {
-		toSerialize["apBandSettings"] = o.ApBandSettings
-	}
-	if !isNil(o.TwoFourGhzSettings) {
-		toSerialize["twoFourGhzSettings"] = o.TwoFourGhzSettings
-	}
-	if !isNil(o.FiveGhzSettings) {
-		toSerialize["fiveGhzSettings"] = o.FiveGhzSettings
-	}
-	if !isNil(o.SixGhzSettings) {
-		toSerialize["sixGhzSettings"] = o.SixGhzSettings
-	}
-	if !isNil(o.Transmission) {
-		toSerialize["transmission"] = o.Transmission
-	}
-	if !isNil(o.PerSsidSettings) {
-		toSerialize["perSsidSettings"] = o.PerSsidSettings
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessRfProfiles200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.NetworkId) {
+		toSerialize["networkId"] = o.NetworkId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.ClientBalancingEnabled) {
+		toSerialize["clientBalancingEnabled"] = o.ClientBalancingEnabled
+	}
+	if !IsNil(o.MinBitrateType) {
+		toSerialize["minBitrateType"] = o.MinBitrateType
+	}
+	if !IsNil(o.BandSelectionType) {
+		toSerialize["bandSelectionType"] = o.BandSelectionType
+	}
+	if !IsNil(o.ApBandSettings) {
+		toSerialize["apBandSettings"] = o.ApBandSettings
+	}
+	if !IsNil(o.TwoFourGhzSettings) {
+		toSerialize["twoFourGhzSettings"] = o.TwoFourGhzSettings
+	}
+	if !IsNil(o.FiveGhzSettings) {
+		toSerialize["fiveGhzSettings"] = o.FiveGhzSettings
+	}
+	if !IsNil(o.SixGhzSettings) {
+		toSerialize["sixGhzSettings"] = o.SixGhzSettings
+	}
+	if !IsNil(o.Transmission) {
+		toSerialize["transmission"] = o.Transmission
+	}
+	if !IsNil(o.PerSsidSettings) {
+		toSerialize["perSsidSettings"] = o.PerSsidSettings
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessRfProfiles200Response struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner{}
+
 // UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner struct for UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner
 type UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner struct {
 	// Description of the rule (optional)
@@ -50,7 +53,7 @@ func NewUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInnerWithDef
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) GetComment() string {
-	if o == nil || isNil(o.Comment) {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -60,15 +63,15 @@ func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) GetC
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) GetCommentOk() (*string, bool) {
-	if o == nil || isNil(o.Comment) {
-    return nil, false
+	if o == nil || IsNil(o.Comment) {
+		return nil, false
 	}
 	return o.Comment, true
 }
 
 // HasComment returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) HasComment() bool {
-	if o != nil && !isNil(o.Comment) {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -94,7 +97,7 @@ func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) GetP
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) GetPolicyOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Policy, true
 }
@@ -118,7 +121,7 @@ func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) GetP
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) GetProtocolOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Protocol, true
 }
@@ -130,7 +133,7 @@ func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) SetP
 
 // GetDestPort returns the DestPort field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) GetDestPort() string {
-	if o == nil || isNil(o.DestPort) {
+	if o == nil || IsNil(o.DestPort) {
 		var ret string
 		return ret
 	}
@@ -140,15 +143,15 @@ func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) GetD
 // GetDestPortOk returns a tuple with the DestPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) GetDestPortOk() (*string, bool) {
-	if o == nil || isNil(o.DestPort) {
-    return nil, false
+	if o == nil || IsNil(o.DestPort) {
+		return nil, false
 	}
 	return o.DestPort, true
 }
 
 // HasDestPort returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) HasDestPort() bool {
-	if o != nil && !isNil(o.DestPort) {
+	if o != nil && !IsNil(o.DestPort) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) GetD
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) GetDestCidrOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.DestCidr, true
 }
@@ -185,23 +188,25 @@ func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) SetD
 }
 
 func (o UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Comment) {
-		toSerialize["comment"] = o.Comment
-	}
-	if true {
-		toSerialize["policy"] = o.Policy
-	}
-	if true {
-		toSerialize["protocol"] = o.Protocol
-	}
-	if !isNil(o.DestPort) {
-		toSerialize["destPort"] = o.DestPort
-	}
-	if true {
-		toSerialize["destCidr"] = o.DestCidr
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	toSerialize["policy"] = o.Policy
+	toSerialize["protocol"] = o.Protocol
+	if !IsNil(o.DestPort) {
+		toSerialize["destPort"] = o.DestPort
+	}
+	toSerialize["destCidr"] = o.DestCidr
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner struct {

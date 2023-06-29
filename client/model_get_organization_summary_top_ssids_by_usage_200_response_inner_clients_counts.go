@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSummaryTopSsidsByUsage200ResponseInnerClientsCounts type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSummaryTopSsidsByUsage200ResponseInnerClientsCounts{}
+
 // GetOrganizationSummaryTopSsidsByUsage200ResponseInnerClientsCounts Counts of the clients
 type GetOrganizationSummaryTopSsidsByUsage200ResponseInnerClientsCounts struct {
 	// Total counts of the clients
@@ -39,7 +42,7 @@ func NewGetOrganizationSummaryTopSsidsByUsage200ResponseInnerClientsCountsWithDe
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerClientsCounts) GetTotal() int32 {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		var ret int32
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerClientsCounts) Get
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerClientsCounts) GetTotalOk() (*int32, bool) {
-	if o == nil || isNil(o.Total) {
-    return nil, false
+	if o == nil || IsNil(o.Total) {
+		return nil, false
 	}
 	return o.Total, true
 }
 
 // HasTotal returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerClientsCounts) HasTotal() bool {
-	if o != nil && !isNil(o.Total) {
+	if o != nil && !IsNil(o.Total) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerClientsCounts) Set
 }
 
 func (o GetOrganizationSummaryTopSsidsByUsage200ResponseInnerClientsCounts) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Total) {
-		toSerialize["total"] = o.Total
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSummaryTopSsidsByUsage200ResponseInnerClientsCounts) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Total) {
+		toSerialize["total"] = o.Total
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSummaryTopSsidsByUsage200ResponseInnerClientsCounts struct {

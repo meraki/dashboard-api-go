@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkWirelessRfProfileRequestPerSsidSettings10 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkWirelessRfProfileRequestPerSsidSettings10{}
+
 // CreateNetworkWirelessRfProfileRequestPerSsidSettings10 Settings for SSID 10
 type CreateNetworkWirelessRfProfileRequestPerSsidSettings10 struct {
 	// Sets min bitrate (Mbps) of this SSID. Can be one of '1', '2', '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'.
@@ -43,7 +46,7 @@ func NewCreateNetworkWirelessRfProfileRequestPerSsidSettings10WithDefaults() *Cr
 
 // GetMinBitrate returns the MinBitrate field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings10) GetMinBitrate() float32 {
-	if o == nil || isNil(o.MinBitrate) {
+	if o == nil || IsNil(o.MinBitrate) {
 		var ret float32
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings10) GetMinBitrate()
 // GetMinBitrateOk returns a tuple with the MinBitrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings10) GetMinBitrateOk() (*float32, bool) {
-	if o == nil || isNil(o.MinBitrate) {
-    return nil, false
+	if o == nil || IsNil(o.MinBitrate) {
+		return nil, false
 	}
 	return o.MinBitrate, true
 }
 
 // HasMinBitrate returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings10) HasMinBitrate() bool {
-	if o != nil && !isNil(o.MinBitrate) {
+	if o != nil && !IsNil(o.MinBitrate) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings10) SetMinBitrate(v
 
 // GetBandOperationMode returns the BandOperationMode field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings10) GetBandOperationMode() string {
-	if o == nil || isNil(o.BandOperationMode) {
+	if o == nil || IsNil(o.BandOperationMode) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings10) GetBandOperatio
 // GetBandOperationModeOk returns a tuple with the BandOperationMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings10) GetBandOperationModeOk() (*string, bool) {
-	if o == nil || isNil(o.BandOperationMode) {
-    return nil, false
+	if o == nil || IsNil(o.BandOperationMode) {
+		return nil, false
 	}
 	return o.BandOperationMode, true
 }
 
 // HasBandOperationMode returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings10) HasBandOperationMode() bool {
-	if o != nil && !isNil(o.BandOperationMode) {
+	if o != nil && !IsNil(o.BandOperationMode) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings10) SetBandOperatio
 
 // GetBandSteeringEnabled returns the BandSteeringEnabled field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings10) GetBandSteeringEnabled() bool {
-	if o == nil || isNil(o.BandSteeringEnabled) {
+	if o == nil || IsNil(o.BandSteeringEnabled) {
 		var ret bool
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings10) GetBandSteering
 // GetBandSteeringEnabledOk returns a tuple with the BandSteeringEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings10) GetBandSteeringEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.BandSteeringEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.BandSteeringEnabled) {
+		return nil, false
 	}
 	return o.BandSteeringEnabled, true
 }
 
 // HasBandSteeringEnabled returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings10) HasBandSteeringEnabled() bool {
-	if o != nil && !isNil(o.BandSteeringEnabled) {
+	if o != nil && !IsNil(o.BandSteeringEnabled) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings10) SetBandSteering
 }
 
 func (o CreateNetworkWirelessRfProfileRequestPerSsidSettings10) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.MinBitrate) {
-		toSerialize["minBitrate"] = o.MinBitrate
-	}
-	if !isNil(o.BandOperationMode) {
-		toSerialize["bandOperationMode"] = o.BandOperationMode
-	}
-	if !isNil(o.BandSteeringEnabled) {
-		toSerialize["bandSteeringEnabled"] = o.BandSteeringEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkWirelessRfProfileRequestPerSsidSettings10) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MinBitrate) {
+		toSerialize["minBitrate"] = o.MinBitrate
+	}
+	if !IsNil(o.BandOperationMode) {
+		toSerialize["bandOperationMode"] = o.BandOperationMode
+	}
+	if !IsNil(o.BandSteeringEnabled) {
+		toSerialize["bandSteeringEnabled"] = o.BandSteeringEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkWirelessRfProfileRequestPerSsidSettings10 struct {

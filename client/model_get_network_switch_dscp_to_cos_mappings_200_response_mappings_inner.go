@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner{}
+
 // GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner struct for GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner
 type GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner struct {
 	// The Differentiated Services Code Point (DSCP) tag in the IP header that will be mapped to a particular Class-of-Service (CoS) queue. Value can be in the range of 0 to 63 inclusive.
@@ -43,7 +46,7 @@ func NewGetNetworkSwitchDscpToCosMappings200ResponseMappingsInnerWithDefaults() 
 
 // GetDscp returns the Dscp field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) GetDscp() int32 {
-	if o == nil || isNil(o.Dscp) {
+	if o == nil || IsNil(o.Dscp) {
 		var ret int32
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) GetDscp() in
 // GetDscpOk returns a tuple with the Dscp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) GetDscpOk() (*int32, bool) {
-	if o == nil || isNil(o.Dscp) {
-    return nil, false
+	if o == nil || IsNil(o.Dscp) {
+		return nil, false
 	}
 	return o.Dscp, true
 }
 
 // HasDscp returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) HasDscp() bool {
-	if o != nil && !isNil(o.Dscp) {
+	if o != nil && !IsNil(o.Dscp) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) SetDscp(v in
 
 // GetCos returns the Cos field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) GetCos() int32 {
-	if o == nil || isNil(o.Cos) {
+	if o == nil || IsNil(o.Cos) {
 		var ret int32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) GetCos() int
 // GetCosOk returns a tuple with the Cos field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) GetCosOk() (*int32, bool) {
-	if o == nil || isNil(o.Cos) {
-    return nil, false
+	if o == nil || IsNil(o.Cos) {
+		return nil, false
 	}
 	return o.Cos, true
 }
 
 // HasCos returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) HasCos() bool {
-	if o != nil && !isNil(o.Cos) {
+	if o != nil && !IsNil(o.Cos) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) SetCos(v int
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) GetTitle() string {
-	if o == nil || isNil(o.Title) {
+	if o == nil || IsNil(o.Title) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) GetTitle() s
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) GetTitleOk() (*string, bool) {
-	if o == nil || isNil(o.Title) {
-    return nil, false
+	if o == nil || IsNil(o.Title) {
+		return nil, false
 	}
 	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) HasTitle() bool {
-	if o != nil && !isNil(o.Title) {
+	if o != nil && !IsNil(o.Title) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) SetTitle(v s
 }
 
 func (o GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Dscp) {
-		toSerialize["dscp"] = o.Dscp
-	}
-	if !isNil(o.Cos) {
-		toSerialize["cos"] = o.Cos
-	}
-	if !isNil(o.Title) {
-		toSerialize["title"] = o.Title
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchDscpToCosMappings200ResponseMappingsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Dscp) {
+		toSerialize["dscp"] = o.Dscp
+	}
+	if !IsNil(o.Cos) {
+		toSerialize["cos"] = o.Cos
+	}
+	if !IsNil(o.Title) {
+		toSerialize["title"] = o.Title
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchDscpToCosMappings200ResponseMappingsInner struct {

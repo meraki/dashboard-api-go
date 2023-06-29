@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkWirelessSignalQualityHistory200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessSignalQualityHistory200ResponseInner{}
+
 // GetNetworkWirelessSignalQualityHistory200ResponseInner struct for GetNetworkWirelessSignalQualityHistory200ResponseInner
 type GetNetworkWirelessSignalQualityHistory200ResponseInner struct {
 	// The start time of the query range
@@ -46,7 +49,7 @@ func NewGetNetworkWirelessSignalQualityHistory200ResponseInnerWithDefaults() *Ge
 
 // GetStartTs returns the StartTs field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) GetStartTs() time.Time {
-	if o == nil || isNil(o.StartTs) {
+	if o == nil || IsNil(o.StartTs) {
 		var ret time.Time
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) GetStartTs() ti
 // GetStartTsOk returns a tuple with the StartTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) GetStartTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartTs) {
-    return nil, false
+	if o == nil || IsNil(o.StartTs) {
+		return nil, false
 	}
 	return o.StartTs, true
 }
 
 // HasStartTs returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) HasStartTs() bool {
-	if o != nil && !isNil(o.StartTs) {
+	if o != nil && !IsNil(o.StartTs) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) SetStartTs(v ti
 
 // GetEndTs returns the EndTs field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) GetEndTs() time.Time {
-	if o == nil || isNil(o.EndTs) {
+	if o == nil || IsNil(o.EndTs) {
 		var ret time.Time
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) GetEndTs() time
 // GetEndTsOk returns a tuple with the EndTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) GetEndTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.EndTs) {
-    return nil, false
+	if o == nil || IsNil(o.EndTs) {
+		return nil, false
 	}
 	return o.EndTs, true
 }
 
 // HasEndTs returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) HasEndTs() bool {
-	if o != nil && !isNil(o.EndTs) {
+	if o != nil && !IsNil(o.EndTs) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) SetEndTs(v time
 
 // GetSnr returns the Snr field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) GetSnr() int32 {
-	if o == nil || isNil(o.Snr) {
+	if o == nil || IsNil(o.Snr) {
 		var ret int32
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) GetSnr() int32 
 // GetSnrOk returns a tuple with the Snr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) GetSnrOk() (*int32, bool) {
-	if o == nil || isNil(o.Snr) {
-    return nil, false
+	if o == nil || IsNil(o.Snr) {
+		return nil, false
 	}
 	return o.Snr, true
 }
 
 // HasSnr returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) HasSnr() bool {
-	if o != nil && !isNil(o.Snr) {
+	if o != nil && !IsNil(o.Snr) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) SetSnr(v int32)
 
 // GetRssi returns the Rssi field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) GetRssi() int32 {
-	if o == nil || isNil(o.Rssi) {
+	if o == nil || IsNil(o.Rssi) {
 		var ret int32
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) GetRssi() int32
 // GetRssiOk returns a tuple with the Rssi field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) GetRssiOk() (*int32, bool) {
-	if o == nil || isNil(o.Rssi) {
-    return nil, false
+	if o == nil || IsNil(o.Rssi) {
+		return nil, false
 	}
 	return o.Rssi, true
 }
 
 // HasRssi returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) HasRssi() bool {
-	if o != nil && !isNil(o.Rssi) {
+	if o != nil && !IsNil(o.Rssi) {
 		return true
 	}
 
@@ -173,20 +176,28 @@ func (o *GetNetworkWirelessSignalQualityHistory200ResponseInner) SetRssi(v int32
 }
 
 func (o GetNetworkWirelessSignalQualityHistory200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.StartTs) {
-		toSerialize["startTs"] = o.StartTs
-	}
-	if !isNil(o.EndTs) {
-		toSerialize["endTs"] = o.EndTs
-	}
-	if !isNil(o.Snr) {
-		toSerialize["snr"] = o.Snr
-	}
-	if !isNil(o.Rssi) {
-		toSerialize["rssi"] = o.Rssi
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessSignalQualityHistory200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.StartTs) {
+		toSerialize["startTs"] = o.StartTs
+	}
+	if !IsNil(o.EndTs) {
+		toSerialize["endTs"] = o.EndTs
+	}
+	if !IsNil(o.Snr) {
+		toSerialize["snr"] = o.Snr
+	}
+	if !IsNil(o.Rssi) {
+		toSerialize["rssi"] = o.Rssi
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessSignalQualityHistory200ResponseInner struct {

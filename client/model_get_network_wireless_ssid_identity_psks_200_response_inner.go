@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkWirelessSsidIdentityPsks200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessSsidIdentityPsks200ResponseInner{}
+
 // GetNetworkWirelessSsidIdentityPsks200ResponseInner struct for GetNetworkWirelessSsidIdentityPsks200ResponseInner
 type GetNetworkWirelessSsidIdentityPsks200ResponseInner struct {
 	// The name of the Identity PSK
@@ -52,7 +55,7 @@ func NewGetNetworkWirelessSsidIdentityPsks200ResponseInnerWithDefaults() *GetNet
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -62,15 +65,15 @@ func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -84,7 +87,7 @@ func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) SetName(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -94,15 +97,15 @@ func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -116,7 +119,7 @@ func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) SetId(v string) {
 
 // GetGroupPolicyId returns the GroupPolicyId field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetGroupPolicyId() string {
-	if o == nil || isNil(o.GroupPolicyId) {
+	if o == nil || IsNil(o.GroupPolicyId) {
 		var ret string
 		return ret
 	}
@@ -126,15 +129,15 @@ func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetGroupPolicyId() 
 // GetGroupPolicyIdOk returns a tuple with the GroupPolicyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetGroupPolicyIdOk() (*string, bool) {
-	if o == nil || isNil(o.GroupPolicyId) {
-    return nil, false
+	if o == nil || IsNil(o.GroupPolicyId) {
+		return nil, false
 	}
 	return o.GroupPolicyId, true
 }
 
 // HasGroupPolicyId returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) HasGroupPolicyId() bool {
-	if o != nil && !isNil(o.GroupPolicyId) {
+	if o != nil && !IsNil(o.GroupPolicyId) {
 		return true
 	}
 
@@ -148,7 +151,7 @@ func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) SetGroupPolicyId(v 
 
 // GetPassphrase returns the Passphrase field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetPassphrase() string {
-	if o == nil || isNil(o.Passphrase) {
+	if o == nil || IsNil(o.Passphrase) {
 		var ret string
 		return ret
 	}
@@ -158,15 +161,15 @@ func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetPassphrase() str
 // GetPassphraseOk returns a tuple with the Passphrase field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetPassphraseOk() (*string, bool) {
-	if o == nil || isNil(o.Passphrase) {
-    return nil, false
+	if o == nil || IsNil(o.Passphrase) {
+		return nil, false
 	}
 	return o.Passphrase, true
 }
 
 // HasPassphrase returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) HasPassphrase() bool {
-	if o != nil && !isNil(o.Passphrase) {
+	if o != nil && !IsNil(o.Passphrase) {
 		return true
 	}
 
@@ -180,7 +183,7 @@ func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) SetPassphrase(v str
 
 // GetWifiPersonalNetworkId returns the WifiPersonalNetworkId field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetWifiPersonalNetworkId() string {
-	if o == nil || isNil(o.WifiPersonalNetworkId) {
+	if o == nil || IsNil(o.WifiPersonalNetworkId) {
 		var ret string
 		return ret
 	}
@@ -190,15 +193,15 @@ func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetWifiPersonalNetw
 // GetWifiPersonalNetworkIdOk returns a tuple with the WifiPersonalNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetWifiPersonalNetworkIdOk() (*string, bool) {
-	if o == nil || isNil(o.WifiPersonalNetworkId) {
-    return nil, false
+	if o == nil || IsNil(o.WifiPersonalNetworkId) {
+		return nil, false
 	}
 	return o.WifiPersonalNetworkId, true
 }
 
 // HasWifiPersonalNetworkId returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) HasWifiPersonalNetworkId() bool {
-	if o != nil && !isNil(o.WifiPersonalNetworkId) {
+	if o != nil && !IsNil(o.WifiPersonalNetworkId) {
 		return true
 	}
 
@@ -212,7 +215,7 @@ func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) SetWifiPersonalNetw
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetEmail() string {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -222,15 +225,15 @@ func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetEmailOk() (*string, bool) {
-	if o == nil || isNil(o.Email) {
-    return nil, false
+	if o == nil || IsNil(o.Email) {
+		return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -244,7 +247,7 @@ func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) SetEmail(v string) 
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetExpiresAt() time.Time {
-	if o == nil || isNil(o.ExpiresAt) {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
 	}
@@ -254,15 +257,15 @@ func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetExpiresAt() time
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) GetExpiresAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.ExpiresAt) {
-    return nil, false
+	if o == nil || IsNil(o.ExpiresAt) {
+		return nil, false
 	}
 	return o.ExpiresAt, true
 }
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) HasExpiresAt() bool {
-	if o != nil && !isNil(o.ExpiresAt) {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -275,29 +278,37 @@ func (o *GetNetworkWirelessSsidIdentityPsks200ResponseInner) SetExpiresAt(v time
 }
 
 func (o GetNetworkWirelessSsidIdentityPsks200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.GroupPolicyId) {
-		toSerialize["groupPolicyId"] = o.GroupPolicyId
-	}
-	if !isNil(o.Passphrase) {
-		toSerialize["passphrase"] = o.Passphrase
-	}
-	if !isNil(o.WifiPersonalNetworkId) {
-		toSerialize["wifiPersonalNetworkId"] = o.WifiPersonalNetworkId
-	}
-	if !isNil(o.Email) {
-		toSerialize["email"] = o.Email
-	}
-	if !isNil(o.ExpiresAt) {
-		toSerialize["expiresAt"] = o.ExpiresAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessSsidIdentityPsks200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.GroupPolicyId) {
+		toSerialize["groupPolicyId"] = o.GroupPolicyId
+	}
+	if !IsNil(o.Passphrase) {
+		toSerialize["passphrase"] = o.Passphrase
+	}
+	if !IsNil(o.WifiPersonalNetworkId) {
+		toSerialize["wifiPersonalNetworkId"] = o.WifiPersonalNetworkId
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.ExpiresAt) {
+		toSerialize["expiresAt"] = o.ExpiresAt
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessSsidIdentityPsks200ResponseInner struct {

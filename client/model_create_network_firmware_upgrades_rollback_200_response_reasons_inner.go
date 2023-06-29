@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner{}
+
 // CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner struct for CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner
 type CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner struct {
 	// Reason for the rollback
@@ -41,7 +44,7 @@ func NewCreateNetworkFirmwareUpgradesRollback200ResponseReasonsInnerWithDefaults
 
 // GetCategory returns the Category field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner) GetCategory() string {
-	if o == nil || isNil(o.Category) {
+	if o == nil || IsNil(o.Category) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner) GetCatego
 // GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner) GetCategoryOk() (*string, bool) {
-	if o == nil || isNil(o.Category) {
-    return nil, false
+	if o == nil || IsNil(o.Category) {
+		return nil, false
 	}
 	return o.Category, true
 }
 
 // HasCategory returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner) HasCategory() bool {
-	if o != nil && !isNil(o.Category) {
+	if o != nil && !IsNil(o.Category) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner) SetCatego
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner) GetComment() string {
-	if o == nil || isNil(o.Comment) {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner) GetCommen
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner) GetCommentOk() (*string, bool) {
-	if o == nil || isNil(o.Comment) {
-    return nil, false
+	if o == nil || IsNil(o.Comment) {
+		return nil, false
 	}
 	return o.Comment, true
 }
 
 // HasComment returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner) HasComment() bool {
-	if o != nil && !isNil(o.Comment) {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner) SetCommen
 }
 
 func (o CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Category) {
-		toSerialize["category"] = o.Category
-	}
-	if !isNil(o.Comment) {
-		toSerialize["comment"] = o.Comment
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Category) {
+		toSerialize["category"] = o.Category
+	}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner struct {

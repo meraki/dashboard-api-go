@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner{}
+
 // GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner struct for GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner
 type GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner struct {
 	// Switch serial.
@@ -47,7 +50,7 @@ func NewGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200Response
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200Respons
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200Respons
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200Respons
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200Respons
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) GetUrl() string {
-	if o == nil || isNil(o.Url) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200Respons
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) GetUrlOk() (*string, bool) {
-	if o == nil || isNil(o.Url) {
-    return nil, false
+	if o == nil || IsNil(o.Url) {
+		return nil, false
 	}
 	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) HasUrl() bool {
-	if o != nil && !isNil(o.Url) {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200Respons
 
 // GetSupportsInspection returns the SupportsInspection field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) GetSupportsInspection() bool {
-	if o == nil || isNil(o.SupportsInspection) {
+	if o == nil || IsNil(o.SupportsInspection) {
 		var ret bool
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200Respons
 // GetSupportsInspectionOk returns a tuple with the SupportsInspection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) GetSupportsInspectionOk() (*bool, bool) {
-	if o == nil || isNil(o.SupportsInspection) {
-    return nil, false
+	if o == nil || IsNil(o.SupportsInspection) {
+		return nil, false
 	}
 	return o.SupportsInspection, true
 }
 
 // HasSupportsInspection returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) HasSupportsInspection() bool {
-	if o != nil && !isNil(o.SupportsInspection) {
+	if o != nil && !IsNil(o.SupportsInspection) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200Respons
 
 // GetHasTrustedPort returns the HasTrustedPort field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) GetHasTrustedPort() bool {
-	if o == nil || isNil(o.HasTrustedPort) {
+	if o == nil || IsNil(o.HasTrustedPort) {
 		var ret bool
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200Respons
 // GetHasTrustedPortOk returns a tuple with the HasTrustedPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) GetHasTrustedPortOk() (*bool, bool) {
-	if o == nil || isNil(o.HasTrustedPort) {
-    return nil, false
+	if o == nil || IsNil(o.HasTrustedPort) {
+		return nil, false
 	}
 	return o.HasTrustedPort, true
 }
 
 // HasHasTrustedPort returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) HasHasTrustedPort() bool {
-	if o != nil && !isNil(o.HasTrustedPort) {
+	if o != nil && !IsNil(o.HasTrustedPort) {
 		return true
 	}
 
@@ -206,23 +209,31 @@ func (o *GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200Respons
 }
 
 func (o GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Url) {
-		toSerialize["url"] = o.Url
-	}
-	if !isNil(o.SupportsInspection) {
-		toSerialize["supportsInspection"] = o.SupportsInspection
-	}
-	if !isNil(o.HasTrustedPort) {
-		toSerialize["hasTrustedPort"] = o.HasTrustedPort
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.SupportsInspection) {
+		toSerialize["supportsInspection"] = o.SupportsInspection
+	}
+	if !IsNil(o.HasTrustedPort) {
+		toSerialize["hasTrustedPort"] = o.HasTrustedPort
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice200ResponseInner struct {

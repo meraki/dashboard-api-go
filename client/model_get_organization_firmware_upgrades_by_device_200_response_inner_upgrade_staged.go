@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStaged type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStaged{}
+
 // GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStaged Staged upgrade
 type GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStaged struct {
 	Group *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGroup `json:"group,omitempty"`
@@ -38,7 +41,7 @@ func NewGetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedWith
 
 // GetGroup returns the Group field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStaged) GetGroup() GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGroup {
-	if o == nil || isNil(o.Group) {
+	if o == nil || IsNil(o.Group) {
 		var ret GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGroup
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStaged) G
 // GetGroupOk returns a tuple with the Group field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStaged) GetGroupOk() (*GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGroup, bool) {
-	if o == nil || isNil(o.Group) {
-    return nil, false
+	if o == nil || IsNil(o.Group) {
+		return nil, false
 	}
 	return o.Group, true
 }
 
 // HasGroup returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStaged) HasGroup() bool {
-	if o != nil && !isNil(o.Group) {
+	if o != nil && !IsNil(o.Group) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStaged) S
 }
 
 func (o GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStaged) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Group) {
-		toSerialize["group"] = o.Group
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStaged) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Group) {
+		toSerialize["group"] = o.Group
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStaged struct {

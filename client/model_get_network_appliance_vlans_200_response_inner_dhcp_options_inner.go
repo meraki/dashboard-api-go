@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner{}
+
 // GetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner struct for GetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner
 type GetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner struct {
 	// The code for the DHCP option. This should be an integer between 2 and 254.
@@ -58,7 +61,7 @@ func (o *GetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner) GetCode() str
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner) GetCodeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Code, true
 }
@@ -82,7 +85,7 @@ func (o *GetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner) GetType() str
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner) GetTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Type, true
 }
@@ -106,7 +109,7 @@ func (o *GetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner) GetValue() st
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner) GetValueOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Value, true
 }
@@ -117,17 +120,19 @@ func (o *GetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner) SetValue(v st
 }
 
 func (o GetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["code"] = o.Code
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["value"] = o.Value
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["code"] = o.Code
+	toSerialize["type"] = o.Type
+	toSerialize["value"] = o.Value
+	return toSerialize, nil
 }
 
 type NullableGetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner struct {

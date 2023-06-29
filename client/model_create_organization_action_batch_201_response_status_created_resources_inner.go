@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner{}
+
 // CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner struct for CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner
 type CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner struct {
 	// ID of the created resource
@@ -41,7 +44,7 @@ func NewCreateOrganizationActionBatch201ResponseStatusCreatedResourcesInnerWithD
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner) Ge
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner) Se
 
 // GetUri returns the Uri field value if set, zero value otherwise.
 func (o *CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner) GetUri() string {
-	if o == nil || isNil(o.Uri) {
+	if o == nil || IsNil(o.Uri) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner) Ge
 // GetUriOk returns a tuple with the Uri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner) GetUriOk() (*string, bool) {
-	if o == nil || isNil(o.Uri) {
-    return nil, false
+	if o == nil || IsNil(o.Uri) {
+		return nil, false
 	}
 	return o.Uri, true
 }
 
 // HasUri returns a boolean if a field has been set.
 func (o *CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner) HasUri() bool {
-	if o != nil && !isNil(o.Uri) {
+	if o != nil && !IsNil(o.Uri) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner) Se
 }
 
 func (o CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Uri) {
-		toSerialize["uri"] = o.Uri
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Uri) {
+		toSerialize["uri"] = o.Uri
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner struct {

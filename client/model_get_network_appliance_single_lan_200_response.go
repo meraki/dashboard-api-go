@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkApplianceSingleLan200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkApplianceSingleLan200Response{}
+
 // GetNetworkApplianceSingleLan200Response struct for GetNetworkApplianceSingleLan200Response
 type GetNetworkApplianceSingleLan200Response struct {
 	// The subnet of the single LAN
@@ -43,7 +46,7 @@ func NewGetNetworkApplianceSingleLan200ResponseWithDefaults() *GetNetworkApplian
 
 // GetSubnet returns the Subnet field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSingleLan200Response) GetSubnet() string {
-	if o == nil || isNil(o.Subnet) {
+	if o == nil || IsNil(o.Subnet) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkApplianceSingleLan200Response) GetSubnet() string {
 // GetSubnetOk returns a tuple with the Subnet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSingleLan200Response) GetSubnetOk() (*string, bool) {
-	if o == nil || isNil(o.Subnet) {
-    return nil, false
+	if o == nil || IsNil(o.Subnet) {
+		return nil, false
 	}
 	return o.Subnet, true
 }
 
 // HasSubnet returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSingleLan200Response) HasSubnet() bool {
-	if o != nil && !isNil(o.Subnet) {
+	if o != nil && !IsNil(o.Subnet) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkApplianceSingleLan200Response) SetSubnet(v string) {
 
 // GetApplianceIp returns the ApplianceIp field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSingleLan200Response) GetApplianceIp() string {
-	if o == nil || isNil(o.ApplianceIp) {
+	if o == nil || IsNil(o.ApplianceIp) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkApplianceSingleLan200Response) GetApplianceIp() string {
 // GetApplianceIpOk returns a tuple with the ApplianceIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSingleLan200Response) GetApplianceIpOk() (*string, bool) {
-	if o == nil || isNil(o.ApplianceIp) {
-    return nil, false
+	if o == nil || IsNil(o.ApplianceIp) {
+		return nil, false
 	}
 	return o.ApplianceIp, true
 }
 
 // HasApplianceIp returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSingleLan200Response) HasApplianceIp() bool {
-	if o != nil && !isNil(o.ApplianceIp) {
+	if o != nil && !IsNil(o.ApplianceIp) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkApplianceSingleLan200Response) SetApplianceIp(v string) {
 
 // GetMandatoryDhcp returns the MandatoryDhcp field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSingleLan200Response) GetMandatoryDhcp() GetNetworkApplianceSingleLan200ResponseMandatoryDhcp {
-	if o == nil || isNil(o.MandatoryDhcp) {
+	if o == nil || IsNil(o.MandatoryDhcp) {
 		var ret GetNetworkApplianceSingleLan200ResponseMandatoryDhcp
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkApplianceSingleLan200Response) GetMandatoryDhcp() GetNetworkA
 // GetMandatoryDhcpOk returns a tuple with the MandatoryDhcp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSingleLan200Response) GetMandatoryDhcpOk() (*GetNetworkApplianceSingleLan200ResponseMandatoryDhcp, bool) {
-	if o == nil || isNil(o.MandatoryDhcp) {
-    return nil, false
+	if o == nil || IsNil(o.MandatoryDhcp) {
+		return nil, false
 	}
 	return o.MandatoryDhcp, true
 }
 
 // HasMandatoryDhcp returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSingleLan200Response) HasMandatoryDhcp() bool {
-	if o != nil && !isNil(o.MandatoryDhcp) {
+	if o != nil && !IsNil(o.MandatoryDhcp) {
 		return true
 	}
 
@@ -139,7 +142,7 @@ func (o *GetNetworkApplianceSingleLan200Response) SetMandatoryDhcp(v GetNetworkA
 
 // GetIpv6 returns the Ipv6 field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSingleLan200Response) GetIpv6() GetNetworkApplianceSingleLan200ResponseIpv6 {
-	if o == nil || isNil(o.Ipv6) {
+	if o == nil || IsNil(o.Ipv6) {
 		var ret GetNetworkApplianceSingleLan200ResponseIpv6
 		return ret
 	}
@@ -149,15 +152,15 @@ func (o *GetNetworkApplianceSingleLan200Response) GetIpv6() GetNetworkApplianceS
 // GetIpv6Ok returns a tuple with the Ipv6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSingleLan200Response) GetIpv6Ok() (*GetNetworkApplianceSingleLan200ResponseIpv6, bool) {
-	if o == nil || isNil(o.Ipv6) {
-    return nil, false
+	if o == nil || IsNil(o.Ipv6) {
+		return nil, false
 	}
 	return o.Ipv6, true
 }
 
 // HasIpv6 returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSingleLan200Response) HasIpv6() bool {
-	if o != nil && !isNil(o.Ipv6) {
+	if o != nil && !IsNil(o.Ipv6) {
 		return true
 	}
 
@@ -170,20 +173,28 @@ func (o *GetNetworkApplianceSingleLan200Response) SetIpv6(v GetNetworkApplianceS
 }
 
 func (o GetNetworkApplianceSingleLan200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Subnet) {
-		toSerialize["subnet"] = o.Subnet
-	}
-	if !isNil(o.ApplianceIp) {
-		toSerialize["applianceIp"] = o.ApplianceIp
-	}
-	if !isNil(o.MandatoryDhcp) {
-		toSerialize["mandatoryDhcp"] = o.MandatoryDhcp
-	}
-	if !isNil(o.Ipv6) {
-		toSerialize["ipv6"] = o.Ipv6
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkApplianceSingleLan200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Subnet) {
+		toSerialize["subnet"] = o.Subnet
+	}
+	if !IsNil(o.ApplianceIp) {
+		toSerialize["applianceIp"] = o.ApplianceIp
+	}
+	if !IsNil(o.MandatoryDhcp) {
+		toSerialize["mandatoryDhcp"] = o.MandatoryDhcp
+	}
+	if !IsNil(o.Ipv6) {
+		toSerialize["ipv6"] = o.Ipv6
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkApplianceSingleLan200Response struct {

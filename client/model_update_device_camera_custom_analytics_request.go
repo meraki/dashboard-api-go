@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceCameraCustomAnalyticsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceCameraCustomAnalyticsRequest{}
+
 // UpdateDeviceCameraCustomAnalyticsRequest struct for UpdateDeviceCameraCustomAnalyticsRequest
 type UpdateDeviceCameraCustomAnalyticsRequest struct {
 	// Enable custom analytics
@@ -43,7 +46,7 @@ func NewUpdateDeviceCameraCustomAnalyticsRequestWithDefaults() *UpdateDeviceCame
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateDeviceCameraCustomAnalyticsRequest) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateDeviceCameraCustomAnalyticsRequest) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCameraCustomAnalyticsRequest) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateDeviceCameraCustomAnalyticsRequest) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *UpdateDeviceCameraCustomAnalyticsRequest) SetEnabled(v bool) {
 
 // GetArtifactId returns the ArtifactId field value if set, zero value otherwise.
 func (o *UpdateDeviceCameraCustomAnalyticsRequest) GetArtifactId() string {
-	if o == nil || isNil(o.ArtifactId) {
+	if o == nil || IsNil(o.ArtifactId) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *UpdateDeviceCameraCustomAnalyticsRequest) GetArtifactId() string {
 // GetArtifactIdOk returns a tuple with the ArtifactId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCameraCustomAnalyticsRequest) GetArtifactIdOk() (*string, bool) {
-	if o == nil || isNil(o.ArtifactId) {
-    return nil, false
+	if o == nil || IsNil(o.ArtifactId) {
+		return nil, false
 	}
 	return o.ArtifactId, true
 }
 
 // HasArtifactId returns a boolean if a field has been set.
 func (o *UpdateDeviceCameraCustomAnalyticsRequest) HasArtifactId() bool {
-	if o != nil && !isNil(o.ArtifactId) {
+	if o != nil && !IsNil(o.ArtifactId) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *UpdateDeviceCameraCustomAnalyticsRequest) SetArtifactId(v string) {
 
 // GetParameters returns the Parameters field value if set, zero value otherwise.
 func (o *UpdateDeviceCameraCustomAnalyticsRequest) GetParameters() []UpdateDeviceCameraCustomAnalyticsRequestParametersInner {
-	if o == nil || isNil(o.Parameters) {
+	if o == nil || IsNil(o.Parameters) {
 		var ret []UpdateDeviceCameraCustomAnalyticsRequestParametersInner
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *UpdateDeviceCameraCustomAnalyticsRequest) GetParameters() []UpdateDevic
 // GetParametersOk returns a tuple with the Parameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCameraCustomAnalyticsRequest) GetParametersOk() ([]UpdateDeviceCameraCustomAnalyticsRequestParametersInner, bool) {
-	if o == nil || isNil(o.Parameters) {
-    return nil, false
+	if o == nil || IsNil(o.Parameters) {
+		return nil, false
 	}
 	return o.Parameters, true
 }
 
 // HasParameters returns a boolean if a field has been set.
 func (o *UpdateDeviceCameraCustomAnalyticsRequest) HasParameters() bool {
-	if o != nil && !isNil(o.Parameters) {
+	if o != nil && !IsNil(o.Parameters) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *UpdateDeviceCameraCustomAnalyticsRequest) SetParameters(v []UpdateDevic
 }
 
 func (o UpdateDeviceCameraCustomAnalyticsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.ArtifactId) {
-		toSerialize["artifactId"] = o.ArtifactId
-	}
-	if !isNil(o.Parameters) {
-		toSerialize["parameters"] = o.Parameters
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceCameraCustomAnalyticsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.ArtifactId) {
+		toSerialize["artifactId"] = o.ArtifactId
+	}
+	if !IsNil(o.Parameters) {
+		toSerialize["parameters"] = o.Parameters
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceCameraCustomAnalyticsRequest struct {

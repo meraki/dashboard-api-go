@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceSettingsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceSettingsRequest{}
+
 // UpdateNetworkApplianceSettingsRequest struct for UpdateNetworkApplianceSettingsRequest
 type UpdateNetworkApplianceSettingsRequest struct {
 	// Client tracking method of a network
@@ -42,7 +45,7 @@ func NewUpdateNetworkApplianceSettingsRequestWithDefaults() *UpdateNetworkApplia
 
 // GetClientTrackingMethod returns the ClientTrackingMethod field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSettingsRequest) GetClientTrackingMethod() string {
-	if o == nil || isNil(o.ClientTrackingMethod) {
+	if o == nil || IsNil(o.ClientTrackingMethod) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *UpdateNetworkApplianceSettingsRequest) GetClientTrackingMethod() string
 // GetClientTrackingMethodOk returns a tuple with the ClientTrackingMethod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSettingsRequest) GetClientTrackingMethodOk() (*string, bool) {
-	if o == nil || isNil(o.ClientTrackingMethod) {
-    return nil, false
+	if o == nil || IsNil(o.ClientTrackingMethod) {
+		return nil, false
 	}
 	return o.ClientTrackingMethod, true
 }
 
 // HasClientTrackingMethod returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSettingsRequest) HasClientTrackingMethod() bool {
-	if o != nil && !isNil(o.ClientTrackingMethod) {
+	if o != nil && !IsNil(o.ClientTrackingMethod) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *UpdateNetworkApplianceSettingsRequest) SetClientTrackingMethod(v string
 
 // GetDeploymentMode returns the DeploymentMode field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSettingsRequest) GetDeploymentMode() string {
-	if o == nil || isNil(o.DeploymentMode) {
+	if o == nil || IsNil(o.DeploymentMode) {
 		var ret string
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *UpdateNetworkApplianceSettingsRequest) GetDeploymentMode() string {
 // GetDeploymentModeOk returns a tuple with the DeploymentMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSettingsRequest) GetDeploymentModeOk() (*string, bool) {
-	if o == nil || isNil(o.DeploymentMode) {
-    return nil, false
+	if o == nil || IsNil(o.DeploymentMode) {
+		return nil, false
 	}
 	return o.DeploymentMode, true
 }
 
 // HasDeploymentMode returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSettingsRequest) HasDeploymentMode() bool {
-	if o != nil && !isNil(o.DeploymentMode) {
+	if o != nil && !IsNil(o.DeploymentMode) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *UpdateNetworkApplianceSettingsRequest) SetDeploymentMode(v string) {
 
 // GetDynamicDns returns the DynamicDns field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSettingsRequest) GetDynamicDns() UpdateNetworkApplianceSettingsRequestDynamicDns {
-	if o == nil || isNil(o.DynamicDns) {
+	if o == nil || IsNil(o.DynamicDns) {
 		var ret UpdateNetworkApplianceSettingsRequestDynamicDns
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *UpdateNetworkApplianceSettingsRequest) GetDynamicDns() UpdateNetworkApp
 // GetDynamicDnsOk returns a tuple with the DynamicDns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSettingsRequest) GetDynamicDnsOk() (*UpdateNetworkApplianceSettingsRequestDynamicDns, bool) {
-	if o == nil || isNil(o.DynamicDns) {
-    return nil, false
+	if o == nil || IsNil(o.DynamicDns) {
+		return nil, false
 	}
 	return o.DynamicDns, true
 }
 
 // HasDynamicDns returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSettingsRequest) HasDynamicDns() bool {
-	if o != nil && !isNil(o.DynamicDns) {
+	if o != nil && !IsNil(o.DynamicDns) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *UpdateNetworkApplianceSettingsRequest) SetDynamicDns(v UpdateNetworkApp
 }
 
 func (o UpdateNetworkApplianceSettingsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ClientTrackingMethod) {
-		toSerialize["clientTrackingMethod"] = o.ClientTrackingMethod
-	}
-	if !isNil(o.DeploymentMode) {
-		toSerialize["deploymentMode"] = o.DeploymentMode
-	}
-	if !isNil(o.DynamicDns) {
-		toSerialize["dynamicDns"] = o.DynamicDns
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceSettingsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ClientTrackingMethod) {
+		toSerialize["clientTrackingMethod"] = o.ClientTrackingMethod
+	}
+	if !IsNil(o.DeploymentMode) {
+		toSerialize["deploymentMode"] = o.DeploymentMode
+	}
+	if !IsNil(o.DynamicDns) {
+		toSerialize["dynamicDns"] = o.DynamicDns
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceSettingsRequest struct {

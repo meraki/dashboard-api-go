@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetAdministeredIdentitiesMe200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetAdministeredIdentitiesMe200Response{}
+
 // GetAdministeredIdentitiesMe200Response struct for GetAdministeredIdentitiesMe200Response
 type GetAdministeredIdentitiesMe200Response struct {
 	// Username
@@ -45,7 +48,7 @@ func NewGetAdministeredIdentitiesMe200ResponseWithDefaults() *GetAdministeredIde
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetAdministeredIdentitiesMe200Response) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetAdministeredIdentitiesMe200Response) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetAdministeredIdentitiesMe200Response) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetAdministeredIdentitiesMe200Response) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetAdministeredIdentitiesMe200Response) SetName(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *GetAdministeredIdentitiesMe200Response) GetEmail() string {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetAdministeredIdentitiesMe200Response) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetAdministeredIdentitiesMe200Response) GetEmailOk() (*string, bool) {
-	if o == nil || isNil(o.Email) {
-    return nil, false
+	if o == nil || IsNil(o.Email) {
+		return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *GetAdministeredIdentitiesMe200Response) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetAdministeredIdentitiesMe200Response) SetEmail(v string) {
 
 // GetLastUsedDashboardAt returns the LastUsedDashboardAt field value if set, zero value otherwise.
 func (o *GetAdministeredIdentitiesMe200Response) GetLastUsedDashboardAt() time.Time {
-	if o == nil || isNil(o.LastUsedDashboardAt) {
+	if o == nil || IsNil(o.LastUsedDashboardAt) {
 		var ret time.Time
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetAdministeredIdentitiesMe200Response) GetLastUsedDashboardAt() time.T
 // GetLastUsedDashboardAtOk returns a tuple with the LastUsedDashboardAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetAdministeredIdentitiesMe200Response) GetLastUsedDashboardAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.LastUsedDashboardAt) {
-    return nil, false
+	if o == nil || IsNil(o.LastUsedDashboardAt) {
+		return nil, false
 	}
 	return o.LastUsedDashboardAt, true
 }
 
 // HasLastUsedDashboardAt returns a boolean if a field has been set.
 func (o *GetAdministeredIdentitiesMe200Response) HasLastUsedDashboardAt() bool {
-	if o != nil && !isNil(o.LastUsedDashboardAt) {
+	if o != nil && !IsNil(o.LastUsedDashboardAt) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetAdministeredIdentitiesMe200Response) SetLastUsedDashboardAt(v time.T
 
 // GetAuthentication returns the Authentication field value if set, zero value otherwise.
 func (o *GetAdministeredIdentitiesMe200Response) GetAuthentication() GetAdministeredIdentitiesMe200ResponseAuthentication {
-	if o == nil || isNil(o.Authentication) {
+	if o == nil || IsNil(o.Authentication) {
 		var ret GetAdministeredIdentitiesMe200ResponseAuthentication
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetAdministeredIdentitiesMe200Response) GetAuthentication() GetAdminist
 // GetAuthenticationOk returns a tuple with the Authentication field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetAdministeredIdentitiesMe200Response) GetAuthenticationOk() (*GetAdministeredIdentitiesMe200ResponseAuthentication, bool) {
-	if o == nil || isNil(o.Authentication) {
-    return nil, false
+	if o == nil || IsNil(o.Authentication) {
+		return nil, false
 	}
 	return o.Authentication, true
 }
 
 // HasAuthentication returns a boolean if a field has been set.
 func (o *GetAdministeredIdentitiesMe200Response) HasAuthentication() bool {
-	if o != nil && !isNil(o.Authentication) {
+	if o != nil && !IsNil(o.Authentication) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *GetAdministeredIdentitiesMe200Response) SetAuthentication(v GetAdminist
 }
 
 func (o GetAdministeredIdentitiesMe200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Email) {
-		toSerialize["email"] = o.Email
-	}
-	if !isNil(o.LastUsedDashboardAt) {
-		toSerialize["lastUsedDashboardAt"] = o.LastUsedDashboardAt
-	}
-	if !isNil(o.Authentication) {
-		toSerialize["authentication"] = o.Authentication
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetAdministeredIdentitiesMe200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.LastUsedDashboardAt) {
+		toSerialize["lastUsedDashboardAt"] = o.LastUsedDashboardAt
+	}
+	if !IsNil(o.Authentication) {
+		toSerialize["authentication"] = o.Authentication
+	}
+	return toSerialize, nil
 }
 
 type NullableGetAdministeredIdentitiesMe200Response struct {

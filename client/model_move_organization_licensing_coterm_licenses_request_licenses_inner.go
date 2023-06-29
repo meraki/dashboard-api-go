@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MoveOrganizationLicensingCotermLicensesRequestLicensesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MoveOrganizationLicensingCotermLicensesRequestLicensesInner{}
+
 // MoveOrganizationLicensingCotermLicensesRequestLicensesInner struct for MoveOrganizationLicensingCotermLicensesRequestLicensesInner
 type MoveOrganizationLicensingCotermLicensesRequestLicensesInner struct {
 	// The license key to move counts from
@@ -55,7 +58,7 @@ func (o *MoveOrganizationLicensingCotermLicensesRequestLicensesInner) GetKey() s
 // and a boolean to check if the value has been set.
 func (o *MoveOrganizationLicensingCotermLicensesRequestLicensesInner) GetKeyOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Key, true
 }
@@ -79,7 +82,7 @@ func (o *MoveOrganizationLicensingCotermLicensesRequestLicensesInner) GetCounts(
 // and a boolean to check if the value has been set.
 func (o *MoveOrganizationLicensingCotermLicensesRequestLicensesInner) GetCountsOk() ([]MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Counts, true
 }
@@ -90,14 +93,18 @@ func (o *MoveOrganizationLicensingCotermLicensesRequestLicensesInner) SetCounts(
 }
 
 func (o MoveOrganizationLicensingCotermLicensesRequestLicensesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["key"] = o.Key
-	}
-	if true {
-		toSerialize["counts"] = o.Counts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MoveOrganizationLicensingCotermLicensesRequestLicensesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["key"] = o.Key
+	toSerialize["counts"] = o.Counts
+	return toSerialize, nil
 }
 
 type NullableMoveOrganizationLicensingCotermLicensesRequestLicensesInner struct {

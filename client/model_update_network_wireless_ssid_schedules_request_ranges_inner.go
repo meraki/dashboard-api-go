@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidSchedulesRequestRangesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidSchedulesRequestRangesInner{}
+
 // UpdateNetworkWirelessSsidSchedulesRequestRangesInner struct for UpdateNetworkWirelessSsidSchedulesRequestRangesInner
 type UpdateNetworkWirelessSsidSchedulesRequestRangesInner struct {
 	// Day of when the outage starts. Can be either full day name, or three letter abbreviation.
@@ -61,7 +64,7 @@ func (o *UpdateNetworkWirelessSsidSchedulesRequestRangesInner) GetStartDay() str
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSchedulesRequestRangesInner) GetStartDayOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.StartDay, true
 }
@@ -85,7 +88,7 @@ func (o *UpdateNetworkWirelessSsidSchedulesRequestRangesInner) GetStartTime() st
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSchedulesRequestRangesInner) GetStartTimeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.StartTime, true
 }
@@ -109,7 +112,7 @@ func (o *UpdateNetworkWirelessSsidSchedulesRequestRangesInner) GetEndDay() strin
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSchedulesRequestRangesInner) GetEndDayOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.EndDay, true
 }
@@ -133,7 +136,7 @@ func (o *UpdateNetworkWirelessSsidSchedulesRequestRangesInner) GetEndTime() stri
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSchedulesRequestRangesInner) GetEndTimeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.EndTime, true
 }
@@ -144,20 +147,20 @@ func (o *UpdateNetworkWirelessSsidSchedulesRequestRangesInner) SetEndTime(v stri
 }
 
 func (o UpdateNetworkWirelessSsidSchedulesRequestRangesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["startDay"] = o.StartDay
-	}
-	if true {
-		toSerialize["startTime"] = o.StartTime
-	}
-	if true {
-		toSerialize["endDay"] = o.EndDay
-	}
-	if true {
-		toSerialize["endTime"] = o.EndTime
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidSchedulesRequestRangesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["startDay"] = o.StartDay
+	toSerialize["startTime"] = o.StartTime
+	toSerialize["endDay"] = o.EndDay
+	toSerialize["endTime"] = o.EndTime
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidSchedulesRequestRangesInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessBillingRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessBillingRequest{}
+
 // UpdateNetworkWirelessBillingRequest struct for UpdateNetworkWirelessBillingRequest
 type UpdateNetworkWirelessBillingRequest struct {
 	// The currency code of this node group's billing plans
@@ -41,7 +44,7 @@ func NewUpdateNetworkWirelessBillingRequestWithDefaults() *UpdateNetworkWireless
 
 // GetCurrency returns the Currency field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessBillingRequest) GetCurrency() string {
-	if o == nil || isNil(o.Currency) {
+	if o == nil || IsNil(o.Currency) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkWirelessBillingRequest) GetCurrency() string {
 // GetCurrencyOk returns a tuple with the Currency field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessBillingRequest) GetCurrencyOk() (*string, bool) {
-	if o == nil || isNil(o.Currency) {
-    return nil, false
+	if o == nil || IsNil(o.Currency) {
+		return nil, false
 	}
 	return o.Currency, true
 }
 
 // HasCurrency returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessBillingRequest) HasCurrency() bool {
-	if o != nil && !isNil(o.Currency) {
+	if o != nil && !IsNil(o.Currency) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkWirelessBillingRequest) SetCurrency(v string) {
 
 // GetPlans returns the Plans field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessBillingRequest) GetPlans() []UpdateNetworkWirelessBillingRequestPlansInner {
-	if o == nil || isNil(o.Plans) {
+	if o == nil || IsNil(o.Plans) {
 		var ret []UpdateNetworkWirelessBillingRequestPlansInner
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkWirelessBillingRequest) GetPlans() []UpdateNetworkWireless
 // GetPlansOk returns a tuple with the Plans field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessBillingRequest) GetPlansOk() ([]UpdateNetworkWirelessBillingRequestPlansInner, bool) {
-	if o == nil || isNil(o.Plans) {
-    return nil, false
+	if o == nil || IsNil(o.Plans) {
+		return nil, false
 	}
 	return o.Plans, true
 }
 
 // HasPlans returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessBillingRequest) HasPlans() bool {
-	if o != nil && !isNil(o.Plans) {
+	if o != nil && !IsNil(o.Plans) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkWirelessBillingRequest) SetPlans(v []UpdateNetworkWireless
 }
 
 func (o UpdateNetworkWirelessBillingRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Currency) {
-		toSerialize["currency"] = o.Currency
-	}
-	if !isNil(o.Plans) {
-		toSerialize["plans"] = o.Plans
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessBillingRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Currency) {
+		toSerialize["currency"] = o.Currency
+	}
+	if !IsNil(o.Plans) {
+		toSerialize["plans"] = o.Plans
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessBillingRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationBrandingPolicies200ResponseInnerAdminSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationBrandingPolicies200ResponseInnerAdminSettings{}
+
 // GetOrganizationBrandingPolicies200ResponseInnerAdminSettings Settings for describing which kinds of admins this policy applies to.
 type GetOrganizationBrandingPolicies200ResponseInnerAdminSettings struct {
 	// Which kinds of admins this policy applies to. Can be one of 'All organization admins', 'All enterprise admins', 'All network admins', 'All admins of networks...', 'All admins of networks tagged...', 'Specific admins...', 'All admins' or 'All SAML admins'.
@@ -41,7 +44,7 @@ func NewGetOrganizationBrandingPolicies200ResponseInnerAdminSettingsWithDefaults
 
 // GetAppliesTo returns the AppliesTo field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerAdminSettings) GetAppliesTo() string {
-	if o == nil || isNil(o.AppliesTo) {
+	if o == nil || IsNil(o.AppliesTo) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerAdminSettings) GetApplie
 // GetAppliesToOk returns a tuple with the AppliesTo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerAdminSettings) GetAppliesToOk() (*string, bool) {
-	if o == nil || isNil(o.AppliesTo) {
-    return nil, false
+	if o == nil || IsNil(o.AppliesTo) {
+		return nil, false
 	}
 	return o.AppliesTo, true
 }
 
 // HasAppliesTo returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerAdminSettings) HasAppliesTo() bool {
-	if o != nil && !isNil(o.AppliesTo) {
+	if o != nil && !IsNil(o.AppliesTo) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerAdminSettings) SetApplie
 
 // GetValues returns the Values field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerAdminSettings) GetValues() []string {
-	if o == nil || isNil(o.Values) {
+	if o == nil || IsNil(o.Values) {
 		var ret []string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerAdminSettings) GetValues
 // GetValuesOk returns a tuple with the Values field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerAdminSettings) GetValuesOk() ([]string, bool) {
-	if o == nil || isNil(o.Values) {
-    return nil, false
+	if o == nil || IsNil(o.Values) {
+		return nil, false
 	}
 	return o.Values, true
 }
 
 // HasValues returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerAdminSettings) HasValues() bool {
-	if o != nil && !isNil(o.Values) {
+	if o != nil && !IsNil(o.Values) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerAdminSettings) SetValues
 }
 
 func (o GetOrganizationBrandingPolicies200ResponseInnerAdminSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.AppliesTo) {
-		toSerialize["appliesTo"] = o.AppliesTo
-	}
-	if !isNil(o.Values) {
-		toSerialize["values"] = o.Values
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationBrandingPolicies200ResponseInnerAdminSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AppliesTo) {
+		toSerialize["appliesTo"] = o.AppliesTo
+	}
+	if !IsNil(o.Values) {
+		toSerialize["values"] = o.Values
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationBrandingPolicies200ResponseInnerAdminSettings struct {

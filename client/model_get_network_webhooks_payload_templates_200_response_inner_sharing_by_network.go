@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetwork type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetwork{}
+
 // GetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetwork Information on network access to the template
 type GetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetwork struct {
 	// Indicates whether network admins may modify this template
@@ -39,7 +42,7 @@ func NewGetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetworkWithDe
 
 // GetAdminsCanModify returns the AdminsCanModify field value if set, zero value otherwise.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetwork) GetAdminsCanModify() bool {
-	if o == nil || isNil(o.AdminsCanModify) {
+	if o == nil || IsNil(o.AdminsCanModify) {
 		var ret bool
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetwork) Get
 // GetAdminsCanModifyOk returns a tuple with the AdminsCanModify field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetwork) GetAdminsCanModifyOk() (*bool, bool) {
-	if o == nil || isNil(o.AdminsCanModify) {
-    return nil, false
+	if o == nil || IsNil(o.AdminsCanModify) {
+		return nil, false
 	}
 	return o.AdminsCanModify, true
 }
 
 // HasAdminsCanModify returns a boolean if a field has been set.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetwork) HasAdminsCanModify() bool {
-	if o != nil && !isNil(o.AdminsCanModify) {
+	if o != nil && !IsNil(o.AdminsCanModify) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetwork) Set
 }
 
 func (o GetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetwork) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.AdminsCanModify) {
-		toSerialize["adminsCanModify"] = o.AdminsCanModify
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetwork) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AdminsCanModify) {
+		toSerialize["adminsCanModify"] = o.AdminsCanModify
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetwork struct {

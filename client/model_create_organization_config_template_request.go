@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationConfigTemplateRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationConfigTemplateRequest{}
+
 // CreateOrganizationConfigTemplateRequest struct for CreateOrganizationConfigTemplateRequest
 type CreateOrganizationConfigTemplateRequest struct {
 	// The name of the configuration template
@@ -56,7 +59,7 @@ func (o *CreateOrganizationConfigTemplateRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationConfigTemplateRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -68,7 +71,7 @@ func (o *CreateOrganizationConfigTemplateRequest) SetName(v string) {
 
 // GetTimeZone returns the TimeZone field value if set, zero value otherwise.
 func (o *CreateOrganizationConfigTemplateRequest) GetTimeZone() string {
-	if o == nil || isNil(o.TimeZone) {
+	if o == nil || IsNil(o.TimeZone) {
 		var ret string
 		return ret
 	}
@@ -78,15 +81,15 @@ func (o *CreateOrganizationConfigTemplateRequest) GetTimeZone() string {
 // GetTimeZoneOk returns a tuple with the TimeZone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationConfigTemplateRequest) GetTimeZoneOk() (*string, bool) {
-	if o == nil || isNil(o.TimeZone) {
-    return nil, false
+	if o == nil || IsNil(o.TimeZone) {
+		return nil, false
 	}
 	return o.TimeZone, true
 }
 
 // HasTimeZone returns a boolean if a field has been set.
 func (o *CreateOrganizationConfigTemplateRequest) HasTimeZone() bool {
-	if o != nil && !isNil(o.TimeZone) {
+	if o != nil && !IsNil(o.TimeZone) {
 		return true
 	}
 
@@ -100,7 +103,7 @@ func (o *CreateOrganizationConfigTemplateRequest) SetTimeZone(v string) {
 
 // GetCopyFromNetworkId returns the CopyFromNetworkId field value if set, zero value otherwise.
 func (o *CreateOrganizationConfigTemplateRequest) GetCopyFromNetworkId() string {
-	if o == nil || isNil(o.CopyFromNetworkId) {
+	if o == nil || IsNil(o.CopyFromNetworkId) {
 		var ret string
 		return ret
 	}
@@ -110,15 +113,15 @@ func (o *CreateOrganizationConfigTemplateRequest) GetCopyFromNetworkId() string 
 // GetCopyFromNetworkIdOk returns a tuple with the CopyFromNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationConfigTemplateRequest) GetCopyFromNetworkIdOk() (*string, bool) {
-	if o == nil || isNil(o.CopyFromNetworkId) {
-    return nil, false
+	if o == nil || IsNil(o.CopyFromNetworkId) {
+		return nil, false
 	}
 	return o.CopyFromNetworkId, true
 }
 
 // HasCopyFromNetworkId returns a boolean if a field has been set.
 func (o *CreateOrganizationConfigTemplateRequest) HasCopyFromNetworkId() bool {
-	if o != nil && !isNil(o.CopyFromNetworkId) {
+	if o != nil && !IsNil(o.CopyFromNetworkId) {
 		return true
 	}
 
@@ -131,17 +134,23 @@ func (o *CreateOrganizationConfigTemplateRequest) SetCopyFromNetworkId(v string)
 }
 
 func (o CreateOrganizationConfigTemplateRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.TimeZone) {
-		toSerialize["timeZone"] = o.TimeZone
-	}
-	if !isNil(o.CopyFromNetworkId) {
-		toSerialize["copyFromNetworkId"] = o.CopyFromNetworkId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationConfigTemplateRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.TimeZone) {
+		toSerialize["timeZone"] = o.TimeZone
+	}
+	if !IsNil(o.CopyFromNetworkId) {
+		toSerialize["copyFromNetworkId"] = o.CopyFromNetworkId
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationConfigTemplateRequest struct {

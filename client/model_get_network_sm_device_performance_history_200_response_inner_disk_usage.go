@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsage{}
+
 // GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsage An object containing disk usage details.
 type GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsage struct {
 	C *GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC `json:"c,omitempty"`
@@ -38,7 +41,7 @@ func NewGetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageWithDefault
 
 // GetC returns the C field value if set, zero value otherwise.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsage) GetC() GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC {
-	if o == nil || isNil(o.C) {
+	if o == nil || IsNil(o.C) {
 		var ret GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsage) GetC() G
 // GetCOk returns a tuple with the C field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsage) GetCOk() (*GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsageC, bool) {
-	if o == nil || isNil(o.C) {
-    return nil, false
+	if o == nil || IsNil(o.C) {
+		return nil, false
 	}
 	return o.C, true
 }
 
 // HasC returns a boolean if a field has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsage) HasC() bool {
-	if o != nil && !isNil(o.C) {
+	if o != nil && !IsNil(o.C) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsage) SetC(v G
 }
 
 func (o GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.C) {
-		toSerialize["c"] = o.C
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.C) {
+		toSerialize["c"] = o.C
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsage struct {

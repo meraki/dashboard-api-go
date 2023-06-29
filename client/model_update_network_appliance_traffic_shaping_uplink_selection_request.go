@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest{}
+
 // UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest struct for UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest
 type UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest struct {
 	// Toggle for enabling or disabling active-active AutoVPN
@@ -48,7 +51,7 @@ func NewUpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWithDefaults()
 
 // GetActiveActiveAutoVpnEnabled returns the ActiveActiveAutoVpnEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetActiveActiveAutoVpnEnabled() bool {
-	if o == nil || isNil(o.ActiveActiveAutoVpnEnabled) {
+	if o == nil || IsNil(o.ActiveActiveAutoVpnEnabled) {
 		var ret bool
 		return ret
 	}
@@ -58,15 +61,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetActiveAc
 // GetActiveActiveAutoVpnEnabledOk returns a tuple with the ActiveActiveAutoVpnEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetActiveActiveAutoVpnEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.ActiveActiveAutoVpnEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.ActiveActiveAutoVpnEnabled) {
+		return nil, false
 	}
 	return o.ActiveActiveAutoVpnEnabled, true
 }
 
 // HasActiveActiveAutoVpnEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) HasActiveActiveAutoVpnEnabled() bool {
-	if o != nil && !isNil(o.ActiveActiveAutoVpnEnabled) {
+	if o != nil && !IsNil(o.ActiveActiveAutoVpnEnabled) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) SetActiveAc
 
 // GetDefaultUplink returns the DefaultUplink field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetDefaultUplink() string {
-	if o == nil || isNil(o.DefaultUplink) {
+	if o == nil || IsNil(o.DefaultUplink) {
 		var ret string
 		return ret
 	}
@@ -90,15 +93,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetDefaultU
 // GetDefaultUplinkOk returns a tuple with the DefaultUplink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetDefaultUplinkOk() (*string, bool) {
-	if o == nil || isNil(o.DefaultUplink) {
-    return nil, false
+	if o == nil || IsNil(o.DefaultUplink) {
+		return nil, false
 	}
 	return o.DefaultUplink, true
 }
 
 // HasDefaultUplink returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) HasDefaultUplink() bool {
-	if o != nil && !isNil(o.DefaultUplink) {
+	if o != nil && !IsNil(o.DefaultUplink) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) SetDefaultU
 
 // GetLoadBalancingEnabled returns the LoadBalancingEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetLoadBalancingEnabled() bool {
-	if o == nil || isNil(o.LoadBalancingEnabled) {
+	if o == nil || IsNil(o.LoadBalancingEnabled) {
 		var ret bool
 		return ret
 	}
@@ -122,15 +125,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetLoadBala
 // GetLoadBalancingEnabledOk returns a tuple with the LoadBalancingEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetLoadBalancingEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.LoadBalancingEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.LoadBalancingEnabled) {
+		return nil, false
 	}
 	return o.LoadBalancingEnabled, true
 }
 
 // HasLoadBalancingEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) HasLoadBalancingEnabled() bool {
-	if o != nil && !isNil(o.LoadBalancingEnabled) {
+	if o != nil && !IsNil(o.LoadBalancingEnabled) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) SetLoadBala
 
 // GetFailoverAndFailback returns the FailoverAndFailback field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetFailoverAndFailback() UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailback {
-	if o == nil || isNil(o.FailoverAndFailback) {
+	if o == nil || IsNil(o.FailoverAndFailback) {
 		var ret UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailback
 		return ret
 	}
@@ -154,15 +157,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetFailover
 // GetFailoverAndFailbackOk returns a tuple with the FailoverAndFailback field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetFailoverAndFailbackOk() (*UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailback, bool) {
-	if o == nil || isNil(o.FailoverAndFailback) {
-    return nil, false
+	if o == nil || IsNil(o.FailoverAndFailback) {
+		return nil, false
 	}
 	return o.FailoverAndFailback, true
 }
 
 // HasFailoverAndFailback returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) HasFailoverAndFailback() bool {
-	if o != nil && !isNil(o.FailoverAndFailback) {
+	if o != nil && !IsNil(o.FailoverAndFailback) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) SetFailover
 
 // GetWanTrafficUplinkPreferences returns the WanTrafficUplinkPreferences field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetWanTrafficUplinkPreferences() []UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInner {
-	if o == nil || isNil(o.WanTrafficUplinkPreferences) {
+	if o == nil || IsNil(o.WanTrafficUplinkPreferences) {
 		var ret []UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInner
 		return ret
 	}
@@ -186,15 +189,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetWanTraff
 // GetWanTrafficUplinkPreferencesOk returns a tuple with the WanTrafficUplinkPreferences field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetWanTrafficUplinkPreferencesOk() ([]UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInner, bool) {
-	if o == nil || isNil(o.WanTrafficUplinkPreferences) {
-    return nil, false
+	if o == nil || IsNil(o.WanTrafficUplinkPreferences) {
+		return nil, false
 	}
 	return o.WanTrafficUplinkPreferences, true
 }
 
 // HasWanTrafficUplinkPreferences returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) HasWanTrafficUplinkPreferences() bool {
-	if o != nil && !isNil(o.WanTrafficUplinkPreferences) {
+	if o != nil && !IsNil(o.WanTrafficUplinkPreferences) {
 		return true
 	}
 
@@ -208,7 +211,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) SetWanTraff
 
 // GetVpnTrafficUplinkPreferences returns the VpnTrafficUplinkPreferences field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetVpnTrafficUplinkPreferences() []UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner {
-	if o == nil || isNil(o.VpnTrafficUplinkPreferences) {
+	if o == nil || IsNil(o.VpnTrafficUplinkPreferences) {
 		var ret []UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner
 		return ret
 	}
@@ -218,15 +221,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetVpnTraff
 // GetVpnTrafficUplinkPreferencesOk returns a tuple with the VpnTrafficUplinkPreferences field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) GetVpnTrafficUplinkPreferencesOk() ([]UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner, bool) {
-	if o == nil || isNil(o.VpnTrafficUplinkPreferences) {
-    return nil, false
+	if o == nil || IsNil(o.VpnTrafficUplinkPreferences) {
+		return nil, false
 	}
 	return o.VpnTrafficUplinkPreferences, true
 }
 
 // HasVpnTrafficUplinkPreferences returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) HasVpnTrafficUplinkPreferences() bool {
-	if o != nil && !isNil(o.VpnTrafficUplinkPreferences) {
+	if o != nil && !IsNil(o.VpnTrafficUplinkPreferences) {
 		return true
 	}
 
@@ -239,26 +242,34 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) SetVpnTraff
 }
 
 func (o UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ActiveActiveAutoVpnEnabled) {
-		toSerialize["activeActiveAutoVpnEnabled"] = o.ActiveActiveAutoVpnEnabled
-	}
-	if !isNil(o.DefaultUplink) {
-		toSerialize["defaultUplink"] = o.DefaultUplink
-	}
-	if !isNil(o.LoadBalancingEnabled) {
-		toSerialize["loadBalancingEnabled"] = o.LoadBalancingEnabled
-	}
-	if !isNil(o.FailoverAndFailback) {
-		toSerialize["failoverAndFailback"] = o.FailoverAndFailback
-	}
-	if !isNil(o.WanTrafficUplinkPreferences) {
-		toSerialize["wanTrafficUplinkPreferences"] = o.WanTrafficUplinkPreferences
-	}
-	if !isNil(o.VpnTrafficUplinkPreferences) {
-		toSerialize["vpnTrafficUplinkPreferences"] = o.VpnTrafficUplinkPreferences
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ActiveActiveAutoVpnEnabled) {
+		toSerialize["activeActiveAutoVpnEnabled"] = o.ActiveActiveAutoVpnEnabled
+	}
+	if !IsNil(o.DefaultUplink) {
+		toSerialize["defaultUplink"] = o.DefaultUplink
+	}
+	if !IsNil(o.LoadBalancingEnabled) {
+		toSerialize["loadBalancingEnabled"] = o.LoadBalancingEnabled
+	}
+	if !IsNil(o.FailoverAndFailback) {
+		toSerialize["failoverAndFailback"] = o.FailoverAndFailback
+	}
+	if !IsNil(o.WanTrafficUplinkPreferences) {
+		toSerialize["wanTrafficUplinkPreferences"] = o.WanTrafficUplinkPreferences
+	}
+	if !IsNil(o.VpnTrafficUplinkPreferences) {
+		toSerialize["vpnTrafficUplinkPreferences"] = o.VpnTrafficUplinkPreferences
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest struct {

@@ -10,72 +10,72 @@ Testing AlternateManagementInterfaceApiService
 package client
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "github.com/meraki/dashboard-api-go/client"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func Test_client_AlternateManagementInterfaceApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test AlternateManagementInterfaceApiService GetNetworkSwitchAlternateManagementInterface", func(t *testing.T) {
+	t.Run("Test AlternateManagementInterfaceApiService GetNetworkSwitchAlternateManagementInterface", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.AlternateManagementInterfaceApi.GetNetworkSwitchAlternateManagementInterface(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.AlternateManagementInterfaceApi.GetNetworkSwitchAlternateManagementInterface(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test AlternateManagementInterfaceApiService GetNetworkWirelessAlternateManagementInterface", func(t *testing.T) {
+	t.Run("Test AlternateManagementInterfaceApiService GetNetworkWirelessAlternateManagementInterface", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.AlternateManagementInterfaceApi.GetNetworkWirelessAlternateManagementInterface(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.AlternateManagementInterfaceApi.GetNetworkWirelessAlternateManagementInterface(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test AlternateManagementInterfaceApiService UpdateNetworkSwitchAlternateManagementInterface", func(t *testing.T) {
+	t.Run("Test AlternateManagementInterfaceApiService UpdateNetworkSwitchAlternateManagementInterface", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.AlternateManagementInterfaceApi.UpdateNetworkSwitchAlternateManagementInterface(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.AlternateManagementInterfaceApi.UpdateNetworkSwitchAlternateManagementInterface(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test AlternateManagementInterfaceApiService UpdateNetworkWirelessAlternateManagementInterface", func(t *testing.T) {
+	t.Run("Test AlternateManagementInterfaceApiService UpdateNetworkWirelessAlternateManagementInterface", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.AlternateManagementInterfaceApi.UpdateNetworkWirelessAlternateManagementInterface(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.AlternateManagementInterfaceApi.UpdateNetworkWirelessAlternateManagementInterface(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

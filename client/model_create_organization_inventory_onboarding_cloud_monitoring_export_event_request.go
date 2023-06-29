@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest{}
+
 // CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest struct for CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest
 type CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest struct {
 	// The type of log event this is recording, e.g. download or opening a banner
@@ -59,7 +62,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest)
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) GetLogEventOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.LogEvent, true
 }
@@ -83,7 +86,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest)
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) GetTimestampOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Timestamp, true
 }
@@ -95,7 +98,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest)
 
 // GetTargetOS returns the TargetOS field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) GetTargetOS() string {
-	if o == nil || isNil(o.TargetOS) {
+	if o == nil || IsNil(o.TargetOS) {
 		var ret string
 		return ret
 	}
@@ -105,15 +108,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest)
 // GetTargetOSOk returns a tuple with the TargetOS field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) GetTargetOSOk() (*string, bool) {
-	if o == nil || isNil(o.TargetOS) {
-    return nil, false
+	if o == nil || IsNil(o.TargetOS) {
+		return nil, false
 	}
 	return o.TargetOS, true
 }
 
 // HasTargetOS returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) HasTargetOS() bool {
-	if o != nil && !isNil(o.TargetOS) {
+	if o != nil && !IsNil(o.TargetOS) {
 		return true
 	}
 
@@ -127,7 +130,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest)
 
 // GetRequest returns the Request field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) GetRequest() string {
-	if o == nil || isNil(o.Request) {
+	if o == nil || IsNil(o.Request) {
 		var ret string
 		return ret
 	}
@@ -137,15 +140,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest)
 // GetRequestOk returns a tuple with the Request field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) GetRequestOk() (*string, bool) {
-	if o == nil || isNil(o.Request) {
-    return nil, false
+	if o == nil || IsNil(o.Request) {
+		return nil, false
 	}
 	return o.Request, true
 }
 
 // HasRequest returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) HasRequest() bool {
-	if o != nil && !isNil(o.Request) {
+	if o != nil && !IsNil(o.Request) {
 		return true
 	}
 
@@ -158,20 +161,24 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest)
 }
 
 func (o CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["logEvent"] = o.LogEvent
-	}
-	if true {
-		toSerialize["timestamp"] = o.Timestamp
-	}
-	if !isNil(o.TargetOS) {
-		toSerialize["targetOS"] = o.TargetOS
-	}
-	if !isNil(o.Request) {
-		toSerialize["request"] = o.Request
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["logEvent"] = o.LogEvent
+	toSerialize["timestamp"] = o.Timestamp
+	if !IsNil(o.TargetOS) {
+		toSerialize["targetOS"] = o.TargetOS
+	}
+	if !IsNil(o.Request) {
+		toSerialize["request"] = o.Request
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationInventoryOnboardingCloudMonitoringExportEventRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchAccessControlListsRequestRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchAccessControlListsRequestRulesInner{}
+
 // UpdateNetworkSwitchAccessControlListsRequestRulesInner struct for UpdateNetworkSwitchAccessControlListsRequestRulesInner
 type UpdateNetworkSwitchAccessControlListsRequestRulesInner struct {
 	// Description of the rule (optional).
@@ -59,7 +62,7 @@ func NewUpdateNetworkSwitchAccessControlListsRequestRulesInnerWithDefaults() *Up
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetComment() string {
-	if o == nil || isNil(o.Comment) {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -69,15 +72,15 @@ func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetComment() st
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetCommentOk() (*string, bool) {
-	if o == nil || isNil(o.Comment) {
-    return nil, false
+	if o == nil || IsNil(o.Comment) {
+		return nil, false
 	}
 	return o.Comment, true
 }
 
 // HasComment returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) HasComment() bool {
-	if o != nil && !isNil(o.Comment) {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -103,7 +106,7 @@ func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetPolicy() str
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetPolicyOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Policy, true
 }
@@ -115,7 +118,7 @@ func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) SetPolicy(v str
 
 // GetIpVersion returns the IpVersion field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetIpVersion() string {
-	if o == nil || isNil(o.IpVersion) {
+	if o == nil || IsNil(o.IpVersion) {
 		var ret string
 		return ret
 	}
@@ -125,15 +128,15 @@ func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetIpVersion() 
 // GetIpVersionOk returns a tuple with the IpVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetIpVersionOk() (*string, bool) {
-	if o == nil || isNil(o.IpVersion) {
-    return nil, false
+	if o == nil || IsNil(o.IpVersion) {
+		return nil, false
 	}
 	return o.IpVersion, true
 }
 
 // HasIpVersion returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) HasIpVersion() bool {
-	if o != nil && !isNil(o.IpVersion) {
+	if o != nil && !IsNil(o.IpVersion) {
 		return true
 	}
 
@@ -159,7 +162,7 @@ func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetProtocol() s
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetProtocolOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Protocol, true
 }
@@ -183,7 +186,7 @@ func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetSrcCidr() st
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetSrcCidrOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.SrcCidr, true
 }
@@ -195,7 +198,7 @@ func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) SetSrcCidr(v st
 
 // GetSrcPort returns the SrcPort field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetSrcPort() string {
-	if o == nil || isNil(o.SrcPort) {
+	if o == nil || IsNil(o.SrcPort) {
 		var ret string
 		return ret
 	}
@@ -205,15 +208,15 @@ func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetSrcPort() st
 // GetSrcPortOk returns a tuple with the SrcPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetSrcPortOk() (*string, bool) {
-	if o == nil || isNil(o.SrcPort) {
-    return nil, false
+	if o == nil || IsNil(o.SrcPort) {
+		return nil, false
 	}
 	return o.SrcPort, true
 }
 
 // HasSrcPort returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) HasSrcPort() bool {
-	if o != nil && !isNil(o.SrcPort) {
+	if o != nil && !IsNil(o.SrcPort) {
 		return true
 	}
 
@@ -239,7 +242,7 @@ func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetDstCidr() st
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetDstCidrOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.DstCidr, true
 }
@@ -251,7 +254,7 @@ func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) SetDstCidr(v st
 
 // GetDstPort returns the DstPort field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetDstPort() string {
-	if o == nil || isNil(o.DstPort) {
+	if o == nil || IsNil(o.DstPort) {
 		var ret string
 		return ret
 	}
@@ -261,15 +264,15 @@ func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetDstPort() st
 // GetDstPortOk returns a tuple with the DstPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetDstPortOk() (*string, bool) {
-	if o == nil || isNil(o.DstPort) {
-    return nil, false
+	if o == nil || IsNil(o.DstPort) {
+		return nil, false
 	}
 	return o.DstPort, true
 }
 
 // HasDstPort returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) HasDstPort() bool {
-	if o != nil && !isNil(o.DstPort) {
+	if o != nil && !IsNil(o.DstPort) {
 		return true
 	}
 
@@ -283,7 +286,7 @@ func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) SetDstPort(v st
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetVlan() string {
-	if o == nil || isNil(o.Vlan) {
+	if o == nil || IsNil(o.Vlan) {
 		var ret string
 		return ret
 	}
@@ -293,15 +296,15 @@ func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetVlan() strin
 // GetVlanOk returns a tuple with the Vlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) GetVlanOk() (*string, bool) {
-	if o == nil || isNil(o.Vlan) {
-    return nil, false
+	if o == nil || IsNil(o.Vlan) {
+		return nil, false
 	}
 	return o.Vlan, true
 }
 
 // HasVlan returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) HasVlan() bool {
-	if o != nil && !isNil(o.Vlan) {
+	if o != nil && !IsNil(o.Vlan) {
 		return true
 	}
 
@@ -314,35 +317,35 @@ func (o *UpdateNetworkSwitchAccessControlListsRequestRulesInner) SetVlan(v strin
 }
 
 func (o UpdateNetworkSwitchAccessControlListsRequestRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Comment) {
-		toSerialize["comment"] = o.Comment
-	}
-	if true {
-		toSerialize["policy"] = o.Policy
-	}
-	if !isNil(o.IpVersion) {
-		toSerialize["ipVersion"] = o.IpVersion
-	}
-	if true {
-		toSerialize["protocol"] = o.Protocol
-	}
-	if true {
-		toSerialize["srcCidr"] = o.SrcCidr
-	}
-	if !isNil(o.SrcPort) {
-		toSerialize["srcPort"] = o.SrcPort
-	}
-	if true {
-		toSerialize["dstCidr"] = o.DstCidr
-	}
-	if !isNil(o.DstPort) {
-		toSerialize["dstPort"] = o.DstPort
-	}
-	if !isNil(o.Vlan) {
-		toSerialize["vlan"] = o.Vlan
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchAccessControlListsRequestRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	toSerialize["policy"] = o.Policy
+	if !IsNil(o.IpVersion) {
+		toSerialize["ipVersion"] = o.IpVersion
+	}
+	toSerialize["protocol"] = o.Protocol
+	toSerialize["srcCidr"] = o.SrcCidr
+	if !IsNil(o.SrcPort) {
+		toSerialize["srcPort"] = o.SrcPort
+	}
+	toSerialize["dstCidr"] = o.DstCidr
+	if !IsNil(o.DstPort) {
+		toSerialize["dstPort"] = o.DstPort
+	}
+	if !IsNil(o.Vlan) {
+		toSerialize["vlan"] = o.Vlan
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchAccessControlListsRequestRulesInner struct {

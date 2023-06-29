@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkSwitchStackRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkSwitchStackRequest{}
+
 // CreateNetworkSwitchStackRequest struct for CreateNetworkSwitchStackRequest
 type CreateNetworkSwitchStackRequest struct {
 	// The name of the new stack
@@ -55,7 +58,7 @@ func (o *CreateNetworkSwitchStackRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchStackRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -79,7 +82,7 @@ func (o *CreateNetworkSwitchStackRequest) GetSerials() []string {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchStackRequest) GetSerialsOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Serials, true
 }
@@ -90,14 +93,18 @@ func (o *CreateNetworkSwitchStackRequest) SetSerials(v []string) {
 }
 
 func (o CreateNetworkSwitchStackRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["serials"] = o.Serials
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkSwitchStackRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["serials"] = o.Serials
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkSwitchStackRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSummaryTopDevicesByUsage200ResponseInnerClients type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSummaryTopDevicesByUsage200ResponseInnerClients{}
+
 // GetOrganizationSummaryTopDevicesByUsage200ResponseInnerClients Clients
 type GetOrganizationSummaryTopDevicesByUsage200ResponseInnerClients struct {
 	Counts *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClientsCounts `json:"counts,omitempty"`
@@ -38,7 +41,7 @@ func NewGetOrganizationSummaryTopDevicesByUsage200ResponseInnerClientsWithDefaul
 
 // GetCounts returns the Counts field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopDevicesByUsage200ResponseInnerClients) GetCounts() GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClientsCounts {
-	if o == nil || isNil(o.Counts) {
+	if o == nil || IsNil(o.Counts) {
 		var ret GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClientsCounts
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetOrganizationSummaryTopDevicesByUsage200ResponseInnerClients) GetCoun
 // GetCountsOk returns a tuple with the Counts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopDevicesByUsage200ResponseInnerClients) GetCountsOk() (*GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClientsCounts, bool) {
-	if o == nil || isNil(o.Counts) {
-    return nil, false
+	if o == nil || IsNil(o.Counts) {
+		return nil, false
 	}
 	return o.Counts, true
 }
 
 // HasCounts returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopDevicesByUsage200ResponseInnerClients) HasCounts() bool {
-	if o != nil && !isNil(o.Counts) {
+	if o != nil && !IsNil(o.Counts) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetOrganizationSummaryTopDevicesByUsage200ResponseInnerClients) SetCoun
 }
 
 func (o GetOrganizationSummaryTopDevicesByUsage200ResponseInnerClients) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Counts) {
-		toSerialize["counts"] = o.Counts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSummaryTopDevicesByUsage200ResponseInnerClients) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Counts) {
+		toSerialize["counts"] = o.Counts
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSummaryTopDevicesByUsage200ResponseInnerClients struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSettingsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSettingsRequest{}
+
 // UpdateNetworkWirelessSettingsRequest struct for UpdateNetworkWirelessSettingsRequest
 type UpdateNetworkWirelessSettingsRequest struct {
 	// Toggle for enabling or disabling meshing in a network
@@ -47,7 +50,7 @@ func NewUpdateNetworkWirelessSettingsRequestWithDefaults() *UpdateNetworkWireles
 
 // GetMeshingEnabled returns the MeshingEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSettingsRequest) GetMeshingEnabled() bool {
-	if o == nil || isNil(o.MeshingEnabled) {
+	if o == nil || IsNil(o.MeshingEnabled) {
 		var ret bool
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *UpdateNetworkWirelessSettingsRequest) GetMeshingEnabled() bool {
 // GetMeshingEnabledOk returns a tuple with the MeshingEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSettingsRequest) GetMeshingEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.MeshingEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.MeshingEnabled) {
+		return nil, false
 	}
 	return o.MeshingEnabled, true
 }
 
 // HasMeshingEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSettingsRequest) HasMeshingEnabled() bool {
-	if o != nil && !isNil(o.MeshingEnabled) {
+	if o != nil && !IsNil(o.MeshingEnabled) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *UpdateNetworkWirelessSettingsRequest) SetMeshingEnabled(v bool) {
 
 // GetIpv6BridgeEnabled returns the Ipv6BridgeEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSettingsRequest) GetIpv6BridgeEnabled() bool {
-	if o == nil || isNil(o.Ipv6BridgeEnabled) {
+	if o == nil || IsNil(o.Ipv6BridgeEnabled) {
 		var ret bool
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *UpdateNetworkWirelessSettingsRequest) GetIpv6BridgeEnabled() bool {
 // GetIpv6BridgeEnabledOk returns a tuple with the Ipv6BridgeEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSettingsRequest) GetIpv6BridgeEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Ipv6BridgeEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.Ipv6BridgeEnabled) {
+		return nil, false
 	}
 	return o.Ipv6BridgeEnabled, true
 }
 
 // HasIpv6BridgeEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSettingsRequest) HasIpv6BridgeEnabled() bool {
-	if o != nil && !isNil(o.Ipv6BridgeEnabled) {
+	if o != nil && !IsNil(o.Ipv6BridgeEnabled) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *UpdateNetworkWirelessSettingsRequest) SetIpv6BridgeEnabled(v bool) {
 
 // GetLocationAnalyticsEnabled returns the LocationAnalyticsEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSettingsRequest) GetLocationAnalyticsEnabled() bool {
-	if o == nil || isNil(o.LocationAnalyticsEnabled) {
+	if o == nil || IsNil(o.LocationAnalyticsEnabled) {
 		var ret bool
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *UpdateNetworkWirelessSettingsRequest) GetLocationAnalyticsEnabled() boo
 // GetLocationAnalyticsEnabledOk returns a tuple with the LocationAnalyticsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSettingsRequest) GetLocationAnalyticsEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.LocationAnalyticsEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.LocationAnalyticsEnabled) {
+		return nil, false
 	}
 	return o.LocationAnalyticsEnabled, true
 }
 
 // HasLocationAnalyticsEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSettingsRequest) HasLocationAnalyticsEnabled() bool {
-	if o != nil && !isNil(o.LocationAnalyticsEnabled) {
+	if o != nil && !IsNil(o.LocationAnalyticsEnabled) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *UpdateNetworkWirelessSettingsRequest) SetLocationAnalyticsEnabled(v boo
 
 // GetUpgradeStrategy returns the UpgradeStrategy field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSettingsRequest) GetUpgradeStrategy() string {
-	if o == nil || isNil(o.UpgradeStrategy) {
+	if o == nil || IsNil(o.UpgradeStrategy) {
 		var ret string
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *UpdateNetworkWirelessSettingsRequest) GetUpgradeStrategy() string {
 // GetUpgradeStrategyOk returns a tuple with the UpgradeStrategy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSettingsRequest) GetUpgradeStrategyOk() (*string, bool) {
-	if o == nil || isNil(o.UpgradeStrategy) {
-    return nil, false
+	if o == nil || IsNil(o.UpgradeStrategy) {
+		return nil, false
 	}
 	return o.UpgradeStrategy, true
 }
 
 // HasUpgradeStrategy returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSettingsRequest) HasUpgradeStrategy() bool {
-	if o != nil && !isNil(o.UpgradeStrategy) {
+	if o != nil && !IsNil(o.UpgradeStrategy) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *UpdateNetworkWirelessSettingsRequest) SetUpgradeStrategy(v string) {
 
 // GetLedLightsOn returns the LedLightsOn field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSettingsRequest) GetLedLightsOn() bool {
-	if o == nil || isNil(o.LedLightsOn) {
+	if o == nil || IsNil(o.LedLightsOn) {
 		var ret bool
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *UpdateNetworkWirelessSettingsRequest) GetLedLightsOn() bool {
 // GetLedLightsOnOk returns a tuple with the LedLightsOn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSettingsRequest) GetLedLightsOnOk() (*bool, bool) {
-	if o == nil || isNil(o.LedLightsOn) {
-    return nil, false
+	if o == nil || IsNil(o.LedLightsOn) {
+		return nil, false
 	}
 	return o.LedLightsOn, true
 }
 
 // HasLedLightsOn returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSettingsRequest) HasLedLightsOn() bool {
-	if o != nil && !isNil(o.LedLightsOn) {
+	if o != nil && !IsNil(o.LedLightsOn) {
 		return true
 	}
 
@@ -206,23 +209,31 @@ func (o *UpdateNetworkWirelessSettingsRequest) SetLedLightsOn(v bool) {
 }
 
 func (o UpdateNetworkWirelessSettingsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.MeshingEnabled) {
-		toSerialize["meshingEnabled"] = o.MeshingEnabled
-	}
-	if !isNil(o.Ipv6BridgeEnabled) {
-		toSerialize["ipv6BridgeEnabled"] = o.Ipv6BridgeEnabled
-	}
-	if !isNil(o.LocationAnalyticsEnabled) {
-		toSerialize["locationAnalyticsEnabled"] = o.LocationAnalyticsEnabled
-	}
-	if !isNil(o.UpgradeStrategy) {
-		toSerialize["upgradeStrategy"] = o.UpgradeStrategy
-	}
-	if !isNil(o.LedLightsOn) {
-		toSerialize["ledLightsOn"] = o.LedLightsOn
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSettingsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MeshingEnabled) {
+		toSerialize["meshingEnabled"] = o.MeshingEnabled
+	}
+	if !IsNil(o.Ipv6BridgeEnabled) {
+		toSerialize["ipv6BridgeEnabled"] = o.Ipv6BridgeEnabled
+	}
+	if !IsNil(o.LocationAnalyticsEnabled) {
+		toSerialize["locationAnalyticsEnabled"] = o.LocationAnalyticsEnabled
+	}
+	if !IsNil(o.UpgradeStrategy) {
+		toSerialize["upgradeStrategy"] = o.UpgradeStrategy
+	}
+	if !IsNil(o.LedLightsOn) {
+		toSerialize["ledLightsOn"] = o.LedLightsOn
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSettingsRequest struct {

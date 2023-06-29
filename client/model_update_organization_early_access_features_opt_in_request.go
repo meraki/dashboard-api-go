@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationEarlyAccessFeaturesOptInRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationEarlyAccessFeaturesOptInRequest{}
+
 // UpdateOrganizationEarlyAccessFeaturesOptInRequest struct for UpdateOrganizationEarlyAccessFeaturesOptInRequest
 type UpdateOrganizationEarlyAccessFeaturesOptInRequest struct {
 	// A list of network IDs to apply the opt-in to
@@ -39,7 +42,7 @@ func NewUpdateOrganizationEarlyAccessFeaturesOptInRequestWithDefaults() *UpdateO
 
 // GetLimitScopeToNetworks returns the LimitScopeToNetworks field value if set, zero value otherwise.
 func (o *UpdateOrganizationEarlyAccessFeaturesOptInRequest) GetLimitScopeToNetworks() []string {
-	if o == nil || isNil(o.LimitScopeToNetworks) {
+	if o == nil || IsNil(o.LimitScopeToNetworks) {
 		var ret []string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateOrganizationEarlyAccessFeaturesOptInRequest) GetLimitScopeToNetwo
 // GetLimitScopeToNetworksOk returns a tuple with the LimitScopeToNetworks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationEarlyAccessFeaturesOptInRequest) GetLimitScopeToNetworksOk() ([]string, bool) {
-	if o == nil || isNil(o.LimitScopeToNetworks) {
-    return nil, false
+	if o == nil || IsNil(o.LimitScopeToNetworks) {
+		return nil, false
 	}
 	return o.LimitScopeToNetworks, true
 }
 
 // HasLimitScopeToNetworks returns a boolean if a field has been set.
 func (o *UpdateOrganizationEarlyAccessFeaturesOptInRequest) HasLimitScopeToNetworks() bool {
-	if o != nil && !isNil(o.LimitScopeToNetworks) {
+	if o != nil && !IsNil(o.LimitScopeToNetworks) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateOrganizationEarlyAccessFeaturesOptInRequest) SetLimitScopeToNetwo
 }
 
 func (o UpdateOrganizationEarlyAccessFeaturesOptInRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.LimitScopeToNetworks) {
-		toSerialize["limitScopeToNetworks"] = o.LimitScopeToNetworks
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationEarlyAccessFeaturesOptInRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.LimitScopeToNetworks) {
+		toSerialize["limitScopeToNetworks"] = o.LimitScopeToNetworks
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationEarlyAccessFeaturesOptInRequest struct {

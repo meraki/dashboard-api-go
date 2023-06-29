@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchAccessControlLists200ResponseRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchAccessControlLists200ResponseRulesInner{}
+
 // GetNetworkSwitchAccessControlLists200ResponseRulesInner struct for GetNetworkSwitchAccessControlLists200ResponseRulesInner
 type GetNetworkSwitchAccessControlLists200ResponseRulesInner struct {
 	// Description of the rule (optional)
@@ -55,7 +58,7 @@ func NewGetNetworkSwitchAccessControlLists200ResponseRulesInnerWithDefaults() *G
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetComment() string {
-	if o == nil || isNil(o.Comment) {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -65,15 +68,15 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetComment() s
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetCommentOk() (*string, bool) {
-	if o == nil || isNil(o.Comment) {
-    return nil, false
+	if o == nil || IsNil(o.Comment) {
+		return nil, false
 	}
 	return o.Comment, true
 }
 
 // HasComment returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) HasComment() bool {
-	if o != nil && !isNil(o.Comment) {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -87,7 +90,7 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) SetComment(v s
 
 // GetPolicy returns the Policy field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetPolicy() string {
-	if o == nil || isNil(o.Policy) {
+	if o == nil || IsNil(o.Policy) {
 		var ret string
 		return ret
 	}
@@ -97,15 +100,15 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetPolicy() st
 // GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetPolicyOk() (*string, bool) {
-	if o == nil || isNil(o.Policy) {
-    return nil, false
+	if o == nil || IsNil(o.Policy) {
+		return nil, false
 	}
 	return o.Policy, true
 }
 
 // HasPolicy returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) HasPolicy() bool {
-	if o != nil && !isNil(o.Policy) {
+	if o != nil && !IsNil(o.Policy) {
 		return true
 	}
 
@@ -119,7 +122,7 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) SetPolicy(v st
 
 // GetIpVersion returns the IpVersion field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetIpVersion() string {
-	if o == nil || isNil(o.IpVersion) {
+	if o == nil || IsNil(o.IpVersion) {
 		var ret string
 		return ret
 	}
@@ -129,15 +132,15 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetIpVersion()
 // GetIpVersionOk returns a tuple with the IpVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetIpVersionOk() (*string, bool) {
-	if o == nil || isNil(o.IpVersion) {
-    return nil, false
+	if o == nil || IsNil(o.IpVersion) {
+		return nil, false
 	}
 	return o.IpVersion, true
 }
 
 // HasIpVersion returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) HasIpVersion() bool {
-	if o != nil && !isNil(o.IpVersion) {
+	if o != nil && !IsNil(o.IpVersion) {
 		return true
 	}
 
@@ -151,7 +154,7 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) SetIpVersion(v
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetProtocol() string {
-	if o == nil || isNil(o.Protocol) {
+	if o == nil || IsNil(o.Protocol) {
 		var ret string
 		return ret
 	}
@@ -161,15 +164,15 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetProtocol() 
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetProtocolOk() (*string, bool) {
-	if o == nil || isNil(o.Protocol) {
-    return nil, false
+	if o == nil || IsNil(o.Protocol) {
+		return nil, false
 	}
 	return o.Protocol, true
 }
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) HasProtocol() bool {
-	if o != nil && !isNil(o.Protocol) {
+	if o != nil && !IsNil(o.Protocol) {
 		return true
 	}
 
@@ -183,7 +186,7 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) SetProtocol(v 
 
 // GetSrcCidr returns the SrcCidr field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetSrcCidr() string {
-	if o == nil || isNil(o.SrcCidr) {
+	if o == nil || IsNil(o.SrcCidr) {
 		var ret string
 		return ret
 	}
@@ -193,15 +196,15 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetSrcCidr() s
 // GetSrcCidrOk returns a tuple with the SrcCidr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetSrcCidrOk() (*string, bool) {
-	if o == nil || isNil(o.SrcCidr) {
-    return nil, false
+	if o == nil || IsNil(o.SrcCidr) {
+		return nil, false
 	}
 	return o.SrcCidr, true
 }
 
 // HasSrcCidr returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) HasSrcCidr() bool {
-	if o != nil && !isNil(o.SrcCidr) {
+	if o != nil && !IsNil(o.SrcCidr) {
 		return true
 	}
 
@@ -215,7 +218,7 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) SetSrcCidr(v s
 
 // GetSrcPort returns the SrcPort field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetSrcPort() string {
-	if o == nil || isNil(o.SrcPort) {
+	if o == nil || IsNil(o.SrcPort) {
 		var ret string
 		return ret
 	}
@@ -225,15 +228,15 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetSrcPort() s
 // GetSrcPortOk returns a tuple with the SrcPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetSrcPortOk() (*string, bool) {
-	if o == nil || isNil(o.SrcPort) {
-    return nil, false
+	if o == nil || IsNil(o.SrcPort) {
+		return nil, false
 	}
 	return o.SrcPort, true
 }
 
 // HasSrcPort returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) HasSrcPort() bool {
-	if o != nil && !isNil(o.SrcPort) {
+	if o != nil && !IsNil(o.SrcPort) {
 		return true
 	}
 
@@ -247,7 +250,7 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) SetSrcPort(v s
 
 // GetDstCidr returns the DstCidr field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetDstCidr() string {
-	if o == nil || isNil(o.DstCidr) {
+	if o == nil || IsNil(o.DstCidr) {
 		var ret string
 		return ret
 	}
@@ -257,15 +260,15 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetDstCidr() s
 // GetDstCidrOk returns a tuple with the DstCidr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetDstCidrOk() (*string, bool) {
-	if o == nil || isNil(o.DstCidr) {
-    return nil, false
+	if o == nil || IsNil(o.DstCidr) {
+		return nil, false
 	}
 	return o.DstCidr, true
 }
 
 // HasDstCidr returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) HasDstCidr() bool {
-	if o != nil && !isNil(o.DstCidr) {
+	if o != nil && !IsNil(o.DstCidr) {
 		return true
 	}
 
@@ -279,7 +282,7 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) SetDstCidr(v s
 
 // GetDstPort returns the DstPort field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetDstPort() string {
-	if o == nil || isNil(o.DstPort) {
+	if o == nil || IsNil(o.DstPort) {
 		var ret string
 		return ret
 	}
@@ -289,15 +292,15 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetDstPort() s
 // GetDstPortOk returns a tuple with the DstPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetDstPortOk() (*string, bool) {
-	if o == nil || isNil(o.DstPort) {
-    return nil, false
+	if o == nil || IsNil(o.DstPort) {
+		return nil, false
 	}
 	return o.DstPort, true
 }
 
 // HasDstPort returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) HasDstPort() bool {
-	if o != nil && !isNil(o.DstPort) {
+	if o != nil && !IsNil(o.DstPort) {
 		return true
 	}
 
@@ -311,7 +314,7 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) SetDstPort(v s
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetVlan() string {
-	if o == nil || isNil(o.Vlan) {
+	if o == nil || IsNil(o.Vlan) {
 		var ret string
 		return ret
 	}
@@ -321,15 +324,15 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetVlan() stri
 // GetVlanOk returns a tuple with the Vlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) GetVlanOk() (*string, bool) {
-	if o == nil || isNil(o.Vlan) {
-    return nil, false
+	if o == nil || IsNil(o.Vlan) {
+		return nil, false
 	}
 	return o.Vlan, true
 }
 
 // HasVlan returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) HasVlan() bool {
-	if o != nil && !isNil(o.Vlan) {
+	if o != nil && !IsNil(o.Vlan) {
 		return true
 	}
 
@@ -342,35 +345,43 @@ func (o *GetNetworkSwitchAccessControlLists200ResponseRulesInner) SetVlan(v stri
 }
 
 func (o GetNetworkSwitchAccessControlLists200ResponseRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Comment) {
-		toSerialize["comment"] = o.Comment
-	}
-	if !isNil(o.Policy) {
-		toSerialize["policy"] = o.Policy
-	}
-	if !isNil(o.IpVersion) {
-		toSerialize["ipVersion"] = o.IpVersion
-	}
-	if !isNil(o.Protocol) {
-		toSerialize["protocol"] = o.Protocol
-	}
-	if !isNil(o.SrcCidr) {
-		toSerialize["srcCidr"] = o.SrcCidr
-	}
-	if !isNil(o.SrcPort) {
-		toSerialize["srcPort"] = o.SrcPort
-	}
-	if !isNil(o.DstCidr) {
-		toSerialize["dstCidr"] = o.DstCidr
-	}
-	if !isNil(o.DstPort) {
-		toSerialize["dstPort"] = o.DstPort
-	}
-	if !isNil(o.Vlan) {
-		toSerialize["vlan"] = o.Vlan
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchAccessControlLists200ResponseRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	if !IsNil(o.Policy) {
+		toSerialize["policy"] = o.Policy
+	}
+	if !IsNil(o.IpVersion) {
+		toSerialize["ipVersion"] = o.IpVersion
+	}
+	if !IsNil(o.Protocol) {
+		toSerialize["protocol"] = o.Protocol
+	}
+	if !IsNil(o.SrcCidr) {
+		toSerialize["srcCidr"] = o.SrcCidr
+	}
+	if !IsNil(o.SrcPort) {
+		toSerialize["srcPort"] = o.SrcPort
+	}
+	if !IsNil(o.DstCidr) {
+		toSerialize["dstCidr"] = o.DstCidr
+	}
+	if !IsNil(o.DstPort) {
+		toSerialize["dstPort"] = o.DstPort
+	}
+	if !IsNil(o.Vlan) {
+		toSerialize["vlan"] = o.Vlan
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchAccessControlLists200ResponseRulesInner struct {

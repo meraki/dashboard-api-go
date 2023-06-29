@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkApplianceRfProfileRequestPerSsidSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkApplianceRfProfileRequestPerSsidSettings{}
+
 // CreateNetworkApplianceRfProfileRequestPerSsidSettings Per-SSID radio settings by number.
 type CreateNetworkApplianceRfProfileRequestPerSsidSettings struct {
 	Var1 *CreateNetworkApplianceRfProfileRequestPerSsidSettings1 `json:"1,omitempty"`
@@ -41,7 +44,7 @@ func NewCreateNetworkApplianceRfProfileRequestPerSsidSettingsWithDefaults() *Cre
 
 // GetVar1 returns the Var1 field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) GetVar1() CreateNetworkApplianceRfProfileRequestPerSsidSettings1 {
-	if o == nil || isNil(o.Var1) {
+	if o == nil || IsNil(o.Var1) {
 		var ret CreateNetworkApplianceRfProfileRequestPerSsidSettings1
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) GetVar1() Create
 // GetVar1Ok returns a tuple with the Var1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) GetVar1Ok() (*CreateNetworkApplianceRfProfileRequestPerSsidSettings1, bool) {
-	if o == nil || isNil(o.Var1) {
-    return nil, false
+	if o == nil || IsNil(o.Var1) {
+		return nil, false
 	}
 	return o.Var1, true
 }
 
 // HasVar1 returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) HasVar1() bool {
-	if o != nil && !isNil(o.Var1) {
+	if o != nil && !IsNil(o.Var1) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) SetVar1(v Create
 
 // GetVar2 returns the Var2 field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) GetVar2() CreateNetworkApplianceRfProfileRequestPerSsidSettings2 {
-	if o == nil || isNil(o.Var2) {
+	if o == nil || IsNil(o.Var2) {
 		var ret CreateNetworkApplianceRfProfileRequestPerSsidSettings2
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) GetVar2() Create
 // GetVar2Ok returns a tuple with the Var2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) GetVar2Ok() (*CreateNetworkApplianceRfProfileRequestPerSsidSettings2, bool) {
-	if o == nil || isNil(o.Var2) {
-    return nil, false
+	if o == nil || IsNil(o.Var2) {
+		return nil, false
 	}
 	return o.Var2, true
 }
 
 // HasVar2 returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) HasVar2() bool {
-	if o != nil && !isNil(o.Var2) {
+	if o != nil && !IsNil(o.Var2) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) SetVar2(v Create
 
 // GetVar3 returns the Var3 field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) GetVar3() CreateNetworkApplianceRfProfileRequestPerSsidSettings3 {
-	if o == nil || isNil(o.Var3) {
+	if o == nil || IsNil(o.Var3) {
 		var ret CreateNetworkApplianceRfProfileRequestPerSsidSettings3
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) GetVar3() Create
 // GetVar3Ok returns a tuple with the Var3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) GetVar3Ok() (*CreateNetworkApplianceRfProfileRequestPerSsidSettings3, bool) {
-	if o == nil || isNil(o.Var3) {
-    return nil, false
+	if o == nil || IsNil(o.Var3) {
+		return nil, false
 	}
 	return o.Var3, true
 }
 
 // HasVar3 returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) HasVar3() bool {
-	if o != nil && !isNil(o.Var3) {
+	if o != nil && !IsNil(o.Var3) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) SetVar3(v Create
 
 // GetVar4 returns the Var4 field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) GetVar4() CreateNetworkApplianceRfProfileRequestPerSsidSettings4 {
-	if o == nil || isNil(o.Var4) {
+	if o == nil || IsNil(o.Var4) {
 		var ret CreateNetworkApplianceRfProfileRequestPerSsidSettings4
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) GetVar4() Create
 // GetVar4Ok returns a tuple with the Var4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) GetVar4Ok() (*CreateNetworkApplianceRfProfileRequestPerSsidSettings4, bool) {
-	if o == nil || isNil(o.Var4) {
-    return nil, false
+	if o == nil || IsNil(o.Var4) {
+		return nil, false
 	}
 	return o.Var4, true
 }
 
 // HasVar4 returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) HasVar4() bool {
-	if o != nil && !isNil(o.Var4) {
+	if o != nil && !IsNil(o.Var4) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *CreateNetworkApplianceRfProfileRequestPerSsidSettings) SetVar4(v Create
 }
 
 func (o CreateNetworkApplianceRfProfileRequestPerSsidSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Var1) {
-		toSerialize["1"] = o.Var1
-	}
-	if !isNil(o.Var2) {
-		toSerialize["2"] = o.Var2
-	}
-	if !isNil(o.Var3) {
-		toSerialize["3"] = o.Var3
-	}
-	if !isNil(o.Var4) {
-		toSerialize["4"] = o.Var4
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkApplianceRfProfileRequestPerSsidSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Var1) {
+		toSerialize["1"] = o.Var1
+	}
+	if !IsNil(o.Var2) {
+		toSerialize["2"] = o.Var2
+	}
+	if !IsNil(o.Var3) {
+		toSerialize["3"] = o.Var3
+	}
+	if !IsNil(o.Var4) {
+		toSerialize["4"] = o.Var4
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkApplianceRfProfileRequestPerSsidSettings struct {

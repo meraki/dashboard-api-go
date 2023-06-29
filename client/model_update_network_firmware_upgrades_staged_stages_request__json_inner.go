@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInner{}
+
 // UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInner struct for UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInner
 type UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInner struct {
 	Group *UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInnerGroup `json:"group,omitempty"`
@@ -38,7 +41,7 @@ func NewUpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInnerWithDefaults() 
 
 // GetGroup returns the Group field value if set, zero value otherwise.
 func (o *UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInner) GetGroup() UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInnerGroup {
-	if o == nil || isNil(o.Group) {
+	if o == nil || IsNil(o.Group) {
 		var ret UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInnerGroup
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInner) GetGroup() U
 // GetGroupOk returns a tuple with the Group field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInner) GetGroupOk() (*UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInnerGroup, bool) {
-	if o == nil || isNil(o.Group) {
-    return nil, false
+	if o == nil || IsNil(o.Group) {
+		return nil, false
 	}
 	return o.Group, true
 }
 
 // HasGroup returns a boolean if a field has been set.
 func (o *UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInner) HasGroup() bool {
-	if o != nil && !isNil(o.Group) {
+	if o != nil && !IsNil(o.Group) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInner) SetGroup(v U
 }
 
 func (o UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Group) {
-		toSerialize["group"] = o.Group
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Group) {
+		toSerialize["group"] = o.Group
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInner struct {

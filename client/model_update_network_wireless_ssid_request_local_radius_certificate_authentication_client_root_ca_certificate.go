@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationClientRootCaCertificate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationClientRootCaCertificate{}
+
 // UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationClientRootCaCertificate The Client CA Certificate used to sign the client certificate.
 type UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationClientRootCaCertificate struct {
 	// The contents of the Client CA Certificate. Must be in PEM or DER format.
@@ -39,7 +42,7 @@ func NewUpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationClie
 
 // GetContents returns the Contents field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationClientRootCaCertificate) GetContents() string {
-	if o == nil || isNil(o.Contents) {
+	if o == nil || IsNil(o.Contents) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationCli
 // GetContentsOk returns a tuple with the Contents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationClientRootCaCertificate) GetContentsOk() (*string, bool) {
-	if o == nil || isNil(o.Contents) {
-    return nil, false
+	if o == nil || IsNil(o.Contents) {
+		return nil, false
 	}
 	return o.Contents, true
 }
 
 // HasContents returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationClientRootCaCertificate) HasContents() bool {
-	if o != nil && !isNil(o.Contents) {
+	if o != nil && !IsNil(o.Contents) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationCli
 }
 
 func (o UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationClientRootCaCertificate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Contents) {
-		toSerialize["contents"] = o.Contents
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationClientRootCaCertificate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Contents) {
+		toSerialize["contents"] = o.Contents
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthenticationClientRootCaCertificate struct {

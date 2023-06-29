@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner{}
+
 // GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner struct for GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner
 type GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner struct {
 	// The CIDR notation subnet used within the VPN
@@ -41,7 +44,7 @@ func NewGetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInnerWithDefaults()
 
 // GetLocalSubnet returns the LocalSubnet field value if set, zero value otherwise.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner) GetLocalSubnet() string {
-	if o == nil || isNil(o.LocalSubnet) {
+	if o == nil || IsNil(o.LocalSubnet) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner) GetLocalSub
 // GetLocalSubnetOk returns a tuple with the LocalSubnet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner) GetLocalSubnetOk() (*string, bool) {
-	if o == nil || isNil(o.LocalSubnet) {
-    return nil, false
+	if o == nil || IsNil(o.LocalSubnet) {
+		return nil, false
 	}
 	return o.LocalSubnet, true
 }
 
 // HasLocalSubnet returns a boolean if a field has been set.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner) HasLocalSubnet() bool {
-	if o != nil && !isNil(o.LocalSubnet) {
+	if o != nil && !IsNil(o.LocalSubnet) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner) SetLocalSub
 
 // GetUseVpn returns the UseVpn field value if set, zero value otherwise.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner) GetUseVpn() bool {
-	if o == nil || isNil(o.UseVpn) {
+	if o == nil || IsNil(o.UseVpn) {
 		var ret bool
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner) GetUseVpn()
 // GetUseVpnOk returns a tuple with the UseVpn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner) GetUseVpnOk() (*bool, bool) {
-	if o == nil || isNil(o.UseVpn) {
-    return nil, false
+	if o == nil || IsNil(o.UseVpn) {
+		return nil, false
 	}
 	return o.UseVpn, true
 }
 
 // HasUseVpn returns a boolean if a field has been set.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner) HasUseVpn() bool {
-	if o != nil && !isNil(o.UseVpn) {
+	if o != nil && !IsNil(o.UseVpn) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner) SetUseVpn(v
 }
 
 func (o GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.LocalSubnet) {
-		toSerialize["localSubnet"] = o.LocalSubnet
-	}
-	if !isNil(o.UseVpn) {
-		toSerialize["useVpn"] = o.UseVpn
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.LocalSubnet) {
+		toSerialize["localSubnet"] = o.LocalSubnet
+	}
+	if !IsNil(o.UseVpn) {
+		toSerialize["useVpn"] = o.UseVpn
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner struct {

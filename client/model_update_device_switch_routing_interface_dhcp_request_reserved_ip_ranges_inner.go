@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner{}
+
 // UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner struct for UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner
 type UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner struct {
 	// The starting IP address of the reserved IP range
@@ -57,7 +60,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner) Get
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner) GetStartOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Start, true
 }
@@ -81,7 +84,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner) Get
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner) GetEndOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.End, true
 }
@@ -93,7 +96,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner) Set
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner) GetComment() string {
-	if o == nil || isNil(o.Comment) {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -103,15 +106,15 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner) Get
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner) GetCommentOk() (*string, bool) {
-	if o == nil || isNil(o.Comment) {
-    return nil, false
+	if o == nil || IsNil(o.Comment) {
+		return nil, false
 	}
 	return o.Comment, true
 }
 
 // HasComment returns a boolean if a field has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner) HasComment() bool {
-	if o != nil && !isNil(o.Comment) {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -124,17 +127,21 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner) Set
 }
 
 func (o UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["start"] = o.Start
-	}
-	if true {
-		toSerialize["end"] = o.End
-	}
-	if !isNil(o.Comment) {
-		toSerialize["comment"] = o.Comment
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["start"] = o.Start
+	toSerialize["end"] = o.End
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner struct {

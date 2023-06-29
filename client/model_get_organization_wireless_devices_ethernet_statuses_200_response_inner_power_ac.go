@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPowerAc type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPowerAc{}
+
 // GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPowerAc AC power details object
 type GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPowerAc struct {
 	// AC power connected
@@ -39,7 +42,7 @@ func NewGetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPowerAcWit
 
 // GetIsConnected returns the IsConnected field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPowerAc) GetIsConnected() bool {
-	if o == nil || isNil(o.IsConnected) {
+	if o == nil || IsNil(o.IsConnected) {
 		var ret bool
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPowerAc) 
 // GetIsConnectedOk returns a tuple with the IsConnected field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPowerAc) GetIsConnectedOk() (*bool, bool) {
-	if o == nil || isNil(o.IsConnected) {
-    return nil, false
+	if o == nil || IsNil(o.IsConnected) {
+		return nil, false
 	}
 	return o.IsConnected, true
 }
 
 // HasIsConnected returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPowerAc) HasIsConnected() bool {
-	if o != nil && !isNil(o.IsConnected) {
+	if o != nil && !IsNil(o.IsConnected) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPowerAc) 
 }
 
 func (o GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPowerAc) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.IsConnected) {
-		toSerialize["isConnected"] = o.IsConnected
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPowerAc) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.IsConnected) {
+		toSerialize["isConnected"] = o.IsConnected
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPowerAc struct {

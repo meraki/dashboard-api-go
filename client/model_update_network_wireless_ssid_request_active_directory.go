@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidRequestActiveDirectory type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidRequestActiveDirectory{}
+
 // UpdateNetworkWirelessSsidRequestActiveDirectory The current setting for Active Directory. Only valid if splashPage is 'Password-protected with Active Directory'
 type UpdateNetworkWirelessSsidRequestActiveDirectory struct {
 	// The Active Directory servers to be used for authentication.
@@ -40,7 +43,7 @@ func NewUpdateNetworkWirelessSsidRequestActiveDirectoryWithDefaults() *UpdateNet
 
 // GetServers returns the Servers field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestActiveDirectory) GetServers() []UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner {
-	if o == nil || isNil(o.Servers) {
+	if o == nil || IsNil(o.Servers) {
 		var ret []UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *UpdateNetworkWirelessSsidRequestActiveDirectory) GetServers() []UpdateN
 // GetServersOk returns a tuple with the Servers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestActiveDirectory) GetServersOk() ([]UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner, bool) {
-	if o == nil || isNil(o.Servers) {
-    return nil, false
+	if o == nil || IsNil(o.Servers) {
+		return nil, false
 	}
 	return o.Servers, true
 }
 
 // HasServers returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestActiveDirectory) HasServers() bool {
-	if o != nil && !isNil(o.Servers) {
+	if o != nil && !IsNil(o.Servers) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *UpdateNetworkWirelessSsidRequestActiveDirectory) SetServers(v []UpdateN
 
 // GetCredentials returns the Credentials field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestActiveDirectory) GetCredentials() UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials {
-	if o == nil || isNil(o.Credentials) {
+	if o == nil || IsNil(o.Credentials) {
 		var ret UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *UpdateNetworkWirelessSsidRequestActiveDirectory) GetCredentials() Updat
 // GetCredentialsOk returns a tuple with the Credentials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestActiveDirectory) GetCredentialsOk() (*UpdateNetworkWirelessSsidRequestActiveDirectoryCredentials, bool) {
-	if o == nil || isNil(o.Credentials) {
-    return nil, false
+	if o == nil || IsNil(o.Credentials) {
+		return nil, false
 	}
 	return o.Credentials, true
 }
 
 // HasCredentials returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestActiveDirectory) HasCredentials() bool {
-	if o != nil && !isNil(o.Credentials) {
+	if o != nil && !IsNil(o.Credentials) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *UpdateNetworkWirelessSsidRequestActiveDirectory) SetCredentials(v Updat
 }
 
 func (o UpdateNetworkWirelessSsidRequestActiveDirectory) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Servers) {
-		toSerialize["servers"] = o.Servers
-	}
-	if !isNil(o.Credentials) {
-		toSerialize["credentials"] = o.Credentials
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidRequestActiveDirectory) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Servers) {
+		toSerialize["servers"] = o.Servers
+	}
+	if !IsNil(o.Credentials) {
+		toSerialize["credentials"] = o.Credentials
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidRequestActiveDirectory struct {

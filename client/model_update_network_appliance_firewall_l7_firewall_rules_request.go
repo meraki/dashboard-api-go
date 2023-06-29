@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceFirewallL7FirewallRulesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceFirewallL7FirewallRulesRequest{}
+
 // UpdateNetworkApplianceFirewallL7FirewallRulesRequest struct for UpdateNetworkApplianceFirewallL7FirewallRulesRequest
 type UpdateNetworkApplianceFirewallL7FirewallRulesRequest struct {
 	// An ordered array of the MX L7 firewall rules
@@ -39,7 +42,7 @@ func NewUpdateNetworkApplianceFirewallL7FirewallRulesRequestWithDefaults() *Upda
 
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequest) GetRules() []UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner {
-	if o == nil || isNil(o.Rules) {
+	if o == nil || IsNil(o.Rules) {
 		var ret []UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequest) GetRules() []Upda
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequest) GetRulesOk() ([]UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner, bool) {
-	if o == nil || isNil(o.Rules) {
-    return nil, false
+	if o == nil || IsNil(o.Rules) {
+		return nil, false
 	}
 	return o.Rules, true
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequest) HasRules() bool {
-	if o != nil && !isNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequest) SetRules(v []Upda
 }
 
 func (o UpdateNetworkApplianceFirewallL7FirewallRulesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Rules) {
-		toSerialize["rules"] = o.Rules
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceFirewallL7FirewallRulesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Rules) {
+		toSerialize["rules"] = o.Rules
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceFirewallL7FirewallRulesRequest struct {

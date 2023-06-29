@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest{}
+
 // UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest struct for UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest
 type UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest struct {
 	// The IP address of the interface to use
@@ -55,7 +58,7 @@ func (o *UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest) GetInterface
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest) GetInterfaceIpOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.InterfaceIp, true
 }
@@ -79,7 +82,7 @@ func (o *UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest) GetMulticast
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest) GetMulticastGroupOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.MulticastGroup, true
 }
@@ -90,14 +93,18 @@ func (o *UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest) SetMulticast
 }
 
 func (o UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["interfaceIp"] = o.InterfaceIp
-	}
-	if true {
-		toSerialize["multicastGroup"] = o.MulticastGroup
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["interfaceIp"] = o.InterfaceIp
+	toSerialize["multicastGroup"] = o.MulticastGroup
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchRoutingMulticastRendezvousPointRequest struct {
