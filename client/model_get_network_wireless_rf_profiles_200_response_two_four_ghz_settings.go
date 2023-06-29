@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings{}
+
 // GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings Settings related to 2.4Ghz band
 type GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings struct {
 	// Sets max power (dBm) of 2.4Ghz band. Can be integer between 2 and 30. Defaults to 30.
@@ -49,7 +52,7 @@ func NewGetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettingsWithDefaults() 
 
 // GetMaxPower returns the MaxPower field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetMaxPower() int32 {
-	if o == nil || isNil(o.MaxPower) {
+	if o == nil || IsNil(o.MaxPower) {
 		var ret int32
 		return ret
 	}
@@ -59,15 +62,15 @@ func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetMaxPower(
 // GetMaxPowerOk returns a tuple with the MaxPower field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetMaxPowerOk() (*int32, bool) {
-	if o == nil || isNil(o.MaxPower) {
-    return nil, false
+	if o == nil || IsNil(o.MaxPower) {
+		return nil, false
 	}
 	return o.MaxPower, true
 }
 
 // HasMaxPower returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) HasMaxPower() bool {
-	if o != nil && !isNil(o.MaxPower) {
+	if o != nil && !IsNil(o.MaxPower) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) SetMaxPower(
 
 // GetMinPower returns the MinPower field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetMinPower() int32 {
-	if o == nil || isNil(o.MinPower) {
+	if o == nil || IsNil(o.MinPower) {
 		var ret int32
 		return ret
 	}
@@ -91,15 +94,15 @@ func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetMinPower(
 // GetMinPowerOk returns a tuple with the MinPower field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetMinPowerOk() (*int32, bool) {
-	if o == nil || isNil(o.MinPower) {
-    return nil, false
+	if o == nil || IsNil(o.MinPower) {
+		return nil, false
 	}
 	return o.MinPower, true
 }
 
 // HasMinPower returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) HasMinPower() bool {
-	if o != nil && !isNil(o.MinPower) {
+	if o != nil && !IsNil(o.MinPower) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) SetMinPower(
 
 // GetMinBitrate returns the MinBitrate field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetMinBitrate() float32 {
-	if o == nil || isNil(o.MinBitrate) {
+	if o == nil || IsNil(o.MinBitrate) {
 		var ret float32
 		return ret
 	}
@@ -123,15 +126,15 @@ func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetMinBitrat
 // GetMinBitrateOk returns a tuple with the MinBitrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetMinBitrateOk() (*float32, bool) {
-	if o == nil || isNil(o.MinBitrate) {
-    return nil, false
+	if o == nil || IsNil(o.MinBitrate) {
+		return nil, false
 	}
 	return o.MinBitrate, true
 }
 
 // HasMinBitrate returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) HasMinBitrate() bool {
-	if o != nil && !isNil(o.MinBitrate) {
+	if o != nil && !IsNil(o.MinBitrate) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) SetMinBitrat
 
 // GetValidAutoChannels returns the ValidAutoChannels field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetValidAutoChannels() []int32 {
-	if o == nil || isNil(o.ValidAutoChannels) {
+	if o == nil || IsNil(o.ValidAutoChannels) {
 		var ret []int32
 		return ret
 	}
@@ -155,15 +158,15 @@ func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetValidAuto
 // GetValidAutoChannelsOk returns a tuple with the ValidAutoChannels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetValidAutoChannelsOk() ([]int32, bool) {
-	if o == nil || isNil(o.ValidAutoChannels) {
-    return nil, false
+	if o == nil || IsNil(o.ValidAutoChannels) {
+		return nil, false
 	}
 	return o.ValidAutoChannels, true
 }
 
 // HasValidAutoChannels returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) HasValidAutoChannels() bool {
-	if o != nil && !isNil(o.ValidAutoChannels) {
+	if o != nil && !IsNil(o.ValidAutoChannels) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) SetValidAuto
 
 // GetAxEnabled returns the AxEnabled field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetAxEnabled() bool {
-	if o == nil || isNil(o.AxEnabled) {
+	if o == nil || IsNil(o.AxEnabled) {
 		var ret bool
 		return ret
 	}
@@ -187,15 +190,15 @@ func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetAxEnabled
 // GetAxEnabledOk returns a tuple with the AxEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetAxEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.AxEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.AxEnabled) {
+		return nil, false
 	}
 	return o.AxEnabled, true
 }
 
 // HasAxEnabled returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) HasAxEnabled() bool {
-	if o != nil && !isNil(o.AxEnabled) {
+	if o != nil && !IsNil(o.AxEnabled) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) SetAxEnabled
 
 // GetRxsop returns the Rxsop field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetRxsop() int32 {
-	if o == nil || isNil(o.Rxsop) {
+	if o == nil || IsNil(o.Rxsop) {
 		var ret int32
 		return ret
 	}
@@ -219,15 +222,15 @@ func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetRxsop() i
 // GetRxsopOk returns a tuple with the Rxsop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) GetRxsopOk() (*int32, bool) {
-	if o == nil || isNil(o.Rxsop) {
-    return nil, false
+	if o == nil || IsNil(o.Rxsop) {
+		return nil, false
 	}
 	return o.Rxsop, true
 }
 
 // HasRxsop returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) HasRxsop() bool {
-	if o != nil && !isNil(o.Rxsop) {
+	if o != nil && !IsNil(o.Rxsop) {
 		return true
 	}
 
@@ -240,26 +243,34 @@ func (o *GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) SetRxsop(v i
 }
 
 func (o GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.MaxPower) {
-		toSerialize["maxPower"] = o.MaxPower
-	}
-	if !isNil(o.MinPower) {
-		toSerialize["minPower"] = o.MinPower
-	}
-	if !isNil(o.MinBitrate) {
-		toSerialize["minBitrate"] = o.MinBitrate
-	}
-	if !isNil(o.ValidAutoChannels) {
-		toSerialize["validAutoChannels"] = o.ValidAutoChannels
-	}
-	if !isNil(o.AxEnabled) {
-		toSerialize["axEnabled"] = o.AxEnabled
-	}
-	if !isNil(o.Rxsop) {
-		toSerialize["rxsop"] = o.Rxsop
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MaxPower) {
+		toSerialize["maxPower"] = o.MaxPower
+	}
+	if !IsNil(o.MinPower) {
+		toSerialize["minPower"] = o.MinPower
+	}
+	if !IsNil(o.MinBitrate) {
+		toSerialize["minBitrate"] = o.MinBitrate
+	}
+	if !IsNil(o.ValidAutoChannels) {
+		toSerialize["validAutoChannels"] = o.ValidAutoChannels
+	}
+	if !IsNil(o.AxEnabled) {
+		toSerialize["axEnabled"] = o.AxEnabled
+	}
+	if !IsNil(o.Rxsop) {
+		toSerialize["rxsop"] = o.Rxsop
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessRfProfiles200ResponseTwoFourGhzSettings struct {

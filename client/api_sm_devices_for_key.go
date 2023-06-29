@@ -13,7 +13,7 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -114,29 +114,29 @@ func (a *SmDevicesForKeyApiService) GetNetworkPiiSmDevicesForKeyExecute(r SmDevi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/pii/smDevicesForKey"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.username != nil {
-		localVarQueryParams.Add("username", parameterToString(*r.username, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "username", r.username, "")
 	}
 	if r.email != nil {
-		localVarQueryParams.Add("email", parameterToString(*r.email, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "")
 	}
 	if r.mac != nil {
-		localVarQueryParams.Add("mac", parameterToString(*r.mac, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mac", r.mac, "")
 	}
 	if r.serial != nil {
-		localVarQueryParams.Add("serial", parameterToString(*r.serial, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "serial", r.serial, "")
 	}
 	if r.imei != nil {
-		localVarQueryParams.Add("imei", parameterToString(*r.imei, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "imei", r.imei, "")
 	}
 	if r.bluetoothMac != nil {
-		localVarQueryParams.Add("bluetoothMac", parameterToString(*r.bluetoothMac, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bluetoothMac", r.bluetoothMac, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -179,9 +179,9 @@ func (a *SmDevicesForKeyApiService) GetNetworkPiiSmDevicesForKeyExecute(r SmDevi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

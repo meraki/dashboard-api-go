@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner{}
+
 // GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner struct for GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner
 type GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner struct {
 	// Network identifier
@@ -43,7 +46,7 @@ func NewGetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInn
 
 // GetNetworkId returns the NetworkId field value if set, zero value otherwise.
 func (o *GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner) GetNetworkId() string {
-	if o == nil || isNil(o.NetworkId) {
+	if o == nil || IsNil(o.NetworkId) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkIn
 // GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner) GetNetworkIdOk() (*string, bool) {
-	if o == nil || isNil(o.NetworkId) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkId) {
+		return nil, false
 	}
 	return o.NetworkId, true
 }
 
 // HasNetworkId returns a boolean if a field has been set.
 func (o *GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner) HasNetworkId() bool {
-	if o != nil && !isNil(o.NetworkId) {
+	if o != nil && !IsNil(o.NetworkId) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkIn
 
 // GetGoodput returns the Goodput field value if set, zero value otherwise.
 func (o *GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner) GetGoodput() int32 {
-	if o == nil || isNil(o.Goodput) {
+	if o == nil || IsNil(o.Goodput) {
 		var ret int32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkIn
 // GetGoodputOk returns a tuple with the Goodput field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner) GetGoodputOk() (*int32, bool) {
-	if o == nil || isNil(o.Goodput) {
-    return nil, false
+	if o == nil || IsNil(o.Goodput) {
+		return nil, false
 	}
 	return o.Goodput, true
 }
 
 // HasGoodput returns a boolean if a field has been set.
 func (o *GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner) HasGoodput() bool {
-	if o != nil && !isNil(o.Goodput) {
+	if o != nil && !IsNil(o.Goodput) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkIn
 
 // GetResponseDuration returns the ResponseDuration field value if set, zero value otherwise.
 func (o *GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner) GetResponseDuration() int32 {
-	if o == nil || isNil(o.ResponseDuration) {
+	if o == nil || IsNil(o.ResponseDuration) {
 		var ret int32
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkIn
 // GetResponseDurationOk returns a tuple with the ResponseDuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner) GetResponseDurationOk() (*int32, bool) {
-	if o == nil || isNil(o.ResponseDuration) {
-    return nil, false
+	if o == nil || IsNil(o.ResponseDuration) {
+		return nil, false
 	}
 	return o.ResponseDuration, true
 }
 
 // HasResponseDuration returns a boolean if a field has been set.
 func (o *GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner) HasResponseDuration() bool {
-	if o != nil && !isNil(o.ResponseDuration) {
+	if o != nil && !IsNil(o.ResponseDuration) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkIn
 }
 
 func (o GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.NetworkId) {
-		toSerialize["networkId"] = o.NetworkId
-	}
-	if !isNil(o.Goodput) {
-		toSerialize["goodput"] = o.Goodput
-	}
-	if !isNil(o.ResponseDuration) {
-		toSerialize["responseDuration"] = o.ResponseDuration
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.NetworkId) {
+		toSerialize["networkId"] = o.NetworkId
+	}
+	if !IsNil(o.Goodput) {
+		toSerialize["goodput"] = o.Goodput
+	}
+	if !IsNil(o.ResponseDuration) {
+		toSerialize["responseDuration"] = o.ResponseDuration
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner struct {

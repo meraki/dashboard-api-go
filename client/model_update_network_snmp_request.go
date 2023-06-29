@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSnmpRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSnmpRequest{}
+
 // UpdateNetworkSnmpRequest struct for UpdateNetworkSnmpRequest
 type UpdateNetworkSnmpRequest struct {
 	// The type of SNMP access. Can be one of 'none' (disabled), 'community' (V1/V2c), or 'users' (V3).
@@ -43,7 +46,7 @@ func NewUpdateNetworkSnmpRequestWithDefaults() *UpdateNetworkSnmpRequest {
 
 // GetAccess returns the Access field value if set, zero value otherwise.
 func (o *UpdateNetworkSnmpRequest) GetAccess() string {
-	if o == nil || isNil(o.Access) {
+	if o == nil || IsNil(o.Access) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateNetworkSnmpRequest) GetAccess() string {
 // GetAccessOk returns a tuple with the Access field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSnmpRequest) GetAccessOk() (*string, bool) {
-	if o == nil || isNil(o.Access) {
-    return nil, false
+	if o == nil || IsNil(o.Access) {
+		return nil, false
 	}
 	return o.Access, true
 }
 
 // HasAccess returns a boolean if a field has been set.
 func (o *UpdateNetworkSnmpRequest) HasAccess() bool {
-	if o != nil && !isNil(o.Access) {
+	if o != nil && !IsNil(o.Access) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *UpdateNetworkSnmpRequest) SetAccess(v string) {
 
 // GetCommunityString returns the CommunityString field value if set, zero value otherwise.
 func (o *UpdateNetworkSnmpRequest) GetCommunityString() string {
-	if o == nil || isNil(o.CommunityString) {
+	if o == nil || IsNil(o.CommunityString) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *UpdateNetworkSnmpRequest) GetCommunityString() string {
 // GetCommunityStringOk returns a tuple with the CommunityString field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSnmpRequest) GetCommunityStringOk() (*string, bool) {
-	if o == nil || isNil(o.CommunityString) {
-    return nil, false
+	if o == nil || IsNil(o.CommunityString) {
+		return nil, false
 	}
 	return o.CommunityString, true
 }
 
 // HasCommunityString returns a boolean if a field has been set.
 func (o *UpdateNetworkSnmpRequest) HasCommunityString() bool {
-	if o != nil && !isNil(o.CommunityString) {
+	if o != nil && !IsNil(o.CommunityString) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *UpdateNetworkSnmpRequest) SetCommunityString(v string) {
 
 // GetUsers returns the Users field value if set, zero value otherwise.
 func (o *UpdateNetworkSnmpRequest) GetUsers() []UpdateNetworkSnmpRequestUsersInner {
-	if o == nil || isNil(o.Users) {
+	if o == nil || IsNil(o.Users) {
 		var ret []UpdateNetworkSnmpRequestUsersInner
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *UpdateNetworkSnmpRequest) GetUsers() []UpdateNetworkSnmpRequestUsersInn
 // GetUsersOk returns a tuple with the Users field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSnmpRequest) GetUsersOk() ([]UpdateNetworkSnmpRequestUsersInner, bool) {
-	if o == nil || isNil(o.Users) {
-    return nil, false
+	if o == nil || IsNil(o.Users) {
+		return nil, false
 	}
 	return o.Users, true
 }
 
 // HasUsers returns a boolean if a field has been set.
 func (o *UpdateNetworkSnmpRequest) HasUsers() bool {
-	if o != nil && !isNil(o.Users) {
+	if o != nil && !IsNil(o.Users) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *UpdateNetworkSnmpRequest) SetUsers(v []UpdateNetworkSnmpRequestUsersInn
 }
 
 func (o UpdateNetworkSnmpRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Access) {
-		toSerialize["access"] = o.Access
-	}
-	if !isNil(o.CommunityString) {
-		toSerialize["communityString"] = o.CommunityString
-	}
-	if !isNil(o.Users) {
-		toSerialize["users"] = o.Users
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSnmpRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Access) {
+		toSerialize["access"] = o.Access
+	}
+	if !IsNil(o.CommunityString) {
+		toSerialize["communityString"] = o.CommunityString
+	}
+	if !IsNil(o.Users) {
+		toSerialize["users"] = o.Users
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSnmpRequest struct {

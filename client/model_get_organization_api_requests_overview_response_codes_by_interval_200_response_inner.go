@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner{}
+
 // GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner struct for GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner
 type GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner struct {
 	// The start time of the access period
@@ -44,7 +47,7 @@ func NewGetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInne
 
 // GetStartTs returns the StartTs field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner) GetStartTs() time.Time {
-	if o == nil || isNil(o.StartTs) {
+	if o == nil || IsNil(o.StartTs) {
 		var ret time.Time
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInn
 // GetStartTsOk returns a tuple with the StartTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner) GetStartTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartTs) {
-    return nil, false
+	if o == nil || IsNil(o.StartTs) {
+		return nil, false
 	}
 	return o.StartTs, true
 }
 
 // HasStartTs returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner) HasStartTs() bool {
-	if o != nil && !isNil(o.StartTs) {
+	if o != nil && !IsNil(o.StartTs) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInn
 
 // GetEndTs returns the EndTs field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner) GetEndTs() time.Time {
-	if o == nil || isNil(o.EndTs) {
+	if o == nil || IsNil(o.EndTs) {
 		var ret time.Time
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInn
 // GetEndTsOk returns a tuple with the EndTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner) GetEndTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.EndTs) {
-    return nil, false
+	if o == nil || IsNil(o.EndTs) {
+		return nil, false
 	}
 	return o.EndTs, true
 }
 
 // HasEndTs returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner) HasEndTs() bool {
-	if o != nil && !isNil(o.EndTs) {
+	if o != nil && !IsNil(o.EndTs) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInn
 
 // GetCounts returns the Counts field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner) GetCounts() []GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner {
-	if o == nil || isNil(o.Counts) {
+	if o == nil || IsNil(o.Counts) {
 		var ret []GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInn
 // GetCountsOk returns a tuple with the Counts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner) GetCountsOk() ([]GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner, bool) {
-	if o == nil || isNil(o.Counts) {
-    return nil, false
+	if o == nil || IsNil(o.Counts) {
+		return nil, false
 	}
 	return o.Counts, true
 }
 
 // HasCounts returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner) HasCounts() bool {
-	if o != nil && !isNil(o.Counts) {
+	if o != nil && !IsNil(o.Counts) {
 		return true
 	}
 
@@ -139,17 +142,25 @@ func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInn
 }
 
 func (o GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.StartTs) {
-		toSerialize["startTs"] = o.StartTs
-	}
-	if !isNil(o.EndTs) {
-		toSerialize["endTs"] = o.EndTs
-	}
-	if !isNil(o.Counts) {
-		toSerialize["counts"] = o.Counts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.StartTs) {
+		toSerialize["startTs"] = o.StartTs
+	}
+	if !IsNil(o.EndTs) {
+		toSerialize["endTs"] = o.EndTs
+	}
+	if !IsNil(o.Counts) {
+		toSerialize["counts"] = o.Counts
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInner struct {

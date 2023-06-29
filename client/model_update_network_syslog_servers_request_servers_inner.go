@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSyslogServersRequestServersInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSyslogServersRequestServersInner{}
+
 // UpdateNetworkSyslogServersRequestServersInner struct for UpdateNetworkSyslogServersRequestServersInner
 type UpdateNetworkSyslogServersRequestServersInner struct {
 	// The IP address of the syslog server
@@ -58,7 +61,7 @@ func (o *UpdateNetworkSyslogServersRequestServersInner) GetHost() string {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSyslogServersRequestServersInner) GetHostOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Host, true
 }
@@ -82,7 +85,7 @@ func (o *UpdateNetworkSyslogServersRequestServersInner) GetPort() int32 {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSyslogServersRequestServersInner) GetPortOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Port, true
 }
@@ -106,7 +109,7 @@ func (o *UpdateNetworkSyslogServersRequestServersInner) GetRoles() []string {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSyslogServersRequestServersInner) GetRolesOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Roles, true
 }
@@ -117,17 +120,19 @@ func (o *UpdateNetworkSyslogServersRequestServersInner) SetRoles(v []string) {
 }
 
 func (o UpdateNetworkSyslogServersRequestServersInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["host"] = o.Host
-	}
-	if true {
-		toSerialize["port"] = o.Port
-	}
-	if true {
-		toSerialize["roles"] = o.Roles
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSyslogServersRequestServersInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["host"] = o.Host
+	toSerialize["port"] = o.Port
+	toSerialize["roles"] = o.Roles
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSyslogServersRequestServersInner struct {

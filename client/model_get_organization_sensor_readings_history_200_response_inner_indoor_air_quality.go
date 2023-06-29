@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSensorReadingsHistory200ResponseInnerIndoorAirQuality type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSensorReadingsHistory200ResponseInnerIndoorAirQuality{}
+
 // GetOrganizationSensorReadingsHistory200ResponseInnerIndoorAirQuality Reading for the 'indoorAirQuality' metric. This will only be present if the 'metric' property equals 'indoorAirQuality'.
 type GetOrganizationSensorReadingsHistory200ResponseInnerIndoorAirQuality struct {
 	// Indoor air quality score between 0 and 100.
@@ -39,7 +42,7 @@ func NewGetOrganizationSensorReadingsHistory200ResponseInnerIndoorAirQualityWith
 
 // GetScore returns the Score field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerIndoorAirQuality) GetScore() int32 {
-	if o == nil || isNil(o.Score) {
+	if o == nil || IsNil(o.Score) {
 		var ret int32
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerIndoorAirQuality) G
 // GetScoreOk returns a tuple with the Score field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerIndoorAirQuality) GetScoreOk() (*int32, bool) {
-	if o == nil || isNil(o.Score) {
-    return nil, false
+	if o == nil || IsNil(o.Score) {
+		return nil, false
 	}
 	return o.Score, true
 }
 
 // HasScore returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerIndoorAirQuality) HasScore() bool {
-	if o != nil && !isNil(o.Score) {
+	if o != nil && !IsNil(o.Score) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerIndoorAirQuality) S
 }
 
 func (o GetOrganizationSensorReadingsHistory200ResponseInnerIndoorAirQuality) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Score) {
-		toSerialize["score"] = o.Score
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSensorReadingsHistory200ResponseInnerIndoorAirQuality) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Score) {
+		toSerialize["score"] = o.Score
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSensorReadingsHistory200ResponseInnerIndoorAirQuality struct {

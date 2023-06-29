@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceCameraWirelessProfilesRequestIds type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceCameraWirelessProfilesRequestIds{}
+
 // UpdateDeviceCameraWirelessProfilesRequestIds The ids of the wireless profile to assign to the given camera
 type UpdateDeviceCameraWirelessProfilesRequestIds struct {
 	// The id of the primary wireless profile
@@ -43,7 +46,7 @@ func NewUpdateDeviceCameraWirelessProfilesRequestIdsWithDefaults() *UpdateDevice
 
 // GetPrimary returns the Primary field value if set, zero value otherwise.
 func (o *UpdateDeviceCameraWirelessProfilesRequestIds) GetPrimary() string {
-	if o == nil || isNil(o.Primary) {
+	if o == nil || IsNil(o.Primary) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateDeviceCameraWirelessProfilesRequestIds) GetPrimary() string {
 // GetPrimaryOk returns a tuple with the Primary field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCameraWirelessProfilesRequestIds) GetPrimaryOk() (*string, bool) {
-	if o == nil || isNil(o.Primary) {
-    return nil, false
+	if o == nil || IsNil(o.Primary) {
+		return nil, false
 	}
 	return o.Primary, true
 }
 
 // HasPrimary returns a boolean if a field has been set.
 func (o *UpdateDeviceCameraWirelessProfilesRequestIds) HasPrimary() bool {
-	if o != nil && !isNil(o.Primary) {
+	if o != nil && !IsNil(o.Primary) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *UpdateDeviceCameraWirelessProfilesRequestIds) SetPrimary(v string) {
 
 // GetSecondary returns the Secondary field value if set, zero value otherwise.
 func (o *UpdateDeviceCameraWirelessProfilesRequestIds) GetSecondary() string {
-	if o == nil || isNil(o.Secondary) {
+	if o == nil || IsNil(o.Secondary) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *UpdateDeviceCameraWirelessProfilesRequestIds) GetSecondary() string {
 // GetSecondaryOk returns a tuple with the Secondary field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCameraWirelessProfilesRequestIds) GetSecondaryOk() (*string, bool) {
-	if o == nil || isNil(o.Secondary) {
-    return nil, false
+	if o == nil || IsNil(o.Secondary) {
+		return nil, false
 	}
 	return o.Secondary, true
 }
 
 // HasSecondary returns a boolean if a field has been set.
 func (o *UpdateDeviceCameraWirelessProfilesRequestIds) HasSecondary() bool {
-	if o != nil && !isNil(o.Secondary) {
+	if o != nil && !IsNil(o.Secondary) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *UpdateDeviceCameraWirelessProfilesRequestIds) SetSecondary(v string) {
 
 // GetBackup returns the Backup field value if set, zero value otherwise.
 func (o *UpdateDeviceCameraWirelessProfilesRequestIds) GetBackup() string {
-	if o == nil || isNil(o.Backup) {
+	if o == nil || IsNil(o.Backup) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *UpdateDeviceCameraWirelessProfilesRequestIds) GetBackup() string {
 // GetBackupOk returns a tuple with the Backup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCameraWirelessProfilesRequestIds) GetBackupOk() (*string, bool) {
-	if o == nil || isNil(o.Backup) {
-    return nil, false
+	if o == nil || IsNil(o.Backup) {
+		return nil, false
 	}
 	return o.Backup, true
 }
 
 // HasBackup returns a boolean if a field has been set.
 func (o *UpdateDeviceCameraWirelessProfilesRequestIds) HasBackup() bool {
-	if o != nil && !isNil(o.Backup) {
+	if o != nil && !IsNil(o.Backup) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *UpdateDeviceCameraWirelessProfilesRequestIds) SetBackup(v string) {
 }
 
 func (o UpdateDeviceCameraWirelessProfilesRequestIds) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Primary) {
-		toSerialize["primary"] = o.Primary
-	}
-	if !isNil(o.Secondary) {
-		toSerialize["secondary"] = o.Secondary
-	}
-	if !isNil(o.Backup) {
-		toSerialize["backup"] = o.Backup
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceCameraWirelessProfilesRequestIds) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Primary) {
+		toSerialize["primary"] = o.Primary
+	}
+	if !IsNil(o.Secondary) {
+		toSerialize["secondary"] = o.Secondary
+	}
+	if !IsNil(o.Backup) {
+		toSerialize["backup"] = o.Backup
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceCameraWirelessProfilesRequestIds struct {

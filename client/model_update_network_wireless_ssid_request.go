@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidRequest{}
+
 // UpdateNetworkWirelessSsidRequest struct for UpdateNetworkWirelessSsidRequest
 type UpdateNetworkWirelessSsidRequest struct {
 	// The name of the SSID
@@ -144,7 +147,7 @@ func NewUpdateNetworkWirelessSsidRequestWithDefaults() *UpdateNetworkWirelessSsi
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -154,15 +157,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetName(v string) {
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -186,15 +189,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -208,7 +211,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetEnabled(v bool) {
 
 // GetAuthMode returns the AuthMode field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetAuthMode() string {
-	if o == nil || isNil(o.AuthMode) {
+	if o == nil || IsNil(o.AuthMode) {
 		var ret string
 		return ret
 	}
@@ -218,15 +221,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetAuthMode() string {
 // GetAuthModeOk returns a tuple with the AuthMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetAuthModeOk() (*string, bool) {
-	if o == nil || isNil(o.AuthMode) {
-    return nil, false
+	if o == nil || IsNil(o.AuthMode) {
+		return nil, false
 	}
 	return o.AuthMode, true
 }
 
 // HasAuthMode returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasAuthMode() bool {
-	if o != nil && !isNil(o.AuthMode) {
+	if o != nil && !IsNil(o.AuthMode) {
 		return true
 	}
 
@@ -240,7 +243,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetAuthMode(v string) {
 
 // GetEnterpriseAdminAccess returns the EnterpriseAdminAccess field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetEnterpriseAdminAccess() string {
-	if o == nil || isNil(o.EnterpriseAdminAccess) {
+	if o == nil || IsNil(o.EnterpriseAdminAccess) {
 		var ret string
 		return ret
 	}
@@ -250,15 +253,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetEnterpriseAdminAccess() string {
 // GetEnterpriseAdminAccessOk returns a tuple with the EnterpriseAdminAccess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetEnterpriseAdminAccessOk() (*string, bool) {
-	if o == nil || isNil(o.EnterpriseAdminAccess) {
-    return nil, false
+	if o == nil || IsNil(o.EnterpriseAdminAccess) {
+		return nil, false
 	}
 	return o.EnterpriseAdminAccess, true
 }
 
 // HasEnterpriseAdminAccess returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasEnterpriseAdminAccess() bool {
-	if o != nil && !isNil(o.EnterpriseAdminAccess) {
+	if o != nil && !IsNil(o.EnterpriseAdminAccess) {
 		return true
 	}
 
@@ -272,7 +275,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetEnterpriseAdminAccess(v string) {
 
 // GetEncryptionMode returns the EncryptionMode field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetEncryptionMode() string {
-	if o == nil || isNil(o.EncryptionMode) {
+	if o == nil || IsNil(o.EncryptionMode) {
 		var ret string
 		return ret
 	}
@@ -282,15 +285,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetEncryptionMode() string {
 // GetEncryptionModeOk returns a tuple with the EncryptionMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetEncryptionModeOk() (*string, bool) {
-	if o == nil || isNil(o.EncryptionMode) {
-    return nil, false
+	if o == nil || IsNil(o.EncryptionMode) {
+		return nil, false
 	}
 	return o.EncryptionMode, true
 }
 
 // HasEncryptionMode returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasEncryptionMode() bool {
-	if o != nil && !isNil(o.EncryptionMode) {
+	if o != nil && !IsNil(o.EncryptionMode) {
 		return true
 	}
 
@@ -304,7 +307,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetEncryptionMode(v string) {
 
 // GetPsk returns the Psk field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetPsk() string {
-	if o == nil || isNil(o.Psk) {
+	if o == nil || IsNil(o.Psk) {
 		var ret string
 		return ret
 	}
@@ -314,15 +317,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetPsk() string {
 // GetPskOk returns a tuple with the Psk field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetPskOk() (*string, bool) {
-	if o == nil || isNil(o.Psk) {
-    return nil, false
+	if o == nil || IsNil(o.Psk) {
+		return nil, false
 	}
 	return o.Psk, true
 }
 
 // HasPsk returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasPsk() bool {
-	if o != nil && !isNil(o.Psk) {
+	if o != nil && !IsNil(o.Psk) {
 		return true
 	}
 
@@ -336,7 +339,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetPsk(v string) {
 
 // GetWpaEncryptionMode returns the WpaEncryptionMode field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetWpaEncryptionMode() string {
-	if o == nil || isNil(o.WpaEncryptionMode) {
+	if o == nil || IsNil(o.WpaEncryptionMode) {
 		var ret string
 		return ret
 	}
@@ -346,15 +349,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetWpaEncryptionMode() string {
 // GetWpaEncryptionModeOk returns a tuple with the WpaEncryptionMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetWpaEncryptionModeOk() (*string, bool) {
-	if o == nil || isNil(o.WpaEncryptionMode) {
-    return nil, false
+	if o == nil || IsNil(o.WpaEncryptionMode) {
+		return nil, false
 	}
 	return o.WpaEncryptionMode, true
 }
 
 // HasWpaEncryptionMode returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasWpaEncryptionMode() bool {
-	if o != nil && !isNil(o.WpaEncryptionMode) {
+	if o != nil && !IsNil(o.WpaEncryptionMode) {
 		return true
 	}
 
@@ -368,7 +371,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetWpaEncryptionMode(v string) {
 
 // GetDot11w returns the Dot11w field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetDot11w() UpdateNetworkApplianceSsidRequestDot11w {
-	if o == nil || isNil(o.Dot11w) {
+	if o == nil || IsNil(o.Dot11w) {
 		var ret UpdateNetworkApplianceSsidRequestDot11w
 		return ret
 	}
@@ -378,15 +381,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetDot11w() UpdateNetworkApplianceSsi
 // GetDot11wOk returns a tuple with the Dot11w field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetDot11wOk() (*UpdateNetworkApplianceSsidRequestDot11w, bool) {
-	if o == nil || isNil(o.Dot11w) {
-    return nil, false
+	if o == nil || IsNil(o.Dot11w) {
+		return nil, false
 	}
 	return o.Dot11w, true
 }
 
 // HasDot11w returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasDot11w() bool {
-	if o != nil && !isNil(o.Dot11w) {
+	if o != nil && !IsNil(o.Dot11w) {
 		return true
 	}
 
@@ -400,7 +403,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetDot11w(v UpdateNetworkApplianceSsi
 
 // GetDot11r returns the Dot11r field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetDot11r() UpdateNetworkWirelessSsidRequestDot11r {
-	if o == nil || isNil(o.Dot11r) {
+	if o == nil || IsNil(o.Dot11r) {
 		var ret UpdateNetworkWirelessSsidRequestDot11r
 		return ret
 	}
@@ -410,15 +413,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetDot11r() UpdateNetworkWirelessSsid
 // GetDot11rOk returns a tuple with the Dot11r field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetDot11rOk() (*UpdateNetworkWirelessSsidRequestDot11r, bool) {
-	if o == nil || isNil(o.Dot11r) {
-    return nil, false
+	if o == nil || IsNil(o.Dot11r) {
+		return nil, false
 	}
 	return o.Dot11r, true
 }
 
 // HasDot11r returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasDot11r() bool {
-	if o != nil && !isNil(o.Dot11r) {
+	if o != nil && !IsNil(o.Dot11r) {
 		return true
 	}
 
@@ -432,7 +435,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetDot11r(v UpdateNetworkWirelessSsid
 
 // GetSplashPage returns the SplashPage field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetSplashPage() string {
-	if o == nil || isNil(o.SplashPage) {
+	if o == nil || IsNil(o.SplashPage) {
 		var ret string
 		return ret
 	}
@@ -442,15 +445,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetSplashPage() string {
 // GetSplashPageOk returns a tuple with the SplashPage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetSplashPageOk() (*string, bool) {
-	if o == nil || isNil(o.SplashPage) {
-    return nil, false
+	if o == nil || IsNil(o.SplashPage) {
+		return nil, false
 	}
 	return o.SplashPage, true
 }
 
 // HasSplashPage returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasSplashPage() bool {
-	if o != nil && !isNil(o.SplashPage) {
+	if o != nil && !IsNil(o.SplashPage) {
 		return true
 	}
 
@@ -464,7 +467,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetSplashPage(v string) {
 
 // GetSplashGuestSponsorDomains returns the SplashGuestSponsorDomains field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetSplashGuestSponsorDomains() []string {
-	if o == nil || isNil(o.SplashGuestSponsorDomains) {
+	if o == nil || IsNil(o.SplashGuestSponsorDomains) {
 		var ret []string
 		return ret
 	}
@@ -474,15 +477,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetSplashGuestSponsorDomains() []stri
 // GetSplashGuestSponsorDomainsOk returns a tuple with the SplashGuestSponsorDomains field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetSplashGuestSponsorDomainsOk() ([]string, bool) {
-	if o == nil || isNil(o.SplashGuestSponsorDomains) {
-    return nil, false
+	if o == nil || IsNil(o.SplashGuestSponsorDomains) {
+		return nil, false
 	}
 	return o.SplashGuestSponsorDomains, true
 }
 
 // HasSplashGuestSponsorDomains returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasSplashGuestSponsorDomains() bool {
-	if o != nil && !isNil(o.SplashGuestSponsorDomains) {
+	if o != nil && !IsNil(o.SplashGuestSponsorDomains) {
 		return true
 	}
 
@@ -496,7 +499,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetSplashGuestSponsorDomains(v []stri
 
 // GetOauth returns the Oauth field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetOauth() UpdateNetworkWirelessSsidRequestOauth {
-	if o == nil || isNil(o.Oauth) {
+	if o == nil || IsNil(o.Oauth) {
 		var ret UpdateNetworkWirelessSsidRequestOauth
 		return ret
 	}
@@ -506,15 +509,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetOauth() UpdateNetworkWirelessSsidR
 // GetOauthOk returns a tuple with the Oauth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetOauthOk() (*UpdateNetworkWirelessSsidRequestOauth, bool) {
-	if o == nil || isNil(o.Oauth) {
-    return nil, false
+	if o == nil || IsNil(o.Oauth) {
+		return nil, false
 	}
 	return o.Oauth, true
 }
 
 // HasOauth returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasOauth() bool {
-	if o != nil && !isNil(o.Oauth) {
+	if o != nil && !IsNil(o.Oauth) {
 		return true
 	}
 
@@ -528,7 +531,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetOauth(v UpdateNetworkWirelessSsidR
 
 // GetLocalRadius returns the LocalRadius field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetLocalRadius() UpdateNetworkWirelessSsidRequestLocalRadius {
-	if o == nil || isNil(o.LocalRadius) {
+	if o == nil || IsNil(o.LocalRadius) {
 		var ret UpdateNetworkWirelessSsidRequestLocalRadius
 		return ret
 	}
@@ -538,15 +541,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetLocalRadius() UpdateNetworkWireles
 // GetLocalRadiusOk returns a tuple with the LocalRadius field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetLocalRadiusOk() (*UpdateNetworkWirelessSsidRequestLocalRadius, bool) {
-	if o == nil || isNil(o.LocalRadius) {
-    return nil, false
+	if o == nil || IsNil(o.LocalRadius) {
+		return nil, false
 	}
 	return o.LocalRadius, true
 }
 
 // HasLocalRadius returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasLocalRadius() bool {
-	if o != nil && !isNil(o.LocalRadius) {
+	if o != nil && !IsNil(o.LocalRadius) {
 		return true
 	}
 
@@ -560,7 +563,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetLocalRadius(v UpdateNetworkWireles
 
 // GetLdap returns the Ldap field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetLdap() UpdateNetworkWirelessSsidRequestLdap {
-	if o == nil || isNil(o.Ldap) {
+	if o == nil || IsNil(o.Ldap) {
 		var ret UpdateNetworkWirelessSsidRequestLdap
 		return ret
 	}
@@ -570,15 +573,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetLdap() UpdateNetworkWirelessSsidRe
 // GetLdapOk returns a tuple with the Ldap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetLdapOk() (*UpdateNetworkWirelessSsidRequestLdap, bool) {
-	if o == nil || isNil(o.Ldap) {
-    return nil, false
+	if o == nil || IsNil(o.Ldap) {
+		return nil, false
 	}
 	return o.Ldap, true
 }
 
 // HasLdap returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasLdap() bool {
-	if o != nil && !isNil(o.Ldap) {
+	if o != nil && !IsNil(o.Ldap) {
 		return true
 	}
 
@@ -592,7 +595,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetLdap(v UpdateNetworkWirelessSsidRe
 
 // GetActiveDirectory returns the ActiveDirectory field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetActiveDirectory() UpdateNetworkWirelessSsidRequestActiveDirectory {
-	if o == nil || isNil(o.ActiveDirectory) {
+	if o == nil || IsNil(o.ActiveDirectory) {
 		var ret UpdateNetworkWirelessSsidRequestActiveDirectory
 		return ret
 	}
@@ -602,15 +605,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetActiveDirectory() UpdateNetworkWir
 // GetActiveDirectoryOk returns a tuple with the ActiveDirectory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetActiveDirectoryOk() (*UpdateNetworkWirelessSsidRequestActiveDirectory, bool) {
-	if o == nil || isNil(o.ActiveDirectory) {
-    return nil, false
+	if o == nil || IsNil(o.ActiveDirectory) {
+		return nil, false
 	}
 	return o.ActiveDirectory, true
 }
 
 // HasActiveDirectory returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasActiveDirectory() bool {
-	if o != nil && !isNil(o.ActiveDirectory) {
+	if o != nil && !IsNil(o.ActiveDirectory) {
 		return true
 	}
 
@@ -624,7 +627,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetActiveDirectory(v UpdateNetworkWir
 
 // GetRadiusServers returns the RadiusServers field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusServers() []UpdateNetworkWirelessSsidRequestRadiusServersInner {
-	if o == nil || isNil(o.RadiusServers) {
+	if o == nil || IsNil(o.RadiusServers) {
 		var ret []UpdateNetworkWirelessSsidRequestRadiusServersInner
 		return ret
 	}
@@ -634,15 +637,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusServers() []UpdateNetworkWir
 // GetRadiusServersOk returns a tuple with the RadiusServers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusServersOk() ([]UpdateNetworkWirelessSsidRequestRadiusServersInner, bool) {
-	if o == nil || isNil(o.RadiusServers) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusServers) {
+		return nil, false
 	}
 	return o.RadiusServers, true
 }
 
 // HasRadiusServers returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusServers() bool {
-	if o != nil && !isNil(o.RadiusServers) {
+	if o != nil && !IsNil(o.RadiusServers) {
 		return true
 	}
 
@@ -656,7 +659,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusServers(v []UpdateNetworkWir
 
 // GetRadiusProxyEnabled returns the RadiusProxyEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusProxyEnabled() bool {
-	if o == nil || isNil(o.RadiusProxyEnabled) {
+	if o == nil || IsNil(o.RadiusProxyEnabled) {
 		var ret bool
 		return ret
 	}
@@ -666,15 +669,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusProxyEnabled() bool {
 // GetRadiusProxyEnabledOk returns a tuple with the RadiusProxyEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusProxyEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.RadiusProxyEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusProxyEnabled) {
+		return nil, false
 	}
 	return o.RadiusProxyEnabled, true
 }
 
 // HasRadiusProxyEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusProxyEnabled() bool {
-	if o != nil && !isNil(o.RadiusProxyEnabled) {
+	if o != nil && !IsNil(o.RadiusProxyEnabled) {
 		return true
 	}
 
@@ -688,7 +691,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusProxyEnabled(v bool) {
 
 // GetRadiusTestingEnabled returns the RadiusTestingEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusTestingEnabled() bool {
-	if o == nil || isNil(o.RadiusTestingEnabled) {
+	if o == nil || IsNil(o.RadiusTestingEnabled) {
 		var ret bool
 		return ret
 	}
@@ -698,15 +701,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusTestingEnabled() bool {
 // GetRadiusTestingEnabledOk returns a tuple with the RadiusTestingEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusTestingEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.RadiusTestingEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusTestingEnabled) {
+		return nil, false
 	}
 	return o.RadiusTestingEnabled, true
 }
 
 // HasRadiusTestingEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusTestingEnabled() bool {
-	if o != nil && !isNil(o.RadiusTestingEnabled) {
+	if o != nil && !IsNil(o.RadiusTestingEnabled) {
 		return true
 	}
 
@@ -720,7 +723,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusTestingEnabled(v bool) {
 
 // GetRadiusCalledStationId returns the RadiusCalledStationId field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusCalledStationId() string {
-	if o == nil || isNil(o.RadiusCalledStationId) {
+	if o == nil || IsNil(o.RadiusCalledStationId) {
 		var ret string
 		return ret
 	}
@@ -730,15 +733,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusCalledStationId() string {
 // GetRadiusCalledStationIdOk returns a tuple with the RadiusCalledStationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusCalledStationIdOk() (*string, bool) {
-	if o == nil || isNil(o.RadiusCalledStationId) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusCalledStationId) {
+		return nil, false
 	}
 	return o.RadiusCalledStationId, true
 }
 
 // HasRadiusCalledStationId returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusCalledStationId() bool {
-	if o != nil && !isNil(o.RadiusCalledStationId) {
+	if o != nil && !IsNil(o.RadiusCalledStationId) {
 		return true
 	}
 
@@ -752,7 +755,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusCalledStationId(v string) {
 
 // GetRadiusAuthenticationNasId returns the RadiusAuthenticationNasId field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusAuthenticationNasId() string {
-	if o == nil || isNil(o.RadiusAuthenticationNasId) {
+	if o == nil || IsNil(o.RadiusAuthenticationNasId) {
 		var ret string
 		return ret
 	}
@@ -762,15 +765,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusAuthenticationNasId() string
 // GetRadiusAuthenticationNasIdOk returns a tuple with the RadiusAuthenticationNasId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusAuthenticationNasIdOk() (*string, bool) {
-	if o == nil || isNil(o.RadiusAuthenticationNasId) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusAuthenticationNasId) {
+		return nil, false
 	}
 	return o.RadiusAuthenticationNasId, true
 }
 
 // HasRadiusAuthenticationNasId returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusAuthenticationNasId() bool {
-	if o != nil && !isNil(o.RadiusAuthenticationNasId) {
+	if o != nil && !IsNil(o.RadiusAuthenticationNasId) {
 		return true
 	}
 
@@ -784,7 +787,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusAuthenticationNasId(v string
 
 // GetRadiusServerTimeout returns the RadiusServerTimeout field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusServerTimeout() int32 {
-	if o == nil || isNil(o.RadiusServerTimeout) {
+	if o == nil || IsNil(o.RadiusServerTimeout) {
 		var ret int32
 		return ret
 	}
@@ -794,15 +797,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusServerTimeout() int32 {
 // GetRadiusServerTimeoutOk returns a tuple with the RadiusServerTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusServerTimeoutOk() (*int32, bool) {
-	if o == nil || isNil(o.RadiusServerTimeout) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusServerTimeout) {
+		return nil, false
 	}
 	return o.RadiusServerTimeout, true
 }
 
 // HasRadiusServerTimeout returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusServerTimeout() bool {
-	if o != nil && !isNil(o.RadiusServerTimeout) {
+	if o != nil && !IsNil(o.RadiusServerTimeout) {
 		return true
 	}
 
@@ -816,7 +819,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusServerTimeout(v int32) {
 
 // GetRadiusServerAttemptsLimit returns the RadiusServerAttemptsLimit field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusServerAttemptsLimit() int32 {
-	if o == nil || isNil(o.RadiusServerAttemptsLimit) {
+	if o == nil || IsNil(o.RadiusServerAttemptsLimit) {
 		var ret int32
 		return ret
 	}
@@ -826,15 +829,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusServerAttemptsLimit() int32 
 // GetRadiusServerAttemptsLimitOk returns a tuple with the RadiusServerAttemptsLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusServerAttemptsLimitOk() (*int32, bool) {
-	if o == nil || isNil(o.RadiusServerAttemptsLimit) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusServerAttemptsLimit) {
+		return nil, false
 	}
 	return o.RadiusServerAttemptsLimit, true
 }
 
 // HasRadiusServerAttemptsLimit returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusServerAttemptsLimit() bool {
-	if o != nil && !isNil(o.RadiusServerAttemptsLimit) {
+	if o != nil && !IsNil(o.RadiusServerAttemptsLimit) {
 		return true
 	}
 
@@ -848,7 +851,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusServerAttemptsLimit(v int32)
 
 // GetRadiusFallbackEnabled returns the RadiusFallbackEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusFallbackEnabled() bool {
-	if o == nil || isNil(o.RadiusFallbackEnabled) {
+	if o == nil || IsNil(o.RadiusFallbackEnabled) {
 		var ret bool
 		return ret
 	}
@@ -858,15 +861,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusFallbackEnabled() bool {
 // GetRadiusFallbackEnabledOk returns a tuple with the RadiusFallbackEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusFallbackEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.RadiusFallbackEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusFallbackEnabled) {
+		return nil, false
 	}
 	return o.RadiusFallbackEnabled, true
 }
 
 // HasRadiusFallbackEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusFallbackEnabled() bool {
-	if o != nil && !isNil(o.RadiusFallbackEnabled) {
+	if o != nil && !IsNil(o.RadiusFallbackEnabled) {
 		return true
 	}
 
@@ -880,7 +883,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusFallbackEnabled(v bool) {
 
 // GetRadiusCoaEnabled returns the RadiusCoaEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusCoaEnabled() bool {
-	if o == nil || isNil(o.RadiusCoaEnabled) {
+	if o == nil || IsNil(o.RadiusCoaEnabled) {
 		var ret bool
 		return ret
 	}
@@ -890,15 +893,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusCoaEnabled() bool {
 // GetRadiusCoaEnabledOk returns a tuple with the RadiusCoaEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusCoaEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.RadiusCoaEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusCoaEnabled) {
+		return nil, false
 	}
 	return o.RadiusCoaEnabled, true
 }
 
 // HasRadiusCoaEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusCoaEnabled() bool {
-	if o != nil && !isNil(o.RadiusCoaEnabled) {
+	if o != nil && !IsNil(o.RadiusCoaEnabled) {
 		return true
 	}
 
@@ -912,7 +915,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusCoaEnabled(v bool) {
 
 // GetRadiusFailoverPolicy returns the RadiusFailoverPolicy field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusFailoverPolicy() string {
-	if o == nil || isNil(o.RadiusFailoverPolicy) {
+	if o == nil || IsNil(o.RadiusFailoverPolicy) {
 		var ret string
 		return ret
 	}
@@ -922,15 +925,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusFailoverPolicy() string {
 // GetRadiusFailoverPolicyOk returns a tuple with the RadiusFailoverPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusFailoverPolicyOk() (*string, bool) {
-	if o == nil || isNil(o.RadiusFailoverPolicy) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusFailoverPolicy) {
+		return nil, false
 	}
 	return o.RadiusFailoverPolicy, true
 }
 
 // HasRadiusFailoverPolicy returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusFailoverPolicy() bool {
-	if o != nil && !isNil(o.RadiusFailoverPolicy) {
+	if o != nil && !IsNil(o.RadiusFailoverPolicy) {
 		return true
 	}
 
@@ -944,7 +947,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusFailoverPolicy(v string) {
 
 // GetRadiusLoadBalancingPolicy returns the RadiusLoadBalancingPolicy field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusLoadBalancingPolicy() string {
-	if o == nil || isNil(o.RadiusLoadBalancingPolicy) {
+	if o == nil || IsNil(o.RadiusLoadBalancingPolicy) {
 		var ret string
 		return ret
 	}
@@ -954,15 +957,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusLoadBalancingPolicy() string
 // GetRadiusLoadBalancingPolicyOk returns a tuple with the RadiusLoadBalancingPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusLoadBalancingPolicyOk() (*string, bool) {
-	if o == nil || isNil(o.RadiusLoadBalancingPolicy) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusLoadBalancingPolicy) {
+		return nil, false
 	}
 	return o.RadiusLoadBalancingPolicy, true
 }
 
 // HasRadiusLoadBalancingPolicy returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusLoadBalancingPolicy() bool {
-	if o != nil && !isNil(o.RadiusLoadBalancingPolicy) {
+	if o != nil && !IsNil(o.RadiusLoadBalancingPolicy) {
 		return true
 	}
 
@@ -976,7 +979,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusLoadBalancingPolicy(v string
 
 // GetRadiusAccountingEnabled returns the RadiusAccountingEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusAccountingEnabled() bool {
-	if o == nil || isNil(o.RadiusAccountingEnabled) {
+	if o == nil || IsNil(o.RadiusAccountingEnabled) {
 		var ret bool
 		return ret
 	}
@@ -986,15 +989,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusAccountingEnabled() bool {
 // GetRadiusAccountingEnabledOk returns a tuple with the RadiusAccountingEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusAccountingEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.RadiusAccountingEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusAccountingEnabled) {
+		return nil, false
 	}
 	return o.RadiusAccountingEnabled, true
 }
 
 // HasRadiusAccountingEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusAccountingEnabled() bool {
-	if o != nil && !isNil(o.RadiusAccountingEnabled) {
+	if o != nil && !IsNil(o.RadiusAccountingEnabled) {
 		return true
 	}
 
@@ -1008,7 +1011,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusAccountingEnabled(v bool) {
 
 // GetRadiusAccountingServers returns the RadiusAccountingServers field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusAccountingServers() []UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner {
-	if o == nil || isNil(o.RadiusAccountingServers) {
+	if o == nil || IsNil(o.RadiusAccountingServers) {
 		var ret []UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner
 		return ret
 	}
@@ -1018,15 +1021,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusAccountingServers() []Update
 // GetRadiusAccountingServersOk returns a tuple with the RadiusAccountingServers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusAccountingServersOk() ([]UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner, bool) {
-	if o == nil || isNil(o.RadiusAccountingServers) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusAccountingServers) {
+		return nil, false
 	}
 	return o.RadiusAccountingServers, true
 }
 
 // HasRadiusAccountingServers returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusAccountingServers() bool {
-	if o != nil && !isNil(o.RadiusAccountingServers) {
+	if o != nil && !IsNil(o.RadiusAccountingServers) {
 		return true
 	}
 
@@ -1040,7 +1043,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusAccountingServers(v []Update
 
 // GetRadiusAccountingInterimInterval returns the RadiusAccountingInterimInterval field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusAccountingInterimInterval() int32 {
-	if o == nil || isNil(o.RadiusAccountingInterimInterval) {
+	if o == nil || IsNil(o.RadiusAccountingInterimInterval) {
 		var ret int32
 		return ret
 	}
@@ -1050,15 +1053,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusAccountingInterimInterval() 
 // GetRadiusAccountingInterimIntervalOk returns a tuple with the RadiusAccountingInterimInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusAccountingInterimIntervalOk() (*int32, bool) {
-	if o == nil || isNil(o.RadiusAccountingInterimInterval) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusAccountingInterimInterval) {
+		return nil, false
 	}
 	return o.RadiusAccountingInterimInterval, true
 }
 
 // HasRadiusAccountingInterimInterval returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusAccountingInterimInterval() bool {
-	if o != nil && !isNil(o.RadiusAccountingInterimInterval) {
+	if o != nil && !IsNil(o.RadiusAccountingInterimInterval) {
 		return true
 	}
 
@@ -1072,7 +1075,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusAccountingInterimInterval(v 
 
 // GetRadiusAttributeForGroupPolicies returns the RadiusAttributeForGroupPolicies field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusAttributeForGroupPolicies() string {
-	if o == nil || isNil(o.RadiusAttributeForGroupPolicies) {
+	if o == nil || IsNil(o.RadiusAttributeForGroupPolicies) {
 		var ret string
 		return ret
 	}
@@ -1082,15 +1085,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusAttributeForGroupPolicies() 
 // GetRadiusAttributeForGroupPoliciesOk returns a tuple with the RadiusAttributeForGroupPolicies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusAttributeForGroupPoliciesOk() (*string, bool) {
-	if o == nil || isNil(o.RadiusAttributeForGroupPolicies) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusAttributeForGroupPolicies) {
+		return nil, false
 	}
 	return o.RadiusAttributeForGroupPolicies, true
 }
 
 // HasRadiusAttributeForGroupPolicies returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusAttributeForGroupPolicies() bool {
-	if o != nil && !isNil(o.RadiusAttributeForGroupPolicies) {
+	if o != nil && !IsNil(o.RadiusAttributeForGroupPolicies) {
 		return true
 	}
 
@@ -1104,7 +1107,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusAttributeForGroupPolicies(v 
 
 // GetIpAssignmentMode returns the IpAssignmentMode field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetIpAssignmentMode() string {
-	if o == nil || isNil(o.IpAssignmentMode) {
+	if o == nil || IsNil(o.IpAssignmentMode) {
 		var ret string
 		return ret
 	}
@@ -1114,15 +1117,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetIpAssignmentMode() string {
 // GetIpAssignmentModeOk returns a tuple with the IpAssignmentMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetIpAssignmentModeOk() (*string, bool) {
-	if o == nil || isNil(o.IpAssignmentMode) {
-    return nil, false
+	if o == nil || IsNil(o.IpAssignmentMode) {
+		return nil, false
 	}
 	return o.IpAssignmentMode, true
 }
 
 // HasIpAssignmentMode returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasIpAssignmentMode() bool {
-	if o != nil && !isNil(o.IpAssignmentMode) {
+	if o != nil && !IsNil(o.IpAssignmentMode) {
 		return true
 	}
 
@@ -1136,7 +1139,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetIpAssignmentMode(v string) {
 
 // GetUseVlanTagging returns the UseVlanTagging field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetUseVlanTagging() bool {
-	if o == nil || isNil(o.UseVlanTagging) {
+	if o == nil || IsNil(o.UseVlanTagging) {
 		var ret bool
 		return ret
 	}
@@ -1146,15 +1149,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetUseVlanTagging() bool {
 // GetUseVlanTaggingOk returns a tuple with the UseVlanTagging field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetUseVlanTaggingOk() (*bool, bool) {
-	if o == nil || isNil(o.UseVlanTagging) {
-    return nil, false
+	if o == nil || IsNil(o.UseVlanTagging) {
+		return nil, false
 	}
 	return o.UseVlanTagging, true
 }
 
 // HasUseVlanTagging returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasUseVlanTagging() bool {
-	if o != nil && !isNil(o.UseVlanTagging) {
+	if o != nil && !IsNil(o.UseVlanTagging) {
 		return true
 	}
 
@@ -1168,7 +1171,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetUseVlanTagging(v bool) {
 
 // GetConcentratorNetworkId returns the ConcentratorNetworkId field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetConcentratorNetworkId() string {
-	if o == nil || isNil(o.ConcentratorNetworkId) {
+	if o == nil || IsNil(o.ConcentratorNetworkId) {
 		var ret string
 		return ret
 	}
@@ -1178,15 +1181,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetConcentratorNetworkId() string {
 // GetConcentratorNetworkIdOk returns a tuple with the ConcentratorNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetConcentratorNetworkIdOk() (*string, bool) {
-	if o == nil || isNil(o.ConcentratorNetworkId) {
-    return nil, false
+	if o == nil || IsNil(o.ConcentratorNetworkId) {
+		return nil, false
 	}
 	return o.ConcentratorNetworkId, true
 }
 
 // HasConcentratorNetworkId returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasConcentratorNetworkId() bool {
-	if o != nil && !isNil(o.ConcentratorNetworkId) {
+	if o != nil && !IsNil(o.ConcentratorNetworkId) {
 		return true
 	}
 
@@ -1200,7 +1203,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetConcentratorNetworkId(v string) {
 
 // GetSecondaryConcentratorNetworkId returns the SecondaryConcentratorNetworkId field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetSecondaryConcentratorNetworkId() string {
-	if o == nil || isNil(o.SecondaryConcentratorNetworkId) {
+	if o == nil || IsNil(o.SecondaryConcentratorNetworkId) {
 		var ret string
 		return ret
 	}
@@ -1210,15 +1213,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetSecondaryConcentratorNetworkId() s
 // GetSecondaryConcentratorNetworkIdOk returns a tuple with the SecondaryConcentratorNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetSecondaryConcentratorNetworkIdOk() (*string, bool) {
-	if o == nil || isNil(o.SecondaryConcentratorNetworkId) {
-    return nil, false
+	if o == nil || IsNil(o.SecondaryConcentratorNetworkId) {
+		return nil, false
 	}
 	return o.SecondaryConcentratorNetworkId, true
 }
 
 // HasSecondaryConcentratorNetworkId returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasSecondaryConcentratorNetworkId() bool {
-	if o != nil && !isNil(o.SecondaryConcentratorNetworkId) {
+	if o != nil && !IsNil(o.SecondaryConcentratorNetworkId) {
 		return true
 	}
 
@@ -1232,7 +1235,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetSecondaryConcentratorNetworkId(v s
 
 // GetDisassociateClientsOnVpnFailover returns the DisassociateClientsOnVpnFailover field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetDisassociateClientsOnVpnFailover() bool {
-	if o == nil || isNil(o.DisassociateClientsOnVpnFailover) {
+	if o == nil || IsNil(o.DisassociateClientsOnVpnFailover) {
 		var ret bool
 		return ret
 	}
@@ -1242,15 +1245,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetDisassociateClientsOnVpnFailover()
 // GetDisassociateClientsOnVpnFailoverOk returns a tuple with the DisassociateClientsOnVpnFailover field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetDisassociateClientsOnVpnFailoverOk() (*bool, bool) {
-	if o == nil || isNil(o.DisassociateClientsOnVpnFailover) {
-    return nil, false
+	if o == nil || IsNil(o.DisassociateClientsOnVpnFailover) {
+		return nil, false
 	}
 	return o.DisassociateClientsOnVpnFailover, true
 }
 
 // HasDisassociateClientsOnVpnFailover returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasDisassociateClientsOnVpnFailover() bool {
-	if o != nil && !isNil(o.DisassociateClientsOnVpnFailover) {
+	if o != nil && !IsNil(o.DisassociateClientsOnVpnFailover) {
 		return true
 	}
 
@@ -1264,7 +1267,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetDisassociateClientsOnVpnFailover(v
 
 // GetVlanId returns the VlanId field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetVlanId() int32 {
-	if o == nil || isNil(o.VlanId) {
+	if o == nil || IsNil(o.VlanId) {
 		var ret int32
 		return ret
 	}
@@ -1274,15 +1277,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetVlanId() int32 {
 // GetVlanIdOk returns a tuple with the VlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetVlanIdOk() (*int32, bool) {
-	if o == nil || isNil(o.VlanId) {
-    return nil, false
+	if o == nil || IsNil(o.VlanId) {
+		return nil, false
 	}
 	return o.VlanId, true
 }
 
 // HasVlanId returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasVlanId() bool {
-	if o != nil && !isNil(o.VlanId) {
+	if o != nil && !IsNil(o.VlanId) {
 		return true
 	}
 
@@ -1296,7 +1299,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetVlanId(v int32) {
 
 // GetDefaultVlanId returns the DefaultVlanId field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetDefaultVlanId() int32 {
-	if o == nil || isNil(o.DefaultVlanId) {
+	if o == nil || IsNil(o.DefaultVlanId) {
 		var ret int32
 		return ret
 	}
@@ -1306,15 +1309,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetDefaultVlanId() int32 {
 // GetDefaultVlanIdOk returns a tuple with the DefaultVlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetDefaultVlanIdOk() (*int32, bool) {
-	if o == nil || isNil(o.DefaultVlanId) {
-    return nil, false
+	if o == nil || IsNil(o.DefaultVlanId) {
+		return nil, false
 	}
 	return o.DefaultVlanId, true
 }
 
 // HasDefaultVlanId returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasDefaultVlanId() bool {
-	if o != nil && !isNil(o.DefaultVlanId) {
+	if o != nil && !IsNil(o.DefaultVlanId) {
 		return true
 	}
 
@@ -1328,7 +1331,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetDefaultVlanId(v int32) {
 
 // GetApTagsAndVlanIds returns the ApTagsAndVlanIds field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetApTagsAndVlanIds() []UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner {
-	if o == nil || isNil(o.ApTagsAndVlanIds) {
+	if o == nil || IsNil(o.ApTagsAndVlanIds) {
 		var ret []UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner
 		return ret
 	}
@@ -1338,15 +1341,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetApTagsAndVlanIds() []UpdateNetwork
 // GetApTagsAndVlanIdsOk returns a tuple with the ApTagsAndVlanIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetApTagsAndVlanIdsOk() ([]UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner, bool) {
-	if o == nil || isNil(o.ApTagsAndVlanIds) {
-    return nil, false
+	if o == nil || IsNil(o.ApTagsAndVlanIds) {
+		return nil, false
 	}
 	return o.ApTagsAndVlanIds, true
 }
 
 // HasApTagsAndVlanIds returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasApTagsAndVlanIds() bool {
-	if o != nil && !isNil(o.ApTagsAndVlanIds) {
+	if o != nil && !IsNil(o.ApTagsAndVlanIds) {
 		return true
 	}
 
@@ -1360,7 +1363,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetApTagsAndVlanIds(v []UpdateNetwork
 
 // GetWalledGardenEnabled returns the WalledGardenEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetWalledGardenEnabled() bool {
-	if o == nil || isNil(o.WalledGardenEnabled) {
+	if o == nil || IsNil(o.WalledGardenEnabled) {
 		var ret bool
 		return ret
 	}
@@ -1370,15 +1373,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetWalledGardenEnabled() bool {
 // GetWalledGardenEnabledOk returns a tuple with the WalledGardenEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetWalledGardenEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.WalledGardenEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.WalledGardenEnabled) {
+		return nil, false
 	}
 	return o.WalledGardenEnabled, true
 }
 
 // HasWalledGardenEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasWalledGardenEnabled() bool {
-	if o != nil && !isNil(o.WalledGardenEnabled) {
+	if o != nil && !IsNil(o.WalledGardenEnabled) {
 		return true
 	}
 
@@ -1392,7 +1395,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetWalledGardenEnabled(v bool) {
 
 // GetWalledGardenRanges returns the WalledGardenRanges field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetWalledGardenRanges() []string {
-	if o == nil || isNil(o.WalledGardenRanges) {
+	if o == nil || IsNil(o.WalledGardenRanges) {
 		var ret []string
 		return ret
 	}
@@ -1402,15 +1405,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetWalledGardenRanges() []string {
 // GetWalledGardenRangesOk returns a tuple with the WalledGardenRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetWalledGardenRangesOk() ([]string, bool) {
-	if o == nil || isNil(o.WalledGardenRanges) {
-    return nil, false
+	if o == nil || IsNil(o.WalledGardenRanges) {
+		return nil, false
 	}
 	return o.WalledGardenRanges, true
 }
 
 // HasWalledGardenRanges returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasWalledGardenRanges() bool {
-	if o != nil && !isNil(o.WalledGardenRanges) {
+	if o != nil && !IsNil(o.WalledGardenRanges) {
 		return true
 	}
 
@@ -1424,7 +1427,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetWalledGardenRanges(v []string) {
 
 // GetGre returns the Gre field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetGre() UpdateNetworkWirelessSsidRequestGre {
-	if o == nil || isNil(o.Gre) {
+	if o == nil || IsNil(o.Gre) {
 		var ret UpdateNetworkWirelessSsidRequestGre
 		return ret
 	}
@@ -1434,15 +1437,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetGre() UpdateNetworkWirelessSsidReq
 // GetGreOk returns a tuple with the Gre field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetGreOk() (*UpdateNetworkWirelessSsidRequestGre, bool) {
-	if o == nil || isNil(o.Gre) {
-    return nil, false
+	if o == nil || IsNil(o.Gre) {
+		return nil, false
 	}
 	return o.Gre, true
 }
 
 // HasGre returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasGre() bool {
-	if o != nil && !isNil(o.Gre) {
+	if o != nil && !IsNil(o.Gre) {
 		return true
 	}
 
@@ -1456,7 +1459,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetGre(v UpdateNetworkWirelessSsidReq
 
 // GetRadiusOverride returns the RadiusOverride field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusOverride() bool {
-	if o == nil || isNil(o.RadiusOverride) {
+	if o == nil || IsNil(o.RadiusOverride) {
 		var ret bool
 		return ret
 	}
@@ -1466,15 +1469,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusOverride() bool {
 // GetRadiusOverrideOk returns a tuple with the RadiusOverride field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusOverrideOk() (*bool, bool) {
-	if o == nil || isNil(o.RadiusOverride) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusOverride) {
+		return nil, false
 	}
 	return o.RadiusOverride, true
 }
 
 // HasRadiusOverride returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusOverride() bool {
-	if o != nil && !isNil(o.RadiusOverride) {
+	if o != nil && !IsNil(o.RadiusOverride) {
 		return true
 	}
 
@@ -1488,7 +1491,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusOverride(v bool) {
 
 // GetRadiusGuestVlanEnabled returns the RadiusGuestVlanEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusGuestVlanEnabled() bool {
-	if o == nil || isNil(o.RadiusGuestVlanEnabled) {
+	if o == nil || IsNil(o.RadiusGuestVlanEnabled) {
 		var ret bool
 		return ret
 	}
@@ -1498,15 +1501,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusGuestVlanEnabled() bool {
 // GetRadiusGuestVlanEnabledOk returns a tuple with the RadiusGuestVlanEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusGuestVlanEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.RadiusGuestVlanEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusGuestVlanEnabled) {
+		return nil, false
 	}
 	return o.RadiusGuestVlanEnabled, true
 }
 
 // HasRadiusGuestVlanEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusGuestVlanEnabled() bool {
-	if o != nil && !isNil(o.RadiusGuestVlanEnabled) {
+	if o != nil && !IsNil(o.RadiusGuestVlanEnabled) {
 		return true
 	}
 
@@ -1520,7 +1523,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusGuestVlanEnabled(v bool) {
 
 // GetRadiusGuestVlanId returns the RadiusGuestVlanId field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusGuestVlanId() int32 {
-	if o == nil || isNil(o.RadiusGuestVlanId) {
+	if o == nil || IsNil(o.RadiusGuestVlanId) {
 		var ret int32
 		return ret
 	}
@@ -1530,15 +1533,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetRadiusGuestVlanId() int32 {
 // GetRadiusGuestVlanIdOk returns a tuple with the RadiusGuestVlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetRadiusGuestVlanIdOk() (*int32, bool) {
-	if o == nil || isNil(o.RadiusGuestVlanId) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusGuestVlanId) {
+		return nil, false
 	}
 	return o.RadiusGuestVlanId, true
 }
 
 // HasRadiusGuestVlanId returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasRadiusGuestVlanId() bool {
-	if o != nil && !isNil(o.RadiusGuestVlanId) {
+	if o != nil && !IsNil(o.RadiusGuestVlanId) {
 		return true
 	}
 
@@ -1552,7 +1555,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetRadiusGuestVlanId(v int32) {
 
 // GetMinBitrate returns the MinBitrate field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetMinBitrate() float32 {
-	if o == nil || isNil(o.MinBitrate) {
+	if o == nil || IsNil(o.MinBitrate) {
 		var ret float32
 		return ret
 	}
@@ -1562,15 +1565,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetMinBitrate() float32 {
 // GetMinBitrateOk returns a tuple with the MinBitrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetMinBitrateOk() (*float32, bool) {
-	if o == nil || isNil(o.MinBitrate) {
-    return nil, false
+	if o == nil || IsNil(o.MinBitrate) {
+		return nil, false
 	}
 	return o.MinBitrate, true
 }
 
 // HasMinBitrate returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasMinBitrate() bool {
-	if o != nil && !isNil(o.MinBitrate) {
+	if o != nil && !IsNil(o.MinBitrate) {
 		return true
 	}
 
@@ -1584,7 +1587,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetMinBitrate(v float32) {
 
 // GetBandSelection returns the BandSelection field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetBandSelection() string {
-	if o == nil || isNil(o.BandSelection) {
+	if o == nil || IsNil(o.BandSelection) {
 		var ret string
 		return ret
 	}
@@ -1594,15 +1597,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetBandSelection() string {
 // GetBandSelectionOk returns a tuple with the BandSelection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetBandSelectionOk() (*string, bool) {
-	if o == nil || isNil(o.BandSelection) {
-    return nil, false
+	if o == nil || IsNil(o.BandSelection) {
+		return nil, false
 	}
 	return o.BandSelection, true
 }
 
 // HasBandSelection returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasBandSelection() bool {
-	if o != nil && !isNil(o.BandSelection) {
+	if o != nil && !IsNil(o.BandSelection) {
 		return true
 	}
 
@@ -1616,7 +1619,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetBandSelection(v string) {
 
 // GetPerClientBandwidthLimitUp returns the PerClientBandwidthLimitUp field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetPerClientBandwidthLimitUp() int32 {
-	if o == nil || isNil(o.PerClientBandwidthLimitUp) {
+	if o == nil || IsNil(o.PerClientBandwidthLimitUp) {
 		var ret int32
 		return ret
 	}
@@ -1626,15 +1629,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetPerClientBandwidthLimitUp() int32 
 // GetPerClientBandwidthLimitUpOk returns a tuple with the PerClientBandwidthLimitUp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetPerClientBandwidthLimitUpOk() (*int32, bool) {
-	if o == nil || isNil(o.PerClientBandwidthLimitUp) {
-    return nil, false
+	if o == nil || IsNil(o.PerClientBandwidthLimitUp) {
+		return nil, false
 	}
 	return o.PerClientBandwidthLimitUp, true
 }
 
 // HasPerClientBandwidthLimitUp returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasPerClientBandwidthLimitUp() bool {
-	if o != nil && !isNil(o.PerClientBandwidthLimitUp) {
+	if o != nil && !IsNil(o.PerClientBandwidthLimitUp) {
 		return true
 	}
 
@@ -1648,7 +1651,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetPerClientBandwidthLimitUp(v int32)
 
 // GetPerClientBandwidthLimitDown returns the PerClientBandwidthLimitDown field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetPerClientBandwidthLimitDown() int32 {
-	if o == nil || isNil(o.PerClientBandwidthLimitDown) {
+	if o == nil || IsNil(o.PerClientBandwidthLimitDown) {
 		var ret int32
 		return ret
 	}
@@ -1658,15 +1661,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetPerClientBandwidthLimitDown() int3
 // GetPerClientBandwidthLimitDownOk returns a tuple with the PerClientBandwidthLimitDown field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetPerClientBandwidthLimitDownOk() (*int32, bool) {
-	if o == nil || isNil(o.PerClientBandwidthLimitDown) {
-    return nil, false
+	if o == nil || IsNil(o.PerClientBandwidthLimitDown) {
+		return nil, false
 	}
 	return o.PerClientBandwidthLimitDown, true
 }
 
 // HasPerClientBandwidthLimitDown returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasPerClientBandwidthLimitDown() bool {
-	if o != nil && !isNil(o.PerClientBandwidthLimitDown) {
+	if o != nil && !IsNil(o.PerClientBandwidthLimitDown) {
 		return true
 	}
 
@@ -1680,7 +1683,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetPerClientBandwidthLimitDown(v int3
 
 // GetPerSsidBandwidthLimitUp returns the PerSsidBandwidthLimitUp field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetPerSsidBandwidthLimitUp() int32 {
-	if o == nil || isNil(o.PerSsidBandwidthLimitUp) {
+	if o == nil || IsNil(o.PerSsidBandwidthLimitUp) {
 		var ret int32
 		return ret
 	}
@@ -1690,15 +1693,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetPerSsidBandwidthLimitUp() int32 {
 // GetPerSsidBandwidthLimitUpOk returns a tuple with the PerSsidBandwidthLimitUp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetPerSsidBandwidthLimitUpOk() (*int32, bool) {
-	if o == nil || isNil(o.PerSsidBandwidthLimitUp) {
-    return nil, false
+	if o == nil || IsNil(o.PerSsidBandwidthLimitUp) {
+		return nil, false
 	}
 	return o.PerSsidBandwidthLimitUp, true
 }
 
 // HasPerSsidBandwidthLimitUp returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasPerSsidBandwidthLimitUp() bool {
-	if o != nil && !isNil(o.PerSsidBandwidthLimitUp) {
+	if o != nil && !IsNil(o.PerSsidBandwidthLimitUp) {
 		return true
 	}
 
@@ -1712,7 +1715,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetPerSsidBandwidthLimitUp(v int32) {
 
 // GetPerSsidBandwidthLimitDown returns the PerSsidBandwidthLimitDown field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetPerSsidBandwidthLimitDown() int32 {
-	if o == nil || isNil(o.PerSsidBandwidthLimitDown) {
+	if o == nil || IsNil(o.PerSsidBandwidthLimitDown) {
 		var ret int32
 		return ret
 	}
@@ -1722,15 +1725,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetPerSsidBandwidthLimitDown() int32 
 // GetPerSsidBandwidthLimitDownOk returns a tuple with the PerSsidBandwidthLimitDown field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetPerSsidBandwidthLimitDownOk() (*int32, bool) {
-	if o == nil || isNil(o.PerSsidBandwidthLimitDown) {
-    return nil, false
+	if o == nil || IsNil(o.PerSsidBandwidthLimitDown) {
+		return nil, false
 	}
 	return o.PerSsidBandwidthLimitDown, true
 }
 
 // HasPerSsidBandwidthLimitDown returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasPerSsidBandwidthLimitDown() bool {
-	if o != nil && !isNil(o.PerSsidBandwidthLimitDown) {
+	if o != nil && !IsNil(o.PerSsidBandwidthLimitDown) {
 		return true
 	}
 
@@ -1744,7 +1747,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetPerSsidBandwidthLimitDown(v int32)
 
 // GetLanIsolationEnabled returns the LanIsolationEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetLanIsolationEnabled() bool {
-	if o == nil || isNil(o.LanIsolationEnabled) {
+	if o == nil || IsNil(o.LanIsolationEnabled) {
 		var ret bool
 		return ret
 	}
@@ -1754,15 +1757,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetLanIsolationEnabled() bool {
 // GetLanIsolationEnabledOk returns a tuple with the LanIsolationEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetLanIsolationEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.LanIsolationEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.LanIsolationEnabled) {
+		return nil, false
 	}
 	return o.LanIsolationEnabled, true
 }
 
 // HasLanIsolationEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasLanIsolationEnabled() bool {
-	if o != nil && !isNil(o.LanIsolationEnabled) {
+	if o != nil && !IsNil(o.LanIsolationEnabled) {
 		return true
 	}
 
@@ -1776,7 +1779,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetLanIsolationEnabled(v bool) {
 
 // GetVisible returns the Visible field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetVisible() bool {
-	if o == nil || isNil(o.Visible) {
+	if o == nil || IsNil(o.Visible) {
 		var ret bool
 		return ret
 	}
@@ -1786,15 +1789,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetVisible() bool {
 // GetVisibleOk returns a tuple with the Visible field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetVisibleOk() (*bool, bool) {
-	if o == nil || isNil(o.Visible) {
-    return nil, false
+	if o == nil || IsNil(o.Visible) {
+		return nil, false
 	}
 	return o.Visible, true
 }
 
 // HasVisible returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasVisible() bool {
-	if o != nil && !isNil(o.Visible) {
+	if o != nil && !IsNil(o.Visible) {
 		return true
 	}
 
@@ -1808,7 +1811,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetVisible(v bool) {
 
 // GetAvailableOnAllAps returns the AvailableOnAllAps field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetAvailableOnAllAps() bool {
-	if o == nil || isNil(o.AvailableOnAllAps) {
+	if o == nil || IsNil(o.AvailableOnAllAps) {
 		var ret bool
 		return ret
 	}
@@ -1818,15 +1821,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetAvailableOnAllAps() bool {
 // GetAvailableOnAllApsOk returns a tuple with the AvailableOnAllAps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetAvailableOnAllApsOk() (*bool, bool) {
-	if o == nil || isNil(o.AvailableOnAllAps) {
-    return nil, false
+	if o == nil || IsNil(o.AvailableOnAllAps) {
+		return nil, false
 	}
 	return o.AvailableOnAllAps, true
 }
 
 // HasAvailableOnAllAps returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasAvailableOnAllAps() bool {
-	if o != nil && !isNil(o.AvailableOnAllAps) {
+	if o != nil && !IsNil(o.AvailableOnAllAps) {
 		return true
 	}
 
@@ -1840,7 +1843,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetAvailableOnAllAps(v bool) {
 
 // GetAvailabilityTags returns the AvailabilityTags field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetAvailabilityTags() []string {
-	if o == nil || isNil(o.AvailabilityTags) {
+	if o == nil || IsNil(o.AvailabilityTags) {
 		var ret []string
 		return ret
 	}
@@ -1850,15 +1853,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetAvailabilityTags() []string {
 // GetAvailabilityTagsOk returns a tuple with the AvailabilityTags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetAvailabilityTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.AvailabilityTags) {
-    return nil, false
+	if o == nil || IsNil(o.AvailabilityTags) {
+		return nil, false
 	}
 	return o.AvailabilityTags, true
 }
 
 // HasAvailabilityTags returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasAvailabilityTags() bool {
-	if o != nil && !isNil(o.AvailabilityTags) {
+	if o != nil && !IsNil(o.AvailabilityTags) {
 		return true
 	}
 
@@ -1872,7 +1875,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetAvailabilityTags(v []string) {
 
 // GetMandatoryDhcpEnabled returns the MandatoryDhcpEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetMandatoryDhcpEnabled() bool {
-	if o == nil || isNil(o.MandatoryDhcpEnabled) {
+	if o == nil || IsNil(o.MandatoryDhcpEnabled) {
 		var ret bool
 		return ret
 	}
@@ -1882,15 +1885,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetMandatoryDhcpEnabled() bool {
 // GetMandatoryDhcpEnabledOk returns a tuple with the MandatoryDhcpEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetMandatoryDhcpEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.MandatoryDhcpEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.MandatoryDhcpEnabled) {
+		return nil, false
 	}
 	return o.MandatoryDhcpEnabled, true
 }
 
 // HasMandatoryDhcpEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasMandatoryDhcpEnabled() bool {
-	if o != nil && !isNil(o.MandatoryDhcpEnabled) {
+	if o != nil && !IsNil(o.MandatoryDhcpEnabled) {
 		return true
 	}
 
@@ -1904,7 +1907,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetMandatoryDhcpEnabled(v bool) {
 
 // GetAdultContentFilteringEnabled returns the AdultContentFilteringEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetAdultContentFilteringEnabled() bool {
-	if o == nil || isNil(o.AdultContentFilteringEnabled) {
+	if o == nil || IsNil(o.AdultContentFilteringEnabled) {
 		var ret bool
 		return ret
 	}
@@ -1914,15 +1917,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetAdultContentFilteringEnabled() boo
 // GetAdultContentFilteringEnabledOk returns a tuple with the AdultContentFilteringEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetAdultContentFilteringEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.AdultContentFilteringEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.AdultContentFilteringEnabled) {
+		return nil, false
 	}
 	return o.AdultContentFilteringEnabled, true
 }
 
 // HasAdultContentFilteringEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasAdultContentFilteringEnabled() bool {
-	if o != nil && !isNil(o.AdultContentFilteringEnabled) {
+	if o != nil && !IsNil(o.AdultContentFilteringEnabled) {
 		return true
 	}
 
@@ -1936,7 +1939,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetAdultContentFilteringEnabled(v boo
 
 // GetDnsRewrite returns the DnsRewrite field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetDnsRewrite() UpdateNetworkWirelessSsidRequestDnsRewrite {
-	if o == nil || isNil(o.DnsRewrite) {
+	if o == nil || IsNil(o.DnsRewrite) {
 		var ret UpdateNetworkWirelessSsidRequestDnsRewrite
 		return ret
 	}
@@ -1946,15 +1949,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetDnsRewrite() UpdateNetworkWireless
 // GetDnsRewriteOk returns a tuple with the DnsRewrite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetDnsRewriteOk() (*UpdateNetworkWirelessSsidRequestDnsRewrite, bool) {
-	if o == nil || isNil(o.DnsRewrite) {
-    return nil, false
+	if o == nil || IsNil(o.DnsRewrite) {
+		return nil, false
 	}
 	return o.DnsRewrite, true
 }
 
 // HasDnsRewrite returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasDnsRewrite() bool {
-	if o != nil && !isNil(o.DnsRewrite) {
+	if o != nil && !IsNil(o.DnsRewrite) {
 		return true
 	}
 
@@ -1968,7 +1971,7 @@ func (o *UpdateNetworkWirelessSsidRequest) SetDnsRewrite(v UpdateNetworkWireless
 
 // GetSpeedBurst returns the SpeedBurst field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequest) GetSpeedBurst() UpdateNetworkWirelessSsidRequestSpeedBurst {
-	if o == nil || isNil(o.SpeedBurst) {
+	if o == nil || IsNil(o.SpeedBurst) {
 		var ret UpdateNetworkWirelessSsidRequestSpeedBurst
 		return ret
 	}
@@ -1978,15 +1981,15 @@ func (o *UpdateNetworkWirelessSsidRequest) GetSpeedBurst() UpdateNetworkWireless
 // GetSpeedBurstOk returns a tuple with the SpeedBurst field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequest) GetSpeedBurstOk() (*UpdateNetworkWirelessSsidRequestSpeedBurst, bool) {
-	if o == nil || isNil(o.SpeedBurst) {
-    return nil, false
+	if o == nil || IsNil(o.SpeedBurst) {
+		return nil, false
 	}
 	return o.SpeedBurst, true
 }
 
 // HasSpeedBurst returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequest) HasSpeedBurst() bool {
-	if o != nil && !isNil(o.SpeedBurst) {
+	if o != nil && !IsNil(o.SpeedBurst) {
 		return true
 	}
 
@@ -1999,182 +2002,190 @@ func (o *UpdateNetworkWirelessSsidRequest) SetSpeedBurst(v UpdateNetworkWireless
 }
 
 func (o UpdateNetworkWirelessSsidRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.AuthMode) {
-		toSerialize["authMode"] = o.AuthMode
-	}
-	if !isNil(o.EnterpriseAdminAccess) {
-		toSerialize["enterpriseAdminAccess"] = o.EnterpriseAdminAccess
-	}
-	if !isNil(o.EncryptionMode) {
-		toSerialize["encryptionMode"] = o.EncryptionMode
-	}
-	if !isNil(o.Psk) {
-		toSerialize["psk"] = o.Psk
-	}
-	if !isNil(o.WpaEncryptionMode) {
-		toSerialize["wpaEncryptionMode"] = o.WpaEncryptionMode
-	}
-	if !isNil(o.Dot11w) {
-		toSerialize["dot11w"] = o.Dot11w
-	}
-	if !isNil(o.Dot11r) {
-		toSerialize["dot11r"] = o.Dot11r
-	}
-	if !isNil(o.SplashPage) {
-		toSerialize["splashPage"] = o.SplashPage
-	}
-	if !isNil(o.SplashGuestSponsorDomains) {
-		toSerialize["splashGuestSponsorDomains"] = o.SplashGuestSponsorDomains
-	}
-	if !isNil(o.Oauth) {
-		toSerialize["oauth"] = o.Oauth
-	}
-	if !isNil(o.LocalRadius) {
-		toSerialize["localRadius"] = o.LocalRadius
-	}
-	if !isNil(o.Ldap) {
-		toSerialize["ldap"] = o.Ldap
-	}
-	if !isNil(o.ActiveDirectory) {
-		toSerialize["activeDirectory"] = o.ActiveDirectory
-	}
-	if !isNil(o.RadiusServers) {
-		toSerialize["radiusServers"] = o.RadiusServers
-	}
-	if !isNil(o.RadiusProxyEnabled) {
-		toSerialize["radiusProxyEnabled"] = o.RadiusProxyEnabled
-	}
-	if !isNil(o.RadiusTestingEnabled) {
-		toSerialize["radiusTestingEnabled"] = o.RadiusTestingEnabled
-	}
-	if !isNil(o.RadiusCalledStationId) {
-		toSerialize["radiusCalledStationId"] = o.RadiusCalledStationId
-	}
-	if !isNil(o.RadiusAuthenticationNasId) {
-		toSerialize["radiusAuthenticationNasId"] = o.RadiusAuthenticationNasId
-	}
-	if !isNil(o.RadiusServerTimeout) {
-		toSerialize["radiusServerTimeout"] = o.RadiusServerTimeout
-	}
-	if !isNil(o.RadiusServerAttemptsLimit) {
-		toSerialize["radiusServerAttemptsLimit"] = o.RadiusServerAttemptsLimit
-	}
-	if !isNil(o.RadiusFallbackEnabled) {
-		toSerialize["radiusFallbackEnabled"] = o.RadiusFallbackEnabled
-	}
-	if !isNil(o.RadiusCoaEnabled) {
-		toSerialize["radiusCoaEnabled"] = o.RadiusCoaEnabled
-	}
-	if !isNil(o.RadiusFailoverPolicy) {
-		toSerialize["radiusFailoverPolicy"] = o.RadiusFailoverPolicy
-	}
-	if !isNil(o.RadiusLoadBalancingPolicy) {
-		toSerialize["radiusLoadBalancingPolicy"] = o.RadiusLoadBalancingPolicy
-	}
-	if !isNil(o.RadiusAccountingEnabled) {
-		toSerialize["radiusAccountingEnabled"] = o.RadiusAccountingEnabled
-	}
-	if !isNil(o.RadiusAccountingServers) {
-		toSerialize["radiusAccountingServers"] = o.RadiusAccountingServers
-	}
-	if !isNil(o.RadiusAccountingInterimInterval) {
-		toSerialize["radiusAccountingInterimInterval"] = o.RadiusAccountingInterimInterval
-	}
-	if !isNil(o.RadiusAttributeForGroupPolicies) {
-		toSerialize["radiusAttributeForGroupPolicies"] = o.RadiusAttributeForGroupPolicies
-	}
-	if !isNil(o.IpAssignmentMode) {
-		toSerialize["ipAssignmentMode"] = o.IpAssignmentMode
-	}
-	if !isNil(o.UseVlanTagging) {
-		toSerialize["useVlanTagging"] = o.UseVlanTagging
-	}
-	if !isNil(o.ConcentratorNetworkId) {
-		toSerialize["concentratorNetworkId"] = o.ConcentratorNetworkId
-	}
-	if !isNil(o.SecondaryConcentratorNetworkId) {
-		toSerialize["secondaryConcentratorNetworkId"] = o.SecondaryConcentratorNetworkId
-	}
-	if !isNil(o.DisassociateClientsOnVpnFailover) {
-		toSerialize["disassociateClientsOnVpnFailover"] = o.DisassociateClientsOnVpnFailover
-	}
-	if !isNil(o.VlanId) {
-		toSerialize["vlanId"] = o.VlanId
-	}
-	if !isNil(o.DefaultVlanId) {
-		toSerialize["defaultVlanId"] = o.DefaultVlanId
-	}
-	if !isNil(o.ApTagsAndVlanIds) {
-		toSerialize["apTagsAndVlanIds"] = o.ApTagsAndVlanIds
-	}
-	if !isNil(o.WalledGardenEnabled) {
-		toSerialize["walledGardenEnabled"] = o.WalledGardenEnabled
-	}
-	if !isNil(o.WalledGardenRanges) {
-		toSerialize["walledGardenRanges"] = o.WalledGardenRanges
-	}
-	if !isNil(o.Gre) {
-		toSerialize["gre"] = o.Gre
-	}
-	if !isNil(o.RadiusOverride) {
-		toSerialize["radiusOverride"] = o.RadiusOverride
-	}
-	if !isNil(o.RadiusGuestVlanEnabled) {
-		toSerialize["radiusGuestVlanEnabled"] = o.RadiusGuestVlanEnabled
-	}
-	if !isNil(o.RadiusGuestVlanId) {
-		toSerialize["radiusGuestVlanId"] = o.RadiusGuestVlanId
-	}
-	if !isNil(o.MinBitrate) {
-		toSerialize["minBitrate"] = o.MinBitrate
-	}
-	if !isNil(o.BandSelection) {
-		toSerialize["bandSelection"] = o.BandSelection
-	}
-	if !isNil(o.PerClientBandwidthLimitUp) {
-		toSerialize["perClientBandwidthLimitUp"] = o.PerClientBandwidthLimitUp
-	}
-	if !isNil(o.PerClientBandwidthLimitDown) {
-		toSerialize["perClientBandwidthLimitDown"] = o.PerClientBandwidthLimitDown
-	}
-	if !isNil(o.PerSsidBandwidthLimitUp) {
-		toSerialize["perSsidBandwidthLimitUp"] = o.PerSsidBandwidthLimitUp
-	}
-	if !isNil(o.PerSsidBandwidthLimitDown) {
-		toSerialize["perSsidBandwidthLimitDown"] = o.PerSsidBandwidthLimitDown
-	}
-	if !isNil(o.LanIsolationEnabled) {
-		toSerialize["lanIsolationEnabled"] = o.LanIsolationEnabled
-	}
-	if !isNil(o.Visible) {
-		toSerialize["visible"] = o.Visible
-	}
-	if !isNil(o.AvailableOnAllAps) {
-		toSerialize["availableOnAllAps"] = o.AvailableOnAllAps
-	}
-	if !isNil(o.AvailabilityTags) {
-		toSerialize["availabilityTags"] = o.AvailabilityTags
-	}
-	if !isNil(o.MandatoryDhcpEnabled) {
-		toSerialize["mandatoryDhcpEnabled"] = o.MandatoryDhcpEnabled
-	}
-	if !isNil(o.AdultContentFilteringEnabled) {
-		toSerialize["adultContentFilteringEnabled"] = o.AdultContentFilteringEnabled
-	}
-	if !isNil(o.DnsRewrite) {
-		toSerialize["dnsRewrite"] = o.DnsRewrite
-	}
-	if !isNil(o.SpeedBurst) {
-		toSerialize["speedBurst"] = o.SpeedBurst
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.AuthMode) {
+		toSerialize["authMode"] = o.AuthMode
+	}
+	if !IsNil(o.EnterpriseAdminAccess) {
+		toSerialize["enterpriseAdminAccess"] = o.EnterpriseAdminAccess
+	}
+	if !IsNil(o.EncryptionMode) {
+		toSerialize["encryptionMode"] = o.EncryptionMode
+	}
+	if !IsNil(o.Psk) {
+		toSerialize["psk"] = o.Psk
+	}
+	if !IsNil(o.WpaEncryptionMode) {
+		toSerialize["wpaEncryptionMode"] = o.WpaEncryptionMode
+	}
+	if !IsNil(o.Dot11w) {
+		toSerialize["dot11w"] = o.Dot11w
+	}
+	if !IsNil(o.Dot11r) {
+		toSerialize["dot11r"] = o.Dot11r
+	}
+	if !IsNil(o.SplashPage) {
+		toSerialize["splashPage"] = o.SplashPage
+	}
+	if !IsNil(o.SplashGuestSponsorDomains) {
+		toSerialize["splashGuestSponsorDomains"] = o.SplashGuestSponsorDomains
+	}
+	if !IsNil(o.Oauth) {
+		toSerialize["oauth"] = o.Oauth
+	}
+	if !IsNil(o.LocalRadius) {
+		toSerialize["localRadius"] = o.LocalRadius
+	}
+	if !IsNil(o.Ldap) {
+		toSerialize["ldap"] = o.Ldap
+	}
+	if !IsNil(o.ActiveDirectory) {
+		toSerialize["activeDirectory"] = o.ActiveDirectory
+	}
+	if !IsNil(o.RadiusServers) {
+		toSerialize["radiusServers"] = o.RadiusServers
+	}
+	if !IsNil(o.RadiusProxyEnabled) {
+		toSerialize["radiusProxyEnabled"] = o.RadiusProxyEnabled
+	}
+	if !IsNil(o.RadiusTestingEnabled) {
+		toSerialize["radiusTestingEnabled"] = o.RadiusTestingEnabled
+	}
+	if !IsNil(o.RadiusCalledStationId) {
+		toSerialize["radiusCalledStationId"] = o.RadiusCalledStationId
+	}
+	if !IsNil(o.RadiusAuthenticationNasId) {
+		toSerialize["radiusAuthenticationNasId"] = o.RadiusAuthenticationNasId
+	}
+	if !IsNil(o.RadiusServerTimeout) {
+		toSerialize["radiusServerTimeout"] = o.RadiusServerTimeout
+	}
+	if !IsNil(o.RadiusServerAttemptsLimit) {
+		toSerialize["radiusServerAttemptsLimit"] = o.RadiusServerAttemptsLimit
+	}
+	if !IsNil(o.RadiusFallbackEnabled) {
+		toSerialize["radiusFallbackEnabled"] = o.RadiusFallbackEnabled
+	}
+	if !IsNil(o.RadiusCoaEnabled) {
+		toSerialize["radiusCoaEnabled"] = o.RadiusCoaEnabled
+	}
+	if !IsNil(o.RadiusFailoverPolicy) {
+		toSerialize["radiusFailoverPolicy"] = o.RadiusFailoverPolicy
+	}
+	if !IsNil(o.RadiusLoadBalancingPolicy) {
+		toSerialize["radiusLoadBalancingPolicy"] = o.RadiusLoadBalancingPolicy
+	}
+	if !IsNil(o.RadiusAccountingEnabled) {
+		toSerialize["radiusAccountingEnabled"] = o.RadiusAccountingEnabled
+	}
+	if !IsNil(o.RadiusAccountingServers) {
+		toSerialize["radiusAccountingServers"] = o.RadiusAccountingServers
+	}
+	if !IsNil(o.RadiusAccountingInterimInterval) {
+		toSerialize["radiusAccountingInterimInterval"] = o.RadiusAccountingInterimInterval
+	}
+	if !IsNil(o.RadiusAttributeForGroupPolicies) {
+		toSerialize["radiusAttributeForGroupPolicies"] = o.RadiusAttributeForGroupPolicies
+	}
+	if !IsNil(o.IpAssignmentMode) {
+		toSerialize["ipAssignmentMode"] = o.IpAssignmentMode
+	}
+	if !IsNil(o.UseVlanTagging) {
+		toSerialize["useVlanTagging"] = o.UseVlanTagging
+	}
+	if !IsNil(o.ConcentratorNetworkId) {
+		toSerialize["concentratorNetworkId"] = o.ConcentratorNetworkId
+	}
+	if !IsNil(o.SecondaryConcentratorNetworkId) {
+		toSerialize["secondaryConcentratorNetworkId"] = o.SecondaryConcentratorNetworkId
+	}
+	if !IsNil(o.DisassociateClientsOnVpnFailover) {
+		toSerialize["disassociateClientsOnVpnFailover"] = o.DisassociateClientsOnVpnFailover
+	}
+	if !IsNil(o.VlanId) {
+		toSerialize["vlanId"] = o.VlanId
+	}
+	if !IsNil(o.DefaultVlanId) {
+		toSerialize["defaultVlanId"] = o.DefaultVlanId
+	}
+	if !IsNil(o.ApTagsAndVlanIds) {
+		toSerialize["apTagsAndVlanIds"] = o.ApTagsAndVlanIds
+	}
+	if !IsNil(o.WalledGardenEnabled) {
+		toSerialize["walledGardenEnabled"] = o.WalledGardenEnabled
+	}
+	if !IsNil(o.WalledGardenRanges) {
+		toSerialize["walledGardenRanges"] = o.WalledGardenRanges
+	}
+	if !IsNil(o.Gre) {
+		toSerialize["gre"] = o.Gre
+	}
+	if !IsNil(o.RadiusOverride) {
+		toSerialize["radiusOverride"] = o.RadiusOverride
+	}
+	if !IsNil(o.RadiusGuestVlanEnabled) {
+		toSerialize["radiusGuestVlanEnabled"] = o.RadiusGuestVlanEnabled
+	}
+	if !IsNil(o.RadiusGuestVlanId) {
+		toSerialize["radiusGuestVlanId"] = o.RadiusGuestVlanId
+	}
+	if !IsNil(o.MinBitrate) {
+		toSerialize["minBitrate"] = o.MinBitrate
+	}
+	if !IsNil(o.BandSelection) {
+		toSerialize["bandSelection"] = o.BandSelection
+	}
+	if !IsNil(o.PerClientBandwidthLimitUp) {
+		toSerialize["perClientBandwidthLimitUp"] = o.PerClientBandwidthLimitUp
+	}
+	if !IsNil(o.PerClientBandwidthLimitDown) {
+		toSerialize["perClientBandwidthLimitDown"] = o.PerClientBandwidthLimitDown
+	}
+	if !IsNil(o.PerSsidBandwidthLimitUp) {
+		toSerialize["perSsidBandwidthLimitUp"] = o.PerSsidBandwidthLimitUp
+	}
+	if !IsNil(o.PerSsidBandwidthLimitDown) {
+		toSerialize["perSsidBandwidthLimitDown"] = o.PerSsidBandwidthLimitDown
+	}
+	if !IsNil(o.LanIsolationEnabled) {
+		toSerialize["lanIsolationEnabled"] = o.LanIsolationEnabled
+	}
+	if !IsNil(o.Visible) {
+		toSerialize["visible"] = o.Visible
+	}
+	if !IsNil(o.AvailableOnAllAps) {
+		toSerialize["availableOnAllAps"] = o.AvailableOnAllAps
+	}
+	if !IsNil(o.AvailabilityTags) {
+		toSerialize["availabilityTags"] = o.AvailabilityTags
+	}
+	if !IsNil(o.MandatoryDhcpEnabled) {
+		toSerialize["mandatoryDhcpEnabled"] = o.MandatoryDhcpEnabled
+	}
+	if !IsNil(o.AdultContentFilteringEnabled) {
+		toSerialize["adultContentFilteringEnabled"] = o.AdultContentFilteringEnabled
+	}
+	if !IsNil(o.DnsRewrite) {
+		toSerialize["dnsRewrite"] = o.DnsRewrite
+	}
+	if !IsNil(o.SpeedBurst) {
+		toSerialize["speedBurst"] = o.SpeedBurst
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidRequest struct {

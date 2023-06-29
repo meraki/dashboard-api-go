@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones{}
+
 // GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones The Staged Upgrade Milestones for the stage
 type GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones struct {
 	// Scheduled start time for the group
@@ -46,7 +49,7 @@ func NewGetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestonesWi
 
 // GetScheduledFor returns the ScheduledFor field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones) GetScheduledFor() time.Time {
-	if o == nil || isNil(o.ScheduledFor) {
+	if o == nil || IsNil(o.ScheduledFor) {
 		var ret time.Time
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones)
 // GetScheduledForOk returns a tuple with the ScheduledFor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones) GetScheduledForOk() (*time.Time, bool) {
-	if o == nil || isNil(o.ScheduledFor) {
-    return nil, false
+	if o == nil || IsNil(o.ScheduledFor) {
+		return nil, false
 	}
 	return o.ScheduledFor, true
 }
 
 // HasScheduledFor returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones) HasScheduledFor() bool {
-	if o != nil && !isNil(o.ScheduledFor) {
+	if o != nil && !IsNil(o.ScheduledFor) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones)
 
 // GetStartedAt returns the StartedAt field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones) GetStartedAt() time.Time {
-	if o == nil || isNil(o.StartedAt) {
+	if o == nil || IsNil(o.StartedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones)
 // GetStartedAtOk returns a tuple with the StartedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones) GetStartedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartedAt) {
-    return nil, false
+	if o == nil || IsNil(o.StartedAt) {
+		return nil, false
 	}
 	return o.StartedAt, true
 }
 
 // HasStartedAt returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones) HasStartedAt() bool {
-	if o != nil && !isNil(o.StartedAt) {
+	if o != nil && !IsNil(o.StartedAt) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones)
 
 // GetCompletedAt returns the CompletedAt field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones) GetCompletedAt() time.Time {
-	if o == nil || isNil(o.CompletedAt) {
+	if o == nil || IsNil(o.CompletedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones)
 // GetCompletedAtOk returns a tuple with the CompletedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones) GetCompletedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CompletedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CompletedAt) {
+		return nil, false
 	}
 	return o.CompletedAt, true
 }
 
 // HasCompletedAt returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones) HasCompletedAt() bool {
-	if o != nil && !isNil(o.CompletedAt) {
+	if o != nil && !IsNil(o.CompletedAt) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones)
 
 // GetCanceledAt returns the CanceledAt field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones) GetCanceledAt() time.Time {
-	if o == nil || isNil(o.CanceledAt) {
+	if o == nil || IsNil(o.CanceledAt) {
 		var ret time.Time
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones)
 // GetCanceledAtOk returns a tuple with the CanceledAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones) GetCanceledAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CanceledAt) {
-    return nil, false
+	if o == nil || IsNil(o.CanceledAt) {
+		return nil, false
 	}
 	return o.CanceledAt, true
 }
 
 // HasCanceledAt returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones) HasCanceledAt() bool {
-	if o != nil && !isNil(o.CanceledAt) {
+	if o != nil && !IsNil(o.CanceledAt) {
 		return true
 	}
 
@@ -173,20 +176,28 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones)
 }
 
 func (o GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ScheduledFor) {
-		toSerialize["scheduledFor"] = o.ScheduledFor
-	}
-	if !isNil(o.StartedAt) {
-		toSerialize["startedAt"] = o.StartedAt
-	}
-	if !isNil(o.CompletedAt) {
-		toSerialize["completedAt"] = o.CompletedAt
-	}
-	if !isNil(o.CanceledAt) {
-		toSerialize["canceledAt"] = o.CanceledAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ScheduledFor) {
+		toSerialize["scheduledFor"] = o.ScheduledFor
+	}
+	if !IsNil(o.StartedAt) {
+		toSerialize["startedAt"] = o.StartedAt
+	}
+	if !IsNil(o.CompletedAt) {
+		toSerialize["completedAt"] = o.CompletedAt
+	}
+	if !IsNil(o.CanceledAt) {
+		toSerialize["canceledAt"] = o.CanceledAt
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones struct {

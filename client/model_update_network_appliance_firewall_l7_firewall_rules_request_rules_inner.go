@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner{}
+
 // UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner struct for UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner
 type UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner struct {
 	// 'Deny' traffic specified by this rule
@@ -43,7 +46,7 @@ func NewUpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInnerWithDefaul
 
 // GetPolicy returns the Policy field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) GetPolicy() string {
-	if o == nil || isNil(o.Policy) {
+	if o == nil || IsNil(o.Policy) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) GetPoli
 // GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) GetPolicyOk() (*string, bool) {
-	if o == nil || isNil(o.Policy) {
-    return nil, false
+	if o == nil || IsNil(o.Policy) {
+		return nil, false
 	}
 	return o.Policy, true
 }
 
 // HasPolicy returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) HasPolicy() bool {
-	if o != nil && !isNil(o.Policy) {
+	if o != nil && !IsNil(o.Policy) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) SetPoli
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) GetType
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) SetType
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) GetValue() string {
-	if o == nil || isNil(o.Value) {
+	if o == nil || IsNil(o.Value) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) GetValu
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) GetValueOk() (*string, bool) {
-	if o == nil || isNil(o.Value) {
-    return nil, false
+	if o == nil || IsNil(o.Value) {
+		return nil, false
 	}
 	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) HasValue() bool {
-	if o != nil && !isNil(o.Value) {
+	if o != nil && !IsNil(o.Value) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) SetValu
 }
 
 func (o UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Policy) {
-		toSerialize["policy"] = o.Policy
-	}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Value) {
-		toSerialize["value"] = o.Value
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Policy) {
+		toSerialize["policy"] = o.Policy
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Value) {
+		toSerialize["value"] = o.Value
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceFirewallL7FirewallRulesRequestRulesInner struct {

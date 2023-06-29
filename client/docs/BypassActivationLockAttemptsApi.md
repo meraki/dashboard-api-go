@@ -34,6 +34,7 @@ func main() {
     createNetworkSmBypassActivationLockAttemptRequest := *openapiclient.NewCreateNetworkSmBypassActivationLockAttemptRequest([]string{"Ids_example"}) // CreateNetworkSmBypassActivationLockAttemptRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.BypassActivationLockAttemptsApi.CreateNetworkSmBypassActivationLockAttempt(context.Background(), networkId).CreateNetworkSmBypassActivationLockAttemptRequest(createNetworkSmBypassActivationLockAttemptRequest).Execute()
     if err != nil {
@@ -106,6 +107,7 @@ func main() {
     attemptId := "attemptId_example" // string | Attempt ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.BypassActivationLockAttemptsApi.GetNetworkSmBypassActivationLockAttempt(context.Background(), networkId, attemptId).Execute()
     if err != nil {

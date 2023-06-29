@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkWebhooksPayloadTemplateRequestHeadersInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkWebhooksPayloadTemplateRequestHeadersInner{}
+
 // CreateNetworkWebhooksPayloadTemplateRequestHeadersInner struct for CreateNetworkWebhooksPayloadTemplateRequestHeadersInner
 type CreateNetworkWebhooksPayloadTemplateRequestHeadersInner struct {
 	// The name of the header template
@@ -41,7 +44,7 @@ func NewCreateNetworkWebhooksPayloadTemplateRequestHeadersInnerWithDefaults() *C
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CreateNetworkWebhooksPayloadTemplateRequestHeadersInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateNetworkWebhooksPayloadTemplateRequestHeadersInner) GetName() stri
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWebhooksPayloadTemplateRequestHeadersInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateNetworkWebhooksPayloadTemplateRequestHeadersInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateNetworkWebhooksPayloadTemplateRequestHeadersInner) SetName(v stri
 
 // GetTemplate returns the Template field value if set, zero value otherwise.
 func (o *CreateNetworkWebhooksPayloadTemplateRequestHeadersInner) GetTemplate() string {
-	if o == nil || isNil(o.Template) {
+	if o == nil || IsNil(o.Template) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateNetworkWebhooksPayloadTemplateRequestHeadersInner) GetTemplate() 
 // GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWebhooksPayloadTemplateRequestHeadersInner) GetTemplateOk() (*string, bool) {
-	if o == nil || isNil(o.Template) {
-    return nil, false
+	if o == nil || IsNil(o.Template) {
+		return nil, false
 	}
 	return o.Template, true
 }
 
 // HasTemplate returns a boolean if a field has been set.
 func (o *CreateNetworkWebhooksPayloadTemplateRequestHeadersInner) HasTemplate() bool {
-	if o != nil && !isNil(o.Template) {
+	if o != nil && !IsNil(o.Template) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *CreateNetworkWebhooksPayloadTemplateRequestHeadersInner) SetTemplate(v 
 }
 
 func (o CreateNetworkWebhooksPayloadTemplateRequestHeadersInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Template) {
-		toSerialize["template"] = o.Template
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkWebhooksPayloadTemplateRequestHeadersInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Template) {
+		toSerialize["template"] = o.Template
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkWebhooksPayloadTemplateRequestHeadersInner struct {

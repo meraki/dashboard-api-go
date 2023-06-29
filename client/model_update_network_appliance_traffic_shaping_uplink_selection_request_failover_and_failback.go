@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailback type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailback{}
+
 // UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailback WAN failover and failback behavior
 type UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailback struct {
 	Immediate *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailbackImmediate `json:"immediate,omitempty"`
@@ -38,7 +41,7 @@ func NewUpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFai
 
 // GetImmediate returns the Immediate field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailback) GetImmediate() UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailbackImmediate {
-	if o == nil || isNil(o.Immediate) {
+	if o == nil || IsNil(o.Immediate) {
 		var ret UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailbackImmediate
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFa
 // GetImmediateOk returns a tuple with the Immediate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailback) GetImmediateOk() (*UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailbackImmediate, bool) {
-	if o == nil || isNil(o.Immediate) {
-    return nil, false
+	if o == nil || IsNil(o.Immediate) {
+		return nil, false
 	}
 	return o.Immediate, true
 }
 
 // HasImmediate returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailback) HasImmediate() bool {
-	if o != nil && !isNil(o.Immediate) {
+	if o != nil && !IsNil(o.Immediate) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFa
 }
 
 func (o UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailback) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Immediate) {
-		toSerialize["immediate"] = o.Immediate
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailback) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Immediate) {
+		toSerialize["immediate"] = o.Immediate
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceTrafficShapingUplinkSelectionRequestFailoverAndFailback struct {

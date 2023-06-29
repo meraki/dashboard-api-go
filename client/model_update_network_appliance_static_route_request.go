@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceStaticRouteRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceStaticRouteRequest{}
+
 // UpdateNetworkApplianceStaticRouteRequest struct for UpdateNetworkApplianceStaticRouteRequest
 type UpdateNetworkApplianceStaticRouteRequest struct {
 	// The name of the static route
@@ -51,7 +54,7 @@ func NewUpdateNetworkApplianceStaticRouteRequestWithDefaults() *UpdateNetworkApp
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceStaticRouteRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -61,15 +64,15 @@ func (o *UpdateNetworkApplianceStaticRouteRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *UpdateNetworkApplianceStaticRouteRequest) SetName(v string) {
 
 // GetSubnet returns the Subnet field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceStaticRouteRequest) GetSubnet() string {
-	if o == nil || isNil(o.Subnet) {
+	if o == nil || IsNil(o.Subnet) {
 		var ret string
 		return ret
 	}
@@ -93,15 +96,15 @@ func (o *UpdateNetworkApplianceStaticRouteRequest) GetSubnet() string {
 // GetSubnetOk returns a tuple with the Subnet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequest) GetSubnetOk() (*string, bool) {
-	if o == nil || isNil(o.Subnet) {
-    return nil, false
+	if o == nil || IsNil(o.Subnet) {
+		return nil, false
 	}
 	return o.Subnet, true
 }
 
 // HasSubnet returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequest) HasSubnet() bool {
-	if o != nil && !isNil(o.Subnet) {
+	if o != nil && !IsNil(o.Subnet) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *UpdateNetworkApplianceStaticRouteRequest) SetSubnet(v string) {
 
 // GetGatewayIp returns the GatewayIp field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceStaticRouteRequest) GetGatewayIp() string {
-	if o == nil || isNil(o.GatewayIp) {
+	if o == nil || IsNil(o.GatewayIp) {
 		var ret string
 		return ret
 	}
@@ -125,15 +128,15 @@ func (o *UpdateNetworkApplianceStaticRouteRequest) GetGatewayIp() string {
 // GetGatewayIpOk returns a tuple with the GatewayIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequest) GetGatewayIpOk() (*string, bool) {
-	if o == nil || isNil(o.GatewayIp) {
-    return nil, false
+	if o == nil || IsNil(o.GatewayIp) {
+		return nil, false
 	}
 	return o.GatewayIp, true
 }
 
 // HasGatewayIp returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequest) HasGatewayIp() bool {
-	if o != nil && !isNil(o.GatewayIp) {
+	if o != nil && !IsNil(o.GatewayIp) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *UpdateNetworkApplianceStaticRouteRequest) SetGatewayIp(v string) {
 
 // GetGatewayVlanId returns the GatewayVlanId field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceStaticRouteRequest) GetGatewayVlanId() string {
-	if o == nil || isNil(o.GatewayVlanId) {
+	if o == nil || IsNil(o.GatewayVlanId) {
 		var ret string
 		return ret
 	}
@@ -157,15 +160,15 @@ func (o *UpdateNetworkApplianceStaticRouteRequest) GetGatewayVlanId() string {
 // GetGatewayVlanIdOk returns a tuple with the GatewayVlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequest) GetGatewayVlanIdOk() (*string, bool) {
-	if o == nil || isNil(o.GatewayVlanId) {
-    return nil, false
+	if o == nil || IsNil(o.GatewayVlanId) {
+		return nil, false
 	}
 	return o.GatewayVlanId, true
 }
 
 // HasGatewayVlanId returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequest) HasGatewayVlanId() bool {
-	if o != nil && !isNil(o.GatewayVlanId) {
+	if o != nil && !IsNil(o.GatewayVlanId) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *UpdateNetworkApplianceStaticRouteRequest) SetGatewayVlanId(v string) {
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceStaticRouteRequest) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -189,15 +192,15 @@ func (o *UpdateNetworkApplianceStaticRouteRequest) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequest) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequest) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *UpdateNetworkApplianceStaticRouteRequest) SetEnabled(v bool) {
 
 // GetFixedIpAssignments returns the FixedIpAssignments field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceStaticRouteRequest) GetFixedIpAssignments() map[string]interface{} {
-	if o == nil || isNil(o.FixedIpAssignments) {
+	if o == nil || IsNil(o.FixedIpAssignments) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -221,15 +224,15 @@ func (o *UpdateNetworkApplianceStaticRouteRequest) GetFixedIpAssignments() map[s
 // GetFixedIpAssignmentsOk returns a tuple with the FixedIpAssignments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequest) GetFixedIpAssignmentsOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.FixedIpAssignments) {
-    return map[string]interface{}{}, false
+	if o == nil || IsNil(o.FixedIpAssignments) {
+		return map[string]interface{}{}, false
 	}
 	return o.FixedIpAssignments, true
 }
 
 // HasFixedIpAssignments returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequest) HasFixedIpAssignments() bool {
-	if o != nil && !isNil(o.FixedIpAssignments) {
+	if o != nil && !IsNil(o.FixedIpAssignments) {
 		return true
 	}
 
@@ -243,7 +246,7 @@ func (o *UpdateNetworkApplianceStaticRouteRequest) SetFixedIpAssignments(v map[s
 
 // GetReservedIpRanges returns the ReservedIpRanges field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceStaticRouteRequest) GetReservedIpRanges() []UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner {
-	if o == nil || isNil(o.ReservedIpRanges) {
+	if o == nil || IsNil(o.ReservedIpRanges) {
 		var ret []UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner
 		return ret
 	}
@@ -253,15 +256,15 @@ func (o *UpdateNetworkApplianceStaticRouteRequest) GetReservedIpRanges() []Updat
 // GetReservedIpRangesOk returns a tuple with the ReservedIpRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequest) GetReservedIpRangesOk() ([]UpdateNetworkApplianceStaticRouteRequestReservedIpRangesInner, bool) {
-	if o == nil || isNil(o.ReservedIpRanges) {
-    return nil, false
+	if o == nil || IsNil(o.ReservedIpRanges) {
+		return nil, false
 	}
 	return o.ReservedIpRanges, true
 }
 
 // HasReservedIpRanges returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceStaticRouteRequest) HasReservedIpRanges() bool {
-	if o != nil && !isNil(o.ReservedIpRanges) {
+	if o != nil && !IsNil(o.ReservedIpRanges) {
 		return true
 	}
 
@@ -274,29 +277,37 @@ func (o *UpdateNetworkApplianceStaticRouteRequest) SetReservedIpRanges(v []Updat
 }
 
 func (o UpdateNetworkApplianceStaticRouteRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Subnet) {
-		toSerialize["subnet"] = o.Subnet
-	}
-	if !isNil(o.GatewayIp) {
-		toSerialize["gatewayIp"] = o.GatewayIp
-	}
-	if !isNil(o.GatewayVlanId) {
-		toSerialize["gatewayVlanId"] = o.GatewayVlanId
-	}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.FixedIpAssignments) {
-		toSerialize["fixedIpAssignments"] = o.FixedIpAssignments
-	}
-	if !isNil(o.ReservedIpRanges) {
-		toSerialize["reservedIpRanges"] = o.ReservedIpRanges
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceStaticRouteRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Subnet) {
+		toSerialize["subnet"] = o.Subnet
+	}
+	if !IsNil(o.GatewayIp) {
+		toSerialize["gatewayIp"] = o.GatewayIp
+	}
+	if !IsNil(o.GatewayVlanId) {
+		toSerialize["gatewayVlanId"] = o.GatewayVlanId
+	}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.FixedIpAssignments) {
+		toSerialize["fixedIpAssignments"] = o.FixedIpAssignments
+	}
+	if !IsNil(o.ReservedIpRanges) {
+		toSerialize["reservedIpRanges"] = o.ReservedIpRanges
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceStaticRouteRequest struct {

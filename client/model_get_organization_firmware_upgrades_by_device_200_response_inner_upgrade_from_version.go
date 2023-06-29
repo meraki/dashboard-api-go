@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion{}
+
 // GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion The initial version of the device
 type GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion struct {
 	// ID of the initial firmware version
@@ -45,7 +48,7 @@ func NewGetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersio
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersi
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersi
 
 // GetShortName returns the ShortName field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion) GetShortName() string {
-	if o == nil || isNil(o.ShortName) {
+	if o == nil || IsNil(o.ShortName) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersi
 // GetShortNameOk returns a tuple with the ShortName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion) GetShortNameOk() (*string, bool) {
-	if o == nil || isNil(o.ShortName) {
-    return nil, false
+	if o == nil || IsNil(o.ShortName) {
+		return nil, false
 	}
 	return o.ShortName, true
 }
 
 // HasShortName returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion) HasShortName() bool {
-	if o != nil && !isNil(o.ShortName) {
+	if o != nil && !IsNil(o.ShortName) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersi
 
 // GetReleaseType returns the ReleaseType field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion) GetReleaseType() string {
-	if o == nil || isNil(o.ReleaseType) {
+	if o == nil || IsNil(o.ReleaseType) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersi
 // GetReleaseTypeOk returns a tuple with the ReleaseType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion) GetReleaseTypeOk() (*string, bool) {
-	if o == nil || isNil(o.ReleaseType) {
-    return nil, false
+	if o == nil || IsNil(o.ReleaseType) {
+		return nil, false
 	}
 	return o.ReleaseType, true
 }
 
 // HasReleaseType returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion) HasReleaseType() bool {
-	if o != nil && !isNil(o.ReleaseType) {
+	if o != nil && !IsNil(o.ReleaseType) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersi
 
 // GetReleaseDate returns the ReleaseDate field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion) GetReleaseDate() string {
-	if o == nil || isNil(o.ReleaseDate) {
+	if o == nil || IsNil(o.ReleaseDate) {
 		var ret string
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersi
 // GetReleaseDateOk returns a tuple with the ReleaseDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion) GetReleaseDateOk() (*string, bool) {
-	if o == nil || isNil(o.ReleaseDate) {
-    return nil, false
+	if o == nil || IsNil(o.ReleaseDate) {
+		return nil, false
 	}
 	return o.ReleaseDate, true
 }
 
 // HasReleaseDate returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion) HasReleaseDate() bool {
-	if o != nil && !isNil(o.ReleaseDate) {
+	if o != nil && !IsNil(o.ReleaseDate) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersi
 }
 
 func (o GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.ShortName) {
-		toSerialize["shortName"] = o.ShortName
-	}
-	if !isNil(o.ReleaseType) {
-		toSerialize["releaseType"] = o.ReleaseType
-	}
-	if !isNil(o.ReleaseDate) {
-		toSerialize["releaseDate"] = o.ReleaseDate
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.ShortName) {
+		toSerialize["shortName"] = o.ShortName
+	}
+	if !IsNil(o.ReleaseType) {
+		toSerialize["releaseType"] = o.ReleaseType
+	}
+	if !IsNil(o.ReleaseDate) {
+		toSerialize["releaseDate"] = o.ReleaseDate
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeFromVersion struct {

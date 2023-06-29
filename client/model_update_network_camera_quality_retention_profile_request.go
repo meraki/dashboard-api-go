@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkCameraQualityRetentionProfileRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkCameraQualityRetentionProfileRequest{}
+
 // UpdateNetworkCameraQualityRetentionProfileRequest struct for UpdateNetworkCameraQualityRetentionProfileRequest
 type UpdateNetworkCameraQualityRetentionProfileRequest struct {
 	// The name of the new profile. Must be unique.
@@ -54,7 +57,7 @@ func NewUpdateNetworkCameraQualityRetentionProfileRequestWithDefaults() *UpdateN
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -64,15 +67,15 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -86,7 +89,7 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) SetName(v string) {
 
 // GetMotionBasedRetentionEnabled returns the MotionBasedRetentionEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetMotionBasedRetentionEnabled() bool {
-	if o == nil || isNil(o.MotionBasedRetentionEnabled) {
+	if o == nil || IsNil(o.MotionBasedRetentionEnabled) {
 		var ret bool
 		return ret
 	}
@@ -96,15 +99,15 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetMotionBasedRetent
 // GetMotionBasedRetentionEnabledOk returns a tuple with the MotionBasedRetentionEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetMotionBasedRetentionEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.MotionBasedRetentionEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.MotionBasedRetentionEnabled) {
+		return nil, false
 	}
 	return o.MotionBasedRetentionEnabled, true
 }
 
 // HasMotionBasedRetentionEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) HasMotionBasedRetentionEnabled() bool {
-	if o != nil && !isNil(o.MotionBasedRetentionEnabled) {
+	if o != nil && !IsNil(o.MotionBasedRetentionEnabled) {
 		return true
 	}
 
@@ -118,7 +121,7 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) SetMotionBasedRetent
 
 // GetRestrictedBandwidthModeEnabled returns the RestrictedBandwidthModeEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetRestrictedBandwidthModeEnabled() bool {
-	if o == nil || isNil(o.RestrictedBandwidthModeEnabled) {
+	if o == nil || IsNil(o.RestrictedBandwidthModeEnabled) {
 		var ret bool
 		return ret
 	}
@@ -128,15 +131,15 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetRestrictedBandwid
 // GetRestrictedBandwidthModeEnabledOk returns a tuple with the RestrictedBandwidthModeEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetRestrictedBandwidthModeEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.RestrictedBandwidthModeEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.RestrictedBandwidthModeEnabled) {
+		return nil, false
 	}
 	return o.RestrictedBandwidthModeEnabled, true
 }
 
 // HasRestrictedBandwidthModeEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) HasRestrictedBandwidthModeEnabled() bool {
-	if o != nil && !isNil(o.RestrictedBandwidthModeEnabled) {
+	if o != nil && !IsNil(o.RestrictedBandwidthModeEnabled) {
 		return true
 	}
 
@@ -150,7 +153,7 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) SetRestrictedBandwid
 
 // GetAudioRecordingEnabled returns the AudioRecordingEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetAudioRecordingEnabled() bool {
-	if o == nil || isNil(o.AudioRecordingEnabled) {
+	if o == nil || IsNil(o.AudioRecordingEnabled) {
 		var ret bool
 		return ret
 	}
@@ -160,15 +163,15 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetAudioRecordingEna
 // GetAudioRecordingEnabledOk returns a tuple with the AudioRecordingEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetAudioRecordingEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.AudioRecordingEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.AudioRecordingEnabled) {
+		return nil, false
 	}
 	return o.AudioRecordingEnabled, true
 }
 
 // HasAudioRecordingEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) HasAudioRecordingEnabled() bool {
-	if o != nil && !isNil(o.AudioRecordingEnabled) {
+	if o != nil && !IsNil(o.AudioRecordingEnabled) {
 		return true
 	}
 
@@ -182,7 +185,7 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) SetAudioRecordingEna
 
 // GetCloudArchiveEnabled returns the CloudArchiveEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetCloudArchiveEnabled() bool {
-	if o == nil || isNil(o.CloudArchiveEnabled) {
+	if o == nil || IsNil(o.CloudArchiveEnabled) {
 		var ret bool
 		return ret
 	}
@@ -192,15 +195,15 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetCloudArchiveEnabl
 // GetCloudArchiveEnabledOk returns a tuple with the CloudArchiveEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetCloudArchiveEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.CloudArchiveEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.CloudArchiveEnabled) {
+		return nil, false
 	}
 	return o.CloudArchiveEnabled, true
 }
 
 // HasCloudArchiveEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) HasCloudArchiveEnabled() bool {
-	if o != nil && !isNil(o.CloudArchiveEnabled) {
+	if o != nil && !IsNil(o.CloudArchiveEnabled) {
 		return true
 	}
 
@@ -214,7 +217,7 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) SetCloudArchiveEnabl
 
 // GetMotionDetectorVersion returns the MotionDetectorVersion field value if set, zero value otherwise.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetMotionDetectorVersion() int32 {
-	if o == nil || isNil(o.MotionDetectorVersion) {
+	if o == nil || IsNil(o.MotionDetectorVersion) {
 		var ret int32
 		return ret
 	}
@@ -224,15 +227,15 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetMotionDetectorVer
 // GetMotionDetectorVersionOk returns a tuple with the MotionDetectorVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetMotionDetectorVersionOk() (*int32, bool) {
-	if o == nil || isNil(o.MotionDetectorVersion) {
-    return nil, false
+	if o == nil || IsNil(o.MotionDetectorVersion) {
+		return nil, false
 	}
 	return o.MotionDetectorVersion, true
 }
 
 // HasMotionDetectorVersion returns a boolean if a field has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) HasMotionDetectorVersion() bool {
-	if o != nil && !isNil(o.MotionDetectorVersion) {
+	if o != nil && !IsNil(o.MotionDetectorVersion) {
 		return true
 	}
 
@@ -246,7 +249,7 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) SetMotionDetectorVer
 
 // GetScheduleId returns the ScheduleId field value if set, zero value otherwise.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetScheduleId() string {
-	if o == nil || isNil(o.ScheduleId) {
+	if o == nil || IsNil(o.ScheduleId) {
 		var ret string
 		return ret
 	}
@@ -256,15 +259,15 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetScheduleId() stri
 // GetScheduleIdOk returns a tuple with the ScheduleId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetScheduleIdOk() (*string, bool) {
-	if o == nil || isNil(o.ScheduleId) {
-    return nil, false
+	if o == nil || IsNil(o.ScheduleId) {
+		return nil, false
 	}
 	return o.ScheduleId, true
 }
 
 // HasScheduleId returns a boolean if a field has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) HasScheduleId() bool {
-	if o != nil && !isNil(o.ScheduleId) {
+	if o != nil && !IsNil(o.ScheduleId) {
 		return true
 	}
 
@@ -278,7 +281,7 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) SetScheduleId(v stri
 
 // GetMaxRetentionDays returns the MaxRetentionDays field value if set, zero value otherwise.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetMaxRetentionDays() int32 {
-	if o == nil || isNil(o.MaxRetentionDays) {
+	if o == nil || IsNil(o.MaxRetentionDays) {
 		var ret int32
 		return ret
 	}
@@ -288,15 +291,15 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetMaxRetentionDays(
 // GetMaxRetentionDaysOk returns a tuple with the MaxRetentionDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetMaxRetentionDaysOk() (*int32, bool) {
-	if o == nil || isNil(o.MaxRetentionDays) {
-    return nil, false
+	if o == nil || IsNil(o.MaxRetentionDays) {
+		return nil, false
 	}
 	return o.MaxRetentionDays, true
 }
 
 // HasMaxRetentionDays returns a boolean if a field has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) HasMaxRetentionDays() bool {
-	if o != nil && !isNil(o.MaxRetentionDays) {
+	if o != nil && !IsNil(o.MaxRetentionDays) {
 		return true
 	}
 
@@ -310,7 +313,7 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) SetMaxRetentionDays(
 
 // GetVideoSettings returns the VideoSettings field value if set, zero value otherwise.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetVideoSettings() CreateNetworkCameraQualityRetentionProfileRequestVideoSettings {
-	if o == nil || isNil(o.VideoSettings) {
+	if o == nil || IsNil(o.VideoSettings) {
 		var ret CreateNetworkCameraQualityRetentionProfileRequestVideoSettings
 		return ret
 	}
@@ -320,15 +323,15 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetVideoSettings() C
 // GetVideoSettingsOk returns a tuple with the VideoSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) GetVideoSettingsOk() (*CreateNetworkCameraQualityRetentionProfileRequestVideoSettings, bool) {
-	if o == nil || isNil(o.VideoSettings) {
-    return nil, false
+	if o == nil || IsNil(o.VideoSettings) {
+		return nil, false
 	}
 	return o.VideoSettings, true
 }
 
 // HasVideoSettings returns a boolean if a field has been set.
 func (o *UpdateNetworkCameraQualityRetentionProfileRequest) HasVideoSettings() bool {
-	if o != nil && !isNil(o.VideoSettings) {
+	if o != nil && !IsNil(o.VideoSettings) {
 		return true
 	}
 
@@ -341,35 +344,43 @@ func (o *UpdateNetworkCameraQualityRetentionProfileRequest) SetVideoSettings(v C
 }
 
 func (o UpdateNetworkCameraQualityRetentionProfileRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.MotionBasedRetentionEnabled) {
-		toSerialize["motionBasedRetentionEnabled"] = o.MotionBasedRetentionEnabled
-	}
-	if !isNil(o.RestrictedBandwidthModeEnabled) {
-		toSerialize["restrictedBandwidthModeEnabled"] = o.RestrictedBandwidthModeEnabled
-	}
-	if !isNil(o.AudioRecordingEnabled) {
-		toSerialize["audioRecordingEnabled"] = o.AudioRecordingEnabled
-	}
-	if !isNil(o.CloudArchiveEnabled) {
-		toSerialize["cloudArchiveEnabled"] = o.CloudArchiveEnabled
-	}
-	if !isNil(o.MotionDetectorVersion) {
-		toSerialize["motionDetectorVersion"] = o.MotionDetectorVersion
-	}
-	if !isNil(o.ScheduleId) {
-		toSerialize["scheduleId"] = o.ScheduleId
-	}
-	if !isNil(o.MaxRetentionDays) {
-		toSerialize["maxRetentionDays"] = o.MaxRetentionDays
-	}
-	if !isNil(o.VideoSettings) {
-		toSerialize["videoSettings"] = o.VideoSettings
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkCameraQualityRetentionProfileRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.MotionBasedRetentionEnabled) {
+		toSerialize["motionBasedRetentionEnabled"] = o.MotionBasedRetentionEnabled
+	}
+	if !IsNil(o.RestrictedBandwidthModeEnabled) {
+		toSerialize["restrictedBandwidthModeEnabled"] = o.RestrictedBandwidthModeEnabled
+	}
+	if !IsNil(o.AudioRecordingEnabled) {
+		toSerialize["audioRecordingEnabled"] = o.AudioRecordingEnabled
+	}
+	if !IsNil(o.CloudArchiveEnabled) {
+		toSerialize["cloudArchiveEnabled"] = o.CloudArchiveEnabled
+	}
+	if !IsNil(o.MotionDetectorVersion) {
+		toSerialize["motionDetectorVersion"] = o.MotionDetectorVersion
+	}
+	if !IsNil(o.ScheduleId) {
+		toSerialize["scheduleId"] = o.ScheduleId
+	}
+	if !IsNil(o.MaxRetentionDays) {
+		toSerialize["maxRetentionDays"] = o.MaxRetentionDays
+	}
+	if !IsNil(o.VideoSettings) {
+		toSerialize["videoSettings"] = o.VideoSettings
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkCameraQualityRetentionProfileRequest struct {

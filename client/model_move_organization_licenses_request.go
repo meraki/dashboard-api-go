@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MoveOrganizationLicensesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MoveOrganizationLicensesRequest{}
+
 // MoveOrganizationLicensesRequest struct for MoveOrganizationLicensesRequest
 type MoveOrganizationLicensesRequest struct {
 	// The ID of the organization to move the licenses to
@@ -55,7 +58,7 @@ func (o *MoveOrganizationLicensesRequest) GetDestOrganizationId() string {
 // and a boolean to check if the value has been set.
 func (o *MoveOrganizationLicensesRequest) GetDestOrganizationIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.DestOrganizationId, true
 }
@@ -79,7 +82,7 @@ func (o *MoveOrganizationLicensesRequest) GetLicenseIds() []string {
 // and a boolean to check if the value has been set.
 func (o *MoveOrganizationLicensesRequest) GetLicenseIdsOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.LicenseIds, true
 }
@@ -90,14 +93,18 @@ func (o *MoveOrganizationLicensesRequest) SetLicenseIds(v []string) {
 }
 
 func (o MoveOrganizationLicensesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["destOrganizationId"] = o.DestOrganizationId
-	}
-	if true {
-		toSerialize["licenseIds"] = o.LicenseIds
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MoveOrganizationLicensesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["destOrganizationId"] = o.DestOrganizationId
+	toSerialize["licenseIds"] = o.LicenseIds
+	return toSerialize, nil
 }
 
 type NullableMoveOrganizationLicensesRequest struct {

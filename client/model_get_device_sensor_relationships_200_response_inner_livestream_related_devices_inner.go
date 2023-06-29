@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner{}
+
 // GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner struct for GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner
 type GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner struct {
 	// The serial of the related device
@@ -41,7 +44,7 @@ func NewGetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInne
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInn
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInn
 
 // GetProductType returns the ProductType field value if set, zero value otherwise.
 func (o *GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner) GetProductType() string {
-	if o == nil || isNil(o.ProductType) {
+	if o == nil || IsNil(o.ProductType) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInn
 // GetProductTypeOk returns a tuple with the ProductType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner) GetProductTypeOk() (*string, bool) {
-	if o == nil || isNil(o.ProductType) {
-    return nil, false
+	if o == nil || IsNil(o.ProductType) {
+		return nil, false
 	}
 	return o.ProductType, true
 }
 
 // HasProductType returns a boolean if a field has been set.
 func (o *GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner) HasProductType() bool {
-	if o != nil && !isNil(o.ProductType) {
+	if o != nil && !IsNil(o.ProductType) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInn
 }
 
 func (o GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.ProductType) {
-		toSerialize["productType"] = o.ProductType
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.ProductType) {
+		toSerialize["productType"] = o.ProductType
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner struct {

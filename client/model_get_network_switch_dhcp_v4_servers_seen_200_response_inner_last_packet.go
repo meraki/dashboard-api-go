@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket{}
+
 // GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket Last packet the server received.
 type GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket struct {
 	Source *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource `json:"source,omitempty"`
@@ -45,7 +48,7 @@ func NewGetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketWithDefaults(
 
 // GetSource returns the Source field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetSource() GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource {
-	if o == nil || isNil(o.Source) {
+	if o == nil || IsNil(o.Source) {
 		var ret GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetSource(
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetSourceOk() (*GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource, bool) {
-	if o == nil || isNil(o.Source) {
-    return nil, false
+	if o == nil || IsNil(o.Source) {
+		return nil, false
 	}
 	return o.Source, true
 }
 
 // HasSource returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) HasSource() bool {
-	if o != nil && !isNil(o.Source) {
+	if o != nil && !IsNil(o.Source) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) SetSource(
 
 // GetDestination returns the Destination field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetDestination() GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketDestination {
-	if o == nil || isNil(o.Destination) {
+	if o == nil || IsNil(o.Destination) {
 		var ret GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketDestination
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetDestina
 // GetDestinationOk returns a tuple with the Destination field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetDestinationOk() (*GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketDestination, bool) {
-	if o == nil || isNil(o.Destination) {
-    return nil, false
+	if o == nil || IsNil(o.Destination) {
+		return nil, false
 	}
 	return o.Destination, true
 }
 
 // HasDestination returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) HasDestination() bool {
-	if o != nil && !isNil(o.Destination) {
+	if o != nil && !IsNil(o.Destination) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) SetDestina
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetType() 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) SetType(v 
 
 // GetEthernet returns the Ethernet field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetEthernet() GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketEthernet {
-	if o == nil || isNil(o.Ethernet) {
+	if o == nil || IsNil(o.Ethernet) {
 		var ret GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketEthernet
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetEtherne
 // GetEthernetOk returns a tuple with the Ethernet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetEthernetOk() (*GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketEthernet, bool) {
-	if o == nil || isNil(o.Ethernet) {
-    return nil, false
+	if o == nil || IsNil(o.Ethernet) {
+		return nil, false
 	}
 	return o.Ethernet, true
 }
 
 // HasEthernet returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) HasEthernet() bool {
-	if o != nil && !isNil(o.Ethernet) {
+	if o != nil && !IsNil(o.Ethernet) {
 		return true
 	}
 
@@ -173,7 +176,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) SetEtherne
 
 // GetIp returns the Ip field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetIp() GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp {
-	if o == nil || isNil(o.Ip) {
+	if o == nil || IsNil(o.Ip) {
 		var ret GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp
 		return ret
 	}
@@ -183,15 +186,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetIp() Ge
 // GetIpOk returns a tuple with the Ip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetIpOk() (*GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp, bool) {
-	if o == nil || isNil(o.Ip) {
-    return nil, false
+	if o == nil || IsNil(o.Ip) {
+		return nil, false
 	}
 	return o.Ip, true
 }
 
 // HasIp returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) HasIp() bool {
-	if o != nil && !isNil(o.Ip) {
+	if o != nil && !IsNil(o.Ip) {
 		return true
 	}
 
@@ -205,7 +208,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) SetIp(v Ge
 
 // GetUdp returns the Udp field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetUdp() GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp {
-	if o == nil || isNil(o.Udp) {
+	if o == nil || IsNil(o.Udp) {
 		var ret GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp
 		return ret
 	}
@@ -215,15 +218,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetUdp() G
 // GetUdpOk returns a tuple with the Udp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetUdpOk() (*GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp, bool) {
-	if o == nil || isNil(o.Udp) {
-    return nil, false
+	if o == nil || IsNil(o.Udp) {
+		return nil, false
 	}
 	return o.Udp, true
 }
 
 // HasUdp returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) HasUdp() bool {
-	if o != nil && !isNil(o.Udp) {
+	if o != nil && !IsNil(o.Udp) {
 		return true
 	}
 
@@ -237,7 +240,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) SetUdp(v G
 
 // GetFields returns the Fields field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetFields() GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields {
-	if o == nil || isNil(o.Fields) {
+	if o == nil || IsNil(o.Fields) {
 		var ret GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields
 		return ret
 	}
@@ -247,15 +250,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetFields(
 // GetFieldsOk returns a tuple with the Fields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) GetFieldsOk() (*GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields, bool) {
-	if o == nil || isNil(o.Fields) {
-    return nil, false
+	if o == nil || IsNil(o.Fields) {
+		return nil, false
 	}
 	return o.Fields, true
 }
 
 // HasFields returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) HasFields() bool {
-	if o != nil && !isNil(o.Fields) {
+	if o != nil && !IsNil(o.Fields) {
 		return true
 	}
 
@@ -268,29 +271,37 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) SetFields(
 }
 
 func (o GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Source) {
-		toSerialize["source"] = o.Source
-	}
-	if !isNil(o.Destination) {
-		toSerialize["destination"] = o.Destination
-	}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Ethernet) {
-		toSerialize["ethernet"] = o.Ethernet
-	}
-	if !isNil(o.Ip) {
-		toSerialize["ip"] = o.Ip
-	}
-	if !isNil(o.Udp) {
-		toSerialize["udp"] = o.Udp
-	}
-	if !isNil(o.Fields) {
-		toSerialize["fields"] = o.Fields
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Source) {
+		toSerialize["source"] = o.Source
+	}
+	if !IsNil(o.Destination) {
+		toSerialize["destination"] = o.Destination
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Ethernet) {
+		toSerialize["ethernet"] = o.Ethernet
+	}
+	if !IsNil(o.Ip) {
+		toSerialize["ip"] = o.Ip
+	}
+	if !IsNil(o.Udp) {
+		toSerialize["udp"] = o.Udp
+	}
+	if !IsNil(o.Fields) {
+		toSerialize["fields"] = o.Fields
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacket struct {

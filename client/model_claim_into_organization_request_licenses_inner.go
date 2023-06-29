@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ClaimIntoOrganizationRequestLicensesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ClaimIntoOrganizationRequestLicensesInner{}
+
 // ClaimIntoOrganizationRequestLicensesInner struct for ClaimIntoOrganizationRequestLicensesInner
 type ClaimIntoOrganizationRequestLicensesInner struct {
 	// The key of the license
@@ -54,7 +57,7 @@ func (o *ClaimIntoOrganizationRequestLicensesInner) GetKey() string {
 // and a boolean to check if the value has been set.
 func (o *ClaimIntoOrganizationRequestLicensesInner) GetKeyOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Key, true
 }
@@ -66,7 +69,7 @@ func (o *ClaimIntoOrganizationRequestLicensesInner) SetKey(v string) {
 
 // GetMode returns the Mode field value if set, zero value otherwise.
 func (o *ClaimIntoOrganizationRequestLicensesInner) GetMode() string {
-	if o == nil || isNil(o.Mode) {
+	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *ClaimIntoOrganizationRequestLicensesInner) GetMode() string {
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClaimIntoOrganizationRequestLicensesInner) GetModeOk() (*string, bool) {
-	if o == nil || isNil(o.Mode) {
-    return nil, false
+	if o == nil || IsNil(o.Mode) {
+		return nil, false
 	}
 	return o.Mode, true
 }
 
 // HasMode returns a boolean if a field has been set.
 func (o *ClaimIntoOrganizationRequestLicensesInner) HasMode() bool {
-	if o != nil && !isNil(o.Mode) {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
@@ -97,14 +100,20 @@ func (o *ClaimIntoOrganizationRequestLicensesInner) SetMode(v string) {
 }
 
 func (o ClaimIntoOrganizationRequestLicensesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["key"] = o.Key
-	}
-	if !isNil(o.Mode) {
-		toSerialize["mode"] = o.Mode
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ClaimIntoOrganizationRequestLicensesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["key"] = o.Key
+	if !IsNil(o.Mode) {
+		toSerialize["mode"] = o.Mode
+	}
+	return toSerialize, nil
 }
 
 type NullableClaimIntoOrganizationRequestLicensesInner struct {

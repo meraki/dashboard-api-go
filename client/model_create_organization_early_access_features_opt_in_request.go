@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationEarlyAccessFeaturesOptInRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationEarlyAccessFeaturesOptInRequest{}
+
 // CreateOrganizationEarlyAccessFeaturesOptInRequest struct for CreateOrganizationEarlyAccessFeaturesOptInRequest
 type CreateOrganizationEarlyAccessFeaturesOptInRequest struct {
 	// Short name of the early access feature
@@ -54,7 +57,7 @@ func (o *CreateOrganizationEarlyAccessFeaturesOptInRequest) GetShortName() strin
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationEarlyAccessFeaturesOptInRequest) GetShortNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ShortName, true
 }
@@ -66,7 +69,7 @@ func (o *CreateOrganizationEarlyAccessFeaturesOptInRequest) SetShortName(v strin
 
 // GetLimitScopeToNetworks returns the LimitScopeToNetworks field value if set, zero value otherwise.
 func (o *CreateOrganizationEarlyAccessFeaturesOptInRequest) GetLimitScopeToNetworks() []string {
-	if o == nil || isNil(o.LimitScopeToNetworks) {
+	if o == nil || IsNil(o.LimitScopeToNetworks) {
 		var ret []string
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *CreateOrganizationEarlyAccessFeaturesOptInRequest) GetLimitScopeToNetwo
 // GetLimitScopeToNetworksOk returns a tuple with the LimitScopeToNetworks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationEarlyAccessFeaturesOptInRequest) GetLimitScopeToNetworksOk() ([]string, bool) {
-	if o == nil || isNil(o.LimitScopeToNetworks) {
-    return nil, false
+	if o == nil || IsNil(o.LimitScopeToNetworks) {
+		return nil, false
 	}
 	return o.LimitScopeToNetworks, true
 }
 
 // HasLimitScopeToNetworks returns a boolean if a field has been set.
 func (o *CreateOrganizationEarlyAccessFeaturesOptInRequest) HasLimitScopeToNetworks() bool {
-	if o != nil && !isNil(o.LimitScopeToNetworks) {
+	if o != nil && !IsNil(o.LimitScopeToNetworks) {
 		return true
 	}
 
@@ -97,14 +100,20 @@ func (o *CreateOrganizationEarlyAccessFeaturesOptInRequest) SetLimitScopeToNetwo
 }
 
 func (o CreateOrganizationEarlyAccessFeaturesOptInRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["shortName"] = o.ShortName
-	}
-	if !isNil(o.LimitScopeToNetworks) {
-		toSerialize["limitScopeToNetworks"] = o.LimitScopeToNetworks
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationEarlyAccessFeaturesOptInRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["shortName"] = o.ShortName
+	if !IsNil(o.LimitScopeToNetworks) {
+		toSerialize["limitScopeToNetworks"] = o.LimitScopeToNetworks
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationEarlyAccessFeaturesOptInRequest struct {

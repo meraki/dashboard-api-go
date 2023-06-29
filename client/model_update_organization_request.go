@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationRequest{}
+
 // UpdateOrganizationRequest struct for UpdateOrganizationRequest
 type UpdateOrganizationRequest struct {
 	// The name of the organization
@@ -41,7 +44,7 @@ func NewUpdateOrganizationRequestWithDefaults() *UpdateOrganizationRequest {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateOrganizationRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateOrganizationRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateOrganizationRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateOrganizationRequest) SetName(v string) {
 
 // GetManagement returns the Management field value if set, zero value otherwise.
 func (o *UpdateOrganizationRequest) GetManagement() GetOrganizations200ResponseInnerManagement {
-	if o == nil || isNil(o.Management) {
+	if o == nil || IsNil(o.Management) {
 		var ret GetOrganizations200ResponseInnerManagement
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateOrganizationRequest) GetManagement() GetOrganizations200ResponseI
 // GetManagementOk returns a tuple with the Management field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationRequest) GetManagementOk() (*GetOrganizations200ResponseInnerManagement, bool) {
-	if o == nil || isNil(o.Management) {
-    return nil, false
+	if o == nil || IsNil(o.Management) {
+		return nil, false
 	}
 	return o.Management, true
 }
 
 // HasManagement returns a boolean if a field has been set.
 func (o *UpdateOrganizationRequest) HasManagement() bool {
-	if o != nil && !isNil(o.Management) {
+	if o != nil && !IsNil(o.Management) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *UpdateOrganizationRequest) SetManagement(v GetOrganizations200ResponseI
 
 // GetApi returns the Api field value if set, zero value otherwise.
 func (o *UpdateOrganizationRequest) GetApi() UpdateOrganizationRequestApi {
-	if o == nil || isNil(o.Api) {
+	if o == nil || IsNil(o.Api) {
 		var ret UpdateOrganizationRequestApi
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *UpdateOrganizationRequest) GetApi() UpdateOrganizationRequestApi {
 // GetApiOk returns a tuple with the Api field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationRequest) GetApiOk() (*UpdateOrganizationRequestApi, bool) {
-	if o == nil || isNil(o.Api) {
-    return nil, false
+	if o == nil || IsNil(o.Api) {
+		return nil, false
 	}
 	return o.Api, true
 }
 
 // HasApi returns a boolean if a field has been set.
 func (o *UpdateOrganizationRequest) HasApi() bool {
-	if o != nil && !isNil(o.Api) {
+	if o != nil && !IsNil(o.Api) {
 		return true
 	}
 
@@ -136,17 +139,25 @@ func (o *UpdateOrganizationRequest) SetApi(v UpdateOrganizationRequestApi) {
 }
 
 func (o UpdateOrganizationRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Management) {
-		toSerialize["management"] = o.Management
-	}
-	if !isNil(o.Api) {
-		toSerialize["api"] = o.Api
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Management) {
+		toSerialize["management"] = o.Management
+	}
+	if !IsNil(o.Api) {
+		toSerialize["api"] = o.Api
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationRequest struct {

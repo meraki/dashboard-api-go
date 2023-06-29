@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceSwitchWarmSpareRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceSwitchWarmSpareRequest{}
+
 // UpdateDeviceSwitchWarmSpareRequest struct for UpdateDeviceSwitchWarmSpareRequest
 type UpdateDeviceSwitchWarmSpareRequest struct {
 	// Enable or disable warm spare for a switch
@@ -54,7 +57,7 @@ func (o *UpdateDeviceSwitchWarmSpareRequest) GetEnabled() bool {
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchWarmSpareRequest) GetEnabledOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Enabled, true
 }
@@ -66,7 +69,7 @@ func (o *UpdateDeviceSwitchWarmSpareRequest) SetEnabled(v bool) {
 
 // GetSpareSerial returns the SpareSerial field value if set, zero value otherwise.
 func (o *UpdateDeviceSwitchWarmSpareRequest) GetSpareSerial() string {
-	if o == nil || isNil(o.SpareSerial) {
+	if o == nil || IsNil(o.SpareSerial) {
 		var ret string
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *UpdateDeviceSwitchWarmSpareRequest) GetSpareSerial() string {
 // GetSpareSerialOk returns a tuple with the SpareSerial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchWarmSpareRequest) GetSpareSerialOk() (*string, bool) {
-	if o == nil || isNil(o.SpareSerial) {
-    return nil, false
+	if o == nil || IsNil(o.SpareSerial) {
+		return nil, false
 	}
 	return o.SpareSerial, true
 }
 
 // HasSpareSerial returns a boolean if a field has been set.
 func (o *UpdateDeviceSwitchWarmSpareRequest) HasSpareSerial() bool {
-	if o != nil && !isNil(o.SpareSerial) {
+	if o != nil && !IsNil(o.SpareSerial) {
 		return true
 	}
 
@@ -97,14 +100,20 @@ func (o *UpdateDeviceSwitchWarmSpareRequest) SetSpareSerial(v string) {
 }
 
 func (o UpdateDeviceSwitchWarmSpareRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.SpareSerial) {
-		toSerialize["spareSerial"] = o.SpareSerial
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceSwitchWarmSpareRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["enabled"] = o.Enabled
+	if !IsNil(o.SpareSerial) {
+		toSerialize["spareSerial"] = o.SpareSerial
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceSwitchWarmSpareRequest struct {

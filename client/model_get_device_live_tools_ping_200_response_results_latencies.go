@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceLiveToolsPing200ResponseResultsLatencies type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceLiveToolsPing200ResponseResultsLatencies{}
+
 // GetDeviceLiveToolsPing200ResponseResultsLatencies Packet latency stats
 type GetDeviceLiveToolsPing200ResponseResultsLatencies struct {
 	// Minimum latency
@@ -43,7 +46,7 @@ func NewGetDeviceLiveToolsPing200ResponseResultsLatenciesWithDefaults() *GetDevi
 
 // GetMinimum returns the Minimum field value if set, zero value otherwise.
 func (o *GetDeviceLiveToolsPing200ResponseResultsLatencies) GetMinimum() float32 {
-	if o == nil || isNil(o.Minimum) {
+	if o == nil || IsNil(o.Minimum) {
 		var ret float32
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetDeviceLiveToolsPing200ResponseResultsLatencies) GetMinimum() float32
 // GetMinimumOk returns a tuple with the Minimum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResultsLatencies) GetMinimumOk() (*float32, bool) {
-	if o == nil || isNil(o.Minimum) {
-    return nil, false
+	if o == nil || IsNil(o.Minimum) {
+		return nil, false
 	}
 	return o.Minimum, true
 }
 
 // HasMinimum returns a boolean if a field has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResultsLatencies) HasMinimum() bool {
-	if o != nil && !isNil(o.Minimum) {
+	if o != nil && !IsNil(o.Minimum) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetDeviceLiveToolsPing200ResponseResultsLatencies) SetMinimum(v float32
 
 // GetAverage returns the Average field value if set, zero value otherwise.
 func (o *GetDeviceLiveToolsPing200ResponseResultsLatencies) GetAverage() float32 {
-	if o == nil || isNil(o.Average) {
+	if o == nil || IsNil(o.Average) {
 		var ret float32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetDeviceLiveToolsPing200ResponseResultsLatencies) GetAverage() float32
 // GetAverageOk returns a tuple with the Average field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResultsLatencies) GetAverageOk() (*float32, bool) {
-	if o == nil || isNil(o.Average) {
-    return nil, false
+	if o == nil || IsNil(o.Average) {
+		return nil, false
 	}
 	return o.Average, true
 }
 
 // HasAverage returns a boolean if a field has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResultsLatencies) HasAverage() bool {
-	if o != nil && !isNil(o.Average) {
+	if o != nil && !IsNil(o.Average) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetDeviceLiveToolsPing200ResponseResultsLatencies) SetAverage(v float32
 
 // GetMaximum returns the Maximum field value if set, zero value otherwise.
 func (o *GetDeviceLiveToolsPing200ResponseResultsLatencies) GetMaximum() float32 {
-	if o == nil || isNil(o.Maximum) {
+	if o == nil || IsNil(o.Maximum) {
 		var ret float32
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetDeviceLiveToolsPing200ResponseResultsLatencies) GetMaximum() float32
 // GetMaximumOk returns a tuple with the Maximum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResultsLatencies) GetMaximumOk() (*float32, bool) {
-	if o == nil || isNil(o.Maximum) {
-    return nil, false
+	if o == nil || IsNil(o.Maximum) {
+		return nil, false
 	}
 	return o.Maximum, true
 }
 
 // HasMaximum returns a boolean if a field has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResultsLatencies) HasMaximum() bool {
-	if o != nil && !isNil(o.Maximum) {
+	if o != nil && !IsNil(o.Maximum) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetDeviceLiveToolsPing200ResponseResultsLatencies) SetMaximum(v float32
 }
 
 func (o GetDeviceLiveToolsPing200ResponseResultsLatencies) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Minimum) {
-		toSerialize["minimum"] = o.Minimum
-	}
-	if !isNil(o.Average) {
-		toSerialize["average"] = o.Average
-	}
-	if !isNil(o.Maximum) {
-		toSerialize["maximum"] = o.Maximum
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceLiveToolsPing200ResponseResultsLatencies) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Minimum) {
+		toSerialize["minimum"] = o.Minimum
+	}
+	if !IsNil(o.Average) {
+		toSerialize["average"] = o.Average
+	}
+	if !IsNil(o.Maximum) {
+		toSerialize["maximum"] = o.Maximum
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceLiveToolsPing200ResponseResultsLatencies struct {

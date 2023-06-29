@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceManagementInterfaceRequestWan1 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceManagementInterfaceRequestWan1{}
+
 // UpdateDeviceManagementInterfaceRequestWan1 WAN 1 settings
 type UpdateDeviceManagementInterfaceRequestWan1 struct {
 	// Enable or disable the interface (only for MX devices). Valid values are 'enabled', 'disabled', and 'not configured'.
@@ -51,7 +54,7 @@ func NewUpdateDeviceManagementInterfaceRequestWan1WithDefaults() *UpdateDeviceMa
 
 // GetWanEnabled returns the WanEnabled field value if set, zero value otherwise.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) GetWanEnabled() string {
-	if o == nil || isNil(o.WanEnabled) {
+	if o == nil || IsNil(o.WanEnabled) {
 		var ret string
 		return ret
 	}
@@ -61,15 +64,15 @@ func (o *UpdateDeviceManagementInterfaceRequestWan1) GetWanEnabled() string {
 // GetWanEnabledOk returns a tuple with the WanEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) GetWanEnabledOk() (*string, bool) {
-	if o == nil || isNil(o.WanEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.WanEnabled) {
+		return nil, false
 	}
 	return o.WanEnabled, true
 }
 
 // HasWanEnabled returns a boolean if a field has been set.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) HasWanEnabled() bool {
-	if o != nil && !isNil(o.WanEnabled) {
+	if o != nil && !IsNil(o.WanEnabled) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *UpdateDeviceManagementInterfaceRequestWan1) SetWanEnabled(v string) {
 
 // GetUsingStaticIp returns the UsingStaticIp field value if set, zero value otherwise.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) GetUsingStaticIp() bool {
-	if o == nil || isNil(o.UsingStaticIp) {
+	if o == nil || IsNil(o.UsingStaticIp) {
 		var ret bool
 		return ret
 	}
@@ -93,15 +96,15 @@ func (o *UpdateDeviceManagementInterfaceRequestWan1) GetUsingStaticIp() bool {
 // GetUsingStaticIpOk returns a tuple with the UsingStaticIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) GetUsingStaticIpOk() (*bool, bool) {
-	if o == nil || isNil(o.UsingStaticIp) {
-    return nil, false
+	if o == nil || IsNil(o.UsingStaticIp) {
+		return nil, false
 	}
 	return o.UsingStaticIp, true
 }
 
 // HasUsingStaticIp returns a boolean if a field has been set.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) HasUsingStaticIp() bool {
-	if o != nil && !isNil(o.UsingStaticIp) {
+	if o != nil && !IsNil(o.UsingStaticIp) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *UpdateDeviceManagementInterfaceRequestWan1) SetUsingStaticIp(v bool) {
 
 // GetStaticIp returns the StaticIp field value if set, zero value otherwise.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) GetStaticIp() string {
-	if o == nil || isNil(o.StaticIp) {
+	if o == nil || IsNil(o.StaticIp) {
 		var ret string
 		return ret
 	}
@@ -125,15 +128,15 @@ func (o *UpdateDeviceManagementInterfaceRequestWan1) GetStaticIp() string {
 // GetStaticIpOk returns a tuple with the StaticIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) GetStaticIpOk() (*string, bool) {
-	if o == nil || isNil(o.StaticIp) {
-    return nil, false
+	if o == nil || IsNil(o.StaticIp) {
+		return nil, false
 	}
 	return o.StaticIp, true
 }
 
 // HasStaticIp returns a boolean if a field has been set.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) HasStaticIp() bool {
-	if o != nil && !isNil(o.StaticIp) {
+	if o != nil && !IsNil(o.StaticIp) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *UpdateDeviceManagementInterfaceRequestWan1) SetStaticIp(v string) {
 
 // GetStaticGatewayIp returns the StaticGatewayIp field value if set, zero value otherwise.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) GetStaticGatewayIp() string {
-	if o == nil || isNil(o.StaticGatewayIp) {
+	if o == nil || IsNil(o.StaticGatewayIp) {
 		var ret string
 		return ret
 	}
@@ -157,15 +160,15 @@ func (o *UpdateDeviceManagementInterfaceRequestWan1) GetStaticGatewayIp() string
 // GetStaticGatewayIpOk returns a tuple with the StaticGatewayIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) GetStaticGatewayIpOk() (*string, bool) {
-	if o == nil || isNil(o.StaticGatewayIp) {
-    return nil, false
+	if o == nil || IsNil(o.StaticGatewayIp) {
+		return nil, false
 	}
 	return o.StaticGatewayIp, true
 }
 
 // HasStaticGatewayIp returns a boolean if a field has been set.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) HasStaticGatewayIp() bool {
-	if o != nil && !isNil(o.StaticGatewayIp) {
+	if o != nil && !IsNil(o.StaticGatewayIp) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *UpdateDeviceManagementInterfaceRequestWan1) SetStaticGatewayIp(v string
 
 // GetStaticSubnetMask returns the StaticSubnetMask field value if set, zero value otherwise.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) GetStaticSubnetMask() string {
-	if o == nil || isNil(o.StaticSubnetMask) {
+	if o == nil || IsNil(o.StaticSubnetMask) {
 		var ret string
 		return ret
 	}
@@ -189,15 +192,15 @@ func (o *UpdateDeviceManagementInterfaceRequestWan1) GetStaticSubnetMask() strin
 // GetStaticSubnetMaskOk returns a tuple with the StaticSubnetMask field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) GetStaticSubnetMaskOk() (*string, bool) {
-	if o == nil || isNil(o.StaticSubnetMask) {
-    return nil, false
+	if o == nil || IsNil(o.StaticSubnetMask) {
+		return nil, false
 	}
 	return o.StaticSubnetMask, true
 }
 
 // HasStaticSubnetMask returns a boolean if a field has been set.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) HasStaticSubnetMask() bool {
-	if o != nil && !isNil(o.StaticSubnetMask) {
+	if o != nil && !IsNil(o.StaticSubnetMask) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *UpdateDeviceManagementInterfaceRequestWan1) SetStaticSubnetMask(v strin
 
 // GetStaticDns returns the StaticDns field value if set, zero value otherwise.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) GetStaticDns() []string {
-	if o == nil || isNil(o.StaticDns) {
+	if o == nil || IsNil(o.StaticDns) {
 		var ret []string
 		return ret
 	}
@@ -221,15 +224,15 @@ func (o *UpdateDeviceManagementInterfaceRequestWan1) GetStaticDns() []string {
 // GetStaticDnsOk returns a tuple with the StaticDns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) GetStaticDnsOk() ([]string, bool) {
-	if o == nil || isNil(o.StaticDns) {
-    return nil, false
+	if o == nil || IsNil(o.StaticDns) {
+		return nil, false
 	}
 	return o.StaticDns, true
 }
 
 // HasStaticDns returns a boolean if a field has been set.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) HasStaticDns() bool {
-	if o != nil && !isNil(o.StaticDns) {
+	if o != nil && !IsNil(o.StaticDns) {
 		return true
 	}
 
@@ -243,7 +246,7 @@ func (o *UpdateDeviceManagementInterfaceRequestWan1) SetStaticDns(v []string) {
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) GetVlan() int32 {
-	if o == nil || isNil(o.Vlan) {
+	if o == nil || IsNil(o.Vlan) {
 		var ret int32
 		return ret
 	}
@@ -253,15 +256,15 @@ func (o *UpdateDeviceManagementInterfaceRequestWan1) GetVlan() int32 {
 // GetVlanOk returns a tuple with the Vlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) GetVlanOk() (*int32, bool) {
-	if o == nil || isNil(o.Vlan) {
-    return nil, false
+	if o == nil || IsNil(o.Vlan) {
+		return nil, false
 	}
 	return o.Vlan, true
 }
 
 // HasVlan returns a boolean if a field has been set.
 func (o *UpdateDeviceManagementInterfaceRequestWan1) HasVlan() bool {
-	if o != nil && !isNil(o.Vlan) {
+	if o != nil && !IsNil(o.Vlan) {
 		return true
 	}
 
@@ -274,29 +277,37 @@ func (o *UpdateDeviceManagementInterfaceRequestWan1) SetVlan(v int32) {
 }
 
 func (o UpdateDeviceManagementInterfaceRequestWan1) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.WanEnabled) {
-		toSerialize["wanEnabled"] = o.WanEnabled
-	}
-	if !isNil(o.UsingStaticIp) {
-		toSerialize["usingStaticIp"] = o.UsingStaticIp
-	}
-	if !isNil(o.StaticIp) {
-		toSerialize["staticIp"] = o.StaticIp
-	}
-	if !isNil(o.StaticGatewayIp) {
-		toSerialize["staticGatewayIp"] = o.StaticGatewayIp
-	}
-	if !isNil(o.StaticSubnetMask) {
-		toSerialize["staticSubnetMask"] = o.StaticSubnetMask
-	}
-	if !isNil(o.StaticDns) {
-		toSerialize["staticDns"] = o.StaticDns
-	}
-	if !isNil(o.Vlan) {
-		toSerialize["vlan"] = o.Vlan
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceManagementInterfaceRequestWan1) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.WanEnabled) {
+		toSerialize["wanEnabled"] = o.WanEnabled
+	}
+	if !IsNil(o.UsingStaticIp) {
+		toSerialize["usingStaticIp"] = o.UsingStaticIp
+	}
+	if !IsNil(o.StaticIp) {
+		toSerialize["staticIp"] = o.StaticIp
+	}
+	if !IsNil(o.StaticGatewayIp) {
+		toSerialize["staticGatewayIp"] = o.StaticGatewayIp
+	}
+	if !IsNil(o.StaticSubnetMask) {
+		toSerialize["staticSubnetMask"] = o.StaticSubnetMask
+	}
+	if !IsNil(o.StaticDns) {
+		toSerialize["staticDns"] = o.StaticDns
+	}
+	if !IsNil(o.Vlan) {
+		toSerialize["vlan"] = o.Vlan
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceManagementInterfaceRequestWan1 struct {

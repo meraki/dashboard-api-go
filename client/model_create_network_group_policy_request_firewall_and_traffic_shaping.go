@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping{}
+
 // CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping     The firewall and traffic shaping rules and settings for your policy. 
 type CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping struct {
 	// How firewall and traffic shaping rules are enforced. Can be 'network default', 'ignore' or 'custom'.
@@ -45,7 +48,7 @@ func NewCreateNetworkGroupPolicyRequestFirewallAndTrafficShapingWithDefaults() *
 
 // GetSettings returns the Settings field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) GetSettings() string {
-	if o == nil || isNil(o.Settings) {
+	if o == nil || IsNil(o.Settings) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) GetSettings()
 // GetSettingsOk returns a tuple with the Settings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) GetSettingsOk() (*string, bool) {
-	if o == nil || isNil(o.Settings) {
-    return nil, false
+	if o == nil || IsNil(o.Settings) {
+		return nil, false
 	}
 	return o.Settings, true
 }
 
 // HasSettings returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) HasSettings() bool {
-	if o != nil && !isNil(o.Settings) {
+	if o != nil && !IsNil(o.Settings) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) SetSettings(v
 
 // GetTrafficShapingRules returns the TrafficShapingRules field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) GetTrafficShapingRules() []CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner {
-	if o == nil || isNil(o.TrafficShapingRules) {
+	if o == nil || IsNil(o.TrafficShapingRules) {
 		var ret []CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) GetTrafficSha
 // GetTrafficShapingRulesOk returns a tuple with the TrafficShapingRules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) GetTrafficShapingRulesOk() ([]CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner, bool) {
-	if o == nil || isNil(o.TrafficShapingRules) {
-    return nil, false
+	if o == nil || IsNil(o.TrafficShapingRules) {
+		return nil, false
 	}
 	return o.TrafficShapingRules, true
 }
 
 // HasTrafficShapingRules returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) HasTrafficShapingRules() bool {
-	if o != nil && !isNil(o.TrafficShapingRules) {
+	if o != nil && !IsNil(o.TrafficShapingRules) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) SetTrafficSha
 
 // GetL3FirewallRules returns the L3FirewallRules field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) GetL3FirewallRules() []CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner {
-	if o == nil || isNil(o.L3FirewallRules) {
+	if o == nil || IsNil(o.L3FirewallRules) {
 		var ret []CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) GetL3Firewall
 // GetL3FirewallRulesOk returns a tuple with the L3FirewallRules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) GetL3FirewallRulesOk() ([]CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner, bool) {
-	if o == nil || isNil(o.L3FirewallRules) {
-    return nil, false
+	if o == nil || IsNil(o.L3FirewallRules) {
+		return nil, false
 	}
 	return o.L3FirewallRules, true
 }
 
 // HasL3FirewallRules returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) HasL3FirewallRules() bool {
-	if o != nil && !isNil(o.L3FirewallRules) {
+	if o != nil && !IsNil(o.L3FirewallRules) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) SetL3Firewall
 
 // GetL7FirewallRules returns the L7FirewallRules field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) GetL7FirewallRules() []CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL7FirewallRulesInner {
-	if o == nil || isNil(o.L7FirewallRules) {
+	if o == nil || IsNil(o.L7FirewallRules) {
 		var ret []CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL7FirewallRulesInner
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) GetL7Firewall
 // GetL7FirewallRulesOk returns a tuple with the L7FirewallRules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) GetL7FirewallRulesOk() ([]CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL7FirewallRulesInner, bool) {
-	if o == nil || isNil(o.L7FirewallRules) {
-    return nil, false
+	if o == nil || IsNil(o.L7FirewallRules) {
+		return nil, false
 	}
 	return o.L7FirewallRules, true
 }
 
 // HasL7FirewallRules returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) HasL7FirewallRules() bool {
-	if o != nil && !isNil(o.L7FirewallRules) {
+	if o != nil && !IsNil(o.L7FirewallRules) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) SetL7Firewall
 }
 
 func (o CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Settings) {
-		toSerialize["settings"] = o.Settings
-	}
-	if !isNil(o.TrafficShapingRules) {
-		toSerialize["trafficShapingRules"] = o.TrafficShapingRules
-	}
-	if !isNil(o.L3FirewallRules) {
-		toSerialize["l3FirewallRules"] = o.L3FirewallRules
-	}
-	if !isNil(o.L7FirewallRules) {
-		toSerialize["l7FirewallRules"] = o.L7FirewallRules
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkGroupPolicyRequestFirewallAndTrafficShaping) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Settings) {
+		toSerialize["settings"] = o.Settings
+	}
+	if !IsNil(o.TrafficShapingRules) {
+		toSerialize["trafficShapingRules"] = o.TrafficShapingRules
+	}
+	if !IsNil(o.L3FirewallRules) {
+		toSerialize["l3FirewallRules"] = o.L3FirewallRules
+	}
+	if !IsNil(o.L7FirewallRules) {
+		toSerialize["l7FirewallRules"] = o.L7FirewallRules
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkGroupPolicyRequestFirewallAndTrafficShaping struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the VmxNetworkDevicesClaimRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VmxNetworkDevicesClaimRequest{}
+
 // VmxNetworkDevicesClaimRequest struct for VmxNetworkDevicesClaimRequest
 type VmxNetworkDevicesClaimRequest struct {
 	// The size of the vMX you claim. It can be one of: small, medium, large, 100
@@ -52,7 +55,7 @@ func (o *VmxNetworkDevicesClaimRequest) GetSize() string {
 // and a boolean to check if the value has been set.
 func (o *VmxNetworkDevicesClaimRequest) GetSizeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Size, true
 }
@@ -63,11 +66,17 @@ func (o *VmxNetworkDevicesClaimRequest) SetSize(v string) {
 }
 
 func (o VmxNetworkDevicesClaimRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["size"] = o.Size
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o VmxNetworkDevicesClaimRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["size"] = o.Size
+	return toSerialize, nil
 }
 
 type NullableVmxNetworkDevicesClaimRequest struct {

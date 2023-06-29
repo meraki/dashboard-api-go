@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2{}
+
 // UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2 WAN 2 settings.
 type UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2 struct {
 	// Enable or disable the interface.
@@ -42,7 +45,7 @@ func NewUpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2WithDefaults() 
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) GetEnabled()
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) SetEnabled(v
 
 // GetVlanTagging returns the VlanTagging field value if set, zero value otherwise.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) GetVlanTagging() GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1VlanTagging {
-	if o == nil || isNil(o.VlanTagging) {
+	if o == nil || IsNil(o.VlanTagging) {
 		var ret GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1VlanTagging
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) GetVlanTaggi
 // GetVlanTaggingOk returns a tuple with the VlanTagging field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) GetVlanTaggingOk() (*GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1VlanTagging, bool) {
-	if o == nil || isNil(o.VlanTagging) {
-    return nil, false
+	if o == nil || IsNil(o.VlanTagging) {
+		return nil, false
 	}
 	return o.VlanTagging, true
 }
 
 // HasVlanTagging returns a boolean if a field has been set.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) HasVlanTagging() bool {
-	if o != nil && !isNil(o.VlanTagging) {
+	if o != nil && !IsNil(o.VlanTagging) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) SetVlanTaggi
 
 // GetSvis returns the Svis field value if set, zero value otherwise.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) GetSvis() GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis {
-	if o == nil || isNil(o.Svis) {
+	if o == nil || IsNil(o.Svis) {
 		var ret GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) GetSvis() Ge
 // GetSvisOk returns a tuple with the Svis field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) GetSvisOk() (*GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis, bool) {
-	if o == nil || isNil(o.Svis) {
-    return nil, false
+	if o == nil || IsNil(o.Svis) {
+		return nil, false
 	}
 	return o.Svis, true
 }
 
 // HasSvis returns a boolean if a field has been set.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) HasSvis() bool {
-	if o != nil && !isNil(o.Svis) {
+	if o != nil && !IsNil(o.Svis) {
 		return true
 	}
 
@@ -138,7 +141,7 @@ func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) SetSvis(v Ge
 
 // GetPppoe returns the Pppoe field value if set, zero value otherwise.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) GetPppoe() UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe {
-	if o == nil || isNil(o.Pppoe) {
+	if o == nil || IsNil(o.Pppoe) {
 		var ret UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe
 		return ret
 	}
@@ -148,15 +151,15 @@ func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) GetPppoe() U
 // GetPppoeOk returns a tuple with the Pppoe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) GetPppoeOk() (*UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe, bool) {
-	if o == nil || isNil(o.Pppoe) {
-    return nil, false
+	if o == nil || IsNil(o.Pppoe) {
+		return nil, false
 	}
 	return o.Pppoe, true
 }
 
 // HasPppoe returns a boolean if a field has been set.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) HasPppoe() bool {
-	if o != nil && !isNil(o.Pppoe) {
+	if o != nil && !IsNil(o.Pppoe) {
 		return true
 	}
 
@@ -169,20 +172,28 @@ func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) SetPppoe(v U
 }
 
 func (o UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.VlanTagging) {
-		toSerialize["vlanTagging"] = o.VlanTagging
-	}
-	if !isNil(o.Svis) {
-		toSerialize["svis"] = o.Svis
-	}
-	if !isNil(o.Pppoe) {
-		toSerialize["pppoe"] = o.Pppoe
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.VlanTagging) {
+		toSerialize["vlanTagging"] = o.VlanTagging
+	}
+	if !IsNil(o.Svis) {
+		toSerialize["svis"] = o.Svis
+	}
+	if !IsNil(o.Pppoe) {
+		toSerialize["pppoe"] = o.Pppoe
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceApplianceUplinksSettingsRequestInterfacesWan2 struct {

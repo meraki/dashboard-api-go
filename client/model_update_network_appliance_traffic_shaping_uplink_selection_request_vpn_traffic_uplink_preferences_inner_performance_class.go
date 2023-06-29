@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass{}
+
 // UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass Performance class setting for this uplink preference rule
 type UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass struct {
 	// Type of this performance class. Must be one of: 'builtin' or 'custom'
@@ -56,7 +59,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUpl
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass) GetTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Type, true
 }
@@ -68,7 +71,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUpl
 
 // GetBuiltinPerformanceClassName returns the BuiltinPerformanceClassName field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass) GetBuiltinPerformanceClassName() string {
-	if o == nil || isNil(o.BuiltinPerformanceClassName) {
+	if o == nil || IsNil(o.BuiltinPerformanceClassName) {
 		var ret string
 		return ret
 	}
@@ -78,15 +81,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUpl
 // GetBuiltinPerformanceClassNameOk returns a tuple with the BuiltinPerformanceClassName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass) GetBuiltinPerformanceClassNameOk() (*string, bool) {
-	if o == nil || isNil(o.BuiltinPerformanceClassName) {
-    return nil, false
+	if o == nil || IsNil(o.BuiltinPerformanceClassName) {
+		return nil, false
 	}
 	return o.BuiltinPerformanceClassName, true
 }
 
 // HasBuiltinPerformanceClassName returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass) HasBuiltinPerformanceClassName() bool {
-	if o != nil && !isNil(o.BuiltinPerformanceClassName) {
+	if o != nil && !IsNil(o.BuiltinPerformanceClassName) {
 		return true
 	}
 
@@ -100,7 +103,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUpl
 
 // GetCustomPerformanceClassId returns the CustomPerformanceClassId field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass) GetCustomPerformanceClassId() string {
-	if o == nil || isNil(o.CustomPerformanceClassId) {
+	if o == nil || IsNil(o.CustomPerformanceClassId) {
 		var ret string
 		return ret
 	}
@@ -110,15 +113,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUpl
 // GetCustomPerformanceClassIdOk returns a tuple with the CustomPerformanceClassId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass) GetCustomPerformanceClassIdOk() (*string, bool) {
-	if o == nil || isNil(o.CustomPerformanceClassId) {
-    return nil, false
+	if o == nil || IsNil(o.CustomPerformanceClassId) {
+		return nil, false
 	}
 	return o.CustomPerformanceClassId, true
 }
 
 // HasCustomPerformanceClassId returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass) HasCustomPerformanceClassId() bool {
-	if o != nil && !isNil(o.CustomPerformanceClassId) {
+	if o != nil && !IsNil(o.CustomPerformanceClassId) {
 		return true
 	}
 
@@ -131,17 +134,23 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUpl
 }
 
 func (o UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.BuiltinPerformanceClassName) {
-		toSerialize["builtinPerformanceClassName"] = o.BuiltinPerformanceClassName
-	}
-	if !isNil(o.CustomPerformanceClassId) {
-		toSerialize["customPerformanceClassId"] = o.CustomPerformanceClassId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
+	if !IsNil(o.BuiltinPerformanceClassName) {
+		toSerialize["builtinPerformanceClassName"] = o.BuiltinPerformanceClassName
+	}
+	if !IsNil(o.CustomPerformanceClassId) {
+		toSerialize["customPerformanceClassId"] = o.CustomPerformanceClassId
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass struct {

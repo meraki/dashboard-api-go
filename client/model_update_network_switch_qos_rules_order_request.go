@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchQosRulesOrderRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchQosRulesOrderRequest{}
+
 // UpdateNetworkSwitchQosRulesOrderRequest struct for UpdateNetworkSwitchQosRulesOrderRequest
 type UpdateNetworkSwitchQosRulesOrderRequest struct {
 	// A list of quality of service rule IDs arranged in order in which they should be processed by the switch.
@@ -52,7 +55,7 @@ func (o *UpdateNetworkSwitchQosRulesOrderRequest) GetRuleIds() []string {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchQosRulesOrderRequest) GetRuleIdsOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.RuleIds, true
 }
@@ -63,11 +66,17 @@ func (o *UpdateNetworkSwitchQosRulesOrderRequest) SetRuleIds(v []string) {
 }
 
 func (o UpdateNetworkSwitchQosRulesOrderRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ruleIds"] = o.RuleIds
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchQosRulesOrderRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["ruleIds"] = o.RuleIds
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchQosRulesOrderRequest struct {

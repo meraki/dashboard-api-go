@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetOrganizationUplinksStatuses200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationUplinksStatuses200ResponseInner{}
+
 // GetOrganizationUplinksStatuses200ResponseInner struct for GetOrganizationUplinksStatuses200ResponseInner
 type GetOrganizationUplinksStatuses200ResponseInner struct {
 	// Network identifier
@@ -48,7 +51,7 @@ func NewGetOrganizationUplinksStatuses200ResponseInnerWithDefaults() *GetOrganiz
 
 // GetNetworkId returns the NetworkId field value if set, zero value otherwise.
 func (o *GetOrganizationUplinksStatuses200ResponseInner) GetNetworkId() string {
-	if o == nil || isNil(o.NetworkId) {
+	if o == nil || IsNil(o.NetworkId) {
 		var ret string
 		return ret
 	}
@@ -58,15 +61,15 @@ func (o *GetOrganizationUplinksStatuses200ResponseInner) GetNetworkId() string {
 // GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationUplinksStatuses200ResponseInner) GetNetworkIdOk() (*string, bool) {
-	if o == nil || isNil(o.NetworkId) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkId) {
+		return nil, false
 	}
 	return o.NetworkId, true
 }
 
 // HasNetworkId returns a boolean if a field has been set.
 func (o *GetOrganizationUplinksStatuses200ResponseInner) HasNetworkId() bool {
-	if o != nil && !isNil(o.NetworkId) {
+	if o != nil && !IsNil(o.NetworkId) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *GetOrganizationUplinksStatuses200ResponseInner) SetNetworkId(v string) 
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetOrganizationUplinksStatuses200ResponseInner) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -90,15 +93,15 @@ func (o *GetOrganizationUplinksStatuses200ResponseInner) GetSerial() string {
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationUplinksStatuses200ResponseInner) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetOrganizationUplinksStatuses200ResponseInner) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *GetOrganizationUplinksStatuses200ResponseInner) SetSerial(v string) {
 
 // GetModel returns the Model field value if set, zero value otherwise.
 func (o *GetOrganizationUplinksStatuses200ResponseInner) GetModel() string {
-	if o == nil || isNil(o.Model) {
+	if o == nil || IsNil(o.Model) {
 		var ret string
 		return ret
 	}
@@ -122,15 +125,15 @@ func (o *GetOrganizationUplinksStatuses200ResponseInner) GetModel() string {
 // GetModelOk returns a tuple with the Model field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationUplinksStatuses200ResponseInner) GetModelOk() (*string, bool) {
-	if o == nil || isNil(o.Model) {
-    return nil, false
+	if o == nil || IsNil(o.Model) {
+		return nil, false
 	}
 	return o.Model, true
 }
 
 // HasModel returns a boolean if a field has been set.
 func (o *GetOrganizationUplinksStatuses200ResponseInner) HasModel() bool {
-	if o != nil && !isNil(o.Model) {
+	if o != nil && !IsNil(o.Model) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *GetOrganizationUplinksStatuses200ResponseInner) SetModel(v string) {
 
 // GetLastReportedAt returns the LastReportedAt field value if set, zero value otherwise.
 func (o *GetOrganizationUplinksStatuses200ResponseInner) GetLastReportedAt() time.Time {
-	if o == nil || isNil(o.LastReportedAt) {
+	if o == nil || IsNil(o.LastReportedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -154,15 +157,15 @@ func (o *GetOrganizationUplinksStatuses200ResponseInner) GetLastReportedAt() tim
 // GetLastReportedAtOk returns a tuple with the LastReportedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationUplinksStatuses200ResponseInner) GetLastReportedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.LastReportedAt) {
-    return nil, false
+	if o == nil || IsNil(o.LastReportedAt) {
+		return nil, false
 	}
 	return o.LastReportedAt, true
 }
 
 // HasLastReportedAt returns a boolean if a field has been set.
 func (o *GetOrganizationUplinksStatuses200ResponseInner) HasLastReportedAt() bool {
-	if o != nil && !isNil(o.LastReportedAt) {
+	if o != nil && !IsNil(o.LastReportedAt) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *GetOrganizationUplinksStatuses200ResponseInner) SetLastReportedAt(v tim
 
 // GetUplinks returns the Uplinks field value if set, zero value otherwise.
 func (o *GetOrganizationUplinksStatuses200ResponseInner) GetUplinks() []GetOrganizationUplinksStatuses200ResponseInnerUplinksInner {
-	if o == nil || isNil(o.Uplinks) {
+	if o == nil || IsNil(o.Uplinks) {
 		var ret []GetOrganizationUplinksStatuses200ResponseInnerUplinksInner
 		return ret
 	}
@@ -186,15 +189,15 @@ func (o *GetOrganizationUplinksStatuses200ResponseInner) GetUplinks() []GetOrgan
 // GetUplinksOk returns a tuple with the Uplinks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationUplinksStatuses200ResponseInner) GetUplinksOk() ([]GetOrganizationUplinksStatuses200ResponseInnerUplinksInner, bool) {
-	if o == nil || isNil(o.Uplinks) {
-    return nil, false
+	if o == nil || IsNil(o.Uplinks) {
+		return nil, false
 	}
 	return o.Uplinks, true
 }
 
 // HasUplinks returns a boolean if a field has been set.
 func (o *GetOrganizationUplinksStatuses200ResponseInner) HasUplinks() bool {
-	if o != nil && !isNil(o.Uplinks) {
+	if o != nil && !IsNil(o.Uplinks) {
 		return true
 	}
 
@@ -207,23 +210,31 @@ func (o *GetOrganizationUplinksStatuses200ResponseInner) SetUplinks(v []GetOrgan
 }
 
 func (o GetOrganizationUplinksStatuses200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.NetworkId) {
-		toSerialize["networkId"] = o.NetworkId
-	}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Model) {
-		toSerialize["model"] = o.Model
-	}
-	if !isNil(o.LastReportedAt) {
-		toSerialize["lastReportedAt"] = o.LastReportedAt
-	}
-	if !isNil(o.Uplinks) {
-		toSerialize["uplinks"] = o.Uplinks
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationUplinksStatuses200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.NetworkId) {
+		toSerialize["networkId"] = o.NetworkId
+	}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.Model) {
+		toSerialize["model"] = o.Model
+	}
+	if !IsNil(o.LastReportedAt) {
+		toSerialize["lastReportedAt"] = o.LastReportedAt
+	}
+	if !IsNil(o.Uplinks) {
+		toSerialize["uplinks"] = o.Uplinks
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationUplinksStatuses200ResponseInner struct {

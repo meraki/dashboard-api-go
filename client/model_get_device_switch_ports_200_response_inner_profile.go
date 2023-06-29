@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceSwitchPorts200ResponseInnerProfile type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceSwitchPorts200ResponseInnerProfile{}
+
 // GetDeviceSwitchPorts200ResponseInnerProfile Profile attributes
 type GetDeviceSwitchPorts200ResponseInnerProfile struct {
 	// When enabled, override this port's configuration with a port profile.
@@ -43,7 +46,7 @@ func NewGetDeviceSwitchPorts200ResponseInnerProfileWithDefaults() *GetDeviceSwit
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPorts200ResponseInnerProfile) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetDeviceSwitchPorts200ResponseInnerProfile) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPorts200ResponseInnerProfile) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPorts200ResponseInnerProfile) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetDeviceSwitchPorts200ResponseInnerProfile) SetEnabled(v bool) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPorts200ResponseInnerProfile) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetDeviceSwitchPorts200ResponseInnerProfile) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPorts200ResponseInnerProfile) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPorts200ResponseInnerProfile) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetDeviceSwitchPorts200ResponseInnerProfile) SetId(v string) {
 
 // GetIname returns the Iname field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPorts200ResponseInnerProfile) GetIname() string {
-	if o == nil || isNil(o.Iname) {
+	if o == nil || IsNil(o.Iname) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetDeviceSwitchPorts200ResponseInnerProfile) GetIname() string {
 // GetInameOk returns a tuple with the Iname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPorts200ResponseInnerProfile) GetInameOk() (*string, bool) {
-	if o == nil || isNil(o.Iname) {
-    return nil, false
+	if o == nil || IsNil(o.Iname) {
+		return nil, false
 	}
 	return o.Iname, true
 }
 
 // HasIname returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPorts200ResponseInnerProfile) HasIname() bool {
-	if o != nil && !isNil(o.Iname) {
+	if o != nil && !IsNil(o.Iname) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetDeviceSwitchPorts200ResponseInnerProfile) SetIname(v string) {
 }
 
 func (o GetDeviceSwitchPorts200ResponseInnerProfile) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Iname) {
-		toSerialize["iname"] = o.Iname
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceSwitchPorts200ResponseInnerProfile) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Iname) {
+		toSerialize["iname"] = o.Iname
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceSwitchPorts200ResponseInnerProfile struct {

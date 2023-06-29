@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessBillingRequestPlansInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessBillingRequestPlansInner{}
+
 // UpdateNetworkWirelessBillingRequestPlansInner struct for UpdateNetworkWirelessBillingRequestPlansInner
 type UpdateNetworkWirelessBillingRequestPlansInner struct {
 	// The id of the pricing plan to update.
@@ -47,7 +50,7 @@ func NewUpdateNetworkWirelessBillingRequestPlansInnerWithDefaults() *UpdateNetwo
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessBillingRequestPlansInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *UpdateNetworkWirelessBillingRequestPlansInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessBillingRequestPlansInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessBillingRequestPlansInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -91,7 +94,7 @@ func (o *UpdateNetworkWirelessBillingRequestPlansInner) GetPrice() float32 {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessBillingRequestPlansInner) GetPriceOk() (*float32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Price, true
 }
@@ -115,7 +118,7 @@ func (o *UpdateNetworkWirelessBillingRequestPlansInner) GetBandwidthLimits() Upd
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessBillingRequestPlansInner) GetBandwidthLimitsOk() (*UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.BandwidthLimits, true
 }
@@ -139,7 +142,7 @@ func (o *UpdateNetworkWirelessBillingRequestPlansInner) GetTimeLimit() string {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessBillingRequestPlansInner) GetTimeLimitOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.TimeLimit, true
 }
@@ -150,20 +153,22 @@ func (o *UpdateNetworkWirelessBillingRequestPlansInner) SetTimeLimit(v string) {
 }
 
 func (o UpdateNetworkWirelessBillingRequestPlansInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["price"] = o.Price
-	}
-	if true {
-		toSerialize["bandwidthLimits"] = o.BandwidthLimits
-	}
-	if true {
-		toSerialize["timeLimit"] = o.TimeLimit
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessBillingRequestPlansInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	toSerialize["price"] = o.Price
+	toSerialize["bandwidthLimits"] = o.BandwidthLimits
+	toSerialize["timeLimit"] = o.TimeLimit
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessBillingRequestPlansInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage{}
+
 // GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage Date usage of the SSID, in megabytes
 type GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage struct {
 	// Total usage of the SSID
@@ -45,7 +48,7 @@ func NewGetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsageWithDefaults()
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) GetTotal() float32 {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		var ret float32
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) GetTotal() 
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) GetTotalOk() (*float32, bool) {
-	if o == nil || isNil(o.Total) {
-    return nil, false
+	if o == nil || IsNil(o.Total) {
+		return nil, false
 	}
 	return o.Total, true
 }
 
 // HasTotal returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) HasTotal() bool {
-	if o != nil && !isNil(o.Total) {
+	if o != nil && !IsNil(o.Total) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) SetTotal(v 
 
 // GetDownstream returns the Downstream field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) GetDownstream() float32 {
-	if o == nil || isNil(o.Downstream) {
+	if o == nil || IsNil(o.Downstream) {
 		var ret float32
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) GetDownstre
 // GetDownstreamOk returns a tuple with the Downstream field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) GetDownstreamOk() (*float32, bool) {
-	if o == nil || isNil(o.Downstream) {
-    return nil, false
+	if o == nil || IsNil(o.Downstream) {
+		return nil, false
 	}
 	return o.Downstream, true
 }
 
 // HasDownstream returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) HasDownstream() bool {
-	if o != nil && !isNil(o.Downstream) {
+	if o != nil && !IsNil(o.Downstream) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) SetDownstre
 
 // GetUpstream returns the Upstream field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) GetUpstream() float32 {
-	if o == nil || isNil(o.Upstream) {
+	if o == nil || IsNil(o.Upstream) {
 		var ret float32
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) GetUpstream
 // GetUpstreamOk returns a tuple with the Upstream field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) GetUpstreamOk() (*float32, bool) {
-	if o == nil || isNil(o.Upstream) {
-    return nil, false
+	if o == nil || IsNil(o.Upstream) {
+		return nil, false
 	}
 	return o.Upstream, true
 }
 
 // HasUpstream returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) HasUpstream() bool {
-	if o != nil && !isNil(o.Upstream) {
+	if o != nil && !IsNil(o.Upstream) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) SetUpstream
 
 // GetPercentage returns the Percentage field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) GetPercentage() float32 {
-	if o == nil || isNil(o.Percentage) {
+	if o == nil || IsNil(o.Percentage) {
 		var ret float32
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) GetPercenta
 // GetPercentageOk returns a tuple with the Percentage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) GetPercentageOk() (*float32, bool) {
-	if o == nil || isNil(o.Percentage) {
-    return nil, false
+	if o == nil || IsNil(o.Percentage) {
+		return nil, false
 	}
 	return o.Percentage, true
 }
 
 // HasPercentage returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) HasPercentage() bool {
-	if o != nil && !isNil(o.Percentage) {
+	if o != nil && !IsNil(o.Percentage) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) SetPercenta
 }
 
 func (o GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Total) {
-		toSerialize["total"] = o.Total
-	}
-	if !isNil(o.Downstream) {
-		toSerialize["downstream"] = o.Downstream
-	}
-	if !isNil(o.Upstream) {
-		toSerialize["upstream"] = o.Upstream
-	}
-	if !isNil(o.Percentage) {
-		toSerialize["percentage"] = o.Percentage
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Total) {
+		toSerialize["total"] = o.Total
+	}
+	if !IsNil(o.Downstream) {
+		toSerialize["downstream"] = o.Downstream
+	}
+	if !IsNil(o.Upstream) {
+		toSerialize["upstream"] = o.Upstream
+	}
+	if !IsNil(o.Percentage) {
+		toSerialize["percentage"] = o.Percentage
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage struct {

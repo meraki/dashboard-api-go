@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner{}
+
 // GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner struct for GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner
 type GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner struct {
 	// The start time of the channel utilization interval.
@@ -45,7 +48,7 @@ func NewGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterv
 
 // GetStartTs returns the StartTs field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner) GetStartTs() time.Time {
-	if o == nil || isNil(o.StartTs) {
+	if o == nil || IsNil(o.StartTs) {
 		var ret time.Time
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInter
 // GetStartTsOk returns a tuple with the StartTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner) GetStartTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartTs) {
-    return nil, false
+	if o == nil || IsNil(o.StartTs) {
+		return nil, false
 	}
 	return o.StartTs, true
 }
 
 // HasStartTs returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner) HasStartTs() bool {
-	if o != nil && !isNil(o.StartTs) {
+	if o != nil && !IsNil(o.StartTs) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInter
 
 // GetEndTs returns the EndTs field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner) GetEndTs() time.Time {
-	if o == nil || isNil(o.EndTs) {
+	if o == nil || IsNil(o.EndTs) {
 		var ret time.Time
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInter
 // GetEndTsOk returns a tuple with the EndTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner) GetEndTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.EndTs) {
-    return nil, false
+	if o == nil || IsNil(o.EndTs) {
+		return nil, false
 	}
 	return o.EndTs, true
 }
 
 // HasEndTs returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner) HasEndTs() bool {
-	if o != nil && !isNil(o.EndTs) {
+	if o != nil && !IsNil(o.EndTs) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInter
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner) GetNetwork() GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerNetwork {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		var ret GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerNetwork
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInter
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner) GetNetworkOk() (*GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerNetwork, bool) {
-	if o == nil || isNil(o.Network) {
-    return nil, false
+	if o == nil || IsNil(o.Network) {
+		return nil, false
 	}
 	return o.Network, true
 }
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner) HasNetwork() bool {
-	if o != nil && !isNil(o.Network) {
+	if o != nil && !IsNil(o.Network) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInter
 
 // GetByBand returns the ByBand field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner) GetByBand() []GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner {
-	if o == nil || isNil(o.ByBand) {
+	if o == nil || IsNil(o.ByBand) {
 		var ret []GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInter
 // GetByBandOk returns a tuple with the ByBand field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner) GetByBandOk() ([]GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner, bool) {
-	if o == nil || isNil(o.ByBand) {
-    return nil, false
+	if o == nil || IsNil(o.ByBand) {
+		return nil, false
 	}
 	return o.ByBand, true
 }
 
 // HasByBand returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner) HasByBand() bool {
-	if o != nil && !isNil(o.ByBand) {
+	if o != nil && !IsNil(o.ByBand) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInter
 }
 
 func (o GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.StartTs) {
-		toSerialize["startTs"] = o.StartTs
-	}
-	if !isNil(o.EndTs) {
-		toSerialize["endTs"] = o.EndTs
-	}
-	if !isNil(o.Network) {
-		toSerialize["network"] = o.Network
-	}
-	if !isNil(o.ByBand) {
-		toSerialize["byBand"] = o.ByBand
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.StartTs) {
+		toSerialize["startTs"] = o.StartTs
+	}
+	if !IsNil(o.EndTs) {
+		toSerialize["endTs"] = o.EndTs
+	}
+	if !IsNil(o.Network) {
+		toSerialize["network"] = o.Network
+	}
+	if !IsNil(o.ByBand) {
+		toSerialize["byBand"] = o.ByBand
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval200ResponseInner struct {

@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion{}
+
 // GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion Details of the current version on the device
 type GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion struct {
 	// Firmware version identifier
@@ -48,7 +51,7 @@ func NewGetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersionWithD
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -58,15 +61,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) Ge
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) Se
 
 // GetFirmware returns the Firmware field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) GetFirmware() string {
-	if o == nil || isNil(o.Firmware) {
+	if o == nil || IsNil(o.Firmware) {
 		var ret string
 		return ret
 	}
@@ -90,15 +93,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) Ge
 // GetFirmwareOk returns a tuple with the Firmware field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) GetFirmwareOk() (*string, bool) {
-	if o == nil || isNil(o.Firmware) {
-    return nil, false
+	if o == nil || IsNil(o.Firmware) {
+		return nil, false
 	}
 	return o.Firmware, true
 }
 
 // HasFirmware returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) HasFirmware() bool {
-	if o != nil && !isNil(o.Firmware) {
+	if o != nil && !IsNil(o.Firmware) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) Se
 
 // GetShortName returns the ShortName field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) GetShortName() string {
-	if o == nil || isNil(o.ShortName) {
+	if o == nil || IsNil(o.ShortName) {
 		var ret string
 		return ret
 	}
@@ -122,15 +125,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) Ge
 // GetShortNameOk returns a tuple with the ShortName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) GetShortNameOk() (*string, bool) {
-	if o == nil || isNil(o.ShortName) {
-    return nil, false
+	if o == nil || IsNil(o.ShortName) {
+		return nil, false
 	}
 	return o.ShortName, true
 }
 
 // HasShortName returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) HasShortName() bool {
-	if o != nil && !isNil(o.ShortName) {
+	if o != nil && !IsNil(o.ShortName) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) Se
 
 // GetReleaseType returns the ReleaseType field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) GetReleaseType() string {
-	if o == nil || isNil(o.ReleaseType) {
+	if o == nil || IsNil(o.ReleaseType) {
 		var ret string
 		return ret
 	}
@@ -154,15 +157,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) Ge
 // GetReleaseTypeOk returns a tuple with the ReleaseType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) GetReleaseTypeOk() (*string, bool) {
-	if o == nil || isNil(o.ReleaseType) {
-    return nil, false
+	if o == nil || IsNil(o.ReleaseType) {
+		return nil, false
 	}
 	return o.ReleaseType, true
 }
 
 // HasReleaseType returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) HasReleaseType() bool {
-	if o != nil && !isNil(o.ReleaseType) {
+	if o != nil && !IsNil(o.ReleaseType) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) Se
 
 // GetReleaseDate returns the ReleaseDate field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) GetReleaseDate() time.Time {
-	if o == nil || isNil(o.ReleaseDate) {
+	if o == nil || IsNil(o.ReleaseDate) {
 		var ret time.Time
 		return ret
 	}
@@ -186,15 +189,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) Ge
 // GetReleaseDateOk returns a tuple with the ReleaseDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) GetReleaseDateOk() (*time.Time, bool) {
-	if o == nil || isNil(o.ReleaseDate) {
-    return nil, false
+	if o == nil || IsNil(o.ReleaseDate) {
+		return nil, false
 	}
 	return o.ReleaseDate, true
 }
 
 // HasReleaseDate returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) HasReleaseDate() bool {
-	if o != nil && !isNil(o.ReleaseDate) {
+	if o != nil && !IsNil(o.ReleaseDate) {
 		return true
 	}
 
@@ -207,23 +210,31 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) Se
 }
 
 func (o GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Firmware) {
-		toSerialize["firmware"] = o.Firmware
-	}
-	if !isNil(o.ShortName) {
-		toSerialize["shortName"] = o.ShortName
-	}
-	if !isNil(o.ReleaseType) {
-		toSerialize["releaseType"] = o.ReleaseType
-	}
-	if !isNil(o.ReleaseDate) {
-		toSerialize["releaseDate"] = o.ReleaseDate
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Firmware) {
+		toSerialize["firmware"] = o.Firmware
+	}
+	if !IsNil(o.ShortName) {
+		toSerialize["shortName"] = o.ShortName
+	}
+	if !IsNil(o.ReleaseType) {
+		toSerialize["releaseType"] = o.ReleaseType
+	}
+	if !IsNil(o.ReleaseDate) {
+		toSerialize["releaseDate"] = o.ReleaseDate
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion struct {

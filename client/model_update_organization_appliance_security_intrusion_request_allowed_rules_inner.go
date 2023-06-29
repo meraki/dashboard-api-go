@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner{}
+
 // UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner struct for UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner
 type UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner struct {
 	// A rule identifier of the format meraki:intrusion/snort/GID/<gid>/SID/<sid>. gid and sid can be obtained from either https://www.snort.org/rule-docs or as ruleIds from the security events in /organization/[orgId]/securityEvents
@@ -54,7 +57,7 @@ func (o *UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner) G
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner) GetRuleIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.RuleId, true
 }
@@ -66,7 +69,7 @@ func (o *UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner) S
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner) GetMessage() string {
-	if o == nil || isNil(o.Message) {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner) G
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner) GetMessageOk() (*string, bool) {
-	if o == nil || isNil(o.Message) {
-    return nil, false
+	if o == nil || IsNil(o.Message) {
+		return nil, false
 	}
 	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner) HasMessage() bool {
-	if o != nil && !isNil(o.Message) {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
@@ -97,14 +100,20 @@ func (o *UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner) S
 }
 
 func (o UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ruleId"] = o.RuleId
-	}
-	if !isNil(o.Message) {
-		toSerialize["message"] = o.Message
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["ruleId"] = o.RuleId
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner struct {

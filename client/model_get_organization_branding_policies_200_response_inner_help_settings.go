@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationBrandingPolicies200ResponseInnerHelpSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationBrandingPolicies200ResponseInnerHelpSettings{}
+
 // GetOrganizationBrandingPolicies200ResponseInnerHelpSettings       Settings for describing the modifications to various Help page features. Each property in this object accepts one of       'default or inherit' (do not modify functionality), 'hide' (remove the section from Dashboard), or 'show' (always show       the section on Dashboard). Some properties in this object also accept custom HTML used to replace the section on       Dashboard; see the documentation for each property to see the allowed values. 
 type GetOrganizationBrandingPolicies200ResponseInnerHelpSettings struct {
 	//       The Help tab, under which all support information resides. If this tab is hidden, no other 'Help' branding       customizations will be visible. Can be one of 'default or inherit', 'hide' or 'show'. 
@@ -67,7 +70,7 @@ func NewGetOrganizationBrandingPolicies200ResponseInnerHelpSettingsWithDefaults(
 
 // GetHelpTab returns the HelpTab field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetHelpTab() string {
-	if o == nil || isNil(o.HelpTab) {
+	if o == nil || IsNil(o.HelpTab) {
 		var ret string
 		return ret
 	}
@@ -77,15 +80,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetHelpTab
 // GetHelpTabOk returns a tuple with the HelpTab field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetHelpTabOk() (*string, bool) {
-	if o == nil || isNil(o.HelpTab) {
-    return nil, false
+	if o == nil || IsNil(o.HelpTab) {
+		return nil, false
 	}
 	return o.HelpTab, true
 }
 
 // HasHelpTab returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) HasHelpTab() bool {
-	if o != nil && !isNil(o.HelpTab) {
+	if o != nil && !IsNil(o.HelpTab) {
 		return true
 	}
 
@@ -99,7 +102,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) SetHelpTab
 
 // GetGetHelpSubtab returns the GetHelpSubtab field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetGetHelpSubtab() string {
-	if o == nil || isNil(o.GetHelpSubtab) {
+	if o == nil || IsNil(o.GetHelpSubtab) {
 		var ret string
 		return ret
 	}
@@ -109,15 +112,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetGetHelp
 // GetGetHelpSubtabOk returns a tuple with the GetHelpSubtab field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetGetHelpSubtabOk() (*string, bool) {
-	if o == nil || isNil(o.GetHelpSubtab) {
-    return nil, false
+	if o == nil || IsNil(o.GetHelpSubtab) {
+		return nil, false
 	}
 	return o.GetHelpSubtab, true
 }
 
 // HasGetHelpSubtab returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) HasGetHelpSubtab() bool {
-	if o != nil && !isNil(o.GetHelpSubtab) {
+	if o != nil && !IsNil(o.GetHelpSubtab) {
 		return true
 	}
 
@@ -131,7 +134,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) SetGetHelp
 
 // GetCommunitySubtab returns the CommunitySubtab field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetCommunitySubtab() string {
-	if o == nil || isNil(o.CommunitySubtab) {
+	if o == nil || IsNil(o.CommunitySubtab) {
 		var ret string
 		return ret
 	}
@@ -141,15 +144,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetCommuni
 // GetCommunitySubtabOk returns a tuple with the CommunitySubtab field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetCommunitySubtabOk() (*string, bool) {
-	if o == nil || isNil(o.CommunitySubtab) {
-    return nil, false
+	if o == nil || IsNil(o.CommunitySubtab) {
+		return nil, false
 	}
 	return o.CommunitySubtab, true
 }
 
 // HasCommunitySubtab returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) HasCommunitySubtab() bool {
-	if o != nil && !isNil(o.CommunitySubtab) {
+	if o != nil && !IsNil(o.CommunitySubtab) {
 		return true
 	}
 
@@ -163,7 +166,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) SetCommuni
 
 // GetCasesSubtab returns the CasesSubtab field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetCasesSubtab() string {
-	if o == nil || isNil(o.CasesSubtab) {
+	if o == nil || IsNil(o.CasesSubtab) {
 		var ret string
 		return ret
 	}
@@ -173,15 +176,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetCasesSu
 // GetCasesSubtabOk returns a tuple with the CasesSubtab field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetCasesSubtabOk() (*string, bool) {
-	if o == nil || isNil(o.CasesSubtab) {
-    return nil, false
+	if o == nil || IsNil(o.CasesSubtab) {
+		return nil, false
 	}
 	return o.CasesSubtab, true
 }
 
 // HasCasesSubtab returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) HasCasesSubtab() bool {
-	if o != nil && !isNil(o.CasesSubtab) {
+	if o != nil && !IsNil(o.CasesSubtab) {
 		return true
 	}
 
@@ -195,7 +198,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) SetCasesSu
 
 // GetDataProtectionRequestsSubtab returns the DataProtectionRequestsSubtab field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetDataProtectionRequestsSubtab() string {
-	if o == nil || isNil(o.DataProtectionRequestsSubtab) {
+	if o == nil || IsNil(o.DataProtectionRequestsSubtab) {
 		var ret string
 		return ret
 	}
@@ -205,15 +208,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetDataPro
 // GetDataProtectionRequestsSubtabOk returns a tuple with the DataProtectionRequestsSubtab field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetDataProtectionRequestsSubtabOk() (*string, bool) {
-	if o == nil || isNil(o.DataProtectionRequestsSubtab) {
-    return nil, false
+	if o == nil || IsNil(o.DataProtectionRequestsSubtab) {
+		return nil, false
 	}
 	return o.DataProtectionRequestsSubtab, true
 }
 
 // HasDataProtectionRequestsSubtab returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) HasDataProtectionRequestsSubtab() bool {
-	if o != nil && !isNil(o.DataProtectionRequestsSubtab) {
+	if o != nil && !IsNil(o.DataProtectionRequestsSubtab) {
 		return true
 	}
 
@@ -227,7 +230,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) SetDataPro
 
 // GetGetHelpSubtabKnowledgeBaseSearch returns the GetHelpSubtabKnowledgeBaseSearch field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetGetHelpSubtabKnowledgeBaseSearch() string {
-	if o == nil || isNil(o.GetHelpSubtabKnowledgeBaseSearch) {
+	if o == nil || IsNil(o.GetHelpSubtabKnowledgeBaseSearch) {
 		var ret string
 		return ret
 	}
@@ -237,15 +240,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetGetHelp
 // GetGetHelpSubtabKnowledgeBaseSearchOk returns a tuple with the GetHelpSubtabKnowledgeBaseSearch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetGetHelpSubtabKnowledgeBaseSearchOk() (*string, bool) {
-	if o == nil || isNil(o.GetHelpSubtabKnowledgeBaseSearch) {
-    return nil, false
+	if o == nil || IsNil(o.GetHelpSubtabKnowledgeBaseSearch) {
+		return nil, false
 	}
 	return o.GetHelpSubtabKnowledgeBaseSearch, true
 }
 
 // HasGetHelpSubtabKnowledgeBaseSearch returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) HasGetHelpSubtabKnowledgeBaseSearch() bool {
-	if o != nil && !isNil(o.GetHelpSubtabKnowledgeBaseSearch) {
+	if o != nil && !IsNil(o.GetHelpSubtabKnowledgeBaseSearch) {
 		return true
 	}
 
@@ -259,7 +262,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) SetGetHelp
 
 // GetUniversalSearchKnowledgeBaseSearch returns the UniversalSearchKnowledgeBaseSearch field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetUniversalSearchKnowledgeBaseSearch() string {
-	if o == nil || isNil(o.UniversalSearchKnowledgeBaseSearch) {
+	if o == nil || IsNil(o.UniversalSearchKnowledgeBaseSearch) {
 		var ret string
 		return ret
 	}
@@ -269,15 +272,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetUnivers
 // GetUniversalSearchKnowledgeBaseSearchOk returns a tuple with the UniversalSearchKnowledgeBaseSearch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetUniversalSearchKnowledgeBaseSearchOk() (*string, bool) {
-	if o == nil || isNil(o.UniversalSearchKnowledgeBaseSearch) {
-    return nil, false
+	if o == nil || IsNil(o.UniversalSearchKnowledgeBaseSearch) {
+		return nil, false
 	}
 	return o.UniversalSearchKnowledgeBaseSearch, true
 }
 
 // HasUniversalSearchKnowledgeBaseSearch returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) HasUniversalSearchKnowledgeBaseSearch() bool {
-	if o != nil && !isNil(o.UniversalSearchKnowledgeBaseSearch) {
+	if o != nil && !IsNil(o.UniversalSearchKnowledgeBaseSearch) {
 		return true
 	}
 
@@ -291,7 +294,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) SetUnivers
 
 // GetCiscoMerakiProductDocumentation returns the CiscoMerakiProductDocumentation field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetCiscoMerakiProductDocumentation() string {
-	if o == nil || isNil(o.CiscoMerakiProductDocumentation) {
+	if o == nil || IsNil(o.CiscoMerakiProductDocumentation) {
 		var ret string
 		return ret
 	}
@@ -301,15 +304,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetCiscoMe
 // GetCiscoMerakiProductDocumentationOk returns a tuple with the CiscoMerakiProductDocumentation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetCiscoMerakiProductDocumentationOk() (*string, bool) {
-	if o == nil || isNil(o.CiscoMerakiProductDocumentation) {
-    return nil, false
+	if o == nil || IsNil(o.CiscoMerakiProductDocumentation) {
+		return nil, false
 	}
 	return o.CiscoMerakiProductDocumentation, true
 }
 
 // HasCiscoMerakiProductDocumentation returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) HasCiscoMerakiProductDocumentation() bool {
-	if o != nil && !isNil(o.CiscoMerakiProductDocumentation) {
+	if o != nil && !IsNil(o.CiscoMerakiProductDocumentation) {
 		return true
 	}
 
@@ -323,7 +326,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) SetCiscoMe
 
 // GetSupportContactInfo returns the SupportContactInfo field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetSupportContactInfo() string {
-	if o == nil || isNil(o.SupportContactInfo) {
+	if o == nil || IsNil(o.SupportContactInfo) {
 		var ret string
 		return ret
 	}
@@ -333,15 +336,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetSupport
 // GetSupportContactInfoOk returns a tuple with the SupportContactInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetSupportContactInfoOk() (*string, bool) {
-	if o == nil || isNil(o.SupportContactInfo) {
-    return nil, false
+	if o == nil || IsNil(o.SupportContactInfo) {
+		return nil, false
 	}
 	return o.SupportContactInfo, true
 }
 
 // HasSupportContactInfo returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) HasSupportContactInfo() bool {
-	if o != nil && !isNil(o.SupportContactInfo) {
+	if o != nil && !IsNil(o.SupportContactInfo) {
 		return true
 	}
 
@@ -355,7 +358,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) SetSupport
 
 // GetNewFeaturesSubtab returns the NewFeaturesSubtab field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetNewFeaturesSubtab() string {
-	if o == nil || isNil(o.NewFeaturesSubtab) {
+	if o == nil || IsNil(o.NewFeaturesSubtab) {
 		var ret string
 		return ret
 	}
@@ -365,15 +368,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetNewFeat
 // GetNewFeaturesSubtabOk returns a tuple with the NewFeaturesSubtab field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetNewFeaturesSubtabOk() (*string, bool) {
-	if o == nil || isNil(o.NewFeaturesSubtab) {
-    return nil, false
+	if o == nil || IsNil(o.NewFeaturesSubtab) {
+		return nil, false
 	}
 	return o.NewFeaturesSubtab, true
 }
 
 // HasNewFeaturesSubtab returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) HasNewFeaturesSubtab() bool {
-	if o != nil && !isNil(o.NewFeaturesSubtab) {
+	if o != nil && !IsNil(o.NewFeaturesSubtab) {
 		return true
 	}
 
@@ -387,7 +390,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) SetNewFeat
 
 // GetFirewallInfoSubtab returns the FirewallInfoSubtab field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetFirewallInfoSubtab() string {
-	if o == nil || isNil(o.FirewallInfoSubtab) {
+	if o == nil || IsNil(o.FirewallInfoSubtab) {
 		var ret string
 		return ret
 	}
@@ -397,15 +400,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetFirewal
 // GetFirewallInfoSubtabOk returns a tuple with the FirewallInfoSubtab field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetFirewallInfoSubtabOk() (*string, bool) {
-	if o == nil || isNil(o.FirewallInfoSubtab) {
-    return nil, false
+	if o == nil || IsNil(o.FirewallInfoSubtab) {
+		return nil, false
 	}
 	return o.FirewallInfoSubtab, true
 }
 
 // HasFirewallInfoSubtab returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) HasFirewallInfoSubtab() bool {
-	if o != nil && !isNil(o.FirewallInfoSubtab) {
+	if o != nil && !IsNil(o.FirewallInfoSubtab) {
 		return true
 	}
 
@@ -419,7 +422,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) SetFirewal
 
 // GetApiDocsSubtab returns the ApiDocsSubtab field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetApiDocsSubtab() string {
-	if o == nil || isNil(o.ApiDocsSubtab) {
+	if o == nil || IsNil(o.ApiDocsSubtab) {
 		var ret string
 		return ret
 	}
@@ -429,15 +432,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetApiDocs
 // GetApiDocsSubtabOk returns a tuple with the ApiDocsSubtab field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetApiDocsSubtabOk() (*string, bool) {
-	if o == nil || isNil(o.ApiDocsSubtab) {
-    return nil, false
+	if o == nil || IsNil(o.ApiDocsSubtab) {
+		return nil, false
 	}
 	return o.ApiDocsSubtab, true
 }
 
 // HasApiDocsSubtab returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) HasApiDocsSubtab() bool {
-	if o != nil && !isNil(o.ApiDocsSubtab) {
+	if o != nil && !IsNil(o.ApiDocsSubtab) {
 		return true
 	}
 
@@ -451,7 +454,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) SetApiDocs
 
 // GetHardwareReplacementsSubtab returns the HardwareReplacementsSubtab field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetHardwareReplacementsSubtab() string {
-	if o == nil || isNil(o.HardwareReplacementsSubtab) {
+	if o == nil || IsNil(o.HardwareReplacementsSubtab) {
 		var ret string
 		return ret
 	}
@@ -461,15 +464,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetHardwar
 // GetHardwareReplacementsSubtabOk returns a tuple with the HardwareReplacementsSubtab field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetHardwareReplacementsSubtabOk() (*string, bool) {
-	if o == nil || isNil(o.HardwareReplacementsSubtab) {
-    return nil, false
+	if o == nil || IsNil(o.HardwareReplacementsSubtab) {
+		return nil, false
 	}
 	return o.HardwareReplacementsSubtab, true
 }
 
 // HasHardwareReplacementsSubtab returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) HasHardwareReplacementsSubtab() bool {
-	if o != nil && !isNil(o.HardwareReplacementsSubtab) {
+	if o != nil && !IsNil(o.HardwareReplacementsSubtab) {
 		return true
 	}
 
@@ -483,7 +486,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) SetHardwar
 
 // GetSmForums returns the SmForums field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetSmForums() string {
-	if o == nil || isNil(o.SmForums) {
+	if o == nil || IsNil(o.SmForums) {
 		var ret string
 		return ret
 	}
@@ -493,15 +496,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetSmForum
 // GetSmForumsOk returns a tuple with the SmForums field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetSmForumsOk() (*string, bool) {
-	if o == nil || isNil(o.SmForums) {
-    return nil, false
+	if o == nil || IsNil(o.SmForums) {
+		return nil, false
 	}
 	return o.SmForums, true
 }
 
 // HasSmForums returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) HasSmForums() bool {
-	if o != nil && !isNil(o.SmForums) {
+	if o != nil && !IsNil(o.SmForums) {
 		return true
 	}
 
@@ -515,7 +518,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) SetSmForum
 
 // GetHelpWidget returns the HelpWidget field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetHelpWidget() string {
-	if o == nil || isNil(o.HelpWidget) {
+	if o == nil || IsNil(o.HelpWidget) {
 		var ret string
 		return ret
 	}
@@ -525,15 +528,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetHelpWid
 // GetHelpWidgetOk returns a tuple with the HelpWidget field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) GetHelpWidgetOk() (*string, bool) {
-	if o == nil || isNil(o.HelpWidget) {
-    return nil, false
+	if o == nil || IsNil(o.HelpWidget) {
+		return nil, false
 	}
 	return o.HelpWidget, true
 }
 
 // HasHelpWidget returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) HasHelpWidget() bool {
-	if o != nil && !isNil(o.HelpWidget) {
+	if o != nil && !IsNil(o.HelpWidget) {
 		return true
 	}
 
@@ -546,53 +549,61 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) SetHelpWid
 }
 
 func (o GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.HelpTab) {
-		toSerialize["helpTab"] = o.HelpTab
-	}
-	if !isNil(o.GetHelpSubtab) {
-		toSerialize["getHelpSubtab"] = o.GetHelpSubtab
-	}
-	if !isNil(o.CommunitySubtab) {
-		toSerialize["communitySubtab"] = o.CommunitySubtab
-	}
-	if !isNil(o.CasesSubtab) {
-		toSerialize["casesSubtab"] = o.CasesSubtab
-	}
-	if !isNil(o.DataProtectionRequestsSubtab) {
-		toSerialize["dataProtectionRequestsSubtab"] = o.DataProtectionRequestsSubtab
-	}
-	if !isNil(o.GetHelpSubtabKnowledgeBaseSearch) {
-		toSerialize["getHelpSubtabKnowledgeBaseSearch"] = o.GetHelpSubtabKnowledgeBaseSearch
-	}
-	if !isNil(o.UniversalSearchKnowledgeBaseSearch) {
-		toSerialize["universalSearchKnowledgeBaseSearch"] = o.UniversalSearchKnowledgeBaseSearch
-	}
-	if !isNil(o.CiscoMerakiProductDocumentation) {
-		toSerialize["ciscoMerakiProductDocumentation"] = o.CiscoMerakiProductDocumentation
-	}
-	if !isNil(o.SupportContactInfo) {
-		toSerialize["supportContactInfo"] = o.SupportContactInfo
-	}
-	if !isNil(o.NewFeaturesSubtab) {
-		toSerialize["newFeaturesSubtab"] = o.NewFeaturesSubtab
-	}
-	if !isNil(o.FirewallInfoSubtab) {
-		toSerialize["firewallInfoSubtab"] = o.FirewallInfoSubtab
-	}
-	if !isNil(o.ApiDocsSubtab) {
-		toSerialize["apiDocsSubtab"] = o.ApiDocsSubtab
-	}
-	if !isNil(o.HardwareReplacementsSubtab) {
-		toSerialize["hardwareReplacementsSubtab"] = o.HardwareReplacementsSubtab
-	}
-	if !isNil(o.SmForums) {
-		toSerialize["smForums"] = o.SmForums
-	}
-	if !isNil(o.HelpWidget) {
-		toSerialize["helpWidget"] = o.HelpWidget
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationBrandingPolicies200ResponseInnerHelpSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.HelpTab) {
+		toSerialize["helpTab"] = o.HelpTab
+	}
+	if !IsNil(o.GetHelpSubtab) {
+		toSerialize["getHelpSubtab"] = o.GetHelpSubtab
+	}
+	if !IsNil(o.CommunitySubtab) {
+		toSerialize["communitySubtab"] = o.CommunitySubtab
+	}
+	if !IsNil(o.CasesSubtab) {
+		toSerialize["casesSubtab"] = o.CasesSubtab
+	}
+	if !IsNil(o.DataProtectionRequestsSubtab) {
+		toSerialize["dataProtectionRequestsSubtab"] = o.DataProtectionRequestsSubtab
+	}
+	if !IsNil(o.GetHelpSubtabKnowledgeBaseSearch) {
+		toSerialize["getHelpSubtabKnowledgeBaseSearch"] = o.GetHelpSubtabKnowledgeBaseSearch
+	}
+	if !IsNil(o.UniversalSearchKnowledgeBaseSearch) {
+		toSerialize["universalSearchKnowledgeBaseSearch"] = o.UniversalSearchKnowledgeBaseSearch
+	}
+	if !IsNil(o.CiscoMerakiProductDocumentation) {
+		toSerialize["ciscoMerakiProductDocumentation"] = o.CiscoMerakiProductDocumentation
+	}
+	if !IsNil(o.SupportContactInfo) {
+		toSerialize["supportContactInfo"] = o.SupportContactInfo
+	}
+	if !IsNil(o.NewFeaturesSubtab) {
+		toSerialize["newFeaturesSubtab"] = o.NewFeaturesSubtab
+	}
+	if !IsNil(o.FirewallInfoSubtab) {
+		toSerialize["firewallInfoSubtab"] = o.FirewallInfoSubtab
+	}
+	if !IsNil(o.ApiDocsSubtab) {
+		toSerialize["apiDocsSubtab"] = o.ApiDocsSubtab
+	}
+	if !IsNil(o.HardwareReplacementsSubtab) {
+		toSerialize["hardwareReplacementsSubtab"] = o.HardwareReplacementsSubtab
+	}
+	if !IsNil(o.SmForums) {
+		toSerialize["smForums"] = o.SmForums
+	}
+	if !IsNil(o.HelpWidget) {
+		toSerialize["helpWidget"] = o.HelpWidget
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationBrandingPolicies200ResponseInnerHelpSettings struct {

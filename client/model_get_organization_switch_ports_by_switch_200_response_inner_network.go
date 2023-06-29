@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork{}
+
 // GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork Identifying information of the switch's network.
 type GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork struct {
 	// The name of the network.
@@ -41,7 +44,7 @@ func NewGetOrganizationSwitchPortsBySwitch200ResponseInnerNetworkWithDefaults() 
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork) GetName() st
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork) SetName(v st
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork) GetId() stri
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork) SetId(v stri
 }
 
 func (o GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork struct {

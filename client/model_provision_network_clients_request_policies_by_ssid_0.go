@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ProvisionNetworkClientsRequestPoliciesBySsid0 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProvisionNetworkClientsRequestPoliciesBySsid0{}
+
 // ProvisionNetworkClientsRequestPoliciesBySsid0 The number for the SSID
 type ProvisionNetworkClientsRequestPoliciesBySsid0 struct {
 	// The policy to apply to the specified client. Can be 'Allowed', 'Blocked', 'Normal' or 'Group policy'. Required.
@@ -54,7 +57,7 @@ func (o *ProvisionNetworkClientsRequestPoliciesBySsid0) GetDevicePolicy() string
 // and a boolean to check if the value has been set.
 func (o *ProvisionNetworkClientsRequestPoliciesBySsid0) GetDevicePolicyOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.DevicePolicy, true
 }
@@ -66,7 +69,7 @@ func (o *ProvisionNetworkClientsRequestPoliciesBySsid0) SetDevicePolicy(v string
 
 // GetGroupPolicyId returns the GroupPolicyId field value if set, zero value otherwise.
 func (o *ProvisionNetworkClientsRequestPoliciesBySsid0) GetGroupPolicyId() string {
-	if o == nil || isNil(o.GroupPolicyId) {
+	if o == nil || IsNil(o.GroupPolicyId) {
 		var ret string
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *ProvisionNetworkClientsRequestPoliciesBySsid0) GetGroupPolicyId() strin
 // GetGroupPolicyIdOk returns a tuple with the GroupPolicyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProvisionNetworkClientsRequestPoliciesBySsid0) GetGroupPolicyIdOk() (*string, bool) {
-	if o == nil || isNil(o.GroupPolicyId) {
-    return nil, false
+	if o == nil || IsNil(o.GroupPolicyId) {
+		return nil, false
 	}
 	return o.GroupPolicyId, true
 }
 
 // HasGroupPolicyId returns a boolean if a field has been set.
 func (o *ProvisionNetworkClientsRequestPoliciesBySsid0) HasGroupPolicyId() bool {
-	if o != nil && !isNil(o.GroupPolicyId) {
+	if o != nil && !IsNil(o.GroupPolicyId) {
 		return true
 	}
 
@@ -97,14 +100,20 @@ func (o *ProvisionNetworkClientsRequestPoliciesBySsid0) SetGroupPolicyId(v strin
 }
 
 func (o ProvisionNetworkClientsRequestPoliciesBySsid0) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["devicePolicy"] = o.DevicePolicy
-	}
-	if !isNil(o.GroupPolicyId) {
-		toSerialize["groupPolicyId"] = o.GroupPolicyId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ProvisionNetworkClientsRequestPoliciesBySsid0) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["devicePolicy"] = o.DevicePolicy
+	if !IsNil(o.GroupPolicyId) {
+		toSerialize["groupPolicyId"] = o.GroupPolicyId
+	}
+	return toSerialize, nil
 }
 
 type NullableProvisionNetworkClientsRequestPoliciesBySsid0 struct {

@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkWirelessLatencyHistory200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessLatencyHistory200ResponseInner{}
+
 // GetNetworkWirelessLatencyHistory200ResponseInner struct for GetNetworkWirelessLatencyHistory200ResponseInner
 type GetNetworkWirelessLatencyHistory200ResponseInner struct {
 	// The start time of the query range
@@ -44,7 +47,7 @@ func NewGetNetworkWirelessLatencyHistory200ResponseInnerWithDefaults() *GetNetwo
 
 // GetStartTs returns the StartTs field value if set, zero value otherwise.
 func (o *GetNetworkWirelessLatencyHistory200ResponseInner) GetStartTs() time.Time {
-	if o == nil || isNil(o.StartTs) {
+	if o == nil || IsNil(o.StartTs) {
 		var ret time.Time
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *GetNetworkWirelessLatencyHistory200ResponseInner) GetStartTs() time.Tim
 // GetStartTsOk returns a tuple with the StartTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessLatencyHistory200ResponseInner) GetStartTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartTs) {
-    return nil, false
+	if o == nil || IsNil(o.StartTs) {
+		return nil, false
 	}
 	return o.StartTs, true
 }
 
 // HasStartTs returns a boolean if a field has been set.
 func (o *GetNetworkWirelessLatencyHistory200ResponseInner) HasStartTs() bool {
-	if o != nil && !isNil(o.StartTs) {
+	if o != nil && !IsNil(o.StartTs) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *GetNetworkWirelessLatencyHistory200ResponseInner) SetStartTs(v time.Tim
 
 // GetEndTs returns the EndTs field value if set, zero value otherwise.
 func (o *GetNetworkWirelessLatencyHistory200ResponseInner) GetEndTs() time.Time {
-	if o == nil || isNil(o.EndTs) {
+	if o == nil || IsNil(o.EndTs) {
 		var ret time.Time
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *GetNetworkWirelessLatencyHistory200ResponseInner) GetEndTs() time.Time 
 // GetEndTsOk returns a tuple with the EndTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessLatencyHistory200ResponseInner) GetEndTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.EndTs) {
-    return nil, false
+	if o == nil || IsNil(o.EndTs) {
+		return nil, false
 	}
 	return o.EndTs, true
 }
 
 // HasEndTs returns a boolean if a field has been set.
 func (o *GetNetworkWirelessLatencyHistory200ResponseInner) HasEndTs() bool {
-	if o != nil && !isNil(o.EndTs) {
+	if o != nil && !IsNil(o.EndTs) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *GetNetworkWirelessLatencyHistory200ResponseInner) SetEndTs(v time.Time)
 
 // GetAvgLatencyMs returns the AvgLatencyMs field value if set, zero value otherwise.
 func (o *GetNetworkWirelessLatencyHistory200ResponseInner) GetAvgLatencyMs() int32 {
-	if o == nil || isNil(o.AvgLatencyMs) {
+	if o == nil || IsNil(o.AvgLatencyMs) {
 		var ret int32
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *GetNetworkWirelessLatencyHistory200ResponseInner) GetAvgLatencyMs() int
 // GetAvgLatencyMsOk returns a tuple with the AvgLatencyMs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessLatencyHistory200ResponseInner) GetAvgLatencyMsOk() (*int32, bool) {
-	if o == nil || isNil(o.AvgLatencyMs) {
-    return nil, false
+	if o == nil || IsNil(o.AvgLatencyMs) {
+		return nil, false
 	}
 	return o.AvgLatencyMs, true
 }
 
 // HasAvgLatencyMs returns a boolean if a field has been set.
 func (o *GetNetworkWirelessLatencyHistory200ResponseInner) HasAvgLatencyMs() bool {
-	if o != nil && !isNil(o.AvgLatencyMs) {
+	if o != nil && !IsNil(o.AvgLatencyMs) {
 		return true
 	}
 
@@ -139,17 +142,25 @@ func (o *GetNetworkWirelessLatencyHistory200ResponseInner) SetAvgLatencyMs(v int
 }
 
 func (o GetNetworkWirelessLatencyHistory200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.StartTs) {
-		toSerialize["startTs"] = o.StartTs
-	}
-	if !isNil(o.EndTs) {
-		toSerialize["endTs"] = o.EndTs
-	}
-	if !isNil(o.AvgLatencyMs) {
-		toSerialize["avgLatencyMs"] = o.AvgLatencyMs
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessLatencyHistory200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.StartTs) {
+		toSerialize["startTs"] = o.StartTs
+	}
+	if !IsNil(o.EndTs) {
+		toSerialize["endTs"] = o.EndTs
+	}
+	if !IsNil(o.AvgLatencyMs) {
+		toSerialize["avgLatencyMs"] = o.AvgLatencyMs
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessLatencyHistory200ResponseInner struct {

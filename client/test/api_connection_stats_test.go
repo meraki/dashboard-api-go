@@ -10,87 +10,87 @@ Testing ConnectionStatsApiService
 package client
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "github.com/meraki/dashboard-api-go/client"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func Test_client_ConnectionStatsApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test ConnectionStatsApiService GetDeviceWirelessConnectionStats", func(t *testing.T) {
+	t.Run("Test ConnectionStatsApiService GetDeviceWirelessConnectionStats", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var serial string
+		var serial string
 
-        resp, httpRes, err := apiClient.ConnectionStatsApi.GetDeviceWirelessConnectionStats(context.Background(), serial).Execute()
+		resp, httpRes, err := apiClient.ConnectionStatsApi.GetDeviceWirelessConnectionStats(context.Background(), serial).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ConnectionStatsApiService GetNetworkWirelessClientConnectionStats", func(t *testing.T) {
+	t.Run("Test ConnectionStatsApiService GetNetworkWirelessClientConnectionStats", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var clientId string
+		var networkId string
+		var clientId string
 
-        resp, httpRes, err := apiClient.ConnectionStatsApi.GetNetworkWirelessClientConnectionStats(context.Background(), networkId, clientId).Execute()
+		resp, httpRes, err := apiClient.ConnectionStatsApi.GetNetworkWirelessClientConnectionStats(context.Background(), networkId, clientId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ConnectionStatsApiService GetNetworkWirelessClientsConnectionStats", func(t *testing.T) {
+	t.Run("Test ConnectionStatsApiService GetNetworkWirelessClientsConnectionStats", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.ConnectionStatsApi.GetNetworkWirelessClientsConnectionStats(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.ConnectionStatsApi.GetNetworkWirelessClientsConnectionStats(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ConnectionStatsApiService GetNetworkWirelessConnectionStats", func(t *testing.T) {
+	t.Run("Test ConnectionStatsApiService GetNetworkWirelessConnectionStats", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.ConnectionStatsApi.GetNetworkWirelessConnectionStats(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.ConnectionStatsApi.GetNetworkWirelessConnectionStats(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test ConnectionStatsApiService GetNetworkWirelessDevicesConnectionStats", func(t *testing.T) {
+	t.Run("Test ConnectionStatsApiService GetNetworkWirelessDevicesConnectionStats", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.ConnectionStatsApi.GetNetworkWirelessDevicesConnectionStats(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.ConnectionStatsApi.GetNetworkWirelessDevicesConnectionStats(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

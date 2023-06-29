@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmDeviceDeviceCommandLogs200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmDeviceDeviceCommandLogs200ResponseInner{}
+
 // GetNetworkSmDeviceDeviceCommandLogs200ResponseInner struct for GetNetworkSmDeviceDeviceCommandLogs200ResponseInner
 type GetNetworkSmDeviceDeviceCommandLogs200ResponseInner struct {
 	// The type of command sent to the device.
@@ -47,7 +50,7 @@ func NewGetNetworkSmDeviceDeviceCommandLogs200ResponseInnerWithDefaults() *GetNe
 
 // GetAction returns the Action field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) GetAction() string {
-	if o == nil || isNil(o.Action) {
+	if o == nil || IsNil(o.Action) {
 		var ret string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) GetAction() string
 // GetActionOk returns a tuple with the Action field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) GetActionOk() (*string, bool) {
-	if o == nil || isNil(o.Action) {
-    return nil, false
+	if o == nil || IsNil(o.Action) {
+		return nil, false
 	}
 	return o.Action, true
 }
 
 // HasAction returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) HasAction() bool {
-	if o != nil && !isNil(o.Action) {
+	if o != nil && !IsNil(o.Action) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) SetAction(v string
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) SetName(v string) 
 
 // GetDetails returns the Details field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) GetDetails() string {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		var ret string
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) GetDetails() strin
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) GetDetailsOk() (*string, bool) {
-	if o == nil || isNil(o.Details) {
-    return nil, false
+	if o == nil || IsNil(o.Details) {
+		return nil, false
 	}
 	return o.Details, true
 }
 
 // HasDetails returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) HasDetails() bool {
-	if o != nil && !isNil(o.Details) {
+	if o != nil && !IsNil(o.Details) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) SetDetails(v strin
 
 // GetDashboardUser returns the DashboardUser field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) GetDashboardUser() string {
-	if o == nil || isNil(o.DashboardUser) {
+	if o == nil || IsNil(o.DashboardUser) {
 		var ret string
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) GetDashboardUser()
 // GetDashboardUserOk returns a tuple with the DashboardUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) GetDashboardUserOk() (*string, bool) {
-	if o == nil || isNil(o.DashboardUser) {
-    return nil, false
+	if o == nil || IsNil(o.DashboardUser) {
+		return nil, false
 	}
 	return o.DashboardUser, true
 }
 
 // HasDashboardUser returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) HasDashboardUser() bool {
-	if o != nil && !isNil(o.DashboardUser) {
+	if o != nil && !IsNil(o.DashboardUser) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) SetDashboardUser(v
 
 // GetTs returns the Ts field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) GetTs() string {
-	if o == nil || isNil(o.Ts) {
+	if o == nil || IsNil(o.Ts) {
 		var ret string
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) GetTs() string {
 // GetTsOk returns a tuple with the Ts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) GetTsOk() (*string, bool) {
-	if o == nil || isNil(o.Ts) {
-    return nil, false
+	if o == nil || IsNil(o.Ts) {
+		return nil, false
 	}
 	return o.Ts, true
 }
 
 // HasTs returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) HasTs() bool {
-	if o != nil && !isNil(o.Ts) {
+	if o != nil && !IsNil(o.Ts) {
 		return true
 	}
 
@@ -206,23 +209,31 @@ func (o *GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) SetTs(v string) {
 }
 
 func (o GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Action) {
-		toSerialize["action"] = o.Action
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Details) {
-		toSerialize["details"] = o.Details
-	}
-	if !isNil(o.DashboardUser) {
-		toSerialize["dashboardUser"] = o.DashboardUser
-	}
-	if !isNil(o.Ts) {
-		toSerialize["ts"] = o.Ts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmDeviceDeviceCommandLogs200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Action) {
+		toSerialize["action"] = o.Action
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Details) {
+		toSerialize["details"] = o.Details
+	}
+	if !IsNil(o.DashboardUser) {
+		toSerialize["dashboardUser"] = o.DashboardUser
+	}
+	if !IsNil(o.Ts) {
+		toSerialize["ts"] = o.Ts
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmDeviceDeviceCommandLogs200ResponseInner struct {

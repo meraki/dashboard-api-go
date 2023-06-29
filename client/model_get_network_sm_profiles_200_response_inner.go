@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmProfiles200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmProfiles200ResponseInner{}
+
 // GetNetworkSmProfiles200ResponseInner struct for GetNetworkSmProfiles200ResponseInner
 type GetNetworkSmProfiles200ResponseInner struct {
 	// ID of a profile.
@@ -47,7 +50,7 @@ func NewGetNetworkSmProfiles200ResponseInnerWithDefaults() *GetNetworkSmProfiles
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkSmProfiles200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *GetNetworkSmProfiles200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmProfiles200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkSmProfiles200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *GetNetworkSmProfiles200ResponseInner) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkSmProfiles200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *GetNetworkSmProfiles200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmProfiles200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkSmProfiles200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *GetNetworkSmProfiles200ResponseInner) SetName(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *GetNetworkSmProfiles200ResponseInner) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *GetNetworkSmProfiles200ResponseInner) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmProfiles200ResponseInner) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
-    return nil, false
+	if o == nil || IsNil(o.Description) {
+		return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *GetNetworkSmProfiles200ResponseInner) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *GetNetworkSmProfiles200ResponseInner) SetDescription(v string) {
 
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *GetNetworkSmProfiles200ResponseInner) GetScope() string {
-	if o == nil || isNil(o.Scope) {
+	if o == nil || IsNil(o.Scope) {
 		var ret string
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *GetNetworkSmProfiles200ResponseInner) GetScope() string {
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmProfiles200ResponseInner) GetScopeOk() (*string, bool) {
-	if o == nil || isNil(o.Scope) {
-    return nil, false
+	if o == nil || IsNil(o.Scope) {
+		return nil, false
 	}
 	return o.Scope, true
 }
 
 // HasScope returns a boolean if a field has been set.
 func (o *GetNetworkSmProfiles200ResponseInner) HasScope() bool {
-	if o != nil && !isNil(o.Scope) {
+	if o != nil && !IsNil(o.Scope) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *GetNetworkSmProfiles200ResponseInner) SetScope(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *GetNetworkSmProfiles200ResponseInner) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *GetNetworkSmProfiles200ResponseInner) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmProfiles200ResponseInner) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
 	}
 	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *GetNetworkSmProfiles200ResponseInner) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -206,23 +209,31 @@ func (o *GetNetworkSmProfiles200ResponseInner) SetTags(v []string) {
 }
 
 func (o GetNetworkSmProfiles200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	if !isNil(o.Scope) {
-		toSerialize["scope"] = o.Scope
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmProfiles200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.Scope) {
+		toSerialize["scope"] = o.Scope
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmProfiles200ResponseInner struct {

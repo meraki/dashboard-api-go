@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkSmTrustedAccessConfigs200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmTrustedAccessConfigs200ResponseInner{}
+
 // GetNetworkSmTrustedAccessConfigs200ResponseInner struct for GetNetworkSmTrustedAccessConfigs200ResponseInner
 type GetNetworkSmTrustedAccessConfigs200ResponseInner struct {
 	// device ID
@@ -60,7 +63,7 @@ func NewGetNetworkSmTrustedAccessConfigs200ResponseInnerWithDefaults() *GetNetwo
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -70,15 +73,15 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -92,7 +95,7 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) SetId(v string) {
 
 // GetSsidName returns the SsidName field value if set, zero value otherwise.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetSsidName() string {
-	if o == nil || isNil(o.SsidName) {
+	if o == nil || IsNil(o.SsidName) {
 		var ret string
 		return ret
 	}
@@ -102,15 +105,15 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetSsidName() string 
 // GetSsidNameOk returns a tuple with the SsidName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetSsidNameOk() (*string, bool) {
-	if o == nil || isNil(o.SsidName) {
-    return nil, false
+	if o == nil || IsNil(o.SsidName) {
+		return nil, false
 	}
 	return o.SsidName, true
 }
 
 // HasSsidName returns a boolean if a field has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasSsidName() bool {
-	if o != nil && !isNil(o.SsidName) {
+	if o != nil && !IsNil(o.SsidName) {
 		return true
 	}
 
@@ -124,7 +127,7 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) SetSsidName(v string)
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -134,15 +137,15 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -156,7 +159,7 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) SetName(v string) {
 
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetScope() string {
-	if o == nil || isNil(o.Scope) {
+	if o == nil || IsNil(o.Scope) {
 		var ret string
 		return ret
 	}
@@ -166,15 +169,15 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetScope() string {
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetScopeOk() (*string, bool) {
-	if o == nil || isNil(o.Scope) {
-    return nil, false
+	if o == nil || IsNil(o.Scope) {
+		return nil, false
 	}
 	return o.Scope, true
 }
 
 // HasScope returns a boolean if a field has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasScope() bool {
-	if o != nil && !isNil(o.Scope) {
+	if o != nil && !IsNil(o.Scope) {
 		return true
 	}
 
@@ -188,7 +191,7 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) SetScope(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -198,15 +201,15 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
 	}
 	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -220,7 +223,7 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) SetTags(v []string) {
 
 // GetTimeboundType returns the TimeboundType field value if set, zero value otherwise.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetTimeboundType() string {
-	if o == nil || isNil(o.TimeboundType) {
+	if o == nil || IsNil(o.TimeboundType) {
 		var ret string
 		return ret
 	}
@@ -230,15 +233,15 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetTimeboundType() st
 // GetTimeboundTypeOk returns a tuple with the TimeboundType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetTimeboundTypeOk() (*string, bool) {
-	if o == nil || isNil(o.TimeboundType) {
-    return nil, false
+	if o == nil || IsNil(o.TimeboundType) {
+		return nil, false
 	}
 	return o.TimeboundType, true
 }
 
 // HasTimeboundType returns a boolean if a field has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasTimeboundType() bool {
-	if o != nil && !isNil(o.TimeboundType) {
+	if o != nil && !IsNil(o.TimeboundType) {
 		return true
 	}
 
@@ -252,7 +255,7 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) SetTimeboundType(v st
 
 // GetSendExpirationEmails returns the SendExpirationEmails field value if set, zero value otherwise.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetSendExpirationEmails() bool {
-	if o == nil || isNil(o.SendExpirationEmails) {
+	if o == nil || IsNil(o.SendExpirationEmails) {
 		var ret bool
 		return ret
 	}
@@ -262,15 +265,15 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetSendExpirationEmai
 // GetSendExpirationEmailsOk returns a tuple with the SendExpirationEmails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetSendExpirationEmailsOk() (*bool, bool) {
-	if o == nil || isNil(o.SendExpirationEmails) {
-    return nil, false
+	if o == nil || IsNil(o.SendExpirationEmails) {
+		return nil, false
 	}
 	return o.SendExpirationEmails, true
 }
 
 // HasSendExpirationEmails returns a boolean if a field has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasSendExpirationEmails() bool {
-	if o != nil && !isNil(o.SendExpirationEmails) {
+	if o != nil && !IsNil(o.SendExpirationEmails) {
 		return true
 	}
 
@@ -284,7 +287,7 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) SetSendExpirationEmai
 
 // GetNotifyTimeBeforeAccessEnds returns the NotifyTimeBeforeAccessEnds field value if set, zero value otherwise.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetNotifyTimeBeforeAccessEnds() int32 {
-	if o == nil || isNil(o.NotifyTimeBeforeAccessEnds) {
+	if o == nil || IsNil(o.NotifyTimeBeforeAccessEnds) {
 		var ret int32
 		return ret
 	}
@@ -294,15 +297,15 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetNotifyTimeBeforeAc
 // GetNotifyTimeBeforeAccessEndsOk returns a tuple with the NotifyTimeBeforeAccessEnds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetNotifyTimeBeforeAccessEndsOk() (*int32, bool) {
-	if o == nil || isNil(o.NotifyTimeBeforeAccessEnds) {
-    return nil, false
+	if o == nil || IsNil(o.NotifyTimeBeforeAccessEnds) {
+		return nil, false
 	}
 	return o.NotifyTimeBeforeAccessEnds, true
 }
 
 // HasNotifyTimeBeforeAccessEnds returns a boolean if a field has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasNotifyTimeBeforeAccessEnds() bool {
-	if o != nil && !isNil(o.NotifyTimeBeforeAccessEnds) {
+	if o != nil && !IsNil(o.NotifyTimeBeforeAccessEnds) {
 		return true
 	}
 
@@ -316,7 +319,7 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) SetNotifyTimeBeforeAc
 
 // GetAdditionalEmailText returns the AdditionalEmailText field value if set, zero value otherwise.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetAdditionalEmailText() string {
-	if o == nil || isNil(o.AdditionalEmailText) {
+	if o == nil || IsNil(o.AdditionalEmailText) {
 		var ret string
 		return ret
 	}
@@ -326,15 +329,15 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetAdditionalEmailTex
 // GetAdditionalEmailTextOk returns a tuple with the AdditionalEmailText field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetAdditionalEmailTextOk() (*string, bool) {
-	if o == nil || isNil(o.AdditionalEmailText) {
-    return nil, false
+	if o == nil || IsNil(o.AdditionalEmailText) {
+		return nil, false
 	}
 	return o.AdditionalEmailText, true
 }
 
 // HasAdditionalEmailText returns a boolean if a field has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasAdditionalEmailText() bool {
-	if o != nil && !isNil(o.AdditionalEmailText) {
+	if o != nil && !IsNil(o.AdditionalEmailText) {
 		return true
 	}
 
@@ -348,7 +351,7 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) SetAdditionalEmailTex
 
 // GetAccessStartAt returns the AccessStartAt field value if set, zero value otherwise.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetAccessStartAt() time.Time {
-	if o == nil || isNil(o.AccessStartAt) {
+	if o == nil || IsNil(o.AccessStartAt) {
 		var ret time.Time
 		return ret
 	}
@@ -358,15 +361,15 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetAccessStartAt() ti
 // GetAccessStartAtOk returns a tuple with the AccessStartAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetAccessStartAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.AccessStartAt) {
-    return nil, false
+	if o == nil || IsNil(o.AccessStartAt) {
+		return nil, false
 	}
 	return o.AccessStartAt, true
 }
 
 // HasAccessStartAt returns a boolean if a field has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasAccessStartAt() bool {
-	if o != nil && !isNil(o.AccessStartAt) {
+	if o != nil && !IsNil(o.AccessStartAt) {
 		return true
 	}
 
@@ -380,7 +383,7 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) SetAccessStartAt(v ti
 
 // GetAccessEndAt returns the AccessEndAt field value if set, zero value otherwise.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetAccessEndAt() time.Time {
-	if o == nil || isNil(o.AccessEndAt) {
+	if o == nil || IsNil(o.AccessEndAt) {
 		var ret time.Time
 		return ret
 	}
@@ -390,15 +393,15 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetAccessEndAt() time
 // GetAccessEndAtOk returns a tuple with the AccessEndAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) GetAccessEndAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.AccessEndAt) {
-    return nil, false
+	if o == nil || IsNil(o.AccessEndAt) {
+		return nil, false
 	}
 	return o.AccessEndAt, true
 }
 
 // HasAccessEndAt returns a boolean if a field has been set.
 func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) HasAccessEndAt() bool {
-	if o != nil && !isNil(o.AccessEndAt) {
+	if o != nil && !IsNil(o.AccessEndAt) {
 		return true
 	}
 
@@ -411,41 +414,49 @@ func (o *GetNetworkSmTrustedAccessConfigs200ResponseInner) SetAccessEndAt(v time
 }
 
 func (o GetNetworkSmTrustedAccessConfigs200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.SsidName) {
-		toSerialize["ssidName"] = o.SsidName
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Scope) {
-		toSerialize["scope"] = o.Scope
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !isNil(o.TimeboundType) {
-		toSerialize["timeboundType"] = o.TimeboundType
-	}
-	if !isNil(o.SendExpirationEmails) {
-		toSerialize["sendExpirationEmails"] = o.SendExpirationEmails
-	}
-	if !isNil(o.NotifyTimeBeforeAccessEnds) {
-		toSerialize["notifyTimeBeforeAccessEnds"] = o.NotifyTimeBeforeAccessEnds
-	}
-	if !isNil(o.AdditionalEmailText) {
-		toSerialize["additionalEmailText"] = o.AdditionalEmailText
-	}
-	if !isNil(o.AccessStartAt) {
-		toSerialize["accessStartAt"] = o.AccessStartAt
-	}
-	if !isNil(o.AccessEndAt) {
-		toSerialize["accessEndAt"] = o.AccessEndAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmTrustedAccessConfigs200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.SsidName) {
+		toSerialize["ssidName"] = o.SsidName
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Scope) {
+		toSerialize["scope"] = o.Scope
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.TimeboundType) {
+		toSerialize["timeboundType"] = o.TimeboundType
+	}
+	if !IsNil(o.SendExpirationEmails) {
+		toSerialize["sendExpirationEmails"] = o.SendExpirationEmails
+	}
+	if !IsNil(o.NotifyTimeBeforeAccessEnds) {
+		toSerialize["notifyTimeBeforeAccessEnds"] = o.NotifyTimeBeforeAccessEnds
+	}
+	if !IsNil(o.AdditionalEmailText) {
+		toSerialize["additionalEmailText"] = o.AdditionalEmailText
+	}
+	if !IsNil(o.AccessStartAt) {
+		toSerialize["accessStartAt"] = o.AccessStartAt
+	}
+	if !IsNil(o.AccessEndAt) {
+		toSerialize["accessEndAt"] = o.AccessEndAt
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmTrustedAccessConfigs200ResponseInner struct {

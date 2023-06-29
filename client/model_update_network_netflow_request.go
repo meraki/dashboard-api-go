@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkNetflowRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkNetflowRequest{}
+
 // UpdateNetworkNetflowRequest struct for UpdateNetworkNetflowRequest
 type UpdateNetworkNetflowRequest struct {
 	// Boolean indicating whether NetFlow traffic reporting is enabled (true) or disabled (false).
@@ -47,7 +50,7 @@ func NewUpdateNetworkNetflowRequestWithDefaults() *UpdateNetworkNetflowRequest {
 
 // GetReportingEnabled returns the ReportingEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkNetflowRequest) GetReportingEnabled() bool {
-	if o == nil || isNil(o.ReportingEnabled) {
+	if o == nil || IsNil(o.ReportingEnabled) {
 		var ret bool
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *UpdateNetworkNetflowRequest) GetReportingEnabled() bool {
 // GetReportingEnabledOk returns a tuple with the ReportingEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkNetflowRequest) GetReportingEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.ReportingEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.ReportingEnabled) {
+		return nil, false
 	}
 	return o.ReportingEnabled, true
 }
 
 // HasReportingEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkNetflowRequest) HasReportingEnabled() bool {
-	if o != nil && !isNil(o.ReportingEnabled) {
+	if o != nil && !IsNil(o.ReportingEnabled) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *UpdateNetworkNetflowRequest) SetReportingEnabled(v bool) {
 
 // GetCollectorIp returns the CollectorIp field value if set, zero value otherwise.
 func (o *UpdateNetworkNetflowRequest) GetCollectorIp() string {
-	if o == nil || isNil(o.CollectorIp) {
+	if o == nil || IsNil(o.CollectorIp) {
 		var ret string
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *UpdateNetworkNetflowRequest) GetCollectorIp() string {
 // GetCollectorIpOk returns a tuple with the CollectorIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkNetflowRequest) GetCollectorIpOk() (*string, bool) {
-	if o == nil || isNil(o.CollectorIp) {
-    return nil, false
+	if o == nil || IsNil(o.CollectorIp) {
+		return nil, false
 	}
 	return o.CollectorIp, true
 }
 
 // HasCollectorIp returns a boolean if a field has been set.
 func (o *UpdateNetworkNetflowRequest) HasCollectorIp() bool {
-	if o != nil && !isNil(o.CollectorIp) {
+	if o != nil && !IsNil(o.CollectorIp) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *UpdateNetworkNetflowRequest) SetCollectorIp(v string) {
 
 // GetCollectorPort returns the CollectorPort field value if set, zero value otherwise.
 func (o *UpdateNetworkNetflowRequest) GetCollectorPort() int32 {
-	if o == nil || isNil(o.CollectorPort) {
+	if o == nil || IsNil(o.CollectorPort) {
 		var ret int32
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *UpdateNetworkNetflowRequest) GetCollectorPort() int32 {
 // GetCollectorPortOk returns a tuple with the CollectorPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkNetflowRequest) GetCollectorPortOk() (*int32, bool) {
-	if o == nil || isNil(o.CollectorPort) {
-    return nil, false
+	if o == nil || IsNil(o.CollectorPort) {
+		return nil, false
 	}
 	return o.CollectorPort, true
 }
 
 // HasCollectorPort returns a boolean if a field has been set.
 func (o *UpdateNetworkNetflowRequest) HasCollectorPort() bool {
-	if o != nil && !isNil(o.CollectorPort) {
+	if o != nil && !IsNil(o.CollectorPort) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *UpdateNetworkNetflowRequest) SetCollectorPort(v int32) {
 
 // GetEtaEnabled returns the EtaEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkNetflowRequest) GetEtaEnabled() bool {
-	if o == nil || isNil(o.EtaEnabled) {
+	if o == nil || IsNil(o.EtaEnabled) {
 		var ret bool
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *UpdateNetworkNetflowRequest) GetEtaEnabled() bool {
 // GetEtaEnabledOk returns a tuple with the EtaEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkNetflowRequest) GetEtaEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.EtaEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.EtaEnabled) {
+		return nil, false
 	}
 	return o.EtaEnabled, true
 }
 
 // HasEtaEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkNetflowRequest) HasEtaEnabled() bool {
-	if o != nil && !isNil(o.EtaEnabled) {
+	if o != nil && !IsNil(o.EtaEnabled) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *UpdateNetworkNetflowRequest) SetEtaEnabled(v bool) {
 
 // GetEtaDstPort returns the EtaDstPort field value if set, zero value otherwise.
 func (o *UpdateNetworkNetflowRequest) GetEtaDstPort() int32 {
-	if o == nil || isNil(o.EtaDstPort) {
+	if o == nil || IsNil(o.EtaDstPort) {
 		var ret int32
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *UpdateNetworkNetflowRequest) GetEtaDstPort() int32 {
 // GetEtaDstPortOk returns a tuple with the EtaDstPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkNetflowRequest) GetEtaDstPortOk() (*int32, bool) {
-	if o == nil || isNil(o.EtaDstPort) {
-    return nil, false
+	if o == nil || IsNil(o.EtaDstPort) {
+		return nil, false
 	}
 	return o.EtaDstPort, true
 }
 
 // HasEtaDstPort returns a boolean if a field has been set.
 func (o *UpdateNetworkNetflowRequest) HasEtaDstPort() bool {
-	if o != nil && !isNil(o.EtaDstPort) {
+	if o != nil && !IsNil(o.EtaDstPort) {
 		return true
 	}
 
@@ -206,23 +209,31 @@ func (o *UpdateNetworkNetflowRequest) SetEtaDstPort(v int32) {
 }
 
 func (o UpdateNetworkNetflowRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ReportingEnabled) {
-		toSerialize["reportingEnabled"] = o.ReportingEnabled
-	}
-	if !isNil(o.CollectorIp) {
-		toSerialize["collectorIp"] = o.CollectorIp
-	}
-	if !isNil(o.CollectorPort) {
-		toSerialize["collectorPort"] = o.CollectorPort
-	}
-	if !isNil(o.EtaEnabled) {
-		toSerialize["etaEnabled"] = o.EtaEnabled
-	}
-	if !isNil(o.EtaDstPort) {
-		toSerialize["etaDstPort"] = o.EtaDstPort
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkNetflowRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ReportingEnabled) {
+		toSerialize["reportingEnabled"] = o.ReportingEnabled
+	}
+	if !IsNil(o.CollectorIp) {
+		toSerialize["collectorIp"] = o.CollectorIp
+	}
+	if !IsNil(o.CollectorPort) {
+		toSerialize["collectorPort"] = o.CollectorPort
+	}
+	if !IsNil(o.EtaEnabled) {
+		toSerialize["etaEnabled"] = o.EtaEnabled
+	}
+	if !IsNil(o.EtaDstPort) {
+		toSerialize["etaDstPort"] = o.EtaDstPort
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkNetflowRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkFirmwareUpgrades200ResponseUpgradeWindow type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkFirmwareUpgrades200ResponseUpgradeWindow{}
+
 // GetNetworkFirmwareUpgrades200ResponseUpgradeWindow Upgrade window for devices in network
 type GetNetworkFirmwareUpgrades200ResponseUpgradeWindow struct {
 	// Day of the week
@@ -41,7 +44,7 @@ func NewGetNetworkFirmwareUpgrades200ResponseUpgradeWindowWithDefaults() *GetNet
 
 // GetDayOfWeek returns the DayOfWeek field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseUpgradeWindow) GetDayOfWeek() string {
-	if o == nil || isNil(o.DayOfWeek) {
+	if o == nil || IsNil(o.DayOfWeek) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseUpgradeWindow) GetDayOfWeek() stri
 // GetDayOfWeekOk returns a tuple with the DayOfWeek field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseUpgradeWindow) GetDayOfWeekOk() (*string, bool) {
-	if o == nil || isNil(o.DayOfWeek) {
-    return nil, false
+	if o == nil || IsNil(o.DayOfWeek) {
+		return nil, false
 	}
 	return o.DayOfWeek, true
 }
 
 // HasDayOfWeek returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseUpgradeWindow) HasDayOfWeek() bool {
-	if o != nil && !isNil(o.DayOfWeek) {
+	if o != nil && !IsNil(o.DayOfWeek) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkFirmwareUpgrades200ResponseUpgradeWindow) SetDayOfWeek(v stri
 
 // GetHourOfDay returns the HourOfDay field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseUpgradeWindow) GetHourOfDay() string {
-	if o == nil || isNil(o.HourOfDay) {
+	if o == nil || IsNil(o.HourOfDay) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseUpgradeWindow) GetHourOfDay() stri
 // GetHourOfDayOk returns a tuple with the HourOfDay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseUpgradeWindow) GetHourOfDayOk() (*string, bool) {
-	if o == nil || isNil(o.HourOfDay) {
-    return nil, false
+	if o == nil || IsNil(o.HourOfDay) {
+		return nil, false
 	}
 	return o.HourOfDay, true
 }
 
 // HasHourOfDay returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseUpgradeWindow) HasHourOfDay() bool {
-	if o != nil && !isNil(o.HourOfDay) {
+	if o != nil && !IsNil(o.HourOfDay) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkFirmwareUpgrades200ResponseUpgradeWindow) SetHourOfDay(v stri
 }
 
 func (o GetNetworkFirmwareUpgrades200ResponseUpgradeWindow) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.DayOfWeek) {
-		toSerialize["dayOfWeek"] = o.DayOfWeek
-	}
-	if !isNil(o.HourOfDay) {
-		toSerialize["hourOfDay"] = o.HourOfDay
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkFirmwareUpgrades200ResponseUpgradeWindow) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DayOfWeek) {
+		toSerialize["dayOfWeek"] = o.DayOfWeek
+	}
+	if !IsNil(o.HourOfDay) {
+		toSerialize["hourOfDay"] = o.HourOfDay
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkFirmwareUpgrades200ResponseUpgradeWindow struct {

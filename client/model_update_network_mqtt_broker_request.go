@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkMqttBrokerRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkMqttBrokerRequest{}
+
 // UpdateNetworkMqttBrokerRequest struct for UpdateNetworkMqttBrokerRequest
 type UpdateNetworkMqttBrokerRequest struct {
 	// Name of the MQTT broker.
@@ -46,7 +49,7 @@ func NewUpdateNetworkMqttBrokerRequestWithDefaults() *UpdateNetworkMqttBrokerReq
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkMqttBrokerRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *UpdateNetworkMqttBrokerRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkMqttBrokerRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkMqttBrokerRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *UpdateNetworkMqttBrokerRequest) SetName(v string) {
 
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *UpdateNetworkMqttBrokerRequest) GetHost() string {
-	if o == nil || isNil(o.Host) {
+	if o == nil || IsNil(o.Host) {
 		var ret string
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *UpdateNetworkMqttBrokerRequest) GetHost() string {
 // GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkMqttBrokerRequest) GetHostOk() (*string, bool) {
-	if o == nil || isNil(o.Host) {
-    return nil, false
+	if o == nil || IsNil(o.Host) {
+		return nil, false
 	}
 	return o.Host, true
 }
 
 // HasHost returns a boolean if a field has been set.
 func (o *UpdateNetworkMqttBrokerRequest) HasHost() bool {
-	if o != nil && !isNil(o.Host) {
+	if o != nil && !IsNil(o.Host) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *UpdateNetworkMqttBrokerRequest) SetHost(v string) {
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *UpdateNetworkMqttBrokerRequest) GetPort() int32 {
-	if o == nil || isNil(o.Port) {
+	if o == nil || IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *UpdateNetworkMqttBrokerRequest) GetPort() int32 {
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkMqttBrokerRequest) GetPortOk() (*int32, bool) {
-	if o == nil || isNil(o.Port) {
-    return nil, false
+	if o == nil || IsNil(o.Port) {
+		return nil, false
 	}
 	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *UpdateNetworkMqttBrokerRequest) HasPort() bool {
-	if o != nil && !isNil(o.Port) {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *UpdateNetworkMqttBrokerRequest) SetPort(v int32) {
 
 // GetSecurity returns the Security field value if set, zero value otherwise.
 func (o *UpdateNetworkMqttBrokerRequest) GetSecurity() CreateNetworkMqttBrokerRequestSecurity {
-	if o == nil || isNil(o.Security) {
+	if o == nil || IsNil(o.Security) {
 		var ret CreateNetworkMqttBrokerRequestSecurity
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *UpdateNetworkMqttBrokerRequest) GetSecurity() CreateNetworkMqttBrokerRe
 // GetSecurityOk returns a tuple with the Security field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkMqttBrokerRequest) GetSecurityOk() (*CreateNetworkMqttBrokerRequestSecurity, bool) {
-	if o == nil || isNil(o.Security) {
-    return nil, false
+	if o == nil || IsNil(o.Security) {
+		return nil, false
 	}
 	return o.Security, true
 }
 
 // HasSecurity returns a boolean if a field has been set.
 func (o *UpdateNetworkMqttBrokerRequest) HasSecurity() bool {
-	if o != nil && !isNil(o.Security) {
+	if o != nil && !IsNil(o.Security) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *UpdateNetworkMqttBrokerRequest) SetSecurity(v CreateNetworkMqttBrokerRe
 
 // GetAuthentication returns the Authentication field value if set, zero value otherwise.
 func (o *UpdateNetworkMqttBrokerRequest) GetAuthentication() map[string]interface{} {
-	if o == nil || isNil(o.Authentication) {
+	if o == nil || IsNil(o.Authentication) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -184,15 +187,15 @@ func (o *UpdateNetworkMqttBrokerRequest) GetAuthentication() map[string]interfac
 // GetAuthenticationOk returns a tuple with the Authentication field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkMqttBrokerRequest) GetAuthenticationOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Authentication) {
-    return map[string]interface{}{}, false
+	if o == nil || IsNil(o.Authentication) {
+		return map[string]interface{}{}, false
 	}
 	return o.Authentication, true
 }
 
 // HasAuthentication returns a boolean if a field has been set.
 func (o *UpdateNetworkMqttBrokerRequest) HasAuthentication() bool {
-	if o != nil && !isNil(o.Authentication) {
+	if o != nil && !IsNil(o.Authentication) {
 		return true
 	}
 
@@ -205,23 +208,31 @@ func (o *UpdateNetworkMqttBrokerRequest) SetAuthentication(v map[string]interfac
 }
 
 func (o UpdateNetworkMqttBrokerRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Host) {
-		toSerialize["host"] = o.Host
-	}
-	if !isNil(o.Port) {
-		toSerialize["port"] = o.Port
-	}
-	if !isNil(o.Security) {
-		toSerialize["security"] = o.Security
-	}
-	if !isNil(o.Authentication) {
-		toSerialize["authentication"] = o.Authentication
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkMqttBrokerRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Host) {
+		toSerialize["host"] = o.Host
+	}
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
+	}
+	if !IsNil(o.Security) {
+		toSerialize["security"] = o.Security
+	}
+	if !IsNil(o.Authentication) {
+		toSerialize["authentication"] = o.Authentication
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkMqttBrokerRequest struct {

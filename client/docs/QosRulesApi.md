@@ -39,6 +39,7 @@ func main() {
     createNetworkSwitchQosRuleRequest := *openapiclient.NewCreateNetworkSwitchQosRuleRequest(int32(123)) // CreateNetworkSwitchQosRuleRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.QosRulesApi.CreateNetworkSwitchQosRule(context.Background(), networkId).CreateNetworkSwitchQosRuleRequest(createNetworkSwitchQosRuleRequest).Execute()
     if err != nil {
@@ -111,8 +112,9 @@ func main() {
     qosRuleId := "qosRuleId_example" // string | Qos rule ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.QosRulesApi.DeleteNetworkSwitchQosRule(context.Background(), networkId, qosRuleId).Execute()
+    r, err := apiClient.QosRulesApi.DeleteNetworkSwitchQosRule(context.Background(), networkId, qosRuleId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `QosRulesApi.DeleteNetworkSwitchQosRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -182,6 +184,7 @@ func main() {
     qosRuleId := "qosRuleId_example" // string | Qos rule ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.QosRulesApi.GetNetworkSwitchQosRule(context.Background(), networkId, qosRuleId).Execute()
     if err != nil {
@@ -254,6 +257,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.QosRulesApi.GetNetworkSwitchQosRules(context.Background(), networkId).Execute()
     if err != nil {
@@ -324,6 +328,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.QosRulesApi.GetNetworkSwitchQosRulesOrder(context.Background(), networkId).Execute()
     if err != nil {
@@ -396,6 +401,7 @@ func main() {
     updateNetworkSwitchQosRuleRequest := *openapiclient.NewUpdateNetworkSwitchQosRuleRequest() // UpdateNetworkSwitchQosRuleRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.QosRulesApi.UpdateNetworkSwitchQosRule(context.Background(), networkId, qosRuleId).UpdateNetworkSwitchQosRuleRequest(updateNetworkSwitchQosRuleRequest).Execute()
     if err != nil {
@@ -470,6 +476,7 @@ func main() {
     updateNetworkSwitchQosRulesOrderRequest := *openapiclient.NewUpdateNetworkSwitchQosRulesOrderRequest([]string{"RuleIds_example"}) // UpdateNetworkSwitchQosRulesOrderRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.QosRulesApi.UpdateNetworkSwitchQosRulesOrder(context.Background(), networkId).UpdateNetworkSwitchQosRulesOrderRequest(updateNetworkSwitchQosRulesOrderRequest).Execute()
     if err != nil {

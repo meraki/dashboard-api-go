@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner{}
+
 // UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner struct for UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner
 type UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner struct {
 	// Array of AP tags
@@ -41,7 +44,7 @@ func NewUpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInnerWithDefaults() *Upd
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner) GetTags() []stri
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
 	}
 	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner) SetTags(v []stri
 
 // GetVlanId returns the VlanId field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner) GetVlanId() int32 {
-	if o == nil || isNil(o.VlanId) {
+	if o == nil || IsNil(o.VlanId) {
 		var ret int32
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner) GetVlanId() int3
 // GetVlanIdOk returns a tuple with the VlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner) GetVlanIdOk() (*int32, bool) {
-	if o == nil || isNil(o.VlanId) {
-    return nil, false
+	if o == nil || IsNil(o.VlanId) {
+		return nil, false
 	}
 	return o.VlanId, true
 }
 
 // HasVlanId returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner) HasVlanId() bool {
-	if o != nil && !isNil(o.VlanId) {
+	if o != nil && !IsNil(o.VlanId) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner) SetVlanId(v int3
 }
 
 func (o UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !isNil(o.VlanId) {
-		toSerialize["vlanId"] = o.VlanId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.VlanId) {
+		toSerialize["vlanId"] = o.VlanId
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidRequestApTagsAndVlanIdsInner struct {

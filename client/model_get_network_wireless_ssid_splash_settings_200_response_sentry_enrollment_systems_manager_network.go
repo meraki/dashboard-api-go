@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsManagerNetwork type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsManagerNetwork{}
+
 // GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsManagerNetwork Systems Manager network targeted for sentry enrollment.
 type GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsManagerNetwork struct {
 	// The network ID of the Systems Manager network.
@@ -39,7 +42,7 @@ func NewGetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsMa
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsManagerNetwork) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsM
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsManagerNetwork) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsManagerNetwork) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsM
 }
 
 func (o GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsManagerNetwork) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsManagerNetwork) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessSsidSplashSettings200ResponseSentryEnrollmentSystemsManagerNetwork struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts{}
+
 // GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts Counts of sensor alerts over the timespan, by reading metric
 type GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts struct {
 	// Number of sensor alerts that occurred due to an open door
@@ -52,7 +55,7 @@ func NewGetNetworkSensorAlertsOverviewByMetric200ResponseInnerCountsWithDefaults
 
 // GetDoor returns the Door field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetDoor() int32 {
-	if o == nil || isNil(o.Door) {
+	if o == nil || IsNil(o.Door) {
 		var ret int32
 		return ret
 	}
@@ -62,15 +65,15 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetDoor()
 // GetDoorOk returns a tuple with the Door field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetDoorOk() (*int32, bool) {
-	if o == nil || isNil(o.Door) {
-    return nil, false
+	if o == nil || IsNil(o.Door) {
+		return nil, false
 	}
 	return o.Door, true
 }
 
 // HasDoor returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) HasDoor() bool {
-	if o != nil && !isNil(o.Door) {
+	if o != nil && !IsNil(o.Door) {
 		return true
 	}
 
@@ -84,7 +87,7 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) SetDoor(v
 
 // GetHumidity returns the Humidity field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetHumidity() int32 {
-	if o == nil || isNil(o.Humidity) {
+	if o == nil || IsNil(o.Humidity) {
 		var ret int32
 		return ret
 	}
@@ -94,15 +97,15 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetHumidi
 // GetHumidityOk returns a tuple with the Humidity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetHumidityOk() (*int32, bool) {
-	if o == nil || isNil(o.Humidity) {
-    return nil, false
+	if o == nil || IsNil(o.Humidity) {
+		return nil, false
 	}
 	return o.Humidity, true
 }
 
 // HasHumidity returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) HasHumidity() bool {
-	if o != nil && !isNil(o.Humidity) {
+	if o != nil && !IsNil(o.Humidity) {
 		return true
 	}
 
@@ -116,7 +119,7 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) SetHumidi
 
 // GetIndoorAirQuality returns the IndoorAirQuality field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetIndoorAirQuality() int32 {
-	if o == nil || isNil(o.IndoorAirQuality) {
+	if o == nil || IsNil(o.IndoorAirQuality) {
 		var ret int32
 		return ret
 	}
@@ -126,15 +129,15 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetIndoor
 // GetIndoorAirQualityOk returns a tuple with the IndoorAirQuality field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetIndoorAirQualityOk() (*int32, bool) {
-	if o == nil || isNil(o.IndoorAirQuality) {
-    return nil, false
+	if o == nil || IsNil(o.IndoorAirQuality) {
+		return nil, false
 	}
 	return o.IndoorAirQuality, true
 }
 
 // HasIndoorAirQuality returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) HasIndoorAirQuality() bool {
-	if o != nil && !isNil(o.IndoorAirQuality) {
+	if o != nil && !IsNil(o.IndoorAirQuality) {
 		return true
 	}
 
@@ -148,7 +151,7 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) SetIndoor
 
 // GetNoise returns the Noise field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetNoise() GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCountsNoise {
-	if o == nil || isNil(o.Noise) {
+	if o == nil || IsNil(o.Noise) {
 		var ret GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCountsNoise
 		return ret
 	}
@@ -158,15 +161,15 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetNoise(
 // GetNoiseOk returns a tuple with the Noise field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetNoiseOk() (*GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCountsNoise, bool) {
-	if o == nil || isNil(o.Noise) {
-    return nil, false
+	if o == nil || IsNil(o.Noise) {
+		return nil, false
 	}
 	return o.Noise, true
 }
 
 // HasNoise returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) HasNoise() bool {
-	if o != nil && !isNil(o.Noise) {
+	if o != nil && !IsNil(o.Noise) {
 		return true
 	}
 
@@ -180,7 +183,7 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) SetNoise(
 
 // GetPm25 returns the Pm25 field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetPm25() int32 {
-	if o == nil || isNil(o.Pm25) {
+	if o == nil || IsNil(o.Pm25) {
 		var ret int32
 		return ret
 	}
@@ -190,15 +193,15 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetPm25()
 // GetPm25Ok returns a tuple with the Pm25 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetPm25Ok() (*int32, bool) {
-	if o == nil || isNil(o.Pm25) {
-    return nil, false
+	if o == nil || IsNil(o.Pm25) {
+		return nil, false
 	}
 	return o.Pm25, true
 }
 
 // HasPm25 returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) HasPm25() bool {
-	if o != nil && !isNil(o.Pm25) {
+	if o != nil && !IsNil(o.Pm25) {
 		return true
 	}
 
@@ -212,7 +215,7 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) SetPm25(v
 
 // GetTemperature returns the Temperature field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetTemperature() int32 {
-	if o == nil || isNil(o.Temperature) {
+	if o == nil || IsNil(o.Temperature) {
 		var ret int32
 		return ret
 	}
@@ -222,15 +225,15 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetTemper
 // GetTemperatureOk returns a tuple with the Temperature field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetTemperatureOk() (*int32, bool) {
-	if o == nil || isNil(o.Temperature) {
-    return nil, false
+	if o == nil || IsNil(o.Temperature) {
+		return nil, false
 	}
 	return o.Temperature, true
 }
 
 // HasTemperature returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) HasTemperature() bool {
-	if o != nil && !isNil(o.Temperature) {
+	if o != nil && !IsNil(o.Temperature) {
 		return true
 	}
 
@@ -244,7 +247,7 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) SetTemper
 
 // GetTvoc returns the Tvoc field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetTvoc() int32 {
-	if o == nil || isNil(o.Tvoc) {
+	if o == nil || IsNil(o.Tvoc) {
 		var ret int32
 		return ret
 	}
@@ -254,15 +257,15 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetTvoc()
 // GetTvocOk returns a tuple with the Tvoc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetTvocOk() (*int32, bool) {
-	if o == nil || isNil(o.Tvoc) {
-    return nil, false
+	if o == nil || IsNil(o.Tvoc) {
+		return nil, false
 	}
 	return o.Tvoc, true
 }
 
 // HasTvoc returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) HasTvoc() bool {
-	if o != nil && !isNil(o.Tvoc) {
+	if o != nil && !IsNil(o.Tvoc) {
 		return true
 	}
 
@@ -276,7 +279,7 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) SetTvoc(v
 
 // GetWater returns the Water field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetWater() int32 {
-	if o == nil || isNil(o.Water) {
+	if o == nil || IsNil(o.Water) {
 		var ret int32
 		return ret
 	}
@@ -286,15 +289,15 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetWater(
 // GetWaterOk returns a tuple with the Water field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) GetWaterOk() (*int32, bool) {
-	if o == nil || isNil(o.Water) {
-    return nil, false
+	if o == nil || IsNil(o.Water) {
+		return nil, false
 	}
 	return o.Water, true
 }
 
 // HasWater returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) HasWater() bool {
-	if o != nil && !isNil(o.Water) {
+	if o != nil && !IsNil(o.Water) {
 		return true
 	}
 
@@ -307,32 +310,40 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) SetWater(
 }
 
 func (o GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Door) {
-		toSerialize["door"] = o.Door
-	}
-	if !isNil(o.Humidity) {
-		toSerialize["humidity"] = o.Humidity
-	}
-	if !isNil(o.IndoorAirQuality) {
-		toSerialize["indoorAirQuality"] = o.IndoorAirQuality
-	}
-	if !isNil(o.Noise) {
-		toSerialize["noise"] = o.Noise
-	}
-	if !isNil(o.Pm25) {
-		toSerialize["pm25"] = o.Pm25
-	}
-	if !isNil(o.Temperature) {
-		toSerialize["temperature"] = o.Temperature
-	}
-	if !isNil(o.Tvoc) {
-		toSerialize["tvoc"] = o.Tvoc
-	}
-	if !isNil(o.Water) {
-		toSerialize["water"] = o.Water
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Door) {
+		toSerialize["door"] = o.Door
+	}
+	if !IsNil(o.Humidity) {
+		toSerialize["humidity"] = o.Humidity
+	}
+	if !IsNil(o.IndoorAirQuality) {
+		toSerialize["indoorAirQuality"] = o.IndoorAirQuality
+	}
+	if !IsNil(o.Noise) {
+		toSerialize["noise"] = o.Noise
+	}
+	if !IsNil(o.Pm25) {
+		toSerialize["pm25"] = o.Pm25
+	}
+	if !IsNil(o.Temperature) {
+		toSerialize["temperature"] = o.Temperature
+	}
+	if !IsNil(o.Tvoc) {
+		toSerialize["tvoc"] = o.Tvoc
+	}
+	if !IsNil(o.Water) {
+		toSerialize["water"] = o.Water
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts struct {

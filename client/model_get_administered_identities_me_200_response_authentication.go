@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetAdministeredIdentitiesMe200ResponseAuthentication type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetAdministeredIdentitiesMe200ResponseAuthentication{}
+
 // GetAdministeredIdentitiesMe200ResponseAuthentication Authentication info
 type GetAdministeredIdentitiesMe200ResponseAuthentication struct {
 	// Authentication mode
@@ -42,7 +45,7 @@ func NewGetAdministeredIdentitiesMe200ResponseAuthenticationWithDefaults() *GetA
 
 // GetMode returns the Mode field value if set, zero value otherwise.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) GetMode() string {
-	if o == nil || isNil(o.Mode) {
+	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) GetMode() string 
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) GetModeOk() (*string, bool) {
-	if o == nil || isNil(o.Mode) {
-    return nil, false
+	if o == nil || IsNil(o.Mode) {
+		return nil, false
 	}
 	return o.Mode, true
 }
 
 // HasMode returns a boolean if a field has been set.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) HasMode() bool {
-	if o != nil && !isNil(o.Mode) {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) SetMode(v string)
 
 // GetApi returns the Api field value if set, zero value otherwise.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) GetApi() GetAdministeredIdentitiesMe200ResponseAuthenticationApi {
-	if o == nil || isNil(o.Api) {
+	if o == nil || IsNil(o.Api) {
 		var ret GetAdministeredIdentitiesMe200ResponseAuthenticationApi
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) GetApi() GetAdmin
 // GetApiOk returns a tuple with the Api field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) GetApiOk() (*GetAdministeredIdentitiesMe200ResponseAuthenticationApi, bool) {
-	if o == nil || isNil(o.Api) {
-    return nil, false
+	if o == nil || IsNil(o.Api) {
+		return nil, false
 	}
 	return o.Api, true
 }
 
 // HasApi returns a boolean if a field has been set.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) HasApi() bool {
-	if o != nil && !isNil(o.Api) {
+	if o != nil && !IsNil(o.Api) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) SetApi(v GetAdmin
 
 // GetTwoFactor returns the TwoFactor field value if set, zero value otherwise.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) GetTwoFactor() GetAdministeredIdentitiesMe200ResponseAuthenticationTwoFactor {
-	if o == nil || isNil(o.TwoFactor) {
+	if o == nil || IsNil(o.TwoFactor) {
 		var ret GetAdministeredIdentitiesMe200ResponseAuthenticationTwoFactor
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) GetTwoFactor() Ge
 // GetTwoFactorOk returns a tuple with the TwoFactor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) GetTwoFactorOk() (*GetAdministeredIdentitiesMe200ResponseAuthenticationTwoFactor, bool) {
-	if o == nil || isNil(o.TwoFactor) {
-    return nil, false
+	if o == nil || IsNil(o.TwoFactor) {
+		return nil, false
 	}
 	return o.TwoFactor, true
 }
 
 // HasTwoFactor returns a boolean if a field has been set.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) HasTwoFactor() bool {
-	if o != nil && !isNil(o.TwoFactor) {
+	if o != nil && !IsNil(o.TwoFactor) {
 		return true
 	}
 
@@ -138,7 +141,7 @@ func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) SetTwoFactor(v Ge
 
 // GetSaml returns the Saml field value if set, zero value otherwise.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) GetSaml() GetAdministeredIdentitiesMe200ResponseAuthenticationSaml {
-	if o == nil || isNil(o.Saml) {
+	if o == nil || IsNil(o.Saml) {
 		var ret GetAdministeredIdentitiesMe200ResponseAuthenticationSaml
 		return ret
 	}
@@ -148,15 +151,15 @@ func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) GetSaml() GetAdmi
 // GetSamlOk returns a tuple with the Saml field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) GetSamlOk() (*GetAdministeredIdentitiesMe200ResponseAuthenticationSaml, bool) {
-	if o == nil || isNil(o.Saml) {
-    return nil, false
+	if o == nil || IsNil(o.Saml) {
+		return nil, false
 	}
 	return o.Saml, true
 }
 
 // HasSaml returns a boolean if a field has been set.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) HasSaml() bool {
-	if o != nil && !isNil(o.Saml) {
+	if o != nil && !IsNil(o.Saml) {
 		return true
 	}
 
@@ -169,20 +172,28 @@ func (o *GetAdministeredIdentitiesMe200ResponseAuthentication) SetSaml(v GetAdmi
 }
 
 func (o GetAdministeredIdentitiesMe200ResponseAuthentication) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Mode) {
-		toSerialize["mode"] = o.Mode
-	}
-	if !isNil(o.Api) {
-		toSerialize["api"] = o.Api
-	}
-	if !isNil(o.TwoFactor) {
-		toSerialize["twoFactor"] = o.TwoFactor
-	}
-	if !isNil(o.Saml) {
-		toSerialize["saml"] = o.Saml
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetAdministeredIdentitiesMe200ResponseAuthentication) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Mode) {
+		toSerialize["mode"] = o.Mode
+	}
+	if !IsNil(o.Api) {
+		toSerialize["api"] = o.Api
+	}
+	if !IsNil(o.TwoFactor) {
+		toSerialize["twoFactor"] = o.TwoFactor
+	}
+	if !IsNil(o.Saml) {
+		toSerialize["saml"] = o.Saml
+	}
+	return toSerialize, nil
 }
 
 type NullableGetAdministeredIdentitiesMe200ResponseAuthentication struct {

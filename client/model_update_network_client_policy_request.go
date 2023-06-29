@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkClientPolicyRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkClientPolicyRequest{}
+
 // UpdateNetworkClientPolicyRequest struct for UpdateNetworkClientPolicyRequest
 type UpdateNetworkClientPolicyRequest struct {
 	// The policy to assign. Can be 'Whitelisted', 'Blocked', 'Normal' or 'Group policy'. Required.
@@ -54,7 +57,7 @@ func (o *UpdateNetworkClientPolicyRequest) GetDevicePolicy() string {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientPolicyRequest) GetDevicePolicyOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.DevicePolicy, true
 }
@@ -66,7 +69,7 @@ func (o *UpdateNetworkClientPolicyRequest) SetDevicePolicy(v string) {
 
 // GetGroupPolicyId returns the GroupPolicyId field value if set, zero value otherwise.
 func (o *UpdateNetworkClientPolicyRequest) GetGroupPolicyId() string {
-	if o == nil || isNil(o.GroupPolicyId) {
+	if o == nil || IsNil(o.GroupPolicyId) {
 		var ret string
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *UpdateNetworkClientPolicyRequest) GetGroupPolicyId() string {
 // GetGroupPolicyIdOk returns a tuple with the GroupPolicyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientPolicyRequest) GetGroupPolicyIdOk() (*string, bool) {
-	if o == nil || isNil(o.GroupPolicyId) {
-    return nil, false
+	if o == nil || IsNil(o.GroupPolicyId) {
+		return nil, false
 	}
 	return o.GroupPolicyId, true
 }
 
 // HasGroupPolicyId returns a boolean if a field has been set.
 func (o *UpdateNetworkClientPolicyRequest) HasGroupPolicyId() bool {
-	if o != nil && !isNil(o.GroupPolicyId) {
+	if o != nil && !IsNil(o.GroupPolicyId) {
 		return true
 	}
 
@@ -97,14 +100,20 @@ func (o *UpdateNetworkClientPolicyRequest) SetGroupPolicyId(v string) {
 }
 
 func (o UpdateNetworkClientPolicyRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["devicePolicy"] = o.DevicePolicy
-	}
-	if !isNil(o.GroupPolicyId) {
-		toSerialize["groupPolicyId"] = o.GroupPolicyId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkClientPolicyRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["devicePolicy"] = o.DevicePolicy
+	if !IsNil(o.GroupPolicyId) {
+		toSerialize["groupPolicyId"] = o.GroupPolicyId
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkClientPolicyRequest struct {

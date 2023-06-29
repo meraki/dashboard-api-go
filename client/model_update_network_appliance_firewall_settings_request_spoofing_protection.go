@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtection type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtection{}
+
 // UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtection Spoofing protection settings
 type UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtection struct {
 	IpSourceGuard *UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSourceGuard `json:"ipSourceGuard,omitempty"`
@@ -38,7 +41,7 @@ func NewUpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionWithDefau
 
 // GetIpSourceGuard returns the IpSourceGuard field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtection) GetIpSourceGuard() UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSourceGuard {
-	if o == nil || isNil(o.IpSourceGuard) {
+	if o == nil || IsNil(o.IpSourceGuard) {
 		var ret UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSourceGuard
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtection) GetIpS
 // GetIpSourceGuardOk returns a tuple with the IpSourceGuard field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtection) GetIpSourceGuardOk() (*UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtectionIpSourceGuard, bool) {
-	if o == nil || isNil(o.IpSourceGuard) {
-    return nil, false
+	if o == nil || IsNil(o.IpSourceGuard) {
+		return nil, false
 	}
 	return o.IpSourceGuard, true
 }
 
 // HasIpSourceGuard returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtection) HasIpSourceGuard() bool {
-	if o != nil && !isNil(o.IpSourceGuard) {
+	if o != nil && !IsNil(o.IpSourceGuard) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtection) SetIpS
 }
 
 func (o UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtection) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.IpSourceGuard) {
-		toSerialize["ipSourceGuard"] = o.IpSourceGuard
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceFirewallSettingsRequestSpoofingProtection) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.IpSourceGuard) {
+		toSerialize["ipSourceGuard"] = o.IpSourceGuard
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceFirewallSettingsRequestSpoofingProtection struct {

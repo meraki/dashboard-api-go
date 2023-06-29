@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationRequest{}
+
 // CreateOrganizationRequest struct for CreateOrganizationRequest
 type CreateOrganizationRequest struct {
 	// The name of the organization
@@ -53,7 +56,7 @@ func (o *CreateOrganizationRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -65,7 +68,7 @@ func (o *CreateOrganizationRequest) SetName(v string) {
 
 // GetManagement returns the Management field value if set, zero value otherwise.
 func (o *CreateOrganizationRequest) GetManagement() GetOrganizations200ResponseInnerManagement {
-	if o == nil || isNil(o.Management) {
+	if o == nil || IsNil(o.Management) {
 		var ret GetOrganizations200ResponseInnerManagement
 		return ret
 	}
@@ -75,15 +78,15 @@ func (o *CreateOrganizationRequest) GetManagement() GetOrganizations200ResponseI
 // GetManagementOk returns a tuple with the Management field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationRequest) GetManagementOk() (*GetOrganizations200ResponseInnerManagement, bool) {
-	if o == nil || isNil(o.Management) {
-    return nil, false
+	if o == nil || IsNil(o.Management) {
+		return nil, false
 	}
 	return o.Management, true
 }
 
 // HasManagement returns a boolean if a field has been set.
 func (o *CreateOrganizationRequest) HasManagement() bool {
-	if o != nil && !isNil(o.Management) {
+	if o != nil && !IsNil(o.Management) {
 		return true
 	}
 
@@ -96,14 +99,20 @@ func (o *CreateOrganizationRequest) SetManagement(v GetOrganizations200ResponseI
 }
 
 func (o CreateOrganizationRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Management) {
-		toSerialize["management"] = o.Management
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Management) {
+		toSerialize["management"] = o.Management
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CombineOrganizationNetworksRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CombineOrganizationNetworksRequest{}
+
 // CombineOrganizationNetworksRequest struct for CombineOrganizationNetworksRequest
 type CombineOrganizationNetworksRequest struct {
 	// The name of the combined network
@@ -57,7 +60,7 @@ func (o *CombineOrganizationNetworksRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CombineOrganizationNetworksRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -81,7 +84,7 @@ func (o *CombineOrganizationNetworksRequest) GetNetworkIds() []string {
 // and a boolean to check if the value has been set.
 func (o *CombineOrganizationNetworksRequest) GetNetworkIdsOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.NetworkIds, true
 }
@@ -93,7 +96,7 @@ func (o *CombineOrganizationNetworksRequest) SetNetworkIds(v []string) {
 
 // GetEnrollmentString returns the EnrollmentString field value if set, zero value otherwise.
 func (o *CombineOrganizationNetworksRequest) GetEnrollmentString() string {
-	if o == nil || isNil(o.EnrollmentString) {
+	if o == nil || IsNil(o.EnrollmentString) {
 		var ret string
 		return ret
 	}
@@ -103,15 +106,15 @@ func (o *CombineOrganizationNetworksRequest) GetEnrollmentString() string {
 // GetEnrollmentStringOk returns a tuple with the EnrollmentString field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CombineOrganizationNetworksRequest) GetEnrollmentStringOk() (*string, bool) {
-	if o == nil || isNil(o.EnrollmentString) {
-    return nil, false
+	if o == nil || IsNil(o.EnrollmentString) {
+		return nil, false
 	}
 	return o.EnrollmentString, true
 }
 
 // HasEnrollmentString returns a boolean if a field has been set.
 func (o *CombineOrganizationNetworksRequest) HasEnrollmentString() bool {
-	if o != nil && !isNil(o.EnrollmentString) {
+	if o != nil && !IsNil(o.EnrollmentString) {
 		return true
 	}
 
@@ -124,17 +127,21 @@ func (o *CombineOrganizationNetworksRequest) SetEnrollmentString(v string) {
 }
 
 func (o CombineOrganizationNetworksRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["networkIds"] = o.NetworkIds
-	}
-	if !isNil(o.EnrollmentString) {
-		toSerialize["enrollmentString"] = o.EnrollmentString
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CombineOrganizationNetworksRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["networkIds"] = o.NetworkIds
+	if !IsNil(o.EnrollmentString) {
+		toSerialize["enrollmentString"] = o.EnrollmentString
+	}
+	return toSerialize, nil
 }
 
 type NullableCombineOrganizationNetworksRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchDhcpServerPolicyRequestAlerts type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchDhcpServerPolicyRequestAlerts{}
+
 // UpdateNetworkSwitchDhcpServerPolicyRequestAlerts Alert settings for DHCP servers
 type UpdateNetworkSwitchDhcpServerPolicyRequestAlerts struct {
 	Email *UpdateNetworkSwitchDhcpServerPolicyRequestAlertsEmail `json:"email,omitempty"`
@@ -38,7 +41,7 @@ func NewUpdateNetworkSwitchDhcpServerPolicyRequestAlertsWithDefaults() *UpdateNe
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchDhcpServerPolicyRequestAlerts) GetEmail() UpdateNetworkSwitchDhcpServerPolicyRequestAlertsEmail {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret UpdateNetworkSwitchDhcpServerPolicyRequestAlertsEmail
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpdateNetworkSwitchDhcpServerPolicyRequestAlerts) GetEmail() UpdateNetw
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchDhcpServerPolicyRequestAlerts) GetEmailOk() (*UpdateNetworkSwitchDhcpServerPolicyRequestAlertsEmail, bool) {
-	if o == nil || isNil(o.Email) {
-    return nil, false
+	if o == nil || IsNil(o.Email) {
+		return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchDhcpServerPolicyRequestAlerts) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpdateNetworkSwitchDhcpServerPolicyRequestAlerts) SetEmail(v UpdateNetw
 }
 
 func (o UpdateNetworkSwitchDhcpServerPolicyRequestAlerts) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Email) {
-		toSerialize["email"] = o.Email
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchDhcpServerPolicyRequestAlerts) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchDhcpServerPolicyRequestAlerts struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner{}
+
 // GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner struct for GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner
 type GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner struct {
 	// The name of the license edition
@@ -41,7 +44,7 @@ func NewGetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInnerWithD
 
 // GetEdition returns the Edition field value if set, zero value otherwise.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner) GetEdition() string {
-	if o == nil || isNil(o.Edition) {
+	if o == nil || IsNil(o.Edition) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner) Ge
 // GetEditionOk returns a tuple with the Edition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner) GetEditionOk() (*string, bool) {
-	if o == nil || isNil(o.Edition) {
-    return nil, false
+	if o == nil || IsNil(o.Edition) {
+		return nil, false
 	}
 	return o.Edition, true
 }
 
 // HasEdition returns a boolean if a field has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner) HasEdition() bool {
-	if o != nil && !isNil(o.Edition) {
+	if o != nil && !IsNil(o.Edition) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner) Se
 
 // GetProductType returns the ProductType field value if set, zero value otherwise.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner) GetProductType() string {
-	if o == nil || isNil(o.ProductType) {
+	if o == nil || IsNil(o.ProductType) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner) Ge
 // GetProductTypeOk returns a tuple with the ProductType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner) GetProductTypeOk() (*string, bool) {
-	if o == nil || isNil(o.ProductType) {
-    return nil, false
+	if o == nil || IsNil(o.ProductType) {
+		return nil, false
 	}
 	return o.ProductType, true
 }
 
 // HasProductType returns a boolean if a field has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner) HasProductType() bool {
-	if o != nil && !isNil(o.ProductType) {
+	if o != nil && !IsNil(o.ProductType) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner) Se
 }
 
 func (o GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Edition) {
-		toSerialize["edition"] = o.Edition
-	}
-	if !isNil(o.ProductType) {
-		toSerialize["productType"] = o.ProductType
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Edition) {
+		toSerialize["edition"] = o.Edition
+	}
+	if !IsNil(o.ProductType) {
+		toSerialize["productType"] = o.ProductType
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner struct {

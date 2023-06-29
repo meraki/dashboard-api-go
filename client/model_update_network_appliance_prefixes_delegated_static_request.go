@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkAppliancePrefixesDelegatedStaticRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkAppliancePrefixesDelegatedStaticRequest{}
+
 // UpdateNetworkAppliancePrefixesDelegatedStaticRequest struct for UpdateNetworkAppliancePrefixesDelegatedStaticRequest
 type UpdateNetworkAppliancePrefixesDelegatedStaticRequest struct {
 	// A static IPv6 prefix
@@ -42,7 +45,7 @@ func NewUpdateNetworkAppliancePrefixesDelegatedStaticRequestWithDefaults() *Upda
 
 // GetPrefix returns the Prefix field value if set, zero value otherwise.
 func (o *UpdateNetworkAppliancePrefixesDelegatedStaticRequest) GetPrefix() string {
-	if o == nil || isNil(o.Prefix) {
+	if o == nil || IsNil(o.Prefix) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *UpdateNetworkAppliancePrefixesDelegatedStaticRequest) GetPrefix() strin
 // GetPrefixOk returns a tuple with the Prefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAppliancePrefixesDelegatedStaticRequest) GetPrefixOk() (*string, bool) {
-	if o == nil || isNil(o.Prefix) {
-    return nil, false
+	if o == nil || IsNil(o.Prefix) {
+		return nil, false
 	}
 	return o.Prefix, true
 }
 
 // HasPrefix returns a boolean if a field has been set.
 func (o *UpdateNetworkAppliancePrefixesDelegatedStaticRequest) HasPrefix() bool {
-	if o != nil && !isNil(o.Prefix) {
+	if o != nil && !IsNil(o.Prefix) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *UpdateNetworkAppliancePrefixesDelegatedStaticRequest) SetPrefix(v strin
 
 // GetOrigin returns the Origin field value if set, zero value otherwise.
 func (o *UpdateNetworkAppliancePrefixesDelegatedStaticRequest) GetOrigin() CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin {
-	if o == nil || isNil(o.Origin) {
+	if o == nil || IsNil(o.Origin) {
 		var ret CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *UpdateNetworkAppliancePrefixesDelegatedStaticRequest) GetOrigin() Creat
 // GetOriginOk returns a tuple with the Origin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAppliancePrefixesDelegatedStaticRequest) GetOriginOk() (*CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin, bool) {
-	if o == nil || isNil(o.Origin) {
-    return nil, false
+	if o == nil || IsNil(o.Origin) {
+		return nil, false
 	}
 	return o.Origin, true
 }
 
 // HasOrigin returns a boolean if a field has been set.
 func (o *UpdateNetworkAppliancePrefixesDelegatedStaticRequest) HasOrigin() bool {
-	if o != nil && !isNil(o.Origin) {
+	if o != nil && !IsNil(o.Origin) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *UpdateNetworkAppliancePrefixesDelegatedStaticRequest) SetOrigin(v Creat
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *UpdateNetworkAppliancePrefixesDelegatedStaticRequest) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *UpdateNetworkAppliancePrefixesDelegatedStaticRequest) GetDescription() 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAppliancePrefixesDelegatedStaticRequest) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
-    return nil, false
+	if o == nil || IsNil(o.Description) {
+		return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *UpdateNetworkAppliancePrefixesDelegatedStaticRequest) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *UpdateNetworkAppliancePrefixesDelegatedStaticRequest) SetDescription(v 
 }
 
 func (o UpdateNetworkAppliancePrefixesDelegatedStaticRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Prefix) {
-		toSerialize["prefix"] = o.Prefix
-	}
-	if !isNil(o.Origin) {
-		toSerialize["origin"] = o.Origin
-	}
-	if !isNil(o.Description) {
-		toSerialize["description"] = o.Description
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkAppliancePrefixesDelegatedStaticRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Prefix) {
+		toSerialize["prefix"] = o.Prefix
+	}
+	if !IsNil(o.Origin) {
+		toSerialize["origin"] = o.Origin
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkAppliancePrefixesDelegatedStaticRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceCameraWirelessProfilesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceCameraWirelessProfilesRequest{}
+
 // UpdateDeviceCameraWirelessProfilesRequest struct for UpdateDeviceCameraWirelessProfilesRequest
 type UpdateDeviceCameraWirelessProfilesRequest struct {
 	Ids UpdateDeviceCameraWirelessProfilesRequestIds `json:"ids"`
@@ -51,7 +54,7 @@ func (o *UpdateDeviceCameraWirelessProfilesRequest) GetIds() UpdateDeviceCameraW
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCameraWirelessProfilesRequest) GetIdsOk() (*UpdateDeviceCameraWirelessProfilesRequestIds, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Ids, true
 }
@@ -62,11 +65,17 @@ func (o *UpdateDeviceCameraWirelessProfilesRequest) SetIds(v UpdateDeviceCameraW
 }
 
 func (o UpdateDeviceCameraWirelessProfilesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ids"] = o.Ids
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceCameraWirelessProfilesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["ids"] = o.Ids
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceCameraWirelessProfilesRequest struct {

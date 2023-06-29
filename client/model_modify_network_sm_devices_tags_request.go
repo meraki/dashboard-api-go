@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModifyNetworkSmDevicesTagsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModifyNetworkSmDevicesTagsRequest{}
+
 // ModifyNetworkSmDevicesTagsRequest struct for ModifyNetworkSmDevicesTagsRequest
 type ModifyNetworkSmDevicesTagsRequest struct {
 	// The wifiMacs of the devices to be modified.
@@ -51,7 +54,7 @@ func NewModifyNetworkSmDevicesTagsRequestWithDefaults() *ModifyNetworkSmDevicesT
 
 // GetWifiMacs returns the WifiMacs field value if set, zero value otherwise.
 func (o *ModifyNetworkSmDevicesTagsRequest) GetWifiMacs() []string {
-	if o == nil || isNil(o.WifiMacs) {
+	if o == nil || IsNil(o.WifiMacs) {
 		var ret []string
 		return ret
 	}
@@ -61,15 +64,15 @@ func (o *ModifyNetworkSmDevicesTagsRequest) GetWifiMacs() []string {
 // GetWifiMacsOk returns a tuple with the WifiMacs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModifyNetworkSmDevicesTagsRequest) GetWifiMacsOk() ([]string, bool) {
-	if o == nil || isNil(o.WifiMacs) {
-    return nil, false
+	if o == nil || IsNil(o.WifiMacs) {
+		return nil, false
 	}
 	return o.WifiMacs, true
 }
 
 // HasWifiMacs returns a boolean if a field has been set.
 func (o *ModifyNetworkSmDevicesTagsRequest) HasWifiMacs() bool {
-	if o != nil && !isNil(o.WifiMacs) {
+	if o != nil && !IsNil(o.WifiMacs) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *ModifyNetworkSmDevicesTagsRequest) SetWifiMacs(v []string) {
 
 // GetIds returns the Ids field value if set, zero value otherwise.
 func (o *ModifyNetworkSmDevicesTagsRequest) GetIds() []string {
-	if o == nil || isNil(o.Ids) {
+	if o == nil || IsNil(o.Ids) {
 		var ret []string
 		return ret
 	}
@@ -93,15 +96,15 @@ func (o *ModifyNetworkSmDevicesTagsRequest) GetIds() []string {
 // GetIdsOk returns a tuple with the Ids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModifyNetworkSmDevicesTagsRequest) GetIdsOk() ([]string, bool) {
-	if o == nil || isNil(o.Ids) {
-    return nil, false
+	if o == nil || IsNil(o.Ids) {
+		return nil, false
 	}
 	return o.Ids, true
 }
 
 // HasIds returns a boolean if a field has been set.
 func (o *ModifyNetworkSmDevicesTagsRequest) HasIds() bool {
-	if o != nil && !isNil(o.Ids) {
+	if o != nil && !IsNil(o.Ids) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *ModifyNetworkSmDevicesTagsRequest) SetIds(v []string) {
 
 // GetSerials returns the Serials field value if set, zero value otherwise.
 func (o *ModifyNetworkSmDevicesTagsRequest) GetSerials() []string {
-	if o == nil || isNil(o.Serials) {
+	if o == nil || IsNil(o.Serials) {
 		var ret []string
 		return ret
 	}
@@ -125,15 +128,15 @@ func (o *ModifyNetworkSmDevicesTagsRequest) GetSerials() []string {
 // GetSerialsOk returns a tuple with the Serials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModifyNetworkSmDevicesTagsRequest) GetSerialsOk() ([]string, bool) {
-	if o == nil || isNil(o.Serials) {
-    return nil, false
+	if o == nil || IsNil(o.Serials) {
+		return nil, false
 	}
 	return o.Serials, true
 }
 
 // HasSerials returns a boolean if a field has been set.
 func (o *ModifyNetworkSmDevicesTagsRequest) HasSerials() bool {
-	if o != nil && !isNil(o.Serials) {
+	if o != nil && !IsNil(o.Serials) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *ModifyNetworkSmDevicesTagsRequest) SetSerials(v []string) {
 
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *ModifyNetworkSmDevicesTagsRequest) GetScope() []string {
-	if o == nil || isNil(o.Scope) {
+	if o == nil || IsNil(o.Scope) {
 		var ret []string
 		return ret
 	}
@@ -157,15 +160,15 @@ func (o *ModifyNetworkSmDevicesTagsRequest) GetScope() []string {
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModifyNetworkSmDevicesTagsRequest) GetScopeOk() ([]string, bool) {
-	if o == nil || isNil(o.Scope) {
-    return nil, false
+	if o == nil || IsNil(o.Scope) {
+		return nil, false
 	}
 	return o.Scope, true
 }
 
 // HasScope returns a boolean if a field has been set.
 func (o *ModifyNetworkSmDevicesTagsRequest) HasScope() bool {
-	if o != nil && !isNil(o.Scope) {
+	if o != nil && !IsNil(o.Scope) {
 		return true
 	}
 
@@ -191,7 +194,7 @@ func (o *ModifyNetworkSmDevicesTagsRequest) GetTags() []string {
 // and a boolean to check if the value has been set.
 func (o *ModifyNetworkSmDevicesTagsRequest) GetTagsOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Tags, true
 }
@@ -215,7 +218,7 @@ func (o *ModifyNetworkSmDevicesTagsRequest) GetUpdateAction() string {
 // and a boolean to check if the value has been set.
 func (o *ModifyNetworkSmDevicesTagsRequest) GetUpdateActionOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.UpdateAction, true
 }
@@ -226,26 +229,30 @@ func (o *ModifyNetworkSmDevicesTagsRequest) SetUpdateAction(v string) {
 }
 
 func (o ModifyNetworkSmDevicesTagsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.WifiMacs) {
-		toSerialize["wifiMacs"] = o.WifiMacs
-	}
-	if !isNil(o.Ids) {
-		toSerialize["ids"] = o.Ids
-	}
-	if !isNil(o.Serials) {
-		toSerialize["serials"] = o.Serials
-	}
-	if !isNil(o.Scope) {
-		toSerialize["scope"] = o.Scope
-	}
-	if true {
-		toSerialize["tags"] = o.Tags
-	}
-	if true {
-		toSerialize["updateAction"] = o.UpdateAction
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ModifyNetworkSmDevicesTagsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.WifiMacs) {
+		toSerialize["wifiMacs"] = o.WifiMacs
+	}
+	if !IsNil(o.Ids) {
+		toSerialize["ids"] = o.Ids
+	}
+	if !IsNil(o.Serials) {
+		toSerialize["serials"] = o.Serials
+	}
+	if !IsNil(o.Scope) {
+		toSerialize["scope"] = o.Scope
+	}
+	toSerialize["tags"] = o.Tags
+	toSerialize["updateAction"] = o.UpdateAction
+	return toSerialize, nil
 }
 
 type NullableModifyNetworkSmDevicesTagsRequest struct {

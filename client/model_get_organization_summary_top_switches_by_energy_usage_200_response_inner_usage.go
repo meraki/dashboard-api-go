@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerUsage{}
+
 // GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerUsage Energy usage of the switch
 type GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerUsage struct {
 	// Total energy usage of the switch
@@ -39,7 +42,7 @@ func NewGetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerUsageWithD
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerUsage) GetTotal() float32 {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		var ret float32
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerUsage) Ge
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerUsage) GetTotalOk() (*float32, bool) {
-	if o == nil || isNil(o.Total) {
-    return nil, false
+	if o == nil || IsNil(o.Total) {
+		return nil, false
 	}
 	return o.Total, true
 }
 
 // HasTotal returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerUsage) HasTotal() bool {
-	if o != nil && !isNil(o.Total) {
+	if o != nil && !IsNil(o.Total) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerUsage) Se
 }
 
 func (o GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerUsage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Total) {
-		toSerialize["total"] = o.Total
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerUsage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Total) {
+		toSerialize["total"] = o.Total
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerUsage struct {

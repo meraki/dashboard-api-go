@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUser type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUser{}
+
 // CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUser User credentials used to connect to the device
 type CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUser struct {
 	// The public key for the registered user
@@ -42,7 +45,7 @@ func NewCreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseIn
 
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUser) GetPublicKey() string {
-	if o == nil || isNil(o.PublicKey) {
+	if o == nil || IsNil(o.PublicKey) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 // GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUser) GetPublicKeyOk() (*string, bool) {
-	if o == nil || isNil(o.PublicKey) {
-    return nil, false
+	if o == nil || IsNil(o.PublicKey) {
+		return nil, false
 	}
 	return o.PublicKey, true
 }
 
 // HasPublicKey returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUser) HasPublicKey() bool {
-	if o != nil && !isNil(o.PublicKey) {
+	if o != nil && !IsNil(o.PublicKey) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUser) GetUsername() string {
-	if o == nil || isNil(o.Username) {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUser) GetUsernameOk() (*string, bool) {
-	if o == nil || isNil(o.Username) {
-    return nil, false
+	if o == nil || IsNil(o.Username) {
+		return nil, false
 	}
 	return o.Username, true
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUser) HasUsername() bool {
-	if o != nil && !isNil(o.Username) {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 
 // GetSecret returns the Secret field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUser) GetSecret() CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUserSecret {
-	if o == nil || isNil(o.Secret) {
+	if o == nil || IsNil(o.Secret) {
 		var ret CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUserSecret
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 // GetSecretOk returns a tuple with the Secret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUser) GetSecretOk() (*CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUserSecret, bool) {
-	if o == nil || isNil(o.Secret) {
-    return nil, false
+	if o == nil || IsNil(o.Secret) {
+		return nil, false
 	}
 	return o.Secret, true
 }
 
 // HasSecret returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUser) HasSecret() bool {
-	if o != nil && !isNil(o.Secret) {
+	if o != nil && !IsNil(o.Secret) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 }
 
 func (o CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUser) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.PublicKey) {
-		toSerialize["publicKey"] = o.PublicKey
-	}
-	if !isNil(o.Username) {
-		toSerialize["username"] = o.Username
-	}
-	if !isNil(o.Secret) {
-		toSerialize["secret"] = o.Secret
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUser) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PublicKey) {
+		toSerialize["publicKey"] = o.PublicKey
+	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.Secret) {
+		toSerialize["secret"] = o.Secret
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsUser struct {

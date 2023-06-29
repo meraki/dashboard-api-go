@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceLiveToolsPing200ResponseResults type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceLiveToolsPing200ResponseResults{}
+
 // GetDeviceLiveToolsPing200ResponseResults Results of the ping request.
 type GetDeviceLiveToolsPing200ResponseResults struct {
 	// Number of packets sent
@@ -45,7 +48,7 @@ func NewGetDeviceLiveToolsPing200ResponseResultsWithDefaults() *GetDeviceLiveToo
 
 // GetSent returns the Sent field value if set, zero value otherwise.
 func (o *GetDeviceLiveToolsPing200ResponseResults) GetSent() int32 {
-	if o == nil || isNil(o.Sent) {
+	if o == nil || IsNil(o.Sent) {
 		var ret int32
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetDeviceLiveToolsPing200ResponseResults) GetSent() int32 {
 // GetSentOk returns a tuple with the Sent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResults) GetSentOk() (*int32, bool) {
-	if o == nil || isNil(o.Sent) {
-    return nil, false
+	if o == nil || IsNil(o.Sent) {
+		return nil, false
 	}
 	return o.Sent, true
 }
 
 // HasSent returns a boolean if a field has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResults) HasSent() bool {
-	if o != nil && !isNil(o.Sent) {
+	if o != nil && !IsNil(o.Sent) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetDeviceLiveToolsPing200ResponseResults) SetSent(v int32) {
 
 // GetReceived returns the Received field value if set, zero value otherwise.
 func (o *GetDeviceLiveToolsPing200ResponseResults) GetReceived() int32 {
-	if o == nil || isNil(o.Received) {
+	if o == nil || IsNil(o.Received) {
 		var ret int32
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetDeviceLiveToolsPing200ResponseResults) GetReceived() int32 {
 // GetReceivedOk returns a tuple with the Received field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResults) GetReceivedOk() (*int32, bool) {
-	if o == nil || isNil(o.Received) {
-    return nil, false
+	if o == nil || IsNil(o.Received) {
+		return nil, false
 	}
 	return o.Received, true
 }
 
 // HasReceived returns a boolean if a field has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResults) HasReceived() bool {
-	if o != nil && !isNil(o.Received) {
+	if o != nil && !IsNil(o.Received) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetDeviceLiveToolsPing200ResponseResults) SetReceived(v int32) {
 
 // GetLoss returns the Loss field value if set, zero value otherwise.
 func (o *GetDeviceLiveToolsPing200ResponseResults) GetLoss() GetDeviceLiveToolsPing200ResponseResultsLoss {
-	if o == nil || isNil(o.Loss) {
+	if o == nil || IsNil(o.Loss) {
 		var ret GetDeviceLiveToolsPing200ResponseResultsLoss
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetDeviceLiveToolsPing200ResponseResults) GetLoss() GetDeviceLiveToolsP
 // GetLossOk returns a tuple with the Loss field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResults) GetLossOk() (*GetDeviceLiveToolsPing200ResponseResultsLoss, bool) {
-	if o == nil || isNil(o.Loss) {
-    return nil, false
+	if o == nil || IsNil(o.Loss) {
+		return nil, false
 	}
 	return o.Loss, true
 }
 
 // HasLoss returns a boolean if a field has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResults) HasLoss() bool {
-	if o != nil && !isNil(o.Loss) {
+	if o != nil && !IsNil(o.Loss) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetDeviceLiveToolsPing200ResponseResults) SetLoss(v GetDeviceLiveToolsP
 
 // GetLatencies returns the Latencies field value if set, zero value otherwise.
 func (o *GetDeviceLiveToolsPing200ResponseResults) GetLatencies() GetDeviceLiveToolsPing200ResponseResultsLatencies {
-	if o == nil || isNil(o.Latencies) {
+	if o == nil || IsNil(o.Latencies) {
 		var ret GetDeviceLiveToolsPing200ResponseResultsLatencies
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetDeviceLiveToolsPing200ResponseResults) GetLatencies() GetDeviceLiveT
 // GetLatenciesOk returns a tuple with the Latencies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResults) GetLatenciesOk() (*GetDeviceLiveToolsPing200ResponseResultsLatencies, bool) {
-	if o == nil || isNil(o.Latencies) {
-    return nil, false
+	if o == nil || IsNil(o.Latencies) {
+		return nil, false
 	}
 	return o.Latencies, true
 }
 
 // HasLatencies returns a boolean if a field has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResults) HasLatencies() bool {
-	if o != nil && !isNil(o.Latencies) {
+	if o != nil && !IsNil(o.Latencies) {
 		return true
 	}
 
@@ -173,7 +176,7 @@ func (o *GetDeviceLiveToolsPing200ResponseResults) SetLatencies(v GetDeviceLiveT
 
 // GetReplies returns the Replies field value if set, zero value otherwise.
 func (o *GetDeviceLiveToolsPing200ResponseResults) GetReplies() []GetDeviceLiveToolsPing200ResponseResultsRepliesInner {
-	if o == nil || isNil(o.Replies) {
+	if o == nil || IsNil(o.Replies) {
 		var ret []GetDeviceLiveToolsPing200ResponseResultsRepliesInner
 		return ret
 	}
@@ -183,15 +186,15 @@ func (o *GetDeviceLiveToolsPing200ResponseResults) GetReplies() []GetDeviceLiveT
 // GetRepliesOk returns a tuple with the Replies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResults) GetRepliesOk() ([]GetDeviceLiveToolsPing200ResponseResultsRepliesInner, bool) {
-	if o == nil || isNil(o.Replies) {
-    return nil, false
+	if o == nil || IsNil(o.Replies) {
+		return nil, false
 	}
 	return o.Replies, true
 }
 
 // HasReplies returns a boolean if a field has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResults) HasReplies() bool {
-	if o != nil && !isNil(o.Replies) {
+	if o != nil && !IsNil(o.Replies) {
 		return true
 	}
 
@@ -204,23 +207,31 @@ func (o *GetDeviceLiveToolsPing200ResponseResults) SetReplies(v []GetDeviceLiveT
 }
 
 func (o GetDeviceLiveToolsPing200ResponseResults) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Sent) {
-		toSerialize["sent"] = o.Sent
-	}
-	if !isNil(o.Received) {
-		toSerialize["received"] = o.Received
-	}
-	if !isNil(o.Loss) {
-		toSerialize["loss"] = o.Loss
-	}
-	if !isNil(o.Latencies) {
-		toSerialize["latencies"] = o.Latencies
-	}
-	if !isNil(o.Replies) {
-		toSerialize["replies"] = o.Replies
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceLiveToolsPing200ResponseResults) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Sent) {
+		toSerialize["sent"] = o.Sent
+	}
+	if !IsNil(o.Received) {
+		toSerialize["received"] = o.Received
+	}
+	if !IsNil(o.Loss) {
+		toSerialize["loss"] = o.Loss
+	}
+	if !IsNil(o.Latencies) {
+		toSerialize["latencies"] = o.Latencies
+	}
+	if !IsNil(o.Replies) {
+		toSerialize["replies"] = o.Replies
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceLiveToolsPing200ResponseResults struct {

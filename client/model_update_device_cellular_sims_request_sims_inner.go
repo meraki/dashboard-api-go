@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceCellularSimsRequestSimsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceCellularSimsRequestSimsInner{}
+
 // UpdateDeviceCellularSimsRequestSimsInner struct for UpdateDeviceCellularSimsRequestSimsInner
 type UpdateDeviceCellularSimsRequestSimsInner struct {
 	// SIM slot being configured. Must be 'sim1' on single-sim devices.
@@ -47,7 +50,7 @@ func NewUpdateDeviceCellularSimsRequestSimsInnerWithDefaults() *UpdateDeviceCell
 
 // GetSlot returns the Slot field value if set, zero value otherwise.
 func (o *UpdateDeviceCellularSimsRequestSimsInner) GetSlot() string {
-	if o == nil || isNil(o.Slot) {
+	if o == nil || IsNil(o.Slot) {
 		var ret string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *UpdateDeviceCellularSimsRequestSimsInner) GetSlot() string {
 // GetSlotOk returns a tuple with the Slot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularSimsRequestSimsInner) GetSlotOk() (*string, bool) {
-	if o == nil || isNil(o.Slot) {
-    return nil, false
+	if o == nil || IsNil(o.Slot) {
+		return nil, false
 	}
 	return o.Slot, true
 }
 
 // HasSlot returns a boolean if a field has been set.
 func (o *UpdateDeviceCellularSimsRequestSimsInner) HasSlot() bool {
-	if o != nil && !isNil(o.Slot) {
+	if o != nil && !IsNil(o.Slot) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *UpdateDeviceCellularSimsRequestSimsInner) SetSlot(v string) {
 
 // GetIsPrimary returns the IsPrimary field value if set, zero value otherwise.
 func (o *UpdateDeviceCellularSimsRequestSimsInner) GetIsPrimary() bool {
-	if o == nil || isNil(o.IsPrimary) {
+	if o == nil || IsNil(o.IsPrimary) {
 		var ret bool
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *UpdateDeviceCellularSimsRequestSimsInner) GetIsPrimary() bool {
 // GetIsPrimaryOk returns a tuple with the IsPrimary field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularSimsRequestSimsInner) GetIsPrimaryOk() (*bool, bool) {
-	if o == nil || isNil(o.IsPrimary) {
-    return nil, false
+	if o == nil || IsNil(o.IsPrimary) {
+		return nil, false
 	}
 	return o.IsPrimary, true
 }
 
 // HasIsPrimary returns a boolean if a field has been set.
 func (o *UpdateDeviceCellularSimsRequestSimsInner) HasIsPrimary() bool {
-	if o != nil && !isNil(o.IsPrimary) {
+	if o != nil && !IsNil(o.IsPrimary) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *UpdateDeviceCellularSimsRequestSimsInner) SetIsPrimary(v bool) {
 
 // GetApns returns the Apns field value if set, zero value otherwise.
 func (o *UpdateDeviceCellularSimsRequestSimsInner) GetApns() []UpdateDeviceCellularSimsRequestSimsInnerApnsInner {
-	if o == nil || isNil(o.Apns) {
+	if o == nil || IsNil(o.Apns) {
 		var ret []UpdateDeviceCellularSimsRequestSimsInnerApnsInner
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *UpdateDeviceCellularSimsRequestSimsInner) GetApns() []UpdateDeviceCellu
 // GetApnsOk returns a tuple with the Apns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularSimsRequestSimsInner) GetApnsOk() ([]UpdateDeviceCellularSimsRequestSimsInnerApnsInner, bool) {
-	if o == nil || isNil(o.Apns) {
-    return nil, false
+	if o == nil || IsNil(o.Apns) {
+		return nil, false
 	}
 	return o.Apns, true
 }
 
 // HasApns returns a boolean if a field has been set.
 func (o *UpdateDeviceCellularSimsRequestSimsInner) HasApns() bool {
-	if o != nil && !isNil(o.Apns) {
+	if o != nil && !IsNil(o.Apns) {
 		return true
 	}
 
@@ -142,17 +145,25 @@ func (o *UpdateDeviceCellularSimsRequestSimsInner) SetApns(v []UpdateDeviceCellu
 }
 
 func (o UpdateDeviceCellularSimsRequestSimsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Slot) {
-		toSerialize["slot"] = o.Slot
-	}
-	if !isNil(o.IsPrimary) {
-		toSerialize["isPrimary"] = o.IsPrimary
-	}
-	if !isNil(o.Apns) {
-		toSerialize["apns"] = o.Apns
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceCellularSimsRequestSimsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Slot) {
+		toSerialize["slot"] = o.Slot
+	}
+	if !IsNil(o.IsPrimary) {
+		toSerialize["isPrimary"] = o.IsPrimary
+	}
+	if !IsNil(o.Apns) {
+		toSerialize["apns"] = o.Apns
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceCellularSimsRequestSimsInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner{}
+
 // CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner struct for CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner
 type CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner struct {
 	// Cloud monitor import status
@@ -43,7 +46,7 @@ func NewCreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInn
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseIn
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseIn
 
 // GetImportId returns the ImportId field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner) GetImportId() string {
-	if o == nil || isNil(o.ImportId) {
+	if o == nil || IsNil(o.ImportId) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseIn
 // GetImportIdOk returns a tuple with the ImportId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner) GetImportIdOk() (*string, bool) {
-	if o == nil || isNil(o.ImportId) {
-    return nil, false
+	if o == nil || IsNil(o.ImportId) {
+		return nil, false
 	}
 	return o.ImportId, true
 }
 
 // HasImportId returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner) HasImportId() bool {
-	if o != nil && !isNil(o.ImportId) {
+	if o != nil && !IsNil(o.ImportId) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseIn
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner) GetMessage() string {
-	if o == nil || isNil(o.Message) {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseIn
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner) GetMessageOk() (*string, bool) {
-	if o == nil || isNil(o.Message) {
-    return nil, false
+	if o == nil || IsNil(o.Message) {
+		return nil, false
 	}
 	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner) HasMessage() bool {
-	if o != nil && !isNil(o.Message) {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseIn
 }
 
 func (o CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.ImportId) {
-		toSerialize["importId"] = o.ImportId
-	}
-	if !isNil(o.Message) {
-		toSerialize["message"] = o.Message
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.ImportId) {
+		toSerialize["importId"] = o.ImportId
+	}
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationInventoryOnboardingCloudMonitoringImport201ResponseInner struct {

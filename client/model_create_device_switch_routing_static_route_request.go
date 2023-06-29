@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateDeviceSwitchRoutingStaticRouteRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateDeviceSwitchRoutingStaticRouteRequest{}
+
 // CreateDeviceSwitchRoutingStaticRouteRequest struct for CreateDeviceSwitchRoutingStaticRouteRequest
 type CreateDeviceSwitchRoutingStaticRouteRequest struct {
 	// Name or description for layer 3 static route
@@ -49,7 +52,7 @@ func NewCreateDeviceSwitchRoutingStaticRouteRequestWithDefaults() *CreateDeviceS
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CreateDeviceSwitchRoutingStaticRouteRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -59,15 +62,15 @@ func (o *CreateDeviceSwitchRoutingStaticRouteRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateDeviceSwitchRoutingStaticRouteRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateDeviceSwitchRoutingStaticRouteRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -93,7 +96,7 @@ func (o *CreateDeviceSwitchRoutingStaticRouteRequest) GetSubnet() string {
 // and a boolean to check if the value has been set.
 func (o *CreateDeviceSwitchRoutingStaticRouteRequest) GetSubnetOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Subnet, true
 }
@@ -117,7 +120,7 @@ func (o *CreateDeviceSwitchRoutingStaticRouteRequest) GetNextHopIp() string {
 // and a boolean to check if the value has been set.
 func (o *CreateDeviceSwitchRoutingStaticRouteRequest) GetNextHopIpOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.NextHopIp, true
 }
@@ -129,7 +132,7 @@ func (o *CreateDeviceSwitchRoutingStaticRouteRequest) SetNextHopIp(v string) {
 
 // GetAdvertiseViaOspfEnabled returns the AdvertiseViaOspfEnabled field value if set, zero value otherwise.
 func (o *CreateDeviceSwitchRoutingStaticRouteRequest) GetAdvertiseViaOspfEnabled() bool {
-	if o == nil || isNil(o.AdvertiseViaOspfEnabled) {
+	if o == nil || IsNil(o.AdvertiseViaOspfEnabled) {
 		var ret bool
 		return ret
 	}
@@ -139,15 +142,15 @@ func (o *CreateDeviceSwitchRoutingStaticRouteRequest) GetAdvertiseViaOspfEnabled
 // GetAdvertiseViaOspfEnabledOk returns a tuple with the AdvertiseViaOspfEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateDeviceSwitchRoutingStaticRouteRequest) GetAdvertiseViaOspfEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.AdvertiseViaOspfEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.AdvertiseViaOspfEnabled) {
+		return nil, false
 	}
 	return o.AdvertiseViaOspfEnabled, true
 }
 
 // HasAdvertiseViaOspfEnabled returns a boolean if a field has been set.
 func (o *CreateDeviceSwitchRoutingStaticRouteRequest) HasAdvertiseViaOspfEnabled() bool {
-	if o != nil && !isNil(o.AdvertiseViaOspfEnabled) {
+	if o != nil && !IsNil(o.AdvertiseViaOspfEnabled) {
 		return true
 	}
 
@@ -161,7 +164,7 @@ func (o *CreateDeviceSwitchRoutingStaticRouteRequest) SetAdvertiseViaOspfEnabled
 
 // GetPreferOverOspfRoutesEnabled returns the PreferOverOspfRoutesEnabled field value if set, zero value otherwise.
 func (o *CreateDeviceSwitchRoutingStaticRouteRequest) GetPreferOverOspfRoutesEnabled() bool {
-	if o == nil || isNil(o.PreferOverOspfRoutesEnabled) {
+	if o == nil || IsNil(o.PreferOverOspfRoutesEnabled) {
 		var ret bool
 		return ret
 	}
@@ -171,15 +174,15 @@ func (o *CreateDeviceSwitchRoutingStaticRouteRequest) GetPreferOverOspfRoutesEna
 // GetPreferOverOspfRoutesEnabledOk returns a tuple with the PreferOverOspfRoutesEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateDeviceSwitchRoutingStaticRouteRequest) GetPreferOverOspfRoutesEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.PreferOverOspfRoutesEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.PreferOverOspfRoutesEnabled) {
+		return nil, false
 	}
 	return o.PreferOverOspfRoutesEnabled, true
 }
 
 // HasPreferOverOspfRoutesEnabled returns a boolean if a field has been set.
 func (o *CreateDeviceSwitchRoutingStaticRouteRequest) HasPreferOverOspfRoutesEnabled() bool {
-	if o != nil && !isNil(o.PreferOverOspfRoutesEnabled) {
+	if o != nil && !IsNil(o.PreferOverOspfRoutesEnabled) {
 		return true
 	}
 
@@ -192,23 +195,27 @@ func (o *CreateDeviceSwitchRoutingStaticRouteRequest) SetPreferOverOspfRoutesEna
 }
 
 func (o CreateDeviceSwitchRoutingStaticRouteRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["subnet"] = o.Subnet
-	}
-	if true {
-		toSerialize["nextHopIp"] = o.NextHopIp
-	}
-	if !isNil(o.AdvertiseViaOspfEnabled) {
-		toSerialize["advertiseViaOspfEnabled"] = o.AdvertiseViaOspfEnabled
-	}
-	if !isNil(o.PreferOverOspfRoutesEnabled) {
-		toSerialize["preferOverOspfRoutesEnabled"] = o.PreferOverOspfRoutesEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateDeviceSwitchRoutingStaticRouteRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	toSerialize["subnet"] = o.Subnet
+	toSerialize["nextHopIp"] = o.NextHopIp
+	if !IsNil(o.AdvertiseViaOspfEnabled) {
+		toSerialize["advertiseViaOspfEnabled"] = o.AdvertiseViaOspfEnabled
+	}
+	if !IsNil(o.PreferOverOspfRoutesEnabled) {
+		toSerialize["preferOverOspfRoutesEnabled"] = o.PreferOverOspfRoutesEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateDeviceSwitchRoutingStaticRouteRequest struct {

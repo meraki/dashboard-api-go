@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmDevicePerformanceHistory200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmDevicePerformanceHistory200ResponseInner{}
+
 // GetNetworkSmDevicePerformanceHistory200ResponseInner struct for GetNetworkSmDevicePerformanceHistory200ResponseInner
 type GetNetworkSmDevicePerformanceHistory200ResponseInner struct {
 	// The percentage of CPU used as a decimal format.
@@ -56,7 +59,7 @@ func NewGetNetworkSmDevicePerformanceHistory200ResponseInnerWithDefaults() *GetN
 
 // GetCpuPercentUsed returns the CpuPercentUsed field value if set, zero value otherwise.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetCpuPercentUsed() float32 {
-	if o == nil || isNil(o.CpuPercentUsed) {
+	if o == nil || IsNil(o.CpuPercentUsed) {
 		var ret float32
 		return ret
 	}
@@ -66,15 +69,15 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetCpuPercentUsed
 // GetCpuPercentUsedOk returns a tuple with the CpuPercentUsed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetCpuPercentUsedOk() (*float32, bool) {
-	if o == nil || isNil(o.CpuPercentUsed) {
-    return nil, false
+	if o == nil || IsNil(o.CpuPercentUsed) {
+		return nil, false
 	}
 	return o.CpuPercentUsed, true
 }
 
 // HasCpuPercentUsed returns a boolean if a field has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) HasCpuPercentUsed() bool {
-	if o != nil && !isNil(o.CpuPercentUsed) {
+	if o != nil && !IsNil(o.CpuPercentUsed) {
 		return true
 	}
 
@@ -88,7 +91,7 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) SetCpuPercentUsed
 
 // GetMemFree returns the MemFree field value if set, zero value otherwise.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetMemFree() int32 {
-	if o == nil || isNil(o.MemFree) {
+	if o == nil || IsNil(o.MemFree) {
 		var ret int32
 		return ret
 	}
@@ -98,15 +101,15 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetMemFree() int3
 // GetMemFreeOk returns a tuple with the MemFree field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetMemFreeOk() (*int32, bool) {
-	if o == nil || isNil(o.MemFree) {
-    return nil, false
+	if o == nil || IsNil(o.MemFree) {
+		return nil, false
 	}
 	return o.MemFree, true
 }
 
 // HasMemFree returns a boolean if a field has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) HasMemFree() bool {
-	if o != nil && !isNil(o.MemFree) {
+	if o != nil && !IsNil(o.MemFree) {
 		return true
 	}
 
@@ -120,7 +123,7 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) SetMemFree(v int3
 
 // GetMemWired returns the MemWired field value if set, zero value otherwise.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetMemWired() int32 {
-	if o == nil || isNil(o.MemWired) {
+	if o == nil || IsNil(o.MemWired) {
 		var ret int32
 		return ret
 	}
@@ -130,15 +133,15 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetMemWired() int
 // GetMemWiredOk returns a tuple with the MemWired field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetMemWiredOk() (*int32, bool) {
-	if o == nil || isNil(o.MemWired) {
-    return nil, false
+	if o == nil || IsNil(o.MemWired) {
+		return nil, false
 	}
 	return o.MemWired, true
 }
 
 // HasMemWired returns a boolean if a field has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) HasMemWired() bool {
-	if o != nil && !isNil(o.MemWired) {
+	if o != nil && !IsNil(o.MemWired) {
 		return true
 	}
 
@@ -152,7 +155,7 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) SetMemWired(v int
 
 // GetMemActive returns the MemActive field value if set, zero value otherwise.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetMemActive() int32 {
-	if o == nil || isNil(o.MemActive) {
+	if o == nil || IsNil(o.MemActive) {
 		var ret int32
 		return ret
 	}
@@ -162,15 +165,15 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetMemActive() in
 // GetMemActiveOk returns a tuple with the MemActive field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetMemActiveOk() (*int32, bool) {
-	if o == nil || isNil(o.MemActive) {
-    return nil, false
+	if o == nil || IsNil(o.MemActive) {
+		return nil, false
 	}
 	return o.MemActive, true
 }
 
 // HasMemActive returns a boolean if a field has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) HasMemActive() bool {
-	if o != nil && !isNil(o.MemActive) {
+	if o != nil && !IsNil(o.MemActive) {
 		return true
 	}
 
@@ -184,7 +187,7 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) SetMemActive(v in
 
 // GetMemInactive returns the MemInactive field value if set, zero value otherwise.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetMemInactive() int32 {
-	if o == nil || isNil(o.MemInactive) {
+	if o == nil || IsNil(o.MemInactive) {
 		var ret int32
 		return ret
 	}
@@ -194,15 +197,15 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetMemInactive() 
 // GetMemInactiveOk returns a tuple with the MemInactive field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetMemInactiveOk() (*int32, bool) {
-	if o == nil || isNil(o.MemInactive) {
-    return nil, false
+	if o == nil || IsNil(o.MemInactive) {
+		return nil, false
 	}
 	return o.MemInactive, true
 }
 
 // HasMemInactive returns a boolean if a field has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) HasMemInactive() bool {
-	if o != nil && !isNil(o.MemInactive) {
+	if o != nil && !IsNil(o.MemInactive) {
 		return true
 	}
 
@@ -216,7 +219,7 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) SetMemInactive(v 
 
 // GetNetworkSent returns the NetworkSent field value if set, zero value otherwise.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetNetworkSent() int32 {
-	if o == nil || isNil(o.NetworkSent) {
+	if o == nil || IsNil(o.NetworkSent) {
 		var ret int32
 		return ret
 	}
@@ -226,15 +229,15 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetNetworkSent() 
 // GetNetworkSentOk returns a tuple with the NetworkSent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetNetworkSentOk() (*int32, bool) {
-	if o == nil || isNil(o.NetworkSent) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkSent) {
+		return nil, false
 	}
 	return o.NetworkSent, true
 }
 
 // HasNetworkSent returns a boolean if a field has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) HasNetworkSent() bool {
-	if o != nil && !isNil(o.NetworkSent) {
+	if o != nil && !IsNil(o.NetworkSent) {
 		return true
 	}
 
@@ -248,7 +251,7 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) SetNetworkSent(v 
 
 // GetNetworkReceived returns the NetworkReceived field value if set, zero value otherwise.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetNetworkReceived() int32 {
-	if o == nil || isNil(o.NetworkReceived) {
+	if o == nil || IsNil(o.NetworkReceived) {
 		var ret int32
 		return ret
 	}
@@ -258,15 +261,15 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetNetworkReceive
 // GetNetworkReceivedOk returns a tuple with the NetworkReceived field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetNetworkReceivedOk() (*int32, bool) {
-	if o == nil || isNil(o.NetworkReceived) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkReceived) {
+		return nil, false
 	}
 	return o.NetworkReceived, true
 }
 
 // HasNetworkReceived returns a boolean if a field has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) HasNetworkReceived() bool {
-	if o != nil && !isNil(o.NetworkReceived) {
+	if o != nil && !IsNil(o.NetworkReceived) {
 		return true
 	}
 
@@ -280,7 +283,7 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) SetNetworkReceive
 
 // GetSwapUsed returns the SwapUsed field value if set, zero value otherwise.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetSwapUsed() int32 {
-	if o == nil || isNil(o.SwapUsed) {
+	if o == nil || IsNil(o.SwapUsed) {
 		var ret int32
 		return ret
 	}
@@ -290,15 +293,15 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetSwapUsed() int
 // GetSwapUsedOk returns a tuple with the SwapUsed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetSwapUsedOk() (*int32, bool) {
-	if o == nil || isNil(o.SwapUsed) {
-    return nil, false
+	if o == nil || IsNil(o.SwapUsed) {
+		return nil, false
 	}
 	return o.SwapUsed, true
 }
 
 // HasSwapUsed returns a boolean if a field has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) HasSwapUsed() bool {
-	if o != nil && !isNil(o.SwapUsed) {
+	if o != nil && !IsNil(o.SwapUsed) {
 		return true
 	}
 
@@ -312,7 +315,7 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) SetSwapUsed(v int
 
 // GetDiskUsage returns the DiskUsage field value if set, zero value otherwise.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetDiskUsage() GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsage {
-	if o == nil || isNil(o.DiskUsage) {
+	if o == nil || IsNil(o.DiskUsage) {
 		var ret GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsage
 		return ret
 	}
@@ -322,15 +325,15 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetDiskUsage() Ge
 // GetDiskUsageOk returns a tuple with the DiskUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetDiskUsageOk() (*GetNetworkSmDevicePerformanceHistory200ResponseInnerDiskUsage, bool) {
-	if o == nil || isNil(o.DiskUsage) {
-    return nil, false
+	if o == nil || IsNil(o.DiskUsage) {
+		return nil, false
 	}
 	return o.DiskUsage, true
 }
 
 // HasDiskUsage returns a boolean if a field has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) HasDiskUsage() bool {
-	if o != nil && !isNil(o.DiskUsage) {
+	if o != nil && !IsNil(o.DiskUsage) {
 		return true
 	}
 
@@ -344,7 +347,7 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) SetDiskUsage(v Ge
 
 // GetTs returns the Ts field value if set, zero value otherwise.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetTs() string {
-	if o == nil || isNil(o.Ts) {
+	if o == nil || IsNil(o.Ts) {
 		var ret string
 		return ret
 	}
@@ -354,15 +357,15 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetTs() string {
 // GetTsOk returns a tuple with the Ts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) GetTsOk() (*string, bool) {
-	if o == nil || isNil(o.Ts) {
-    return nil, false
+	if o == nil || IsNil(o.Ts) {
+		return nil, false
 	}
 	return o.Ts, true
 }
 
 // HasTs returns a boolean if a field has been set.
 func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) HasTs() bool {
-	if o != nil && !isNil(o.Ts) {
+	if o != nil && !IsNil(o.Ts) {
 		return true
 	}
 
@@ -375,38 +378,46 @@ func (o *GetNetworkSmDevicePerformanceHistory200ResponseInner) SetTs(v string) {
 }
 
 func (o GetNetworkSmDevicePerformanceHistory200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.CpuPercentUsed) {
-		toSerialize["cpuPercentUsed"] = o.CpuPercentUsed
-	}
-	if !isNil(o.MemFree) {
-		toSerialize["memFree"] = o.MemFree
-	}
-	if !isNil(o.MemWired) {
-		toSerialize["memWired"] = o.MemWired
-	}
-	if !isNil(o.MemActive) {
-		toSerialize["memActive"] = o.MemActive
-	}
-	if !isNil(o.MemInactive) {
-		toSerialize["memInactive"] = o.MemInactive
-	}
-	if !isNil(o.NetworkSent) {
-		toSerialize["networkSent"] = o.NetworkSent
-	}
-	if !isNil(o.NetworkReceived) {
-		toSerialize["networkReceived"] = o.NetworkReceived
-	}
-	if !isNil(o.SwapUsed) {
-		toSerialize["swapUsed"] = o.SwapUsed
-	}
-	if !isNil(o.DiskUsage) {
-		toSerialize["diskUsage"] = o.DiskUsage
-	}
-	if !isNil(o.Ts) {
-		toSerialize["ts"] = o.Ts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmDevicePerformanceHistory200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CpuPercentUsed) {
+		toSerialize["cpuPercentUsed"] = o.CpuPercentUsed
+	}
+	if !IsNil(o.MemFree) {
+		toSerialize["memFree"] = o.MemFree
+	}
+	if !IsNil(o.MemWired) {
+		toSerialize["memWired"] = o.MemWired
+	}
+	if !IsNil(o.MemActive) {
+		toSerialize["memActive"] = o.MemActive
+	}
+	if !IsNil(o.MemInactive) {
+		toSerialize["memInactive"] = o.MemInactive
+	}
+	if !IsNil(o.NetworkSent) {
+		toSerialize["networkSent"] = o.NetworkSent
+	}
+	if !IsNil(o.NetworkReceived) {
+		toSerialize["networkReceived"] = o.NetworkReceived
+	}
+	if !IsNil(o.SwapUsed) {
+		toSerialize["swapUsed"] = o.SwapUsed
+	}
+	if !IsNil(o.DiskUsage) {
+		toSerialize["diskUsage"] = o.DiskUsage
+	}
+	if !IsNil(o.Ts) {
+		toSerialize["ts"] = o.Ts
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmDevicePerformanceHistory200ResponseInner struct {

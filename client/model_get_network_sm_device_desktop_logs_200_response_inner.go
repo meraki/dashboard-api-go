@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmDeviceDesktopLogs200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmDeviceDesktopLogs200ResponseInner{}
+
 // GetNetworkSmDeviceDesktopLogs200ResponseInner struct for GetNetworkSmDeviceDesktopLogs200ResponseInner
 type GetNetworkSmDeviceDesktopLogs200ResponseInner struct {
 	// The time the data was measured at.
@@ -73,7 +76,7 @@ func NewGetNetworkSmDeviceDesktopLogs200ResponseInnerWithDefaults() *GetNetworkS
 
 // GetMeasuredAt returns the MeasuredAt field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetMeasuredAt() string {
-	if o == nil || isNil(o.MeasuredAt) {
+	if o == nil || IsNil(o.MeasuredAt) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetMeasuredAt() string {
 // GetMeasuredAtOk returns a tuple with the MeasuredAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetMeasuredAtOk() (*string, bool) {
-	if o == nil || isNil(o.MeasuredAt) {
-    return nil, false
+	if o == nil || IsNil(o.MeasuredAt) {
+		return nil, false
 	}
 	return o.MeasuredAt, true
 }
 
 // HasMeasuredAt returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasMeasuredAt() bool {
-	if o != nil && !isNil(o.MeasuredAt) {
+	if o != nil && !IsNil(o.MeasuredAt) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetMeasuredAt(v string) 
 
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetUser() string {
-	if o == nil || isNil(o.User) {
+	if o == nil || IsNil(o.User) {
 		var ret string
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetUser() string {
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetUserOk() (*string, bool) {
-	if o == nil || isNil(o.User) {
-    return nil, false
+	if o == nil || IsNil(o.User) {
+		return nil, false
 	}
 	return o.User, true
 }
 
 // HasUser returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasUser() bool {
-	if o != nil && !isNil(o.User) {
+	if o != nil && !IsNil(o.User) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetUser(v string) {
 
 // GetNetworkDevice returns the NetworkDevice field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetNetworkDevice() string {
-	if o == nil || isNil(o.NetworkDevice) {
+	if o == nil || IsNil(o.NetworkDevice) {
 		var ret string
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetNetworkDevice() strin
 // GetNetworkDeviceOk returns a tuple with the NetworkDevice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetNetworkDeviceOk() (*string, bool) {
-	if o == nil || isNil(o.NetworkDevice) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkDevice) {
+		return nil, false
 	}
 	return o.NetworkDevice, true
 }
 
 // HasNetworkDevice returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasNetworkDevice() bool {
-	if o != nil && !isNil(o.NetworkDevice) {
+	if o != nil && !IsNil(o.NetworkDevice) {
 		return true
 	}
 
@@ -169,7 +172,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetNetworkDevice(v strin
 
 // GetNetworkDriver returns the NetworkDriver field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetNetworkDriver() string {
-	if o == nil || isNil(o.NetworkDriver) {
+	if o == nil || IsNil(o.NetworkDriver) {
 		var ret string
 		return ret
 	}
@@ -179,15 +182,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetNetworkDriver() strin
 // GetNetworkDriverOk returns a tuple with the NetworkDriver field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetNetworkDriverOk() (*string, bool) {
-	if o == nil || isNil(o.NetworkDriver) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkDriver) {
+		return nil, false
 	}
 	return o.NetworkDriver, true
 }
 
 // HasNetworkDriver returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasNetworkDriver() bool {
-	if o != nil && !isNil(o.NetworkDriver) {
+	if o != nil && !IsNil(o.NetworkDriver) {
 		return true
 	}
 
@@ -201,7 +204,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetNetworkDriver(v strin
 
 // GetWifiChannel returns the WifiChannel field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiChannel() string {
-	if o == nil || isNil(o.WifiChannel) {
+	if o == nil || IsNil(o.WifiChannel) {
 		var ret string
 		return ret
 	}
@@ -211,15 +214,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiChannel() string 
 // GetWifiChannelOk returns a tuple with the WifiChannel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiChannelOk() (*string, bool) {
-	if o == nil || isNil(o.WifiChannel) {
-    return nil, false
+	if o == nil || IsNil(o.WifiChannel) {
+		return nil, false
 	}
 	return o.WifiChannel, true
 }
 
 // HasWifiChannel returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasWifiChannel() bool {
-	if o != nil && !isNil(o.WifiChannel) {
+	if o != nil && !IsNil(o.WifiChannel) {
 		return true
 	}
 
@@ -233,7 +236,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetWifiChannel(v string)
 
 // GetWifiAuth returns the WifiAuth field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiAuth() string {
-	if o == nil || isNil(o.WifiAuth) {
+	if o == nil || IsNil(o.WifiAuth) {
 		var ret string
 		return ret
 	}
@@ -243,15 +246,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiAuth() string {
 // GetWifiAuthOk returns a tuple with the WifiAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiAuthOk() (*string, bool) {
-	if o == nil || isNil(o.WifiAuth) {
-    return nil, false
+	if o == nil || IsNil(o.WifiAuth) {
+		return nil, false
 	}
 	return o.WifiAuth, true
 }
 
 // HasWifiAuth returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasWifiAuth() bool {
-	if o != nil && !isNil(o.WifiAuth) {
+	if o != nil && !IsNil(o.WifiAuth) {
 		return true
 	}
 
@@ -265,7 +268,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetWifiAuth(v string) {
 
 // GetWifiBssid returns the WifiBssid field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiBssid() string {
-	if o == nil || isNil(o.WifiBssid) {
+	if o == nil || IsNil(o.WifiBssid) {
 		var ret string
 		return ret
 	}
@@ -275,15 +278,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiBssid() string {
 // GetWifiBssidOk returns a tuple with the WifiBssid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiBssidOk() (*string, bool) {
-	if o == nil || isNil(o.WifiBssid) {
-    return nil, false
+	if o == nil || IsNil(o.WifiBssid) {
+		return nil, false
 	}
 	return o.WifiBssid, true
 }
 
 // HasWifiBssid returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasWifiBssid() bool {
-	if o != nil && !isNil(o.WifiBssid) {
+	if o != nil && !IsNil(o.WifiBssid) {
 		return true
 	}
 
@@ -297,7 +300,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetWifiBssid(v string) {
 
 // GetWifiSsid returns the WifiSsid field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiSsid() string {
-	if o == nil || isNil(o.WifiSsid) {
+	if o == nil || IsNil(o.WifiSsid) {
 		var ret string
 		return ret
 	}
@@ -307,15 +310,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiSsid() string {
 // GetWifiSsidOk returns a tuple with the WifiSsid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiSsidOk() (*string, bool) {
-	if o == nil || isNil(o.WifiSsid) {
-    return nil, false
+	if o == nil || IsNil(o.WifiSsid) {
+		return nil, false
 	}
 	return o.WifiSsid, true
 }
 
 // HasWifiSsid returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasWifiSsid() bool {
-	if o != nil && !isNil(o.WifiSsid) {
+	if o != nil && !IsNil(o.WifiSsid) {
 		return true
 	}
 
@@ -329,7 +332,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetWifiSsid(v string) {
 
 // GetWifiRssi returns the WifiRssi field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiRssi() string {
-	if o == nil || isNil(o.WifiRssi) {
+	if o == nil || IsNil(o.WifiRssi) {
 		var ret string
 		return ret
 	}
@@ -339,15 +342,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiRssi() string {
 // GetWifiRssiOk returns a tuple with the WifiRssi field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiRssiOk() (*string, bool) {
-	if o == nil || isNil(o.WifiRssi) {
-    return nil, false
+	if o == nil || IsNil(o.WifiRssi) {
+		return nil, false
 	}
 	return o.WifiRssi, true
 }
 
 // HasWifiRssi returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasWifiRssi() bool {
-	if o != nil && !isNil(o.WifiRssi) {
+	if o != nil && !IsNil(o.WifiRssi) {
 		return true
 	}
 
@@ -361,7 +364,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetWifiRssi(v string) {
 
 // GetWifiNoise returns the WifiNoise field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiNoise() string {
-	if o == nil || isNil(o.WifiNoise) {
+	if o == nil || IsNil(o.WifiNoise) {
 		var ret string
 		return ret
 	}
@@ -371,15 +374,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiNoise() string {
 // GetWifiNoiseOk returns a tuple with the WifiNoise field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetWifiNoiseOk() (*string, bool) {
-	if o == nil || isNil(o.WifiNoise) {
-    return nil, false
+	if o == nil || IsNil(o.WifiNoise) {
+		return nil, false
 	}
 	return o.WifiNoise, true
 }
 
 // HasWifiNoise returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasWifiNoise() bool {
-	if o != nil && !isNil(o.WifiNoise) {
+	if o != nil && !IsNil(o.WifiNoise) {
 		return true
 	}
 
@@ -393,7 +396,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetWifiNoise(v string) {
 
 // GetDhcpServer returns the DhcpServer field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetDhcpServer() string {
-	if o == nil || isNil(o.DhcpServer) {
+	if o == nil || IsNil(o.DhcpServer) {
 		var ret string
 		return ret
 	}
@@ -403,15 +406,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetDhcpServer() string {
 // GetDhcpServerOk returns a tuple with the DhcpServer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetDhcpServerOk() (*string, bool) {
-	if o == nil || isNil(o.DhcpServer) {
-    return nil, false
+	if o == nil || IsNil(o.DhcpServer) {
+		return nil, false
 	}
 	return o.DhcpServer, true
 }
 
 // HasDhcpServer returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasDhcpServer() bool {
-	if o != nil && !isNil(o.DhcpServer) {
+	if o != nil && !IsNil(o.DhcpServer) {
 		return true
 	}
 
@@ -425,7 +428,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetDhcpServer(v string) 
 
 // GetIp returns the Ip field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetIp() string {
-	if o == nil || isNil(o.Ip) {
+	if o == nil || IsNil(o.Ip) {
 		var ret string
 		return ret
 	}
@@ -435,15 +438,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetIp() string {
 // GetIpOk returns a tuple with the Ip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetIpOk() (*string, bool) {
-	if o == nil || isNil(o.Ip) {
-    return nil, false
+	if o == nil || IsNil(o.Ip) {
+		return nil, false
 	}
 	return o.Ip, true
 }
 
 // HasIp returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasIp() bool {
-	if o != nil && !isNil(o.Ip) {
+	if o != nil && !IsNil(o.Ip) {
 		return true
 	}
 
@@ -457,7 +460,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetIp(v string) {
 
 // GetNetworkMTU returns the NetworkMTU field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetNetworkMTU() string {
-	if o == nil || isNil(o.NetworkMTU) {
+	if o == nil || IsNil(o.NetworkMTU) {
 		var ret string
 		return ret
 	}
@@ -467,15 +470,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetNetworkMTU() string {
 // GetNetworkMTUOk returns a tuple with the NetworkMTU field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetNetworkMTUOk() (*string, bool) {
-	if o == nil || isNil(o.NetworkMTU) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkMTU) {
+		return nil, false
 	}
 	return o.NetworkMTU, true
 }
 
 // HasNetworkMTU returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasNetworkMTU() bool {
-	if o != nil && !isNil(o.NetworkMTU) {
+	if o != nil && !IsNil(o.NetworkMTU) {
 		return true
 	}
 
@@ -489,7 +492,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetNetworkMTU(v string) 
 
 // GetSubnet returns the Subnet field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetSubnet() string {
-	if o == nil || isNil(o.Subnet) {
+	if o == nil || IsNil(o.Subnet) {
 		var ret string
 		return ret
 	}
@@ -499,15 +502,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetSubnet() string {
 // GetSubnetOk returns a tuple with the Subnet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetSubnetOk() (*string, bool) {
-	if o == nil || isNil(o.Subnet) {
-    return nil, false
+	if o == nil || IsNil(o.Subnet) {
+		return nil, false
 	}
 	return o.Subnet, true
 }
 
 // HasSubnet returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasSubnet() bool {
-	if o != nil && !isNil(o.Subnet) {
+	if o != nil && !IsNil(o.Subnet) {
 		return true
 	}
 
@@ -521,7 +524,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetSubnet(v string) {
 
 // GetGateway returns the Gateway field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetGateway() string {
-	if o == nil || isNil(o.Gateway) {
+	if o == nil || IsNil(o.Gateway) {
 		var ret string
 		return ret
 	}
@@ -531,15 +534,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetGateway() string {
 // GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetGatewayOk() (*string, bool) {
-	if o == nil || isNil(o.Gateway) {
-    return nil, false
+	if o == nil || IsNil(o.Gateway) {
+		return nil, false
 	}
 	return o.Gateway, true
 }
 
 // HasGateway returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasGateway() bool {
-	if o != nil && !isNil(o.Gateway) {
+	if o != nil && !IsNil(o.Gateway) {
 		return true
 	}
 
@@ -553,7 +556,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetGateway(v string) {
 
 // GetPublicIP returns the PublicIP field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetPublicIP() string {
-	if o == nil || isNil(o.PublicIP) {
+	if o == nil || IsNil(o.PublicIP) {
 		var ret string
 		return ret
 	}
@@ -563,15 +566,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetPublicIP() string {
 // GetPublicIPOk returns a tuple with the PublicIP field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetPublicIPOk() (*string, bool) {
-	if o == nil || isNil(o.PublicIP) {
-    return nil, false
+	if o == nil || IsNil(o.PublicIP) {
+		return nil, false
 	}
 	return o.PublicIP, true
 }
 
 // HasPublicIP returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasPublicIP() bool {
-	if o != nil && !isNil(o.PublicIP) {
+	if o != nil && !IsNil(o.PublicIP) {
 		return true
 	}
 
@@ -585,7 +588,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetPublicIP(v string) {
 
 // GetDnsServer returns the DnsServer field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetDnsServer() string {
-	if o == nil || isNil(o.DnsServer) {
+	if o == nil || IsNil(o.DnsServer) {
 		var ret string
 		return ret
 	}
@@ -595,15 +598,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetDnsServer() string {
 // GetDnsServerOk returns a tuple with the DnsServer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetDnsServerOk() (*string, bool) {
-	if o == nil || isNil(o.DnsServer) {
-    return nil, false
+	if o == nil || IsNil(o.DnsServer) {
+		return nil, false
 	}
 	return o.DnsServer, true
 }
 
 // HasDnsServer returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasDnsServer() bool {
-	if o != nil && !isNil(o.DnsServer) {
+	if o != nil && !IsNil(o.DnsServer) {
 		return true
 	}
 
@@ -617,7 +620,7 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetDnsServer(v string) {
 
 // GetTs returns the Ts field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetTs() string {
-	if o == nil || isNil(o.Ts) {
+	if o == nil || IsNil(o.Ts) {
 		var ret string
 		return ret
 	}
@@ -627,15 +630,15 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetTs() string {
 // GetTsOk returns a tuple with the Ts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) GetTsOk() (*string, bool) {
-	if o == nil || isNil(o.Ts) {
-    return nil, false
+	if o == nil || IsNil(o.Ts) {
+		return nil, false
 	}
 	return o.Ts, true
 }
 
 // HasTs returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) HasTs() bool {
-	if o != nil && !isNil(o.Ts) {
+	if o != nil && !IsNil(o.Ts) {
 		return true
 	}
 
@@ -648,62 +651,70 @@ func (o *GetNetworkSmDeviceDesktopLogs200ResponseInner) SetTs(v string) {
 }
 
 func (o GetNetworkSmDeviceDesktopLogs200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.MeasuredAt) {
-		toSerialize["measuredAt"] = o.MeasuredAt
-	}
-	if !isNil(o.User) {
-		toSerialize["user"] = o.User
-	}
-	if !isNil(o.NetworkDevice) {
-		toSerialize["networkDevice"] = o.NetworkDevice
-	}
-	if !isNil(o.NetworkDriver) {
-		toSerialize["networkDriver"] = o.NetworkDriver
-	}
-	if !isNil(o.WifiChannel) {
-		toSerialize["wifiChannel"] = o.WifiChannel
-	}
-	if !isNil(o.WifiAuth) {
-		toSerialize["wifiAuth"] = o.WifiAuth
-	}
-	if !isNil(o.WifiBssid) {
-		toSerialize["wifiBssid"] = o.WifiBssid
-	}
-	if !isNil(o.WifiSsid) {
-		toSerialize["wifiSsid"] = o.WifiSsid
-	}
-	if !isNil(o.WifiRssi) {
-		toSerialize["wifiRssi"] = o.WifiRssi
-	}
-	if !isNil(o.WifiNoise) {
-		toSerialize["wifiNoise"] = o.WifiNoise
-	}
-	if !isNil(o.DhcpServer) {
-		toSerialize["dhcpServer"] = o.DhcpServer
-	}
-	if !isNil(o.Ip) {
-		toSerialize["ip"] = o.Ip
-	}
-	if !isNil(o.NetworkMTU) {
-		toSerialize["networkMTU"] = o.NetworkMTU
-	}
-	if !isNil(o.Subnet) {
-		toSerialize["subnet"] = o.Subnet
-	}
-	if !isNil(o.Gateway) {
-		toSerialize["gateway"] = o.Gateway
-	}
-	if !isNil(o.PublicIP) {
-		toSerialize["publicIP"] = o.PublicIP
-	}
-	if !isNil(o.DnsServer) {
-		toSerialize["dnsServer"] = o.DnsServer
-	}
-	if !isNil(o.Ts) {
-		toSerialize["ts"] = o.Ts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmDeviceDesktopLogs200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MeasuredAt) {
+		toSerialize["measuredAt"] = o.MeasuredAt
+	}
+	if !IsNil(o.User) {
+		toSerialize["user"] = o.User
+	}
+	if !IsNil(o.NetworkDevice) {
+		toSerialize["networkDevice"] = o.NetworkDevice
+	}
+	if !IsNil(o.NetworkDriver) {
+		toSerialize["networkDriver"] = o.NetworkDriver
+	}
+	if !IsNil(o.WifiChannel) {
+		toSerialize["wifiChannel"] = o.WifiChannel
+	}
+	if !IsNil(o.WifiAuth) {
+		toSerialize["wifiAuth"] = o.WifiAuth
+	}
+	if !IsNil(o.WifiBssid) {
+		toSerialize["wifiBssid"] = o.WifiBssid
+	}
+	if !IsNil(o.WifiSsid) {
+		toSerialize["wifiSsid"] = o.WifiSsid
+	}
+	if !IsNil(o.WifiRssi) {
+		toSerialize["wifiRssi"] = o.WifiRssi
+	}
+	if !IsNil(o.WifiNoise) {
+		toSerialize["wifiNoise"] = o.WifiNoise
+	}
+	if !IsNil(o.DhcpServer) {
+		toSerialize["dhcpServer"] = o.DhcpServer
+	}
+	if !IsNil(o.Ip) {
+		toSerialize["ip"] = o.Ip
+	}
+	if !IsNil(o.NetworkMTU) {
+		toSerialize["networkMTU"] = o.NetworkMTU
+	}
+	if !IsNil(o.Subnet) {
+		toSerialize["subnet"] = o.Subnet
+	}
+	if !IsNil(o.Gateway) {
+		toSerialize["gateway"] = o.Gateway
+	}
+	if !IsNil(o.PublicIP) {
+		toSerialize["publicIP"] = o.PublicIP
+	}
+	if !IsNil(o.DnsServer) {
+		toSerialize["dnsServer"] = o.DnsServer
+	}
+	if !IsNil(o.Ts) {
+		toSerialize["ts"] = o.Ts
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmDeviceDesktopLogs200ResponseInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationApplianceVpnThirdPartyVPNPeers200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationApplianceVpnThirdPartyVPNPeers200Response{}
+
 // GetOrganizationApplianceVpnThirdPartyVPNPeers200Response struct for GetOrganizationApplianceVpnThirdPartyVPNPeers200Response
 type GetOrganizationApplianceVpnThirdPartyVPNPeers200Response struct {
 	// The list of VPN peers
@@ -39,7 +42,7 @@ func NewGetOrganizationApplianceVpnThirdPartyVPNPeers200ResponseWithDefaults() *
 
 // GetPeers returns the Peers field value if set, zero value otherwise.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200Response) GetPeers() []GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInner {
-	if o == nil || isNil(o.Peers) {
+	if o == nil || IsNil(o.Peers) {
 		var ret []GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInner
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200Response) GetPeers() []
 // GetPeersOk returns a tuple with the Peers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200Response) GetPeersOk() ([]GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInner, bool) {
-	if o == nil || isNil(o.Peers) {
-    return nil, false
+	if o == nil || IsNil(o.Peers) {
+		return nil, false
 	}
 	return o.Peers, true
 }
 
 // HasPeers returns a boolean if a field has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200Response) HasPeers() bool {
-	if o != nil && !isNil(o.Peers) {
+	if o != nil && !IsNil(o.Peers) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200Response) SetPeers(v []
 }
 
 func (o GetOrganizationApplianceVpnThirdPartyVPNPeers200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Peers) {
-		toSerialize["peers"] = o.Peers
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationApplianceVpnThirdPartyVPNPeers200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Peers) {
+		toSerialize["peers"] = o.Peers
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationApplianceVpnThirdPartyVPNPeers200Response struct {

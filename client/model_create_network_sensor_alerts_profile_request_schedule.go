@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkSensorAlertsProfileRequestSchedule type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkSensorAlertsProfileRequestSchedule{}
+
 // CreateNetworkSensorAlertsProfileRequestSchedule The sensor schedule to use with the alert profile.
 type CreateNetworkSensorAlertsProfileRequestSchedule struct {
 	// ID of the sensor schedule to use with the alert profile. If not defined, the alert profile will be active at all times.
@@ -39,7 +42,7 @@ func NewCreateNetworkSensorAlertsProfileRequestScheduleWithDefaults() *CreateNet
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *CreateNetworkSensorAlertsProfileRequestSchedule) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *CreateNetworkSensorAlertsProfileRequestSchedule) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSensorAlertsProfileRequestSchedule) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateNetworkSensorAlertsProfileRequestSchedule) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *CreateNetworkSensorAlertsProfileRequestSchedule) SetId(v string) {
 }
 
 func (o CreateNetworkSensorAlertsProfileRequestSchedule) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkSensorAlertsProfileRequestSchedule) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkSensorAlertsProfileRequestSchedule struct {

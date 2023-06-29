@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkAlertsHistory200ResponseInnerDevice type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkAlertsHistory200ResponseInnerDevice{}
+
 // GetNetworkAlertsHistory200ResponseInnerDevice info related to the device that caused the alert
 type GetNetworkAlertsHistory200ResponseInnerDevice struct {
 	// device serial
@@ -39,7 +42,7 @@ func NewGetNetworkAlertsHistory200ResponseInnerDeviceWithDefaults() *GetNetworkA
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetNetworkAlertsHistory200ResponseInnerDevice) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetNetworkAlertsHistory200ResponseInnerDevice) GetSerial() string {
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAlertsHistory200ResponseInnerDevice) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetNetworkAlertsHistory200ResponseInnerDevice) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetNetworkAlertsHistory200ResponseInnerDevice) SetSerial(v string) {
 }
 
 func (o GetNetworkAlertsHistory200ResponseInnerDevice) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkAlertsHistory200ResponseInnerDevice) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkAlertsHistory200ResponseInnerDevice struct {

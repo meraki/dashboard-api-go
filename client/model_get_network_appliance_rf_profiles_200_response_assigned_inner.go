@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkApplianceRfProfiles200ResponseAssignedInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkApplianceRfProfiles200ResponseAssignedInner{}
+
 // GetNetworkApplianceRfProfiles200ResponseAssignedInner struct for GetNetworkApplianceRfProfiles200ResponseAssignedInner
 type GetNetworkApplianceRfProfiles200ResponseAssignedInner struct {
 	// ID of the RF Profile.
@@ -46,7 +49,7 @@ func NewGetNetworkApplianceRfProfiles200ResponseAssignedInnerWithDefaults() *Get
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) SetId(v string) 
 
 // GetNetworkId returns the NetworkId field value if set, zero value otherwise.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetNetworkId() string {
-	if o == nil || isNil(o.NetworkId) {
+	if o == nil || IsNil(o.NetworkId) {
 		var ret string
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetNetworkId() s
 // GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetNetworkIdOk() (*string, bool) {
-	if o == nil || isNil(o.NetworkId) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkId) {
+		return nil, false
 	}
 	return o.NetworkId, true
 }
 
 // HasNetworkId returns a boolean if a field has been set.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) HasNetworkId() bool {
-	if o != nil && !isNil(o.NetworkId) {
+	if o != nil && !IsNil(o.NetworkId) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) SetNetworkId(v s
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetName() string
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) SetName(v string
 
 // GetTwoFourGhzSettings returns the TwoFourGhzSettings field value if set, zero value otherwise.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetTwoFourGhzSettings() GetNetworkApplianceRfProfiles200ResponseAssignedInnerTwoFourGhzSettings {
-	if o == nil || isNil(o.TwoFourGhzSettings) {
+	if o == nil || IsNil(o.TwoFourGhzSettings) {
 		var ret GetNetworkApplianceRfProfiles200ResponseAssignedInnerTwoFourGhzSettings
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetTwoFourGhzSet
 // GetTwoFourGhzSettingsOk returns a tuple with the TwoFourGhzSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetTwoFourGhzSettingsOk() (*GetNetworkApplianceRfProfiles200ResponseAssignedInnerTwoFourGhzSettings, bool) {
-	if o == nil || isNil(o.TwoFourGhzSettings) {
-    return nil, false
+	if o == nil || IsNil(o.TwoFourGhzSettings) {
+		return nil, false
 	}
 	return o.TwoFourGhzSettings, true
 }
 
 // HasTwoFourGhzSettings returns a boolean if a field has been set.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) HasTwoFourGhzSettings() bool {
-	if o != nil && !isNil(o.TwoFourGhzSettings) {
+	if o != nil && !IsNil(o.TwoFourGhzSettings) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) SetTwoFourGhzSet
 
 // GetFiveGhzSettings returns the FiveGhzSettings field value if set, zero value otherwise.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetFiveGhzSettings() GetNetworkApplianceRfProfiles200ResponseAssignedInnerFiveGhzSettings {
-	if o == nil || isNil(o.FiveGhzSettings) {
+	if o == nil || IsNil(o.FiveGhzSettings) {
 		var ret GetNetworkApplianceRfProfiles200ResponseAssignedInnerFiveGhzSettings
 		return ret
 	}
@@ -184,15 +187,15 @@ func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetFiveGhzSettin
 // GetFiveGhzSettingsOk returns a tuple with the FiveGhzSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetFiveGhzSettingsOk() (*GetNetworkApplianceRfProfiles200ResponseAssignedInnerFiveGhzSettings, bool) {
-	if o == nil || isNil(o.FiveGhzSettings) {
-    return nil, false
+	if o == nil || IsNil(o.FiveGhzSettings) {
+		return nil, false
 	}
 	return o.FiveGhzSettings, true
 }
 
 // HasFiveGhzSettings returns a boolean if a field has been set.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) HasFiveGhzSettings() bool {
-	if o != nil && !isNil(o.FiveGhzSettings) {
+	if o != nil && !IsNil(o.FiveGhzSettings) {
 		return true
 	}
 
@@ -206,7 +209,7 @@ func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) SetFiveGhzSettin
 
 // GetPerSsidSettings returns the PerSsidSettings field value if set, zero value otherwise.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetPerSsidSettings() GetNetworkApplianceRfProfiles200ResponseAssignedInnerPerSsidSettings {
-	if o == nil || isNil(o.PerSsidSettings) {
+	if o == nil || IsNil(o.PerSsidSettings) {
 		var ret GetNetworkApplianceRfProfiles200ResponseAssignedInnerPerSsidSettings
 		return ret
 	}
@@ -216,15 +219,15 @@ func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetPerSsidSettin
 // GetPerSsidSettingsOk returns a tuple with the PerSsidSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) GetPerSsidSettingsOk() (*GetNetworkApplianceRfProfiles200ResponseAssignedInnerPerSsidSettings, bool) {
-	if o == nil || isNil(o.PerSsidSettings) {
-    return nil, false
+	if o == nil || IsNil(o.PerSsidSettings) {
+		return nil, false
 	}
 	return o.PerSsidSettings, true
 }
 
 // HasPerSsidSettings returns a boolean if a field has been set.
 func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) HasPerSsidSettings() bool {
-	if o != nil && !isNil(o.PerSsidSettings) {
+	if o != nil && !IsNil(o.PerSsidSettings) {
 		return true
 	}
 
@@ -237,26 +240,34 @@ func (o *GetNetworkApplianceRfProfiles200ResponseAssignedInner) SetPerSsidSettin
 }
 
 func (o GetNetworkApplianceRfProfiles200ResponseAssignedInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.NetworkId) {
-		toSerialize["networkId"] = o.NetworkId
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.TwoFourGhzSettings) {
-		toSerialize["twoFourGhzSettings"] = o.TwoFourGhzSettings
-	}
-	if !isNil(o.FiveGhzSettings) {
-		toSerialize["fiveGhzSettings"] = o.FiveGhzSettings
-	}
-	if !isNil(o.PerSsidSettings) {
-		toSerialize["perSsidSettings"] = o.PerSsidSettings
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkApplianceRfProfiles200ResponseAssignedInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.NetworkId) {
+		toSerialize["networkId"] = o.NetworkId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.TwoFourGhzSettings) {
+		toSerialize["twoFourGhzSettings"] = o.TwoFourGhzSettings
+	}
+	if !IsNil(o.FiveGhzSettings) {
+		toSerialize["fiveGhzSettings"] = o.FiveGhzSettings
+	}
+	if !IsNil(o.PerSsidSettings) {
+		toSerialize["perSsidSettings"] = o.PerSsidSettings
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkApplianceRfProfiles200ResponseAssignedInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevicesDevicesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevicesDevicesInner{}
+
 // CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevicesDevicesInner struct for CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevicesDevicesInner
 type CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevicesDevicesInner struct {
 	// Serial of the device
@@ -54,7 +57,7 @@ func (o *CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevicesDevicesIn
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevicesDevicesInner) GetSerialOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Serial, true
 }
@@ -66,7 +69,7 @@ func (o *CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevicesDevicesIn
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevicesDevicesInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevicesDevicesIn
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevicesDevicesInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevicesDevicesInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -97,14 +100,20 @@ func (o *CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevicesDevicesIn
 }
 
 func (o CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevicesDevicesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevicesDevicesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["serial"] = o.Serial
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevicesDevicesInner struct {

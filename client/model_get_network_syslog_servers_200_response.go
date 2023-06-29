@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSyslogServers200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSyslogServers200Response{}
+
 // GetNetworkSyslogServers200Response struct for GetNetworkSyslogServers200Response
 type GetNetworkSyslogServers200Response struct {
 	// List of the syslog servers for this network
@@ -39,7 +42,7 @@ func NewGetNetworkSyslogServers200ResponseWithDefaults() *GetNetworkSyslogServer
 
 // GetServers returns the Servers field value if set, zero value otherwise.
 func (o *GetNetworkSyslogServers200Response) GetServers() []GetNetworkSyslogServers200ResponseServersInner {
-	if o == nil || isNil(o.Servers) {
+	if o == nil || IsNil(o.Servers) {
 		var ret []GetNetworkSyslogServers200ResponseServersInner
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetNetworkSyslogServers200Response) GetServers() []GetNetworkSyslogServ
 // GetServersOk returns a tuple with the Servers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSyslogServers200Response) GetServersOk() ([]GetNetworkSyslogServers200ResponseServersInner, bool) {
-	if o == nil || isNil(o.Servers) {
-    return nil, false
+	if o == nil || IsNil(o.Servers) {
+		return nil, false
 	}
 	return o.Servers, true
 }
 
 // HasServers returns a boolean if a field has been set.
 func (o *GetNetworkSyslogServers200Response) HasServers() bool {
-	if o != nil && !isNil(o.Servers) {
+	if o != nil && !IsNil(o.Servers) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetNetworkSyslogServers200Response) SetServers(v []GetNetworkSyslogServ
 }
 
 func (o GetNetworkSyslogServers200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Servers) {
-		toSerialize["servers"] = o.Servers
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSyslogServers200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Servers) {
+		toSerialize["servers"] = o.Servers
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSyslogServers200Response struct {

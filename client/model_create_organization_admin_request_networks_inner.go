@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationAdminRequestNetworksInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationAdminRequestNetworksInner{}
+
 // CreateOrganizationAdminRequestNetworksInner struct for CreateOrganizationAdminRequestNetworksInner
 type CreateOrganizationAdminRequestNetworksInner struct {
 	// The network ID
@@ -55,7 +58,7 @@ func (o *CreateOrganizationAdminRequestNetworksInner) GetId() string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdminRequestNetworksInner) GetIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Id, true
 }
@@ -79,7 +82,7 @@ func (o *CreateOrganizationAdminRequestNetworksInner) GetAccess() string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdminRequestNetworksInner) GetAccessOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Access, true
 }
@@ -90,14 +93,18 @@ func (o *CreateOrganizationAdminRequestNetworksInner) SetAccess(v string) {
 }
 
 func (o CreateOrganizationAdminRequestNetworksInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["access"] = o.Access
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationAdminRequestNetworksInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
+	toSerialize["access"] = o.Access
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationAdminRequestNetworksInner struct {

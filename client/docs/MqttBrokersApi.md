@@ -40,6 +40,7 @@ func main() {
     createNetworkMqttBrokerRequest := *openapiclient.NewCreateNetworkMqttBrokerRequest("Name_example", "Host_example", int32(123)) // CreateNetworkMqttBrokerRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.MqttBrokersApi.CreateNetworkMqttBroker(context.Background(), networkId).CreateNetworkMqttBrokerRequest(createNetworkMqttBrokerRequest).Execute()
     if err != nil {
@@ -112,8 +113,9 @@ func main() {
     mqttBrokerId := "mqttBrokerId_example" // string | Mqtt broker ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MqttBrokersApi.DeleteNetworkMqttBroker(context.Background(), networkId, mqttBrokerId).Execute()
+    r, err := apiClient.MqttBrokersApi.DeleteNetworkMqttBroker(context.Background(), networkId, mqttBrokerId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MqttBrokersApi.DeleteNetworkMqttBroker``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -183,6 +185,7 @@ func main() {
     mqttBrokerId := "mqttBrokerId_example" // string | Mqtt broker ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.MqttBrokersApi.GetNetworkMqttBroker(context.Background(), networkId, mqttBrokerId).Execute()
     if err != nil {
@@ -255,6 +258,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.MqttBrokersApi.GetNetworkMqttBrokers(context.Background(), networkId).Execute()
     if err != nil {
@@ -326,6 +330,7 @@ func main() {
     mqttBrokerId := "mqttBrokerId_example" // string | Mqtt broker ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.MqttBrokersApi.GetNetworkSensorMqttBroker(context.Background(), networkId, mqttBrokerId).Execute()
     if err != nil {
@@ -398,6 +403,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.MqttBrokersApi.GetNetworkSensorMqttBrokers(context.Background(), networkId).Execute()
     if err != nil {
@@ -470,6 +476,7 @@ func main() {
     updateNetworkMqttBrokerRequest := *openapiclient.NewUpdateNetworkMqttBrokerRequest() // UpdateNetworkMqttBrokerRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.MqttBrokersApi.UpdateNetworkMqttBroker(context.Background(), networkId, mqttBrokerId).UpdateNetworkMqttBrokerRequest(updateNetworkMqttBrokerRequest).Execute()
     if err != nil {
@@ -545,6 +552,7 @@ func main() {
     updateNetworkSensorMqttBrokerRequest := *openapiclient.NewUpdateNetworkSensorMqttBrokerRequest(false) // UpdateNetworkSensorMqttBrokerRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.MqttBrokersApi.UpdateNetworkSensorMqttBroker(context.Background(), networkId, mqttBrokerId).UpdateNetworkSensorMqttBrokerRequest(updateNetworkSensorMqttBrokerRequest).Execute()
     if err != nil {

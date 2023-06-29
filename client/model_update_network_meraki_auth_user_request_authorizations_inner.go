@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkMerakiAuthUserRequestAuthorizationsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkMerakiAuthUserRequestAuthorizationsInner{}
+
 // UpdateNetworkMerakiAuthUserRequestAuthorizationsInner struct for UpdateNetworkMerakiAuthUserRequestAuthorizationsInner
 type UpdateNetworkMerakiAuthUserRequestAuthorizationsInner struct {
 	// SSID for which the user is being authorized
@@ -58,7 +61,7 @@ func (o *UpdateNetworkMerakiAuthUserRequestAuthorizationsInner) GetSsidNumber() 
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkMerakiAuthUserRequestAuthorizationsInner) GetSsidNumberOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.SsidNumber, true
 }
@@ -70,7 +73,7 @@ func (o *UpdateNetworkMerakiAuthUserRequestAuthorizationsInner) SetSsidNumber(v 
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *UpdateNetworkMerakiAuthUserRequestAuthorizationsInner) GetExpiresAt() string {
-	if o == nil || isNil(o.ExpiresAt) {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret string
 		return ret
 	}
@@ -80,15 +83,15 @@ func (o *UpdateNetworkMerakiAuthUserRequestAuthorizationsInner) GetExpiresAt() s
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkMerakiAuthUserRequestAuthorizationsInner) GetExpiresAtOk() (*string, bool) {
-	if o == nil || isNil(o.ExpiresAt) {
-    return nil, false
+	if o == nil || IsNil(o.ExpiresAt) {
+		return nil, false
 	}
 	return o.ExpiresAt, true
 }
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *UpdateNetworkMerakiAuthUserRequestAuthorizationsInner) HasExpiresAt() bool {
-	if o != nil && !isNil(o.ExpiresAt) {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -101,14 +104,20 @@ func (o *UpdateNetworkMerakiAuthUserRequestAuthorizationsInner) SetExpiresAt(v s
 }
 
 func (o UpdateNetworkMerakiAuthUserRequestAuthorizationsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ssidNumber"] = o.SsidNumber
-	}
-	if !isNil(o.ExpiresAt) {
-		toSerialize["expiresAt"] = o.ExpiresAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkMerakiAuthUserRequestAuthorizationsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["ssidNumber"] = o.SsidNumber
+	if !IsNil(o.ExpiresAt) {
+		toSerialize["expiresAt"] = o.ExpiresAt
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkMerakiAuthUserRequestAuthorizationsInner struct {

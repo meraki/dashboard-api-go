@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchRoutingOspfRequestAreasInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchRoutingOspfRequestAreasInner{}
+
 // UpdateNetworkSwitchRoutingOspfRequestAreasInner struct for UpdateNetworkSwitchRoutingOspfRequestAreasInner
 type UpdateNetworkSwitchRoutingOspfRequestAreasInner struct {
 	// OSPF area ID
@@ -58,7 +61,7 @@ func (o *UpdateNetworkSwitchRoutingOspfRequestAreasInner) GetAreaId() string {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequestAreasInner) GetAreaIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.AreaId, true
 }
@@ -82,7 +85,7 @@ func (o *UpdateNetworkSwitchRoutingOspfRequestAreasInner) GetAreaName() string {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequestAreasInner) GetAreaNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.AreaName, true
 }
@@ -106,7 +109,7 @@ func (o *UpdateNetworkSwitchRoutingOspfRequestAreasInner) GetAreaType() string {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequestAreasInner) GetAreaTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.AreaType, true
 }
@@ -117,17 +120,19 @@ func (o *UpdateNetworkSwitchRoutingOspfRequestAreasInner) SetAreaType(v string) 
 }
 
 func (o UpdateNetworkSwitchRoutingOspfRequestAreasInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["areaId"] = o.AreaId
-	}
-	if true {
-		toSerialize["areaName"] = o.AreaName
-	}
-	if true {
-		toSerialize["areaType"] = o.AreaType
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchRoutingOspfRequestAreasInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["areaId"] = o.AreaId
+	toSerialize["areaName"] = o.AreaName
+	toSerialize["areaType"] = o.AreaType
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchRoutingOspfRequestAreasInner struct {

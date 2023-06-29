@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSamlRoles200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSamlRoles200ResponseInner{}
+
 // GetOrganizationSamlRoles200ResponseInner struct for GetOrganizationSamlRoles200ResponseInner
 type GetOrganizationSamlRoles200ResponseInner struct {
 	// ID associated with the SAML role
@@ -47,7 +50,7 @@ func NewGetOrganizationSamlRoles200ResponseInnerWithDefaults() *GetOrganizationS
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetOrganizationSamlRoles200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *GetOrganizationSamlRoles200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSamlRoles200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetOrganizationSamlRoles200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *GetOrganizationSamlRoles200ResponseInner) SetId(v string) {
 
 // GetRole returns the Role field value if set, zero value otherwise.
 func (o *GetOrganizationSamlRoles200ResponseInner) GetRole() string {
-	if o == nil || isNil(o.Role) {
+	if o == nil || IsNil(o.Role) {
 		var ret string
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *GetOrganizationSamlRoles200ResponseInner) GetRole() string {
 // GetRoleOk returns a tuple with the Role field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSamlRoles200ResponseInner) GetRoleOk() (*string, bool) {
-	if o == nil || isNil(o.Role) {
-    return nil, false
+	if o == nil || IsNil(o.Role) {
+		return nil, false
 	}
 	return o.Role, true
 }
 
 // HasRole returns a boolean if a field has been set.
 func (o *GetOrganizationSamlRoles200ResponseInner) HasRole() bool {
-	if o != nil && !isNil(o.Role) {
+	if o != nil && !IsNil(o.Role) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *GetOrganizationSamlRoles200ResponseInner) SetRole(v string) {
 
 // GetOrgAccess returns the OrgAccess field value if set, zero value otherwise.
 func (o *GetOrganizationSamlRoles200ResponseInner) GetOrgAccess() string {
-	if o == nil || isNil(o.OrgAccess) {
+	if o == nil || IsNil(o.OrgAccess) {
 		var ret string
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *GetOrganizationSamlRoles200ResponseInner) GetOrgAccess() string {
 // GetOrgAccessOk returns a tuple with the OrgAccess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSamlRoles200ResponseInner) GetOrgAccessOk() (*string, bool) {
-	if o == nil || isNil(o.OrgAccess) {
-    return nil, false
+	if o == nil || IsNil(o.OrgAccess) {
+		return nil, false
 	}
 	return o.OrgAccess, true
 }
 
 // HasOrgAccess returns a boolean if a field has been set.
 func (o *GetOrganizationSamlRoles200ResponseInner) HasOrgAccess() bool {
-	if o != nil && !isNil(o.OrgAccess) {
+	if o != nil && !IsNil(o.OrgAccess) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *GetOrganizationSamlRoles200ResponseInner) SetOrgAccess(v string) {
 
 // GetNetworks returns the Networks field value if set, zero value otherwise.
 func (o *GetOrganizationSamlRoles200ResponseInner) GetNetworks() []GetOrganizationSamlRoles200ResponseInnerNetworksInner {
-	if o == nil || isNil(o.Networks) {
+	if o == nil || IsNil(o.Networks) {
 		var ret []GetOrganizationSamlRoles200ResponseInnerNetworksInner
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *GetOrganizationSamlRoles200ResponseInner) GetNetworks() []GetOrganizati
 // GetNetworksOk returns a tuple with the Networks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSamlRoles200ResponseInner) GetNetworksOk() ([]GetOrganizationSamlRoles200ResponseInnerNetworksInner, bool) {
-	if o == nil || isNil(o.Networks) {
-    return nil, false
+	if o == nil || IsNil(o.Networks) {
+		return nil, false
 	}
 	return o.Networks, true
 }
 
 // HasNetworks returns a boolean if a field has been set.
 func (o *GetOrganizationSamlRoles200ResponseInner) HasNetworks() bool {
-	if o != nil && !isNil(o.Networks) {
+	if o != nil && !IsNil(o.Networks) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *GetOrganizationSamlRoles200ResponseInner) SetNetworks(v []GetOrganizati
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *GetOrganizationSamlRoles200ResponseInner) GetTags() []GetOrganizationSamlRoles200ResponseInnerTagsInner {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []GetOrganizationSamlRoles200ResponseInnerTagsInner
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *GetOrganizationSamlRoles200ResponseInner) GetTags() []GetOrganizationSa
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSamlRoles200ResponseInner) GetTagsOk() ([]GetOrganizationSamlRoles200ResponseInnerTagsInner, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
 	}
 	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *GetOrganizationSamlRoles200ResponseInner) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -206,23 +209,31 @@ func (o *GetOrganizationSamlRoles200ResponseInner) SetTags(v []GetOrganizationSa
 }
 
 func (o GetOrganizationSamlRoles200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Role) {
-		toSerialize["role"] = o.Role
-	}
-	if !isNil(o.OrgAccess) {
-		toSerialize["orgAccess"] = o.OrgAccess
-	}
-	if !isNil(o.Networks) {
-		toSerialize["networks"] = o.Networks
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSamlRoles200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Role) {
+		toSerialize["role"] = o.Role
+	}
+	if !IsNil(o.OrgAccess) {
+		toSerialize["orgAccess"] = o.OrgAccess
+	}
+	if !IsNil(o.Networks) {
+		toSerialize["networks"] = o.Networks
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSamlRoles200ResponseInner struct {

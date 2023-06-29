@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceSsidRequestDot11w type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceSsidRequestDot11w{}
+
 // UpdateNetworkApplianceSsidRequestDot11w The current setting for Protected Management Frames (802.11w).
 type UpdateNetworkApplianceSsidRequestDot11w struct {
 	// Whether 802.11w is enabled or not.
@@ -41,7 +44,7 @@ func NewUpdateNetworkApplianceSsidRequestDot11wWithDefaults() *UpdateNetworkAppl
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequestDot11w) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkApplianceSsidRequestDot11w) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequestDot11w) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequestDot11w) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkApplianceSsidRequestDot11w) SetEnabled(v bool) {
 
 // GetRequired returns the Required field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequestDot11w) GetRequired() bool {
-	if o == nil || isNil(o.Required) {
+	if o == nil || IsNil(o.Required) {
 		var ret bool
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkApplianceSsidRequestDot11w) GetRequired() bool {
 // GetRequiredOk returns a tuple with the Required field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequestDot11w) GetRequiredOk() (*bool, bool) {
-	if o == nil || isNil(o.Required) {
-    return nil, false
+	if o == nil || IsNil(o.Required) {
+		return nil, false
 	}
 	return o.Required, true
 }
 
 // HasRequired returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequestDot11w) HasRequired() bool {
-	if o != nil && !isNil(o.Required) {
+	if o != nil && !IsNil(o.Required) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkApplianceSsidRequestDot11w) SetRequired(v bool) {
 }
 
 func (o UpdateNetworkApplianceSsidRequestDot11w) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.Required) {
-		toSerialize["required"] = o.Required
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceSsidRequestDot11w) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Required) {
+		toSerialize["required"] = o.Required
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceSsidRequestDot11w struct {

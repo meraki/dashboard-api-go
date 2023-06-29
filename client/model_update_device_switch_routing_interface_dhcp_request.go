@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceSwitchRoutingInterfaceDhcpRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceSwitchRoutingInterfaceDhcpRequest{}
+
 // UpdateDeviceSwitchRoutingInterfaceDhcpRequest struct for UpdateDeviceSwitchRoutingInterfaceDhcpRequest
 type UpdateDeviceSwitchRoutingInterfaceDhcpRequest struct {
 	// The DHCP mode options for the switch interface        ('dhcpDisabled', 'dhcpRelay' or 'dhcpServer')
@@ -59,7 +62,7 @@ func NewUpdateDeviceSwitchRoutingInterfaceDhcpRequestWithDefaults() *UpdateDevic
 
 // GetDhcpMode returns the DhcpMode field value if set, zero value otherwise.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDhcpMode() string {
-	if o == nil || isNil(o.DhcpMode) {
+	if o == nil || IsNil(o.DhcpMode) {
 		var ret string
 		return ret
 	}
@@ -69,15 +72,15 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDhcpMode() string {
 // GetDhcpModeOk returns a tuple with the DhcpMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDhcpModeOk() (*string, bool) {
-	if o == nil || isNil(o.DhcpMode) {
-    return nil, false
+	if o == nil || IsNil(o.DhcpMode) {
+		return nil, false
 	}
 	return o.DhcpMode, true
 }
 
 // HasDhcpMode returns a boolean if a field has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) HasDhcpMode() bool {
-	if o != nil && !isNil(o.DhcpMode) {
+	if o != nil && !IsNil(o.DhcpMode) {
 		return true
 	}
 
@@ -91,7 +94,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) SetDhcpMode(v string) {
 
 // GetDhcpRelayServerIps returns the DhcpRelayServerIps field value if set, zero value otherwise.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDhcpRelayServerIps() []string {
-	if o == nil || isNil(o.DhcpRelayServerIps) {
+	if o == nil || IsNil(o.DhcpRelayServerIps) {
 		var ret []string
 		return ret
 	}
@@ -101,15 +104,15 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDhcpRelayServerIps() 
 // GetDhcpRelayServerIpsOk returns a tuple with the DhcpRelayServerIps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDhcpRelayServerIpsOk() ([]string, bool) {
-	if o == nil || isNil(o.DhcpRelayServerIps) {
-    return nil, false
+	if o == nil || IsNil(o.DhcpRelayServerIps) {
+		return nil, false
 	}
 	return o.DhcpRelayServerIps, true
 }
 
 // HasDhcpRelayServerIps returns a boolean if a field has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) HasDhcpRelayServerIps() bool {
-	if o != nil && !isNil(o.DhcpRelayServerIps) {
+	if o != nil && !IsNil(o.DhcpRelayServerIps) {
 		return true
 	}
 
@@ -123,7 +126,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) SetDhcpRelayServerIps(v 
 
 // GetDhcpLeaseTime returns the DhcpLeaseTime field value if set, zero value otherwise.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDhcpLeaseTime() string {
-	if o == nil || isNil(o.DhcpLeaseTime) {
+	if o == nil || IsNil(o.DhcpLeaseTime) {
 		var ret string
 		return ret
 	}
@@ -133,15 +136,15 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDhcpLeaseTime() strin
 // GetDhcpLeaseTimeOk returns a tuple with the DhcpLeaseTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDhcpLeaseTimeOk() (*string, bool) {
-	if o == nil || isNil(o.DhcpLeaseTime) {
-    return nil, false
+	if o == nil || IsNil(o.DhcpLeaseTime) {
+		return nil, false
 	}
 	return o.DhcpLeaseTime, true
 }
 
 // HasDhcpLeaseTime returns a boolean if a field has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) HasDhcpLeaseTime() bool {
-	if o != nil && !isNil(o.DhcpLeaseTime) {
+	if o != nil && !IsNil(o.DhcpLeaseTime) {
 		return true
 	}
 
@@ -155,7 +158,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) SetDhcpLeaseTime(v strin
 
 // GetDnsNameserversOption returns the DnsNameserversOption field value if set, zero value otherwise.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDnsNameserversOption() string {
-	if o == nil || isNil(o.DnsNameserversOption) {
+	if o == nil || IsNil(o.DnsNameserversOption) {
 		var ret string
 		return ret
 	}
@@ -165,15 +168,15 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDnsNameserversOption(
 // GetDnsNameserversOptionOk returns a tuple with the DnsNameserversOption field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDnsNameserversOptionOk() (*string, bool) {
-	if o == nil || isNil(o.DnsNameserversOption) {
-    return nil, false
+	if o == nil || IsNil(o.DnsNameserversOption) {
+		return nil, false
 	}
 	return o.DnsNameserversOption, true
 }
 
 // HasDnsNameserversOption returns a boolean if a field has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) HasDnsNameserversOption() bool {
-	if o != nil && !isNil(o.DnsNameserversOption) {
+	if o != nil && !IsNil(o.DnsNameserversOption) {
 		return true
 	}
 
@@ -187,7 +190,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) SetDnsNameserversOption(
 
 // GetDnsCustomNameservers returns the DnsCustomNameservers field value if set, zero value otherwise.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDnsCustomNameservers() []string {
-	if o == nil || isNil(o.DnsCustomNameservers) {
+	if o == nil || IsNil(o.DnsCustomNameservers) {
 		var ret []string
 		return ret
 	}
@@ -197,15 +200,15 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDnsCustomNameservers(
 // GetDnsCustomNameserversOk returns a tuple with the DnsCustomNameservers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDnsCustomNameserversOk() ([]string, bool) {
-	if o == nil || isNil(o.DnsCustomNameservers) {
-    return nil, false
+	if o == nil || IsNil(o.DnsCustomNameservers) {
+		return nil, false
 	}
 	return o.DnsCustomNameservers, true
 }
 
 // HasDnsCustomNameservers returns a boolean if a field has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) HasDnsCustomNameservers() bool {
-	if o != nil && !isNil(o.DnsCustomNameservers) {
+	if o != nil && !IsNil(o.DnsCustomNameservers) {
 		return true
 	}
 
@@ -219,7 +222,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) SetDnsCustomNameservers(
 
 // GetBootOptionsEnabled returns the BootOptionsEnabled field value if set, zero value otherwise.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetBootOptionsEnabled() bool {
-	if o == nil || isNil(o.BootOptionsEnabled) {
+	if o == nil || IsNil(o.BootOptionsEnabled) {
 		var ret bool
 		return ret
 	}
@@ -229,15 +232,15 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetBootOptionsEnabled() 
 // GetBootOptionsEnabledOk returns a tuple with the BootOptionsEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetBootOptionsEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.BootOptionsEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.BootOptionsEnabled) {
+		return nil, false
 	}
 	return o.BootOptionsEnabled, true
 }
 
 // HasBootOptionsEnabled returns a boolean if a field has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) HasBootOptionsEnabled() bool {
-	if o != nil && !isNil(o.BootOptionsEnabled) {
+	if o != nil && !IsNil(o.BootOptionsEnabled) {
 		return true
 	}
 
@@ -251,7 +254,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) SetBootOptionsEnabled(v 
 
 // GetBootNextServer returns the BootNextServer field value if set, zero value otherwise.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetBootNextServer() string {
-	if o == nil || isNil(o.BootNextServer) {
+	if o == nil || IsNil(o.BootNextServer) {
 		var ret string
 		return ret
 	}
@@ -261,15 +264,15 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetBootNextServer() stri
 // GetBootNextServerOk returns a tuple with the BootNextServer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetBootNextServerOk() (*string, bool) {
-	if o == nil || isNil(o.BootNextServer) {
-    return nil, false
+	if o == nil || IsNil(o.BootNextServer) {
+		return nil, false
 	}
 	return o.BootNextServer, true
 }
 
 // HasBootNextServer returns a boolean if a field has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) HasBootNextServer() bool {
-	if o != nil && !isNil(o.BootNextServer) {
+	if o != nil && !IsNil(o.BootNextServer) {
 		return true
 	}
 
@@ -283,7 +286,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) SetBootNextServer(v stri
 
 // GetBootFileName returns the BootFileName field value if set, zero value otherwise.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetBootFileName() string {
-	if o == nil || isNil(o.BootFileName) {
+	if o == nil || IsNil(o.BootFileName) {
 		var ret string
 		return ret
 	}
@@ -293,15 +296,15 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetBootFileName() string
 // GetBootFileNameOk returns a tuple with the BootFileName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetBootFileNameOk() (*string, bool) {
-	if o == nil || isNil(o.BootFileName) {
-    return nil, false
+	if o == nil || IsNil(o.BootFileName) {
+		return nil, false
 	}
 	return o.BootFileName, true
 }
 
 // HasBootFileName returns a boolean if a field has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) HasBootFileName() bool {
-	if o != nil && !isNil(o.BootFileName) {
+	if o != nil && !IsNil(o.BootFileName) {
 		return true
 	}
 
@@ -315,7 +318,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) SetBootFileName(v string
 
 // GetDhcpOptions returns the DhcpOptions field value if set, zero value otherwise.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDhcpOptions() []UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner {
-	if o == nil || isNil(o.DhcpOptions) {
+	if o == nil || IsNil(o.DhcpOptions) {
 		var ret []UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner
 		return ret
 	}
@@ -325,15 +328,15 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDhcpOptions() []Updat
 // GetDhcpOptionsOk returns a tuple with the DhcpOptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetDhcpOptionsOk() ([]UpdateDeviceSwitchRoutingInterfaceDhcpRequestDhcpOptionsInner, bool) {
-	if o == nil || isNil(o.DhcpOptions) {
-    return nil, false
+	if o == nil || IsNil(o.DhcpOptions) {
+		return nil, false
 	}
 	return o.DhcpOptions, true
 }
 
 // HasDhcpOptions returns a boolean if a field has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) HasDhcpOptions() bool {
-	if o != nil && !isNil(o.DhcpOptions) {
+	if o != nil && !IsNil(o.DhcpOptions) {
 		return true
 	}
 
@@ -347,7 +350,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) SetDhcpOptions(v []Updat
 
 // GetReservedIpRanges returns the ReservedIpRanges field value if set, zero value otherwise.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetReservedIpRanges() []UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner {
-	if o == nil || isNil(o.ReservedIpRanges) {
+	if o == nil || IsNil(o.ReservedIpRanges) {
 		var ret []UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner
 		return ret
 	}
@@ -357,15 +360,15 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetReservedIpRanges() []
 // GetReservedIpRangesOk returns a tuple with the ReservedIpRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetReservedIpRangesOk() ([]UpdateDeviceSwitchRoutingInterfaceDhcpRequestReservedIpRangesInner, bool) {
-	if o == nil || isNil(o.ReservedIpRanges) {
-    return nil, false
+	if o == nil || IsNil(o.ReservedIpRanges) {
+		return nil, false
 	}
 	return o.ReservedIpRanges, true
 }
 
 // HasReservedIpRanges returns a boolean if a field has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) HasReservedIpRanges() bool {
-	if o != nil && !isNil(o.ReservedIpRanges) {
+	if o != nil && !IsNil(o.ReservedIpRanges) {
 		return true
 	}
 
@@ -379,7 +382,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) SetReservedIpRanges(v []
 
 // GetFixedIpAssignments returns the FixedIpAssignments field value if set, zero value otherwise.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetFixedIpAssignments() []UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner {
-	if o == nil || isNil(o.FixedIpAssignments) {
+	if o == nil || IsNil(o.FixedIpAssignments) {
 		var ret []UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner
 		return ret
 	}
@@ -389,15 +392,15 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetFixedIpAssignments() 
 // GetFixedIpAssignmentsOk returns a tuple with the FixedIpAssignments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) GetFixedIpAssignmentsOk() ([]UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner, bool) {
-	if o == nil || isNil(o.FixedIpAssignments) {
-    return nil, false
+	if o == nil || IsNil(o.FixedIpAssignments) {
+		return nil, false
 	}
 	return o.FixedIpAssignments, true
 }
 
 // HasFixedIpAssignments returns a boolean if a field has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) HasFixedIpAssignments() bool {
-	if o != nil && !isNil(o.FixedIpAssignments) {
+	if o != nil && !IsNil(o.FixedIpAssignments) {
 		return true
 	}
 
@@ -410,41 +413,49 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequest) SetFixedIpAssignments(v 
 }
 
 func (o UpdateDeviceSwitchRoutingInterfaceDhcpRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.DhcpMode) {
-		toSerialize["dhcpMode"] = o.DhcpMode
-	}
-	if !isNil(o.DhcpRelayServerIps) {
-		toSerialize["dhcpRelayServerIps"] = o.DhcpRelayServerIps
-	}
-	if !isNil(o.DhcpLeaseTime) {
-		toSerialize["dhcpLeaseTime"] = o.DhcpLeaseTime
-	}
-	if !isNil(o.DnsNameserversOption) {
-		toSerialize["dnsNameserversOption"] = o.DnsNameserversOption
-	}
-	if !isNil(o.DnsCustomNameservers) {
-		toSerialize["dnsCustomNameservers"] = o.DnsCustomNameservers
-	}
-	if !isNil(o.BootOptionsEnabled) {
-		toSerialize["bootOptionsEnabled"] = o.BootOptionsEnabled
-	}
-	if !isNil(o.BootNextServer) {
-		toSerialize["bootNextServer"] = o.BootNextServer
-	}
-	if !isNil(o.BootFileName) {
-		toSerialize["bootFileName"] = o.BootFileName
-	}
-	if !isNil(o.DhcpOptions) {
-		toSerialize["dhcpOptions"] = o.DhcpOptions
-	}
-	if !isNil(o.ReservedIpRanges) {
-		toSerialize["reservedIpRanges"] = o.ReservedIpRanges
-	}
-	if !isNil(o.FixedIpAssignments) {
-		toSerialize["fixedIpAssignments"] = o.FixedIpAssignments
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceSwitchRoutingInterfaceDhcpRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DhcpMode) {
+		toSerialize["dhcpMode"] = o.DhcpMode
+	}
+	if !IsNil(o.DhcpRelayServerIps) {
+		toSerialize["dhcpRelayServerIps"] = o.DhcpRelayServerIps
+	}
+	if !IsNil(o.DhcpLeaseTime) {
+		toSerialize["dhcpLeaseTime"] = o.DhcpLeaseTime
+	}
+	if !IsNil(o.DnsNameserversOption) {
+		toSerialize["dnsNameserversOption"] = o.DnsNameserversOption
+	}
+	if !IsNil(o.DnsCustomNameservers) {
+		toSerialize["dnsCustomNameservers"] = o.DnsCustomNameservers
+	}
+	if !IsNil(o.BootOptionsEnabled) {
+		toSerialize["bootOptionsEnabled"] = o.BootOptionsEnabled
+	}
+	if !IsNil(o.BootNextServer) {
+		toSerialize["bootNextServer"] = o.BootNextServer
+	}
+	if !IsNil(o.BootFileName) {
+		toSerialize["bootFileName"] = o.BootFileName
+	}
+	if !IsNil(o.DhcpOptions) {
+		toSerialize["dhcpOptions"] = o.DhcpOptions
+	}
+	if !IsNil(o.ReservedIpRanges) {
+		toSerialize["reservedIpRanges"] = o.ReservedIpRanges
+	}
+	if !IsNil(o.FixedIpAssignments) {
+		toSerialize["fixedIpAssignments"] = o.FixedIpAssignments
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceSwitchRoutingInterfaceDhcpRequest struct {

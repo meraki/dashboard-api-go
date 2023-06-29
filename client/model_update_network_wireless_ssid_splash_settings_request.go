@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidSplashSettingsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidSplashSettingsRequest{}
+
 // UpdateNetworkWirelessSsidSplashSettingsRequest struct for UpdateNetworkWirelessSsidSplashSettingsRequest
 type UpdateNetworkWirelessSsidSplashSettingsRequest struct {
 	// [optional] The custom splash URL of the click-through splash page. Note that the URL can be configured without necessarily being used. In order to enable the custom URL, see 'useSplashUrl'
@@ -61,7 +64,7 @@ func NewUpdateNetworkWirelessSsidSplashSettingsRequestWithDefaults() *UpdateNetw
 
 // GetSplashUrl returns the SplashUrl field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSplashUrl() string {
-	if o == nil || isNil(o.SplashUrl) {
+	if o == nil || IsNil(o.SplashUrl) {
 		var ret string
 		return ret
 	}
@@ -71,15 +74,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSplashUrl() string {
 // GetSplashUrlOk returns a tuple with the SplashUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSplashUrlOk() (*string, bool) {
-	if o == nil || isNil(o.SplashUrl) {
-    return nil, false
+	if o == nil || IsNil(o.SplashUrl) {
+		return nil, false
 	}
 	return o.SplashUrl, true
 }
 
 // HasSplashUrl returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) HasSplashUrl() bool {
-	if o != nil && !isNil(o.SplashUrl) {
+	if o != nil && !IsNil(o.SplashUrl) {
 		return true
 	}
 
@@ -93,7 +96,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) SetSplashUrl(v string) 
 
 // GetUseSplashUrl returns the UseSplashUrl field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetUseSplashUrl() bool {
-	if o == nil || isNil(o.UseSplashUrl) {
+	if o == nil || IsNil(o.UseSplashUrl) {
 		var ret bool
 		return ret
 	}
@@ -103,15 +106,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetUseSplashUrl() bool 
 // GetUseSplashUrlOk returns a tuple with the UseSplashUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetUseSplashUrlOk() (*bool, bool) {
-	if o == nil || isNil(o.UseSplashUrl) {
-    return nil, false
+	if o == nil || IsNil(o.UseSplashUrl) {
+		return nil, false
 	}
 	return o.UseSplashUrl, true
 }
 
 // HasUseSplashUrl returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) HasUseSplashUrl() bool {
-	if o != nil && !isNil(o.UseSplashUrl) {
+	if o != nil && !IsNil(o.UseSplashUrl) {
 		return true
 	}
 
@@ -125,7 +128,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) SetUseSplashUrl(v bool)
 
 // GetSplashTimeout returns the SplashTimeout field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSplashTimeout() int32 {
-	if o == nil || isNil(o.SplashTimeout) {
+	if o == nil || IsNil(o.SplashTimeout) {
 		var ret int32
 		return ret
 	}
@@ -135,15 +138,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSplashTimeout() int3
 // GetSplashTimeoutOk returns a tuple with the SplashTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSplashTimeoutOk() (*int32, bool) {
-	if o == nil || isNil(o.SplashTimeout) {
-    return nil, false
+	if o == nil || IsNil(o.SplashTimeout) {
+		return nil, false
 	}
 	return o.SplashTimeout, true
 }
 
 // HasSplashTimeout returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) HasSplashTimeout() bool {
-	if o != nil && !isNil(o.SplashTimeout) {
+	if o != nil && !IsNil(o.SplashTimeout) {
 		return true
 	}
 
@@ -157,7 +160,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) SetSplashTimeout(v int3
 
 // GetRedirectUrl returns the RedirectUrl field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetRedirectUrl() string {
-	if o == nil || isNil(o.RedirectUrl) {
+	if o == nil || IsNil(o.RedirectUrl) {
 		var ret string
 		return ret
 	}
@@ -167,15 +170,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetRedirectUrl() string
 // GetRedirectUrlOk returns a tuple with the RedirectUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetRedirectUrlOk() (*string, bool) {
-	if o == nil || isNil(o.RedirectUrl) {
-    return nil, false
+	if o == nil || IsNil(o.RedirectUrl) {
+		return nil, false
 	}
 	return o.RedirectUrl, true
 }
 
 // HasRedirectUrl returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) HasRedirectUrl() bool {
-	if o != nil && !isNil(o.RedirectUrl) {
+	if o != nil && !IsNil(o.RedirectUrl) {
 		return true
 	}
 
@@ -189,7 +192,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) SetRedirectUrl(v string
 
 // GetUseRedirectUrl returns the UseRedirectUrl field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetUseRedirectUrl() bool {
-	if o == nil || isNil(o.UseRedirectUrl) {
+	if o == nil || IsNil(o.UseRedirectUrl) {
 		var ret bool
 		return ret
 	}
@@ -199,15 +202,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetUseRedirectUrl() boo
 // GetUseRedirectUrlOk returns a tuple with the UseRedirectUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetUseRedirectUrlOk() (*bool, bool) {
-	if o == nil || isNil(o.UseRedirectUrl) {
-    return nil, false
+	if o == nil || IsNil(o.UseRedirectUrl) {
+		return nil, false
 	}
 	return o.UseRedirectUrl, true
 }
 
 // HasUseRedirectUrl returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) HasUseRedirectUrl() bool {
-	if o != nil && !isNil(o.UseRedirectUrl) {
+	if o != nil && !IsNil(o.UseRedirectUrl) {
 		return true
 	}
 
@@ -221,7 +224,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) SetUseRedirectUrl(v boo
 
 // GetWelcomeMessage returns the WelcomeMessage field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetWelcomeMessage() string {
-	if o == nil || isNil(o.WelcomeMessage) {
+	if o == nil || IsNil(o.WelcomeMessage) {
 		var ret string
 		return ret
 	}
@@ -231,15 +234,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetWelcomeMessage() str
 // GetWelcomeMessageOk returns a tuple with the WelcomeMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetWelcomeMessageOk() (*string, bool) {
-	if o == nil || isNil(o.WelcomeMessage) {
-    return nil, false
+	if o == nil || IsNil(o.WelcomeMessage) {
+		return nil, false
 	}
 	return o.WelcomeMessage, true
 }
 
 // HasWelcomeMessage returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) HasWelcomeMessage() bool {
-	if o != nil && !isNil(o.WelcomeMessage) {
+	if o != nil && !IsNil(o.WelcomeMessage) {
 		return true
 	}
 
@@ -253,7 +256,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) SetWelcomeMessage(v str
 
 // GetSplashLogo returns the SplashLogo field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSplashLogo() UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogo {
-	if o == nil || isNil(o.SplashLogo) {
+	if o == nil || IsNil(o.SplashLogo) {
 		var ret UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogo
 		return ret
 	}
@@ -263,15 +266,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSplashLogo() UpdateN
 // GetSplashLogoOk returns a tuple with the SplashLogo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSplashLogoOk() (*UpdateNetworkWirelessSsidSplashSettingsRequestSplashLogo, bool) {
-	if o == nil || isNil(o.SplashLogo) {
-    return nil, false
+	if o == nil || IsNil(o.SplashLogo) {
+		return nil, false
 	}
 	return o.SplashLogo, true
 }
 
 // HasSplashLogo returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) HasSplashLogo() bool {
-	if o != nil && !isNil(o.SplashLogo) {
+	if o != nil && !IsNil(o.SplashLogo) {
 		return true
 	}
 
@@ -285,7 +288,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) SetSplashLogo(v UpdateN
 
 // GetSplashImage returns the SplashImage field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSplashImage() UpdateNetworkWirelessSsidSplashSettingsRequestSplashImage {
-	if o == nil || isNil(o.SplashImage) {
+	if o == nil || IsNil(o.SplashImage) {
 		var ret UpdateNetworkWirelessSsidSplashSettingsRequestSplashImage
 		return ret
 	}
@@ -295,15 +298,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSplashImage() Update
 // GetSplashImageOk returns a tuple with the SplashImage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSplashImageOk() (*UpdateNetworkWirelessSsidSplashSettingsRequestSplashImage, bool) {
-	if o == nil || isNil(o.SplashImage) {
-    return nil, false
+	if o == nil || IsNil(o.SplashImage) {
+		return nil, false
 	}
 	return o.SplashImage, true
 }
 
 // HasSplashImage returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) HasSplashImage() bool {
-	if o != nil && !isNil(o.SplashImage) {
+	if o != nil && !IsNil(o.SplashImage) {
 		return true
 	}
 
@@ -317,7 +320,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) SetSplashImage(v Update
 
 // GetSplashPrepaidFront returns the SplashPrepaidFront field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSplashPrepaidFront() UpdateNetworkWirelessSsidSplashSettingsRequestSplashPrepaidFront {
-	if o == nil || isNil(o.SplashPrepaidFront) {
+	if o == nil || IsNil(o.SplashPrepaidFront) {
 		var ret UpdateNetworkWirelessSsidSplashSettingsRequestSplashPrepaidFront
 		return ret
 	}
@@ -327,15 +330,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSplashPrepaidFront()
 // GetSplashPrepaidFrontOk returns a tuple with the SplashPrepaidFront field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSplashPrepaidFrontOk() (*UpdateNetworkWirelessSsidSplashSettingsRequestSplashPrepaidFront, bool) {
-	if o == nil || isNil(o.SplashPrepaidFront) {
-    return nil, false
+	if o == nil || IsNil(o.SplashPrepaidFront) {
+		return nil, false
 	}
 	return o.SplashPrepaidFront, true
 }
 
 // HasSplashPrepaidFront returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) HasSplashPrepaidFront() bool {
-	if o != nil && !isNil(o.SplashPrepaidFront) {
+	if o != nil && !IsNil(o.SplashPrepaidFront) {
 		return true
 	}
 
@@ -349,7 +352,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) SetSplashPrepaidFront(v
 
 // GetBlockAllTrafficBeforeSignOn returns the BlockAllTrafficBeforeSignOn field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetBlockAllTrafficBeforeSignOn() bool {
-	if o == nil || isNil(o.BlockAllTrafficBeforeSignOn) {
+	if o == nil || IsNil(o.BlockAllTrafficBeforeSignOn) {
 		var ret bool
 		return ret
 	}
@@ -359,15 +362,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetBlockAllTrafficBefor
 // GetBlockAllTrafficBeforeSignOnOk returns a tuple with the BlockAllTrafficBeforeSignOn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetBlockAllTrafficBeforeSignOnOk() (*bool, bool) {
-	if o == nil || isNil(o.BlockAllTrafficBeforeSignOn) {
-    return nil, false
+	if o == nil || IsNil(o.BlockAllTrafficBeforeSignOn) {
+		return nil, false
 	}
 	return o.BlockAllTrafficBeforeSignOn, true
 }
 
 // HasBlockAllTrafficBeforeSignOn returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) HasBlockAllTrafficBeforeSignOn() bool {
-	if o != nil && !isNil(o.BlockAllTrafficBeforeSignOn) {
+	if o != nil && !IsNil(o.BlockAllTrafficBeforeSignOn) {
 		return true
 	}
 
@@ -381,7 +384,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) SetBlockAllTrafficBefor
 
 // GetControllerDisconnectionBehavior returns the ControllerDisconnectionBehavior field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetControllerDisconnectionBehavior() string {
-	if o == nil || isNil(o.ControllerDisconnectionBehavior) {
+	if o == nil || IsNil(o.ControllerDisconnectionBehavior) {
 		var ret string
 		return ret
 	}
@@ -391,15 +394,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetControllerDisconnect
 // GetControllerDisconnectionBehaviorOk returns a tuple with the ControllerDisconnectionBehavior field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetControllerDisconnectionBehaviorOk() (*string, bool) {
-	if o == nil || isNil(o.ControllerDisconnectionBehavior) {
-    return nil, false
+	if o == nil || IsNil(o.ControllerDisconnectionBehavior) {
+		return nil, false
 	}
 	return o.ControllerDisconnectionBehavior, true
 }
 
 // HasControllerDisconnectionBehavior returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) HasControllerDisconnectionBehavior() bool {
-	if o != nil && !isNil(o.ControllerDisconnectionBehavior) {
+	if o != nil && !IsNil(o.ControllerDisconnectionBehavior) {
 		return true
 	}
 
@@ -413,7 +416,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) SetControllerDisconnect
 
 // GetAllowSimultaneousLogins returns the AllowSimultaneousLogins field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetAllowSimultaneousLogins() bool {
-	if o == nil || isNil(o.AllowSimultaneousLogins) {
+	if o == nil || IsNil(o.AllowSimultaneousLogins) {
 		var ret bool
 		return ret
 	}
@@ -423,15 +426,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetAllowSimultaneousLog
 // GetAllowSimultaneousLoginsOk returns a tuple with the AllowSimultaneousLogins field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetAllowSimultaneousLoginsOk() (*bool, bool) {
-	if o == nil || isNil(o.AllowSimultaneousLogins) {
-    return nil, false
+	if o == nil || IsNil(o.AllowSimultaneousLogins) {
+		return nil, false
 	}
 	return o.AllowSimultaneousLogins, true
 }
 
 // HasAllowSimultaneousLogins returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) HasAllowSimultaneousLogins() bool {
-	if o != nil && !isNil(o.AllowSimultaneousLogins) {
+	if o != nil && !IsNil(o.AllowSimultaneousLogins) {
 		return true
 	}
 
@@ -445,7 +448,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) SetAllowSimultaneousLog
 
 // GetGuestSponsorship returns the GuestSponsorship field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetGuestSponsorship() UpdateNetworkWirelessSsidSplashSettingsRequestGuestSponsorship {
-	if o == nil || isNil(o.GuestSponsorship) {
+	if o == nil || IsNil(o.GuestSponsorship) {
 		var ret UpdateNetworkWirelessSsidSplashSettingsRequestGuestSponsorship
 		return ret
 	}
@@ -455,15 +458,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetGuestSponsorship() U
 // GetGuestSponsorshipOk returns a tuple with the GuestSponsorship field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetGuestSponsorshipOk() (*UpdateNetworkWirelessSsidSplashSettingsRequestGuestSponsorship, bool) {
-	if o == nil || isNil(o.GuestSponsorship) {
-    return nil, false
+	if o == nil || IsNil(o.GuestSponsorship) {
+		return nil, false
 	}
 	return o.GuestSponsorship, true
 }
 
 // HasGuestSponsorship returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) HasGuestSponsorship() bool {
-	if o != nil && !isNil(o.GuestSponsorship) {
+	if o != nil && !IsNil(o.GuestSponsorship) {
 		return true
 	}
 
@@ -477,7 +480,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) SetGuestSponsorship(v U
 
 // GetBilling returns the Billing field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetBilling() UpdateNetworkWirelessSsidSplashSettingsRequestBilling {
-	if o == nil || isNil(o.Billing) {
+	if o == nil || IsNil(o.Billing) {
 		var ret UpdateNetworkWirelessSsidSplashSettingsRequestBilling
 		return ret
 	}
@@ -487,15 +490,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetBilling() UpdateNetw
 // GetBillingOk returns a tuple with the Billing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetBillingOk() (*UpdateNetworkWirelessSsidSplashSettingsRequestBilling, bool) {
-	if o == nil || isNil(o.Billing) {
-    return nil, false
+	if o == nil || IsNil(o.Billing) {
+		return nil, false
 	}
 	return o.Billing, true
 }
 
 // HasBilling returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) HasBilling() bool {
-	if o != nil && !isNil(o.Billing) {
+	if o != nil && !IsNil(o.Billing) {
 		return true
 	}
 
@@ -509,7 +512,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) SetBilling(v UpdateNetw
 
 // GetSentryEnrollment returns the SentryEnrollment field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSentryEnrollment() UpdateNetworkWirelessSsidSplashSettingsRequestSentryEnrollment {
-	if o == nil || isNil(o.SentryEnrollment) {
+	if o == nil || IsNil(o.SentryEnrollment) {
 		var ret UpdateNetworkWirelessSsidSplashSettingsRequestSentryEnrollment
 		return ret
 	}
@@ -519,15 +522,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSentryEnrollment() U
 // GetSentryEnrollmentOk returns a tuple with the SentryEnrollment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) GetSentryEnrollmentOk() (*UpdateNetworkWirelessSsidSplashSettingsRequestSentryEnrollment, bool) {
-	if o == nil || isNil(o.SentryEnrollment) {
-    return nil, false
+	if o == nil || IsNil(o.SentryEnrollment) {
+		return nil, false
 	}
 	return o.SentryEnrollment, true
 }
 
 // HasSentryEnrollment returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) HasSentryEnrollment() bool {
-	if o != nil && !isNil(o.SentryEnrollment) {
+	if o != nil && !IsNil(o.SentryEnrollment) {
 		return true
 	}
 
@@ -540,53 +543,61 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequest) SetSentryEnrollment(v U
 }
 
 func (o UpdateNetworkWirelessSsidSplashSettingsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.SplashUrl) {
-		toSerialize["splashUrl"] = o.SplashUrl
-	}
-	if !isNil(o.UseSplashUrl) {
-		toSerialize["useSplashUrl"] = o.UseSplashUrl
-	}
-	if !isNil(o.SplashTimeout) {
-		toSerialize["splashTimeout"] = o.SplashTimeout
-	}
-	if !isNil(o.RedirectUrl) {
-		toSerialize["redirectUrl"] = o.RedirectUrl
-	}
-	if !isNil(o.UseRedirectUrl) {
-		toSerialize["useRedirectUrl"] = o.UseRedirectUrl
-	}
-	if !isNil(o.WelcomeMessage) {
-		toSerialize["welcomeMessage"] = o.WelcomeMessage
-	}
-	if !isNil(o.SplashLogo) {
-		toSerialize["splashLogo"] = o.SplashLogo
-	}
-	if !isNil(o.SplashImage) {
-		toSerialize["splashImage"] = o.SplashImage
-	}
-	if !isNil(o.SplashPrepaidFront) {
-		toSerialize["splashPrepaidFront"] = o.SplashPrepaidFront
-	}
-	if !isNil(o.BlockAllTrafficBeforeSignOn) {
-		toSerialize["blockAllTrafficBeforeSignOn"] = o.BlockAllTrafficBeforeSignOn
-	}
-	if !isNil(o.ControllerDisconnectionBehavior) {
-		toSerialize["controllerDisconnectionBehavior"] = o.ControllerDisconnectionBehavior
-	}
-	if !isNil(o.AllowSimultaneousLogins) {
-		toSerialize["allowSimultaneousLogins"] = o.AllowSimultaneousLogins
-	}
-	if !isNil(o.GuestSponsorship) {
-		toSerialize["guestSponsorship"] = o.GuestSponsorship
-	}
-	if !isNil(o.Billing) {
-		toSerialize["billing"] = o.Billing
-	}
-	if !isNil(o.SentryEnrollment) {
-		toSerialize["sentryEnrollment"] = o.SentryEnrollment
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidSplashSettingsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SplashUrl) {
+		toSerialize["splashUrl"] = o.SplashUrl
+	}
+	if !IsNil(o.UseSplashUrl) {
+		toSerialize["useSplashUrl"] = o.UseSplashUrl
+	}
+	if !IsNil(o.SplashTimeout) {
+		toSerialize["splashTimeout"] = o.SplashTimeout
+	}
+	if !IsNil(o.RedirectUrl) {
+		toSerialize["redirectUrl"] = o.RedirectUrl
+	}
+	if !IsNil(o.UseRedirectUrl) {
+		toSerialize["useRedirectUrl"] = o.UseRedirectUrl
+	}
+	if !IsNil(o.WelcomeMessage) {
+		toSerialize["welcomeMessage"] = o.WelcomeMessage
+	}
+	if !IsNil(o.SplashLogo) {
+		toSerialize["splashLogo"] = o.SplashLogo
+	}
+	if !IsNil(o.SplashImage) {
+		toSerialize["splashImage"] = o.SplashImage
+	}
+	if !IsNil(o.SplashPrepaidFront) {
+		toSerialize["splashPrepaidFront"] = o.SplashPrepaidFront
+	}
+	if !IsNil(o.BlockAllTrafficBeforeSignOn) {
+		toSerialize["blockAllTrafficBeforeSignOn"] = o.BlockAllTrafficBeforeSignOn
+	}
+	if !IsNil(o.ControllerDisconnectionBehavior) {
+		toSerialize["controllerDisconnectionBehavior"] = o.ControllerDisconnectionBehavior
+	}
+	if !IsNil(o.AllowSimultaneousLogins) {
+		toSerialize["allowSimultaneousLogins"] = o.AllowSimultaneousLogins
+	}
+	if !IsNil(o.GuestSponsorship) {
+		toSerialize["guestSponsorship"] = o.GuestSponsorship
+	}
+	if !IsNil(o.Billing) {
+		toSerialize["billing"] = o.Billing
+	}
+	if !IsNil(o.SentryEnrollment) {
+		toSerialize["sentryEnrollment"] = o.SentryEnrollment
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidSplashSettingsRequest struct {

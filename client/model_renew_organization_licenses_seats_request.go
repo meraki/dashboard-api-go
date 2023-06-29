@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the RenewOrganizationLicensesSeatsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RenewOrganizationLicensesSeatsRequest{}
+
 // RenewOrganizationLicensesSeatsRequest struct for RenewOrganizationLicensesSeatsRequest
 type RenewOrganizationLicensesSeatsRequest struct {
 	// The ID of the SM license to renew. This license must already be assigned to an SM network
@@ -55,7 +58,7 @@ func (o *RenewOrganizationLicensesSeatsRequest) GetLicenseIdToRenew() string {
 // and a boolean to check if the value has been set.
 func (o *RenewOrganizationLicensesSeatsRequest) GetLicenseIdToRenewOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.LicenseIdToRenew, true
 }
@@ -79,7 +82,7 @@ func (o *RenewOrganizationLicensesSeatsRequest) GetUnusedLicenseId() string {
 // and a boolean to check if the value has been set.
 func (o *RenewOrganizationLicensesSeatsRequest) GetUnusedLicenseIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.UnusedLicenseId, true
 }
@@ -90,14 +93,18 @@ func (o *RenewOrganizationLicensesSeatsRequest) SetUnusedLicenseId(v string) {
 }
 
 func (o RenewOrganizationLicensesSeatsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["licenseIdToRenew"] = o.LicenseIdToRenew
-	}
-	if true {
-		toSerialize["unusedLicenseId"] = o.UnusedLicenseId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RenewOrganizationLicensesSeatsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["licenseIdToRenew"] = o.LicenseIdToRenew
+	toSerialize["unusedLicenseId"] = o.UnusedLicenseId
+	return toSerialize, nil
 }
 
 type NullableRenewOrganizationLicensesSeatsRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchRoutingMulticastRequestDefaultSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchRoutingMulticastRequestDefaultSettings{}
+
 // UpdateNetworkSwitchRoutingMulticastRequestDefaultSettings Default multicast setting for entire network. IGMP snooping and Flood unknown multicast traffic settings are enabled by default.
 type UpdateNetworkSwitchRoutingMulticastRequestDefaultSettings struct {
 	// IGMP snooping setting for entire network
@@ -41,7 +44,7 @@ func NewUpdateNetworkSwitchRoutingMulticastRequestDefaultSettingsWithDefaults() 
 
 // GetIgmpSnoopingEnabled returns the IgmpSnoopingEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchRoutingMulticastRequestDefaultSettings) GetIgmpSnoopingEnabled() bool {
-	if o == nil || isNil(o.IgmpSnoopingEnabled) {
+	if o == nil || IsNil(o.IgmpSnoopingEnabled) {
 		var ret bool
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkSwitchRoutingMulticastRequestDefaultSettings) GetIgmpSnoop
 // GetIgmpSnoopingEnabledOk returns a tuple with the IgmpSnoopingEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchRoutingMulticastRequestDefaultSettings) GetIgmpSnoopingEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.IgmpSnoopingEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.IgmpSnoopingEnabled) {
+		return nil, false
 	}
 	return o.IgmpSnoopingEnabled, true
 }
 
 // HasIgmpSnoopingEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchRoutingMulticastRequestDefaultSettings) HasIgmpSnoopingEnabled() bool {
-	if o != nil && !isNil(o.IgmpSnoopingEnabled) {
+	if o != nil && !IsNil(o.IgmpSnoopingEnabled) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkSwitchRoutingMulticastRequestDefaultSettings) SetIgmpSnoop
 
 // GetFloodUnknownMulticastTrafficEnabled returns the FloodUnknownMulticastTrafficEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchRoutingMulticastRequestDefaultSettings) GetFloodUnknownMulticastTrafficEnabled() bool {
-	if o == nil || isNil(o.FloodUnknownMulticastTrafficEnabled) {
+	if o == nil || IsNil(o.FloodUnknownMulticastTrafficEnabled) {
 		var ret bool
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkSwitchRoutingMulticastRequestDefaultSettings) GetFloodUnkn
 // GetFloodUnknownMulticastTrafficEnabledOk returns a tuple with the FloodUnknownMulticastTrafficEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchRoutingMulticastRequestDefaultSettings) GetFloodUnknownMulticastTrafficEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.FloodUnknownMulticastTrafficEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.FloodUnknownMulticastTrafficEnabled) {
+		return nil, false
 	}
 	return o.FloodUnknownMulticastTrafficEnabled, true
 }
 
 // HasFloodUnknownMulticastTrafficEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchRoutingMulticastRequestDefaultSettings) HasFloodUnknownMulticastTrafficEnabled() bool {
-	if o != nil && !isNil(o.FloodUnknownMulticastTrafficEnabled) {
+	if o != nil && !IsNil(o.FloodUnknownMulticastTrafficEnabled) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkSwitchRoutingMulticastRequestDefaultSettings) SetFloodUnkn
 }
 
 func (o UpdateNetworkSwitchRoutingMulticastRequestDefaultSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.IgmpSnoopingEnabled) {
-		toSerialize["igmpSnoopingEnabled"] = o.IgmpSnoopingEnabled
-	}
-	if !isNil(o.FloodUnknownMulticastTrafficEnabled) {
-		toSerialize["floodUnknownMulticastTrafficEnabled"] = o.FloodUnknownMulticastTrafficEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchRoutingMulticastRequestDefaultSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.IgmpSnoopingEnabled) {
+		toSerialize["igmpSnoopingEnabled"] = o.IgmpSnoopingEnabled
+	}
+	if !IsNil(o.FloodUnknownMulticastTrafficEnabled) {
+		toSerialize["floodUnknownMulticastTrafficEnabled"] = o.FloodUnknownMulticastTrafficEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchRoutingMulticastRequestDefaultSettings struct {

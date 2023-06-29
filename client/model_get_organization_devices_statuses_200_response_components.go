@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationDevicesStatuses200ResponseComponents type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationDevicesStatuses200ResponseComponents{}
+
 // GetOrganizationDevicesStatuses200ResponseComponents Components
 type GetOrganizationDevicesStatuses200ResponseComponents struct {
 	// Power Supplies
@@ -39,7 +42,7 @@ func NewGetOrganizationDevicesStatuses200ResponseComponentsWithDefaults() *GetOr
 
 // GetPowerSupplies returns the PowerSupplies field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatuses200ResponseComponents) GetPowerSupplies() []string {
-	if o == nil || isNil(o.PowerSupplies) {
+	if o == nil || IsNil(o.PowerSupplies) {
 		var ret []string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationDevicesStatuses200ResponseComponents) GetPowerSupplies()
 // GetPowerSuppliesOk returns a tuple with the PowerSupplies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatuses200ResponseComponents) GetPowerSuppliesOk() ([]string, bool) {
-	if o == nil || isNil(o.PowerSupplies) {
-    return nil, false
+	if o == nil || IsNil(o.PowerSupplies) {
+		return nil, false
 	}
 	return o.PowerSupplies, true
 }
 
 // HasPowerSupplies returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatuses200ResponseComponents) HasPowerSupplies() bool {
-	if o != nil && !isNil(o.PowerSupplies) {
+	if o != nil && !IsNil(o.PowerSupplies) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationDevicesStatuses200ResponseComponents) SetPowerSupplies(v
 }
 
 func (o GetOrganizationDevicesStatuses200ResponseComponents) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.PowerSupplies) {
-		toSerialize["powerSupplies"] = o.PowerSupplies
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationDevicesStatuses200ResponseComponents) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PowerSupplies) {
+		toSerialize["powerSupplies"] = o.PowerSupplies
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationDevicesStatuses200ResponseComponents struct {

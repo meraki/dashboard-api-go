@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner{}
+
 // UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner struct for UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner
 type UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner struct {
 	// MCC value
@@ -41,7 +44,7 @@ func NewUpdateNetworkWirelessSsidHotspot20RequestMccMncsInnerWithDefaults() *Upd
 
 // GetMcc returns the Mcc field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner) GetMcc() string {
-	if o == nil || isNil(o.Mcc) {
+	if o == nil || IsNil(o.Mcc) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner) GetMcc() string 
 // GetMccOk returns a tuple with the Mcc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner) GetMccOk() (*string, bool) {
-	if o == nil || isNil(o.Mcc) {
-    return nil, false
+	if o == nil || IsNil(o.Mcc) {
+		return nil, false
 	}
 	return o.Mcc, true
 }
 
 // HasMcc returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner) HasMcc() bool {
-	if o != nil && !isNil(o.Mcc) {
+	if o != nil && !IsNil(o.Mcc) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner) SetMcc(v string)
 
 // GetMnc returns the Mnc field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner) GetMnc() string {
-	if o == nil || isNil(o.Mnc) {
+	if o == nil || IsNil(o.Mnc) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner) GetMnc() string 
 // GetMncOk returns a tuple with the Mnc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner) GetMncOk() (*string, bool) {
-	if o == nil || isNil(o.Mnc) {
-    return nil, false
+	if o == nil || IsNil(o.Mnc) {
+		return nil, false
 	}
 	return o.Mnc, true
 }
 
 // HasMnc returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner) HasMnc() bool {
-	if o != nil && !isNil(o.Mnc) {
+	if o != nil && !IsNil(o.Mnc) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner) SetMnc(v string)
 }
 
 func (o UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Mcc) {
-		toSerialize["mcc"] = o.Mcc
-	}
-	if !isNil(o.Mnc) {
-		toSerialize["mnc"] = o.Mnc
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Mcc) {
+		toSerialize["mcc"] = o.Mcc
+	}
+	if !IsNil(o.Mnc) {
+		toSerialize["mnc"] = o.Mnc
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidHotspot20RequestMccMncsInner struct {

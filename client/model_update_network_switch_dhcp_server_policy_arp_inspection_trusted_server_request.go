@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest{}
+
 // UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest struct for UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest
 type UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest struct {
 	// The updated mac address of the trusted server
@@ -42,7 +45,7 @@ func NewUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestWith
 
 // GetMac returns the Mac field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) GetMac() string {
-	if o == nil || isNil(o.Mac) {
+	if o == nil || IsNil(o.Mac) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) G
 // GetMacOk returns a tuple with the Mac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) GetMacOk() (*string, bool) {
-	if o == nil || isNil(o.Mac) {
-    return nil, false
+	if o == nil || IsNil(o.Mac) {
+		return nil, false
 	}
 	return o.Mac, true
 }
 
 // HasMac returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) HasMac() bool {
-	if o != nil && !isNil(o.Mac) {
+	if o != nil && !IsNil(o.Mac) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) S
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) GetVlan() int32 {
-	if o == nil || isNil(o.Vlan) {
+	if o == nil || IsNil(o.Vlan) {
 		var ret int32
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) G
 // GetVlanOk returns a tuple with the Vlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) GetVlanOk() (*int32, bool) {
-	if o == nil || isNil(o.Vlan) {
-    return nil, false
+	if o == nil || IsNil(o.Vlan) {
+		return nil, false
 	}
 	return o.Vlan, true
 }
 
 // HasVlan returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) HasVlan() bool {
-	if o != nil && !isNil(o.Vlan) {
+	if o != nil && !IsNil(o.Vlan) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) S
 
 // GetIpv4 returns the Ipv4 field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) GetIpv4() UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4 {
-	if o == nil || isNil(o.Ipv4) {
+	if o == nil || IsNil(o.Ipv4) {
 		var ret UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) G
 // GetIpv4Ok returns a tuple with the Ipv4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) GetIpv4Ok() (*UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4, bool) {
-	if o == nil || isNil(o.Ipv4) {
-    return nil, false
+	if o == nil || IsNil(o.Ipv4) {
+		return nil, false
 	}
 	return o.Ipv4, true
 }
 
 // HasIpv4 returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) HasIpv4() bool {
-	if o != nil && !isNil(o.Ipv4) {
+	if o != nil && !IsNil(o.Ipv4) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) S
 }
 
 func (o UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Mac) {
-		toSerialize["mac"] = o.Mac
-	}
-	if !isNil(o.Vlan) {
-		toSerialize["vlan"] = o.Vlan
-	}
-	if !isNil(o.Ipv4) {
-		toSerialize["ipv4"] = o.Ipv4
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Mac) {
+		toSerialize["mac"] = o.Mac
+	}
+	if !IsNil(o.Vlan) {
+		toSerialize["vlan"] = o.Vlan
+	}
+	if !IsNil(o.Ipv4) {
+		toSerialize["ipv4"] = o.Ipv4
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest struct {

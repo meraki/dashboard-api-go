@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ClaimIntoOrganizationRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ClaimIntoOrganizationRequest{}
+
 // ClaimIntoOrganizationRequest struct for ClaimIntoOrganizationRequest
 type ClaimIntoOrganizationRequest struct {
 	// The numbers of the orders that should be claimed
@@ -43,7 +46,7 @@ func NewClaimIntoOrganizationRequestWithDefaults() *ClaimIntoOrganizationRequest
 
 // GetOrders returns the Orders field value if set, zero value otherwise.
 func (o *ClaimIntoOrganizationRequest) GetOrders() []string {
-	if o == nil || isNil(o.Orders) {
+	if o == nil || IsNil(o.Orders) {
 		var ret []string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *ClaimIntoOrganizationRequest) GetOrders() []string {
 // GetOrdersOk returns a tuple with the Orders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClaimIntoOrganizationRequest) GetOrdersOk() ([]string, bool) {
-	if o == nil || isNil(o.Orders) {
-    return nil, false
+	if o == nil || IsNil(o.Orders) {
+		return nil, false
 	}
 	return o.Orders, true
 }
 
 // HasOrders returns a boolean if a field has been set.
 func (o *ClaimIntoOrganizationRequest) HasOrders() bool {
-	if o != nil && !isNil(o.Orders) {
+	if o != nil && !IsNil(o.Orders) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *ClaimIntoOrganizationRequest) SetOrders(v []string) {
 
 // GetSerials returns the Serials field value if set, zero value otherwise.
 func (o *ClaimIntoOrganizationRequest) GetSerials() []string {
-	if o == nil || isNil(o.Serials) {
+	if o == nil || IsNil(o.Serials) {
 		var ret []string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *ClaimIntoOrganizationRequest) GetSerials() []string {
 // GetSerialsOk returns a tuple with the Serials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClaimIntoOrganizationRequest) GetSerialsOk() ([]string, bool) {
-	if o == nil || isNil(o.Serials) {
-    return nil, false
+	if o == nil || IsNil(o.Serials) {
+		return nil, false
 	}
 	return o.Serials, true
 }
 
 // HasSerials returns a boolean if a field has been set.
 func (o *ClaimIntoOrganizationRequest) HasSerials() bool {
-	if o != nil && !isNil(o.Serials) {
+	if o != nil && !IsNil(o.Serials) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *ClaimIntoOrganizationRequest) SetSerials(v []string) {
 
 // GetLicenses returns the Licenses field value if set, zero value otherwise.
 func (o *ClaimIntoOrganizationRequest) GetLicenses() []ClaimIntoOrganizationRequestLicensesInner {
-	if o == nil || isNil(o.Licenses) {
+	if o == nil || IsNil(o.Licenses) {
 		var ret []ClaimIntoOrganizationRequestLicensesInner
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *ClaimIntoOrganizationRequest) GetLicenses() []ClaimIntoOrganizationRequ
 // GetLicensesOk returns a tuple with the Licenses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ClaimIntoOrganizationRequest) GetLicensesOk() ([]ClaimIntoOrganizationRequestLicensesInner, bool) {
-	if o == nil || isNil(o.Licenses) {
-    return nil, false
+	if o == nil || IsNil(o.Licenses) {
+		return nil, false
 	}
 	return o.Licenses, true
 }
 
 // HasLicenses returns a boolean if a field has been set.
 func (o *ClaimIntoOrganizationRequest) HasLicenses() bool {
-	if o != nil && !isNil(o.Licenses) {
+	if o != nil && !IsNil(o.Licenses) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *ClaimIntoOrganizationRequest) SetLicenses(v []ClaimIntoOrganizationRequ
 }
 
 func (o ClaimIntoOrganizationRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Orders) {
-		toSerialize["orders"] = o.Orders
-	}
-	if !isNil(o.Serials) {
-		toSerialize["serials"] = o.Serials
-	}
-	if !isNil(o.Licenses) {
-		toSerialize["licenses"] = o.Licenses
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ClaimIntoOrganizationRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Orders) {
+		toSerialize["orders"] = o.Orders
+	}
+	if !IsNil(o.Serials) {
+		toSerialize["serials"] = o.Serials
+	}
+	if !IsNil(o.Licenses) {
+		toSerialize["licenses"] = o.Licenses
+	}
+	return toSerialize, nil
 }
 
 type NullableClaimIntoOrganizationRequest struct {

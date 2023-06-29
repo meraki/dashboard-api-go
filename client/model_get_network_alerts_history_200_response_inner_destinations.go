@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkAlertsHistory200ResponseInnerDestinations type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkAlertsHistory200ResponseInnerDestinations{}
+
 // GetNetworkAlertsHistory200ResponseInnerDestinations the destinations this alert is configured to be delivered to
 type GetNetworkAlertsHistory200ResponseInnerDestinations struct {
 	Email *GetNetworkAlertsHistory200ResponseInnerDestinationsEmail `json:"email,omitempty"`
@@ -41,7 +44,7 @@ func NewGetNetworkAlertsHistory200ResponseInnerDestinationsWithDefaults() *GetNe
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) GetEmail() GetNetworkAlertsHistory200ResponseInnerDestinationsEmail {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret GetNetworkAlertsHistory200ResponseInnerDestinationsEmail
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) GetEmail() GetNetw
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) GetEmailOk() (*GetNetworkAlertsHistory200ResponseInnerDestinationsEmail, bool) {
-	if o == nil || isNil(o.Email) {
-    return nil, false
+	if o == nil || IsNil(o.Email) {
+		return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) SetEmail(v GetNetw
 
 // GetPush returns the Push field value if set, zero value otherwise.
 func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) GetPush() GetNetworkAlertsHistory200ResponseInnerDestinationsPush {
-	if o == nil || isNil(o.Push) {
+	if o == nil || IsNil(o.Push) {
 		var ret GetNetworkAlertsHistory200ResponseInnerDestinationsPush
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) GetPush() GetNetwo
 // GetPushOk returns a tuple with the Push field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) GetPushOk() (*GetNetworkAlertsHistory200ResponseInnerDestinationsPush, bool) {
-	if o == nil || isNil(o.Push) {
-    return nil, false
+	if o == nil || IsNil(o.Push) {
+		return nil, false
 	}
 	return o.Push, true
 }
 
 // HasPush returns a boolean if a field has been set.
 func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) HasPush() bool {
-	if o != nil && !isNil(o.Push) {
+	if o != nil && !IsNil(o.Push) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) SetPush(v GetNetwo
 
 // GetSms returns the Sms field value if set, zero value otherwise.
 func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) GetSms() GetNetworkAlertsHistory200ResponseInnerDestinationsSms {
-	if o == nil || isNil(o.Sms) {
+	if o == nil || IsNil(o.Sms) {
 		var ret GetNetworkAlertsHistory200ResponseInnerDestinationsSms
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) GetSms() GetNetwor
 // GetSmsOk returns a tuple with the Sms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) GetSmsOk() (*GetNetworkAlertsHistory200ResponseInnerDestinationsSms, bool) {
-	if o == nil || isNil(o.Sms) {
-    return nil, false
+	if o == nil || IsNil(o.Sms) {
+		return nil, false
 	}
 	return o.Sms, true
 }
 
 // HasSms returns a boolean if a field has been set.
 func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) HasSms() bool {
-	if o != nil && !isNil(o.Sms) {
+	if o != nil && !IsNil(o.Sms) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) SetSms(v GetNetwor
 
 // GetWebhook returns the Webhook field value if set, zero value otherwise.
 func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) GetWebhook() GetNetworkAlertsHistory200ResponseInnerDestinationsWebhook {
-	if o == nil || isNil(o.Webhook) {
+	if o == nil || IsNil(o.Webhook) {
 		var ret GetNetworkAlertsHistory200ResponseInnerDestinationsWebhook
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) GetWebhook() GetNe
 // GetWebhookOk returns a tuple with the Webhook field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) GetWebhookOk() (*GetNetworkAlertsHistory200ResponseInnerDestinationsWebhook, bool) {
-	if o == nil || isNil(o.Webhook) {
-    return nil, false
+	if o == nil || IsNil(o.Webhook) {
+		return nil, false
 	}
 	return o.Webhook, true
 }
 
 // HasWebhook returns a boolean if a field has been set.
 func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) HasWebhook() bool {
-	if o != nil && !isNil(o.Webhook) {
+	if o != nil && !IsNil(o.Webhook) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *GetNetworkAlertsHistory200ResponseInnerDestinations) SetWebhook(v GetNe
 }
 
 func (o GetNetworkAlertsHistory200ResponseInnerDestinations) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Email) {
-		toSerialize["email"] = o.Email
-	}
-	if !isNil(o.Push) {
-		toSerialize["push"] = o.Push
-	}
-	if !isNil(o.Sms) {
-		toSerialize["sms"] = o.Sms
-	}
-	if !isNil(o.Webhook) {
-		toSerialize["webhook"] = o.Webhook
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkAlertsHistory200ResponseInnerDestinations) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.Push) {
+		toSerialize["push"] = o.Push
+	}
+	if !IsNil(o.Sms) {
+		toSerialize["sms"] = o.Sms
+	}
+	if !IsNil(o.Webhook) {
+		toSerialize["webhook"] = o.Webhook
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkAlertsHistory200ResponseInnerDestinations struct {

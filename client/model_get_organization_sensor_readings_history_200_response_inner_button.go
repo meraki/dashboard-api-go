@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSensorReadingsHistory200ResponseInnerButton type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSensorReadingsHistory200ResponseInnerButton{}
+
 // GetOrganizationSensorReadingsHistory200ResponseInnerButton Reading for the 'button' metric. This will only be present if the 'metric' property equals 'button'.
 type GetOrganizationSensorReadingsHistory200ResponseInnerButton struct {
 	// Type of button press that occurred.
@@ -39,7 +42,7 @@ func NewGetOrganizationSensorReadingsHistory200ResponseInnerButtonWithDefaults()
 
 // GetPressType returns the PressType field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerButton) GetPressType() string {
-	if o == nil || isNil(o.PressType) {
+	if o == nil || IsNil(o.PressType) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerButton) GetPressTyp
 // GetPressTypeOk returns a tuple with the PressType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerButton) GetPressTypeOk() (*string, bool) {
-	if o == nil || isNil(o.PressType) {
-    return nil, false
+	if o == nil || IsNil(o.PressType) {
+		return nil, false
 	}
 	return o.PressType, true
 }
 
 // HasPressType returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerButton) HasPressType() bool {
-	if o != nil && !isNil(o.PressType) {
+	if o != nil && !IsNil(o.PressType) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerButton) SetPressTyp
 }
 
 func (o GetOrganizationSensorReadingsHistory200ResponseInnerButton) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.PressType) {
-		toSerialize["pressType"] = o.PressType
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSensorReadingsHistory200ResponseInnerButton) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PressType) {
+		toSerialize["pressType"] = o.PressType
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSensorReadingsHistory200ResponseInnerButton struct {

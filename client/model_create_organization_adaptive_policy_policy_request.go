@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationAdaptivePolicyPolicyRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationAdaptivePolicyPolicyRequest{}
+
 // CreateOrganizationAdaptivePolicyPolicyRequest struct for CreateOrganizationAdaptivePolicyPolicyRequest
 type CreateOrganizationAdaptivePolicyPolicyRequest struct {
 	SourceGroup CreateOrganizationAdaptivePolicyPolicyRequestSourceGroup `json:"sourceGroup"`
@@ -57,7 +60,7 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequest) GetSourceGroup() CreateO
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequest) GetSourceGroupOk() (*CreateOrganizationAdaptivePolicyPolicyRequestSourceGroup, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.SourceGroup, true
 }
@@ -81,7 +84,7 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequest) GetDestinationGroup() Cr
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequest) GetDestinationGroupOk() (*CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.DestinationGroup, true
 }
@@ -93,7 +96,7 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequest) SetDestinationGroup(v Cr
 
 // GetAcls returns the Acls field value if set, zero value otherwise.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequest) GetAcls() []CreateOrganizationAdaptivePolicyPolicyRequestAclsInner {
-	if o == nil || isNil(o.Acls) {
+	if o == nil || IsNil(o.Acls) {
 		var ret []CreateOrganizationAdaptivePolicyPolicyRequestAclsInner
 		return ret
 	}
@@ -103,15 +106,15 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequest) GetAcls() []CreateOrgani
 // GetAclsOk returns a tuple with the Acls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequest) GetAclsOk() ([]CreateOrganizationAdaptivePolicyPolicyRequestAclsInner, bool) {
-	if o == nil || isNil(o.Acls) {
-    return nil, false
+	if o == nil || IsNil(o.Acls) {
+		return nil, false
 	}
 	return o.Acls, true
 }
 
 // HasAcls returns a boolean if a field has been set.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequest) HasAcls() bool {
-	if o != nil && !isNil(o.Acls) {
+	if o != nil && !IsNil(o.Acls) {
 		return true
 	}
 
@@ -125,7 +128,7 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequest) SetAcls(v []CreateOrgani
 
 // GetLastEntryRule returns the LastEntryRule field value if set, zero value otherwise.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequest) GetLastEntryRule() string {
-	if o == nil || isNil(o.LastEntryRule) {
+	if o == nil || IsNil(o.LastEntryRule) {
 		var ret string
 		return ret
 	}
@@ -135,15 +138,15 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequest) GetLastEntryRule() strin
 // GetLastEntryRuleOk returns a tuple with the LastEntryRule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequest) GetLastEntryRuleOk() (*string, bool) {
-	if o == nil || isNil(o.LastEntryRule) {
-    return nil, false
+	if o == nil || IsNil(o.LastEntryRule) {
+		return nil, false
 	}
 	return o.LastEntryRule, true
 }
 
 // HasLastEntryRule returns a boolean if a field has been set.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequest) HasLastEntryRule() bool {
-	if o != nil && !isNil(o.LastEntryRule) {
+	if o != nil && !IsNil(o.LastEntryRule) {
 		return true
 	}
 
@@ -156,20 +159,24 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequest) SetLastEntryRule(v strin
 }
 
 func (o CreateOrganizationAdaptivePolicyPolicyRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["sourceGroup"] = o.SourceGroup
-	}
-	if true {
-		toSerialize["destinationGroup"] = o.DestinationGroup
-	}
-	if !isNil(o.Acls) {
-		toSerialize["acls"] = o.Acls
-	}
-	if !isNil(o.LastEntryRule) {
-		toSerialize["lastEntryRule"] = o.LastEntryRule
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationAdaptivePolicyPolicyRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["sourceGroup"] = o.SourceGroup
+	toSerialize["destinationGroup"] = o.DestinationGroup
+	if !IsNil(o.Acls) {
+		toSerialize["acls"] = o.Acls
+	}
+	if !IsNil(o.LastEntryRule) {
+		toSerialize["lastEntryRule"] = o.LastEntryRule
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationAdaptivePolicyPolicyRequest struct {

@@ -34,6 +34,7 @@ func main() {
     serial := "serial_example" // string | Serial
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SenseApi.GetDeviceCameraSense(context.Background(), serial).Execute()
     if err != nil {
@@ -104,6 +105,7 @@ func main() {
     serial := "serial_example" // string | Serial
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SenseApi.GetDeviceCameraSenseObjectDetectionModels(context.Background(), serial).Execute()
     if err != nil {
@@ -175,6 +177,7 @@ func main() {
     updateDeviceCameraSenseRequest := *openapiclient.NewUpdateDeviceCameraSenseRequest() // UpdateDeviceCameraSenseRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SenseApi.UpdateDeviceCameraSense(context.Background(), serial).UpdateDeviceCameraSenseRequest(updateDeviceCameraSenseRequest).Execute()
     if err != nil {

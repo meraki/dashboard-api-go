@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchMtu200ResponseOverridesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchMtu200ResponseOverridesInner{}
+
 // GetNetworkSwitchMtu200ResponseOverridesInner struct for GetNetworkSwitchMtu200ResponseOverridesInner
 type GetNetworkSwitchMtu200ResponseOverridesInner struct {
 	// List of switch serials. Applicable only for switch network.
@@ -44,7 +47,7 @@ func NewGetNetworkSwitchMtu200ResponseOverridesInnerWithDefaults() *GetNetworkSw
 
 // GetSwitches returns the Switches field value if set, zero value otherwise.
 func (o *GetNetworkSwitchMtu200ResponseOverridesInner) GetSwitches() []string {
-	if o == nil || isNil(o.Switches) {
+	if o == nil || IsNil(o.Switches) {
 		var ret []string
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *GetNetworkSwitchMtu200ResponseOverridesInner) GetSwitches() []string {
 // GetSwitchesOk returns a tuple with the Switches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchMtu200ResponseOverridesInner) GetSwitchesOk() ([]string, bool) {
-	if o == nil || isNil(o.Switches) {
-    return nil, false
+	if o == nil || IsNil(o.Switches) {
+		return nil, false
 	}
 	return o.Switches, true
 }
 
 // HasSwitches returns a boolean if a field has been set.
 func (o *GetNetworkSwitchMtu200ResponseOverridesInner) HasSwitches() bool {
-	if o != nil && !isNil(o.Switches) {
+	if o != nil && !IsNil(o.Switches) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *GetNetworkSwitchMtu200ResponseOverridesInner) SetSwitches(v []string) {
 
 // GetSwitchProfiles returns the SwitchProfiles field value if set, zero value otherwise.
 func (o *GetNetworkSwitchMtu200ResponseOverridesInner) GetSwitchProfiles() []string {
-	if o == nil || isNil(o.SwitchProfiles) {
+	if o == nil || IsNil(o.SwitchProfiles) {
 		var ret []string
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *GetNetworkSwitchMtu200ResponseOverridesInner) GetSwitchProfiles() []str
 // GetSwitchProfilesOk returns a tuple with the SwitchProfiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchMtu200ResponseOverridesInner) GetSwitchProfilesOk() ([]string, bool) {
-	if o == nil || isNil(o.SwitchProfiles) {
-    return nil, false
+	if o == nil || IsNil(o.SwitchProfiles) {
+		return nil, false
 	}
 	return o.SwitchProfiles, true
 }
 
 // HasSwitchProfiles returns a boolean if a field has been set.
 func (o *GetNetworkSwitchMtu200ResponseOverridesInner) HasSwitchProfiles() bool {
-	if o != nil && !isNil(o.SwitchProfiles) {
+	if o != nil && !IsNil(o.SwitchProfiles) {
 		return true
 	}
 
@@ -120,7 +123,7 @@ func (o *GetNetworkSwitchMtu200ResponseOverridesInner) GetMtuSize() int32 {
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchMtu200ResponseOverridesInner) GetMtuSizeOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.MtuSize, true
 }
@@ -131,17 +134,23 @@ func (o *GetNetworkSwitchMtu200ResponseOverridesInner) SetMtuSize(v int32) {
 }
 
 func (o GetNetworkSwitchMtu200ResponseOverridesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Switches) {
-		toSerialize["switches"] = o.Switches
-	}
-	if !isNil(o.SwitchProfiles) {
-		toSerialize["switchProfiles"] = o.SwitchProfiles
-	}
-	if true {
-		toSerialize["mtuSize"] = o.MtuSize
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchMtu200ResponseOverridesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Switches) {
+		toSerialize["switches"] = o.Switches
+	}
+	if !IsNil(o.SwitchProfiles) {
+		toSerialize["switchProfiles"] = o.SwitchProfiles
+	}
+	toSerialize["mtuSize"] = o.MtuSize
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchMtu200ResponseOverridesInner struct {

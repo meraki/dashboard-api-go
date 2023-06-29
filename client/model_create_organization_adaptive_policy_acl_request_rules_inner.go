@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationAdaptivePolicyAclRequestRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationAdaptivePolicyAclRequestRulesInner{}
+
 // CreateOrganizationAdaptivePolicyAclRequestRulesInner struct for CreateOrganizationAdaptivePolicyAclRequestRulesInner
 type CreateOrganizationAdaptivePolicyAclRequestRulesInner struct {
 	// 'allow' or 'deny' traffic specified by this rule.
@@ -59,7 +62,7 @@ func (o *CreateOrganizationAdaptivePolicyAclRequestRulesInner) GetPolicy() strin
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyAclRequestRulesInner) GetPolicyOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Policy, true
 }
@@ -83,7 +86,7 @@ func (o *CreateOrganizationAdaptivePolicyAclRequestRulesInner) GetProtocol() str
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyAclRequestRulesInner) GetProtocolOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Protocol, true
 }
@@ -95,7 +98,7 @@ func (o *CreateOrganizationAdaptivePolicyAclRequestRulesInner) SetProtocol(v str
 
 // GetSrcPort returns the SrcPort field value if set, zero value otherwise.
 func (o *CreateOrganizationAdaptivePolicyAclRequestRulesInner) GetSrcPort() string {
-	if o == nil || isNil(o.SrcPort) {
+	if o == nil || IsNil(o.SrcPort) {
 		var ret string
 		return ret
 	}
@@ -105,15 +108,15 @@ func (o *CreateOrganizationAdaptivePolicyAclRequestRulesInner) GetSrcPort() stri
 // GetSrcPortOk returns a tuple with the SrcPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyAclRequestRulesInner) GetSrcPortOk() (*string, bool) {
-	if o == nil || isNil(o.SrcPort) {
-    return nil, false
+	if o == nil || IsNil(o.SrcPort) {
+		return nil, false
 	}
 	return o.SrcPort, true
 }
 
 // HasSrcPort returns a boolean if a field has been set.
 func (o *CreateOrganizationAdaptivePolicyAclRequestRulesInner) HasSrcPort() bool {
-	if o != nil && !isNil(o.SrcPort) {
+	if o != nil && !IsNil(o.SrcPort) {
 		return true
 	}
 
@@ -127,7 +130,7 @@ func (o *CreateOrganizationAdaptivePolicyAclRequestRulesInner) SetSrcPort(v stri
 
 // GetDstPort returns the DstPort field value if set, zero value otherwise.
 func (o *CreateOrganizationAdaptivePolicyAclRequestRulesInner) GetDstPort() string {
-	if o == nil || isNil(o.DstPort) {
+	if o == nil || IsNil(o.DstPort) {
 		var ret string
 		return ret
 	}
@@ -137,15 +140,15 @@ func (o *CreateOrganizationAdaptivePolicyAclRequestRulesInner) GetDstPort() stri
 // GetDstPortOk returns a tuple with the DstPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyAclRequestRulesInner) GetDstPortOk() (*string, bool) {
-	if o == nil || isNil(o.DstPort) {
-    return nil, false
+	if o == nil || IsNil(o.DstPort) {
+		return nil, false
 	}
 	return o.DstPort, true
 }
 
 // HasDstPort returns a boolean if a field has been set.
 func (o *CreateOrganizationAdaptivePolicyAclRequestRulesInner) HasDstPort() bool {
-	if o != nil && !isNil(o.DstPort) {
+	if o != nil && !IsNil(o.DstPort) {
 		return true
 	}
 
@@ -158,20 +161,24 @@ func (o *CreateOrganizationAdaptivePolicyAclRequestRulesInner) SetDstPort(v stri
 }
 
 func (o CreateOrganizationAdaptivePolicyAclRequestRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["policy"] = o.Policy
-	}
-	if true {
-		toSerialize["protocol"] = o.Protocol
-	}
-	if !isNil(o.SrcPort) {
-		toSerialize["srcPort"] = o.SrcPort
-	}
-	if !isNil(o.DstPort) {
-		toSerialize["dstPort"] = o.DstPort
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationAdaptivePolicyAclRequestRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["policy"] = o.Policy
+	toSerialize["protocol"] = o.Protocol
+	if !IsNil(o.SrcPort) {
+		toSerialize["srcPort"] = o.SrcPort
+	}
+	if !IsNil(o.DstPort) {
+		toSerialize["dstPort"] = o.DstPort
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationAdaptivePolicyAclRequestRulesInner struct {

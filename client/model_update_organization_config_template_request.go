@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationConfigTemplateRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationConfigTemplateRequest{}
+
 // UpdateOrganizationConfigTemplateRequest struct for UpdateOrganizationConfigTemplateRequest
 type UpdateOrganizationConfigTemplateRequest struct {
 	// The name of the configuration template
@@ -41,7 +44,7 @@ func NewUpdateOrganizationConfigTemplateRequestWithDefaults() *UpdateOrganizatio
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateOrganizationConfigTemplateRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateOrganizationConfigTemplateRequest) SetName(v string) {
 
 // GetTimeZone returns the TimeZone field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateRequest) GetTimeZone() string {
-	if o == nil || isNil(o.TimeZone) {
+	if o == nil || IsNil(o.TimeZone) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateOrganizationConfigTemplateRequest) GetTimeZone() string {
 // GetTimeZoneOk returns a tuple with the TimeZone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateRequest) GetTimeZoneOk() (*string, bool) {
-	if o == nil || isNil(o.TimeZone) {
-    return nil, false
+	if o == nil || IsNil(o.TimeZone) {
+		return nil, false
 	}
 	return o.TimeZone, true
 }
 
 // HasTimeZone returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateRequest) HasTimeZone() bool {
-	if o != nil && !isNil(o.TimeZone) {
+	if o != nil && !IsNil(o.TimeZone) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateOrganizationConfigTemplateRequest) SetTimeZone(v string) {
 }
 
 func (o UpdateOrganizationConfigTemplateRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.TimeZone) {
-		toSerialize["timeZone"] = o.TimeZone
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationConfigTemplateRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.TimeZone) {
+		toSerialize["timeZone"] = o.TimeZone
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationConfigTemplateRequest struct {

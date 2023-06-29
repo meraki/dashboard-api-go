@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner{}
+
 // UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner struct for UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner
 type UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner struct {
 	// Serial number of access point to be configured with alternate management IP
@@ -63,7 +66,7 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInn
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner) GetSerialOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Serial, true
 }
@@ -87,7 +90,7 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInn
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner) GetAlternateManagementIpOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.AlternateManagementIp, true
 }
@@ -99,7 +102,7 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInn
 
 // GetSubnetMask returns the SubnetMask field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner) GetSubnetMask() string {
-	if o == nil || isNil(o.SubnetMask) {
+	if o == nil || IsNil(o.SubnetMask) {
 		var ret string
 		return ret
 	}
@@ -109,15 +112,15 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInn
 // GetSubnetMaskOk returns a tuple with the SubnetMask field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner) GetSubnetMaskOk() (*string, bool) {
-	if o == nil || isNil(o.SubnetMask) {
-    return nil, false
+	if o == nil || IsNil(o.SubnetMask) {
+		return nil, false
 	}
 	return o.SubnetMask, true
 }
 
 // HasSubnetMask returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner) HasSubnetMask() bool {
-	if o != nil && !isNil(o.SubnetMask) {
+	if o != nil && !IsNil(o.SubnetMask) {
 		return true
 	}
 
@@ -131,7 +134,7 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInn
 
 // GetGateway returns the Gateway field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner) GetGateway() string {
-	if o == nil || isNil(o.Gateway) {
+	if o == nil || IsNil(o.Gateway) {
 		var ret string
 		return ret
 	}
@@ -141,15 +144,15 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInn
 // GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner) GetGatewayOk() (*string, bool) {
-	if o == nil || isNil(o.Gateway) {
-    return nil, false
+	if o == nil || IsNil(o.Gateway) {
+		return nil, false
 	}
 	return o.Gateway, true
 }
 
 // HasGateway returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner) HasGateway() bool {
-	if o != nil && !isNil(o.Gateway) {
+	if o != nil && !IsNil(o.Gateway) {
 		return true
 	}
 
@@ -163,7 +166,7 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInn
 
 // GetDns1 returns the Dns1 field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner) GetDns1() string {
-	if o == nil || isNil(o.Dns1) {
+	if o == nil || IsNil(o.Dns1) {
 		var ret string
 		return ret
 	}
@@ -173,15 +176,15 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInn
 // GetDns1Ok returns a tuple with the Dns1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner) GetDns1Ok() (*string, bool) {
-	if o == nil || isNil(o.Dns1) {
-    return nil, false
+	if o == nil || IsNil(o.Dns1) {
+		return nil, false
 	}
 	return o.Dns1, true
 }
 
 // HasDns1 returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner) HasDns1() bool {
-	if o != nil && !isNil(o.Dns1) {
+	if o != nil && !IsNil(o.Dns1) {
 		return true
 	}
 
@@ -195,7 +198,7 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInn
 
 // GetDns2 returns the Dns2 field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner) GetDns2() string {
-	if o == nil || isNil(o.Dns2) {
+	if o == nil || IsNil(o.Dns2) {
 		var ret string
 		return ret
 	}
@@ -205,15 +208,15 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInn
 // GetDns2Ok returns a tuple with the Dns2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner) GetDns2Ok() (*string, bool) {
-	if o == nil || isNil(o.Dns2) {
-    return nil, false
+	if o == nil || IsNil(o.Dns2) {
+		return nil, false
 	}
 	return o.Dns2, true
 }
 
 // HasDns2 returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner) HasDns2() bool {
-	if o != nil && !isNil(o.Dns2) {
+	if o != nil && !IsNil(o.Dns2) {
 		return true
 	}
 
@@ -226,26 +229,30 @@ func (o *UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInn
 }
 
 func (o UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["serial"] = o.Serial
-	}
-	if true {
-		toSerialize["alternateManagementIp"] = o.AlternateManagementIp
-	}
-	if !isNil(o.SubnetMask) {
-		toSerialize["subnetMask"] = o.SubnetMask
-	}
-	if !isNil(o.Gateway) {
-		toSerialize["gateway"] = o.Gateway
-	}
-	if !isNil(o.Dns1) {
-		toSerialize["dns1"] = o.Dns1
-	}
-	if !isNil(o.Dns2) {
-		toSerialize["dns2"] = o.Dns2
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["serial"] = o.Serial
+	toSerialize["alternateManagementIp"] = o.AlternateManagementIp
+	if !IsNil(o.SubnetMask) {
+		toSerialize["subnetMask"] = o.SubnetMask
+	}
+	if !IsNil(o.Gateway) {
+		toSerialize["gateway"] = o.Gateway
+	}
+	if !IsNil(o.Dns1) {
+		toSerialize["dns1"] = o.Dns1
+	}
+	if !IsNil(o.Dns2) {
+		toSerialize["dns2"] = o.Dns2
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessAlternateManagementInterfaceRequestAccessPointsInner struct {

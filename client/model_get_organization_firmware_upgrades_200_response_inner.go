@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetOrganizationFirmwareUpgrades200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationFirmwareUpgrades200ResponseInner{}
+
 // GetOrganizationFirmwareUpgrades200ResponseInner struct for GetOrganizationFirmwareUpgrades200ResponseInner
 type GetOrganizationFirmwareUpgrades200ResponseInner struct {
 	// The upgrade
@@ -53,7 +56,7 @@ func NewGetOrganizationFirmwareUpgrades200ResponseInnerWithDefaults() *GetOrgani
 
 // GetUpgradeId returns the UpgradeId field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetUpgradeId() string {
-	if o == nil || isNil(o.UpgradeId) {
+	if o == nil || IsNil(o.UpgradeId) {
 		var ret string
 		return ret
 	}
@@ -63,15 +66,15 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetUpgradeId() string 
 // GetUpgradeIdOk returns a tuple with the UpgradeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetUpgradeIdOk() (*string, bool) {
-	if o == nil || isNil(o.UpgradeId) {
-    return nil, false
+	if o == nil || IsNil(o.UpgradeId) {
+		return nil, false
 	}
 	return o.UpgradeId, true
 }
 
 // HasUpgradeId returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) HasUpgradeId() bool {
-	if o != nil && !isNil(o.UpgradeId) {
+	if o != nil && !IsNil(o.UpgradeId) {
 		return true
 	}
 
@@ -85,7 +88,7 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) SetUpgradeId(v string)
 
 // GetUpgradeBatchId returns the UpgradeBatchId field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetUpgradeBatchId() string {
-	if o == nil || isNil(o.UpgradeBatchId) {
+	if o == nil || IsNil(o.UpgradeBatchId) {
 		var ret string
 		return ret
 	}
@@ -95,15 +98,15 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetUpgradeBatchId() st
 // GetUpgradeBatchIdOk returns a tuple with the UpgradeBatchId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetUpgradeBatchIdOk() (*string, bool) {
-	if o == nil || isNil(o.UpgradeBatchId) {
-    return nil, false
+	if o == nil || IsNil(o.UpgradeBatchId) {
+		return nil, false
 	}
 	return o.UpgradeBatchId, true
 }
 
 // HasUpgradeBatchId returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) HasUpgradeBatchId() bool {
-	if o != nil && !isNil(o.UpgradeBatchId) {
+	if o != nil && !IsNil(o.UpgradeBatchId) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) SetUpgradeBatchId(v st
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetNetwork() GetOrganizationFirmwareUpgrades200ResponseInnerNetwork {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		var ret GetOrganizationFirmwareUpgrades200ResponseInnerNetwork
 		return ret
 	}
@@ -127,15 +130,15 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetNetwork() GetOrgani
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetNetworkOk() (*GetOrganizationFirmwareUpgrades200ResponseInnerNetwork, bool) {
-	if o == nil || isNil(o.Network) {
-    return nil, false
+	if o == nil || IsNil(o.Network) {
+		return nil, false
 	}
 	return o.Network, true
 }
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) HasNetwork() bool {
-	if o != nil && !isNil(o.Network) {
+	if o != nil && !IsNil(o.Network) {
 		return true
 	}
 
@@ -149,7 +152,7 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) SetNetwork(v GetOrgani
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -159,15 +162,15 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -181,7 +184,7 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) SetStatus(v string) {
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetTime() time.Time {
-	if o == nil || isNil(o.Time) {
+	if o == nil || IsNil(o.Time) {
 		var ret time.Time
 		return ret
 	}
@@ -191,15 +194,15 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetTime() time.Time {
 // GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetTimeOk() (*time.Time, bool) {
-	if o == nil || isNil(o.Time) {
-    return nil, false
+	if o == nil || IsNil(o.Time) {
+		return nil, false
 	}
 	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) HasTime() bool {
-	if o != nil && !isNil(o.Time) {
+	if o != nil && !IsNil(o.Time) {
 		return true
 	}
 
@@ -213,7 +216,7 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) SetTime(v time.Time) {
 
 // GetCompletedAt returns the CompletedAt field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetCompletedAt() string {
-	if o == nil || isNil(o.CompletedAt) {
+	if o == nil || IsNil(o.CompletedAt) {
 		var ret string
 		return ret
 	}
@@ -223,15 +226,15 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetCompletedAt() strin
 // GetCompletedAtOk returns a tuple with the CompletedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetCompletedAtOk() (*string, bool) {
-	if o == nil || isNil(o.CompletedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CompletedAt) {
+		return nil, false
 	}
 	return o.CompletedAt, true
 }
 
 // HasCompletedAt returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) HasCompletedAt() bool {
-	if o != nil && !isNil(o.CompletedAt) {
+	if o != nil && !IsNil(o.CompletedAt) {
 		return true
 	}
 
@@ -245,7 +248,7 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) SetCompletedAt(v strin
 
 // GetProductType returns the ProductType field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetProductType() string {
-	if o == nil || isNil(o.ProductType) {
+	if o == nil || IsNil(o.ProductType) {
 		var ret string
 		return ret
 	}
@@ -255,15 +258,15 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetProductType() strin
 // GetProductTypeOk returns a tuple with the ProductType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetProductTypeOk() (*string, bool) {
-	if o == nil || isNil(o.ProductType) {
-    return nil, false
+	if o == nil || IsNil(o.ProductType) {
+		return nil, false
 	}
 	return o.ProductType, true
 }
 
 // HasProductType returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) HasProductType() bool {
-	if o != nil && !isNil(o.ProductType) {
+	if o != nil && !IsNil(o.ProductType) {
 		return true
 	}
 
@@ -277,7 +280,7 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) SetProductType(v strin
 
 // GetToVersion returns the ToVersion field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetToVersion() GetOrganizationFirmwareUpgrades200ResponseInnerToVersion {
-	if o == nil || isNil(o.ToVersion) {
+	if o == nil || IsNil(o.ToVersion) {
 		var ret GetOrganizationFirmwareUpgrades200ResponseInnerToVersion
 		return ret
 	}
@@ -287,15 +290,15 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetToVersion() GetOrga
 // GetToVersionOk returns a tuple with the ToVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetToVersionOk() (*GetOrganizationFirmwareUpgrades200ResponseInnerToVersion, bool) {
-	if o == nil || isNil(o.ToVersion) {
-    return nil, false
+	if o == nil || IsNil(o.ToVersion) {
+		return nil, false
 	}
 	return o.ToVersion, true
 }
 
 // HasToVersion returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) HasToVersion() bool {
-	if o != nil && !isNil(o.ToVersion) {
+	if o != nil && !IsNil(o.ToVersion) {
 		return true
 	}
 
@@ -309,7 +312,7 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) SetToVersion(v GetOrga
 
 // GetFromVersion returns the FromVersion field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetFromVersion() GetOrganizationFirmwareUpgrades200ResponseInnerFromVersion {
-	if o == nil || isNil(o.FromVersion) {
+	if o == nil || IsNil(o.FromVersion) {
 		var ret GetOrganizationFirmwareUpgrades200ResponseInnerFromVersion
 		return ret
 	}
@@ -319,15 +322,15 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetFromVersion() GetOr
 // GetFromVersionOk returns a tuple with the FromVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetFromVersionOk() (*GetOrganizationFirmwareUpgrades200ResponseInnerFromVersion, bool) {
-	if o == nil || isNil(o.FromVersion) {
-    return nil, false
+	if o == nil || IsNil(o.FromVersion) {
+		return nil, false
 	}
 	return o.FromVersion, true
 }
 
 // HasFromVersion returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgrades200ResponseInner) HasFromVersion() bool {
-	if o != nil && !isNil(o.FromVersion) {
+	if o != nil && !IsNil(o.FromVersion) {
 		return true
 	}
 
@@ -340,35 +343,43 @@ func (o *GetOrganizationFirmwareUpgrades200ResponseInner) SetFromVersion(v GetOr
 }
 
 func (o GetOrganizationFirmwareUpgrades200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.UpgradeId) {
-		toSerialize["upgradeId"] = o.UpgradeId
-	}
-	if !isNil(o.UpgradeBatchId) {
-		toSerialize["upgradeBatchId"] = o.UpgradeBatchId
-	}
-	if !isNil(o.Network) {
-		toSerialize["network"] = o.Network
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.Time) {
-		toSerialize["time"] = o.Time
-	}
-	if !isNil(o.CompletedAt) {
-		toSerialize["completedAt"] = o.CompletedAt
-	}
-	if !isNil(o.ProductType) {
-		toSerialize["productType"] = o.ProductType
-	}
-	if !isNil(o.ToVersion) {
-		toSerialize["toVersion"] = o.ToVersion
-	}
-	if !isNil(o.FromVersion) {
-		toSerialize["fromVersion"] = o.FromVersion
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationFirmwareUpgrades200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.UpgradeId) {
+		toSerialize["upgradeId"] = o.UpgradeId
+	}
+	if !IsNil(o.UpgradeBatchId) {
+		toSerialize["upgradeBatchId"] = o.UpgradeBatchId
+	}
+	if !IsNil(o.Network) {
+		toSerialize["network"] = o.Network
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Time) {
+		toSerialize["time"] = o.Time
+	}
+	if !IsNil(o.CompletedAt) {
+		toSerialize["completedAt"] = o.CompletedAt
+	}
+	if !IsNil(o.ProductType) {
+		toSerialize["productType"] = o.ProductType
+	}
+	if !IsNil(o.ToVersion) {
+		toSerialize["toVersion"] = o.ToVersion
+	}
+	if !IsNil(o.FromVersion) {
+		toSerialize["fromVersion"] = o.FromVersion
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationFirmwareUpgrades200ResponseInner struct {

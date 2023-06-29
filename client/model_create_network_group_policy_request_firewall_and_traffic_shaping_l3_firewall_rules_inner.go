@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner{}
+
 // CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner struct for CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner
 type CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner struct {
 	// Description of the rule (optional)
@@ -50,7 +53,7 @@ func NewCreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesI
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner) GetComment() string {
-	if o == nil || isNil(o.Comment) {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -60,15 +63,15 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRules
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner) GetCommentOk() (*string, bool) {
-	if o == nil || isNil(o.Comment) {
-    return nil, false
+	if o == nil || IsNil(o.Comment) {
+		return nil, false
 	}
 	return o.Comment, true
 }
 
 // HasComment returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner) HasComment() bool {
-	if o != nil && !isNil(o.Comment) {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -94,7 +97,7 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRules
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner) GetPolicyOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Policy, true
 }
@@ -118,7 +121,7 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRules
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner) GetProtocolOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Protocol, true
 }
@@ -130,7 +133,7 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRules
 
 // GetDestPort returns the DestPort field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner) GetDestPort() string {
-	if o == nil || isNil(o.DestPort) {
+	if o == nil || IsNil(o.DestPort) {
 		var ret string
 		return ret
 	}
@@ -140,15 +143,15 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRules
 // GetDestPortOk returns a tuple with the DestPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner) GetDestPortOk() (*string, bool) {
-	if o == nil || isNil(o.DestPort) {
-    return nil, false
+	if o == nil || IsNil(o.DestPort) {
+		return nil, false
 	}
 	return o.DestPort, true
 }
 
 // HasDestPort returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner) HasDestPort() bool {
-	if o != nil && !isNil(o.DestPort) {
+	if o != nil && !IsNil(o.DestPort) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRules
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner) GetDestCidrOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.DestCidr, true
 }
@@ -185,23 +188,25 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRules
 }
 
 func (o CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Comment) {
-		toSerialize["comment"] = o.Comment
-	}
-	if true {
-		toSerialize["policy"] = o.Policy
-	}
-	if true {
-		toSerialize["protocol"] = o.Protocol
-	}
-	if !isNil(o.DestPort) {
-		toSerialize["destPort"] = o.DestPort
-	}
-	if true {
-		toSerialize["destCidr"] = o.DestCidr
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	toSerialize["policy"] = o.Policy
+	toSerialize["protocol"] = o.Protocol
+	if !IsNil(o.DestPort) {
+		toSerialize["destPort"] = o.DestPort
+	}
+	toSerialize["destCidr"] = o.DestCidr
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkGroupPolicyRequestFirewallAndTrafficShapingL3FirewallRulesInner struct {

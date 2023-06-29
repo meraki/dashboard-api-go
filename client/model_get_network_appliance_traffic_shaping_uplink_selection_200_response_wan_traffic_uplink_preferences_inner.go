@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkApplianceTrafficShapingUplinkSelection200ResponseWanTrafficUplinkPreferencesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkApplianceTrafficShapingUplinkSelection200ResponseWanTrafficUplinkPreferencesInner{}
+
 // GetNetworkApplianceTrafficShapingUplinkSelection200ResponseWanTrafficUplinkPreferencesInner struct for GetNetworkApplianceTrafficShapingUplinkSelection200ResponseWanTrafficUplinkPreferencesInner
 type GetNetworkApplianceTrafficShapingUplinkSelection200ResponseWanTrafficUplinkPreferencesInner struct {
 	// Traffic filters
@@ -55,7 +58,7 @@ func (o *GetNetworkApplianceTrafficShapingUplinkSelection200ResponseWanTrafficUp
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceTrafficShapingUplinkSelection200ResponseWanTrafficUplinkPreferencesInner) GetTrafficFiltersOk() ([]GetNetworkApplianceTrafficShapingUplinkSelection200ResponseWanTrafficUplinkPreferencesInnerTrafficFiltersInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.TrafficFilters, true
 }
@@ -79,7 +82,7 @@ func (o *GetNetworkApplianceTrafficShapingUplinkSelection200ResponseWanTrafficUp
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceTrafficShapingUplinkSelection200ResponseWanTrafficUplinkPreferencesInner) GetPreferredUplinkOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.PreferredUplink, true
 }
@@ -90,14 +93,18 @@ func (o *GetNetworkApplianceTrafficShapingUplinkSelection200ResponseWanTrafficUp
 }
 
 func (o GetNetworkApplianceTrafficShapingUplinkSelection200ResponseWanTrafficUplinkPreferencesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["trafficFilters"] = o.TrafficFilters
-	}
-	if true {
-		toSerialize["preferredUplink"] = o.PreferredUplink
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkApplianceTrafficShapingUplinkSelection200ResponseWanTrafficUplinkPreferencesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["trafficFilters"] = o.TrafficFilters
+	toSerialize["preferredUplink"] = o.PreferredUplink
+	return toSerialize, nil
 }
 
 type NullableGetNetworkApplianceTrafficShapingUplinkSelection200ResponseWanTrafficUplinkPreferencesInner struct {

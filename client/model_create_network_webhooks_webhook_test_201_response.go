@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkWebhooksWebhookTest201Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkWebhooksWebhookTest201Response{}
+
 // CreateNetworkWebhooksWebhookTest201Response struct for CreateNetworkWebhooksWebhookTest201Response
 type CreateNetworkWebhooksWebhookTest201Response struct {
 	// Webhook delivery identifier
@@ -43,7 +46,7 @@ func NewCreateNetworkWebhooksWebhookTest201ResponseWithDefaults() *CreateNetwork
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *CreateNetworkWebhooksWebhookTest201Response) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *CreateNetworkWebhooksWebhookTest201Response) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWebhooksWebhookTest201Response) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateNetworkWebhooksWebhookTest201Response) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *CreateNetworkWebhooksWebhookTest201Response) SetId(v string) {
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *CreateNetworkWebhooksWebhookTest201Response) GetUrl() string {
-	if o == nil || isNil(o.Url) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *CreateNetworkWebhooksWebhookTest201Response) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWebhooksWebhookTest201Response) GetUrlOk() (*string, bool) {
-	if o == nil || isNil(o.Url) {
-    return nil, false
+	if o == nil || IsNil(o.Url) {
+		return nil, false
 	}
 	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *CreateNetworkWebhooksWebhookTest201Response) HasUrl() bool {
-	if o != nil && !isNil(o.Url) {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *CreateNetworkWebhooksWebhookTest201Response) SetUrl(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *CreateNetworkWebhooksWebhookTest201Response) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *CreateNetworkWebhooksWebhookTest201Response) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWebhooksWebhookTest201Response) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *CreateNetworkWebhooksWebhookTest201Response) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *CreateNetworkWebhooksWebhookTest201Response) SetStatus(v string) {
 }
 
 func (o CreateNetworkWebhooksWebhookTest201Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Url) {
-		toSerialize["url"] = o.Url
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkWebhooksWebhookTest201Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkWebhooksWebhookTest201Response struct {

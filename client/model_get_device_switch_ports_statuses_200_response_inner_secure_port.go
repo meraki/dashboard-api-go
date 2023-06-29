@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort{}
+
 // GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort The Secure Port status of the port.
 type GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort struct {
 	// Whether Secure Port is turned on for this port.
@@ -44,7 +47,7 @@ func NewGetDeviceSwitchPortsStatuses200ResponseInnerSecurePortWithDefaults() *Ge
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) GetEnabled() bo
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) SetEnabled(v bo
 
 // GetActive returns the Active field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) GetActive() bool {
-	if o == nil || isNil(o.Active) {
+	if o == nil || IsNil(o.Active) {
 		var ret bool
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) GetActive() boo
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) GetActiveOk() (*bool, bool) {
-	if o == nil || isNil(o.Active) {
-    return nil, false
+	if o == nil || IsNil(o.Active) {
+		return nil, false
 	}
 	return o.Active, true
 }
 
 // HasActive returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) HasActive() bool {
-	if o != nil && !isNil(o.Active) {
+	if o != nil && !IsNil(o.Active) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) SetActive(v boo
 
 // GetAuthenticationStatus returns the AuthenticationStatus field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) GetAuthenticationStatus() string {
-	if o == nil || isNil(o.AuthenticationStatus) {
+	if o == nil || IsNil(o.AuthenticationStatus) {
 		var ret string
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) GetAuthenticati
 // GetAuthenticationStatusOk returns a tuple with the AuthenticationStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) GetAuthenticationStatusOk() (*string, bool) {
-	if o == nil || isNil(o.AuthenticationStatus) {
-    return nil, false
+	if o == nil || IsNil(o.AuthenticationStatus) {
+		return nil, false
 	}
 	return o.AuthenticationStatus, true
 }
 
 // HasAuthenticationStatus returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) HasAuthenticationStatus() bool {
-	if o != nil && !isNil(o.AuthenticationStatus) {
+	if o != nil && !IsNil(o.AuthenticationStatus) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) SetAuthenticati
 
 // GetConfigOverrides returns the ConfigOverrides field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) GetConfigOverrides() GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides {
-	if o == nil || isNil(o.ConfigOverrides) {
+	if o == nil || IsNil(o.ConfigOverrides) {
 		var ret GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides
 		return ret
 	}
@@ -150,15 +153,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) GetConfigOverri
 // GetConfigOverridesOk returns a tuple with the ConfigOverrides field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) GetConfigOverridesOk() (*GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides, bool) {
-	if o == nil || isNil(o.ConfigOverrides) {
-    return nil, false
+	if o == nil || IsNil(o.ConfigOverrides) {
+		return nil, false
 	}
 	return o.ConfigOverrides, true
 }
 
 // HasConfigOverrides returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) HasConfigOverrides() bool {
-	if o != nil && !isNil(o.ConfigOverrides) {
+	if o != nil && !IsNil(o.ConfigOverrides) {
 		return true
 	}
 
@@ -171,20 +174,28 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) SetConfigOverri
 }
 
 func (o GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.Active) {
-		toSerialize["active"] = o.Active
-	}
-	if !isNil(o.AuthenticationStatus) {
-		toSerialize["authenticationStatus"] = o.AuthenticationStatus
-	}
-	if !isNil(o.ConfigOverrides) {
-		toSerialize["configOverrides"] = o.ConfigOverrides
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Active) {
+		toSerialize["active"] = o.Active
+	}
+	if !IsNil(o.AuthenticationStatus) {
+		toSerialize["authenticationStatus"] = o.AuthenticationStatus
+	}
+	if !IsNil(o.ConfigOverrides) {
+		toSerialize["configOverrides"] = o.ConfigOverrides
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceSwitchPortsStatuses200ResponseInnerSecurePort struct {

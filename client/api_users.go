@@ -13,7 +13,7 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -68,8 +68,8 @@ func (a *UsersApiService) DeleteOrganizationUserExecute(r UsersApiDeleteOrganiza
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/users/{userId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterToString(r.userId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -116,9 +116,9 @@ func (a *UsersApiService) DeleteOrganizationUserExecute(r UsersApiDeleteOrganiza
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -180,8 +180,8 @@ func (a *UsersApiService) GetNetworkSmUserDeviceProfilesExecute(r UsersApiGetNet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/users/{userId}/deviceProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterToString(r.userId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -228,9 +228,9 @@ func (a *UsersApiService) GetNetworkSmUserDeviceProfilesExecute(r UsersApiGetNet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -301,8 +301,8 @@ func (a *UsersApiService) GetNetworkSmUserSoftwaresExecute(r UsersApiGetNetworkS
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/users/{userId}/softwares"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterToString(r.userId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -349,9 +349,9 @@ func (a *UsersApiService) GetNetworkSmUserSoftwaresExecute(r UsersApiGetNetworkS
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -447,7 +447,7 @@ func (a *UsersApiService) GetNetworkSmUsersExecute(r UsersApiGetNetworkSmUsersRe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/users"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -458,10 +458,10 @@ func (a *UsersApiService) GetNetworkSmUsersExecute(r UsersApiGetNetworkSmUsersRe
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("ids", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "ids", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("ids", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "ids", t, "multi")
 		}
 	}
 	if r.usernames != nil {
@@ -469,10 +469,10 @@ func (a *UsersApiService) GetNetworkSmUsersExecute(r UsersApiGetNetworkSmUsersRe
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("usernames", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "usernames", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("usernames", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "usernames", t, "multi")
 		}
 	}
 	if r.emails != nil {
@@ -480,10 +480,10 @@ func (a *UsersApiService) GetNetworkSmUsersExecute(r UsersApiGetNetworkSmUsersRe
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("emails", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "emails", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("emails", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "emails", t, "multi")
 		}
 	}
 	if r.scope != nil {
@@ -491,10 +491,10 @@ func (a *UsersApiService) GetNetworkSmUsersExecute(r UsersApiGetNetworkSmUsersRe
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("scope", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "scope", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("scope", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "scope", t, "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -538,9 +538,9 @@ func (a *UsersApiService) GetNetworkSmUsersExecute(r UsersApiGetNetworkSmUsersRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

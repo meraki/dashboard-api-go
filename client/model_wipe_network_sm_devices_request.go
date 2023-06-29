@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the WipeNetworkSmDevicesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &WipeNetworkSmDevicesRequest{}
+
 // WipeNetworkSmDevicesRequest struct for WipeNetworkSmDevicesRequest
 type WipeNetworkSmDevicesRequest struct {
 	// The wifiMac of the device to be wiped.
@@ -45,7 +48,7 @@ func NewWipeNetworkSmDevicesRequestWithDefaults() *WipeNetworkSmDevicesRequest {
 
 // GetWifiMac returns the WifiMac field value if set, zero value otherwise.
 func (o *WipeNetworkSmDevicesRequest) GetWifiMac() string {
-	if o == nil || isNil(o.WifiMac) {
+	if o == nil || IsNil(o.WifiMac) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *WipeNetworkSmDevicesRequest) GetWifiMac() string {
 // GetWifiMacOk returns a tuple with the WifiMac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WipeNetworkSmDevicesRequest) GetWifiMacOk() (*string, bool) {
-	if o == nil || isNil(o.WifiMac) {
-    return nil, false
+	if o == nil || IsNil(o.WifiMac) {
+		return nil, false
 	}
 	return o.WifiMac, true
 }
 
 // HasWifiMac returns a boolean if a field has been set.
 func (o *WipeNetworkSmDevicesRequest) HasWifiMac() bool {
-	if o != nil && !isNil(o.WifiMac) {
+	if o != nil && !IsNil(o.WifiMac) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *WipeNetworkSmDevicesRequest) SetWifiMac(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *WipeNetworkSmDevicesRequest) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *WipeNetworkSmDevicesRequest) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WipeNetworkSmDevicesRequest) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *WipeNetworkSmDevicesRequest) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *WipeNetworkSmDevicesRequest) SetId(v string) {
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *WipeNetworkSmDevicesRequest) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *WipeNetworkSmDevicesRequest) GetSerial() string {
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WipeNetworkSmDevicesRequest) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *WipeNetworkSmDevicesRequest) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *WipeNetworkSmDevicesRequest) SetSerial(v string) {
 
 // GetPin returns the Pin field value if set, zero value otherwise.
 func (o *WipeNetworkSmDevicesRequest) GetPin() int32 {
-	if o == nil || isNil(o.Pin) {
+	if o == nil || IsNil(o.Pin) {
 		var ret int32
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *WipeNetworkSmDevicesRequest) GetPin() int32 {
 // GetPinOk returns a tuple with the Pin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WipeNetworkSmDevicesRequest) GetPinOk() (*int32, bool) {
-	if o == nil || isNil(o.Pin) {
-    return nil, false
+	if o == nil || IsNil(o.Pin) {
+		return nil, false
 	}
 	return o.Pin, true
 }
 
 // HasPin returns a boolean if a field has been set.
 func (o *WipeNetworkSmDevicesRequest) HasPin() bool {
-	if o != nil && !isNil(o.Pin) {
+	if o != nil && !IsNil(o.Pin) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *WipeNetworkSmDevicesRequest) SetPin(v int32) {
 }
 
 func (o WipeNetworkSmDevicesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.WifiMac) {
-		toSerialize["wifiMac"] = o.WifiMac
-	}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Pin) {
-		toSerialize["pin"] = o.Pin
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o WipeNetworkSmDevicesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.WifiMac) {
+		toSerialize["wifiMac"] = o.WifiMac
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.Pin) {
+		toSerialize["pin"] = o.Pin
+	}
+	return toSerialize, nil
 }
 
 type NullableWipeNetworkSmDevicesRequest struct {

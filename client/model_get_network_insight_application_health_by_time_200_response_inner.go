@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkInsightApplicationHealthByTime200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkInsightApplicationHealthByTime200ResponseInner{}
+
 // GetNetworkInsightApplicationHealthByTime200ResponseInner struct for GetNetworkInsightApplicationHealthByTime200ResponseInner
 type GetNetworkInsightApplicationHealthByTime200ResponseInner struct {
 	// The start time of the query range
@@ -62,7 +65,7 @@ func NewGetNetworkInsightApplicationHealthByTime200ResponseInnerWithDefaults() *
 
 // GetStartTs returns the StartTs field value if set, zero value otherwise.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetStartTs() time.Time {
-	if o == nil || isNil(o.StartTs) {
+	if o == nil || IsNil(o.StartTs) {
 		var ret time.Time
 		return ret
 	}
@@ -72,15 +75,15 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetStartTs() 
 // GetStartTsOk returns a tuple with the StartTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetStartTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartTs) {
-    return nil, false
+	if o == nil || IsNil(o.StartTs) {
+		return nil, false
 	}
 	return o.StartTs, true
 }
 
 // HasStartTs returns a boolean if a field has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) HasStartTs() bool {
-	if o != nil && !isNil(o.StartTs) {
+	if o != nil && !IsNil(o.StartTs) {
 		return true
 	}
 
@@ -94,7 +97,7 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) SetStartTs(v 
 
 // GetEndTs returns the EndTs field value if set, zero value otherwise.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetEndTs() time.Time {
-	if o == nil || isNil(o.EndTs) {
+	if o == nil || IsNil(o.EndTs) {
 		var ret time.Time
 		return ret
 	}
@@ -104,15 +107,15 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetEndTs() ti
 // GetEndTsOk returns a tuple with the EndTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetEndTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.EndTs) {
-    return nil, false
+	if o == nil || IsNil(o.EndTs) {
+		return nil, false
 	}
 	return o.EndTs, true
 }
 
 // HasEndTs returns a boolean if a field has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) HasEndTs() bool {
-	if o != nil && !isNil(o.EndTs) {
+	if o != nil && !IsNil(o.EndTs) {
 		return true
 	}
 
@@ -126,7 +129,7 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) SetEndTs(v ti
 
 // GetWanGoodput returns the WanGoodput field value if set, zero value otherwise.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetWanGoodput() int32 {
-	if o == nil || isNil(o.WanGoodput) {
+	if o == nil || IsNil(o.WanGoodput) {
 		var ret int32
 		return ret
 	}
@@ -136,15 +139,15 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetWanGoodput
 // GetWanGoodputOk returns a tuple with the WanGoodput field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetWanGoodputOk() (*int32, bool) {
-	if o == nil || isNil(o.WanGoodput) {
-    return nil, false
+	if o == nil || IsNil(o.WanGoodput) {
+		return nil, false
 	}
 	return o.WanGoodput, true
 }
 
 // HasWanGoodput returns a boolean if a field has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) HasWanGoodput() bool {
-	if o != nil && !isNil(o.WanGoodput) {
+	if o != nil && !IsNil(o.WanGoodput) {
 		return true
 	}
 
@@ -158,7 +161,7 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) SetWanGoodput
 
 // GetLanGoodput returns the LanGoodput field value if set, zero value otherwise.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetLanGoodput() int32 {
-	if o == nil || isNil(o.LanGoodput) {
+	if o == nil || IsNil(o.LanGoodput) {
 		var ret int32
 		return ret
 	}
@@ -168,15 +171,15 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetLanGoodput
 // GetLanGoodputOk returns a tuple with the LanGoodput field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetLanGoodputOk() (*int32, bool) {
-	if o == nil || isNil(o.LanGoodput) {
-    return nil, false
+	if o == nil || IsNil(o.LanGoodput) {
+		return nil, false
 	}
 	return o.LanGoodput, true
 }
 
 // HasLanGoodput returns a boolean if a field has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) HasLanGoodput() bool {
-	if o != nil && !isNil(o.LanGoodput) {
+	if o != nil && !IsNil(o.LanGoodput) {
 		return true
 	}
 
@@ -190,7 +193,7 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) SetLanGoodput
 
 // GetWanLatencyMs returns the WanLatencyMs field value if set, zero value otherwise.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetWanLatencyMs() float32 {
-	if o == nil || isNil(o.WanLatencyMs) {
+	if o == nil || IsNil(o.WanLatencyMs) {
 		var ret float32
 		return ret
 	}
@@ -200,15 +203,15 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetWanLatency
 // GetWanLatencyMsOk returns a tuple with the WanLatencyMs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetWanLatencyMsOk() (*float32, bool) {
-	if o == nil || isNil(o.WanLatencyMs) {
-    return nil, false
+	if o == nil || IsNil(o.WanLatencyMs) {
+		return nil, false
 	}
 	return o.WanLatencyMs, true
 }
 
 // HasWanLatencyMs returns a boolean if a field has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) HasWanLatencyMs() bool {
-	if o != nil && !isNil(o.WanLatencyMs) {
+	if o != nil && !IsNil(o.WanLatencyMs) {
 		return true
 	}
 
@@ -222,7 +225,7 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) SetWanLatency
 
 // GetLanLatencyMs returns the LanLatencyMs field value if set, zero value otherwise.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetLanLatencyMs() float32 {
-	if o == nil || isNil(o.LanLatencyMs) {
+	if o == nil || IsNil(o.LanLatencyMs) {
 		var ret float32
 		return ret
 	}
@@ -232,15 +235,15 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetLanLatency
 // GetLanLatencyMsOk returns a tuple with the LanLatencyMs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetLanLatencyMsOk() (*float32, bool) {
-	if o == nil || isNil(o.LanLatencyMs) {
-    return nil, false
+	if o == nil || IsNil(o.LanLatencyMs) {
+		return nil, false
 	}
 	return o.LanLatencyMs, true
 }
 
 // HasLanLatencyMs returns a boolean if a field has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) HasLanLatencyMs() bool {
-	if o != nil && !isNil(o.LanLatencyMs) {
+	if o != nil && !IsNil(o.LanLatencyMs) {
 		return true
 	}
 
@@ -254,7 +257,7 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) SetLanLatency
 
 // GetWanLossPercent returns the WanLossPercent field value if set, zero value otherwise.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetWanLossPercent() float32 {
-	if o == nil || isNil(o.WanLossPercent) {
+	if o == nil || IsNil(o.WanLossPercent) {
 		var ret float32
 		return ret
 	}
@@ -264,15 +267,15 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetWanLossPer
 // GetWanLossPercentOk returns a tuple with the WanLossPercent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetWanLossPercentOk() (*float32, bool) {
-	if o == nil || isNil(o.WanLossPercent) {
-    return nil, false
+	if o == nil || IsNil(o.WanLossPercent) {
+		return nil, false
 	}
 	return o.WanLossPercent, true
 }
 
 // HasWanLossPercent returns a boolean if a field has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) HasWanLossPercent() bool {
-	if o != nil && !isNil(o.WanLossPercent) {
+	if o != nil && !IsNil(o.WanLossPercent) {
 		return true
 	}
 
@@ -286,7 +289,7 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) SetWanLossPer
 
 // GetLanLossPercent returns the LanLossPercent field value if set, zero value otherwise.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetLanLossPercent() float32 {
-	if o == nil || isNil(o.LanLossPercent) {
+	if o == nil || IsNil(o.LanLossPercent) {
 		var ret float32
 		return ret
 	}
@@ -296,15 +299,15 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetLanLossPer
 // GetLanLossPercentOk returns a tuple with the LanLossPercent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetLanLossPercentOk() (*float32, bool) {
-	if o == nil || isNil(o.LanLossPercent) {
-    return nil, false
+	if o == nil || IsNil(o.LanLossPercent) {
+		return nil, false
 	}
 	return o.LanLossPercent, true
 }
 
 // HasLanLossPercent returns a boolean if a field has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) HasLanLossPercent() bool {
-	if o != nil && !isNil(o.LanLossPercent) {
+	if o != nil && !IsNil(o.LanLossPercent) {
 		return true
 	}
 
@@ -318,7 +321,7 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) SetLanLossPer
 
 // GetResponseDuration returns the ResponseDuration field value if set, zero value otherwise.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetResponseDuration() int32 {
-	if o == nil || isNil(o.ResponseDuration) {
+	if o == nil || IsNil(o.ResponseDuration) {
 		var ret int32
 		return ret
 	}
@@ -328,15 +331,15 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetResponseDu
 // GetResponseDurationOk returns a tuple with the ResponseDuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetResponseDurationOk() (*int32, bool) {
-	if o == nil || isNil(o.ResponseDuration) {
-    return nil, false
+	if o == nil || IsNil(o.ResponseDuration) {
+		return nil, false
 	}
 	return o.ResponseDuration, true
 }
 
 // HasResponseDuration returns a boolean if a field has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) HasResponseDuration() bool {
-	if o != nil && !isNil(o.ResponseDuration) {
+	if o != nil && !IsNil(o.ResponseDuration) {
 		return true
 	}
 
@@ -350,7 +353,7 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) SetResponseDu
 
 // GetSent returns the Sent field value if set, zero value otherwise.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetSent() int32 {
-	if o == nil || isNil(o.Sent) {
+	if o == nil || IsNil(o.Sent) {
 		var ret int32
 		return ret
 	}
@@ -360,15 +363,15 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetSent() int
 // GetSentOk returns a tuple with the Sent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetSentOk() (*int32, bool) {
-	if o == nil || isNil(o.Sent) {
-    return nil, false
+	if o == nil || IsNil(o.Sent) {
+		return nil, false
 	}
 	return o.Sent, true
 }
 
 // HasSent returns a boolean if a field has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) HasSent() bool {
-	if o != nil && !isNil(o.Sent) {
+	if o != nil && !IsNil(o.Sent) {
 		return true
 	}
 
@@ -382,7 +385,7 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) SetSent(v int
 
 // GetRecv returns the Recv field value if set, zero value otherwise.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetRecv() int32 {
-	if o == nil || isNil(o.Recv) {
+	if o == nil || IsNil(o.Recv) {
 		var ret int32
 		return ret
 	}
@@ -392,15 +395,15 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetRecv() int
 // GetRecvOk returns a tuple with the Recv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetRecvOk() (*int32, bool) {
-	if o == nil || isNil(o.Recv) {
-    return nil, false
+	if o == nil || IsNil(o.Recv) {
+		return nil, false
 	}
 	return o.Recv, true
 }
 
 // HasRecv returns a boolean if a field has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) HasRecv() bool {
-	if o != nil && !isNil(o.Recv) {
+	if o != nil && !IsNil(o.Recv) {
 		return true
 	}
 
@@ -414,7 +417,7 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) SetRecv(v int
 
 // GetNumClients returns the NumClients field value if set, zero value otherwise.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetNumClients() int32 {
-	if o == nil || isNil(o.NumClients) {
+	if o == nil || IsNil(o.NumClients) {
 		var ret int32
 		return ret
 	}
@@ -424,15 +427,15 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetNumClients
 // GetNumClientsOk returns a tuple with the NumClients field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) GetNumClientsOk() (*int32, bool) {
-	if o == nil || isNil(o.NumClients) {
-    return nil, false
+	if o == nil || IsNil(o.NumClients) {
+		return nil, false
 	}
 	return o.NumClients, true
 }
 
 // HasNumClients returns a boolean if a field has been set.
 func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) HasNumClients() bool {
-	if o != nil && !isNil(o.NumClients) {
+	if o != nil && !IsNil(o.NumClients) {
 		return true
 	}
 
@@ -445,44 +448,52 @@ func (o *GetNetworkInsightApplicationHealthByTime200ResponseInner) SetNumClients
 }
 
 func (o GetNetworkInsightApplicationHealthByTime200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.StartTs) {
-		toSerialize["startTs"] = o.StartTs
-	}
-	if !isNil(o.EndTs) {
-		toSerialize["endTs"] = o.EndTs
-	}
-	if !isNil(o.WanGoodput) {
-		toSerialize["wanGoodput"] = o.WanGoodput
-	}
-	if !isNil(o.LanGoodput) {
-		toSerialize["lanGoodput"] = o.LanGoodput
-	}
-	if !isNil(o.WanLatencyMs) {
-		toSerialize["wanLatencyMs"] = o.WanLatencyMs
-	}
-	if !isNil(o.LanLatencyMs) {
-		toSerialize["lanLatencyMs"] = o.LanLatencyMs
-	}
-	if !isNil(o.WanLossPercent) {
-		toSerialize["wanLossPercent"] = o.WanLossPercent
-	}
-	if !isNil(o.LanLossPercent) {
-		toSerialize["lanLossPercent"] = o.LanLossPercent
-	}
-	if !isNil(o.ResponseDuration) {
-		toSerialize["responseDuration"] = o.ResponseDuration
-	}
-	if !isNil(o.Sent) {
-		toSerialize["sent"] = o.Sent
-	}
-	if !isNil(o.Recv) {
-		toSerialize["recv"] = o.Recv
-	}
-	if !isNil(o.NumClients) {
-		toSerialize["numClients"] = o.NumClients
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkInsightApplicationHealthByTime200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.StartTs) {
+		toSerialize["startTs"] = o.StartTs
+	}
+	if !IsNil(o.EndTs) {
+		toSerialize["endTs"] = o.EndTs
+	}
+	if !IsNil(o.WanGoodput) {
+		toSerialize["wanGoodput"] = o.WanGoodput
+	}
+	if !IsNil(o.LanGoodput) {
+		toSerialize["lanGoodput"] = o.LanGoodput
+	}
+	if !IsNil(o.WanLatencyMs) {
+		toSerialize["wanLatencyMs"] = o.WanLatencyMs
+	}
+	if !IsNil(o.LanLatencyMs) {
+		toSerialize["lanLatencyMs"] = o.LanLatencyMs
+	}
+	if !IsNil(o.WanLossPercent) {
+		toSerialize["wanLossPercent"] = o.WanLossPercent
+	}
+	if !IsNil(o.LanLossPercent) {
+		toSerialize["lanLossPercent"] = o.LanLossPercent
+	}
+	if !IsNil(o.ResponseDuration) {
+		toSerialize["responseDuration"] = o.ResponseDuration
+	}
+	if !IsNil(o.Sent) {
+		toSerialize["sent"] = o.Sent
+	}
+	if !IsNil(o.Recv) {
+		toSerialize["recv"] = o.Recv
+	}
+	if !IsNil(o.NumClients) {
+		toSerialize["numClients"] = o.NumClients
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkInsightApplicationHealthByTime200ResponseInner struct {

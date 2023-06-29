@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizations200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizations200ResponseInner{}
+
 // GetOrganizations200ResponseInner struct for GetOrganizations200ResponseInner
 type GetOrganizations200ResponseInner struct {
 	// Organization ID
@@ -47,7 +50,7 @@ func NewGetOrganizations200ResponseInnerWithDefaults() *GetOrganizations200Respo
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetOrganizations200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *GetOrganizations200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizations200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetOrganizations200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *GetOrganizations200ResponseInner) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizations200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *GetOrganizations200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizations200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizations200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *GetOrganizations200ResponseInner) SetName(v string) {
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *GetOrganizations200ResponseInner) GetUrl() string {
-	if o == nil || isNil(o.Url) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *GetOrganizations200ResponseInner) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizations200ResponseInner) GetUrlOk() (*string, bool) {
-	if o == nil || isNil(o.Url) {
-    return nil, false
+	if o == nil || IsNil(o.Url) {
+		return nil, false
 	}
 	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *GetOrganizations200ResponseInner) HasUrl() bool {
-	if o != nil && !isNil(o.Url) {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *GetOrganizations200ResponseInner) SetUrl(v string) {
 
 // GetApi returns the Api field value if set, zero value otherwise.
 func (o *GetOrganizations200ResponseInner) GetApi() GetOrganizations200ResponseInnerApi {
-	if o == nil || isNil(o.Api) {
+	if o == nil || IsNil(o.Api) {
 		var ret GetOrganizations200ResponseInnerApi
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *GetOrganizations200ResponseInner) GetApi() GetOrganizations200ResponseI
 // GetApiOk returns a tuple with the Api field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizations200ResponseInner) GetApiOk() (*GetOrganizations200ResponseInnerApi, bool) {
-	if o == nil || isNil(o.Api) {
-    return nil, false
+	if o == nil || IsNil(o.Api) {
+		return nil, false
 	}
 	return o.Api, true
 }
 
 // HasApi returns a boolean if a field has been set.
 func (o *GetOrganizations200ResponseInner) HasApi() bool {
-	if o != nil && !isNil(o.Api) {
+	if o != nil && !IsNil(o.Api) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *GetOrganizations200ResponseInner) SetApi(v GetOrganizations200ResponseI
 
 // GetLicensing returns the Licensing field value if set, zero value otherwise.
 func (o *GetOrganizations200ResponseInner) GetLicensing() GetOrganizations200ResponseInnerLicensing {
-	if o == nil || isNil(o.Licensing) {
+	if o == nil || IsNil(o.Licensing) {
 		var ret GetOrganizations200ResponseInnerLicensing
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *GetOrganizations200ResponseInner) GetLicensing() GetOrganizations200Res
 // GetLicensingOk returns a tuple with the Licensing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizations200ResponseInner) GetLicensingOk() (*GetOrganizations200ResponseInnerLicensing, bool) {
-	if o == nil || isNil(o.Licensing) {
-    return nil, false
+	if o == nil || IsNil(o.Licensing) {
+		return nil, false
 	}
 	return o.Licensing, true
 }
 
 // HasLicensing returns a boolean if a field has been set.
 func (o *GetOrganizations200ResponseInner) HasLicensing() bool {
-	if o != nil && !isNil(o.Licensing) {
+	if o != nil && !IsNil(o.Licensing) {
 		return true
 	}
 
@@ -207,7 +210,7 @@ func (o *GetOrganizations200ResponseInner) SetLicensing(v GetOrganizations200Res
 
 // GetCloud returns the Cloud field value if set, zero value otherwise.
 func (o *GetOrganizations200ResponseInner) GetCloud() GetOrganizations200ResponseInnerCloud {
-	if o == nil || isNil(o.Cloud) {
+	if o == nil || IsNil(o.Cloud) {
 		var ret GetOrganizations200ResponseInnerCloud
 		return ret
 	}
@@ -217,15 +220,15 @@ func (o *GetOrganizations200ResponseInner) GetCloud() GetOrganizations200Respons
 // GetCloudOk returns a tuple with the Cloud field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizations200ResponseInner) GetCloudOk() (*GetOrganizations200ResponseInnerCloud, bool) {
-	if o == nil || isNil(o.Cloud) {
-    return nil, false
+	if o == nil || IsNil(o.Cloud) {
+		return nil, false
 	}
 	return o.Cloud, true
 }
 
 // HasCloud returns a boolean if a field has been set.
 func (o *GetOrganizations200ResponseInner) HasCloud() bool {
-	if o != nil && !isNil(o.Cloud) {
+	if o != nil && !IsNil(o.Cloud) {
 		return true
 	}
 
@@ -239,7 +242,7 @@ func (o *GetOrganizations200ResponseInner) SetCloud(v GetOrganizations200Respons
 
 // GetManagement returns the Management field value if set, zero value otherwise.
 func (o *GetOrganizations200ResponseInner) GetManagement() GetOrganizations200ResponseInnerManagement {
-	if o == nil || isNil(o.Management) {
+	if o == nil || IsNil(o.Management) {
 		var ret GetOrganizations200ResponseInnerManagement
 		return ret
 	}
@@ -249,15 +252,15 @@ func (o *GetOrganizations200ResponseInner) GetManagement() GetOrganizations200Re
 // GetManagementOk returns a tuple with the Management field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizations200ResponseInner) GetManagementOk() (*GetOrganizations200ResponseInnerManagement, bool) {
-	if o == nil || isNil(o.Management) {
-    return nil, false
+	if o == nil || IsNil(o.Management) {
+		return nil, false
 	}
 	return o.Management, true
 }
 
 // HasManagement returns a boolean if a field has been set.
 func (o *GetOrganizations200ResponseInner) HasManagement() bool {
-	if o != nil && !isNil(o.Management) {
+	if o != nil && !IsNil(o.Management) {
 		return true
 	}
 
@@ -270,29 +273,37 @@ func (o *GetOrganizations200ResponseInner) SetManagement(v GetOrganizations200Re
 }
 
 func (o GetOrganizations200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Url) {
-		toSerialize["url"] = o.Url
-	}
-	if !isNil(o.Api) {
-		toSerialize["api"] = o.Api
-	}
-	if !isNil(o.Licensing) {
-		toSerialize["licensing"] = o.Licensing
-	}
-	if !isNil(o.Cloud) {
-		toSerialize["cloud"] = o.Cloud
-	}
-	if !isNil(o.Management) {
-		toSerialize["management"] = o.Management
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizations200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.Api) {
+		toSerialize["api"] = o.Api
+	}
+	if !IsNil(o.Licensing) {
+		toSerialize["licensing"] = o.Licensing
+	}
+	if !IsNil(o.Cloud) {
+		toSerialize["cloud"] = o.Cloud
+	}
+	if !IsNil(o.Management) {
+		toSerialize["management"] = o.Management
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizations200ResponseInner struct {

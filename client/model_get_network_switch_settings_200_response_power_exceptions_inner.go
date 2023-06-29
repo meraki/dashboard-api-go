@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchSettings200ResponsePowerExceptionsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchSettings200ResponsePowerExceptionsInner{}
+
 // GetNetworkSwitchSettings200ResponsePowerExceptionsInner struct for GetNetworkSwitchSettings200ResponsePowerExceptionsInner
 type GetNetworkSwitchSettings200ResponsePowerExceptionsInner struct {
 	// Serial number of the switch
@@ -41,7 +44,7 @@ func NewGetNetworkSwitchSettings200ResponsePowerExceptionsInnerWithDefaults() *G
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetNetworkSwitchSettings200ResponsePowerExceptionsInner) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkSwitchSettings200ResponsePowerExceptionsInner) GetSerial() st
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchSettings200ResponsePowerExceptionsInner) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetNetworkSwitchSettings200ResponsePowerExceptionsInner) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkSwitchSettings200ResponsePowerExceptionsInner) SetSerial(v st
 
 // GetPowerType returns the PowerType field value if set, zero value otherwise.
 func (o *GetNetworkSwitchSettings200ResponsePowerExceptionsInner) GetPowerType() string {
-	if o == nil || isNil(o.PowerType) {
+	if o == nil || IsNil(o.PowerType) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkSwitchSettings200ResponsePowerExceptionsInner) GetPowerType()
 // GetPowerTypeOk returns a tuple with the PowerType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchSettings200ResponsePowerExceptionsInner) GetPowerTypeOk() (*string, bool) {
-	if o == nil || isNil(o.PowerType) {
-    return nil, false
+	if o == nil || IsNil(o.PowerType) {
+		return nil, false
 	}
 	return o.PowerType, true
 }
 
 // HasPowerType returns a boolean if a field has been set.
 func (o *GetNetworkSwitchSettings200ResponsePowerExceptionsInner) HasPowerType() bool {
-	if o != nil && !isNil(o.PowerType) {
+	if o != nil && !IsNil(o.PowerType) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkSwitchSettings200ResponsePowerExceptionsInner) SetPowerType(v
 }
 
 func (o GetNetworkSwitchSettings200ResponsePowerExceptionsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.PowerType) {
-		toSerialize["powerType"] = o.PowerType
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchSettings200ResponsePowerExceptionsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.PowerType) {
+		toSerialize["powerType"] = o.PowerType
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchSettings200ResponsePowerExceptionsInner struct {

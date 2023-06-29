@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner{}
+
 // GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner struct for GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner
 type GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner struct {
 	// Static delegated prefix id.
@@ -49,7 +52,7 @@ func NewGetNetworkAppliancePrefixesDelegatedStatics200ResponseInnerWithDefaults(
 
 // GetStaticDelegatedPrefixId returns the StaticDelegatedPrefixId field value if set, zero value otherwise.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetStaticDelegatedPrefixId() string {
-	if o == nil || isNil(o.StaticDelegatedPrefixId) {
+	if o == nil || IsNil(o.StaticDelegatedPrefixId) {
 		var ret string
 		return ret
 	}
@@ -59,15 +62,15 @@ func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetStaticD
 // GetStaticDelegatedPrefixIdOk returns a tuple with the StaticDelegatedPrefixId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetStaticDelegatedPrefixIdOk() (*string, bool) {
-	if o == nil || isNil(o.StaticDelegatedPrefixId) {
-    return nil, false
+	if o == nil || IsNil(o.StaticDelegatedPrefixId) {
+		return nil, false
 	}
 	return o.StaticDelegatedPrefixId, true
 }
 
 // HasStaticDelegatedPrefixId returns a boolean if a field has been set.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) HasStaticDelegatedPrefixId() bool {
-	if o != nil && !isNil(o.StaticDelegatedPrefixId) {
+	if o != nil && !IsNil(o.StaticDelegatedPrefixId) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) SetStaticD
 
 // GetPrefix returns the Prefix field value if set, zero value otherwise.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetPrefix() string {
-	if o == nil || isNil(o.Prefix) {
+	if o == nil || IsNil(o.Prefix) {
 		var ret string
 		return ret
 	}
@@ -91,15 +94,15 @@ func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetPrefix(
 // GetPrefixOk returns a tuple with the Prefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetPrefixOk() (*string, bool) {
-	if o == nil || isNil(o.Prefix) {
-    return nil, false
+	if o == nil || IsNil(o.Prefix) {
+		return nil, false
 	}
 	return o.Prefix, true
 }
 
 // HasPrefix returns a boolean if a field has been set.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) HasPrefix() bool {
-	if o != nil && !isNil(o.Prefix) {
+	if o != nil && !IsNil(o.Prefix) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) SetPrefix(
 
 // GetOrigin returns the Origin field value if set, zero value otherwise.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetOrigin() GetNetworkAppliancePrefixesDelegatedStatics200ResponseInnerOrigin {
-	if o == nil || isNil(o.Origin) {
+	if o == nil || IsNil(o.Origin) {
 		var ret GetNetworkAppliancePrefixesDelegatedStatics200ResponseInnerOrigin
 		return ret
 	}
@@ -123,15 +126,15 @@ func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetOrigin(
 // GetOriginOk returns a tuple with the Origin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetOriginOk() (*GetNetworkAppliancePrefixesDelegatedStatics200ResponseInnerOrigin, bool) {
-	if o == nil || isNil(o.Origin) {
-    return nil, false
+	if o == nil || IsNil(o.Origin) {
+		return nil, false
 	}
 	return o.Origin, true
 }
 
 // HasOrigin returns a boolean if a field has been set.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) HasOrigin() bool {
-	if o != nil && !isNil(o.Origin) {
+	if o != nil && !IsNil(o.Origin) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) SetOrigin(
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -155,15 +158,15 @@ func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetDescrip
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
-    return nil, false
+	if o == nil || IsNil(o.Description) {
+		return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) SetDescrip
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -187,15 +190,15 @@ func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetCreated
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) SetCreated
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -219,15 +222,15 @@ func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetUpdated
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -240,26 +243,34 @@ func (o *GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) SetUpdated
 }
 
 func (o GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.StaticDelegatedPrefixId) {
-		toSerialize["staticDelegatedPrefixId"] = o.StaticDelegatedPrefixId
-	}
-	if !isNil(o.Prefix) {
-		toSerialize["prefix"] = o.Prefix
-	}
-	if !isNil(o.Origin) {
-		toSerialize["origin"] = o.Origin
-	}
-	if !isNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	if !isNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if !isNil(o.UpdatedAt) {
-		toSerialize["updatedAt"] = o.UpdatedAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkAppliancePrefixesDelegatedStatics200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.StaticDelegatedPrefixId) {
+		toSerialize["staticDelegatedPrefixId"] = o.StaticDelegatedPrefixId
+	}
+	if !IsNil(o.Prefix) {
+		toSerialize["prefix"] = o.Prefix
+	}
+	if !IsNil(o.Origin) {
+		toSerialize["origin"] = o.Origin
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updatedAt"] = o.UpdatedAt
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkAppliancePrefixesDelegatedStatics200ResponseInner struct {

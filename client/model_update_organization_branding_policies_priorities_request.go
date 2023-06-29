@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationBrandingPoliciesPrioritiesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationBrandingPoliciesPrioritiesRequest{}
+
 // UpdateOrganizationBrandingPoliciesPrioritiesRequest struct for UpdateOrganizationBrandingPoliciesPrioritiesRequest
 type UpdateOrganizationBrandingPoliciesPrioritiesRequest struct {
 	//       An ordered list of branding policy IDs that determines the priority order of how to apply the policies 
@@ -39,7 +42,7 @@ func NewUpdateOrganizationBrandingPoliciesPrioritiesRequestWithDefaults() *Updat
 
 // GetBrandingPolicyIds returns the BrandingPolicyIds field value if set, zero value otherwise.
 func (o *UpdateOrganizationBrandingPoliciesPrioritiesRequest) GetBrandingPolicyIds() []string {
-	if o == nil || isNil(o.BrandingPolicyIds) {
+	if o == nil || IsNil(o.BrandingPolicyIds) {
 		var ret []string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateOrganizationBrandingPoliciesPrioritiesRequest) GetBrandingPolicyI
 // GetBrandingPolicyIdsOk returns a tuple with the BrandingPolicyIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationBrandingPoliciesPrioritiesRequest) GetBrandingPolicyIdsOk() ([]string, bool) {
-	if o == nil || isNil(o.BrandingPolicyIds) {
-    return nil, false
+	if o == nil || IsNil(o.BrandingPolicyIds) {
+		return nil, false
 	}
 	return o.BrandingPolicyIds, true
 }
 
 // HasBrandingPolicyIds returns a boolean if a field has been set.
 func (o *UpdateOrganizationBrandingPoliciesPrioritiesRequest) HasBrandingPolicyIds() bool {
-	if o != nil && !isNil(o.BrandingPolicyIds) {
+	if o != nil && !IsNil(o.BrandingPolicyIds) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateOrganizationBrandingPoliciesPrioritiesRequest) SetBrandingPolicyI
 }
 
 func (o UpdateOrganizationBrandingPoliciesPrioritiesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.BrandingPolicyIds) {
-		toSerialize["brandingPolicyIds"] = o.BrandingPolicyIds
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationBrandingPoliciesPrioritiesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BrandingPolicyIds) {
+		toSerialize["brandingPolicyIds"] = o.BrandingPolicyIds
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationBrandingPoliciesPrioritiesRequest struct {

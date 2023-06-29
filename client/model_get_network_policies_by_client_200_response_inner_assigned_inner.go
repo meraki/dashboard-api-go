@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkPoliciesByClient200ResponseInnerAssignedInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkPoliciesByClient200ResponseInnerAssignedInner{}
+
 // GetNetworkPoliciesByClient200ResponseInnerAssignedInner struct for GetNetworkPoliciesByClient200ResponseInnerAssignedInner
 type GetNetworkPoliciesByClient200ResponseInnerAssignedInner struct {
 	// name of policy
@@ -45,7 +48,7 @@ func NewGetNetworkPoliciesByClient200ResponseInnerAssignedInnerWithDefaults() *G
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) GetName() stri
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) SetName(v stri
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) GetType() stri
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) SetType(v stri
 
 // GetGroupPolicyId returns the GroupPolicyId field value if set, zero value otherwise.
 func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) GetGroupPolicyId() string {
-	if o == nil || isNil(o.GroupPolicyId) {
+	if o == nil || IsNil(o.GroupPolicyId) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) GetGroupPolicy
 // GetGroupPolicyIdOk returns a tuple with the GroupPolicyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) GetGroupPolicyIdOk() (*string, bool) {
-	if o == nil || isNil(o.GroupPolicyId) {
-    return nil, false
+	if o == nil || IsNil(o.GroupPolicyId) {
+		return nil, false
 	}
 	return o.GroupPolicyId, true
 }
 
 // HasGroupPolicyId returns a boolean if a field has been set.
 func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) HasGroupPolicyId() bool {
-	if o != nil && !isNil(o.GroupPolicyId) {
+	if o != nil && !IsNil(o.GroupPolicyId) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) SetGroupPolicy
 
 // GetSsid returns the Ssid field value if set, zero value otherwise.
 func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) GetSsid() []GetNetworkPoliciesByClient200ResponseInnerAssignedInnerSsidInner {
-	if o == nil || isNil(o.Ssid) {
+	if o == nil || IsNil(o.Ssid) {
 		var ret []GetNetworkPoliciesByClient200ResponseInnerAssignedInnerSsidInner
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) GetSsid() []Ge
 // GetSsidOk returns a tuple with the Ssid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) GetSsidOk() ([]GetNetworkPoliciesByClient200ResponseInnerAssignedInnerSsidInner, bool) {
-	if o == nil || isNil(o.Ssid) {
-    return nil, false
+	if o == nil || IsNil(o.Ssid) {
+		return nil, false
 	}
 	return o.Ssid, true
 }
 
 // HasSsid returns a boolean if a field has been set.
 func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) HasSsid() bool {
-	if o != nil && !isNil(o.Ssid) {
+	if o != nil && !IsNil(o.Ssid) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *GetNetworkPoliciesByClient200ResponseInnerAssignedInner) SetSsid(v []Ge
 }
 
 func (o GetNetworkPoliciesByClient200ResponseInnerAssignedInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.GroupPolicyId) {
-		toSerialize["groupPolicyId"] = o.GroupPolicyId
-	}
-	if !isNil(o.Ssid) {
-		toSerialize["ssid"] = o.Ssid
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkPoliciesByClient200ResponseInnerAssignedInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.GroupPolicyId) {
+		toSerialize["groupPolicyId"] = o.GroupPolicyId
+	}
+	if !IsNil(o.Ssid) {
+		toSerialize["ssid"] = o.Ssid
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkPoliciesByClient200ResponseInnerAssignedInner struct {

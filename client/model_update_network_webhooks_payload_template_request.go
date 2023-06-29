@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWebhooksPayloadTemplateRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWebhooksPayloadTemplateRequest{}
+
 // UpdateNetworkWebhooksPayloadTemplateRequest struct for UpdateNetworkWebhooksPayloadTemplateRequest
 type UpdateNetworkWebhooksPayloadTemplateRequest struct {
 	// The name of the template
@@ -47,7 +50,7 @@ func NewUpdateNetworkWebhooksPayloadTemplateRequestWithDefaults() *UpdateNetwork
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkWebhooksPayloadTemplateRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *UpdateNetworkWebhooksPayloadTemplateRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWebhooksPayloadTemplateRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkWebhooksPayloadTemplateRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *UpdateNetworkWebhooksPayloadTemplateRequest) SetName(v string) {
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *UpdateNetworkWebhooksPayloadTemplateRequest) GetBody() string {
-	if o == nil || isNil(o.Body) {
+	if o == nil || IsNil(o.Body) {
 		var ret string
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *UpdateNetworkWebhooksPayloadTemplateRequest) GetBody() string {
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWebhooksPayloadTemplateRequest) GetBodyOk() (*string, bool) {
-	if o == nil || isNil(o.Body) {
-    return nil, false
+	if o == nil || IsNil(o.Body) {
+		return nil, false
 	}
 	return o.Body, true
 }
 
 // HasBody returns a boolean if a field has been set.
 func (o *UpdateNetworkWebhooksPayloadTemplateRequest) HasBody() bool {
-	if o != nil && !isNil(o.Body) {
+	if o != nil && !IsNil(o.Body) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *UpdateNetworkWebhooksPayloadTemplateRequest) SetBody(v string) {
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
 func (o *UpdateNetworkWebhooksPayloadTemplateRequest) GetHeaders() []CreateNetworkWebhooksPayloadTemplateRequestHeadersInner {
-	if o == nil || isNil(o.Headers) {
+	if o == nil || IsNil(o.Headers) {
 		var ret []CreateNetworkWebhooksPayloadTemplateRequestHeadersInner
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *UpdateNetworkWebhooksPayloadTemplateRequest) GetHeaders() []CreateNetwo
 // GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWebhooksPayloadTemplateRequest) GetHeadersOk() ([]CreateNetworkWebhooksPayloadTemplateRequestHeadersInner, bool) {
-	if o == nil || isNil(o.Headers) {
-    return nil, false
+	if o == nil || IsNil(o.Headers) {
+		return nil, false
 	}
 	return o.Headers, true
 }
 
 // HasHeaders returns a boolean if a field has been set.
 func (o *UpdateNetworkWebhooksPayloadTemplateRequest) HasHeaders() bool {
-	if o != nil && !isNil(o.Headers) {
+	if o != nil && !IsNil(o.Headers) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *UpdateNetworkWebhooksPayloadTemplateRequest) SetHeaders(v []CreateNetwo
 
 // GetBodyFile returns the BodyFile field value if set, zero value otherwise.
 func (o *UpdateNetworkWebhooksPayloadTemplateRequest) GetBodyFile() string {
-	if o == nil || isNil(o.BodyFile) {
+	if o == nil || IsNil(o.BodyFile) {
 		var ret string
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *UpdateNetworkWebhooksPayloadTemplateRequest) GetBodyFile() string {
 // GetBodyFileOk returns a tuple with the BodyFile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWebhooksPayloadTemplateRequest) GetBodyFileOk() (*string, bool) {
-	if o == nil || isNil(o.BodyFile) {
-    return nil, false
+	if o == nil || IsNil(o.BodyFile) {
+		return nil, false
 	}
 	return o.BodyFile, true
 }
 
 // HasBodyFile returns a boolean if a field has been set.
 func (o *UpdateNetworkWebhooksPayloadTemplateRequest) HasBodyFile() bool {
-	if o != nil && !isNil(o.BodyFile) {
+	if o != nil && !IsNil(o.BodyFile) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *UpdateNetworkWebhooksPayloadTemplateRequest) SetBodyFile(v string) {
 
 // GetHeadersFile returns the HeadersFile field value if set, zero value otherwise.
 func (o *UpdateNetworkWebhooksPayloadTemplateRequest) GetHeadersFile() string {
-	if o == nil || isNil(o.HeadersFile) {
+	if o == nil || IsNil(o.HeadersFile) {
 		var ret string
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *UpdateNetworkWebhooksPayloadTemplateRequest) GetHeadersFile() string {
 // GetHeadersFileOk returns a tuple with the HeadersFile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWebhooksPayloadTemplateRequest) GetHeadersFileOk() (*string, bool) {
-	if o == nil || isNil(o.HeadersFile) {
-    return nil, false
+	if o == nil || IsNil(o.HeadersFile) {
+		return nil, false
 	}
 	return o.HeadersFile, true
 }
 
 // HasHeadersFile returns a boolean if a field has been set.
 func (o *UpdateNetworkWebhooksPayloadTemplateRequest) HasHeadersFile() bool {
-	if o != nil && !isNil(o.HeadersFile) {
+	if o != nil && !IsNil(o.HeadersFile) {
 		return true
 	}
 
@@ -206,23 +209,31 @@ func (o *UpdateNetworkWebhooksPayloadTemplateRequest) SetHeadersFile(v string) {
 }
 
 func (o UpdateNetworkWebhooksPayloadTemplateRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Body) {
-		toSerialize["body"] = o.Body
-	}
-	if !isNil(o.Headers) {
-		toSerialize["headers"] = o.Headers
-	}
-	if !isNil(o.BodyFile) {
-		toSerialize["bodyFile"] = o.BodyFile
-	}
-	if !isNil(o.HeadersFile) {
-		toSerialize["headersFile"] = o.HeadersFile
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWebhooksPayloadTemplateRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Body) {
+		toSerialize["body"] = o.Body
+	}
+	if !IsNil(o.Headers) {
+		toSerialize["headers"] = o.Headers
+	}
+	if !IsNil(o.BodyFile) {
+		toSerialize["bodyFile"] = o.BodyFile
+	}
+	if !IsNil(o.HeadersFile) {
+		toSerialize["headersFile"] = o.HeadersFile
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWebhooksPayloadTemplateRequest struct {

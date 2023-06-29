@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CloneOrganizationRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CloneOrganizationRequest{}
+
 // CloneOrganizationRequest struct for CloneOrganizationRequest
 type CloneOrganizationRequest struct {
 	// The name of the new organization
@@ -52,7 +55,7 @@ func (o *CloneOrganizationRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CloneOrganizationRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -63,11 +66,17 @@ func (o *CloneOrganizationRequest) SetName(v string) {
 }
 
 func (o CloneOrganizationRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CloneOrganizationRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	return toSerialize, nil
 }
 
 type NullableCloneOrganizationRequest struct {

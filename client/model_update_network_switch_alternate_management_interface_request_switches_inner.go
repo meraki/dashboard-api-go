@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner{}
+
 // UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner struct for UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner
 type UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner struct {
 	// Switch serial number
@@ -59,7 +62,7 @@ func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) Ge
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) GetSerialOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Serial, true
 }
@@ -83,7 +86,7 @@ func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) Ge
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) GetAlternateManagementIpOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.AlternateManagementIp, true
 }
@@ -95,7 +98,7 @@ func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) Se
 
 // GetSubnetMask returns the SubnetMask field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) GetSubnetMask() string {
-	if o == nil || isNil(o.SubnetMask) {
+	if o == nil || IsNil(o.SubnetMask) {
 		var ret string
 		return ret
 	}
@@ -105,15 +108,15 @@ func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) Ge
 // GetSubnetMaskOk returns a tuple with the SubnetMask field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) GetSubnetMaskOk() (*string, bool) {
-	if o == nil || isNil(o.SubnetMask) {
-    return nil, false
+	if o == nil || IsNil(o.SubnetMask) {
+		return nil, false
 	}
 	return o.SubnetMask, true
 }
 
 // HasSubnetMask returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) HasSubnetMask() bool {
-	if o != nil && !isNil(o.SubnetMask) {
+	if o != nil && !IsNil(o.SubnetMask) {
 		return true
 	}
 
@@ -127,7 +130,7 @@ func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) Se
 
 // GetGateway returns the Gateway field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) GetGateway() string {
-	if o == nil || isNil(o.Gateway) {
+	if o == nil || IsNil(o.Gateway) {
 		var ret string
 		return ret
 	}
@@ -137,15 +140,15 @@ func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) Ge
 // GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) GetGatewayOk() (*string, bool) {
-	if o == nil || isNil(o.Gateway) {
-    return nil, false
+	if o == nil || IsNil(o.Gateway) {
+		return nil, false
 	}
 	return o.Gateway, true
 }
 
 // HasGateway returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) HasGateway() bool {
-	if o != nil && !isNil(o.Gateway) {
+	if o != nil && !IsNil(o.Gateway) {
 		return true
 	}
 
@@ -158,20 +161,24 @@ func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) Se
 }
 
 func (o UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["serial"] = o.Serial
-	}
-	if true {
-		toSerialize["alternateManagementIp"] = o.AlternateManagementIp
-	}
-	if !isNil(o.SubnetMask) {
-		toSerialize["subnetMask"] = o.SubnetMask
-	}
-	if !isNil(o.Gateway) {
-		toSerialize["gateway"] = o.Gateway
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["serial"] = o.Serial
+	toSerialize["alternateManagementIp"] = o.AlternateManagementIp
+	if !IsNil(o.SubnetMask) {
+		toSerialize["subnetMask"] = o.SubnetMask
+	}
+	if !IsNil(o.Gateway) {
+		toSerialize["gateway"] = o.Gateway
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner struct {

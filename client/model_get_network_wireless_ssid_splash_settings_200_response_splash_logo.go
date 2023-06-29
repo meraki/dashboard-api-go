@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWirelessSsidSplashSettings200ResponseSplashLogo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessSsidSplashSettings200ResponseSplashLogo{}
+
 // GetNetworkWirelessSsidSplashSettings200ResponseSplashLogo The logo used in the splash page.
 type GetNetworkWirelessSsidSplashSettings200ResponseSplashLogo struct {
 	// The MD5 value of the logo file.
@@ -41,7 +44,7 @@ func NewGetNetworkWirelessSsidSplashSettings200ResponseSplashLogoWithDefaults() 
 
 // GetMd5 returns the Md5 field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSplashLogo) GetMd5() string {
-	if o == nil || isNil(o.Md5) {
+	if o == nil || IsNil(o.Md5) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseSplashLogo) GetMd5() str
 // GetMd5Ok returns a tuple with the Md5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSplashLogo) GetMd5Ok() (*string, bool) {
-	if o == nil || isNil(o.Md5) {
-    return nil, false
+	if o == nil || IsNil(o.Md5) {
+		return nil, false
 	}
 	return o.Md5, true
 }
 
 // HasMd5 returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSplashLogo) HasMd5() bool {
-	if o != nil && !isNil(o.Md5) {
+	if o != nil && !IsNil(o.Md5) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseSplashLogo) SetMd5(v str
 
 // GetExtension returns the Extension field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSplashLogo) GetExtension() string {
-	if o == nil || isNil(o.Extension) {
+	if o == nil || IsNil(o.Extension) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseSplashLogo) GetExtension
 // GetExtensionOk returns a tuple with the Extension field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSplashLogo) GetExtensionOk() (*string, bool) {
-	if o == nil || isNil(o.Extension) {
-    return nil, false
+	if o == nil || IsNil(o.Extension) {
+		return nil, false
 	}
 	return o.Extension, true
 }
 
 // HasExtension returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSplashLogo) HasExtension() bool {
-	if o != nil && !isNil(o.Extension) {
+	if o != nil && !IsNil(o.Extension) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseSplashLogo) SetExtension
 }
 
 func (o GetNetworkWirelessSsidSplashSettings200ResponseSplashLogo) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Md5) {
-		toSerialize["md5"] = o.Md5
-	}
-	if !isNil(o.Extension) {
-		toSerialize["extension"] = o.Extension
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessSsidSplashSettings200ResponseSplashLogo) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Md5) {
+		toSerialize["md5"] = o.Md5
+	}
+	if !IsNil(o.Extension) {
+		toSerialize["extension"] = o.Extension
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessSsidSplashSettings200ResponseSplashLogo struct {

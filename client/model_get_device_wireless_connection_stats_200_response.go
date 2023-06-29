@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceWirelessConnectionStats200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceWirelessConnectionStats200Response{}
+
 // GetDeviceWirelessConnectionStats200Response struct for GetDeviceWirelessConnectionStats200Response
 type GetDeviceWirelessConnectionStats200Response struct {
 	// The serial number for the device
@@ -40,7 +43,7 @@ func NewGetDeviceWirelessConnectionStats200ResponseWithDefaults() *GetDeviceWire
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetDeviceWirelessConnectionStats200Response) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *GetDeviceWirelessConnectionStats200Response) GetSerial() string {
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceWirelessConnectionStats200Response) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetDeviceWirelessConnectionStats200Response) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *GetDeviceWirelessConnectionStats200Response) SetSerial(v string) {
 
 // GetConnectionStats returns the ConnectionStats field value if set, zero value otherwise.
 func (o *GetDeviceWirelessConnectionStats200Response) GetConnectionStats() GetDeviceWirelessConnectionStats200ResponseConnectionStats {
-	if o == nil || isNil(o.ConnectionStats) {
+	if o == nil || IsNil(o.ConnectionStats) {
 		var ret GetDeviceWirelessConnectionStats200ResponseConnectionStats
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *GetDeviceWirelessConnectionStats200Response) GetConnectionStats() GetDe
 // GetConnectionStatsOk returns a tuple with the ConnectionStats field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceWirelessConnectionStats200Response) GetConnectionStatsOk() (*GetDeviceWirelessConnectionStats200ResponseConnectionStats, bool) {
-	if o == nil || isNil(o.ConnectionStats) {
-    return nil, false
+	if o == nil || IsNil(o.ConnectionStats) {
+		return nil, false
 	}
 	return o.ConnectionStats, true
 }
 
 // HasConnectionStats returns a boolean if a field has been set.
 func (o *GetDeviceWirelessConnectionStats200Response) HasConnectionStats() bool {
-	if o != nil && !isNil(o.ConnectionStats) {
+	if o != nil && !IsNil(o.ConnectionStats) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *GetDeviceWirelessConnectionStats200Response) SetConnectionStats(v GetDe
 }
 
 func (o GetDeviceWirelessConnectionStats200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.ConnectionStats) {
-		toSerialize["connectionStats"] = o.ConnectionStats
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceWirelessConnectionStats200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.ConnectionStats) {
+		toSerialize["connectionStats"] = o.ConnectionStats
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceWirelessConnectionStats200Response struct {

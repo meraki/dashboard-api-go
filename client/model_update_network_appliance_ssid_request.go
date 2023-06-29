@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceSsidRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceSsidRequest{}
+
 // UpdateNetworkApplianceSsidRequest struct for UpdateNetworkApplianceSsidRequest
 type UpdateNetworkApplianceSsidRequest struct {
 	// The name of the SSID.
@@ -57,7 +60,7 @@ func NewUpdateNetworkApplianceSsidRequestWithDefaults() *UpdateNetworkApplianceS
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -67,15 +70,15 @@ func (o *UpdateNetworkApplianceSsidRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -89,7 +92,7 @@ func (o *UpdateNetworkApplianceSsidRequest) SetName(v string) {
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequest) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -99,15 +102,15 @@ func (o *UpdateNetworkApplianceSsidRequest) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequest) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequest) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -121,7 +124,7 @@ func (o *UpdateNetworkApplianceSsidRequest) SetEnabled(v bool) {
 
 // GetDefaultVlanId returns the DefaultVlanId field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequest) GetDefaultVlanId() int32 {
-	if o == nil || isNil(o.DefaultVlanId) {
+	if o == nil || IsNil(o.DefaultVlanId) {
 		var ret int32
 		return ret
 	}
@@ -131,15 +134,15 @@ func (o *UpdateNetworkApplianceSsidRequest) GetDefaultVlanId() int32 {
 // GetDefaultVlanIdOk returns a tuple with the DefaultVlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequest) GetDefaultVlanIdOk() (*int32, bool) {
-	if o == nil || isNil(o.DefaultVlanId) {
-    return nil, false
+	if o == nil || IsNil(o.DefaultVlanId) {
+		return nil, false
 	}
 	return o.DefaultVlanId, true
 }
 
 // HasDefaultVlanId returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequest) HasDefaultVlanId() bool {
-	if o != nil && !isNil(o.DefaultVlanId) {
+	if o != nil && !IsNil(o.DefaultVlanId) {
 		return true
 	}
 
@@ -153,7 +156,7 @@ func (o *UpdateNetworkApplianceSsidRequest) SetDefaultVlanId(v int32) {
 
 // GetAuthMode returns the AuthMode field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequest) GetAuthMode() string {
-	if o == nil || isNil(o.AuthMode) {
+	if o == nil || IsNil(o.AuthMode) {
 		var ret string
 		return ret
 	}
@@ -163,15 +166,15 @@ func (o *UpdateNetworkApplianceSsidRequest) GetAuthMode() string {
 // GetAuthModeOk returns a tuple with the AuthMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequest) GetAuthModeOk() (*string, bool) {
-	if o == nil || isNil(o.AuthMode) {
-    return nil, false
+	if o == nil || IsNil(o.AuthMode) {
+		return nil, false
 	}
 	return o.AuthMode, true
 }
 
 // HasAuthMode returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequest) HasAuthMode() bool {
-	if o != nil && !isNil(o.AuthMode) {
+	if o != nil && !IsNil(o.AuthMode) {
 		return true
 	}
 
@@ -185,7 +188,7 @@ func (o *UpdateNetworkApplianceSsidRequest) SetAuthMode(v string) {
 
 // GetPsk returns the Psk field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequest) GetPsk() string {
-	if o == nil || isNil(o.Psk) {
+	if o == nil || IsNil(o.Psk) {
 		var ret string
 		return ret
 	}
@@ -195,15 +198,15 @@ func (o *UpdateNetworkApplianceSsidRequest) GetPsk() string {
 // GetPskOk returns a tuple with the Psk field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequest) GetPskOk() (*string, bool) {
-	if o == nil || isNil(o.Psk) {
-    return nil, false
+	if o == nil || IsNil(o.Psk) {
+		return nil, false
 	}
 	return o.Psk, true
 }
 
 // HasPsk returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequest) HasPsk() bool {
-	if o != nil && !isNil(o.Psk) {
+	if o != nil && !IsNil(o.Psk) {
 		return true
 	}
 
@@ -217,7 +220,7 @@ func (o *UpdateNetworkApplianceSsidRequest) SetPsk(v string) {
 
 // GetRadiusServers returns the RadiusServers field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequest) GetRadiusServers() []UpdateNetworkApplianceSsidRequestRadiusServersInner {
-	if o == nil || isNil(o.RadiusServers) {
+	if o == nil || IsNil(o.RadiusServers) {
 		var ret []UpdateNetworkApplianceSsidRequestRadiusServersInner
 		return ret
 	}
@@ -227,15 +230,15 @@ func (o *UpdateNetworkApplianceSsidRequest) GetRadiusServers() []UpdateNetworkAp
 // GetRadiusServersOk returns a tuple with the RadiusServers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequest) GetRadiusServersOk() ([]UpdateNetworkApplianceSsidRequestRadiusServersInner, bool) {
-	if o == nil || isNil(o.RadiusServers) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusServers) {
+		return nil, false
 	}
 	return o.RadiusServers, true
 }
 
 // HasRadiusServers returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequest) HasRadiusServers() bool {
-	if o != nil && !isNil(o.RadiusServers) {
+	if o != nil && !IsNil(o.RadiusServers) {
 		return true
 	}
 
@@ -249,7 +252,7 @@ func (o *UpdateNetworkApplianceSsidRequest) SetRadiusServers(v []UpdateNetworkAp
 
 // GetEncryptionMode returns the EncryptionMode field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequest) GetEncryptionMode() string {
-	if o == nil || isNil(o.EncryptionMode) {
+	if o == nil || IsNil(o.EncryptionMode) {
 		var ret string
 		return ret
 	}
@@ -259,15 +262,15 @@ func (o *UpdateNetworkApplianceSsidRequest) GetEncryptionMode() string {
 // GetEncryptionModeOk returns a tuple with the EncryptionMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequest) GetEncryptionModeOk() (*string, bool) {
-	if o == nil || isNil(o.EncryptionMode) {
-    return nil, false
+	if o == nil || IsNil(o.EncryptionMode) {
+		return nil, false
 	}
 	return o.EncryptionMode, true
 }
 
 // HasEncryptionMode returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequest) HasEncryptionMode() bool {
-	if o != nil && !isNil(o.EncryptionMode) {
+	if o != nil && !IsNil(o.EncryptionMode) {
 		return true
 	}
 
@@ -281,7 +284,7 @@ func (o *UpdateNetworkApplianceSsidRequest) SetEncryptionMode(v string) {
 
 // GetWpaEncryptionMode returns the WpaEncryptionMode field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequest) GetWpaEncryptionMode() string {
-	if o == nil || isNil(o.WpaEncryptionMode) {
+	if o == nil || IsNil(o.WpaEncryptionMode) {
 		var ret string
 		return ret
 	}
@@ -291,15 +294,15 @@ func (o *UpdateNetworkApplianceSsidRequest) GetWpaEncryptionMode() string {
 // GetWpaEncryptionModeOk returns a tuple with the WpaEncryptionMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequest) GetWpaEncryptionModeOk() (*string, bool) {
-	if o == nil || isNil(o.WpaEncryptionMode) {
-    return nil, false
+	if o == nil || IsNil(o.WpaEncryptionMode) {
+		return nil, false
 	}
 	return o.WpaEncryptionMode, true
 }
 
 // HasWpaEncryptionMode returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequest) HasWpaEncryptionMode() bool {
-	if o != nil && !isNil(o.WpaEncryptionMode) {
+	if o != nil && !IsNil(o.WpaEncryptionMode) {
 		return true
 	}
 
@@ -313,7 +316,7 @@ func (o *UpdateNetworkApplianceSsidRequest) SetWpaEncryptionMode(v string) {
 
 // GetVisible returns the Visible field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequest) GetVisible() bool {
-	if o == nil || isNil(o.Visible) {
+	if o == nil || IsNil(o.Visible) {
 		var ret bool
 		return ret
 	}
@@ -323,15 +326,15 @@ func (o *UpdateNetworkApplianceSsidRequest) GetVisible() bool {
 // GetVisibleOk returns a tuple with the Visible field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequest) GetVisibleOk() (*bool, bool) {
-	if o == nil || isNil(o.Visible) {
-    return nil, false
+	if o == nil || IsNil(o.Visible) {
+		return nil, false
 	}
 	return o.Visible, true
 }
 
 // HasVisible returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequest) HasVisible() bool {
-	if o != nil && !isNil(o.Visible) {
+	if o != nil && !IsNil(o.Visible) {
 		return true
 	}
 
@@ -345,7 +348,7 @@ func (o *UpdateNetworkApplianceSsidRequest) SetVisible(v bool) {
 
 // GetDhcpEnforcedDeauthentication returns the DhcpEnforcedDeauthentication field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequest) GetDhcpEnforcedDeauthentication() UpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication {
-	if o == nil || isNil(o.DhcpEnforcedDeauthentication) {
+	if o == nil || IsNil(o.DhcpEnforcedDeauthentication) {
 		var ret UpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication
 		return ret
 	}
@@ -355,15 +358,15 @@ func (o *UpdateNetworkApplianceSsidRequest) GetDhcpEnforcedDeauthentication() Up
 // GetDhcpEnforcedDeauthenticationOk returns a tuple with the DhcpEnforcedDeauthentication field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequest) GetDhcpEnforcedDeauthenticationOk() (*UpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication, bool) {
-	if o == nil || isNil(o.DhcpEnforcedDeauthentication) {
-    return nil, false
+	if o == nil || IsNil(o.DhcpEnforcedDeauthentication) {
+		return nil, false
 	}
 	return o.DhcpEnforcedDeauthentication, true
 }
 
 // HasDhcpEnforcedDeauthentication returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequest) HasDhcpEnforcedDeauthentication() bool {
-	if o != nil && !isNil(o.DhcpEnforcedDeauthentication) {
+	if o != nil && !IsNil(o.DhcpEnforcedDeauthentication) {
 		return true
 	}
 
@@ -377,7 +380,7 @@ func (o *UpdateNetworkApplianceSsidRequest) SetDhcpEnforcedDeauthentication(v Up
 
 // GetDot11w returns the Dot11w field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequest) GetDot11w() UpdateNetworkApplianceSsidRequestDot11w {
-	if o == nil || isNil(o.Dot11w) {
+	if o == nil || IsNil(o.Dot11w) {
 		var ret UpdateNetworkApplianceSsidRequestDot11w
 		return ret
 	}
@@ -387,15 +390,15 @@ func (o *UpdateNetworkApplianceSsidRequest) GetDot11w() UpdateNetworkApplianceSs
 // GetDot11wOk returns a tuple with the Dot11w field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequest) GetDot11wOk() (*UpdateNetworkApplianceSsidRequestDot11w, bool) {
-	if o == nil || isNil(o.Dot11w) {
-    return nil, false
+	if o == nil || IsNil(o.Dot11w) {
+		return nil, false
 	}
 	return o.Dot11w, true
 }
 
 // HasDot11w returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequest) HasDot11w() bool {
-	if o != nil && !isNil(o.Dot11w) {
+	if o != nil && !IsNil(o.Dot11w) {
 		return true
 	}
 
@@ -408,41 +411,49 @@ func (o *UpdateNetworkApplianceSsidRequest) SetDot11w(v UpdateNetworkApplianceSs
 }
 
 func (o UpdateNetworkApplianceSsidRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.DefaultVlanId) {
-		toSerialize["defaultVlanId"] = o.DefaultVlanId
-	}
-	if !isNil(o.AuthMode) {
-		toSerialize["authMode"] = o.AuthMode
-	}
-	if !isNil(o.Psk) {
-		toSerialize["psk"] = o.Psk
-	}
-	if !isNil(o.RadiusServers) {
-		toSerialize["radiusServers"] = o.RadiusServers
-	}
-	if !isNil(o.EncryptionMode) {
-		toSerialize["encryptionMode"] = o.EncryptionMode
-	}
-	if !isNil(o.WpaEncryptionMode) {
-		toSerialize["wpaEncryptionMode"] = o.WpaEncryptionMode
-	}
-	if !isNil(o.Visible) {
-		toSerialize["visible"] = o.Visible
-	}
-	if !isNil(o.DhcpEnforcedDeauthentication) {
-		toSerialize["dhcpEnforcedDeauthentication"] = o.DhcpEnforcedDeauthentication
-	}
-	if !isNil(o.Dot11w) {
-		toSerialize["dot11w"] = o.Dot11w
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceSsidRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.DefaultVlanId) {
+		toSerialize["defaultVlanId"] = o.DefaultVlanId
+	}
+	if !IsNil(o.AuthMode) {
+		toSerialize["authMode"] = o.AuthMode
+	}
+	if !IsNil(o.Psk) {
+		toSerialize["psk"] = o.Psk
+	}
+	if !IsNil(o.RadiusServers) {
+		toSerialize["radiusServers"] = o.RadiusServers
+	}
+	if !IsNil(o.EncryptionMode) {
+		toSerialize["encryptionMode"] = o.EncryptionMode
+	}
+	if !IsNil(o.WpaEncryptionMode) {
+		toSerialize["wpaEncryptionMode"] = o.WpaEncryptionMode
+	}
+	if !IsNil(o.Visible) {
+		toSerialize["visible"] = o.Visible
+	}
+	if !IsNil(o.DhcpEnforcedDeauthentication) {
+		toSerialize["dhcpEnforcedDeauthentication"] = o.DhcpEnforcedDeauthentication
+	}
+	if !IsNil(o.Dot11w) {
+		toSerialize["dot11w"] = o.Dot11w
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceSsidRequest struct {

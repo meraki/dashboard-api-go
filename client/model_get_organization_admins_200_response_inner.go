@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetOrganizationAdmins200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationAdmins200ResponseInner{}
+
 // GetOrganizationAdmins200ResponseInner struct for GetOrganizationAdmins200ResponseInner
 type GetOrganizationAdmins200ResponseInner struct {
 	// Admin's ID
@@ -60,7 +63,7 @@ func NewGetOrganizationAdmins200ResponseInnerWithDefaults() *GetOrganizationAdmi
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetOrganizationAdmins200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -70,15 +73,15 @@ func (o *GetOrganizationAdmins200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdmins200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetOrganizationAdmins200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -92,7 +95,7 @@ func (o *GetOrganizationAdmins200ResponseInner) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizationAdmins200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -102,15 +105,15 @@ func (o *GetOrganizationAdmins200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdmins200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizationAdmins200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -124,7 +127,7 @@ func (o *GetOrganizationAdmins200ResponseInner) SetName(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *GetOrganizationAdmins200ResponseInner) GetEmail() string {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -134,15 +137,15 @@ func (o *GetOrganizationAdmins200ResponseInner) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdmins200ResponseInner) GetEmailOk() (*string, bool) {
-	if o == nil || isNil(o.Email) {
-    return nil, false
+	if o == nil || IsNil(o.Email) {
+		return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *GetOrganizationAdmins200ResponseInner) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -156,7 +159,7 @@ func (o *GetOrganizationAdmins200ResponseInner) SetEmail(v string) {
 
 // GetOrgAccess returns the OrgAccess field value if set, zero value otherwise.
 func (o *GetOrganizationAdmins200ResponseInner) GetOrgAccess() string {
-	if o == nil || isNil(o.OrgAccess) {
+	if o == nil || IsNil(o.OrgAccess) {
 		var ret string
 		return ret
 	}
@@ -166,15 +169,15 @@ func (o *GetOrganizationAdmins200ResponseInner) GetOrgAccess() string {
 // GetOrgAccessOk returns a tuple with the OrgAccess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdmins200ResponseInner) GetOrgAccessOk() (*string, bool) {
-	if o == nil || isNil(o.OrgAccess) {
-    return nil, false
+	if o == nil || IsNil(o.OrgAccess) {
+		return nil, false
 	}
 	return o.OrgAccess, true
 }
 
 // HasOrgAccess returns a boolean if a field has been set.
 func (o *GetOrganizationAdmins200ResponseInner) HasOrgAccess() bool {
-	if o != nil && !isNil(o.OrgAccess) {
+	if o != nil && !IsNil(o.OrgAccess) {
 		return true
 	}
 
@@ -188,7 +191,7 @@ func (o *GetOrganizationAdmins200ResponseInner) SetOrgAccess(v string) {
 
 // GetAccountStatus returns the AccountStatus field value if set, zero value otherwise.
 func (o *GetOrganizationAdmins200ResponseInner) GetAccountStatus() string {
-	if o == nil || isNil(o.AccountStatus) {
+	if o == nil || IsNil(o.AccountStatus) {
 		var ret string
 		return ret
 	}
@@ -198,15 +201,15 @@ func (o *GetOrganizationAdmins200ResponseInner) GetAccountStatus() string {
 // GetAccountStatusOk returns a tuple with the AccountStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdmins200ResponseInner) GetAccountStatusOk() (*string, bool) {
-	if o == nil || isNil(o.AccountStatus) {
-    return nil, false
+	if o == nil || IsNil(o.AccountStatus) {
+		return nil, false
 	}
 	return o.AccountStatus, true
 }
 
 // HasAccountStatus returns a boolean if a field has been set.
 func (o *GetOrganizationAdmins200ResponseInner) HasAccountStatus() bool {
-	if o != nil && !isNil(o.AccountStatus) {
+	if o != nil && !IsNil(o.AccountStatus) {
 		return true
 	}
 
@@ -220,7 +223,7 @@ func (o *GetOrganizationAdmins200ResponseInner) SetAccountStatus(v string) {
 
 // GetTwoFactorAuthEnabled returns the TwoFactorAuthEnabled field value if set, zero value otherwise.
 func (o *GetOrganizationAdmins200ResponseInner) GetTwoFactorAuthEnabled() bool {
-	if o == nil || isNil(o.TwoFactorAuthEnabled) {
+	if o == nil || IsNil(o.TwoFactorAuthEnabled) {
 		var ret bool
 		return ret
 	}
@@ -230,15 +233,15 @@ func (o *GetOrganizationAdmins200ResponseInner) GetTwoFactorAuthEnabled() bool {
 // GetTwoFactorAuthEnabledOk returns a tuple with the TwoFactorAuthEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdmins200ResponseInner) GetTwoFactorAuthEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.TwoFactorAuthEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.TwoFactorAuthEnabled) {
+		return nil, false
 	}
 	return o.TwoFactorAuthEnabled, true
 }
 
 // HasTwoFactorAuthEnabled returns a boolean if a field has been set.
 func (o *GetOrganizationAdmins200ResponseInner) HasTwoFactorAuthEnabled() bool {
-	if o != nil && !isNil(o.TwoFactorAuthEnabled) {
+	if o != nil && !IsNil(o.TwoFactorAuthEnabled) {
 		return true
 	}
 
@@ -252,7 +255,7 @@ func (o *GetOrganizationAdmins200ResponseInner) SetTwoFactorAuthEnabled(v bool) 
 
 // GetHasApiKey returns the HasApiKey field value if set, zero value otherwise.
 func (o *GetOrganizationAdmins200ResponseInner) GetHasApiKey() bool {
-	if o == nil || isNil(o.HasApiKey) {
+	if o == nil || IsNil(o.HasApiKey) {
 		var ret bool
 		return ret
 	}
@@ -262,15 +265,15 @@ func (o *GetOrganizationAdmins200ResponseInner) GetHasApiKey() bool {
 // GetHasApiKeyOk returns a tuple with the HasApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdmins200ResponseInner) GetHasApiKeyOk() (*bool, bool) {
-	if o == nil || isNil(o.HasApiKey) {
-    return nil, false
+	if o == nil || IsNil(o.HasApiKey) {
+		return nil, false
 	}
 	return o.HasApiKey, true
 }
 
 // HasHasApiKey returns a boolean if a field has been set.
 func (o *GetOrganizationAdmins200ResponseInner) HasHasApiKey() bool {
-	if o != nil && !isNil(o.HasApiKey) {
+	if o != nil && !IsNil(o.HasApiKey) {
 		return true
 	}
 
@@ -284,7 +287,7 @@ func (o *GetOrganizationAdmins200ResponseInner) SetHasApiKey(v bool) {
 
 // GetLastActive returns the LastActive field value if set, zero value otherwise.
 func (o *GetOrganizationAdmins200ResponseInner) GetLastActive() time.Time {
-	if o == nil || isNil(o.LastActive) {
+	if o == nil || IsNil(o.LastActive) {
 		var ret time.Time
 		return ret
 	}
@@ -294,15 +297,15 @@ func (o *GetOrganizationAdmins200ResponseInner) GetLastActive() time.Time {
 // GetLastActiveOk returns a tuple with the LastActive field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdmins200ResponseInner) GetLastActiveOk() (*time.Time, bool) {
-	if o == nil || isNil(o.LastActive) {
-    return nil, false
+	if o == nil || IsNil(o.LastActive) {
+		return nil, false
 	}
 	return o.LastActive, true
 }
 
 // HasLastActive returns a boolean if a field has been set.
 func (o *GetOrganizationAdmins200ResponseInner) HasLastActive() bool {
-	if o != nil && !isNil(o.LastActive) {
+	if o != nil && !IsNil(o.LastActive) {
 		return true
 	}
 
@@ -316,7 +319,7 @@ func (o *GetOrganizationAdmins200ResponseInner) SetLastActive(v time.Time) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *GetOrganizationAdmins200ResponseInner) GetTags() []GetOrganizationAdmins200ResponseInnerTagsInner {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []GetOrganizationAdmins200ResponseInnerTagsInner
 		return ret
 	}
@@ -326,15 +329,15 @@ func (o *GetOrganizationAdmins200ResponseInner) GetTags() []GetOrganizationAdmin
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdmins200ResponseInner) GetTagsOk() ([]GetOrganizationAdmins200ResponseInnerTagsInner, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
 	}
 	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *GetOrganizationAdmins200ResponseInner) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -348,7 +351,7 @@ func (o *GetOrganizationAdmins200ResponseInner) SetTags(v []GetOrganizationAdmin
 
 // GetNetworks returns the Networks field value if set, zero value otherwise.
 func (o *GetOrganizationAdmins200ResponseInner) GetNetworks() []GetOrganizationAdmins200ResponseInnerNetworksInner {
-	if o == nil || isNil(o.Networks) {
+	if o == nil || IsNil(o.Networks) {
 		var ret []GetOrganizationAdmins200ResponseInnerNetworksInner
 		return ret
 	}
@@ -358,15 +361,15 @@ func (o *GetOrganizationAdmins200ResponseInner) GetNetworks() []GetOrganizationA
 // GetNetworksOk returns a tuple with the Networks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdmins200ResponseInner) GetNetworksOk() ([]GetOrganizationAdmins200ResponseInnerNetworksInner, bool) {
-	if o == nil || isNil(o.Networks) {
-    return nil, false
+	if o == nil || IsNil(o.Networks) {
+		return nil, false
 	}
 	return o.Networks, true
 }
 
 // HasNetworks returns a boolean if a field has been set.
 func (o *GetOrganizationAdmins200ResponseInner) HasNetworks() bool {
-	if o != nil && !isNil(o.Networks) {
+	if o != nil && !IsNil(o.Networks) {
 		return true
 	}
 
@@ -380,7 +383,7 @@ func (o *GetOrganizationAdmins200ResponseInner) SetNetworks(v []GetOrganizationA
 
 // GetAuthenticationMethod returns the AuthenticationMethod field value if set, zero value otherwise.
 func (o *GetOrganizationAdmins200ResponseInner) GetAuthenticationMethod() string {
-	if o == nil || isNil(o.AuthenticationMethod) {
+	if o == nil || IsNil(o.AuthenticationMethod) {
 		var ret string
 		return ret
 	}
@@ -390,15 +393,15 @@ func (o *GetOrganizationAdmins200ResponseInner) GetAuthenticationMethod() string
 // GetAuthenticationMethodOk returns a tuple with the AuthenticationMethod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdmins200ResponseInner) GetAuthenticationMethodOk() (*string, bool) {
-	if o == nil || isNil(o.AuthenticationMethod) {
-    return nil, false
+	if o == nil || IsNil(o.AuthenticationMethod) {
+		return nil, false
 	}
 	return o.AuthenticationMethod, true
 }
 
 // HasAuthenticationMethod returns a boolean if a field has been set.
 func (o *GetOrganizationAdmins200ResponseInner) HasAuthenticationMethod() bool {
-	if o != nil && !isNil(o.AuthenticationMethod) {
+	if o != nil && !IsNil(o.AuthenticationMethod) {
 		return true
 	}
 
@@ -411,41 +414,49 @@ func (o *GetOrganizationAdmins200ResponseInner) SetAuthenticationMethod(v string
 }
 
 func (o GetOrganizationAdmins200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Email) {
-		toSerialize["email"] = o.Email
-	}
-	if !isNil(o.OrgAccess) {
-		toSerialize["orgAccess"] = o.OrgAccess
-	}
-	if !isNil(o.AccountStatus) {
-		toSerialize["accountStatus"] = o.AccountStatus
-	}
-	if !isNil(o.TwoFactorAuthEnabled) {
-		toSerialize["twoFactorAuthEnabled"] = o.TwoFactorAuthEnabled
-	}
-	if !isNil(o.HasApiKey) {
-		toSerialize["hasApiKey"] = o.HasApiKey
-	}
-	if !isNil(o.LastActive) {
-		toSerialize["lastActive"] = o.LastActive
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !isNil(o.Networks) {
-		toSerialize["networks"] = o.Networks
-	}
-	if !isNil(o.AuthenticationMethod) {
-		toSerialize["authenticationMethod"] = o.AuthenticationMethod
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationAdmins200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.OrgAccess) {
+		toSerialize["orgAccess"] = o.OrgAccess
+	}
+	if !IsNil(o.AccountStatus) {
+		toSerialize["accountStatus"] = o.AccountStatus
+	}
+	if !IsNil(o.TwoFactorAuthEnabled) {
+		toSerialize["twoFactorAuthEnabled"] = o.TwoFactorAuthEnabled
+	}
+	if !IsNil(o.HasApiKey) {
+		toSerialize["hasApiKey"] = o.HasApiKey
+	}
+	if !IsNil(o.LastActive) {
+		toSerialize["lastActive"] = o.LastActive
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.Networks) {
+		toSerialize["networks"] = o.Networks
+	}
+	if !IsNil(o.AuthenticationMethod) {
+		toSerialize["authenticationMethod"] = o.AuthenticationMethod
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationAdmins200ResponseInner struct {

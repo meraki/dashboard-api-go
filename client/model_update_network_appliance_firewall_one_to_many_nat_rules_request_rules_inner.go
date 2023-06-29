@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner{}
+
 // UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner struct for UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner
 type UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner struct {
 	// The IP address that will be used to access the internal resource from the WAN
@@ -58,7 +61,7 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner) GetPu
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner) GetPublicIpOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.PublicIp, true
 }
@@ -82,7 +85,7 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner) GetUp
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner) GetUplinkOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Uplink, true
 }
@@ -106,7 +109,7 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner) GetPo
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner) GetPortRulesOk() ([]UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.PortRules, true
 }
@@ -117,17 +120,19 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner) SetPo
 }
 
 func (o UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["publicIp"] = o.PublicIp
-	}
-	if true {
-		toSerialize["uplink"] = o.Uplink
-	}
-	if true {
-		toSerialize["portRules"] = o.PortRules
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["publicIp"] = o.PublicIp
+	toSerialize["uplink"] = o.Uplink
+	toSerialize["portRules"] = o.PortRules
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner struct {

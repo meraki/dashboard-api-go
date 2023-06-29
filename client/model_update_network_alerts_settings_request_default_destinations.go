@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkAlertsSettingsRequestDefaultDestinations type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkAlertsSettingsRequestDefaultDestinations{}
+
 // UpdateNetworkAlertsSettingsRequestDefaultDestinations The network-wide destinations for all alerts on the network.
 type UpdateNetworkAlertsSettingsRequestDefaultDestinations struct {
 	// A list of emails that will recieve the alert(s).
@@ -45,7 +48,7 @@ func NewUpdateNetworkAlertsSettingsRequestDefaultDestinationsWithDefaults() *Upd
 
 // GetEmails returns the Emails field value if set, zero value otherwise.
 func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) GetEmails() []string {
-	if o == nil || isNil(o.Emails) {
+	if o == nil || IsNil(o.Emails) {
 		var ret []string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) GetEmails() []st
 // GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) GetEmailsOk() ([]string, bool) {
-	if o == nil || isNil(o.Emails) {
-    return nil, false
+	if o == nil || IsNil(o.Emails) {
+		return nil, false
 	}
 	return o.Emails, true
 }
 
 // HasEmails returns a boolean if a field has been set.
 func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) HasEmails() bool {
-	if o != nil && !isNil(o.Emails) {
+	if o != nil && !IsNil(o.Emails) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) SetEmails(v []st
 
 // GetAllAdmins returns the AllAdmins field value if set, zero value otherwise.
 func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) GetAllAdmins() bool {
-	if o == nil || isNil(o.AllAdmins) {
+	if o == nil || IsNil(o.AllAdmins) {
 		var ret bool
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) GetAllAdmins() b
 // GetAllAdminsOk returns a tuple with the AllAdmins field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) GetAllAdminsOk() (*bool, bool) {
-	if o == nil || isNil(o.AllAdmins) {
-    return nil, false
+	if o == nil || IsNil(o.AllAdmins) {
+		return nil, false
 	}
 	return o.AllAdmins, true
 }
 
 // HasAllAdmins returns a boolean if a field has been set.
 func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) HasAllAdmins() bool {
-	if o != nil && !isNil(o.AllAdmins) {
+	if o != nil && !IsNil(o.AllAdmins) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) SetAllAdmins(v b
 
 // GetSnmp returns the Snmp field value if set, zero value otherwise.
 func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) GetSnmp() bool {
-	if o == nil || isNil(o.Snmp) {
+	if o == nil || IsNil(o.Snmp) {
 		var ret bool
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) GetSnmp() bool {
 // GetSnmpOk returns a tuple with the Snmp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) GetSnmpOk() (*bool, bool) {
-	if o == nil || isNil(o.Snmp) {
-    return nil, false
+	if o == nil || IsNil(o.Snmp) {
+		return nil, false
 	}
 	return o.Snmp, true
 }
 
 // HasSnmp returns a boolean if a field has been set.
 func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) HasSnmp() bool {
-	if o != nil && !isNil(o.Snmp) {
+	if o != nil && !IsNil(o.Snmp) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) SetSnmp(v bool) 
 
 // GetHttpServerIds returns the HttpServerIds field value if set, zero value otherwise.
 func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) GetHttpServerIds() []string {
-	if o == nil || isNil(o.HttpServerIds) {
+	if o == nil || IsNil(o.HttpServerIds) {
 		var ret []string
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) GetHttpServerIds
 // GetHttpServerIdsOk returns a tuple with the HttpServerIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) GetHttpServerIdsOk() ([]string, bool) {
-	if o == nil || isNil(o.HttpServerIds) {
-    return nil, false
+	if o == nil || IsNil(o.HttpServerIds) {
+		return nil, false
 	}
 	return o.HttpServerIds, true
 }
 
 // HasHttpServerIds returns a boolean if a field has been set.
 func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) HasHttpServerIds() bool {
-	if o != nil && !isNil(o.HttpServerIds) {
+	if o != nil && !IsNil(o.HttpServerIds) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *UpdateNetworkAlertsSettingsRequestDefaultDestinations) SetHttpServerIds
 }
 
 func (o UpdateNetworkAlertsSettingsRequestDefaultDestinations) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Emails) {
-		toSerialize["emails"] = o.Emails
-	}
-	if !isNil(o.AllAdmins) {
-		toSerialize["allAdmins"] = o.AllAdmins
-	}
-	if !isNil(o.Snmp) {
-		toSerialize["snmp"] = o.Snmp
-	}
-	if !isNil(o.HttpServerIds) {
-		toSerialize["httpServerIds"] = o.HttpServerIds
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkAlertsSettingsRequestDefaultDestinations) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Emails) {
+		toSerialize["emails"] = o.Emails
+	}
+	if !IsNil(o.AllAdmins) {
+		toSerialize["allAdmins"] = o.AllAdmins
+	}
+	if !IsNil(o.Snmp) {
+		toSerialize["snmp"] = o.Snmp
+	}
+	if !IsNil(o.HttpServerIds) {
+		toSerialize["httpServerIds"] = o.HttpServerIds
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkAlertsSettingsRequestDefaultDestinations struct {

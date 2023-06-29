@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner{}
+
 // MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner struct for MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner
 type MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner struct {
 	// The license model type to move counts of
@@ -55,7 +58,7 @@ func (o *MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner)
 // and a boolean to check if the value has been set.
 func (o *MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner) GetModelOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Model, true
 }
@@ -79,7 +82,7 @@ func (o *MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner)
 // and a boolean to check if the value has been set.
 func (o *MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner) GetCountOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Count, true
 }
@@ -90,14 +93,18 @@ func (o *MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner)
 }
 
 func (o MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["model"] = o.Model
-	}
-	if true {
-		toSerialize["count"] = o.Count
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["model"] = o.Model
+	toSerialize["count"] = o.Count
+	return toSerialize, nil
 }
 
 type NullableMoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner struct {

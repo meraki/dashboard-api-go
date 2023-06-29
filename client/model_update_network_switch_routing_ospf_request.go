@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchRoutingOspfRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchRoutingOspfRequest{}
+
 // UpdateNetworkSwitchRoutingOspfRequest struct for UpdateNetworkSwitchRoutingOspfRequest
 type UpdateNetworkSwitchRoutingOspfRequest struct {
 	// Boolean value to enable or disable OSPF routing. OSPF routing is disabled by default.
@@ -49,7 +52,7 @@ func NewUpdateNetworkSwitchRoutingOspfRequestWithDefaults() *UpdateNetworkSwitch
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -59,15 +62,15 @@ func (o *UpdateNetworkSwitchRoutingOspfRequest) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *UpdateNetworkSwitchRoutingOspfRequest) SetEnabled(v bool) {
 
 // GetHelloTimerInSeconds returns the HelloTimerInSeconds field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) GetHelloTimerInSeconds() int32 {
-	if o == nil || isNil(o.HelloTimerInSeconds) {
+	if o == nil || IsNil(o.HelloTimerInSeconds) {
 		var ret int32
 		return ret
 	}
@@ -91,15 +94,15 @@ func (o *UpdateNetworkSwitchRoutingOspfRequest) GetHelloTimerInSeconds() int32 {
 // GetHelloTimerInSecondsOk returns a tuple with the HelloTimerInSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) GetHelloTimerInSecondsOk() (*int32, bool) {
-	if o == nil || isNil(o.HelloTimerInSeconds) {
-    return nil, false
+	if o == nil || IsNil(o.HelloTimerInSeconds) {
+		return nil, false
 	}
 	return o.HelloTimerInSeconds, true
 }
 
 // HasHelloTimerInSeconds returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) HasHelloTimerInSeconds() bool {
-	if o != nil && !isNil(o.HelloTimerInSeconds) {
+	if o != nil && !IsNil(o.HelloTimerInSeconds) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *UpdateNetworkSwitchRoutingOspfRequest) SetHelloTimerInSeconds(v int32) 
 
 // GetDeadTimerInSeconds returns the DeadTimerInSeconds field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) GetDeadTimerInSeconds() int32 {
-	if o == nil || isNil(o.DeadTimerInSeconds) {
+	if o == nil || IsNil(o.DeadTimerInSeconds) {
 		var ret int32
 		return ret
 	}
@@ -123,15 +126,15 @@ func (o *UpdateNetworkSwitchRoutingOspfRequest) GetDeadTimerInSeconds() int32 {
 // GetDeadTimerInSecondsOk returns a tuple with the DeadTimerInSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) GetDeadTimerInSecondsOk() (*int32, bool) {
-	if o == nil || isNil(o.DeadTimerInSeconds) {
-    return nil, false
+	if o == nil || IsNil(o.DeadTimerInSeconds) {
+		return nil, false
 	}
 	return o.DeadTimerInSeconds, true
 }
 
 // HasDeadTimerInSeconds returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) HasDeadTimerInSeconds() bool {
-	if o != nil && !isNil(o.DeadTimerInSeconds) {
+	if o != nil && !IsNil(o.DeadTimerInSeconds) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *UpdateNetworkSwitchRoutingOspfRequest) SetDeadTimerInSeconds(v int32) {
 
 // GetAreas returns the Areas field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) GetAreas() []UpdateNetworkSwitchRoutingOspfRequestAreasInner {
-	if o == nil || isNil(o.Areas) {
+	if o == nil || IsNil(o.Areas) {
 		var ret []UpdateNetworkSwitchRoutingOspfRequestAreasInner
 		return ret
 	}
@@ -155,15 +158,15 @@ func (o *UpdateNetworkSwitchRoutingOspfRequest) GetAreas() []UpdateNetworkSwitch
 // GetAreasOk returns a tuple with the Areas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) GetAreasOk() ([]UpdateNetworkSwitchRoutingOspfRequestAreasInner, bool) {
-	if o == nil || isNil(o.Areas) {
-    return nil, false
+	if o == nil || IsNil(o.Areas) {
+		return nil, false
 	}
 	return o.Areas, true
 }
 
 // HasAreas returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) HasAreas() bool {
-	if o != nil && !isNil(o.Areas) {
+	if o != nil && !IsNil(o.Areas) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *UpdateNetworkSwitchRoutingOspfRequest) SetAreas(v []UpdateNetworkSwitch
 
 // GetV3 returns the V3 field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) GetV3() UpdateNetworkSwitchRoutingOspfRequestV3 {
-	if o == nil || isNil(o.V3) {
+	if o == nil || IsNil(o.V3) {
 		var ret UpdateNetworkSwitchRoutingOspfRequestV3
 		return ret
 	}
@@ -187,15 +190,15 @@ func (o *UpdateNetworkSwitchRoutingOspfRequest) GetV3() UpdateNetworkSwitchRouti
 // GetV3Ok returns a tuple with the V3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) GetV3Ok() (*UpdateNetworkSwitchRoutingOspfRequestV3, bool) {
-	if o == nil || isNil(o.V3) {
-    return nil, false
+	if o == nil || IsNil(o.V3) {
+		return nil, false
 	}
 	return o.V3, true
 }
 
 // HasV3 returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) HasV3() bool {
-	if o != nil && !isNil(o.V3) {
+	if o != nil && !IsNil(o.V3) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *UpdateNetworkSwitchRoutingOspfRequest) SetV3(v UpdateNetworkSwitchRouti
 
 // GetMd5AuthenticationEnabled returns the Md5AuthenticationEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) GetMd5AuthenticationEnabled() bool {
-	if o == nil || isNil(o.Md5AuthenticationEnabled) {
+	if o == nil || IsNil(o.Md5AuthenticationEnabled) {
 		var ret bool
 		return ret
 	}
@@ -219,15 +222,15 @@ func (o *UpdateNetworkSwitchRoutingOspfRequest) GetMd5AuthenticationEnabled() bo
 // GetMd5AuthenticationEnabledOk returns a tuple with the Md5AuthenticationEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) GetMd5AuthenticationEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Md5AuthenticationEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.Md5AuthenticationEnabled) {
+		return nil, false
 	}
 	return o.Md5AuthenticationEnabled, true
 }
 
 // HasMd5AuthenticationEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) HasMd5AuthenticationEnabled() bool {
-	if o != nil && !isNil(o.Md5AuthenticationEnabled) {
+	if o != nil && !IsNil(o.Md5AuthenticationEnabled) {
 		return true
 	}
 
@@ -241,7 +244,7 @@ func (o *UpdateNetworkSwitchRoutingOspfRequest) SetMd5AuthenticationEnabled(v bo
 
 // GetMd5AuthenticationKey returns the Md5AuthenticationKey field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) GetMd5AuthenticationKey() UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey {
-	if o == nil || isNil(o.Md5AuthenticationKey) {
+	if o == nil || IsNil(o.Md5AuthenticationKey) {
 		var ret UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey
 		return ret
 	}
@@ -251,15 +254,15 @@ func (o *UpdateNetworkSwitchRoutingOspfRequest) GetMd5AuthenticationKey() Update
 // GetMd5AuthenticationKeyOk returns a tuple with the Md5AuthenticationKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) GetMd5AuthenticationKeyOk() (*UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey, bool) {
-	if o == nil || isNil(o.Md5AuthenticationKey) {
-    return nil, false
+	if o == nil || IsNil(o.Md5AuthenticationKey) {
+		return nil, false
 	}
 	return o.Md5AuthenticationKey, true
 }
 
 // HasMd5AuthenticationKey returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequest) HasMd5AuthenticationKey() bool {
-	if o != nil && !isNil(o.Md5AuthenticationKey) {
+	if o != nil && !IsNil(o.Md5AuthenticationKey) {
 		return true
 	}
 
@@ -272,29 +275,37 @@ func (o *UpdateNetworkSwitchRoutingOspfRequest) SetMd5AuthenticationKey(v Update
 }
 
 func (o UpdateNetworkSwitchRoutingOspfRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.HelloTimerInSeconds) {
-		toSerialize["helloTimerInSeconds"] = o.HelloTimerInSeconds
-	}
-	if !isNil(o.DeadTimerInSeconds) {
-		toSerialize["deadTimerInSeconds"] = o.DeadTimerInSeconds
-	}
-	if !isNil(o.Areas) {
-		toSerialize["areas"] = o.Areas
-	}
-	if !isNil(o.V3) {
-		toSerialize["v3"] = o.V3
-	}
-	if !isNil(o.Md5AuthenticationEnabled) {
-		toSerialize["md5AuthenticationEnabled"] = o.Md5AuthenticationEnabled
-	}
-	if !isNil(o.Md5AuthenticationKey) {
-		toSerialize["md5AuthenticationKey"] = o.Md5AuthenticationKey
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchRoutingOspfRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.HelloTimerInSeconds) {
+		toSerialize["helloTimerInSeconds"] = o.HelloTimerInSeconds
+	}
+	if !IsNil(o.DeadTimerInSeconds) {
+		toSerialize["deadTimerInSeconds"] = o.DeadTimerInSeconds
+	}
+	if !IsNil(o.Areas) {
+		toSerialize["areas"] = o.Areas
+	}
+	if !IsNil(o.V3) {
+		toSerialize["v3"] = o.V3
+	}
+	if !IsNil(o.Md5AuthenticationEnabled) {
+		toSerialize["md5AuthenticationEnabled"] = o.Md5AuthenticationEnabled
+	}
+	if !IsNil(o.Md5AuthenticationKey) {
+		toSerialize["md5AuthenticationKey"] = o.Md5AuthenticationKey
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchRoutingOspfRequest struct {

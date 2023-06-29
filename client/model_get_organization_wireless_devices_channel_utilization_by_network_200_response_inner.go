@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner{}
+
 // GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner struct for GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner
 type GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner struct {
 	Network *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerNetwork `json:"network,omitempty"`
@@ -40,7 +43,7 @@ func NewGetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInne
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner) GetNetwork() GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerNetwork {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		var ret GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerNetwork
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInn
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner) GetNetworkOk() (*GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerNetwork, bool) {
-	if o == nil || isNil(o.Network) {
-    return nil, false
+	if o == nil || IsNil(o.Network) {
+		return nil, false
 	}
 	return o.Network, true
 }
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner) HasNetwork() bool {
-	if o != nil && !isNil(o.Network) {
+	if o != nil && !IsNil(o.Network) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInn
 
 // GetByBand returns the ByBand field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner) GetByBand() []GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner {
-	if o == nil || isNil(o.ByBand) {
+	if o == nil || IsNil(o.ByBand) {
 		var ret []GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInn
 // GetByBandOk returns a tuple with the ByBand field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner) GetByBandOk() ([]GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner, bool) {
-	if o == nil || isNil(o.ByBand) {
-    return nil, false
+	if o == nil || IsNil(o.ByBand) {
+		return nil, false
 	}
 	return o.ByBand, true
 }
 
 // HasByBand returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner) HasByBand() bool {
-	if o != nil && !isNil(o.ByBand) {
+	if o != nil && !IsNil(o.ByBand) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInn
 }
 
 func (o GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Network) {
-		toSerialize["network"] = o.Network
-	}
-	if !isNil(o.ByBand) {
-		toSerialize["byBand"] = o.ByBand
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Network) {
+		toSerialize["network"] = o.Network
+	}
+	if !IsNil(o.ByBand) {
+		toSerialize["byBand"] = o.ByBand
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationWirelessDevicesChannelUtilizationByNetwork200ResponseInner struct {

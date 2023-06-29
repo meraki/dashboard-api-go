@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner{}
+
 // CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner struct for CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner
 type CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner struct {
 	// Reason for the rollback
@@ -55,7 +58,7 @@ func (o *CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner) GetCategory()
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner) GetCategoryOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Category, true
 }
@@ -79,7 +82,7 @@ func (o *CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner) GetComment() 
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner) GetCommentOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Comment, true
 }
@@ -90,14 +93,18 @@ func (o *CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner) SetComment(v 
 }
 
 func (o CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["category"] = o.Category
-	}
-	if true {
-		toSerialize["comment"] = o.Comment
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkFirmwareUpgradesRollbackRequestReasonsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["category"] = o.Category
+	toSerialize["comment"] = o.Comment
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkFirmwareUpgradesRollbackRequestReasonsInner struct {

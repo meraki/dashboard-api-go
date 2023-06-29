@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the WipeNetworkSmDevices200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &WipeNetworkSmDevices200Response{}
+
 // WipeNetworkSmDevices200Response struct for WipeNetworkSmDevices200Response
 type WipeNetworkSmDevices200Response struct {
 	// The Meraki Id of the devices.
@@ -39,7 +42,7 @@ func NewWipeNetworkSmDevices200ResponseWithDefaults() *WipeNetworkSmDevices200Re
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *WipeNetworkSmDevices200Response) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *WipeNetworkSmDevices200Response) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WipeNetworkSmDevices200Response) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *WipeNetworkSmDevices200Response) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *WipeNetworkSmDevices200Response) SetId(v string) {
 }
 
 func (o WipeNetworkSmDevices200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o WipeNetworkSmDevices200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	return toSerialize, nil
 }
 
 type NullableWipeNetworkSmDevices200Response struct {

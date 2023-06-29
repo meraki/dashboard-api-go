@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkApplianceRfProfiles200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkApplianceRfProfiles200Response{}
+
 // GetNetworkApplianceRfProfiles200Response struct for GetNetworkApplianceRfProfiles200Response
 type GetNetworkApplianceRfProfiles200Response struct {
 	// RF Profiles
@@ -39,7 +42,7 @@ func NewGetNetworkApplianceRfProfiles200ResponseWithDefaults() *GetNetworkApplia
 
 // GetAssigned returns the Assigned field value if set, zero value otherwise.
 func (o *GetNetworkApplianceRfProfiles200Response) GetAssigned() []GetNetworkApplianceRfProfiles200ResponseAssignedInner {
-	if o == nil || isNil(o.Assigned) {
+	if o == nil || IsNil(o.Assigned) {
 		var ret []GetNetworkApplianceRfProfiles200ResponseAssignedInner
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetNetworkApplianceRfProfiles200Response) GetAssigned() []GetNetworkApp
 // GetAssignedOk returns a tuple with the Assigned field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceRfProfiles200Response) GetAssignedOk() ([]GetNetworkApplianceRfProfiles200ResponseAssignedInner, bool) {
-	if o == nil || isNil(o.Assigned) {
-    return nil, false
+	if o == nil || IsNil(o.Assigned) {
+		return nil, false
 	}
 	return o.Assigned, true
 }
 
 // HasAssigned returns a boolean if a field has been set.
 func (o *GetNetworkApplianceRfProfiles200Response) HasAssigned() bool {
-	if o != nil && !isNil(o.Assigned) {
+	if o != nil && !IsNil(o.Assigned) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetNetworkApplianceRfProfiles200Response) SetAssigned(v []GetNetworkApp
 }
 
 func (o GetNetworkApplianceRfProfiles200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Assigned) {
-		toSerialize["assigned"] = o.Assigned
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkApplianceRfProfiles200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Assigned) {
+		toSerialize["assigned"] = o.Assigned
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkApplianceRfProfiles200Response struct {

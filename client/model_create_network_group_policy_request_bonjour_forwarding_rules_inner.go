@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner{}
+
 // CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner struct for CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner
 type CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner struct {
 	// A description for your Bonjour forwarding rule. Optional.
@@ -45,7 +48,7 @@ func NewCreateNetworkGroupPolicyRequestBonjourForwardingRulesInnerWithDefaults()
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner) GetDescript
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
-    return nil, false
+	if o == nil || IsNil(o.Description) {
+		return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -89,7 +92,7 @@ func (o *CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner) GetVlanId()
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner) GetVlanIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.VlanId, true
 }
@@ -113,7 +116,7 @@ func (o *CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner) GetServices
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner) GetServicesOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Services, true
 }
@@ -124,17 +127,21 @@ func (o *CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner) SetServices
 }
 
 func (o CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	if true {
-		toSerialize["vlanId"] = o.VlanId
-	}
-	if true {
-		toSerialize["services"] = o.Services
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	toSerialize["vlanId"] = o.VlanId
+	toSerialize["services"] = o.Services
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkGroupPolicyRequestBonjourForwardingRulesInner struct {

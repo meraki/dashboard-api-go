@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetOrganizationAdaptivePolicyAcls200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationAdaptivePolicyAcls200ResponseInner{}
+
 // GetOrganizationAdaptivePolicyAcls200ResponseInner struct for GetOrganizationAdaptivePolicyAcls200ResponseInner
 type GetOrganizationAdaptivePolicyAcls200ResponseInner struct {
 	// ID of the adaptive policy ACL
@@ -52,7 +55,7 @@ func NewGetOrganizationAdaptivePolicyAcls200ResponseInnerWithDefaults() *GetOrga
 
 // GetAclId returns the AclId field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetAclId() string {
-	if o == nil || isNil(o.AclId) {
+	if o == nil || IsNil(o.AclId) {
 		var ret string
 		return ret
 	}
@@ -62,15 +65,15 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetAclId() string {
 // GetAclIdOk returns a tuple with the AclId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetAclIdOk() (*string, bool) {
-	if o == nil || isNil(o.AclId) {
-    return nil, false
+	if o == nil || IsNil(o.AclId) {
+		return nil, false
 	}
 	return o.AclId, true
 }
 
 // HasAclId returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) HasAclId() bool {
-	if o != nil && !isNil(o.AclId) {
+	if o != nil && !IsNil(o.AclId) {
 		return true
 	}
 
@@ -84,7 +87,7 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) SetAclId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -94,15 +97,15 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -116,7 +119,7 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) SetName(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -126,15 +129,15 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetDescription() str
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
-    return nil, false
+	if o == nil || IsNil(o.Description) {
+		return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -148,7 +151,7 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) SetDescription(v str
 
 // GetIpVersion returns the IpVersion field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetIpVersion() string {
-	if o == nil || isNil(o.IpVersion) {
+	if o == nil || IsNil(o.IpVersion) {
 		var ret string
 		return ret
 	}
@@ -158,15 +161,15 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetIpVersion() strin
 // GetIpVersionOk returns a tuple with the IpVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetIpVersionOk() (*string, bool) {
-	if o == nil || isNil(o.IpVersion) {
-    return nil, false
+	if o == nil || IsNil(o.IpVersion) {
+		return nil, false
 	}
 	return o.IpVersion, true
 }
 
 // HasIpVersion returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) HasIpVersion() bool {
-	if o != nil && !isNil(o.IpVersion) {
+	if o != nil && !IsNil(o.IpVersion) {
 		return true
 	}
 
@@ -180,7 +183,7 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) SetIpVersion(v strin
 
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetRules() []GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner {
-	if o == nil || isNil(o.Rules) {
+	if o == nil || IsNil(o.Rules) {
 		var ret []GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner
 		return ret
 	}
@@ -190,15 +193,15 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetRules() []GetOrga
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetRulesOk() ([]GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner, bool) {
-	if o == nil || isNil(o.Rules) {
-    return nil, false
+	if o == nil || IsNil(o.Rules) {
+		return nil, false
 	}
 	return o.Rules, true
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) HasRules() bool {
-	if o != nil && !isNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -212,7 +215,7 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) SetRules(v []GetOrga
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -222,15 +225,15 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetCreatedAt() time.
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -244,7 +247,7 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) SetCreatedAt(v time.
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -254,15 +257,15 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetUpdatedAt() time.
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -275,29 +278,37 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInner) SetUpdatedAt(v time.
 }
 
 func (o GetOrganizationAdaptivePolicyAcls200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.AclId) {
-		toSerialize["aclId"] = o.AclId
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	if !isNil(o.IpVersion) {
-		toSerialize["ipVersion"] = o.IpVersion
-	}
-	if !isNil(o.Rules) {
-		toSerialize["rules"] = o.Rules
-	}
-	if !isNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if !isNil(o.UpdatedAt) {
-		toSerialize["updatedAt"] = o.UpdatedAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationAdaptivePolicyAcls200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AclId) {
+		toSerialize["aclId"] = o.AclId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.IpVersion) {
+		toSerialize["ipVersion"] = o.IpVersion
+	}
+	if !IsNil(o.Rules) {
+		toSerialize["rules"] = o.Rules
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updatedAt"] = o.UpdatedAt
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationAdaptivePolicyAcls200ResponseInner struct {

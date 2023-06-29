@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSummaryTopSsidsByUsage200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSummaryTopSsidsByUsage200ResponseInner{}
+
 // GetOrganizationSummaryTopSsidsByUsage200ResponseInner struct for GetOrganizationSummaryTopSsidsByUsage200ResponseInner
 type GetOrganizationSummaryTopSsidsByUsage200ResponseInner struct {
 	// Name of the SSID
@@ -41,7 +44,7 @@ func NewGetOrganizationSummaryTopSsidsByUsage200ResponseInnerWithDefaults() *Get
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInner) GetName() string
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInner) SetName(v string
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInner) GetUsage() GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage {
-	if o == nil || isNil(o.Usage) {
+	if o == nil || IsNil(o.Usage) {
 		var ret GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInner) GetUsage() GetOr
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInner) GetUsageOk() (*GetOrganizationSummaryTopSsidsByUsage200ResponseInnerUsage, bool) {
-	if o == nil || isNil(o.Usage) {
-    return nil, false
+	if o == nil || IsNil(o.Usage) {
+		return nil, false
 	}
 	return o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInner) HasUsage() bool {
-	if o != nil && !isNil(o.Usage) {
+	if o != nil && !IsNil(o.Usage) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInner) SetUsage(v GetOr
 
 // GetClients returns the Clients field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInner) GetClients() GetOrganizationSummaryTopSsidsByUsage200ResponseInnerClients {
-	if o == nil || isNil(o.Clients) {
+	if o == nil || IsNil(o.Clients) {
 		var ret GetOrganizationSummaryTopSsidsByUsage200ResponseInnerClients
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInner) GetClients() Get
 // GetClientsOk returns a tuple with the Clients field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInner) GetClientsOk() (*GetOrganizationSummaryTopSsidsByUsage200ResponseInnerClients, bool) {
-	if o == nil || isNil(o.Clients) {
-    return nil, false
+	if o == nil || IsNil(o.Clients) {
+		return nil, false
 	}
 	return o.Clients, true
 }
 
 // HasClients returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInner) HasClients() bool {
-	if o != nil && !isNil(o.Clients) {
+	if o != nil && !IsNil(o.Clients) {
 		return true
 	}
 
@@ -136,17 +139,25 @@ func (o *GetOrganizationSummaryTopSsidsByUsage200ResponseInner) SetClients(v Get
 }
 
 func (o GetOrganizationSummaryTopSsidsByUsage200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Usage) {
-		toSerialize["usage"] = o.Usage
-	}
-	if !isNil(o.Clients) {
-		toSerialize["clients"] = o.Clients
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSummaryTopSsidsByUsage200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Usage) {
+		toSerialize["usage"] = o.Usage
+	}
+	if !IsNil(o.Clients) {
+		toSerialize["clients"] = o.Clients
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSummaryTopSsidsByUsage200ResponseInner struct {

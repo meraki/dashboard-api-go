@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp{}
+
 // GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp DSCP attributes of the packet.
 type GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp struct {
 	// DSCP tag number of the packet.
@@ -41,7 +44,7 @@ func NewGetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscpWithDef
 
 // GetTag returns the Tag field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp) GetTag() int32 {
-	if o == nil || isNil(o.Tag) {
+	if o == nil || IsNil(o.Tag) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp) GetT
 // GetTagOk returns a tuple with the Tag field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp) GetTagOk() (*int32, bool) {
-	if o == nil || isNil(o.Tag) {
-    return nil, false
+	if o == nil || IsNil(o.Tag) {
+		return nil, false
 	}
 	return o.Tag, true
 }
 
 // HasTag returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp) HasTag() bool {
-	if o != nil && !isNil(o.Tag) {
+	if o != nil && !IsNil(o.Tag) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp) SetT
 
 // GetEcn returns the Ecn field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp) GetEcn() int32 {
-	if o == nil || isNil(o.Ecn) {
+	if o == nil || IsNil(o.Ecn) {
 		var ret int32
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp) GetE
 // GetEcnOk returns a tuple with the Ecn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp) GetEcnOk() (*int32, bool) {
-	if o == nil || isNil(o.Ecn) {
-    return nil, false
+	if o == nil || IsNil(o.Ecn) {
+		return nil, false
 	}
 	return o.Ecn, true
 }
 
 // HasEcn returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp) HasEcn() bool {
-	if o != nil && !isNil(o.Ecn) {
+	if o != nil && !IsNil(o.Ecn) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp) SetE
 }
 
 func (o GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Tag) {
-		toSerialize["tag"] = o.Tag
-	}
-	if !isNil(o.Ecn) {
-		toSerialize["ecn"] = o.Ecn
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Tag) {
+		toSerialize["tag"] = o.Tag
+	}
+	if !IsNil(o.Ecn) {
+		toSerialize["ecn"] = o.Ecn
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp struct {

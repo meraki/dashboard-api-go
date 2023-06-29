@@ -10,89 +10,88 @@ Testing SamlRolesApiService
 package client
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "github.com/meraki/dashboard-api-go/client"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func Test_client_SamlRolesApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test SamlRolesApiService CreateOrganizationSamlRole", func(t *testing.T) {
+	t.Run("Test SamlRolesApiService CreateOrganizationSamlRole", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
+		var organizationId string
 
-        resp, httpRes, err := apiClient.SamlRolesApi.CreateOrganizationSamlRole(context.Background(), organizationId).Execute()
+		resp, httpRes, err := apiClient.SamlRolesApi.CreateOrganizationSamlRole(context.Background(), organizationId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SamlRolesApiService DeleteOrganizationSamlRole", func(t *testing.T) {
+	t.Run("Test SamlRolesApiService DeleteOrganizationSamlRole", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
-        var samlRoleId string
+		var organizationId string
+		var samlRoleId string
 
-        resp, httpRes, err := apiClient.SamlRolesApi.DeleteOrganizationSamlRole(context.Background(), organizationId, samlRoleId).Execute()
+		httpRes, err := apiClient.SamlRolesApi.DeleteOrganizationSamlRole(context.Background(), organizationId, samlRoleId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SamlRolesApiService GetOrganizationSamlRole", func(t *testing.T) {
+	t.Run("Test SamlRolesApiService GetOrganizationSamlRole", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
-        var samlRoleId string
+		var organizationId string
+		var samlRoleId string
 
-        resp, httpRes, err := apiClient.SamlRolesApi.GetOrganizationSamlRole(context.Background(), organizationId, samlRoleId).Execute()
+		resp, httpRes, err := apiClient.SamlRolesApi.GetOrganizationSamlRole(context.Background(), organizationId, samlRoleId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SamlRolesApiService GetOrganizationSamlRoles", func(t *testing.T) {
+	t.Run("Test SamlRolesApiService GetOrganizationSamlRoles", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
+		var organizationId string
 
-        resp, httpRes, err := apiClient.SamlRolesApi.GetOrganizationSamlRoles(context.Background(), organizationId).Execute()
+		resp, httpRes, err := apiClient.SamlRolesApi.GetOrganizationSamlRoles(context.Background(), organizationId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test SamlRolesApiService UpdateOrganizationSamlRole", func(t *testing.T) {
+	t.Run("Test SamlRolesApiService UpdateOrganizationSamlRole", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
-        var samlRoleId string
+		var organizationId string
+		var samlRoleId string
 
-        resp, httpRes, err := apiClient.SamlRolesApi.UpdateOrganizationSamlRole(context.Background(), organizationId, samlRoleId).Execute()
+		resp, httpRes, err := apiClient.SamlRolesApi.UpdateOrganizationSamlRole(context.Background(), organizationId, samlRoleId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

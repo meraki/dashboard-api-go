@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationInsightApplications200ResponseInnerThresholds type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationInsightApplications200ResponseInnerThresholds{}
+
 // GetOrganizationInsightApplications200ResponseInnerThresholds Thresholds defined by a user or Meraki models for each application
 type GetOrganizationInsightApplications200ResponseInnerThresholds struct {
 	// Threshold type (static or smart)
@@ -41,7 +44,7 @@ func NewGetOrganizationInsightApplications200ResponseInnerThresholdsWithDefaults
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GetOrganizationInsightApplications200ResponseInnerThresholds) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetOrganizationInsightApplications200ResponseInnerThresholds) GetType()
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInsightApplications200ResponseInnerThresholds) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *GetOrganizationInsightApplications200ResponseInnerThresholds) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetOrganizationInsightApplications200ResponseInnerThresholds) SetType(v
 
 // GetByNetwork returns the ByNetwork field value if set, zero value otherwise.
 func (o *GetOrganizationInsightApplications200ResponseInnerThresholds) GetByNetwork() []GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner {
-	if o == nil || isNil(o.ByNetwork) {
+	if o == nil || IsNil(o.ByNetwork) {
 		var ret []GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetOrganizationInsightApplications200ResponseInnerThresholds) GetByNetw
 // GetByNetworkOk returns a tuple with the ByNetwork field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInsightApplications200ResponseInnerThresholds) GetByNetworkOk() ([]GetOrganizationInsightApplications200ResponseInnerThresholdsByNetworkInner, bool) {
-	if o == nil || isNil(o.ByNetwork) {
-    return nil, false
+	if o == nil || IsNil(o.ByNetwork) {
+		return nil, false
 	}
 	return o.ByNetwork, true
 }
 
 // HasByNetwork returns a boolean if a field has been set.
 func (o *GetOrganizationInsightApplications200ResponseInnerThresholds) HasByNetwork() bool {
-	if o != nil && !isNil(o.ByNetwork) {
+	if o != nil && !IsNil(o.ByNetwork) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetOrganizationInsightApplications200ResponseInnerThresholds) SetByNetw
 }
 
 func (o GetOrganizationInsightApplications200ResponseInnerThresholds) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.ByNetwork) {
-		toSerialize["byNetwork"] = o.ByNetwork
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationInsightApplications200ResponseInnerThresholds) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.ByNetwork) {
+		toSerialize["byNetwork"] = o.ByNetwork
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationInsightApplications200ResponseInnerThresholds struct {

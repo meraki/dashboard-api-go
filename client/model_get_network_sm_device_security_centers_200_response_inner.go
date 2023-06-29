@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmDeviceSecurityCenters200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmDeviceSecurityCenters200ResponseInner{}
+
 // GetNetworkSmDeviceSecurityCenters200ResponseInner struct for GetNetworkSmDeviceSecurityCenters200ResponseInner
 type GetNetworkSmDeviceSecurityCenters200ResponseInner struct {
 	// Boolean indicating if the device is rooted.
@@ -57,7 +60,7 @@ func NewGetNetworkSmDeviceSecurityCenters200ResponseInnerWithDefaults() *GetNetw
 
 // GetIsRooted returns the IsRooted field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetIsRooted() bool {
-	if o == nil || isNil(o.IsRooted) {
+	if o == nil || IsNil(o.IsRooted) {
 		var ret bool
 		return ret
 	}
@@ -67,15 +70,15 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetIsRooted() bool {
 // GetIsRootedOk returns a tuple with the IsRooted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetIsRootedOk() (*bool, bool) {
-	if o == nil || isNil(o.IsRooted) {
-    return nil, false
+	if o == nil || IsNil(o.IsRooted) {
+		return nil, false
 	}
 	return o.IsRooted, true
 }
 
 // HasIsRooted returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) HasIsRooted() bool {
-	if o != nil && !isNil(o.IsRooted) {
+	if o != nil && !IsNil(o.IsRooted) {
 		return true
 	}
 
@@ -89,7 +92,7 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) SetIsRooted(v bool) 
 
 // GetHasAntiVirus returns the HasAntiVirus field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetHasAntiVirus() bool {
-	if o == nil || isNil(o.HasAntiVirus) {
+	if o == nil || IsNil(o.HasAntiVirus) {
 		var ret bool
 		return ret
 	}
@@ -99,15 +102,15 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetHasAntiVirus() bo
 // GetHasAntiVirusOk returns a tuple with the HasAntiVirus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetHasAntiVirusOk() (*bool, bool) {
-	if o == nil || isNil(o.HasAntiVirus) {
-    return nil, false
+	if o == nil || IsNil(o.HasAntiVirus) {
+		return nil, false
 	}
 	return o.HasAntiVirus, true
 }
 
 // HasHasAntiVirus returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) HasHasAntiVirus() bool {
-	if o != nil && !isNil(o.HasAntiVirus) {
+	if o != nil && !IsNil(o.HasAntiVirus) {
 		return true
 	}
 
@@ -121,7 +124,7 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) SetHasAntiVirus(v bo
 
 // GetAntiVirusName returns the AntiVirusName field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetAntiVirusName() string {
-	if o == nil || isNil(o.AntiVirusName) {
+	if o == nil || IsNil(o.AntiVirusName) {
 		var ret string
 		return ret
 	}
@@ -131,15 +134,15 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetAntiVirusName() s
 // GetAntiVirusNameOk returns a tuple with the AntiVirusName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetAntiVirusNameOk() (*string, bool) {
-	if o == nil || isNil(o.AntiVirusName) {
-    return nil, false
+	if o == nil || IsNil(o.AntiVirusName) {
+		return nil, false
 	}
 	return o.AntiVirusName, true
 }
 
 // HasAntiVirusName returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) HasAntiVirusName() bool {
-	if o != nil && !isNil(o.AntiVirusName) {
+	if o != nil && !IsNil(o.AntiVirusName) {
 		return true
 	}
 
@@ -153,7 +156,7 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) SetAntiVirusName(v s
 
 // GetIsFireWallEnabled returns the IsFireWallEnabled field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetIsFireWallEnabled() bool {
-	if o == nil || isNil(o.IsFireWallEnabled) {
+	if o == nil || IsNil(o.IsFireWallEnabled) {
 		var ret bool
 		return ret
 	}
@@ -163,15 +166,15 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetIsFireWallEnabled
 // GetIsFireWallEnabledOk returns a tuple with the IsFireWallEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetIsFireWallEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.IsFireWallEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.IsFireWallEnabled) {
+		return nil, false
 	}
 	return o.IsFireWallEnabled, true
 }
 
 // HasIsFireWallEnabled returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) HasIsFireWallEnabled() bool {
-	if o != nil && !isNil(o.IsFireWallEnabled) {
+	if o != nil && !IsNil(o.IsFireWallEnabled) {
 		return true
 	}
 
@@ -185,7 +188,7 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) SetIsFireWallEnabled
 
 // GetHasFireWallInstalled returns the HasFireWallInstalled field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetHasFireWallInstalled() bool {
-	if o == nil || isNil(o.HasFireWallInstalled) {
+	if o == nil || IsNil(o.HasFireWallInstalled) {
 		var ret bool
 		return ret
 	}
@@ -195,15 +198,15 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetHasFireWallInstal
 // GetHasFireWallInstalledOk returns a tuple with the HasFireWallInstalled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetHasFireWallInstalledOk() (*bool, bool) {
-	if o == nil || isNil(o.HasFireWallInstalled) {
-    return nil, false
+	if o == nil || IsNil(o.HasFireWallInstalled) {
+		return nil, false
 	}
 	return o.HasFireWallInstalled, true
 }
 
 // HasHasFireWallInstalled returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) HasHasFireWallInstalled() bool {
-	if o != nil && !isNil(o.HasFireWallInstalled) {
+	if o != nil && !IsNil(o.HasFireWallInstalled) {
 		return true
 	}
 
@@ -217,7 +220,7 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) SetHasFireWallInstal
 
 // GetFireWallName returns the FireWallName field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetFireWallName() string {
-	if o == nil || isNil(o.FireWallName) {
+	if o == nil || IsNil(o.FireWallName) {
 		var ret string
 		return ret
 	}
@@ -227,15 +230,15 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetFireWallName() st
 // GetFireWallNameOk returns a tuple with the FireWallName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetFireWallNameOk() (*string, bool) {
-	if o == nil || isNil(o.FireWallName) {
-    return nil, false
+	if o == nil || IsNil(o.FireWallName) {
+		return nil, false
 	}
 	return o.FireWallName, true
 }
 
 // HasFireWallName returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) HasFireWallName() bool {
-	if o != nil && !isNil(o.FireWallName) {
+	if o != nil && !IsNil(o.FireWallName) {
 		return true
 	}
 
@@ -249,7 +252,7 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) SetFireWallName(v st
 
 // GetIsDiskEncrypted returns the IsDiskEncrypted field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetIsDiskEncrypted() bool {
-	if o == nil || isNil(o.IsDiskEncrypted) {
+	if o == nil || IsNil(o.IsDiskEncrypted) {
 		var ret bool
 		return ret
 	}
@@ -259,15 +262,15 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetIsDiskEncrypted()
 // GetIsDiskEncryptedOk returns a tuple with the IsDiskEncrypted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetIsDiskEncryptedOk() (*bool, bool) {
-	if o == nil || isNil(o.IsDiskEncrypted) {
-    return nil, false
+	if o == nil || IsNil(o.IsDiskEncrypted) {
+		return nil, false
 	}
 	return o.IsDiskEncrypted, true
 }
 
 // HasIsDiskEncrypted returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) HasIsDiskEncrypted() bool {
-	if o != nil && !isNil(o.IsDiskEncrypted) {
+	if o != nil && !IsNil(o.IsDiskEncrypted) {
 		return true
 	}
 
@@ -281,7 +284,7 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) SetIsDiskEncrypted(v
 
 // GetIsAutoLoginDisabled returns the IsAutoLoginDisabled field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetIsAutoLoginDisabled() bool {
-	if o == nil || isNil(o.IsAutoLoginDisabled) {
+	if o == nil || IsNil(o.IsAutoLoginDisabled) {
 		var ret bool
 		return ret
 	}
@@ -291,15 +294,15 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetIsAutoLoginDisabl
 // GetIsAutoLoginDisabledOk returns a tuple with the IsAutoLoginDisabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetIsAutoLoginDisabledOk() (*bool, bool) {
-	if o == nil || isNil(o.IsAutoLoginDisabled) {
-    return nil, false
+	if o == nil || IsNil(o.IsAutoLoginDisabled) {
+		return nil, false
 	}
 	return o.IsAutoLoginDisabled, true
 }
 
 // HasIsAutoLoginDisabled returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) HasIsAutoLoginDisabled() bool {
-	if o != nil && !isNil(o.IsAutoLoginDisabled) {
+	if o != nil && !IsNil(o.IsAutoLoginDisabled) {
 		return true
 	}
 
@@ -313,7 +316,7 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) SetIsAutoLoginDisabl
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -323,15 +326,15 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -345,7 +348,7 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) SetId(v string) {
 
 // GetRunningProcs returns the RunningProcs field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetRunningProcs() string {
-	if o == nil || isNil(o.RunningProcs) {
+	if o == nil || IsNil(o.RunningProcs) {
 		var ret string
 		return ret
 	}
@@ -355,15 +358,15 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetRunningProcs() st
 // GetRunningProcsOk returns a tuple with the RunningProcs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) GetRunningProcsOk() (*string, bool) {
-	if o == nil || isNil(o.RunningProcs) {
-    return nil, false
+	if o == nil || IsNil(o.RunningProcs) {
+		return nil, false
 	}
 	return o.RunningProcs, true
 }
 
 // HasRunningProcs returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) HasRunningProcs() bool {
-	if o != nil && !isNil(o.RunningProcs) {
+	if o != nil && !IsNil(o.RunningProcs) {
 		return true
 	}
 
@@ -376,38 +379,46 @@ func (o *GetNetworkSmDeviceSecurityCenters200ResponseInner) SetRunningProcs(v st
 }
 
 func (o GetNetworkSmDeviceSecurityCenters200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.IsRooted) {
-		toSerialize["isRooted"] = o.IsRooted
-	}
-	if !isNil(o.HasAntiVirus) {
-		toSerialize["hasAntiVirus"] = o.HasAntiVirus
-	}
-	if !isNil(o.AntiVirusName) {
-		toSerialize["antiVirusName"] = o.AntiVirusName
-	}
-	if !isNil(o.IsFireWallEnabled) {
-		toSerialize["isFireWallEnabled"] = o.IsFireWallEnabled
-	}
-	if !isNil(o.HasFireWallInstalled) {
-		toSerialize["hasFireWallInstalled"] = o.HasFireWallInstalled
-	}
-	if !isNil(o.FireWallName) {
-		toSerialize["fireWallName"] = o.FireWallName
-	}
-	if !isNil(o.IsDiskEncrypted) {
-		toSerialize["isDiskEncrypted"] = o.IsDiskEncrypted
-	}
-	if !isNil(o.IsAutoLoginDisabled) {
-		toSerialize["isAutoLoginDisabled"] = o.IsAutoLoginDisabled
-	}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.RunningProcs) {
-		toSerialize["runningProcs"] = o.RunningProcs
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmDeviceSecurityCenters200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.IsRooted) {
+		toSerialize["isRooted"] = o.IsRooted
+	}
+	if !IsNil(o.HasAntiVirus) {
+		toSerialize["hasAntiVirus"] = o.HasAntiVirus
+	}
+	if !IsNil(o.AntiVirusName) {
+		toSerialize["antiVirusName"] = o.AntiVirusName
+	}
+	if !IsNil(o.IsFireWallEnabled) {
+		toSerialize["isFireWallEnabled"] = o.IsFireWallEnabled
+	}
+	if !IsNil(o.HasFireWallInstalled) {
+		toSerialize["hasFireWallInstalled"] = o.HasFireWallInstalled
+	}
+	if !IsNil(o.FireWallName) {
+		toSerialize["fireWallName"] = o.FireWallName
+	}
+	if !IsNil(o.IsDiskEncrypted) {
+		toSerialize["isDiskEncrypted"] = o.IsDiskEncrypted
+	}
+	if !IsNil(o.IsAutoLoginDisabled) {
+		toSerialize["isAutoLoginDisabled"] = o.IsAutoLoginDisabled
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.RunningProcs) {
+		toSerialize["runningProcs"] = o.RunningProcs
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmDeviceSecurityCenters200ResponseInner struct {

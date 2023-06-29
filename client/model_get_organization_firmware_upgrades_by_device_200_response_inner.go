@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationFirmwareUpgradesByDevice200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationFirmwareUpgradesByDevice200ResponseInner{}
+
 // GetOrganizationFirmwareUpgradesByDevice200ResponseInner struct for GetOrganizationFirmwareUpgradesByDevice200ResponseInner
 type GetOrganizationFirmwareUpgradesByDevice200ResponseInner struct {
 	// Serial of the device
@@ -44,7 +47,7 @@ func NewGetOrganizationFirmwareUpgradesByDevice200ResponseInnerWithDefaults() *G
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) GetSerial() st
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) SetSerial(v st
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) GetName() stri
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) SetName(v stri
 
 // GetDeviceStatus returns the DeviceStatus field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) GetDeviceStatus() string {
-	if o == nil || isNil(o.DeviceStatus) {
+	if o == nil || IsNil(o.DeviceStatus) {
 		var ret string
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) GetDeviceStatu
 // GetDeviceStatusOk returns a tuple with the DeviceStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) GetDeviceStatusOk() (*string, bool) {
-	if o == nil || isNil(o.DeviceStatus) {
-    return nil, false
+	if o == nil || IsNil(o.DeviceStatus) {
+		return nil, false
 	}
 	return o.DeviceStatus, true
 }
 
 // HasDeviceStatus returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) HasDeviceStatus() bool {
-	if o != nil && !isNil(o.DeviceStatus) {
+	if o != nil && !IsNil(o.DeviceStatus) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) SetDeviceStatu
 
 // GetUpgrade returns the Upgrade field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) GetUpgrade() GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgrade {
-	if o == nil || isNil(o.Upgrade) {
+	if o == nil || IsNil(o.Upgrade) {
 		var ret GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgrade
 		return ret
 	}
@@ -150,15 +153,15 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) GetUpgrade() G
 // GetUpgradeOk returns a tuple with the Upgrade field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) GetUpgradeOk() (*GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgrade, bool) {
-	if o == nil || isNil(o.Upgrade) {
-    return nil, false
+	if o == nil || IsNil(o.Upgrade) {
+		return nil, false
 	}
 	return o.Upgrade, true
 }
 
 // HasUpgrade returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) HasUpgrade() bool {
-	if o != nil && !isNil(o.Upgrade) {
+	if o != nil && !IsNil(o.Upgrade) {
 		return true
 	}
 
@@ -171,20 +174,28 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInner) SetUpgrade(v G
 }
 
 func (o GetOrganizationFirmwareUpgradesByDevice200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.DeviceStatus) {
-		toSerialize["deviceStatus"] = o.DeviceStatus
-	}
-	if !isNil(o.Upgrade) {
-		toSerialize["upgrade"] = o.Upgrade
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationFirmwareUpgradesByDevice200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.DeviceStatus) {
+		toSerialize["deviceStatus"] = o.DeviceStatus
+	}
+	if !IsNil(o.Upgrade) {
+		toSerialize["upgrade"] = o.Upgrade
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationFirmwareUpgradesByDevice200ResponseInner struct {

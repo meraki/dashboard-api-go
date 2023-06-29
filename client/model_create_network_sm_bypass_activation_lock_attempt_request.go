@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkSmBypassActivationLockAttemptRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkSmBypassActivationLockAttemptRequest{}
+
 // CreateNetworkSmBypassActivationLockAttemptRequest struct for CreateNetworkSmBypassActivationLockAttemptRequest
 type CreateNetworkSmBypassActivationLockAttemptRequest struct {
 	// The ids of the devices to attempt activation lock bypass.
@@ -52,7 +55,7 @@ func (o *CreateNetworkSmBypassActivationLockAttemptRequest) GetIds() []string {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSmBypassActivationLockAttemptRequest) GetIdsOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Ids, true
 }
@@ -63,11 +66,17 @@ func (o *CreateNetworkSmBypassActivationLockAttemptRequest) SetIds(v []string) {
 }
 
 func (o CreateNetworkSmBypassActivationLockAttemptRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ids"] = o.Ids
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkSmBypassActivationLockAttemptRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["ids"] = o.Ids
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkSmBypassActivationLockAttemptRequest struct {

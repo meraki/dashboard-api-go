@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationSamlRoleRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationSamlRoleRequest{}
+
 // CreateOrganizationSamlRoleRequest struct for CreateOrganizationSamlRoleRequest
 type CreateOrganizationSamlRoleRequest struct {
 	// The role of the SAML administrator
@@ -59,7 +62,7 @@ func (o *CreateOrganizationSamlRoleRequest) GetRole() string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationSamlRoleRequest) GetRoleOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Role, true
 }
@@ -83,7 +86,7 @@ func (o *CreateOrganizationSamlRoleRequest) GetOrgAccess() string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationSamlRoleRequest) GetOrgAccessOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.OrgAccess, true
 }
@@ -95,7 +98,7 @@ func (o *CreateOrganizationSamlRoleRequest) SetOrgAccess(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *CreateOrganizationSamlRoleRequest) GetTags() []CreateOrganizationSamlRoleRequestTagsInner {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []CreateOrganizationSamlRoleRequestTagsInner
 		return ret
 	}
@@ -105,15 +108,15 @@ func (o *CreateOrganizationSamlRoleRequest) GetTags() []CreateOrganizationSamlRo
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationSamlRoleRequest) GetTagsOk() ([]CreateOrganizationSamlRoleRequestTagsInner, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
 	}
 	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *CreateOrganizationSamlRoleRequest) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -127,7 +130,7 @@ func (o *CreateOrganizationSamlRoleRequest) SetTags(v []CreateOrganizationSamlRo
 
 // GetNetworks returns the Networks field value if set, zero value otherwise.
 func (o *CreateOrganizationSamlRoleRequest) GetNetworks() []CreateOrganizationSamlRoleRequestNetworksInner {
-	if o == nil || isNil(o.Networks) {
+	if o == nil || IsNil(o.Networks) {
 		var ret []CreateOrganizationSamlRoleRequestNetworksInner
 		return ret
 	}
@@ -137,15 +140,15 @@ func (o *CreateOrganizationSamlRoleRequest) GetNetworks() []CreateOrganizationSa
 // GetNetworksOk returns a tuple with the Networks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationSamlRoleRequest) GetNetworksOk() ([]CreateOrganizationSamlRoleRequestNetworksInner, bool) {
-	if o == nil || isNil(o.Networks) {
-    return nil, false
+	if o == nil || IsNil(o.Networks) {
+		return nil, false
 	}
 	return o.Networks, true
 }
 
 // HasNetworks returns a boolean if a field has been set.
 func (o *CreateOrganizationSamlRoleRequest) HasNetworks() bool {
-	if o != nil && !isNil(o.Networks) {
+	if o != nil && !IsNil(o.Networks) {
 		return true
 	}
 
@@ -158,20 +161,24 @@ func (o *CreateOrganizationSamlRoleRequest) SetNetworks(v []CreateOrganizationSa
 }
 
 func (o CreateOrganizationSamlRoleRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["role"] = o.Role
-	}
-	if true {
-		toSerialize["orgAccess"] = o.OrgAccess
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !isNil(o.Networks) {
-		toSerialize["networks"] = o.Networks
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationSamlRoleRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["role"] = o.Role
+	toSerialize["orgAccess"] = o.OrgAccess
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.Networks) {
+		toSerialize["networks"] = o.Networks
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationSamlRoleRequest struct {

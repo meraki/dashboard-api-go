@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrade type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrade{}
+
 // CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrade The next upgrade version for the switch network
 type CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrade struct {
 	ToVersion *CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgradeToVersion `json:"toVersion,omitempty"`
@@ -38,7 +41,7 @@ func NewCreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrade
 
 // GetToVersion returns the ToVersion field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrade) GetToVersion() CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgradeToVersion {
-	if o == nil || isNil(o.ToVersion) {
+	if o == nil || IsNil(o.ToVersion) {
 		var ret CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgradeToVersion
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrad
 // GetToVersionOk returns a tuple with the ToVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrade) GetToVersionOk() (*CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgradeToVersion, bool) {
-	if o == nil || isNil(o.ToVersion) {
-    return nil, false
+	if o == nil || IsNil(o.ToVersion) {
+		return nil, false
 	}
 	return o.ToVersion, true
 }
 
 // HasToVersion returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrade) HasToVersion() bool {
-	if o != nil && !isNil(o.ToVersion) {
+	if o != nil && !IsNil(o.ToVersion) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrad
 }
 
 func (o CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrade) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ToVersion) {
-		toSerialize["toVersion"] = o.ToVersion
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrade) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ToVersion) {
+		toSerialize["toVersion"] = o.ToVersion
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchNextUpgrade struct {

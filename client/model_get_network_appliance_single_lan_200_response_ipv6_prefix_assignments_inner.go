@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner{}
+
 // GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner struct for GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner
 type GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner struct {
 	// Auto assign a /64 prefix from the origin to the single LAN
@@ -44,7 +47,7 @@ func NewGetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInnerWithDef
 
 // GetAutonomous returns the Autonomous field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) GetAutonomous() bool {
-	if o == nil || isNil(o.Autonomous) {
+	if o == nil || IsNil(o.Autonomous) {
 		var ret bool
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) GetA
 // GetAutonomousOk returns a tuple with the Autonomous field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) GetAutonomousOk() (*bool, bool) {
-	if o == nil || isNil(o.Autonomous) {
-    return nil, false
+	if o == nil || IsNil(o.Autonomous) {
+		return nil, false
 	}
 	return o.Autonomous, true
 }
 
 // HasAutonomous returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) HasAutonomous() bool {
-	if o != nil && !isNil(o.Autonomous) {
+	if o != nil && !IsNil(o.Autonomous) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) SetA
 
 // GetStaticPrefix returns the StaticPrefix field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) GetStaticPrefix() string {
-	if o == nil || isNil(o.StaticPrefix) {
+	if o == nil || IsNil(o.StaticPrefix) {
 		var ret string
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) GetS
 // GetStaticPrefixOk returns a tuple with the StaticPrefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) GetStaticPrefixOk() (*string, bool) {
-	if o == nil || isNil(o.StaticPrefix) {
-    return nil, false
+	if o == nil || IsNil(o.StaticPrefix) {
+		return nil, false
 	}
 	return o.StaticPrefix, true
 }
 
 // HasStaticPrefix returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) HasStaticPrefix() bool {
-	if o != nil && !isNil(o.StaticPrefix) {
+	if o != nil && !IsNil(o.StaticPrefix) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) SetS
 
 // GetStaticApplianceIp6 returns the StaticApplianceIp6 field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) GetStaticApplianceIp6() string {
-	if o == nil || isNil(o.StaticApplianceIp6) {
+	if o == nil || IsNil(o.StaticApplianceIp6) {
 		var ret string
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) GetS
 // GetStaticApplianceIp6Ok returns a tuple with the StaticApplianceIp6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) GetStaticApplianceIp6Ok() (*string, bool) {
-	if o == nil || isNil(o.StaticApplianceIp6) {
-    return nil, false
+	if o == nil || IsNil(o.StaticApplianceIp6) {
+		return nil, false
 	}
 	return o.StaticApplianceIp6, true
 }
 
 // HasStaticApplianceIp6 returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) HasStaticApplianceIp6() bool {
-	if o != nil && !isNil(o.StaticApplianceIp6) {
+	if o != nil && !IsNil(o.StaticApplianceIp6) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) SetS
 
 // GetOrigin returns the Origin field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) GetOrigin() CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin {
-	if o == nil || isNil(o.Origin) {
+	if o == nil || IsNil(o.Origin) {
 		var ret CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin
 		return ret
 	}
@@ -150,15 +153,15 @@ func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) GetO
 // GetOriginOk returns a tuple with the Origin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) GetOriginOk() (*CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin, bool) {
-	if o == nil || isNil(o.Origin) {
-    return nil, false
+	if o == nil || IsNil(o.Origin) {
+		return nil, false
 	}
 	return o.Origin, true
 }
 
 // HasOrigin returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) HasOrigin() bool {
-	if o != nil && !isNil(o.Origin) {
+	if o != nil && !IsNil(o.Origin) {
 		return true
 	}
 
@@ -171,20 +174,28 @@ func (o *GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) SetO
 }
 
 func (o GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Autonomous) {
-		toSerialize["autonomous"] = o.Autonomous
-	}
-	if !isNil(o.StaticPrefix) {
-		toSerialize["staticPrefix"] = o.StaticPrefix
-	}
-	if !isNil(o.StaticApplianceIp6) {
-		toSerialize["staticApplianceIp6"] = o.StaticApplianceIp6
-	}
-	if !isNil(o.Origin) {
-		toSerialize["origin"] = o.Origin
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Autonomous) {
+		toSerialize["autonomous"] = o.Autonomous
+	}
+	if !IsNil(o.StaticPrefix) {
+		toSerialize["staticPrefix"] = o.StaticPrefix
+	}
+	if !IsNil(o.StaticApplianceIp6) {
+		toSerialize["staticApplianceIp6"] = o.StaticApplianceIp6
+	}
+	if !IsNil(o.Origin) {
+		toSerialize["origin"] = o.Origin
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkApplianceSingleLan200ResponseIpv6PrefixAssignmentsInner struct {

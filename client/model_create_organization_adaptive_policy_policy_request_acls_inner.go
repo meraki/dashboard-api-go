@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationAdaptivePolicyPolicyRequestAclsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationAdaptivePolicyPolicyRequestAclsInner{}
+
 // CreateOrganizationAdaptivePolicyPolicyRequestAclsInner struct for CreateOrganizationAdaptivePolicyPolicyRequestAclsInner
 type CreateOrganizationAdaptivePolicyPolicyRequestAclsInner struct {
 	// The ID of the adaptive policy ACL
@@ -41,7 +44,7 @@ func NewCreateOrganizationAdaptivePolicyPolicyRequestAclsInnerWithDefaults() *Cr
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequestAclsInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequestAclsInner) GetId() string 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequestAclsInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequestAclsInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequestAclsInner) SetId(v string)
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequestAclsInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequestAclsInner) GetName() strin
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequestAclsInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequestAclsInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequestAclsInner) SetName(v strin
 }
 
 func (o CreateOrganizationAdaptivePolicyPolicyRequestAclsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationAdaptivePolicyPolicyRequestAclsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationAdaptivePolicyPolicyRequestAclsInner struct {

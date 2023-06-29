@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceRequest{}
+
 // UpdateDeviceRequest struct for UpdateDeviceRequest
 type UpdateDeviceRequest struct {
 	// The name of a device
@@ -55,7 +58,7 @@ func NewUpdateDeviceRequestWithDefaults() *UpdateDeviceRequest {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateDeviceRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -65,15 +68,15 @@ func (o *UpdateDeviceRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateDeviceRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -87,7 +90,7 @@ func (o *UpdateDeviceRequest) SetName(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *UpdateDeviceRequest) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -97,15 +100,15 @@ func (o *UpdateDeviceRequest) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceRequest) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
 	}
 	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *UpdateDeviceRequest) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -119,7 +122,7 @@ func (o *UpdateDeviceRequest) SetTags(v []string) {
 
 // GetLat returns the Lat field value if set, zero value otherwise.
 func (o *UpdateDeviceRequest) GetLat() float32 {
-	if o == nil || isNil(o.Lat) {
+	if o == nil || IsNil(o.Lat) {
 		var ret float32
 		return ret
 	}
@@ -129,15 +132,15 @@ func (o *UpdateDeviceRequest) GetLat() float32 {
 // GetLatOk returns a tuple with the Lat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceRequest) GetLatOk() (*float32, bool) {
-	if o == nil || isNil(o.Lat) {
-    return nil, false
+	if o == nil || IsNil(o.Lat) {
+		return nil, false
 	}
 	return o.Lat, true
 }
 
 // HasLat returns a boolean if a field has been set.
 func (o *UpdateDeviceRequest) HasLat() bool {
-	if o != nil && !isNil(o.Lat) {
+	if o != nil && !IsNil(o.Lat) {
 		return true
 	}
 
@@ -151,7 +154,7 @@ func (o *UpdateDeviceRequest) SetLat(v float32) {
 
 // GetLng returns the Lng field value if set, zero value otherwise.
 func (o *UpdateDeviceRequest) GetLng() float32 {
-	if o == nil || isNil(o.Lng) {
+	if o == nil || IsNil(o.Lng) {
 		var ret float32
 		return ret
 	}
@@ -161,15 +164,15 @@ func (o *UpdateDeviceRequest) GetLng() float32 {
 // GetLngOk returns a tuple with the Lng field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceRequest) GetLngOk() (*float32, bool) {
-	if o == nil || isNil(o.Lng) {
-    return nil, false
+	if o == nil || IsNil(o.Lng) {
+		return nil, false
 	}
 	return o.Lng, true
 }
 
 // HasLng returns a boolean if a field has been set.
 func (o *UpdateDeviceRequest) HasLng() bool {
-	if o != nil && !isNil(o.Lng) {
+	if o != nil && !IsNil(o.Lng) {
 		return true
 	}
 
@@ -183,7 +186,7 @@ func (o *UpdateDeviceRequest) SetLng(v float32) {
 
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *UpdateDeviceRequest) GetAddress() string {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		var ret string
 		return ret
 	}
@@ -193,15 +196,15 @@ func (o *UpdateDeviceRequest) GetAddress() string {
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceRequest) GetAddressOk() (*string, bool) {
-	if o == nil || isNil(o.Address) {
-    return nil, false
+	if o == nil || IsNil(o.Address) {
+		return nil, false
 	}
 	return o.Address, true
 }
 
 // HasAddress returns a boolean if a field has been set.
 func (o *UpdateDeviceRequest) HasAddress() bool {
-	if o != nil && !isNil(o.Address) {
+	if o != nil && !IsNil(o.Address) {
 		return true
 	}
 
@@ -215,7 +218,7 @@ func (o *UpdateDeviceRequest) SetAddress(v string) {
 
 // GetNotes returns the Notes field value if set, zero value otherwise.
 func (o *UpdateDeviceRequest) GetNotes() string {
-	if o == nil || isNil(o.Notes) {
+	if o == nil || IsNil(o.Notes) {
 		var ret string
 		return ret
 	}
@@ -225,15 +228,15 @@ func (o *UpdateDeviceRequest) GetNotes() string {
 // GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceRequest) GetNotesOk() (*string, bool) {
-	if o == nil || isNil(o.Notes) {
-    return nil, false
+	if o == nil || IsNil(o.Notes) {
+		return nil, false
 	}
 	return o.Notes, true
 }
 
 // HasNotes returns a boolean if a field has been set.
 func (o *UpdateDeviceRequest) HasNotes() bool {
-	if o != nil && !isNil(o.Notes) {
+	if o != nil && !IsNil(o.Notes) {
 		return true
 	}
 
@@ -247,7 +250,7 @@ func (o *UpdateDeviceRequest) SetNotes(v string) {
 
 // GetMoveMapMarker returns the MoveMapMarker field value if set, zero value otherwise.
 func (o *UpdateDeviceRequest) GetMoveMapMarker() bool {
-	if o == nil || isNil(o.MoveMapMarker) {
+	if o == nil || IsNil(o.MoveMapMarker) {
 		var ret bool
 		return ret
 	}
@@ -257,15 +260,15 @@ func (o *UpdateDeviceRequest) GetMoveMapMarker() bool {
 // GetMoveMapMarkerOk returns a tuple with the MoveMapMarker field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceRequest) GetMoveMapMarkerOk() (*bool, bool) {
-	if o == nil || isNil(o.MoveMapMarker) {
-    return nil, false
+	if o == nil || IsNil(o.MoveMapMarker) {
+		return nil, false
 	}
 	return o.MoveMapMarker, true
 }
 
 // HasMoveMapMarker returns a boolean if a field has been set.
 func (o *UpdateDeviceRequest) HasMoveMapMarker() bool {
-	if o != nil && !isNil(o.MoveMapMarker) {
+	if o != nil && !IsNil(o.MoveMapMarker) {
 		return true
 	}
 
@@ -279,7 +282,7 @@ func (o *UpdateDeviceRequest) SetMoveMapMarker(v bool) {
 
 // GetSwitchProfileId returns the SwitchProfileId field value if set, zero value otherwise.
 func (o *UpdateDeviceRequest) GetSwitchProfileId() string {
-	if o == nil || isNil(o.SwitchProfileId) {
+	if o == nil || IsNil(o.SwitchProfileId) {
 		var ret string
 		return ret
 	}
@@ -289,15 +292,15 @@ func (o *UpdateDeviceRequest) GetSwitchProfileId() string {
 // GetSwitchProfileIdOk returns a tuple with the SwitchProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceRequest) GetSwitchProfileIdOk() (*string, bool) {
-	if o == nil || isNil(o.SwitchProfileId) {
-    return nil, false
+	if o == nil || IsNil(o.SwitchProfileId) {
+		return nil, false
 	}
 	return o.SwitchProfileId, true
 }
 
 // HasSwitchProfileId returns a boolean if a field has been set.
 func (o *UpdateDeviceRequest) HasSwitchProfileId() bool {
-	if o != nil && !isNil(o.SwitchProfileId) {
+	if o != nil && !IsNil(o.SwitchProfileId) {
 		return true
 	}
 
@@ -311,7 +314,7 @@ func (o *UpdateDeviceRequest) SetSwitchProfileId(v string) {
 
 // GetFloorPlanId returns the FloorPlanId field value if set, zero value otherwise.
 func (o *UpdateDeviceRequest) GetFloorPlanId() string {
-	if o == nil || isNil(o.FloorPlanId) {
+	if o == nil || IsNil(o.FloorPlanId) {
 		var ret string
 		return ret
 	}
@@ -321,15 +324,15 @@ func (o *UpdateDeviceRequest) GetFloorPlanId() string {
 // GetFloorPlanIdOk returns a tuple with the FloorPlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceRequest) GetFloorPlanIdOk() (*string, bool) {
-	if o == nil || isNil(o.FloorPlanId) {
-    return nil, false
+	if o == nil || IsNil(o.FloorPlanId) {
+		return nil, false
 	}
 	return o.FloorPlanId, true
 }
 
 // HasFloorPlanId returns a boolean if a field has been set.
 func (o *UpdateDeviceRequest) HasFloorPlanId() bool {
-	if o != nil && !isNil(o.FloorPlanId) {
+	if o != nil && !IsNil(o.FloorPlanId) {
 		return true
 	}
 
@@ -342,35 +345,43 @@ func (o *UpdateDeviceRequest) SetFloorPlanId(v string) {
 }
 
 func (o UpdateDeviceRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !isNil(o.Lat) {
-		toSerialize["lat"] = o.Lat
-	}
-	if !isNil(o.Lng) {
-		toSerialize["lng"] = o.Lng
-	}
-	if !isNil(o.Address) {
-		toSerialize["address"] = o.Address
-	}
-	if !isNil(o.Notes) {
-		toSerialize["notes"] = o.Notes
-	}
-	if !isNil(o.MoveMapMarker) {
-		toSerialize["moveMapMarker"] = o.MoveMapMarker
-	}
-	if !isNil(o.SwitchProfileId) {
-		toSerialize["switchProfileId"] = o.SwitchProfileId
-	}
-	if !isNil(o.FloorPlanId) {
-		toSerialize["floorPlanId"] = o.FloorPlanId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.Lat) {
+		toSerialize["lat"] = o.Lat
+	}
+	if !IsNil(o.Lng) {
+		toSerialize["lng"] = o.Lng
+	}
+	if !IsNil(o.Address) {
+		toSerialize["address"] = o.Address
+	}
+	if !IsNil(o.Notes) {
+		toSerialize["notes"] = o.Notes
+	}
+	if !IsNil(o.MoveMapMarker) {
+		toSerialize["moveMapMarker"] = o.MoveMapMarker
+	}
+	if !IsNil(o.SwitchProfileId) {
+		toSerialize["switchProfileId"] = o.SwitchProfileId
+	}
+	if !IsNil(o.FloorPlanId) {
+		toSerialize["floorPlanId"] = o.FloorPlanId
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceRequest struct {

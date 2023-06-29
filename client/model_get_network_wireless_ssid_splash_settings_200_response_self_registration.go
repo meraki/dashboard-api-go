@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration{}
+
 // GetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration Self-registration for splash with Meraki authentication.
 type GetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration struct {
 	// Whether or not to allow users to create their own account on the network.
@@ -41,7 +44,7 @@ func NewGetNetworkWirelessSsidSplashSettings200ResponseSelfRegistrationWithDefau
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration) GetEna
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration) SetEna
 
 // GetAuthorizationType returns the AuthorizationType field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration) GetAuthorizationType() string {
-	if o == nil || isNil(o.AuthorizationType) {
+	if o == nil || IsNil(o.AuthorizationType) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration) GetAut
 // GetAuthorizationTypeOk returns a tuple with the AuthorizationType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration) GetAuthorizationTypeOk() (*string, bool) {
-	if o == nil || isNil(o.AuthorizationType) {
-    return nil, false
+	if o == nil || IsNil(o.AuthorizationType) {
+		return nil, false
 	}
 	return o.AuthorizationType, true
 }
 
 // HasAuthorizationType returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration) HasAuthorizationType() bool {
-	if o != nil && !isNil(o.AuthorizationType) {
+	if o != nil && !IsNil(o.AuthorizationType) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration) SetAut
 }
 
 func (o GetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.AuthorizationType) {
-		toSerialize["authorizationType"] = o.AuthorizationType
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.AuthorizationType) {
+		toSerialize["authorizationType"] = o.AuthorizationType
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessSsidSplashSettings200ResponseSelfRegistration struct {

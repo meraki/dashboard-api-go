@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSensorReadingsHistory200ResponseInnerTvoc type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSensorReadingsHistory200ResponseInnerTvoc{}
+
 // GetOrganizationSensorReadingsHistory200ResponseInnerTvoc Reading for the 'tvoc' metric. This will only be present if the 'metric' property equals 'tvoc'.
 type GetOrganizationSensorReadingsHistory200ResponseInnerTvoc struct {
 	// TVOC reading in micrograms per cubic meter.
@@ -39,7 +42,7 @@ func NewGetOrganizationSensorReadingsHistory200ResponseInnerTvocWithDefaults() *
 
 // GetConcentration returns the Concentration field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerTvoc) GetConcentration() int32 {
-	if o == nil || isNil(o.Concentration) {
+	if o == nil || IsNil(o.Concentration) {
 		var ret int32
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerTvoc) GetConcentrat
 // GetConcentrationOk returns a tuple with the Concentration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerTvoc) GetConcentrationOk() (*int32, bool) {
-	if o == nil || isNil(o.Concentration) {
-    return nil, false
+	if o == nil || IsNil(o.Concentration) {
+		return nil, false
 	}
 	return o.Concentration, true
 }
 
 // HasConcentration returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerTvoc) HasConcentration() bool {
-	if o != nil && !isNil(o.Concentration) {
+	if o != nil && !IsNil(o.Concentration) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerTvoc) SetConcentrat
 }
 
 func (o GetOrganizationSensorReadingsHistory200ResponseInnerTvoc) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Concentration) {
-		toSerialize["concentration"] = o.Concentration
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSensorReadingsHistory200ResponseInnerTvoc) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Concentration) {
+		toSerialize["concentration"] = o.Concentration
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSensorReadingsHistory200ResponseInnerTvoc struct {

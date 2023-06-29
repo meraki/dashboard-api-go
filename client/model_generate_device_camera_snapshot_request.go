@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GenerateDeviceCameraSnapshotRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GenerateDeviceCameraSnapshotRequest{}
+
 // GenerateDeviceCameraSnapshotRequest struct for GenerateDeviceCameraSnapshotRequest
 type GenerateDeviceCameraSnapshotRequest struct {
 	// [optional] The snapshot will be taken from this time on the camera. The timestamp is expected to be in ISO 8601 format. If no timestamp is specified, we will assume current time.
@@ -42,7 +45,7 @@ func NewGenerateDeviceCameraSnapshotRequestWithDefaults() *GenerateDeviceCameraS
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *GenerateDeviceCameraSnapshotRequest) GetTimestamp() time.Time {
-	if o == nil || isNil(o.Timestamp) {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret time.Time
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *GenerateDeviceCameraSnapshotRequest) GetTimestamp() time.Time {
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenerateDeviceCameraSnapshotRequest) GetTimestampOk() (*time.Time, bool) {
-	if o == nil || isNil(o.Timestamp) {
-    return nil, false
+	if o == nil || IsNil(o.Timestamp) {
+		return nil, false
 	}
 	return o.Timestamp, true
 }
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *GenerateDeviceCameraSnapshotRequest) HasTimestamp() bool {
-	if o != nil && !isNil(o.Timestamp) {
+	if o != nil && !IsNil(o.Timestamp) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *GenerateDeviceCameraSnapshotRequest) SetTimestamp(v time.Time) {
 
 // GetFullframe returns the Fullframe field value if set, zero value otherwise.
 func (o *GenerateDeviceCameraSnapshotRequest) GetFullframe() bool {
-	if o == nil || isNil(o.Fullframe) {
+	if o == nil || IsNil(o.Fullframe) {
 		var ret bool
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *GenerateDeviceCameraSnapshotRequest) GetFullframe() bool {
 // GetFullframeOk returns a tuple with the Fullframe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenerateDeviceCameraSnapshotRequest) GetFullframeOk() (*bool, bool) {
-	if o == nil || isNil(o.Fullframe) {
-    return nil, false
+	if o == nil || IsNil(o.Fullframe) {
+		return nil, false
 	}
 	return o.Fullframe, true
 }
 
 // HasFullframe returns a boolean if a field has been set.
 func (o *GenerateDeviceCameraSnapshotRequest) HasFullframe() bool {
-	if o != nil && !isNil(o.Fullframe) {
+	if o != nil && !IsNil(o.Fullframe) {
 		return true
 	}
 
@@ -105,14 +108,22 @@ func (o *GenerateDeviceCameraSnapshotRequest) SetFullframe(v bool) {
 }
 
 func (o GenerateDeviceCameraSnapshotRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Timestamp) {
-		toSerialize["timestamp"] = o.Timestamp
-	}
-	if !isNil(o.Fullframe) {
-		toSerialize["fullframe"] = o.Fullframe
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GenerateDeviceCameraSnapshotRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Timestamp) {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+	if !IsNil(o.Fullframe) {
+		toSerialize["fullframe"] = o.Fullframe
+	}
+	return toSerialize, nil
 }
 
 type NullableGenerateDeviceCameraSnapshotRequest struct {

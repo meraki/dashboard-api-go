@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClientsCounts type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClientsCounts{}
+
 // GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClientsCounts Counts of clients
 type GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClientsCounts struct {
 	// Total counts of clients
@@ -39,7 +42,7 @@ func NewGetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClie
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClientsCounts) GetTotal() int32 {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		var ret int32
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerCli
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClientsCounts) GetTotalOk() (*int32, bool) {
-	if o == nil || isNil(o.Total) {
-    return nil, false
+	if o == nil || IsNil(o.Total) {
+		return nil, false
 	}
 	return o.Total, true
 }
 
 // HasTotal returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClientsCounts) HasTotal() bool {
-	if o != nil && !isNil(o.Total) {
+	if o != nil && !IsNil(o.Total) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerCli
 }
 
 func (o GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClientsCounts) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Total) {
-		toSerialize["total"] = o.Total
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClientsCounts) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Total) {
+		toSerialize["total"] = o.Total
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerClientsCounts struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchStpRequestStpBridgePriorityInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchStpRequestStpBridgePriorityInner{}
+
 // UpdateNetworkSwitchStpRequestStpBridgePriorityInner struct for UpdateNetworkSwitchStpRequestStpBridgePriorityInner
 type UpdateNetworkSwitchStpRequestStpBridgePriorityInner struct {
 	// List of switch profile IDs
@@ -46,7 +49,7 @@ func NewUpdateNetworkSwitchStpRequestStpBridgePriorityInnerWithDefaults() *Updat
 
 // GetSwitchProfiles returns the SwitchProfiles field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) GetSwitchProfiles() []string {
-	if o == nil || isNil(o.SwitchProfiles) {
+	if o == nil || IsNil(o.SwitchProfiles) {
 		var ret []string
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) GetSwitchProfiles(
 // GetSwitchProfilesOk returns a tuple with the SwitchProfiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) GetSwitchProfilesOk() ([]string, bool) {
-	if o == nil || isNil(o.SwitchProfiles) {
-    return nil, false
+	if o == nil || IsNil(o.SwitchProfiles) {
+		return nil, false
 	}
 	return o.SwitchProfiles, true
 }
 
 // HasSwitchProfiles returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) HasSwitchProfiles() bool {
-	if o != nil && !isNil(o.SwitchProfiles) {
+	if o != nil && !IsNil(o.SwitchProfiles) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) SetSwitchProfiles(
 
 // GetSwitches returns the Switches field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) GetSwitches() []string {
-	if o == nil || isNil(o.Switches) {
+	if o == nil || IsNil(o.Switches) {
 		var ret []string
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) GetSwitches() []st
 // GetSwitchesOk returns a tuple with the Switches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) GetSwitchesOk() ([]string, bool) {
-	if o == nil || isNil(o.Switches) {
-    return nil, false
+	if o == nil || IsNil(o.Switches) {
+		return nil, false
 	}
 	return o.Switches, true
 }
 
 // HasSwitches returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) HasSwitches() bool {
-	if o != nil && !isNil(o.Switches) {
+	if o != nil && !IsNil(o.Switches) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) SetSwitches(v []st
 
 // GetStacks returns the Stacks field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) GetStacks() []string {
-	if o == nil || isNil(o.Stacks) {
+	if o == nil || IsNil(o.Stacks) {
 		var ret []string
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) GetStacks() []stri
 // GetStacksOk returns a tuple with the Stacks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) GetStacksOk() ([]string, bool) {
-	if o == nil || isNil(o.Stacks) {
-    return nil, false
+	if o == nil || IsNil(o.Stacks) {
+		return nil, false
 	}
 	return o.Stacks, true
 }
 
 // HasStacks returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) HasStacks() bool {
-	if o != nil && !isNil(o.Stacks) {
+	if o != nil && !IsNil(o.Stacks) {
 		return true
 	}
 
@@ -154,7 +157,7 @@ func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) GetStpPriority() i
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) GetStpPriorityOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.StpPriority, true
 }
@@ -165,20 +168,26 @@ func (o *UpdateNetworkSwitchStpRequestStpBridgePriorityInner) SetStpPriority(v i
 }
 
 func (o UpdateNetworkSwitchStpRequestStpBridgePriorityInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.SwitchProfiles) {
-		toSerialize["switchProfiles"] = o.SwitchProfiles
-	}
-	if !isNil(o.Switches) {
-		toSerialize["switches"] = o.Switches
-	}
-	if !isNil(o.Stacks) {
-		toSerialize["stacks"] = o.Stacks
-	}
-	if true {
-		toSerialize["stpPriority"] = o.StpPriority
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchStpRequestStpBridgePriorityInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SwitchProfiles) {
+		toSerialize["switchProfiles"] = o.SwitchProfiles
+	}
+	if !IsNil(o.Switches) {
+		toSerialize["switches"] = o.Switches
+	}
+	if !IsNil(o.Stacks) {
+		toSerialize["stacks"] = o.Stacks
+	}
+	toSerialize["stpPriority"] = o.StpPriority
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchStpRequestStpBridgePriorityInner struct {

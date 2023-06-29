@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGroup{}
+
 // GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGroup The staged upgrade group
 type GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGroup struct {
 	// Id of the staged upgrade group
@@ -39,7 +42,7 @@ func NewGetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGrou
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGroup) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGro
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGroup) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGroup) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGro
 }
 
 func (o GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationFirmwareUpgradesByDevice200ResponseInnerUpgradeStagedGroup struct {

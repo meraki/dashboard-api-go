@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidRequestGre type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidRequestGre{}
+
 // UpdateNetworkWirelessSsidRequestGre Ethernet over GRE settings
 type UpdateNetworkWirelessSsidRequestGre struct {
 	Concentrator *UpdateNetworkWirelessSsidRequestGreConcentrator `json:"concentrator,omitempty"`
@@ -40,7 +43,7 @@ func NewUpdateNetworkWirelessSsidRequestGreWithDefaults() *UpdateNetworkWireless
 
 // GetConcentrator returns the Concentrator field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestGre) GetConcentrator() UpdateNetworkWirelessSsidRequestGreConcentrator {
-	if o == nil || isNil(o.Concentrator) {
+	if o == nil || IsNil(o.Concentrator) {
 		var ret UpdateNetworkWirelessSsidRequestGreConcentrator
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *UpdateNetworkWirelessSsidRequestGre) GetConcentrator() UpdateNetworkWir
 // GetConcentratorOk returns a tuple with the Concentrator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestGre) GetConcentratorOk() (*UpdateNetworkWirelessSsidRequestGreConcentrator, bool) {
-	if o == nil || isNil(o.Concentrator) {
-    return nil, false
+	if o == nil || IsNil(o.Concentrator) {
+		return nil, false
 	}
 	return o.Concentrator, true
 }
 
 // HasConcentrator returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestGre) HasConcentrator() bool {
-	if o != nil && !isNil(o.Concentrator) {
+	if o != nil && !IsNil(o.Concentrator) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *UpdateNetworkWirelessSsidRequestGre) SetConcentrator(v UpdateNetworkWir
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestGre) GetKey() int32 {
-	if o == nil || isNil(o.Key) {
+	if o == nil || IsNil(o.Key) {
 		var ret int32
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *UpdateNetworkWirelessSsidRequestGre) GetKey() int32 {
 // GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestGre) GetKeyOk() (*int32, bool) {
-	if o == nil || isNil(o.Key) {
-    return nil, false
+	if o == nil || IsNil(o.Key) {
+		return nil, false
 	}
 	return o.Key, true
 }
 
 // HasKey returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestGre) HasKey() bool {
-	if o != nil && !isNil(o.Key) {
+	if o != nil && !IsNil(o.Key) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *UpdateNetworkWirelessSsidRequestGre) SetKey(v int32) {
 }
 
 func (o UpdateNetworkWirelessSsidRequestGre) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Concentrator) {
-		toSerialize["concentrator"] = o.Concentrator
-	}
-	if !isNil(o.Key) {
-		toSerialize["key"] = o.Key
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidRequestGre) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Concentrator) {
+		toSerialize["concentrator"] = o.Concentrator
+	}
+	if !IsNil(o.Key) {
+		toSerialize["key"] = o.Key
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidRequestGre struct {

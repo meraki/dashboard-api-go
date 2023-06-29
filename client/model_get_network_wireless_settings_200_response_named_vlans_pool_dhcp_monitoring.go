@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring{}
+
 // GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring Named VLAN Pool DHCP Monitoring settings.
 type GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring struct {
 	// Whether or not devices using named VLAN pools should remove dirty VLANs from the pool, thereby preventing clients from being assigned to VLANs where they would be unable to obtain an IP address via DHCP
@@ -41,7 +44,7 @@ func NewGetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoringWithDef
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring) GetE
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring) SetE
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring) GetDuration() int32 {
-	if o == nil || isNil(o.Duration) {
+	if o == nil || IsNil(o.Duration) {
 		var ret int32
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring) GetD
 // GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring) GetDurationOk() (*int32, bool) {
-	if o == nil || isNil(o.Duration) {
-    return nil, false
+	if o == nil || IsNil(o.Duration) {
+		return nil, false
 	}
 	return o.Duration, true
 }
 
 // HasDuration returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring) HasDuration() bool {
-	if o != nil && !isNil(o.Duration) {
+	if o != nil && !IsNil(o.Duration) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring) SetD
 }
 
 func (o GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.Duration) {
-		toSerialize["duration"] = o.Duration
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Duration) {
+		toSerialize["duration"] = o.Duration
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationLicenseRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationLicenseRequest{}
+
 // UpdateOrganizationLicenseRequest struct for UpdateOrganizationLicenseRequest
 type UpdateOrganizationLicenseRequest struct {
 	// The serial number of the device to assign this license to. Set this to  null to unassign the license. If a different license is already active on the device, this parameter will control queueing/dequeuing this license.
@@ -39,7 +42,7 @@ func NewUpdateOrganizationLicenseRequestWithDefaults() *UpdateOrganizationLicens
 
 // GetDeviceSerial returns the DeviceSerial field value if set, zero value otherwise.
 func (o *UpdateOrganizationLicenseRequest) GetDeviceSerial() string {
-	if o == nil || isNil(o.DeviceSerial) {
+	if o == nil || IsNil(o.DeviceSerial) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateOrganizationLicenseRequest) GetDeviceSerial() string {
 // GetDeviceSerialOk returns a tuple with the DeviceSerial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationLicenseRequest) GetDeviceSerialOk() (*string, bool) {
-	if o == nil || isNil(o.DeviceSerial) {
-    return nil, false
+	if o == nil || IsNil(o.DeviceSerial) {
+		return nil, false
 	}
 	return o.DeviceSerial, true
 }
 
 // HasDeviceSerial returns a boolean if a field has been set.
 func (o *UpdateOrganizationLicenseRequest) HasDeviceSerial() bool {
-	if o != nil && !isNil(o.DeviceSerial) {
+	if o != nil && !IsNil(o.DeviceSerial) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateOrganizationLicenseRequest) SetDeviceSerial(v string) {
 }
 
 func (o UpdateOrganizationLicenseRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.DeviceSerial) {
-		toSerialize["deviceSerial"] = o.DeviceSerial
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationLicenseRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DeviceSerial) {
+		toSerialize["deviceSerial"] = o.DeviceSerial
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationLicenseRequest struct {

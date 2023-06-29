@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner{}
+
 // UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner struct for UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner
 type UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner struct {
 	// A descriptive name for the rule
@@ -56,7 +59,7 @@ func NewUpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInnerWithDe
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -66,15 +69,15 @@ func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) Get
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -100,7 +103,7 @@ func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) Get
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) GetLanIpOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.LanIp, true
 }
@@ -112,7 +115,7 @@ func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) Set
 
 // GetUplink returns the Uplink field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) GetUplink() string {
-	if o == nil || isNil(o.Uplink) {
+	if o == nil || IsNil(o.Uplink) {
 		var ret string
 		return ret
 	}
@@ -122,15 +125,15 @@ func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) Get
 // GetUplinkOk returns a tuple with the Uplink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) GetUplinkOk() (*string, bool) {
-	if o == nil || isNil(o.Uplink) {
-    return nil, false
+	if o == nil || IsNil(o.Uplink) {
+		return nil, false
 	}
 	return o.Uplink, true
 }
 
 // HasUplink returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) HasUplink() bool {
-	if o != nil && !isNil(o.Uplink) {
+	if o != nil && !IsNil(o.Uplink) {
 		return true
 	}
 
@@ -156,7 +159,7 @@ func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) Get
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) GetPublicPortOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.PublicPort, true
 }
@@ -180,7 +183,7 @@ func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) Get
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) GetLocalPortOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.LocalPort, true
 }
@@ -204,7 +207,7 @@ func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) Get
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) GetAllowedIpsOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.AllowedIps, true
 }
@@ -228,7 +231,7 @@ func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) Get
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) GetProtocolOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Protocol, true
 }
@@ -239,29 +242,27 @@ func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) Set
 }
 
 func (o UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["lanIp"] = o.LanIp
-	}
-	if !isNil(o.Uplink) {
-		toSerialize["uplink"] = o.Uplink
-	}
-	if true {
-		toSerialize["publicPort"] = o.PublicPort
-	}
-	if true {
-		toSerialize["localPort"] = o.LocalPort
-	}
-	if true {
-		toSerialize["allowedIps"] = o.AllowedIps
-	}
-	if true {
-		toSerialize["protocol"] = o.Protocol
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	toSerialize["lanIp"] = o.LanIp
+	if !IsNil(o.Uplink) {
+		toSerialize["uplink"] = o.Uplink
+	}
+	toSerialize["publicPort"] = o.PublicPort
+	toSerialize["localPort"] = o.LocalPort
+	toSerialize["allowedIps"] = o.AllowedIps
+	toSerialize["protocol"] = o.Protocol
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner struct {

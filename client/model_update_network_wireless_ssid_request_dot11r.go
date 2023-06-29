@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidRequestDot11r type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidRequestDot11r{}
+
 // UpdateNetworkWirelessSsidRequestDot11r The current setting for 802.11r
 type UpdateNetworkWirelessSsidRequestDot11r struct {
 	// Whether 802.11r is enabled or not.
@@ -41,7 +44,7 @@ func NewUpdateNetworkWirelessSsidRequestDot11rWithDefaults() *UpdateNetworkWirel
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestDot11r) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkWirelessSsidRequestDot11r) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestDot11r) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestDot11r) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkWirelessSsidRequestDot11r) SetEnabled(v bool) {
 
 // GetAdaptive returns the Adaptive field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestDot11r) GetAdaptive() bool {
-	if o == nil || isNil(o.Adaptive) {
+	if o == nil || IsNil(o.Adaptive) {
 		var ret bool
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkWirelessSsidRequestDot11r) GetAdaptive() bool {
 // GetAdaptiveOk returns a tuple with the Adaptive field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestDot11r) GetAdaptiveOk() (*bool, bool) {
-	if o == nil || isNil(o.Adaptive) {
-    return nil, false
+	if o == nil || IsNil(o.Adaptive) {
+		return nil, false
 	}
 	return o.Adaptive, true
 }
 
 // HasAdaptive returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestDot11r) HasAdaptive() bool {
-	if o != nil && !isNil(o.Adaptive) {
+	if o != nil && !IsNil(o.Adaptive) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkWirelessSsidRequestDot11r) SetAdaptive(v bool) {
 }
 
 func (o UpdateNetworkWirelessSsidRequestDot11r) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.Adaptive) {
-		toSerialize["adaptive"] = o.Adaptive
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidRequestDot11r) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Adaptive) {
+		toSerialize["adaptive"] = o.Adaptive
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidRequestDot11r struct {

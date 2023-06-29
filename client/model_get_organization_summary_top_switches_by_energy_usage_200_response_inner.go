@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner{}
+
 // GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner struct for GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner
 type GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner struct {
 	Network *GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerNetwork `json:"network,omitempty"`
@@ -45,7 +48,7 @@ func NewGetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerWithDefaul
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) GetNetwork() GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerNetwork {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		var ret GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerNetwork
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) GetNetw
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) GetNetworkOk() (*GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerNetwork, bool) {
-	if o == nil || isNil(o.Network) {
-    return nil, false
+	if o == nil || IsNil(o.Network) {
+		return nil, false
 	}
 	return o.Network, true
 }
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) HasNetwork() bool {
-	if o != nil && !isNil(o.Network) {
+	if o != nil && !IsNil(o.Network) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) SetNetw
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) GetName
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) SetName
 
 // GetMac returns the Mac field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) GetMac() string {
-	if o == nil || isNil(o.Mac) {
+	if o == nil || IsNil(o.Mac) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) GetMac(
 // GetMacOk returns a tuple with the Mac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) GetMacOk() (*string, bool) {
-	if o == nil || isNil(o.Mac) {
-    return nil, false
+	if o == nil || IsNil(o.Mac) {
+		return nil, false
 	}
 	return o.Mac, true
 }
 
 // HasMac returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) HasMac() bool {
-	if o != nil && !isNil(o.Mac) {
+	if o != nil && !IsNil(o.Mac) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) SetMac(
 
 // GetModel returns the Model field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) GetModel() string {
-	if o == nil || isNil(o.Model) {
+	if o == nil || IsNil(o.Model) {
 		var ret string
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) GetMode
 // GetModelOk returns a tuple with the Model field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) GetModelOk() (*string, bool) {
-	if o == nil || isNil(o.Model) {
-    return nil, false
+	if o == nil || IsNil(o.Model) {
+		return nil, false
 	}
 	return o.Model, true
 }
 
 // HasModel returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) HasModel() bool {
-	if o != nil && !isNil(o.Model) {
+	if o != nil && !IsNil(o.Model) {
 		return true
 	}
 
@@ -173,7 +176,7 @@ func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) SetMode
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) GetUsage() GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerUsage {
-	if o == nil || isNil(o.Usage) {
+	if o == nil || IsNil(o.Usage) {
 		var ret GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerUsage
 		return ret
 	}
@@ -183,15 +186,15 @@ func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) GetUsag
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) GetUsageOk() (*GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInnerUsage, bool) {
-	if o == nil || isNil(o.Usage) {
-    return nil, false
+	if o == nil || IsNil(o.Usage) {
+		return nil, false
 	}
 	return o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) HasUsage() bool {
-	if o != nil && !isNil(o.Usage) {
+	if o != nil && !IsNil(o.Usage) {
 		return true
 	}
 
@@ -204,23 +207,31 @@ func (o *GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) SetUsag
 }
 
 func (o GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Network) {
-		toSerialize["network"] = o.Network
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Mac) {
-		toSerialize["mac"] = o.Mac
-	}
-	if !isNil(o.Model) {
-		toSerialize["model"] = o.Model
-	}
-	if !isNil(o.Usage) {
-		toSerialize["usage"] = o.Usage
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Network) {
+		toSerialize["network"] = o.Network
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Mac) {
+		toSerialize["mac"] = o.Mac
+	}
+	if !IsNil(o.Model) {
+		toSerialize["model"] = o.Model
+	}
+	if !IsNil(o.Usage) {
+		toSerialize["usage"] = o.Usage
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSummaryTopSwitchesByEnergyUsage200ResponseInner struct {

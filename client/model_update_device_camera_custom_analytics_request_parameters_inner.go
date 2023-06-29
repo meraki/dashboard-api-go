@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceCameraCustomAnalyticsRequestParametersInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceCameraCustomAnalyticsRequestParametersInner{}
+
 // UpdateDeviceCameraCustomAnalyticsRequestParametersInner struct for UpdateDeviceCameraCustomAnalyticsRequestParametersInner
 type UpdateDeviceCameraCustomAnalyticsRequestParametersInner struct {
 	// Name of the parameter
@@ -55,7 +58,7 @@ func (o *UpdateDeviceCameraCustomAnalyticsRequestParametersInner) GetName() stri
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCameraCustomAnalyticsRequestParametersInner) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -79,7 +82,7 @@ func (o *UpdateDeviceCameraCustomAnalyticsRequestParametersInner) GetValue() str
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCameraCustomAnalyticsRequestParametersInner) GetValueOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Value, true
 }
@@ -90,14 +93,18 @@ func (o *UpdateDeviceCameraCustomAnalyticsRequestParametersInner) SetValue(v str
 }
 
 func (o UpdateDeviceCameraCustomAnalyticsRequestParametersInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["value"] = o.Value
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceCameraCustomAnalyticsRequestParametersInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["value"] = o.Value
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceCameraCustomAnalyticsRequestParametersInner struct {

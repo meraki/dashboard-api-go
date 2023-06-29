@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceWarmSpareRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceWarmSpareRequest{}
+
 // UpdateNetworkApplianceWarmSpareRequest struct for UpdateNetworkApplianceWarmSpareRequest
 type UpdateNetworkApplianceWarmSpareRequest struct {
 	// Enable warm spare
@@ -60,7 +63,7 @@ func (o *UpdateNetworkApplianceWarmSpareRequest) GetEnabled() bool {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceWarmSpareRequest) GetEnabledOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Enabled, true
 }
@@ -72,7 +75,7 @@ func (o *UpdateNetworkApplianceWarmSpareRequest) SetEnabled(v bool) {
 
 // GetSpareSerial returns the SpareSerial field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceWarmSpareRequest) GetSpareSerial() string {
-	if o == nil || isNil(o.SpareSerial) {
+	if o == nil || IsNil(o.SpareSerial) {
 		var ret string
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *UpdateNetworkApplianceWarmSpareRequest) GetSpareSerial() string {
 // GetSpareSerialOk returns a tuple with the SpareSerial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceWarmSpareRequest) GetSpareSerialOk() (*string, bool) {
-	if o == nil || isNil(o.SpareSerial) {
-    return nil, false
+	if o == nil || IsNil(o.SpareSerial) {
+		return nil, false
 	}
 	return o.SpareSerial, true
 }
 
 // HasSpareSerial returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceWarmSpareRequest) HasSpareSerial() bool {
-	if o != nil && !isNil(o.SpareSerial) {
+	if o != nil && !IsNil(o.SpareSerial) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *UpdateNetworkApplianceWarmSpareRequest) SetSpareSerial(v string) {
 
 // GetUplinkMode returns the UplinkMode field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceWarmSpareRequest) GetUplinkMode() string {
-	if o == nil || isNil(o.UplinkMode) {
+	if o == nil || IsNil(o.UplinkMode) {
 		var ret string
 		return ret
 	}
@@ -114,15 +117,15 @@ func (o *UpdateNetworkApplianceWarmSpareRequest) GetUplinkMode() string {
 // GetUplinkModeOk returns a tuple with the UplinkMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceWarmSpareRequest) GetUplinkModeOk() (*string, bool) {
-	if o == nil || isNil(o.UplinkMode) {
-    return nil, false
+	if o == nil || IsNil(o.UplinkMode) {
+		return nil, false
 	}
 	return o.UplinkMode, true
 }
 
 // HasUplinkMode returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceWarmSpareRequest) HasUplinkMode() bool {
-	if o != nil && !isNil(o.UplinkMode) {
+	if o != nil && !IsNil(o.UplinkMode) {
 		return true
 	}
 
@@ -136,7 +139,7 @@ func (o *UpdateNetworkApplianceWarmSpareRequest) SetUplinkMode(v string) {
 
 // GetVirtualIp1 returns the VirtualIp1 field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceWarmSpareRequest) GetVirtualIp1() string {
-	if o == nil || isNil(o.VirtualIp1) {
+	if o == nil || IsNil(o.VirtualIp1) {
 		var ret string
 		return ret
 	}
@@ -146,15 +149,15 @@ func (o *UpdateNetworkApplianceWarmSpareRequest) GetVirtualIp1() string {
 // GetVirtualIp1Ok returns a tuple with the VirtualIp1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceWarmSpareRequest) GetVirtualIp1Ok() (*string, bool) {
-	if o == nil || isNil(o.VirtualIp1) {
-    return nil, false
+	if o == nil || IsNil(o.VirtualIp1) {
+		return nil, false
 	}
 	return o.VirtualIp1, true
 }
 
 // HasVirtualIp1 returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceWarmSpareRequest) HasVirtualIp1() bool {
-	if o != nil && !isNil(o.VirtualIp1) {
+	if o != nil && !IsNil(o.VirtualIp1) {
 		return true
 	}
 
@@ -168,7 +171,7 @@ func (o *UpdateNetworkApplianceWarmSpareRequest) SetVirtualIp1(v string) {
 
 // GetVirtualIp2 returns the VirtualIp2 field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceWarmSpareRequest) GetVirtualIp2() string {
-	if o == nil || isNil(o.VirtualIp2) {
+	if o == nil || IsNil(o.VirtualIp2) {
 		var ret string
 		return ret
 	}
@@ -178,15 +181,15 @@ func (o *UpdateNetworkApplianceWarmSpareRequest) GetVirtualIp2() string {
 // GetVirtualIp2Ok returns a tuple with the VirtualIp2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceWarmSpareRequest) GetVirtualIp2Ok() (*string, bool) {
-	if o == nil || isNil(o.VirtualIp2) {
-    return nil, false
+	if o == nil || IsNil(o.VirtualIp2) {
+		return nil, false
 	}
 	return o.VirtualIp2, true
 }
 
 // HasVirtualIp2 returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceWarmSpareRequest) HasVirtualIp2() bool {
-	if o != nil && !isNil(o.VirtualIp2) {
+	if o != nil && !IsNil(o.VirtualIp2) {
 		return true
 	}
 
@@ -199,23 +202,29 @@ func (o *UpdateNetworkApplianceWarmSpareRequest) SetVirtualIp2(v string) {
 }
 
 func (o UpdateNetworkApplianceWarmSpareRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.SpareSerial) {
-		toSerialize["spareSerial"] = o.SpareSerial
-	}
-	if !isNil(o.UplinkMode) {
-		toSerialize["uplinkMode"] = o.UplinkMode
-	}
-	if !isNil(o.VirtualIp1) {
-		toSerialize["virtualIp1"] = o.VirtualIp1
-	}
-	if !isNil(o.VirtualIp2) {
-		toSerialize["virtualIp2"] = o.VirtualIp2
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceWarmSpareRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["enabled"] = o.Enabled
+	if !IsNil(o.SpareSerial) {
+		toSerialize["spareSerial"] = o.SpareSerial
+	}
+	if !IsNil(o.UplinkMode) {
+		toSerialize["uplinkMode"] = o.UplinkMode
+	}
+	if !IsNil(o.VirtualIp1) {
+		toSerialize["virtualIp1"] = o.VirtualIp1
+	}
+	if !IsNil(o.VirtualIp2) {
+		toSerialize["virtualIp2"] = o.VirtualIp2
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceWarmSpareRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner{}
+
 // GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner struct for GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner
 type GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner struct {
 	// The first IP in the reserved range
@@ -43,7 +46,7 @@ func NewGetNetworkApplianceVlans200ResponseInnerReservedIpRangesInnerWithDefault
 
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) GetStart() string {
-	if o == nil || isNil(o.Start) {
+	if o == nil || IsNil(o.Start) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) GetStart
 // GetStartOk returns a tuple with the Start field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) GetStartOk() (*string, bool) {
-	if o == nil || isNil(o.Start) {
-    return nil, false
+	if o == nil || IsNil(o.Start) {
+		return nil, false
 	}
 	return o.Start, true
 }
 
 // HasStart returns a boolean if a field has been set.
 func (o *GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) HasStart() bool {
-	if o != nil && !isNil(o.Start) {
+	if o != nil && !IsNil(o.Start) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) SetStart
 
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) GetEnd() string {
-	if o == nil || isNil(o.End) {
+	if o == nil || IsNil(o.End) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) GetEnd()
 // GetEndOk returns a tuple with the End field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) GetEndOk() (*string, bool) {
-	if o == nil || isNil(o.End) {
-    return nil, false
+	if o == nil || IsNil(o.End) {
+		return nil, false
 	}
 	return o.End, true
 }
 
 // HasEnd returns a boolean if a field has been set.
 func (o *GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) HasEnd() bool {
-	if o != nil && !isNil(o.End) {
+	if o != nil && !IsNil(o.End) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) SetEnd(v
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) GetComment() string {
-	if o == nil || isNil(o.Comment) {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) GetComme
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) GetCommentOk() (*string, bool) {
-	if o == nil || isNil(o.Comment) {
-    return nil, false
+	if o == nil || IsNil(o.Comment) {
+		return nil, false
 	}
 	return o.Comment, true
 }
 
 // HasComment returns a boolean if a field has been set.
 func (o *GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) HasComment() bool {
-	if o != nil && !isNil(o.Comment) {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) SetComme
 }
 
 func (o GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Start) {
-		toSerialize["start"] = o.Start
-	}
-	if !isNil(o.End) {
-		toSerialize["end"] = o.End
-	}
-	if !isNil(o.Comment) {
-		toSerialize["comment"] = o.Comment
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Start) {
+		toSerialize["start"] = o.Start
+	}
+	if !IsNil(o.End) {
+		toSerialize["end"] = o.End
+	}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner struct {

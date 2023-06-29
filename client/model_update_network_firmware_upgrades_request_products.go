@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkFirmwareUpgradesRequestProducts type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkFirmwareUpgradesRequestProducts{}
+
 // UpdateNetworkFirmwareUpgradesRequestProducts Contains information about the network to update
 type UpdateNetworkFirmwareUpgradesRequestProducts struct {
 	Wireless *UpdateNetworkFirmwareUpgradesRequestProductsWireless `json:"wireless,omitempty"`
@@ -45,7 +48,7 @@ func NewUpdateNetworkFirmwareUpgradesRequestProductsWithDefaults() *UpdateNetwor
 
 // GetWireless returns the Wireless field value if set, zero value otherwise.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetWireless() UpdateNetworkFirmwareUpgradesRequestProductsWireless {
-	if o == nil || isNil(o.Wireless) {
+	if o == nil || IsNil(o.Wireless) {
 		var ret UpdateNetworkFirmwareUpgradesRequestProductsWireless
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetWireless() UpdateNetwo
 // GetWirelessOk returns a tuple with the Wireless field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetWirelessOk() (*UpdateNetworkFirmwareUpgradesRequestProductsWireless, bool) {
-	if o == nil || isNil(o.Wireless) {
-    return nil, false
+	if o == nil || IsNil(o.Wireless) {
+		return nil, false
 	}
 	return o.Wireless, true
 }
 
 // HasWireless returns a boolean if a field has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) HasWireless() bool {
-	if o != nil && !isNil(o.Wireless) {
+	if o != nil && !IsNil(o.Wireless) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProducts) SetWireless(v UpdateNetwo
 
 // GetAppliance returns the Appliance field value if set, zero value otherwise.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetAppliance() UpdateNetworkFirmwareUpgradesRequestProductsWireless {
-	if o == nil || isNil(o.Appliance) {
+	if o == nil || IsNil(o.Appliance) {
 		var ret UpdateNetworkFirmwareUpgradesRequestProductsWireless
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetAppliance() UpdateNetw
 // GetApplianceOk returns a tuple with the Appliance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetApplianceOk() (*UpdateNetworkFirmwareUpgradesRequestProductsWireless, bool) {
-	if o == nil || isNil(o.Appliance) {
-    return nil, false
+	if o == nil || IsNil(o.Appliance) {
+		return nil, false
 	}
 	return o.Appliance, true
 }
 
 // HasAppliance returns a boolean if a field has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) HasAppliance() bool {
-	if o != nil && !isNil(o.Appliance) {
+	if o != nil && !IsNil(o.Appliance) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProducts) SetAppliance(v UpdateNetw
 
 // GetSwitch returns the Switch field value if set, zero value otherwise.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetSwitch() UpdateNetworkFirmwareUpgradesRequestProductsWireless {
-	if o == nil || isNil(o.Switch) {
+	if o == nil || IsNil(o.Switch) {
 		var ret UpdateNetworkFirmwareUpgradesRequestProductsWireless
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetSwitch() UpdateNetwork
 // GetSwitchOk returns a tuple with the Switch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetSwitchOk() (*UpdateNetworkFirmwareUpgradesRequestProductsWireless, bool) {
-	if o == nil || isNil(o.Switch) {
-    return nil, false
+	if o == nil || IsNil(o.Switch) {
+		return nil, false
 	}
 	return o.Switch, true
 }
 
 // HasSwitch returns a boolean if a field has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) HasSwitch() bool {
-	if o != nil && !isNil(o.Switch) {
+	if o != nil && !IsNil(o.Switch) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProducts) SetSwitch(v UpdateNetwork
 
 // GetCamera returns the Camera field value if set, zero value otherwise.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetCamera() UpdateNetworkFirmwareUpgradesRequestProductsWireless {
-	if o == nil || isNil(o.Camera) {
+	if o == nil || IsNil(o.Camera) {
 		var ret UpdateNetworkFirmwareUpgradesRequestProductsWireless
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetCamera() UpdateNetwork
 // GetCameraOk returns a tuple with the Camera field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetCameraOk() (*UpdateNetworkFirmwareUpgradesRequestProductsWireless, bool) {
-	if o == nil || isNil(o.Camera) {
-    return nil, false
+	if o == nil || IsNil(o.Camera) {
+		return nil, false
 	}
 	return o.Camera, true
 }
 
 // HasCamera returns a boolean if a field has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) HasCamera() bool {
-	if o != nil && !isNil(o.Camera) {
+	if o != nil && !IsNil(o.Camera) {
 		return true
 	}
 
@@ -173,7 +176,7 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProducts) SetCamera(v UpdateNetwork
 
 // GetCellularGateway returns the CellularGateway field value if set, zero value otherwise.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetCellularGateway() UpdateNetworkFirmwareUpgradesRequestProductsWireless {
-	if o == nil || isNil(o.CellularGateway) {
+	if o == nil || IsNil(o.CellularGateway) {
 		var ret UpdateNetworkFirmwareUpgradesRequestProductsWireless
 		return ret
 	}
@@ -183,15 +186,15 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetCellularGateway() Upda
 // GetCellularGatewayOk returns a tuple with the CellularGateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetCellularGatewayOk() (*UpdateNetworkFirmwareUpgradesRequestProductsWireless, bool) {
-	if o == nil || isNil(o.CellularGateway) {
-    return nil, false
+	if o == nil || IsNil(o.CellularGateway) {
+		return nil, false
 	}
 	return o.CellularGateway, true
 }
 
 // HasCellularGateway returns a boolean if a field has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) HasCellularGateway() bool {
-	if o != nil && !isNil(o.CellularGateway) {
+	if o != nil && !IsNil(o.CellularGateway) {
 		return true
 	}
 
@@ -205,7 +208,7 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProducts) SetCellularGateway(v Upda
 
 // GetSensor returns the Sensor field value if set, zero value otherwise.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetSensor() UpdateNetworkFirmwareUpgradesRequestProductsWireless {
-	if o == nil || isNil(o.Sensor) {
+	if o == nil || IsNil(o.Sensor) {
 		var ret UpdateNetworkFirmwareUpgradesRequestProductsWireless
 		return ret
 	}
@@ -215,15 +218,15 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetSensor() UpdateNetwork
 // GetSensorOk returns a tuple with the Sensor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetSensorOk() (*UpdateNetworkFirmwareUpgradesRequestProductsWireless, bool) {
-	if o == nil || isNil(o.Sensor) {
-    return nil, false
+	if o == nil || IsNil(o.Sensor) {
+		return nil, false
 	}
 	return o.Sensor, true
 }
 
 // HasSensor returns a boolean if a field has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) HasSensor() bool {
-	if o != nil && !isNil(o.Sensor) {
+	if o != nil && !IsNil(o.Sensor) {
 		return true
 	}
 
@@ -237,7 +240,7 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProducts) SetSensor(v UpdateNetwork
 
 // GetCloudGateway returns the CloudGateway field value if set, zero value otherwise.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetCloudGateway() UpdateNetworkFirmwareUpgradesRequestProductsWireless {
-	if o == nil || isNil(o.CloudGateway) {
+	if o == nil || IsNil(o.CloudGateway) {
 		var ret UpdateNetworkFirmwareUpgradesRequestProductsWireless
 		return ret
 	}
@@ -247,15 +250,15 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetCloudGateway() UpdateN
 // GetCloudGatewayOk returns a tuple with the CloudGateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetCloudGatewayOk() (*UpdateNetworkFirmwareUpgradesRequestProductsWireless, bool) {
-	if o == nil || isNil(o.CloudGateway) {
-    return nil, false
+	if o == nil || IsNil(o.CloudGateway) {
+		return nil, false
 	}
 	return o.CloudGateway, true
 }
 
 // HasCloudGateway returns a boolean if a field has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) HasCloudGateway() bool {
-	if o != nil && !isNil(o.CloudGateway) {
+	if o != nil && !IsNil(o.CloudGateway) {
 		return true
 	}
 
@@ -269,7 +272,7 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProducts) SetCloudGateway(v UpdateN
 
 // GetSwitchCatalyst returns the SwitchCatalyst field value if set, zero value otherwise.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetSwitchCatalyst() UpdateNetworkFirmwareUpgradesRequestProductsWireless {
-	if o == nil || isNil(o.SwitchCatalyst) {
+	if o == nil || IsNil(o.SwitchCatalyst) {
 		var ret UpdateNetworkFirmwareUpgradesRequestProductsWireless
 		return ret
 	}
@@ -279,15 +282,15 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetSwitchCatalyst() Updat
 // GetSwitchCatalystOk returns a tuple with the SwitchCatalyst field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) GetSwitchCatalystOk() (*UpdateNetworkFirmwareUpgradesRequestProductsWireless, bool) {
-	if o == nil || isNil(o.SwitchCatalyst) {
-    return nil, false
+	if o == nil || IsNil(o.SwitchCatalyst) {
+		return nil, false
 	}
 	return o.SwitchCatalyst, true
 }
 
 // HasSwitchCatalyst returns a boolean if a field has been set.
 func (o *UpdateNetworkFirmwareUpgradesRequestProducts) HasSwitchCatalyst() bool {
-	if o != nil && !isNil(o.SwitchCatalyst) {
+	if o != nil && !IsNil(o.SwitchCatalyst) {
 		return true
 	}
 
@@ -300,32 +303,40 @@ func (o *UpdateNetworkFirmwareUpgradesRequestProducts) SetSwitchCatalyst(v Updat
 }
 
 func (o UpdateNetworkFirmwareUpgradesRequestProducts) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Wireless) {
-		toSerialize["wireless"] = o.Wireless
-	}
-	if !isNil(o.Appliance) {
-		toSerialize["appliance"] = o.Appliance
-	}
-	if !isNil(o.Switch) {
-		toSerialize["switch"] = o.Switch
-	}
-	if !isNil(o.Camera) {
-		toSerialize["camera"] = o.Camera
-	}
-	if !isNil(o.CellularGateway) {
-		toSerialize["cellularGateway"] = o.CellularGateway
-	}
-	if !isNil(o.Sensor) {
-		toSerialize["sensor"] = o.Sensor
-	}
-	if !isNil(o.CloudGateway) {
-		toSerialize["cloudGateway"] = o.CloudGateway
-	}
-	if !isNil(o.SwitchCatalyst) {
-		toSerialize["switchCatalyst"] = o.SwitchCatalyst
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkFirmwareUpgradesRequestProducts) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Wireless) {
+		toSerialize["wireless"] = o.Wireless
+	}
+	if !IsNil(o.Appliance) {
+		toSerialize["appliance"] = o.Appliance
+	}
+	if !IsNil(o.Switch) {
+		toSerialize["switch"] = o.Switch
+	}
+	if !IsNil(o.Camera) {
+		toSerialize["camera"] = o.Camera
+	}
+	if !IsNil(o.CellularGateway) {
+		toSerialize["cellularGateway"] = o.CellularGateway
+	}
+	if !IsNil(o.Sensor) {
+		toSerialize["sensor"] = o.Sensor
+	}
+	if !IsNil(o.CloudGateway) {
+		toSerialize["cloudGateway"] = o.CloudGateway
+	}
+	if !IsNil(o.SwitchCatalyst) {
+		toSerialize["switchCatalyst"] = o.SwitchCatalyst
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkFirmwareUpgradesRequestProducts struct {

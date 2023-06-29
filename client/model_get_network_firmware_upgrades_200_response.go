@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkFirmwareUpgrades200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkFirmwareUpgrades200Response{}
+
 // GetNetworkFirmwareUpgrades200Response struct for GetNetworkFirmwareUpgrades200Response
 type GetNetworkFirmwareUpgrades200Response struct {
 	UpgradeWindow *GetNetworkFirmwareUpgrades200ResponseUpgradeWindow `json:"upgradeWindow,omitempty"`
@@ -41,7 +44,7 @@ func NewGetNetworkFirmwareUpgrades200ResponseWithDefaults() *GetNetworkFirmwareU
 
 // GetUpgradeWindow returns the UpgradeWindow field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200Response) GetUpgradeWindow() GetNetworkFirmwareUpgrades200ResponseUpgradeWindow {
-	if o == nil || isNil(o.UpgradeWindow) {
+	if o == nil || IsNil(o.UpgradeWindow) {
 		var ret GetNetworkFirmwareUpgrades200ResponseUpgradeWindow
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkFirmwareUpgrades200Response) GetUpgradeWindow() GetNetworkFir
 // GetUpgradeWindowOk returns a tuple with the UpgradeWindow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200Response) GetUpgradeWindowOk() (*GetNetworkFirmwareUpgrades200ResponseUpgradeWindow, bool) {
-	if o == nil || isNil(o.UpgradeWindow) {
-    return nil, false
+	if o == nil || IsNil(o.UpgradeWindow) {
+		return nil, false
 	}
 	return o.UpgradeWindow, true
 }
 
 // HasUpgradeWindow returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200Response) HasUpgradeWindow() bool {
-	if o != nil && !isNil(o.UpgradeWindow) {
+	if o != nil && !IsNil(o.UpgradeWindow) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkFirmwareUpgrades200Response) SetUpgradeWindow(v GetNetworkFir
 
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200Response) GetTimezone() string {
-	if o == nil || isNil(o.Timezone) {
+	if o == nil || IsNil(o.Timezone) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkFirmwareUpgrades200Response) GetTimezone() string {
 // GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200Response) GetTimezoneOk() (*string, bool) {
-	if o == nil || isNil(o.Timezone) {
-    return nil, false
+	if o == nil || IsNil(o.Timezone) {
+		return nil, false
 	}
 	return o.Timezone, true
 }
 
 // HasTimezone returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200Response) HasTimezone() bool {
-	if o != nil && !isNil(o.Timezone) {
+	if o != nil && !IsNil(o.Timezone) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *GetNetworkFirmwareUpgrades200Response) SetTimezone(v string) {
 
 // GetProducts returns the Products field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200Response) GetProducts() GetNetworkFirmwareUpgrades200ResponseProducts {
-	if o == nil || isNil(o.Products) {
+	if o == nil || IsNil(o.Products) {
 		var ret GetNetworkFirmwareUpgrades200ResponseProducts
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *GetNetworkFirmwareUpgrades200Response) GetProducts() GetNetworkFirmware
 // GetProductsOk returns a tuple with the Products field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200Response) GetProductsOk() (*GetNetworkFirmwareUpgrades200ResponseProducts, bool) {
-	if o == nil || isNil(o.Products) {
-    return nil, false
+	if o == nil || IsNil(o.Products) {
+		return nil, false
 	}
 	return o.Products, true
 }
 
 // HasProducts returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200Response) HasProducts() bool {
-	if o != nil && !isNil(o.Products) {
+	if o != nil && !IsNil(o.Products) {
 		return true
 	}
 
@@ -136,17 +139,25 @@ func (o *GetNetworkFirmwareUpgrades200Response) SetProducts(v GetNetworkFirmware
 }
 
 func (o GetNetworkFirmwareUpgrades200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.UpgradeWindow) {
-		toSerialize["upgradeWindow"] = o.UpgradeWindow
-	}
-	if !isNil(o.Timezone) {
-		toSerialize["timezone"] = o.Timezone
-	}
-	if !isNil(o.Products) {
-		toSerialize["products"] = o.Products
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkFirmwareUpgrades200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.UpgradeWindow) {
+		toSerialize["upgradeWindow"] = o.UpgradeWindow
+	}
+	if !IsNil(o.Timezone) {
+		toSerialize["timezone"] = o.Timezone
+	}
+	if !IsNil(o.Products) {
+		toSerialize["products"] = o.Products
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkFirmwareUpgrades200Response struct {

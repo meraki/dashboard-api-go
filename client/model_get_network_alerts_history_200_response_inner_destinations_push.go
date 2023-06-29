@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkAlertsHistory200ResponseInnerDestinationsPush type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkAlertsHistory200ResponseInnerDestinationsPush{}
+
 // GetNetworkAlertsHistory200ResponseInnerDestinationsPush push destinations for this alert
 type GetNetworkAlertsHistory200ResponseInnerDestinationsPush struct {
 	// time when the alert was sent to the user(s) for this channel
@@ -39,7 +42,7 @@ func NewGetNetworkAlertsHistory200ResponseInnerDestinationsPushWithDefaults() *G
 
 // GetSentAt returns the SentAt field value if set, zero value otherwise.
 func (o *GetNetworkAlertsHistory200ResponseInnerDestinationsPush) GetSentAt() string {
-	if o == nil || isNil(o.SentAt) {
+	if o == nil || IsNil(o.SentAt) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetNetworkAlertsHistory200ResponseInnerDestinationsPush) GetSentAt() st
 // GetSentAtOk returns a tuple with the SentAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkAlertsHistory200ResponseInnerDestinationsPush) GetSentAtOk() (*string, bool) {
-	if o == nil || isNil(o.SentAt) {
-    return nil, false
+	if o == nil || IsNil(o.SentAt) {
+		return nil, false
 	}
 	return o.SentAt, true
 }
 
 // HasSentAt returns a boolean if a field has been set.
 func (o *GetNetworkAlertsHistory200ResponseInnerDestinationsPush) HasSentAt() bool {
-	if o != nil && !isNil(o.SentAt) {
+	if o != nil && !IsNil(o.SentAt) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetNetworkAlertsHistory200ResponseInnerDestinationsPush) SetSentAt(v st
 }
 
 func (o GetNetworkAlertsHistory200ResponseInnerDestinationsPush) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.SentAt) {
-		toSerialize["sentAt"] = o.SentAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkAlertsHistory200ResponseInnerDestinationsPush) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SentAt) {
+		toSerialize["sentAt"] = o.SentAt
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkAlertsHistory200ResponseInnerDestinationsPush struct {

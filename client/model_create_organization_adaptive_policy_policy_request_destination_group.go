@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup{}
+
 // CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup The destination adaptive policy group (requires one unique attribute)
 type CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup struct {
 	// The ID of the destination adaptive policy group
@@ -43,7 +46,7 @@ func NewCreateOrganizationAdaptivePolicyPolicyRequestDestinationGroupWithDefault
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) GetId() 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) SetId(v 
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) GetName(
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) SetName(
 
 // GetSgt returns the Sgt field value if set, zero value otherwise.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) GetSgt() int32 {
-	if o == nil || isNil(o.Sgt) {
+	if o == nil || IsNil(o.Sgt) {
 		var ret int32
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) GetSgt()
 // GetSgtOk returns a tuple with the Sgt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) GetSgtOk() (*int32, bool) {
-	if o == nil || isNil(o.Sgt) {
-    return nil, false
+	if o == nil || IsNil(o.Sgt) {
+		return nil, false
 	}
 	return o.Sgt, true
 }
 
 // HasSgt returns a boolean if a field has been set.
 func (o *CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) HasSgt() bool {
-	if o != nil && !isNil(o.Sgt) {
+	if o != nil && !IsNil(o.Sgt) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) SetSgt(v
 }
 
 func (o CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Sgt) {
-		toSerialize["sgt"] = o.Sgt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Sgt) {
+		toSerialize["sgt"] = o.Sgt
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationAdaptivePolicyPolicyRequestDestinationGroup struct {

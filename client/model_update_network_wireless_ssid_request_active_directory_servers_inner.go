@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner{}
+
 // UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner struct for UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner
 type UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner struct {
 	// IP address of your Active Directory server.
@@ -54,7 +57,7 @@ func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner) GetHost() 
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner) GetHostOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Host, true
 }
@@ -66,7 +69,7 @@ func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner) SetHost(v 
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner) GetPort() int32 {
-	if o == nil || isNil(o.Port) {
+	if o == nil || IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner) GetPort() 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner) GetPortOk() (*int32, bool) {
-	if o == nil || isNil(o.Port) {
-    return nil, false
+	if o == nil || IsNil(o.Port) {
+		return nil, false
 	}
 	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner) HasPort() bool {
-	if o != nil && !isNil(o.Port) {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
@@ -97,14 +100,20 @@ func (o *UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner) SetPort(v 
 }
 
 func (o UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["host"] = o.Host
-	}
-	if !isNil(o.Port) {
-		toSerialize["port"] = o.Port
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidRequestActiveDirectoryServersInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["host"] = o.Host
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidRequestActiveDirectoryServersInner struct {

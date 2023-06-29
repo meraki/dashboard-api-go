@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkGroupPolicyRequestBonjourForwarding type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkGroupPolicyRequestBonjourForwarding{}
+
 // CreateNetworkGroupPolicyRequestBonjourForwarding The Bonjour settings for your group policy. Only valid if your network has a wireless configuration.
 type CreateNetworkGroupPolicyRequestBonjourForwarding struct {
 	// How Bonjour rules are applied. Can be 'network default', 'ignore' or 'custom'.
@@ -41,7 +44,7 @@ func NewCreateNetworkGroupPolicyRequestBonjourForwardingWithDefaults() *CreateNe
 
 // GetSettings returns the Settings field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestBonjourForwarding) GetSettings() string {
-	if o == nil || isNil(o.Settings) {
+	if o == nil || IsNil(o.Settings) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateNetworkGroupPolicyRequestBonjourForwarding) GetSettings() string 
 // GetSettingsOk returns a tuple with the Settings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestBonjourForwarding) GetSettingsOk() (*string, bool) {
-	if o == nil || isNil(o.Settings) {
-    return nil, false
+	if o == nil || IsNil(o.Settings) {
+		return nil, false
 	}
 	return o.Settings, true
 }
 
 // HasSettings returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestBonjourForwarding) HasSettings() bool {
-	if o != nil && !isNil(o.Settings) {
+	if o != nil && !IsNil(o.Settings) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateNetworkGroupPolicyRequestBonjourForwarding) SetSettings(v string)
 
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestBonjourForwarding) GetRules() []CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner {
-	if o == nil || isNil(o.Rules) {
+	if o == nil || IsNil(o.Rules) {
 		var ret []CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateNetworkGroupPolicyRequestBonjourForwarding) GetRules() []CreateNe
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestBonjourForwarding) GetRulesOk() ([]CreateNetworkGroupPolicyRequestBonjourForwardingRulesInner, bool) {
-	if o == nil || isNil(o.Rules) {
-    return nil, false
+	if o == nil || IsNil(o.Rules) {
+		return nil, false
 	}
 	return o.Rules, true
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestBonjourForwarding) HasRules() bool {
-	if o != nil && !isNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *CreateNetworkGroupPolicyRequestBonjourForwarding) SetRules(v []CreateNe
 }
 
 func (o CreateNetworkGroupPolicyRequestBonjourForwarding) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Settings) {
-		toSerialize["settings"] = o.Settings
-	}
-	if !isNil(o.Rules) {
-		toSerialize["rules"] = o.Rules
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkGroupPolicyRequestBonjourForwarding) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Settings) {
+		toSerialize["settings"] = o.Settings
+	}
+	if !IsNil(o.Rules) {
+		toSerialize["rules"] = o.Rules
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkGroupPolicyRequestBonjourForwarding struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner{}
+
 // GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner struct for GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner
 type GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner struct {
 	// The name of the client which has fixed IP address
@@ -43,7 +46,7 @@ func NewGetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsIn
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsI
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsI
 
 // GetMac returns the Mac field value if set, zero value otherwise.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner) GetMac() string {
-	if o == nil || isNil(o.Mac) {
+	if o == nil || IsNil(o.Mac) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsI
 // GetMacOk returns a tuple with the Mac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner) GetMacOk() (*string, bool) {
-	if o == nil || isNil(o.Mac) {
-    return nil, false
+	if o == nil || IsNil(o.Mac) {
+		return nil, false
 	}
 	return o.Mac, true
 }
 
 // HasMac returns a boolean if a field has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner) HasMac() bool {
-	if o != nil && !isNil(o.Mac) {
+	if o != nil && !IsNil(o.Mac) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsI
 
 // GetIp returns the Ip field value if set, zero value otherwise.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner) GetIp() string {
-	if o == nil || isNil(o.Ip) {
+	if o == nil || IsNil(o.Ip) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsI
 // GetIpOk returns a tuple with the Ip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner) GetIpOk() (*string, bool) {
-	if o == nil || isNil(o.Ip) {
-    return nil, false
+	if o == nil || IsNil(o.Ip) {
+		return nil, false
 	}
 	return o.Ip, true
 }
 
 // HasIp returns a boolean if a field has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner) HasIp() bool {
-	if o != nil && !isNil(o.Ip) {
+	if o != nil && !IsNil(o.Ip) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsI
 }
 
 func (o GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Mac) {
-		toSerialize["mac"] = o.Mac
-	}
-	if !isNil(o.Ip) {
-		toSerialize["ip"] = o.Ip
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Mac) {
+		toSerialize["mac"] = o.Mac
+	}
+	if !IsNil(o.Ip) {
+		toSerialize["ip"] = o.Ip
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchStackRoutingInterfaceDhcp200ResponseFixedIpAssignmentsInner struct {

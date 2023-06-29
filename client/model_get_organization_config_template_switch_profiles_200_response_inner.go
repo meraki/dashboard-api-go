@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationConfigTemplateSwitchProfiles200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationConfigTemplateSwitchProfiles200ResponseInner{}
+
 // GetOrganizationConfigTemplateSwitchProfiles200ResponseInner struct for GetOrganizationConfigTemplateSwitchProfiles200ResponseInner
 type GetOrganizationConfigTemplateSwitchProfiles200ResponseInner struct {
 	// Switch profile id
@@ -43,7 +46,7 @@ func NewGetOrganizationConfigTemplateSwitchProfiles200ResponseInnerWithDefaults(
 
 // GetSwitchProfileId returns the SwitchProfileId field value if set, zero value otherwise.
 func (o *GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) GetSwitchProfileId() string {
-	if o == nil || isNil(o.SwitchProfileId) {
+	if o == nil || IsNil(o.SwitchProfileId) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) GetSwitchP
 // GetSwitchProfileIdOk returns a tuple with the SwitchProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) GetSwitchProfileIdOk() (*string, bool) {
-	if o == nil || isNil(o.SwitchProfileId) {
-    return nil, false
+	if o == nil || IsNil(o.SwitchProfileId) {
+		return nil, false
 	}
 	return o.SwitchProfileId, true
 }
 
 // HasSwitchProfileId returns a boolean if a field has been set.
 func (o *GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) HasSwitchProfileId() bool {
-	if o != nil && !isNil(o.SwitchProfileId) {
+	if o != nil && !IsNil(o.SwitchProfileId) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) SetSwitchP
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) GetName() 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) SetName(v 
 
 // GetModel returns the Model field value if set, zero value otherwise.
 func (o *GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) GetModel() string {
-	if o == nil || isNil(o.Model) {
+	if o == nil || IsNil(o.Model) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) GetModel()
 // GetModelOk returns a tuple with the Model field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) GetModelOk() (*string, bool) {
-	if o == nil || isNil(o.Model) {
-    return nil, false
+	if o == nil || IsNil(o.Model) {
+		return nil, false
 	}
 	return o.Model, true
 }
 
 // HasModel returns a boolean if a field has been set.
 func (o *GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) HasModel() bool {
-	if o != nil && !isNil(o.Model) {
+	if o != nil && !IsNil(o.Model) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) SetModel(v
 }
 
 func (o GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.SwitchProfileId) {
-		toSerialize["switchProfileId"] = o.SwitchProfileId
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Model) {
-		toSerialize["model"] = o.Model
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationConfigTemplateSwitchProfiles200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SwitchProfileId) {
+		toSerialize["switchProfileId"] = o.SwitchProfileId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Model) {
+		toSerialize["model"] = o.Model
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationConfigTemplateSwitchProfiles200ResponseInner struct {

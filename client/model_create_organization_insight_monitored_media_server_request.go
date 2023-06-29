@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationInsightMonitoredMediaServerRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationInsightMonitoredMediaServerRequest{}
+
 // CreateOrganizationInsightMonitoredMediaServerRequest struct for CreateOrganizationInsightMonitoredMediaServerRequest
 type CreateOrganizationInsightMonitoredMediaServerRequest struct {
 	// The name of the VoIP provider
@@ -57,7 +60,7 @@ func (o *CreateOrganizationInsightMonitoredMediaServerRequest) GetName() string 
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInsightMonitoredMediaServerRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -81,7 +84,7 @@ func (o *CreateOrganizationInsightMonitoredMediaServerRequest) GetAddress() stri
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInsightMonitoredMediaServerRequest) GetAddressOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Address, true
 }
@@ -93,7 +96,7 @@ func (o *CreateOrganizationInsightMonitoredMediaServerRequest) SetAddress(v stri
 
 // GetBestEffortMonitoringEnabled returns the BestEffortMonitoringEnabled field value if set, zero value otherwise.
 func (o *CreateOrganizationInsightMonitoredMediaServerRequest) GetBestEffortMonitoringEnabled() bool {
-	if o == nil || isNil(o.BestEffortMonitoringEnabled) {
+	if o == nil || IsNil(o.BestEffortMonitoringEnabled) {
 		var ret bool
 		return ret
 	}
@@ -103,15 +106,15 @@ func (o *CreateOrganizationInsightMonitoredMediaServerRequest) GetBestEffortMoni
 // GetBestEffortMonitoringEnabledOk returns a tuple with the BestEffortMonitoringEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInsightMonitoredMediaServerRequest) GetBestEffortMonitoringEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.BestEffortMonitoringEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.BestEffortMonitoringEnabled) {
+		return nil, false
 	}
 	return o.BestEffortMonitoringEnabled, true
 }
 
 // HasBestEffortMonitoringEnabled returns a boolean if a field has been set.
 func (o *CreateOrganizationInsightMonitoredMediaServerRequest) HasBestEffortMonitoringEnabled() bool {
-	if o != nil && !isNil(o.BestEffortMonitoringEnabled) {
+	if o != nil && !IsNil(o.BestEffortMonitoringEnabled) {
 		return true
 	}
 
@@ -124,17 +127,21 @@ func (o *CreateOrganizationInsightMonitoredMediaServerRequest) SetBestEffortMoni
 }
 
 func (o CreateOrganizationInsightMonitoredMediaServerRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["address"] = o.Address
-	}
-	if !isNil(o.BestEffortMonitoringEnabled) {
-		toSerialize["bestEffortMonitoringEnabled"] = o.BestEffortMonitoringEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationInsightMonitoredMediaServerRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["address"] = o.Address
+	if !IsNil(o.BestEffortMonitoringEnabled) {
+		toSerialize["bestEffortMonitoringEnabled"] = o.BestEffortMonitoringEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationInsightMonitoredMediaServerRequest struct {

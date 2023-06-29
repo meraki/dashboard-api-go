@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchRoutingMulticast200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchRoutingMulticast200Response{}
+
 // GetNetworkSwitchRoutingMulticast200Response struct for GetNetworkSwitchRoutingMulticast200Response
 type GetNetworkSwitchRoutingMulticast200Response struct {
 	DefaultSettings *GetNetworkSwitchRoutingMulticast200ResponseDefaultSettings `json:"defaultSettings,omitempty"`
@@ -40,7 +43,7 @@ func NewGetNetworkSwitchRoutingMulticast200ResponseWithDefaults() *GetNetworkSwi
 
 // GetDefaultSettings returns the DefaultSettings field value if set, zero value otherwise.
 func (o *GetNetworkSwitchRoutingMulticast200Response) GetDefaultSettings() GetNetworkSwitchRoutingMulticast200ResponseDefaultSettings {
-	if o == nil || isNil(o.DefaultSettings) {
+	if o == nil || IsNil(o.DefaultSettings) {
 		var ret GetNetworkSwitchRoutingMulticast200ResponseDefaultSettings
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *GetNetworkSwitchRoutingMulticast200Response) GetDefaultSettings() GetNe
 // GetDefaultSettingsOk returns a tuple with the DefaultSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchRoutingMulticast200Response) GetDefaultSettingsOk() (*GetNetworkSwitchRoutingMulticast200ResponseDefaultSettings, bool) {
-	if o == nil || isNil(o.DefaultSettings) {
-    return nil, false
+	if o == nil || IsNil(o.DefaultSettings) {
+		return nil, false
 	}
 	return o.DefaultSettings, true
 }
 
 // HasDefaultSettings returns a boolean if a field has been set.
 func (o *GetNetworkSwitchRoutingMulticast200Response) HasDefaultSettings() bool {
-	if o != nil && !isNil(o.DefaultSettings) {
+	if o != nil && !IsNil(o.DefaultSettings) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *GetNetworkSwitchRoutingMulticast200Response) SetDefaultSettings(v GetNe
 
 // GetOverrides returns the Overrides field value if set, zero value otherwise.
 func (o *GetNetworkSwitchRoutingMulticast200Response) GetOverrides() []GetNetworkSwitchRoutingMulticast200ResponseOverridesInner {
-	if o == nil || isNil(o.Overrides) {
+	if o == nil || IsNil(o.Overrides) {
 		var ret []GetNetworkSwitchRoutingMulticast200ResponseOverridesInner
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *GetNetworkSwitchRoutingMulticast200Response) GetOverrides() []GetNetwor
 // GetOverridesOk returns a tuple with the Overrides field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchRoutingMulticast200Response) GetOverridesOk() ([]GetNetworkSwitchRoutingMulticast200ResponseOverridesInner, bool) {
-	if o == nil || isNil(o.Overrides) {
-    return nil, false
+	if o == nil || IsNil(o.Overrides) {
+		return nil, false
 	}
 	return o.Overrides, true
 }
 
 // HasOverrides returns a boolean if a field has been set.
 func (o *GetNetworkSwitchRoutingMulticast200Response) HasOverrides() bool {
-	if o != nil && !isNil(o.Overrides) {
+	if o != nil && !IsNil(o.Overrides) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *GetNetworkSwitchRoutingMulticast200Response) SetOverrides(v []GetNetwor
 }
 
 func (o GetNetworkSwitchRoutingMulticast200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.DefaultSettings) {
-		toSerialize["defaultSettings"] = o.DefaultSettings
-	}
-	if !isNil(o.Overrides) {
-		toSerialize["overrides"] = o.Overrides
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchRoutingMulticast200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DefaultSettings) {
+		toSerialize["defaultSettings"] = o.DefaultSettings
+	}
+	if !IsNil(o.Overrides) {
+		toSerialize["overrides"] = o.Overrides
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchRoutingMulticast200Response struct {
