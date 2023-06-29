@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest{}
+
 // UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest struct for UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest
 type UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest struct {
 	// An array of L7 firewall rules for this SSID. Rules will get applied in the same order user has specified in request. Empty array will clear the L7 firewall rule configuration.
@@ -39,7 +42,7 @@ func NewUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequestWithDefaults() *U
 
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) GetRules() []UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequestRulesInner {
-	if o == nil || isNil(o.Rules) {
+	if o == nil || IsNil(o.Rules) {
 		var ret []UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequestRulesInner
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) GetRules() []U
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) GetRulesOk() ([]UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequestRulesInner, bool) {
-	if o == nil || isNil(o.Rules) {
-    return nil, false
+	if o == nil || IsNil(o.Rules) {
+		return nil, false
 	}
 	return o.Rules, true
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) HasRules() bool {
-	if o != nil && !isNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) SetRules(v []U
 }
 
 func (o UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Rules) {
-		toSerialize["rules"] = o.Rules
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Rules) {
+		toSerialize["rules"] = o.Rules
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest struct {

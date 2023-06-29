@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerMilestones type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerMilestones{}
+
 // UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerMilestones The Staged Upgrade Milestones for the specific stage
 type UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerMilestones struct {
 	// The start time of the staged upgrade stage. (In ISO-8601 format, in the time zone of the network.)
@@ -52,7 +55,7 @@ func (o *UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerMilestones) 
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerMilestones) GetScheduledForOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ScheduledFor, true
 }
@@ -63,11 +66,17 @@ func (o *UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerMilestones) 
 }
 
 func (o UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerMilestones) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["scheduledFor"] = o.ScheduledFor
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerMilestones) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["scheduledFor"] = o.ScheduledFor
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerMilestones struct {

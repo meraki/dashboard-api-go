@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest{}
+
 // CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest struct for CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest
 type CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest struct {
 	// The mac address of the trusted server being added
@@ -57,7 +60,7 @@ func (o *CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) G
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) GetMacOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Mac, true
 }
@@ -81,7 +84,7 @@ func (o *CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) G
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) GetVlanOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Vlan, true
 }
@@ -105,7 +108,7 @@ func (o *CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) G
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) GetIpv4Ok() (*CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Ipv4, true
 }
@@ -116,17 +119,19 @@ func (o *CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) S
 }
 
 func (o CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["mac"] = o.Mac
-	}
-	if true {
-		toSerialize["vlan"] = o.Vlan
-	}
-	if true {
-		toSerialize["ipv4"] = o.Ipv4
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["mac"] = o.Mac
+	toSerialize["vlan"] = o.Vlan
+	toSerialize["ipv4"] = o.Ipv4
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest struct {

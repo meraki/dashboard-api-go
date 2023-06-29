@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmUserAccessDevices200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmUserAccessDevices200ResponseInner{}
+
 // GetNetworkSmUserAccessDevices200ResponseInner struct for GetNetworkSmUserAccessDevices200ResponseInner
 type GetNetworkSmUserAccessDevices200ResponseInner struct {
 	// device ID
@@ -53,7 +56,7 @@ func NewGetNetworkSmUserAccessDevices200ResponseInnerWithDefaults() *GetNetworkS
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -63,15 +66,15 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -85,7 +88,7 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInner) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -95,15 +98,15 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInner) SetName(v string) {
 
 // GetSystemType returns the SystemType field value if set, zero value otherwise.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetSystemType() string {
-	if o == nil || isNil(o.SystemType) {
+	if o == nil || IsNil(o.SystemType) {
 		var ret string
 		return ret
 	}
@@ -127,15 +130,15 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetSystemType() string {
 // GetSystemTypeOk returns a tuple with the SystemType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetSystemTypeOk() (*string, bool) {
-	if o == nil || isNil(o.SystemType) {
-    return nil, false
+	if o == nil || IsNil(o.SystemType) {
+		return nil, false
 	}
 	return o.SystemType, true
 }
 
 // HasSystemType returns a boolean if a field has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) HasSystemType() bool {
-	if o != nil && !isNil(o.SystemType) {
+	if o != nil && !IsNil(o.SystemType) {
 		return true
 	}
 
@@ -149,7 +152,7 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInner) SetSystemType(v string) 
 
 // GetMac returns the Mac field value if set, zero value otherwise.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetMac() string {
-	if o == nil || isNil(o.Mac) {
+	if o == nil || IsNil(o.Mac) {
 		var ret string
 		return ret
 	}
@@ -159,15 +162,15 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetMac() string {
 // GetMacOk returns a tuple with the Mac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetMacOk() (*string, bool) {
-	if o == nil || isNil(o.Mac) {
-    return nil, false
+	if o == nil || IsNil(o.Mac) {
+		return nil, false
 	}
 	return o.Mac, true
 }
 
 // HasMac returns a boolean if a field has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) HasMac() bool {
-	if o != nil && !isNil(o.Mac) {
+	if o != nil && !IsNil(o.Mac) {
 		return true
 	}
 
@@ -181,7 +184,7 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInner) SetMac(v string) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetUsername() string {
-	if o == nil || isNil(o.Username) {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -191,15 +194,15 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetUsernameOk() (*string, bool) {
-	if o == nil || isNil(o.Username) {
-    return nil, false
+	if o == nil || IsNil(o.Username) {
+		return nil, false
 	}
 	return o.Username, true
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) HasUsername() bool {
-	if o != nil && !isNil(o.Username) {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -213,7 +216,7 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInner) SetUsername(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetEmail() string {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -223,15 +226,15 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetEmailOk() (*string, bool) {
-	if o == nil || isNil(o.Email) {
-    return nil, false
+	if o == nil || IsNil(o.Email) {
+		return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -245,7 +248,7 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInner) SetEmail(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -255,15 +258,15 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
 	}
 	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -277,7 +280,7 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInner) SetTags(v []string) {
 
 // GetTrustedAccessConnections returns the TrustedAccessConnections field value if set, zero value otherwise.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetTrustedAccessConnections() []GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner {
-	if o == nil || isNil(o.TrustedAccessConnections) {
+	if o == nil || IsNil(o.TrustedAccessConnections) {
 		var ret []GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner
 		return ret
 	}
@@ -287,15 +290,15 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetTrustedAccessConnecti
 // GetTrustedAccessConnectionsOk returns a tuple with the TrustedAccessConnections field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) GetTrustedAccessConnectionsOk() ([]GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner, bool) {
-	if o == nil || isNil(o.TrustedAccessConnections) {
-    return nil, false
+	if o == nil || IsNil(o.TrustedAccessConnections) {
+		return nil, false
 	}
 	return o.TrustedAccessConnections, true
 }
 
 // HasTrustedAccessConnections returns a boolean if a field has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInner) HasTrustedAccessConnections() bool {
-	if o != nil && !isNil(o.TrustedAccessConnections) {
+	if o != nil && !IsNil(o.TrustedAccessConnections) {
 		return true
 	}
 
@@ -308,32 +311,40 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInner) SetTrustedAccessConnecti
 }
 
 func (o GetNetworkSmUserAccessDevices200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.SystemType) {
-		toSerialize["systemType"] = o.SystemType
-	}
-	if !isNil(o.Mac) {
-		toSerialize["mac"] = o.Mac
-	}
-	if !isNil(o.Username) {
-		toSerialize["username"] = o.Username
-	}
-	if !isNil(o.Email) {
-		toSerialize["email"] = o.Email
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !isNil(o.TrustedAccessConnections) {
-		toSerialize["trustedAccessConnections"] = o.TrustedAccessConnections
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmUserAccessDevices200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.SystemType) {
+		toSerialize["systemType"] = o.SystemType
+	}
+	if !IsNil(o.Mac) {
+		toSerialize["mac"] = o.Mac
+	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.TrustedAccessConnections) {
+		toSerialize["trustedAccessConnections"] = o.TrustedAccessConnections
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmUserAccessDevices200ResponseInner struct {

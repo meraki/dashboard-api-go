@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkAppliancePortRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkAppliancePortRequest{}
+
 // UpdateNetworkAppliancePortRequest struct for UpdateNetworkAppliancePortRequest
 type UpdateNetworkAppliancePortRequest struct {
 	// The status of the port
@@ -49,7 +52,7 @@ func NewUpdateNetworkAppliancePortRequestWithDefaults() *UpdateNetworkApplianceP
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkAppliancePortRequest) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -59,15 +62,15 @@ func (o *UpdateNetworkAppliancePortRequest) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAppliancePortRequest) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkAppliancePortRequest) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *UpdateNetworkAppliancePortRequest) SetEnabled(v bool) {
 
 // GetDropUntaggedTraffic returns the DropUntaggedTraffic field value if set, zero value otherwise.
 func (o *UpdateNetworkAppliancePortRequest) GetDropUntaggedTraffic() bool {
-	if o == nil || isNil(o.DropUntaggedTraffic) {
+	if o == nil || IsNil(o.DropUntaggedTraffic) {
 		var ret bool
 		return ret
 	}
@@ -91,15 +94,15 @@ func (o *UpdateNetworkAppliancePortRequest) GetDropUntaggedTraffic() bool {
 // GetDropUntaggedTrafficOk returns a tuple with the DropUntaggedTraffic field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAppliancePortRequest) GetDropUntaggedTrafficOk() (*bool, bool) {
-	if o == nil || isNil(o.DropUntaggedTraffic) {
-    return nil, false
+	if o == nil || IsNil(o.DropUntaggedTraffic) {
+		return nil, false
 	}
 	return o.DropUntaggedTraffic, true
 }
 
 // HasDropUntaggedTraffic returns a boolean if a field has been set.
 func (o *UpdateNetworkAppliancePortRequest) HasDropUntaggedTraffic() bool {
-	if o != nil && !isNil(o.DropUntaggedTraffic) {
+	if o != nil && !IsNil(o.DropUntaggedTraffic) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *UpdateNetworkAppliancePortRequest) SetDropUntaggedTraffic(v bool) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *UpdateNetworkAppliancePortRequest) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -123,15 +126,15 @@ func (o *UpdateNetworkAppliancePortRequest) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAppliancePortRequest) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *UpdateNetworkAppliancePortRequest) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *UpdateNetworkAppliancePortRequest) SetType(v string) {
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
 func (o *UpdateNetworkAppliancePortRequest) GetVlan() int32 {
-	if o == nil || isNil(o.Vlan) {
+	if o == nil || IsNil(o.Vlan) {
 		var ret int32
 		return ret
 	}
@@ -155,15 +158,15 @@ func (o *UpdateNetworkAppliancePortRequest) GetVlan() int32 {
 // GetVlanOk returns a tuple with the Vlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAppliancePortRequest) GetVlanOk() (*int32, bool) {
-	if o == nil || isNil(o.Vlan) {
-    return nil, false
+	if o == nil || IsNil(o.Vlan) {
+		return nil, false
 	}
 	return o.Vlan, true
 }
 
 // HasVlan returns a boolean if a field has been set.
 func (o *UpdateNetworkAppliancePortRequest) HasVlan() bool {
-	if o != nil && !isNil(o.Vlan) {
+	if o != nil && !IsNil(o.Vlan) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *UpdateNetworkAppliancePortRequest) SetVlan(v int32) {
 
 // GetAllowedVlans returns the AllowedVlans field value if set, zero value otherwise.
 func (o *UpdateNetworkAppliancePortRequest) GetAllowedVlans() string {
-	if o == nil || isNil(o.AllowedVlans) {
+	if o == nil || IsNil(o.AllowedVlans) {
 		var ret string
 		return ret
 	}
@@ -187,15 +190,15 @@ func (o *UpdateNetworkAppliancePortRequest) GetAllowedVlans() string {
 // GetAllowedVlansOk returns a tuple with the AllowedVlans field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAppliancePortRequest) GetAllowedVlansOk() (*string, bool) {
-	if o == nil || isNil(o.AllowedVlans) {
-    return nil, false
+	if o == nil || IsNil(o.AllowedVlans) {
+		return nil, false
 	}
 	return o.AllowedVlans, true
 }
 
 // HasAllowedVlans returns a boolean if a field has been set.
 func (o *UpdateNetworkAppliancePortRequest) HasAllowedVlans() bool {
-	if o != nil && !isNil(o.AllowedVlans) {
+	if o != nil && !IsNil(o.AllowedVlans) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *UpdateNetworkAppliancePortRequest) SetAllowedVlans(v string) {
 
 // GetAccessPolicy returns the AccessPolicy field value if set, zero value otherwise.
 func (o *UpdateNetworkAppliancePortRequest) GetAccessPolicy() string {
-	if o == nil || isNil(o.AccessPolicy) {
+	if o == nil || IsNil(o.AccessPolicy) {
 		var ret string
 		return ret
 	}
@@ -219,15 +222,15 @@ func (o *UpdateNetworkAppliancePortRequest) GetAccessPolicy() string {
 // GetAccessPolicyOk returns a tuple with the AccessPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAppliancePortRequest) GetAccessPolicyOk() (*string, bool) {
-	if o == nil || isNil(o.AccessPolicy) {
-    return nil, false
+	if o == nil || IsNil(o.AccessPolicy) {
+		return nil, false
 	}
 	return o.AccessPolicy, true
 }
 
 // HasAccessPolicy returns a boolean if a field has been set.
 func (o *UpdateNetworkAppliancePortRequest) HasAccessPolicy() bool {
-	if o != nil && !isNil(o.AccessPolicy) {
+	if o != nil && !IsNil(o.AccessPolicy) {
 		return true
 	}
 
@@ -240,26 +243,34 @@ func (o *UpdateNetworkAppliancePortRequest) SetAccessPolicy(v string) {
 }
 
 func (o UpdateNetworkAppliancePortRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.DropUntaggedTraffic) {
-		toSerialize["dropUntaggedTraffic"] = o.DropUntaggedTraffic
-	}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Vlan) {
-		toSerialize["vlan"] = o.Vlan
-	}
-	if !isNil(o.AllowedVlans) {
-		toSerialize["allowedVlans"] = o.AllowedVlans
-	}
-	if !isNil(o.AccessPolicy) {
-		toSerialize["accessPolicy"] = o.AccessPolicy
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkAppliancePortRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.DropUntaggedTraffic) {
+		toSerialize["dropUntaggedTraffic"] = o.DropUntaggedTraffic
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Vlan) {
+		toSerialize["vlan"] = o.Vlan
+	}
+	if !IsNil(o.AllowedVlans) {
+		toSerialize["allowedVlans"] = o.AllowedVlans
+	}
+	if !IsNil(o.AccessPolicy) {
+		toSerialize["accessPolicy"] = o.AccessPolicy
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkAppliancePortRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkFirmwareUpgradesStagedEventsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkFirmwareUpgradesStagedEventsRequest{}
+
 // UpdateNetworkFirmwareUpgradesStagedEventsRequest struct for UpdateNetworkFirmwareUpgradesStagedEventsRequest
 type UpdateNetworkFirmwareUpgradesStagedEventsRequest struct {
 	// All firmware upgrade stages in the network with their start time.
@@ -52,7 +55,7 @@ func (o *UpdateNetworkFirmwareUpgradesStagedEventsRequest) GetStages() []UpdateN
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesStagedEventsRequest) GetStagesOk() ([]UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Stages, true
 }
@@ -63,11 +66,17 @@ func (o *UpdateNetworkFirmwareUpgradesStagedEventsRequest) SetStages(v []UpdateN
 }
 
 func (o UpdateNetworkFirmwareUpgradesStagedEventsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["stages"] = o.Stages
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkFirmwareUpgradesStagedEventsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["stages"] = o.Stages
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkFirmwareUpgradesStagedEventsRequest struct {

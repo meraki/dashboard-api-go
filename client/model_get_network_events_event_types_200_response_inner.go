@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkEventsEventTypes200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkEventsEventTypes200ResponseInner{}
+
 // GetNetworkEventsEventTypes200ResponseInner struct for GetNetworkEventsEventTypes200ResponseInner
 type GetNetworkEventsEventTypes200ResponseInner struct {
 	// Event category
@@ -43,7 +46,7 @@ func NewGetNetworkEventsEventTypes200ResponseInnerWithDefaults() *GetNetworkEven
 
 // GetCategory returns the Category field value if set, zero value otherwise.
 func (o *GetNetworkEventsEventTypes200ResponseInner) GetCategory() string {
-	if o == nil || isNil(o.Category) {
+	if o == nil || IsNil(o.Category) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkEventsEventTypes200ResponseInner) GetCategory() string {
 // GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEventsEventTypes200ResponseInner) GetCategoryOk() (*string, bool) {
-	if o == nil || isNil(o.Category) {
-    return nil, false
+	if o == nil || IsNil(o.Category) {
+		return nil, false
 	}
 	return o.Category, true
 }
 
 // HasCategory returns a boolean if a field has been set.
 func (o *GetNetworkEventsEventTypes200ResponseInner) HasCategory() bool {
-	if o != nil && !isNil(o.Category) {
+	if o != nil && !IsNil(o.Category) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkEventsEventTypes200ResponseInner) SetCategory(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GetNetworkEventsEventTypes200ResponseInner) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkEventsEventTypes200ResponseInner) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEventsEventTypes200ResponseInner) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *GetNetworkEventsEventTypes200ResponseInner) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkEventsEventTypes200ResponseInner) SetType(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *GetNetworkEventsEventTypes200ResponseInner) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkEventsEventTypes200ResponseInner) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEventsEventTypes200ResponseInner) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
-    return nil, false
+	if o == nil || IsNil(o.Description) {
+		return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *GetNetworkEventsEventTypes200ResponseInner) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkEventsEventTypes200ResponseInner) SetDescription(v string) {
 }
 
 func (o GetNetworkEventsEventTypes200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Category) {
-		toSerialize["category"] = o.Category
-	}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Description) {
-		toSerialize["description"] = o.Description
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkEventsEventTypes200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Category) {
+		toSerialize["category"] = o.Category
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkEventsEventTypes200ResponseInner struct {

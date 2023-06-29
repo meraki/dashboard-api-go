@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceApplianceUplinksSettingsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceApplianceUplinksSettingsRequest{}
+
 // UpdateDeviceApplianceUplinksSettingsRequest struct for UpdateDeviceApplianceUplinksSettingsRequest
 type UpdateDeviceApplianceUplinksSettingsRequest struct {
 	Interfaces UpdateDeviceApplianceUplinksSettingsRequestInterfaces `json:"interfaces"`
@@ -51,7 +54,7 @@ func (o *UpdateDeviceApplianceUplinksSettingsRequest) GetInterfaces() UpdateDevi
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceApplianceUplinksSettingsRequest) GetInterfacesOk() (*UpdateDeviceApplianceUplinksSettingsRequestInterfaces, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Interfaces, true
 }
@@ -62,11 +65,17 @@ func (o *UpdateDeviceApplianceUplinksSettingsRequest) SetInterfaces(v UpdateDevi
 }
 
 func (o UpdateDeviceApplianceUplinksSettingsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["interfaces"] = o.Interfaces
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceApplianceUplinksSettingsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["interfaces"] = o.Interfaces
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceApplianceUplinksSettingsRequest struct {

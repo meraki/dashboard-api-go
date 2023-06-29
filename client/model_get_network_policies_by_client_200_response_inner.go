@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkPoliciesByClient200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkPoliciesByClient200ResponseInner{}
+
 // GetNetworkPoliciesByClient200ResponseInner struct for GetNetworkPoliciesByClient200ResponseInner
 type GetNetworkPoliciesByClient200ResponseInner struct {
 	// Name of client
@@ -43,7 +46,7 @@ func NewGetNetworkPoliciesByClient200ResponseInnerWithDefaults() *GetNetworkPoli
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkPoliciesByClient200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkPoliciesByClient200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkPoliciesByClient200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkPoliciesByClient200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkPoliciesByClient200ResponseInner) SetName(v string) {
 
 // GetClientId returns the ClientId field value if set, zero value otherwise.
 func (o *GetNetworkPoliciesByClient200ResponseInner) GetClientId() string {
-	if o == nil || isNil(o.ClientId) {
+	if o == nil || IsNil(o.ClientId) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkPoliciesByClient200ResponseInner) GetClientId() string {
 // GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkPoliciesByClient200ResponseInner) GetClientIdOk() (*string, bool) {
-	if o == nil || isNil(o.ClientId) {
-    return nil, false
+	if o == nil || IsNil(o.ClientId) {
+		return nil, false
 	}
 	return o.ClientId, true
 }
 
 // HasClientId returns a boolean if a field has been set.
 func (o *GetNetworkPoliciesByClient200ResponseInner) HasClientId() bool {
-	if o != nil && !isNil(o.ClientId) {
+	if o != nil && !IsNil(o.ClientId) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkPoliciesByClient200ResponseInner) SetClientId(v string) {
 
 // GetAssigned returns the Assigned field value if set, zero value otherwise.
 func (o *GetNetworkPoliciesByClient200ResponseInner) GetAssigned() []GetNetworkPoliciesByClient200ResponseInnerAssignedInner {
-	if o == nil || isNil(o.Assigned) {
+	if o == nil || IsNil(o.Assigned) {
 		var ret []GetNetworkPoliciesByClient200ResponseInnerAssignedInner
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkPoliciesByClient200ResponseInner) GetAssigned() []GetNetworkP
 // GetAssignedOk returns a tuple with the Assigned field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkPoliciesByClient200ResponseInner) GetAssignedOk() ([]GetNetworkPoliciesByClient200ResponseInnerAssignedInner, bool) {
-	if o == nil || isNil(o.Assigned) {
-    return nil, false
+	if o == nil || IsNil(o.Assigned) {
+		return nil, false
 	}
 	return o.Assigned, true
 }
 
 // HasAssigned returns a boolean if a field has been set.
 func (o *GetNetworkPoliciesByClient200ResponseInner) HasAssigned() bool {
-	if o != nil && !isNil(o.Assigned) {
+	if o != nil && !IsNil(o.Assigned) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkPoliciesByClient200ResponseInner) SetAssigned(v []GetNetworkP
 }
 
 func (o GetNetworkPoliciesByClient200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.ClientId) {
-		toSerialize["clientId"] = o.ClientId
-	}
-	if !isNil(o.Assigned) {
-		toSerialize["assigned"] = o.Assigned
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkPoliciesByClient200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.ClientId) {
+		toSerialize["clientId"] = o.ClientId
+	}
+	if !IsNil(o.Assigned) {
+		toSerialize["assigned"] = o.Assigned
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkPoliciesByClient200ResponseInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner{}
+
 // CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner struct for CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner
 type CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner struct {
 	// Device SUDI certificate
@@ -55,7 +58,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner) GetSudiOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Sudi, true
 }
@@ -67,7 +70,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 
 // GetTunnel returns the Tunnel field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner) GetTunnel() CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel {
-	if o == nil || isNil(o.Tunnel) {
+	if o == nil || IsNil(o.Tunnel) {
 		var ret CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel
 		return ret
 	}
@@ -77,15 +80,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 // GetTunnelOk returns a tuple with the Tunnel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner) GetTunnelOk() (*CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel, bool) {
-	if o == nil || isNil(o.Tunnel) {
-    return nil, false
+	if o == nil || IsNil(o.Tunnel) {
+		return nil, false
 	}
 	return o.Tunnel, true
 }
 
 // HasTunnel returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner) HasTunnel() bool {
-	if o != nil && !isNil(o.Tunnel) {
+	if o != nil && !IsNil(o.Tunnel) {
 		return true
 	}
 
@@ -99,7 +102,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner) GetUser() CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerUser {
-	if o == nil || isNil(o.User) {
+	if o == nil || IsNil(o.User) {
 		var ret CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerUser
 		return ret
 	}
@@ -109,15 +112,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner) GetUserOk() (*CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerUser, bool) {
-	if o == nil || isNil(o.User) {
-    return nil, false
+	if o == nil || IsNil(o.User) {
+		return nil, false
 	}
 	return o.User, true
 }
 
 // HasUser returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner) HasUser() bool {
-	if o != nil && !isNil(o.User) {
+	if o != nil && !IsNil(o.User) {
 		return true
 	}
 
@@ -131,7 +134,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 
 // GetVty returns the Vty field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner) GetVty() CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty {
-	if o == nil || isNil(o.Vty) {
+	if o == nil || IsNil(o.Vty) {
 		var ret CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty
 		return ret
 	}
@@ -141,15 +144,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 // GetVtyOk returns a tuple with the Vty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner) GetVtyOk() (*CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty, bool) {
-	if o == nil || isNil(o.Vty) {
-    return nil, false
+	if o == nil || IsNil(o.Vty) {
+		return nil, false
 	}
 	return o.Vty, true
 }
 
 // HasVty returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner) HasVty() bool {
-	if o != nil && !isNil(o.Vty) {
+	if o != nil && !IsNil(o.Vty) {
 		return true
 	}
 
@@ -162,20 +165,26 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 }
 
 func (o CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["sudi"] = o.Sudi
-	}
-	if !isNil(o.Tunnel) {
-		toSerialize["tunnel"] = o.Tunnel
-	}
-	if !isNil(o.User) {
-		toSerialize["user"] = o.User
-	}
-	if !isNil(o.Vty) {
-		toSerialize["vty"] = o.Vty
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["sudi"] = o.Sudi
+	if !IsNil(o.Tunnel) {
+		toSerialize["tunnel"] = o.Tunnel
+	}
+	if !IsNil(o.User) {
+		toSerialize["user"] = o.User
+	}
+	if !IsNil(o.Vty) {
+		toSerialize["vty"] = o.Vty
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0{}
+
 // GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0 Settings for SSID 0
 type GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0 struct {
 	// Name of SSID
@@ -45,7 +48,7 @@ func NewGetNetworkWirelessRfProfiles200ResponsePerSsidSettings0WithDefaults() *G
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) GetName() stri
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) SetName(v stri
 
 // GetMinBitrate returns the MinBitrate field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) GetMinBitrate() int32 {
-	if o == nil || isNil(o.MinBitrate) {
+	if o == nil || IsNil(o.MinBitrate) {
 		var ret int32
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) GetMinBitrate(
 // GetMinBitrateOk returns a tuple with the MinBitrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) GetMinBitrateOk() (*int32, bool) {
-	if o == nil || isNil(o.MinBitrate) {
-    return nil, false
+	if o == nil || IsNil(o.MinBitrate) {
+		return nil, false
 	}
 	return o.MinBitrate, true
 }
 
 // HasMinBitrate returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) HasMinBitrate() bool {
-	if o != nil && !isNil(o.MinBitrate) {
+	if o != nil && !IsNil(o.MinBitrate) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) SetMinBitrate(
 
 // GetBandOperationMode returns the BandOperationMode field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) GetBandOperationMode() string {
-	if o == nil || isNil(o.BandOperationMode) {
+	if o == nil || IsNil(o.BandOperationMode) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) GetBandOperati
 // GetBandOperationModeOk returns a tuple with the BandOperationMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) GetBandOperationModeOk() (*string, bool) {
-	if o == nil || isNil(o.BandOperationMode) {
-    return nil, false
+	if o == nil || IsNil(o.BandOperationMode) {
+		return nil, false
 	}
 	return o.BandOperationMode, true
 }
 
 // HasBandOperationMode returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) HasBandOperationMode() bool {
-	if o != nil && !isNil(o.BandOperationMode) {
+	if o != nil && !IsNil(o.BandOperationMode) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) SetBandOperati
 
 // GetBandSteeringEnabled returns the BandSteeringEnabled field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) GetBandSteeringEnabled() bool {
-	if o == nil || isNil(o.BandSteeringEnabled) {
+	if o == nil || IsNil(o.BandSteeringEnabled) {
 		var ret bool
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) GetBandSteerin
 // GetBandSteeringEnabledOk returns a tuple with the BandSteeringEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) GetBandSteeringEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.BandSteeringEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.BandSteeringEnabled) {
+		return nil, false
 	}
 	return o.BandSteeringEnabled, true
 }
 
 // HasBandSteeringEnabled returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) HasBandSteeringEnabled() bool {
-	if o != nil && !isNil(o.BandSteeringEnabled) {
+	if o != nil && !IsNil(o.BandSteeringEnabled) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) SetBandSteerin
 }
 
 func (o GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.MinBitrate) {
-		toSerialize["minBitrate"] = o.MinBitrate
-	}
-	if !isNil(o.BandOperationMode) {
-		toSerialize["bandOperationMode"] = o.BandOperationMode
-	}
-	if !isNil(o.BandSteeringEnabled) {
-		toSerialize["bandSteeringEnabled"] = o.BandSteeringEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessRfProfiles200ResponsePerSsidSettings0) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.MinBitrate) {
+		toSerialize["minBitrate"] = o.MinBitrate
+	}
+	if !IsNil(o.BandOperationMode) {
+		toSerialize["bandOperationMode"] = o.BandOperationMode
+	}
+	if !IsNil(o.BandSteeringEnabled) {
+		toSerialize["bandSteeringEnabled"] = o.BandSteeringEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessRfProfiles200ResponsePerSsidSettings0 struct {

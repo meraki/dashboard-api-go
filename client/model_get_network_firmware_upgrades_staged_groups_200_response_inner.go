@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkFirmwareUpgradesStagedGroups200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkFirmwareUpgradesStagedGroups200ResponseInner{}
+
 // GetNetworkFirmwareUpgradesStagedGroups200ResponseInner struct for GetNetworkFirmwareUpgradesStagedGroups200ResponseInner
 type GetNetworkFirmwareUpgradesStagedGroups200ResponseInner struct {
 	// Id of staged upgrade group
@@ -46,7 +49,7 @@ func NewGetNetworkFirmwareUpgradesStagedGroups200ResponseInnerWithDefaults() *Ge
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) GetGroupId() string {
-	if o == nil || isNil(o.GroupId) {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) GetGroupId() st
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) GetGroupIdOk() (*string, bool) {
-	if o == nil || isNil(o.GroupId) {
-    return nil, false
+	if o == nil || IsNil(o.GroupId) {
+		return nil, false
 	}
 	return o.GroupId, true
 }
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) HasGroupId() bool {
-	if o != nil && !isNil(o.GroupId) {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) SetGroupId(v st
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) GetName() strin
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) SetName(v strin
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) GetDescription(
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
-    return nil, false
+	if o == nil || IsNil(o.Description) {
+		return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) SetDescription(
 
 // GetIsDefault returns the IsDefault field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) GetIsDefault() bool {
-	if o == nil || isNil(o.IsDefault) {
+	if o == nil || IsNil(o.IsDefault) {
 		var ret bool
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) GetIsDefault() 
 // GetIsDefaultOk returns a tuple with the IsDefault field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) GetIsDefaultOk() (*bool, bool) {
-	if o == nil || isNil(o.IsDefault) {
-    return nil, false
+	if o == nil || IsNil(o.IsDefault) {
+		return nil, false
 	}
 	return o.IsDefault, true
 }
 
 // HasIsDefault returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) HasIsDefault() bool {
-	if o != nil && !isNil(o.IsDefault) {
+	if o != nil && !IsNil(o.IsDefault) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) SetIsDefault(v 
 
 // GetAssignedDevices returns the AssignedDevices field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) GetAssignedDevices() GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices {
-	if o == nil || isNil(o.AssignedDevices) {
+	if o == nil || IsNil(o.AssignedDevices) {
 		var ret GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices
 		return ret
 	}
@@ -184,15 +187,15 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) GetAssignedDevi
 // GetAssignedDevicesOk returns a tuple with the AssignedDevices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) GetAssignedDevicesOk() (*GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices, bool) {
-	if o == nil || isNil(o.AssignedDevices) {
-    return nil, false
+	if o == nil || IsNil(o.AssignedDevices) {
+		return nil, false
 	}
 	return o.AssignedDevices, true
 }
 
 // HasAssignedDevices returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) HasAssignedDevices() bool {
-	if o != nil && !isNil(o.AssignedDevices) {
+	if o != nil && !IsNil(o.AssignedDevices) {
 		return true
 	}
 
@@ -205,23 +208,31 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) SetAssignedDevi
 }
 
 func (o GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.GroupId) {
-		toSerialize["groupId"] = o.GroupId
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	if !isNil(o.IsDefault) {
-		toSerialize["isDefault"] = o.IsDefault
-	}
-	if !isNil(o.AssignedDevices) {
-		toSerialize["assignedDevices"] = o.AssignedDevices
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkFirmwareUpgradesStagedGroups200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.GroupId) {
+		toSerialize["groupId"] = o.GroupId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.IsDefault) {
+		toSerialize["isDefault"] = o.IsDefault
+	}
+	if !IsNil(o.AssignedDevices) {
+		toSerialize["assignedDevices"] = o.AssignedDevices
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkFirmwareUpgradesStagedGroups200ResponseInner struct {

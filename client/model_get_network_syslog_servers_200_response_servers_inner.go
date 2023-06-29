@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSyslogServers200ResponseServersInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSyslogServers200ResponseServersInner{}
+
 // GetNetworkSyslogServers200ResponseServersInner struct for GetNetworkSyslogServers200ResponseServersInner
 type GetNetworkSyslogServers200ResponseServersInner struct {
 	// The IP address of the syslog server
@@ -43,7 +46,7 @@ func NewGetNetworkSyslogServers200ResponseServersInnerWithDefaults() *GetNetwork
 
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *GetNetworkSyslogServers200ResponseServersInner) GetHost() string {
-	if o == nil || isNil(o.Host) {
+	if o == nil || IsNil(o.Host) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkSyslogServers200ResponseServersInner) GetHost() string {
 // GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSyslogServers200ResponseServersInner) GetHostOk() (*string, bool) {
-	if o == nil || isNil(o.Host) {
-    return nil, false
+	if o == nil || IsNil(o.Host) {
+		return nil, false
 	}
 	return o.Host, true
 }
 
 // HasHost returns a boolean if a field has been set.
 func (o *GetNetworkSyslogServers200ResponseServersInner) HasHost() bool {
-	if o != nil && !isNil(o.Host) {
+	if o != nil && !IsNil(o.Host) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkSyslogServers200ResponseServersInner) SetHost(v string) {
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *GetNetworkSyslogServers200ResponseServersInner) GetPort() int32 {
-	if o == nil || isNil(o.Port) {
+	if o == nil || IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkSyslogServers200ResponseServersInner) GetPort() int32 {
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSyslogServers200ResponseServersInner) GetPortOk() (*int32, bool) {
-	if o == nil || isNil(o.Port) {
-    return nil, false
+	if o == nil || IsNil(o.Port) {
+		return nil, false
 	}
 	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *GetNetworkSyslogServers200ResponseServersInner) HasPort() bool {
-	if o != nil && !isNil(o.Port) {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkSyslogServers200ResponseServersInner) SetPort(v int32) {
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *GetNetworkSyslogServers200ResponseServersInner) GetRoles() []string {
-	if o == nil || isNil(o.Roles) {
+	if o == nil || IsNil(o.Roles) {
 		var ret []string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkSyslogServers200ResponseServersInner) GetRoles() []string {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSyslogServers200ResponseServersInner) GetRolesOk() ([]string, bool) {
-	if o == nil || isNil(o.Roles) {
-    return nil, false
+	if o == nil || IsNil(o.Roles) {
+		return nil, false
 	}
 	return o.Roles, true
 }
 
 // HasRoles returns a boolean if a field has been set.
 func (o *GetNetworkSyslogServers200ResponseServersInner) HasRoles() bool {
-	if o != nil && !isNil(o.Roles) {
+	if o != nil && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkSyslogServers200ResponseServersInner) SetRoles(v []string) {
 }
 
 func (o GetNetworkSyslogServers200ResponseServersInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Host) {
-		toSerialize["host"] = o.Host
-	}
-	if !isNil(o.Port) {
-		toSerialize["port"] = o.Port
-	}
-	if !isNil(o.Roles) {
-		toSerialize["roles"] = o.Roles
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSyslogServers200ResponseServersInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Host) {
+		toSerialize["host"] = o.Host
+	}
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
+	}
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSyslogServers200ResponseServersInner struct {

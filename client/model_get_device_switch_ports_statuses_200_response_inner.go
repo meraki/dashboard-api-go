@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceSwitchPortsStatuses200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceSwitchPortsStatuses200ResponseInner{}
+
 // GetDeviceSwitchPortsStatuses200ResponseInner struct for GetDeviceSwitchPortsStatuses200ResponseInner
 type GetDeviceSwitchPortsStatuses200ResponseInner struct {
 	// The string identifier of this port on the switch. This is commonly just the port number but may contain additional identifying information such as the slot and module-type if the port is located on a port module.
@@ -62,7 +65,7 @@ func NewGetDeviceSwitchPortsStatuses200ResponseInnerWithDefaults() *GetDeviceSwi
 
 // GetPortId returns the PortId field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetPortId() string {
-	if o == nil || isNil(o.PortId) {
+	if o == nil || IsNil(o.PortId) {
 		var ret string
 		return ret
 	}
@@ -72,15 +75,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetPortId() string {
 // GetPortIdOk returns a tuple with the PortId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetPortIdOk() (*string, bool) {
-	if o == nil || isNil(o.PortId) {
-    return nil, false
+	if o == nil || IsNil(o.PortId) {
+		return nil, false
 	}
 	return o.PortId, true
 }
 
 // HasPortId returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasPortId() bool {
-	if o != nil && !isNil(o.PortId) {
+	if o != nil && !IsNil(o.PortId) {
 		return true
 	}
 
@@ -94,7 +97,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) SetPortId(v string) {
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -104,15 +107,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -126,7 +129,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) SetEnabled(v bool) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -136,15 +139,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -158,7 +161,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) SetStatus(v string) {
 
 // GetIsUplink returns the IsUplink field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetIsUplink() bool {
-	if o == nil || isNil(o.IsUplink) {
+	if o == nil || IsNil(o.IsUplink) {
 		var ret bool
 		return ret
 	}
@@ -168,15 +171,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetIsUplink() bool {
 // GetIsUplinkOk returns a tuple with the IsUplink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetIsUplinkOk() (*bool, bool) {
-	if o == nil || isNil(o.IsUplink) {
-    return nil, false
+	if o == nil || IsNil(o.IsUplink) {
+		return nil, false
 	}
 	return o.IsUplink, true
 }
 
 // HasIsUplink returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasIsUplink() bool {
-	if o != nil && !isNil(o.IsUplink) {
+	if o != nil && !IsNil(o.IsUplink) {
 		return true
 	}
 
@@ -190,7 +193,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) SetIsUplink(v bool) {
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetErrors() []string {
-	if o == nil || isNil(o.Errors) {
+	if o == nil || IsNil(o.Errors) {
 		var ret []string
 		return ret
 	}
@@ -200,15 +203,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetErrors() []string {
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetErrorsOk() ([]string, bool) {
-	if o == nil || isNil(o.Errors) {
-    return nil, false
+	if o == nil || IsNil(o.Errors) {
+		return nil, false
 	}
 	return o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasErrors() bool {
-	if o != nil && !isNil(o.Errors) {
+	if o != nil && !IsNil(o.Errors) {
 		return true
 	}
 
@@ -222,7 +225,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) SetErrors(v []string) {
 
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetWarnings() []string {
-	if o == nil || isNil(o.Warnings) {
+	if o == nil || IsNil(o.Warnings) {
 		var ret []string
 		return ret
 	}
@@ -232,15 +235,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetWarnings() []string {
 // GetWarningsOk returns a tuple with the Warnings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetWarningsOk() ([]string, bool) {
-	if o == nil || isNil(o.Warnings) {
-    return nil, false
+	if o == nil || IsNil(o.Warnings) {
+		return nil, false
 	}
 	return o.Warnings, true
 }
 
 // HasWarnings returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasWarnings() bool {
-	if o != nil && !isNil(o.Warnings) {
+	if o != nil && !IsNil(o.Warnings) {
 		return true
 	}
 
@@ -254,7 +257,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) SetWarnings(v []string) {
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetSpeed() string {
-	if o == nil || isNil(o.Speed) {
+	if o == nil || IsNil(o.Speed) {
 		var ret string
 		return ret
 	}
@@ -264,15 +267,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetSpeed() string {
 // GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetSpeedOk() (*string, bool) {
-	if o == nil || isNil(o.Speed) {
-    return nil, false
+	if o == nil || IsNil(o.Speed) {
+		return nil, false
 	}
 	return o.Speed, true
 }
 
 // HasSpeed returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasSpeed() bool {
-	if o != nil && !isNil(o.Speed) {
+	if o != nil && !IsNil(o.Speed) {
 		return true
 	}
 
@@ -286,7 +289,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) SetSpeed(v string) {
 
 // GetDuplex returns the Duplex field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetDuplex() string {
-	if o == nil || isNil(o.Duplex) {
+	if o == nil || IsNil(o.Duplex) {
 		var ret string
 		return ret
 	}
@@ -296,15 +299,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetDuplex() string {
 // GetDuplexOk returns a tuple with the Duplex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetDuplexOk() (*string, bool) {
-	if o == nil || isNil(o.Duplex) {
-    return nil, false
+	if o == nil || IsNil(o.Duplex) {
+		return nil, false
 	}
 	return o.Duplex, true
 }
 
 // HasDuplex returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasDuplex() bool {
-	if o != nil && !isNil(o.Duplex) {
+	if o != nil && !IsNil(o.Duplex) {
 		return true
 	}
 
@@ -318,7 +321,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) SetDuplex(v string) {
 
 // GetUsageInKb returns the UsageInKb field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetUsageInKb() GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb {
-	if o == nil || isNil(o.UsageInKb) {
+	if o == nil || IsNil(o.UsageInKb) {
 		var ret GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb
 		return ret
 	}
@@ -328,15 +331,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetUsageInKb() GetDeviceS
 // GetUsageInKbOk returns a tuple with the UsageInKb field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetUsageInKbOk() (*GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb, bool) {
-	if o == nil || isNil(o.UsageInKb) {
-    return nil, false
+	if o == nil || IsNil(o.UsageInKb) {
+		return nil, false
 	}
 	return o.UsageInKb, true
 }
 
 // HasUsageInKb returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasUsageInKb() bool {
-	if o != nil && !isNil(o.UsageInKb) {
+	if o != nil && !IsNil(o.UsageInKb) {
 		return true
 	}
 
@@ -350,7 +353,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) SetUsageInKb(v GetDeviceS
 
 // GetCdp returns the Cdp field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetCdp() GetDeviceSwitchPortsStatuses200ResponseInnerCdp {
-	if o == nil || isNil(o.Cdp) {
+	if o == nil || IsNil(o.Cdp) {
 		var ret GetDeviceSwitchPortsStatuses200ResponseInnerCdp
 		return ret
 	}
@@ -360,15 +363,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetCdp() GetDeviceSwitchP
 // GetCdpOk returns a tuple with the Cdp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetCdpOk() (*GetDeviceSwitchPortsStatuses200ResponseInnerCdp, bool) {
-	if o == nil || isNil(o.Cdp) {
-    return nil, false
+	if o == nil || IsNil(o.Cdp) {
+		return nil, false
 	}
 	return o.Cdp, true
 }
 
 // HasCdp returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasCdp() bool {
-	if o != nil && !isNil(o.Cdp) {
+	if o != nil && !IsNil(o.Cdp) {
 		return true
 	}
 
@@ -382,7 +385,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) SetCdp(v GetDeviceSwitchP
 
 // GetLldp returns the Lldp field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetLldp() GetDeviceSwitchPortsStatuses200ResponseInnerLldp {
-	if o == nil || isNil(o.Lldp) {
+	if o == nil || IsNil(o.Lldp) {
 		var ret GetDeviceSwitchPortsStatuses200ResponseInnerLldp
 		return ret
 	}
@@ -392,15 +395,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetLldp() GetDeviceSwitch
 // GetLldpOk returns a tuple with the Lldp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetLldpOk() (*GetDeviceSwitchPortsStatuses200ResponseInnerLldp, bool) {
-	if o == nil || isNil(o.Lldp) {
-    return nil, false
+	if o == nil || IsNil(o.Lldp) {
+		return nil, false
 	}
 	return o.Lldp, true
 }
 
 // HasLldp returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasLldp() bool {
-	if o != nil && !isNil(o.Lldp) {
+	if o != nil && !IsNil(o.Lldp) {
 		return true
 	}
 
@@ -414,7 +417,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) SetLldp(v GetDeviceSwitch
 
 // GetClientCount returns the ClientCount field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetClientCount() int32 {
-	if o == nil || isNil(o.ClientCount) {
+	if o == nil || IsNil(o.ClientCount) {
 		var ret int32
 		return ret
 	}
@@ -424,15 +427,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetClientCount() int32 {
 // GetClientCountOk returns a tuple with the ClientCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetClientCountOk() (*int32, bool) {
-	if o == nil || isNil(o.ClientCount) {
-    return nil, false
+	if o == nil || IsNil(o.ClientCount) {
+		return nil, false
 	}
 	return o.ClientCount, true
 }
 
 // HasClientCount returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasClientCount() bool {
-	if o != nil && !isNil(o.ClientCount) {
+	if o != nil && !IsNil(o.ClientCount) {
 		return true
 	}
 
@@ -446,7 +449,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) SetClientCount(v int32) {
 
 // GetPowerUsageInWh returns the PowerUsageInWh field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetPowerUsageInWh() float32 {
-	if o == nil || isNil(o.PowerUsageInWh) {
+	if o == nil || IsNil(o.PowerUsageInWh) {
 		var ret float32
 		return ret
 	}
@@ -456,15 +459,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetPowerUsageInWh() float
 // GetPowerUsageInWhOk returns a tuple with the PowerUsageInWh field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetPowerUsageInWhOk() (*float32, bool) {
-	if o == nil || isNil(o.PowerUsageInWh) {
-    return nil, false
+	if o == nil || IsNil(o.PowerUsageInWh) {
+		return nil, false
 	}
 	return o.PowerUsageInWh, true
 }
 
 // HasPowerUsageInWh returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasPowerUsageInWh() bool {
-	if o != nil && !isNil(o.PowerUsageInWh) {
+	if o != nil && !IsNil(o.PowerUsageInWh) {
 		return true
 	}
 
@@ -478,7 +481,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) SetPowerUsageInWh(v float
 
 // GetTrafficInKbps returns the TrafficInKbps field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetTrafficInKbps() GetDeviceSwitchPortsStatuses200ResponseInnerTrafficInKbps {
-	if o == nil || isNil(o.TrafficInKbps) {
+	if o == nil || IsNil(o.TrafficInKbps) {
 		var ret GetDeviceSwitchPortsStatuses200ResponseInnerTrafficInKbps
 		return ret
 	}
@@ -488,15 +491,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetTrafficInKbps() GetDev
 // GetTrafficInKbpsOk returns a tuple with the TrafficInKbps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetTrafficInKbpsOk() (*GetDeviceSwitchPortsStatuses200ResponseInnerTrafficInKbps, bool) {
-	if o == nil || isNil(o.TrafficInKbps) {
-    return nil, false
+	if o == nil || IsNil(o.TrafficInKbps) {
+		return nil, false
 	}
 	return o.TrafficInKbps, true
 }
 
 // HasTrafficInKbps returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasTrafficInKbps() bool {
-	if o != nil && !isNil(o.TrafficInKbps) {
+	if o != nil && !IsNil(o.TrafficInKbps) {
 		return true
 	}
 
@@ -510,7 +513,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) SetTrafficInKbps(v GetDev
 
 // GetSecurePort returns the SecurePort field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetSecurePort() GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort {
-	if o == nil || isNil(o.SecurePort) {
+	if o == nil || IsNil(o.SecurePort) {
 		var ret GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort
 		return ret
 	}
@@ -520,15 +523,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetSecurePort() GetDevice
 // GetSecurePortOk returns a tuple with the SecurePort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) GetSecurePortOk() (*GetDeviceSwitchPortsStatuses200ResponseInnerSecurePort, bool) {
-	if o == nil || isNil(o.SecurePort) {
-    return nil, false
+	if o == nil || IsNil(o.SecurePort) {
+		return nil, false
 	}
 	return o.SecurePort, true
 }
 
 // HasSecurePort returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInner) HasSecurePort() bool {
-	if o != nil && !isNil(o.SecurePort) {
+	if o != nil && !IsNil(o.SecurePort) {
 		return true
 	}
 
@@ -541,53 +544,61 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInner) SetSecurePort(v GetDevice
 }
 
 func (o GetDeviceSwitchPortsStatuses200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.PortId) {
-		toSerialize["portId"] = o.PortId
-	}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.IsUplink) {
-		toSerialize["isUplink"] = o.IsUplink
-	}
-	if !isNil(o.Errors) {
-		toSerialize["errors"] = o.Errors
-	}
-	if !isNil(o.Warnings) {
-		toSerialize["warnings"] = o.Warnings
-	}
-	if !isNil(o.Speed) {
-		toSerialize["speed"] = o.Speed
-	}
-	if !isNil(o.Duplex) {
-		toSerialize["duplex"] = o.Duplex
-	}
-	if !isNil(o.UsageInKb) {
-		toSerialize["usageInKb"] = o.UsageInKb
-	}
-	if !isNil(o.Cdp) {
-		toSerialize["cdp"] = o.Cdp
-	}
-	if !isNil(o.Lldp) {
-		toSerialize["lldp"] = o.Lldp
-	}
-	if !isNil(o.ClientCount) {
-		toSerialize["clientCount"] = o.ClientCount
-	}
-	if !isNil(o.PowerUsageInWh) {
-		toSerialize["powerUsageInWh"] = o.PowerUsageInWh
-	}
-	if !isNil(o.TrafficInKbps) {
-		toSerialize["trafficInKbps"] = o.TrafficInKbps
-	}
-	if !isNil(o.SecurePort) {
-		toSerialize["securePort"] = o.SecurePort
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceSwitchPortsStatuses200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PortId) {
+		toSerialize["portId"] = o.PortId
+	}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.IsUplink) {
+		toSerialize["isUplink"] = o.IsUplink
+	}
+	if !IsNil(o.Errors) {
+		toSerialize["errors"] = o.Errors
+	}
+	if !IsNil(o.Warnings) {
+		toSerialize["warnings"] = o.Warnings
+	}
+	if !IsNil(o.Speed) {
+		toSerialize["speed"] = o.Speed
+	}
+	if !IsNil(o.Duplex) {
+		toSerialize["duplex"] = o.Duplex
+	}
+	if !IsNil(o.UsageInKb) {
+		toSerialize["usageInKb"] = o.UsageInKb
+	}
+	if !IsNil(o.Cdp) {
+		toSerialize["cdp"] = o.Cdp
+	}
+	if !IsNil(o.Lldp) {
+		toSerialize["lldp"] = o.Lldp
+	}
+	if !IsNil(o.ClientCount) {
+		toSerialize["clientCount"] = o.ClientCount
+	}
+	if !IsNil(o.PowerUsageInWh) {
+		toSerialize["powerUsageInWh"] = o.PowerUsageInWh
+	}
+	if !IsNil(o.TrafficInKbps) {
+		toSerialize["trafficInKbps"] = o.TrafficInKbps
+	}
+	if !IsNil(o.SecurePort) {
+		toSerialize["securePort"] = o.SecurePort
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceSwitchPortsStatuses200ResponseInner struct {

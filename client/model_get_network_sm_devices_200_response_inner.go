@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmDevices200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmDevices200ResponseInner{}
+
 // GetNetworkSmDevices200ResponseInner struct for GetNetworkSmDevices200ResponseInner
 type GetNetworkSmDevices200ResponseInner struct {
 	// The Meraki Id of the device record.
@@ -61,7 +64,7 @@ func NewGetNetworkSmDevices200ResponseInnerWithDefaults() *GetNetworkSmDevices20
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkSmDevices200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -71,15 +74,15 @@ func (o *GetNetworkSmDevices200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevices200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkSmDevices200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -93,7 +96,7 @@ func (o *GetNetworkSmDevices200ResponseInner) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkSmDevices200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -103,15 +106,15 @@ func (o *GetNetworkSmDevices200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevices200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkSmDevices200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -125,7 +128,7 @@ func (o *GetNetworkSmDevices200ResponseInner) SetName(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *GetNetworkSmDevices200ResponseInner) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -135,15 +138,15 @@ func (o *GetNetworkSmDevices200ResponseInner) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevices200ResponseInner) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
 	}
 	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *GetNetworkSmDevices200ResponseInner) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -157,7 +160,7 @@ func (o *GetNetworkSmDevices200ResponseInner) SetTags(v []string) {
 
 // GetSsid returns the Ssid field value if set, zero value otherwise.
 func (o *GetNetworkSmDevices200ResponseInner) GetSsid() string {
-	if o == nil || isNil(o.Ssid) {
+	if o == nil || IsNil(o.Ssid) {
 		var ret string
 		return ret
 	}
@@ -167,15 +170,15 @@ func (o *GetNetworkSmDevices200ResponseInner) GetSsid() string {
 // GetSsidOk returns a tuple with the Ssid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevices200ResponseInner) GetSsidOk() (*string, bool) {
-	if o == nil || isNil(o.Ssid) {
-    return nil, false
+	if o == nil || IsNil(o.Ssid) {
+		return nil, false
 	}
 	return o.Ssid, true
 }
 
 // HasSsid returns a boolean if a field has been set.
 func (o *GetNetworkSmDevices200ResponseInner) HasSsid() bool {
-	if o != nil && !isNil(o.Ssid) {
+	if o != nil && !IsNil(o.Ssid) {
 		return true
 	}
 
@@ -189,7 +192,7 @@ func (o *GetNetworkSmDevices200ResponseInner) SetSsid(v string) {
 
 // GetWifiMac returns the WifiMac field value if set, zero value otherwise.
 func (o *GetNetworkSmDevices200ResponseInner) GetWifiMac() string {
-	if o == nil || isNil(o.WifiMac) {
+	if o == nil || IsNil(o.WifiMac) {
 		var ret string
 		return ret
 	}
@@ -199,15 +202,15 @@ func (o *GetNetworkSmDevices200ResponseInner) GetWifiMac() string {
 // GetWifiMacOk returns a tuple with the WifiMac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevices200ResponseInner) GetWifiMacOk() (*string, bool) {
-	if o == nil || isNil(o.WifiMac) {
-    return nil, false
+	if o == nil || IsNil(o.WifiMac) {
+		return nil, false
 	}
 	return o.WifiMac, true
 }
 
 // HasWifiMac returns a boolean if a field has been set.
 func (o *GetNetworkSmDevices200ResponseInner) HasWifiMac() bool {
-	if o != nil && !isNil(o.WifiMac) {
+	if o != nil && !IsNil(o.WifiMac) {
 		return true
 	}
 
@@ -221,7 +224,7 @@ func (o *GetNetworkSmDevices200ResponseInner) SetWifiMac(v string) {
 
 // GetOsName returns the OsName field value if set, zero value otherwise.
 func (o *GetNetworkSmDevices200ResponseInner) GetOsName() string {
-	if o == nil || isNil(o.OsName) {
+	if o == nil || IsNil(o.OsName) {
 		var ret string
 		return ret
 	}
@@ -231,15 +234,15 @@ func (o *GetNetworkSmDevices200ResponseInner) GetOsName() string {
 // GetOsNameOk returns a tuple with the OsName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevices200ResponseInner) GetOsNameOk() (*string, bool) {
-	if o == nil || isNil(o.OsName) {
-    return nil, false
+	if o == nil || IsNil(o.OsName) {
+		return nil, false
 	}
 	return o.OsName, true
 }
 
 // HasOsName returns a boolean if a field has been set.
 func (o *GetNetworkSmDevices200ResponseInner) HasOsName() bool {
-	if o != nil && !isNil(o.OsName) {
+	if o != nil && !IsNil(o.OsName) {
 		return true
 	}
 
@@ -253,7 +256,7 @@ func (o *GetNetworkSmDevices200ResponseInner) SetOsName(v string) {
 
 // GetSystemModel returns the SystemModel field value if set, zero value otherwise.
 func (o *GetNetworkSmDevices200ResponseInner) GetSystemModel() string {
-	if o == nil || isNil(o.SystemModel) {
+	if o == nil || IsNil(o.SystemModel) {
 		var ret string
 		return ret
 	}
@@ -263,15 +266,15 @@ func (o *GetNetworkSmDevices200ResponseInner) GetSystemModel() string {
 // GetSystemModelOk returns a tuple with the SystemModel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevices200ResponseInner) GetSystemModelOk() (*string, bool) {
-	if o == nil || isNil(o.SystemModel) {
-    return nil, false
+	if o == nil || IsNil(o.SystemModel) {
+		return nil, false
 	}
 	return o.SystemModel, true
 }
 
 // HasSystemModel returns a boolean if a field has been set.
 func (o *GetNetworkSmDevices200ResponseInner) HasSystemModel() bool {
-	if o != nil && !isNil(o.SystemModel) {
+	if o != nil && !IsNil(o.SystemModel) {
 		return true
 	}
 
@@ -285,7 +288,7 @@ func (o *GetNetworkSmDevices200ResponseInner) SetSystemModel(v string) {
 
 // GetUuid returns the Uuid field value if set, zero value otherwise.
 func (o *GetNetworkSmDevices200ResponseInner) GetUuid() string {
-	if o == nil || isNil(o.Uuid) {
+	if o == nil || IsNil(o.Uuid) {
 		var ret string
 		return ret
 	}
@@ -295,15 +298,15 @@ func (o *GetNetworkSmDevices200ResponseInner) GetUuid() string {
 // GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevices200ResponseInner) GetUuidOk() (*string, bool) {
-	if o == nil || isNil(o.Uuid) {
-    return nil, false
+	if o == nil || IsNil(o.Uuid) {
+		return nil, false
 	}
 	return o.Uuid, true
 }
 
 // HasUuid returns a boolean if a field has been set.
 func (o *GetNetworkSmDevices200ResponseInner) HasUuid() bool {
-	if o != nil && !isNil(o.Uuid) {
+	if o != nil && !IsNil(o.Uuid) {
 		return true
 	}
 
@@ -317,7 +320,7 @@ func (o *GetNetworkSmDevices200ResponseInner) SetUuid(v string) {
 
 // GetSerialNumber returns the SerialNumber field value if set, zero value otherwise.
 func (o *GetNetworkSmDevices200ResponseInner) GetSerialNumber() string {
-	if o == nil || isNil(o.SerialNumber) {
+	if o == nil || IsNil(o.SerialNumber) {
 		var ret string
 		return ret
 	}
@@ -327,15 +330,15 @@ func (o *GetNetworkSmDevices200ResponseInner) GetSerialNumber() string {
 // GetSerialNumberOk returns a tuple with the SerialNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevices200ResponseInner) GetSerialNumberOk() (*string, bool) {
-	if o == nil || isNil(o.SerialNumber) {
-    return nil, false
+	if o == nil || IsNil(o.SerialNumber) {
+		return nil, false
 	}
 	return o.SerialNumber, true
 }
 
 // HasSerialNumber returns a boolean if a field has been set.
 func (o *GetNetworkSmDevices200ResponseInner) HasSerialNumber() bool {
-	if o != nil && !isNil(o.SerialNumber) {
+	if o != nil && !IsNil(o.SerialNumber) {
 		return true
 	}
 
@@ -349,7 +352,7 @@ func (o *GetNetworkSmDevices200ResponseInner) SetSerialNumber(v string) {
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetNetworkSmDevices200ResponseInner) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -359,15 +362,15 @@ func (o *GetNetworkSmDevices200ResponseInner) GetSerial() string {
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevices200ResponseInner) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetNetworkSmDevices200ResponseInner) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -381,7 +384,7 @@ func (o *GetNetworkSmDevices200ResponseInner) SetSerial(v string) {
 
 // GetIp returns the Ip field value if set, zero value otherwise.
 func (o *GetNetworkSmDevices200ResponseInner) GetIp() string {
-	if o == nil || isNil(o.Ip) {
+	if o == nil || IsNil(o.Ip) {
 		var ret string
 		return ret
 	}
@@ -391,15 +394,15 @@ func (o *GetNetworkSmDevices200ResponseInner) GetIp() string {
 // GetIpOk returns a tuple with the Ip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevices200ResponseInner) GetIpOk() (*string, bool) {
-	if o == nil || isNil(o.Ip) {
-    return nil, false
+	if o == nil || IsNil(o.Ip) {
+		return nil, false
 	}
 	return o.Ip, true
 }
 
 // HasIp returns a boolean if a field has been set.
 func (o *GetNetworkSmDevices200ResponseInner) HasIp() bool {
-	if o != nil && !isNil(o.Ip) {
+	if o != nil && !IsNil(o.Ip) {
 		return true
 	}
 
@@ -413,7 +416,7 @@ func (o *GetNetworkSmDevices200ResponseInner) SetIp(v string) {
 
 // GetNotes returns the Notes field value if set, zero value otherwise.
 func (o *GetNetworkSmDevices200ResponseInner) GetNotes() string {
-	if o == nil || isNil(o.Notes) {
+	if o == nil || IsNil(o.Notes) {
 		var ret string
 		return ret
 	}
@@ -423,15 +426,15 @@ func (o *GetNetworkSmDevices200ResponseInner) GetNotes() string {
 // GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDevices200ResponseInner) GetNotesOk() (*string, bool) {
-	if o == nil || isNil(o.Notes) {
-    return nil, false
+	if o == nil || IsNil(o.Notes) {
+		return nil, false
 	}
 	return o.Notes, true
 }
 
 // HasNotes returns a boolean if a field has been set.
 func (o *GetNetworkSmDevices200ResponseInner) HasNotes() bool {
-	if o != nil && !isNil(o.Notes) {
+	if o != nil && !IsNil(o.Notes) {
 		return true
 	}
 
@@ -444,44 +447,52 @@ func (o *GetNetworkSmDevices200ResponseInner) SetNotes(v string) {
 }
 
 func (o GetNetworkSmDevices200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !isNil(o.Ssid) {
-		toSerialize["ssid"] = o.Ssid
-	}
-	if !isNil(o.WifiMac) {
-		toSerialize["wifiMac"] = o.WifiMac
-	}
-	if !isNil(o.OsName) {
-		toSerialize["osName"] = o.OsName
-	}
-	if !isNil(o.SystemModel) {
-		toSerialize["systemModel"] = o.SystemModel
-	}
-	if !isNil(o.Uuid) {
-		toSerialize["uuid"] = o.Uuid
-	}
-	if !isNil(o.SerialNumber) {
-		toSerialize["serialNumber"] = o.SerialNumber
-	}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Ip) {
-		toSerialize["ip"] = o.Ip
-	}
-	if !isNil(o.Notes) {
-		toSerialize["notes"] = o.Notes
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmDevices200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.Ssid) {
+		toSerialize["ssid"] = o.Ssid
+	}
+	if !IsNil(o.WifiMac) {
+		toSerialize["wifiMac"] = o.WifiMac
+	}
+	if !IsNil(o.OsName) {
+		toSerialize["osName"] = o.OsName
+	}
+	if !IsNil(o.SystemModel) {
+		toSerialize["systemModel"] = o.SystemModel
+	}
+	if !IsNil(o.Uuid) {
+		toSerialize["uuid"] = o.Uuid
+	}
+	if !IsNil(o.SerialNumber) {
+		toSerialize["serialNumber"] = o.SerialNumber
+	}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.Ip) {
+		toSerialize["ip"] = o.Ip
+	}
+	if !IsNil(o.Notes) {
+		toSerialize["notes"] = o.Notes
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmDevices200ResponseInner struct {

@@ -43,26 +43,39 @@ You can find fully working example scripts in the **/examples** folder.
 ```go
 package main
 
-import "github.com/meraki/dashboard-api-go/client"
-import "context"
-import "fmt"
-import "os"
+import (
+   "context"
+   "fmt"
+   openapiclient "github.com/meraki/dashboard-api-go/client"
+   "log"
+   "os"
+)
 
 func main() {
-	configuration := client.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
 
-	apiClient := client.NewAPIClient(configuration)
+   // Create a new API configuration
+   configuration := openapiclient.NewConfiguration()
 
-	orgs, _, err := apiClient.ConfigureApi.GetOrganizations(context.Background()).Execute()
+   // Set the bearer token in the default headers
+   configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
 
-	if err != nil {
-		fmt.Println("Meraki API call failed. Details: ", err)
-	}
+   // Create the API client using the configuration
+   apiClient := openapiclient.NewAPIClient(configuration)
 
-	for _, org := range orgs {
-		fmt.Printf("%s\n", *org.Name)
-	}
+   // Make the API call to get organizations
+   resp, r, err := apiClient.OrganizationsApi.GetOrganizations(context.Background()).Execute()
+   if err != nil {
+      // Handle the error appropriately (e.g., return, log, or display a user-friendly message)
+      log.Fatalf("Error when calling `OrganizationsApi.GetOrganizations`: %v\n", err)
+   }
+
+   // Print the full HTTP response if needed for debugging
+   fmt.Println("Full HTTP response:", r)
+
+   // Process the response
+   for _, org := range resp {
+      fmt.Printf("Organization Name: %s, Organization ID: %s\n", org.GetName(), org.GetId())
+   }
 }
 ```
 

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication{}
+
 // UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication APN authentication configurations.
 type UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication struct {
 	// APN auth type.
@@ -47,7 +50,7 @@ func NewUpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthenticationWithDefau
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) GetTyp
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) SetTyp
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) GetUsername() string {
-	if o == nil || isNil(o.Username) {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) GetUse
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) GetUsernameOk() (*string, bool) {
-	if o == nil || isNil(o.Username) {
-    return nil, false
+	if o == nil || IsNil(o.Username) {
+		return nil, false
 	}
 	return o.Username, true
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) HasUsername() bool {
-	if o != nil && !isNil(o.Username) {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) SetUse
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) GetPassword() string {
-	if o == nil || isNil(o.Password) {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) GetPas
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) GetPasswordOk() (*string, bool) {
-	if o == nil || isNil(o.Password) {
-    return nil, false
+	if o == nil || IsNil(o.Password) {
+		return nil, false
 	}
 	return o.Password, true
 }
 
 // HasPassword returns a boolean if a field has been set.
 func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) HasPassword() bool {
-	if o != nil && !isNil(o.Password) {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -142,17 +145,25 @@ func (o *UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) SetPas
 }
 
 func (o UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Username) {
-		toSerialize["username"] = o.Username
-	}
-	if !isNil(o.Password) {
-		toSerialize["password"] = o.Password
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceCellularSimsRequestSimsInnerApnsInnerAuthentication struct {

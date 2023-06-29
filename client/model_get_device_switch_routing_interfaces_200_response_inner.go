@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceSwitchRoutingInterfaces200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceSwitchRoutingInterfaces200ResponseInner{}
+
 // GetDeviceSwitchRoutingInterfaces200ResponseInner struct for GetDeviceSwitchRoutingInterfaces200ResponseInner
 type GetDeviceSwitchRoutingInterfaces200ResponseInner struct {
 	// The id
@@ -54,7 +57,7 @@ func NewGetDeviceSwitchRoutingInterfaces200ResponseInnerWithDefaults() *GetDevic
 
 // GetInterfaceId returns the InterfaceId field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetInterfaceId() string {
-	if o == nil || isNil(o.InterfaceId) {
+	if o == nil || IsNil(o.InterfaceId) {
 		var ret string
 		return ret
 	}
@@ -64,15 +67,15 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetInterfaceId() stri
 // GetInterfaceIdOk returns a tuple with the InterfaceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetInterfaceIdOk() (*string, bool) {
-	if o == nil || isNil(o.InterfaceId) {
-    return nil, false
+	if o == nil || IsNil(o.InterfaceId) {
+		return nil, false
 	}
 	return o.InterfaceId, true
 }
 
 // HasInterfaceId returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) HasInterfaceId() bool {
-	if o != nil && !isNil(o.InterfaceId) {
+	if o != nil && !IsNil(o.InterfaceId) {
 		return true
 	}
 
@@ -86,7 +89,7 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) SetInterfaceId(v stri
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -96,15 +99,15 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -118,7 +121,7 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) SetName(v string) {
 
 // GetSubnet returns the Subnet field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetSubnet() string {
-	if o == nil || isNil(o.Subnet) {
+	if o == nil || IsNil(o.Subnet) {
 		var ret string
 		return ret
 	}
@@ -128,15 +131,15 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetSubnet() string {
 // GetSubnetOk returns a tuple with the Subnet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetSubnetOk() (*string, bool) {
-	if o == nil || isNil(o.Subnet) {
-    return nil, false
+	if o == nil || IsNil(o.Subnet) {
+		return nil, false
 	}
 	return o.Subnet, true
 }
 
 // HasSubnet returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) HasSubnet() bool {
-	if o != nil && !isNil(o.Subnet) {
+	if o != nil && !IsNil(o.Subnet) {
 		return true
 	}
 
@@ -150,7 +153,7 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) SetSubnet(v string) {
 
 // GetInterfaceIp returns the InterfaceIp field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetInterfaceIp() string {
-	if o == nil || isNil(o.InterfaceIp) {
+	if o == nil || IsNil(o.InterfaceIp) {
 		var ret string
 		return ret
 	}
@@ -160,15 +163,15 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetInterfaceIp() stri
 // GetInterfaceIpOk returns a tuple with the InterfaceIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetInterfaceIpOk() (*string, bool) {
-	if o == nil || isNil(o.InterfaceIp) {
-    return nil, false
+	if o == nil || IsNil(o.InterfaceIp) {
+		return nil, false
 	}
 	return o.InterfaceIp, true
 }
 
 // HasInterfaceIp returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) HasInterfaceIp() bool {
-	if o != nil && !isNil(o.InterfaceIp) {
+	if o != nil && !IsNil(o.InterfaceIp) {
 		return true
 	}
 
@@ -182,7 +185,7 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) SetInterfaceIp(v stri
 
 // GetMulticastRouting returns the MulticastRouting field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetMulticastRouting() string {
-	if o == nil || isNil(o.MulticastRouting) {
+	if o == nil || IsNil(o.MulticastRouting) {
 		var ret string
 		return ret
 	}
@@ -192,15 +195,15 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetMulticastRouting()
 // GetMulticastRoutingOk returns a tuple with the MulticastRouting field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetMulticastRoutingOk() (*string, bool) {
-	if o == nil || isNil(o.MulticastRouting) {
-    return nil, false
+	if o == nil || IsNil(o.MulticastRouting) {
+		return nil, false
 	}
 	return o.MulticastRouting, true
 }
 
 // HasMulticastRouting returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) HasMulticastRouting() bool {
-	if o != nil && !isNil(o.MulticastRouting) {
+	if o != nil && !IsNil(o.MulticastRouting) {
 		return true
 	}
 
@@ -214,7 +217,7 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) SetMulticastRouting(v
 
 // GetVlanId returns the VlanId field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetVlanId() int32 {
-	if o == nil || isNil(o.VlanId) {
+	if o == nil || IsNil(o.VlanId) {
 		var ret int32
 		return ret
 	}
@@ -224,15 +227,15 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetVlanId() int32 {
 // GetVlanIdOk returns a tuple with the VlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetVlanIdOk() (*int32, bool) {
-	if o == nil || isNil(o.VlanId) {
-    return nil, false
+	if o == nil || IsNil(o.VlanId) {
+		return nil, false
 	}
 	return o.VlanId, true
 }
 
 // HasVlanId returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) HasVlanId() bool {
-	if o != nil && !isNil(o.VlanId) {
+	if o != nil && !IsNil(o.VlanId) {
 		return true
 	}
 
@@ -246,7 +249,7 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) SetVlanId(v int32) {
 
 // GetDefaultGateway returns the DefaultGateway field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetDefaultGateway() string {
-	if o == nil || isNil(o.DefaultGateway) {
+	if o == nil || IsNil(o.DefaultGateway) {
 		var ret string
 		return ret
 	}
@@ -256,15 +259,15 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetDefaultGateway() s
 // GetDefaultGatewayOk returns a tuple with the DefaultGateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetDefaultGatewayOk() (*string, bool) {
-	if o == nil || isNil(o.DefaultGateway) {
-    return nil, false
+	if o == nil || IsNil(o.DefaultGateway) {
+		return nil, false
 	}
 	return o.DefaultGateway, true
 }
 
 // HasDefaultGateway returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) HasDefaultGateway() bool {
-	if o != nil && !isNil(o.DefaultGateway) {
+	if o != nil && !IsNil(o.DefaultGateway) {
 		return true
 	}
 
@@ -278,7 +281,7 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) SetDefaultGateway(v s
 
 // GetOspfSettings returns the OspfSettings field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetOspfSettings() GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfSettings {
-	if o == nil || isNil(o.OspfSettings) {
+	if o == nil || IsNil(o.OspfSettings) {
 		var ret GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfSettings
 		return ret
 	}
@@ -288,15 +291,15 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetOspfSettings() Get
 // GetOspfSettingsOk returns a tuple with the OspfSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetOspfSettingsOk() (*GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfSettings, bool) {
-	if o == nil || isNil(o.OspfSettings) {
-    return nil, false
+	if o == nil || IsNil(o.OspfSettings) {
+		return nil, false
 	}
 	return o.OspfSettings, true
 }
 
 // HasOspfSettings returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) HasOspfSettings() bool {
-	if o != nil && !isNil(o.OspfSettings) {
+	if o != nil && !IsNil(o.OspfSettings) {
 		return true
 	}
 
@@ -310,7 +313,7 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) SetOspfSettings(v Get
 
 // GetOspfV3 returns the OspfV3 field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetOspfV3() GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3 {
-	if o == nil || isNil(o.OspfV3) {
+	if o == nil || IsNil(o.OspfV3) {
 		var ret GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3
 		return ret
 	}
@@ -320,15 +323,15 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetOspfV3() GetDevice
 // GetOspfV3Ok returns a tuple with the OspfV3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetOspfV3Ok() (*GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3, bool) {
-	if o == nil || isNil(o.OspfV3) {
-    return nil, false
+	if o == nil || IsNil(o.OspfV3) {
+		return nil, false
 	}
 	return o.OspfV3, true
 }
 
 // HasOspfV3 returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) HasOspfV3() bool {
-	if o != nil && !isNil(o.OspfV3) {
+	if o != nil && !IsNil(o.OspfV3) {
 		return true
 	}
 
@@ -342,7 +345,7 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) SetOspfV3(v GetDevice
 
 // GetIpv6 returns the Ipv6 field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetIpv6() GetDeviceSwitchRoutingInterfaces200ResponseInnerIpv6 {
-	if o == nil || isNil(o.Ipv6) {
+	if o == nil || IsNil(o.Ipv6) {
 		var ret GetDeviceSwitchRoutingInterfaces200ResponseInnerIpv6
 		return ret
 	}
@@ -352,15 +355,15 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetIpv6() GetDeviceSw
 // GetIpv6Ok returns a tuple with the Ipv6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) GetIpv6Ok() (*GetDeviceSwitchRoutingInterfaces200ResponseInnerIpv6, bool) {
-	if o == nil || isNil(o.Ipv6) {
-    return nil, false
+	if o == nil || IsNil(o.Ipv6) {
+		return nil, false
 	}
 	return o.Ipv6, true
 }
 
 // HasIpv6 returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) HasIpv6() bool {
-	if o != nil && !isNil(o.Ipv6) {
+	if o != nil && !IsNil(o.Ipv6) {
 		return true
 	}
 
@@ -373,38 +376,46 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInner) SetIpv6(v GetDeviceSw
 }
 
 func (o GetDeviceSwitchRoutingInterfaces200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.InterfaceId) {
-		toSerialize["interfaceId"] = o.InterfaceId
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Subnet) {
-		toSerialize["subnet"] = o.Subnet
-	}
-	if !isNil(o.InterfaceIp) {
-		toSerialize["interfaceIp"] = o.InterfaceIp
-	}
-	if !isNil(o.MulticastRouting) {
-		toSerialize["multicastRouting"] = o.MulticastRouting
-	}
-	if !isNil(o.VlanId) {
-		toSerialize["vlanId"] = o.VlanId
-	}
-	if !isNil(o.DefaultGateway) {
-		toSerialize["defaultGateway"] = o.DefaultGateway
-	}
-	if !isNil(o.OspfSettings) {
-		toSerialize["ospfSettings"] = o.OspfSettings
-	}
-	if !isNil(o.OspfV3) {
-		toSerialize["ospfV3"] = o.OspfV3
-	}
-	if !isNil(o.Ipv6) {
-		toSerialize["ipv6"] = o.Ipv6
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceSwitchRoutingInterfaces200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.InterfaceId) {
+		toSerialize["interfaceId"] = o.InterfaceId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Subnet) {
+		toSerialize["subnet"] = o.Subnet
+	}
+	if !IsNil(o.InterfaceIp) {
+		toSerialize["interfaceIp"] = o.InterfaceIp
+	}
+	if !IsNil(o.MulticastRouting) {
+		toSerialize["multicastRouting"] = o.MulticastRouting
+	}
+	if !IsNil(o.VlanId) {
+		toSerialize["vlanId"] = o.VlanId
+	}
+	if !IsNil(o.DefaultGateway) {
+		toSerialize["defaultGateway"] = o.DefaultGateway
+	}
+	if !IsNil(o.OspfSettings) {
+		toSerialize["ospfSettings"] = o.OspfSettings
+	}
+	if !IsNil(o.OspfV3) {
+		toSerialize["ospfV3"] = o.OspfV3
+	}
+	if !IsNil(o.Ipv6) {
+		toSerialize["ipv6"] = o.Ipv6
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceSwitchRoutingInterfaces200ResponseInner struct {

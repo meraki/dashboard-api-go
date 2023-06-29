@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkRequest{}
+
 // UpdateNetworkRequest struct for UpdateNetworkRequest
 type UpdateNetworkRequest struct {
 	// The name of the network
@@ -47,7 +50,7 @@ func NewUpdateNetworkRequestWithDefaults() *UpdateNetworkRequest {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *UpdateNetworkRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *UpdateNetworkRequest) SetName(v string) {
 
 // GetTimeZone returns the TimeZone field value if set, zero value otherwise.
 func (o *UpdateNetworkRequest) GetTimeZone() string {
-	if o == nil || isNil(o.TimeZone) {
+	if o == nil || IsNil(o.TimeZone) {
 		var ret string
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *UpdateNetworkRequest) GetTimeZone() string {
 // GetTimeZoneOk returns a tuple with the TimeZone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkRequest) GetTimeZoneOk() (*string, bool) {
-	if o == nil || isNil(o.TimeZone) {
-    return nil, false
+	if o == nil || IsNil(o.TimeZone) {
+		return nil, false
 	}
 	return o.TimeZone, true
 }
 
 // HasTimeZone returns a boolean if a field has been set.
 func (o *UpdateNetworkRequest) HasTimeZone() bool {
-	if o != nil && !isNil(o.TimeZone) {
+	if o != nil && !IsNil(o.TimeZone) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *UpdateNetworkRequest) SetTimeZone(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *UpdateNetworkRequest) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *UpdateNetworkRequest) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkRequest) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
 	}
 	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *UpdateNetworkRequest) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *UpdateNetworkRequest) SetTags(v []string) {
 
 // GetEnrollmentString returns the EnrollmentString field value if set, zero value otherwise.
 func (o *UpdateNetworkRequest) GetEnrollmentString() string {
-	if o == nil || isNil(o.EnrollmentString) {
+	if o == nil || IsNil(o.EnrollmentString) {
 		var ret string
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *UpdateNetworkRequest) GetEnrollmentString() string {
 // GetEnrollmentStringOk returns a tuple with the EnrollmentString field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkRequest) GetEnrollmentStringOk() (*string, bool) {
-	if o == nil || isNil(o.EnrollmentString) {
-    return nil, false
+	if o == nil || IsNil(o.EnrollmentString) {
+		return nil, false
 	}
 	return o.EnrollmentString, true
 }
 
 // HasEnrollmentString returns a boolean if a field has been set.
 func (o *UpdateNetworkRequest) HasEnrollmentString() bool {
-	if o != nil && !isNil(o.EnrollmentString) {
+	if o != nil && !IsNil(o.EnrollmentString) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *UpdateNetworkRequest) SetEnrollmentString(v string) {
 
 // GetNotes returns the Notes field value if set, zero value otherwise.
 func (o *UpdateNetworkRequest) GetNotes() string {
-	if o == nil || isNil(o.Notes) {
+	if o == nil || IsNil(o.Notes) {
 		var ret string
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *UpdateNetworkRequest) GetNotes() string {
 // GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkRequest) GetNotesOk() (*string, bool) {
-	if o == nil || isNil(o.Notes) {
-    return nil, false
+	if o == nil || IsNil(o.Notes) {
+		return nil, false
 	}
 	return o.Notes, true
 }
 
 // HasNotes returns a boolean if a field has been set.
 func (o *UpdateNetworkRequest) HasNotes() bool {
-	if o != nil && !isNil(o.Notes) {
+	if o != nil && !IsNil(o.Notes) {
 		return true
 	}
 
@@ -206,23 +209,31 @@ func (o *UpdateNetworkRequest) SetNotes(v string) {
 }
 
 func (o UpdateNetworkRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.TimeZone) {
-		toSerialize["timeZone"] = o.TimeZone
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !isNil(o.EnrollmentString) {
-		toSerialize["enrollmentString"] = o.EnrollmentString
-	}
-	if !isNil(o.Notes) {
-		toSerialize["notes"] = o.Notes
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.TimeZone) {
+		toSerialize["timeZone"] = o.TimeZone
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.EnrollmentString) {
+		toSerialize["enrollmentString"] = o.EnrollmentString
+	}
+	if !IsNil(o.Notes) {
+		toSerialize["notes"] = o.Notes
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkRequest struct {

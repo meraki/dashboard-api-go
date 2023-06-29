@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkCameraQualityRetentionProfileRequestVideoSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkCameraQualityRetentionProfileRequestVideoSettings{}
+
 // CreateNetworkCameraQualityRetentionProfileRequestVideoSettings Video quality and resolution settings for all the camera models.
 type CreateNetworkCameraQualityRetentionProfileRequestVideoSettings struct {
 	MV21MV71 *CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV21MV71 `json:"MV21/MV71,omitempty"`
@@ -49,7 +52,7 @@ func NewCreateNetworkCameraQualityRetentionProfileRequestVideoSettingsWithDefaul
 
 // GetMV21MV71 returns the MV21MV71 field value if set, zero value otherwise.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV21MV71() CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV21MV71 {
-	if o == nil || isNil(o.MV21MV71) {
+	if o == nil || IsNil(o.MV21MV71) {
 		var ret CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV21MV71
 		return ret
 	}
@@ -59,15 +62,15 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV21
 // GetMV21MV71Ok returns a tuple with the MV21MV71 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV21MV71Ok() (*CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV21MV71, bool) {
-	if o == nil || isNil(o.MV21MV71) {
-    return nil, false
+	if o == nil || IsNil(o.MV21MV71) {
+		return nil, false
 	}
 	return o.MV21MV71, true
 }
 
 // HasMV21MV71 returns a boolean if a field has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) HasMV21MV71() bool {
-	if o != nil && !isNil(o.MV21MV71) {
+	if o != nil && !IsNil(o.MV21MV71) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) SetMV21
 
 // GetMV12MV22MV72 returns the MV12MV22MV72 field value if set, zero value otherwise.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV12MV22MV72() CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV12MV22MV72 {
-	if o == nil || isNil(o.MV12MV22MV72) {
+	if o == nil || IsNil(o.MV12MV22MV72) {
 		var ret CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV12MV22MV72
 		return ret
 	}
@@ -91,15 +94,15 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV12
 // GetMV12MV22MV72Ok returns a tuple with the MV12MV22MV72 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV12MV22MV72Ok() (*CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV12MV22MV72, bool) {
-	if o == nil || isNil(o.MV12MV22MV72) {
-    return nil, false
+	if o == nil || IsNil(o.MV12MV22MV72) {
+		return nil, false
 	}
 	return o.MV12MV22MV72, true
 }
 
 // HasMV12MV22MV72 returns a boolean if a field has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) HasMV12MV22MV72() bool {
-	if o != nil && !isNil(o.MV12MV22MV72) {
+	if o != nil && !IsNil(o.MV12MV22MV72) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) SetMV12
 
 // GetMV32 returns the MV32 field value if set, zero value otherwise.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV32() CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV32 {
-	if o == nil || isNil(o.MV32) {
+	if o == nil || IsNil(o.MV32) {
 		var ret CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV32
 		return ret
 	}
@@ -123,15 +126,15 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV32
 // GetMV32Ok returns a tuple with the MV32 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV32Ok() (*CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV32, bool) {
-	if o == nil || isNil(o.MV32) {
-    return nil, false
+	if o == nil || IsNil(o.MV32) {
+		return nil, false
 	}
 	return o.MV32, true
 }
 
 // HasMV32 returns a boolean if a field has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) HasMV32() bool {
-	if o != nil && !isNil(o.MV32) {
+	if o != nil && !IsNil(o.MV32) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) SetMV32
 
 // GetMV33 returns the MV33 field value if set, zero value otherwise.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV33() CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV33 {
-	if o == nil || isNil(o.MV33) {
+	if o == nil || IsNil(o.MV33) {
 		var ret CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV33
 		return ret
 	}
@@ -155,15 +158,15 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV33
 // GetMV33Ok returns a tuple with the MV33 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV33Ok() (*CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV33, bool) {
-	if o == nil || isNil(o.MV33) {
-    return nil, false
+	if o == nil || IsNil(o.MV33) {
+		return nil, false
 	}
 	return o.MV33, true
 }
 
 // HasMV33 returns a boolean if a field has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) HasMV33() bool {
-	if o != nil && !isNil(o.MV33) {
+	if o != nil && !IsNil(o.MV33) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) SetMV33
 
 // GetMV12WE returns the MV12WE field value if set, zero value otherwise.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV12WE() CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV12WE {
-	if o == nil || isNil(o.MV12WE) {
+	if o == nil || IsNil(o.MV12WE) {
 		var ret CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV12WE
 		return ret
 	}
@@ -187,15 +190,15 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV12
 // GetMV12WEOk returns a tuple with the MV12WE field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV12WEOk() (*CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV12WE, bool) {
-	if o == nil || isNil(o.MV12WE) {
-    return nil, false
+	if o == nil || IsNil(o.MV12WE) {
+		return nil, false
 	}
 	return o.MV12WE, true
 }
 
 // HasMV12WE returns a boolean if a field has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) HasMV12WE() bool {
-	if o != nil && !isNil(o.MV12WE) {
+	if o != nil && !IsNil(o.MV12WE) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) SetMV12
 
 // GetMV13 returns the MV13 field value if set, zero value otherwise.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV13() CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV13 {
-	if o == nil || isNil(o.MV13) {
+	if o == nil || IsNil(o.MV13) {
 		var ret CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV13
 		return ret
 	}
@@ -219,15 +222,15 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV13
 // GetMV13Ok returns a tuple with the MV13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV13Ok() (*CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV13, bool) {
-	if o == nil || isNil(o.MV13) {
-    return nil, false
+	if o == nil || IsNil(o.MV13) {
+		return nil, false
 	}
 	return o.MV13, true
 }
 
 // HasMV13 returns a boolean if a field has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) HasMV13() bool {
-	if o != nil && !isNil(o.MV13) {
+	if o != nil && !IsNil(o.MV13) {
 		return true
 	}
 
@@ -241,7 +244,7 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) SetMV13
 
 // GetMV22XMV72X returns the MV22XMV72X field value if set, zero value otherwise.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV22XMV72X() CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV22XMV72X {
-	if o == nil || isNil(o.MV22XMV72X) {
+	if o == nil || IsNil(o.MV22XMV72X) {
 		var ret CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV22XMV72X
 		return ret
 	}
@@ -251,15 +254,15 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV22
 // GetMV22XMV72XOk returns a tuple with the MV22XMV72X field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV22XMV72XOk() (*CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV22XMV72X, bool) {
-	if o == nil || isNil(o.MV22XMV72X) {
-    return nil, false
+	if o == nil || IsNil(o.MV22XMV72X) {
+		return nil, false
 	}
 	return o.MV22XMV72X, true
 }
 
 // HasMV22XMV72X returns a boolean if a field has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) HasMV22XMV72X() bool {
-	if o != nil && !isNil(o.MV22XMV72X) {
+	if o != nil && !IsNil(o.MV22XMV72X) {
 		return true
 	}
 
@@ -273,7 +276,7 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) SetMV22
 
 // GetMV52 returns the MV52 field value if set, zero value otherwise.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV52() CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV52 {
-	if o == nil || isNil(o.MV52) {
+	if o == nil || IsNil(o.MV52) {
 		var ret CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV52
 		return ret
 	}
@@ -283,15 +286,15 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV52
 // GetMV52Ok returns a tuple with the MV52 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV52Ok() (*CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV52, bool) {
-	if o == nil || isNil(o.MV52) {
-    return nil, false
+	if o == nil || IsNil(o.MV52) {
+		return nil, false
 	}
 	return o.MV52, true
 }
 
 // HasMV52 returns a boolean if a field has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) HasMV52() bool {
-	if o != nil && !isNil(o.MV52) {
+	if o != nil && !IsNil(o.MV52) {
 		return true
 	}
 
@@ -305,7 +308,7 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) SetMV52
 
 // GetMV63 returns the MV63 field value if set, zero value otherwise.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV63() CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV63 {
-	if o == nil || isNil(o.MV63) {
+	if o == nil || IsNil(o.MV63) {
 		var ret CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV63
 		return ret
 	}
@@ -315,15 +318,15 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV63
 // GetMV63Ok returns a tuple with the MV63 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV63Ok() (*CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV63, bool) {
-	if o == nil || isNil(o.MV63) {
-    return nil, false
+	if o == nil || IsNil(o.MV63) {
+		return nil, false
 	}
 	return o.MV63, true
 }
 
 // HasMV63 returns a boolean if a field has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) HasMV63() bool {
-	if o != nil && !isNil(o.MV63) {
+	if o != nil && !IsNil(o.MV63) {
 		return true
 	}
 
@@ -337,7 +340,7 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) SetMV63
 
 // GetMV93 returns the MV93 field value if set, zero value otherwise.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV93() CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93 {
-	if o == nil || isNil(o.MV93) {
+	if o == nil || IsNil(o.MV93) {
 		var ret CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93
 		return ret
 	}
@@ -347,15 +350,15 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV93
 // GetMV93Ok returns a tuple with the MV93 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV93Ok() (*CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93, bool) {
-	if o == nil || isNil(o.MV93) {
-    return nil, false
+	if o == nil || IsNil(o.MV93) {
+		return nil, false
 	}
 	return o.MV93, true
 }
 
 // HasMV93 returns a boolean if a field has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) HasMV93() bool {
-	if o != nil && !isNil(o.MV93) {
+	if o != nil && !IsNil(o.MV93) {
 		return true
 	}
 
@@ -369,7 +372,7 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) SetMV93
 
 // GetMV63X returns the MV63X field value if set, zero value otherwise.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV63X() CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV63X {
-	if o == nil || isNil(o.MV63X) {
+	if o == nil || IsNil(o.MV63X) {
 		var ret CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV63X
 		return ret
 	}
@@ -379,15 +382,15 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV63
 // GetMV63XOk returns a tuple with the MV63X field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV63XOk() (*CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV63X, bool) {
-	if o == nil || isNil(o.MV63X) {
-    return nil, false
+	if o == nil || IsNil(o.MV63X) {
+		return nil, false
 	}
 	return o.MV63X, true
 }
 
 // HasMV63X returns a boolean if a field has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) HasMV63X() bool {
-	if o != nil && !isNil(o.MV63X) {
+	if o != nil && !IsNil(o.MV63X) {
 		return true
 	}
 
@@ -401,7 +404,7 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) SetMV63
 
 // GetMV93X returns the MV93X field value if set, zero value otherwise.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV93X() CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93X {
-	if o == nil || isNil(o.MV93X) {
+	if o == nil || IsNil(o.MV93X) {
 		var ret CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93X
 		return ret
 	}
@@ -411,15 +414,15 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV93
 // GetMV93XOk returns a tuple with the MV93X field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) GetMV93XOk() (*CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93X, bool) {
-	if o == nil || isNil(o.MV93X) {
-    return nil, false
+	if o == nil || IsNil(o.MV93X) {
+		return nil, false
 	}
 	return o.MV93X, true
 }
 
 // HasMV93X returns a boolean if a field has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) HasMV93X() bool {
-	if o != nil && !isNil(o.MV93X) {
+	if o != nil && !IsNil(o.MV93X) {
 		return true
 	}
 
@@ -432,44 +435,52 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) SetMV93
 }
 
 func (o CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.MV21MV71) {
-		toSerialize["MV21/MV71"] = o.MV21MV71
-	}
-	if !isNil(o.MV12MV22MV72) {
-		toSerialize["MV12/MV22/MV72"] = o.MV12MV22MV72
-	}
-	if !isNil(o.MV32) {
-		toSerialize["MV32"] = o.MV32
-	}
-	if !isNil(o.MV33) {
-		toSerialize["MV33"] = o.MV33
-	}
-	if !isNil(o.MV12WE) {
-		toSerialize["MV12WE"] = o.MV12WE
-	}
-	if !isNil(o.MV13) {
-		toSerialize["MV13"] = o.MV13
-	}
-	if !isNil(o.MV22XMV72X) {
-		toSerialize["MV22X/MV72X"] = o.MV22XMV72X
-	}
-	if !isNil(o.MV52) {
-		toSerialize["MV52"] = o.MV52
-	}
-	if !isNil(o.MV63) {
-		toSerialize["MV63"] = o.MV63
-	}
-	if !isNil(o.MV93) {
-		toSerialize["MV93"] = o.MV93
-	}
-	if !isNil(o.MV63X) {
-		toSerialize["MV63X"] = o.MV63X
-	}
-	if !isNil(o.MV93X) {
-		toSerialize["MV93X"] = o.MV93X
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkCameraQualityRetentionProfileRequestVideoSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MV21MV71) {
+		toSerialize["MV21/MV71"] = o.MV21MV71
+	}
+	if !IsNil(o.MV12MV22MV72) {
+		toSerialize["MV12/MV22/MV72"] = o.MV12MV22MV72
+	}
+	if !IsNil(o.MV32) {
+		toSerialize["MV32"] = o.MV32
+	}
+	if !IsNil(o.MV33) {
+		toSerialize["MV33"] = o.MV33
+	}
+	if !IsNil(o.MV12WE) {
+		toSerialize["MV12WE"] = o.MV12WE
+	}
+	if !IsNil(o.MV13) {
+		toSerialize["MV13"] = o.MV13
+	}
+	if !IsNil(o.MV22XMV72X) {
+		toSerialize["MV22X/MV72X"] = o.MV22XMV72X
+	}
+	if !IsNil(o.MV52) {
+		toSerialize["MV52"] = o.MV52
+	}
+	if !IsNil(o.MV63) {
+		toSerialize["MV63"] = o.MV63
+	}
+	if !IsNil(o.MV93) {
+		toSerialize["MV93"] = o.MV93
+	}
+	if !IsNil(o.MV63X) {
+		toSerialize["MV63X"] = o.MV63X
+	}
+	if !IsNil(o.MV93X) {
+		toSerialize["MV93X"] = o.MV93X
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkCameraQualityRetentionProfileRequestVideoSettings struct {

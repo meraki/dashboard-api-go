@@ -10,162 +10,160 @@ Testing RfProfilesApiService
 package client
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "github.com/meraki/dashboard-api-go/client"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func Test_client_RfProfilesApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test RfProfilesApiService CreateNetworkApplianceRfProfile", func(t *testing.T) {
+	t.Run("Test RfProfilesApiService CreateNetworkApplianceRfProfile", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.RfProfilesApi.CreateNetworkApplianceRfProfile(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.RfProfilesApi.CreateNetworkApplianceRfProfile(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RfProfilesApiService CreateNetworkWirelessRfProfile", func(t *testing.T) {
+	t.Run("Test RfProfilesApiService CreateNetworkWirelessRfProfile", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.RfProfilesApi.CreateNetworkWirelessRfProfile(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.RfProfilesApi.CreateNetworkWirelessRfProfile(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RfProfilesApiService DeleteNetworkApplianceRfProfile", func(t *testing.T) {
+	t.Run("Test RfProfilesApiService DeleteNetworkApplianceRfProfile", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var rfProfileId string
+		var networkId string
+		var rfProfileId string
 
-        resp, httpRes, err := apiClient.RfProfilesApi.DeleteNetworkApplianceRfProfile(context.Background(), networkId, rfProfileId).Execute()
+		httpRes, err := apiClient.RfProfilesApi.DeleteNetworkApplianceRfProfile(context.Background(), networkId, rfProfileId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RfProfilesApiService DeleteNetworkWirelessRfProfile", func(t *testing.T) {
+	t.Run("Test RfProfilesApiService DeleteNetworkWirelessRfProfile", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var rfProfileId string
+		var networkId string
+		var rfProfileId string
 
-        resp, httpRes, err := apiClient.RfProfilesApi.DeleteNetworkWirelessRfProfile(context.Background(), networkId, rfProfileId).Execute()
+		httpRes, err := apiClient.RfProfilesApi.DeleteNetworkWirelessRfProfile(context.Background(), networkId, rfProfileId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RfProfilesApiService GetNetworkApplianceRfProfile", func(t *testing.T) {
+	t.Run("Test RfProfilesApiService GetNetworkApplianceRfProfile", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var rfProfileId string
+		var networkId string
+		var rfProfileId string
 
-        resp, httpRes, err := apiClient.RfProfilesApi.GetNetworkApplianceRfProfile(context.Background(), networkId, rfProfileId).Execute()
+		resp, httpRes, err := apiClient.RfProfilesApi.GetNetworkApplianceRfProfile(context.Background(), networkId, rfProfileId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RfProfilesApiService GetNetworkApplianceRfProfiles", func(t *testing.T) {
+	t.Run("Test RfProfilesApiService GetNetworkApplianceRfProfiles", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.RfProfilesApi.GetNetworkApplianceRfProfiles(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.RfProfilesApi.GetNetworkApplianceRfProfiles(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RfProfilesApiService GetNetworkWirelessRfProfile", func(t *testing.T) {
+	t.Run("Test RfProfilesApiService GetNetworkWirelessRfProfile", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var rfProfileId string
+		var networkId string
+		var rfProfileId string
 
-        resp, httpRes, err := apiClient.RfProfilesApi.GetNetworkWirelessRfProfile(context.Background(), networkId, rfProfileId).Execute()
+		resp, httpRes, err := apiClient.RfProfilesApi.GetNetworkWirelessRfProfile(context.Background(), networkId, rfProfileId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RfProfilesApiService GetNetworkWirelessRfProfiles", func(t *testing.T) {
+	t.Run("Test RfProfilesApiService GetNetworkWirelessRfProfiles", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.RfProfilesApi.GetNetworkWirelessRfProfiles(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.RfProfilesApi.GetNetworkWirelessRfProfiles(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RfProfilesApiService UpdateNetworkApplianceRfProfile", func(t *testing.T) {
+	t.Run("Test RfProfilesApiService UpdateNetworkApplianceRfProfile", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var rfProfileId string
+		var networkId string
+		var rfProfileId string
 
-        resp, httpRes, err := apiClient.RfProfilesApi.UpdateNetworkApplianceRfProfile(context.Background(), networkId, rfProfileId).Execute()
+		resp, httpRes, err := apiClient.RfProfilesApi.UpdateNetworkApplianceRfProfile(context.Background(), networkId, rfProfileId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RfProfilesApiService UpdateNetworkWirelessRfProfile", func(t *testing.T) {
+	t.Run("Test RfProfilesApiService UpdateNetworkWirelessRfProfile", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var rfProfileId string
+		var networkId string
+		var rfProfileId string
 
-        resp, httpRes, err := apiClient.RfProfilesApi.UpdateNetworkWirelessRfProfile(context.Background(), networkId, rfProfileId).Execute()
+		resp, httpRes, err := apiClient.RfProfilesApi.UpdateNetworkWirelessRfProfile(context.Background(), networkId, rfProfileId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationActionBatch201Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationActionBatch201Response{}
+
 // CreateOrganizationActionBatch201Response struct for CreateOrganizationActionBatch201Response
 type CreateOrganizationActionBatch201Response struct {
 	// ID of the action batch. Can be used to check the status of the action batch at /organizations/{organizationId}/actionBatches/{actionBatchId}
@@ -49,7 +52,7 @@ func NewCreateOrganizationActionBatch201ResponseWithDefaults() *CreateOrganizati
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *CreateOrganizationActionBatch201Response) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -59,15 +62,15 @@ func (o *CreateOrganizationActionBatch201Response) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatch201Response) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateOrganizationActionBatch201Response) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *CreateOrganizationActionBatch201Response) SetId(v string) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *CreateOrganizationActionBatch201Response) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -91,15 +94,15 @@ func (o *CreateOrganizationActionBatch201Response) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatch201Response) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *CreateOrganizationActionBatch201Response) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *CreateOrganizationActionBatch201Response) SetOrganizationId(v string) {
 
 // GetConfirmed returns the Confirmed field value if set, zero value otherwise.
 func (o *CreateOrganizationActionBatch201Response) GetConfirmed() bool {
-	if o == nil || isNil(o.Confirmed) {
+	if o == nil || IsNil(o.Confirmed) {
 		var ret bool
 		return ret
 	}
@@ -123,15 +126,15 @@ func (o *CreateOrganizationActionBatch201Response) GetConfirmed() bool {
 // GetConfirmedOk returns a tuple with the Confirmed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatch201Response) GetConfirmedOk() (*bool, bool) {
-	if o == nil || isNil(o.Confirmed) {
-    return nil, false
+	if o == nil || IsNil(o.Confirmed) {
+		return nil, false
 	}
 	return o.Confirmed, true
 }
 
 // HasConfirmed returns a boolean if a field has been set.
 func (o *CreateOrganizationActionBatch201Response) HasConfirmed() bool {
-	if o != nil && !isNil(o.Confirmed) {
+	if o != nil && !IsNil(o.Confirmed) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *CreateOrganizationActionBatch201Response) SetConfirmed(v bool) {
 
 // GetSynchronous returns the Synchronous field value if set, zero value otherwise.
 func (o *CreateOrganizationActionBatch201Response) GetSynchronous() bool {
-	if o == nil || isNil(o.Synchronous) {
+	if o == nil || IsNil(o.Synchronous) {
 		var ret bool
 		return ret
 	}
@@ -155,15 +158,15 @@ func (o *CreateOrganizationActionBatch201Response) GetSynchronous() bool {
 // GetSynchronousOk returns a tuple with the Synchronous field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatch201Response) GetSynchronousOk() (*bool, bool) {
-	if o == nil || isNil(o.Synchronous) {
-    return nil, false
+	if o == nil || IsNil(o.Synchronous) {
+		return nil, false
 	}
 	return o.Synchronous, true
 }
 
 // HasSynchronous returns a boolean if a field has been set.
 func (o *CreateOrganizationActionBatch201Response) HasSynchronous() bool {
-	if o != nil && !isNil(o.Synchronous) {
+	if o != nil && !IsNil(o.Synchronous) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *CreateOrganizationActionBatch201Response) SetSynchronous(v bool) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *CreateOrganizationActionBatch201Response) GetStatus() CreateOrganizationActionBatch201ResponseStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret CreateOrganizationActionBatch201ResponseStatus
 		return ret
 	}
@@ -187,15 +190,15 @@ func (o *CreateOrganizationActionBatch201Response) GetStatus() CreateOrganizatio
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatch201Response) GetStatusOk() (*CreateOrganizationActionBatch201ResponseStatus, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *CreateOrganizationActionBatch201Response) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -221,7 +224,7 @@ func (o *CreateOrganizationActionBatch201Response) GetActions() []CreateOrganiza
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatch201Response) GetActionsOk() ([]CreateOrganizationActionBatch201ResponseActionsInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Actions, true
 }
@@ -232,26 +235,32 @@ func (o *CreateOrganizationActionBatch201Response) SetActions(v []CreateOrganiza
 }
 
 func (o CreateOrganizationActionBatch201Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organizationId"] = o.OrganizationId
-	}
-	if !isNil(o.Confirmed) {
-		toSerialize["confirmed"] = o.Confirmed
-	}
-	if !isNil(o.Synchronous) {
-		toSerialize["synchronous"] = o.Synchronous
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["actions"] = o.Actions
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationActionBatch201Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organizationId"] = o.OrganizationId
+	}
+	if !IsNil(o.Confirmed) {
+		toSerialize["confirmed"] = o.Confirmed
+	}
+	if !IsNil(o.Synchronous) {
+		toSerialize["synchronous"] = o.Synchronous
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	toSerialize["actions"] = o.Actions
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationActionBatch201Response struct {

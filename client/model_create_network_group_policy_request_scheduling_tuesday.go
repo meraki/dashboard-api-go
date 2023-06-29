@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkGroupPolicyRequestSchedulingTuesday type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkGroupPolicyRequestSchedulingTuesday{}
+
 // CreateNetworkGroupPolicyRequestSchedulingTuesday The schedule object for Tuesday.
 type CreateNetworkGroupPolicyRequestSchedulingTuesday struct {
 	// Whether the schedule is active (true) or inactive (false) during the time specified between 'from' and 'to'. Defaults to true.
@@ -43,7 +46,7 @@ func NewCreateNetworkGroupPolicyRequestSchedulingTuesdayWithDefaults() *CreateNe
 
 // GetActive returns the Active field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestSchedulingTuesday) GetActive() bool {
-	if o == nil || isNil(o.Active) {
+	if o == nil || IsNil(o.Active) {
 		var ret bool
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *CreateNetworkGroupPolicyRequestSchedulingTuesday) GetActive() bool {
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestSchedulingTuesday) GetActiveOk() (*bool, bool) {
-	if o == nil || isNil(o.Active) {
-    return nil, false
+	if o == nil || IsNil(o.Active) {
+		return nil, false
 	}
 	return o.Active, true
 }
 
 // HasActive returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestSchedulingTuesday) HasActive() bool {
-	if o != nil && !isNil(o.Active) {
+	if o != nil && !IsNil(o.Active) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *CreateNetworkGroupPolicyRequestSchedulingTuesday) SetActive(v bool) {
 
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestSchedulingTuesday) GetFrom() string {
-	if o == nil || isNil(o.From) {
+	if o == nil || IsNil(o.From) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *CreateNetworkGroupPolicyRequestSchedulingTuesday) GetFrom() string {
 // GetFromOk returns a tuple with the From field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestSchedulingTuesday) GetFromOk() (*string, bool) {
-	if o == nil || isNil(o.From) {
-    return nil, false
+	if o == nil || IsNil(o.From) {
+		return nil, false
 	}
 	return o.From, true
 }
 
 // HasFrom returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestSchedulingTuesday) HasFrom() bool {
-	if o != nil && !isNil(o.From) {
+	if o != nil && !IsNil(o.From) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *CreateNetworkGroupPolicyRequestSchedulingTuesday) SetFrom(v string) {
 
 // GetTo returns the To field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestSchedulingTuesday) GetTo() string {
-	if o == nil || isNil(o.To) {
+	if o == nil || IsNil(o.To) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *CreateNetworkGroupPolicyRequestSchedulingTuesday) GetTo() string {
 // GetToOk returns a tuple with the To field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestSchedulingTuesday) GetToOk() (*string, bool) {
-	if o == nil || isNil(o.To) {
-    return nil, false
+	if o == nil || IsNil(o.To) {
+		return nil, false
 	}
 	return o.To, true
 }
 
 // HasTo returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestSchedulingTuesday) HasTo() bool {
-	if o != nil && !isNil(o.To) {
+	if o != nil && !IsNil(o.To) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *CreateNetworkGroupPolicyRequestSchedulingTuesday) SetTo(v string) {
 }
 
 func (o CreateNetworkGroupPolicyRequestSchedulingTuesday) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Active) {
-		toSerialize["active"] = o.Active
-	}
-	if !isNil(o.From) {
-		toSerialize["from"] = o.From
-	}
-	if !isNil(o.To) {
-		toSerialize["to"] = o.To
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkGroupPolicyRequestSchedulingTuesday) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Active) {
+		toSerialize["active"] = o.Active
+	}
+	if !IsNil(o.From) {
+		toSerialize["from"] = o.From
+	}
+	if !IsNil(o.To) {
+		toSerialize["to"] = o.To
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkGroupPolicyRequestSchedulingTuesday struct {

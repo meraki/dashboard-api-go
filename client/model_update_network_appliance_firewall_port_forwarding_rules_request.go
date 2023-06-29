@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceFirewallPortForwardingRulesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceFirewallPortForwardingRulesRequest{}
+
 // UpdateNetworkApplianceFirewallPortForwardingRulesRequest struct for UpdateNetworkApplianceFirewallPortForwardingRulesRequest
 type UpdateNetworkApplianceFirewallPortForwardingRulesRequest struct {
 	// An array of port forwarding params
@@ -52,7 +55,7 @@ func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequest) GetRules() []
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequest) GetRulesOk() ([]UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Rules, true
 }
@@ -63,11 +66,17 @@ func (o *UpdateNetworkApplianceFirewallPortForwardingRulesRequest) SetRules(v []
 }
 
 func (o UpdateNetworkApplianceFirewallPortForwardingRulesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["rules"] = o.Rules
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceFirewallPortForwardingRulesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["rules"] = o.Rules
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceFirewallPortForwardingRulesRequest struct {

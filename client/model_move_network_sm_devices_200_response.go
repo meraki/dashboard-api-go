@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MoveNetworkSmDevices200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MoveNetworkSmDevices200Response{}
+
 // MoveNetworkSmDevices200Response struct for MoveNetworkSmDevices200Response
 type MoveNetworkSmDevices200Response struct {
 	// The Meraki Ids of the set of devices.
@@ -41,7 +44,7 @@ func NewMoveNetworkSmDevices200ResponseWithDefaults() *MoveNetworkSmDevices200Re
 
 // GetIds returns the Ids field value if set, zero value otherwise.
 func (o *MoveNetworkSmDevices200Response) GetIds() []string {
-	if o == nil || isNil(o.Ids) {
+	if o == nil || IsNil(o.Ids) {
 		var ret []string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *MoveNetworkSmDevices200Response) GetIds() []string {
 // GetIdsOk returns a tuple with the Ids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MoveNetworkSmDevices200Response) GetIdsOk() ([]string, bool) {
-	if o == nil || isNil(o.Ids) {
-    return nil, false
+	if o == nil || IsNil(o.Ids) {
+		return nil, false
 	}
 	return o.Ids, true
 }
 
 // HasIds returns a boolean if a field has been set.
 func (o *MoveNetworkSmDevices200Response) HasIds() bool {
-	if o != nil && !isNil(o.Ids) {
+	if o != nil && !IsNil(o.Ids) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *MoveNetworkSmDevices200Response) SetIds(v []string) {
 
 // GetNewNetwork returns the NewNetwork field value if set, zero value otherwise.
 func (o *MoveNetworkSmDevices200Response) GetNewNetwork() string {
-	if o == nil || isNil(o.NewNetwork) {
+	if o == nil || IsNil(o.NewNetwork) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *MoveNetworkSmDevices200Response) GetNewNetwork() string {
 // GetNewNetworkOk returns a tuple with the NewNetwork field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MoveNetworkSmDevices200Response) GetNewNetworkOk() (*string, bool) {
-	if o == nil || isNil(o.NewNetwork) {
-    return nil, false
+	if o == nil || IsNil(o.NewNetwork) {
+		return nil, false
 	}
 	return o.NewNetwork, true
 }
 
 // HasNewNetwork returns a boolean if a field has been set.
 func (o *MoveNetworkSmDevices200Response) HasNewNetwork() bool {
-	if o != nil && !isNil(o.NewNetwork) {
+	if o != nil && !IsNil(o.NewNetwork) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *MoveNetworkSmDevices200Response) SetNewNetwork(v string) {
 }
 
 func (o MoveNetworkSmDevices200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Ids) {
-		toSerialize["ids"] = o.Ids
-	}
-	if !isNil(o.NewNetwork) {
-		toSerialize["newNetwork"] = o.NewNetwork
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MoveNetworkSmDevices200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Ids) {
+		toSerialize["ids"] = o.Ids
+	}
+	if !IsNil(o.NewNetwork) {
+		toSerialize["newNetwork"] = o.NewNetwork
+	}
+	return toSerialize, nil
 }
 
 type NullableMoveNetworkSmDevices200Response struct {

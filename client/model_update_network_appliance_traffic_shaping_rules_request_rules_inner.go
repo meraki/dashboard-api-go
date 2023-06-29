@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner{}
+
 // UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner struct for UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner
 type UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner struct {
 	//     A list of objects describing the definitions of your traffic shaping rule. At least one definition is required. 
@@ -57,7 +60,7 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) GetDefiniti
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) GetDefinitionsOk() ([]UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Definitions, true
 }
@@ -69,7 +72,7 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) SetDefiniti
 
 // GetPerClientBandwidthLimits returns the PerClientBandwidthLimits field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) GetPerClientBandwidthLimits() UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits {
-	if o == nil || isNil(o.PerClientBandwidthLimits) {
+	if o == nil || IsNil(o.PerClientBandwidthLimits) {
 		var ret UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits
 		return ret
 	}
@@ -79,15 +82,15 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) GetPerClien
 // GetPerClientBandwidthLimitsOk returns a tuple with the PerClientBandwidthLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) GetPerClientBandwidthLimitsOk() (*UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits, bool) {
-	if o == nil || isNil(o.PerClientBandwidthLimits) {
-    return nil, false
+	if o == nil || IsNil(o.PerClientBandwidthLimits) {
+		return nil, false
 	}
 	return o.PerClientBandwidthLimits, true
 }
 
 // HasPerClientBandwidthLimits returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) HasPerClientBandwidthLimits() bool {
-	if o != nil && !isNil(o.PerClientBandwidthLimits) {
+	if o != nil && !IsNil(o.PerClientBandwidthLimits) {
 		return true
 	}
 
@@ -101,7 +104,7 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) SetPerClien
 
 // GetDscpTagValue returns the DscpTagValue field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) GetDscpTagValue() int32 {
-	if o == nil || isNil(o.DscpTagValue) {
+	if o == nil || IsNil(o.DscpTagValue) {
 		var ret int32
 		return ret
 	}
@@ -111,15 +114,15 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) GetDscpTagV
 // GetDscpTagValueOk returns a tuple with the DscpTagValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) GetDscpTagValueOk() (*int32, bool) {
-	if o == nil || isNil(o.DscpTagValue) {
-    return nil, false
+	if o == nil || IsNil(o.DscpTagValue) {
+		return nil, false
 	}
 	return o.DscpTagValue, true
 }
 
 // HasDscpTagValue returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) HasDscpTagValue() bool {
-	if o != nil && !isNil(o.DscpTagValue) {
+	if o != nil && !IsNil(o.DscpTagValue) {
 		return true
 	}
 
@@ -133,7 +136,7 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) SetDscpTagV
 
 // GetPriority returns the Priority field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) GetPriority() string {
-	if o == nil || isNil(o.Priority) {
+	if o == nil || IsNil(o.Priority) {
 		var ret string
 		return ret
 	}
@@ -143,15 +146,15 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) GetPriority
 // GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) GetPriorityOk() (*string, bool) {
-	if o == nil || isNil(o.Priority) {
-    return nil, false
+	if o == nil || IsNil(o.Priority) {
+		return nil, false
 	}
 	return o.Priority, true
 }
 
 // HasPriority returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) HasPriority() bool {
-	if o != nil && !isNil(o.Priority) {
+	if o != nil && !IsNil(o.Priority) {
 		return true
 	}
 
@@ -164,20 +167,26 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) SetPriority
 }
 
 func (o UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["definitions"] = o.Definitions
-	}
-	if !isNil(o.PerClientBandwidthLimits) {
-		toSerialize["perClientBandwidthLimits"] = o.PerClientBandwidthLimits
-	}
-	if !isNil(o.DscpTagValue) {
-		toSerialize["dscpTagValue"] = o.DscpTagValue
-	}
-	if !isNil(o.Priority) {
-		toSerialize["priority"] = o.Priority
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceTrafficShapingRulesRequestRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["definitions"] = o.Definitions
+	if !IsNil(o.PerClientBandwidthLimits) {
+		toSerialize["perClientBandwidthLimits"] = o.PerClientBandwidthLimits
+	}
+	if !IsNil(o.DscpTagValue) {
+		toSerialize["dscpTagValue"] = o.DscpTagValue
+	}
+	if !IsNil(o.Priority) {
+		toSerialize["priority"] = o.Priority
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceTrafficShapingRulesRequestRulesInner struct {

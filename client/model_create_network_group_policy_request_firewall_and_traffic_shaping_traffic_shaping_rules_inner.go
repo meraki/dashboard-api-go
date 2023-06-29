@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner{}
+
 // CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner struct for CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner
 type CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner struct {
 	//     A list of objects describing the definitions of your traffic shaping rule. At least one definition is required. 
@@ -59,7 +62,7 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingR
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner) GetDefinitionsOk() ([]UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Definitions, true
 }
@@ -71,7 +74,7 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingR
 
 // GetPerClientBandwidthLimits returns the PerClientBandwidthLimits field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner) GetPerClientBandwidthLimits() UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits {
-	if o == nil || isNil(o.PerClientBandwidthLimits) {
+	if o == nil || IsNil(o.PerClientBandwidthLimits) {
 		var ret UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingR
 // GetPerClientBandwidthLimitsOk returns a tuple with the PerClientBandwidthLimits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner) GetPerClientBandwidthLimitsOk() (*UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits, bool) {
-	if o == nil || isNil(o.PerClientBandwidthLimits) {
-    return nil, false
+	if o == nil || IsNil(o.PerClientBandwidthLimits) {
+		return nil, false
 	}
 	return o.PerClientBandwidthLimits, true
 }
 
 // HasPerClientBandwidthLimits returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner) HasPerClientBandwidthLimits() bool {
-	if o != nil && !isNil(o.PerClientBandwidthLimits) {
+	if o != nil && !IsNil(o.PerClientBandwidthLimits) {
 		return true
 	}
 
@@ -103,7 +106,7 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingR
 
 // GetDscpTagValue returns the DscpTagValue field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner) GetDscpTagValue() int32 {
-	if o == nil || isNil(o.DscpTagValue) {
+	if o == nil || IsNil(o.DscpTagValue) {
 		var ret int32
 		return ret
 	}
@@ -113,15 +116,15 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingR
 // GetDscpTagValueOk returns a tuple with the DscpTagValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner) GetDscpTagValueOk() (*int32, bool) {
-	if o == nil || isNil(o.DscpTagValue) {
-    return nil, false
+	if o == nil || IsNil(o.DscpTagValue) {
+		return nil, false
 	}
 	return o.DscpTagValue, true
 }
 
 // HasDscpTagValue returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner) HasDscpTagValue() bool {
-	if o != nil && !isNil(o.DscpTagValue) {
+	if o != nil && !IsNil(o.DscpTagValue) {
 		return true
 	}
 
@@ -135,7 +138,7 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingR
 
 // GetPcpTagValue returns the PcpTagValue field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner) GetPcpTagValue() int32 {
-	if o == nil || isNil(o.PcpTagValue) {
+	if o == nil || IsNil(o.PcpTagValue) {
 		var ret int32
 		return ret
 	}
@@ -145,15 +148,15 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingR
 // GetPcpTagValueOk returns a tuple with the PcpTagValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner) GetPcpTagValueOk() (*int32, bool) {
-	if o == nil || isNil(o.PcpTagValue) {
-    return nil, false
+	if o == nil || IsNil(o.PcpTagValue) {
+		return nil, false
 	}
 	return o.PcpTagValue, true
 }
 
 // HasPcpTagValue returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner) HasPcpTagValue() bool {
-	if o != nil && !isNil(o.PcpTagValue) {
+	if o != nil && !IsNil(o.PcpTagValue) {
 		return true
 	}
 
@@ -167,7 +170,7 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingR
 
 // GetPriority returns the Priority field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner) GetPriority() string {
-	if o == nil || isNil(o.Priority) {
+	if o == nil || IsNil(o.Priority) {
 		var ret string
 		return ret
 	}
@@ -177,15 +180,15 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingR
 // GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner) GetPriorityOk() (*string, bool) {
-	if o == nil || isNil(o.Priority) {
-    return nil, false
+	if o == nil || IsNil(o.Priority) {
+		return nil, false
 	}
 	return o.Priority, true
 }
 
 // HasPriority returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner) HasPriority() bool {
-	if o != nil && !isNil(o.Priority) {
+	if o != nil && !IsNil(o.Priority) {
 		return true
 	}
 
@@ -198,23 +201,29 @@ func (o *CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingR
 }
 
 func (o CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["definitions"] = o.Definitions
-	}
-	if !isNil(o.PerClientBandwidthLimits) {
-		toSerialize["perClientBandwidthLimits"] = o.PerClientBandwidthLimits
-	}
-	if !isNil(o.DscpTagValue) {
-		toSerialize["dscpTagValue"] = o.DscpTagValue
-	}
-	if !isNil(o.PcpTagValue) {
-		toSerialize["pcpTagValue"] = o.PcpTagValue
-	}
-	if !isNil(o.Priority) {
-		toSerialize["priority"] = o.Priority
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["definitions"] = o.Definitions
+	if !IsNil(o.PerClientBandwidthLimits) {
+		toSerialize["perClientBandwidthLimits"] = o.PerClientBandwidthLimits
+	}
+	if !IsNil(o.DscpTagValue) {
+		toSerialize["dscpTagValue"] = o.DscpTagValue
+	}
+	if !IsNil(o.PcpTagValue) {
+		toSerialize["pcpTagValue"] = o.PcpTagValue
+	}
+	if !IsNil(o.Priority) {
+		toSerialize["priority"] = o.Priority
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkGroupPolicyRequestFirewallAndTrafficShapingTrafficShapingRulesInner struct {

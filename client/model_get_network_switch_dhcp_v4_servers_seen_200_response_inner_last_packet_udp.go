@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp{}
+
 // GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp UDP attributes of the packet.
 type GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp struct {
 	// UDP length of the packet.
@@ -41,7 +44,7 @@ func NewGetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdpWithDefaul
 
 // GetLength returns the Length field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp) GetLength() int32 {
-	if o == nil || isNil(o.Length) {
+	if o == nil || IsNil(o.Length) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp) GetLeng
 // GetLengthOk returns a tuple with the Length field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp) GetLengthOk() (*int32, bool) {
-	if o == nil || isNil(o.Length) {
-    return nil, false
+	if o == nil || IsNil(o.Length) {
+		return nil, false
 	}
 	return o.Length, true
 }
 
 // HasLength returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp) HasLength() bool {
-	if o != nil && !isNil(o.Length) {
+	if o != nil && !IsNil(o.Length) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp) SetLeng
 
 // GetChecksum returns the Checksum field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp) GetChecksum() string {
-	if o == nil || isNil(o.Checksum) {
+	if o == nil || IsNil(o.Checksum) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp) GetChec
 // GetChecksumOk returns a tuple with the Checksum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp) GetChecksumOk() (*string, bool) {
-	if o == nil || isNil(o.Checksum) {
-    return nil, false
+	if o == nil || IsNil(o.Checksum) {
+		return nil, false
 	}
 	return o.Checksum, true
 }
 
 // HasChecksum returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp) HasChecksum() bool {
-	if o != nil && !isNil(o.Checksum) {
+	if o != nil && !IsNil(o.Checksum) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp) SetChec
 }
 
 func (o GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Length) {
-		toSerialize["length"] = o.Length
-	}
-	if !isNil(o.Checksum) {
-		toSerialize["checksum"] = o.Checksum
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Length) {
+		toSerialize["length"] = o.Length
+	}
+	if !IsNil(o.Checksum) {
+		toSerialize["checksum"] = o.Checksum
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketUdp struct {

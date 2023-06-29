@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93X type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93X{}
+
 // CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93X Quality and resolution for MV93X camera models.
 type CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93X struct {
 	// Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
@@ -55,7 +58,7 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93X) Ge
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93X) GetQualityOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Quality, true
 }
@@ -79,7 +82,7 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93X) Ge
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93X) GetResolutionOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Resolution, true
 }
@@ -90,14 +93,18 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93X) Se
 }
 
 func (o CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93X) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["quality"] = o.Quality
-	}
-	if true {
-		toSerialize["resolution"] = o.Resolution
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93X) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["quality"] = o.Quality
+	toSerialize["resolution"] = o.Resolution
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV93X struct {

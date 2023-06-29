@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModifyNetworkSmDevicesTags200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModifyNetworkSmDevicesTags200ResponseInner{}
+
 // ModifyNetworkSmDevicesTags200ResponseInner struct for ModifyNetworkSmDevicesTags200ResponseInner
 type ModifyNetworkSmDevicesTags200ResponseInner struct {
 	// The Meraki Id of the device record.
@@ -45,7 +48,7 @@ func NewModifyNetworkSmDevicesTags200ResponseInnerWithDefaults() *ModifyNetworkS
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ModifyNetworkSmDevicesTags200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *ModifyNetworkSmDevicesTags200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModifyNetworkSmDevicesTags200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *ModifyNetworkSmDevicesTags200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *ModifyNetworkSmDevicesTags200ResponseInner) SetId(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ModifyNetworkSmDevicesTags200ResponseInner) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *ModifyNetworkSmDevicesTags200ResponseInner) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModifyNetworkSmDevicesTags200ResponseInner) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
 	}
 	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *ModifyNetworkSmDevicesTags200ResponseInner) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *ModifyNetworkSmDevicesTags200ResponseInner) SetTags(v []string) {
 
 // GetWifiMac returns the WifiMac field value if set, zero value otherwise.
 func (o *ModifyNetworkSmDevicesTags200ResponseInner) GetWifiMac() string {
-	if o == nil || isNil(o.WifiMac) {
+	if o == nil || IsNil(o.WifiMac) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *ModifyNetworkSmDevicesTags200ResponseInner) GetWifiMac() string {
 // GetWifiMacOk returns a tuple with the WifiMac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModifyNetworkSmDevicesTags200ResponseInner) GetWifiMacOk() (*string, bool) {
-	if o == nil || isNil(o.WifiMac) {
-    return nil, false
+	if o == nil || IsNil(o.WifiMac) {
+		return nil, false
 	}
 	return o.WifiMac, true
 }
 
 // HasWifiMac returns a boolean if a field has been set.
 func (o *ModifyNetworkSmDevicesTags200ResponseInner) HasWifiMac() bool {
-	if o != nil && !isNil(o.WifiMac) {
+	if o != nil && !IsNil(o.WifiMac) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *ModifyNetworkSmDevicesTags200ResponseInner) SetWifiMac(v string) {
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *ModifyNetworkSmDevicesTags200ResponseInner) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *ModifyNetworkSmDevicesTags200ResponseInner) GetSerial() string {
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModifyNetworkSmDevicesTags200ResponseInner) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *ModifyNetworkSmDevicesTags200ResponseInner) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *ModifyNetworkSmDevicesTags200ResponseInner) SetSerial(v string) {
 }
 
 func (o ModifyNetworkSmDevicesTags200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !isNil(o.WifiMac) {
-		toSerialize["wifiMac"] = o.WifiMac
-	}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ModifyNetworkSmDevicesTags200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.WifiMac) {
+		toSerialize["wifiMac"] = o.WifiMac
+	}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	return toSerialize, nil
 }
 
 type NullableModifyNetworkSmDevicesTags200ResponseInner struct {

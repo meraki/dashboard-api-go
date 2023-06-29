@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmDeviceSoftwares200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmDeviceSoftwares200ResponseInner{}
+
 // GetNetworkSmDeviceSoftwares200ResponseInner struct for GetNetworkSmDeviceSoftwares200ResponseInner
 type GetNetworkSmDeviceSoftwares200ResponseInner struct {
 	// The Meraki managed application Id for this record on a particular device.
@@ -83,7 +86,7 @@ func NewGetNetworkSmDeviceSoftwares200ResponseInnerWithDefaults() *GetNetworkSmD
 
 // GetAppId returns the AppId field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetAppId() string {
-	if o == nil || isNil(o.AppId) {
+	if o == nil || IsNil(o.AppId) {
 		var ret string
 		return ret
 	}
@@ -93,15 +96,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetAppId() string {
 // GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetAppIdOk() (*string, bool) {
-	if o == nil || isNil(o.AppId) {
-    return nil, false
+	if o == nil || IsNil(o.AppId) {
+		return nil, false
 	}
 	return o.AppId, true
 }
 
 // HasAppId returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasAppId() bool {
-	if o != nil && !isNil(o.AppId) {
+	if o != nil && !IsNil(o.AppId) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetAppId(v string) {
 
 // GetBundleSize returns the BundleSize field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetBundleSize() int32 {
-	if o == nil || isNil(o.BundleSize) {
+	if o == nil || IsNil(o.BundleSize) {
 		var ret int32
 		return ret
 	}
@@ -125,15 +128,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetBundleSize() int32 {
 // GetBundleSizeOk returns a tuple with the BundleSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetBundleSizeOk() (*int32, bool) {
-	if o == nil || isNil(o.BundleSize) {
-    return nil, false
+	if o == nil || IsNil(o.BundleSize) {
+		return nil, false
 	}
 	return o.BundleSize, true
 }
 
 // HasBundleSize returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasBundleSize() bool {
-	if o != nil && !isNil(o.BundleSize) {
+	if o != nil && !IsNil(o.BundleSize) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetBundleSize(v int32) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetCreatedAt() string {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
@@ -157,15 +160,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetCreatedAt() string {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetCreatedAtOk() (*string, bool) {
-	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetCreatedAt(v string) {
 
 // GetDeviceId returns the DeviceId field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetDeviceId() string {
-	if o == nil || isNil(o.DeviceId) {
+	if o == nil || IsNil(o.DeviceId) {
 		var ret string
 		return ret
 	}
@@ -189,15 +192,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetDeviceId() string {
 // GetDeviceIdOk returns a tuple with the DeviceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetDeviceIdOk() (*string, bool) {
-	if o == nil || isNil(o.DeviceId) {
-    return nil, false
+	if o == nil || IsNil(o.DeviceId) {
+		return nil, false
 	}
 	return o.DeviceId, true
 }
 
 // HasDeviceId returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasDeviceId() bool {
-	if o != nil && !isNil(o.DeviceId) {
+	if o != nil && !IsNil(o.DeviceId) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetDeviceId(v string) {
 
 // GetDynamicSize returns the DynamicSize field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetDynamicSize() int32 {
-	if o == nil || isNil(o.DynamicSize) {
+	if o == nil || IsNil(o.DynamicSize) {
 		var ret int32
 		return ret
 	}
@@ -221,15 +224,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetDynamicSize() int32 {
 // GetDynamicSizeOk returns a tuple with the DynamicSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetDynamicSizeOk() (*int32, bool) {
-	if o == nil || isNil(o.DynamicSize) {
-    return nil, false
+	if o == nil || IsNil(o.DynamicSize) {
+		return nil, false
 	}
 	return o.DynamicSize, true
 }
 
 // HasDynamicSize returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasDynamicSize() bool {
-	if o != nil && !isNil(o.DynamicSize) {
+	if o != nil && !IsNil(o.DynamicSize) {
 		return true
 	}
 
@@ -243,7 +246,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetDynamicSize(v int32) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -253,15 +256,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -275,7 +278,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetId(v string) {
 
 // GetIdentifier returns the Identifier field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetIdentifier() string {
-	if o == nil || isNil(o.Identifier) {
+	if o == nil || IsNil(o.Identifier) {
 		var ret string
 		return ret
 	}
@@ -285,15 +288,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetIdentifier() string {
 // GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetIdentifierOk() (*string, bool) {
-	if o == nil || isNil(o.Identifier) {
-    return nil, false
+	if o == nil || IsNil(o.Identifier) {
+		return nil, false
 	}
 	return o.Identifier, true
 }
 
 // HasIdentifier returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasIdentifier() bool {
-	if o != nil && !isNil(o.Identifier) {
+	if o != nil && !IsNil(o.Identifier) {
 		return true
 	}
 
@@ -307,7 +310,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetIdentifier(v string) {
 
 // GetInstalledAt returns the InstalledAt field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetInstalledAt() string {
-	if o == nil || isNil(o.InstalledAt) {
+	if o == nil || IsNil(o.InstalledAt) {
 		var ret string
 		return ret
 	}
@@ -317,15 +320,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetInstalledAt() string {
 // GetInstalledAtOk returns a tuple with the InstalledAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetInstalledAtOk() (*string, bool) {
-	if o == nil || isNil(o.InstalledAt) {
-    return nil, false
+	if o == nil || IsNil(o.InstalledAt) {
+		return nil, false
 	}
 	return o.InstalledAt, true
 }
 
 // HasInstalledAt returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasInstalledAt() bool {
-	if o != nil && !isNil(o.InstalledAt) {
+	if o != nil && !IsNil(o.InstalledAt) {
 		return true
 	}
 
@@ -339,7 +342,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetInstalledAt(v string) {
 
 // GetToInstall returns the ToInstall field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetToInstall() bool {
-	if o == nil || isNil(o.ToInstall) {
+	if o == nil || IsNil(o.ToInstall) {
 		var ret bool
 		return ret
 	}
@@ -349,15 +352,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetToInstall() bool {
 // GetToInstallOk returns a tuple with the ToInstall field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetToInstallOk() (*bool, bool) {
-	if o == nil || isNil(o.ToInstall) {
-    return nil, false
+	if o == nil || IsNil(o.ToInstall) {
+		return nil, false
 	}
 	return o.ToInstall, true
 }
 
 // HasToInstall returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasToInstall() bool {
-	if o != nil && !isNil(o.ToInstall) {
+	if o != nil && !IsNil(o.ToInstall) {
 		return true
 	}
 
@@ -371,7 +374,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetToInstall(v bool) {
 
 // GetIosRedemptionCode returns the IosRedemptionCode field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetIosRedemptionCode() bool {
-	if o == nil || isNil(o.IosRedemptionCode) {
+	if o == nil || IsNil(o.IosRedemptionCode) {
 		var ret bool
 		return ret
 	}
@@ -381,15 +384,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetIosRedemptionCode() boo
 // GetIosRedemptionCodeOk returns a tuple with the IosRedemptionCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetIosRedemptionCodeOk() (*bool, bool) {
-	if o == nil || isNil(o.IosRedemptionCode) {
-    return nil, false
+	if o == nil || IsNil(o.IosRedemptionCode) {
+		return nil, false
 	}
 	return o.IosRedemptionCode, true
 }
 
 // HasIosRedemptionCode returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasIosRedemptionCode() bool {
-	if o != nil && !isNil(o.IosRedemptionCode) {
+	if o != nil && !IsNil(o.IosRedemptionCode) {
 		return true
 	}
 
@@ -403,7 +406,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetIosRedemptionCode(v boo
 
 // GetIsManaged returns the IsManaged field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetIsManaged() bool {
-	if o == nil || isNil(o.IsManaged) {
+	if o == nil || IsNil(o.IsManaged) {
 		var ret bool
 		return ret
 	}
@@ -413,15 +416,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetIsManaged() bool {
 // GetIsManagedOk returns a tuple with the IsManaged field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetIsManagedOk() (*bool, bool) {
-	if o == nil || isNil(o.IsManaged) {
-    return nil, false
+	if o == nil || IsNil(o.IsManaged) {
+		return nil, false
 	}
 	return o.IsManaged, true
 }
 
 // HasIsManaged returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasIsManaged() bool {
-	if o != nil && !isNil(o.IsManaged) {
+	if o != nil && !IsNil(o.IsManaged) {
 		return true
 	}
 
@@ -435,7 +438,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetIsManaged(v bool) {
 
 // GetItunesId returns the ItunesId field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetItunesId() string {
-	if o == nil || isNil(o.ItunesId) {
+	if o == nil || IsNil(o.ItunesId) {
 		var ret string
 		return ret
 	}
@@ -445,15 +448,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetItunesId() string {
 // GetItunesIdOk returns a tuple with the ItunesId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetItunesIdOk() (*string, bool) {
-	if o == nil || isNil(o.ItunesId) {
-    return nil, false
+	if o == nil || IsNil(o.ItunesId) {
+		return nil, false
 	}
 	return o.ItunesId, true
 }
 
 // HasItunesId returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasItunesId() bool {
-	if o != nil && !isNil(o.ItunesId) {
+	if o != nil && !IsNil(o.ItunesId) {
 		return true
 	}
 
@@ -467,7 +470,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetItunesId(v string) {
 
 // GetLicenseKey returns the LicenseKey field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetLicenseKey() string {
-	if o == nil || isNil(o.LicenseKey) {
+	if o == nil || IsNil(o.LicenseKey) {
 		var ret string
 		return ret
 	}
@@ -477,15 +480,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetLicenseKey() string {
 // GetLicenseKeyOk returns a tuple with the LicenseKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetLicenseKeyOk() (*string, bool) {
-	if o == nil || isNil(o.LicenseKey) {
-    return nil, false
+	if o == nil || IsNil(o.LicenseKey) {
+		return nil, false
 	}
 	return o.LicenseKey, true
 }
 
 // HasLicenseKey returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasLicenseKey() bool {
-	if o != nil && !isNil(o.LicenseKey) {
+	if o != nil && !IsNil(o.LicenseKey) {
 		return true
 	}
 
@@ -499,7 +502,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetLicenseKey(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -509,15 +512,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -531,7 +534,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetName(v string) {
 
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetPath() string {
-	if o == nil || isNil(o.Path) {
+	if o == nil || IsNil(o.Path) {
 		var ret string
 		return ret
 	}
@@ -541,15 +544,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetPath() string {
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetPathOk() (*string, bool) {
-	if o == nil || isNil(o.Path) {
-    return nil, false
+	if o == nil || IsNil(o.Path) {
+		return nil, false
 	}
 	return o.Path, true
 }
 
 // HasPath returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasPath() bool {
-	if o != nil && !isNil(o.Path) {
+	if o != nil && !IsNil(o.Path) {
 		return true
 	}
 
@@ -563,7 +566,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetPath(v string) {
 
 // GetRedemptionCode returns the RedemptionCode field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetRedemptionCode() int32 {
-	if o == nil || isNil(o.RedemptionCode) {
+	if o == nil || IsNil(o.RedemptionCode) {
 		var ret int32
 		return ret
 	}
@@ -573,15 +576,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetRedemptionCode() int32 
 // GetRedemptionCodeOk returns a tuple with the RedemptionCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetRedemptionCodeOk() (*int32, bool) {
-	if o == nil || isNil(o.RedemptionCode) {
-    return nil, false
+	if o == nil || IsNil(o.RedemptionCode) {
+		return nil, false
 	}
 	return o.RedemptionCode, true
 }
 
 // HasRedemptionCode returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasRedemptionCode() bool {
-	if o != nil && !isNil(o.RedemptionCode) {
+	if o != nil && !IsNil(o.RedemptionCode) {
 		return true
 	}
 
@@ -595,7 +598,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetRedemptionCode(v int32)
 
 // GetShortVersion returns the ShortVersion field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetShortVersion() string {
-	if o == nil || isNil(o.ShortVersion) {
+	if o == nil || IsNil(o.ShortVersion) {
 		var ret string
 		return ret
 	}
@@ -605,15 +608,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetShortVersion() string {
 // GetShortVersionOk returns a tuple with the ShortVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetShortVersionOk() (*string, bool) {
-	if o == nil || isNil(o.ShortVersion) {
-    return nil, false
+	if o == nil || IsNil(o.ShortVersion) {
+		return nil, false
 	}
 	return o.ShortVersion, true
 }
 
 // HasShortVersion returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasShortVersion() bool {
-	if o != nil && !isNil(o.ShortVersion) {
+	if o != nil && !IsNil(o.ShortVersion) {
 		return true
 	}
 
@@ -627,7 +630,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetShortVersion(v string) 
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -637,15 +640,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -659,7 +662,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetStatus(v string) {
 
 // GetToUninstall returns the ToUninstall field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetToUninstall() bool {
-	if o == nil || isNil(o.ToUninstall) {
+	if o == nil || IsNil(o.ToUninstall) {
 		var ret bool
 		return ret
 	}
@@ -669,15 +672,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetToUninstall() bool {
 // GetToUninstallOk returns a tuple with the ToUninstall field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetToUninstallOk() (*bool, bool) {
-	if o == nil || isNil(o.ToUninstall) {
-    return nil, false
+	if o == nil || IsNil(o.ToUninstall) {
+		return nil, false
 	}
 	return o.ToUninstall, true
 }
 
 // HasToUninstall returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasToUninstall() bool {
-	if o != nil && !isNil(o.ToUninstall) {
+	if o != nil && !IsNil(o.ToUninstall) {
 		return true
 	}
 
@@ -691,7 +694,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetToUninstall(v bool) {
 
 // GetUninstalledAt returns the UninstalledAt field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetUninstalledAt() string {
-	if o == nil || isNil(o.UninstalledAt) {
+	if o == nil || IsNil(o.UninstalledAt) {
 		var ret string
 		return ret
 	}
@@ -701,15 +704,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetUninstalledAt() string 
 // GetUninstalledAtOk returns a tuple with the UninstalledAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetUninstalledAtOk() (*string, bool) {
-	if o == nil || isNil(o.UninstalledAt) {
-    return nil, false
+	if o == nil || IsNil(o.UninstalledAt) {
+		return nil, false
 	}
 	return o.UninstalledAt, true
 }
 
 // HasUninstalledAt returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasUninstalledAt() bool {
-	if o != nil && !isNil(o.UninstalledAt) {
+	if o != nil && !IsNil(o.UninstalledAt) {
 		return true
 	}
 
@@ -723,7 +726,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetUninstalledAt(v string)
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetUpdatedAt() string {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
@@ -733,15 +736,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetUpdatedAt() string {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetUpdatedAtOk() (*string, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -755,7 +758,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetUpdatedAt(v string) {
 
 // GetVendor returns the Vendor field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetVendor() string {
-	if o == nil || isNil(o.Vendor) {
+	if o == nil || IsNil(o.Vendor) {
 		var ret string
 		return ret
 	}
@@ -765,15 +768,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetVendor() string {
 // GetVendorOk returns a tuple with the Vendor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetVendorOk() (*string, bool) {
-	if o == nil || isNil(o.Vendor) {
-    return nil, false
+	if o == nil || IsNil(o.Vendor) {
+		return nil, false
 	}
 	return o.Vendor, true
 }
 
 // HasVendor returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasVendor() bool {
-	if o != nil && !isNil(o.Vendor) {
+	if o != nil && !IsNil(o.Vendor) {
 		return true
 	}
 
@@ -787,7 +790,7 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetVendor(v string) {
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetVersion() string {
-	if o == nil || isNil(o.Version) {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
@@ -797,15 +800,15 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetVersion() string {
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) GetVersionOk() (*string, bool) {
-	if o == nil || isNil(o.Version) {
-    return nil, false
+	if o == nil || IsNil(o.Version) {
+		return nil, false
 	}
 	return o.Version, true
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceSoftwares200ResponseInner) HasVersion() bool {
-	if o != nil && !isNil(o.Version) {
+	if o != nil && !IsNil(o.Version) {
 		return true
 	}
 
@@ -818,77 +821,85 @@ func (o *GetNetworkSmDeviceSoftwares200ResponseInner) SetVersion(v string) {
 }
 
 func (o GetNetworkSmDeviceSoftwares200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.AppId) {
-		toSerialize["appId"] = o.AppId
-	}
-	if !isNil(o.BundleSize) {
-		toSerialize["bundleSize"] = o.BundleSize
-	}
-	if !isNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if !isNil(o.DeviceId) {
-		toSerialize["deviceId"] = o.DeviceId
-	}
-	if !isNil(o.DynamicSize) {
-		toSerialize["dynamicSize"] = o.DynamicSize
-	}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Identifier) {
-		toSerialize["identifier"] = o.Identifier
-	}
-	if !isNil(o.InstalledAt) {
-		toSerialize["installedAt"] = o.InstalledAt
-	}
-	if !isNil(o.ToInstall) {
-		toSerialize["toInstall"] = o.ToInstall
-	}
-	if !isNil(o.IosRedemptionCode) {
-		toSerialize["iosRedemptionCode"] = o.IosRedemptionCode
-	}
-	if !isNil(o.IsManaged) {
-		toSerialize["isManaged"] = o.IsManaged
-	}
-	if !isNil(o.ItunesId) {
-		toSerialize["itunesId"] = o.ItunesId
-	}
-	if !isNil(o.LicenseKey) {
-		toSerialize["licenseKey"] = o.LicenseKey
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Path) {
-		toSerialize["path"] = o.Path
-	}
-	if !isNil(o.RedemptionCode) {
-		toSerialize["redemptionCode"] = o.RedemptionCode
-	}
-	if !isNil(o.ShortVersion) {
-		toSerialize["shortVersion"] = o.ShortVersion
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.ToUninstall) {
-		toSerialize["toUninstall"] = o.ToUninstall
-	}
-	if !isNil(o.UninstalledAt) {
-		toSerialize["uninstalledAt"] = o.UninstalledAt
-	}
-	if !isNil(o.UpdatedAt) {
-		toSerialize["updatedAt"] = o.UpdatedAt
-	}
-	if !isNil(o.Vendor) {
-		toSerialize["vendor"] = o.Vendor
-	}
-	if !isNil(o.Version) {
-		toSerialize["version"] = o.Version
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmDeviceSoftwares200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AppId) {
+		toSerialize["appId"] = o.AppId
+	}
+	if !IsNil(o.BundleSize) {
+		toSerialize["bundleSize"] = o.BundleSize
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if !IsNil(o.DeviceId) {
+		toSerialize["deviceId"] = o.DeviceId
+	}
+	if !IsNil(o.DynamicSize) {
+		toSerialize["dynamicSize"] = o.DynamicSize
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Identifier) {
+		toSerialize["identifier"] = o.Identifier
+	}
+	if !IsNil(o.InstalledAt) {
+		toSerialize["installedAt"] = o.InstalledAt
+	}
+	if !IsNil(o.ToInstall) {
+		toSerialize["toInstall"] = o.ToInstall
+	}
+	if !IsNil(o.IosRedemptionCode) {
+		toSerialize["iosRedemptionCode"] = o.IosRedemptionCode
+	}
+	if !IsNil(o.IsManaged) {
+		toSerialize["isManaged"] = o.IsManaged
+	}
+	if !IsNil(o.ItunesId) {
+		toSerialize["itunesId"] = o.ItunesId
+	}
+	if !IsNil(o.LicenseKey) {
+		toSerialize["licenseKey"] = o.LicenseKey
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Path) {
+		toSerialize["path"] = o.Path
+	}
+	if !IsNil(o.RedemptionCode) {
+		toSerialize["redemptionCode"] = o.RedemptionCode
+	}
+	if !IsNil(o.ShortVersion) {
+		toSerialize["shortVersion"] = o.ShortVersion
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.ToUninstall) {
+		toSerialize["toUninstall"] = o.ToUninstall
+	}
+	if !IsNil(o.UninstalledAt) {
+		toSerialize["uninstalledAt"] = o.UninstalledAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updatedAt"] = o.UpdatedAt
+	}
+	if !IsNil(o.Vendor) {
+		toSerialize["vendor"] = o.Vendor
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmDeviceSoftwares200ResponseInner struct {

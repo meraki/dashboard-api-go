@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkSwitchLinkAggregationRequestSwitchProfilePortsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkSwitchLinkAggregationRequestSwitchProfilePortsInner{}
+
 // CreateNetworkSwitchLinkAggregationRequestSwitchProfilePortsInner struct for CreateNetworkSwitchLinkAggregationRequestSwitchProfilePortsInner
 type CreateNetworkSwitchLinkAggregationRequestSwitchProfilePortsInner struct {
 	// Profile identifier.
@@ -55,7 +58,7 @@ func (o *CreateNetworkSwitchLinkAggregationRequestSwitchProfilePortsInner) GetPr
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchLinkAggregationRequestSwitchProfilePortsInner) GetProfileOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Profile, true
 }
@@ -79,7 +82,7 @@ func (o *CreateNetworkSwitchLinkAggregationRequestSwitchProfilePortsInner) GetPo
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchLinkAggregationRequestSwitchProfilePortsInner) GetPortIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.PortId, true
 }
@@ -90,14 +93,18 @@ func (o *CreateNetworkSwitchLinkAggregationRequestSwitchProfilePortsInner) SetPo
 }
 
 func (o CreateNetworkSwitchLinkAggregationRequestSwitchProfilePortsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["profile"] = o.Profile
-	}
-	if true {
-		toSerialize["portId"] = o.PortId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkSwitchLinkAggregationRequestSwitchProfilePortsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["profile"] = o.Profile
+	toSerialize["portId"] = o.PortId
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkSwitchLinkAggregationRequestSwitchProfilePortsInner struct {

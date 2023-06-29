@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts{}
+
 // GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts object of all supported HTTP response code
 type GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts struct {
 	// HTTP 200 response code count.
@@ -155,7 +158,7 @@ func NewGetOrganizationApiRequestsOverview200ResponseResponseCodeCountsWithDefau
 
 // GetVar200 returns the Var200 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar200() int32 {
-	if o == nil || isNil(o.Var200) {
+	if o == nil || IsNil(o.Var200) {
 		var ret int32
 		return ret
 	}
@@ -165,15 +168,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar200Ok returns a tuple with the Var200 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar200Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var200) {
-    return nil, false
+	if o == nil || IsNil(o.Var200) {
+		return nil, false
 	}
 	return o.Var200, true
 }
 
 // HasVar200 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar200() bool {
-	if o != nil && !isNil(o.Var200) {
+	if o != nil && !IsNil(o.Var200) {
 		return true
 	}
 
@@ -187,7 +190,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar201 returns the Var201 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar201() int32 {
-	if o == nil || isNil(o.Var201) {
+	if o == nil || IsNil(o.Var201) {
 		var ret int32
 		return ret
 	}
@@ -197,15 +200,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar201Ok returns a tuple with the Var201 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar201Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var201) {
-    return nil, false
+	if o == nil || IsNil(o.Var201) {
+		return nil, false
 	}
 	return o.Var201, true
 }
 
 // HasVar201 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar201() bool {
-	if o != nil && !isNil(o.Var201) {
+	if o != nil && !IsNil(o.Var201) {
 		return true
 	}
 
@@ -219,7 +222,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar202 returns the Var202 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar202() int32 {
-	if o == nil || isNil(o.Var202) {
+	if o == nil || IsNil(o.Var202) {
 		var ret int32
 		return ret
 	}
@@ -229,15 +232,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar202Ok returns a tuple with the Var202 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar202Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var202) {
-    return nil, false
+	if o == nil || IsNil(o.Var202) {
+		return nil, false
 	}
 	return o.Var202, true
 }
 
 // HasVar202 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar202() bool {
-	if o != nil && !isNil(o.Var202) {
+	if o != nil && !IsNil(o.Var202) {
 		return true
 	}
 
@@ -251,7 +254,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar203 returns the Var203 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar203() int32 {
-	if o == nil || isNil(o.Var203) {
+	if o == nil || IsNil(o.Var203) {
 		var ret int32
 		return ret
 	}
@@ -261,15 +264,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar203Ok returns a tuple with the Var203 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar203Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var203) {
-    return nil, false
+	if o == nil || IsNil(o.Var203) {
+		return nil, false
 	}
 	return o.Var203, true
 }
 
 // HasVar203 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar203() bool {
-	if o != nil && !isNil(o.Var203) {
+	if o != nil && !IsNil(o.Var203) {
 		return true
 	}
 
@@ -283,7 +286,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar204 returns the Var204 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar204() int32 {
-	if o == nil || isNil(o.Var204) {
+	if o == nil || IsNil(o.Var204) {
 		var ret int32
 		return ret
 	}
@@ -293,15 +296,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar204Ok returns a tuple with the Var204 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar204Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var204) {
-    return nil, false
+	if o == nil || IsNil(o.Var204) {
+		return nil, false
 	}
 	return o.Var204, true
 }
 
 // HasVar204 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar204() bool {
-	if o != nil && !isNil(o.Var204) {
+	if o != nil && !IsNil(o.Var204) {
 		return true
 	}
 
@@ -315,7 +318,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar205 returns the Var205 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar205() int32 {
-	if o == nil || isNil(o.Var205) {
+	if o == nil || IsNil(o.Var205) {
 		var ret int32
 		return ret
 	}
@@ -325,15 +328,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar205Ok returns a tuple with the Var205 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar205Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var205) {
-    return nil, false
+	if o == nil || IsNil(o.Var205) {
+		return nil, false
 	}
 	return o.Var205, true
 }
 
 // HasVar205 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar205() bool {
-	if o != nil && !isNil(o.Var205) {
+	if o != nil && !IsNil(o.Var205) {
 		return true
 	}
 
@@ -347,7 +350,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar206 returns the Var206 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar206() int32 {
-	if o == nil || isNil(o.Var206) {
+	if o == nil || IsNil(o.Var206) {
 		var ret int32
 		return ret
 	}
@@ -357,15 +360,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar206Ok returns a tuple with the Var206 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar206Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var206) {
-    return nil, false
+	if o == nil || IsNil(o.Var206) {
+		return nil, false
 	}
 	return o.Var206, true
 }
 
 // HasVar206 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar206() bool {
-	if o != nil && !isNil(o.Var206) {
+	if o != nil && !IsNil(o.Var206) {
 		return true
 	}
 
@@ -379,7 +382,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar207 returns the Var207 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar207() int32 {
-	if o == nil || isNil(o.Var207) {
+	if o == nil || IsNil(o.Var207) {
 		var ret int32
 		return ret
 	}
@@ -389,15 +392,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar207Ok returns a tuple with the Var207 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar207Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var207) {
-    return nil, false
+	if o == nil || IsNil(o.Var207) {
+		return nil, false
 	}
 	return o.Var207, true
 }
 
 // HasVar207 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar207() bool {
-	if o != nil && !isNil(o.Var207) {
+	if o != nil && !IsNil(o.Var207) {
 		return true
 	}
 
@@ -411,7 +414,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar208 returns the Var208 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar208() int32 {
-	if o == nil || isNil(o.Var208) {
+	if o == nil || IsNil(o.Var208) {
 		var ret int32
 		return ret
 	}
@@ -421,15 +424,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar208Ok returns a tuple with the Var208 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar208Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var208) {
-    return nil, false
+	if o == nil || IsNil(o.Var208) {
+		return nil, false
 	}
 	return o.Var208, true
 }
 
 // HasVar208 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar208() bool {
-	if o != nil && !isNil(o.Var208) {
+	if o != nil && !IsNil(o.Var208) {
 		return true
 	}
 
@@ -443,7 +446,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar226 returns the Var226 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar226() int32 {
-	if o == nil || isNil(o.Var226) {
+	if o == nil || IsNil(o.Var226) {
 		var ret int32
 		return ret
 	}
@@ -453,15 +456,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar226Ok returns a tuple with the Var226 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar226Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var226) {
-    return nil, false
+	if o == nil || IsNil(o.Var226) {
+		return nil, false
 	}
 	return o.Var226, true
 }
 
 // HasVar226 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar226() bool {
-	if o != nil && !isNil(o.Var226) {
+	if o != nil && !IsNil(o.Var226) {
 		return true
 	}
 
@@ -475,7 +478,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar300 returns the Var300 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar300() int32 {
-	if o == nil || isNil(o.Var300) {
+	if o == nil || IsNil(o.Var300) {
 		var ret int32
 		return ret
 	}
@@ -485,15 +488,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar300Ok returns a tuple with the Var300 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar300Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var300) {
-    return nil, false
+	if o == nil || IsNil(o.Var300) {
+		return nil, false
 	}
 	return o.Var300, true
 }
 
 // HasVar300 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar300() bool {
-	if o != nil && !isNil(o.Var300) {
+	if o != nil && !IsNil(o.Var300) {
 		return true
 	}
 
@@ -507,7 +510,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar301 returns the Var301 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar301() int32 {
-	if o == nil || isNil(o.Var301) {
+	if o == nil || IsNil(o.Var301) {
 		var ret int32
 		return ret
 	}
@@ -517,15 +520,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar301Ok returns a tuple with the Var301 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar301Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var301) {
-    return nil, false
+	if o == nil || IsNil(o.Var301) {
+		return nil, false
 	}
 	return o.Var301, true
 }
 
 // HasVar301 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar301() bool {
-	if o != nil && !isNil(o.Var301) {
+	if o != nil && !IsNil(o.Var301) {
 		return true
 	}
 
@@ -539,7 +542,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar302 returns the Var302 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar302() int32 {
-	if o == nil || isNil(o.Var302) {
+	if o == nil || IsNil(o.Var302) {
 		var ret int32
 		return ret
 	}
@@ -549,15 +552,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar302Ok returns a tuple with the Var302 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar302Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var302) {
-    return nil, false
+	if o == nil || IsNil(o.Var302) {
+		return nil, false
 	}
 	return o.Var302, true
 }
 
 // HasVar302 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar302() bool {
-	if o != nil && !isNil(o.Var302) {
+	if o != nil && !IsNil(o.Var302) {
 		return true
 	}
 
@@ -571,7 +574,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar303 returns the Var303 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar303() int32 {
-	if o == nil || isNil(o.Var303) {
+	if o == nil || IsNil(o.Var303) {
 		var ret int32
 		return ret
 	}
@@ -581,15 +584,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar303Ok returns a tuple with the Var303 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar303Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var303) {
-    return nil, false
+	if o == nil || IsNil(o.Var303) {
+		return nil, false
 	}
 	return o.Var303, true
 }
 
 // HasVar303 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar303() bool {
-	if o != nil && !isNil(o.Var303) {
+	if o != nil && !IsNil(o.Var303) {
 		return true
 	}
 
@@ -603,7 +606,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar304 returns the Var304 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar304() int32 {
-	if o == nil || isNil(o.Var304) {
+	if o == nil || IsNil(o.Var304) {
 		var ret int32
 		return ret
 	}
@@ -613,15 +616,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar304Ok returns a tuple with the Var304 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar304Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var304) {
-    return nil, false
+	if o == nil || IsNil(o.Var304) {
+		return nil, false
 	}
 	return o.Var304, true
 }
 
 // HasVar304 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar304() bool {
-	if o != nil && !isNil(o.Var304) {
+	if o != nil && !IsNil(o.Var304) {
 		return true
 	}
 
@@ -635,7 +638,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar305 returns the Var305 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar305() int32 {
-	if o == nil || isNil(o.Var305) {
+	if o == nil || IsNil(o.Var305) {
 		var ret int32
 		return ret
 	}
@@ -645,15 +648,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar305Ok returns a tuple with the Var305 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar305Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var305) {
-    return nil, false
+	if o == nil || IsNil(o.Var305) {
+		return nil, false
 	}
 	return o.Var305, true
 }
 
 // HasVar305 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar305() bool {
-	if o != nil && !isNil(o.Var305) {
+	if o != nil && !IsNil(o.Var305) {
 		return true
 	}
 
@@ -667,7 +670,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar306 returns the Var306 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar306() int32 {
-	if o == nil || isNil(o.Var306) {
+	if o == nil || IsNil(o.Var306) {
 		var ret int32
 		return ret
 	}
@@ -677,15 +680,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar306Ok returns a tuple with the Var306 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar306Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var306) {
-    return nil, false
+	if o == nil || IsNil(o.Var306) {
+		return nil, false
 	}
 	return o.Var306, true
 }
 
 // HasVar306 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar306() bool {
-	if o != nil && !isNil(o.Var306) {
+	if o != nil && !IsNil(o.Var306) {
 		return true
 	}
 
@@ -699,7 +702,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar307 returns the Var307 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar307() int32 {
-	if o == nil || isNil(o.Var307) {
+	if o == nil || IsNil(o.Var307) {
 		var ret int32
 		return ret
 	}
@@ -709,15 +712,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar307Ok returns a tuple with the Var307 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar307Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var307) {
-    return nil, false
+	if o == nil || IsNil(o.Var307) {
+		return nil, false
 	}
 	return o.Var307, true
 }
 
 // HasVar307 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar307() bool {
-	if o != nil && !isNil(o.Var307) {
+	if o != nil && !IsNil(o.Var307) {
 		return true
 	}
 
@@ -731,7 +734,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar308 returns the Var308 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar308() int32 {
-	if o == nil || isNil(o.Var308) {
+	if o == nil || IsNil(o.Var308) {
 		var ret int32
 		return ret
 	}
@@ -741,15 +744,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar308Ok returns a tuple with the Var308 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar308Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var308) {
-    return nil, false
+	if o == nil || IsNil(o.Var308) {
+		return nil, false
 	}
 	return o.Var308, true
 }
 
 // HasVar308 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar308() bool {
-	if o != nil && !isNil(o.Var308) {
+	if o != nil && !IsNil(o.Var308) {
 		return true
 	}
 
@@ -763,7 +766,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar400 returns the Var400 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar400() int32 {
-	if o == nil || isNil(o.Var400) {
+	if o == nil || IsNil(o.Var400) {
 		var ret int32
 		return ret
 	}
@@ -773,15 +776,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar400Ok returns a tuple with the Var400 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar400Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var400) {
-    return nil, false
+	if o == nil || IsNil(o.Var400) {
+		return nil, false
 	}
 	return o.Var400, true
 }
 
 // HasVar400 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar400() bool {
-	if o != nil && !isNil(o.Var400) {
+	if o != nil && !IsNil(o.Var400) {
 		return true
 	}
 
@@ -795,7 +798,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar401 returns the Var401 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar401() int32 {
-	if o == nil || isNil(o.Var401) {
+	if o == nil || IsNil(o.Var401) {
 		var ret int32
 		return ret
 	}
@@ -805,15 +808,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar401Ok returns a tuple with the Var401 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar401Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var401) {
-    return nil, false
+	if o == nil || IsNil(o.Var401) {
+		return nil, false
 	}
 	return o.Var401, true
 }
 
 // HasVar401 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar401() bool {
-	if o != nil && !isNil(o.Var401) {
+	if o != nil && !IsNil(o.Var401) {
 		return true
 	}
 
@@ -827,7 +830,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar402 returns the Var402 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar402() int32 {
-	if o == nil || isNil(o.Var402) {
+	if o == nil || IsNil(o.Var402) {
 		var ret int32
 		return ret
 	}
@@ -837,15 +840,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar402Ok returns a tuple with the Var402 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar402Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var402) {
-    return nil, false
+	if o == nil || IsNil(o.Var402) {
+		return nil, false
 	}
 	return o.Var402, true
 }
 
 // HasVar402 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar402() bool {
-	if o != nil && !isNil(o.Var402) {
+	if o != nil && !IsNil(o.Var402) {
 		return true
 	}
 
@@ -859,7 +862,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar403 returns the Var403 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar403() int32 {
-	if o == nil || isNil(o.Var403) {
+	if o == nil || IsNil(o.Var403) {
 		var ret int32
 		return ret
 	}
@@ -869,15 +872,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar403Ok returns a tuple with the Var403 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar403Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var403) {
-    return nil, false
+	if o == nil || IsNil(o.Var403) {
+		return nil, false
 	}
 	return o.Var403, true
 }
 
 // HasVar403 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar403() bool {
-	if o != nil && !isNil(o.Var403) {
+	if o != nil && !IsNil(o.Var403) {
 		return true
 	}
 
@@ -891,7 +894,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar404 returns the Var404 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar404() int32 {
-	if o == nil || isNil(o.Var404) {
+	if o == nil || IsNil(o.Var404) {
 		var ret int32
 		return ret
 	}
@@ -901,15 +904,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar404Ok returns a tuple with the Var404 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar404Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var404) {
-    return nil, false
+	if o == nil || IsNil(o.Var404) {
+		return nil, false
 	}
 	return o.Var404, true
 }
 
 // HasVar404 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar404() bool {
-	if o != nil && !isNil(o.Var404) {
+	if o != nil && !IsNil(o.Var404) {
 		return true
 	}
 
@@ -923,7 +926,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar405 returns the Var405 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar405() int32 {
-	if o == nil || isNil(o.Var405) {
+	if o == nil || IsNil(o.Var405) {
 		var ret int32
 		return ret
 	}
@@ -933,15 +936,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar405Ok returns a tuple with the Var405 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar405Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var405) {
-    return nil, false
+	if o == nil || IsNil(o.Var405) {
+		return nil, false
 	}
 	return o.Var405, true
 }
 
 // HasVar405 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar405() bool {
-	if o != nil && !isNil(o.Var405) {
+	if o != nil && !IsNil(o.Var405) {
 		return true
 	}
 
@@ -955,7 +958,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar406 returns the Var406 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar406() int32 {
-	if o == nil || isNil(o.Var406) {
+	if o == nil || IsNil(o.Var406) {
 		var ret int32
 		return ret
 	}
@@ -965,15 +968,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar406Ok returns a tuple with the Var406 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar406Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var406) {
-    return nil, false
+	if o == nil || IsNil(o.Var406) {
+		return nil, false
 	}
 	return o.Var406, true
 }
 
 // HasVar406 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar406() bool {
-	if o != nil && !isNil(o.Var406) {
+	if o != nil && !IsNil(o.Var406) {
 		return true
 	}
 
@@ -987,7 +990,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar407 returns the Var407 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar407() int32 {
-	if o == nil || isNil(o.Var407) {
+	if o == nil || IsNil(o.Var407) {
 		var ret int32
 		return ret
 	}
@@ -997,15 +1000,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar407Ok returns a tuple with the Var407 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar407Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var407) {
-    return nil, false
+	if o == nil || IsNil(o.Var407) {
+		return nil, false
 	}
 	return o.Var407, true
 }
 
 // HasVar407 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar407() bool {
-	if o != nil && !isNil(o.Var407) {
+	if o != nil && !IsNil(o.Var407) {
 		return true
 	}
 
@@ -1019,7 +1022,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar408 returns the Var408 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar408() int32 {
-	if o == nil || isNil(o.Var408) {
+	if o == nil || IsNil(o.Var408) {
 		var ret int32
 		return ret
 	}
@@ -1029,15 +1032,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar408Ok returns a tuple with the Var408 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar408Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var408) {
-    return nil, false
+	if o == nil || IsNil(o.Var408) {
+		return nil, false
 	}
 	return o.Var408, true
 }
 
 // HasVar408 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar408() bool {
-	if o != nil && !isNil(o.Var408) {
+	if o != nil && !IsNil(o.Var408) {
 		return true
 	}
 
@@ -1051,7 +1054,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar409 returns the Var409 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar409() int32 {
-	if o == nil || isNil(o.Var409) {
+	if o == nil || IsNil(o.Var409) {
 		var ret int32
 		return ret
 	}
@@ -1061,15 +1064,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar409Ok returns a tuple with the Var409 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar409Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var409) {
-    return nil, false
+	if o == nil || IsNil(o.Var409) {
+		return nil, false
 	}
 	return o.Var409, true
 }
 
 // HasVar409 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar409() bool {
-	if o != nil && !isNil(o.Var409) {
+	if o != nil && !IsNil(o.Var409) {
 		return true
 	}
 
@@ -1083,7 +1086,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar410 returns the Var410 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar410() int32 {
-	if o == nil || isNil(o.Var410) {
+	if o == nil || IsNil(o.Var410) {
 		var ret int32
 		return ret
 	}
@@ -1093,15 +1096,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar410Ok returns a tuple with the Var410 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar410Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var410) {
-    return nil, false
+	if o == nil || IsNil(o.Var410) {
+		return nil, false
 	}
 	return o.Var410, true
 }
 
 // HasVar410 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar410() bool {
-	if o != nil && !isNil(o.Var410) {
+	if o != nil && !IsNil(o.Var410) {
 		return true
 	}
 
@@ -1115,7 +1118,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar411 returns the Var411 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar411() int32 {
-	if o == nil || isNil(o.Var411) {
+	if o == nil || IsNil(o.Var411) {
 		var ret int32
 		return ret
 	}
@@ -1125,15 +1128,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar411Ok returns a tuple with the Var411 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar411Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var411) {
-    return nil, false
+	if o == nil || IsNil(o.Var411) {
+		return nil, false
 	}
 	return o.Var411, true
 }
 
 // HasVar411 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar411() bool {
-	if o != nil && !isNil(o.Var411) {
+	if o != nil && !IsNil(o.Var411) {
 		return true
 	}
 
@@ -1147,7 +1150,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar412 returns the Var412 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar412() int32 {
-	if o == nil || isNil(o.Var412) {
+	if o == nil || IsNil(o.Var412) {
 		var ret int32
 		return ret
 	}
@@ -1157,15 +1160,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar412Ok returns a tuple with the Var412 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar412Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var412) {
-    return nil, false
+	if o == nil || IsNil(o.Var412) {
+		return nil, false
 	}
 	return o.Var412, true
 }
 
 // HasVar412 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar412() bool {
-	if o != nil && !isNil(o.Var412) {
+	if o != nil && !IsNil(o.Var412) {
 		return true
 	}
 
@@ -1179,7 +1182,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar413 returns the Var413 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar413() int32 {
-	if o == nil || isNil(o.Var413) {
+	if o == nil || IsNil(o.Var413) {
 		var ret int32
 		return ret
 	}
@@ -1189,15 +1192,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar413Ok returns a tuple with the Var413 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar413Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var413) {
-    return nil, false
+	if o == nil || IsNil(o.Var413) {
+		return nil, false
 	}
 	return o.Var413, true
 }
 
 // HasVar413 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar413() bool {
-	if o != nil && !isNil(o.Var413) {
+	if o != nil && !IsNil(o.Var413) {
 		return true
 	}
 
@@ -1211,7 +1214,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar414 returns the Var414 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar414() int32 {
-	if o == nil || isNil(o.Var414) {
+	if o == nil || IsNil(o.Var414) {
 		var ret int32
 		return ret
 	}
@@ -1221,15 +1224,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar414Ok returns a tuple with the Var414 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar414Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var414) {
-    return nil, false
+	if o == nil || IsNil(o.Var414) {
+		return nil, false
 	}
 	return o.Var414, true
 }
 
 // HasVar414 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar414() bool {
-	if o != nil && !isNil(o.Var414) {
+	if o != nil && !IsNil(o.Var414) {
 		return true
 	}
 
@@ -1243,7 +1246,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar415 returns the Var415 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar415() int32 {
-	if o == nil || isNil(o.Var415) {
+	if o == nil || IsNil(o.Var415) {
 		var ret int32
 		return ret
 	}
@@ -1253,15 +1256,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar415Ok returns a tuple with the Var415 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar415Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var415) {
-    return nil, false
+	if o == nil || IsNil(o.Var415) {
+		return nil, false
 	}
 	return o.Var415, true
 }
 
 // HasVar415 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar415() bool {
-	if o != nil && !isNil(o.Var415) {
+	if o != nil && !IsNil(o.Var415) {
 		return true
 	}
 
@@ -1275,7 +1278,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar416 returns the Var416 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar416() int32 {
-	if o == nil || isNil(o.Var416) {
+	if o == nil || IsNil(o.Var416) {
 		var ret int32
 		return ret
 	}
@@ -1285,15 +1288,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar416Ok returns a tuple with the Var416 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar416Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var416) {
-    return nil, false
+	if o == nil || IsNil(o.Var416) {
+		return nil, false
 	}
 	return o.Var416, true
 }
 
 // HasVar416 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar416() bool {
-	if o != nil && !isNil(o.Var416) {
+	if o != nil && !IsNil(o.Var416) {
 		return true
 	}
 
@@ -1307,7 +1310,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar417 returns the Var417 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar417() int32 {
-	if o == nil || isNil(o.Var417) {
+	if o == nil || IsNil(o.Var417) {
 		var ret int32
 		return ret
 	}
@@ -1317,15 +1320,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar417Ok returns a tuple with the Var417 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar417Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var417) {
-    return nil, false
+	if o == nil || IsNil(o.Var417) {
+		return nil, false
 	}
 	return o.Var417, true
 }
 
 // HasVar417 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar417() bool {
-	if o != nil && !isNil(o.Var417) {
+	if o != nil && !IsNil(o.Var417) {
 		return true
 	}
 
@@ -1339,7 +1342,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar421 returns the Var421 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar421() int32 {
-	if o == nil || isNil(o.Var421) {
+	if o == nil || IsNil(o.Var421) {
 		var ret int32
 		return ret
 	}
@@ -1349,15 +1352,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar421Ok returns a tuple with the Var421 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar421Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var421) {
-    return nil, false
+	if o == nil || IsNil(o.Var421) {
+		return nil, false
 	}
 	return o.Var421, true
 }
 
 // HasVar421 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar421() bool {
-	if o != nil && !isNil(o.Var421) {
+	if o != nil && !IsNil(o.Var421) {
 		return true
 	}
 
@@ -1371,7 +1374,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar422 returns the Var422 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar422() int32 {
-	if o == nil || isNil(o.Var422) {
+	if o == nil || IsNil(o.Var422) {
 		var ret int32
 		return ret
 	}
@@ -1381,15 +1384,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar422Ok returns a tuple with the Var422 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar422Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var422) {
-    return nil, false
+	if o == nil || IsNil(o.Var422) {
+		return nil, false
 	}
 	return o.Var422, true
 }
 
 // HasVar422 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar422() bool {
-	if o != nil && !isNil(o.Var422) {
+	if o != nil && !IsNil(o.Var422) {
 		return true
 	}
 
@@ -1403,7 +1406,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar423 returns the Var423 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar423() int32 {
-	if o == nil || isNil(o.Var423) {
+	if o == nil || IsNil(o.Var423) {
 		var ret int32
 		return ret
 	}
@@ -1413,15 +1416,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar423Ok returns a tuple with the Var423 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar423Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var423) {
-    return nil, false
+	if o == nil || IsNil(o.Var423) {
+		return nil, false
 	}
 	return o.Var423, true
 }
 
 // HasVar423 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar423() bool {
-	if o != nil && !isNil(o.Var423) {
+	if o != nil && !IsNil(o.Var423) {
 		return true
 	}
 
@@ -1435,7 +1438,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar424 returns the Var424 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar424() int32 {
-	if o == nil || isNil(o.Var424) {
+	if o == nil || IsNil(o.Var424) {
 		var ret int32
 		return ret
 	}
@@ -1445,15 +1448,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar424Ok returns a tuple with the Var424 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar424Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var424) {
-    return nil, false
+	if o == nil || IsNil(o.Var424) {
+		return nil, false
 	}
 	return o.Var424, true
 }
 
 // HasVar424 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar424() bool {
-	if o != nil && !isNil(o.Var424) {
+	if o != nil && !IsNil(o.Var424) {
 		return true
 	}
 
@@ -1467,7 +1470,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar425 returns the Var425 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar425() int32 {
-	if o == nil || isNil(o.Var425) {
+	if o == nil || IsNil(o.Var425) {
 		var ret int32
 		return ret
 	}
@@ -1477,15 +1480,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar425Ok returns a tuple with the Var425 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar425Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var425) {
-    return nil, false
+	if o == nil || IsNil(o.Var425) {
+		return nil, false
 	}
 	return o.Var425, true
 }
 
 // HasVar425 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar425() bool {
-	if o != nil && !isNil(o.Var425) {
+	if o != nil && !IsNil(o.Var425) {
 		return true
 	}
 
@@ -1499,7 +1502,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar426 returns the Var426 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar426() int32 {
-	if o == nil || isNil(o.Var426) {
+	if o == nil || IsNil(o.Var426) {
 		var ret int32
 		return ret
 	}
@@ -1509,15 +1512,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar426Ok returns a tuple with the Var426 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar426Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var426) {
-    return nil, false
+	if o == nil || IsNil(o.Var426) {
+		return nil, false
 	}
 	return o.Var426, true
 }
 
 // HasVar426 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar426() bool {
-	if o != nil && !isNil(o.Var426) {
+	if o != nil && !IsNil(o.Var426) {
 		return true
 	}
 
@@ -1531,7 +1534,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar428 returns the Var428 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar428() int32 {
-	if o == nil || isNil(o.Var428) {
+	if o == nil || IsNil(o.Var428) {
 		var ret int32
 		return ret
 	}
@@ -1541,15 +1544,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar428Ok returns a tuple with the Var428 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar428Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var428) {
-    return nil, false
+	if o == nil || IsNil(o.Var428) {
+		return nil, false
 	}
 	return o.Var428, true
 }
 
 // HasVar428 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar428() bool {
-	if o != nil && !isNil(o.Var428) {
+	if o != nil && !IsNil(o.Var428) {
 		return true
 	}
 
@@ -1563,7 +1566,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar429 returns the Var429 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar429() int32 {
-	if o == nil || isNil(o.Var429) {
+	if o == nil || IsNil(o.Var429) {
 		var ret int32
 		return ret
 	}
@@ -1573,15 +1576,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar429Ok returns a tuple with the Var429 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar429Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var429) {
-    return nil, false
+	if o == nil || IsNil(o.Var429) {
+		return nil, false
 	}
 	return o.Var429, true
 }
 
 // HasVar429 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar429() bool {
-	if o != nil && !isNil(o.Var429) {
+	if o != nil && !IsNil(o.Var429) {
 		return true
 	}
 
@@ -1595,7 +1598,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar431 returns the Var431 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar431() int32 {
-	if o == nil || isNil(o.Var431) {
+	if o == nil || IsNil(o.Var431) {
 		var ret int32
 		return ret
 	}
@@ -1605,15 +1608,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar431Ok returns a tuple with the Var431 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar431Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var431) {
-    return nil, false
+	if o == nil || IsNil(o.Var431) {
+		return nil, false
 	}
 	return o.Var431, true
 }
 
 // HasVar431 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar431() bool {
-	if o != nil && !isNil(o.Var431) {
+	if o != nil && !IsNil(o.Var431) {
 		return true
 	}
 
@@ -1627,7 +1630,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar451 returns the Var451 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar451() int32 {
-	if o == nil || isNil(o.Var451) {
+	if o == nil || IsNil(o.Var451) {
 		var ret int32
 		return ret
 	}
@@ -1637,15 +1640,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar451Ok returns a tuple with the Var451 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar451Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var451) {
-    return nil, false
+	if o == nil || IsNil(o.Var451) {
+		return nil, false
 	}
 	return o.Var451, true
 }
 
 // HasVar451 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar451() bool {
-	if o != nil && !isNil(o.Var451) {
+	if o != nil && !IsNil(o.Var451) {
 		return true
 	}
 
@@ -1659,7 +1662,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar500 returns the Var500 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar500() int32 {
-	if o == nil || isNil(o.Var500) {
+	if o == nil || IsNil(o.Var500) {
 		var ret int32
 		return ret
 	}
@@ -1669,15 +1672,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar500Ok returns a tuple with the Var500 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar500Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var500) {
-    return nil, false
+	if o == nil || IsNil(o.Var500) {
+		return nil, false
 	}
 	return o.Var500, true
 }
 
 // HasVar500 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar500() bool {
-	if o != nil && !isNil(o.Var500) {
+	if o != nil && !IsNil(o.Var500) {
 		return true
 	}
 
@@ -1691,7 +1694,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar501 returns the Var501 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar501() int32 {
-	if o == nil || isNil(o.Var501) {
+	if o == nil || IsNil(o.Var501) {
 		var ret int32
 		return ret
 	}
@@ -1701,15 +1704,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar501Ok returns a tuple with the Var501 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar501Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var501) {
-    return nil, false
+	if o == nil || IsNil(o.Var501) {
+		return nil, false
 	}
 	return o.Var501, true
 }
 
 // HasVar501 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar501() bool {
-	if o != nil && !isNil(o.Var501) {
+	if o != nil && !IsNil(o.Var501) {
 		return true
 	}
 
@@ -1723,7 +1726,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar502 returns the Var502 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar502() int32 {
-	if o == nil || isNil(o.Var502) {
+	if o == nil || IsNil(o.Var502) {
 		var ret int32
 		return ret
 	}
@@ -1733,15 +1736,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar502Ok returns a tuple with the Var502 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar502Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var502) {
-    return nil, false
+	if o == nil || IsNil(o.Var502) {
+		return nil, false
 	}
 	return o.Var502, true
 }
 
 // HasVar502 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar502() bool {
-	if o != nil && !isNil(o.Var502) {
+	if o != nil && !IsNil(o.Var502) {
 		return true
 	}
 
@@ -1755,7 +1758,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar503 returns the Var503 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar503() int32 {
-	if o == nil || isNil(o.Var503) {
+	if o == nil || IsNil(o.Var503) {
 		var ret int32
 		return ret
 	}
@@ -1765,15 +1768,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar503Ok returns a tuple with the Var503 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar503Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var503) {
-    return nil, false
+	if o == nil || IsNil(o.Var503) {
+		return nil, false
 	}
 	return o.Var503, true
 }
 
 // HasVar503 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar503() bool {
-	if o != nil && !isNil(o.Var503) {
+	if o != nil && !IsNil(o.Var503) {
 		return true
 	}
 
@@ -1787,7 +1790,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar504 returns the Var504 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar504() int32 {
-	if o == nil || isNil(o.Var504) {
+	if o == nil || IsNil(o.Var504) {
 		var ret int32
 		return ret
 	}
@@ -1797,15 +1800,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar504Ok returns a tuple with the Var504 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar504Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var504) {
-    return nil, false
+	if o == nil || IsNil(o.Var504) {
+		return nil, false
 	}
 	return o.Var504, true
 }
 
 // HasVar504 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar504() bool {
-	if o != nil && !isNil(o.Var504) {
+	if o != nil && !IsNil(o.Var504) {
 		return true
 	}
 
@@ -1819,7 +1822,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar505 returns the Var505 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar505() int32 {
-	if o == nil || isNil(o.Var505) {
+	if o == nil || IsNil(o.Var505) {
 		var ret int32
 		return ret
 	}
@@ -1829,15 +1832,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar505Ok returns a tuple with the Var505 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar505Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var505) {
-    return nil, false
+	if o == nil || IsNil(o.Var505) {
+		return nil, false
 	}
 	return o.Var505, true
 }
 
 // HasVar505 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar505() bool {
-	if o != nil && !isNil(o.Var505) {
+	if o != nil && !IsNil(o.Var505) {
 		return true
 	}
 
@@ -1851,7 +1854,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar506 returns the Var506 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar506() int32 {
-	if o == nil || isNil(o.Var506) {
+	if o == nil || IsNil(o.Var506) {
 		var ret int32
 		return ret
 	}
@@ -1861,15 +1864,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar506Ok returns a tuple with the Var506 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar506Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var506) {
-    return nil, false
+	if o == nil || IsNil(o.Var506) {
+		return nil, false
 	}
 	return o.Var506, true
 }
 
 // HasVar506 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar506() bool {
-	if o != nil && !isNil(o.Var506) {
+	if o != nil && !IsNil(o.Var506) {
 		return true
 	}
 
@@ -1883,7 +1886,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar507 returns the Var507 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar507() int32 {
-	if o == nil || isNil(o.Var507) {
+	if o == nil || IsNil(o.Var507) {
 		var ret int32
 		return ret
 	}
@@ -1893,15 +1896,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar507Ok returns a tuple with the Var507 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar507Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var507) {
-    return nil, false
+	if o == nil || IsNil(o.Var507) {
+		return nil, false
 	}
 	return o.Var507, true
 }
 
 // HasVar507 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar507() bool {
-	if o != nil && !isNil(o.Var507) {
+	if o != nil && !IsNil(o.Var507) {
 		return true
 	}
 
@@ -1915,7 +1918,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar508 returns the Var508 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar508() int32 {
-	if o == nil || isNil(o.Var508) {
+	if o == nil || IsNil(o.Var508) {
 		var ret int32
 		return ret
 	}
@@ -1925,15 +1928,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar508Ok returns a tuple with the Var508 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar508Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var508) {
-    return nil, false
+	if o == nil || IsNil(o.Var508) {
+		return nil, false
 	}
 	return o.Var508, true
 }
 
 // HasVar508 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar508() bool {
-	if o != nil && !isNil(o.Var508) {
+	if o != nil && !IsNil(o.Var508) {
 		return true
 	}
 
@@ -1947,7 +1950,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar509 returns the Var509 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar509() int32 {
-	if o == nil || isNil(o.Var509) {
+	if o == nil || IsNil(o.Var509) {
 		var ret int32
 		return ret
 	}
@@ -1957,15 +1960,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar509Ok returns a tuple with the Var509 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar509Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var509) {
-    return nil, false
+	if o == nil || IsNil(o.Var509) {
+		return nil, false
 	}
 	return o.Var509, true
 }
 
 // HasVar509 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar509() bool {
-	if o != nil && !isNil(o.Var509) {
+	if o != nil && !IsNil(o.Var509) {
 		return true
 	}
 
@@ -1979,7 +1982,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar510 returns the Var510 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar510() int32 {
-	if o == nil || isNil(o.Var510) {
+	if o == nil || IsNil(o.Var510) {
 		var ret int32
 		return ret
 	}
@@ -1989,15 +1992,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar510Ok returns a tuple with the Var510 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar510Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var510) {
-    return nil, false
+	if o == nil || IsNil(o.Var510) {
+		return nil, false
 	}
 	return o.Var510, true
 }
 
 // HasVar510 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar510() bool {
-	if o != nil && !isNil(o.Var510) {
+	if o != nil && !IsNil(o.Var510) {
 		return true
 	}
 
@@ -2011,7 +2014,7 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 
 // GetVar511 returns the Var511 field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar511() int32 {
-	if o == nil || isNil(o.Var511) {
+	if o == nil || IsNil(o.Var511) {
 		var ret int32
 		return ret
 	}
@@ -2021,15 +2024,15 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar
 // GetVar511Ok returns a tuple with the Var511 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) GetVar511Ok() (*int32, bool) {
-	if o == nil || isNil(o.Var511) {
-    return nil, false
+	if o == nil || IsNil(o.Var511) {
+		return nil, false
 	}
 	return o.Var511, true
 }
 
 // HasVar511 returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) HasVar511() bool {
-	if o != nil && !isNil(o.Var511) {
+	if o != nil && !IsNil(o.Var511) {
 		return true
 	}
 
@@ -2042,185 +2045,193 @@ func (o *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) SetVar
 }
 
 func (o GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Var200) {
-		toSerialize["200"] = o.Var200
-	}
-	if !isNil(o.Var201) {
-		toSerialize["201"] = o.Var201
-	}
-	if !isNil(o.Var202) {
-		toSerialize["202"] = o.Var202
-	}
-	if !isNil(o.Var203) {
-		toSerialize["203"] = o.Var203
-	}
-	if !isNil(o.Var204) {
-		toSerialize["204"] = o.Var204
-	}
-	if !isNil(o.Var205) {
-		toSerialize["205"] = o.Var205
-	}
-	if !isNil(o.Var206) {
-		toSerialize["206"] = o.Var206
-	}
-	if !isNil(o.Var207) {
-		toSerialize["207"] = o.Var207
-	}
-	if !isNil(o.Var208) {
-		toSerialize["208"] = o.Var208
-	}
-	if !isNil(o.Var226) {
-		toSerialize["226"] = o.Var226
-	}
-	if !isNil(o.Var300) {
-		toSerialize["300"] = o.Var300
-	}
-	if !isNil(o.Var301) {
-		toSerialize["301"] = o.Var301
-	}
-	if !isNil(o.Var302) {
-		toSerialize["302"] = o.Var302
-	}
-	if !isNil(o.Var303) {
-		toSerialize["303"] = o.Var303
-	}
-	if !isNil(o.Var304) {
-		toSerialize["304"] = o.Var304
-	}
-	if !isNil(o.Var305) {
-		toSerialize["305"] = o.Var305
-	}
-	if !isNil(o.Var306) {
-		toSerialize["306"] = o.Var306
-	}
-	if !isNil(o.Var307) {
-		toSerialize["307"] = o.Var307
-	}
-	if !isNil(o.Var308) {
-		toSerialize["308"] = o.Var308
-	}
-	if !isNil(o.Var400) {
-		toSerialize["400"] = o.Var400
-	}
-	if !isNil(o.Var401) {
-		toSerialize["401"] = o.Var401
-	}
-	if !isNil(o.Var402) {
-		toSerialize["402"] = o.Var402
-	}
-	if !isNil(o.Var403) {
-		toSerialize["403"] = o.Var403
-	}
-	if !isNil(o.Var404) {
-		toSerialize["404"] = o.Var404
-	}
-	if !isNil(o.Var405) {
-		toSerialize["405"] = o.Var405
-	}
-	if !isNil(o.Var406) {
-		toSerialize["406"] = o.Var406
-	}
-	if !isNil(o.Var407) {
-		toSerialize["407"] = o.Var407
-	}
-	if !isNil(o.Var408) {
-		toSerialize["408"] = o.Var408
-	}
-	if !isNil(o.Var409) {
-		toSerialize["409"] = o.Var409
-	}
-	if !isNil(o.Var410) {
-		toSerialize["410"] = o.Var410
-	}
-	if !isNil(o.Var411) {
-		toSerialize["411"] = o.Var411
-	}
-	if !isNil(o.Var412) {
-		toSerialize["412"] = o.Var412
-	}
-	if !isNil(o.Var413) {
-		toSerialize["413"] = o.Var413
-	}
-	if !isNil(o.Var414) {
-		toSerialize["414"] = o.Var414
-	}
-	if !isNil(o.Var415) {
-		toSerialize["415"] = o.Var415
-	}
-	if !isNil(o.Var416) {
-		toSerialize["416"] = o.Var416
-	}
-	if !isNil(o.Var417) {
-		toSerialize["417"] = o.Var417
-	}
-	if !isNil(o.Var421) {
-		toSerialize["421"] = o.Var421
-	}
-	if !isNil(o.Var422) {
-		toSerialize["422"] = o.Var422
-	}
-	if !isNil(o.Var423) {
-		toSerialize["423"] = o.Var423
-	}
-	if !isNil(o.Var424) {
-		toSerialize["424"] = o.Var424
-	}
-	if !isNil(o.Var425) {
-		toSerialize["425"] = o.Var425
-	}
-	if !isNil(o.Var426) {
-		toSerialize["426"] = o.Var426
-	}
-	if !isNil(o.Var428) {
-		toSerialize["428"] = o.Var428
-	}
-	if !isNil(o.Var429) {
-		toSerialize["429"] = o.Var429
-	}
-	if !isNil(o.Var431) {
-		toSerialize["431"] = o.Var431
-	}
-	if !isNil(o.Var451) {
-		toSerialize["451"] = o.Var451
-	}
-	if !isNil(o.Var500) {
-		toSerialize["500"] = o.Var500
-	}
-	if !isNil(o.Var501) {
-		toSerialize["501"] = o.Var501
-	}
-	if !isNil(o.Var502) {
-		toSerialize["502"] = o.Var502
-	}
-	if !isNil(o.Var503) {
-		toSerialize["503"] = o.Var503
-	}
-	if !isNil(o.Var504) {
-		toSerialize["504"] = o.Var504
-	}
-	if !isNil(o.Var505) {
-		toSerialize["505"] = o.Var505
-	}
-	if !isNil(o.Var506) {
-		toSerialize["506"] = o.Var506
-	}
-	if !isNil(o.Var507) {
-		toSerialize["507"] = o.Var507
-	}
-	if !isNil(o.Var508) {
-		toSerialize["508"] = o.Var508
-	}
-	if !isNil(o.Var509) {
-		toSerialize["509"] = o.Var509
-	}
-	if !isNil(o.Var510) {
-		toSerialize["510"] = o.Var510
-	}
-	if !isNil(o.Var511) {
-		toSerialize["511"] = o.Var511
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Var200) {
+		toSerialize["200"] = o.Var200
+	}
+	if !IsNil(o.Var201) {
+		toSerialize["201"] = o.Var201
+	}
+	if !IsNil(o.Var202) {
+		toSerialize["202"] = o.Var202
+	}
+	if !IsNil(o.Var203) {
+		toSerialize["203"] = o.Var203
+	}
+	if !IsNil(o.Var204) {
+		toSerialize["204"] = o.Var204
+	}
+	if !IsNil(o.Var205) {
+		toSerialize["205"] = o.Var205
+	}
+	if !IsNil(o.Var206) {
+		toSerialize["206"] = o.Var206
+	}
+	if !IsNil(o.Var207) {
+		toSerialize["207"] = o.Var207
+	}
+	if !IsNil(o.Var208) {
+		toSerialize["208"] = o.Var208
+	}
+	if !IsNil(o.Var226) {
+		toSerialize["226"] = o.Var226
+	}
+	if !IsNil(o.Var300) {
+		toSerialize["300"] = o.Var300
+	}
+	if !IsNil(o.Var301) {
+		toSerialize["301"] = o.Var301
+	}
+	if !IsNil(o.Var302) {
+		toSerialize["302"] = o.Var302
+	}
+	if !IsNil(o.Var303) {
+		toSerialize["303"] = o.Var303
+	}
+	if !IsNil(o.Var304) {
+		toSerialize["304"] = o.Var304
+	}
+	if !IsNil(o.Var305) {
+		toSerialize["305"] = o.Var305
+	}
+	if !IsNil(o.Var306) {
+		toSerialize["306"] = o.Var306
+	}
+	if !IsNil(o.Var307) {
+		toSerialize["307"] = o.Var307
+	}
+	if !IsNil(o.Var308) {
+		toSerialize["308"] = o.Var308
+	}
+	if !IsNil(o.Var400) {
+		toSerialize["400"] = o.Var400
+	}
+	if !IsNil(o.Var401) {
+		toSerialize["401"] = o.Var401
+	}
+	if !IsNil(o.Var402) {
+		toSerialize["402"] = o.Var402
+	}
+	if !IsNil(o.Var403) {
+		toSerialize["403"] = o.Var403
+	}
+	if !IsNil(o.Var404) {
+		toSerialize["404"] = o.Var404
+	}
+	if !IsNil(o.Var405) {
+		toSerialize["405"] = o.Var405
+	}
+	if !IsNil(o.Var406) {
+		toSerialize["406"] = o.Var406
+	}
+	if !IsNil(o.Var407) {
+		toSerialize["407"] = o.Var407
+	}
+	if !IsNil(o.Var408) {
+		toSerialize["408"] = o.Var408
+	}
+	if !IsNil(o.Var409) {
+		toSerialize["409"] = o.Var409
+	}
+	if !IsNil(o.Var410) {
+		toSerialize["410"] = o.Var410
+	}
+	if !IsNil(o.Var411) {
+		toSerialize["411"] = o.Var411
+	}
+	if !IsNil(o.Var412) {
+		toSerialize["412"] = o.Var412
+	}
+	if !IsNil(o.Var413) {
+		toSerialize["413"] = o.Var413
+	}
+	if !IsNil(o.Var414) {
+		toSerialize["414"] = o.Var414
+	}
+	if !IsNil(o.Var415) {
+		toSerialize["415"] = o.Var415
+	}
+	if !IsNil(o.Var416) {
+		toSerialize["416"] = o.Var416
+	}
+	if !IsNil(o.Var417) {
+		toSerialize["417"] = o.Var417
+	}
+	if !IsNil(o.Var421) {
+		toSerialize["421"] = o.Var421
+	}
+	if !IsNil(o.Var422) {
+		toSerialize["422"] = o.Var422
+	}
+	if !IsNil(o.Var423) {
+		toSerialize["423"] = o.Var423
+	}
+	if !IsNil(o.Var424) {
+		toSerialize["424"] = o.Var424
+	}
+	if !IsNil(o.Var425) {
+		toSerialize["425"] = o.Var425
+	}
+	if !IsNil(o.Var426) {
+		toSerialize["426"] = o.Var426
+	}
+	if !IsNil(o.Var428) {
+		toSerialize["428"] = o.Var428
+	}
+	if !IsNil(o.Var429) {
+		toSerialize["429"] = o.Var429
+	}
+	if !IsNil(o.Var431) {
+		toSerialize["431"] = o.Var431
+	}
+	if !IsNil(o.Var451) {
+		toSerialize["451"] = o.Var451
+	}
+	if !IsNil(o.Var500) {
+		toSerialize["500"] = o.Var500
+	}
+	if !IsNil(o.Var501) {
+		toSerialize["501"] = o.Var501
+	}
+	if !IsNil(o.Var502) {
+		toSerialize["502"] = o.Var502
+	}
+	if !IsNil(o.Var503) {
+		toSerialize["503"] = o.Var503
+	}
+	if !IsNil(o.Var504) {
+		toSerialize["504"] = o.Var504
+	}
+	if !IsNil(o.Var505) {
+		toSerialize["505"] = o.Var505
+	}
+	if !IsNil(o.Var506) {
+		toSerialize["506"] = o.Var506
+	}
+	if !IsNil(o.Var507) {
+		toSerialize["507"] = o.Var507
+	}
+	if !IsNil(o.Var508) {
+		toSerialize["508"] = o.Var508
+	}
+	if !IsNil(o.Var509) {
+		toSerialize["509"] = o.Var509
+	}
+	if !IsNil(o.Var510) {
+		toSerialize["510"] = o.Var510
+	}
+	if !IsNil(o.Var511) {
+		toSerialize["511"] = o.Var511
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationApiRequestsOverview200ResponseResponseCodeCounts struct {

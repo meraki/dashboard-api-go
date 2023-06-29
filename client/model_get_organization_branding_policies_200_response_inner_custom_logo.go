@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationBrandingPolicies200ResponseInnerCustomLogo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationBrandingPolicies200ResponseInnerCustomLogo{}
+
 // GetOrganizationBrandingPolicies200ResponseInnerCustomLogo Properties describing the custom logo attached to the branding policy.
 type GetOrganizationBrandingPolicies200ResponseInnerCustomLogo struct {
 	// Whether or not there is a custom logo enabled.
@@ -40,7 +43,7 @@ func NewGetOrganizationBrandingPolicies200ResponseInnerCustomLogoWithDefaults() 
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogo) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogo) GetEnabled()
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogo) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogo) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogo) SetEnabled(v
 
 // GetImage returns the Image field value if set, zero value otherwise.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogo) GetImage() GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImage {
-	if o == nil || isNil(o.Image) {
+	if o == nil || IsNil(o.Image) {
 		var ret GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImage
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogo) GetImage() G
 // GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogo) GetImageOk() (*GetOrganizationBrandingPolicies200ResponseInnerCustomLogoImage, bool) {
-	if o == nil || isNil(o.Image) {
-    return nil, false
+	if o == nil || IsNil(o.Image) {
+		return nil, false
 	}
 	return o.Image, true
 }
 
 // HasImage returns a boolean if a field has been set.
 func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogo) HasImage() bool {
-	if o != nil && !isNil(o.Image) {
+	if o != nil && !IsNil(o.Image) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *GetOrganizationBrandingPolicies200ResponseInnerCustomLogo) SetImage(v G
 }
 
 func (o GetOrganizationBrandingPolicies200ResponseInnerCustomLogo) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.Image) {
-		toSerialize["image"] = o.Image
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationBrandingPolicies200ResponseInnerCustomLogo) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Image) {
+		toSerialize["image"] = o.Image
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationBrandingPolicies200ResponseInnerCustomLogo struct {

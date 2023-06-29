@@ -37,6 +37,7 @@ func main() {
     createNetworkSmTargetGroupRequest := *openapiclient.NewCreateNetworkSmTargetGroupRequest() // CreateNetworkSmTargetGroupRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.TargetGroupsApi.CreateNetworkSmTargetGroup(context.Background(), networkId).CreateNetworkSmTargetGroupRequest(createNetworkSmTargetGroupRequest).Execute()
     if err != nil {
@@ -109,8 +110,9 @@ func main() {
     targetGroupId := "targetGroupId_example" // string | Target group ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TargetGroupsApi.DeleteNetworkSmTargetGroup(context.Background(), networkId, targetGroupId).Execute()
+    r, err := apiClient.TargetGroupsApi.DeleteNetworkSmTargetGroup(context.Background(), networkId, targetGroupId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TargetGroupsApi.DeleteNetworkSmTargetGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -181,6 +183,7 @@ func main() {
     withDetails := true // bool | Boolean indicating if the the ids of the devices or users scoped by the target group should be included in the response (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.TargetGroupsApi.GetNetworkSmTargetGroup(context.Background(), networkId, targetGroupId).WithDetails(withDetails).Execute()
     if err != nil {
@@ -255,6 +258,7 @@ func main() {
     withDetails := true // bool | Boolean indicating if the the ids of the devices or users scoped by the target group should be included in the response (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.TargetGroupsApi.GetNetworkSmTargetGroups(context.Background(), networkId).WithDetails(withDetails).Execute()
     if err != nil {
@@ -328,6 +332,7 @@ func main() {
     createNetworkSmTargetGroupRequest := *openapiclient.NewCreateNetworkSmTargetGroupRequest() // CreateNetworkSmTargetGroupRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.TargetGroupsApi.UpdateNetworkSmTargetGroup(context.Background(), networkId, targetGroupId).CreateNetworkSmTargetGroupRequest(createNetworkSmTargetGroupRequest).Execute()
     if err != nil {

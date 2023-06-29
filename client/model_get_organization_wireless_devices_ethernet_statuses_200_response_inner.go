@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner{}
+
 // GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner struct for GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner
 type GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner struct {
 	// The serial number of the AP
@@ -46,7 +49,7 @@ func NewGetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerWithDefaul
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetSeri
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) SetSeri
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetName
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) SetName
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetNetwork() GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerNetwork {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		var ret GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerNetwork
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetNetw
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetNetworkOk() (*GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerNetwork, bool) {
-	if o == nil || isNil(o.Network) {
-    return nil, false
+	if o == nil || IsNil(o.Network) {
+		return nil, false
 	}
 	return o.Network, true
 }
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) HasNetwork() bool {
-	if o != nil && !isNil(o.Network) {
+	if o != nil && !IsNil(o.Network) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) SetNetw
 
 // GetPower returns the Power field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetPower() GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPower {
-	if o == nil || isNil(o.Power) {
+	if o == nil || IsNil(o.Power) {
 		var ret GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPower
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetPowe
 // GetPowerOk returns a tuple with the Power field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetPowerOk() (*GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPower, bool) {
-	if o == nil || isNil(o.Power) {
-    return nil, false
+	if o == nil || IsNil(o.Power) {
+		return nil, false
 	}
 	return o.Power, true
 }
 
 // HasPower returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) HasPower() bool {
-	if o != nil && !isNil(o.Power) {
+	if o != nil && !IsNil(o.Power) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) SetPowe
 
 // GetPorts returns the Ports field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetPorts() []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner {
-	if o == nil || isNil(o.Ports) {
+	if o == nil || IsNil(o.Ports) {
 		var ret []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner
 		return ret
 	}
@@ -184,15 +187,15 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetPort
 // GetPortsOk returns a tuple with the Ports field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetPortsOk() ([]GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner, bool) {
-	if o == nil || isNil(o.Ports) {
-    return nil, false
+	if o == nil || IsNil(o.Ports) {
+		return nil, false
 	}
 	return o.Ports, true
 }
 
 // HasPorts returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) HasPorts() bool {
-	if o != nil && !isNil(o.Ports) {
+	if o != nil && !IsNil(o.Ports) {
 		return true
 	}
 
@@ -206,7 +209,7 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) SetPort
 
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetAggregation() GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregation {
-	if o == nil || isNil(o.Aggregation) {
+	if o == nil || IsNil(o.Aggregation) {
 		var ret GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregation
 		return ret
 	}
@@ -216,15 +219,15 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetAggr
 // GetAggregationOk returns a tuple with the Aggregation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) GetAggregationOk() (*GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregation, bool) {
-	if o == nil || isNil(o.Aggregation) {
-    return nil, false
+	if o == nil || IsNil(o.Aggregation) {
+		return nil, false
 	}
 	return o.Aggregation, true
 }
 
 // HasAggregation returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) HasAggregation() bool {
-	if o != nil && !isNil(o.Aggregation) {
+	if o != nil && !IsNil(o.Aggregation) {
 		return true
 	}
 
@@ -237,26 +240,34 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) SetAggr
 }
 
 func (o GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Network) {
-		toSerialize["network"] = o.Network
-	}
-	if !isNil(o.Power) {
-		toSerialize["power"] = o.Power
-	}
-	if !isNil(o.Ports) {
-		toSerialize["ports"] = o.Ports
-	}
-	if !isNil(o.Aggregation) {
-		toSerialize["aggregation"] = o.Aggregation
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Network) {
+		toSerialize["network"] = o.Network
+	}
+	if !IsNil(o.Power) {
+		toSerialize["power"] = o.Power
+	}
+	if !IsNil(o.Ports) {
+		toSerialize["ports"] = o.Ports
+	}
+	if !IsNil(o.Aggregation) {
+		toSerialize["aggregation"] = o.Aggregation
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationWirelessDevicesEthernetStatuses200ResponseInner struct {

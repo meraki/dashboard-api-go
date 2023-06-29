@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchAccessControlListsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchAccessControlListsRequest{}
+
 // UpdateNetworkSwitchAccessControlListsRequest struct for UpdateNetworkSwitchAccessControlListsRequest
 type UpdateNetworkSwitchAccessControlListsRequest struct {
 	// An ordered array of the access control list rules (not including the default rule). An empty array will clear the rules.
@@ -52,7 +55,7 @@ func (o *UpdateNetworkSwitchAccessControlListsRequest) GetRules() []UpdateNetwor
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAccessControlListsRequest) GetRulesOk() ([]UpdateNetworkSwitchAccessControlListsRequestRulesInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Rules, true
 }
@@ -63,11 +66,17 @@ func (o *UpdateNetworkSwitchAccessControlListsRequest) SetRules(v []UpdateNetwor
 }
 
 func (o UpdateNetworkSwitchAccessControlListsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["rules"] = o.Rules
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchAccessControlListsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["rules"] = o.Rules
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchAccessControlListsRequest struct {

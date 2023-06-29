@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInner{}
+
 // GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInner struct for GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInner
 type GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInner struct {
 	// Mac address of the client
@@ -39,7 +42,7 @@ func NewGetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInnerWithD
 
 // GetMac returns the Mac field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInner) GetMac() string {
-	if o == nil || isNil(o.Mac) {
+	if o == nil || IsNil(o.Mac) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInner) Ge
 // GetMacOk returns a tuple with the Mac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInner) GetMacOk() (*string, bool) {
-	if o == nil || isNil(o.Mac) {
-    return nil, false
+	if o == nil || IsNil(o.Mac) {
+		return nil, false
 	}
 	return o.Mac, true
 }
 
 // HasMac returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInner) HasMac() bool {
-	if o != nil && !isNil(o.Mac) {
+	if o != nil && !IsNil(o.Mac) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInner) Se
 }
 
 func (o GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Mac) {
-		toSerialize["mac"] = o.Mac
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Mac) {
+		toSerialize["mac"] = o.Mac
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchAlternateManagementInterfaceRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchAlternateManagementInterfaceRequest{}
+
 // UpdateNetworkSwitchAlternateManagementInterfaceRequest struct for UpdateNetworkSwitchAlternateManagementInterfaceRequest
 type UpdateNetworkSwitchAlternateManagementInterfaceRequest struct {
 	// Boolean value to enable or disable AMI configuration. If enabled, VLAN and protocols must be set
@@ -45,7 +48,7 @@ func NewUpdateNetworkSwitchAlternateManagementInterfaceRequestWithDefaults() *Up
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) GetEnabled() bo
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) SetEnabled(v bo
 
 // GetVlanId returns the VlanId field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) GetVlanId() int32 {
-	if o == nil || isNil(o.VlanId) {
+	if o == nil || IsNil(o.VlanId) {
 		var ret int32
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) GetVlanId() int
 // GetVlanIdOk returns a tuple with the VlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) GetVlanIdOk() (*int32, bool) {
-	if o == nil || isNil(o.VlanId) {
-    return nil, false
+	if o == nil || IsNil(o.VlanId) {
+		return nil, false
 	}
 	return o.VlanId, true
 }
 
 // HasVlanId returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) HasVlanId() bool {
-	if o != nil && !isNil(o.VlanId) {
+	if o != nil && !IsNil(o.VlanId) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) SetVlanId(v int
 
 // GetProtocols returns the Protocols field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) GetProtocols() []string {
-	if o == nil || isNil(o.Protocols) {
+	if o == nil || IsNil(o.Protocols) {
 		var ret []string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) GetProtocols() 
 // GetProtocolsOk returns a tuple with the Protocols field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) GetProtocolsOk() ([]string, bool) {
-	if o == nil || isNil(o.Protocols) {
-    return nil, false
+	if o == nil || IsNil(o.Protocols) {
+		return nil, false
 	}
 	return o.Protocols, true
 }
 
 // HasProtocols returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) HasProtocols() bool {
-	if o != nil && !isNil(o.Protocols) {
+	if o != nil && !IsNil(o.Protocols) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) SetProtocols(v 
 
 // GetSwitches returns the Switches field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) GetSwitches() []UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner {
-	if o == nil || isNil(o.Switches) {
+	if o == nil || IsNil(o.Switches) {
 		var ret []UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) GetSwitches() [
 // GetSwitchesOk returns a tuple with the Switches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) GetSwitchesOk() ([]UpdateNetworkSwitchAlternateManagementInterfaceRequestSwitchesInner, bool) {
-	if o == nil || isNil(o.Switches) {
-    return nil, false
+	if o == nil || IsNil(o.Switches) {
+		return nil, false
 	}
 	return o.Switches, true
 }
 
 // HasSwitches returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) HasSwitches() bool {
-	if o != nil && !isNil(o.Switches) {
+	if o != nil && !IsNil(o.Switches) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *UpdateNetworkSwitchAlternateManagementInterfaceRequest) SetSwitches(v [
 }
 
 func (o UpdateNetworkSwitchAlternateManagementInterfaceRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.VlanId) {
-		toSerialize["vlanId"] = o.VlanId
-	}
-	if !isNil(o.Protocols) {
-		toSerialize["protocols"] = o.Protocols
-	}
-	if !isNil(o.Switches) {
-		toSerialize["switches"] = o.Switches
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchAlternateManagementInterfaceRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.VlanId) {
+		toSerialize["vlanId"] = o.VlanId
+	}
+	if !IsNil(o.Protocols) {
+		toSerialize["protocols"] = o.Protocols
+	}
+	if !IsNil(o.Switches) {
+		toSerialize["switches"] = o.Switches
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchAlternateManagementInterfaceRequest struct {

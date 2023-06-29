@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceCellularGatewayLanRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceCellularGatewayLanRequest{}
+
 // UpdateDeviceCellularGatewayLanRequest struct for UpdateDeviceCellularGatewayLanRequest
 type UpdateDeviceCellularGatewayLanRequest struct {
 	// list of all reserved IP ranges for a single MG
@@ -41,7 +44,7 @@ func NewUpdateDeviceCellularGatewayLanRequestWithDefaults() *UpdateDeviceCellula
 
 // GetReservedIpRanges returns the ReservedIpRanges field value if set, zero value otherwise.
 func (o *UpdateDeviceCellularGatewayLanRequest) GetReservedIpRanges() []UpdateDeviceCellularGatewayLanRequestReservedIpRangesInner {
-	if o == nil || isNil(o.ReservedIpRanges) {
+	if o == nil || IsNil(o.ReservedIpRanges) {
 		var ret []UpdateDeviceCellularGatewayLanRequestReservedIpRangesInner
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateDeviceCellularGatewayLanRequest) GetReservedIpRanges() []UpdateDe
 // GetReservedIpRangesOk returns a tuple with the ReservedIpRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularGatewayLanRequest) GetReservedIpRangesOk() ([]UpdateDeviceCellularGatewayLanRequestReservedIpRangesInner, bool) {
-	if o == nil || isNil(o.ReservedIpRanges) {
-    return nil, false
+	if o == nil || IsNil(o.ReservedIpRanges) {
+		return nil, false
 	}
 	return o.ReservedIpRanges, true
 }
 
 // HasReservedIpRanges returns a boolean if a field has been set.
 func (o *UpdateDeviceCellularGatewayLanRequest) HasReservedIpRanges() bool {
-	if o != nil && !isNil(o.ReservedIpRanges) {
+	if o != nil && !IsNil(o.ReservedIpRanges) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateDeviceCellularGatewayLanRequest) SetReservedIpRanges(v []UpdateDe
 
 // GetFixedIpAssignments returns the FixedIpAssignments field value if set, zero value otherwise.
 func (o *UpdateDeviceCellularGatewayLanRequest) GetFixedIpAssignments() []UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner {
-	if o == nil || isNil(o.FixedIpAssignments) {
+	if o == nil || IsNil(o.FixedIpAssignments) {
 		var ret []UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateDeviceCellularGatewayLanRequest) GetFixedIpAssignments() []Update
 // GetFixedIpAssignmentsOk returns a tuple with the FixedIpAssignments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularGatewayLanRequest) GetFixedIpAssignmentsOk() ([]UpdateDeviceCellularGatewayLanRequestFixedIpAssignmentsInner, bool) {
-	if o == nil || isNil(o.FixedIpAssignments) {
-    return nil, false
+	if o == nil || IsNil(o.FixedIpAssignments) {
+		return nil, false
 	}
 	return o.FixedIpAssignments, true
 }
 
 // HasFixedIpAssignments returns a boolean if a field has been set.
 func (o *UpdateDeviceCellularGatewayLanRequest) HasFixedIpAssignments() bool {
-	if o != nil && !isNil(o.FixedIpAssignments) {
+	if o != nil && !IsNil(o.FixedIpAssignments) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateDeviceCellularGatewayLanRequest) SetFixedIpAssignments(v []Update
 }
 
 func (o UpdateDeviceCellularGatewayLanRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ReservedIpRanges) {
-		toSerialize["reservedIpRanges"] = o.ReservedIpRanges
-	}
-	if !isNil(o.FixedIpAssignments) {
-		toSerialize["fixedIpAssignments"] = o.FixedIpAssignments
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceCellularGatewayLanRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ReservedIpRanges) {
+		toSerialize["reservedIpRanges"] = o.ReservedIpRanges
+	}
+	if !IsNil(o.FixedIpAssignments) {
+		toSerialize["fixedIpAssignments"] = o.FixedIpAssignments
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceCellularGatewayLanRequest struct {

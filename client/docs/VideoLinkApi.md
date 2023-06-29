@@ -34,6 +34,7 @@ func main() {
     timestamp := time.Now() // time.Time | [optional] The video link will start at this time. The timestamp should be a string in ISO8601 format. If no timestamp is specified, we will assume current time. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.VideoLinkApi.GetDeviceCameraVideoLink(context.Background(), serial).Timestamp(timestamp).Execute()
     if err != nil {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner{}
+
 // GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner struct for GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner
 type GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner struct {
 	// 'allow' or 'deny' traffic specified by this rule
@@ -45,7 +48,7 @@ func NewGetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInnerWithDefaults(
 
 // GetPolicy returns the Policy field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) GetPolicy() string {
-	if o == nil || isNil(o.Policy) {
+	if o == nil || IsNil(o.Policy) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) GetPolicy(
 // GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) GetPolicyOk() (*string, bool) {
-	if o == nil || isNil(o.Policy) {
-    return nil, false
+	if o == nil || IsNil(o.Policy) {
+		return nil, false
 	}
 	return o.Policy, true
 }
 
 // HasPolicy returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) HasPolicy() bool {
-	if o != nil && !isNil(o.Policy) {
+	if o != nil && !IsNil(o.Policy) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) SetPolicy(
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) GetProtocol() string {
-	if o == nil || isNil(o.Protocol) {
+	if o == nil || IsNil(o.Protocol) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) GetProtoco
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) GetProtocolOk() (*string, bool) {
-	if o == nil || isNil(o.Protocol) {
-    return nil, false
+	if o == nil || IsNil(o.Protocol) {
+		return nil, false
 	}
 	return o.Protocol, true
 }
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) HasProtocol() bool {
-	if o != nil && !isNil(o.Protocol) {
+	if o != nil && !IsNil(o.Protocol) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) SetProtoco
 
 // GetSrcPort returns the SrcPort field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) GetSrcPort() string {
-	if o == nil || isNil(o.SrcPort) {
+	if o == nil || IsNil(o.SrcPort) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) GetSrcPort
 // GetSrcPortOk returns a tuple with the SrcPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) GetSrcPortOk() (*string, bool) {
-	if o == nil || isNil(o.SrcPort) {
-    return nil, false
+	if o == nil || IsNil(o.SrcPort) {
+		return nil, false
 	}
 	return o.SrcPort, true
 }
 
 // HasSrcPort returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) HasSrcPort() bool {
-	if o != nil && !isNil(o.SrcPort) {
+	if o != nil && !IsNil(o.SrcPort) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) SetSrcPort
 
 // GetDstPort returns the DstPort field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) GetDstPort() string {
-	if o == nil || isNil(o.DstPort) {
+	if o == nil || IsNil(o.DstPort) {
 		var ret string
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) GetDstPort
 // GetDstPortOk returns a tuple with the DstPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) GetDstPortOk() (*string, bool) {
-	if o == nil || isNil(o.DstPort) {
-    return nil, false
+	if o == nil || IsNil(o.DstPort) {
+		return nil, false
 	}
 	return o.DstPort, true
 }
 
 // HasDstPort returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) HasDstPort() bool {
-	if o != nil && !isNil(o.DstPort) {
+	if o != nil && !IsNil(o.DstPort) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) SetDstPort
 }
 
 func (o GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Policy) {
-		toSerialize["policy"] = o.Policy
-	}
-	if !isNil(o.Protocol) {
-		toSerialize["protocol"] = o.Protocol
-	}
-	if !isNil(o.SrcPort) {
-		toSerialize["srcPort"] = o.SrcPort
-	}
-	if !isNil(o.DstPort) {
-		toSerialize["dstPort"] = o.DstPort
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Policy) {
+		toSerialize["policy"] = o.Policy
+	}
+	if !IsNil(o.Protocol) {
+		toSerialize["protocol"] = o.Protocol
+	}
+	if !IsNil(o.SrcPort) {
+		toSerialize["srcPort"] = o.SrcPort
+	}
+	if !IsNil(o.DstPort) {
+		toSerialize["dstPort"] = o.DstPort
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationAdaptivePolicyAcls200ResponseInnerRulesInner struct {

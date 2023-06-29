@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular{}
+
 // UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular The bandwidth settings for the 'cellular' uplink
 type UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular struct {
 	// The maximum upload limit (integer, in Kbps). null indicates no limit
@@ -41,7 +44,7 @@ func NewUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimit
 
 // GetLimitUp returns the LimitUp field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular) GetLimitUp() int32 {
-	if o == nil || isNil(o.LimitUp) {
+	if o == nil || IsNil(o.LimitUp) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimi
 // GetLimitUpOk returns a tuple with the LimitUp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular) GetLimitUpOk() (*int32, bool) {
-	if o == nil || isNil(o.LimitUp) {
-    return nil, false
+	if o == nil || IsNil(o.LimitUp) {
+		return nil, false
 	}
 	return o.LimitUp, true
 }
 
 // HasLimitUp returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular) HasLimitUp() bool {
-	if o != nil && !isNil(o.LimitUp) {
+	if o != nil && !IsNil(o.LimitUp) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimi
 
 // GetLimitDown returns the LimitDown field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular) GetLimitDown() int32 {
-	if o == nil || isNil(o.LimitDown) {
+	if o == nil || IsNil(o.LimitDown) {
 		var ret int32
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimi
 // GetLimitDownOk returns a tuple with the LimitDown field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular) GetLimitDownOk() (*int32, bool) {
-	if o == nil || isNil(o.LimitDown) {
-    return nil, false
+	if o == nil || IsNil(o.LimitDown) {
+		return nil, false
 	}
 	return o.LimitDown, true
 }
 
 // HasLimitDown returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular) HasLimitDown() bool {
-	if o != nil && !isNil(o.LimitDown) {
+	if o != nil && !IsNil(o.LimitDown) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimi
 }
 
 func (o UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.LimitUp) {
-		toSerialize["limitUp"] = o.LimitUp
-	}
-	if !isNil(o.LimitDown) {
-		toSerialize["limitDown"] = o.LimitDown
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.LimitUp) {
+		toSerialize["limitUp"] = o.LimitUp
+	}
+	if !IsNil(o.LimitDown) {
+		toSerialize["limitDown"] = o.LimitDown
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequestBandwidthLimitsCellular struct {

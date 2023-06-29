@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSensorAlertsProfiles200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSensorAlertsProfiles200ResponseInner{}
+
 // GetNetworkSensorAlertsProfiles200ResponseInner struct for GetNetworkSensorAlertsProfiles200ResponseInner
 type GetNetworkSensorAlertsProfiles200ResponseInner struct {
 	// ID of the sensor alert profile.
@@ -48,7 +51,7 @@ func NewGetNetworkSensorAlertsProfiles200ResponseInnerWithDefaults() *GetNetwork
 
 // GetProfileId returns the ProfileId field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetProfileId() string {
-	if o == nil || isNil(o.ProfileId) {
+	if o == nil || IsNil(o.ProfileId) {
 		var ret string
 		return ret
 	}
@@ -58,15 +61,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetProfileId() string {
 // GetProfileIdOk returns a tuple with the ProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetProfileIdOk() (*string, bool) {
-	if o == nil || isNil(o.ProfileId) {
-    return nil, false
+	if o == nil || IsNil(o.ProfileId) {
+		return nil, false
 	}
 	return o.ProfileId, true
 }
 
 // HasProfileId returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInner) HasProfileId() bool {
-	if o != nil && !isNil(o.ProfileId) {
+	if o != nil && !IsNil(o.ProfileId) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInner) SetProfileId(v string) 
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -90,15 +93,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInner) SetName(v string) {
 
 // GetSchedule returns the Schedule field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetSchedule() GetNetworkSensorAlertsProfiles200ResponseInnerSchedule {
-	if o == nil || isNil(o.Schedule) {
+	if o == nil || IsNil(o.Schedule) {
 		var ret GetNetworkSensorAlertsProfiles200ResponseInnerSchedule
 		return ret
 	}
@@ -122,15 +125,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetSchedule() GetNetwor
 // GetScheduleOk returns a tuple with the Schedule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetScheduleOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerSchedule, bool) {
-	if o == nil || isNil(o.Schedule) {
-    return nil, false
+	if o == nil || IsNil(o.Schedule) {
+		return nil, false
 	}
 	return o.Schedule, true
 }
 
 // HasSchedule returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInner) HasSchedule() bool {
-	if o != nil && !isNil(o.Schedule) {
+	if o != nil && !IsNil(o.Schedule) {
 		return true
 	}
 
@@ -156,7 +159,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetConditions() []GetNe
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetConditionsOk() ([]GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Conditions, true
 }
@@ -168,7 +171,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInner) SetConditions(v []GetNe
 
 // GetRecipients returns the Recipients field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetRecipients() GetNetworkSensorAlertsProfiles200ResponseInnerRecipients {
-	if o == nil || isNil(o.Recipients) {
+	if o == nil || IsNil(o.Recipients) {
 		var ret GetNetworkSensorAlertsProfiles200ResponseInnerRecipients
 		return ret
 	}
@@ -178,15 +181,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetRecipients() GetNetw
 // GetRecipientsOk returns a tuple with the Recipients field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetRecipientsOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerRecipients, bool) {
-	if o == nil || isNil(o.Recipients) {
-    return nil, false
+	if o == nil || IsNil(o.Recipients) {
+		return nil, false
 	}
 	return o.Recipients, true
 }
 
 // HasRecipients returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInner) HasRecipients() bool {
-	if o != nil && !isNil(o.Recipients) {
+	if o != nil && !IsNil(o.Recipients) {
 		return true
 	}
 
@@ -200,7 +203,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInner) SetRecipients(v GetNetw
 
 // GetSerials returns the Serials field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetSerials() []string {
-	if o == nil || isNil(o.Serials) {
+	if o == nil || IsNil(o.Serials) {
 		var ret []string
 		return ret
 	}
@@ -210,15 +213,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetSerials() []string {
 // GetSerialsOk returns a tuple with the Serials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInner) GetSerialsOk() ([]string, bool) {
-	if o == nil || isNil(o.Serials) {
-    return nil, false
+	if o == nil || IsNil(o.Serials) {
+		return nil, false
 	}
 	return o.Serials, true
 }
 
 // HasSerials returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInner) HasSerials() bool {
-	if o != nil && !isNil(o.Serials) {
+	if o != nil && !IsNil(o.Serials) {
 		return true
 	}
 
@@ -231,26 +234,32 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInner) SetSerials(v []string) 
 }
 
 func (o GetNetworkSensorAlertsProfiles200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ProfileId) {
-		toSerialize["profileId"] = o.ProfileId
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Schedule) {
-		toSerialize["schedule"] = o.Schedule
-	}
-	if true {
-		toSerialize["conditions"] = o.Conditions
-	}
-	if !isNil(o.Recipients) {
-		toSerialize["recipients"] = o.Recipients
-	}
-	if !isNil(o.Serials) {
-		toSerialize["serials"] = o.Serials
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSensorAlertsProfiles200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ProfileId) {
+		toSerialize["profileId"] = o.ProfileId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Schedule) {
+		toSerialize["schedule"] = o.Schedule
+	}
+	toSerialize["conditions"] = o.Conditions
+	if !IsNil(o.Recipients) {
+		toSerialize["recipients"] = o.Recipients
+	}
+	if !IsNil(o.Serials) {
+		toSerialize["serials"] = o.Serials
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSensorAlertsProfiles200ResponseInner struct {

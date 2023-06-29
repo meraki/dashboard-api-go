@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationAdaptivePolicyGroupRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationAdaptivePolicyGroupRequest{}
+
 // CreateOrganizationAdaptivePolicyGroupRequest struct for CreateOrganizationAdaptivePolicyGroupRequest
 type CreateOrganizationAdaptivePolicyGroupRequest struct {
 	// Name of the group
@@ -59,7 +62,7 @@ func (o *CreateOrganizationAdaptivePolicyGroupRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyGroupRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -83,7 +86,7 @@ func (o *CreateOrganizationAdaptivePolicyGroupRequest) GetSgt() int32 {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyGroupRequest) GetSgtOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Sgt, true
 }
@@ -95,7 +98,7 @@ func (o *CreateOrganizationAdaptivePolicyGroupRequest) SetSgt(v int32) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CreateOrganizationAdaptivePolicyGroupRequest) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -105,15 +108,15 @@ func (o *CreateOrganizationAdaptivePolicyGroupRequest) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyGroupRequest) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
-    return nil, false
+	if o == nil || IsNil(o.Description) {
+		return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CreateOrganizationAdaptivePolicyGroupRequest) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -127,7 +130,7 @@ func (o *CreateOrganizationAdaptivePolicyGroupRequest) SetDescription(v string) 
 
 // GetPolicyObjects returns the PolicyObjects field value if set, zero value otherwise.
 func (o *CreateOrganizationAdaptivePolicyGroupRequest) GetPolicyObjects() []CreateOrganizationAdaptivePolicyGroupRequestPolicyObjectsInner {
-	if o == nil || isNil(o.PolicyObjects) {
+	if o == nil || IsNil(o.PolicyObjects) {
 		var ret []CreateOrganizationAdaptivePolicyGroupRequestPolicyObjectsInner
 		return ret
 	}
@@ -137,15 +140,15 @@ func (o *CreateOrganizationAdaptivePolicyGroupRequest) GetPolicyObjects() []Crea
 // GetPolicyObjectsOk returns a tuple with the PolicyObjects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAdaptivePolicyGroupRequest) GetPolicyObjectsOk() ([]CreateOrganizationAdaptivePolicyGroupRequestPolicyObjectsInner, bool) {
-	if o == nil || isNil(o.PolicyObjects) {
-    return nil, false
+	if o == nil || IsNil(o.PolicyObjects) {
+		return nil, false
 	}
 	return o.PolicyObjects, true
 }
 
 // HasPolicyObjects returns a boolean if a field has been set.
 func (o *CreateOrganizationAdaptivePolicyGroupRequest) HasPolicyObjects() bool {
-	if o != nil && !isNil(o.PolicyObjects) {
+	if o != nil && !IsNil(o.PolicyObjects) {
 		return true
 	}
 
@@ -158,20 +161,24 @@ func (o *CreateOrganizationAdaptivePolicyGroupRequest) SetPolicyObjects(v []Crea
 }
 
 func (o CreateOrganizationAdaptivePolicyGroupRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["sgt"] = o.Sgt
-	}
-	if !isNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	if !isNil(o.PolicyObjects) {
-		toSerialize["policyObjects"] = o.PolicyObjects
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationAdaptivePolicyGroupRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["sgt"] = o.Sgt
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.PolicyObjects) {
+		toSerialize["policyObjects"] = o.PolicyObjects
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationAdaptivePolicyGroupRequest struct {

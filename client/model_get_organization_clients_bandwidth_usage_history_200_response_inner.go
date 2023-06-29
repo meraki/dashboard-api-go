@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetOrganizationClientsBandwidthUsageHistory200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationClientsBandwidthUsageHistory200ResponseInner{}
+
 // GetOrganizationClientsBandwidthUsageHistory200ResponseInner struct for GetOrganizationClientsBandwidthUsageHistory200ResponseInner
 type GetOrganizationClientsBandwidthUsageHistory200ResponseInner struct {
 	// Timestamp for the bandwidth usage snapshot.
@@ -46,7 +49,7 @@ func NewGetOrganizationClientsBandwidthUsageHistory200ResponseInnerWithDefaults(
 
 // GetTs returns the Ts field value if set, zero value otherwise.
 func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) GetTs() time.Time {
-	if o == nil || isNil(o.Ts) {
+	if o == nil || IsNil(o.Ts) {
 		var ret time.Time
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) GetTs() ti
 // GetTsOk returns a tuple with the Ts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) GetTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.Ts) {
-    return nil, false
+	if o == nil || IsNil(o.Ts) {
+		return nil, false
 	}
 	return o.Ts, true
 }
 
 // HasTs returns a boolean if a field has been set.
 func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) HasTs() bool {
-	if o != nil && !isNil(o.Ts) {
+	if o != nil && !IsNil(o.Ts) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) SetTs(v ti
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) GetTotal() int32 {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		var ret int32
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) GetTotal()
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) GetTotalOk() (*int32, bool) {
-	if o == nil || isNil(o.Total) {
-    return nil, false
+	if o == nil || IsNil(o.Total) {
+		return nil, false
 	}
 	return o.Total, true
 }
 
 // HasTotal returns a boolean if a field has been set.
 func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) HasTotal() bool {
-	if o != nil && !isNil(o.Total) {
+	if o != nil && !IsNil(o.Total) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) SetTotal(v
 
 // GetUpstream returns the Upstream field value if set, zero value otherwise.
 func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) GetUpstream() int32 {
-	if o == nil || isNil(o.Upstream) {
+	if o == nil || IsNil(o.Upstream) {
 		var ret int32
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) GetUpstrea
 // GetUpstreamOk returns a tuple with the Upstream field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) GetUpstreamOk() (*int32, bool) {
-	if o == nil || isNil(o.Upstream) {
-    return nil, false
+	if o == nil || IsNil(o.Upstream) {
+		return nil, false
 	}
 	return o.Upstream, true
 }
 
 // HasUpstream returns a boolean if a field has been set.
 func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) HasUpstream() bool {
-	if o != nil && !isNil(o.Upstream) {
+	if o != nil && !IsNil(o.Upstream) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) SetUpstrea
 
 // GetDownstream returns the Downstream field value if set, zero value otherwise.
 func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) GetDownstream() int32 {
-	if o == nil || isNil(o.Downstream) {
+	if o == nil || IsNil(o.Downstream) {
 		var ret int32
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) GetDownstr
 // GetDownstreamOk returns a tuple with the Downstream field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) GetDownstreamOk() (*int32, bool) {
-	if o == nil || isNil(o.Downstream) {
-    return nil, false
+	if o == nil || IsNil(o.Downstream) {
+		return nil, false
 	}
 	return o.Downstream, true
 }
 
 // HasDownstream returns a boolean if a field has been set.
 func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) HasDownstream() bool {
-	if o != nil && !isNil(o.Downstream) {
+	if o != nil && !IsNil(o.Downstream) {
 		return true
 	}
 
@@ -173,20 +176,28 @@ func (o *GetOrganizationClientsBandwidthUsageHistory200ResponseInner) SetDownstr
 }
 
 func (o GetOrganizationClientsBandwidthUsageHistory200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Ts) {
-		toSerialize["ts"] = o.Ts
-	}
-	if !isNil(o.Total) {
-		toSerialize["total"] = o.Total
-	}
-	if !isNil(o.Upstream) {
-		toSerialize["upstream"] = o.Upstream
-	}
-	if !isNil(o.Downstream) {
-		toSerialize["downstream"] = o.Downstream
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationClientsBandwidthUsageHistory200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Ts) {
+		toSerialize["ts"] = o.Ts
+	}
+	if !IsNil(o.Total) {
+		toSerialize["total"] = o.Total
+	}
+	if !IsNil(o.Upstream) {
+		toSerialize["upstream"] = o.Upstream
+	}
+	if !IsNil(o.Downstream) {
+		toSerialize["downstream"] = o.Downstream
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationClientsBandwidthUsageHistory200ResponseInner struct {

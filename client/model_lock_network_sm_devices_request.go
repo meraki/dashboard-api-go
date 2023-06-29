@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the LockNetworkSmDevicesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &LockNetworkSmDevicesRequest{}
+
 // LockNetworkSmDevicesRequest struct for LockNetworkSmDevicesRequest
 type LockNetworkSmDevicesRequest struct {
 	// The wifiMacs of the devices to be locked.
@@ -47,7 +50,7 @@ func NewLockNetworkSmDevicesRequestWithDefaults() *LockNetworkSmDevicesRequest {
 
 // GetWifiMacs returns the WifiMacs field value if set, zero value otherwise.
 func (o *LockNetworkSmDevicesRequest) GetWifiMacs() []string {
-	if o == nil || isNil(o.WifiMacs) {
+	if o == nil || IsNil(o.WifiMacs) {
 		var ret []string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *LockNetworkSmDevicesRequest) GetWifiMacs() []string {
 // GetWifiMacsOk returns a tuple with the WifiMacs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LockNetworkSmDevicesRequest) GetWifiMacsOk() ([]string, bool) {
-	if o == nil || isNil(o.WifiMacs) {
-    return nil, false
+	if o == nil || IsNil(o.WifiMacs) {
+		return nil, false
 	}
 	return o.WifiMacs, true
 }
 
 // HasWifiMacs returns a boolean if a field has been set.
 func (o *LockNetworkSmDevicesRequest) HasWifiMacs() bool {
-	if o != nil && !isNil(o.WifiMacs) {
+	if o != nil && !IsNil(o.WifiMacs) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *LockNetworkSmDevicesRequest) SetWifiMacs(v []string) {
 
 // GetIds returns the Ids field value if set, zero value otherwise.
 func (o *LockNetworkSmDevicesRequest) GetIds() []string {
-	if o == nil || isNil(o.Ids) {
+	if o == nil || IsNil(o.Ids) {
 		var ret []string
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *LockNetworkSmDevicesRequest) GetIds() []string {
 // GetIdsOk returns a tuple with the Ids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LockNetworkSmDevicesRequest) GetIdsOk() ([]string, bool) {
-	if o == nil || isNil(o.Ids) {
-    return nil, false
+	if o == nil || IsNil(o.Ids) {
+		return nil, false
 	}
 	return o.Ids, true
 }
 
 // HasIds returns a boolean if a field has been set.
 func (o *LockNetworkSmDevicesRequest) HasIds() bool {
-	if o != nil && !isNil(o.Ids) {
+	if o != nil && !IsNil(o.Ids) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *LockNetworkSmDevicesRequest) SetIds(v []string) {
 
 // GetSerials returns the Serials field value if set, zero value otherwise.
 func (o *LockNetworkSmDevicesRequest) GetSerials() []string {
-	if o == nil || isNil(o.Serials) {
+	if o == nil || IsNil(o.Serials) {
 		var ret []string
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *LockNetworkSmDevicesRequest) GetSerials() []string {
 // GetSerialsOk returns a tuple with the Serials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LockNetworkSmDevicesRequest) GetSerialsOk() ([]string, bool) {
-	if o == nil || isNil(o.Serials) {
-    return nil, false
+	if o == nil || IsNil(o.Serials) {
+		return nil, false
 	}
 	return o.Serials, true
 }
 
 // HasSerials returns a boolean if a field has been set.
 func (o *LockNetworkSmDevicesRequest) HasSerials() bool {
-	if o != nil && !isNil(o.Serials) {
+	if o != nil && !IsNil(o.Serials) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *LockNetworkSmDevicesRequest) SetSerials(v []string) {
 
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *LockNetworkSmDevicesRequest) GetScope() []string {
-	if o == nil || isNil(o.Scope) {
+	if o == nil || IsNil(o.Scope) {
 		var ret []string
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *LockNetworkSmDevicesRequest) GetScope() []string {
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LockNetworkSmDevicesRequest) GetScopeOk() ([]string, bool) {
-	if o == nil || isNil(o.Scope) {
-    return nil, false
+	if o == nil || IsNil(o.Scope) {
+		return nil, false
 	}
 	return o.Scope, true
 }
 
 // HasScope returns a boolean if a field has been set.
 func (o *LockNetworkSmDevicesRequest) HasScope() bool {
-	if o != nil && !isNil(o.Scope) {
+	if o != nil && !IsNil(o.Scope) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *LockNetworkSmDevicesRequest) SetScope(v []string) {
 
 // GetPin returns the Pin field value if set, zero value otherwise.
 func (o *LockNetworkSmDevicesRequest) GetPin() int32 {
-	if o == nil || isNil(o.Pin) {
+	if o == nil || IsNil(o.Pin) {
 		var ret int32
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *LockNetworkSmDevicesRequest) GetPin() int32 {
 // GetPinOk returns a tuple with the Pin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LockNetworkSmDevicesRequest) GetPinOk() (*int32, bool) {
-	if o == nil || isNil(o.Pin) {
-    return nil, false
+	if o == nil || IsNil(o.Pin) {
+		return nil, false
 	}
 	return o.Pin, true
 }
 
 // HasPin returns a boolean if a field has been set.
 func (o *LockNetworkSmDevicesRequest) HasPin() bool {
-	if o != nil && !isNil(o.Pin) {
+	if o != nil && !IsNil(o.Pin) {
 		return true
 	}
 
@@ -206,23 +209,31 @@ func (o *LockNetworkSmDevicesRequest) SetPin(v int32) {
 }
 
 func (o LockNetworkSmDevicesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.WifiMacs) {
-		toSerialize["wifiMacs"] = o.WifiMacs
-	}
-	if !isNil(o.Ids) {
-		toSerialize["ids"] = o.Ids
-	}
-	if !isNil(o.Serials) {
-		toSerialize["serials"] = o.Serials
-	}
-	if !isNil(o.Scope) {
-		toSerialize["scope"] = o.Scope
-	}
-	if !isNil(o.Pin) {
-		toSerialize["pin"] = o.Pin
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o LockNetworkSmDevicesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.WifiMacs) {
+		toSerialize["wifiMacs"] = o.WifiMacs
+	}
+	if !IsNil(o.Ids) {
+		toSerialize["ids"] = o.Ids
+	}
+	if !IsNil(o.Serials) {
+		toSerialize["serials"] = o.Serials
+	}
+	if !IsNil(o.Scope) {
+		toSerialize["scope"] = o.Scope
+	}
+	if !IsNil(o.Pin) {
+		toSerialize["pin"] = o.Pin
+	}
+	return toSerialize, nil
 }
 
 type NullableLockNetworkSmDevicesRequest struct {

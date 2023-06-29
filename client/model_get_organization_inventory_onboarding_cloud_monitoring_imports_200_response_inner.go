@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner{}
+
 // GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner struct for GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner
 type GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner struct {
 	// Database ID for the new entity entry.
@@ -40,7 +43,7 @@ func NewGetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner
 
 // GetImportId returns the ImportId field value if set, zero value otherwise.
 func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner) GetImportId() string {
-	if o == nil || isNil(o.ImportId) {
+	if o == nil || IsNil(o.ImportId) {
 		var ret string
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInne
 // GetImportIdOk returns a tuple with the ImportId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner) GetImportIdOk() (*string, bool) {
-	if o == nil || isNil(o.ImportId) {
-    return nil, false
+	if o == nil || IsNil(o.ImportId) {
+		return nil, false
 	}
 	return o.ImportId, true
 }
 
 // HasImportId returns a boolean if a field has been set.
 func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner) HasImportId() bool {
-	if o != nil && !isNil(o.ImportId) {
+	if o != nil && !IsNil(o.ImportId) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInne
 
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner) GetDevice() GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice {
-	if o == nil || isNil(o.Device) {
+	if o == nil || IsNil(o.Device) {
 		var ret GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInne
 // GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner) GetDeviceOk() (*GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice, bool) {
-	if o == nil || isNil(o.Device) {
-    return nil, false
+	if o == nil || IsNil(o.Device) {
+		return nil, false
 	}
 	return o.Device, true
 }
 
 // HasDevice returns a boolean if a field has been set.
 func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner) HasDevice() bool {
-	if o != nil && !isNil(o.Device) {
+	if o != nil && !IsNil(o.Device) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInne
 }
 
 func (o GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ImportId) {
-		toSerialize["importId"] = o.ImportId
-	}
-	if !isNil(o.Device) {
-		toSerialize["device"] = o.Device
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ImportId) {
+		toSerialize["importId"] = o.ImportId
+	}
+	if !IsNil(o.Device) {
+		toSerialize["device"] = o.Device
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner struct {

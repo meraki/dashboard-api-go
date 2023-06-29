@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationLoginSecurityRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationLoginSecurityRequest{}
+
 // UpdateOrganizationLoginSecurityRequest struct for UpdateOrganizationLoginSecurityRequest
 type UpdateOrganizationLoginSecurityRequest struct {
 	// Boolean indicating whether users are forced to change their password every X number of days.
@@ -62,7 +65,7 @@ func NewUpdateOrganizationLoginSecurityRequestWithDefaults() *UpdateOrganization
 
 // GetEnforcePasswordExpiration returns the EnforcePasswordExpiration field value if set, zero value otherwise.
 func (o *UpdateOrganizationLoginSecurityRequest) GetEnforcePasswordExpiration() bool {
-	if o == nil || isNil(o.EnforcePasswordExpiration) {
+	if o == nil || IsNil(o.EnforcePasswordExpiration) {
 		var ret bool
 		return ret
 	}
@@ -72,15 +75,15 @@ func (o *UpdateOrganizationLoginSecurityRequest) GetEnforcePasswordExpiration() 
 // GetEnforcePasswordExpirationOk returns a tuple with the EnforcePasswordExpiration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) GetEnforcePasswordExpirationOk() (*bool, bool) {
-	if o == nil || isNil(o.EnforcePasswordExpiration) {
-    return nil, false
+	if o == nil || IsNil(o.EnforcePasswordExpiration) {
+		return nil, false
 	}
 	return o.EnforcePasswordExpiration, true
 }
 
 // HasEnforcePasswordExpiration returns a boolean if a field has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) HasEnforcePasswordExpiration() bool {
-	if o != nil && !isNil(o.EnforcePasswordExpiration) {
+	if o != nil && !IsNil(o.EnforcePasswordExpiration) {
 		return true
 	}
 
@@ -94,7 +97,7 @@ func (o *UpdateOrganizationLoginSecurityRequest) SetEnforcePasswordExpiration(v 
 
 // GetPasswordExpirationDays returns the PasswordExpirationDays field value if set, zero value otherwise.
 func (o *UpdateOrganizationLoginSecurityRequest) GetPasswordExpirationDays() int32 {
-	if o == nil || isNil(o.PasswordExpirationDays) {
+	if o == nil || IsNil(o.PasswordExpirationDays) {
 		var ret int32
 		return ret
 	}
@@ -104,15 +107,15 @@ func (o *UpdateOrganizationLoginSecurityRequest) GetPasswordExpirationDays() int
 // GetPasswordExpirationDaysOk returns a tuple with the PasswordExpirationDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) GetPasswordExpirationDaysOk() (*int32, bool) {
-	if o == nil || isNil(o.PasswordExpirationDays) {
-    return nil, false
+	if o == nil || IsNil(o.PasswordExpirationDays) {
+		return nil, false
 	}
 	return o.PasswordExpirationDays, true
 }
 
 // HasPasswordExpirationDays returns a boolean if a field has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) HasPasswordExpirationDays() bool {
-	if o != nil && !isNil(o.PasswordExpirationDays) {
+	if o != nil && !IsNil(o.PasswordExpirationDays) {
 		return true
 	}
 
@@ -126,7 +129,7 @@ func (o *UpdateOrganizationLoginSecurityRequest) SetPasswordExpirationDays(v int
 
 // GetEnforceDifferentPasswords returns the EnforceDifferentPasswords field value if set, zero value otherwise.
 func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceDifferentPasswords() bool {
-	if o == nil || isNil(o.EnforceDifferentPasswords) {
+	if o == nil || IsNil(o.EnforceDifferentPasswords) {
 		var ret bool
 		return ret
 	}
@@ -136,15 +139,15 @@ func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceDifferentPasswords() 
 // GetEnforceDifferentPasswordsOk returns a tuple with the EnforceDifferentPasswords field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceDifferentPasswordsOk() (*bool, bool) {
-	if o == nil || isNil(o.EnforceDifferentPasswords) {
-    return nil, false
+	if o == nil || IsNil(o.EnforceDifferentPasswords) {
+		return nil, false
 	}
 	return o.EnforceDifferentPasswords, true
 }
 
 // HasEnforceDifferentPasswords returns a boolean if a field has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) HasEnforceDifferentPasswords() bool {
-	if o != nil && !isNil(o.EnforceDifferentPasswords) {
+	if o != nil && !IsNil(o.EnforceDifferentPasswords) {
 		return true
 	}
 
@@ -158,7 +161,7 @@ func (o *UpdateOrganizationLoginSecurityRequest) SetEnforceDifferentPasswords(v 
 
 // GetNumDifferentPasswords returns the NumDifferentPasswords field value if set, zero value otherwise.
 func (o *UpdateOrganizationLoginSecurityRequest) GetNumDifferentPasswords() int32 {
-	if o == nil || isNil(o.NumDifferentPasswords) {
+	if o == nil || IsNil(o.NumDifferentPasswords) {
 		var ret int32
 		return ret
 	}
@@ -168,15 +171,15 @@ func (o *UpdateOrganizationLoginSecurityRequest) GetNumDifferentPasswords() int3
 // GetNumDifferentPasswordsOk returns a tuple with the NumDifferentPasswords field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) GetNumDifferentPasswordsOk() (*int32, bool) {
-	if o == nil || isNil(o.NumDifferentPasswords) {
-    return nil, false
+	if o == nil || IsNil(o.NumDifferentPasswords) {
+		return nil, false
 	}
 	return o.NumDifferentPasswords, true
 }
 
 // HasNumDifferentPasswords returns a boolean if a field has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) HasNumDifferentPasswords() bool {
-	if o != nil && !isNil(o.NumDifferentPasswords) {
+	if o != nil && !IsNil(o.NumDifferentPasswords) {
 		return true
 	}
 
@@ -190,7 +193,7 @@ func (o *UpdateOrganizationLoginSecurityRequest) SetNumDifferentPasswords(v int3
 
 // GetEnforceStrongPasswords returns the EnforceStrongPasswords field value if set, zero value otherwise.
 func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceStrongPasswords() bool {
-	if o == nil || isNil(o.EnforceStrongPasswords) {
+	if o == nil || IsNil(o.EnforceStrongPasswords) {
 		var ret bool
 		return ret
 	}
@@ -200,15 +203,15 @@ func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceStrongPasswords() boo
 // GetEnforceStrongPasswordsOk returns a tuple with the EnforceStrongPasswords field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceStrongPasswordsOk() (*bool, bool) {
-	if o == nil || isNil(o.EnforceStrongPasswords) {
-    return nil, false
+	if o == nil || IsNil(o.EnforceStrongPasswords) {
+		return nil, false
 	}
 	return o.EnforceStrongPasswords, true
 }
 
 // HasEnforceStrongPasswords returns a boolean if a field has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) HasEnforceStrongPasswords() bool {
-	if o != nil && !isNil(o.EnforceStrongPasswords) {
+	if o != nil && !IsNil(o.EnforceStrongPasswords) {
 		return true
 	}
 
@@ -222,7 +225,7 @@ func (o *UpdateOrganizationLoginSecurityRequest) SetEnforceStrongPasswords(v boo
 
 // GetEnforceAccountLockout returns the EnforceAccountLockout field value if set, zero value otherwise.
 func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceAccountLockout() bool {
-	if o == nil || isNil(o.EnforceAccountLockout) {
+	if o == nil || IsNil(o.EnforceAccountLockout) {
 		var ret bool
 		return ret
 	}
@@ -232,15 +235,15 @@ func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceAccountLockout() bool
 // GetEnforceAccountLockoutOk returns a tuple with the EnforceAccountLockout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceAccountLockoutOk() (*bool, bool) {
-	if o == nil || isNil(o.EnforceAccountLockout) {
-    return nil, false
+	if o == nil || IsNil(o.EnforceAccountLockout) {
+		return nil, false
 	}
 	return o.EnforceAccountLockout, true
 }
 
 // HasEnforceAccountLockout returns a boolean if a field has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) HasEnforceAccountLockout() bool {
-	if o != nil && !isNil(o.EnforceAccountLockout) {
+	if o != nil && !IsNil(o.EnforceAccountLockout) {
 		return true
 	}
 
@@ -254,7 +257,7 @@ func (o *UpdateOrganizationLoginSecurityRequest) SetEnforceAccountLockout(v bool
 
 // GetAccountLockoutAttempts returns the AccountLockoutAttempts field value if set, zero value otherwise.
 func (o *UpdateOrganizationLoginSecurityRequest) GetAccountLockoutAttempts() int32 {
-	if o == nil || isNil(o.AccountLockoutAttempts) {
+	if o == nil || IsNil(o.AccountLockoutAttempts) {
 		var ret int32
 		return ret
 	}
@@ -264,15 +267,15 @@ func (o *UpdateOrganizationLoginSecurityRequest) GetAccountLockoutAttempts() int
 // GetAccountLockoutAttemptsOk returns a tuple with the AccountLockoutAttempts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) GetAccountLockoutAttemptsOk() (*int32, bool) {
-	if o == nil || isNil(o.AccountLockoutAttempts) {
-    return nil, false
+	if o == nil || IsNil(o.AccountLockoutAttempts) {
+		return nil, false
 	}
 	return o.AccountLockoutAttempts, true
 }
 
 // HasAccountLockoutAttempts returns a boolean if a field has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) HasAccountLockoutAttempts() bool {
-	if o != nil && !isNil(o.AccountLockoutAttempts) {
+	if o != nil && !IsNil(o.AccountLockoutAttempts) {
 		return true
 	}
 
@@ -286,7 +289,7 @@ func (o *UpdateOrganizationLoginSecurityRequest) SetAccountLockoutAttempts(v int
 
 // GetEnforceIdleTimeout returns the EnforceIdleTimeout field value if set, zero value otherwise.
 func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceIdleTimeout() bool {
-	if o == nil || isNil(o.EnforceIdleTimeout) {
+	if o == nil || IsNil(o.EnforceIdleTimeout) {
 		var ret bool
 		return ret
 	}
@@ -296,15 +299,15 @@ func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceIdleTimeout() bool {
 // GetEnforceIdleTimeoutOk returns a tuple with the EnforceIdleTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceIdleTimeoutOk() (*bool, bool) {
-	if o == nil || isNil(o.EnforceIdleTimeout) {
-    return nil, false
+	if o == nil || IsNil(o.EnforceIdleTimeout) {
+		return nil, false
 	}
 	return o.EnforceIdleTimeout, true
 }
 
 // HasEnforceIdleTimeout returns a boolean if a field has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) HasEnforceIdleTimeout() bool {
-	if o != nil && !isNil(o.EnforceIdleTimeout) {
+	if o != nil && !IsNil(o.EnforceIdleTimeout) {
 		return true
 	}
 
@@ -318,7 +321,7 @@ func (o *UpdateOrganizationLoginSecurityRequest) SetEnforceIdleTimeout(v bool) {
 
 // GetIdleTimeoutMinutes returns the IdleTimeoutMinutes field value if set, zero value otherwise.
 func (o *UpdateOrganizationLoginSecurityRequest) GetIdleTimeoutMinutes() int32 {
-	if o == nil || isNil(o.IdleTimeoutMinutes) {
+	if o == nil || IsNil(o.IdleTimeoutMinutes) {
 		var ret int32
 		return ret
 	}
@@ -328,15 +331,15 @@ func (o *UpdateOrganizationLoginSecurityRequest) GetIdleTimeoutMinutes() int32 {
 // GetIdleTimeoutMinutesOk returns a tuple with the IdleTimeoutMinutes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) GetIdleTimeoutMinutesOk() (*int32, bool) {
-	if o == nil || isNil(o.IdleTimeoutMinutes) {
-    return nil, false
+	if o == nil || IsNil(o.IdleTimeoutMinutes) {
+		return nil, false
 	}
 	return o.IdleTimeoutMinutes, true
 }
 
 // HasIdleTimeoutMinutes returns a boolean if a field has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) HasIdleTimeoutMinutes() bool {
-	if o != nil && !isNil(o.IdleTimeoutMinutes) {
+	if o != nil && !IsNil(o.IdleTimeoutMinutes) {
 		return true
 	}
 
@@ -350,7 +353,7 @@ func (o *UpdateOrganizationLoginSecurityRequest) SetIdleTimeoutMinutes(v int32) 
 
 // GetEnforceTwoFactorAuth returns the EnforceTwoFactorAuth field value if set, zero value otherwise.
 func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceTwoFactorAuth() bool {
-	if o == nil || isNil(o.EnforceTwoFactorAuth) {
+	if o == nil || IsNil(o.EnforceTwoFactorAuth) {
 		var ret bool
 		return ret
 	}
@@ -360,15 +363,15 @@ func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceTwoFactorAuth() bool 
 // GetEnforceTwoFactorAuthOk returns a tuple with the EnforceTwoFactorAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceTwoFactorAuthOk() (*bool, bool) {
-	if o == nil || isNil(o.EnforceTwoFactorAuth) {
-    return nil, false
+	if o == nil || IsNil(o.EnforceTwoFactorAuth) {
+		return nil, false
 	}
 	return o.EnforceTwoFactorAuth, true
 }
 
 // HasEnforceTwoFactorAuth returns a boolean if a field has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) HasEnforceTwoFactorAuth() bool {
-	if o != nil && !isNil(o.EnforceTwoFactorAuth) {
+	if o != nil && !IsNil(o.EnforceTwoFactorAuth) {
 		return true
 	}
 
@@ -382,7 +385,7 @@ func (o *UpdateOrganizationLoginSecurityRequest) SetEnforceTwoFactorAuth(v bool)
 
 // GetEnforceLoginIpRanges returns the EnforceLoginIpRanges field value if set, zero value otherwise.
 func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceLoginIpRanges() bool {
-	if o == nil || isNil(o.EnforceLoginIpRanges) {
+	if o == nil || IsNil(o.EnforceLoginIpRanges) {
 		var ret bool
 		return ret
 	}
@@ -392,15 +395,15 @@ func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceLoginIpRanges() bool 
 // GetEnforceLoginIpRangesOk returns a tuple with the EnforceLoginIpRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) GetEnforceLoginIpRangesOk() (*bool, bool) {
-	if o == nil || isNil(o.EnforceLoginIpRanges) {
-    return nil, false
+	if o == nil || IsNil(o.EnforceLoginIpRanges) {
+		return nil, false
 	}
 	return o.EnforceLoginIpRanges, true
 }
 
 // HasEnforceLoginIpRanges returns a boolean if a field has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) HasEnforceLoginIpRanges() bool {
-	if o != nil && !isNil(o.EnforceLoginIpRanges) {
+	if o != nil && !IsNil(o.EnforceLoginIpRanges) {
 		return true
 	}
 
@@ -414,7 +417,7 @@ func (o *UpdateOrganizationLoginSecurityRequest) SetEnforceLoginIpRanges(v bool)
 
 // GetLoginIpRanges returns the LoginIpRanges field value if set, zero value otherwise.
 func (o *UpdateOrganizationLoginSecurityRequest) GetLoginIpRanges() []string {
-	if o == nil || isNil(o.LoginIpRanges) {
+	if o == nil || IsNil(o.LoginIpRanges) {
 		var ret []string
 		return ret
 	}
@@ -424,15 +427,15 @@ func (o *UpdateOrganizationLoginSecurityRequest) GetLoginIpRanges() []string {
 // GetLoginIpRangesOk returns a tuple with the LoginIpRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) GetLoginIpRangesOk() ([]string, bool) {
-	if o == nil || isNil(o.LoginIpRanges) {
-    return nil, false
+	if o == nil || IsNil(o.LoginIpRanges) {
+		return nil, false
 	}
 	return o.LoginIpRanges, true
 }
 
 // HasLoginIpRanges returns a boolean if a field has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) HasLoginIpRanges() bool {
-	if o != nil && !isNil(o.LoginIpRanges) {
+	if o != nil && !IsNil(o.LoginIpRanges) {
 		return true
 	}
 
@@ -446,7 +449,7 @@ func (o *UpdateOrganizationLoginSecurityRequest) SetLoginIpRanges(v []string) {
 
 // GetApiAuthentication returns the ApiAuthentication field value if set, zero value otherwise.
 func (o *UpdateOrganizationLoginSecurityRequest) GetApiAuthentication() GetOrganizationLoginSecurity200ResponseApiAuthentication {
-	if o == nil || isNil(o.ApiAuthentication) {
+	if o == nil || IsNil(o.ApiAuthentication) {
 		var ret GetOrganizationLoginSecurity200ResponseApiAuthentication
 		return ret
 	}
@@ -456,15 +459,15 @@ func (o *UpdateOrganizationLoginSecurityRequest) GetApiAuthentication() GetOrgan
 // GetApiAuthenticationOk returns a tuple with the ApiAuthentication field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) GetApiAuthenticationOk() (*GetOrganizationLoginSecurity200ResponseApiAuthentication, bool) {
-	if o == nil || isNil(o.ApiAuthentication) {
-    return nil, false
+	if o == nil || IsNil(o.ApiAuthentication) {
+		return nil, false
 	}
 	return o.ApiAuthentication, true
 }
 
 // HasApiAuthentication returns a boolean if a field has been set.
 func (o *UpdateOrganizationLoginSecurityRequest) HasApiAuthentication() bool {
-	if o != nil && !isNil(o.ApiAuthentication) {
+	if o != nil && !IsNil(o.ApiAuthentication) {
 		return true
 	}
 
@@ -477,47 +480,55 @@ func (o *UpdateOrganizationLoginSecurityRequest) SetApiAuthentication(v GetOrgan
 }
 
 func (o UpdateOrganizationLoginSecurityRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.EnforcePasswordExpiration) {
-		toSerialize["enforcePasswordExpiration"] = o.EnforcePasswordExpiration
-	}
-	if !isNil(o.PasswordExpirationDays) {
-		toSerialize["passwordExpirationDays"] = o.PasswordExpirationDays
-	}
-	if !isNil(o.EnforceDifferentPasswords) {
-		toSerialize["enforceDifferentPasswords"] = o.EnforceDifferentPasswords
-	}
-	if !isNil(o.NumDifferentPasswords) {
-		toSerialize["numDifferentPasswords"] = o.NumDifferentPasswords
-	}
-	if !isNil(o.EnforceStrongPasswords) {
-		toSerialize["enforceStrongPasswords"] = o.EnforceStrongPasswords
-	}
-	if !isNil(o.EnforceAccountLockout) {
-		toSerialize["enforceAccountLockout"] = o.EnforceAccountLockout
-	}
-	if !isNil(o.AccountLockoutAttempts) {
-		toSerialize["accountLockoutAttempts"] = o.AccountLockoutAttempts
-	}
-	if !isNil(o.EnforceIdleTimeout) {
-		toSerialize["enforceIdleTimeout"] = o.EnforceIdleTimeout
-	}
-	if !isNil(o.IdleTimeoutMinutes) {
-		toSerialize["idleTimeoutMinutes"] = o.IdleTimeoutMinutes
-	}
-	if !isNil(o.EnforceTwoFactorAuth) {
-		toSerialize["enforceTwoFactorAuth"] = o.EnforceTwoFactorAuth
-	}
-	if !isNil(o.EnforceLoginIpRanges) {
-		toSerialize["enforceLoginIpRanges"] = o.EnforceLoginIpRanges
-	}
-	if !isNil(o.LoginIpRanges) {
-		toSerialize["loginIpRanges"] = o.LoginIpRanges
-	}
-	if !isNil(o.ApiAuthentication) {
-		toSerialize["apiAuthentication"] = o.ApiAuthentication
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationLoginSecurityRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.EnforcePasswordExpiration) {
+		toSerialize["enforcePasswordExpiration"] = o.EnforcePasswordExpiration
+	}
+	if !IsNil(o.PasswordExpirationDays) {
+		toSerialize["passwordExpirationDays"] = o.PasswordExpirationDays
+	}
+	if !IsNil(o.EnforceDifferentPasswords) {
+		toSerialize["enforceDifferentPasswords"] = o.EnforceDifferentPasswords
+	}
+	if !IsNil(o.NumDifferentPasswords) {
+		toSerialize["numDifferentPasswords"] = o.NumDifferentPasswords
+	}
+	if !IsNil(o.EnforceStrongPasswords) {
+		toSerialize["enforceStrongPasswords"] = o.EnforceStrongPasswords
+	}
+	if !IsNil(o.EnforceAccountLockout) {
+		toSerialize["enforceAccountLockout"] = o.EnforceAccountLockout
+	}
+	if !IsNil(o.AccountLockoutAttempts) {
+		toSerialize["accountLockoutAttempts"] = o.AccountLockoutAttempts
+	}
+	if !IsNil(o.EnforceIdleTimeout) {
+		toSerialize["enforceIdleTimeout"] = o.EnforceIdleTimeout
+	}
+	if !IsNil(o.IdleTimeoutMinutes) {
+		toSerialize["idleTimeoutMinutes"] = o.IdleTimeoutMinutes
+	}
+	if !IsNil(o.EnforceTwoFactorAuth) {
+		toSerialize["enforceTwoFactorAuth"] = o.EnforceTwoFactorAuth
+	}
+	if !IsNil(o.EnforceLoginIpRanges) {
+		toSerialize["enforceLoginIpRanges"] = o.EnforceLoginIpRanges
+	}
+	if !IsNil(o.LoginIpRanges) {
+		toSerialize["loginIpRanges"] = o.LoginIpRanges
+	}
+	if !IsNil(o.ApiAuthentication) {
+		toSerialize["apiAuthentication"] = o.ApiAuthentication
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationLoginSecurityRequest struct {

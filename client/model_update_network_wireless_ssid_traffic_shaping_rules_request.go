@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidTrafficShapingRulesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidTrafficShapingRulesRequest{}
+
 // UpdateNetworkWirelessSsidTrafficShapingRulesRequest struct for UpdateNetworkWirelessSsidTrafficShapingRulesRequest
 type UpdateNetworkWirelessSsidTrafficShapingRulesRequest struct {
 	// Whether traffic shaping rules are applied to clients on your SSID.
@@ -43,7 +46,7 @@ func NewUpdateNetworkWirelessSsidTrafficShapingRulesRequestWithDefaults() *Updat
 
 // GetTrafficShapingEnabled returns the TrafficShapingEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequest) GetTrafficShapingEnabled() bool {
-	if o == nil || isNil(o.TrafficShapingEnabled) {
+	if o == nil || IsNil(o.TrafficShapingEnabled) {
 		var ret bool
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequest) GetTrafficShapingE
 // GetTrafficShapingEnabledOk returns a tuple with the TrafficShapingEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequest) GetTrafficShapingEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.TrafficShapingEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.TrafficShapingEnabled) {
+		return nil, false
 	}
 	return o.TrafficShapingEnabled, true
 }
 
 // HasTrafficShapingEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequest) HasTrafficShapingEnabled() bool {
-	if o != nil && !isNil(o.TrafficShapingEnabled) {
+	if o != nil && !IsNil(o.TrafficShapingEnabled) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequest) SetTrafficShapingE
 
 // GetDefaultRulesEnabled returns the DefaultRulesEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequest) GetDefaultRulesEnabled() bool {
-	if o == nil || isNil(o.DefaultRulesEnabled) {
+	if o == nil || IsNil(o.DefaultRulesEnabled) {
 		var ret bool
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequest) GetDefaultRulesEna
 // GetDefaultRulesEnabledOk returns a tuple with the DefaultRulesEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequest) GetDefaultRulesEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.DefaultRulesEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.DefaultRulesEnabled) {
+		return nil, false
 	}
 	return o.DefaultRulesEnabled, true
 }
 
 // HasDefaultRulesEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequest) HasDefaultRulesEnabled() bool {
-	if o != nil && !isNil(o.DefaultRulesEnabled) {
+	if o != nil && !IsNil(o.DefaultRulesEnabled) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequest) SetDefaultRulesEna
 
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequest) GetRules() []UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner {
-	if o == nil || isNil(o.Rules) {
+	if o == nil || IsNil(o.Rules) {
 		var ret []UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequest) GetRules() []Updat
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequest) GetRulesOk() ([]UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner, bool) {
-	if o == nil || isNil(o.Rules) {
-    return nil, false
+	if o == nil || IsNil(o.Rules) {
+		return nil, false
 	}
 	return o.Rules, true
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequest) HasRules() bool {
-	if o != nil && !isNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequest) SetRules(v []Updat
 }
 
 func (o UpdateNetworkWirelessSsidTrafficShapingRulesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.TrafficShapingEnabled) {
-		toSerialize["trafficShapingEnabled"] = o.TrafficShapingEnabled
-	}
-	if !isNil(o.DefaultRulesEnabled) {
-		toSerialize["defaultRulesEnabled"] = o.DefaultRulesEnabled
-	}
-	if !isNil(o.Rules) {
-		toSerialize["rules"] = o.Rules
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidTrafficShapingRulesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.TrafficShapingEnabled) {
+		toSerialize["trafficShapingEnabled"] = o.TrafficShapingEnabled
+	}
+	if !IsNil(o.DefaultRulesEnabled) {
+		toSerialize["defaultRulesEnabled"] = o.DefaultRulesEnabled
+	}
+	if !IsNil(o.Rules) {
+		toSerialize["rules"] = o.Rules
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidTrafficShapingRulesRequest struct {

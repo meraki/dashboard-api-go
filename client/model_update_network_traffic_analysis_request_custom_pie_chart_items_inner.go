@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner{}
+
 // UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner struct for UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner
 type UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner struct {
 	// The name of the custom pie chart item.
@@ -58,7 +61,7 @@ func (o *UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner) GetName() 
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -82,7 +85,7 @@ func (o *UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner) GetType() 
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner) GetTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Type, true
 }
@@ -106,7 +109,7 @@ func (o *UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner) GetValue()
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner) GetValueOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Value, true
 }
@@ -117,17 +120,19 @@ func (o *UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner) SetValue(v
 }
 
 func (o UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["value"] = o.Value
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
+	toSerialize["value"] = o.Value
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner struct {

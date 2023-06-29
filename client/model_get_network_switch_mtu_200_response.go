@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchMtu200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchMtu200Response{}
+
 // GetNetworkSwitchMtu200Response struct for GetNetworkSwitchMtu200Response
 type GetNetworkSwitchMtu200Response struct {
 	// MTU size for the entire network. Default value is 9578.
@@ -41,7 +44,7 @@ func NewGetNetworkSwitchMtu200ResponseWithDefaults() *GetNetworkSwitchMtu200Resp
 
 // GetDefaultMtuSize returns the DefaultMtuSize field value if set, zero value otherwise.
 func (o *GetNetworkSwitchMtu200Response) GetDefaultMtuSize() int32 {
-	if o == nil || isNil(o.DefaultMtuSize) {
+	if o == nil || IsNil(o.DefaultMtuSize) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkSwitchMtu200Response) GetDefaultMtuSize() int32 {
 // GetDefaultMtuSizeOk returns a tuple with the DefaultMtuSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchMtu200Response) GetDefaultMtuSizeOk() (*int32, bool) {
-	if o == nil || isNil(o.DefaultMtuSize) {
-    return nil, false
+	if o == nil || IsNil(o.DefaultMtuSize) {
+		return nil, false
 	}
 	return o.DefaultMtuSize, true
 }
 
 // HasDefaultMtuSize returns a boolean if a field has been set.
 func (o *GetNetworkSwitchMtu200Response) HasDefaultMtuSize() bool {
-	if o != nil && !isNil(o.DefaultMtuSize) {
+	if o != nil && !IsNil(o.DefaultMtuSize) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkSwitchMtu200Response) SetDefaultMtuSize(v int32) {
 
 // GetOverrides returns the Overrides field value if set, zero value otherwise.
 func (o *GetNetworkSwitchMtu200Response) GetOverrides() []GetNetworkSwitchMtu200ResponseOverridesInner {
-	if o == nil || isNil(o.Overrides) {
+	if o == nil || IsNil(o.Overrides) {
 		var ret []GetNetworkSwitchMtu200ResponseOverridesInner
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkSwitchMtu200Response) GetOverrides() []GetNetworkSwitchMtu200
 // GetOverridesOk returns a tuple with the Overrides field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchMtu200Response) GetOverridesOk() ([]GetNetworkSwitchMtu200ResponseOverridesInner, bool) {
-	if o == nil || isNil(o.Overrides) {
-    return nil, false
+	if o == nil || IsNil(o.Overrides) {
+		return nil, false
 	}
 	return o.Overrides, true
 }
 
 // HasOverrides returns a boolean if a field has been set.
 func (o *GetNetworkSwitchMtu200Response) HasOverrides() bool {
-	if o != nil && !isNil(o.Overrides) {
+	if o != nil && !IsNil(o.Overrides) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkSwitchMtu200Response) SetOverrides(v []GetNetworkSwitchMtu200
 }
 
 func (o GetNetworkSwitchMtu200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.DefaultMtuSize) {
-		toSerialize["defaultMtuSize"] = o.DefaultMtuSize
-	}
-	if !isNil(o.Overrides) {
-		toSerialize["overrides"] = o.Overrides
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchMtu200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DefaultMtuSize) {
+		toSerialize["defaultMtuSize"] = o.DefaultMtuSize
+	}
+	if !IsNil(o.Overrides) {
+		toSerialize["overrides"] = o.Overrides
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchMtu200Response struct {

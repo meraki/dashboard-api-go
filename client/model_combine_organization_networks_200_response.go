@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CombineOrganizationNetworks200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CombineOrganizationNetworks200Response{}
+
 // CombineOrganizationNetworks200Response struct for CombineOrganizationNetworks200Response
 type CombineOrganizationNetworks200Response struct {
 	ResultingNetwork *CombineOrganizationNetworks200ResponseResultingNetwork `json:"resultingNetwork,omitempty"`
@@ -38,7 +41,7 @@ func NewCombineOrganizationNetworks200ResponseWithDefaults() *CombineOrganizatio
 
 // GetResultingNetwork returns the ResultingNetwork field value if set, zero value otherwise.
 func (o *CombineOrganizationNetworks200Response) GetResultingNetwork() CombineOrganizationNetworks200ResponseResultingNetwork {
-	if o == nil || isNil(o.ResultingNetwork) {
+	if o == nil || IsNil(o.ResultingNetwork) {
 		var ret CombineOrganizationNetworks200ResponseResultingNetwork
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *CombineOrganizationNetworks200Response) GetResultingNetwork() CombineOr
 // GetResultingNetworkOk returns a tuple with the ResultingNetwork field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CombineOrganizationNetworks200Response) GetResultingNetworkOk() (*CombineOrganizationNetworks200ResponseResultingNetwork, bool) {
-	if o == nil || isNil(o.ResultingNetwork) {
-    return nil, false
+	if o == nil || IsNil(o.ResultingNetwork) {
+		return nil, false
 	}
 	return o.ResultingNetwork, true
 }
 
 // HasResultingNetwork returns a boolean if a field has been set.
 func (o *CombineOrganizationNetworks200Response) HasResultingNetwork() bool {
-	if o != nil && !isNil(o.ResultingNetwork) {
+	if o != nil && !IsNil(o.ResultingNetwork) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *CombineOrganizationNetworks200Response) SetResultingNetwork(v CombineOr
 }
 
 func (o CombineOrganizationNetworks200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ResultingNetwork) {
-		toSerialize["resultingNetwork"] = o.ResultingNetwork
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CombineOrganizationNetworks200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ResultingNetwork) {
+		toSerialize["resultingNetwork"] = o.ResultingNetwork
+	}
+	return toSerialize, nil
 }
 
 type NullableCombineOrganizationNetworks200Response struct {

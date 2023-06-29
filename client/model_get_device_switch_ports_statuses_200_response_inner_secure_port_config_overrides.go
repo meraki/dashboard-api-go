@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides{}
+
 // GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides The configuration overrides applied to this port when Secure Port is active.
 type GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides struct {
 	// The type of the  ('trunk' or 'access').
@@ -45,7 +48,7 @@ func NewGetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverridesWit
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) 
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) GetVlan() int32 {
-	if o == nil || isNil(o.Vlan) {
+	if o == nil || IsNil(o.Vlan) {
 		var ret int32
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) 
 // GetVlanOk returns a tuple with the Vlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) GetVlanOk() (*int32, bool) {
-	if o == nil || isNil(o.Vlan) {
-    return nil, false
+	if o == nil || IsNil(o.Vlan) {
+		return nil, false
 	}
 	return o.Vlan, true
 }
 
 // HasVlan returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) HasVlan() bool {
-	if o != nil && !isNil(o.Vlan) {
+	if o != nil && !IsNil(o.Vlan) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) 
 
 // GetVoiceVlan returns the VoiceVlan field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) GetVoiceVlan() int32 {
-	if o == nil || isNil(o.VoiceVlan) {
+	if o == nil || IsNil(o.VoiceVlan) {
 		var ret int32
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) 
 // GetVoiceVlanOk returns a tuple with the VoiceVlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) GetVoiceVlanOk() (*int32, bool) {
-	if o == nil || isNil(o.VoiceVlan) {
-    return nil, false
+	if o == nil || IsNil(o.VoiceVlan) {
+		return nil, false
 	}
 	return o.VoiceVlan, true
 }
 
 // HasVoiceVlan returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) HasVoiceVlan() bool {
-	if o != nil && !isNil(o.VoiceVlan) {
+	if o != nil && !IsNil(o.VoiceVlan) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) 
 
 // GetAllowedVlans returns the AllowedVlans field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) GetAllowedVlans() string {
-	if o == nil || isNil(o.AllowedVlans) {
+	if o == nil || IsNil(o.AllowedVlans) {
 		var ret string
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) 
 // GetAllowedVlansOk returns a tuple with the AllowedVlans field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) GetAllowedVlansOk() (*string, bool) {
-	if o == nil || isNil(o.AllowedVlans) {
-    return nil, false
+	if o == nil || IsNil(o.AllowedVlans) {
+		return nil, false
 	}
 	return o.AllowedVlans, true
 }
 
 // HasAllowedVlans returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) HasAllowedVlans() bool {
-	if o != nil && !isNil(o.AllowedVlans) {
+	if o != nil && !IsNil(o.AllowedVlans) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) 
 }
 
 func (o GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Vlan) {
-		toSerialize["vlan"] = o.Vlan
-	}
-	if !isNil(o.VoiceVlan) {
-		toSerialize["voiceVlan"] = o.VoiceVlan
-	}
-	if !isNil(o.AllowedVlans) {
-		toSerialize["allowedVlans"] = o.AllowedVlans
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Vlan) {
+		toSerialize["vlan"] = o.Vlan
+	}
+	if !IsNil(o.VoiceVlan) {
+		toSerialize["voiceVlan"] = o.VoiceVlan
+	}
+	if !IsNil(o.AllowedVlans) {
+		toSerialize["allowedVlans"] = o.AllowedVlans
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceSwitchPortsStatuses200ResponseInnerSecurePortConfigOverrides struct {

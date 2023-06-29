@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSensorReadingsHistory200ResponseInnerHumidity type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSensorReadingsHistory200ResponseInnerHumidity{}
+
 // GetOrganizationSensorReadingsHistory200ResponseInnerHumidity Reading for the 'humidity' metric. This will only be present if the 'metric' property equals 'humidity'.
 type GetOrganizationSensorReadingsHistory200ResponseInnerHumidity struct {
 	// Humidity reading in %RH.
@@ -39,7 +42,7 @@ func NewGetOrganizationSensorReadingsHistory200ResponseInnerHumidityWithDefaults
 
 // GetRelativePercentage returns the RelativePercentage field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerHumidity) GetRelativePercentage() int32 {
-	if o == nil || isNil(o.RelativePercentage) {
+	if o == nil || IsNil(o.RelativePercentage) {
 		var ret int32
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerHumidity) GetRelati
 // GetRelativePercentageOk returns a tuple with the RelativePercentage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerHumidity) GetRelativePercentageOk() (*int32, bool) {
-	if o == nil || isNil(o.RelativePercentage) {
-    return nil, false
+	if o == nil || IsNil(o.RelativePercentage) {
+		return nil, false
 	}
 	return o.RelativePercentage, true
 }
 
 // HasRelativePercentage returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerHumidity) HasRelativePercentage() bool {
-	if o != nil && !isNil(o.RelativePercentage) {
+	if o != nil && !IsNil(o.RelativePercentage) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerHumidity) SetRelati
 }
 
 func (o GetOrganizationSensorReadingsHistory200ResponseInnerHumidity) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.RelativePercentage) {
-		toSerialize["relativePercentage"] = o.RelativePercentage
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSensorReadingsHistory200ResponseInnerHumidity) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.RelativePercentage) {
+		toSerialize["relativePercentage"] = o.RelativePercentage
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSensorReadingsHistory200ResponseInnerHumidity struct {

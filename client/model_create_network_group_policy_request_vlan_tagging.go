@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkGroupPolicyRequestVlanTagging type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkGroupPolicyRequestVlanTagging{}
+
 // CreateNetworkGroupPolicyRequestVlanTagging The VLAN tagging settings for your group policy. Only available if your network has a wireless configuration.
 type CreateNetworkGroupPolicyRequestVlanTagging struct {
 	// How VLAN tagging is applied. Can be 'network default', 'ignore' or 'custom'.
@@ -41,7 +44,7 @@ func NewCreateNetworkGroupPolicyRequestVlanTaggingWithDefaults() *CreateNetworkG
 
 // GetSettings returns the Settings field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestVlanTagging) GetSettings() string {
-	if o == nil || isNil(o.Settings) {
+	if o == nil || IsNil(o.Settings) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateNetworkGroupPolicyRequestVlanTagging) GetSettings() string {
 // GetSettingsOk returns a tuple with the Settings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestVlanTagging) GetSettingsOk() (*string, bool) {
-	if o == nil || isNil(o.Settings) {
-    return nil, false
+	if o == nil || IsNil(o.Settings) {
+		return nil, false
 	}
 	return o.Settings, true
 }
 
 // HasSettings returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestVlanTagging) HasSettings() bool {
-	if o != nil && !isNil(o.Settings) {
+	if o != nil && !IsNil(o.Settings) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateNetworkGroupPolicyRequestVlanTagging) SetSettings(v string) {
 
 // GetVlanId returns the VlanId field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestVlanTagging) GetVlanId() string {
-	if o == nil || isNil(o.VlanId) {
+	if o == nil || IsNil(o.VlanId) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateNetworkGroupPolicyRequestVlanTagging) GetVlanId() string {
 // GetVlanIdOk returns a tuple with the VlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestVlanTagging) GetVlanIdOk() (*string, bool) {
-	if o == nil || isNil(o.VlanId) {
-    return nil, false
+	if o == nil || IsNil(o.VlanId) {
+		return nil, false
 	}
 	return o.VlanId, true
 }
 
 // HasVlanId returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestVlanTagging) HasVlanId() bool {
-	if o != nil && !isNil(o.VlanId) {
+	if o != nil && !IsNil(o.VlanId) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *CreateNetworkGroupPolicyRequestVlanTagging) SetVlanId(v string) {
 }
 
 func (o CreateNetworkGroupPolicyRequestVlanTagging) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Settings) {
-		toSerialize["settings"] = o.Settings
-	}
-	if !isNil(o.VlanId) {
-		toSerialize["vlanId"] = o.VlanId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkGroupPolicyRequestVlanTagging) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Settings) {
+		toSerialize["settings"] = o.Settings
+	}
+	if !IsNil(o.VlanId) {
+		toSerialize["vlanId"] = o.VlanId
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkGroupPolicyRequestVlanTagging struct {

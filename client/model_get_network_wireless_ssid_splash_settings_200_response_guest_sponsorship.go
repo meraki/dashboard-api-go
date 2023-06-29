@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship{}
+
 // GetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship Details associated with guest sponsored splash
 type GetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship struct {
 	// Duration in minutes of sponsored guest authorization.
@@ -41,7 +44,7 @@ func NewGetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorshipWithDefau
 
 // GetDurationInMinutes returns the DurationInMinutes field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship) GetDurationInMinutes() int32 {
-	if o == nil || isNil(o.DurationInMinutes) {
+	if o == nil || IsNil(o.DurationInMinutes) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship) GetDur
 // GetDurationInMinutesOk returns a tuple with the DurationInMinutes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship) GetDurationInMinutesOk() (*int32, bool) {
-	if o == nil || isNil(o.DurationInMinutes) {
-    return nil, false
+	if o == nil || IsNil(o.DurationInMinutes) {
+		return nil, false
 	}
 	return o.DurationInMinutes, true
 }
 
 // HasDurationInMinutes returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship) HasDurationInMinutes() bool {
-	if o != nil && !isNil(o.DurationInMinutes) {
+	if o != nil && !IsNil(o.DurationInMinutes) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship) SetDur
 
 // GetGuestCanRequestTimeframe returns the GuestCanRequestTimeframe field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship) GetGuestCanRequestTimeframe() bool {
-	if o == nil || isNil(o.GuestCanRequestTimeframe) {
+	if o == nil || IsNil(o.GuestCanRequestTimeframe) {
 		var ret bool
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship) GetGue
 // GetGuestCanRequestTimeframeOk returns a tuple with the GuestCanRequestTimeframe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship) GetGuestCanRequestTimeframeOk() (*bool, bool) {
-	if o == nil || isNil(o.GuestCanRequestTimeframe) {
-    return nil, false
+	if o == nil || IsNil(o.GuestCanRequestTimeframe) {
+		return nil, false
 	}
 	return o.GuestCanRequestTimeframe, true
 }
 
 // HasGuestCanRequestTimeframe returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship) HasGuestCanRequestTimeframe() bool {
-	if o != nil && !isNil(o.GuestCanRequestTimeframe) {
+	if o != nil && !IsNil(o.GuestCanRequestTimeframe) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship) SetGue
 }
 
 func (o GetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.DurationInMinutes) {
-		toSerialize["durationInMinutes"] = o.DurationInMinutes
-	}
-	if !isNil(o.GuestCanRequestTimeframe) {
-		toSerialize["guestCanRequestTimeframe"] = o.GuestCanRequestTimeframe
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DurationInMinutes) {
+		toSerialize["durationInMinutes"] = o.DurationInMinutes
+	}
+	if !IsNil(o.GuestCanRequestTimeframe) {
+		toSerialize["guestCanRequestTimeframe"] = o.GuestCanRequestTimeframe
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessSsidSplashSettings200ResponseGuestSponsorship struct {

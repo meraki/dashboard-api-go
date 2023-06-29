@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceSwitchPortsStatuses200ResponseInnerLldp type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceSwitchPortsStatuses200ResponseInnerLldp{}
+
 // GetDeviceSwitchPortsStatuses200ResponseInnerLldp The Link Layer Discovery Protocol (LLDP) information of the connected device.
 type GetDeviceSwitchPortsStatuses200ResponseInnerLldp struct {
 	// The device's system name.
@@ -55,7 +58,7 @@ func NewGetDeviceSwitchPortsStatuses200ResponseInnerLldpWithDefaults() *GetDevic
 
 // GetSystemName returns the SystemName field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetSystemName() string {
-	if o == nil || isNil(o.SystemName) {
+	if o == nil || IsNil(o.SystemName) {
 		var ret string
 		return ret
 	}
@@ -65,15 +68,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetSystemName() strin
 // GetSystemNameOk returns a tuple with the SystemName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetSystemNameOk() (*string, bool) {
-	if o == nil || isNil(o.SystemName) {
-    return nil, false
+	if o == nil || IsNil(o.SystemName) {
+		return nil, false
 	}
 	return o.SystemName, true
 }
 
 // HasSystemName returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) HasSystemName() bool {
-	if o != nil && !isNil(o.SystemName) {
+	if o != nil && !IsNil(o.SystemName) {
 		return true
 	}
 
@@ -87,7 +90,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) SetSystemName(v strin
 
 // GetSystemDescription returns the SystemDescription field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetSystemDescription() string {
-	if o == nil || isNil(o.SystemDescription) {
+	if o == nil || IsNil(o.SystemDescription) {
 		var ret string
 		return ret
 	}
@@ -97,15 +100,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetSystemDescription(
 // GetSystemDescriptionOk returns a tuple with the SystemDescription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetSystemDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.SystemDescription) {
-    return nil, false
+	if o == nil || IsNil(o.SystemDescription) {
+		return nil, false
 	}
 	return o.SystemDescription, true
 }
 
 // HasSystemDescription returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) HasSystemDescription() bool {
-	if o != nil && !isNil(o.SystemDescription) {
+	if o != nil && !IsNil(o.SystemDescription) {
 		return true
 	}
 
@@ -119,7 +122,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) SetSystemDescription(
 
 // GetChassisId returns the ChassisId field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetChassisId() string {
-	if o == nil || isNil(o.ChassisId) {
+	if o == nil || IsNil(o.ChassisId) {
 		var ret string
 		return ret
 	}
@@ -129,15 +132,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetChassisId() string
 // GetChassisIdOk returns a tuple with the ChassisId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetChassisIdOk() (*string, bool) {
-	if o == nil || isNil(o.ChassisId) {
-    return nil, false
+	if o == nil || IsNil(o.ChassisId) {
+		return nil, false
 	}
 	return o.ChassisId, true
 }
 
 // HasChassisId returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) HasChassisId() bool {
-	if o != nil && !isNil(o.ChassisId) {
+	if o != nil && !IsNil(o.ChassisId) {
 		return true
 	}
 
@@ -151,7 +154,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) SetChassisId(v string
 
 // GetPortId returns the PortId field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetPortId() string {
-	if o == nil || isNil(o.PortId) {
+	if o == nil || IsNil(o.PortId) {
 		var ret string
 		return ret
 	}
@@ -161,15 +164,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetPortId() string {
 // GetPortIdOk returns a tuple with the PortId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetPortIdOk() (*string, bool) {
-	if o == nil || isNil(o.PortId) {
-    return nil, false
+	if o == nil || IsNil(o.PortId) {
+		return nil, false
 	}
 	return o.PortId, true
 }
 
 // HasPortId returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) HasPortId() bool {
-	if o != nil && !isNil(o.PortId) {
+	if o != nil && !IsNil(o.PortId) {
 		return true
 	}
 
@@ -183,7 +186,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) SetPortId(v string) {
 
 // GetManagementVlan returns the ManagementVlan field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetManagementVlan() int32 {
-	if o == nil || isNil(o.ManagementVlan) {
+	if o == nil || IsNil(o.ManagementVlan) {
 		var ret int32
 		return ret
 	}
@@ -193,15 +196,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetManagementVlan() i
 // GetManagementVlanOk returns a tuple with the ManagementVlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetManagementVlanOk() (*int32, bool) {
-	if o == nil || isNil(o.ManagementVlan) {
-    return nil, false
+	if o == nil || IsNil(o.ManagementVlan) {
+		return nil, false
 	}
 	return o.ManagementVlan, true
 }
 
 // HasManagementVlan returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) HasManagementVlan() bool {
-	if o != nil && !isNil(o.ManagementVlan) {
+	if o != nil && !IsNil(o.ManagementVlan) {
 		return true
 	}
 
@@ -215,7 +218,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) SetManagementVlan(v i
 
 // GetPortVlan returns the PortVlan field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetPortVlan() int32 {
-	if o == nil || isNil(o.PortVlan) {
+	if o == nil || IsNil(o.PortVlan) {
 		var ret int32
 		return ret
 	}
@@ -225,15 +228,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetPortVlan() int32 {
 // GetPortVlanOk returns a tuple with the PortVlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetPortVlanOk() (*int32, bool) {
-	if o == nil || isNil(o.PortVlan) {
-    return nil, false
+	if o == nil || IsNil(o.PortVlan) {
+		return nil, false
 	}
 	return o.PortVlan, true
 }
 
 // HasPortVlan returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) HasPortVlan() bool {
-	if o != nil && !isNil(o.PortVlan) {
+	if o != nil && !IsNil(o.PortVlan) {
 		return true
 	}
 
@@ -247,7 +250,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) SetPortVlan(v int32) 
 
 // GetManagementAddress returns the ManagementAddress field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetManagementAddress() string {
-	if o == nil || isNil(o.ManagementAddress) {
+	if o == nil || IsNil(o.ManagementAddress) {
 		var ret string
 		return ret
 	}
@@ -257,15 +260,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetManagementAddress(
 // GetManagementAddressOk returns a tuple with the ManagementAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetManagementAddressOk() (*string, bool) {
-	if o == nil || isNil(o.ManagementAddress) {
-    return nil, false
+	if o == nil || IsNil(o.ManagementAddress) {
+		return nil, false
 	}
 	return o.ManagementAddress, true
 }
 
 // HasManagementAddress returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) HasManagementAddress() bool {
-	if o != nil && !isNil(o.ManagementAddress) {
+	if o != nil && !IsNil(o.ManagementAddress) {
 		return true
 	}
 
@@ -279,7 +282,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) SetManagementAddress(
 
 // GetPortDescription returns the PortDescription field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetPortDescription() string {
-	if o == nil || isNil(o.PortDescription) {
+	if o == nil || IsNil(o.PortDescription) {
 		var ret string
 		return ret
 	}
@@ -289,15 +292,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetPortDescription() 
 // GetPortDescriptionOk returns a tuple with the PortDescription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetPortDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.PortDescription) {
-    return nil, false
+	if o == nil || IsNil(o.PortDescription) {
+		return nil, false
 	}
 	return o.PortDescription, true
 }
 
 // HasPortDescription returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) HasPortDescription() bool {
-	if o != nil && !isNil(o.PortDescription) {
+	if o != nil && !IsNil(o.PortDescription) {
 		return true
 	}
 
@@ -311,7 +314,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) SetPortDescription(v 
 
 // GetSystemCapabilities returns the SystemCapabilities field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetSystemCapabilities() string {
-	if o == nil || isNil(o.SystemCapabilities) {
+	if o == nil || IsNil(o.SystemCapabilities) {
 		var ret string
 		return ret
 	}
@@ -321,15 +324,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetSystemCapabilities
 // GetSystemCapabilitiesOk returns a tuple with the SystemCapabilities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) GetSystemCapabilitiesOk() (*string, bool) {
-	if o == nil || isNil(o.SystemCapabilities) {
-    return nil, false
+	if o == nil || IsNil(o.SystemCapabilities) {
+		return nil, false
 	}
 	return o.SystemCapabilities, true
 }
 
 // HasSystemCapabilities returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) HasSystemCapabilities() bool {
-	if o != nil && !isNil(o.SystemCapabilities) {
+	if o != nil && !IsNil(o.SystemCapabilities) {
 		return true
 	}
 
@@ -342,35 +345,43 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerLldp) SetSystemCapabilities
 }
 
 func (o GetDeviceSwitchPortsStatuses200ResponseInnerLldp) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.SystemName) {
-		toSerialize["systemName"] = o.SystemName
-	}
-	if !isNil(o.SystemDescription) {
-		toSerialize["systemDescription"] = o.SystemDescription
-	}
-	if !isNil(o.ChassisId) {
-		toSerialize["chassisId"] = o.ChassisId
-	}
-	if !isNil(o.PortId) {
-		toSerialize["portId"] = o.PortId
-	}
-	if !isNil(o.ManagementVlan) {
-		toSerialize["managementVlan"] = o.ManagementVlan
-	}
-	if !isNil(o.PortVlan) {
-		toSerialize["portVlan"] = o.PortVlan
-	}
-	if !isNil(o.ManagementAddress) {
-		toSerialize["managementAddress"] = o.ManagementAddress
-	}
-	if !isNil(o.PortDescription) {
-		toSerialize["portDescription"] = o.PortDescription
-	}
-	if !isNil(o.SystemCapabilities) {
-		toSerialize["systemCapabilities"] = o.SystemCapabilities
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceSwitchPortsStatuses200ResponseInnerLldp) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SystemName) {
+		toSerialize["systemName"] = o.SystemName
+	}
+	if !IsNil(o.SystemDescription) {
+		toSerialize["systemDescription"] = o.SystemDescription
+	}
+	if !IsNil(o.ChassisId) {
+		toSerialize["chassisId"] = o.ChassisId
+	}
+	if !IsNil(o.PortId) {
+		toSerialize["portId"] = o.PortId
+	}
+	if !IsNil(o.ManagementVlan) {
+		toSerialize["managementVlan"] = o.ManagementVlan
+	}
+	if !IsNil(o.PortVlan) {
+		toSerialize["portVlan"] = o.PortVlan
+	}
+	if !IsNil(o.ManagementAddress) {
+		toSerialize["managementAddress"] = o.ManagementAddress
+	}
+	if !IsNil(o.PortDescription) {
+		toSerialize["portDescription"] = o.PortDescription
+	}
+	if !IsNil(o.SystemCapabilities) {
+		toSerialize["systemCapabilities"] = o.SystemCapabilities
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceSwitchPortsStatuses200ResponseInnerLldp struct {

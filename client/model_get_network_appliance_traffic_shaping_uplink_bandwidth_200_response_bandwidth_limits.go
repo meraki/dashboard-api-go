@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimits type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimits{}
+
 // GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimits A hash uplink keys and their configured settings for the Appliance
 type GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimits struct {
 	Wan1 *GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimitsWan1 `json:"wan1,omitempty"`
@@ -40,7 +43,7 @@ func NewGetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimi
 
 // GetWan1 returns the Wan1 field value if set, zero value otherwise.
 func (o *GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimits) GetWan1() GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimitsWan1 {
-	if o == nil || isNil(o.Wan1) {
+	if o == nil || IsNil(o.Wan1) {
 		var ret GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimitsWan1
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLim
 // GetWan1Ok returns a tuple with the Wan1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimits) GetWan1Ok() (*GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimitsWan1, bool) {
-	if o == nil || isNil(o.Wan1) {
-    return nil, false
+	if o == nil || IsNil(o.Wan1) {
+		return nil, false
 	}
 	return o.Wan1, true
 }
 
 // HasWan1 returns a boolean if a field has been set.
 func (o *GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimits) HasWan1() bool {
-	if o != nil && !isNil(o.Wan1) {
+	if o != nil && !IsNil(o.Wan1) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLim
 
 // GetWan2 returns the Wan2 field value if set, zero value otherwise.
 func (o *GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimits) GetWan2() GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimitsWan2 {
-	if o == nil || isNil(o.Wan2) {
+	if o == nil || IsNil(o.Wan2) {
 		var ret GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimitsWan2
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLim
 // GetWan2Ok returns a tuple with the Wan2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimits) GetWan2Ok() (*GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimitsWan2, bool) {
-	if o == nil || isNil(o.Wan2) {
-    return nil, false
+	if o == nil || IsNil(o.Wan2) {
+		return nil, false
 	}
 	return o.Wan2, true
 }
 
 // HasWan2 returns a boolean if a field has been set.
 func (o *GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimits) HasWan2() bool {
-	if o != nil && !isNil(o.Wan2) {
+	if o != nil && !IsNil(o.Wan2) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLim
 
 // GetCellular returns the Cellular field value if set, zero value otherwise.
 func (o *GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimits) GetCellular() GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimitsCellular {
-	if o == nil || isNil(o.Cellular) {
+	if o == nil || IsNil(o.Cellular) {
 		var ret GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimitsCellular
 		return ret
 	}
@@ -114,15 +117,15 @@ func (o *GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLim
 // GetCellularOk returns a tuple with the Cellular field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimits) GetCellularOk() (*GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimitsCellular, bool) {
-	if o == nil || isNil(o.Cellular) {
-    return nil, false
+	if o == nil || IsNil(o.Cellular) {
+		return nil, false
 	}
 	return o.Cellular, true
 }
 
 // HasCellular returns a boolean if a field has been set.
 func (o *GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimits) HasCellular() bool {
-	if o != nil && !isNil(o.Cellular) {
+	if o != nil && !IsNil(o.Cellular) {
 		return true
 	}
 
@@ -135,17 +138,25 @@ func (o *GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLim
 }
 
 func (o GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimits) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Wan1) {
-		toSerialize["wan1"] = o.Wan1
-	}
-	if !isNil(o.Wan2) {
-		toSerialize["wan2"] = o.Wan2
-	}
-	if !isNil(o.Cellular) {
-		toSerialize["cellular"] = o.Cellular
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimits) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Wan1) {
+		toSerialize["wan1"] = o.Wan1
+	}
+	if !IsNil(o.Wan2) {
+		toSerialize["wan2"] = o.Wan2
+	}
+	if !IsNil(o.Cellular) {
+		toSerialize["cellular"] = o.Cellular
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkApplianceTrafficShapingUplinkBandwidth200ResponseBandwidthLimits struct {

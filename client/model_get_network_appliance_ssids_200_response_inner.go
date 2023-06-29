@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkApplianceSsids200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkApplianceSsids200ResponseInner{}
+
 // GetNetworkApplianceSsids200ResponseInner struct for GetNetworkApplianceSsids200ResponseInner
 type GetNetworkApplianceSsids200ResponseInner struct {
 	// The number of the SSID.
@@ -55,7 +58,7 @@ func NewGetNetworkApplianceSsids200ResponseInnerWithDefaults() *GetNetworkApplia
 
 // GetNumber returns the Number field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetNumber() int32 {
-	if o == nil || isNil(o.Number) {
+	if o == nil || IsNil(o.Number) {
 		var ret int32
 		return ret
 	}
@@ -65,15 +68,15 @@ func (o *GetNetworkApplianceSsids200ResponseInner) GetNumber() int32 {
 // GetNumberOk returns a tuple with the Number field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetNumberOk() (*int32, bool) {
-	if o == nil || isNil(o.Number) {
-    return nil, false
+	if o == nil || IsNil(o.Number) {
+		return nil, false
 	}
 	return o.Number, true
 }
 
 // HasNumber returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) HasNumber() bool {
-	if o != nil && !isNil(o.Number) {
+	if o != nil && !IsNil(o.Number) {
 		return true
 	}
 
@@ -87,7 +90,7 @@ func (o *GetNetworkApplianceSsids200ResponseInner) SetNumber(v int32) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -97,15 +100,15 @@ func (o *GetNetworkApplianceSsids200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -119,7 +122,7 @@ func (o *GetNetworkApplianceSsids200ResponseInner) SetName(v string) {
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -129,15 +132,15 @@ func (o *GetNetworkApplianceSsids200ResponseInner) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -151,7 +154,7 @@ func (o *GetNetworkApplianceSsids200ResponseInner) SetEnabled(v bool) {
 
 // GetDefaultVlanId returns the DefaultVlanId field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetDefaultVlanId() int32 {
-	if o == nil || isNil(o.DefaultVlanId) {
+	if o == nil || IsNil(o.DefaultVlanId) {
 		var ret int32
 		return ret
 	}
@@ -161,15 +164,15 @@ func (o *GetNetworkApplianceSsids200ResponseInner) GetDefaultVlanId() int32 {
 // GetDefaultVlanIdOk returns a tuple with the DefaultVlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetDefaultVlanIdOk() (*int32, bool) {
-	if o == nil || isNil(o.DefaultVlanId) {
-    return nil, false
+	if o == nil || IsNil(o.DefaultVlanId) {
+		return nil, false
 	}
 	return o.DefaultVlanId, true
 }
 
 // HasDefaultVlanId returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) HasDefaultVlanId() bool {
-	if o != nil && !isNil(o.DefaultVlanId) {
+	if o != nil && !IsNil(o.DefaultVlanId) {
 		return true
 	}
 
@@ -183,7 +186,7 @@ func (o *GetNetworkApplianceSsids200ResponseInner) SetDefaultVlanId(v int32) {
 
 // GetAuthMode returns the AuthMode field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetAuthMode() string {
-	if o == nil || isNil(o.AuthMode) {
+	if o == nil || IsNil(o.AuthMode) {
 		var ret string
 		return ret
 	}
@@ -193,15 +196,15 @@ func (o *GetNetworkApplianceSsids200ResponseInner) GetAuthMode() string {
 // GetAuthModeOk returns a tuple with the AuthMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetAuthModeOk() (*string, bool) {
-	if o == nil || isNil(o.AuthMode) {
-    return nil, false
+	if o == nil || IsNil(o.AuthMode) {
+		return nil, false
 	}
 	return o.AuthMode, true
 }
 
 // HasAuthMode returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) HasAuthMode() bool {
-	if o != nil && !isNil(o.AuthMode) {
+	if o != nil && !IsNil(o.AuthMode) {
 		return true
 	}
 
@@ -215,7 +218,7 @@ func (o *GetNetworkApplianceSsids200ResponseInner) SetAuthMode(v string) {
 
 // GetRadiusServers returns the RadiusServers field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetRadiusServers() []GetNetworkApplianceSsids200ResponseInnerRadiusServersInner {
-	if o == nil || isNil(o.RadiusServers) {
+	if o == nil || IsNil(o.RadiusServers) {
 		var ret []GetNetworkApplianceSsids200ResponseInnerRadiusServersInner
 		return ret
 	}
@@ -225,15 +228,15 @@ func (o *GetNetworkApplianceSsids200ResponseInner) GetRadiusServers() []GetNetwo
 // GetRadiusServersOk returns a tuple with the RadiusServers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetRadiusServersOk() ([]GetNetworkApplianceSsids200ResponseInnerRadiusServersInner, bool) {
-	if o == nil || isNil(o.RadiusServers) {
-    return nil, false
+	if o == nil || IsNil(o.RadiusServers) {
+		return nil, false
 	}
 	return o.RadiusServers, true
 }
 
 // HasRadiusServers returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) HasRadiusServers() bool {
-	if o != nil && !isNil(o.RadiusServers) {
+	if o != nil && !IsNil(o.RadiusServers) {
 		return true
 	}
 
@@ -247,7 +250,7 @@ func (o *GetNetworkApplianceSsids200ResponseInner) SetRadiusServers(v []GetNetwo
 
 // GetEncryptionMode returns the EncryptionMode field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetEncryptionMode() string {
-	if o == nil || isNil(o.EncryptionMode) {
+	if o == nil || IsNil(o.EncryptionMode) {
 		var ret string
 		return ret
 	}
@@ -257,15 +260,15 @@ func (o *GetNetworkApplianceSsids200ResponseInner) GetEncryptionMode() string {
 // GetEncryptionModeOk returns a tuple with the EncryptionMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetEncryptionModeOk() (*string, bool) {
-	if o == nil || isNil(o.EncryptionMode) {
-    return nil, false
+	if o == nil || IsNil(o.EncryptionMode) {
+		return nil, false
 	}
 	return o.EncryptionMode, true
 }
 
 // HasEncryptionMode returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) HasEncryptionMode() bool {
-	if o != nil && !isNil(o.EncryptionMode) {
+	if o != nil && !IsNil(o.EncryptionMode) {
 		return true
 	}
 
@@ -279,7 +282,7 @@ func (o *GetNetworkApplianceSsids200ResponseInner) SetEncryptionMode(v string) {
 
 // GetWpaEncryptionMode returns the WpaEncryptionMode field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetWpaEncryptionMode() string {
-	if o == nil || isNil(o.WpaEncryptionMode) {
+	if o == nil || IsNil(o.WpaEncryptionMode) {
 		var ret string
 		return ret
 	}
@@ -289,15 +292,15 @@ func (o *GetNetworkApplianceSsids200ResponseInner) GetWpaEncryptionMode() string
 // GetWpaEncryptionModeOk returns a tuple with the WpaEncryptionMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetWpaEncryptionModeOk() (*string, bool) {
-	if o == nil || isNil(o.WpaEncryptionMode) {
-    return nil, false
+	if o == nil || IsNil(o.WpaEncryptionMode) {
+		return nil, false
 	}
 	return o.WpaEncryptionMode, true
 }
 
 // HasWpaEncryptionMode returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) HasWpaEncryptionMode() bool {
-	if o != nil && !isNil(o.WpaEncryptionMode) {
+	if o != nil && !IsNil(o.WpaEncryptionMode) {
 		return true
 	}
 
@@ -311,7 +314,7 @@ func (o *GetNetworkApplianceSsids200ResponseInner) SetWpaEncryptionMode(v string
 
 // GetVisible returns the Visible field value if set, zero value otherwise.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetVisible() bool {
-	if o == nil || isNil(o.Visible) {
+	if o == nil || IsNil(o.Visible) {
 		var ret bool
 		return ret
 	}
@@ -321,15 +324,15 @@ func (o *GetNetworkApplianceSsids200ResponseInner) GetVisible() bool {
 // GetVisibleOk returns a tuple with the Visible field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) GetVisibleOk() (*bool, bool) {
-	if o == nil || isNil(o.Visible) {
-    return nil, false
+	if o == nil || IsNil(o.Visible) {
+		return nil, false
 	}
 	return o.Visible, true
 }
 
 // HasVisible returns a boolean if a field has been set.
 func (o *GetNetworkApplianceSsids200ResponseInner) HasVisible() bool {
-	if o != nil && !isNil(o.Visible) {
+	if o != nil && !IsNil(o.Visible) {
 		return true
 	}
 
@@ -342,35 +345,43 @@ func (o *GetNetworkApplianceSsids200ResponseInner) SetVisible(v bool) {
 }
 
 func (o GetNetworkApplianceSsids200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Number) {
-		toSerialize["number"] = o.Number
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.DefaultVlanId) {
-		toSerialize["defaultVlanId"] = o.DefaultVlanId
-	}
-	if !isNil(o.AuthMode) {
-		toSerialize["authMode"] = o.AuthMode
-	}
-	if !isNil(o.RadiusServers) {
-		toSerialize["radiusServers"] = o.RadiusServers
-	}
-	if !isNil(o.EncryptionMode) {
-		toSerialize["encryptionMode"] = o.EncryptionMode
-	}
-	if !isNil(o.WpaEncryptionMode) {
-		toSerialize["wpaEncryptionMode"] = o.WpaEncryptionMode
-	}
-	if !isNil(o.Visible) {
-		toSerialize["visible"] = o.Visible
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkApplianceSsids200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Number) {
+		toSerialize["number"] = o.Number
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.DefaultVlanId) {
+		toSerialize["defaultVlanId"] = o.DefaultVlanId
+	}
+	if !IsNil(o.AuthMode) {
+		toSerialize["authMode"] = o.AuthMode
+	}
+	if !IsNil(o.RadiusServers) {
+		toSerialize["radiusServers"] = o.RadiusServers
+	}
+	if !IsNil(o.EncryptionMode) {
+		toSerialize["encryptionMode"] = o.EncryptionMode
+	}
+	if !IsNil(o.WpaEncryptionMode) {
+		toSerialize["wpaEncryptionMode"] = o.WpaEncryptionMode
+	}
+	if !IsNil(o.Visible) {
+		toSerialize["visible"] = o.Visible
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkApplianceSsids200ResponseInner struct {

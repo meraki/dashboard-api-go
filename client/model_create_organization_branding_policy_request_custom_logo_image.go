@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationBrandingPolicyRequestCustomLogoImage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationBrandingPolicyRequestCustomLogoImage{}
+
 // CreateOrganizationBrandingPolicyRequestCustomLogoImage Properties for setting the image.
 type CreateOrganizationBrandingPolicyRequestCustomLogoImage struct {
 	// The file contents (a base 64 encoded string) of your new logo.
@@ -41,7 +44,7 @@ func NewCreateOrganizationBrandingPolicyRequestCustomLogoImageWithDefaults() *Cr
 
 // GetContents returns the Contents field value if set, zero value otherwise.
 func (o *CreateOrganizationBrandingPolicyRequestCustomLogoImage) GetContents() string {
-	if o == nil || isNil(o.Contents) {
+	if o == nil || IsNil(o.Contents) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateOrganizationBrandingPolicyRequestCustomLogoImage) GetContents() s
 // GetContentsOk returns a tuple with the Contents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationBrandingPolicyRequestCustomLogoImage) GetContentsOk() (*string, bool) {
-	if o == nil || isNil(o.Contents) {
-    return nil, false
+	if o == nil || IsNil(o.Contents) {
+		return nil, false
 	}
 	return o.Contents, true
 }
 
 // HasContents returns a boolean if a field has been set.
 func (o *CreateOrganizationBrandingPolicyRequestCustomLogoImage) HasContents() bool {
-	if o != nil && !isNil(o.Contents) {
+	if o != nil && !IsNil(o.Contents) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateOrganizationBrandingPolicyRequestCustomLogoImage) SetContents(v s
 
 // GetFormat returns the Format field value if set, zero value otherwise.
 func (o *CreateOrganizationBrandingPolicyRequestCustomLogoImage) GetFormat() string {
-	if o == nil || isNil(o.Format) {
+	if o == nil || IsNil(o.Format) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateOrganizationBrandingPolicyRequestCustomLogoImage) GetFormat() str
 // GetFormatOk returns a tuple with the Format field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationBrandingPolicyRequestCustomLogoImage) GetFormatOk() (*string, bool) {
-	if o == nil || isNil(o.Format) {
-    return nil, false
+	if o == nil || IsNil(o.Format) {
+		return nil, false
 	}
 	return o.Format, true
 }
 
 // HasFormat returns a boolean if a field has been set.
 func (o *CreateOrganizationBrandingPolicyRequestCustomLogoImage) HasFormat() bool {
-	if o != nil && !isNil(o.Format) {
+	if o != nil && !IsNil(o.Format) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *CreateOrganizationBrandingPolicyRequestCustomLogoImage) SetFormat(v str
 }
 
 func (o CreateOrganizationBrandingPolicyRequestCustomLogoImage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Contents) {
-		toSerialize["contents"] = o.Contents
-	}
-	if !isNil(o.Format) {
-		toSerialize["format"] = o.Format
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationBrandingPolicyRequestCustomLogoImage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Contents) {
+		toSerialize["contents"] = o.Contents
+	}
+	if !IsNil(o.Format) {
+		toSerialize["format"] = o.Format
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationBrandingPolicyRequestCustomLogoImage struct {

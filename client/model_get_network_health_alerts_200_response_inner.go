@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkHealthAlerts200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkHealthAlerts200ResponseInner{}
+
 // GetNetworkHealthAlerts200ResponseInner struct for GetNetworkHealthAlerts200ResponseInner
 type GetNetworkHealthAlerts200ResponseInner struct {
 	// Alert identifier. Value can be empty
@@ -46,7 +49,7 @@ func NewGetNetworkHealthAlerts200ResponseInnerWithDefaults() *GetNetworkHealthAl
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *GetNetworkHealthAlerts200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *GetNetworkHealthAlerts200ResponseInner) SetId(v string) {
 
 // GetCategory returns the Category field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInner) GetCategory() string {
-	if o == nil || isNil(o.Category) {
+	if o == nil || IsNil(o.Category) {
 		var ret string
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *GetNetworkHealthAlerts200ResponseInner) GetCategory() string {
 // GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInner) GetCategoryOk() (*string, bool) {
-	if o == nil || isNil(o.Category) {
-    return nil, false
+	if o == nil || IsNil(o.Category) {
+		return nil, false
 	}
 	return o.Category, true
 }
 
 // HasCategory returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInner) HasCategory() bool {
-	if o != nil && !isNil(o.Category) {
+	if o != nil && !IsNil(o.Category) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *GetNetworkHealthAlerts200ResponseInner) SetCategory(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInner) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *GetNetworkHealthAlerts200ResponseInner) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInner) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInner) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *GetNetworkHealthAlerts200ResponseInner) SetType(v string) {
 
 // GetSeverity returns the Severity field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInner) GetSeverity() string {
-	if o == nil || isNil(o.Severity) {
+	if o == nil || IsNil(o.Severity) {
 		var ret string
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *GetNetworkHealthAlerts200ResponseInner) GetSeverity() string {
 // GetSeverityOk returns a tuple with the Severity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInner) GetSeverityOk() (*string, bool) {
-	if o == nil || isNil(o.Severity) {
-    return nil, false
+	if o == nil || IsNil(o.Severity) {
+		return nil, false
 	}
 	return o.Severity, true
 }
 
 // HasSeverity returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInner) HasSeverity() bool {
-	if o != nil && !isNil(o.Severity) {
+	if o != nil && !IsNil(o.Severity) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *GetNetworkHealthAlerts200ResponseInner) SetSeverity(v string) {
 
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInner) GetScope() GetNetworkHealthAlerts200ResponseInnerScope {
-	if o == nil || isNil(o.Scope) {
+	if o == nil || IsNil(o.Scope) {
 		var ret GetNetworkHealthAlerts200ResponseInnerScope
 		return ret
 	}
@@ -184,15 +187,15 @@ func (o *GetNetworkHealthAlerts200ResponseInner) GetScope() GetNetworkHealthAler
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInner) GetScopeOk() (*GetNetworkHealthAlerts200ResponseInnerScope, bool) {
-	if o == nil || isNil(o.Scope) {
-    return nil, false
+	if o == nil || IsNil(o.Scope) {
+		return nil, false
 	}
 	return o.Scope, true
 }
 
 // HasScope returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInner) HasScope() bool {
-	if o != nil && !isNil(o.Scope) {
+	if o != nil && !IsNil(o.Scope) {
 		return true
 	}
 
@@ -205,23 +208,31 @@ func (o *GetNetworkHealthAlerts200ResponseInner) SetScope(v GetNetworkHealthAler
 }
 
 func (o GetNetworkHealthAlerts200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Category) {
-		toSerialize["category"] = o.Category
-	}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Severity) {
-		toSerialize["severity"] = o.Severity
-	}
-	if !isNil(o.Scope) {
-		toSerialize["scope"] = o.Scope
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkHealthAlerts200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Category) {
+		toSerialize["category"] = o.Category
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Severity) {
+		toSerialize["severity"] = o.Severity
+	}
+	if !IsNil(o.Scope) {
+		toSerialize["scope"] = o.Scope
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkHealthAlerts200ResponseInner struct {

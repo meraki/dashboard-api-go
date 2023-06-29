@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationAlertsProfileRequestAlertCondition type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationAlertsProfileRequestAlertCondition{}
+
 // CreateOrganizationAlertsProfileRequestAlertCondition The conditions that determine if the alert triggers
 type CreateOrganizationAlertsProfileRequestAlertCondition struct {
 	// The total duration in seconds that the threshold should be crossed before alerting
@@ -53,7 +56,7 @@ func NewCreateOrganizationAlertsProfileRequestAlertConditionWithDefaults() *Crea
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetDuration() int32 {
-	if o == nil || isNil(o.Duration) {
+	if o == nil || IsNil(o.Duration) {
 		var ret int32
 		return ret
 	}
@@ -63,15 +66,15 @@ func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetDuration() int
 // GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetDurationOk() (*int32, bool) {
-	if o == nil || isNil(o.Duration) {
-    return nil, false
+	if o == nil || IsNil(o.Duration) {
+		return nil, false
 	}
 	return o.Duration, true
 }
 
 // HasDuration returns a boolean if a field has been set.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) HasDuration() bool {
-	if o != nil && !isNil(o.Duration) {
+	if o != nil && !IsNil(o.Duration) {
 		return true
 	}
 
@@ -85,7 +88,7 @@ func (o *CreateOrganizationAlertsProfileRequestAlertCondition) SetDuration(v int
 
 // GetWindow returns the Window field value if set, zero value otherwise.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetWindow() int32 {
-	if o == nil || isNil(o.Window) {
+	if o == nil || IsNil(o.Window) {
 		var ret int32
 		return ret
 	}
@@ -95,15 +98,15 @@ func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetWindow() int32
 // GetWindowOk returns a tuple with the Window field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetWindowOk() (*int32, bool) {
-	if o == nil || isNil(o.Window) {
-    return nil, false
+	if o == nil || IsNil(o.Window) {
+		return nil, false
 	}
 	return o.Window, true
 }
 
 // HasWindow returns a boolean if a field has been set.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) HasWindow() bool {
-	if o != nil && !isNil(o.Window) {
+	if o != nil && !IsNil(o.Window) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *CreateOrganizationAlertsProfileRequestAlertCondition) SetWindow(v int32
 
 // GetBitRateBps returns the BitRateBps field value if set, zero value otherwise.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetBitRateBps() int32 {
-	if o == nil || isNil(o.BitRateBps) {
+	if o == nil || IsNil(o.BitRateBps) {
 		var ret int32
 		return ret
 	}
@@ -127,15 +130,15 @@ func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetBitRateBps() i
 // GetBitRateBpsOk returns a tuple with the BitRateBps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetBitRateBpsOk() (*int32, bool) {
-	if o == nil || isNil(o.BitRateBps) {
-    return nil, false
+	if o == nil || IsNil(o.BitRateBps) {
+		return nil, false
 	}
 	return o.BitRateBps, true
 }
 
 // HasBitRateBps returns a boolean if a field has been set.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) HasBitRateBps() bool {
-	if o != nil && !isNil(o.BitRateBps) {
+	if o != nil && !IsNil(o.BitRateBps) {
 		return true
 	}
 
@@ -149,7 +152,7 @@ func (o *CreateOrganizationAlertsProfileRequestAlertCondition) SetBitRateBps(v i
 
 // GetLossRatio returns the LossRatio field value if set, zero value otherwise.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetLossRatio() float32 {
-	if o == nil || isNil(o.LossRatio) {
+	if o == nil || IsNil(o.LossRatio) {
 		var ret float32
 		return ret
 	}
@@ -159,15 +162,15 @@ func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetLossRatio() fl
 // GetLossRatioOk returns a tuple with the LossRatio field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetLossRatioOk() (*float32, bool) {
-	if o == nil || isNil(o.LossRatio) {
-    return nil, false
+	if o == nil || IsNil(o.LossRatio) {
+		return nil, false
 	}
 	return o.LossRatio, true
 }
 
 // HasLossRatio returns a boolean if a field has been set.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) HasLossRatio() bool {
-	if o != nil && !isNil(o.LossRatio) {
+	if o != nil && !IsNil(o.LossRatio) {
 		return true
 	}
 
@@ -181,7 +184,7 @@ func (o *CreateOrganizationAlertsProfileRequestAlertCondition) SetLossRatio(v fl
 
 // GetLatencyMs returns the LatencyMs field value if set, zero value otherwise.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetLatencyMs() int32 {
-	if o == nil || isNil(o.LatencyMs) {
+	if o == nil || IsNil(o.LatencyMs) {
 		var ret int32
 		return ret
 	}
@@ -191,15 +194,15 @@ func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetLatencyMs() in
 // GetLatencyMsOk returns a tuple with the LatencyMs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetLatencyMsOk() (*int32, bool) {
-	if o == nil || isNil(o.LatencyMs) {
-    return nil, false
+	if o == nil || IsNil(o.LatencyMs) {
+		return nil, false
 	}
 	return o.LatencyMs, true
 }
 
 // HasLatencyMs returns a boolean if a field has been set.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) HasLatencyMs() bool {
-	if o != nil && !isNil(o.LatencyMs) {
+	if o != nil && !IsNil(o.LatencyMs) {
 		return true
 	}
 
@@ -213,7 +216,7 @@ func (o *CreateOrganizationAlertsProfileRequestAlertCondition) SetLatencyMs(v in
 
 // GetJitterMs returns the JitterMs field value if set, zero value otherwise.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetJitterMs() int32 {
-	if o == nil || isNil(o.JitterMs) {
+	if o == nil || IsNil(o.JitterMs) {
 		var ret int32
 		return ret
 	}
@@ -223,15 +226,15 @@ func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetJitterMs() int
 // GetJitterMsOk returns a tuple with the JitterMs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetJitterMsOk() (*int32, bool) {
-	if o == nil || isNil(o.JitterMs) {
-    return nil, false
+	if o == nil || IsNil(o.JitterMs) {
+		return nil, false
 	}
 	return o.JitterMs, true
 }
 
 // HasJitterMs returns a boolean if a field has been set.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) HasJitterMs() bool {
-	if o != nil && !isNil(o.JitterMs) {
+	if o != nil && !IsNil(o.JitterMs) {
 		return true
 	}
 
@@ -245,7 +248,7 @@ func (o *CreateOrganizationAlertsProfileRequestAlertCondition) SetJitterMs(v int
 
 // GetMos returns the Mos field value if set, zero value otherwise.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetMos() float32 {
-	if o == nil || isNil(o.Mos) {
+	if o == nil || IsNil(o.Mos) {
 		var ret float32
 		return ret
 	}
@@ -255,15 +258,15 @@ func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetMos() float32 
 // GetMosOk returns a tuple with the Mos field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetMosOk() (*float32, bool) {
-	if o == nil || isNil(o.Mos) {
-    return nil, false
+	if o == nil || IsNil(o.Mos) {
+		return nil, false
 	}
 	return o.Mos, true
 }
 
 // HasMos returns a boolean if a field has been set.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) HasMos() bool {
-	if o != nil && !isNil(o.Mos) {
+	if o != nil && !IsNil(o.Mos) {
 		return true
 	}
 
@@ -277,7 +280,7 @@ func (o *CreateOrganizationAlertsProfileRequestAlertCondition) SetMos(v float32)
 
 // GetInterface returns the Interface field value if set, zero value otherwise.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetInterface() string {
-	if o == nil || isNil(o.Interface) {
+	if o == nil || IsNil(o.Interface) {
 		var ret string
 		return ret
 	}
@@ -287,15 +290,15 @@ func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetInterface() st
 // GetInterfaceOk returns a tuple with the Interface field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) GetInterfaceOk() (*string, bool) {
-	if o == nil || isNil(o.Interface) {
-    return nil, false
+	if o == nil || IsNil(o.Interface) {
+		return nil, false
 	}
 	return o.Interface, true
 }
 
 // HasInterface returns a boolean if a field has been set.
 func (o *CreateOrganizationAlertsProfileRequestAlertCondition) HasInterface() bool {
-	if o != nil && !isNil(o.Interface) {
+	if o != nil && !IsNil(o.Interface) {
 		return true
 	}
 
@@ -308,32 +311,40 @@ func (o *CreateOrganizationAlertsProfileRequestAlertCondition) SetInterface(v st
 }
 
 func (o CreateOrganizationAlertsProfileRequestAlertCondition) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Duration) {
-		toSerialize["duration"] = o.Duration
-	}
-	if !isNil(o.Window) {
-		toSerialize["window"] = o.Window
-	}
-	if !isNil(o.BitRateBps) {
-		toSerialize["bit_rate_bps"] = o.BitRateBps
-	}
-	if !isNil(o.LossRatio) {
-		toSerialize["loss_ratio"] = o.LossRatio
-	}
-	if !isNil(o.LatencyMs) {
-		toSerialize["latency_ms"] = o.LatencyMs
-	}
-	if !isNil(o.JitterMs) {
-		toSerialize["jitter_ms"] = o.JitterMs
-	}
-	if !isNil(o.Mos) {
-		toSerialize["mos"] = o.Mos
-	}
-	if !isNil(o.Interface) {
-		toSerialize["interface"] = o.Interface
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationAlertsProfileRequestAlertCondition) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Duration) {
+		toSerialize["duration"] = o.Duration
+	}
+	if !IsNil(o.Window) {
+		toSerialize["window"] = o.Window
+	}
+	if !IsNil(o.BitRateBps) {
+		toSerialize["bit_rate_bps"] = o.BitRateBps
+	}
+	if !IsNil(o.LossRatio) {
+		toSerialize["loss_ratio"] = o.LossRatio
+	}
+	if !IsNil(o.LatencyMs) {
+		toSerialize["latency_ms"] = o.LatencyMs
+	}
+	if !IsNil(o.JitterMs) {
+		toSerialize["jitter_ms"] = o.JitterMs
+	}
+	if !IsNil(o.Mos) {
+		toSerialize["mos"] = o.Mos
+	}
+	if !IsNil(o.Interface) {
+		toSerialize["interface"] = o.Interface
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationAlertsProfileRequestAlertCondition struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSensorReadingsHistory200ResponseInnerTemperature type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSensorReadingsHistory200ResponseInnerTemperature{}
+
 // GetOrganizationSensorReadingsHistory200ResponseInnerTemperature Reading for the 'temperature' metric. This will only be present if the 'metric' property equals 'temperature'.
 type GetOrganizationSensorReadingsHistory200ResponseInnerTemperature struct {
 	// Temperature reading in degrees Fahrenheit.
@@ -41,7 +44,7 @@ func NewGetOrganizationSensorReadingsHistory200ResponseInnerTemperatureWithDefau
 
 // GetFahrenheit returns the Fahrenheit field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerTemperature) GetFahrenheit() float32 {
-	if o == nil || isNil(o.Fahrenheit) {
+	if o == nil || IsNil(o.Fahrenheit) {
 		var ret float32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerTemperature) GetFah
 // GetFahrenheitOk returns a tuple with the Fahrenheit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerTemperature) GetFahrenheitOk() (*float32, bool) {
-	if o == nil || isNil(o.Fahrenheit) {
-    return nil, false
+	if o == nil || IsNil(o.Fahrenheit) {
+		return nil, false
 	}
 	return o.Fahrenheit, true
 }
 
 // HasFahrenheit returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerTemperature) HasFahrenheit() bool {
-	if o != nil && !isNil(o.Fahrenheit) {
+	if o != nil && !IsNil(o.Fahrenheit) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerTemperature) SetFah
 
 // GetCelsius returns the Celsius field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerTemperature) GetCelsius() float32 {
-	if o == nil || isNil(o.Celsius) {
+	if o == nil || IsNil(o.Celsius) {
 		var ret float32
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerTemperature) GetCel
 // GetCelsiusOk returns a tuple with the Celsius field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerTemperature) GetCelsiusOk() (*float32, bool) {
-	if o == nil || isNil(o.Celsius) {
-    return nil, false
+	if o == nil || IsNil(o.Celsius) {
+		return nil, false
 	}
 	return o.Celsius, true
 }
 
 // HasCelsius returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerTemperature) HasCelsius() bool {
-	if o != nil && !isNil(o.Celsius) {
+	if o != nil && !IsNil(o.Celsius) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerTemperature) SetCel
 }
 
 func (o GetOrganizationSensorReadingsHistory200ResponseInnerTemperature) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Fahrenheit) {
-		toSerialize["fahrenheit"] = o.Fahrenheit
-	}
-	if !isNil(o.Celsius) {
-		toSerialize["celsius"] = o.Celsius
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSensorReadingsHistory200ResponseInnerTemperature) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Fahrenheit) {
+		toSerialize["fahrenheit"] = o.Fahrenheit
+	}
+	if !IsNil(o.Celsius) {
+		toSerialize["celsius"] = o.Celsius
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSensorReadingsHistory200ResponseInnerTemperature struct {

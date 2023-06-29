@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSettingsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSettingsRequest{}
+
 // UpdateNetworkSettingsRequest struct for UpdateNetworkSettingsRequest
 type UpdateNetworkSettingsRequest struct {
 	// Enables / disables the local device status pages (<a target='_blank' href='http://my.meraki.com/'>my.meraki.com, </a><a target='_blank' href='http://ap.meraki.com/'>ap.meraki.com, </a><a target='_blank' href='http://switch.meraki.com/'>switch.meraki.com, </a><a target='_blank' href='http://wired.meraki.com/'>wired.meraki.com</a>). Optional (defaults to false)
@@ -43,7 +46,7 @@ func NewUpdateNetworkSettingsRequestWithDefaults() *UpdateNetworkSettingsRequest
 
 // GetLocalStatusPageEnabled returns the LocalStatusPageEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkSettingsRequest) GetLocalStatusPageEnabled() bool {
-	if o == nil || isNil(o.LocalStatusPageEnabled) {
+	if o == nil || IsNil(o.LocalStatusPageEnabled) {
 		var ret bool
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateNetworkSettingsRequest) GetLocalStatusPageEnabled() bool {
 // GetLocalStatusPageEnabledOk returns a tuple with the LocalStatusPageEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSettingsRequest) GetLocalStatusPageEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.LocalStatusPageEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.LocalStatusPageEnabled) {
+		return nil, false
 	}
 	return o.LocalStatusPageEnabled, true
 }
 
 // HasLocalStatusPageEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkSettingsRequest) HasLocalStatusPageEnabled() bool {
-	if o != nil && !isNil(o.LocalStatusPageEnabled) {
+	if o != nil && !IsNil(o.LocalStatusPageEnabled) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *UpdateNetworkSettingsRequest) SetLocalStatusPageEnabled(v bool) {
 
 // GetRemoteStatusPageEnabled returns the RemoteStatusPageEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkSettingsRequest) GetRemoteStatusPageEnabled() bool {
-	if o == nil || isNil(o.RemoteStatusPageEnabled) {
+	if o == nil || IsNil(o.RemoteStatusPageEnabled) {
 		var ret bool
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *UpdateNetworkSettingsRequest) GetRemoteStatusPageEnabled() bool {
 // GetRemoteStatusPageEnabledOk returns a tuple with the RemoteStatusPageEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSettingsRequest) GetRemoteStatusPageEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.RemoteStatusPageEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.RemoteStatusPageEnabled) {
+		return nil, false
 	}
 	return o.RemoteStatusPageEnabled, true
 }
 
 // HasRemoteStatusPageEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkSettingsRequest) HasRemoteStatusPageEnabled() bool {
-	if o != nil && !isNil(o.RemoteStatusPageEnabled) {
+	if o != nil && !IsNil(o.RemoteStatusPageEnabled) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *UpdateNetworkSettingsRequest) SetRemoteStatusPageEnabled(v bool) {
 
 // GetLocalStatusPage returns the LocalStatusPage field value if set, zero value otherwise.
 func (o *UpdateNetworkSettingsRequest) GetLocalStatusPage() UpdateNetworkSettingsRequestLocalStatusPage {
-	if o == nil || isNil(o.LocalStatusPage) {
+	if o == nil || IsNil(o.LocalStatusPage) {
 		var ret UpdateNetworkSettingsRequestLocalStatusPage
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *UpdateNetworkSettingsRequest) GetLocalStatusPage() UpdateNetworkSetting
 // GetLocalStatusPageOk returns a tuple with the LocalStatusPage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSettingsRequest) GetLocalStatusPageOk() (*UpdateNetworkSettingsRequestLocalStatusPage, bool) {
-	if o == nil || isNil(o.LocalStatusPage) {
-    return nil, false
+	if o == nil || IsNil(o.LocalStatusPage) {
+		return nil, false
 	}
 	return o.LocalStatusPage, true
 }
 
 // HasLocalStatusPage returns a boolean if a field has been set.
 func (o *UpdateNetworkSettingsRequest) HasLocalStatusPage() bool {
-	if o != nil && !isNil(o.LocalStatusPage) {
+	if o != nil && !IsNil(o.LocalStatusPage) {
 		return true
 	}
 
@@ -139,7 +142,7 @@ func (o *UpdateNetworkSettingsRequest) SetLocalStatusPage(v UpdateNetworkSetting
 
 // GetSecurePort returns the SecurePort field value if set, zero value otherwise.
 func (o *UpdateNetworkSettingsRequest) GetSecurePort() GetNetworkSettings200ResponseSecurePort {
-	if o == nil || isNil(o.SecurePort) {
+	if o == nil || IsNil(o.SecurePort) {
 		var ret GetNetworkSettings200ResponseSecurePort
 		return ret
 	}
@@ -149,15 +152,15 @@ func (o *UpdateNetworkSettingsRequest) GetSecurePort() GetNetworkSettings200Resp
 // GetSecurePortOk returns a tuple with the SecurePort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSettingsRequest) GetSecurePortOk() (*GetNetworkSettings200ResponseSecurePort, bool) {
-	if o == nil || isNil(o.SecurePort) {
-    return nil, false
+	if o == nil || IsNil(o.SecurePort) {
+		return nil, false
 	}
 	return o.SecurePort, true
 }
 
 // HasSecurePort returns a boolean if a field has been set.
 func (o *UpdateNetworkSettingsRequest) HasSecurePort() bool {
-	if o != nil && !isNil(o.SecurePort) {
+	if o != nil && !IsNil(o.SecurePort) {
 		return true
 	}
 
@@ -170,20 +173,28 @@ func (o *UpdateNetworkSettingsRequest) SetSecurePort(v GetNetworkSettings200Resp
 }
 
 func (o UpdateNetworkSettingsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.LocalStatusPageEnabled) {
-		toSerialize["localStatusPageEnabled"] = o.LocalStatusPageEnabled
-	}
-	if !isNil(o.RemoteStatusPageEnabled) {
-		toSerialize["remoteStatusPageEnabled"] = o.RemoteStatusPageEnabled
-	}
-	if !isNil(o.LocalStatusPage) {
-		toSerialize["localStatusPage"] = o.LocalStatusPage
-	}
-	if !isNil(o.SecurePort) {
-		toSerialize["securePort"] = o.SecurePort
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSettingsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.LocalStatusPageEnabled) {
+		toSerialize["localStatusPageEnabled"] = o.LocalStatusPageEnabled
+	}
+	if !IsNil(o.RemoteStatusPageEnabled) {
+		toSerialize["remoteStatusPageEnabled"] = o.RemoteStatusPageEnabled
+	}
+	if !IsNil(o.LocalStatusPage) {
+		toSerialize["localStatusPage"] = o.LocalStatusPage
+	}
+	if !IsNil(o.SecurePort) {
+		toSerialize["securePort"] = o.SecurePort
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSettingsRequest struct {

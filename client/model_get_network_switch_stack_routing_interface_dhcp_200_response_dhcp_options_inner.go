@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner{}
+
 // GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner struct for GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner
 type GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner struct {
 	// The code for DHCP option which should be from 2 to 254
@@ -43,7 +46,7 @@ func NewGetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInnerWith
 
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) GetCode() string {
-	if o == nil || isNil(o.Code) {
+	if o == nil || IsNil(o.Code) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) G
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) GetCodeOk() (*string, bool) {
-	if o == nil || isNil(o.Code) {
-    return nil, false
+	if o == nil || IsNil(o.Code) {
+		return nil, false
 	}
 	return o.Code, true
 }
 
 // HasCode returns a boolean if a field has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) HasCode() bool {
-	if o != nil && !isNil(o.Code) {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) S
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) G
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) S
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) GetValue() string {
-	if o == nil || isNil(o.Value) {
+	if o == nil || IsNil(o.Value) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) G
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) GetValueOk() (*string, bool) {
-	if o == nil || isNil(o.Value) {
-    return nil, false
+	if o == nil || IsNil(o.Value) {
+		return nil, false
 	}
 	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) HasValue() bool {
-	if o != nil && !isNil(o.Value) {
+	if o != nil && !IsNil(o.Value) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) S
 }
 
 func (o GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Code) {
-		toSerialize["code"] = o.Code
-	}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Value) {
-		toSerialize["value"] = o.Value
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Code) {
+		toSerialize["code"] = o.Code
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Value) {
+		toSerialize["value"] = o.Value
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchStackRoutingInterfaceDhcp200ResponseDhcpOptionsInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices{}
+
 // GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices The devices and Switch Stacks assigned to the Group
 type GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices struct {
 	// Data Array of Devices containing the name and serial
@@ -41,7 +44,7 @@ func NewGetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesWit
 
 // GetDevices returns the Devices field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices) GetDevices() []GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner {
-	if o == nil || isNil(o.Devices) {
+	if o == nil || IsNil(o.Devices) {
 		var ret []GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices) 
 // GetDevicesOk returns a tuple with the Devices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices) GetDevicesOk() ([]GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner, bool) {
-	if o == nil || isNil(o.Devices) {
-    return nil, false
+	if o == nil || IsNil(o.Devices) {
+		return nil, false
 	}
 	return o.Devices, true
 }
 
 // HasDevices returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices) HasDevices() bool {
-	if o != nil && !isNil(o.Devices) {
+	if o != nil && !IsNil(o.Devices) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices) 
 
 // GetSwitchStacks returns the SwitchStacks field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices) GetSwitchStacks() []GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesSwitchStacksInner {
-	if o == nil || isNil(o.SwitchStacks) {
+	if o == nil || IsNil(o.SwitchStacks) {
 		var ret []GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesSwitchStacksInner
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices) 
 // GetSwitchStacksOk returns a tuple with the SwitchStacks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices) GetSwitchStacksOk() ([]GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesSwitchStacksInner, bool) {
-	if o == nil || isNil(o.SwitchStacks) {
-    return nil, false
+	if o == nil || IsNil(o.SwitchStacks) {
+		return nil, false
 	}
 	return o.SwitchStacks, true
 }
 
 // HasSwitchStacks returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices) HasSwitchStacks() bool {
-	if o != nil && !isNil(o.SwitchStacks) {
+	if o != nil && !IsNil(o.SwitchStacks) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices) 
 }
 
 func (o GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Devices) {
-		toSerialize["devices"] = o.Devices
-	}
-	if !isNil(o.SwitchStacks) {
-		toSerialize["switchStacks"] = o.SwitchStacks
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Devices) {
+		toSerialize["devices"] = o.Devices
+	}
+	if !IsNil(o.SwitchStacks) {
+		toSerialize["switchStacks"] = o.SwitchStacks
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevices struct {

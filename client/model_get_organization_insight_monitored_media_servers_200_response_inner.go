@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationInsightMonitoredMediaServers200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationInsightMonitoredMediaServers200ResponseInner{}
+
 // GetOrganizationInsightMonitoredMediaServers200ResponseInner struct for GetOrganizationInsightMonitoredMediaServers200ResponseInner
 type GetOrganizationInsightMonitoredMediaServers200ResponseInner struct {
 	// Monitored media server id
@@ -45,7 +48,7 @@ func NewGetOrganizationInsightMonitoredMediaServers200ResponseInnerWithDefaults(
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) GetId() st
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) SetId(v st
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) GetName() 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) SetName(v 
 
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) GetAddress() string {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) GetAddress
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) GetAddressOk() (*string, bool) {
-	if o == nil || isNil(o.Address) {
-    return nil, false
+	if o == nil || IsNil(o.Address) {
+		return nil, false
 	}
 	return o.Address, true
 }
 
 // HasAddress returns a boolean if a field has been set.
 func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) HasAddress() bool {
-	if o != nil && !isNil(o.Address) {
+	if o != nil && !IsNil(o.Address) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) SetAddress
 
 // GetBestEffortMonitoringEnabled returns the BestEffortMonitoringEnabled field value if set, zero value otherwise.
 func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) GetBestEffortMonitoringEnabled() bool {
-	if o == nil || isNil(o.BestEffortMonitoringEnabled) {
+	if o == nil || IsNil(o.BestEffortMonitoringEnabled) {
 		var ret bool
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) GetBestEff
 // GetBestEffortMonitoringEnabledOk returns a tuple with the BestEffortMonitoringEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) GetBestEffortMonitoringEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.BestEffortMonitoringEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.BestEffortMonitoringEnabled) {
+		return nil, false
 	}
 	return o.BestEffortMonitoringEnabled, true
 }
 
 // HasBestEffortMonitoringEnabled returns a boolean if a field has been set.
 func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) HasBestEffortMonitoringEnabled() bool {
-	if o != nil && !isNil(o.BestEffortMonitoringEnabled) {
+	if o != nil && !IsNil(o.BestEffortMonitoringEnabled) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *GetOrganizationInsightMonitoredMediaServers200ResponseInner) SetBestEff
 }
 
 func (o GetOrganizationInsightMonitoredMediaServers200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Address) {
-		toSerialize["address"] = o.Address
-	}
-	if !isNil(o.BestEffortMonitoringEnabled) {
-		toSerialize["bestEffortMonitoringEnabled"] = o.BestEffortMonitoringEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationInsightMonitoredMediaServers200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Address) {
+		toSerialize["address"] = o.Address
+	}
+	if !IsNil(o.BestEffortMonitoringEnabled) {
+		toSerialize["bestEffortMonitoringEnabled"] = o.BestEffortMonitoringEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationInsightMonitoredMediaServers200ResponseInner struct {

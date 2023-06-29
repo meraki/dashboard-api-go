@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationSnmpRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationSnmpRequest{}
+
 // UpdateOrganizationSnmpRequest struct for UpdateOrganizationSnmpRequest
 type UpdateOrganizationSnmpRequest struct {
 	// Boolean indicating whether SNMP version 2c is enabled for the organization.
@@ -51,7 +54,7 @@ func NewUpdateOrganizationSnmpRequestWithDefaults() *UpdateOrganizationSnmpReque
 
 // GetV2cEnabled returns the V2cEnabled field value if set, zero value otherwise.
 func (o *UpdateOrganizationSnmpRequest) GetV2cEnabled() bool {
-	if o == nil || isNil(o.V2cEnabled) {
+	if o == nil || IsNil(o.V2cEnabled) {
 		var ret bool
 		return ret
 	}
@@ -61,15 +64,15 @@ func (o *UpdateOrganizationSnmpRequest) GetV2cEnabled() bool {
 // GetV2cEnabledOk returns a tuple with the V2cEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationSnmpRequest) GetV2cEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.V2cEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.V2cEnabled) {
+		return nil, false
 	}
 	return o.V2cEnabled, true
 }
 
 // HasV2cEnabled returns a boolean if a field has been set.
 func (o *UpdateOrganizationSnmpRequest) HasV2cEnabled() bool {
-	if o != nil && !isNil(o.V2cEnabled) {
+	if o != nil && !IsNil(o.V2cEnabled) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *UpdateOrganizationSnmpRequest) SetV2cEnabled(v bool) {
 
 // GetV3Enabled returns the V3Enabled field value if set, zero value otherwise.
 func (o *UpdateOrganizationSnmpRequest) GetV3Enabled() bool {
-	if o == nil || isNil(o.V3Enabled) {
+	if o == nil || IsNil(o.V3Enabled) {
 		var ret bool
 		return ret
 	}
@@ -93,15 +96,15 @@ func (o *UpdateOrganizationSnmpRequest) GetV3Enabled() bool {
 // GetV3EnabledOk returns a tuple with the V3Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationSnmpRequest) GetV3EnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.V3Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.V3Enabled) {
+		return nil, false
 	}
 	return o.V3Enabled, true
 }
 
 // HasV3Enabled returns a boolean if a field has been set.
 func (o *UpdateOrganizationSnmpRequest) HasV3Enabled() bool {
-	if o != nil && !isNil(o.V3Enabled) {
+	if o != nil && !IsNil(o.V3Enabled) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *UpdateOrganizationSnmpRequest) SetV3Enabled(v bool) {
 
 // GetV3AuthMode returns the V3AuthMode field value if set, zero value otherwise.
 func (o *UpdateOrganizationSnmpRequest) GetV3AuthMode() string {
-	if o == nil || isNil(o.V3AuthMode) {
+	if o == nil || IsNil(o.V3AuthMode) {
 		var ret string
 		return ret
 	}
@@ -125,15 +128,15 @@ func (o *UpdateOrganizationSnmpRequest) GetV3AuthMode() string {
 // GetV3AuthModeOk returns a tuple with the V3AuthMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationSnmpRequest) GetV3AuthModeOk() (*string, bool) {
-	if o == nil || isNil(o.V3AuthMode) {
-    return nil, false
+	if o == nil || IsNil(o.V3AuthMode) {
+		return nil, false
 	}
 	return o.V3AuthMode, true
 }
 
 // HasV3AuthMode returns a boolean if a field has been set.
 func (o *UpdateOrganizationSnmpRequest) HasV3AuthMode() bool {
-	if o != nil && !isNil(o.V3AuthMode) {
+	if o != nil && !IsNil(o.V3AuthMode) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *UpdateOrganizationSnmpRequest) SetV3AuthMode(v string) {
 
 // GetV3AuthPass returns the V3AuthPass field value if set, zero value otherwise.
 func (o *UpdateOrganizationSnmpRequest) GetV3AuthPass() string {
-	if o == nil || isNil(o.V3AuthPass) {
+	if o == nil || IsNil(o.V3AuthPass) {
 		var ret string
 		return ret
 	}
@@ -157,15 +160,15 @@ func (o *UpdateOrganizationSnmpRequest) GetV3AuthPass() string {
 // GetV3AuthPassOk returns a tuple with the V3AuthPass field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationSnmpRequest) GetV3AuthPassOk() (*string, bool) {
-	if o == nil || isNil(o.V3AuthPass) {
-    return nil, false
+	if o == nil || IsNil(o.V3AuthPass) {
+		return nil, false
 	}
 	return o.V3AuthPass, true
 }
 
 // HasV3AuthPass returns a boolean if a field has been set.
 func (o *UpdateOrganizationSnmpRequest) HasV3AuthPass() bool {
-	if o != nil && !isNil(o.V3AuthPass) {
+	if o != nil && !IsNil(o.V3AuthPass) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *UpdateOrganizationSnmpRequest) SetV3AuthPass(v string) {
 
 // GetV3PrivMode returns the V3PrivMode field value if set, zero value otherwise.
 func (o *UpdateOrganizationSnmpRequest) GetV3PrivMode() string {
-	if o == nil || isNil(o.V3PrivMode) {
+	if o == nil || IsNil(o.V3PrivMode) {
 		var ret string
 		return ret
 	}
@@ -189,15 +192,15 @@ func (o *UpdateOrganizationSnmpRequest) GetV3PrivMode() string {
 // GetV3PrivModeOk returns a tuple with the V3PrivMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationSnmpRequest) GetV3PrivModeOk() (*string, bool) {
-	if o == nil || isNil(o.V3PrivMode) {
-    return nil, false
+	if o == nil || IsNil(o.V3PrivMode) {
+		return nil, false
 	}
 	return o.V3PrivMode, true
 }
 
 // HasV3PrivMode returns a boolean if a field has been set.
 func (o *UpdateOrganizationSnmpRequest) HasV3PrivMode() bool {
-	if o != nil && !isNil(o.V3PrivMode) {
+	if o != nil && !IsNil(o.V3PrivMode) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *UpdateOrganizationSnmpRequest) SetV3PrivMode(v string) {
 
 // GetV3PrivPass returns the V3PrivPass field value if set, zero value otherwise.
 func (o *UpdateOrganizationSnmpRequest) GetV3PrivPass() string {
-	if o == nil || isNil(o.V3PrivPass) {
+	if o == nil || IsNil(o.V3PrivPass) {
 		var ret string
 		return ret
 	}
@@ -221,15 +224,15 @@ func (o *UpdateOrganizationSnmpRequest) GetV3PrivPass() string {
 // GetV3PrivPassOk returns a tuple with the V3PrivPass field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationSnmpRequest) GetV3PrivPassOk() (*string, bool) {
-	if o == nil || isNil(o.V3PrivPass) {
-    return nil, false
+	if o == nil || IsNil(o.V3PrivPass) {
+		return nil, false
 	}
 	return o.V3PrivPass, true
 }
 
 // HasV3PrivPass returns a boolean if a field has been set.
 func (o *UpdateOrganizationSnmpRequest) HasV3PrivPass() bool {
-	if o != nil && !isNil(o.V3PrivPass) {
+	if o != nil && !IsNil(o.V3PrivPass) {
 		return true
 	}
 
@@ -243,7 +246,7 @@ func (o *UpdateOrganizationSnmpRequest) SetV3PrivPass(v string) {
 
 // GetPeerIps returns the PeerIps field value if set, zero value otherwise.
 func (o *UpdateOrganizationSnmpRequest) GetPeerIps() []string {
-	if o == nil || isNil(o.PeerIps) {
+	if o == nil || IsNil(o.PeerIps) {
 		var ret []string
 		return ret
 	}
@@ -253,15 +256,15 @@ func (o *UpdateOrganizationSnmpRequest) GetPeerIps() []string {
 // GetPeerIpsOk returns a tuple with the PeerIps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationSnmpRequest) GetPeerIpsOk() ([]string, bool) {
-	if o == nil || isNil(o.PeerIps) {
-    return nil, false
+	if o == nil || IsNil(o.PeerIps) {
+		return nil, false
 	}
 	return o.PeerIps, true
 }
 
 // HasPeerIps returns a boolean if a field has been set.
 func (o *UpdateOrganizationSnmpRequest) HasPeerIps() bool {
-	if o != nil && !isNil(o.PeerIps) {
+	if o != nil && !IsNil(o.PeerIps) {
 		return true
 	}
 
@@ -274,29 +277,37 @@ func (o *UpdateOrganizationSnmpRequest) SetPeerIps(v []string) {
 }
 
 func (o UpdateOrganizationSnmpRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.V2cEnabled) {
-		toSerialize["v2cEnabled"] = o.V2cEnabled
-	}
-	if !isNil(o.V3Enabled) {
-		toSerialize["v3Enabled"] = o.V3Enabled
-	}
-	if !isNil(o.V3AuthMode) {
-		toSerialize["v3AuthMode"] = o.V3AuthMode
-	}
-	if !isNil(o.V3AuthPass) {
-		toSerialize["v3AuthPass"] = o.V3AuthPass
-	}
-	if !isNil(o.V3PrivMode) {
-		toSerialize["v3PrivMode"] = o.V3PrivMode
-	}
-	if !isNil(o.V3PrivPass) {
-		toSerialize["v3PrivPass"] = o.V3PrivPass
-	}
-	if !isNil(o.PeerIps) {
-		toSerialize["peerIps"] = o.PeerIps
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationSnmpRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.V2cEnabled) {
+		toSerialize["v2cEnabled"] = o.V2cEnabled
+	}
+	if !IsNil(o.V3Enabled) {
+		toSerialize["v3Enabled"] = o.V3Enabled
+	}
+	if !IsNil(o.V3AuthMode) {
+		toSerialize["v3AuthMode"] = o.V3AuthMode
+	}
+	if !IsNil(o.V3AuthPass) {
+		toSerialize["v3AuthPass"] = o.V3AuthPass
+	}
+	if !IsNil(o.V3PrivMode) {
+		toSerialize["v3PrivMode"] = o.V3PrivMode
+	}
+	if !IsNil(o.V3PrivPass) {
+		toSerialize["v3PrivPass"] = o.V3PrivPass
+	}
+	if !IsNil(o.PeerIps) {
+		toSerialize["peerIps"] = o.PeerIps
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationSnmpRequest struct {

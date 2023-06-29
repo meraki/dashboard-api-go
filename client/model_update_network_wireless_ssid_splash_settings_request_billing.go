@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidSplashSettingsRequestBilling type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidSplashSettingsRequestBilling{}
+
 // UpdateNetworkWirelessSsidSplashSettingsRequestBilling Details associated with billing splash.
 type UpdateNetworkWirelessSsidSplashSettingsRequestBilling struct {
 	FreeAccess *UpdateNetworkWirelessSsidSplashSettingsRequestBillingFreeAccess `json:"freeAccess,omitempty"`
@@ -42,7 +45,7 @@ func NewUpdateNetworkWirelessSsidSplashSettingsRequestBillingWithDefaults() *Upd
 
 // GetFreeAccess returns the FreeAccess field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequestBilling) GetFreeAccess() UpdateNetworkWirelessSsidSplashSettingsRequestBillingFreeAccess {
-	if o == nil || isNil(o.FreeAccess) {
+	if o == nil || IsNil(o.FreeAccess) {
 		var ret UpdateNetworkWirelessSsidSplashSettingsRequestBillingFreeAccess
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequestBilling) GetFreeAccess() 
 // GetFreeAccessOk returns a tuple with the FreeAccess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequestBilling) GetFreeAccessOk() (*UpdateNetworkWirelessSsidSplashSettingsRequestBillingFreeAccess, bool) {
-	if o == nil || isNil(o.FreeAccess) {
-    return nil, false
+	if o == nil || IsNil(o.FreeAccess) {
+		return nil, false
 	}
 	return o.FreeAccess, true
 }
 
 // HasFreeAccess returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequestBilling) HasFreeAccess() bool {
-	if o != nil && !isNil(o.FreeAccess) {
+	if o != nil && !IsNil(o.FreeAccess) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequestBilling) SetFreeAccess(v 
 
 // GetPrepaidAccessFastLoginEnabled returns the PrepaidAccessFastLoginEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequestBilling) GetPrepaidAccessFastLoginEnabled() bool {
-	if o == nil || isNil(o.PrepaidAccessFastLoginEnabled) {
+	if o == nil || IsNil(o.PrepaidAccessFastLoginEnabled) {
 		var ret bool
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequestBilling) GetPrepaidAccess
 // GetPrepaidAccessFastLoginEnabledOk returns a tuple with the PrepaidAccessFastLoginEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequestBilling) GetPrepaidAccessFastLoginEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.PrepaidAccessFastLoginEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.PrepaidAccessFastLoginEnabled) {
+		return nil, false
 	}
 	return o.PrepaidAccessFastLoginEnabled, true
 }
 
 // HasPrepaidAccessFastLoginEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequestBilling) HasPrepaidAccessFastLoginEnabled() bool {
-	if o != nil && !isNil(o.PrepaidAccessFastLoginEnabled) {
+	if o != nil && !IsNil(o.PrepaidAccessFastLoginEnabled) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequestBilling) SetPrepaidAccess
 
 // GetReplyToEmailAddress returns the ReplyToEmailAddress field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequestBilling) GetReplyToEmailAddress() string {
-	if o == nil || isNil(o.ReplyToEmailAddress) {
+	if o == nil || IsNil(o.ReplyToEmailAddress) {
 		var ret string
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequestBilling) GetReplyToEmailA
 // GetReplyToEmailAddressOk returns a tuple with the ReplyToEmailAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequestBilling) GetReplyToEmailAddressOk() (*string, bool) {
-	if o == nil || isNil(o.ReplyToEmailAddress) {
-    return nil, false
+	if o == nil || IsNil(o.ReplyToEmailAddress) {
+		return nil, false
 	}
 	return o.ReplyToEmailAddress, true
 }
 
 // HasReplyToEmailAddress returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSplashSettingsRequestBilling) HasReplyToEmailAddress() bool {
-	if o != nil && !isNil(o.ReplyToEmailAddress) {
+	if o != nil && !IsNil(o.ReplyToEmailAddress) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *UpdateNetworkWirelessSsidSplashSettingsRequestBilling) SetReplyToEmailA
 }
 
 func (o UpdateNetworkWirelessSsidSplashSettingsRequestBilling) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.FreeAccess) {
-		toSerialize["freeAccess"] = o.FreeAccess
-	}
-	if !isNil(o.PrepaidAccessFastLoginEnabled) {
-		toSerialize["prepaidAccessFastLoginEnabled"] = o.PrepaidAccessFastLoginEnabled
-	}
-	if !isNil(o.ReplyToEmailAddress) {
-		toSerialize["replyToEmailAddress"] = o.ReplyToEmailAddress
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidSplashSettingsRequestBilling) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.FreeAccess) {
+		toSerialize["freeAccess"] = o.FreeAccess
+	}
+	if !IsNil(o.PrepaidAccessFastLoginEnabled) {
+		toSerialize["prepaidAccessFastLoginEnabled"] = o.PrepaidAccessFastLoginEnabled
+	}
+	if !IsNil(o.ReplyToEmailAddress) {
+		toSerialize["replyToEmailAddress"] = o.ReplyToEmailAddress
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidSplashSettingsRequestBilling struct {

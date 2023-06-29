@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationSamlIdpRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationSamlIdpRequest{}
+
 // CreateOrganizationSamlIdpRequest struct for CreateOrganizationSamlIdpRequest
 type CreateOrganizationSamlIdpRequest struct {
 	// Fingerprint (SHA1) of the SAML certificate provided by your Identity Provider (IdP). This will be used for encryption / validation.
@@ -54,7 +57,7 @@ func (o *CreateOrganizationSamlIdpRequest) GetX509certSha1Fingerprint() string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationSamlIdpRequest) GetX509certSha1FingerprintOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.X509certSha1Fingerprint, true
 }
@@ -66,7 +69,7 @@ func (o *CreateOrganizationSamlIdpRequest) SetX509certSha1Fingerprint(v string) 
 
 // GetSloLogoutUrl returns the SloLogoutUrl field value if set, zero value otherwise.
 func (o *CreateOrganizationSamlIdpRequest) GetSloLogoutUrl() string {
-	if o == nil || isNil(o.SloLogoutUrl) {
+	if o == nil || IsNil(o.SloLogoutUrl) {
 		var ret string
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *CreateOrganizationSamlIdpRequest) GetSloLogoutUrl() string {
 // GetSloLogoutUrlOk returns a tuple with the SloLogoutUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationSamlIdpRequest) GetSloLogoutUrlOk() (*string, bool) {
-	if o == nil || isNil(o.SloLogoutUrl) {
-    return nil, false
+	if o == nil || IsNil(o.SloLogoutUrl) {
+		return nil, false
 	}
 	return o.SloLogoutUrl, true
 }
 
 // HasSloLogoutUrl returns a boolean if a field has been set.
 func (o *CreateOrganizationSamlIdpRequest) HasSloLogoutUrl() bool {
-	if o != nil && !isNil(o.SloLogoutUrl) {
+	if o != nil && !IsNil(o.SloLogoutUrl) {
 		return true
 	}
 
@@ -97,14 +100,20 @@ func (o *CreateOrganizationSamlIdpRequest) SetSloLogoutUrl(v string) {
 }
 
 func (o CreateOrganizationSamlIdpRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["x509certSha1Fingerprint"] = o.X509certSha1Fingerprint
-	}
-	if !isNil(o.SloLogoutUrl) {
-		toSerialize["sloLogoutUrl"] = o.SloLogoutUrl
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationSamlIdpRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["x509certSha1Fingerprint"] = o.X509certSha1Fingerprint
+	if !IsNil(o.SloLogoutUrl) {
+		toSerialize["sloLogoutUrl"] = o.SloLogoutUrl
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationSamlIdpRequest struct {

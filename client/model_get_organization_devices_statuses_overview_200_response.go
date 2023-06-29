@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationDevicesStatusesOverview200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationDevicesStatusesOverview200Response{}
+
 // GetOrganizationDevicesStatusesOverview200Response struct for GetOrganizationDevicesStatusesOverview200Response
 type GetOrganizationDevicesStatusesOverview200Response struct {
 	Counts *GetOrganizationDevicesStatusesOverview200ResponseCounts `json:"counts,omitempty"`
@@ -38,7 +41,7 @@ func NewGetOrganizationDevicesStatusesOverview200ResponseWithDefaults() *GetOrga
 
 // GetCounts returns the Counts field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatusesOverview200Response) GetCounts() GetOrganizationDevicesStatusesOverview200ResponseCounts {
-	if o == nil || isNil(o.Counts) {
+	if o == nil || IsNil(o.Counts) {
 		var ret GetOrganizationDevicesStatusesOverview200ResponseCounts
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetOrganizationDevicesStatusesOverview200Response) GetCounts() GetOrgan
 // GetCountsOk returns a tuple with the Counts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatusesOverview200Response) GetCountsOk() (*GetOrganizationDevicesStatusesOverview200ResponseCounts, bool) {
-	if o == nil || isNil(o.Counts) {
-    return nil, false
+	if o == nil || IsNil(o.Counts) {
+		return nil, false
 	}
 	return o.Counts, true
 }
 
 // HasCounts returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatusesOverview200Response) HasCounts() bool {
-	if o != nil && !isNil(o.Counts) {
+	if o != nil && !IsNil(o.Counts) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetOrganizationDevicesStatusesOverview200Response) SetCounts(v GetOrgan
 }
 
 func (o GetOrganizationDevicesStatusesOverview200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Counts) {
-		toSerialize["counts"] = o.Counts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationDevicesStatusesOverview200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Counts) {
+		toSerialize["counts"] = o.Counts
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationDevicesStatusesOverview200Response struct {

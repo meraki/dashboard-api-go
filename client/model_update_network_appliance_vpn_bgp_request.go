@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceVpnBgpRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceVpnBgpRequest{}
+
 // UpdateNetworkApplianceVpnBgpRequest struct for UpdateNetworkApplianceVpnBgpRequest
 type UpdateNetworkApplianceVpnBgpRequest struct {
 	// Boolean value to enable or disable the BGP configuration. When BGP is enabled, the asNumber (ASN) will be autopopulated with the preconfigured ASN at other Hubs or a default value if there is no ASN configured.
@@ -58,7 +61,7 @@ func (o *UpdateNetworkApplianceVpnBgpRequest) GetEnabled() bool {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequest) GetEnabledOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Enabled, true
 }
@@ -70,7 +73,7 @@ func (o *UpdateNetworkApplianceVpnBgpRequest) SetEnabled(v bool) {
 
 // GetAsNumber returns the AsNumber field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceVpnBgpRequest) GetAsNumber() int32 {
-	if o == nil || isNil(o.AsNumber) {
+	if o == nil || IsNil(o.AsNumber) {
 		var ret int32
 		return ret
 	}
@@ -80,15 +83,15 @@ func (o *UpdateNetworkApplianceVpnBgpRequest) GetAsNumber() int32 {
 // GetAsNumberOk returns a tuple with the AsNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequest) GetAsNumberOk() (*int32, bool) {
-	if o == nil || isNil(o.AsNumber) {
-    return nil, false
+	if o == nil || IsNil(o.AsNumber) {
+		return nil, false
 	}
 	return o.AsNumber, true
 }
 
 // HasAsNumber returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequest) HasAsNumber() bool {
-	if o != nil && !isNil(o.AsNumber) {
+	if o != nil && !IsNil(o.AsNumber) {
 		return true
 	}
 
@@ -102,7 +105,7 @@ func (o *UpdateNetworkApplianceVpnBgpRequest) SetAsNumber(v int32) {
 
 // GetIbgpHoldTimer returns the IbgpHoldTimer field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceVpnBgpRequest) GetIbgpHoldTimer() int32 {
-	if o == nil || isNil(o.IbgpHoldTimer) {
+	if o == nil || IsNil(o.IbgpHoldTimer) {
 		var ret int32
 		return ret
 	}
@@ -112,15 +115,15 @@ func (o *UpdateNetworkApplianceVpnBgpRequest) GetIbgpHoldTimer() int32 {
 // GetIbgpHoldTimerOk returns a tuple with the IbgpHoldTimer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequest) GetIbgpHoldTimerOk() (*int32, bool) {
-	if o == nil || isNil(o.IbgpHoldTimer) {
-    return nil, false
+	if o == nil || IsNil(o.IbgpHoldTimer) {
+		return nil, false
 	}
 	return o.IbgpHoldTimer, true
 }
 
 // HasIbgpHoldTimer returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequest) HasIbgpHoldTimer() bool {
-	if o != nil && !isNil(o.IbgpHoldTimer) {
+	if o != nil && !IsNil(o.IbgpHoldTimer) {
 		return true
 	}
 
@@ -134,7 +137,7 @@ func (o *UpdateNetworkApplianceVpnBgpRequest) SetIbgpHoldTimer(v int32) {
 
 // GetNeighbors returns the Neighbors field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceVpnBgpRequest) GetNeighbors() []UpdateNetworkApplianceVpnBgpRequestNeighborsInner {
-	if o == nil || isNil(o.Neighbors) {
+	if o == nil || IsNil(o.Neighbors) {
 		var ret []UpdateNetworkApplianceVpnBgpRequestNeighborsInner
 		return ret
 	}
@@ -144,15 +147,15 @@ func (o *UpdateNetworkApplianceVpnBgpRequest) GetNeighbors() []UpdateNetworkAppl
 // GetNeighborsOk returns a tuple with the Neighbors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequest) GetNeighborsOk() ([]UpdateNetworkApplianceVpnBgpRequestNeighborsInner, bool) {
-	if o == nil || isNil(o.Neighbors) {
-    return nil, false
+	if o == nil || IsNil(o.Neighbors) {
+		return nil, false
 	}
 	return o.Neighbors, true
 }
 
 // HasNeighbors returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequest) HasNeighbors() bool {
-	if o != nil && !isNil(o.Neighbors) {
+	if o != nil && !IsNil(o.Neighbors) {
 		return true
 	}
 
@@ -165,20 +168,26 @@ func (o *UpdateNetworkApplianceVpnBgpRequest) SetNeighbors(v []UpdateNetworkAppl
 }
 
 func (o UpdateNetworkApplianceVpnBgpRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.AsNumber) {
-		toSerialize["asNumber"] = o.AsNumber
-	}
-	if !isNil(o.IbgpHoldTimer) {
-		toSerialize["ibgpHoldTimer"] = o.IbgpHoldTimer
-	}
-	if !isNil(o.Neighbors) {
-		toSerialize["neighbors"] = o.Neighbors
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceVpnBgpRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["enabled"] = o.Enabled
+	if !IsNil(o.AsNumber) {
+		toSerialize["asNumber"] = o.AsNumber
+	}
+	if !IsNil(o.IbgpHoldTimer) {
+		toSerialize["ibgpHoldTimer"] = o.IbgpHoldTimer
+	}
+	if !IsNil(o.Neighbors) {
+		toSerialize["neighbors"] = o.Neighbors
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceVpnBgpRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkSwitchLinkAggregationRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkSwitchLinkAggregationRequest{}
+
 // CreateNetworkSwitchLinkAggregationRequest struct for CreateNetworkSwitchLinkAggregationRequest
 type CreateNetworkSwitchLinkAggregationRequest struct {
 	// Array of switch or stack ports for creating aggregation group. Minimum 2 and maximum 8 ports are supported.
@@ -41,7 +44,7 @@ func NewCreateNetworkSwitchLinkAggregationRequestWithDefaults() *CreateNetworkSw
 
 // GetSwitchPorts returns the SwitchPorts field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchLinkAggregationRequest) GetSwitchPorts() []CreateNetworkSwitchLinkAggregationRequestSwitchPortsInner {
-	if o == nil || isNil(o.SwitchPorts) {
+	if o == nil || IsNil(o.SwitchPorts) {
 		var ret []CreateNetworkSwitchLinkAggregationRequestSwitchPortsInner
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateNetworkSwitchLinkAggregationRequest) GetSwitchPorts() []CreateNet
 // GetSwitchPortsOk returns a tuple with the SwitchPorts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchLinkAggregationRequest) GetSwitchPortsOk() ([]CreateNetworkSwitchLinkAggregationRequestSwitchPortsInner, bool) {
-	if o == nil || isNil(o.SwitchPorts) {
-    return nil, false
+	if o == nil || IsNil(o.SwitchPorts) {
+		return nil, false
 	}
 	return o.SwitchPorts, true
 }
 
 // HasSwitchPorts returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchLinkAggregationRequest) HasSwitchPorts() bool {
-	if o != nil && !isNil(o.SwitchPorts) {
+	if o != nil && !IsNil(o.SwitchPorts) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateNetworkSwitchLinkAggregationRequest) SetSwitchPorts(v []CreateNet
 
 // GetSwitchProfilePorts returns the SwitchProfilePorts field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchLinkAggregationRequest) GetSwitchProfilePorts() []CreateNetworkSwitchLinkAggregationRequestSwitchProfilePortsInner {
-	if o == nil || isNil(o.SwitchProfilePorts) {
+	if o == nil || IsNil(o.SwitchProfilePorts) {
 		var ret []CreateNetworkSwitchLinkAggregationRequestSwitchProfilePortsInner
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateNetworkSwitchLinkAggregationRequest) GetSwitchProfilePorts() []Cr
 // GetSwitchProfilePortsOk returns a tuple with the SwitchProfilePorts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchLinkAggregationRequest) GetSwitchProfilePortsOk() ([]CreateNetworkSwitchLinkAggregationRequestSwitchProfilePortsInner, bool) {
-	if o == nil || isNil(o.SwitchProfilePorts) {
-    return nil, false
+	if o == nil || IsNil(o.SwitchProfilePorts) {
+		return nil, false
 	}
 	return o.SwitchProfilePorts, true
 }
 
 // HasSwitchProfilePorts returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchLinkAggregationRequest) HasSwitchProfilePorts() bool {
-	if o != nil && !isNil(o.SwitchProfilePorts) {
+	if o != nil && !IsNil(o.SwitchProfilePorts) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *CreateNetworkSwitchLinkAggregationRequest) SetSwitchProfilePorts(v []Cr
 }
 
 func (o CreateNetworkSwitchLinkAggregationRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.SwitchPorts) {
-		toSerialize["switchPorts"] = o.SwitchPorts
-	}
-	if !isNil(o.SwitchProfilePorts) {
-		toSerialize["switchProfilePorts"] = o.SwitchProfilePorts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkSwitchLinkAggregationRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SwitchPorts) {
+		toSerialize["switchPorts"] = o.SwitchPorts
+	}
+	if !IsNil(o.SwitchProfilePorts) {
+		toSerialize["switchProfilePorts"] = o.SwitchProfilePorts
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkSwitchLinkAggregationRequest struct {

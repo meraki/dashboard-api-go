@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSensorMqttBrokerRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSensorMqttBrokerRequest{}
+
 // UpdateNetworkSensorMqttBrokerRequest struct for UpdateNetworkSensorMqttBrokerRequest
 type UpdateNetworkSensorMqttBrokerRequest struct {
 	// Set to true to enable MQTT broker for sensor network
@@ -52,7 +55,7 @@ func (o *UpdateNetworkSensorMqttBrokerRequest) GetEnabled() bool {
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSensorMqttBrokerRequest) GetEnabledOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Enabled, true
 }
@@ -63,11 +66,17 @@ func (o *UpdateNetworkSensorMqttBrokerRequest) SetEnabled(v bool) {
 }
 
 func (o UpdateNetworkSensorMqttBrokerRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["enabled"] = o.Enabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSensorMqttBrokerRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["enabled"] = o.Enabled
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSensorMqttBrokerRequest struct {

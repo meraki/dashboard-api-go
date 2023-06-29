@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerNetwork type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerNetwork{}
+
 // GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerNetwork Network info.
 type GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerNetwork struct {
 	// ID for the network that the device is associated with.
@@ -39,7 +42,7 @@ func NewGetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerNetwor
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerNetwork) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerNetwo
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerNetwork) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerNetwork) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerNetwo
 }
 
 func (o GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerNetwork) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerNetwork) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerNetwork struct {

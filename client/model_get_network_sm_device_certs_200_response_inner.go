@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmDeviceCerts200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmDeviceCerts200ResponseInner{}
+
 // GetNetworkSmDeviceCerts200ResponseInner struct for GetNetworkSmDeviceCerts200ResponseInner
 type GetNetworkSmDeviceCerts200ResponseInner struct {
 	// The name of the certificate.
@@ -53,7 +56,7 @@ func NewGetNetworkSmDeviceCerts200ResponseInnerWithDefaults() *GetNetworkSmDevic
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -63,15 +66,15 @@ func (o *GetNetworkSmDeviceCerts200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -85,7 +88,7 @@ func (o *GetNetworkSmDeviceCerts200ResponseInner) SetName(v string) {
 
 // GetNotValidAfter returns the NotValidAfter field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) GetNotValidAfter() string {
-	if o == nil || isNil(o.NotValidAfter) {
+	if o == nil || IsNil(o.NotValidAfter) {
 		var ret string
 		return ret
 	}
@@ -95,15 +98,15 @@ func (o *GetNetworkSmDeviceCerts200ResponseInner) GetNotValidAfter() string {
 // GetNotValidAfterOk returns a tuple with the NotValidAfter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) GetNotValidAfterOk() (*string, bool) {
-	if o == nil || isNil(o.NotValidAfter) {
-    return nil, false
+	if o == nil || IsNil(o.NotValidAfter) {
+		return nil, false
 	}
 	return o.NotValidAfter, true
 }
 
 // HasNotValidAfter returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) HasNotValidAfter() bool {
-	if o != nil && !isNil(o.NotValidAfter) {
+	if o != nil && !IsNil(o.NotValidAfter) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *GetNetworkSmDeviceCerts200ResponseInner) SetNotValidAfter(v string) {
 
 // GetNotValidBefore returns the NotValidBefore field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) GetNotValidBefore() string {
-	if o == nil || isNil(o.NotValidBefore) {
+	if o == nil || IsNil(o.NotValidBefore) {
 		var ret string
 		return ret
 	}
@@ -127,15 +130,15 @@ func (o *GetNetworkSmDeviceCerts200ResponseInner) GetNotValidBefore() string {
 // GetNotValidBeforeOk returns a tuple with the NotValidBefore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) GetNotValidBeforeOk() (*string, bool) {
-	if o == nil || isNil(o.NotValidBefore) {
-    return nil, false
+	if o == nil || IsNil(o.NotValidBefore) {
+		return nil, false
 	}
 	return o.NotValidBefore, true
 }
 
 // HasNotValidBefore returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) HasNotValidBefore() bool {
-	if o != nil && !isNil(o.NotValidBefore) {
+	if o != nil && !IsNil(o.NotValidBefore) {
 		return true
 	}
 
@@ -149,7 +152,7 @@ func (o *GetNetworkSmDeviceCerts200ResponseInner) SetNotValidBefore(v string) {
 
 // GetCertPem returns the CertPem field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) GetCertPem() string {
-	if o == nil || isNil(o.CertPem) {
+	if o == nil || IsNil(o.CertPem) {
 		var ret string
 		return ret
 	}
@@ -159,15 +162,15 @@ func (o *GetNetworkSmDeviceCerts200ResponseInner) GetCertPem() string {
 // GetCertPemOk returns a tuple with the CertPem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) GetCertPemOk() (*string, bool) {
-	if o == nil || isNil(o.CertPem) {
-    return nil, false
+	if o == nil || IsNil(o.CertPem) {
+		return nil, false
 	}
 	return o.CertPem, true
 }
 
 // HasCertPem returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) HasCertPem() bool {
-	if o != nil && !isNil(o.CertPem) {
+	if o != nil && !IsNil(o.CertPem) {
 		return true
 	}
 
@@ -181,7 +184,7 @@ func (o *GetNetworkSmDeviceCerts200ResponseInner) SetCertPem(v string) {
 
 // GetDeviceId returns the DeviceId field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) GetDeviceId() string {
-	if o == nil || isNil(o.DeviceId) {
+	if o == nil || IsNil(o.DeviceId) {
 		var ret string
 		return ret
 	}
@@ -191,15 +194,15 @@ func (o *GetNetworkSmDeviceCerts200ResponseInner) GetDeviceId() string {
 // GetDeviceIdOk returns a tuple with the DeviceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) GetDeviceIdOk() (*string, bool) {
-	if o == nil || isNil(o.DeviceId) {
-    return nil, false
+	if o == nil || IsNil(o.DeviceId) {
+		return nil, false
 	}
 	return o.DeviceId, true
 }
 
 // HasDeviceId returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) HasDeviceId() bool {
-	if o != nil && !isNil(o.DeviceId) {
+	if o != nil && !IsNil(o.DeviceId) {
 		return true
 	}
 
@@ -213,7 +216,7 @@ func (o *GetNetworkSmDeviceCerts200ResponseInner) SetDeviceId(v string) {
 
 // GetIssuer returns the Issuer field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) GetIssuer() string {
-	if o == nil || isNil(o.Issuer) {
+	if o == nil || IsNil(o.Issuer) {
 		var ret string
 		return ret
 	}
@@ -223,15 +226,15 @@ func (o *GetNetworkSmDeviceCerts200ResponseInner) GetIssuer() string {
 // GetIssuerOk returns a tuple with the Issuer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) GetIssuerOk() (*string, bool) {
-	if o == nil || isNil(o.Issuer) {
-    return nil, false
+	if o == nil || IsNil(o.Issuer) {
+		return nil, false
 	}
 	return o.Issuer, true
 }
 
 // HasIssuer returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) HasIssuer() bool {
-	if o != nil && !isNil(o.Issuer) {
+	if o != nil && !IsNil(o.Issuer) {
 		return true
 	}
 
@@ -245,7 +248,7 @@ func (o *GetNetworkSmDeviceCerts200ResponseInner) SetIssuer(v string) {
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) GetSubject() string {
-	if o == nil || isNil(o.Subject) {
+	if o == nil || IsNil(o.Subject) {
 		var ret string
 		return ret
 	}
@@ -255,15 +258,15 @@ func (o *GetNetworkSmDeviceCerts200ResponseInner) GetSubject() string {
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) GetSubjectOk() (*string, bool) {
-	if o == nil || isNil(o.Subject) {
-    return nil, false
+	if o == nil || IsNil(o.Subject) {
+		return nil, false
 	}
 	return o.Subject, true
 }
 
 // HasSubject returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) HasSubject() bool {
-	if o != nil && !isNil(o.Subject) {
+	if o != nil && !IsNil(o.Subject) {
 		return true
 	}
 
@@ -277,7 +280,7 @@ func (o *GetNetworkSmDeviceCerts200ResponseInner) SetSubject(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -287,15 +290,15 @@ func (o *GetNetworkSmDeviceCerts200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceCerts200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -308,32 +311,40 @@ func (o *GetNetworkSmDeviceCerts200ResponseInner) SetId(v string) {
 }
 
 func (o GetNetworkSmDeviceCerts200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.NotValidAfter) {
-		toSerialize["notValidAfter"] = o.NotValidAfter
-	}
-	if !isNil(o.NotValidBefore) {
-		toSerialize["notValidBefore"] = o.NotValidBefore
-	}
-	if !isNil(o.CertPem) {
-		toSerialize["certPem"] = o.CertPem
-	}
-	if !isNil(o.DeviceId) {
-		toSerialize["deviceId"] = o.DeviceId
-	}
-	if !isNil(o.Issuer) {
-		toSerialize["issuer"] = o.Issuer
-	}
-	if !isNil(o.Subject) {
-		toSerialize["subject"] = o.Subject
-	}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmDeviceCerts200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.NotValidAfter) {
+		toSerialize["notValidAfter"] = o.NotValidAfter
+	}
+	if !IsNil(o.NotValidBefore) {
+		toSerialize["notValidBefore"] = o.NotValidBefore
+	}
+	if !IsNil(o.CertPem) {
+		toSerialize["certPem"] = o.CertPem
+	}
+	if !IsNil(o.DeviceId) {
+		toSerialize["deviceId"] = o.DeviceId
+	}
+	if !IsNil(o.Issuer) {
+		toSerialize["issuer"] = o.Issuer
+	}
+	if !IsNil(o.Subject) {
+		toSerialize["subject"] = o.Subject
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmDeviceCerts200ResponseInner struct {

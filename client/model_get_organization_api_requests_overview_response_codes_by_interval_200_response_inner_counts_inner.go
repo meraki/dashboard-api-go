@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner{}
+
 // GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner struct for GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner
 type GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner struct {
 	// Response status code of the API response
@@ -41,7 +44,7 @@ func NewGetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInne
 
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner) GetCode() int32 {
-	if o == nil || isNil(o.Code) {
+	if o == nil || IsNil(o.Code) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInn
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner) GetCodeOk() (*int32, bool) {
-	if o == nil || isNil(o.Code) {
-    return nil, false
+	if o == nil || IsNil(o.Code) {
+		return nil, false
 	}
 	return o.Code, true
 }
 
 // HasCode returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner) HasCode() bool {
-	if o != nil && !isNil(o.Code) {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInn
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner) GetCount() int32 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int32
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInn
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner) GetCountOk() (*int32, bool) {
-	if o == nil || isNil(o.Count) {
-    return nil, false
+	if o == nil || IsNil(o.Count) {
+		return nil, false
 	}
 	return o.Count, true
 }
 
 // HasCount returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInn
 }
 
 func (o GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Code) {
-		toSerialize["code"] = o.Code
-	}
-	if !isNil(o.Count) {
-		toSerialize["count"] = o.Count
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Code) {
+		toSerialize["code"] = o.Code
+	}
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationApiRequestsOverviewResponseCodesByInterval200ResponseInnerCountsInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings{}
+
 // GetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings Manual radio settings for 2.4 GHz
 type GetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings struct {
 	// Manual channel for 2.4 GHz
@@ -41,7 +44,7 @@ func NewGetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettingsWithDefaults
 
 // GetChannel returns the Channel field value if set, zero value otherwise.
 func (o *GetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings) GetChannel() int32 {
-	if o == nil || isNil(o.Channel) {
+	if o == nil || IsNil(o.Channel) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings) GetChanne
 // GetChannelOk returns a tuple with the Channel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings) GetChannelOk() (*int32, bool) {
-	if o == nil || isNil(o.Channel) {
-    return nil, false
+	if o == nil || IsNil(o.Channel) {
+		return nil, false
 	}
 	return o.Channel, true
 }
 
 // HasChannel returns a boolean if a field has been set.
 func (o *GetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings) HasChannel() bool {
-	if o != nil && !isNil(o.Channel) {
+	if o != nil && !IsNil(o.Channel) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings) SetChanne
 
 // GetTargetPower returns the TargetPower field value if set, zero value otherwise.
 func (o *GetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings) GetTargetPower() int32 {
-	if o == nil || isNil(o.TargetPower) {
+	if o == nil || IsNil(o.TargetPower) {
 		var ret int32
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings) GetTarget
 // GetTargetPowerOk returns a tuple with the TargetPower field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings) GetTargetPowerOk() (*int32, bool) {
-	if o == nil || isNil(o.TargetPower) {
-    return nil, false
+	if o == nil || IsNil(o.TargetPower) {
+		return nil, false
 	}
 	return o.TargetPower, true
 }
 
 // HasTargetPower returns a boolean if a field has been set.
 func (o *GetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings) HasTargetPower() bool {
-	if o != nil && !isNil(o.TargetPower) {
+	if o != nil && !IsNil(o.TargetPower) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings) SetTarget
 }
 
 func (o GetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Channel) {
-		toSerialize["channel"] = o.Channel
-	}
-	if !isNil(o.TargetPower) {
-		toSerialize["targetPower"] = o.TargetPower
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Channel) {
+		toSerialize["channel"] = o.Channel
+	}
+	if !IsNil(o.TargetPower) {
+		toSerialize["targetPower"] = o.TargetPower
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceApplianceRadioSettings200ResponseTwoFourGhzSettings struct {

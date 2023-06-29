@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkGroupPolicyRequestContentFiltering type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkGroupPolicyRequestContentFiltering{}
+
 // CreateNetworkGroupPolicyRequestContentFiltering The content filtering settings for your group policy
 type CreateNetworkGroupPolicyRequestContentFiltering struct {
 	AllowedUrlPatterns *CreateNetworkGroupPolicyRequestContentFilteringAllowedUrlPatterns `json:"allowedUrlPatterns,omitempty"`
@@ -40,7 +43,7 @@ func NewCreateNetworkGroupPolicyRequestContentFilteringWithDefaults() *CreateNet
 
 // GetAllowedUrlPatterns returns the AllowedUrlPatterns field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestContentFiltering) GetAllowedUrlPatterns() CreateNetworkGroupPolicyRequestContentFilteringAllowedUrlPatterns {
-	if o == nil || isNil(o.AllowedUrlPatterns) {
+	if o == nil || IsNil(o.AllowedUrlPatterns) {
 		var ret CreateNetworkGroupPolicyRequestContentFilteringAllowedUrlPatterns
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *CreateNetworkGroupPolicyRequestContentFiltering) GetAllowedUrlPatterns(
 // GetAllowedUrlPatternsOk returns a tuple with the AllowedUrlPatterns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestContentFiltering) GetAllowedUrlPatternsOk() (*CreateNetworkGroupPolicyRequestContentFilteringAllowedUrlPatterns, bool) {
-	if o == nil || isNil(o.AllowedUrlPatterns) {
-    return nil, false
+	if o == nil || IsNil(o.AllowedUrlPatterns) {
+		return nil, false
 	}
 	return o.AllowedUrlPatterns, true
 }
 
 // HasAllowedUrlPatterns returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestContentFiltering) HasAllowedUrlPatterns() bool {
-	if o != nil && !isNil(o.AllowedUrlPatterns) {
+	if o != nil && !IsNil(o.AllowedUrlPatterns) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *CreateNetworkGroupPolicyRequestContentFiltering) SetAllowedUrlPatterns(
 
 // GetBlockedUrlPatterns returns the BlockedUrlPatterns field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestContentFiltering) GetBlockedUrlPatterns() CreateNetworkGroupPolicyRequestContentFilteringBlockedUrlPatterns {
-	if o == nil || isNil(o.BlockedUrlPatterns) {
+	if o == nil || IsNil(o.BlockedUrlPatterns) {
 		var ret CreateNetworkGroupPolicyRequestContentFilteringBlockedUrlPatterns
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *CreateNetworkGroupPolicyRequestContentFiltering) GetBlockedUrlPatterns(
 // GetBlockedUrlPatternsOk returns a tuple with the BlockedUrlPatterns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestContentFiltering) GetBlockedUrlPatternsOk() (*CreateNetworkGroupPolicyRequestContentFilteringBlockedUrlPatterns, bool) {
-	if o == nil || isNil(o.BlockedUrlPatterns) {
-    return nil, false
+	if o == nil || IsNil(o.BlockedUrlPatterns) {
+		return nil, false
 	}
 	return o.BlockedUrlPatterns, true
 }
 
 // HasBlockedUrlPatterns returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestContentFiltering) HasBlockedUrlPatterns() bool {
-	if o != nil && !isNil(o.BlockedUrlPatterns) {
+	if o != nil && !IsNil(o.BlockedUrlPatterns) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *CreateNetworkGroupPolicyRequestContentFiltering) SetBlockedUrlPatterns(
 
 // GetBlockedUrlCategories returns the BlockedUrlCategories field value if set, zero value otherwise.
 func (o *CreateNetworkGroupPolicyRequestContentFiltering) GetBlockedUrlCategories() CreateNetworkGroupPolicyRequestContentFilteringBlockedUrlCategories {
-	if o == nil || isNil(o.BlockedUrlCategories) {
+	if o == nil || IsNil(o.BlockedUrlCategories) {
 		var ret CreateNetworkGroupPolicyRequestContentFilteringBlockedUrlCategories
 		return ret
 	}
@@ -114,15 +117,15 @@ func (o *CreateNetworkGroupPolicyRequestContentFiltering) GetBlockedUrlCategorie
 // GetBlockedUrlCategoriesOk returns a tuple with the BlockedUrlCategories field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkGroupPolicyRequestContentFiltering) GetBlockedUrlCategoriesOk() (*CreateNetworkGroupPolicyRequestContentFilteringBlockedUrlCategories, bool) {
-	if o == nil || isNil(o.BlockedUrlCategories) {
-    return nil, false
+	if o == nil || IsNil(o.BlockedUrlCategories) {
+		return nil, false
 	}
 	return o.BlockedUrlCategories, true
 }
 
 // HasBlockedUrlCategories returns a boolean if a field has been set.
 func (o *CreateNetworkGroupPolicyRequestContentFiltering) HasBlockedUrlCategories() bool {
-	if o != nil && !isNil(o.BlockedUrlCategories) {
+	if o != nil && !IsNil(o.BlockedUrlCategories) {
 		return true
 	}
 
@@ -135,17 +138,25 @@ func (o *CreateNetworkGroupPolicyRequestContentFiltering) SetBlockedUrlCategorie
 }
 
 func (o CreateNetworkGroupPolicyRequestContentFiltering) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.AllowedUrlPatterns) {
-		toSerialize["allowedUrlPatterns"] = o.AllowedUrlPatterns
-	}
-	if !isNil(o.BlockedUrlPatterns) {
-		toSerialize["blockedUrlPatterns"] = o.BlockedUrlPatterns
-	}
-	if !isNil(o.BlockedUrlCategories) {
-		toSerialize["blockedUrlCategories"] = o.BlockedUrlCategories
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkGroupPolicyRequestContentFiltering) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AllowedUrlPatterns) {
+		toSerialize["allowedUrlPatterns"] = o.AllowedUrlPatterns
+	}
+	if !IsNil(o.BlockedUrlPatterns) {
+		toSerialize["blockedUrlPatterns"] = o.BlockedUrlPatterns
+	}
+	if !IsNil(o.BlockedUrlCategories) {
+		toSerialize["blockedUrlCategories"] = o.BlockedUrlCategories
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkGroupPolicyRequestContentFiltering struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ClaimNetworkDevicesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ClaimNetworkDevicesRequest{}
+
 // ClaimNetworkDevicesRequest struct for ClaimNetworkDevicesRequest
 type ClaimNetworkDevicesRequest struct {
 	// A list of serials of devices to claim
@@ -52,7 +55,7 @@ func (o *ClaimNetworkDevicesRequest) GetSerials() []string {
 // and a boolean to check if the value has been set.
 func (o *ClaimNetworkDevicesRequest) GetSerialsOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Serials, true
 }
@@ -63,11 +66,17 @@ func (o *ClaimNetworkDevicesRequest) SetSerials(v []string) {
 }
 
 func (o ClaimNetworkDevicesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["serials"] = o.Serials
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ClaimNetworkDevicesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["serials"] = o.Serials
+	return toSerialize, nil
 }
 
 type NullableClaimNetworkDevicesRequest struct {

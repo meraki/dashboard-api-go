@@ -10,46 +10,46 @@ Testing Hotspot20ApiService
 package client
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "github.com/meraki/dashboard-api-go/client"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func Test_client_Hotspot20ApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test Hotspot20ApiService GetNetworkWirelessSsidHotspot20", func(t *testing.T) {
+	t.Run("Test Hotspot20ApiService GetNetworkWirelessSsidHotspot20", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var number string
+		var networkId string
+		var number string
 
-        resp, httpRes, err := apiClient.Hotspot20Api.GetNetworkWirelessSsidHotspot20(context.Background(), networkId, number).Execute()
+		resp, httpRes, err := apiClient.Hotspot20Api.GetNetworkWirelessSsidHotspot20(context.Background(), networkId, number).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test Hotspot20ApiService UpdateNetworkWirelessSsidHotspot20", func(t *testing.T) {
+	t.Run("Test Hotspot20ApiService UpdateNetworkWirelessSsidHotspot20", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var number string
+		var networkId string
+		var number string
 
-        resp, httpRes, err := apiClient.Hotspot20Api.UpdateNetworkWirelessSsidHotspot20(context.Background(), networkId, number).Execute()
+		resp, httpRes, err := apiClient.Hotspot20Api.UpdateNetworkWirelessSsidHotspot20(context.Background(), networkId, number).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidRequestLocalRadius type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidRequestLocalRadius{}
+
 // UpdateNetworkWirelessSsidRequestLocalRadius The current setting for Local Authentication, a built-in RADIUS server on the access point. Only valid if authMode is '8021x-localradius'.
 type UpdateNetworkWirelessSsidRequestLocalRadius struct {
 	// The duration (in seconds) for which LDAP and OCSP lookups are cached.
@@ -41,7 +44,7 @@ func NewUpdateNetworkWirelessSsidRequestLocalRadiusWithDefaults() *UpdateNetwork
 
 // GetCacheTimeout returns the CacheTimeout field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadius) GetCacheTimeout() int32 {
-	if o == nil || isNil(o.CacheTimeout) {
+	if o == nil || IsNil(o.CacheTimeout) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadius) GetCacheTimeout() int32 {
 // GetCacheTimeoutOk returns a tuple with the CacheTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadius) GetCacheTimeoutOk() (*int32, bool) {
-	if o == nil || isNil(o.CacheTimeout) {
-    return nil, false
+	if o == nil || IsNil(o.CacheTimeout) {
+		return nil, false
 	}
 	return o.CacheTimeout, true
 }
 
 // HasCacheTimeout returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadius) HasCacheTimeout() bool {
-	if o != nil && !isNil(o.CacheTimeout) {
+	if o != nil && !IsNil(o.CacheTimeout) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadius) SetCacheTimeout(v int32) {
 
 // GetPasswordAuthentication returns the PasswordAuthentication field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadius) GetPasswordAuthentication() UpdateNetworkWirelessSsidRequestLocalRadiusPasswordAuthentication {
-	if o == nil || isNil(o.PasswordAuthentication) {
+	if o == nil || IsNil(o.PasswordAuthentication) {
 		var ret UpdateNetworkWirelessSsidRequestLocalRadiusPasswordAuthentication
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadius) GetPasswordAuthentication(
 // GetPasswordAuthenticationOk returns a tuple with the PasswordAuthentication field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadius) GetPasswordAuthenticationOk() (*UpdateNetworkWirelessSsidRequestLocalRadiusPasswordAuthentication, bool) {
-	if o == nil || isNil(o.PasswordAuthentication) {
-    return nil, false
+	if o == nil || IsNil(o.PasswordAuthentication) {
+		return nil, false
 	}
 	return o.PasswordAuthentication, true
 }
 
 // HasPasswordAuthentication returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadius) HasPasswordAuthentication() bool {
-	if o != nil && !isNil(o.PasswordAuthentication) {
+	if o != nil && !IsNil(o.PasswordAuthentication) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadius) SetPasswordAuthentication(
 
 // GetCertificateAuthentication returns the CertificateAuthentication field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadius) GetCertificateAuthentication() UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication {
-	if o == nil || isNil(o.CertificateAuthentication) {
+	if o == nil || IsNil(o.CertificateAuthentication) {
 		var ret UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadius) GetCertificateAuthenticati
 // GetCertificateAuthenticationOk returns a tuple with the CertificateAuthentication field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadius) GetCertificateAuthenticationOk() (*UpdateNetworkWirelessSsidRequestLocalRadiusCertificateAuthentication, bool) {
-	if o == nil || isNil(o.CertificateAuthentication) {
-    return nil, false
+	if o == nil || IsNil(o.CertificateAuthentication) {
+		return nil, false
 	}
 	return o.CertificateAuthentication, true
 }
 
 // HasCertificateAuthentication returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestLocalRadius) HasCertificateAuthentication() bool {
-	if o != nil && !isNil(o.CertificateAuthentication) {
+	if o != nil && !IsNil(o.CertificateAuthentication) {
 		return true
 	}
 
@@ -136,17 +139,25 @@ func (o *UpdateNetworkWirelessSsidRequestLocalRadius) SetCertificateAuthenticati
 }
 
 func (o UpdateNetworkWirelessSsidRequestLocalRadius) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.CacheTimeout) {
-		toSerialize["cacheTimeout"] = o.CacheTimeout
-	}
-	if !isNil(o.PasswordAuthentication) {
-		toSerialize["passwordAuthentication"] = o.PasswordAuthentication
-	}
-	if !isNil(o.CertificateAuthentication) {
-		toSerialize["certificateAuthentication"] = o.CertificateAuthentication
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidRequestLocalRadius) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CacheTimeout) {
+		toSerialize["cacheTimeout"] = o.CacheTimeout
+	}
+	if !IsNil(o.PasswordAuthentication) {
+		toSerialize["passwordAuthentication"] = o.PasswordAuthentication
+	}
+	if !IsNil(o.CertificateAuthentication) {
+		toSerialize["certificateAuthentication"] = o.CertificateAuthentication
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidRequestLocalRadius struct {

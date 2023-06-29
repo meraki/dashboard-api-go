@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner{}
+
 // UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner struct for UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner
 type UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner struct {
 	// Protocol for this split tunnel rule.
@@ -49,7 +52,7 @@ func NewUpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInnerWithDefaults() *
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) GetProtocol() string {
-	if o == nil || isNil(o.Protocol) {
+	if o == nil || IsNil(o.Protocol) {
 		var ret string
 		return ret
 	}
@@ -59,15 +62,15 @@ func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) GetProtocol()
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) GetProtocolOk() (*string, bool) {
-	if o == nil || isNil(o.Protocol) {
-    return nil, false
+	if o == nil || IsNil(o.Protocol) {
+		return nil, false
 	}
 	return o.Protocol, true
 }
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) HasProtocol() bool {
-	if o != nil && !isNil(o.Protocol) {
+	if o != nil && !IsNil(o.Protocol) {
 		return true
 	}
 
@@ -93,7 +96,7 @@ func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) GetDestCidr()
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) GetDestCidrOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.DestCidr, true
 }
@@ -105,7 +108,7 @@ func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) SetDestCidr(v
 
 // GetDestPort returns the DestPort field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) GetDestPort() string {
-	if o == nil || isNil(o.DestPort) {
+	if o == nil || IsNil(o.DestPort) {
 		var ret string
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) GetDestPort()
 // GetDestPortOk returns a tuple with the DestPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) GetDestPortOk() (*string, bool) {
-	if o == nil || isNil(o.DestPort) {
-    return nil, false
+	if o == nil || IsNil(o.DestPort) {
+		return nil, false
 	}
 	return o.DestPort, true
 }
 
 // HasDestPort returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) HasDestPort() bool {
-	if o != nil && !isNil(o.DestPort) {
+	if o != nil && !IsNil(o.DestPort) {
 		return true
 	}
 
@@ -149,7 +152,7 @@ func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) GetPolicy() s
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) GetPolicyOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Policy, true
 }
@@ -161,7 +164,7 @@ func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) SetPolicy(v s
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) GetComment() string {
-	if o == nil || isNil(o.Comment) {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -171,15 +174,15 @@ func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) GetComment() 
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) GetCommentOk() (*string, bool) {
-	if o == nil || isNil(o.Comment) {
-    return nil, false
+	if o == nil || IsNil(o.Comment) {
+		return nil, false
 	}
 	return o.Comment, true
 }
 
 // HasComment returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) HasComment() bool {
-	if o != nil && !isNil(o.Comment) {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -192,23 +195,27 @@ func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) SetComment(v 
 }
 
 func (o UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Protocol) {
-		toSerialize["protocol"] = o.Protocol
-	}
-	if true {
-		toSerialize["destCidr"] = o.DestCidr
-	}
-	if !isNil(o.DestPort) {
-		toSerialize["destPort"] = o.DestPort
-	}
-	if true {
-		toSerialize["policy"] = o.Policy
-	}
-	if !isNil(o.Comment) {
-		toSerialize["comment"] = o.Comment
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Protocol) {
+		toSerialize["protocol"] = o.Protocol
+	}
+	toSerialize["destCidr"] = o.DestCidr
+	if !IsNil(o.DestPort) {
+		toSerialize["destPort"] = o.DestPort
+	}
+	toSerialize["policy"] = o.Policy
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner{}
+
 // UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner struct for UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner
 type UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner struct {
 	// IP address to which the APs will send RADIUS accounting messages
@@ -60,7 +63,7 @@ func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) GetHost()
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) GetHostOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Host, true
 }
@@ -72,7 +75,7 @@ func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) SetHost(v
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) GetPort() int32 {
-	if o == nil || isNil(o.Port) {
+	if o == nil || IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) GetPort()
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) GetPortOk() (*int32, bool) {
-	if o == nil || isNil(o.Port) {
-    return nil, false
+	if o == nil || IsNil(o.Port) {
+		return nil, false
 	}
 	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) HasPort() bool {
-	if o != nil && !isNil(o.Port) {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) SetPort(v
 
 // GetSecret returns the Secret field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) GetSecret() string {
-	if o == nil || isNil(o.Secret) {
+	if o == nil || IsNil(o.Secret) {
 		var ret string
 		return ret
 	}
@@ -114,15 +117,15 @@ func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) GetSecret
 // GetSecretOk returns a tuple with the Secret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) GetSecretOk() (*string, bool) {
-	if o == nil || isNil(o.Secret) {
-    return nil, false
+	if o == nil || IsNil(o.Secret) {
+		return nil, false
 	}
 	return o.Secret, true
 }
 
 // HasSecret returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) HasSecret() bool {
-	if o != nil && !isNil(o.Secret) {
+	if o != nil && !IsNil(o.Secret) {
 		return true
 	}
 
@@ -136,7 +139,7 @@ func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) SetSecret
 
 // GetRadsecEnabled returns the RadsecEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) GetRadsecEnabled() bool {
-	if o == nil || isNil(o.RadsecEnabled) {
+	if o == nil || IsNil(o.RadsecEnabled) {
 		var ret bool
 		return ret
 	}
@@ -146,15 +149,15 @@ func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) GetRadsec
 // GetRadsecEnabledOk returns a tuple with the RadsecEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) GetRadsecEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.RadsecEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.RadsecEnabled) {
+		return nil, false
 	}
 	return o.RadsecEnabled, true
 }
 
 // HasRadsecEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) HasRadsecEnabled() bool {
-	if o != nil && !isNil(o.RadsecEnabled) {
+	if o != nil && !IsNil(o.RadsecEnabled) {
 		return true
 	}
 
@@ -168,7 +171,7 @@ func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) SetRadsec
 
 // GetCaCertificate returns the CaCertificate field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) GetCaCertificate() string {
-	if o == nil || isNil(o.CaCertificate) {
+	if o == nil || IsNil(o.CaCertificate) {
 		var ret string
 		return ret
 	}
@@ -178,15 +181,15 @@ func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) GetCaCert
 // GetCaCertificateOk returns a tuple with the CaCertificate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) GetCaCertificateOk() (*string, bool) {
-	if o == nil || isNil(o.CaCertificate) {
-    return nil, false
+	if o == nil || IsNil(o.CaCertificate) {
+		return nil, false
 	}
 	return o.CaCertificate, true
 }
 
 // HasCaCertificate returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) HasCaCertificate() bool {
-	if o != nil && !isNil(o.CaCertificate) {
+	if o != nil && !IsNil(o.CaCertificate) {
 		return true
 	}
 
@@ -199,23 +202,29 @@ func (o *UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) SetCaCert
 }
 
 func (o UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["host"] = o.Host
-	}
-	if !isNil(o.Port) {
-		toSerialize["port"] = o.Port
-	}
-	if !isNil(o.Secret) {
-		toSerialize["secret"] = o.Secret
-	}
-	if !isNil(o.RadsecEnabled) {
-		toSerialize["radsecEnabled"] = o.RadsecEnabled
-	}
-	if !isNil(o.CaCertificate) {
-		toSerialize["caCertificate"] = o.CaCertificate
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidRequestRadiusAccountingServersInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["host"] = o.Host
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
+	}
+	if !IsNil(o.Secret) {
+		toSerialize["secret"] = o.Secret
+	}
+	if !IsNil(o.RadsecEnabled) {
+		toSerialize["radsecEnabled"] = o.RadsecEnabled
+	}
+	if !IsNil(o.CaCertificate) {
+		toSerialize["caCertificate"] = o.CaCertificate
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidRequestRadiusAccountingServersInner struct {

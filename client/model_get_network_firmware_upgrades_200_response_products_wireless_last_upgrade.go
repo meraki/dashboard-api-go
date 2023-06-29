@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade{}
+
 // GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade Details of the last firmware upgrade on the device
 type GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade struct {
 	// Timestamp of the last successful firmware upgrade
@@ -42,7 +45,7 @@ func NewGetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgradeWithDefa
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) GetTime() time.Time {
-	if o == nil || isNil(o.Time) {
+	if o == nil || IsNil(o.Time) {
 		var ret time.Time
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) GetTi
 // GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) GetTimeOk() (*time.Time, bool) {
-	if o == nil || isNil(o.Time) {
-    return nil, false
+	if o == nil || IsNil(o.Time) {
+		return nil, false
 	}
 	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) HasTime() bool {
-	if o != nil && !isNil(o.Time) {
+	if o != nil && !IsNil(o.Time) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) SetTi
 
 // GetFromVersion returns the FromVersion field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) GetFromVersion() GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgradeFromVersion {
-	if o == nil || isNil(o.FromVersion) {
+	if o == nil || IsNil(o.FromVersion) {
 		var ret GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgradeFromVersion
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) GetFr
 // GetFromVersionOk returns a tuple with the FromVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) GetFromVersionOk() (*GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgradeFromVersion, bool) {
-	if o == nil || isNil(o.FromVersion) {
-    return nil, false
+	if o == nil || IsNil(o.FromVersion) {
+		return nil, false
 	}
 	return o.FromVersion, true
 }
 
 // HasFromVersion returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) HasFromVersion() bool {
-	if o != nil && !isNil(o.FromVersion) {
+	if o != nil && !IsNil(o.FromVersion) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) SetFr
 
 // GetToVersion returns the ToVersion field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) GetToVersion() GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgradeToVersion {
-	if o == nil || isNil(o.ToVersion) {
+	if o == nil || IsNil(o.ToVersion) {
 		var ret GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgradeToVersion
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) GetTo
 // GetToVersionOk returns a tuple with the ToVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) GetToVersionOk() (*GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgradeToVersion, bool) {
-	if o == nil || isNil(o.ToVersion) {
-    return nil, false
+	if o == nil || IsNil(o.ToVersion) {
+		return nil, false
 	}
 	return o.ToVersion, true
 }
 
 // HasToVersion returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) HasToVersion() bool {
-	if o != nil && !isNil(o.ToVersion) {
+	if o != nil && !IsNil(o.ToVersion) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) SetTo
 }
 
 func (o GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Time) {
-		toSerialize["time"] = o.Time
-	}
-	if !isNil(o.FromVersion) {
-		toSerialize["fromVersion"] = o.FromVersion
-	}
-	if !isNil(o.ToVersion) {
-		toSerialize["toVersion"] = o.ToVersion
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Time) {
+		toSerialize["time"] = o.Time
+	}
+	if !IsNil(o.FromVersion) {
+		toSerialize["fromVersion"] = o.FromVersion
+	}
+	if !IsNil(o.ToVersion) {
+		toSerialize["toVersion"] = o.ToVersion
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade struct {

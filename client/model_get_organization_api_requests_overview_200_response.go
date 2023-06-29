@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationApiRequestsOverview200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationApiRequestsOverview200Response{}
+
 // GetOrganizationApiRequestsOverview200Response struct for GetOrganizationApiRequestsOverview200Response
 type GetOrganizationApiRequestsOverview200Response struct {
 	ResponseCodeCounts *GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts `json:"responseCodeCounts,omitempty"`
@@ -38,7 +41,7 @@ func NewGetOrganizationApiRequestsOverview200ResponseWithDefaults() *GetOrganiza
 
 // GetResponseCodeCounts returns the ResponseCodeCounts field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequestsOverview200Response) GetResponseCodeCounts() GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts {
-	if o == nil || isNil(o.ResponseCodeCounts) {
+	if o == nil || IsNil(o.ResponseCodeCounts) {
 		var ret GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetOrganizationApiRequestsOverview200Response) GetResponseCodeCounts() 
 // GetResponseCodeCountsOk returns a tuple with the ResponseCodeCounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequestsOverview200Response) GetResponseCodeCountsOk() (*GetOrganizationApiRequestsOverview200ResponseResponseCodeCounts, bool) {
-	if o == nil || isNil(o.ResponseCodeCounts) {
-    return nil, false
+	if o == nil || IsNil(o.ResponseCodeCounts) {
+		return nil, false
 	}
 	return o.ResponseCodeCounts, true
 }
 
 // HasResponseCodeCounts returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequestsOverview200Response) HasResponseCodeCounts() bool {
-	if o != nil && !isNil(o.ResponseCodeCounts) {
+	if o != nil && !IsNil(o.ResponseCodeCounts) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetOrganizationApiRequestsOverview200Response) SetResponseCodeCounts(v 
 }
 
 func (o GetOrganizationApiRequestsOverview200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ResponseCodeCounts) {
-		toSerialize["responseCodeCounts"] = o.ResponseCodeCounts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationApiRequestsOverview200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ResponseCodeCounts) {
+		toSerialize["responseCodeCounts"] = o.ResponseCodeCounts
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationApiRequestsOverview200Response struct {

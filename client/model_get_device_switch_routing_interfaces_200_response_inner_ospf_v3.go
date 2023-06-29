@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3{}
+
 // GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3 IPv6 OSPF Settings
 type GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3 struct {
 	// Area id
@@ -43,7 +46,7 @@ func NewGetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3WithDefaults() *Ge
 
 // GetArea returns the Area field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) GetArea() string {
-	if o == nil || isNil(o.Area) {
+	if o == nil || IsNil(o.Area) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) GetArea() strin
 // GetAreaOk returns a tuple with the Area field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) GetAreaOk() (*string, bool) {
-	if o == nil || isNil(o.Area) {
-    return nil, false
+	if o == nil || IsNil(o.Area) {
+		return nil, false
 	}
 	return o.Area, true
 }
 
 // HasArea returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) HasArea() bool {
-	if o != nil && !isNil(o.Area) {
+	if o != nil && !IsNil(o.Area) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) SetArea(v strin
 
 // GetCost returns the Cost field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) GetCost() int32 {
-	if o == nil || isNil(o.Cost) {
+	if o == nil || IsNil(o.Cost) {
 		var ret int32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) GetCost() int32
 // GetCostOk returns a tuple with the Cost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) GetCostOk() (*int32, bool) {
-	if o == nil || isNil(o.Cost) {
-    return nil, false
+	if o == nil || IsNil(o.Cost) {
+		return nil, false
 	}
 	return o.Cost, true
 }
 
 // HasCost returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) HasCost() bool {
-	if o != nil && !isNil(o.Cost) {
+	if o != nil && !IsNil(o.Cost) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) SetCost(v int32
 
 // GetIsPassiveEnabled returns the IsPassiveEnabled field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) GetIsPassiveEnabled() bool {
-	if o == nil || isNil(o.IsPassiveEnabled) {
+	if o == nil || IsNil(o.IsPassiveEnabled) {
 		var ret bool
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) GetIsPassiveEna
 // GetIsPassiveEnabledOk returns a tuple with the IsPassiveEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) GetIsPassiveEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.IsPassiveEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.IsPassiveEnabled) {
+		return nil, false
 	}
 	return o.IsPassiveEnabled, true
 }
 
 // HasIsPassiveEnabled returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) HasIsPassiveEnabled() bool {
-	if o != nil && !isNil(o.IsPassiveEnabled) {
+	if o != nil && !IsNil(o.IsPassiveEnabled) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) SetIsPassiveEna
 }
 
 func (o GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Area) {
-		toSerialize["area"] = o.Area
-	}
-	if !isNil(o.Cost) {
-		toSerialize["cost"] = o.Cost
-	}
-	if !isNil(o.IsPassiveEnabled) {
-		toSerialize["isPassiveEnabled"] = o.IsPassiveEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Area) {
+		toSerialize["area"] = o.Area
+	}
+	if !IsNil(o.Cost) {
+		toSerialize["cost"] = o.Cost
+	}
+	if !IsNil(o.IsPassiveEnabled) {
+		toSerialize["isPassiveEnabled"] = o.IsPassiveEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceSwitchRoutingInterfaces200ResponseInnerOspfV3 struct {

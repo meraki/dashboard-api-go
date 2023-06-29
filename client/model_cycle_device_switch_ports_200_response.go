@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CycleDeviceSwitchPorts200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CycleDeviceSwitchPorts200Response{}
+
 // CycleDeviceSwitchPorts200Response struct for CycleDeviceSwitchPorts200Response
 type CycleDeviceSwitchPorts200Response struct {
 	// List of switch ports
@@ -39,7 +42,7 @@ func NewCycleDeviceSwitchPorts200ResponseWithDefaults() *CycleDeviceSwitchPorts2
 
 // GetPorts returns the Ports field value if set, zero value otherwise.
 func (o *CycleDeviceSwitchPorts200Response) GetPorts() []string {
-	if o == nil || isNil(o.Ports) {
+	if o == nil || IsNil(o.Ports) {
 		var ret []string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *CycleDeviceSwitchPorts200Response) GetPorts() []string {
 // GetPortsOk returns a tuple with the Ports field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CycleDeviceSwitchPorts200Response) GetPortsOk() ([]string, bool) {
-	if o == nil || isNil(o.Ports) {
-    return nil, false
+	if o == nil || IsNil(o.Ports) {
+		return nil, false
 	}
 	return o.Ports, true
 }
 
 // HasPorts returns a boolean if a field has been set.
 func (o *CycleDeviceSwitchPorts200Response) HasPorts() bool {
-	if o != nil && !isNil(o.Ports) {
+	if o != nil && !IsNil(o.Ports) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *CycleDeviceSwitchPorts200Response) SetPorts(v []string) {
 }
 
 func (o CycleDeviceSwitchPorts200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Ports) {
-		toSerialize["ports"] = o.Ports
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CycleDeviceSwitchPorts200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Ports) {
+		toSerialize["ports"] = o.Ports
+	}
+	return toSerialize, nil
 }
 
 type NullableCycleDeviceSwitchPorts200Response struct {

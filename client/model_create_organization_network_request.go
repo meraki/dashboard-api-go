@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationNetworkRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationNetworkRequest{}
+
 // CreateOrganizationNetworkRequest struct for CreateOrganizationNetworkRequest
 type CreateOrganizationNetworkRequest struct {
 	// The name of the new network
@@ -63,7 +66,7 @@ func (o *CreateOrganizationNetworkRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationNetworkRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -87,7 +90,7 @@ func (o *CreateOrganizationNetworkRequest) GetProductTypes() []string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationNetworkRequest) GetProductTypesOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.ProductTypes, true
 }
@@ -99,7 +102,7 @@ func (o *CreateOrganizationNetworkRequest) SetProductTypes(v []string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *CreateOrganizationNetworkRequest) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -109,15 +112,15 @@ func (o *CreateOrganizationNetworkRequest) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationNetworkRequest) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
 	}
 	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *CreateOrganizationNetworkRequest) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -131,7 +134,7 @@ func (o *CreateOrganizationNetworkRequest) SetTags(v []string) {
 
 // GetTimeZone returns the TimeZone field value if set, zero value otherwise.
 func (o *CreateOrganizationNetworkRequest) GetTimeZone() string {
-	if o == nil || isNil(o.TimeZone) {
+	if o == nil || IsNil(o.TimeZone) {
 		var ret string
 		return ret
 	}
@@ -141,15 +144,15 @@ func (o *CreateOrganizationNetworkRequest) GetTimeZone() string {
 // GetTimeZoneOk returns a tuple with the TimeZone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationNetworkRequest) GetTimeZoneOk() (*string, bool) {
-	if o == nil || isNil(o.TimeZone) {
-    return nil, false
+	if o == nil || IsNil(o.TimeZone) {
+		return nil, false
 	}
 	return o.TimeZone, true
 }
 
 // HasTimeZone returns a boolean if a field has been set.
 func (o *CreateOrganizationNetworkRequest) HasTimeZone() bool {
-	if o != nil && !isNil(o.TimeZone) {
+	if o != nil && !IsNil(o.TimeZone) {
 		return true
 	}
 
@@ -163,7 +166,7 @@ func (o *CreateOrganizationNetworkRequest) SetTimeZone(v string) {
 
 // GetCopyFromNetworkId returns the CopyFromNetworkId field value if set, zero value otherwise.
 func (o *CreateOrganizationNetworkRequest) GetCopyFromNetworkId() string {
-	if o == nil || isNil(o.CopyFromNetworkId) {
+	if o == nil || IsNil(o.CopyFromNetworkId) {
 		var ret string
 		return ret
 	}
@@ -173,15 +176,15 @@ func (o *CreateOrganizationNetworkRequest) GetCopyFromNetworkId() string {
 // GetCopyFromNetworkIdOk returns a tuple with the CopyFromNetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationNetworkRequest) GetCopyFromNetworkIdOk() (*string, bool) {
-	if o == nil || isNil(o.CopyFromNetworkId) {
-    return nil, false
+	if o == nil || IsNil(o.CopyFromNetworkId) {
+		return nil, false
 	}
 	return o.CopyFromNetworkId, true
 }
 
 // HasCopyFromNetworkId returns a boolean if a field has been set.
 func (o *CreateOrganizationNetworkRequest) HasCopyFromNetworkId() bool {
-	if o != nil && !isNil(o.CopyFromNetworkId) {
+	if o != nil && !IsNil(o.CopyFromNetworkId) {
 		return true
 	}
 
@@ -195,7 +198,7 @@ func (o *CreateOrganizationNetworkRequest) SetCopyFromNetworkId(v string) {
 
 // GetNotes returns the Notes field value if set, zero value otherwise.
 func (o *CreateOrganizationNetworkRequest) GetNotes() string {
-	if o == nil || isNil(o.Notes) {
+	if o == nil || IsNil(o.Notes) {
 		var ret string
 		return ret
 	}
@@ -205,15 +208,15 @@ func (o *CreateOrganizationNetworkRequest) GetNotes() string {
 // GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationNetworkRequest) GetNotesOk() (*string, bool) {
-	if o == nil || isNil(o.Notes) {
-    return nil, false
+	if o == nil || IsNil(o.Notes) {
+		return nil, false
 	}
 	return o.Notes, true
 }
 
 // HasNotes returns a boolean if a field has been set.
 func (o *CreateOrganizationNetworkRequest) HasNotes() bool {
-	if o != nil && !isNil(o.Notes) {
+	if o != nil && !IsNil(o.Notes) {
 		return true
 	}
 
@@ -226,26 +229,30 @@ func (o *CreateOrganizationNetworkRequest) SetNotes(v string) {
 }
 
 func (o CreateOrganizationNetworkRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["productTypes"] = o.ProductTypes
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !isNil(o.TimeZone) {
-		toSerialize["timeZone"] = o.TimeZone
-	}
-	if !isNil(o.CopyFromNetworkId) {
-		toSerialize["copyFromNetworkId"] = o.CopyFromNetworkId
-	}
-	if !isNil(o.Notes) {
-		toSerialize["notes"] = o.Notes
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationNetworkRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["productTypes"] = o.ProductTypes
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.TimeZone) {
+		toSerialize["timeZone"] = o.TimeZone
+	}
+	if !IsNil(o.CopyFromNetworkId) {
+		toSerialize["copyFromNetworkId"] = o.CopyFromNetworkId
+	}
+	if !IsNil(o.Notes) {
+		toSerialize["notes"] = o.Notes
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationNetworkRequest struct {

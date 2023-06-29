@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceLiveToolsPing200ResponseResultsRepliesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceLiveToolsPing200ResponseResultsRepliesInner{}
+
 // GetDeviceLiveToolsPing200ResponseResultsRepliesInner struct for GetDeviceLiveToolsPing200ResponseResultsRepliesInner
 type GetDeviceLiveToolsPing200ResponseResultsRepliesInner struct {
 	// Sequence ID of the packet
@@ -43,7 +46,7 @@ func NewGetDeviceLiveToolsPing200ResponseResultsRepliesInnerWithDefaults() *GetD
 
 // GetSequenceId returns the SequenceId field value if set, zero value otherwise.
 func (o *GetDeviceLiveToolsPing200ResponseResultsRepliesInner) GetSequenceId() int32 {
-	if o == nil || isNil(o.SequenceId) {
+	if o == nil || IsNil(o.SequenceId) {
 		var ret int32
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetDeviceLiveToolsPing200ResponseResultsRepliesInner) GetSequenceId() i
 // GetSequenceIdOk returns a tuple with the SequenceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResultsRepliesInner) GetSequenceIdOk() (*int32, bool) {
-	if o == nil || isNil(o.SequenceId) {
-    return nil, false
+	if o == nil || IsNil(o.SequenceId) {
+		return nil, false
 	}
 	return o.SequenceId, true
 }
 
 // HasSequenceId returns a boolean if a field has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResultsRepliesInner) HasSequenceId() bool {
-	if o != nil && !isNil(o.SequenceId) {
+	if o != nil && !IsNil(o.SequenceId) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetDeviceLiveToolsPing200ResponseResultsRepliesInner) SetSequenceId(v i
 
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *GetDeviceLiveToolsPing200ResponseResultsRepliesInner) GetSize() int32 {
-	if o == nil || isNil(o.Size) {
+	if o == nil || IsNil(o.Size) {
 		var ret int32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetDeviceLiveToolsPing200ResponseResultsRepliesInner) GetSize() int32 {
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResultsRepliesInner) GetSizeOk() (*int32, bool) {
-	if o == nil || isNil(o.Size) {
-    return nil, false
+	if o == nil || IsNil(o.Size) {
+		return nil, false
 	}
 	return o.Size, true
 }
 
 // HasSize returns a boolean if a field has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResultsRepliesInner) HasSize() bool {
-	if o != nil && !isNil(o.Size) {
+	if o != nil && !IsNil(o.Size) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetDeviceLiveToolsPing200ResponseResultsRepliesInner) SetSize(v int32) 
 
 // GetLatency returns the Latency field value if set, zero value otherwise.
 func (o *GetDeviceLiveToolsPing200ResponseResultsRepliesInner) GetLatency() float32 {
-	if o == nil || isNil(o.Latency) {
+	if o == nil || IsNil(o.Latency) {
 		var ret float32
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetDeviceLiveToolsPing200ResponseResultsRepliesInner) GetLatency() floa
 // GetLatencyOk returns a tuple with the Latency field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResultsRepliesInner) GetLatencyOk() (*float32, bool) {
-	if o == nil || isNil(o.Latency) {
-    return nil, false
+	if o == nil || IsNil(o.Latency) {
+		return nil, false
 	}
 	return o.Latency, true
 }
 
 // HasLatency returns a boolean if a field has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResultsRepliesInner) HasLatency() bool {
-	if o != nil && !isNil(o.Latency) {
+	if o != nil && !IsNil(o.Latency) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetDeviceLiveToolsPing200ResponseResultsRepliesInner) SetLatency(v floa
 }
 
 func (o GetDeviceLiveToolsPing200ResponseResultsRepliesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.SequenceId) {
-		toSerialize["sequenceId"] = o.SequenceId
-	}
-	if !isNil(o.Size) {
-		toSerialize["size"] = o.Size
-	}
-	if !isNil(o.Latency) {
-		toSerialize["latency"] = o.Latency
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceLiveToolsPing200ResponseResultsRepliesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SequenceId) {
+		toSerialize["sequenceId"] = o.SequenceId
+	}
+	if !IsNil(o.Size) {
+		toSerialize["size"] = o.Size
+	}
+	if !IsNil(o.Latency) {
+		toSerialize["latency"] = o.Latency
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceLiveToolsPing200ResponseResultsRepliesInner struct {

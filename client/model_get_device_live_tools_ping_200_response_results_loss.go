@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceLiveToolsPing200ResponseResultsLoss type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceLiveToolsPing200ResponseResultsLoss{}
+
 // GetDeviceLiveToolsPing200ResponseResultsLoss Lost packets
 type GetDeviceLiveToolsPing200ResponseResultsLoss struct {
 	// Percentage of packets lost
@@ -39,7 +42,7 @@ func NewGetDeviceLiveToolsPing200ResponseResultsLossWithDefaults() *GetDeviceLiv
 
 // GetPercentage returns the Percentage field value if set, zero value otherwise.
 func (o *GetDeviceLiveToolsPing200ResponseResultsLoss) GetPercentage() float32 {
-	if o == nil || isNil(o.Percentage) {
+	if o == nil || IsNil(o.Percentage) {
 		var ret float32
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetDeviceLiveToolsPing200ResponseResultsLoss) GetPercentage() float32 {
 // GetPercentageOk returns a tuple with the Percentage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResultsLoss) GetPercentageOk() (*float32, bool) {
-	if o == nil || isNil(o.Percentage) {
-    return nil, false
+	if o == nil || IsNil(o.Percentage) {
+		return nil, false
 	}
 	return o.Percentage, true
 }
 
 // HasPercentage returns a boolean if a field has been set.
 func (o *GetDeviceLiveToolsPing200ResponseResultsLoss) HasPercentage() bool {
-	if o != nil && !isNil(o.Percentage) {
+	if o != nil && !IsNil(o.Percentage) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetDeviceLiveToolsPing200ResponseResultsLoss) SetPercentage(v float32) 
 }
 
 func (o GetDeviceLiveToolsPing200ResponseResultsLoss) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Percentage) {
-		toSerialize["percentage"] = o.Percentage
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceLiveToolsPing200ResponseResultsLoss) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Percentage) {
+		toSerialize["percentage"] = o.Percentage
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceLiveToolsPing200ResponseResultsLoss struct {

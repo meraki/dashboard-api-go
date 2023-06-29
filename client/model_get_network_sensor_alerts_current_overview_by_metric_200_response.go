@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSensorAlertsCurrentOverviewByMetric200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSensorAlertsCurrentOverviewByMetric200Response{}
+
 // GetNetworkSensorAlertsCurrentOverviewByMetric200Response struct for GetNetworkSensorAlertsCurrentOverviewByMetric200Response
 type GetNetworkSensorAlertsCurrentOverviewByMetric200Response struct {
 	// List of metrics that are supported for alerts, based on available sensor devices in the network
@@ -40,7 +43,7 @@ func NewGetNetworkSensorAlertsCurrentOverviewByMetric200ResponseWithDefaults() *
 
 // GetSupportedMetrics returns the SupportedMetrics field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200Response) GetSupportedMetrics() []string {
-	if o == nil || isNil(o.SupportedMetrics) {
+	if o == nil || IsNil(o.SupportedMetrics) {
 		var ret []string
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200Response) GetSupportedM
 // GetSupportedMetricsOk returns a tuple with the SupportedMetrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200Response) GetSupportedMetricsOk() ([]string, bool) {
-	if o == nil || isNil(o.SupportedMetrics) {
-    return nil, false
+	if o == nil || IsNil(o.SupportedMetrics) {
+		return nil, false
 	}
 	return o.SupportedMetrics, true
 }
 
 // HasSupportedMetrics returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200Response) HasSupportedMetrics() bool {
-	if o != nil && !isNil(o.SupportedMetrics) {
+	if o != nil && !IsNil(o.SupportedMetrics) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200Response) SetSupportedM
 
 // GetCounts returns the Counts field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200Response) GetCounts() GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts {
-	if o == nil || isNil(o.Counts) {
+	if o == nil || IsNil(o.Counts) {
 		var ret GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200Response) GetCounts() G
 // GetCountsOk returns a tuple with the Counts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200Response) GetCountsOk() (*GetNetworkSensorAlertsCurrentOverviewByMetric200ResponseCounts, bool) {
-	if o == nil || isNil(o.Counts) {
-    return nil, false
+	if o == nil || IsNil(o.Counts) {
+		return nil, false
 	}
 	return o.Counts, true
 }
 
 // HasCounts returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200Response) HasCounts() bool {
-	if o != nil && !isNil(o.Counts) {
+	if o != nil && !IsNil(o.Counts) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *GetNetworkSensorAlertsCurrentOverviewByMetric200Response) SetCounts(v G
 }
 
 func (o GetNetworkSensorAlertsCurrentOverviewByMetric200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.SupportedMetrics) {
-		toSerialize["supportedMetrics"] = o.SupportedMetrics
-	}
-	if !isNil(o.Counts) {
-		toSerialize["counts"] = o.Counts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSensorAlertsCurrentOverviewByMetric200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SupportedMetrics) {
+		toSerialize["supportedMetrics"] = o.SupportedMetrics
+	}
+	if !IsNil(o.Counts) {
+		toSerialize["counts"] = o.Counts
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSensorAlertsCurrentOverviewByMetric200Response struct {

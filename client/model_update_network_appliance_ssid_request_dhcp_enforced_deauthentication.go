@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication{}
+
 // UpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication DHCP Enforced Deauthentication enables the disassociation of wireless clients in addition to Mandatory DHCP. This param is only valid on firmware versions >= MX 17.0 where the associated LAN has Mandatory DHCP Enabled 
 type UpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication struct {
 	// Enable DCHP Enforced Deauthentication on the SSID.
@@ -39,7 +42,7 @@ func NewUpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthenticationWithDefault
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication) GetEnabl
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication) SetEnabl
 }
 
 func (o UpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceSsidRequestDhcpEnforcedDeauthentication struct {

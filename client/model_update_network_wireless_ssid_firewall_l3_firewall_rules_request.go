@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest{}
+
 // UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest struct for UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest
 type UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest struct {
 	// An ordered array of the firewall rules for this SSID (not including the local LAN access rule or the default rule)
@@ -41,7 +44,7 @@ func NewUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestWithDefaults() *U
 
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) GetRules() []UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner {
-	if o == nil || isNil(o.Rules) {
+	if o == nil || IsNil(o.Rules) {
 		var ret []UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) GetRules() []U
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) GetRulesOk() ([]UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequestRulesInner, bool) {
-	if o == nil || isNil(o.Rules) {
-    return nil, false
+	if o == nil || IsNil(o.Rules) {
+		return nil, false
 	}
 	return o.Rules, true
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) HasRules() bool {
-	if o != nil && !isNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) SetRules(v []U
 
 // GetAllowLanAccess returns the AllowLanAccess field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) GetAllowLanAccess() bool {
-	if o == nil || isNil(o.AllowLanAccess) {
+	if o == nil || IsNil(o.AllowLanAccess) {
 		var ret bool
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) GetAllowLanAcc
 // GetAllowLanAccessOk returns a tuple with the AllowLanAccess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) GetAllowLanAccessOk() (*bool, bool) {
-	if o == nil || isNil(o.AllowLanAccess) {
-    return nil, false
+	if o == nil || IsNil(o.AllowLanAccess) {
+		return nil, false
 	}
 	return o.AllowLanAccess, true
 }
 
 // HasAllowLanAccess returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) HasAllowLanAccess() bool {
-	if o != nil && !isNil(o.AllowLanAccess) {
+	if o != nil && !IsNil(o.AllowLanAccess) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) SetAllowLanAcc
 }
 
 func (o UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Rules) {
-		toSerialize["rules"] = o.Rules
-	}
-	if !isNil(o.AllowLanAccess) {
-		toSerialize["allowLanAccess"] = o.AllowLanAccess
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Rules) {
+		toSerialize["rules"] = o.Rules
+	}
+	if !IsNil(o.AllowLanAccess) {
+		toSerialize["allowLanAccess"] = o.AllowLanAccess
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidFirewallL3FirewallRulesRequest struct {

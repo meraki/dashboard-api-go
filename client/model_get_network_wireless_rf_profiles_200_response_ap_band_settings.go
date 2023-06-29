@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWirelessRfProfiles200ResponseApBandSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessRfProfiles200ResponseApBandSettings{}
+
 // GetNetworkWirelessRfProfiles200ResponseApBandSettings Settings that will be enabled if selectionType is set to 'ap'.
 type GetNetworkWirelessRfProfiles200ResponseApBandSettings struct {
 	// Choice between 'dual', '2.4ghz' or '5ghz'. Defaults to dual.
@@ -41,7 +44,7 @@ func NewGetNetworkWirelessRfProfiles200ResponseApBandSettingsWithDefaults() *Get
 
 // GetBandOperationMode returns the BandOperationMode field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200ResponseApBandSettings) GetBandOperationMode() string {
-	if o == nil || isNil(o.BandOperationMode) {
+	if o == nil || IsNil(o.BandOperationMode) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkWirelessRfProfiles200ResponseApBandSettings) GetBandOperation
 // GetBandOperationModeOk returns a tuple with the BandOperationMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponseApBandSettings) GetBandOperationModeOk() (*string, bool) {
-	if o == nil || isNil(o.BandOperationMode) {
-    return nil, false
+	if o == nil || IsNil(o.BandOperationMode) {
+		return nil, false
 	}
 	return o.BandOperationMode, true
 }
 
 // HasBandOperationMode returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponseApBandSettings) HasBandOperationMode() bool {
-	if o != nil && !isNil(o.BandOperationMode) {
+	if o != nil && !IsNil(o.BandOperationMode) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkWirelessRfProfiles200ResponseApBandSettings) SetBandOperation
 
 // GetBandSteeringEnabled returns the BandSteeringEnabled field value if set, zero value otherwise.
 func (o *GetNetworkWirelessRfProfiles200ResponseApBandSettings) GetBandSteeringEnabled() bool {
-	if o == nil || isNil(o.BandSteeringEnabled) {
+	if o == nil || IsNil(o.BandSteeringEnabled) {
 		var ret bool
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkWirelessRfProfiles200ResponseApBandSettings) GetBandSteeringE
 // GetBandSteeringEnabledOk returns a tuple with the BandSteeringEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponseApBandSettings) GetBandSteeringEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.BandSteeringEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.BandSteeringEnabled) {
+		return nil, false
 	}
 	return o.BandSteeringEnabled, true
 }
 
 // HasBandSteeringEnabled returns a boolean if a field has been set.
 func (o *GetNetworkWirelessRfProfiles200ResponseApBandSettings) HasBandSteeringEnabled() bool {
-	if o != nil && !isNil(o.BandSteeringEnabled) {
+	if o != nil && !IsNil(o.BandSteeringEnabled) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkWirelessRfProfiles200ResponseApBandSettings) SetBandSteeringE
 }
 
 func (o GetNetworkWirelessRfProfiles200ResponseApBandSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.BandOperationMode) {
-		toSerialize["bandOperationMode"] = o.BandOperationMode
-	}
-	if !isNil(o.BandSteeringEnabled) {
-		toSerialize["bandSteeringEnabled"] = o.BandSteeringEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessRfProfiles200ResponseApBandSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BandOperationMode) {
+		toSerialize["bandOperationMode"] = o.BandOperationMode
+	}
+	if !IsNil(o.BandSteeringEnabled) {
+		toSerialize["bandSteeringEnabled"] = o.BandSteeringEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessRfProfiles200ResponseApBandSettings struct {

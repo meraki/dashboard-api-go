@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchDscpToCosMappingsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchDscpToCosMappingsRequest{}
+
 // UpdateNetworkSwitchDscpToCosMappingsRequest struct for UpdateNetworkSwitchDscpToCosMappingsRequest
 type UpdateNetworkSwitchDscpToCosMappingsRequest struct {
 	// An array of DSCP to CoS mappings. An empty array will reset the mappings to default.
@@ -52,7 +55,7 @@ func (o *UpdateNetworkSwitchDscpToCosMappingsRequest) GetMappings() []UpdateNetw
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchDscpToCosMappingsRequest) GetMappingsOk() ([]UpdateNetworkSwitchDscpToCosMappingsRequestMappingsInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Mappings, true
 }
@@ -63,11 +66,17 @@ func (o *UpdateNetworkSwitchDscpToCosMappingsRequest) SetMappings(v []UpdateNetw
 }
 
 func (o UpdateNetworkSwitchDscpToCosMappingsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["mappings"] = o.Mappings
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchDscpToCosMappingsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["mappings"] = o.Mappings
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchDscpToCosMappingsRequest struct {

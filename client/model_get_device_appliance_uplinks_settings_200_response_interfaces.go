@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceApplianceUplinksSettings200ResponseInterfaces type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceApplianceUplinksSettings200ResponseInterfaces{}
+
 // GetDeviceApplianceUplinksSettings200ResponseInterfaces Interface settings.
 type GetDeviceApplianceUplinksSettings200ResponseInterfaces struct {
 	Wan1 *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1 `json:"wan1,omitempty"`
@@ -39,7 +42,7 @@ func NewGetDeviceApplianceUplinksSettings200ResponseInterfacesWithDefaults() *Ge
 
 // GetWan1 returns the Wan1 field value if set, zero value otherwise.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfaces) GetWan1() GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1 {
-	if o == nil || isNil(o.Wan1) {
+	if o == nil || IsNil(o.Wan1) {
 		var ret GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfaces) GetWan1() GetDe
 // GetWan1Ok returns a tuple with the Wan1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfaces) GetWan1Ok() (*GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1, bool) {
-	if o == nil || isNil(o.Wan1) {
-    return nil, false
+	if o == nil || IsNil(o.Wan1) {
+		return nil, false
 	}
 	return o.Wan1, true
 }
 
 // HasWan1 returns a boolean if a field has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfaces) HasWan1() bool {
-	if o != nil && !isNil(o.Wan1) {
+	if o != nil && !IsNil(o.Wan1) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfaces) SetWan1(v GetDe
 
 // GetWan2 returns the Wan2 field value if set, zero value otherwise.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfaces) GetWan2() GetDeviceApplianceUplinksSettings200ResponseInterfacesWan2 {
-	if o == nil || isNil(o.Wan2) {
+	if o == nil || IsNil(o.Wan2) {
 		var ret GetDeviceApplianceUplinksSettings200ResponseInterfacesWan2
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfaces) GetWan2() GetDe
 // GetWan2Ok returns a tuple with the Wan2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfaces) GetWan2Ok() (*GetDeviceApplianceUplinksSettings200ResponseInterfacesWan2, bool) {
-	if o == nil || isNil(o.Wan2) {
-    return nil, false
+	if o == nil || IsNil(o.Wan2) {
+		return nil, false
 	}
 	return o.Wan2, true
 }
 
 // HasWan2 returns a boolean if a field has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfaces) HasWan2() bool {
-	if o != nil && !isNil(o.Wan2) {
+	if o != nil && !IsNil(o.Wan2) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfaces) SetWan2(v GetDe
 }
 
 func (o GetDeviceApplianceUplinksSettings200ResponseInterfaces) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Wan1) {
-		toSerialize["wan1"] = o.Wan1
-	}
-	if !isNil(o.Wan2) {
-		toSerialize["wan2"] = o.Wan2
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceApplianceUplinksSettings200ResponseInterfaces) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Wan1) {
+		toSerialize["wan1"] = o.Wan1
+	}
+	if !IsNil(o.Wan2) {
+		toSerialize["wan2"] = o.Wan2
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceApplianceUplinksSettings200ResponseInterfaces struct {

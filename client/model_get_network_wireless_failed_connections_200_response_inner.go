@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkWirelessFailedConnections200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessFailedConnections200ResponseInner{}
+
 // GetNetworkWirelessFailedConnections200ResponseInner struct for GetNetworkWirelessFailedConnections200ResponseInner
 type GetNetworkWirelessFailedConnections200ResponseInner struct {
 	// SSID Number
@@ -52,7 +55,7 @@ func NewGetNetworkWirelessFailedConnections200ResponseInnerWithDefaults() *GetNe
 
 // GetSsidNumber returns the SsidNumber field value if set, zero value otherwise.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetSsidNumber() int32 {
-	if o == nil || isNil(o.SsidNumber) {
+	if o == nil || IsNil(o.SsidNumber) {
 		var ret int32
 		return ret
 	}
@@ -62,15 +65,15 @@ func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetSsidNumber() in
 // GetSsidNumberOk returns a tuple with the SsidNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetSsidNumberOk() (*int32, bool) {
-	if o == nil || isNil(o.SsidNumber) {
-    return nil, false
+	if o == nil || IsNil(o.SsidNumber) {
+		return nil, false
 	}
 	return o.SsidNumber, true
 }
 
 // HasSsidNumber returns a boolean if a field has been set.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) HasSsidNumber() bool {
-	if o != nil && !isNil(o.SsidNumber) {
+	if o != nil && !IsNil(o.SsidNumber) {
 		return true
 	}
 
@@ -84,7 +87,7 @@ func (o *GetNetworkWirelessFailedConnections200ResponseInner) SetSsidNumber(v in
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetVlan() int32 {
-	if o == nil || isNil(o.Vlan) {
+	if o == nil || IsNil(o.Vlan) {
 		var ret int32
 		return ret
 	}
@@ -94,15 +97,15 @@ func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetVlan() int32 {
 // GetVlanOk returns a tuple with the Vlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetVlanOk() (*int32, bool) {
-	if o == nil || isNil(o.Vlan) {
-    return nil, false
+	if o == nil || IsNil(o.Vlan) {
+		return nil, false
 	}
 	return o.Vlan, true
 }
 
 // HasVlan returns a boolean if a field has been set.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) HasVlan() bool {
-	if o != nil && !isNil(o.Vlan) {
+	if o != nil && !IsNil(o.Vlan) {
 		return true
 	}
 
@@ -116,7 +119,7 @@ func (o *GetNetworkWirelessFailedConnections200ResponseInner) SetVlan(v int32) {
 
 // GetClientMac returns the ClientMac field value if set, zero value otherwise.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetClientMac() string {
-	if o == nil || isNil(o.ClientMac) {
+	if o == nil || IsNil(o.ClientMac) {
 		var ret string
 		return ret
 	}
@@ -126,15 +129,15 @@ func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetClientMac() str
 // GetClientMacOk returns a tuple with the ClientMac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetClientMacOk() (*string, bool) {
-	if o == nil || isNil(o.ClientMac) {
-    return nil, false
+	if o == nil || IsNil(o.ClientMac) {
+		return nil, false
 	}
 	return o.ClientMac, true
 }
 
 // HasClientMac returns a boolean if a field has been set.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) HasClientMac() bool {
-	if o != nil && !isNil(o.ClientMac) {
+	if o != nil && !IsNil(o.ClientMac) {
 		return true
 	}
 
@@ -148,7 +151,7 @@ func (o *GetNetworkWirelessFailedConnections200ResponseInner) SetClientMac(v str
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -158,15 +161,15 @@ func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetSerial() string
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -180,7 +183,7 @@ func (o *GetNetworkWirelessFailedConnections200ResponseInner) SetSerial(v string
 
 // GetFailureStep returns the FailureStep field value if set, zero value otherwise.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetFailureStep() string {
-	if o == nil || isNil(o.FailureStep) {
+	if o == nil || IsNil(o.FailureStep) {
 		var ret string
 		return ret
 	}
@@ -190,15 +193,15 @@ func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetFailureStep() s
 // GetFailureStepOk returns a tuple with the FailureStep field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetFailureStepOk() (*string, bool) {
-	if o == nil || isNil(o.FailureStep) {
-    return nil, false
+	if o == nil || IsNil(o.FailureStep) {
+		return nil, false
 	}
 	return o.FailureStep, true
 }
 
 // HasFailureStep returns a boolean if a field has been set.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) HasFailureStep() bool {
-	if o != nil && !isNil(o.FailureStep) {
+	if o != nil && !IsNil(o.FailureStep) {
 		return true
 	}
 
@@ -212,7 +215,7 @@ func (o *GetNetworkWirelessFailedConnections200ResponseInner) SetFailureStep(v s
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -222,15 +225,15 @@ func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -244,7 +247,7 @@ func (o *GetNetworkWirelessFailedConnections200ResponseInner) SetType(v string) 
 
 // GetTs returns the Ts field value if set, zero value otherwise.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetTs() time.Time {
-	if o == nil || isNil(o.Ts) {
+	if o == nil || IsNil(o.Ts) {
 		var ret time.Time
 		return ret
 	}
@@ -254,15 +257,15 @@ func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetTs() time.Time 
 // GetTsOk returns a tuple with the Ts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) GetTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.Ts) {
-    return nil, false
+	if o == nil || IsNil(o.Ts) {
+		return nil, false
 	}
 	return o.Ts, true
 }
 
 // HasTs returns a boolean if a field has been set.
 func (o *GetNetworkWirelessFailedConnections200ResponseInner) HasTs() bool {
-	if o != nil && !isNil(o.Ts) {
+	if o != nil && !IsNil(o.Ts) {
 		return true
 	}
 
@@ -275,29 +278,37 @@ func (o *GetNetworkWirelessFailedConnections200ResponseInner) SetTs(v time.Time)
 }
 
 func (o GetNetworkWirelessFailedConnections200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.SsidNumber) {
-		toSerialize["ssidNumber"] = o.SsidNumber
-	}
-	if !isNil(o.Vlan) {
-		toSerialize["vlan"] = o.Vlan
-	}
-	if !isNil(o.ClientMac) {
-		toSerialize["clientMac"] = o.ClientMac
-	}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.FailureStep) {
-		toSerialize["failureStep"] = o.FailureStep
-	}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Ts) {
-		toSerialize["ts"] = o.Ts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessFailedConnections200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SsidNumber) {
+		toSerialize["ssidNumber"] = o.SsidNumber
+	}
+	if !IsNil(o.Vlan) {
+		toSerialize["vlan"] = o.Vlan
+	}
+	if !IsNil(o.ClientMac) {
+		toSerialize["clientMac"] = o.ClientMac
+	}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.FailureStep) {
+		toSerialize["failureStep"] = o.FailureStep
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Ts) {
+		toSerialize["ts"] = o.Ts
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessFailedConnections200ResponseInner struct {

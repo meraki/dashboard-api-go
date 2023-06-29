@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkCellularGatewayDhcpRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkCellularGatewayDhcpRequest{}
+
 // UpdateNetworkCellularGatewayDhcpRequest struct for UpdateNetworkCellularGatewayDhcpRequest
 type UpdateNetworkCellularGatewayDhcpRequest struct {
 	// DHCP Lease time for all MG of the network. Possible values are '30 minutes', '1 hour', '4 hours', '12 hours', '1 day' or '1 week'.
@@ -43,7 +46,7 @@ func NewUpdateNetworkCellularGatewayDhcpRequestWithDefaults() *UpdateNetworkCell
 
 // GetDhcpLeaseTime returns the DhcpLeaseTime field value if set, zero value otherwise.
 func (o *UpdateNetworkCellularGatewayDhcpRequest) GetDhcpLeaseTime() string {
-	if o == nil || isNil(o.DhcpLeaseTime) {
+	if o == nil || IsNil(o.DhcpLeaseTime) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateNetworkCellularGatewayDhcpRequest) GetDhcpLeaseTime() string {
 // GetDhcpLeaseTimeOk returns a tuple with the DhcpLeaseTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkCellularGatewayDhcpRequest) GetDhcpLeaseTimeOk() (*string, bool) {
-	if o == nil || isNil(o.DhcpLeaseTime) {
-    return nil, false
+	if o == nil || IsNil(o.DhcpLeaseTime) {
+		return nil, false
 	}
 	return o.DhcpLeaseTime, true
 }
 
 // HasDhcpLeaseTime returns a boolean if a field has been set.
 func (o *UpdateNetworkCellularGatewayDhcpRequest) HasDhcpLeaseTime() bool {
-	if o != nil && !isNil(o.DhcpLeaseTime) {
+	if o != nil && !IsNil(o.DhcpLeaseTime) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *UpdateNetworkCellularGatewayDhcpRequest) SetDhcpLeaseTime(v string) {
 
 // GetDnsNameservers returns the DnsNameservers field value if set, zero value otherwise.
 func (o *UpdateNetworkCellularGatewayDhcpRequest) GetDnsNameservers() string {
-	if o == nil || isNil(o.DnsNameservers) {
+	if o == nil || IsNil(o.DnsNameservers) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *UpdateNetworkCellularGatewayDhcpRequest) GetDnsNameservers() string {
 // GetDnsNameserversOk returns a tuple with the DnsNameservers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkCellularGatewayDhcpRequest) GetDnsNameserversOk() (*string, bool) {
-	if o == nil || isNil(o.DnsNameservers) {
-    return nil, false
+	if o == nil || IsNil(o.DnsNameservers) {
+		return nil, false
 	}
 	return o.DnsNameservers, true
 }
 
 // HasDnsNameservers returns a boolean if a field has been set.
 func (o *UpdateNetworkCellularGatewayDhcpRequest) HasDnsNameservers() bool {
-	if o != nil && !isNil(o.DnsNameservers) {
+	if o != nil && !IsNil(o.DnsNameservers) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *UpdateNetworkCellularGatewayDhcpRequest) SetDnsNameservers(v string) {
 
 // GetDnsCustomNameservers returns the DnsCustomNameservers field value if set, zero value otherwise.
 func (o *UpdateNetworkCellularGatewayDhcpRequest) GetDnsCustomNameservers() []string {
-	if o == nil || isNil(o.DnsCustomNameservers) {
+	if o == nil || IsNil(o.DnsCustomNameservers) {
 		var ret []string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *UpdateNetworkCellularGatewayDhcpRequest) GetDnsCustomNameservers() []st
 // GetDnsCustomNameserversOk returns a tuple with the DnsCustomNameservers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkCellularGatewayDhcpRequest) GetDnsCustomNameserversOk() ([]string, bool) {
-	if o == nil || isNil(o.DnsCustomNameservers) {
-    return nil, false
+	if o == nil || IsNil(o.DnsCustomNameservers) {
+		return nil, false
 	}
 	return o.DnsCustomNameservers, true
 }
 
 // HasDnsCustomNameservers returns a boolean if a field has been set.
 func (o *UpdateNetworkCellularGatewayDhcpRequest) HasDnsCustomNameservers() bool {
-	if o != nil && !isNil(o.DnsCustomNameservers) {
+	if o != nil && !IsNil(o.DnsCustomNameservers) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *UpdateNetworkCellularGatewayDhcpRequest) SetDnsCustomNameservers(v []st
 }
 
 func (o UpdateNetworkCellularGatewayDhcpRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.DhcpLeaseTime) {
-		toSerialize["dhcpLeaseTime"] = o.DhcpLeaseTime
-	}
-	if !isNil(o.DnsNameservers) {
-		toSerialize["dnsNameservers"] = o.DnsNameservers
-	}
-	if !isNil(o.DnsCustomNameservers) {
-		toSerialize["dnsCustomNameservers"] = o.DnsCustomNameservers
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkCellularGatewayDhcpRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DhcpLeaseTime) {
+		toSerialize["dhcpLeaseTime"] = o.DhcpLeaseTime
+	}
+	if !IsNil(o.DnsNameservers) {
+		toSerialize["dnsNameservers"] = o.DnsNameservers
+	}
+	if !IsNil(o.DnsCustomNameservers) {
+		toSerialize["dnsCustomNameservers"] = o.DnsCustomNameservers
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkCellularGatewayDhcpRequest struct {

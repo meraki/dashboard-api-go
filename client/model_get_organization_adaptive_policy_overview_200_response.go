@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationAdaptivePolicyOverview200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationAdaptivePolicyOverview200Response{}
+
 // GetOrganizationAdaptivePolicyOverview200Response struct for GetOrganizationAdaptivePolicyOverview200Response
 type GetOrganizationAdaptivePolicyOverview200Response struct {
 	Counts *GetOrganizationAdaptivePolicyOverview200ResponseCounts `json:"counts,omitempty"`
@@ -39,7 +42,7 @@ func NewGetOrganizationAdaptivePolicyOverview200ResponseWithDefaults() *GetOrgan
 
 // GetCounts returns the Counts field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyOverview200Response) GetCounts() GetOrganizationAdaptivePolicyOverview200ResponseCounts {
-	if o == nil || isNil(o.Counts) {
+	if o == nil || IsNil(o.Counts) {
 		var ret GetOrganizationAdaptivePolicyOverview200ResponseCounts
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationAdaptivePolicyOverview200Response) GetCounts() GetOrgani
 // GetCountsOk returns a tuple with the Counts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200Response) GetCountsOk() (*GetOrganizationAdaptivePolicyOverview200ResponseCounts, bool) {
-	if o == nil || isNil(o.Counts) {
-    return nil, false
+	if o == nil || IsNil(o.Counts) {
+		return nil, false
 	}
 	return o.Counts, true
 }
 
 // HasCounts returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200Response) HasCounts() bool {
-	if o != nil && !isNil(o.Counts) {
+	if o != nil && !IsNil(o.Counts) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *GetOrganizationAdaptivePolicyOverview200Response) SetCounts(v GetOrgani
 
 // GetLimits returns the Limits field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyOverview200Response) GetLimits() GetOrganizationAdaptivePolicyOverview200ResponseLimits {
-	if o == nil || isNil(o.Limits) {
+	if o == nil || IsNil(o.Limits) {
 		var ret GetOrganizationAdaptivePolicyOverview200ResponseLimits
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *GetOrganizationAdaptivePolicyOverview200Response) GetLimits() GetOrgani
 // GetLimitsOk returns a tuple with the Limits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200Response) GetLimitsOk() (*GetOrganizationAdaptivePolicyOverview200ResponseLimits, bool) {
-	if o == nil || isNil(o.Limits) {
-    return nil, false
+	if o == nil || IsNil(o.Limits) {
+		return nil, false
 	}
 	return o.Limits, true
 }
 
 // HasLimits returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200Response) HasLimits() bool {
-	if o != nil && !isNil(o.Limits) {
+	if o != nil && !IsNil(o.Limits) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *GetOrganizationAdaptivePolicyOverview200Response) SetLimits(v GetOrgani
 }
 
 func (o GetOrganizationAdaptivePolicyOverview200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Counts) {
-		toSerialize["counts"] = o.Counts
-	}
-	if !isNil(o.Limits) {
-		toSerialize["limits"] = o.Limits
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationAdaptivePolicyOverview200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Counts) {
+		toSerialize["counts"] = o.Counts
+	}
+	if !IsNil(o.Limits) {
+		toSerialize["limits"] = o.Limits
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationAdaptivePolicyOverview200Response struct {

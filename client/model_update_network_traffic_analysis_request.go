@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkTrafficAnalysisRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkTrafficAnalysisRequest{}
+
 // UpdateNetworkTrafficAnalysisRequest struct for UpdateNetworkTrafficAnalysisRequest
 type UpdateNetworkTrafficAnalysisRequest struct {
 	//     The traffic analysis mode for the network. Can be one of 'disabled' (do not collect traffic types),     'basic' (collect generic traffic categories), or 'detailed' (collect destination hostnames). 
@@ -41,7 +44,7 @@ func NewUpdateNetworkTrafficAnalysisRequestWithDefaults() *UpdateNetworkTrafficA
 
 // GetMode returns the Mode field value if set, zero value otherwise.
 func (o *UpdateNetworkTrafficAnalysisRequest) GetMode() string {
-	if o == nil || isNil(o.Mode) {
+	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkTrafficAnalysisRequest) GetMode() string {
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkTrafficAnalysisRequest) GetModeOk() (*string, bool) {
-	if o == nil || isNil(o.Mode) {
-    return nil, false
+	if o == nil || IsNil(o.Mode) {
+		return nil, false
 	}
 	return o.Mode, true
 }
 
 // HasMode returns a boolean if a field has been set.
 func (o *UpdateNetworkTrafficAnalysisRequest) HasMode() bool {
-	if o != nil && !isNil(o.Mode) {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkTrafficAnalysisRequest) SetMode(v string) {
 
 // GetCustomPieChartItems returns the CustomPieChartItems field value if set, zero value otherwise.
 func (o *UpdateNetworkTrafficAnalysisRequest) GetCustomPieChartItems() []UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner {
-	if o == nil || isNil(o.CustomPieChartItems) {
+	if o == nil || IsNil(o.CustomPieChartItems) {
 		var ret []UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkTrafficAnalysisRequest) GetCustomPieChartItems() []UpdateN
 // GetCustomPieChartItemsOk returns a tuple with the CustomPieChartItems field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkTrafficAnalysisRequest) GetCustomPieChartItemsOk() ([]UpdateNetworkTrafficAnalysisRequestCustomPieChartItemsInner, bool) {
-	if o == nil || isNil(o.CustomPieChartItems) {
-    return nil, false
+	if o == nil || IsNil(o.CustomPieChartItems) {
+		return nil, false
 	}
 	return o.CustomPieChartItems, true
 }
 
 // HasCustomPieChartItems returns a boolean if a field has been set.
 func (o *UpdateNetworkTrafficAnalysisRequest) HasCustomPieChartItems() bool {
-	if o != nil && !isNil(o.CustomPieChartItems) {
+	if o != nil && !IsNil(o.CustomPieChartItems) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkTrafficAnalysisRequest) SetCustomPieChartItems(v []UpdateN
 }
 
 func (o UpdateNetworkTrafficAnalysisRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Mode) {
-		toSerialize["mode"] = o.Mode
-	}
-	if !isNil(o.CustomPieChartItems) {
-		toSerialize["customPieChartItems"] = o.CustomPieChartItems
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkTrafficAnalysisRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Mode) {
+		toSerialize["mode"] = o.Mode
+	}
+	if !IsNil(o.CustomPieChartItems) {
+		toSerialize["customPieChartItems"] = o.CustomPieChartItems
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkTrafficAnalysisRequest struct {

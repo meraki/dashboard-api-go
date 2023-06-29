@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner{}
+
 // GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner struct for GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner
 type GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner struct {
 	// The id of the category
@@ -43,7 +46,7 @@ func NewGetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Respon
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Respo
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Respo
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Respo
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Respo
 
 // GetApplications returns the Applications field value if set, zero value otherwise.
 func (o *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner) GetApplications() []GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInnerApplicationsInner {
-	if o == nil || isNil(o.Applications) {
+	if o == nil || IsNil(o.Applications) {
 		var ret []GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInnerApplicationsInner
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Respo
 // GetApplicationsOk returns a tuple with the Applications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner) GetApplicationsOk() ([]GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInnerApplicationsInner, bool) {
-	if o == nil || isNil(o.Applications) {
-    return nil, false
+	if o == nil || IsNil(o.Applications) {
+		return nil, false
 	}
 	return o.Applications, true
 }
 
 // HasApplications returns a boolean if a field has been set.
 func (o *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner) HasApplications() bool {
-	if o != nil && !isNil(o.Applications) {
+	if o != nil && !IsNil(o.Applications) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200Respo
 }
 
 func (o GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Applications) {
-		toSerialize["applications"] = o.Applications
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Applications) {
+		toSerialize["applications"] = o.Applications
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkApplianceFirewallL7FirewallRulesApplicationCategories200ResponseApplicationCategoriesInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkMqttBrokerRequestSecuritySecurity type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkMqttBrokerRequestSecuritySecurity{}
+
 // CreateNetworkMqttBrokerRequestSecuritySecurity TLS settings of the MQTT broker.
 type CreateNetworkMqttBrokerRequestSecuritySecurity struct {
 	// CA Certificate of the MQTT broker.
@@ -41,7 +44,7 @@ func NewCreateNetworkMqttBrokerRequestSecuritySecurityWithDefaults() *CreateNetw
 
 // GetCaCertificate returns the CaCertificate field value if set, zero value otherwise.
 func (o *CreateNetworkMqttBrokerRequestSecuritySecurity) GetCaCertificate() string {
-	if o == nil || isNil(o.CaCertificate) {
+	if o == nil || IsNil(o.CaCertificate) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateNetworkMqttBrokerRequestSecuritySecurity) GetCaCertificate() stri
 // GetCaCertificateOk returns a tuple with the CaCertificate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkMqttBrokerRequestSecuritySecurity) GetCaCertificateOk() (*string, bool) {
-	if o == nil || isNil(o.CaCertificate) {
-    return nil, false
+	if o == nil || IsNil(o.CaCertificate) {
+		return nil, false
 	}
 	return o.CaCertificate, true
 }
 
 // HasCaCertificate returns a boolean if a field has been set.
 func (o *CreateNetworkMqttBrokerRequestSecuritySecurity) HasCaCertificate() bool {
-	if o != nil && !isNil(o.CaCertificate) {
+	if o != nil && !IsNil(o.CaCertificate) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateNetworkMqttBrokerRequestSecuritySecurity) SetCaCertificate(v stri
 
 // GetVerifyHostnames returns the VerifyHostnames field value if set, zero value otherwise.
 func (o *CreateNetworkMqttBrokerRequestSecuritySecurity) GetVerifyHostnames() bool {
-	if o == nil || isNil(o.VerifyHostnames) {
+	if o == nil || IsNil(o.VerifyHostnames) {
 		var ret bool
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateNetworkMqttBrokerRequestSecuritySecurity) GetVerifyHostnames() bo
 // GetVerifyHostnamesOk returns a tuple with the VerifyHostnames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkMqttBrokerRequestSecuritySecurity) GetVerifyHostnamesOk() (*bool, bool) {
-	if o == nil || isNil(o.VerifyHostnames) {
-    return nil, false
+	if o == nil || IsNil(o.VerifyHostnames) {
+		return nil, false
 	}
 	return o.VerifyHostnames, true
 }
 
 // HasVerifyHostnames returns a boolean if a field has been set.
 func (o *CreateNetworkMqttBrokerRequestSecuritySecurity) HasVerifyHostnames() bool {
-	if o != nil && !isNil(o.VerifyHostnames) {
+	if o != nil && !IsNil(o.VerifyHostnames) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *CreateNetworkMqttBrokerRequestSecuritySecurity) SetVerifyHostnames(v bo
 }
 
 func (o CreateNetworkMqttBrokerRequestSecuritySecurity) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.CaCertificate) {
-		toSerialize["caCertificate"] = o.CaCertificate
-	}
-	if !isNil(o.VerifyHostnames) {
-		toSerialize["verifyHostnames"] = o.VerifyHostnames
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkMqttBrokerRequestSecuritySecurity) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CaCertificate) {
+		toSerialize["caCertificate"] = o.CaCertificate
+	}
+	if !IsNil(o.VerifyHostnames) {
+		toSerialize["verifyHostnames"] = o.VerifyHostnames
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkMqttBrokerRequestSecuritySecurity struct {

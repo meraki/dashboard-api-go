@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ReleaseFromOrganizationInventoryRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ReleaseFromOrganizationInventoryRequest{}
+
 // ReleaseFromOrganizationInventoryRequest struct for ReleaseFromOrganizationInventoryRequest
 type ReleaseFromOrganizationInventoryRequest struct {
 	// Serials of the devices that should be released
@@ -39,7 +42,7 @@ func NewReleaseFromOrganizationInventoryRequestWithDefaults() *ReleaseFromOrgani
 
 // GetSerials returns the Serials field value if set, zero value otherwise.
 func (o *ReleaseFromOrganizationInventoryRequest) GetSerials() []string {
-	if o == nil || isNil(o.Serials) {
+	if o == nil || IsNil(o.Serials) {
 		var ret []string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *ReleaseFromOrganizationInventoryRequest) GetSerials() []string {
 // GetSerialsOk returns a tuple with the Serials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReleaseFromOrganizationInventoryRequest) GetSerialsOk() ([]string, bool) {
-	if o == nil || isNil(o.Serials) {
-    return nil, false
+	if o == nil || IsNil(o.Serials) {
+		return nil, false
 	}
 	return o.Serials, true
 }
 
 // HasSerials returns a boolean if a field has been set.
 func (o *ReleaseFromOrganizationInventoryRequest) HasSerials() bool {
-	if o != nil && !isNil(o.Serials) {
+	if o != nil && !IsNil(o.Serials) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *ReleaseFromOrganizationInventoryRequest) SetSerials(v []string) {
 }
 
 func (o ReleaseFromOrganizationInventoryRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Serials) {
-		toSerialize["serials"] = o.Serials
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ReleaseFromOrganizationInventoryRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Serials) {
+		toSerialize["serials"] = o.Serials
+	}
+	return toSerialize, nil
 }
 
 type NullableReleaseFromOrganizationInventoryRequest struct {

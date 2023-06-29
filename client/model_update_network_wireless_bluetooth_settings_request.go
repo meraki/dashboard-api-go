@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessBluetoothSettingsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessBluetoothSettingsRequest{}
+
 // UpdateNetworkWirelessBluetoothSettingsRequest struct for UpdateNetworkWirelessBluetoothSettingsRequest
 type UpdateNetworkWirelessBluetoothSettingsRequest struct {
 	// Whether APs will scan for Bluetooth enabled clients.
@@ -49,7 +52,7 @@ func NewUpdateNetworkWirelessBluetoothSettingsRequestWithDefaults() *UpdateNetwo
 
 // GetScanningEnabled returns the ScanningEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetScanningEnabled() bool {
-	if o == nil || isNil(o.ScanningEnabled) {
+	if o == nil || IsNil(o.ScanningEnabled) {
 		var ret bool
 		return ret
 	}
@@ -59,15 +62,15 @@ func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetScanningEnabled() boo
 // GetScanningEnabledOk returns a tuple with the ScanningEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetScanningEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.ScanningEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.ScanningEnabled) {
+		return nil, false
 	}
 	return o.ScanningEnabled, true
 }
 
 // HasScanningEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) HasScanningEnabled() bool {
-	if o != nil && !isNil(o.ScanningEnabled) {
+	if o != nil && !IsNil(o.ScanningEnabled) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *UpdateNetworkWirelessBluetoothSettingsRequest) SetScanningEnabled(v boo
 
 // GetAdvertisingEnabled returns the AdvertisingEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetAdvertisingEnabled() bool {
-	if o == nil || isNil(o.AdvertisingEnabled) {
+	if o == nil || IsNil(o.AdvertisingEnabled) {
 		var ret bool
 		return ret
 	}
@@ -91,15 +94,15 @@ func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetAdvertisingEnabled() 
 // GetAdvertisingEnabledOk returns a tuple with the AdvertisingEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetAdvertisingEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.AdvertisingEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.AdvertisingEnabled) {
+		return nil, false
 	}
 	return o.AdvertisingEnabled, true
 }
 
 // HasAdvertisingEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) HasAdvertisingEnabled() bool {
-	if o != nil && !isNil(o.AdvertisingEnabled) {
+	if o != nil && !IsNil(o.AdvertisingEnabled) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *UpdateNetworkWirelessBluetoothSettingsRequest) SetAdvertisingEnabled(v 
 
 // GetUuid returns the Uuid field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetUuid() string {
-	if o == nil || isNil(o.Uuid) {
+	if o == nil || IsNil(o.Uuid) {
 		var ret string
 		return ret
 	}
@@ -123,15 +126,15 @@ func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetUuid() string {
 // GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetUuidOk() (*string, bool) {
-	if o == nil || isNil(o.Uuid) {
-    return nil, false
+	if o == nil || IsNil(o.Uuid) {
+		return nil, false
 	}
 	return o.Uuid, true
 }
 
 // HasUuid returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) HasUuid() bool {
-	if o != nil && !isNil(o.Uuid) {
+	if o != nil && !IsNil(o.Uuid) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *UpdateNetworkWirelessBluetoothSettingsRequest) SetUuid(v string) {
 
 // GetMajorMinorAssignmentMode returns the MajorMinorAssignmentMode field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetMajorMinorAssignmentMode() string {
-	if o == nil || isNil(o.MajorMinorAssignmentMode) {
+	if o == nil || IsNil(o.MajorMinorAssignmentMode) {
 		var ret string
 		return ret
 	}
@@ -155,15 +158,15 @@ func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetMajorMinorAssignmentM
 // GetMajorMinorAssignmentModeOk returns a tuple with the MajorMinorAssignmentMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetMajorMinorAssignmentModeOk() (*string, bool) {
-	if o == nil || isNil(o.MajorMinorAssignmentMode) {
-    return nil, false
+	if o == nil || IsNil(o.MajorMinorAssignmentMode) {
+		return nil, false
 	}
 	return o.MajorMinorAssignmentMode, true
 }
 
 // HasMajorMinorAssignmentMode returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) HasMajorMinorAssignmentMode() bool {
-	if o != nil && !isNil(o.MajorMinorAssignmentMode) {
+	if o != nil && !IsNil(o.MajorMinorAssignmentMode) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *UpdateNetworkWirelessBluetoothSettingsRequest) SetMajorMinorAssignmentM
 
 // GetMajor returns the Major field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetMajor() int32 {
-	if o == nil || isNil(o.Major) {
+	if o == nil || IsNil(o.Major) {
 		var ret int32
 		return ret
 	}
@@ -187,15 +190,15 @@ func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetMajor() int32 {
 // GetMajorOk returns a tuple with the Major field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetMajorOk() (*int32, bool) {
-	if o == nil || isNil(o.Major) {
-    return nil, false
+	if o == nil || IsNil(o.Major) {
+		return nil, false
 	}
 	return o.Major, true
 }
 
 // HasMajor returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) HasMajor() bool {
-	if o != nil && !isNil(o.Major) {
+	if o != nil && !IsNil(o.Major) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *UpdateNetworkWirelessBluetoothSettingsRequest) SetMajor(v int32) {
 
 // GetMinor returns the Minor field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetMinor() int32 {
-	if o == nil || isNil(o.Minor) {
+	if o == nil || IsNil(o.Minor) {
 		var ret int32
 		return ret
 	}
@@ -219,15 +222,15 @@ func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetMinor() int32 {
 // GetMinorOk returns a tuple with the Minor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) GetMinorOk() (*int32, bool) {
-	if o == nil || isNil(o.Minor) {
-    return nil, false
+	if o == nil || IsNil(o.Minor) {
+		return nil, false
 	}
 	return o.Minor, true
 }
 
 // HasMinor returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessBluetoothSettingsRequest) HasMinor() bool {
-	if o != nil && !isNil(o.Minor) {
+	if o != nil && !IsNil(o.Minor) {
 		return true
 	}
 
@@ -240,26 +243,34 @@ func (o *UpdateNetworkWirelessBluetoothSettingsRequest) SetMinor(v int32) {
 }
 
 func (o UpdateNetworkWirelessBluetoothSettingsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ScanningEnabled) {
-		toSerialize["scanningEnabled"] = o.ScanningEnabled
-	}
-	if !isNil(o.AdvertisingEnabled) {
-		toSerialize["advertisingEnabled"] = o.AdvertisingEnabled
-	}
-	if !isNil(o.Uuid) {
-		toSerialize["uuid"] = o.Uuid
-	}
-	if !isNil(o.MajorMinorAssignmentMode) {
-		toSerialize["majorMinorAssignmentMode"] = o.MajorMinorAssignmentMode
-	}
-	if !isNil(o.Major) {
-		toSerialize["major"] = o.Major
-	}
-	if !isNil(o.Minor) {
-		toSerialize["minor"] = o.Minor
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessBluetoothSettingsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ScanningEnabled) {
+		toSerialize["scanningEnabled"] = o.ScanningEnabled
+	}
+	if !IsNil(o.AdvertisingEnabled) {
+		toSerialize["advertisingEnabled"] = o.AdvertisingEnabled
+	}
+	if !IsNil(o.Uuid) {
+		toSerialize["uuid"] = o.Uuid
+	}
+	if !IsNil(o.MajorMinorAssignmentMode) {
+		toSerialize["majorMinorAssignmentMode"] = o.MajorMinorAssignmentMode
+	}
+	if !IsNil(o.Major) {
+		toSerialize["major"] = o.Major
+	}
+	if !IsNil(o.Minor) {
+		toSerialize["minor"] = o.Minor
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessBluetoothSettingsRequest struct {

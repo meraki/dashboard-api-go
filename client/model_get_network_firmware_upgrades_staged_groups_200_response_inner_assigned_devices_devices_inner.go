@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner{}
+
 // GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner struct for GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner
 type GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner struct {
 	// Serial of the device
@@ -41,7 +44,7 @@ func NewGetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDev
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDe
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDe
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDe
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDe
 }
 
 func (o GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkFirmwareUpgradesStagedGroups200ResponseInnerAssignedDevicesDevicesInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSamlIdps200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSamlIdps200ResponseInner{}
+
 // GetOrganizationSamlIdps200ResponseInner struct for GetOrganizationSamlIdps200ResponseInner
 type GetOrganizationSamlIdps200ResponseInner struct {
 	// ID associated with the SAML Identity Provider (IdP)
@@ -45,7 +48,7 @@ func NewGetOrganizationSamlIdps200ResponseInnerWithDefaults() *GetOrganizationSa
 
 // GetIdpId returns the IdpId field value if set, zero value otherwise.
 func (o *GetOrganizationSamlIdps200ResponseInner) GetIdpId() string {
-	if o == nil || isNil(o.IdpId) {
+	if o == nil || IsNil(o.IdpId) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetOrganizationSamlIdps200ResponseInner) GetIdpId() string {
 // GetIdpIdOk returns a tuple with the IdpId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSamlIdps200ResponseInner) GetIdpIdOk() (*string, bool) {
-	if o == nil || isNil(o.IdpId) {
-    return nil, false
+	if o == nil || IsNil(o.IdpId) {
+		return nil, false
 	}
 	return o.IdpId, true
 }
 
 // HasIdpId returns a boolean if a field has been set.
 func (o *GetOrganizationSamlIdps200ResponseInner) HasIdpId() bool {
-	if o != nil && !isNil(o.IdpId) {
+	if o != nil && !IsNil(o.IdpId) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetOrganizationSamlIdps200ResponseInner) SetIdpId(v string) {
 
 // GetConsumerUrl returns the ConsumerUrl field value if set, zero value otherwise.
 func (o *GetOrganizationSamlIdps200ResponseInner) GetConsumerUrl() string {
-	if o == nil || isNil(o.ConsumerUrl) {
+	if o == nil || IsNil(o.ConsumerUrl) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetOrganizationSamlIdps200ResponseInner) GetConsumerUrl() string {
 // GetConsumerUrlOk returns a tuple with the ConsumerUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSamlIdps200ResponseInner) GetConsumerUrlOk() (*string, bool) {
-	if o == nil || isNil(o.ConsumerUrl) {
-    return nil, false
+	if o == nil || IsNil(o.ConsumerUrl) {
+		return nil, false
 	}
 	return o.ConsumerUrl, true
 }
 
 // HasConsumerUrl returns a boolean if a field has been set.
 func (o *GetOrganizationSamlIdps200ResponseInner) HasConsumerUrl() bool {
-	if o != nil && !isNil(o.ConsumerUrl) {
+	if o != nil && !IsNil(o.ConsumerUrl) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetOrganizationSamlIdps200ResponseInner) SetConsumerUrl(v string) {
 
 // GetX509certSha1Fingerprint returns the X509certSha1Fingerprint field value if set, zero value otherwise.
 func (o *GetOrganizationSamlIdps200ResponseInner) GetX509certSha1Fingerprint() string {
-	if o == nil || isNil(o.X509certSha1Fingerprint) {
+	if o == nil || IsNil(o.X509certSha1Fingerprint) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetOrganizationSamlIdps200ResponseInner) GetX509certSha1Fingerprint() s
 // GetX509certSha1FingerprintOk returns a tuple with the X509certSha1Fingerprint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSamlIdps200ResponseInner) GetX509certSha1FingerprintOk() (*string, bool) {
-	if o == nil || isNil(o.X509certSha1Fingerprint) {
-    return nil, false
+	if o == nil || IsNil(o.X509certSha1Fingerprint) {
+		return nil, false
 	}
 	return o.X509certSha1Fingerprint, true
 }
 
 // HasX509certSha1Fingerprint returns a boolean if a field has been set.
 func (o *GetOrganizationSamlIdps200ResponseInner) HasX509certSha1Fingerprint() bool {
-	if o != nil && !isNil(o.X509certSha1Fingerprint) {
+	if o != nil && !IsNil(o.X509certSha1Fingerprint) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetOrganizationSamlIdps200ResponseInner) SetX509certSha1Fingerprint(v s
 
 // GetSloLogoutUrl returns the SloLogoutUrl field value if set, zero value otherwise.
 func (o *GetOrganizationSamlIdps200ResponseInner) GetSloLogoutUrl() string {
-	if o == nil || isNil(o.SloLogoutUrl) {
+	if o == nil || IsNil(o.SloLogoutUrl) {
 		var ret string
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetOrganizationSamlIdps200ResponseInner) GetSloLogoutUrl() string {
 // GetSloLogoutUrlOk returns a tuple with the SloLogoutUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSamlIdps200ResponseInner) GetSloLogoutUrlOk() (*string, bool) {
-	if o == nil || isNil(o.SloLogoutUrl) {
-    return nil, false
+	if o == nil || IsNil(o.SloLogoutUrl) {
+		return nil, false
 	}
 	return o.SloLogoutUrl, true
 }
 
 // HasSloLogoutUrl returns a boolean if a field has been set.
 func (o *GetOrganizationSamlIdps200ResponseInner) HasSloLogoutUrl() bool {
-	if o != nil && !isNil(o.SloLogoutUrl) {
+	if o != nil && !IsNil(o.SloLogoutUrl) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *GetOrganizationSamlIdps200ResponseInner) SetSloLogoutUrl(v string) {
 }
 
 func (o GetOrganizationSamlIdps200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.IdpId) {
-		toSerialize["idpId"] = o.IdpId
-	}
-	if !isNil(o.ConsumerUrl) {
-		toSerialize["consumerUrl"] = o.ConsumerUrl
-	}
-	if !isNil(o.X509certSha1Fingerprint) {
-		toSerialize["x509certSha1Fingerprint"] = o.X509certSha1Fingerprint
-	}
-	if !isNil(o.SloLogoutUrl) {
-		toSerialize["sloLogoutUrl"] = o.SloLogoutUrl
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSamlIdps200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.IdpId) {
+		toSerialize["idpId"] = o.IdpId
+	}
+	if !IsNil(o.ConsumerUrl) {
+		toSerialize["consumerUrl"] = o.ConsumerUrl
+	}
+	if !IsNil(o.X509certSha1Fingerprint) {
+		toSerialize["x509certSha1Fingerprint"] = o.X509certSha1Fingerprint
+	}
+	if !IsNil(o.SloLogoutUrl) {
+		toSerialize["sloLogoutUrl"] = o.SloLogoutUrl
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSamlIdps200ResponseInner struct {

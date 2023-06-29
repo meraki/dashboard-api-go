@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp{}
+
 // GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp Additional IP attributes of the packet.
 type GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp struct {
 	// IP ID of the packet.
@@ -50,7 +53,7 @@ func NewGetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpWithDefault
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -60,15 +63,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetId() 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -82,7 +85,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) SetId(v 
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetVersion() int32 {
-	if o == nil || isNil(o.Version) {
+	if o == nil || IsNil(o.Version) {
 		var ret int32
 		return ret
 	}
@@ -92,15 +95,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetVersi
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetVersionOk() (*int32, bool) {
-	if o == nil || isNil(o.Version) {
-    return nil, false
+	if o == nil || IsNil(o.Version) {
+		return nil, false
 	}
 	return o.Version, true
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) HasVersion() bool {
-	if o != nil && !isNil(o.Version) {
+	if o != nil && !IsNil(o.Version) {
 		return true
 	}
 
@@ -114,7 +117,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) SetVersi
 
 // GetLength returns the Length field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetLength() int32 {
-	if o == nil || isNil(o.Length) {
+	if o == nil || IsNil(o.Length) {
 		var ret int32
 		return ret
 	}
@@ -124,15 +127,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetLengt
 // GetLengthOk returns a tuple with the Length field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetLengthOk() (*int32, bool) {
-	if o == nil || isNil(o.Length) {
-    return nil, false
+	if o == nil || IsNil(o.Length) {
+		return nil, false
 	}
 	return o.Length, true
 }
 
 // HasLength returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) HasLength() bool {
-	if o != nil && !isNil(o.Length) {
+	if o != nil && !IsNil(o.Length) {
 		return true
 	}
 
@@ -146,7 +149,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) SetLengt
 
 // GetHeaderLength returns the HeaderLength field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetHeaderLength() int32 {
-	if o == nil || isNil(o.HeaderLength) {
+	if o == nil || IsNil(o.HeaderLength) {
 		var ret int32
 		return ret
 	}
@@ -156,15 +159,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetHeade
 // GetHeaderLengthOk returns a tuple with the HeaderLength field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetHeaderLengthOk() (*int32, bool) {
-	if o == nil || isNil(o.HeaderLength) {
-    return nil, false
+	if o == nil || IsNil(o.HeaderLength) {
+		return nil, false
 	}
 	return o.HeaderLength, true
 }
 
 // HasHeaderLength returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) HasHeaderLength() bool {
-	if o != nil && !isNil(o.HeaderLength) {
+	if o != nil && !IsNil(o.HeaderLength) {
 		return true
 	}
 
@@ -178,7 +181,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) SetHeade
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetProtocol() int32 {
-	if o == nil || isNil(o.Protocol) {
+	if o == nil || IsNil(o.Protocol) {
 		var ret int32
 		return ret
 	}
@@ -188,15 +191,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetProto
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetProtocolOk() (*int32, bool) {
-	if o == nil || isNil(o.Protocol) {
-    return nil, false
+	if o == nil || IsNil(o.Protocol) {
+		return nil, false
 	}
 	return o.Protocol, true
 }
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) HasProtocol() bool {
-	if o != nil && !isNil(o.Protocol) {
+	if o != nil && !IsNil(o.Protocol) {
 		return true
 	}
 
@@ -210,7 +213,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) SetProto
 
 // GetTtl returns the Ttl field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetTtl() int32 {
-	if o == nil || isNil(o.Ttl) {
+	if o == nil || IsNil(o.Ttl) {
 		var ret int32
 		return ret
 	}
@@ -220,15 +223,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetTtl()
 // GetTtlOk returns a tuple with the Ttl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetTtlOk() (*int32, bool) {
-	if o == nil || isNil(o.Ttl) {
-    return nil, false
+	if o == nil || IsNil(o.Ttl) {
+		return nil, false
 	}
 	return o.Ttl, true
 }
 
 // HasTtl returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) HasTtl() bool {
-	if o != nil && !isNil(o.Ttl) {
+	if o != nil && !IsNil(o.Ttl) {
 		return true
 	}
 
@@ -242,7 +245,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) SetTtl(v
 
 // GetDscp returns the Dscp field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetDscp() GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp {
-	if o == nil || isNil(o.Dscp) {
+	if o == nil || IsNil(o.Dscp) {
 		var ret GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp
 		return ret
 	}
@@ -252,15 +255,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetDscp(
 // GetDscpOk returns a tuple with the Dscp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) GetDscpOk() (*GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIpDscp, bool) {
-	if o == nil || isNil(o.Dscp) {
-    return nil, false
+	if o == nil || IsNil(o.Dscp) {
+		return nil, false
 	}
 	return o.Dscp, true
 }
 
 // HasDscp returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) HasDscp() bool {
-	if o != nil && !isNil(o.Dscp) {
+	if o != nil && !IsNil(o.Dscp) {
 		return true
 	}
 
@@ -273,29 +276,37 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) SetDscp(
 }
 
 func (o GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Version) {
-		toSerialize["version"] = o.Version
-	}
-	if !isNil(o.Length) {
-		toSerialize["length"] = o.Length
-	}
-	if !isNil(o.HeaderLength) {
-		toSerialize["headerLength"] = o.HeaderLength
-	}
-	if !isNil(o.Protocol) {
-		toSerialize["protocol"] = o.Protocol
-	}
-	if !isNil(o.Ttl) {
-		toSerialize["ttl"] = o.Ttl
-	}
-	if !isNil(o.Dscp) {
-		toSerialize["dscp"] = o.Dscp
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
+	if !IsNil(o.Length) {
+		toSerialize["length"] = o.Length
+	}
+	if !IsNil(o.HeaderLength) {
+		toSerialize["headerLength"] = o.HeaderLength
+	}
+	if !IsNil(o.Protocol) {
+		toSerialize["protocol"] = o.Protocol
+	}
+	if !IsNil(o.Ttl) {
+		toSerialize["ttl"] = o.Ttl
+	}
+	if !IsNil(o.Dscp) {
+		toSerialize["dscp"] = o.Dscp
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketIp struct {

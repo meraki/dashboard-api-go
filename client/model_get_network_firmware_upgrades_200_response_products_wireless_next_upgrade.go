@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade{}
+
 // GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade Details of the next firmware upgrade on the device
 type GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade struct {
 	// Timestamp of the next scheduled firmware upgrade
@@ -41,7 +44,7 @@ func NewGetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgradeWithDefa
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade) GetTime() time.Time {
-	if o == nil || isNil(o.Time) {
+	if o == nil || IsNil(o.Time) {
 		var ret time.Time
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade) GetTi
 // GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade) GetTimeOk() (*time.Time, bool) {
-	if o == nil || isNil(o.Time) {
-    return nil, false
+	if o == nil || IsNil(o.Time) {
+		return nil, false
 	}
 	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade) HasTime() bool {
-	if o != nil && !isNil(o.Time) {
+	if o != nil && !IsNil(o.Time) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade) SetTi
 
 // GetToVersion returns the ToVersion field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade) GetToVersion() GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgradeToVersion {
-	if o == nil || isNil(o.ToVersion) {
+	if o == nil || IsNil(o.ToVersion) {
 		var ret GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgradeToVersion
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade) GetTo
 // GetToVersionOk returns a tuple with the ToVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade) GetToVersionOk() (*GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgradeToVersion, bool) {
-	if o == nil || isNil(o.ToVersion) {
-    return nil, false
+	if o == nil || IsNil(o.ToVersion) {
+		return nil, false
 	}
 	return o.ToVersion, true
 }
 
 // HasToVersion returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade) HasToVersion() bool {
-	if o != nil && !isNil(o.ToVersion) {
+	if o != nil && !IsNil(o.ToVersion) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade) SetTo
 }
 
 func (o GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Time) {
-		toSerialize["time"] = o.Time
-	}
-	if !isNil(o.ToVersion) {
-		toSerialize["toVersion"] = o.ToVersion
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Time) {
+		toSerialize["time"] = o.Time
+	}
+	if !IsNil(o.ToVersion) {
+		toSerialize["toVersion"] = o.ToVersion
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade struct {

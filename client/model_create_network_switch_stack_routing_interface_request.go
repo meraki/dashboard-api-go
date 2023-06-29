@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkSwitchStackRoutingInterfaceRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkSwitchStackRoutingInterfaceRequest{}
+
 // CreateNetworkSwitchStackRoutingInterfaceRequest struct for CreateNetworkSwitchStackRoutingInterfaceRequest
 type CreateNetworkSwitchStackRoutingInterfaceRequest struct {
 	// A friendly name or description for the interface or VLAN.
@@ -65,7 +68,7 @@ func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -77,7 +80,7 @@ func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) SetName(v string) {
 
 // GetSubnet returns the Subnet field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetSubnet() string {
-	if o == nil || isNil(o.Subnet) {
+	if o == nil || IsNil(o.Subnet) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetSubnet() string {
 // GetSubnetOk returns a tuple with the Subnet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetSubnetOk() (*string, bool) {
-	if o == nil || isNil(o.Subnet) {
-    return nil, false
+	if o == nil || IsNil(o.Subnet) {
+		return nil, false
 	}
 	return o.Subnet, true
 }
 
 // HasSubnet returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) HasSubnet() bool {
-	if o != nil && !isNil(o.Subnet) {
+	if o != nil && !IsNil(o.Subnet) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) SetSubnet(v string) {
 
 // GetInterfaceIp returns the InterfaceIp field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetInterfaceIp() string {
-	if o == nil || isNil(o.InterfaceIp) {
+	if o == nil || IsNil(o.InterfaceIp) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetInterfaceIp() strin
 // GetInterfaceIpOk returns a tuple with the InterfaceIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetInterfaceIpOk() (*string, bool) {
-	if o == nil || isNil(o.InterfaceIp) {
-    return nil, false
+	if o == nil || IsNil(o.InterfaceIp) {
+		return nil, false
 	}
 	return o.InterfaceIp, true
 }
 
 // HasInterfaceIp returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) HasInterfaceIp() bool {
-	if o != nil && !isNil(o.InterfaceIp) {
+	if o != nil && !IsNil(o.InterfaceIp) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) SetInterfaceIp(v strin
 
 // GetMulticastRouting returns the MulticastRouting field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetMulticastRouting() string {
-	if o == nil || isNil(o.MulticastRouting) {
+	if o == nil || IsNil(o.MulticastRouting) {
 		var ret string
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetMulticastRouting() 
 // GetMulticastRoutingOk returns a tuple with the MulticastRouting field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetMulticastRoutingOk() (*string, bool) {
-	if o == nil || isNil(o.MulticastRouting) {
-    return nil, false
+	if o == nil || IsNil(o.MulticastRouting) {
+		return nil, false
 	}
 	return o.MulticastRouting, true
 }
 
 // HasMulticastRouting returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) HasMulticastRouting() bool {
-	if o != nil && !isNil(o.MulticastRouting) {
+	if o != nil && !IsNil(o.MulticastRouting) {
 		return true
 	}
 
@@ -185,7 +188,7 @@ func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetVlanId() int32 {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetVlanIdOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.VlanId, true
 }
@@ -197,7 +200,7 @@ func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) SetVlanId(v int32) {
 
 // GetDefaultGateway returns the DefaultGateway field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetDefaultGateway() string {
-	if o == nil || isNil(o.DefaultGateway) {
+	if o == nil || IsNil(o.DefaultGateway) {
 		var ret string
 		return ret
 	}
@@ -207,15 +210,15 @@ func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetDefaultGateway() st
 // GetDefaultGatewayOk returns a tuple with the DefaultGateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetDefaultGatewayOk() (*string, bool) {
-	if o == nil || isNil(o.DefaultGateway) {
-    return nil, false
+	if o == nil || IsNil(o.DefaultGateway) {
+		return nil, false
 	}
 	return o.DefaultGateway, true
 }
 
 // HasDefaultGateway returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) HasDefaultGateway() bool {
-	if o != nil && !isNil(o.DefaultGateway) {
+	if o != nil && !IsNil(o.DefaultGateway) {
 		return true
 	}
 
@@ -229,7 +232,7 @@ func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) SetDefaultGateway(v st
 
 // GetOspfSettings returns the OspfSettings field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetOspfSettings() CreateNetworkSwitchStackRoutingInterfaceRequestOspfSettings {
-	if o == nil || isNil(o.OspfSettings) {
+	if o == nil || IsNil(o.OspfSettings) {
 		var ret CreateNetworkSwitchStackRoutingInterfaceRequestOspfSettings
 		return ret
 	}
@@ -239,15 +242,15 @@ func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetOspfSettings() Crea
 // GetOspfSettingsOk returns a tuple with the OspfSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetOspfSettingsOk() (*CreateNetworkSwitchStackRoutingInterfaceRequestOspfSettings, bool) {
-	if o == nil || isNil(o.OspfSettings) {
-    return nil, false
+	if o == nil || IsNil(o.OspfSettings) {
+		return nil, false
 	}
 	return o.OspfSettings, true
 }
 
 // HasOspfSettings returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) HasOspfSettings() bool {
-	if o != nil && !isNil(o.OspfSettings) {
+	if o != nil && !IsNil(o.OspfSettings) {
 		return true
 	}
 
@@ -261,7 +264,7 @@ func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) SetOspfSettings(v Crea
 
 // GetIpv6 returns the Ipv6 field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetIpv6() CreateNetworkSwitchStackRoutingInterfaceRequestIpv6 {
-	if o == nil || isNil(o.Ipv6) {
+	if o == nil || IsNil(o.Ipv6) {
 		var ret CreateNetworkSwitchStackRoutingInterfaceRequestIpv6
 		return ret
 	}
@@ -271,15 +274,15 @@ func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetIpv6() CreateNetwor
 // GetIpv6Ok returns a tuple with the Ipv6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) GetIpv6Ok() (*CreateNetworkSwitchStackRoutingInterfaceRequestIpv6, bool) {
-	if o == nil || isNil(o.Ipv6) {
-    return nil, false
+	if o == nil || IsNil(o.Ipv6) {
+		return nil, false
 	}
 	return o.Ipv6, true
 }
 
 // HasIpv6 returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) HasIpv6() bool {
-	if o != nil && !isNil(o.Ipv6) {
+	if o != nil && !IsNil(o.Ipv6) {
 		return true
 	}
 
@@ -292,32 +295,36 @@ func (o *CreateNetworkSwitchStackRoutingInterfaceRequest) SetIpv6(v CreateNetwor
 }
 
 func (o CreateNetworkSwitchStackRoutingInterfaceRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Subnet) {
-		toSerialize["subnet"] = o.Subnet
-	}
-	if !isNil(o.InterfaceIp) {
-		toSerialize["interfaceIp"] = o.InterfaceIp
-	}
-	if !isNil(o.MulticastRouting) {
-		toSerialize["multicastRouting"] = o.MulticastRouting
-	}
-	if true {
-		toSerialize["vlanId"] = o.VlanId
-	}
-	if !isNil(o.DefaultGateway) {
-		toSerialize["defaultGateway"] = o.DefaultGateway
-	}
-	if !isNil(o.OspfSettings) {
-		toSerialize["ospfSettings"] = o.OspfSettings
-	}
-	if !isNil(o.Ipv6) {
-		toSerialize["ipv6"] = o.Ipv6
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkSwitchStackRoutingInterfaceRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Subnet) {
+		toSerialize["subnet"] = o.Subnet
+	}
+	if !IsNil(o.InterfaceIp) {
+		toSerialize["interfaceIp"] = o.InterfaceIp
+	}
+	if !IsNil(o.MulticastRouting) {
+		toSerialize["multicastRouting"] = o.MulticastRouting
+	}
+	toSerialize["vlanId"] = o.VlanId
+	if !IsNil(o.DefaultGateway) {
+		toSerialize["defaultGateway"] = o.DefaultGateway
+	}
+	if !IsNil(o.OspfSettings) {
+		toSerialize["ospfSettings"] = o.OspfSettings
+	}
+	if !IsNil(o.Ipv6) {
+		toSerialize["ipv6"] = o.Ipv6
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkSwitchStackRoutingInterfaceRequest struct {

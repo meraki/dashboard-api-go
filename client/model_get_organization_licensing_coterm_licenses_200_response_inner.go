@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetOrganizationLicensingCotermLicenses200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationLicensingCotermLicenses200ResponseInner{}
+
 // GetOrganizationLicensingCotermLicenses200ResponseInner struct for GetOrganizationLicensingCotermLicenses200ResponseInner
 type GetOrganizationLicensingCotermLicenses200ResponseInner struct {
 	// The key of the license
@@ -60,7 +63,7 @@ func NewGetOrganizationLicensingCotermLicenses200ResponseInnerWithDefaults() *Ge
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetKey() string {
-	if o == nil || isNil(o.Key) {
+	if o == nil || IsNil(o.Key) {
 		var ret string
 		return ret
 	}
@@ -70,15 +73,15 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetKey() string
 // GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetKeyOk() (*string, bool) {
-	if o == nil || isNil(o.Key) {
-    return nil, false
+	if o == nil || IsNil(o.Key) {
+		return nil, false
 	}
 	return o.Key, true
 }
 
 // HasKey returns a boolean if a field has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) HasKey() bool {
-	if o != nil && !isNil(o.Key) {
+	if o != nil && !IsNil(o.Key) {
 		return true
 	}
 
@@ -92,7 +95,7 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) SetKey(v string
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -102,15 +105,15 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetOrganization
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -124,7 +127,7 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) SetOrganization
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetDuration() int32 {
-	if o == nil || isNil(o.Duration) {
+	if o == nil || IsNil(o.Duration) {
 		var ret int32
 		return ret
 	}
@@ -134,15 +137,15 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetDuration() i
 // GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetDurationOk() (*int32, bool) {
-	if o == nil || isNil(o.Duration) {
-    return nil, false
+	if o == nil || IsNil(o.Duration) {
+		return nil, false
 	}
 	return o.Duration, true
 }
 
 // HasDuration returns a boolean if a field has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) HasDuration() bool {
-	if o != nil && !isNil(o.Duration) {
+	if o != nil && !IsNil(o.Duration) {
 		return true
 	}
 
@@ -156,7 +159,7 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) SetDuration(v i
 
 // GetMode returns the Mode field value if set, zero value otherwise.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetMode() string {
-	if o == nil || isNil(o.Mode) {
+	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
 	}
@@ -166,15 +169,15 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetMode() strin
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetModeOk() (*string, bool) {
-	if o == nil || isNil(o.Mode) {
-    return nil, false
+	if o == nil || IsNil(o.Mode) {
+		return nil, false
 	}
 	return o.Mode, true
 }
 
 // HasMode returns a boolean if a field has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) HasMode() bool {
-	if o != nil && !isNil(o.Mode) {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
@@ -188,7 +191,7 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) SetMode(v strin
 
 // GetStartedAt returns the StartedAt field value if set, zero value otherwise.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetStartedAt() time.Time {
-	if o == nil || isNil(o.StartedAt) {
+	if o == nil || IsNil(o.StartedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -198,15 +201,15 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetStartedAt() 
 // GetStartedAtOk returns a tuple with the StartedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetStartedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartedAt) {
-    return nil, false
+	if o == nil || IsNil(o.StartedAt) {
+		return nil, false
 	}
 	return o.StartedAt, true
 }
 
 // HasStartedAt returns a boolean if a field has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) HasStartedAt() bool {
-	if o != nil && !isNil(o.StartedAt) {
+	if o != nil && !IsNil(o.StartedAt) {
 		return true
 	}
 
@@ -220,7 +223,7 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) SetStartedAt(v 
 
 // GetClaimedAt returns the ClaimedAt field value if set, zero value otherwise.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetClaimedAt() time.Time {
-	if o == nil || isNil(o.ClaimedAt) {
+	if o == nil || IsNil(o.ClaimedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -230,15 +233,15 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetClaimedAt() 
 // GetClaimedAtOk returns a tuple with the ClaimedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetClaimedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.ClaimedAt) {
-    return nil, false
+	if o == nil || IsNil(o.ClaimedAt) {
+		return nil, false
 	}
 	return o.ClaimedAt, true
 }
 
 // HasClaimedAt returns a boolean if a field has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) HasClaimedAt() bool {
-	if o != nil && !isNil(o.ClaimedAt) {
+	if o != nil && !IsNil(o.ClaimedAt) {
 		return true
 	}
 
@@ -252,7 +255,7 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) SetClaimedAt(v 
 
 // GetInvalidated returns the Invalidated field value if set, zero value otherwise.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetInvalidated() bool {
-	if o == nil || isNil(o.Invalidated) {
+	if o == nil || IsNil(o.Invalidated) {
 		var ret bool
 		return ret
 	}
@@ -262,15 +265,15 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetInvalidated(
 // GetInvalidatedOk returns a tuple with the Invalidated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetInvalidatedOk() (*bool, bool) {
-	if o == nil || isNil(o.Invalidated) {
-    return nil, false
+	if o == nil || IsNil(o.Invalidated) {
+		return nil, false
 	}
 	return o.Invalidated, true
 }
 
 // HasInvalidated returns a boolean if a field has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) HasInvalidated() bool {
-	if o != nil && !isNil(o.Invalidated) {
+	if o != nil && !IsNil(o.Invalidated) {
 		return true
 	}
 
@@ -284,7 +287,7 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) SetInvalidated(
 
 // GetInvalidatedAt returns the InvalidatedAt field value if set, zero value otherwise.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetInvalidatedAt() time.Time {
-	if o == nil || isNil(o.InvalidatedAt) {
+	if o == nil || IsNil(o.InvalidatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -294,15 +297,15 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetInvalidatedA
 // GetInvalidatedAtOk returns a tuple with the InvalidatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetInvalidatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.InvalidatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.InvalidatedAt) {
+		return nil, false
 	}
 	return o.InvalidatedAt, true
 }
 
 // HasInvalidatedAt returns a boolean if a field has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) HasInvalidatedAt() bool {
-	if o != nil && !isNil(o.InvalidatedAt) {
+	if o != nil && !IsNil(o.InvalidatedAt) {
 		return true
 	}
 
@@ -316,7 +319,7 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) SetInvalidatedA
 
 // GetExpired returns the Expired field value if set, zero value otherwise.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetExpired() bool {
-	if o == nil || isNil(o.Expired) {
+	if o == nil || IsNil(o.Expired) {
 		var ret bool
 		return ret
 	}
@@ -326,15 +329,15 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetExpired() bo
 // GetExpiredOk returns a tuple with the Expired field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetExpiredOk() (*bool, bool) {
-	if o == nil || isNil(o.Expired) {
-    return nil, false
+	if o == nil || IsNil(o.Expired) {
+		return nil, false
 	}
 	return o.Expired, true
 }
 
 // HasExpired returns a boolean if a field has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) HasExpired() bool {
-	if o != nil && !isNil(o.Expired) {
+	if o != nil && !IsNil(o.Expired) {
 		return true
 	}
 
@@ -348,7 +351,7 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) SetExpired(v bo
 
 // GetEditions returns the Editions field value if set, zero value otherwise.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetEditions() []GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner {
-	if o == nil || isNil(o.Editions) {
+	if o == nil || IsNil(o.Editions) {
 		var ret []GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner
 		return ret
 	}
@@ -358,15 +361,15 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetEditions() [
 // GetEditionsOk returns a tuple with the Editions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetEditionsOk() ([]GetOrganizationLicensingCotermLicenses200ResponseInnerEditionsInner, bool) {
-	if o == nil || isNil(o.Editions) {
-    return nil, false
+	if o == nil || IsNil(o.Editions) {
+		return nil, false
 	}
 	return o.Editions, true
 }
 
 // HasEditions returns a boolean if a field has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) HasEditions() bool {
-	if o != nil && !isNil(o.Editions) {
+	if o != nil && !IsNil(o.Editions) {
 		return true
 	}
 
@@ -380,7 +383,7 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) SetEditions(v [
 
 // GetCounts returns the Counts field value if set, zero value otherwise.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetCounts() []GetOrganizationLicensingCotermLicenses200ResponseInnerCountsInner {
-	if o == nil || isNil(o.Counts) {
+	if o == nil || IsNil(o.Counts) {
 		var ret []GetOrganizationLicensingCotermLicenses200ResponseInnerCountsInner
 		return ret
 	}
@@ -390,15 +393,15 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetCounts() []G
 // GetCountsOk returns a tuple with the Counts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) GetCountsOk() ([]GetOrganizationLicensingCotermLicenses200ResponseInnerCountsInner, bool) {
-	if o == nil || isNil(o.Counts) {
-    return nil, false
+	if o == nil || IsNil(o.Counts) {
+		return nil, false
 	}
 	return o.Counts, true
 }
 
 // HasCounts returns a boolean if a field has been set.
 func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) HasCounts() bool {
-	if o != nil && !isNil(o.Counts) {
+	if o != nil && !IsNil(o.Counts) {
 		return true
 	}
 
@@ -411,41 +414,49 @@ func (o *GetOrganizationLicensingCotermLicenses200ResponseInner) SetCounts(v []G
 }
 
 func (o GetOrganizationLicensingCotermLicenses200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Key) {
-		toSerialize["key"] = o.Key
-	}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organizationId"] = o.OrganizationId
-	}
-	if !isNil(o.Duration) {
-		toSerialize["duration"] = o.Duration
-	}
-	if !isNil(o.Mode) {
-		toSerialize["mode"] = o.Mode
-	}
-	if !isNil(o.StartedAt) {
-		toSerialize["startedAt"] = o.StartedAt
-	}
-	if !isNil(o.ClaimedAt) {
-		toSerialize["claimedAt"] = o.ClaimedAt
-	}
-	if !isNil(o.Invalidated) {
-		toSerialize["invalidated"] = o.Invalidated
-	}
-	if !isNil(o.InvalidatedAt) {
-		toSerialize["invalidatedAt"] = o.InvalidatedAt
-	}
-	if !isNil(o.Expired) {
-		toSerialize["expired"] = o.Expired
-	}
-	if !isNil(o.Editions) {
-		toSerialize["editions"] = o.Editions
-	}
-	if !isNil(o.Counts) {
-		toSerialize["counts"] = o.Counts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationLicensingCotermLicenses200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Key) {
+		toSerialize["key"] = o.Key
+	}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organizationId"] = o.OrganizationId
+	}
+	if !IsNil(o.Duration) {
+		toSerialize["duration"] = o.Duration
+	}
+	if !IsNil(o.Mode) {
+		toSerialize["mode"] = o.Mode
+	}
+	if !IsNil(o.StartedAt) {
+		toSerialize["startedAt"] = o.StartedAt
+	}
+	if !IsNil(o.ClaimedAt) {
+		toSerialize["claimedAt"] = o.ClaimedAt
+	}
+	if !IsNil(o.Invalidated) {
+		toSerialize["invalidated"] = o.Invalidated
+	}
+	if !IsNil(o.InvalidatedAt) {
+		toSerialize["invalidatedAt"] = o.InvalidatedAt
+	}
+	if !IsNil(o.Expired) {
+		toSerialize["expired"] = o.Expired
+	}
+	if !IsNil(o.Editions) {
+		toSerialize["editions"] = o.Editions
+	}
+	if !IsNil(o.Counts) {
+		toSerialize["counts"] = o.Counts
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationLicensingCotermLicenses200ResponseInner struct {

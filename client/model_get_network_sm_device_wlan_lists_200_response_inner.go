@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmDeviceWlanLists200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmDeviceWlanLists200ResponseInner{}
+
 // GetNetworkSmDeviceWlanLists200ResponseInner struct for GetNetworkSmDeviceWlanLists200ResponseInner
 type GetNetworkSmDeviceWlanLists200ResponseInner struct {
 	// When the Meraki record for the wlanList was created.
@@ -43,7 +46,7 @@ func NewGetNetworkSmDeviceWlanLists200ResponseInnerWithDefaults() *GetNetworkSmD
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceWlanLists200ResponseInner) GetCreatedAt() string {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkSmDeviceWlanLists200ResponseInner) GetCreatedAt() string {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceWlanLists200ResponseInner) GetCreatedAtOk() (*string, bool) {
-	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceWlanLists200ResponseInner) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkSmDeviceWlanLists200ResponseInner) SetCreatedAt(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceWlanLists200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkSmDeviceWlanLists200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceWlanLists200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceWlanLists200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkSmDeviceWlanLists200ResponseInner) SetId(v string) {
 
 // GetXml returns the Xml field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceWlanLists200ResponseInner) GetXml() string {
-	if o == nil || isNil(o.Xml) {
+	if o == nil || IsNil(o.Xml) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkSmDeviceWlanLists200ResponseInner) GetXml() string {
 // GetXmlOk returns a tuple with the Xml field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceWlanLists200ResponseInner) GetXmlOk() (*string, bool) {
-	if o == nil || isNil(o.Xml) {
-    return nil, false
+	if o == nil || IsNil(o.Xml) {
+		return nil, false
 	}
 	return o.Xml, true
 }
 
 // HasXml returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceWlanLists200ResponseInner) HasXml() bool {
-	if o != nil && !isNil(o.Xml) {
+	if o != nil && !IsNil(o.Xml) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkSmDeviceWlanLists200ResponseInner) SetXml(v string) {
 }
 
 func (o GetNetworkSmDeviceWlanLists200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
-	}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Xml) {
-		toSerialize["xml"] = o.Xml
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmDeviceWlanLists200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Xml) {
+		toSerialize["xml"] = o.Xml
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmDeviceWlanLists200ResponseInner struct {

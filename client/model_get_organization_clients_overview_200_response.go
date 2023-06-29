@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationClientsOverview200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationClientsOverview200Response{}
+
 // GetOrganizationClientsOverview200Response struct for GetOrganizationClientsOverview200Response
 type GetOrganizationClientsOverview200Response struct {
 	Usage *GetOrganizationClientsOverview200ResponseUsage `json:"usage,omitempty"`
@@ -39,7 +42,7 @@ func NewGetOrganizationClientsOverview200ResponseWithDefaults() *GetOrganization
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *GetOrganizationClientsOverview200Response) GetUsage() GetOrganizationClientsOverview200ResponseUsage {
-	if o == nil || isNil(o.Usage) {
+	if o == nil || IsNil(o.Usage) {
 		var ret GetOrganizationClientsOverview200ResponseUsage
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationClientsOverview200Response) GetUsage() GetOrganizationCl
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationClientsOverview200Response) GetUsageOk() (*GetOrganizationClientsOverview200ResponseUsage, bool) {
-	if o == nil || isNil(o.Usage) {
-    return nil, false
+	if o == nil || IsNil(o.Usage) {
+		return nil, false
 	}
 	return o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
 func (o *GetOrganizationClientsOverview200Response) HasUsage() bool {
-	if o != nil && !isNil(o.Usage) {
+	if o != nil && !IsNil(o.Usage) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *GetOrganizationClientsOverview200Response) SetUsage(v GetOrganizationCl
 
 // GetCounts returns the Counts field value if set, zero value otherwise.
 func (o *GetOrganizationClientsOverview200Response) GetCounts() GetOrganizationClientsOverview200ResponseCounts {
-	if o == nil || isNil(o.Counts) {
+	if o == nil || IsNil(o.Counts) {
 		var ret GetOrganizationClientsOverview200ResponseCounts
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *GetOrganizationClientsOverview200Response) GetCounts() GetOrganizationC
 // GetCountsOk returns a tuple with the Counts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationClientsOverview200Response) GetCountsOk() (*GetOrganizationClientsOverview200ResponseCounts, bool) {
-	if o == nil || isNil(o.Counts) {
-    return nil, false
+	if o == nil || IsNil(o.Counts) {
+		return nil, false
 	}
 	return o.Counts, true
 }
 
 // HasCounts returns a boolean if a field has been set.
 func (o *GetOrganizationClientsOverview200Response) HasCounts() bool {
-	if o != nil && !isNil(o.Counts) {
+	if o != nil && !IsNil(o.Counts) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *GetOrganizationClientsOverview200Response) SetCounts(v GetOrganizationC
 }
 
 func (o GetOrganizationClientsOverview200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Usage) {
-		toSerialize["usage"] = o.Usage
-	}
-	if !isNil(o.Counts) {
-		toSerialize["counts"] = o.Counts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationClientsOverview200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Usage) {
+		toSerialize["usage"] = o.Usage
+	}
+	if !IsNil(o.Counts) {
+		toSerialize["counts"] = o.Counts
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationClientsOverview200Response struct {

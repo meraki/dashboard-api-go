@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateDeviceApplianceVmxAuthenticationToken201Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateDeviceApplianceVmxAuthenticationToken201Response{}
+
 // CreateDeviceApplianceVmxAuthenticationToken201Response struct for CreateDeviceApplianceVmxAuthenticationToken201Response
 type CreateDeviceApplianceVmxAuthenticationToken201Response struct {
 	// The newly generated authentication token for the vMX instance
@@ -41,7 +44,7 @@ func NewCreateDeviceApplianceVmxAuthenticationToken201ResponseWithDefaults() *Cr
 
 // GetToken returns the Token field value if set, zero value otherwise.
 func (o *CreateDeviceApplianceVmxAuthenticationToken201Response) GetToken() string {
-	if o == nil || isNil(o.Token) {
+	if o == nil || IsNil(o.Token) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateDeviceApplianceVmxAuthenticationToken201Response) GetToken() stri
 // GetTokenOk returns a tuple with the Token field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateDeviceApplianceVmxAuthenticationToken201Response) GetTokenOk() (*string, bool) {
-	if o == nil || isNil(o.Token) {
-    return nil, false
+	if o == nil || IsNil(o.Token) {
+		return nil, false
 	}
 	return o.Token, true
 }
 
 // HasToken returns a boolean if a field has been set.
 func (o *CreateDeviceApplianceVmxAuthenticationToken201Response) HasToken() bool {
-	if o != nil && !isNil(o.Token) {
+	if o != nil && !IsNil(o.Token) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateDeviceApplianceVmxAuthenticationToken201Response) SetToken(v stri
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *CreateDeviceApplianceVmxAuthenticationToken201Response) GetExpiresAt() string {
-	if o == nil || isNil(o.ExpiresAt) {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateDeviceApplianceVmxAuthenticationToken201Response) GetExpiresAt() 
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateDeviceApplianceVmxAuthenticationToken201Response) GetExpiresAtOk() (*string, bool) {
-	if o == nil || isNil(o.ExpiresAt) {
-    return nil, false
+	if o == nil || IsNil(o.ExpiresAt) {
+		return nil, false
 	}
 	return o.ExpiresAt, true
 }
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *CreateDeviceApplianceVmxAuthenticationToken201Response) HasExpiresAt() bool {
-	if o != nil && !isNil(o.ExpiresAt) {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *CreateDeviceApplianceVmxAuthenticationToken201Response) SetExpiresAt(v 
 }
 
 func (o CreateDeviceApplianceVmxAuthenticationToken201Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Token) {
-		toSerialize["token"] = o.Token
-	}
-	if !isNil(o.ExpiresAt) {
-		toSerialize["expiresAt"] = o.ExpiresAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateDeviceApplianceVmxAuthenticationToken201Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Token) {
+		toSerialize["token"] = o.Token
+	}
+	if !IsNil(o.ExpiresAt) {
+		toSerialize["expiresAt"] = o.ExpiresAt
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateDeviceApplianceVmxAuthenticationToken201Response struct {

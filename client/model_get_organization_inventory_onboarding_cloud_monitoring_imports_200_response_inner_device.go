@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice{}
+
 // GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice Represents the details of an imported device.
 type GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice struct {
 	// The url to the device details page within dashboard.
@@ -43,7 +46,7 @@ func NewGetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInner
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice) GetUrl() string {
-	if o == nil || isNil(o.Url) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInne
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice) GetUrlOk() (*string, bool) {
-	if o == nil || isNil(o.Url) {
-    return nil, false
+	if o == nil || IsNil(o.Url) {
+		return nil, false
 	}
 	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice) HasUrl() bool {
-	if o != nil && !isNil(o.Url) {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInne
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice) GetCreated() bool {
-	if o == nil || isNil(o.Created) {
+	if o == nil || IsNil(o.Created) {
 		var ret bool
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInne
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice) GetCreatedOk() (*bool, bool) {
-	if o == nil || isNil(o.Created) {
-    return nil, false
+	if o == nil || IsNil(o.Created) {
+		return nil, false
 	}
 	return o.Created, true
 }
 
 // HasCreated returns a boolean if a field has been set.
 func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice) HasCreated() bool {
-	if o != nil && !isNil(o.Created) {
+	if o != nil && !IsNil(o.Created) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInne
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInne
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInne
 }
 
 func (o GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Url) {
-		toSerialize["url"] = o.Url
-	}
-	if !isNil(o.Created) {
-		toSerialize["created"] = o.Created
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.Created) {
+		toSerialize["created"] = o.Created
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationInventoryOnboardingCloudMonitoringImports200ResponseInnerDevice struct {

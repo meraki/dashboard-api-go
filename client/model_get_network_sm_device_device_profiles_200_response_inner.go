@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmDeviceDeviceProfiles200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmDeviceDeviceProfiles200ResponseInner{}
+
 // GetNetworkSmDeviceDeviceProfiles200ResponseInner struct for GetNetworkSmDeviceDeviceProfiles200ResponseInner
 type GetNetworkSmDeviceDeviceProfiles200ResponseInner struct {
 	// The Meraki managed device Id.
@@ -53,7 +56,7 @@ func NewGetNetworkSmDeviceDeviceProfiles200ResponseInnerWithDefaults() *GetNetwo
 
 // GetDeviceId returns the DeviceId field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetDeviceId() string {
-	if o == nil || isNil(o.DeviceId) {
+	if o == nil || IsNil(o.DeviceId) {
 		var ret string
 		return ret
 	}
@@ -63,15 +66,15 @@ func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetDeviceId() string 
 // GetDeviceIdOk returns a tuple with the DeviceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetDeviceIdOk() (*string, bool) {
-	if o == nil || isNil(o.DeviceId) {
-    return nil, false
+	if o == nil || IsNil(o.DeviceId) {
+		return nil, false
 	}
 	return o.DeviceId, true
 }
 
 // HasDeviceId returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) HasDeviceId() bool {
-	if o != nil && !isNil(o.DeviceId) {
+	if o != nil && !IsNil(o.DeviceId) {
 		return true
 	}
 
@@ -85,7 +88,7 @@ func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) SetDeviceId(v string)
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -95,15 +98,15 @@ func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) SetId(v string) {
 
 // GetIsEncrypted returns the IsEncrypted field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetIsEncrypted() bool {
-	if o == nil || isNil(o.IsEncrypted) {
+	if o == nil || IsNil(o.IsEncrypted) {
 		var ret bool
 		return ret
 	}
@@ -127,15 +130,15 @@ func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetIsEncrypted() bool
 // GetIsEncryptedOk returns a tuple with the IsEncrypted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetIsEncryptedOk() (*bool, bool) {
-	if o == nil || isNil(o.IsEncrypted) {
-    return nil, false
+	if o == nil || IsNil(o.IsEncrypted) {
+		return nil, false
 	}
 	return o.IsEncrypted, true
 }
 
 // HasIsEncrypted returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) HasIsEncrypted() bool {
-	if o != nil && !isNil(o.IsEncrypted) {
+	if o != nil && !IsNil(o.IsEncrypted) {
 		return true
 	}
 
@@ -149,7 +152,7 @@ func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) SetIsEncrypted(v bool
 
 // GetIsManaged returns the IsManaged field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetIsManaged() bool {
-	if o == nil || isNil(o.IsManaged) {
+	if o == nil || IsNil(o.IsManaged) {
 		var ret bool
 		return ret
 	}
@@ -159,15 +162,15 @@ func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetIsManaged() bool {
 // GetIsManagedOk returns a tuple with the IsManaged field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetIsManagedOk() (*bool, bool) {
-	if o == nil || isNil(o.IsManaged) {
-    return nil, false
+	if o == nil || IsNil(o.IsManaged) {
+		return nil, false
 	}
 	return o.IsManaged, true
 }
 
 // HasIsManaged returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) HasIsManaged() bool {
-	if o != nil && !isNil(o.IsManaged) {
+	if o != nil && !IsNil(o.IsManaged) {
 		return true
 	}
 
@@ -181,7 +184,7 @@ func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) SetIsManaged(v bool) 
 
 // GetProfileData returns the ProfileData field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetProfileData() string {
-	if o == nil || isNil(o.ProfileData) {
+	if o == nil || IsNil(o.ProfileData) {
 		var ret string
 		return ret
 	}
@@ -191,15 +194,15 @@ func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetProfileData() stri
 // GetProfileDataOk returns a tuple with the ProfileData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetProfileDataOk() (*string, bool) {
-	if o == nil || isNil(o.ProfileData) {
-    return nil, false
+	if o == nil || IsNil(o.ProfileData) {
+		return nil, false
 	}
 	return o.ProfileData, true
 }
 
 // HasProfileData returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) HasProfileData() bool {
-	if o != nil && !isNil(o.ProfileData) {
+	if o != nil && !IsNil(o.ProfileData) {
 		return true
 	}
 
@@ -213,7 +216,7 @@ func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) SetProfileData(v stri
 
 // GetProfileIdentifier returns the ProfileIdentifier field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetProfileIdentifier() string {
-	if o == nil || isNil(o.ProfileIdentifier) {
+	if o == nil || IsNil(o.ProfileIdentifier) {
 		var ret string
 		return ret
 	}
@@ -223,15 +226,15 @@ func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetProfileIdentifier(
 // GetProfileIdentifierOk returns a tuple with the ProfileIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetProfileIdentifierOk() (*string, bool) {
-	if o == nil || isNil(o.ProfileIdentifier) {
-    return nil, false
+	if o == nil || IsNil(o.ProfileIdentifier) {
+		return nil, false
 	}
 	return o.ProfileIdentifier, true
 }
 
 // HasProfileIdentifier returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) HasProfileIdentifier() bool {
-	if o != nil && !isNil(o.ProfileIdentifier) {
+	if o != nil && !IsNil(o.ProfileIdentifier) {
 		return true
 	}
 
@@ -245,7 +248,7 @@ func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) SetProfileIdentifier(
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -255,15 +258,15 @@ func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -277,7 +280,7 @@ func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) SetName(v string) {
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetVersion() string {
-	if o == nil || isNil(o.Version) {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
@@ -287,15 +290,15 @@ func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetVersion() string {
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) GetVersionOk() (*string, bool) {
-	if o == nil || isNil(o.Version) {
-    return nil, false
+	if o == nil || IsNil(o.Version) {
+		return nil, false
 	}
 	return o.Version, true
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) HasVersion() bool {
-	if o != nil && !isNil(o.Version) {
+	if o != nil && !IsNil(o.Version) {
 		return true
 	}
 
@@ -308,32 +311,40 @@ func (o *GetNetworkSmDeviceDeviceProfiles200ResponseInner) SetVersion(v string) 
 }
 
 func (o GetNetworkSmDeviceDeviceProfiles200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.DeviceId) {
-		toSerialize["deviceId"] = o.DeviceId
-	}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.IsEncrypted) {
-		toSerialize["isEncrypted"] = o.IsEncrypted
-	}
-	if !isNil(o.IsManaged) {
-		toSerialize["isManaged"] = o.IsManaged
-	}
-	if !isNil(o.ProfileData) {
-		toSerialize["profileData"] = o.ProfileData
-	}
-	if !isNil(o.ProfileIdentifier) {
-		toSerialize["profileIdentifier"] = o.ProfileIdentifier
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Version) {
-		toSerialize["version"] = o.Version
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmDeviceDeviceProfiles200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DeviceId) {
+		toSerialize["deviceId"] = o.DeviceId
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.IsEncrypted) {
+		toSerialize["isEncrypted"] = o.IsEncrypted
+	}
+	if !IsNil(o.IsManaged) {
+		toSerialize["isManaged"] = o.IsManaged
+	}
+	if !IsNil(o.ProfileData) {
+		toSerialize["profileData"] = o.ProfileData
+	}
+	if !IsNil(o.ProfileIdentifier) {
+		toSerialize["profileIdentifier"] = o.ProfileIdentifier
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmDeviceDeviceProfiles200ResponseInner struct {

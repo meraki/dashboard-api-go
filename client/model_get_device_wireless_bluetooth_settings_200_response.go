@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceWirelessBluetoothSettings200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceWirelessBluetoothSettings200Response{}
+
 // GetDeviceWirelessBluetoothSettings200Response struct for GetDeviceWirelessBluetoothSettings200Response
 type GetDeviceWirelessBluetoothSettings200Response struct {
 	// Desired UUID of the beacon. If the value is set to null it will reset to Dashboard's automatically generated value.
@@ -43,7 +46,7 @@ func NewGetDeviceWirelessBluetoothSettings200ResponseWithDefaults() *GetDeviceWi
 
 // GetUuid returns the Uuid field value if set, zero value otherwise.
 func (o *GetDeviceWirelessBluetoothSettings200Response) GetUuid() string {
-	if o == nil || isNil(o.Uuid) {
+	if o == nil || IsNil(o.Uuid) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetDeviceWirelessBluetoothSettings200Response) GetUuid() string {
 // GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceWirelessBluetoothSettings200Response) GetUuidOk() (*string, bool) {
-	if o == nil || isNil(o.Uuid) {
-    return nil, false
+	if o == nil || IsNil(o.Uuid) {
+		return nil, false
 	}
 	return o.Uuid, true
 }
 
 // HasUuid returns a boolean if a field has been set.
 func (o *GetDeviceWirelessBluetoothSettings200Response) HasUuid() bool {
-	if o != nil && !isNil(o.Uuid) {
+	if o != nil && !IsNil(o.Uuid) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetDeviceWirelessBluetoothSettings200Response) SetUuid(v string) {
 
 // GetMajor returns the Major field value if set, zero value otherwise.
 func (o *GetDeviceWirelessBluetoothSettings200Response) GetMajor() int32 {
-	if o == nil || isNil(o.Major) {
+	if o == nil || IsNil(o.Major) {
 		var ret int32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetDeviceWirelessBluetoothSettings200Response) GetMajor() int32 {
 // GetMajorOk returns a tuple with the Major field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceWirelessBluetoothSettings200Response) GetMajorOk() (*int32, bool) {
-	if o == nil || isNil(o.Major) {
-    return nil, false
+	if o == nil || IsNil(o.Major) {
+		return nil, false
 	}
 	return o.Major, true
 }
 
 // HasMajor returns a boolean if a field has been set.
 func (o *GetDeviceWirelessBluetoothSettings200Response) HasMajor() bool {
-	if o != nil && !isNil(o.Major) {
+	if o != nil && !IsNil(o.Major) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetDeviceWirelessBluetoothSettings200Response) SetMajor(v int32) {
 
 // GetMinor returns the Minor field value if set, zero value otherwise.
 func (o *GetDeviceWirelessBluetoothSettings200Response) GetMinor() int32 {
-	if o == nil || isNil(o.Minor) {
+	if o == nil || IsNil(o.Minor) {
 		var ret int32
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetDeviceWirelessBluetoothSettings200Response) GetMinor() int32 {
 // GetMinorOk returns a tuple with the Minor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceWirelessBluetoothSettings200Response) GetMinorOk() (*int32, bool) {
-	if o == nil || isNil(o.Minor) {
-    return nil, false
+	if o == nil || IsNil(o.Minor) {
+		return nil, false
 	}
 	return o.Minor, true
 }
 
 // HasMinor returns a boolean if a field has been set.
 func (o *GetDeviceWirelessBluetoothSettings200Response) HasMinor() bool {
-	if o != nil && !isNil(o.Minor) {
+	if o != nil && !IsNil(o.Minor) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetDeviceWirelessBluetoothSettings200Response) SetMinor(v int32) {
 }
 
 func (o GetDeviceWirelessBluetoothSettings200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Uuid) {
-		toSerialize["uuid"] = o.Uuid
-	}
-	if !isNil(o.Major) {
-		toSerialize["major"] = o.Major
-	}
-	if !isNil(o.Minor) {
-		toSerialize["minor"] = o.Minor
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceWirelessBluetoothSettings200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Uuid) {
+		toSerialize["uuid"] = o.Uuid
+	}
+	if !IsNil(o.Major) {
+		toSerialize["major"] = o.Major
+	}
+	if !IsNil(o.Minor) {
+		toSerialize["minor"] = o.Minor
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceWirelessBluetoothSettings200Response struct {

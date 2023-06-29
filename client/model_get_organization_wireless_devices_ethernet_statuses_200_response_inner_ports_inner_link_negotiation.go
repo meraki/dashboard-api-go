@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerLinkNegotiation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerLinkNegotiation{}
+
 // GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerLinkNegotiation Link negotiation details object for the port
 type GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerLinkNegotiation struct {
 	// The duplex mode of the port. Can be 'full' or 'half'
@@ -41,7 +44,7 @@ func NewGetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner
 
 // GetDuplex returns the Duplex field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerLinkNegotiation) GetDuplex() string {
-	if o == nil || isNil(o.Duplex) {
+	if o == nil || IsNil(o.Duplex) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInne
 // GetDuplexOk returns a tuple with the Duplex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerLinkNegotiation) GetDuplexOk() (*string, bool) {
-	if o == nil || isNil(o.Duplex) {
-    return nil, false
+	if o == nil || IsNil(o.Duplex) {
+		return nil, false
 	}
 	return o.Duplex, true
 }
 
 // HasDuplex returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerLinkNegotiation) HasDuplex() bool {
-	if o != nil && !isNil(o.Duplex) {
+	if o != nil && !IsNil(o.Duplex) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInne
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerLinkNegotiation) GetSpeed() int32 {
-	if o == nil || isNil(o.Speed) {
+	if o == nil || IsNil(o.Speed) {
 		var ret int32
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInne
 // GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerLinkNegotiation) GetSpeedOk() (*int32, bool) {
-	if o == nil || isNil(o.Speed) {
-    return nil, false
+	if o == nil || IsNil(o.Speed) {
+		return nil, false
 	}
 	return o.Speed, true
 }
 
 // HasSpeed returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerLinkNegotiation) HasSpeed() bool {
-	if o != nil && !isNil(o.Speed) {
+	if o != nil && !IsNil(o.Speed) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInne
 }
 
 func (o GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerLinkNegotiation) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Duplex) {
-		toSerialize["duplex"] = o.Duplex
-	}
-	if !isNil(o.Speed) {
-		toSerialize["speed"] = o.Speed
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerLinkNegotiation) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Duplex) {
+		toSerialize["duplex"] = o.Duplex
+	}
+	if !IsNil(o.Speed) {
+		toSerialize["speed"] = o.Speed
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerLinkNegotiation struct {

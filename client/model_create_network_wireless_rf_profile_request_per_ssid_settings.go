@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkWirelessRfProfileRequestPerSsidSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkWirelessRfProfileRequestPerSsidSettings{}
+
 // CreateNetworkWirelessRfProfileRequestPerSsidSettings Per-SSID radio settings by number.
 type CreateNetworkWirelessRfProfileRequestPerSsidSettings struct {
 	Var0 *CreateNetworkWirelessRfProfileRequestPerSsidSettings0 `json:"0,omitempty"`
@@ -52,7 +55,7 @@ func NewCreateNetworkWirelessRfProfileRequestPerSsidSettingsWithDefaults() *Crea
 
 // GetVar0 returns the Var0 field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar0() CreateNetworkWirelessRfProfileRequestPerSsidSettings0 {
-	if o == nil || isNil(o.Var0) {
+	if o == nil || IsNil(o.Var0) {
 		var ret CreateNetworkWirelessRfProfileRequestPerSsidSettings0
 		return ret
 	}
@@ -62,15 +65,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar0() CreateN
 // GetVar0Ok returns a tuple with the Var0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar0Ok() (*CreateNetworkWirelessRfProfileRequestPerSsidSettings0, bool) {
-	if o == nil || isNil(o.Var0) {
-    return nil, false
+	if o == nil || IsNil(o.Var0) {
+		return nil, false
 	}
 	return o.Var0, true
 }
 
 // HasVar0 returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) HasVar0() bool {
-	if o != nil && !isNil(o.Var0) {
+	if o != nil && !IsNil(o.Var0) {
 		return true
 	}
 
@@ -84,7 +87,7 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) SetVar0(v CreateN
 
 // GetVar1 returns the Var1 field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar1() CreateNetworkWirelessRfProfileRequestPerSsidSettings1 {
-	if o == nil || isNil(o.Var1) {
+	if o == nil || IsNil(o.Var1) {
 		var ret CreateNetworkWirelessRfProfileRequestPerSsidSettings1
 		return ret
 	}
@@ -94,15 +97,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar1() CreateN
 // GetVar1Ok returns a tuple with the Var1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar1Ok() (*CreateNetworkWirelessRfProfileRequestPerSsidSettings1, bool) {
-	if o == nil || isNil(o.Var1) {
-    return nil, false
+	if o == nil || IsNil(o.Var1) {
+		return nil, false
 	}
 	return o.Var1, true
 }
 
 // HasVar1 returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) HasVar1() bool {
-	if o != nil && !isNil(o.Var1) {
+	if o != nil && !IsNil(o.Var1) {
 		return true
 	}
 
@@ -116,7 +119,7 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) SetVar1(v CreateN
 
 // GetVar2 returns the Var2 field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar2() CreateNetworkWirelessRfProfileRequestPerSsidSettings2 {
-	if o == nil || isNil(o.Var2) {
+	if o == nil || IsNil(o.Var2) {
 		var ret CreateNetworkWirelessRfProfileRequestPerSsidSettings2
 		return ret
 	}
@@ -126,15 +129,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar2() CreateN
 // GetVar2Ok returns a tuple with the Var2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar2Ok() (*CreateNetworkWirelessRfProfileRequestPerSsidSettings2, bool) {
-	if o == nil || isNil(o.Var2) {
-    return nil, false
+	if o == nil || IsNil(o.Var2) {
+		return nil, false
 	}
 	return o.Var2, true
 }
 
 // HasVar2 returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) HasVar2() bool {
-	if o != nil && !isNil(o.Var2) {
+	if o != nil && !IsNil(o.Var2) {
 		return true
 	}
 
@@ -148,7 +151,7 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) SetVar2(v CreateN
 
 // GetVar3 returns the Var3 field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar3() CreateNetworkWirelessRfProfileRequestPerSsidSettings3 {
-	if o == nil || isNil(o.Var3) {
+	if o == nil || IsNil(o.Var3) {
 		var ret CreateNetworkWirelessRfProfileRequestPerSsidSettings3
 		return ret
 	}
@@ -158,15 +161,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar3() CreateN
 // GetVar3Ok returns a tuple with the Var3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar3Ok() (*CreateNetworkWirelessRfProfileRequestPerSsidSettings3, bool) {
-	if o == nil || isNil(o.Var3) {
-    return nil, false
+	if o == nil || IsNil(o.Var3) {
+		return nil, false
 	}
 	return o.Var3, true
 }
 
 // HasVar3 returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) HasVar3() bool {
-	if o != nil && !isNil(o.Var3) {
+	if o != nil && !IsNil(o.Var3) {
 		return true
 	}
 
@@ -180,7 +183,7 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) SetVar3(v CreateN
 
 // GetVar4 returns the Var4 field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar4() CreateNetworkWirelessRfProfileRequestPerSsidSettings4 {
-	if o == nil || isNil(o.Var4) {
+	if o == nil || IsNil(o.Var4) {
 		var ret CreateNetworkWirelessRfProfileRequestPerSsidSettings4
 		return ret
 	}
@@ -190,15 +193,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar4() CreateN
 // GetVar4Ok returns a tuple with the Var4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar4Ok() (*CreateNetworkWirelessRfProfileRequestPerSsidSettings4, bool) {
-	if o == nil || isNil(o.Var4) {
-    return nil, false
+	if o == nil || IsNil(o.Var4) {
+		return nil, false
 	}
 	return o.Var4, true
 }
 
 // HasVar4 returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) HasVar4() bool {
-	if o != nil && !isNil(o.Var4) {
+	if o != nil && !IsNil(o.Var4) {
 		return true
 	}
 
@@ -212,7 +215,7 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) SetVar4(v CreateN
 
 // GetVar5 returns the Var5 field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar5() CreateNetworkWirelessRfProfileRequestPerSsidSettings5 {
-	if o == nil || isNil(o.Var5) {
+	if o == nil || IsNil(o.Var5) {
 		var ret CreateNetworkWirelessRfProfileRequestPerSsidSettings5
 		return ret
 	}
@@ -222,15 +225,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar5() CreateN
 // GetVar5Ok returns a tuple with the Var5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar5Ok() (*CreateNetworkWirelessRfProfileRequestPerSsidSettings5, bool) {
-	if o == nil || isNil(o.Var5) {
-    return nil, false
+	if o == nil || IsNil(o.Var5) {
+		return nil, false
 	}
 	return o.Var5, true
 }
 
 // HasVar5 returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) HasVar5() bool {
-	if o != nil && !isNil(o.Var5) {
+	if o != nil && !IsNil(o.Var5) {
 		return true
 	}
 
@@ -244,7 +247,7 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) SetVar5(v CreateN
 
 // GetVar6 returns the Var6 field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar6() CreateNetworkWirelessRfProfileRequestPerSsidSettings6 {
-	if o == nil || isNil(o.Var6) {
+	if o == nil || IsNil(o.Var6) {
 		var ret CreateNetworkWirelessRfProfileRequestPerSsidSettings6
 		return ret
 	}
@@ -254,15 +257,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar6() CreateN
 // GetVar6Ok returns a tuple with the Var6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar6Ok() (*CreateNetworkWirelessRfProfileRequestPerSsidSettings6, bool) {
-	if o == nil || isNil(o.Var6) {
-    return nil, false
+	if o == nil || IsNil(o.Var6) {
+		return nil, false
 	}
 	return o.Var6, true
 }
 
 // HasVar6 returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) HasVar6() bool {
-	if o != nil && !isNil(o.Var6) {
+	if o != nil && !IsNil(o.Var6) {
 		return true
 	}
 
@@ -276,7 +279,7 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) SetVar6(v CreateN
 
 // GetVar7 returns the Var7 field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar7() CreateNetworkWirelessRfProfileRequestPerSsidSettings7 {
-	if o == nil || isNil(o.Var7) {
+	if o == nil || IsNil(o.Var7) {
 		var ret CreateNetworkWirelessRfProfileRequestPerSsidSettings7
 		return ret
 	}
@@ -286,15 +289,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar7() CreateN
 // GetVar7Ok returns a tuple with the Var7 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar7Ok() (*CreateNetworkWirelessRfProfileRequestPerSsidSettings7, bool) {
-	if o == nil || isNil(o.Var7) {
-    return nil, false
+	if o == nil || IsNil(o.Var7) {
+		return nil, false
 	}
 	return o.Var7, true
 }
 
 // HasVar7 returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) HasVar7() bool {
-	if o != nil && !isNil(o.Var7) {
+	if o != nil && !IsNil(o.Var7) {
 		return true
 	}
 
@@ -308,7 +311,7 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) SetVar7(v CreateN
 
 // GetVar8 returns the Var8 field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar8() CreateNetworkWirelessRfProfileRequestPerSsidSettings8 {
-	if o == nil || isNil(o.Var8) {
+	if o == nil || IsNil(o.Var8) {
 		var ret CreateNetworkWirelessRfProfileRequestPerSsidSettings8
 		return ret
 	}
@@ -318,15 +321,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar8() CreateN
 // GetVar8Ok returns a tuple with the Var8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar8Ok() (*CreateNetworkWirelessRfProfileRequestPerSsidSettings8, bool) {
-	if o == nil || isNil(o.Var8) {
-    return nil, false
+	if o == nil || IsNil(o.Var8) {
+		return nil, false
 	}
 	return o.Var8, true
 }
 
 // HasVar8 returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) HasVar8() bool {
-	if o != nil && !isNil(o.Var8) {
+	if o != nil && !IsNil(o.Var8) {
 		return true
 	}
 
@@ -340,7 +343,7 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) SetVar8(v CreateN
 
 // GetVar9 returns the Var9 field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar9() CreateNetworkWirelessRfProfileRequestPerSsidSettings9 {
-	if o == nil || isNil(o.Var9) {
+	if o == nil || IsNil(o.Var9) {
 		var ret CreateNetworkWirelessRfProfileRequestPerSsidSettings9
 		return ret
 	}
@@ -350,15 +353,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar9() CreateN
 // GetVar9Ok returns a tuple with the Var9 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar9Ok() (*CreateNetworkWirelessRfProfileRequestPerSsidSettings9, bool) {
-	if o == nil || isNil(o.Var9) {
-    return nil, false
+	if o == nil || IsNil(o.Var9) {
+		return nil, false
 	}
 	return o.Var9, true
 }
 
 // HasVar9 returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) HasVar9() bool {
-	if o != nil && !isNil(o.Var9) {
+	if o != nil && !IsNil(o.Var9) {
 		return true
 	}
 
@@ -372,7 +375,7 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) SetVar9(v CreateN
 
 // GetVar10 returns the Var10 field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar10() CreateNetworkWirelessRfProfileRequestPerSsidSettings10 {
-	if o == nil || isNil(o.Var10) {
+	if o == nil || IsNil(o.Var10) {
 		var ret CreateNetworkWirelessRfProfileRequestPerSsidSettings10
 		return ret
 	}
@@ -382,15 +385,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar10() Create
 // GetVar10Ok returns a tuple with the Var10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar10Ok() (*CreateNetworkWirelessRfProfileRequestPerSsidSettings10, bool) {
-	if o == nil || isNil(o.Var10) {
-    return nil, false
+	if o == nil || IsNil(o.Var10) {
+		return nil, false
 	}
 	return o.Var10, true
 }
 
 // HasVar10 returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) HasVar10() bool {
-	if o != nil && !isNil(o.Var10) {
+	if o != nil && !IsNil(o.Var10) {
 		return true
 	}
 
@@ -404,7 +407,7 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) SetVar10(v Create
 
 // GetVar11 returns the Var11 field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar11() CreateNetworkWirelessRfProfileRequestPerSsidSettings11 {
-	if o == nil || isNil(o.Var11) {
+	if o == nil || IsNil(o.Var11) {
 		var ret CreateNetworkWirelessRfProfileRequestPerSsidSettings11
 		return ret
 	}
@@ -414,15 +417,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar11() Create
 // GetVar11Ok returns a tuple with the Var11 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar11Ok() (*CreateNetworkWirelessRfProfileRequestPerSsidSettings11, bool) {
-	if o == nil || isNil(o.Var11) {
-    return nil, false
+	if o == nil || IsNil(o.Var11) {
+		return nil, false
 	}
 	return o.Var11, true
 }
 
 // HasVar11 returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) HasVar11() bool {
-	if o != nil && !isNil(o.Var11) {
+	if o != nil && !IsNil(o.Var11) {
 		return true
 	}
 
@@ -436,7 +439,7 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) SetVar11(v Create
 
 // GetVar12 returns the Var12 field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar12() CreateNetworkWirelessRfProfileRequestPerSsidSettings12 {
-	if o == nil || isNil(o.Var12) {
+	if o == nil || IsNil(o.Var12) {
 		var ret CreateNetworkWirelessRfProfileRequestPerSsidSettings12
 		return ret
 	}
@@ -446,15 +449,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar12() Create
 // GetVar12Ok returns a tuple with the Var12 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar12Ok() (*CreateNetworkWirelessRfProfileRequestPerSsidSettings12, bool) {
-	if o == nil || isNil(o.Var12) {
-    return nil, false
+	if o == nil || IsNil(o.Var12) {
+		return nil, false
 	}
 	return o.Var12, true
 }
 
 // HasVar12 returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) HasVar12() bool {
-	if o != nil && !isNil(o.Var12) {
+	if o != nil && !IsNil(o.Var12) {
 		return true
 	}
 
@@ -468,7 +471,7 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) SetVar12(v Create
 
 // GetVar13 returns the Var13 field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar13() CreateNetworkWirelessRfProfileRequestPerSsidSettings13 {
-	if o == nil || isNil(o.Var13) {
+	if o == nil || IsNil(o.Var13) {
 		var ret CreateNetworkWirelessRfProfileRequestPerSsidSettings13
 		return ret
 	}
@@ -478,15 +481,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar13() Create
 // GetVar13Ok returns a tuple with the Var13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar13Ok() (*CreateNetworkWirelessRfProfileRequestPerSsidSettings13, bool) {
-	if o == nil || isNil(o.Var13) {
-    return nil, false
+	if o == nil || IsNil(o.Var13) {
+		return nil, false
 	}
 	return o.Var13, true
 }
 
 // HasVar13 returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) HasVar13() bool {
-	if o != nil && !isNil(o.Var13) {
+	if o != nil && !IsNil(o.Var13) {
 		return true
 	}
 
@@ -500,7 +503,7 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) SetVar13(v Create
 
 // GetVar14 returns the Var14 field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar14() CreateNetworkWirelessRfProfileRequestPerSsidSettings14 {
-	if o == nil || isNil(o.Var14) {
+	if o == nil || IsNil(o.Var14) {
 		var ret CreateNetworkWirelessRfProfileRequestPerSsidSettings14
 		return ret
 	}
@@ -510,15 +513,15 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar14() Create
 // GetVar14Ok returns a tuple with the Var14 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) GetVar14Ok() (*CreateNetworkWirelessRfProfileRequestPerSsidSettings14, bool) {
-	if o == nil || isNil(o.Var14) {
-    return nil, false
+	if o == nil || IsNil(o.Var14) {
+		return nil, false
 	}
 	return o.Var14, true
 }
 
 // HasVar14 returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) HasVar14() bool {
-	if o != nil && !isNil(o.Var14) {
+	if o != nil && !IsNil(o.Var14) {
 		return true
 	}
 
@@ -531,53 +534,61 @@ func (o *CreateNetworkWirelessRfProfileRequestPerSsidSettings) SetVar14(v Create
 }
 
 func (o CreateNetworkWirelessRfProfileRequestPerSsidSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Var0) {
-		toSerialize["0"] = o.Var0
-	}
-	if !isNil(o.Var1) {
-		toSerialize["1"] = o.Var1
-	}
-	if !isNil(o.Var2) {
-		toSerialize["2"] = o.Var2
-	}
-	if !isNil(o.Var3) {
-		toSerialize["3"] = o.Var3
-	}
-	if !isNil(o.Var4) {
-		toSerialize["4"] = o.Var4
-	}
-	if !isNil(o.Var5) {
-		toSerialize["5"] = o.Var5
-	}
-	if !isNil(o.Var6) {
-		toSerialize["6"] = o.Var6
-	}
-	if !isNil(o.Var7) {
-		toSerialize["7"] = o.Var7
-	}
-	if !isNil(o.Var8) {
-		toSerialize["8"] = o.Var8
-	}
-	if !isNil(o.Var9) {
-		toSerialize["9"] = o.Var9
-	}
-	if !isNil(o.Var10) {
-		toSerialize["10"] = o.Var10
-	}
-	if !isNil(o.Var11) {
-		toSerialize["11"] = o.Var11
-	}
-	if !isNil(o.Var12) {
-		toSerialize["12"] = o.Var12
-	}
-	if !isNil(o.Var13) {
-		toSerialize["13"] = o.Var13
-	}
-	if !isNil(o.Var14) {
-		toSerialize["14"] = o.Var14
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkWirelessRfProfileRequestPerSsidSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Var0) {
+		toSerialize["0"] = o.Var0
+	}
+	if !IsNil(o.Var1) {
+		toSerialize["1"] = o.Var1
+	}
+	if !IsNil(o.Var2) {
+		toSerialize["2"] = o.Var2
+	}
+	if !IsNil(o.Var3) {
+		toSerialize["3"] = o.Var3
+	}
+	if !IsNil(o.Var4) {
+		toSerialize["4"] = o.Var4
+	}
+	if !IsNil(o.Var5) {
+		toSerialize["5"] = o.Var5
+	}
+	if !IsNil(o.Var6) {
+		toSerialize["6"] = o.Var6
+	}
+	if !IsNil(o.Var7) {
+		toSerialize["7"] = o.Var7
+	}
+	if !IsNil(o.Var8) {
+		toSerialize["8"] = o.Var8
+	}
+	if !IsNil(o.Var9) {
+		toSerialize["9"] = o.Var9
+	}
+	if !IsNil(o.Var10) {
+		toSerialize["10"] = o.Var10
+	}
+	if !IsNil(o.Var11) {
+		toSerialize["11"] = o.Var11
+	}
+	if !IsNil(o.Var12) {
+		toSerialize["12"] = o.Var12
+	}
+	if !IsNil(o.Var13) {
+		toSerialize["13"] = o.Var13
+	}
+	if !IsNil(o.Var14) {
+		toSerialize["14"] = o.Var14
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkWirelessRfProfileRequestPerSsidSettings struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner{}
+
 // CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner struct for CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner
 type CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner struct {
 	// Message related to whether or not the device was found and can be imported.
@@ -46,7 +49,7 @@ func NewCreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseIn
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) GetMessage() string {
-	if o == nil || isNil(o.Message) {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) GetMessageOk() (*string, bool) {
-	if o == nil || isNil(o.Message) {
-    return nil, false
+	if o == nil || IsNil(o.Message) {
+		return nil, false
 	}
 	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) HasMessage() bool {
-	if o != nil && !isNil(o.Message) {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 
 // GetUdi returns the Udi field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) GetUdi() string {
-	if o == nil || isNil(o.Udi) {
+	if o == nil || IsNil(o.Udi) {
 		var ret string
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 // GetUdiOk returns a tuple with the Udi field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) GetUdiOk() (*string, bool) {
-	if o == nil || isNil(o.Udi) {
-    return nil, false
+	if o == nil || IsNil(o.Udi) {
+		return nil, false
 	}
 	return o.Udi, true
 }
 
 // HasUdi returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) HasUdi() bool {
-	if o != nil && !isNil(o.Udi) {
+	if o != nil && !IsNil(o.Udi) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 
 // GetDeviceId returns the DeviceId field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) GetDeviceId() string {
-	if o == nil || isNil(o.DeviceId) {
+	if o == nil || IsNil(o.DeviceId) {
 		var ret string
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 // GetDeviceIdOk returns a tuple with the DeviceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) GetDeviceIdOk() (*string, bool) {
-	if o == nil || isNil(o.DeviceId) {
-    return nil, false
+	if o == nil || IsNil(o.DeviceId) {
+		return nil, false
 	}
 	return o.DeviceId, true
 }
 
 // HasDeviceId returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) HasDeviceId() bool {
-	if o != nil && !isNil(o.DeviceId) {
+	if o != nil && !IsNil(o.DeviceId) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 
 // GetConfigParams returns the ConfigParams field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) GetConfigParams() CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParams {
-	if o == nil || isNil(o.ConfigParams) {
+	if o == nil || IsNil(o.ConfigParams) {
 		var ret CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParams
 		return ret
 	}
@@ -184,15 +187,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 // GetConfigParamsOk returns a tuple with the ConfigParams field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) GetConfigParamsOk() (*CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParams, bool) {
-	if o == nil || isNil(o.ConfigParams) {
-    return nil, false
+	if o == nil || IsNil(o.ConfigParams) {
+		return nil, false
 	}
 	return o.ConfigParams, true
 }
 
 // HasConfigParams returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) HasConfigParams() bool {
-	if o != nil && !isNil(o.ConfigParams) {
+	if o != nil && !IsNil(o.ConfigParams) {
 		return true
 	}
 
@@ -205,23 +208,31 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 }
 
 func (o CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Message) {
-		toSerialize["message"] = o.Message
-	}
-	if !isNil(o.Udi) {
-		toSerialize["udi"] = o.Udi
-	}
-	if !isNil(o.DeviceId) {
-		toSerialize["deviceId"] = o.DeviceId
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.ConfigParams) {
-		toSerialize["configParams"] = o.ConfigParams
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	if !IsNil(o.Udi) {
+		toSerialize["udi"] = o.Udi
+	}
+	if !IsNil(o.DeviceId) {
+		toSerialize["deviceId"] = o.DeviceId
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.ConfigParams) {
+		toSerialize["configParams"] = o.ConfigParams
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInner struct {

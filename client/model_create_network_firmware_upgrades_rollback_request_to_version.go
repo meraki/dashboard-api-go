@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkFirmwareUpgradesRollbackRequestToVersion type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkFirmwareUpgradesRollbackRequestToVersion{}
+
 // CreateNetworkFirmwareUpgradesRollbackRequestToVersion Version to downgrade to (if the network has firmware flexibility)
 type CreateNetworkFirmwareUpgradesRollbackRequestToVersion struct {
 	// The version ID
@@ -39,7 +42,7 @@ func NewCreateNetworkFirmwareUpgradesRollbackRequestToVersionWithDefaults() *Cre
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesRollbackRequestToVersion) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *CreateNetworkFirmwareUpgradesRollbackRequestToVersion) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesRollbackRequestToVersion) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesRollbackRequestToVersion) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *CreateNetworkFirmwareUpgradesRollbackRequestToVersion) SetId(v string) 
 }
 
 func (o CreateNetworkFirmwareUpgradesRollbackRequestToVersion) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkFirmwareUpgradesRollbackRequestToVersion) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkFirmwareUpgradesRollbackRequestToVersion struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtilization type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtilization{}
+
 // GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtilization Utilization of the appliance
 type GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtilization struct {
 	Average *GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtilizationAverage `json:"average,omitempty"`
@@ -38,7 +41,7 @@ func NewGetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtilizat
 
 // GetAverage returns the Average field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtilization) GetAverage() GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtilizationAverage {
-	if o == nil || isNil(o.Average) {
+	if o == nil || IsNil(o.Average) {
 		var ret GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtilizationAverage
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtiliza
 // GetAverageOk returns a tuple with the Average field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtilization) GetAverageOk() (*GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtilizationAverage, bool) {
-	if o == nil || isNil(o.Average) {
-    return nil, false
+	if o == nil || IsNil(o.Average) {
+		return nil, false
 	}
 	return o.Average, true
 }
 
 // HasAverage returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtilization) HasAverage() bool {
-	if o != nil && !isNil(o.Average) {
+	if o != nil && !IsNil(o.Average) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtiliza
 }
 
 func (o GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtilization) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Average) {
-		toSerialize["average"] = o.Average
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtilization) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Average) {
+		toSerialize["average"] = o.Average
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSummaryTopAppliancesByUtilization200ResponseInnerUtilization struct {

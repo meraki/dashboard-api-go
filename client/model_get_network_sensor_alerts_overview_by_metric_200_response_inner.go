@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkSensorAlertsOverviewByMetric200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSensorAlertsOverviewByMetric200ResponseInner{}
+
 // GetNetworkSensorAlertsOverviewByMetric200ResponseInner struct for GetNetworkSensorAlertsOverviewByMetric200ResponseInner
 type GetNetworkSensorAlertsOverviewByMetric200ResponseInner struct {
 	// Start of the timespan over which sensor alerts are counted
@@ -43,7 +46,7 @@ func NewGetNetworkSensorAlertsOverviewByMetric200ResponseInnerWithDefaults() *Ge
 
 // GetStartTs returns the StartTs field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInner) GetStartTs() time.Time {
-	if o == nil || isNil(o.StartTs) {
+	if o == nil || IsNil(o.StartTs) {
 		var ret time.Time
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInner) GetStartTs() ti
 // GetStartTsOk returns a tuple with the StartTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInner) GetStartTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartTs) {
-    return nil, false
+	if o == nil || IsNil(o.StartTs) {
+		return nil, false
 	}
 	return o.StartTs, true
 }
 
 // HasStartTs returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInner) HasStartTs() bool {
-	if o != nil && !isNil(o.StartTs) {
+	if o != nil && !IsNil(o.StartTs) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInner) SetStartTs(v ti
 
 // GetEndTs returns the EndTs field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInner) GetEndTs() time.Time {
-	if o == nil || isNil(o.EndTs) {
+	if o == nil || IsNil(o.EndTs) {
 		var ret time.Time
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInner) GetEndTs() time
 // GetEndTsOk returns a tuple with the EndTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInner) GetEndTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.EndTs) {
-    return nil, false
+	if o == nil || IsNil(o.EndTs) {
+		return nil, false
 	}
 	return o.EndTs, true
 }
 
 // HasEndTs returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInner) HasEndTs() bool {
-	if o != nil && !isNil(o.EndTs) {
+	if o != nil && !IsNil(o.EndTs) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInner) SetEndTs(v time
 
 // GetCounts returns the Counts field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInner) GetCounts() GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts {
-	if o == nil || isNil(o.Counts) {
+	if o == nil || IsNil(o.Counts) {
 		var ret GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInner) GetCounts() Get
 // GetCountsOk returns a tuple with the Counts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInner) GetCountsOk() (*GetNetworkSensorAlertsOverviewByMetric200ResponseInnerCounts, bool) {
-	if o == nil || isNil(o.Counts) {
-    return nil, false
+	if o == nil || IsNil(o.Counts) {
+		return nil, false
 	}
 	return o.Counts, true
 }
 
 // HasCounts returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInner) HasCounts() bool {
-	if o != nil && !isNil(o.Counts) {
+	if o != nil && !IsNil(o.Counts) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkSensorAlertsOverviewByMetric200ResponseInner) SetCounts(v Get
 }
 
 func (o GetNetworkSensorAlertsOverviewByMetric200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.StartTs) {
-		toSerialize["startTs"] = o.StartTs
-	}
-	if !isNil(o.EndTs) {
-		toSerialize["endTs"] = o.EndTs
-	}
-	if !isNil(o.Counts) {
-		toSerialize["counts"] = o.Counts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSensorAlertsOverviewByMetric200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.StartTs) {
+		toSerialize["startTs"] = o.StartTs
+	}
+	if !IsNil(o.EndTs) {
+		toSerialize["endTs"] = o.EndTs
+	}
+	if !IsNil(o.Counts) {
+		toSerialize["counts"] = o.Counts
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSensorAlertsOverviewByMetric200ResponseInner struct {

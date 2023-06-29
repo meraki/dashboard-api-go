@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus{}
+
 // GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus byStatus
 type GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus struct {
 	// online count
@@ -45,7 +48,7 @@ func NewGetOrganizationDevicesStatusesOverview200ResponseCountsByStatusWithDefau
 
 // GetOnline returns the Online field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) GetOnline() int32 {
-	if o == nil || isNil(o.Online) {
+	if o == nil || IsNil(o.Online) {
 		var ret int32
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) GetOnl
 // GetOnlineOk returns a tuple with the Online field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) GetOnlineOk() (*int32, bool) {
-	if o == nil || isNil(o.Online) {
-    return nil, false
+	if o == nil || IsNil(o.Online) {
+		return nil, false
 	}
 	return o.Online, true
 }
 
 // HasOnline returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) HasOnline() bool {
-	if o != nil && !isNil(o.Online) {
+	if o != nil && !IsNil(o.Online) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) SetOnl
 
 // GetAlerting returns the Alerting field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) GetAlerting() int32 {
-	if o == nil || isNil(o.Alerting) {
+	if o == nil || IsNil(o.Alerting) {
 		var ret int32
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) GetAle
 // GetAlertingOk returns a tuple with the Alerting field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) GetAlertingOk() (*int32, bool) {
-	if o == nil || isNil(o.Alerting) {
-    return nil, false
+	if o == nil || IsNil(o.Alerting) {
+		return nil, false
 	}
 	return o.Alerting, true
 }
 
 // HasAlerting returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) HasAlerting() bool {
-	if o != nil && !isNil(o.Alerting) {
+	if o != nil && !IsNil(o.Alerting) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) SetAle
 
 // GetOffline returns the Offline field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) GetOffline() int32 {
-	if o == nil || isNil(o.Offline) {
+	if o == nil || IsNil(o.Offline) {
 		var ret int32
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) GetOff
 // GetOfflineOk returns a tuple with the Offline field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) GetOfflineOk() (*int32, bool) {
-	if o == nil || isNil(o.Offline) {
-    return nil, false
+	if o == nil || IsNil(o.Offline) {
+		return nil, false
 	}
 	return o.Offline, true
 }
 
 // HasOffline returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) HasOffline() bool {
-	if o != nil && !isNil(o.Offline) {
+	if o != nil && !IsNil(o.Offline) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) SetOff
 
 // GetDormant returns the Dormant field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) GetDormant() int32 {
-	if o == nil || isNil(o.Dormant) {
+	if o == nil || IsNil(o.Dormant) {
 		var ret int32
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) GetDor
 // GetDormantOk returns a tuple with the Dormant field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) GetDormantOk() (*int32, bool) {
-	if o == nil || isNil(o.Dormant) {
-    return nil, false
+	if o == nil || IsNil(o.Dormant) {
+		return nil, false
 	}
 	return o.Dormant, true
 }
 
 // HasDormant returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) HasDormant() bool {
-	if o != nil && !isNil(o.Dormant) {
+	if o != nil && !IsNil(o.Dormant) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) SetDor
 }
 
 func (o GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Online) {
-		toSerialize["online"] = o.Online
-	}
-	if !isNil(o.Alerting) {
-		toSerialize["alerting"] = o.Alerting
-	}
-	if !isNil(o.Offline) {
-		toSerialize["offline"] = o.Offline
-	}
-	if !isNil(o.Dormant) {
-		toSerialize["dormant"] = o.Dormant
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationDevicesStatusesOverview200ResponseCountsByStatus) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Online) {
+		toSerialize["online"] = o.Online
+	}
+	if !IsNil(o.Alerting) {
+		toSerialize["alerting"] = o.Alerting
+	}
+	if !IsNil(o.Offline) {
+		toSerialize["offline"] = o.Offline
+	}
+	if !IsNil(o.Dormant) {
+		toSerialize["dormant"] = o.Dormant
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationDevicesStatusesOverview200ResponseCountsByStatus struct {

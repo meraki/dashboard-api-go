@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchAccessControlLists200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchAccessControlLists200Response{}
+
 // GetNetworkSwitchAccessControlLists200Response struct for GetNetworkSwitchAccessControlLists200Response
 type GetNetworkSwitchAccessControlLists200Response struct {
 	// An ordered array of the access control list rules
@@ -39,7 +42,7 @@ func NewGetNetworkSwitchAccessControlLists200ResponseWithDefaults() *GetNetworkS
 
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessControlLists200Response) GetRules() []GetNetworkSwitchAccessControlLists200ResponseRulesInner {
-	if o == nil || isNil(o.Rules) {
+	if o == nil || IsNil(o.Rules) {
 		var ret []GetNetworkSwitchAccessControlLists200ResponseRulesInner
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetNetworkSwitchAccessControlLists200Response) GetRules() []GetNetworkS
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessControlLists200Response) GetRulesOk() ([]GetNetworkSwitchAccessControlLists200ResponseRulesInner, bool) {
-	if o == nil || isNil(o.Rules) {
-    return nil, false
+	if o == nil || IsNil(o.Rules) {
+		return nil, false
 	}
 	return o.Rules, true
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessControlLists200Response) HasRules() bool {
-	if o != nil && !isNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetNetworkSwitchAccessControlLists200Response) SetRules(v []GetNetworkS
 }
 
 func (o GetNetworkSwitchAccessControlLists200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Rules) {
-		toSerialize["rules"] = o.Rules
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchAccessControlLists200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Rules) {
+		toSerialize["rules"] = o.Rules
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchAccessControlLists200Response struct {

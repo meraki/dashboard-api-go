@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWirelessConnectionStats200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessConnectionStats200Response{}
+
 // GetNetworkWirelessConnectionStats200Response struct for GetNetworkWirelessConnectionStats200Response
 type GetNetworkWirelessConnectionStats200Response struct {
 	// The number of failed association attempts
@@ -47,7 +50,7 @@ func NewGetNetworkWirelessConnectionStats200ResponseWithDefaults() *GetNetworkWi
 
 // GetAssoc returns the Assoc field value if set, zero value otherwise.
 func (o *GetNetworkWirelessConnectionStats200Response) GetAssoc() int32 {
-	if o == nil || isNil(o.Assoc) {
+	if o == nil || IsNil(o.Assoc) {
 		var ret int32
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *GetNetworkWirelessConnectionStats200Response) GetAssoc() int32 {
 // GetAssocOk returns a tuple with the Assoc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessConnectionStats200Response) GetAssocOk() (*int32, bool) {
-	if o == nil || isNil(o.Assoc) {
-    return nil, false
+	if o == nil || IsNil(o.Assoc) {
+		return nil, false
 	}
 	return o.Assoc, true
 }
 
 // HasAssoc returns a boolean if a field has been set.
 func (o *GetNetworkWirelessConnectionStats200Response) HasAssoc() bool {
-	if o != nil && !isNil(o.Assoc) {
+	if o != nil && !IsNil(o.Assoc) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *GetNetworkWirelessConnectionStats200Response) SetAssoc(v int32) {
 
 // GetAuth returns the Auth field value if set, zero value otherwise.
 func (o *GetNetworkWirelessConnectionStats200Response) GetAuth() int32 {
-	if o == nil || isNil(o.Auth) {
+	if o == nil || IsNil(o.Auth) {
 		var ret int32
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *GetNetworkWirelessConnectionStats200Response) GetAuth() int32 {
 // GetAuthOk returns a tuple with the Auth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessConnectionStats200Response) GetAuthOk() (*int32, bool) {
-	if o == nil || isNil(o.Auth) {
-    return nil, false
+	if o == nil || IsNil(o.Auth) {
+		return nil, false
 	}
 	return o.Auth, true
 }
 
 // HasAuth returns a boolean if a field has been set.
 func (o *GetNetworkWirelessConnectionStats200Response) HasAuth() bool {
-	if o != nil && !isNil(o.Auth) {
+	if o != nil && !IsNil(o.Auth) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *GetNetworkWirelessConnectionStats200Response) SetAuth(v int32) {
 
 // GetDhcp returns the Dhcp field value if set, zero value otherwise.
 func (o *GetNetworkWirelessConnectionStats200Response) GetDhcp() int32 {
-	if o == nil || isNil(o.Dhcp) {
+	if o == nil || IsNil(o.Dhcp) {
 		var ret int32
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *GetNetworkWirelessConnectionStats200Response) GetDhcp() int32 {
 // GetDhcpOk returns a tuple with the Dhcp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessConnectionStats200Response) GetDhcpOk() (*int32, bool) {
-	if o == nil || isNil(o.Dhcp) {
-    return nil, false
+	if o == nil || IsNil(o.Dhcp) {
+		return nil, false
 	}
 	return o.Dhcp, true
 }
 
 // HasDhcp returns a boolean if a field has been set.
 func (o *GetNetworkWirelessConnectionStats200Response) HasDhcp() bool {
-	if o != nil && !isNil(o.Dhcp) {
+	if o != nil && !IsNil(o.Dhcp) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *GetNetworkWirelessConnectionStats200Response) SetDhcp(v int32) {
 
 // GetDns returns the Dns field value if set, zero value otherwise.
 func (o *GetNetworkWirelessConnectionStats200Response) GetDns() int32 {
-	if o == nil || isNil(o.Dns) {
+	if o == nil || IsNil(o.Dns) {
 		var ret int32
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *GetNetworkWirelessConnectionStats200Response) GetDns() int32 {
 // GetDnsOk returns a tuple with the Dns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessConnectionStats200Response) GetDnsOk() (*int32, bool) {
-	if o == nil || isNil(o.Dns) {
-    return nil, false
+	if o == nil || IsNil(o.Dns) {
+		return nil, false
 	}
 	return o.Dns, true
 }
 
 // HasDns returns a boolean if a field has been set.
 func (o *GetNetworkWirelessConnectionStats200Response) HasDns() bool {
-	if o != nil && !isNil(o.Dns) {
+	if o != nil && !IsNil(o.Dns) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *GetNetworkWirelessConnectionStats200Response) SetDns(v int32) {
 
 // GetSuccess returns the Success field value if set, zero value otherwise.
 func (o *GetNetworkWirelessConnectionStats200Response) GetSuccess() int32 {
-	if o == nil || isNil(o.Success) {
+	if o == nil || IsNil(o.Success) {
 		var ret int32
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *GetNetworkWirelessConnectionStats200Response) GetSuccess() int32 {
 // GetSuccessOk returns a tuple with the Success field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessConnectionStats200Response) GetSuccessOk() (*int32, bool) {
-	if o == nil || isNil(o.Success) {
-    return nil, false
+	if o == nil || IsNil(o.Success) {
+		return nil, false
 	}
 	return o.Success, true
 }
 
 // HasSuccess returns a boolean if a field has been set.
 func (o *GetNetworkWirelessConnectionStats200Response) HasSuccess() bool {
-	if o != nil && !isNil(o.Success) {
+	if o != nil && !IsNil(o.Success) {
 		return true
 	}
 
@@ -206,23 +209,31 @@ func (o *GetNetworkWirelessConnectionStats200Response) SetSuccess(v int32) {
 }
 
 func (o GetNetworkWirelessConnectionStats200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Assoc) {
-		toSerialize["assoc"] = o.Assoc
-	}
-	if !isNil(o.Auth) {
-		toSerialize["auth"] = o.Auth
-	}
-	if !isNil(o.Dhcp) {
-		toSerialize["dhcp"] = o.Dhcp
-	}
-	if !isNil(o.Dns) {
-		toSerialize["dns"] = o.Dns
-	}
-	if !isNil(o.Success) {
-		toSerialize["success"] = o.Success
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessConnectionStats200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Assoc) {
+		toSerialize["assoc"] = o.Assoc
+	}
+	if !IsNil(o.Auth) {
+		toSerialize["auth"] = o.Auth
+	}
+	if !IsNil(o.Dhcp) {
+		toSerialize["dhcp"] = o.Dhcp
+	}
+	if !IsNil(o.Dns) {
+		toSerialize["dns"] = o.Dns
+	}
+	if !IsNil(o.Success) {
+		toSerialize["success"] = o.Success
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessConnectionStats200Response struct {

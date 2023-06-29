@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4Nameservers type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4Nameservers{}
+
 // GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4Nameservers The nameserver settings for this SVI.
 type GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4Nameservers struct {
 	// Up to 2 nameserver addresses to use, ordered in priority from highest to lowest priority.
@@ -39,7 +42,7 @@ func NewGetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4Namese
 
 // GetAddresses returns the Addresses field value if set, zero value otherwise.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4Nameservers) GetAddresses() []string {
-	if o == nil || isNil(o.Addresses) {
+	if o == nil || IsNil(o.Addresses) {
 		var ret []string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4Names
 // GetAddressesOk returns a tuple with the Addresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4Nameservers) GetAddressesOk() ([]string, bool) {
-	if o == nil || isNil(o.Addresses) {
-    return nil, false
+	if o == nil || IsNil(o.Addresses) {
+		return nil, false
 	}
 	return o.Addresses, true
 }
 
 // HasAddresses returns a boolean if a field has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4Nameservers) HasAddresses() bool {
-	if o != nil && !isNil(o.Addresses) {
+	if o != nil && !IsNil(o.Addresses) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4Names
 }
 
 func (o GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4Nameservers) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Addresses) {
-		toSerialize["addresses"] = o.Addresses
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4Nameservers) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Addresses) {
+		toSerialize["addresses"] = o.Addresses
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4Nameservers struct {

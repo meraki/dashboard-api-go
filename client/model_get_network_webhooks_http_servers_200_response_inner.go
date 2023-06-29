@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWebhooksHttpServers200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWebhooksHttpServers200ResponseInner{}
+
 // GetNetworkWebhooksHttpServers200ResponseInner struct for GetNetworkWebhooksHttpServers200ResponseInner
 type GetNetworkWebhooksHttpServers200ResponseInner struct {
 	// A Base64 encoded ID.
@@ -46,7 +49,7 @@ func NewGetNetworkWebhooksHttpServers200ResponseInnerWithDefaults() *GetNetworkW
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkWebhooksHttpServers200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *GetNetworkWebhooksHttpServers200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWebhooksHttpServers200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkWebhooksHttpServers200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *GetNetworkWebhooksHttpServers200ResponseInner) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkWebhooksHttpServers200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *GetNetworkWebhooksHttpServers200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWebhooksHttpServers200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkWebhooksHttpServers200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *GetNetworkWebhooksHttpServers200ResponseInner) SetName(v string) {
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *GetNetworkWebhooksHttpServers200ResponseInner) GetUrl() string {
-	if o == nil || isNil(o.Url) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *GetNetworkWebhooksHttpServers200ResponseInner) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWebhooksHttpServers200ResponseInner) GetUrlOk() (*string, bool) {
-	if o == nil || isNil(o.Url) {
-    return nil, false
+	if o == nil || IsNil(o.Url) {
+		return nil, false
 	}
 	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *GetNetworkWebhooksHttpServers200ResponseInner) HasUrl() bool {
-	if o != nil && !isNil(o.Url) {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *GetNetworkWebhooksHttpServers200ResponseInner) SetUrl(v string) {
 
 // GetNetworkId returns the NetworkId field value if set, zero value otherwise.
 func (o *GetNetworkWebhooksHttpServers200ResponseInner) GetNetworkId() string {
-	if o == nil || isNil(o.NetworkId) {
+	if o == nil || IsNil(o.NetworkId) {
 		var ret string
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *GetNetworkWebhooksHttpServers200ResponseInner) GetNetworkId() string {
 // GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWebhooksHttpServers200ResponseInner) GetNetworkIdOk() (*string, bool) {
-	if o == nil || isNil(o.NetworkId) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkId) {
+		return nil, false
 	}
 	return o.NetworkId, true
 }
 
 // HasNetworkId returns a boolean if a field has been set.
 func (o *GetNetworkWebhooksHttpServers200ResponseInner) HasNetworkId() bool {
-	if o != nil && !isNil(o.NetworkId) {
+	if o != nil && !IsNil(o.NetworkId) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *GetNetworkWebhooksHttpServers200ResponseInner) SetNetworkId(v string) {
 
 // GetPayloadTemplate returns the PayloadTemplate field value if set, zero value otherwise.
 func (o *GetNetworkWebhooksHttpServers200ResponseInner) GetPayloadTemplate() GetNetworkWebhooksHttpServers200ResponseInnerPayloadTemplate {
-	if o == nil || isNil(o.PayloadTemplate) {
+	if o == nil || IsNil(o.PayloadTemplate) {
 		var ret GetNetworkWebhooksHttpServers200ResponseInnerPayloadTemplate
 		return ret
 	}
@@ -184,15 +187,15 @@ func (o *GetNetworkWebhooksHttpServers200ResponseInner) GetPayloadTemplate() Get
 // GetPayloadTemplateOk returns a tuple with the PayloadTemplate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWebhooksHttpServers200ResponseInner) GetPayloadTemplateOk() (*GetNetworkWebhooksHttpServers200ResponseInnerPayloadTemplate, bool) {
-	if o == nil || isNil(o.PayloadTemplate) {
-    return nil, false
+	if o == nil || IsNil(o.PayloadTemplate) {
+		return nil, false
 	}
 	return o.PayloadTemplate, true
 }
 
 // HasPayloadTemplate returns a boolean if a field has been set.
 func (o *GetNetworkWebhooksHttpServers200ResponseInner) HasPayloadTemplate() bool {
-	if o != nil && !isNil(o.PayloadTemplate) {
+	if o != nil && !IsNil(o.PayloadTemplate) {
 		return true
 	}
 
@@ -205,23 +208,31 @@ func (o *GetNetworkWebhooksHttpServers200ResponseInner) SetPayloadTemplate(v Get
 }
 
 func (o GetNetworkWebhooksHttpServers200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Url) {
-		toSerialize["url"] = o.Url
-	}
-	if !isNil(o.NetworkId) {
-		toSerialize["networkId"] = o.NetworkId
-	}
-	if !isNil(o.PayloadTemplate) {
-		toSerialize["payloadTemplate"] = o.PayloadTemplate
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWebhooksHttpServers200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.NetworkId) {
+		toSerialize["networkId"] = o.NetworkId
+	}
+	if !IsNil(o.PayloadTemplate) {
+		toSerialize["payloadTemplate"] = o.PayloadTemplate
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWebhooksHttpServers200ResponseInner struct {

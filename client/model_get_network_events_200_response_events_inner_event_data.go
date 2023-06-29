@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkEvents200ResponseEventsInnerEventData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkEvents200ResponseEventsInnerEventData{}
+
 // GetNetworkEvents200ResponseEventsInnerEventData An object containing more data related to the event.
 type GetNetworkEvents200ResponseEventsInnerEventData struct {
 	// The radio band number the client is trying to connect to.
@@ -51,7 +54,7 @@ func NewGetNetworkEvents200ResponseEventsInnerEventDataWithDefaults() *GetNetwor
 
 // GetRadio returns the Radio field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetRadio() string {
-	if o == nil || isNil(o.Radio) {
+	if o == nil || IsNil(o.Radio) {
 		var ret string
 		return ret
 	}
@@ -61,15 +64,15 @@ func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetRadio() string {
 // GetRadioOk returns a tuple with the Radio field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetRadioOk() (*string, bool) {
-	if o == nil || isNil(o.Radio) {
-    return nil, false
+	if o == nil || IsNil(o.Radio) {
+		return nil, false
 	}
 	return o.Radio, true
 }
 
 // HasRadio returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) HasRadio() bool {
-	if o != nil && !isNil(o.Radio) {
+	if o != nil && !IsNil(o.Radio) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *GetNetworkEvents200ResponseEventsInnerEventData) SetRadio(v string) {
 
 // GetVap returns the Vap field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetVap() string {
-	if o == nil || isNil(o.Vap) {
+	if o == nil || IsNil(o.Vap) {
 		var ret string
 		return ret
 	}
@@ -93,15 +96,15 @@ func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetVap() string {
 // GetVapOk returns a tuple with the Vap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetVapOk() (*string, bool) {
-	if o == nil || isNil(o.Vap) {
-    return nil, false
+	if o == nil || IsNil(o.Vap) {
+		return nil, false
 	}
 	return o.Vap, true
 }
 
 // HasVap returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) HasVap() bool {
-	if o != nil && !isNil(o.Vap) {
+	if o != nil && !IsNil(o.Vap) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *GetNetworkEvents200ResponseEventsInnerEventData) SetVap(v string) {
 
 // GetClientMac returns the ClientMac field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetClientMac() string {
-	if o == nil || isNil(o.ClientMac) {
+	if o == nil || IsNil(o.ClientMac) {
 		var ret string
 		return ret
 	}
@@ -125,15 +128,15 @@ func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetClientMac() string 
 // GetClientMacOk returns a tuple with the ClientMac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetClientMacOk() (*string, bool) {
-	if o == nil || isNil(o.ClientMac) {
-    return nil, false
+	if o == nil || IsNil(o.ClientMac) {
+		return nil, false
 	}
 	return o.ClientMac, true
 }
 
 // HasClientMac returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) HasClientMac() bool {
-	if o != nil && !isNil(o.ClientMac) {
+	if o != nil && !IsNil(o.ClientMac) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *GetNetworkEvents200ResponseEventsInnerEventData) SetClientMac(v string)
 
 // GetClientIp returns the ClientIp field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetClientIp() string {
-	if o == nil || isNil(o.ClientIp) {
+	if o == nil || IsNil(o.ClientIp) {
 		var ret string
 		return ret
 	}
@@ -157,15 +160,15 @@ func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetClientIp() string {
 // GetClientIpOk returns a tuple with the ClientIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetClientIpOk() (*string, bool) {
-	if o == nil || isNil(o.ClientIp) {
-    return nil, false
+	if o == nil || IsNil(o.ClientIp) {
+		return nil, false
 	}
 	return o.ClientIp, true
 }
 
 // HasClientIp returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) HasClientIp() bool {
-	if o != nil && !isNil(o.ClientIp) {
+	if o != nil && !IsNil(o.ClientIp) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *GetNetworkEvents200ResponseEventsInnerEventData) SetClientIp(v string) 
 
 // GetChannel returns the Channel field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetChannel() string {
-	if o == nil || isNil(o.Channel) {
+	if o == nil || IsNil(o.Channel) {
 		var ret string
 		return ret
 	}
@@ -189,15 +192,15 @@ func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetChannel() string {
 // GetChannelOk returns a tuple with the Channel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetChannelOk() (*string, bool) {
-	if o == nil || isNil(o.Channel) {
-    return nil, false
+	if o == nil || IsNil(o.Channel) {
+		return nil, false
 	}
 	return o.Channel, true
 }
 
 // HasChannel returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) HasChannel() bool {
-	if o != nil && !isNil(o.Channel) {
+	if o != nil && !IsNil(o.Channel) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *GetNetworkEvents200ResponseEventsInnerEventData) SetChannel(v string) {
 
 // GetRssi returns the Rssi field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetRssi() string {
-	if o == nil || isNil(o.Rssi) {
+	if o == nil || IsNil(o.Rssi) {
 		var ret string
 		return ret
 	}
@@ -221,15 +224,15 @@ func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetRssi() string {
 // GetRssiOk returns a tuple with the Rssi field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetRssiOk() (*string, bool) {
-	if o == nil || isNil(o.Rssi) {
-    return nil, false
+	if o == nil || IsNil(o.Rssi) {
+		return nil, false
 	}
 	return o.Rssi, true
 }
 
 // HasRssi returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) HasRssi() bool {
-	if o != nil && !isNil(o.Rssi) {
+	if o != nil && !IsNil(o.Rssi) {
 		return true
 	}
 
@@ -243,7 +246,7 @@ func (o *GetNetworkEvents200ResponseEventsInnerEventData) SetRssi(v string) {
 
 // GetAid returns the Aid field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetAid() string {
-	if o == nil || isNil(o.Aid) {
+	if o == nil || IsNil(o.Aid) {
 		var ret string
 		return ret
 	}
@@ -253,15 +256,15 @@ func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetAid() string {
 // GetAidOk returns a tuple with the Aid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) GetAidOk() (*string, bool) {
-	if o == nil || isNil(o.Aid) {
-    return nil, false
+	if o == nil || IsNil(o.Aid) {
+		return nil, false
 	}
 	return o.Aid, true
 }
 
 // HasAid returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInnerEventData) HasAid() bool {
-	if o != nil && !isNil(o.Aid) {
+	if o != nil && !IsNil(o.Aid) {
 		return true
 	}
 
@@ -274,29 +277,37 @@ func (o *GetNetworkEvents200ResponseEventsInnerEventData) SetAid(v string) {
 }
 
 func (o GetNetworkEvents200ResponseEventsInnerEventData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Radio) {
-		toSerialize["radio"] = o.Radio
-	}
-	if !isNil(o.Vap) {
-		toSerialize["vap"] = o.Vap
-	}
-	if !isNil(o.ClientMac) {
-		toSerialize["client_mac"] = o.ClientMac
-	}
-	if !isNil(o.ClientIp) {
-		toSerialize["client_ip"] = o.ClientIp
-	}
-	if !isNil(o.Channel) {
-		toSerialize["channel"] = o.Channel
-	}
-	if !isNil(o.Rssi) {
-		toSerialize["rssi"] = o.Rssi
-	}
-	if !isNil(o.Aid) {
-		toSerialize["aid"] = o.Aid
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkEvents200ResponseEventsInnerEventData) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Radio) {
+		toSerialize["radio"] = o.Radio
+	}
+	if !IsNil(o.Vap) {
+		toSerialize["vap"] = o.Vap
+	}
+	if !IsNil(o.ClientMac) {
+		toSerialize["client_mac"] = o.ClientMac
+	}
+	if !IsNil(o.ClientIp) {
+		toSerialize["client_ip"] = o.ClientIp
+	}
+	if !IsNil(o.Channel) {
+		toSerialize["channel"] = o.Channel
+	}
+	if !IsNil(o.Rssi) {
+		toSerialize["rssi"] = o.Rssi
+	}
+	if !IsNil(o.Aid) {
+		toSerialize["aid"] = o.Aid
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkEvents200ResponseEventsInnerEventData struct {

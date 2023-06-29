@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationApplianceVpnVpnFirewallRulesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationApplianceVpnVpnFirewallRulesRequest{}
+
 // UpdateOrganizationApplianceVpnVpnFirewallRulesRequest struct for UpdateOrganizationApplianceVpnVpnFirewallRulesRequest
 type UpdateOrganizationApplianceVpnVpnFirewallRulesRequest struct {
 	// An ordered array of the firewall rules (not including the default rule)
@@ -41,7 +44,7 @@ func NewUpdateOrganizationApplianceVpnVpnFirewallRulesRequestWithDefaults() *Upd
 
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRulesRequest) GetRules() []UpdateOrganizationApplianceVpnVpnFirewallRulesRequestRulesInner {
-	if o == nil || isNil(o.Rules) {
+	if o == nil || IsNil(o.Rules) {
 		var ret []UpdateOrganizationApplianceVpnVpnFirewallRulesRequestRulesInner
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRulesRequest) GetRules() []Upd
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRulesRequest) GetRulesOk() ([]UpdateOrganizationApplianceVpnVpnFirewallRulesRequestRulesInner, bool) {
-	if o == nil || isNil(o.Rules) {
-    return nil, false
+	if o == nil || IsNil(o.Rules) {
+		return nil, false
 	}
 	return o.Rules, true
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRulesRequest) HasRules() bool {
-	if o != nil && !isNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRulesRequest) SetRules(v []Upd
 
 // GetSyslogDefaultRule returns the SyslogDefaultRule field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRulesRequest) GetSyslogDefaultRule() bool {
-	if o == nil || isNil(o.SyslogDefaultRule) {
+	if o == nil || IsNil(o.SyslogDefaultRule) {
 		var ret bool
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRulesRequest) GetSyslogDefault
 // GetSyslogDefaultRuleOk returns a tuple with the SyslogDefaultRule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRulesRequest) GetSyslogDefaultRuleOk() (*bool, bool) {
-	if o == nil || isNil(o.SyslogDefaultRule) {
-    return nil, false
+	if o == nil || IsNil(o.SyslogDefaultRule) {
+		return nil, false
 	}
 	return o.SyslogDefaultRule, true
 }
 
 // HasSyslogDefaultRule returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnVpnFirewallRulesRequest) HasSyslogDefaultRule() bool {
-	if o != nil && !isNil(o.SyslogDefaultRule) {
+	if o != nil && !IsNil(o.SyslogDefaultRule) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateOrganizationApplianceVpnVpnFirewallRulesRequest) SetSyslogDefault
 }
 
 func (o UpdateOrganizationApplianceVpnVpnFirewallRulesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Rules) {
-		toSerialize["rules"] = o.Rules
-	}
-	if !isNil(o.SyslogDefaultRule) {
-		toSerialize["syslogDefaultRule"] = o.SyslogDefaultRule
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationApplianceVpnVpnFirewallRulesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Rules) {
+		toSerialize["rules"] = o.Rules
+	}
+	if !IsNil(o.SyslogDefaultRule) {
+		toSerialize["syslogDefaultRule"] = o.SyslogDefaultRule
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationApplianceVpnVpnFirewallRulesRequest struct {

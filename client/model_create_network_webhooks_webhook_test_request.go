@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkWebhooksWebhookTestRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkWebhooksWebhookTestRequest{}
+
 // CreateNetworkWebhooksWebhookTestRequest struct for CreateNetworkWebhooksWebhookTestRequest
 type CreateNetworkWebhooksWebhookTestRequest struct {
 	// The URL where the test webhook will be sent
@@ -68,7 +71,7 @@ func (o *CreateNetworkWebhooksWebhookTestRequest) GetUrl() string {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWebhooksWebhookTestRequest) GetUrlOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Url, true
 }
@@ -80,7 +83,7 @@ func (o *CreateNetworkWebhooksWebhookTestRequest) SetUrl(v string) {
 
 // GetSharedSecret returns the SharedSecret field value if set, zero value otherwise.
 func (o *CreateNetworkWebhooksWebhookTestRequest) GetSharedSecret() string {
-	if o == nil || isNil(o.SharedSecret) {
+	if o == nil || IsNil(o.SharedSecret) {
 		var ret string
 		return ret
 	}
@@ -90,15 +93,15 @@ func (o *CreateNetworkWebhooksWebhookTestRequest) GetSharedSecret() string {
 // GetSharedSecretOk returns a tuple with the SharedSecret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWebhooksWebhookTestRequest) GetSharedSecretOk() (*string, bool) {
-	if o == nil || isNil(o.SharedSecret) {
-    return nil, false
+	if o == nil || IsNil(o.SharedSecret) {
+		return nil, false
 	}
 	return o.SharedSecret, true
 }
 
 // HasSharedSecret returns a boolean if a field has been set.
 func (o *CreateNetworkWebhooksWebhookTestRequest) HasSharedSecret() bool {
-	if o != nil && !isNil(o.SharedSecret) {
+	if o != nil && !IsNil(o.SharedSecret) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *CreateNetworkWebhooksWebhookTestRequest) SetSharedSecret(v string) {
 
 // GetPayloadTemplateId returns the PayloadTemplateId field value if set, zero value otherwise.
 func (o *CreateNetworkWebhooksWebhookTestRequest) GetPayloadTemplateId() string {
-	if o == nil || isNil(o.PayloadTemplateId) {
+	if o == nil || IsNil(o.PayloadTemplateId) {
 		var ret string
 		return ret
 	}
@@ -122,15 +125,15 @@ func (o *CreateNetworkWebhooksWebhookTestRequest) GetPayloadTemplateId() string 
 // GetPayloadTemplateIdOk returns a tuple with the PayloadTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWebhooksWebhookTestRequest) GetPayloadTemplateIdOk() (*string, bool) {
-	if o == nil || isNil(o.PayloadTemplateId) {
-    return nil, false
+	if o == nil || IsNil(o.PayloadTemplateId) {
+		return nil, false
 	}
 	return o.PayloadTemplateId, true
 }
 
 // HasPayloadTemplateId returns a boolean if a field has been set.
 func (o *CreateNetworkWebhooksWebhookTestRequest) HasPayloadTemplateId() bool {
-	if o != nil && !isNil(o.PayloadTemplateId) {
+	if o != nil && !IsNil(o.PayloadTemplateId) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *CreateNetworkWebhooksWebhookTestRequest) SetPayloadTemplateId(v string)
 
 // GetPayloadTemplateName returns the PayloadTemplateName field value if set, zero value otherwise.
 func (o *CreateNetworkWebhooksWebhookTestRequest) GetPayloadTemplateName() string {
-	if o == nil || isNil(o.PayloadTemplateName) {
+	if o == nil || IsNil(o.PayloadTemplateName) {
 		var ret string
 		return ret
 	}
@@ -154,15 +157,15 @@ func (o *CreateNetworkWebhooksWebhookTestRequest) GetPayloadTemplateName() strin
 // GetPayloadTemplateNameOk returns a tuple with the PayloadTemplateName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWebhooksWebhookTestRequest) GetPayloadTemplateNameOk() (*string, bool) {
-	if o == nil || isNil(o.PayloadTemplateName) {
-    return nil, false
+	if o == nil || IsNil(o.PayloadTemplateName) {
+		return nil, false
 	}
 	return o.PayloadTemplateName, true
 }
 
 // HasPayloadTemplateName returns a boolean if a field has been set.
 func (o *CreateNetworkWebhooksWebhookTestRequest) HasPayloadTemplateName() bool {
-	if o != nil && !isNil(o.PayloadTemplateName) {
+	if o != nil && !IsNil(o.PayloadTemplateName) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *CreateNetworkWebhooksWebhookTestRequest) SetPayloadTemplateName(v strin
 
 // GetAlertTypeId returns the AlertTypeId field value if set, zero value otherwise.
 func (o *CreateNetworkWebhooksWebhookTestRequest) GetAlertTypeId() string {
-	if o == nil || isNil(o.AlertTypeId) {
+	if o == nil || IsNil(o.AlertTypeId) {
 		var ret string
 		return ret
 	}
@@ -186,15 +189,15 @@ func (o *CreateNetworkWebhooksWebhookTestRequest) GetAlertTypeId() string {
 // GetAlertTypeIdOk returns a tuple with the AlertTypeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWebhooksWebhookTestRequest) GetAlertTypeIdOk() (*string, bool) {
-	if o == nil || isNil(o.AlertTypeId) {
-    return nil, false
+	if o == nil || IsNil(o.AlertTypeId) {
+		return nil, false
 	}
 	return o.AlertTypeId, true
 }
 
 // HasAlertTypeId returns a boolean if a field has been set.
 func (o *CreateNetworkWebhooksWebhookTestRequest) HasAlertTypeId() bool {
-	if o != nil && !isNil(o.AlertTypeId) {
+	if o != nil && !IsNil(o.AlertTypeId) {
 		return true
 	}
 
@@ -207,23 +210,29 @@ func (o *CreateNetworkWebhooksWebhookTestRequest) SetAlertTypeId(v string) {
 }
 
 func (o CreateNetworkWebhooksWebhookTestRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["url"] = o.Url
-	}
-	if !isNil(o.SharedSecret) {
-		toSerialize["sharedSecret"] = o.SharedSecret
-	}
-	if !isNil(o.PayloadTemplateId) {
-		toSerialize["payloadTemplateId"] = o.PayloadTemplateId
-	}
-	if !isNil(o.PayloadTemplateName) {
-		toSerialize["payloadTemplateName"] = o.PayloadTemplateName
-	}
-	if !isNil(o.AlertTypeId) {
-		toSerialize["alertTypeId"] = o.AlertTypeId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkWebhooksWebhookTestRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["url"] = o.Url
+	if !IsNil(o.SharedSecret) {
+		toSerialize["sharedSecret"] = o.SharedSecret
+	}
+	if !IsNil(o.PayloadTemplateId) {
+		toSerialize["payloadTemplateId"] = o.PayloadTemplateId
+	}
+	if !IsNil(o.PayloadTemplateName) {
+		toSerialize["payloadTemplateName"] = o.PayloadTemplateName
+	}
+	if !IsNil(o.AlertTypeId) {
+		toSerialize["alertTypeId"] = o.AlertTypeId
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkWebhooksWebhookTestRequest struct {

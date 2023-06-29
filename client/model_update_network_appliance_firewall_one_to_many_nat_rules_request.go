@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceFirewallOneToManyNatRulesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceFirewallOneToManyNatRulesRequest{}
+
 // UpdateNetworkApplianceFirewallOneToManyNatRulesRequest struct for UpdateNetworkApplianceFirewallOneToManyNatRulesRequest
 type UpdateNetworkApplianceFirewallOneToManyNatRulesRequest struct {
 	// An array of 1:Many nat rules
@@ -52,7 +55,7 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequest) GetRules() []Up
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequest) GetRulesOk() ([]UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Rules, true
 }
@@ -63,11 +66,17 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequest) SetRules(v []Up
 }
 
 func (o UpdateNetworkApplianceFirewallOneToManyNatRulesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["rules"] = o.Rules
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceFirewallOneToManyNatRulesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["rules"] = o.Rules
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceFirewallOneToManyNatRulesRequest struct {

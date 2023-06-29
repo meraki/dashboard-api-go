@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies{}
+
 // GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies Custom IPSec policies for the VPN peer. If not included and a preset has not been chosen, the default preset for IPSec policies will be used.
 type GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies struct {
 	// This is the cipher algorithm to be used in Phase 1. The value should be an array with one of the following algorithms: 'aes256', 'aes192', 'aes128', 'tripledes', 'des'
@@ -55,7 +58,7 @@ func NewGetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecP
 
 // GetIkeCipherAlgo returns the IkeCipherAlgo field value if set, zero value otherwise.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetIkeCipherAlgo() []string {
-	if o == nil || isNil(o.IkeCipherAlgo) {
+	if o == nil || IsNil(o.IkeCipherAlgo) {
 		var ret []string
 		return ret
 	}
@@ -65,15 +68,15 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 // GetIkeCipherAlgoOk returns a tuple with the IkeCipherAlgo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetIkeCipherAlgoOk() ([]string, bool) {
-	if o == nil || isNil(o.IkeCipherAlgo) {
-    return nil, false
+	if o == nil || IsNil(o.IkeCipherAlgo) {
+		return nil, false
 	}
 	return o.IkeCipherAlgo, true
 }
 
 // HasIkeCipherAlgo returns a boolean if a field has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) HasIkeCipherAlgo() bool {
-	if o != nil && !isNil(o.IkeCipherAlgo) {
+	if o != nil && !IsNil(o.IkeCipherAlgo) {
 		return true
 	}
 
@@ -87,7 +90,7 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 
 // GetIkeAuthAlgo returns the IkeAuthAlgo field value if set, zero value otherwise.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetIkeAuthAlgo() []string {
-	if o == nil || isNil(o.IkeAuthAlgo) {
+	if o == nil || IsNil(o.IkeAuthAlgo) {
 		var ret []string
 		return ret
 	}
@@ -97,15 +100,15 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 // GetIkeAuthAlgoOk returns a tuple with the IkeAuthAlgo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetIkeAuthAlgoOk() ([]string, bool) {
-	if o == nil || isNil(o.IkeAuthAlgo) {
-    return nil, false
+	if o == nil || IsNil(o.IkeAuthAlgo) {
+		return nil, false
 	}
 	return o.IkeAuthAlgo, true
 }
 
 // HasIkeAuthAlgo returns a boolean if a field has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) HasIkeAuthAlgo() bool {
-	if o != nil && !isNil(o.IkeAuthAlgo) {
+	if o != nil && !IsNil(o.IkeAuthAlgo) {
 		return true
 	}
 
@@ -119,7 +122,7 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 
 // GetIkePrfAlgo returns the IkePrfAlgo field value if set, zero value otherwise.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetIkePrfAlgo() []string {
-	if o == nil || isNil(o.IkePrfAlgo) {
+	if o == nil || IsNil(o.IkePrfAlgo) {
 		var ret []string
 		return ret
 	}
@@ -129,15 +132,15 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 // GetIkePrfAlgoOk returns a tuple with the IkePrfAlgo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetIkePrfAlgoOk() ([]string, bool) {
-	if o == nil || isNil(o.IkePrfAlgo) {
-    return nil, false
+	if o == nil || IsNil(o.IkePrfAlgo) {
+		return nil, false
 	}
 	return o.IkePrfAlgo, true
 }
 
 // HasIkePrfAlgo returns a boolean if a field has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) HasIkePrfAlgo() bool {
-	if o != nil && !isNil(o.IkePrfAlgo) {
+	if o != nil && !IsNil(o.IkePrfAlgo) {
 		return true
 	}
 
@@ -151,7 +154,7 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 
 // GetIkeDiffieHellmanGroup returns the IkeDiffieHellmanGroup field value if set, zero value otherwise.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetIkeDiffieHellmanGroup() []string {
-	if o == nil || isNil(o.IkeDiffieHellmanGroup) {
+	if o == nil || IsNil(o.IkeDiffieHellmanGroup) {
 		var ret []string
 		return ret
 	}
@@ -161,15 +164,15 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 // GetIkeDiffieHellmanGroupOk returns a tuple with the IkeDiffieHellmanGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetIkeDiffieHellmanGroupOk() ([]string, bool) {
-	if o == nil || isNil(o.IkeDiffieHellmanGroup) {
-    return nil, false
+	if o == nil || IsNil(o.IkeDiffieHellmanGroup) {
+		return nil, false
 	}
 	return o.IkeDiffieHellmanGroup, true
 }
 
 // HasIkeDiffieHellmanGroup returns a boolean if a field has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) HasIkeDiffieHellmanGroup() bool {
-	if o != nil && !isNil(o.IkeDiffieHellmanGroup) {
+	if o != nil && !IsNil(o.IkeDiffieHellmanGroup) {
 		return true
 	}
 
@@ -183,7 +186,7 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 
 // GetIkeLifetime returns the IkeLifetime field value if set, zero value otherwise.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetIkeLifetime() int32 {
-	if o == nil || isNil(o.IkeLifetime) {
+	if o == nil || IsNil(o.IkeLifetime) {
 		var ret int32
 		return ret
 	}
@@ -193,15 +196,15 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 // GetIkeLifetimeOk returns a tuple with the IkeLifetime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetIkeLifetimeOk() (*int32, bool) {
-	if o == nil || isNil(o.IkeLifetime) {
-    return nil, false
+	if o == nil || IsNil(o.IkeLifetime) {
+		return nil, false
 	}
 	return o.IkeLifetime, true
 }
 
 // HasIkeLifetime returns a boolean if a field has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) HasIkeLifetime() bool {
-	if o != nil && !isNil(o.IkeLifetime) {
+	if o != nil && !IsNil(o.IkeLifetime) {
 		return true
 	}
 
@@ -215,7 +218,7 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 
 // GetChildCipherAlgo returns the ChildCipherAlgo field value if set, zero value otherwise.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetChildCipherAlgo() []string {
-	if o == nil || isNil(o.ChildCipherAlgo) {
+	if o == nil || IsNil(o.ChildCipherAlgo) {
 		var ret []string
 		return ret
 	}
@@ -225,15 +228,15 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 // GetChildCipherAlgoOk returns a tuple with the ChildCipherAlgo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetChildCipherAlgoOk() ([]string, bool) {
-	if o == nil || isNil(o.ChildCipherAlgo) {
-    return nil, false
+	if o == nil || IsNil(o.ChildCipherAlgo) {
+		return nil, false
 	}
 	return o.ChildCipherAlgo, true
 }
 
 // HasChildCipherAlgo returns a boolean if a field has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) HasChildCipherAlgo() bool {
-	if o != nil && !isNil(o.ChildCipherAlgo) {
+	if o != nil && !IsNil(o.ChildCipherAlgo) {
 		return true
 	}
 
@@ -247,7 +250,7 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 
 // GetChildAuthAlgo returns the ChildAuthAlgo field value if set, zero value otherwise.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetChildAuthAlgo() []string {
-	if o == nil || isNil(o.ChildAuthAlgo) {
+	if o == nil || IsNil(o.ChildAuthAlgo) {
 		var ret []string
 		return ret
 	}
@@ -257,15 +260,15 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 // GetChildAuthAlgoOk returns a tuple with the ChildAuthAlgo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetChildAuthAlgoOk() ([]string, bool) {
-	if o == nil || isNil(o.ChildAuthAlgo) {
-    return nil, false
+	if o == nil || IsNil(o.ChildAuthAlgo) {
+		return nil, false
 	}
 	return o.ChildAuthAlgo, true
 }
 
 // HasChildAuthAlgo returns a boolean if a field has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) HasChildAuthAlgo() bool {
-	if o != nil && !isNil(o.ChildAuthAlgo) {
+	if o != nil && !IsNil(o.ChildAuthAlgo) {
 		return true
 	}
 
@@ -279,7 +282,7 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 
 // GetChildPfsGroup returns the ChildPfsGroup field value if set, zero value otherwise.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetChildPfsGroup() []string {
-	if o == nil || isNil(o.ChildPfsGroup) {
+	if o == nil || IsNil(o.ChildPfsGroup) {
 		var ret []string
 		return ret
 	}
@@ -289,15 +292,15 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 // GetChildPfsGroupOk returns a tuple with the ChildPfsGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetChildPfsGroupOk() ([]string, bool) {
-	if o == nil || isNil(o.ChildPfsGroup) {
-    return nil, false
+	if o == nil || IsNil(o.ChildPfsGroup) {
+		return nil, false
 	}
 	return o.ChildPfsGroup, true
 }
 
 // HasChildPfsGroup returns a boolean if a field has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) HasChildPfsGroup() bool {
-	if o != nil && !isNil(o.ChildPfsGroup) {
+	if o != nil && !IsNil(o.ChildPfsGroup) {
 		return true
 	}
 
@@ -311,7 +314,7 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 
 // GetChildLifetime returns the ChildLifetime field value if set, zero value otherwise.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetChildLifetime() int32 {
-	if o == nil || isNil(o.ChildLifetime) {
+	if o == nil || IsNil(o.ChildLifetime) {
 		var ret int32
 		return ret
 	}
@@ -321,15 +324,15 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 // GetChildLifetimeOk returns a tuple with the ChildLifetime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) GetChildLifetimeOk() (*int32, bool) {
-	if o == nil || isNil(o.ChildLifetime) {
-    return nil, false
+	if o == nil || IsNil(o.ChildLifetime) {
+		return nil, false
 	}
 	return o.ChildLifetime, true
 }
 
 // HasChildLifetime returns a boolean if a field has been set.
 func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) HasChildLifetime() bool {
-	if o != nil && !isNil(o.ChildLifetime) {
+	if o != nil && !IsNil(o.ChildLifetime) {
 		return true
 	}
 
@@ -342,35 +345,43 @@ func (o *GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsec
 }
 
 func (o GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.IkeCipherAlgo) {
-		toSerialize["ikeCipherAlgo"] = o.IkeCipherAlgo
-	}
-	if !isNil(o.IkeAuthAlgo) {
-		toSerialize["ikeAuthAlgo"] = o.IkeAuthAlgo
-	}
-	if !isNil(o.IkePrfAlgo) {
-		toSerialize["ikePrfAlgo"] = o.IkePrfAlgo
-	}
-	if !isNil(o.IkeDiffieHellmanGroup) {
-		toSerialize["ikeDiffieHellmanGroup"] = o.IkeDiffieHellmanGroup
-	}
-	if !isNil(o.IkeLifetime) {
-		toSerialize["ikeLifetime"] = o.IkeLifetime
-	}
-	if !isNil(o.ChildCipherAlgo) {
-		toSerialize["childCipherAlgo"] = o.ChildCipherAlgo
-	}
-	if !isNil(o.ChildAuthAlgo) {
-		toSerialize["childAuthAlgo"] = o.ChildAuthAlgo
-	}
-	if !isNil(o.ChildPfsGroup) {
-		toSerialize["childPfsGroup"] = o.ChildPfsGroup
-	}
-	if !isNil(o.ChildLifetime) {
-		toSerialize["childLifetime"] = o.ChildLifetime
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.IkeCipherAlgo) {
+		toSerialize["ikeCipherAlgo"] = o.IkeCipherAlgo
+	}
+	if !IsNil(o.IkeAuthAlgo) {
+		toSerialize["ikeAuthAlgo"] = o.IkeAuthAlgo
+	}
+	if !IsNil(o.IkePrfAlgo) {
+		toSerialize["ikePrfAlgo"] = o.IkePrfAlgo
+	}
+	if !IsNil(o.IkeDiffieHellmanGroup) {
+		toSerialize["ikeDiffieHellmanGroup"] = o.IkeDiffieHellmanGroup
+	}
+	if !IsNil(o.IkeLifetime) {
+		toSerialize["ikeLifetime"] = o.IkeLifetime
+	}
+	if !IsNil(o.ChildCipherAlgo) {
+		toSerialize["childCipherAlgo"] = o.ChildCipherAlgo
+	}
+	if !IsNil(o.ChildAuthAlgo) {
+		toSerialize["childAuthAlgo"] = o.ChildAuthAlgo
+	}
+	if !IsNil(o.ChildPfsGroup) {
+		toSerialize["childPfsGroup"] = o.ChildPfsGroup
+	}
+	if !IsNil(o.ChildLifetime) {
+		toSerialize["childLifetime"] = o.ChildLifetime
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner{}
+
 // UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner struct for UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner
 type UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner struct {
 	// The name of the client which has fixed IP address
@@ -58,7 +61,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner) G
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -82,7 +85,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner) G
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner) GetMacOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Mac, true
 }
@@ -106,7 +109,7 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner) G
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner) GetIpOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Ip, true
 }
@@ -117,17 +120,19 @@ func (o *UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner) S
 }
 
 func (o UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["mac"] = o.Mac
-	}
-	if true {
-		toSerialize["ip"] = o.Ip
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["mac"] = o.Mac
+	toSerialize["ip"] = o.Ip
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceSwitchRoutingInterfaceDhcpRequestFixedIpAssignmentsInner struct {

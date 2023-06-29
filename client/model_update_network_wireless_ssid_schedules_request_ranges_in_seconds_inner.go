@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidSchedulesRequestRangesInSecondsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidSchedulesRequestRangesInSecondsInner{}
+
 // UpdateNetworkWirelessSsidSchedulesRequestRangesInSecondsInner struct for UpdateNetworkWirelessSsidSchedulesRequestRangesInSecondsInner
 type UpdateNetworkWirelessSsidSchedulesRequestRangesInSecondsInner struct {
 	// Seconds since Sunday at midnight when the outage range starts.
@@ -55,7 +58,7 @@ func (o *UpdateNetworkWirelessSsidSchedulesRequestRangesInSecondsInner) GetStart
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSchedulesRequestRangesInSecondsInner) GetStartOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Start, true
 }
@@ -79,7 +82,7 @@ func (o *UpdateNetworkWirelessSsidSchedulesRequestRangesInSecondsInner) GetEnd()
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSchedulesRequestRangesInSecondsInner) GetEndOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.End, true
 }
@@ -90,14 +93,18 @@ func (o *UpdateNetworkWirelessSsidSchedulesRequestRangesInSecondsInner) SetEnd(v
 }
 
 func (o UpdateNetworkWirelessSsidSchedulesRequestRangesInSecondsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["start"] = o.Start
-	}
-	if true {
-		toSerialize["end"] = o.End
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidSchedulesRequestRangesInSecondsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["start"] = o.Start
+	toSerialize["end"] = o.End
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidSchedulesRequestRangesInSecondsInner struct {

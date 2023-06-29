@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the CreateNetworkFirmwareUpgradesRollback200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkFirmwareUpgradesRollback200Response{}
+
 // CreateNetworkFirmwareUpgradesRollback200Response struct for CreateNetworkFirmwareUpgradesRollback200Response
 type CreateNetworkFirmwareUpgradesRollback200Response struct {
 	// Product type to rollback (if the network is a combined network)
@@ -49,7 +52,7 @@ func NewCreateNetworkFirmwareUpgradesRollback200ResponseWithDefaults() *CreateNe
 
 // GetProduct returns the Product field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetProduct() string {
-	if o == nil || isNil(o.Product) {
+	if o == nil || IsNil(o.Product) {
 		var ret string
 		return ret
 	}
@@ -59,15 +62,15 @@ func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetProduct() string {
 // GetProductOk returns a tuple with the Product field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetProductOk() (*string, bool) {
-	if o == nil || isNil(o.Product) {
-    return nil, false
+	if o == nil || IsNil(o.Product) {
+		return nil, false
 	}
 	return o.Product, true
 }
 
 // HasProduct returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) HasProduct() bool {
-	if o != nil && !isNil(o.Product) {
+	if o != nil && !IsNil(o.Product) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *CreateNetworkFirmwareUpgradesRollback200Response) SetProduct(v string) 
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -91,15 +94,15 @@ func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *CreateNetworkFirmwareUpgradesRollback200Response) SetStatus(v string) {
 
 // GetUpgradeBatchId returns the UpgradeBatchId field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetUpgradeBatchId() string {
-	if o == nil || isNil(o.UpgradeBatchId) {
+	if o == nil || IsNil(o.UpgradeBatchId) {
 		var ret string
 		return ret
 	}
@@ -123,15 +126,15 @@ func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetUpgradeBatchId() s
 // GetUpgradeBatchIdOk returns a tuple with the UpgradeBatchId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetUpgradeBatchIdOk() (*string, bool) {
-	if o == nil || isNil(o.UpgradeBatchId) {
-    return nil, false
+	if o == nil || IsNil(o.UpgradeBatchId) {
+		return nil, false
 	}
 	return o.UpgradeBatchId, true
 }
 
 // HasUpgradeBatchId returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) HasUpgradeBatchId() bool {
-	if o != nil && !isNil(o.UpgradeBatchId) {
+	if o != nil && !IsNil(o.UpgradeBatchId) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *CreateNetworkFirmwareUpgradesRollback200Response) SetUpgradeBatchId(v s
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetTime() time.Time {
-	if o == nil || isNil(o.Time) {
+	if o == nil || IsNil(o.Time) {
 		var ret time.Time
 		return ret
 	}
@@ -155,15 +158,15 @@ func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetTime() time.Time {
 // GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetTimeOk() (*time.Time, bool) {
-	if o == nil || isNil(o.Time) {
-    return nil, false
+	if o == nil || IsNil(o.Time) {
+		return nil, false
 	}
 	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) HasTime() bool {
-	if o != nil && !isNil(o.Time) {
+	if o != nil && !IsNil(o.Time) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *CreateNetworkFirmwareUpgradesRollback200Response) SetTime(v time.Time) 
 
 // GetToVersion returns the ToVersion field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetToVersion() CreateNetworkFirmwareUpgradesRollback200ResponseToVersion {
-	if o == nil || isNil(o.ToVersion) {
+	if o == nil || IsNil(o.ToVersion) {
 		var ret CreateNetworkFirmwareUpgradesRollback200ResponseToVersion
 		return ret
 	}
@@ -187,15 +190,15 @@ func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetToVersion() Create
 // GetToVersionOk returns a tuple with the ToVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetToVersionOk() (*CreateNetworkFirmwareUpgradesRollback200ResponseToVersion, bool) {
-	if o == nil || isNil(o.ToVersion) {
-    return nil, false
+	if o == nil || IsNil(o.ToVersion) {
+		return nil, false
 	}
 	return o.ToVersion, true
 }
 
 // HasToVersion returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) HasToVersion() bool {
-	if o != nil && !isNil(o.ToVersion) {
+	if o != nil && !IsNil(o.ToVersion) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *CreateNetworkFirmwareUpgradesRollback200Response) SetToVersion(v Create
 
 // GetReasons returns the Reasons field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetReasons() []CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner {
-	if o == nil || isNil(o.Reasons) {
+	if o == nil || IsNil(o.Reasons) {
 		var ret []CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner
 		return ret
 	}
@@ -219,15 +222,15 @@ func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetReasons() []Create
 // GetReasonsOk returns a tuple with the Reasons field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) GetReasonsOk() ([]CreateNetworkFirmwareUpgradesRollback200ResponseReasonsInner, bool) {
-	if o == nil || isNil(o.Reasons) {
-    return nil, false
+	if o == nil || IsNil(o.Reasons) {
+		return nil, false
 	}
 	return o.Reasons, true
 }
 
 // HasReasons returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesRollback200Response) HasReasons() bool {
-	if o != nil && !isNil(o.Reasons) {
+	if o != nil && !IsNil(o.Reasons) {
 		return true
 	}
 
@@ -240,26 +243,34 @@ func (o *CreateNetworkFirmwareUpgradesRollback200Response) SetReasons(v []Create
 }
 
 func (o CreateNetworkFirmwareUpgradesRollback200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Product) {
-		toSerialize["product"] = o.Product
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.UpgradeBatchId) {
-		toSerialize["upgradeBatchId"] = o.UpgradeBatchId
-	}
-	if !isNil(o.Time) {
-		toSerialize["time"] = o.Time
-	}
-	if !isNil(o.ToVersion) {
-		toSerialize["toVersion"] = o.ToVersion
-	}
-	if !isNil(o.Reasons) {
-		toSerialize["reasons"] = o.Reasons
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkFirmwareUpgradesRollback200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Product) {
+		toSerialize["product"] = o.Product
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.UpgradeBatchId) {
+		toSerialize["upgradeBatchId"] = o.UpgradeBatchId
+	}
+	if !IsNil(o.Time) {
+		toSerialize["time"] = o.Time
+	}
+	if !IsNil(o.ToVersion) {
+		toSerialize["toVersion"] = o.ToVersion
+	}
+	if !IsNil(o.Reasons) {
+		toSerialize["reasons"] = o.Reasons
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkFirmwareUpgradesRollback200Response struct {

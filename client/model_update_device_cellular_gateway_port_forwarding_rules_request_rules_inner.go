@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner{}
+
 // UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner struct for UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner
 type UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner struct {
 	// A descriptive name for the rule
@@ -56,7 +59,7 @@ func NewUpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInnerWithDefau
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -66,15 +69,15 @@ func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) GetNam
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -100,7 +103,7 @@ func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) GetLan
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) GetLanIpOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.LanIp, true
 }
@@ -124,7 +127,7 @@ func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) GetPub
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) GetPublicPortOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.PublicPort, true
 }
@@ -148,7 +151,7 @@ func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) GetLoc
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) GetLocalPortOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.LocalPort, true
 }
@@ -160,7 +163,7 @@ func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) SetLoc
 
 // GetAllowedIps returns the AllowedIps field value if set, zero value otherwise.
 func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) GetAllowedIps() []string {
-	if o == nil || isNil(o.AllowedIps) {
+	if o == nil || IsNil(o.AllowedIps) {
 		var ret []string
 		return ret
 	}
@@ -170,15 +173,15 @@ func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) GetAll
 // GetAllowedIpsOk returns a tuple with the AllowedIps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) GetAllowedIpsOk() ([]string, bool) {
-	if o == nil || isNil(o.AllowedIps) {
-    return nil, false
+	if o == nil || IsNil(o.AllowedIps) {
+		return nil, false
 	}
 	return o.AllowedIps, true
 }
 
 // HasAllowedIps returns a boolean if a field has been set.
 func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) HasAllowedIps() bool {
-	if o != nil && !isNil(o.AllowedIps) {
+	if o != nil && !IsNil(o.AllowedIps) {
 		return true
 	}
 
@@ -204,7 +207,7 @@ func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) GetPro
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) GetProtocolOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Protocol, true
 }
@@ -228,7 +231,7 @@ func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) GetAcc
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) GetAccessOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Access, true
 }
@@ -239,29 +242,27 @@ func (o *UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) SetAcc
 }
 
 func (o UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["lanIp"] = o.LanIp
-	}
-	if true {
-		toSerialize["publicPort"] = o.PublicPort
-	}
-	if true {
-		toSerialize["localPort"] = o.LocalPort
-	}
-	if !isNil(o.AllowedIps) {
-		toSerialize["allowedIps"] = o.AllowedIps
-	}
-	if true {
-		toSerialize["protocol"] = o.Protocol
-	}
-	if true {
-		toSerialize["access"] = o.Access
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	toSerialize["lanIp"] = o.LanIp
+	toSerialize["publicPort"] = o.PublicPort
+	toSerialize["localPort"] = o.LocalPort
+	if !IsNil(o.AllowedIps) {
+		toSerialize["allowedIps"] = o.AllowedIps
+	}
+	toSerialize["protocol"] = o.Protocol
+	toSerialize["access"] = o.Access
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceCellularGatewayPortForwardingRulesRequestRulesInner struct {

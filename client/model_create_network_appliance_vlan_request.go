@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkApplianceVlanRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkApplianceVlanRequest{}
+
 // CreateNetworkApplianceVlanRequest struct for CreateNetworkApplianceVlanRequest
 type CreateNetworkApplianceVlanRequest struct {
 	// The VLAN ID of the new VLAN (must be between 1 and 4094)
@@ -73,7 +76,7 @@ func (o *CreateNetworkApplianceVlanRequest) GetId() string {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceVlanRequest) GetIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Id, true
 }
@@ -97,7 +100,7 @@ func (o *CreateNetworkApplianceVlanRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceVlanRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -109,7 +112,7 @@ func (o *CreateNetworkApplianceVlanRequest) SetName(v string) {
 
 // GetSubnet returns the Subnet field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceVlanRequest) GetSubnet() string {
-	if o == nil || isNil(o.Subnet) {
+	if o == nil || IsNil(o.Subnet) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *CreateNetworkApplianceVlanRequest) GetSubnet() string {
 // GetSubnetOk returns a tuple with the Subnet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceVlanRequest) GetSubnetOk() (*string, bool) {
-	if o == nil || isNil(o.Subnet) {
-    return nil, false
+	if o == nil || IsNil(o.Subnet) {
+		return nil, false
 	}
 	return o.Subnet, true
 }
 
 // HasSubnet returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceVlanRequest) HasSubnet() bool {
-	if o != nil && !isNil(o.Subnet) {
+	if o != nil && !IsNil(o.Subnet) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *CreateNetworkApplianceVlanRequest) SetSubnet(v string) {
 
 // GetApplianceIp returns the ApplianceIp field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceVlanRequest) GetApplianceIp() string {
-	if o == nil || isNil(o.ApplianceIp) {
+	if o == nil || IsNil(o.ApplianceIp) {
 		var ret string
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *CreateNetworkApplianceVlanRequest) GetApplianceIp() string {
 // GetApplianceIpOk returns a tuple with the ApplianceIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceVlanRequest) GetApplianceIpOk() (*string, bool) {
-	if o == nil || isNil(o.ApplianceIp) {
-    return nil, false
+	if o == nil || IsNil(o.ApplianceIp) {
+		return nil, false
 	}
 	return o.ApplianceIp, true
 }
 
 // HasApplianceIp returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceVlanRequest) HasApplianceIp() bool {
-	if o != nil && !isNil(o.ApplianceIp) {
+	if o != nil && !IsNil(o.ApplianceIp) {
 		return true
 	}
 
@@ -173,7 +176,7 @@ func (o *CreateNetworkApplianceVlanRequest) SetApplianceIp(v string) {
 
 // GetGroupPolicyId returns the GroupPolicyId field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceVlanRequest) GetGroupPolicyId() string {
-	if o == nil || isNil(o.GroupPolicyId) {
+	if o == nil || IsNil(o.GroupPolicyId) {
 		var ret string
 		return ret
 	}
@@ -183,15 +186,15 @@ func (o *CreateNetworkApplianceVlanRequest) GetGroupPolicyId() string {
 // GetGroupPolicyIdOk returns a tuple with the GroupPolicyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceVlanRequest) GetGroupPolicyIdOk() (*string, bool) {
-	if o == nil || isNil(o.GroupPolicyId) {
-    return nil, false
+	if o == nil || IsNil(o.GroupPolicyId) {
+		return nil, false
 	}
 	return o.GroupPolicyId, true
 }
 
 // HasGroupPolicyId returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceVlanRequest) HasGroupPolicyId() bool {
-	if o != nil && !isNil(o.GroupPolicyId) {
+	if o != nil && !IsNil(o.GroupPolicyId) {
 		return true
 	}
 
@@ -205,7 +208,7 @@ func (o *CreateNetworkApplianceVlanRequest) SetGroupPolicyId(v string) {
 
 // GetTemplateVlanType returns the TemplateVlanType field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceVlanRequest) GetTemplateVlanType() string {
-	if o == nil || isNil(o.TemplateVlanType) {
+	if o == nil || IsNil(o.TemplateVlanType) {
 		var ret string
 		return ret
 	}
@@ -215,15 +218,15 @@ func (o *CreateNetworkApplianceVlanRequest) GetTemplateVlanType() string {
 // GetTemplateVlanTypeOk returns a tuple with the TemplateVlanType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceVlanRequest) GetTemplateVlanTypeOk() (*string, bool) {
-	if o == nil || isNil(o.TemplateVlanType) {
-    return nil, false
+	if o == nil || IsNil(o.TemplateVlanType) {
+		return nil, false
 	}
 	return o.TemplateVlanType, true
 }
 
 // HasTemplateVlanType returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceVlanRequest) HasTemplateVlanType() bool {
-	if o != nil && !isNil(o.TemplateVlanType) {
+	if o != nil && !IsNil(o.TemplateVlanType) {
 		return true
 	}
 
@@ -237,7 +240,7 @@ func (o *CreateNetworkApplianceVlanRequest) SetTemplateVlanType(v string) {
 
 // GetCidr returns the Cidr field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceVlanRequest) GetCidr() string {
-	if o == nil || isNil(o.Cidr) {
+	if o == nil || IsNil(o.Cidr) {
 		var ret string
 		return ret
 	}
@@ -247,15 +250,15 @@ func (o *CreateNetworkApplianceVlanRequest) GetCidr() string {
 // GetCidrOk returns a tuple with the Cidr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceVlanRequest) GetCidrOk() (*string, bool) {
-	if o == nil || isNil(o.Cidr) {
-    return nil, false
+	if o == nil || IsNil(o.Cidr) {
+		return nil, false
 	}
 	return o.Cidr, true
 }
 
 // HasCidr returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceVlanRequest) HasCidr() bool {
-	if o != nil && !isNil(o.Cidr) {
+	if o != nil && !IsNil(o.Cidr) {
 		return true
 	}
 
@@ -269,7 +272,7 @@ func (o *CreateNetworkApplianceVlanRequest) SetCidr(v string) {
 
 // GetMask returns the Mask field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceVlanRequest) GetMask() int32 {
-	if o == nil || isNil(o.Mask) {
+	if o == nil || IsNil(o.Mask) {
 		var ret int32
 		return ret
 	}
@@ -279,15 +282,15 @@ func (o *CreateNetworkApplianceVlanRequest) GetMask() int32 {
 // GetMaskOk returns a tuple with the Mask field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceVlanRequest) GetMaskOk() (*int32, bool) {
-	if o == nil || isNil(o.Mask) {
-    return nil, false
+	if o == nil || IsNil(o.Mask) {
+		return nil, false
 	}
 	return o.Mask, true
 }
 
 // HasMask returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceVlanRequest) HasMask() bool {
-	if o != nil && !isNil(o.Mask) {
+	if o != nil && !IsNil(o.Mask) {
 		return true
 	}
 
@@ -301,7 +304,7 @@ func (o *CreateNetworkApplianceVlanRequest) SetMask(v int32) {
 
 // GetIpv6 returns the Ipv6 field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceVlanRequest) GetIpv6() UpdateNetworkApplianceSingleLanRequestIpv6 {
-	if o == nil || isNil(o.Ipv6) {
+	if o == nil || IsNil(o.Ipv6) {
 		var ret UpdateNetworkApplianceSingleLanRequestIpv6
 		return ret
 	}
@@ -311,15 +314,15 @@ func (o *CreateNetworkApplianceVlanRequest) GetIpv6() UpdateNetworkApplianceSing
 // GetIpv6Ok returns a tuple with the Ipv6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceVlanRequest) GetIpv6Ok() (*UpdateNetworkApplianceSingleLanRequestIpv6, bool) {
-	if o == nil || isNil(o.Ipv6) {
-    return nil, false
+	if o == nil || IsNil(o.Ipv6) {
+		return nil, false
 	}
 	return o.Ipv6, true
 }
 
 // HasIpv6 returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceVlanRequest) HasIpv6() bool {
-	if o != nil && !isNil(o.Ipv6) {
+	if o != nil && !IsNil(o.Ipv6) {
 		return true
 	}
 
@@ -333,7 +336,7 @@ func (o *CreateNetworkApplianceVlanRequest) SetIpv6(v UpdateNetworkApplianceSing
 
 // GetMandatoryDhcp returns the MandatoryDhcp field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceVlanRequest) GetMandatoryDhcp() GetNetworkApplianceVlans200ResponseInnerMandatoryDhcp {
-	if o == nil || isNil(o.MandatoryDhcp) {
+	if o == nil || IsNil(o.MandatoryDhcp) {
 		var ret GetNetworkApplianceVlans200ResponseInnerMandatoryDhcp
 		return ret
 	}
@@ -343,15 +346,15 @@ func (o *CreateNetworkApplianceVlanRequest) GetMandatoryDhcp() GetNetworkApplian
 // GetMandatoryDhcpOk returns a tuple with the MandatoryDhcp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceVlanRequest) GetMandatoryDhcpOk() (*GetNetworkApplianceVlans200ResponseInnerMandatoryDhcp, bool) {
-	if o == nil || isNil(o.MandatoryDhcp) {
-    return nil, false
+	if o == nil || IsNil(o.MandatoryDhcp) {
+		return nil, false
 	}
 	return o.MandatoryDhcp, true
 }
 
 // HasMandatoryDhcp returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceVlanRequest) HasMandatoryDhcp() bool {
-	if o != nil && !isNil(o.MandatoryDhcp) {
+	if o != nil && !IsNil(o.MandatoryDhcp) {
 		return true
 	}
 
@@ -364,38 +367,42 @@ func (o *CreateNetworkApplianceVlanRequest) SetMandatoryDhcp(v GetNetworkApplian
 }
 
 func (o CreateNetworkApplianceVlanRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Subnet) {
-		toSerialize["subnet"] = o.Subnet
-	}
-	if !isNil(o.ApplianceIp) {
-		toSerialize["applianceIp"] = o.ApplianceIp
-	}
-	if !isNil(o.GroupPolicyId) {
-		toSerialize["groupPolicyId"] = o.GroupPolicyId
-	}
-	if !isNil(o.TemplateVlanType) {
-		toSerialize["templateVlanType"] = o.TemplateVlanType
-	}
-	if !isNil(o.Cidr) {
-		toSerialize["cidr"] = o.Cidr
-	}
-	if !isNil(o.Mask) {
-		toSerialize["mask"] = o.Mask
-	}
-	if !isNil(o.Ipv6) {
-		toSerialize["ipv6"] = o.Ipv6
-	}
-	if !isNil(o.MandatoryDhcp) {
-		toSerialize["mandatoryDhcp"] = o.MandatoryDhcp
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkApplianceVlanRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Subnet) {
+		toSerialize["subnet"] = o.Subnet
+	}
+	if !IsNil(o.ApplianceIp) {
+		toSerialize["applianceIp"] = o.ApplianceIp
+	}
+	if !IsNil(o.GroupPolicyId) {
+		toSerialize["groupPolicyId"] = o.GroupPolicyId
+	}
+	if !IsNil(o.TemplateVlanType) {
+		toSerialize["templateVlanType"] = o.TemplateVlanType
+	}
+	if !IsNil(o.Cidr) {
+		toSerialize["cidr"] = o.Cidr
+	}
+	if !IsNil(o.Mask) {
+		toSerialize["mask"] = o.Mask
+	}
+	if !IsNil(o.Ipv6) {
+		toSerialize["ipv6"] = o.Ipv6
+	}
+	if !IsNil(o.MandatoryDhcp) {
+		toSerialize["mandatoryDhcp"] = o.MandatoryDhcp
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkApplianceVlanRequest struct {

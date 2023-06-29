@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmDeviceConnectivity200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmDeviceConnectivity200ResponseInner{}
+
 // GetNetworkSmDeviceConnectivity200ResponseInner struct for GetNetworkSmDeviceConnectivity200ResponseInner
 type GetNetworkSmDeviceConnectivity200ResponseInner struct {
 	// When the device was first seen as connected to the internet in each connection.
@@ -41,7 +44,7 @@ func NewGetNetworkSmDeviceConnectivity200ResponseInnerWithDefaults() *GetNetwork
 
 // GetFirstSeenAt returns the FirstSeenAt field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceConnectivity200ResponseInner) GetFirstSeenAt() string {
-	if o == nil || isNil(o.FirstSeenAt) {
+	if o == nil || IsNil(o.FirstSeenAt) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkSmDeviceConnectivity200ResponseInner) GetFirstSeenAt() string
 // GetFirstSeenAtOk returns a tuple with the FirstSeenAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceConnectivity200ResponseInner) GetFirstSeenAtOk() (*string, bool) {
-	if o == nil || isNil(o.FirstSeenAt) {
-    return nil, false
+	if o == nil || IsNil(o.FirstSeenAt) {
+		return nil, false
 	}
 	return o.FirstSeenAt, true
 }
 
 // HasFirstSeenAt returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceConnectivity200ResponseInner) HasFirstSeenAt() bool {
-	if o != nil && !isNil(o.FirstSeenAt) {
+	if o != nil && !IsNil(o.FirstSeenAt) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkSmDeviceConnectivity200ResponseInner) SetFirstSeenAt(v string
 
 // GetLastSeenAt returns the LastSeenAt field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceConnectivity200ResponseInner) GetLastSeenAt() string {
-	if o == nil || isNil(o.LastSeenAt) {
+	if o == nil || IsNil(o.LastSeenAt) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkSmDeviceConnectivity200ResponseInner) GetLastSeenAt() string 
 // GetLastSeenAtOk returns a tuple with the LastSeenAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceConnectivity200ResponseInner) GetLastSeenAtOk() (*string, bool) {
-	if o == nil || isNil(o.LastSeenAt) {
-    return nil, false
+	if o == nil || IsNil(o.LastSeenAt) {
+		return nil, false
 	}
 	return o.LastSeenAt, true
 }
 
 // HasLastSeenAt returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceConnectivity200ResponseInner) HasLastSeenAt() bool {
-	if o != nil && !isNil(o.LastSeenAt) {
+	if o != nil && !IsNil(o.LastSeenAt) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkSmDeviceConnectivity200ResponseInner) SetLastSeenAt(v string)
 }
 
 func (o GetNetworkSmDeviceConnectivity200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.FirstSeenAt) {
-		toSerialize["firstSeenAt"] = o.FirstSeenAt
-	}
-	if !isNil(o.LastSeenAt) {
-		toSerialize["lastSeenAt"] = o.LastSeenAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmDeviceConnectivity200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.FirstSeenAt) {
+		toSerialize["firstSeenAt"] = o.FirstSeenAt
+	}
+	if !IsNil(o.LastSeenAt) {
+		toSerialize["lastSeenAt"] = o.LastSeenAt
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmDeviceConnectivity200ResponseInner struct {

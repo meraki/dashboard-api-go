@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceSensorRelationshipsRequestLivestreamRelatedDevicesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceSensorRelationshipsRequestLivestreamRelatedDevicesInner{}
+
 // UpdateDeviceSensorRelationshipsRequestLivestreamRelatedDevicesInner struct for UpdateDeviceSensorRelationshipsRequestLivestreamRelatedDevicesInner
 type UpdateDeviceSensorRelationshipsRequestLivestreamRelatedDevicesInner struct {
 	// The serial of the related device
@@ -52,7 +55,7 @@ func (o *UpdateDeviceSensorRelationshipsRequestLivestreamRelatedDevicesInner) Ge
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceSensorRelationshipsRequestLivestreamRelatedDevicesInner) GetSerialOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Serial, true
 }
@@ -63,11 +66,17 @@ func (o *UpdateDeviceSensorRelationshipsRequestLivestreamRelatedDevicesInner) Se
 }
 
 func (o UpdateDeviceSensorRelationshipsRequestLivestreamRelatedDevicesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["serial"] = o.Serial
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceSensorRelationshipsRequestLivestreamRelatedDevicesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["serial"] = o.Serial
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceSensorRelationshipsRequestLivestreamRelatedDevicesInner struct {

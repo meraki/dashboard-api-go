@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchAccessPolicies200ResponseInnerDot1x type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchAccessPolicies200ResponseInnerDot1x{}
+
 // GetNetworkSwitchAccessPolicies200ResponseInnerDot1x 802.1x Settings
 type GetNetworkSwitchAccessPolicies200ResponseInnerDot1x struct {
 	// Supports either 'both' or 'inbound'. Set to 'inbound' to allow unauthorized egress on the switchport. Set to 'both' to control both traffic directions with authorization. Defaults to 'both'
@@ -39,7 +42,7 @@ func NewGetNetworkSwitchAccessPolicies200ResponseInnerDot1xWithDefaults() *GetNe
 
 // GetControlDirection returns the ControlDirection field value if set, zero value otherwise.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerDot1x) GetControlDirection() string {
-	if o == nil || isNil(o.ControlDirection) {
+	if o == nil || IsNil(o.ControlDirection) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetNetworkSwitchAccessPolicies200ResponseInnerDot1x) GetControlDirectio
 // GetControlDirectionOk returns a tuple with the ControlDirection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerDot1x) GetControlDirectionOk() (*string, bool) {
-	if o == nil || isNil(o.ControlDirection) {
-    return nil, false
+	if o == nil || IsNil(o.ControlDirection) {
+		return nil, false
 	}
 	return o.ControlDirection, true
 }
 
 // HasControlDirection returns a boolean if a field has been set.
 func (o *GetNetworkSwitchAccessPolicies200ResponseInnerDot1x) HasControlDirection() bool {
-	if o != nil && !isNil(o.ControlDirection) {
+	if o != nil && !IsNil(o.ControlDirection) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetNetworkSwitchAccessPolicies200ResponseInnerDot1x) SetControlDirectio
 }
 
 func (o GetNetworkSwitchAccessPolicies200ResponseInnerDot1x) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ControlDirection) {
-		toSerialize["controlDirection"] = o.ControlDirection
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchAccessPolicies200ResponseInnerDot1x) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ControlDirection) {
+		toSerialize["controlDirection"] = o.ControlDirection
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchAccessPolicies200ResponseInnerDot1x struct {

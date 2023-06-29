@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkFirmwareUpgrades200ResponseProductsWireless type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkFirmwareUpgrades200ResponseProductsWireless{}
+
 // GetNetworkFirmwareUpgrades200ResponseProductsWireless The network device to be updated
 type GetNetworkFirmwareUpgrades200ResponseProductsWireless struct {
 	CurrentVersion *GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion `json:"currentVersion,omitempty"`
@@ -44,7 +47,7 @@ func NewGetNetworkFirmwareUpgrades200ResponseProductsWirelessWithDefaults() *Get
 
 // GetCurrentVersion returns the CurrentVersion field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) GetCurrentVersion() GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion {
-	if o == nil || isNil(o.CurrentVersion) {
+	if o == nil || IsNil(o.CurrentVersion) {
 		var ret GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) GetCurrentVersio
 // GetCurrentVersionOk returns a tuple with the CurrentVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) GetCurrentVersionOk() (*GetNetworkFirmwareUpgrades200ResponseProductsWirelessCurrentVersion, bool) {
-	if o == nil || isNil(o.CurrentVersion) {
-    return nil, false
+	if o == nil || IsNil(o.CurrentVersion) {
+		return nil, false
 	}
 	return o.CurrentVersion, true
 }
 
 // HasCurrentVersion returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) HasCurrentVersion() bool {
-	if o != nil && !isNil(o.CurrentVersion) {
+	if o != nil && !IsNil(o.CurrentVersion) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) SetCurrentVersio
 
 // GetLastUpgrade returns the LastUpgrade field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) GetLastUpgrade() GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade {
-	if o == nil || isNil(o.LastUpgrade) {
+	if o == nil || IsNil(o.LastUpgrade) {
 		var ret GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) GetLastUpgrade()
 // GetLastUpgradeOk returns a tuple with the LastUpgrade field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) GetLastUpgradeOk() (*GetNetworkFirmwareUpgrades200ResponseProductsWirelessLastUpgrade, bool) {
-	if o == nil || isNil(o.LastUpgrade) {
-    return nil, false
+	if o == nil || IsNil(o.LastUpgrade) {
+		return nil, false
 	}
 	return o.LastUpgrade, true
 }
 
 // HasLastUpgrade returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) HasLastUpgrade() bool {
-	if o != nil && !isNil(o.LastUpgrade) {
+	if o != nil && !IsNil(o.LastUpgrade) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) SetLastUpgrade(v
 
 // GetNextUpgrade returns the NextUpgrade field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) GetNextUpgrade() GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade {
-	if o == nil || isNil(o.NextUpgrade) {
+	if o == nil || IsNil(o.NextUpgrade) {
 		var ret GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) GetNextUpgrade()
 // GetNextUpgradeOk returns a tuple with the NextUpgrade field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) GetNextUpgradeOk() (*GetNetworkFirmwareUpgrades200ResponseProductsWirelessNextUpgrade, bool) {
-	if o == nil || isNil(o.NextUpgrade) {
-    return nil, false
+	if o == nil || IsNil(o.NextUpgrade) {
+		return nil, false
 	}
 	return o.NextUpgrade, true
 }
 
 // HasNextUpgrade returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) HasNextUpgrade() bool {
-	if o != nil && !isNil(o.NextUpgrade) {
+	if o != nil && !IsNil(o.NextUpgrade) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) SetNextUpgrade(v
 
 // GetAvailableVersions returns the AvailableVersions field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) GetAvailableVersions() []GetNetworkFirmwareUpgrades200ResponseProductsWirelessAvailableVersionsInner {
-	if o == nil || isNil(o.AvailableVersions) {
+	if o == nil || IsNil(o.AvailableVersions) {
 		var ret []GetNetworkFirmwareUpgrades200ResponseProductsWirelessAvailableVersionsInner
 		return ret
 	}
@@ -150,15 +153,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) GetAvailableVers
 // GetAvailableVersionsOk returns a tuple with the AvailableVersions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) GetAvailableVersionsOk() ([]GetNetworkFirmwareUpgrades200ResponseProductsWirelessAvailableVersionsInner, bool) {
-	if o == nil || isNil(o.AvailableVersions) {
-    return nil, false
+	if o == nil || IsNil(o.AvailableVersions) {
+		return nil, false
 	}
 	return o.AvailableVersions, true
 }
 
 // HasAvailableVersions returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) HasAvailableVersions() bool {
-	if o != nil && !isNil(o.AvailableVersions) {
+	if o != nil && !IsNil(o.AvailableVersions) {
 		return true
 	}
 
@@ -172,7 +175,7 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) SetAvailableVers
 
 // GetParticipateInNextBetaRelease returns the ParticipateInNextBetaRelease field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) GetParticipateInNextBetaRelease() bool {
-	if o == nil || isNil(o.ParticipateInNextBetaRelease) {
+	if o == nil || IsNil(o.ParticipateInNextBetaRelease) {
 		var ret bool
 		return ret
 	}
@@ -182,15 +185,15 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) GetParticipateIn
 // GetParticipateInNextBetaReleaseOk returns a tuple with the ParticipateInNextBetaRelease field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) GetParticipateInNextBetaReleaseOk() (*bool, bool) {
-	if o == nil || isNil(o.ParticipateInNextBetaRelease) {
-    return nil, false
+	if o == nil || IsNil(o.ParticipateInNextBetaRelease) {
+		return nil, false
 	}
 	return o.ParticipateInNextBetaRelease, true
 }
 
 // HasParticipateInNextBetaRelease returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) HasParticipateInNextBetaRelease() bool {
-	if o != nil && !isNil(o.ParticipateInNextBetaRelease) {
+	if o != nil && !IsNil(o.ParticipateInNextBetaRelease) {
 		return true
 	}
 
@@ -203,23 +206,31 @@ func (o *GetNetworkFirmwareUpgrades200ResponseProductsWireless) SetParticipateIn
 }
 
 func (o GetNetworkFirmwareUpgrades200ResponseProductsWireless) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.CurrentVersion) {
-		toSerialize["currentVersion"] = o.CurrentVersion
-	}
-	if !isNil(o.LastUpgrade) {
-		toSerialize["lastUpgrade"] = o.LastUpgrade
-	}
-	if !isNil(o.NextUpgrade) {
-		toSerialize["nextUpgrade"] = o.NextUpgrade
-	}
-	if !isNil(o.AvailableVersions) {
-		toSerialize["availableVersions"] = o.AvailableVersions
-	}
-	if !isNil(o.ParticipateInNextBetaRelease) {
-		toSerialize["participateInNextBetaRelease"] = o.ParticipateInNextBetaRelease
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkFirmwareUpgrades200ResponseProductsWireless) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CurrentVersion) {
+		toSerialize["currentVersion"] = o.CurrentVersion
+	}
+	if !IsNil(o.LastUpgrade) {
+		toSerialize["lastUpgrade"] = o.LastUpgrade
+	}
+	if !IsNil(o.NextUpgrade) {
+		toSerialize["nextUpgrade"] = o.NextUpgrade
+	}
+	if !IsNil(o.AvailableVersions) {
+		toSerialize["availableVersions"] = o.AvailableVersions
+	}
+	if !IsNil(o.ParticipateInNextBetaRelease) {
+		toSerialize["participateInNextBetaRelease"] = o.ParticipateInNextBetaRelease
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkFirmwareUpgrades200ResponseProductsWireless struct {

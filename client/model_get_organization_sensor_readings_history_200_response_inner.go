@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSensorReadingsHistory200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSensorReadingsHistory200ResponseInner{}
+
 // GetOrganizationSensorReadingsHistory200ResponseInner struct for GetOrganizationSensorReadingsHistory200ResponseInner
 type GetOrganizationSensorReadingsHistory200ResponseInner struct {
 	// Serial number of the sensor that took the reading.
@@ -54,7 +57,7 @@ func NewGetOrganizationSensorReadingsHistory200ResponseInnerWithDefaults() *GetO
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -64,15 +67,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetSerial() strin
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -86,7 +89,7 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) SetSerial(v strin
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetNetwork() GetOrganizationSensorReadingsHistory200ResponseInnerNetwork {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		var ret GetOrganizationSensorReadingsHistory200ResponseInnerNetwork
 		return ret
 	}
@@ -96,15 +99,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetNetwork() GetO
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetNetworkOk() (*GetOrganizationSensorReadingsHistory200ResponseInnerNetwork, bool) {
-	if o == nil || isNil(o.Network) {
-    return nil, false
+	if o == nil || IsNil(o.Network) {
+		return nil, false
 	}
 	return o.Network, true
 }
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) HasNetwork() bool {
-	if o != nil && !isNil(o.Network) {
+	if o != nil && !IsNil(o.Network) {
 		return true
 	}
 
@@ -118,7 +121,7 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) SetNetwork(v GetO
 
 // GetTs returns the Ts field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetTs() string {
-	if o == nil || isNil(o.Ts) {
+	if o == nil || IsNil(o.Ts) {
 		var ret string
 		return ret
 	}
@@ -128,15 +131,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetTs() string {
 // GetTsOk returns a tuple with the Ts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetTsOk() (*string, bool) {
-	if o == nil || isNil(o.Ts) {
-    return nil, false
+	if o == nil || IsNil(o.Ts) {
+		return nil, false
 	}
 	return o.Ts, true
 }
 
 // HasTs returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) HasTs() bool {
-	if o != nil && !isNil(o.Ts) {
+	if o != nil && !IsNil(o.Ts) {
 		return true
 	}
 
@@ -150,7 +153,7 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) SetTs(v string) {
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetMetric() string {
-	if o == nil || isNil(o.Metric) {
+	if o == nil || IsNil(o.Metric) {
 		var ret string
 		return ret
 	}
@@ -160,15 +163,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetMetric() strin
 // GetMetricOk returns a tuple with the Metric field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetMetricOk() (*string, bool) {
-	if o == nil || isNil(o.Metric) {
-    return nil, false
+	if o == nil || IsNil(o.Metric) {
+		return nil, false
 	}
 	return o.Metric, true
 }
 
 // HasMetric returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) HasMetric() bool {
-	if o != nil && !isNil(o.Metric) {
+	if o != nil && !IsNil(o.Metric) {
 		return true
 	}
 
@@ -182,7 +185,7 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) SetMetric(v strin
 
 // GetBattery returns the Battery field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetBattery() GetOrganizationSensorReadingsHistory200ResponseInnerBattery {
-	if o == nil || isNil(o.Battery) {
+	if o == nil || IsNil(o.Battery) {
 		var ret GetOrganizationSensorReadingsHistory200ResponseInnerBattery
 		return ret
 	}
@@ -192,15 +195,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetBattery() GetO
 // GetBatteryOk returns a tuple with the Battery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetBatteryOk() (*GetOrganizationSensorReadingsHistory200ResponseInnerBattery, bool) {
-	if o == nil || isNil(o.Battery) {
-    return nil, false
+	if o == nil || IsNil(o.Battery) {
+		return nil, false
 	}
 	return o.Battery, true
 }
 
 // HasBattery returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) HasBattery() bool {
-	if o != nil && !isNil(o.Battery) {
+	if o != nil && !IsNil(o.Battery) {
 		return true
 	}
 
@@ -214,7 +217,7 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) SetBattery(v GetO
 
 // GetButton returns the Button field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetButton() GetOrganizationSensorReadingsHistory200ResponseInnerButton {
-	if o == nil || isNil(o.Button) {
+	if o == nil || IsNil(o.Button) {
 		var ret GetOrganizationSensorReadingsHistory200ResponseInnerButton
 		return ret
 	}
@@ -224,15 +227,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetButton() GetOr
 // GetButtonOk returns a tuple with the Button field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetButtonOk() (*GetOrganizationSensorReadingsHistory200ResponseInnerButton, bool) {
-	if o == nil || isNil(o.Button) {
-    return nil, false
+	if o == nil || IsNil(o.Button) {
+		return nil, false
 	}
 	return o.Button, true
 }
 
 // HasButton returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) HasButton() bool {
-	if o != nil && !isNil(o.Button) {
+	if o != nil && !IsNil(o.Button) {
 		return true
 	}
 
@@ -246,7 +249,7 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) SetButton(v GetOr
 
 // GetDoor returns the Door field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetDoor() GetOrganizationSensorReadingsHistory200ResponseInnerDoor {
-	if o == nil || isNil(o.Door) {
+	if o == nil || IsNil(o.Door) {
 		var ret GetOrganizationSensorReadingsHistory200ResponseInnerDoor
 		return ret
 	}
@@ -256,15 +259,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetDoor() GetOrga
 // GetDoorOk returns a tuple with the Door field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetDoorOk() (*GetOrganizationSensorReadingsHistory200ResponseInnerDoor, bool) {
-	if o == nil || isNil(o.Door) {
-    return nil, false
+	if o == nil || IsNil(o.Door) {
+		return nil, false
 	}
 	return o.Door, true
 }
 
 // HasDoor returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) HasDoor() bool {
-	if o != nil && !isNil(o.Door) {
+	if o != nil && !IsNil(o.Door) {
 		return true
 	}
 
@@ -278,7 +281,7 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) SetDoor(v GetOrga
 
 // GetHumidity returns the Humidity field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetHumidity() GetOrganizationSensorReadingsHistory200ResponseInnerHumidity {
-	if o == nil || isNil(o.Humidity) {
+	if o == nil || IsNil(o.Humidity) {
 		var ret GetOrganizationSensorReadingsHistory200ResponseInnerHumidity
 		return ret
 	}
@@ -288,15 +291,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetHumidity() Get
 // GetHumidityOk returns a tuple with the Humidity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetHumidityOk() (*GetOrganizationSensorReadingsHistory200ResponseInnerHumidity, bool) {
-	if o == nil || isNil(o.Humidity) {
-    return nil, false
+	if o == nil || IsNil(o.Humidity) {
+		return nil, false
 	}
 	return o.Humidity, true
 }
 
 // HasHumidity returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) HasHumidity() bool {
-	if o != nil && !isNil(o.Humidity) {
+	if o != nil && !IsNil(o.Humidity) {
 		return true
 	}
 
@@ -310,7 +313,7 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) SetHumidity(v Get
 
 // GetIndoorAirQuality returns the IndoorAirQuality field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetIndoorAirQuality() GetOrganizationSensorReadingsHistory200ResponseInnerIndoorAirQuality {
-	if o == nil || isNil(o.IndoorAirQuality) {
+	if o == nil || IsNil(o.IndoorAirQuality) {
 		var ret GetOrganizationSensorReadingsHistory200ResponseInnerIndoorAirQuality
 		return ret
 	}
@@ -320,15 +323,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetIndoorAirQuali
 // GetIndoorAirQualityOk returns a tuple with the IndoorAirQuality field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetIndoorAirQualityOk() (*GetOrganizationSensorReadingsHistory200ResponseInnerIndoorAirQuality, bool) {
-	if o == nil || isNil(o.IndoorAirQuality) {
-    return nil, false
+	if o == nil || IsNil(o.IndoorAirQuality) {
+		return nil, false
 	}
 	return o.IndoorAirQuality, true
 }
 
 // HasIndoorAirQuality returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) HasIndoorAirQuality() bool {
-	if o != nil && !isNil(o.IndoorAirQuality) {
+	if o != nil && !IsNil(o.IndoorAirQuality) {
 		return true
 	}
 
@@ -342,7 +345,7 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) SetIndoorAirQuali
 
 // GetNoise returns the Noise field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetNoise() GetOrganizationSensorReadingsHistory200ResponseInnerNoise {
-	if o == nil || isNil(o.Noise) {
+	if o == nil || IsNil(o.Noise) {
 		var ret GetOrganizationSensorReadingsHistory200ResponseInnerNoise
 		return ret
 	}
@@ -352,15 +355,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetNoise() GetOrg
 // GetNoiseOk returns a tuple with the Noise field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetNoiseOk() (*GetOrganizationSensorReadingsHistory200ResponseInnerNoise, bool) {
-	if o == nil || isNil(o.Noise) {
-    return nil, false
+	if o == nil || IsNil(o.Noise) {
+		return nil, false
 	}
 	return o.Noise, true
 }
 
 // HasNoise returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) HasNoise() bool {
-	if o != nil && !isNil(o.Noise) {
+	if o != nil && !IsNil(o.Noise) {
 		return true
 	}
 
@@ -374,7 +377,7 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) SetNoise(v GetOrg
 
 // GetPm25 returns the Pm25 field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetPm25() GetOrganizationSensorReadingsHistory200ResponseInnerPm25 {
-	if o == nil || isNil(o.Pm25) {
+	if o == nil || IsNil(o.Pm25) {
 		var ret GetOrganizationSensorReadingsHistory200ResponseInnerPm25
 		return ret
 	}
@@ -384,15 +387,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetPm25() GetOrga
 // GetPm25Ok returns a tuple with the Pm25 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetPm25Ok() (*GetOrganizationSensorReadingsHistory200ResponseInnerPm25, bool) {
-	if o == nil || isNil(o.Pm25) {
-    return nil, false
+	if o == nil || IsNil(o.Pm25) {
+		return nil, false
 	}
 	return o.Pm25, true
 }
 
 // HasPm25 returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) HasPm25() bool {
-	if o != nil && !isNil(o.Pm25) {
+	if o != nil && !IsNil(o.Pm25) {
 		return true
 	}
 
@@ -406,7 +409,7 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) SetPm25(v GetOrga
 
 // GetTemperature returns the Temperature field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetTemperature() GetOrganizationSensorReadingsHistory200ResponseInnerTemperature {
-	if o == nil || isNil(o.Temperature) {
+	if o == nil || IsNil(o.Temperature) {
 		var ret GetOrganizationSensorReadingsHistory200ResponseInnerTemperature
 		return ret
 	}
@@ -416,15 +419,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetTemperature() 
 // GetTemperatureOk returns a tuple with the Temperature field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetTemperatureOk() (*GetOrganizationSensorReadingsHistory200ResponseInnerTemperature, bool) {
-	if o == nil || isNil(o.Temperature) {
-    return nil, false
+	if o == nil || IsNil(o.Temperature) {
+		return nil, false
 	}
 	return o.Temperature, true
 }
 
 // HasTemperature returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) HasTemperature() bool {
-	if o != nil && !isNil(o.Temperature) {
+	if o != nil && !IsNil(o.Temperature) {
 		return true
 	}
 
@@ -438,7 +441,7 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) SetTemperature(v 
 
 // GetTvoc returns the Tvoc field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetTvoc() GetOrganizationSensorReadingsHistory200ResponseInnerTvoc {
-	if o == nil || isNil(o.Tvoc) {
+	if o == nil || IsNil(o.Tvoc) {
 		var ret GetOrganizationSensorReadingsHistory200ResponseInnerTvoc
 		return ret
 	}
@@ -448,15 +451,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetTvoc() GetOrga
 // GetTvocOk returns a tuple with the Tvoc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetTvocOk() (*GetOrganizationSensorReadingsHistory200ResponseInnerTvoc, bool) {
-	if o == nil || isNil(o.Tvoc) {
-    return nil, false
+	if o == nil || IsNil(o.Tvoc) {
+		return nil, false
 	}
 	return o.Tvoc, true
 }
 
 // HasTvoc returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) HasTvoc() bool {
-	if o != nil && !isNil(o.Tvoc) {
+	if o != nil && !IsNil(o.Tvoc) {
 		return true
 	}
 
@@ -470,7 +473,7 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) SetTvoc(v GetOrga
 
 // GetWater returns the Water field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetWater() GetOrganizationSensorReadingsHistory200ResponseInnerWater {
-	if o == nil || isNil(o.Water) {
+	if o == nil || IsNil(o.Water) {
 		var ret GetOrganizationSensorReadingsHistory200ResponseInnerWater
 		return ret
 	}
@@ -480,15 +483,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetWater() GetOrg
 // GetWaterOk returns a tuple with the Water field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) GetWaterOk() (*GetOrganizationSensorReadingsHistory200ResponseInnerWater, bool) {
-	if o == nil || isNil(o.Water) {
-    return nil, false
+	if o == nil || IsNil(o.Water) {
+		return nil, false
 	}
 	return o.Water, true
 }
 
 // HasWater returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInner) HasWater() bool {
-	if o != nil && !isNil(o.Water) {
+	if o != nil && !IsNil(o.Water) {
 		return true
 	}
 
@@ -501,50 +504,58 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInner) SetWater(v GetOrg
 }
 
 func (o GetOrganizationSensorReadingsHistory200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Network) {
-		toSerialize["network"] = o.Network
-	}
-	if !isNil(o.Ts) {
-		toSerialize["ts"] = o.Ts
-	}
-	if !isNil(o.Metric) {
-		toSerialize["metric"] = o.Metric
-	}
-	if !isNil(o.Battery) {
-		toSerialize["battery"] = o.Battery
-	}
-	if !isNil(o.Button) {
-		toSerialize["button"] = o.Button
-	}
-	if !isNil(o.Door) {
-		toSerialize["door"] = o.Door
-	}
-	if !isNil(o.Humidity) {
-		toSerialize["humidity"] = o.Humidity
-	}
-	if !isNil(o.IndoorAirQuality) {
-		toSerialize["indoorAirQuality"] = o.IndoorAirQuality
-	}
-	if !isNil(o.Noise) {
-		toSerialize["noise"] = o.Noise
-	}
-	if !isNil(o.Pm25) {
-		toSerialize["pm25"] = o.Pm25
-	}
-	if !isNil(o.Temperature) {
-		toSerialize["temperature"] = o.Temperature
-	}
-	if !isNil(o.Tvoc) {
-		toSerialize["tvoc"] = o.Tvoc
-	}
-	if !isNil(o.Water) {
-		toSerialize["water"] = o.Water
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSensorReadingsHistory200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.Network) {
+		toSerialize["network"] = o.Network
+	}
+	if !IsNil(o.Ts) {
+		toSerialize["ts"] = o.Ts
+	}
+	if !IsNil(o.Metric) {
+		toSerialize["metric"] = o.Metric
+	}
+	if !IsNil(o.Battery) {
+		toSerialize["battery"] = o.Battery
+	}
+	if !IsNil(o.Button) {
+		toSerialize["button"] = o.Button
+	}
+	if !IsNil(o.Door) {
+		toSerialize["door"] = o.Door
+	}
+	if !IsNil(o.Humidity) {
+		toSerialize["humidity"] = o.Humidity
+	}
+	if !IsNil(o.IndoorAirQuality) {
+		toSerialize["indoorAirQuality"] = o.IndoorAirQuality
+	}
+	if !IsNil(o.Noise) {
+		toSerialize["noise"] = o.Noise
+	}
+	if !IsNil(o.Pm25) {
+		toSerialize["pm25"] = o.Pm25
+	}
+	if !IsNil(o.Temperature) {
+		toSerialize["temperature"] = o.Temperature
+	}
+	if !IsNil(o.Tvoc) {
+		toSerialize["tvoc"] = o.Tvoc
+	}
+	if !IsNil(o.Water) {
+		toSerialize["water"] = o.Water
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSensorReadingsHistory200ResponseInner struct {
