@@ -13,7 +13,7 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -87,20 +87,20 @@ func (a *SplashLoginAttemptsApiService) GetNetworkSplashLoginAttemptsExecute(r S
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/splashLoginAttempts"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.ssidNumber != nil {
-		localVarQueryParams.Add("ssidNumber", parameterToString(*r.ssidNumber, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ssidNumber", r.ssidNumber, "")
 	}
 	if r.loginIdentifier != nil {
-		localVarQueryParams.Add("loginIdentifier", parameterToString(*r.loginIdentifier, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "loginIdentifier", r.loginIdentifier, "")
 	}
 	if r.timespan != nil {
-		localVarQueryParams.Add("timespan", parameterToString(*r.timespan, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "timespan", r.timespan, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -143,9 +143,9 @@ func (a *SplashLoginAttemptsApiService) GetNetworkSplashLoginAttemptsExecute(r S
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

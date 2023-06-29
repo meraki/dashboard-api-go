@@ -33,6 +33,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SiteToSiteVpnApi.GetNetworkApplianceVpnSiteToSiteVpn(context.Background(), networkId).Execute()
     if err != nil {
@@ -104,6 +105,7 @@ func main() {
     updateNetworkApplianceVpnSiteToSiteVpnRequest := *openapiclient.NewUpdateNetworkApplianceVpnSiteToSiteVpnRequest("Mode_example") // UpdateNetworkApplianceVpnSiteToSiteVpnRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SiteToSiteVpnApi.UpdateNetworkApplianceVpnSiteToSiteVpn(context.Background(), networkId).UpdateNetworkApplianceVpnSiteToSiteVpnRequest(updateNetworkApplianceVpnSiteToSiteVpnRequest).Execute()
     if err != nil {

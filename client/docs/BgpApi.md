@@ -33,6 +33,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.BgpApi.GetNetworkApplianceVpnBgp(context.Background(), networkId).Execute()
     if err != nil {
@@ -104,6 +105,7 @@ func main() {
     updateNetworkApplianceVpnBgpRequest := *openapiclient.NewUpdateNetworkApplianceVpnBgpRequest(false) // UpdateNetworkApplianceVpnBgpRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.BgpApi.UpdateNetworkApplianceVpnBgp(context.Background(), networkId).UpdateNetworkApplianceVpnBgpRequest(updateNetworkApplianceVpnBgpRequest).Execute()
     if err != nil {

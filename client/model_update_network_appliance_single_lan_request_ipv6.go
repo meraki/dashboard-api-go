@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceSingleLanRequestIpv6 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceSingleLanRequestIpv6{}
+
 // UpdateNetworkApplianceSingleLanRequestIpv6 IPv6 configuration on the VLAN
 type UpdateNetworkApplianceSingleLanRequestIpv6 struct {
 	// Enable IPv6 on VLAN.
@@ -41,7 +44,7 @@ func NewUpdateNetworkApplianceSingleLanRequestIpv6WithDefaults() *UpdateNetworkA
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSingleLanRequestIpv6) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkApplianceSingleLanRequestIpv6) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSingleLanRequestIpv6) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSingleLanRequestIpv6) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkApplianceSingleLanRequestIpv6) SetEnabled(v bool) {
 
 // GetPrefixAssignments returns the PrefixAssignments field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSingleLanRequestIpv6) GetPrefixAssignments() []UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInner {
-	if o == nil || isNil(o.PrefixAssignments) {
+	if o == nil || IsNil(o.PrefixAssignments) {
 		var ret []UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInner
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkApplianceSingleLanRequestIpv6) GetPrefixAssignments() []Up
 // GetPrefixAssignmentsOk returns a tuple with the PrefixAssignments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSingleLanRequestIpv6) GetPrefixAssignmentsOk() ([]UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInner, bool) {
-	if o == nil || isNil(o.PrefixAssignments) {
-    return nil, false
+	if o == nil || IsNil(o.PrefixAssignments) {
+		return nil, false
 	}
 	return o.PrefixAssignments, true
 }
 
 // HasPrefixAssignments returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSingleLanRequestIpv6) HasPrefixAssignments() bool {
-	if o != nil && !isNil(o.PrefixAssignments) {
+	if o != nil && !IsNil(o.PrefixAssignments) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkApplianceSingleLanRequestIpv6) SetPrefixAssignments(v []Up
 }
 
 func (o UpdateNetworkApplianceSingleLanRequestIpv6) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.PrefixAssignments) {
-		toSerialize["prefixAssignments"] = o.PrefixAssignments
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceSingleLanRequestIpv6) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.PrefixAssignments) {
+		toSerialize["prefixAssignments"] = o.PrefixAssignments
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceSingleLanRequestIpv6 struct {

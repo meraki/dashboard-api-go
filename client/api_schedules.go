@@ -13,7 +13,7 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -66,7 +66,7 @@ func (a *SchedulesApiService) GetNetworkCameraSchedulesExecute(r SchedulesApiGet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/schedules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -113,9 +113,9 @@ func (a *SchedulesApiService) GetNetworkCameraSchedulesExecute(r SchedulesApiGet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -186,8 +186,8 @@ func (a *SchedulesApiService) GetNetworkWirelessSsidSchedulesExecute(r Schedules
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/schedules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -234,9 +234,9 @@ func (a *SchedulesApiService) GetNetworkWirelessSsidSchedulesExecute(r Schedules
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -313,8 +313,8 @@ func (a *SchedulesApiService) UpdateNetworkWirelessSsidSchedulesExecute(r Schedu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/schedules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -363,9 +363,9 @@ func (a *SchedulesApiService) UpdateNetworkWirelessSsidSchedulesExecute(r Schedu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

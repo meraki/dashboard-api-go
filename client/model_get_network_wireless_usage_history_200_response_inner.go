@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkWirelessUsageHistory200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessUsageHistory200ResponseInner{}
+
 // GetNetworkWirelessUsageHistory200ResponseInner struct for GetNetworkWirelessUsageHistory200ResponseInner
 type GetNetworkWirelessUsageHistory200ResponseInner struct {
 	// The start time of the query range
@@ -48,7 +51,7 @@ func NewGetNetworkWirelessUsageHistory200ResponseInnerWithDefaults() *GetNetwork
 
 // GetStartTs returns the StartTs field value if set, zero value otherwise.
 func (o *GetNetworkWirelessUsageHistory200ResponseInner) GetStartTs() time.Time {
-	if o == nil || isNil(o.StartTs) {
+	if o == nil || IsNil(o.StartTs) {
 		var ret time.Time
 		return ret
 	}
@@ -58,15 +61,15 @@ func (o *GetNetworkWirelessUsageHistory200ResponseInner) GetStartTs() time.Time 
 // GetStartTsOk returns a tuple with the StartTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessUsageHistory200ResponseInner) GetStartTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartTs) {
-    return nil, false
+	if o == nil || IsNil(o.StartTs) {
+		return nil, false
 	}
 	return o.StartTs, true
 }
 
 // HasStartTs returns a boolean if a field has been set.
 func (o *GetNetworkWirelessUsageHistory200ResponseInner) HasStartTs() bool {
-	if o != nil && !isNil(o.StartTs) {
+	if o != nil && !IsNil(o.StartTs) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *GetNetworkWirelessUsageHistory200ResponseInner) SetStartTs(v time.Time)
 
 // GetEndTs returns the EndTs field value if set, zero value otherwise.
 func (o *GetNetworkWirelessUsageHistory200ResponseInner) GetEndTs() time.Time {
-	if o == nil || isNil(o.EndTs) {
+	if o == nil || IsNil(o.EndTs) {
 		var ret time.Time
 		return ret
 	}
@@ -90,15 +93,15 @@ func (o *GetNetworkWirelessUsageHistory200ResponseInner) GetEndTs() time.Time {
 // GetEndTsOk returns a tuple with the EndTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessUsageHistory200ResponseInner) GetEndTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.EndTs) {
-    return nil, false
+	if o == nil || IsNil(o.EndTs) {
+		return nil, false
 	}
 	return o.EndTs, true
 }
 
 // HasEndTs returns a boolean if a field has been set.
 func (o *GetNetworkWirelessUsageHistory200ResponseInner) HasEndTs() bool {
-	if o != nil && !isNil(o.EndTs) {
+	if o != nil && !IsNil(o.EndTs) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *GetNetworkWirelessUsageHistory200ResponseInner) SetEndTs(v time.Time) {
 
 // GetTotalKbps returns the TotalKbps field value if set, zero value otherwise.
 func (o *GetNetworkWirelessUsageHistory200ResponseInner) GetTotalKbps() int32 {
-	if o == nil || isNil(o.TotalKbps) {
+	if o == nil || IsNil(o.TotalKbps) {
 		var ret int32
 		return ret
 	}
@@ -122,15 +125,15 @@ func (o *GetNetworkWirelessUsageHistory200ResponseInner) GetTotalKbps() int32 {
 // GetTotalKbpsOk returns a tuple with the TotalKbps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessUsageHistory200ResponseInner) GetTotalKbpsOk() (*int32, bool) {
-	if o == nil || isNil(o.TotalKbps) {
-    return nil, false
+	if o == nil || IsNil(o.TotalKbps) {
+		return nil, false
 	}
 	return o.TotalKbps, true
 }
 
 // HasTotalKbps returns a boolean if a field has been set.
 func (o *GetNetworkWirelessUsageHistory200ResponseInner) HasTotalKbps() bool {
-	if o != nil && !isNil(o.TotalKbps) {
+	if o != nil && !IsNil(o.TotalKbps) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *GetNetworkWirelessUsageHistory200ResponseInner) SetTotalKbps(v int32) {
 
 // GetSentKbps returns the SentKbps field value if set, zero value otherwise.
 func (o *GetNetworkWirelessUsageHistory200ResponseInner) GetSentKbps() int32 {
-	if o == nil || isNil(o.SentKbps) {
+	if o == nil || IsNil(o.SentKbps) {
 		var ret int32
 		return ret
 	}
@@ -154,15 +157,15 @@ func (o *GetNetworkWirelessUsageHistory200ResponseInner) GetSentKbps() int32 {
 // GetSentKbpsOk returns a tuple with the SentKbps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessUsageHistory200ResponseInner) GetSentKbpsOk() (*int32, bool) {
-	if o == nil || isNil(o.SentKbps) {
-    return nil, false
+	if o == nil || IsNil(o.SentKbps) {
+		return nil, false
 	}
 	return o.SentKbps, true
 }
 
 // HasSentKbps returns a boolean if a field has been set.
 func (o *GetNetworkWirelessUsageHistory200ResponseInner) HasSentKbps() bool {
-	if o != nil && !isNil(o.SentKbps) {
+	if o != nil && !IsNil(o.SentKbps) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *GetNetworkWirelessUsageHistory200ResponseInner) SetSentKbps(v int32) {
 
 // GetReceivedKbps returns the ReceivedKbps field value if set, zero value otherwise.
 func (o *GetNetworkWirelessUsageHistory200ResponseInner) GetReceivedKbps() int32 {
-	if o == nil || isNil(o.ReceivedKbps) {
+	if o == nil || IsNil(o.ReceivedKbps) {
 		var ret int32
 		return ret
 	}
@@ -186,15 +189,15 @@ func (o *GetNetworkWirelessUsageHistory200ResponseInner) GetReceivedKbps() int32
 // GetReceivedKbpsOk returns a tuple with the ReceivedKbps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessUsageHistory200ResponseInner) GetReceivedKbpsOk() (*int32, bool) {
-	if o == nil || isNil(o.ReceivedKbps) {
-    return nil, false
+	if o == nil || IsNil(o.ReceivedKbps) {
+		return nil, false
 	}
 	return o.ReceivedKbps, true
 }
 
 // HasReceivedKbps returns a boolean if a field has been set.
 func (o *GetNetworkWirelessUsageHistory200ResponseInner) HasReceivedKbps() bool {
-	if o != nil && !isNil(o.ReceivedKbps) {
+	if o != nil && !IsNil(o.ReceivedKbps) {
 		return true
 	}
 
@@ -207,23 +210,31 @@ func (o *GetNetworkWirelessUsageHistory200ResponseInner) SetReceivedKbps(v int32
 }
 
 func (o GetNetworkWirelessUsageHistory200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.StartTs) {
-		toSerialize["startTs"] = o.StartTs
-	}
-	if !isNil(o.EndTs) {
-		toSerialize["endTs"] = o.EndTs
-	}
-	if !isNil(o.TotalKbps) {
-		toSerialize["totalKbps"] = o.TotalKbps
-	}
-	if !isNil(o.SentKbps) {
-		toSerialize["sentKbps"] = o.SentKbps
-	}
-	if !isNil(o.ReceivedKbps) {
-		toSerialize["receivedKbps"] = o.ReceivedKbps
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessUsageHistory200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.StartTs) {
+		toSerialize["startTs"] = o.StartTs
+	}
+	if !IsNil(o.EndTs) {
+		toSerialize["endTs"] = o.EndTs
+	}
+	if !IsNil(o.TotalKbps) {
+		toSerialize["totalKbps"] = o.TotalKbps
+	}
+	if !IsNil(o.SentKbps) {
+		toSerialize["sentKbps"] = o.SentKbps
+	}
+	if !IsNil(o.ReceivedKbps) {
+		toSerialize["receivedKbps"] = o.ReceivedKbps
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessUsageHistory200ResponseInner struct {

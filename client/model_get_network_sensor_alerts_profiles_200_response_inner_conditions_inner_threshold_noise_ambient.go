@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoiseAmbient type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoiseAmbient{}
+
 // GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoiseAmbient Ambient noise threshold. One of 'level' or 'quality' must be provided.
 type GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoiseAmbient struct {
 	// Alerting threshold as adjusted decibels.
@@ -41,7 +44,7 @@ func NewGetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNo
 
 // GetLevel returns the Level field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoiseAmbient) GetLevel() int32 {
-	if o == nil || isNil(o.Level) {
+	if o == nil || IsNil(o.Level) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdN
 // GetLevelOk returns a tuple with the Level field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoiseAmbient) GetLevelOk() (*int32, bool) {
-	if o == nil || isNil(o.Level) {
-    return nil, false
+	if o == nil || IsNil(o.Level) {
+		return nil, false
 	}
 	return o.Level, true
 }
 
 // HasLevel returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoiseAmbient) HasLevel() bool {
-	if o != nil && !isNil(o.Level) {
+	if o != nil && !IsNil(o.Level) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdN
 
 // GetQuality returns the Quality field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoiseAmbient) GetQuality() string {
-	if o == nil || isNil(o.Quality) {
+	if o == nil || IsNil(o.Quality) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdN
 // GetQualityOk returns a tuple with the Quality field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoiseAmbient) GetQualityOk() (*string, bool) {
-	if o == nil || isNil(o.Quality) {
-    return nil, false
+	if o == nil || IsNil(o.Quality) {
+		return nil, false
 	}
 	return o.Quality, true
 }
 
 // HasQuality returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoiseAmbient) HasQuality() bool {
-	if o != nil && !isNil(o.Quality) {
+	if o != nil && !IsNil(o.Quality) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdN
 }
 
 func (o GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoiseAmbient) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Level) {
-		toSerialize["level"] = o.Level
-	}
-	if !isNil(o.Quality) {
-		toSerialize["quality"] = o.Quality
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoiseAmbient) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Level) {
+		toSerialize["level"] = o.Level
+	}
+	if !IsNil(o.Quality) {
+		toSerialize["quality"] = o.Quality
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoiseAmbient struct {

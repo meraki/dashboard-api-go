@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSensorReadingsLatest200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSensorReadingsLatest200ResponseInner{}
+
 // GetOrganizationSensorReadingsLatest200ResponseInner struct for GetOrganizationSensorReadingsLatest200ResponseInner
 type GetOrganizationSensorReadingsLatest200ResponseInner struct {
 	// Serial number of the sensor that took the readings.
@@ -42,7 +45,7 @@ func NewGetOrganizationSensorReadingsLatest200ResponseInnerWithDefaults() *GetOr
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsLatest200ResponseInner) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *GetOrganizationSensorReadingsLatest200ResponseInner) GetSerial() string
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsLatest200ResponseInner) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsLatest200ResponseInner) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *GetOrganizationSensorReadingsLatest200ResponseInner) SetSerial(v string
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsLatest200ResponseInner) GetNetwork() GetOrganizationSensorReadingsHistory200ResponseInnerNetwork {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		var ret GetOrganizationSensorReadingsHistory200ResponseInnerNetwork
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *GetOrganizationSensorReadingsLatest200ResponseInner) GetNetwork() GetOr
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsLatest200ResponseInner) GetNetworkOk() (*GetOrganizationSensorReadingsHistory200ResponseInnerNetwork, bool) {
-	if o == nil || isNil(o.Network) {
-    return nil, false
+	if o == nil || IsNil(o.Network) {
+		return nil, false
 	}
 	return o.Network, true
 }
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsLatest200ResponseInner) HasNetwork() bool {
-	if o != nil && !isNil(o.Network) {
+	if o != nil && !IsNil(o.Network) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *GetOrganizationSensorReadingsLatest200ResponseInner) SetNetwork(v GetOr
 
 // GetReadings returns the Readings field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsLatest200ResponseInner) GetReadings() []GetOrganizationSensorReadingsLatest200ResponseInnerReadingsInner {
-	if o == nil || isNil(o.Readings) {
+	if o == nil || IsNil(o.Readings) {
 		var ret []GetOrganizationSensorReadingsLatest200ResponseInnerReadingsInner
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *GetOrganizationSensorReadingsLatest200ResponseInner) GetReadings() []Ge
 // GetReadingsOk returns a tuple with the Readings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsLatest200ResponseInner) GetReadingsOk() ([]GetOrganizationSensorReadingsLatest200ResponseInnerReadingsInner, bool) {
-	if o == nil || isNil(o.Readings) {
-    return nil, false
+	if o == nil || IsNil(o.Readings) {
+		return nil, false
 	}
 	return o.Readings, true
 }
 
 // HasReadings returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsLatest200ResponseInner) HasReadings() bool {
-	if o != nil && !isNil(o.Readings) {
+	if o != nil && !IsNil(o.Readings) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *GetOrganizationSensorReadingsLatest200ResponseInner) SetReadings(v []Ge
 }
 
 func (o GetOrganizationSensorReadingsLatest200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Network) {
-		toSerialize["network"] = o.Network
-	}
-	if !isNil(o.Readings) {
-		toSerialize["readings"] = o.Readings
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSensorReadingsLatest200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.Network) {
+		toSerialize["network"] = o.Network
+	}
+	if !IsNil(o.Readings) {
+		toSerialize["readings"] = o.Readings
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSensorReadingsLatest200ResponseInner struct {

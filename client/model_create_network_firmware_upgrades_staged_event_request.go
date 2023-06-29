@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkFirmwareUpgradesStagedEventRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkFirmwareUpgradesStagedEventRequest{}
+
 // CreateNetworkFirmwareUpgradesStagedEventRequest struct for CreateNetworkFirmwareUpgradesStagedEventRequest
 type CreateNetworkFirmwareUpgradesStagedEventRequest struct {
 	Products *CreateNetworkFirmwareUpgradesStagedEventRequestProducts `json:"products,omitempty"`
@@ -41,7 +44,7 @@ func NewCreateNetworkFirmwareUpgradesStagedEventRequestWithDefaults() *CreateNet
 
 // GetProducts returns the Products field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesStagedEventRequest) GetProducts() CreateNetworkFirmwareUpgradesStagedEventRequestProducts {
-	if o == nil || isNil(o.Products) {
+	if o == nil || IsNil(o.Products) {
 		var ret CreateNetworkFirmwareUpgradesStagedEventRequestProducts
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateNetworkFirmwareUpgradesStagedEventRequest) GetProducts() CreateNe
 // GetProductsOk returns a tuple with the Products field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedEventRequest) GetProductsOk() (*CreateNetworkFirmwareUpgradesStagedEventRequestProducts, bool) {
-	if o == nil || isNil(o.Products) {
-    return nil, false
+	if o == nil || IsNil(o.Products) {
+		return nil, false
 	}
 	return o.Products, true
 }
 
 // HasProducts returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedEventRequest) HasProducts() bool {
-	if o != nil && !isNil(o.Products) {
+	if o != nil && !IsNil(o.Products) {
 		return true
 	}
 
@@ -85,7 +88,7 @@ func (o *CreateNetworkFirmwareUpgradesStagedEventRequest) GetStages() []UpdateNe
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedEventRequest) GetStagesOk() ([]UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Stages, true
 }
@@ -96,14 +99,20 @@ func (o *CreateNetworkFirmwareUpgradesStagedEventRequest) SetStages(v []UpdateNe
 }
 
 func (o CreateNetworkFirmwareUpgradesStagedEventRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Products) {
-		toSerialize["products"] = o.Products
-	}
-	if true {
-		toSerialize["stages"] = o.Stages
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkFirmwareUpgradesStagedEventRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Products) {
+		toSerialize["products"] = o.Products
+	}
+	toSerialize["stages"] = o.Stages
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkFirmwareUpgradesStagedEventRequest struct {

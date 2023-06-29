@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSummaryTopClientsByUsage200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSummaryTopClientsByUsage200ResponseInner{}
+
 // GetOrganizationSummaryTopClientsByUsage200ResponseInner struct for GetOrganizationSummaryTopClientsByUsage200ResponseInner
 type GetOrganizationSummaryTopClientsByUsage200ResponseInner struct {
 	// Name of client
@@ -45,7 +48,7 @@ func NewGetOrganizationSummaryTopClientsByUsage200ResponseInnerWithDefaults() *G
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) GetName() stri
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) SetName(v stri
 
 // GetMac returns the Mac field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) GetMac() string {
-	if o == nil || isNil(o.Mac) {
+	if o == nil || IsNil(o.Mac) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) GetMac() strin
 // GetMacOk returns a tuple with the Mac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) GetMacOk() (*string, bool) {
-	if o == nil || isNil(o.Mac) {
-    return nil, false
+	if o == nil || IsNil(o.Mac) {
+		return nil, false
 	}
 	return o.Mac, true
 }
 
 // HasMac returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) HasMac() bool {
-	if o != nil && !isNil(o.Mac) {
+	if o != nil && !IsNil(o.Mac) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) SetMac(v strin
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) GetId() string
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) SetId(v string
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) GetNetwork() GetOrganizationSummaryTopClientsByUsage200ResponseInnerNetwork {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		var ret GetOrganizationSummaryTopClientsByUsage200ResponseInnerNetwork
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) GetNetwork() G
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) GetNetworkOk() (*GetOrganizationSummaryTopClientsByUsage200ResponseInnerNetwork, bool) {
-	if o == nil || isNil(o.Network) {
-    return nil, false
+	if o == nil || IsNil(o.Network) {
+		return nil, false
 	}
 	return o.Network, true
 }
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) HasNetwork() bool {
-	if o != nil && !isNil(o.Network) {
+	if o != nil && !IsNil(o.Network) {
 		return true
 	}
 
@@ -173,7 +176,7 @@ func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) SetNetwork(v G
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) GetUsage() GetOrganizationSummaryTopClientsByUsage200ResponseInnerUsage {
-	if o == nil || isNil(o.Usage) {
+	if o == nil || IsNil(o.Usage) {
 		var ret GetOrganizationSummaryTopClientsByUsage200ResponseInnerUsage
 		return ret
 	}
@@ -183,15 +186,15 @@ func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) GetUsage() Get
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) GetUsageOk() (*GetOrganizationSummaryTopClientsByUsage200ResponseInnerUsage, bool) {
-	if o == nil || isNil(o.Usage) {
-    return nil, false
+	if o == nil || IsNil(o.Usage) {
+		return nil, false
 	}
 	return o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) HasUsage() bool {
-	if o != nil && !isNil(o.Usage) {
+	if o != nil && !IsNil(o.Usage) {
 		return true
 	}
 
@@ -204,23 +207,31 @@ func (o *GetOrganizationSummaryTopClientsByUsage200ResponseInner) SetUsage(v Get
 }
 
 func (o GetOrganizationSummaryTopClientsByUsage200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Mac) {
-		toSerialize["mac"] = o.Mac
-	}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Network) {
-		toSerialize["network"] = o.Network
-	}
-	if !isNil(o.Usage) {
-		toSerialize["usage"] = o.Usage
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSummaryTopClientsByUsage200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Mac) {
+		toSerialize["mac"] = o.Mac
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Network) {
+		toSerialize["network"] = o.Network
+	}
+	if !IsNil(o.Usage) {
+		toSerialize["usage"] = o.Usage
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSummaryTopClientsByUsage200ResponseInner struct {

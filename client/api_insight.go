@@ -13,7 +13,7 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -72,7 +72,7 @@ func (a *InsightApiService) CreateOrganizationInsightMonitoredMediaServerExecute
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/insight/monitoredMediaServers"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -124,9 +124,9 @@ func (a *InsightApiService) CreateOrganizationInsightMonitoredMediaServerExecute
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -195,8 +195,8 @@ func (a *InsightApiService) DeleteOrganizationInsightMonitoredMediaServerExecute
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/insight/monitoredMediaServers/{monitoredMediaServerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"monitoredMediaServerId"+"}", url.PathEscape(parameterToString(r.monitoredMediaServerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"monitoredMediaServerId"+"}", url.PathEscape(parameterValueToString(r.monitoredMediaServerId, "monitoredMediaServerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -243,9 +243,9 @@ func (a *InsightApiService) DeleteOrganizationInsightMonitoredMediaServerExecute
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -335,24 +335,24 @@ func (a *InsightApiService) GetNetworkInsightApplicationHealthByTimeExecute(r In
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/insight/applications/{applicationId}/healthByTime"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"applicationId"+"}", url.PathEscape(parameterToString(r.applicationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"applicationId"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.t0 != nil {
-		localVarQueryParams.Add("t0", parameterToString(*r.t0, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "t0", r.t0, "")
 	}
 	if r.t1 != nil {
-		localVarQueryParams.Add("t1", parameterToString(*r.t1, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "t1", r.t1, "")
 	}
 	if r.timespan != nil {
-		localVarQueryParams.Add("timespan", parameterToString(*r.timespan, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "timespan", r.timespan, "")
 	}
 	if r.resolution != nil {
-		localVarQueryParams.Add("resolution", parameterToString(*r.resolution, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "resolution", r.resolution, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -395,9 +395,9 @@ func (a *InsightApiService) GetNetworkInsightApplicationHealthByTimeExecute(r In
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -465,7 +465,7 @@ func (a *InsightApiService) GetOrganizationInsightApplicationsExecute(r InsightA
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/insight/applications"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -512,9 +512,9 @@ func (a *InsightApiService) GetOrganizationInsightApplicationsExecute(r InsightA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -585,8 +585,8 @@ func (a *InsightApiService) GetOrganizationInsightMonitoredMediaServerExecute(r 
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/insight/monitoredMediaServers/{monitoredMediaServerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"monitoredMediaServerId"+"}", url.PathEscape(parameterToString(r.monitoredMediaServerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"monitoredMediaServerId"+"}", url.PathEscape(parameterValueToString(r.monitoredMediaServerId, "monitoredMediaServerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -633,9 +633,9 @@ func (a *InsightApiService) GetOrganizationInsightMonitoredMediaServerExecute(r 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -703,7 +703,7 @@ func (a *InsightApiService) GetOrganizationInsightMonitoredMediaServersExecute(r
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/insight/monitoredMediaServers"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -750,9 +750,9 @@ func (a *InsightApiService) GetOrganizationInsightMonitoredMediaServersExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -829,8 +829,8 @@ func (a *InsightApiService) UpdateOrganizationInsightMonitoredMediaServerExecute
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/insight/monitoredMediaServers/{monitoredMediaServerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"monitoredMediaServerId"+"}", url.PathEscape(parameterToString(r.monitoredMediaServerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"monitoredMediaServerId"+"}", url.PathEscape(parameterValueToString(r.monitoredMediaServerId, "monitoredMediaServerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -879,9 +879,9 @@ func (a *InsightApiService) UpdateOrganizationInsightMonitoredMediaServerExecute
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

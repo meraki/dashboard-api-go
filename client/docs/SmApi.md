@@ -70,6 +70,7 @@ func main() {
     checkinNetworkSmDevicesRequest := *openapiclient.NewCheckinNetworkSmDevicesRequest() // CheckinNetworkSmDevicesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.CheckinNetworkSmDevices(context.Background(), networkId).CheckinNetworkSmDevicesRequest(checkinNetworkSmDevicesRequest).Execute()
     if err != nil {
@@ -142,6 +143,7 @@ func main() {
     createNetworkSmBypassActivationLockAttemptRequest := *openapiclient.NewCreateNetworkSmBypassActivationLockAttemptRequest([]string{"Ids_example"}) // CreateNetworkSmBypassActivationLockAttemptRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.CreateNetworkSmBypassActivationLockAttempt(context.Background(), networkId).CreateNetworkSmBypassActivationLockAttemptRequest(createNetworkSmBypassActivationLockAttemptRequest).Execute()
     if err != nil {
@@ -214,6 +216,7 @@ func main() {
     createNetworkSmTargetGroupRequest := *openapiclient.NewCreateNetworkSmTargetGroupRequest() // CreateNetworkSmTargetGroupRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.CreateNetworkSmTargetGroup(context.Background(), networkId).CreateNetworkSmTargetGroupRequest(createNetworkSmTargetGroupRequest).Execute()
     if err != nil {
@@ -286,8 +289,9 @@ func main() {
     targetGroupId := "targetGroupId_example" // string | Target group ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SmApi.DeleteNetworkSmTargetGroup(context.Background(), networkId, targetGroupId).Execute()
+    r, err := apiClient.SmApi.DeleteNetworkSmTargetGroup(context.Background(), networkId, targetGroupId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.DeleteNetworkSmTargetGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -357,8 +361,9 @@ func main() {
     userAccessDeviceId := "userAccessDeviceId_example" // string | User access device ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SmApi.DeleteNetworkSmUserAccessDevice(context.Background(), networkId, userAccessDeviceId).Execute()
+    r, err := apiClient.SmApi.DeleteNetworkSmUserAccessDevice(context.Background(), networkId, userAccessDeviceId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.DeleteNetworkSmUserAccessDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -428,6 +433,7 @@ func main() {
     attemptId := "attemptId_example" // string | Attempt ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmBypassActivationLockAttempt(context.Background(), networkId, attemptId).Execute()
     if err != nil {
@@ -501,6 +507,7 @@ func main() {
     deviceId := "deviceId_example" // string | Device ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmDeviceCellularUsageHistory(context.Background(), networkId, deviceId).Execute()
     if err != nil {
@@ -574,6 +581,7 @@ func main() {
     deviceId := "deviceId_example" // string | Device ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmDeviceCerts(context.Background(), networkId, deviceId).Execute()
     if err != nil {
@@ -650,6 +658,7 @@ func main() {
     endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmDeviceConnectivity(context.Background(), networkId, deviceId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
     if err != nil {
@@ -729,6 +738,7 @@ func main() {
     endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmDeviceDesktopLogs(context.Background(), networkId, deviceId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
     if err != nil {
@@ -808,6 +818,7 @@ func main() {
     endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmDeviceDeviceCommandLogs(context.Background(), networkId, deviceId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
     if err != nil {
@@ -884,6 +895,7 @@ func main() {
     deviceId := "deviceId_example" // string | Device ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmDeviceDeviceProfiles(context.Background(), networkId, deviceId).Execute()
     if err != nil {
@@ -957,6 +969,7 @@ func main() {
     deviceId := "deviceId_example" // string | Device ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmDeviceNetworkAdapters(context.Background(), networkId, deviceId).Execute()
     if err != nil {
@@ -1033,6 +1046,7 @@ func main() {
     endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmDevicePerformanceHistory(context.Background(), networkId, deviceId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
     if err != nil {
@@ -1109,6 +1123,7 @@ func main() {
     deviceId := "deviceId_example" // string | Device ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmDeviceRestrictions(context.Background(), networkId, deviceId).Execute()
     if err != nil {
@@ -1182,6 +1197,7 @@ func main() {
     deviceId := "deviceId_example" // string | Device ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmDeviceSecurityCenters(context.Background(), networkId, deviceId).Execute()
     if err != nil {
@@ -1255,6 +1271,7 @@ func main() {
     deviceId := "deviceId_example" // string | Device ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmDeviceSoftwares(context.Background(), networkId, deviceId).Execute()
     if err != nil {
@@ -1328,6 +1345,7 @@ func main() {
     deviceId := "deviceId_example" // string | Device ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmDeviceWlanLists(context.Background(), networkId, deviceId).Execute()
     if err != nil {
@@ -1408,6 +1426,7 @@ func main() {
     endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmDevices(context.Background(), networkId).Fields(fields).WifiMacs(wifiMacs).Serials(serials).Ids(ids).Scope(scope).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
     if err != nil {
@@ -1486,6 +1505,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmProfiles(context.Background(), networkId).Execute()
     if err != nil {
@@ -1558,6 +1578,7 @@ func main() {
     withDetails := true // bool | Boolean indicating if the the ids of the devices or users scoped by the target group should be included in the response (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmTargetGroup(context.Background(), networkId, targetGroupId).WithDetails(withDetails).Execute()
     if err != nil {
@@ -1632,6 +1653,7 @@ func main() {
     withDetails := true // bool | Boolean indicating if the the ids of the devices or users scoped by the target group should be included in the response (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmTargetGroups(context.Background(), networkId).WithDetails(withDetails).Execute()
     if err != nil {
@@ -1706,6 +1728,7 @@ func main() {
     endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmTrustedAccessConfigs(context.Background(), networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
     if err != nil {
@@ -1782,6 +1805,7 @@ func main() {
     endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmUserAccessDevices(context.Background(), networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
     if err != nil {
@@ -1856,6 +1880,7 @@ func main() {
     userId := "userId_example" // string | User ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmUserDeviceProfiles(context.Background(), networkId, userId).Execute()
     if err != nil {
@@ -1929,6 +1954,7 @@ func main() {
     userId := "userId_example" // string | User ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmUserSoftwares(context.Background(), networkId, userId).Execute()
     if err != nil {
@@ -2005,6 +2031,7 @@ func main() {
     scope := []string{"Inner_example"} // []string | Specifiy a scope (one of all, none, withAny, withAll, withoutAny, withoutAll) and a set of tags. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetNetworkSmUsers(context.Background(), networkId).Ids(ids).Usernames(usernames).Emails(emails).Scope(scope).Execute()
     if err != nil {
@@ -2079,6 +2106,7 @@ func main() {
     organizationId := "organizationId_example" // string | Organization ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetOrganizationSmApnsCert(context.Background(), organizationId).Execute()
     if err != nil {
@@ -2150,6 +2178,7 @@ func main() {
     vppAccountId := "vppAccountId_example" // string | Vpp account ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetOrganizationSmVppAccount(context.Background(), organizationId, vppAccountId).Execute()
     if err != nil {
@@ -2222,6 +2251,7 @@ func main() {
     organizationId := "organizationId_example" // string | Organization ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.GetOrganizationSmVppAccounts(context.Background(), organizationId).Execute()
     if err != nil {
@@ -2293,6 +2323,7 @@ func main() {
     lockNetworkSmDevicesRequest := *openapiclient.NewLockNetworkSmDevicesRequest() // LockNetworkSmDevicesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.LockNetworkSmDevices(context.Background(), networkId).LockNetworkSmDevicesRequest(lockNetworkSmDevicesRequest).Execute()
     if err != nil {
@@ -2365,6 +2396,7 @@ func main() {
     modifyNetworkSmDevicesTagsRequest := *openapiclient.NewModifyNetworkSmDevicesTagsRequest([]string{"Tags_example"}, "UpdateAction_example") // ModifyNetworkSmDevicesTagsRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.ModifyNetworkSmDevicesTags(context.Background(), networkId).ModifyNetworkSmDevicesTagsRequest(modifyNetworkSmDevicesTagsRequest).Execute()
     if err != nil {
@@ -2437,6 +2469,7 @@ func main() {
     moveNetworkSmDevicesRequest := *openapiclient.NewMoveNetworkSmDevicesRequest("NewNetwork_example") // MoveNetworkSmDevicesRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.MoveNetworkSmDevices(context.Background(), networkId).MoveNetworkSmDevicesRequest(moveNetworkSmDevicesRequest).Execute()
     if err != nil {
@@ -2509,8 +2542,9 @@ func main() {
     deviceId := "deviceId_example" // string | Device ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SmApi.RefreshNetworkSmDeviceDetails(context.Background(), networkId, deviceId).Execute()
+    r, err := apiClient.SmApi.RefreshNetworkSmDeviceDetails(context.Background(), networkId, deviceId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SmApi.RefreshNetworkSmDeviceDetails``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2580,6 +2614,7 @@ func main() {
     deviceId := "deviceId_example" // string | Device ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.UnenrollNetworkSmDevice(context.Background(), networkId, deviceId).Execute()
     if err != nil {
@@ -2653,6 +2688,7 @@ func main() {
     updateNetworkSmDevicesFieldsRequest := *openapiclient.NewUpdateNetworkSmDevicesFieldsRequest(*openapiclient.NewUpdateNetworkSmDevicesFieldsRequestDeviceFields()) // UpdateNetworkSmDevicesFieldsRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.UpdateNetworkSmDevicesFields(context.Background(), networkId).UpdateNetworkSmDevicesFieldsRequest(updateNetworkSmDevicesFieldsRequest).Execute()
     if err != nil {
@@ -2726,6 +2762,7 @@ func main() {
     createNetworkSmTargetGroupRequest := *openapiclient.NewCreateNetworkSmTargetGroupRequest() // CreateNetworkSmTargetGroupRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.UpdateNetworkSmTargetGroup(context.Background(), networkId, targetGroupId).CreateNetworkSmTargetGroupRequest(createNetworkSmTargetGroupRequest).Execute()
     if err != nil {
@@ -2800,6 +2837,7 @@ func main() {
     wipeNetworkSmDevicesRequest := *openapiclient.NewWipeNetworkSmDevicesRequest() // WipeNetworkSmDevicesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmApi.WipeNetworkSmDevices(context.Background(), networkId).WipeNetworkSmDevicesRequest(wipeNetworkSmDevicesRequest).Execute()
     if err != nil {

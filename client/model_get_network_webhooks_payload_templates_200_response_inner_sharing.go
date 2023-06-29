@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWebhooksPayloadTemplates200ResponseInnerSharing type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWebhooksPayloadTemplates200ResponseInnerSharing{}
+
 // GetNetworkWebhooksPayloadTemplates200ResponseInnerSharing Information on which entities have access to the template
 type GetNetworkWebhooksPayloadTemplates200ResponseInnerSharing struct {
 	ByNetwork *GetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetwork `json:"byNetwork,omitempty"`
@@ -38,7 +41,7 @@ func NewGetNetworkWebhooksPayloadTemplates200ResponseInnerSharingWithDefaults() 
 
 // GetByNetwork returns the ByNetwork field value if set, zero value otherwise.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInnerSharing) GetByNetwork() GetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetwork {
-	if o == nil || isNil(o.ByNetwork) {
+	if o == nil || IsNil(o.ByNetwork) {
 		var ret GetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetwork
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetNetworkWebhooksPayloadTemplates200ResponseInnerSharing) GetByNetwork
 // GetByNetworkOk returns a tuple with the ByNetwork field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInnerSharing) GetByNetworkOk() (*GetNetworkWebhooksPayloadTemplates200ResponseInnerSharingByNetwork, bool) {
-	if o == nil || isNil(o.ByNetwork) {
-    return nil, false
+	if o == nil || IsNil(o.ByNetwork) {
+		return nil, false
 	}
 	return o.ByNetwork, true
 }
 
 // HasByNetwork returns a boolean if a field has been set.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInnerSharing) HasByNetwork() bool {
-	if o != nil && !isNil(o.ByNetwork) {
+	if o != nil && !IsNil(o.ByNetwork) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetNetworkWebhooksPayloadTemplates200ResponseInnerSharing) SetByNetwork
 }
 
 func (o GetNetworkWebhooksPayloadTemplates200ResponseInnerSharing) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ByNetwork) {
-		toSerialize["byNetwork"] = o.ByNetwork
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWebhooksPayloadTemplates200ResponseInnerSharing) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ByNetwork) {
+		toSerialize["byNetwork"] = o.ByNetwork
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWebhooksPayloadTemplates200ResponseInnerSharing struct {

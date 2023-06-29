@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInnerGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInnerGroup{}
+
 // UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInnerGroup The Staged Upgrade Group
 type UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInnerGroup struct {
 	// ID of the Staged Upgrade Group
@@ -52,7 +55,7 @@ func (o *UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInnerGroup) GetId()
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInnerGroup) GetIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Id, true
 }
@@ -63,11 +66,17 @@ func (o *UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInnerGroup) SetId(v
 }
 
 func (o UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInnerGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInnerGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInnerGroup struct {

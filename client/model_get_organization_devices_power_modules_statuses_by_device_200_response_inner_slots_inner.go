@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner{}
+
 // GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner struct for GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner
 type GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner struct {
 	// Which slot the AC power supply occupies. Possible values are: 0, 1, 2.
@@ -45,7 +48,7 @@ func NewGetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsI
 
 // GetNumber returns the Number field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner) GetNumber() int32 {
-	if o == nil || isNil(o.Number) {
+	if o == nil || IsNil(o.Number) {
 		var ret int32
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlots
 // GetNumberOk returns a tuple with the Number field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner) GetNumberOk() (*int32, bool) {
-	if o == nil || isNil(o.Number) {
-    return nil, false
+	if o == nil || IsNil(o.Number) {
+		return nil, false
 	}
 	return o.Number, true
 }
 
 // HasNumber returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner) HasNumber() bool {
-	if o != nil && !isNil(o.Number) {
+	if o != nil && !IsNil(o.Number) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlots
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlots
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlots
 
 // GetModel returns the Model field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner) GetModel() string {
-	if o == nil || isNil(o.Model) {
+	if o == nil || IsNil(o.Model) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlots
 // GetModelOk returns a tuple with the Model field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner) GetModelOk() (*string, bool) {
-	if o == nil || isNil(o.Model) {
-    return nil, false
+	if o == nil || IsNil(o.Model) {
+		return nil, false
 	}
 	return o.Model, true
 }
 
 // HasModel returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner) HasModel() bool {
-	if o != nil && !isNil(o.Model) {
+	if o != nil && !IsNil(o.Model) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlots
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlots
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlots
 }
 
 func (o GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Number) {
-		toSerialize["number"] = o.Number
-	}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Model) {
-		toSerialize["model"] = o.Model
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Number) {
+		toSerialize["number"] = o.Number
+	}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.Model) {
+		toSerialize["model"] = o.Model
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationDevicesPowerModulesStatusesByDevice200ResponseInnerSlotsInner struct {

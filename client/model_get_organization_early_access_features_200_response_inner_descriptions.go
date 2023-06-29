@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions{}
+
 // GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions Descriptions of the early access feature
 type GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions struct {
 	// Short description
@@ -41,7 +44,7 @@ func NewGetOrganizationEarlyAccessFeatures200ResponseInnerDescriptionsWithDefaul
 
 // GetShort returns the Short field value if set, zero value otherwise.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions) GetShort() string {
-	if o == nil || isNil(o.Short) {
+	if o == nil || IsNil(o.Short) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions) GetShor
 // GetShortOk returns a tuple with the Short field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions) GetShortOk() (*string, bool) {
-	if o == nil || isNil(o.Short) {
-    return nil, false
+	if o == nil || IsNil(o.Short) {
+		return nil, false
 	}
 	return o.Short, true
 }
 
 // HasShort returns a boolean if a field has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions) HasShort() bool {
-	if o != nil && !isNil(o.Short) {
+	if o != nil && !IsNil(o.Short) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions) SetShor
 
 // GetLong returns the Long field value if set, zero value otherwise.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions) GetLong() string {
-	if o == nil || isNil(o.Long) {
+	if o == nil || IsNil(o.Long) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions) GetLong
 // GetLongOk returns a tuple with the Long field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions) GetLongOk() (*string, bool) {
-	if o == nil || isNil(o.Long) {
-    return nil, false
+	if o == nil || IsNil(o.Long) {
+		return nil, false
 	}
 	return o.Long, true
 }
 
 // HasLong returns a boolean if a field has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions) HasLong() bool {
-	if o != nil && !isNil(o.Long) {
+	if o != nil && !IsNil(o.Long) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions) SetLong
 }
 
 func (o GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Short) {
-		toSerialize["short"] = o.Short
-	}
-	if !isNil(o.Long) {
-		toSerialize["long"] = o.Long
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Short) {
+		toSerialize["short"] = o.Short
+	}
+	if !IsNil(o.Long) {
+		toSerialize["long"] = o.Long
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions struct {

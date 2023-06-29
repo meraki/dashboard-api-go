@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationApplianceSecurityIntrusionRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationApplianceSecurityIntrusionRequest{}
+
 // UpdateOrganizationApplianceSecurityIntrusionRequest struct for UpdateOrganizationApplianceSecurityIntrusionRequest
 type UpdateOrganizationApplianceSecurityIntrusionRequest struct {
 	// Sets a list of specific SNORT signatures to allow
@@ -52,7 +55,7 @@ func (o *UpdateOrganizationApplianceSecurityIntrusionRequest) GetAllowedRules() 
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceSecurityIntrusionRequest) GetAllowedRulesOk() ([]UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.AllowedRules, true
 }
@@ -63,11 +66,17 @@ func (o *UpdateOrganizationApplianceSecurityIntrusionRequest) SetAllowedRules(v 
 }
 
 func (o UpdateOrganizationApplianceSecurityIntrusionRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["allowedRules"] = o.AllowedRules
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationApplianceSecurityIntrusionRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["allowedRules"] = o.AllowedRules
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationApplianceSecurityIntrusionRequest struct {

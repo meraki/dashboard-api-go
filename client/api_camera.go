@@ -13,7 +13,7 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -74,7 +74,7 @@ func (a *CameraApiService) CreateNetworkCameraQualityRetentionProfileExecute(r C
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/qualityRetentionProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -126,9 +126,9 @@ func (a *CameraApiService) CreateNetworkCameraQualityRetentionProfileExecute(r C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -202,7 +202,7 @@ func (a *CameraApiService) CreateNetworkCameraWirelessProfileExecute(r CameraApi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/wirelessProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -254,9 +254,9 @@ func (a *CameraApiService) CreateNetworkCameraWirelessProfileExecute(r CameraApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -330,7 +330,7 @@ func (a *CameraApiService) CreateOrganizationCameraCustomAnalyticsArtifactExecut
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/camera/customAnalytics/artifacts"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -379,9 +379,9 @@ func (a *CameraApiService) CreateOrganizationCameraCustomAnalyticsArtifactExecut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -450,8 +450,8 @@ func (a *CameraApiService) DeleteNetworkCameraQualityRetentionProfileExecute(r C
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/qualityRetentionProfiles/{qualityRetentionProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"qualityRetentionProfileId"+"}", url.PathEscape(parameterToString(r.qualityRetentionProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"qualityRetentionProfileId"+"}", url.PathEscape(parameterValueToString(r.qualityRetentionProfileId, "qualityRetentionProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -498,9 +498,9 @@ func (a *CameraApiService) DeleteNetworkCameraQualityRetentionProfileExecute(r C
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -560,8 +560,8 @@ func (a *CameraApiService) DeleteNetworkCameraWirelessProfileExecute(r CameraApi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/wirelessProfiles/{wirelessProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wirelessProfileId"+"}", url.PathEscape(parameterToString(r.wirelessProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wirelessProfileId"+"}", url.PathEscape(parameterValueToString(r.wirelessProfileId, "wirelessProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -608,9 +608,9 @@ func (a *CameraApiService) DeleteNetworkCameraWirelessProfileExecute(r CameraApi
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -670,8 +670,8 @@ func (a *CameraApiService) DeleteOrganizationCameraCustomAnalyticsArtifactExecut
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/camera/customAnalytics/artifacts/{artifactId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"artifactId"+"}", url.PathEscape(parameterToString(r.artifactId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"artifactId"+"}", url.PathEscape(parameterValueToString(r.artifactId, "artifactId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -718,9 +718,9 @@ func (a *CameraApiService) DeleteOrganizationCameraCustomAnalyticsArtifactExecut
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -785,7 +785,7 @@ func (a *CameraApiService) GenerateDeviceCameraSnapshotExecute(r CameraApiGenera
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/generateSnapshot"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -834,9 +834,9 @@ func (a *CameraApiService) GenerateDeviceCameraSnapshotExecute(r CameraApiGenera
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -904,7 +904,7 @@ func (a *CameraApiService) GetDeviceCameraAnalyticsLiveExecute(r CameraApiGetDev
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/analytics/live"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -951,9 +951,9 @@ func (a *CameraApiService) GetDeviceCameraAnalyticsLiveExecute(r CameraApiGetDev
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1049,23 +1049,23 @@ func (a *CameraApiService) GetDeviceCameraAnalyticsOverviewExecute(r CameraApiGe
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/analytics/overview"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.t0 != nil {
-		localVarQueryParams.Add("t0", parameterToString(*r.t0, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "t0", r.t0, "")
 	}
 	if r.t1 != nil {
-		localVarQueryParams.Add("t1", parameterToString(*r.t1, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "t1", r.t1, "")
 	}
 	if r.timespan != nil {
-		localVarQueryParams.Add("timespan", parameterToString(*r.timespan, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "timespan", r.timespan, "")
 	}
 	if r.objectType != nil {
-		localVarQueryParams.Add("objectType", parameterToString(*r.objectType, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "objectType", r.objectType, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1108,9 +1108,9 @@ func (a *CameraApiService) GetDeviceCameraAnalyticsOverviewExecute(r CameraApiGe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1185,14 +1185,14 @@ func (a *CameraApiService) GetDeviceCameraAnalyticsRecentExecute(r CameraApiGetD
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/analytics/recent"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.objectType != nil {
-		localVarQueryParams.Add("objectType", parameterToString(*r.objectType, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "objectType", r.objectType, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1235,9 +1235,9 @@ func (a *CameraApiService) GetDeviceCameraAnalyticsRecentExecute(r CameraApiGetD
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1343,27 +1343,27 @@ func (a *CameraApiService) GetDeviceCameraAnalyticsZoneHistoryExecute(r CameraAp
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/analytics/zones/{zoneId}/history"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"zoneId"+"}", url.PathEscape(parameterToString(r.zoneId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"zoneId"+"}", url.PathEscape(parameterValueToString(r.zoneId, "zoneId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.t0 != nil {
-		localVarQueryParams.Add("t0", parameterToString(*r.t0, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "t0", r.t0, "")
 	}
 	if r.t1 != nil {
-		localVarQueryParams.Add("t1", parameterToString(*r.t1, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "t1", r.t1, "")
 	}
 	if r.timespan != nil {
-		localVarQueryParams.Add("timespan", parameterToString(*r.timespan, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "timespan", r.timespan, "")
 	}
 	if r.resolution != nil {
-		localVarQueryParams.Add("resolution", parameterToString(*r.resolution, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "resolution", r.resolution, "")
 	}
 	if r.objectType != nil {
-		localVarQueryParams.Add("objectType", parameterToString(*r.objectType, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "objectType", r.objectType, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1406,9 +1406,9 @@ func (a *CameraApiService) GetDeviceCameraAnalyticsZoneHistoryExecute(r CameraAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1476,7 +1476,7 @@ func (a *CameraApiService) GetDeviceCameraAnalyticsZonesExecute(r CameraApiGetDe
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/analytics/zones"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1523,9 +1523,9 @@ func (a *CameraApiService) GetDeviceCameraAnalyticsZonesExecute(r CameraApiGetDe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1593,7 +1593,7 @@ func (a *CameraApiService) GetDeviceCameraCustomAnalyticsExecute(r CameraApiGetD
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/customAnalytics"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1640,9 +1640,9 @@ func (a *CameraApiService) GetDeviceCameraCustomAnalyticsExecute(r CameraApiGetD
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1710,7 +1710,7 @@ func (a *CameraApiService) GetDeviceCameraQualityAndRetentionExecute(r CameraApi
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/qualityAndRetention"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1757,9 +1757,9 @@ func (a *CameraApiService) GetDeviceCameraQualityAndRetentionExecute(r CameraApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1827,7 +1827,7 @@ func (a *CameraApiService) GetDeviceCameraSenseExecute(r CameraApiGetDeviceCamer
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/sense"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1874,9 +1874,9 @@ func (a *CameraApiService) GetDeviceCameraSenseExecute(r CameraApiGetDeviceCamer
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1944,7 +1944,7 @@ func (a *CameraApiService) GetDeviceCameraSenseObjectDetectionModelsExecute(r Ca
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/sense/objectDetectionModels"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1991,9 +1991,9 @@ func (a *CameraApiService) GetDeviceCameraSenseObjectDetectionModelsExecute(r Ca
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2068,14 +2068,14 @@ func (a *CameraApiService) GetDeviceCameraVideoLinkExecute(r CameraApiGetDeviceC
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/videoLink"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.timestamp != nil {
-		localVarQueryParams.Add("timestamp", parameterToString(*r.timestamp, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "timestamp", r.timestamp, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2118,9 +2118,9 @@ func (a *CameraApiService) GetDeviceCameraVideoLinkExecute(r CameraApiGetDeviceC
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2188,7 +2188,7 @@ func (a *CameraApiService) GetDeviceCameraVideoSettingsExecute(r CameraApiGetDev
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/video/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2235,9 +2235,9 @@ func (a *CameraApiService) GetDeviceCameraVideoSettingsExecute(r CameraApiGetDev
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2305,7 +2305,7 @@ func (a *CameraApiService) GetDeviceCameraWirelessProfilesExecute(r CameraApiGet
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/wirelessProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2352,9 +2352,9 @@ func (a *CameraApiService) GetDeviceCameraWirelessProfilesExecute(r CameraApiGet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2425,8 +2425,8 @@ func (a *CameraApiService) GetNetworkCameraQualityRetentionProfileExecute(r Came
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/qualityRetentionProfiles/{qualityRetentionProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"qualityRetentionProfileId"+"}", url.PathEscape(parameterToString(r.qualityRetentionProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"qualityRetentionProfileId"+"}", url.PathEscape(parameterValueToString(r.qualityRetentionProfileId, "qualityRetentionProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2473,9 +2473,9 @@ func (a *CameraApiService) GetNetworkCameraQualityRetentionProfileExecute(r Came
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2543,7 +2543,7 @@ func (a *CameraApiService) GetNetworkCameraQualityRetentionProfilesExecute(r Cam
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/qualityRetentionProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2590,9 +2590,9 @@ func (a *CameraApiService) GetNetworkCameraQualityRetentionProfilesExecute(r Cam
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2660,7 +2660,7 @@ func (a *CameraApiService) GetNetworkCameraSchedulesExecute(r CameraApiGetNetwor
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/schedules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2707,9 +2707,9 @@ func (a *CameraApiService) GetNetworkCameraSchedulesExecute(r CameraApiGetNetwor
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2780,8 +2780,8 @@ func (a *CameraApiService) GetNetworkCameraWirelessProfileExecute(r CameraApiGet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/wirelessProfiles/{wirelessProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wirelessProfileId"+"}", url.PathEscape(parameterToString(r.wirelessProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wirelessProfileId"+"}", url.PathEscape(parameterValueToString(r.wirelessProfileId, "wirelessProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2828,9 +2828,9 @@ func (a *CameraApiService) GetNetworkCameraWirelessProfileExecute(r CameraApiGet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2898,7 +2898,7 @@ func (a *CameraApiService) GetNetworkCameraWirelessProfilesExecute(r CameraApiGe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/wirelessProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2945,9 +2945,9 @@ func (a *CameraApiService) GetNetworkCameraWirelessProfilesExecute(r CameraApiGe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3018,8 +3018,8 @@ func (a *CameraApiService) GetOrganizationCameraCustomAnalyticsArtifactExecute(r
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/camera/customAnalytics/artifacts/{artifactId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"artifactId"+"}", url.PathEscape(parameterToString(r.artifactId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"artifactId"+"}", url.PathEscape(parameterValueToString(r.artifactId, "artifactId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3066,9 +3066,9 @@ func (a *CameraApiService) GetOrganizationCameraCustomAnalyticsArtifactExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3136,7 +3136,7 @@ func (a *CameraApiService) GetOrganizationCameraCustomAnalyticsArtifactsExecute(
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/camera/customAnalytics/artifacts"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3183,9 +3183,9 @@ func (a *CameraApiService) GetOrganizationCameraCustomAnalyticsArtifactsExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3267,7 +3267,7 @@ func (a *CameraApiService) GetOrganizationCameraOnboardingStatusesExecute(r Came
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/camera/onboarding/statuses"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3278,10 +3278,10 @@ func (a *CameraApiService) GetOrganizationCameraOnboardingStatusesExecute(r Came
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "serials", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "serials", t, "multi")
 		}
 	}
 	if r.networkIds != nil {
@@ -3289,10 +3289,10 @@ func (a *CameraApiService) GetOrganizationCameraOnboardingStatusesExecute(r Came
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "networkIds", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "networkIds", t, "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -3336,9 +3336,9 @@ func (a *CameraApiService) GetOrganizationCameraOnboardingStatusesExecute(r Came
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3412,7 +3412,7 @@ func (a *CameraApiService) UpdateDeviceCameraCustomAnalyticsExecute(r CameraApiU
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/customAnalytics"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3461,9 +3461,9 @@ func (a *CameraApiService) UpdateDeviceCameraCustomAnalyticsExecute(r CameraApiU
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3537,7 +3537,7 @@ func (a *CameraApiService) UpdateDeviceCameraQualityAndRetentionExecute(r Camera
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/qualityAndRetention"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3586,9 +3586,9 @@ func (a *CameraApiService) UpdateDeviceCameraQualityAndRetentionExecute(r Camera
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3662,7 +3662,7 @@ func (a *CameraApiService) UpdateDeviceCameraSenseExecute(r CameraApiUpdateDevic
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/sense"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3711,9 +3711,9 @@ func (a *CameraApiService) UpdateDeviceCameraSenseExecute(r CameraApiUpdateDevic
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3787,7 +3787,7 @@ func (a *CameraApiService) UpdateDeviceCameraVideoSettingsExecute(r CameraApiUpd
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/video/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3836,9 +3836,9 @@ func (a *CameraApiService) UpdateDeviceCameraVideoSettingsExecute(r CameraApiUpd
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3912,7 +3912,7 @@ func (a *CameraApiService) UpdateDeviceCameraWirelessProfilesExecute(r CameraApi
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/wirelessProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3964,9 +3964,9 @@ func (a *CameraApiService) UpdateDeviceCameraWirelessProfilesExecute(r CameraApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4043,8 +4043,8 @@ func (a *CameraApiService) UpdateNetworkCameraQualityRetentionProfileExecute(r C
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/qualityRetentionProfiles/{qualityRetentionProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"qualityRetentionProfileId"+"}", url.PathEscape(parameterToString(r.qualityRetentionProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"qualityRetentionProfileId"+"}", url.PathEscape(parameterValueToString(r.qualityRetentionProfileId, "qualityRetentionProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4093,9 +4093,9 @@ func (a *CameraApiService) UpdateNetworkCameraQualityRetentionProfileExecute(r C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4172,8 +4172,8 @@ func (a *CameraApiService) UpdateNetworkCameraWirelessProfileExecute(r CameraApi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/wirelessProfiles/{wirelessProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wirelessProfileId"+"}", url.PathEscape(parameterToString(r.wirelessProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wirelessProfileId"+"}", url.PathEscape(parameterValueToString(r.wirelessProfileId, "wirelessProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4222,9 +4222,9 @@ func (a *CameraApiService) UpdateNetworkCameraWirelessProfileExecute(r CameraApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4298,7 +4298,7 @@ func (a *CameraApiService) UpdateOrganizationCameraOnboardingStatusesExecute(r C
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/camera/onboarding/statuses"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4347,9 +4347,9 @@ func (a *CameraApiService) UpdateOrganizationCameraOnboardingStatusesExecute(r C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

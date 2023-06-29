@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkFirmwareUpgradesStagedGroupRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkFirmwareUpgradesStagedGroupRequest{}
+
 // CreateNetworkFirmwareUpgradesStagedGroupRequest struct for CreateNetworkFirmwareUpgradesStagedGroupRequest
 type CreateNetworkFirmwareUpgradesStagedGroupRequest struct {
 	// Name of the Staged Upgrade Group. Length must be 1 to 255 characters
@@ -58,7 +61,7 @@ func (o *CreateNetworkFirmwareUpgradesStagedGroupRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedGroupRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -70,7 +73,7 @@ func (o *CreateNetworkFirmwareUpgradesStagedGroupRequest) SetName(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesStagedGroupRequest) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -80,15 +83,15 @@ func (o *CreateNetworkFirmwareUpgradesStagedGroupRequest) GetDescription() strin
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedGroupRequest) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
-    return nil, false
+	if o == nil || IsNil(o.Description) {
+		return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedGroupRequest) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -114,7 +117,7 @@ func (o *CreateNetworkFirmwareUpgradesStagedGroupRequest) GetIsDefault() bool {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedGroupRequest) GetIsDefaultOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.IsDefault, true
 }
@@ -126,7 +129,7 @@ func (o *CreateNetworkFirmwareUpgradesStagedGroupRequest) SetIsDefault(v bool) {
 
 // GetAssignedDevices returns the AssignedDevices field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesStagedGroupRequest) GetAssignedDevices() CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevices {
-	if o == nil || isNil(o.AssignedDevices) {
+	if o == nil || IsNil(o.AssignedDevices) {
 		var ret CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevices
 		return ret
 	}
@@ -136,15 +139,15 @@ func (o *CreateNetworkFirmwareUpgradesStagedGroupRequest) GetAssignedDevices() C
 // GetAssignedDevicesOk returns a tuple with the AssignedDevices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedGroupRequest) GetAssignedDevicesOk() (*CreateNetworkFirmwareUpgradesStagedGroupRequestAssignedDevices, bool) {
-	if o == nil || isNil(o.AssignedDevices) {
-    return nil, false
+	if o == nil || IsNil(o.AssignedDevices) {
+		return nil, false
 	}
 	return o.AssignedDevices, true
 }
 
 // HasAssignedDevices returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedGroupRequest) HasAssignedDevices() bool {
-	if o != nil && !isNil(o.AssignedDevices) {
+	if o != nil && !IsNil(o.AssignedDevices) {
 		return true
 	}
 
@@ -157,20 +160,24 @@ func (o *CreateNetworkFirmwareUpgradesStagedGroupRequest) SetAssignedDevices(v C
 }
 
 func (o CreateNetworkFirmwareUpgradesStagedGroupRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	if true {
-		toSerialize["isDefault"] = o.IsDefault
-	}
-	if !isNil(o.AssignedDevices) {
-		toSerialize["assignedDevices"] = o.AssignedDevices
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkFirmwareUpgradesStagedGroupRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	toSerialize["isDefault"] = o.IsDefault
+	if !IsNil(o.AssignedDevices) {
+		toSerialize["assignedDevices"] = o.AssignedDevices
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkFirmwareUpgradesStagedGroupRequest struct {

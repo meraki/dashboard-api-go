@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner{}
+
 // UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner struct for UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner
 type UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner struct {
 	// Description of the rule (optional)
@@ -57,7 +60,7 @@ func NewUpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInnerWith
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) GetComment() string {
-	if o == nil || isNil(o.Comment) {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -67,15 +70,15 @@ func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) G
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) GetCommentOk() (*string, bool) {
-	if o == nil || isNil(o.Comment) {
-    return nil, false
+	if o == nil || IsNil(o.Comment) {
+		return nil, false
 	}
 	return o.Comment, true
 }
 
 // HasComment returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) HasComment() bool {
-	if o != nil && !isNil(o.Comment) {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -101,7 +104,7 @@ func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) G
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) GetPolicyOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Policy, true
 }
@@ -125,7 +128,7 @@ func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) G
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) GetProtocolOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Protocol, true
 }
@@ -137,7 +140,7 @@ func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) S
 
 // GetSrcPort returns the SrcPort field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) GetSrcPort() string {
-	if o == nil || isNil(o.SrcPort) {
+	if o == nil || IsNil(o.SrcPort) {
 		var ret string
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) G
 // GetSrcPortOk returns a tuple with the SrcPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) GetSrcPortOk() (*string, bool) {
-	if o == nil || isNil(o.SrcPort) {
-    return nil, false
+	if o == nil || IsNil(o.SrcPort) {
+		return nil, false
 	}
 	return o.SrcPort, true
 }
 
 // HasSrcPort returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) HasSrcPort() bool {
-	if o != nil && !isNil(o.SrcPort) {
+	if o != nil && !IsNil(o.SrcPort) {
 		return true
 	}
 
@@ -181,7 +184,7 @@ func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) G
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) GetSrcCidrOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.SrcCidr, true
 }
@@ -193,7 +196,7 @@ func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) S
 
 // GetDestPort returns the DestPort field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) GetDestPort() string {
-	if o == nil || isNil(o.DestPort) {
+	if o == nil || IsNil(o.DestPort) {
 		var ret string
 		return ret
 	}
@@ -203,15 +206,15 @@ func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) G
 // GetDestPortOk returns a tuple with the DestPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) GetDestPortOk() (*string, bool) {
-	if o == nil || isNil(o.DestPort) {
-    return nil, false
+	if o == nil || IsNil(o.DestPort) {
+		return nil, false
 	}
 	return o.DestPort, true
 }
 
 // HasDestPort returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) HasDestPort() bool {
-	if o != nil && !isNil(o.DestPort) {
+	if o != nil && !IsNil(o.DestPort) {
 		return true
 	}
 
@@ -237,7 +240,7 @@ func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) G
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) GetDestCidrOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.DestCidr, true
 }
@@ -249,7 +252,7 @@ func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) S
 
 // GetSyslogEnabled returns the SyslogEnabled field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) GetSyslogEnabled() bool {
-	if o == nil || isNil(o.SyslogEnabled) {
+	if o == nil || IsNil(o.SyslogEnabled) {
 		var ret bool
 		return ret
 	}
@@ -259,15 +262,15 @@ func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) G
 // GetSyslogEnabledOk returns a tuple with the SyslogEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) GetSyslogEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.SyslogEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.SyslogEnabled) {
+		return nil, false
 	}
 	return o.SyslogEnabled, true
 }
 
 // HasSyslogEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) HasSyslogEnabled() bool {
-	if o != nil && !isNil(o.SyslogEnabled) {
+	if o != nil && !IsNil(o.SyslogEnabled) {
 		return true
 	}
 
@@ -280,32 +283,32 @@ func (o *UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) S
 }
 
 func (o UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Comment) {
-		toSerialize["comment"] = o.Comment
-	}
-	if true {
-		toSerialize["policy"] = o.Policy
-	}
-	if true {
-		toSerialize["protocol"] = o.Protocol
-	}
-	if !isNil(o.SrcPort) {
-		toSerialize["srcPort"] = o.SrcPort
-	}
-	if true {
-		toSerialize["srcCidr"] = o.SrcCidr
-	}
-	if !isNil(o.DestPort) {
-		toSerialize["destPort"] = o.DestPort
-	}
-	if true {
-		toSerialize["destCidr"] = o.DestCidr
-	}
-	if !isNil(o.SyslogEnabled) {
-		toSerialize["syslogEnabled"] = o.SyslogEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	toSerialize["policy"] = o.Policy
+	toSerialize["protocol"] = o.Protocol
+	if !IsNil(o.SrcPort) {
+		toSerialize["srcPort"] = o.SrcPort
+	}
+	toSerialize["srcCidr"] = o.SrcCidr
+	if !IsNil(o.DestPort) {
+		toSerialize["destPort"] = o.DestPort
+	}
+	toSerialize["destCidr"] = o.DestCidr
+	if !IsNil(o.SyslogEnabled) {
+		toSerialize["syslogEnabled"] = o.SyslogEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceFirewallCellularFirewallRulesRequestRulesInner struct {

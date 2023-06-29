@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage{}
+
 // GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage Clients usage
 type GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage struct {
 	// Total data usage by client
@@ -43,7 +46,7 @@ func NewGetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsag
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage) GetTotal() float32 {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		var ret float32
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsa
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage) GetTotalOk() (*float32, bool) {
-	if o == nil || isNil(o.Total) {
-    return nil, false
+	if o == nil || IsNil(o.Total) {
+		return nil, false
 	}
 	return o.Total, true
 }
 
 // HasTotal returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage) HasTotal() bool {
-	if o != nil && !isNil(o.Total) {
+	if o != nil && !IsNil(o.Total) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsa
 
 // GetUpstream returns the Upstream field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage) GetUpstream() float32 {
-	if o == nil || isNil(o.Upstream) {
+	if o == nil || IsNil(o.Upstream) {
 		var ret float32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsa
 // GetUpstreamOk returns a tuple with the Upstream field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage) GetUpstreamOk() (*float32, bool) {
-	if o == nil || isNil(o.Upstream) {
-    return nil, false
+	if o == nil || IsNil(o.Upstream) {
+		return nil, false
 	}
 	return o.Upstream, true
 }
 
 // HasUpstream returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage) HasUpstream() bool {
-	if o != nil && !isNil(o.Upstream) {
+	if o != nil && !IsNil(o.Upstream) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsa
 
 // GetDownstream returns the Downstream field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage) GetDownstream() float32 {
-	if o == nil || isNil(o.Downstream) {
+	if o == nil || IsNil(o.Downstream) {
 		var ret float32
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsa
 // GetDownstreamOk returns a tuple with the Downstream field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage) GetDownstreamOk() (*float32, bool) {
-	if o == nil || isNil(o.Downstream) {
-    return nil, false
+	if o == nil || IsNil(o.Downstream) {
+		return nil, false
 	}
 	return o.Downstream, true
 }
 
 // HasDownstream returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage) HasDownstream() bool {
-	if o != nil && !isNil(o.Downstream) {
+	if o != nil && !IsNil(o.Downstream) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsa
 }
 
 func (o GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Total) {
-		toSerialize["total"] = o.Total
-	}
-	if !isNil(o.Upstream) {
-		toSerialize["upstream"] = o.Upstream
-	}
-	if !isNil(o.Downstream) {
-		toSerialize["downstream"] = o.Downstream
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Total) {
+		toSerialize["total"] = o.Total
+	}
+	if !IsNil(o.Upstream) {
+		toSerialize["upstream"] = o.Upstream
+	}
+	if !IsNil(o.Downstream) {
+		toSerialize["downstream"] = o.Downstream
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSummaryTopClientsManufacturersByUsage200ResponseInnerUsage struct {

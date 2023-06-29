@@ -128,6 +128,7 @@ func main() {
     addNetworkSwitchStackRequest := *openapiclient.NewAddNetworkSwitchStackRequest("Serial_example") // AddNetworkSwitchStackRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.AddNetworkSwitchStack(context.Background(), networkId, switchStackId).AddNetworkSwitchStackRequest(addNetworkSwitchStackRequest).Execute()
     if err != nil {
@@ -202,6 +203,7 @@ func main() {
     cloneOrganizationSwitchDevicesRequest := *openapiclient.NewCloneOrganizationSwitchDevicesRequest("SourceSerial_example", []string{"TargetSerials_example"}) // CloneOrganizationSwitchDevicesRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.CloneOrganizationSwitchDevices(context.Background(), organizationId).CloneOrganizationSwitchDevicesRequest(cloneOrganizationSwitchDevicesRequest).Execute()
     if err != nil {
@@ -274,6 +276,7 @@ func main() {
     createDeviceSwitchRoutingInterfaceRequest := *openapiclient.NewCreateDeviceSwitchRoutingInterfaceRequest() // CreateDeviceSwitchRoutingInterfaceRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.CreateDeviceSwitchRoutingInterface(context.Background(), serial).CreateDeviceSwitchRoutingInterfaceRequest(createDeviceSwitchRoutingInterfaceRequest).Execute()
     if err != nil {
@@ -346,6 +349,7 @@ func main() {
     createDeviceSwitchRoutingStaticRouteRequest := *openapiclient.NewCreateDeviceSwitchRoutingStaticRouteRequest("Subnet_example", "NextHopIp_example") // CreateDeviceSwitchRoutingStaticRouteRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.CreateDeviceSwitchRoutingStaticRoute(context.Background(), serial).CreateDeviceSwitchRoutingStaticRouteRequest(createDeviceSwitchRoutingStaticRouteRequest).Execute()
     if err != nil {
@@ -418,6 +422,7 @@ func main() {
     createNetworkSwitchAccessPolicyRequest := *openapiclient.NewCreateNetworkSwitchAccessPolicyRequest("Name_example", []openapiclient.CreateNetworkSwitchAccessPolicyRequestRadiusServersInner{*openapiclient.NewCreateNetworkSwitchAccessPolicyRequestRadiusServersInner("Host_example", int32(123), "Secret_example")}, false, false, false, "HostMode_example", false) // CreateNetworkSwitchAccessPolicyRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.CreateNetworkSwitchAccessPolicy(context.Background(), networkId).CreateNetworkSwitchAccessPolicyRequest(createNetworkSwitchAccessPolicyRequest).Execute()
     if err != nil {
@@ -490,6 +495,7 @@ func main() {
     createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest := *openapiclient.NewCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest("Mac_example", int32(123), *openapiclient.NewCreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequestIpv4()) // CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(context.Background(), networkId).CreateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest(createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest).Execute()
     if err != nil {
@@ -562,6 +568,7 @@ func main() {
     createNetworkSwitchLinkAggregationRequest := *openapiclient.NewCreateNetworkSwitchLinkAggregationRequest() // CreateNetworkSwitchLinkAggregationRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.CreateNetworkSwitchLinkAggregation(context.Background(), networkId).CreateNetworkSwitchLinkAggregationRequest(createNetworkSwitchLinkAggregationRequest).Execute()
     if err != nil {
@@ -634,6 +641,7 @@ func main() {
     createNetworkSwitchPortScheduleRequest := *openapiclient.NewCreateNetworkSwitchPortScheduleRequest("Name_example") // CreateNetworkSwitchPortScheduleRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.CreateNetworkSwitchPortSchedule(context.Background(), networkId).CreateNetworkSwitchPortScheduleRequest(createNetworkSwitchPortScheduleRequest).Execute()
     if err != nil {
@@ -706,6 +714,7 @@ func main() {
     createNetworkSwitchQosRuleRequest := *openapiclient.NewCreateNetworkSwitchQosRuleRequest(int32(123)) // CreateNetworkSwitchQosRuleRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.CreateNetworkSwitchQosRule(context.Background(), networkId).CreateNetworkSwitchQosRuleRequest(createNetworkSwitchQosRuleRequest).Execute()
     if err != nil {
@@ -778,6 +787,7 @@ func main() {
     createNetworkSwitchRoutingMulticastRendezvousPointRequest := *openapiclient.NewCreateNetworkSwitchRoutingMulticastRendezvousPointRequest("InterfaceIp_example", "MulticastGroup_example") // CreateNetworkSwitchRoutingMulticastRendezvousPointRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.CreateNetworkSwitchRoutingMulticastRendezvousPoint(context.Background(), networkId).CreateNetworkSwitchRoutingMulticastRendezvousPointRequest(createNetworkSwitchRoutingMulticastRendezvousPointRequest).Execute()
     if err != nil {
@@ -850,6 +860,7 @@ func main() {
     createNetworkSwitchStackRequest := *openapiclient.NewCreateNetworkSwitchStackRequest("Name_example", []string{"Serials_example"}) // CreateNetworkSwitchStackRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.CreateNetworkSwitchStack(context.Background(), networkId).CreateNetworkSwitchStackRequest(createNetworkSwitchStackRequest).Execute()
     if err != nil {
@@ -923,6 +934,7 @@ func main() {
     createNetworkSwitchStackRoutingInterfaceRequest := *openapiclient.NewCreateNetworkSwitchStackRoutingInterfaceRequest("Name_example", int32(123)) // CreateNetworkSwitchStackRoutingInterfaceRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.CreateNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId).CreateNetworkSwitchStackRoutingInterfaceRequest(createNetworkSwitchStackRoutingInterfaceRequest).Execute()
     if err != nil {
@@ -998,6 +1010,7 @@ func main() {
     createDeviceSwitchRoutingStaticRouteRequest := *openapiclient.NewCreateDeviceSwitchRoutingStaticRouteRequest("Subnet_example", "NextHopIp_example") // CreateDeviceSwitchRoutingStaticRouteRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.CreateNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId).CreateDeviceSwitchRoutingStaticRouteRequest(createDeviceSwitchRoutingStaticRouteRequest).Execute()
     if err != nil {
@@ -1072,6 +1085,7 @@ func main() {
     cycleDeviceSwitchPortsRequest := *openapiclient.NewCycleDeviceSwitchPortsRequest([]string{"Ports_example"}) // CycleDeviceSwitchPortsRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.CycleDeviceSwitchPorts(context.Background(), serial).CycleDeviceSwitchPortsRequest(cycleDeviceSwitchPortsRequest).Execute()
     if err != nil {
@@ -1144,8 +1158,9 @@ func main() {
     interfaceId := "interfaceId_example" // string | Interface ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SwitchApi.DeleteDeviceSwitchRoutingInterface(context.Background(), serial, interfaceId).Execute()
+    r, err := apiClient.SwitchApi.DeleteDeviceSwitchRoutingInterface(context.Background(), serial, interfaceId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.DeleteDeviceSwitchRoutingInterface``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1215,8 +1230,9 @@ func main() {
     staticRouteId := "staticRouteId_example" // string | Static route ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SwitchApi.DeleteDeviceSwitchRoutingStaticRoute(context.Background(), serial, staticRouteId).Execute()
+    r, err := apiClient.SwitchApi.DeleteDeviceSwitchRoutingStaticRoute(context.Background(), serial, staticRouteId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.DeleteDeviceSwitchRoutingStaticRoute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1286,8 +1302,9 @@ func main() {
     accessPolicyNumber := "accessPolicyNumber_example" // string | Access policy number
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SwitchApi.DeleteNetworkSwitchAccessPolicy(context.Background(), networkId, accessPolicyNumber).Execute()
+    r, err := apiClient.SwitchApi.DeleteNetworkSwitchAccessPolicy(context.Background(), networkId, accessPolicyNumber).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.DeleteNetworkSwitchAccessPolicy``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1357,8 +1374,9 @@ func main() {
     trustedServerId := "trustedServerId_example" // string | Trusted server ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SwitchApi.DeleteNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(context.Background(), networkId, trustedServerId).Execute()
+    r, err := apiClient.SwitchApi.DeleteNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(context.Background(), networkId, trustedServerId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.DeleteNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1428,8 +1446,9 @@ func main() {
     linkAggregationId := "linkAggregationId_example" // string | Link aggregation ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SwitchApi.DeleteNetworkSwitchLinkAggregation(context.Background(), networkId, linkAggregationId).Execute()
+    r, err := apiClient.SwitchApi.DeleteNetworkSwitchLinkAggregation(context.Background(), networkId, linkAggregationId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.DeleteNetworkSwitchLinkAggregation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1499,8 +1518,9 @@ func main() {
     portScheduleId := "portScheduleId_example" // string | Port schedule ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SwitchApi.DeleteNetworkSwitchPortSchedule(context.Background(), networkId, portScheduleId).Execute()
+    r, err := apiClient.SwitchApi.DeleteNetworkSwitchPortSchedule(context.Background(), networkId, portScheduleId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.DeleteNetworkSwitchPortSchedule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1570,8 +1590,9 @@ func main() {
     qosRuleId := "qosRuleId_example" // string | Qos rule ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SwitchApi.DeleteNetworkSwitchQosRule(context.Background(), networkId, qosRuleId).Execute()
+    r, err := apiClient.SwitchApi.DeleteNetworkSwitchQosRule(context.Background(), networkId, qosRuleId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.DeleteNetworkSwitchQosRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1641,8 +1662,9 @@ func main() {
     rendezvousPointId := "rendezvousPointId_example" // string | Rendezvous point ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SwitchApi.DeleteNetworkSwitchRoutingMulticastRendezvousPoint(context.Background(), networkId, rendezvousPointId).Execute()
+    r, err := apiClient.SwitchApi.DeleteNetworkSwitchRoutingMulticastRendezvousPoint(context.Background(), networkId, rendezvousPointId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.DeleteNetworkSwitchRoutingMulticastRendezvousPoint``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1712,8 +1734,9 @@ func main() {
     switchStackId := "switchStackId_example" // string | Switch stack ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SwitchApi.DeleteNetworkSwitchStack(context.Background(), networkId, switchStackId).Execute()
+    r, err := apiClient.SwitchApi.DeleteNetworkSwitchStack(context.Background(), networkId, switchStackId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.DeleteNetworkSwitchStack``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1784,8 +1807,9 @@ func main() {
     interfaceId := "interfaceId_example" // string | Interface ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SwitchApi.DeleteNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId, interfaceId).Execute()
+    r, err := apiClient.SwitchApi.DeleteNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId, interfaceId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.DeleteNetworkSwitchStackRoutingInterface``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1858,8 +1882,9 @@ func main() {
     staticRouteId := "staticRouteId_example" // string | Static route ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SwitchApi.DeleteNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId, staticRouteId).Execute()
+    r, err := apiClient.SwitchApi.DeleteNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId, staticRouteId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.DeleteNetworkSwitchStackRoutingStaticRoute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1931,6 +1956,7 @@ func main() {
     portId := "portId_example" // string | Port ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetDeviceSwitchPort(context.Background(), serial, portId).Execute()
     if err != nil {
@@ -2003,6 +2029,7 @@ func main() {
     serial := "serial_example" // string | Serial
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetDeviceSwitchPorts(context.Background(), serial).Execute()
     if err != nil {
@@ -2075,6 +2102,7 @@ func main() {
     timespan := float32(3.4) // float32 | The timespan for which the information will be fetched. If specifying timespan, do not specify parameter t0. The value must be in seconds and be less than or equal to 31 days. The default is 1 day. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetDeviceSwitchPortsStatuses(context.Background(), serial).T0(t0).Timespan(timespan).Execute()
     if err != nil {
@@ -2149,6 +2177,7 @@ func main() {
     timespan := float32(3.4) // float32 | The timespan for which the information will be fetched. If specifying timespan, do not specify parameter t0. The value must be in seconds and be less than or equal to 1 day. The default is 1 day. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetDeviceSwitchPortsStatusesPackets(context.Background(), serial).T0(t0).Timespan(timespan).Execute()
     if err != nil {
@@ -2222,6 +2251,7 @@ func main() {
     interfaceId := "interfaceId_example" // string | Interface ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetDeviceSwitchRoutingInterface(context.Background(), serial, interfaceId).Execute()
     if err != nil {
@@ -2295,6 +2325,7 @@ func main() {
     interfaceId := "interfaceId_example" // string | Interface ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetDeviceSwitchRoutingInterfaceDhcp(context.Background(), serial, interfaceId).Execute()
     if err != nil {
@@ -2367,6 +2398,7 @@ func main() {
     serial := "serial_example" // string | Serial
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetDeviceSwitchRoutingInterfaces(context.Background(), serial).Execute()
     if err != nil {
@@ -2438,6 +2470,7 @@ func main() {
     staticRouteId := "staticRouteId_example" // string | Static route ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetDeviceSwitchRoutingStaticRoute(context.Background(), serial, staticRouteId).Execute()
     if err != nil {
@@ -2510,6 +2543,7 @@ func main() {
     serial := "serial_example" // string | Serial
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetDeviceSwitchRoutingStaticRoutes(context.Background(), serial).Execute()
     if err != nil {
@@ -2580,6 +2614,7 @@ func main() {
     serial := "serial_example" // string | Serial
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetDeviceSwitchWarmSpare(context.Background(), serial).Execute()
     if err != nil {
@@ -2650,6 +2685,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchAccessControlLists(context.Background(), networkId).Execute()
     if err != nil {
@@ -2720,6 +2756,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchAccessPolicies(context.Background(), networkId).Execute()
     if err != nil {
@@ -2791,6 +2828,7 @@ func main() {
     accessPolicyNumber := "accessPolicyNumber_example" // string | Access policy number
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchAccessPolicy(context.Background(), networkId, accessPolicyNumber).Execute()
     if err != nil {
@@ -2863,6 +2901,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchAlternateManagementInterface(context.Background(), networkId).Execute()
     if err != nil {
@@ -2933,6 +2972,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchDhcpServerPolicy(context.Background(), networkId).Execute()
     if err != nil {
@@ -3006,6 +3046,7 @@ func main() {
     endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchDhcpServerPolicyArpInspectionTrustedServers(context.Background(), networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
     if err != nil {
@@ -3082,6 +3123,7 @@ func main() {
     endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchDhcpServerPolicyArpInspectionWarningsByDevice(context.Background(), networkId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
     if err != nil {
@@ -3160,6 +3202,7 @@ func main() {
     endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchDhcpV4ServersSeen(context.Background(), networkId).T0(t0).Timespan(timespan).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
     if err != nil {
@@ -3235,6 +3278,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchDscpToCosMappings(context.Background(), networkId).Execute()
     if err != nil {
@@ -3305,6 +3349,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchLinkAggregations(context.Background(), networkId).Execute()
     if err != nil {
@@ -3375,6 +3420,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchMtu(context.Background(), networkId).Execute()
     if err != nil {
@@ -3445,6 +3491,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchPortSchedules(context.Background(), networkId).Execute()
     if err != nil {
@@ -3516,6 +3563,7 @@ func main() {
     qosRuleId := "qosRuleId_example" // string | Qos rule ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchQosRule(context.Background(), networkId, qosRuleId).Execute()
     if err != nil {
@@ -3588,6 +3636,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchQosRules(context.Background(), networkId).Execute()
     if err != nil {
@@ -3658,6 +3707,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchQosRulesOrder(context.Background(), networkId).Execute()
     if err != nil {
@@ -3728,6 +3778,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchRoutingMulticast(context.Background(), networkId).Execute()
     if err != nil {
@@ -3799,6 +3850,7 @@ func main() {
     rendezvousPointId := "rendezvousPointId_example" // string | Rendezvous point ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchRoutingMulticastRendezvousPoint(context.Background(), networkId, rendezvousPointId).Execute()
     if err != nil {
@@ -3871,6 +3923,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchRoutingMulticastRendezvousPoints(context.Background(), networkId).Execute()
     if err != nil {
@@ -3941,6 +3994,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchRoutingOspf(context.Background(), networkId).Execute()
     if err != nil {
@@ -4011,6 +4065,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchSettings(context.Background(), networkId).Execute()
     if err != nil {
@@ -4082,6 +4137,7 @@ func main() {
     switchStackId := "switchStackId_example" // string | Switch stack ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchStack(context.Background(), networkId, switchStackId).Execute()
     if err != nil {
@@ -4156,6 +4212,7 @@ func main() {
     interfaceId := "interfaceId_example" // string | Interface ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId, interfaceId).Execute()
     if err != nil {
@@ -4232,6 +4289,7 @@ func main() {
     interfaceId := "interfaceId_example" // string | Interface ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchStackRoutingInterfaceDhcp(context.Background(), networkId, switchStackId, interfaceId).Execute()
     if err != nil {
@@ -4307,6 +4365,7 @@ func main() {
     switchStackId := "switchStackId_example" // string | Switch stack ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchStackRoutingInterfaces(context.Background(), networkId, switchStackId).Execute()
     if err != nil {
@@ -4381,6 +4440,7 @@ func main() {
     staticRouteId := "staticRouteId_example" // string | Static route ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId, staticRouteId).Execute()
     if err != nil {
@@ -4456,6 +4516,7 @@ func main() {
     switchStackId := "switchStackId_example" // string | Switch stack ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchStackRoutingStaticRoutes(context.Background(), networkId, switchStackId).Execute()
     if err != nil {
@@ -4528,6 +4589,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchStacks(context.Background(), networkId).Execute()
     if err != nil {
@@ -4598,6 +4660,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchStormControl(context.Background(), networkId).Execute()
     if err != nil {
@@ -4668,6 +4731,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetNetworkSwitchStp(context.Background(), networkId).Execute()
     if err != nil {
@@ -4741,6 +4805,7 @@ func main() {
     portId := "portId_example" // string | Port ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetOrganizationConfigTemplateSwitchProfilePort(context.Background(), organizationId, configTemplateId, profileId, portId).Execute()
     if err != nil {
@@ -4819,6 +4884,7 @@ func main() {
     profileId := "profileId_example" // string | Profile ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetOrganizationConfigTemplateSwitchProfilePorts(context.Background(), organizationId, configTemplateId, profileId).Execute()
     if err != nil {
@@ -4894,6 +4960,7 @@ func main() {
     configTemplateId := "configTemplateId_example" // string | Config template ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetOrganizationConfigTemplateSwitchProfiles(context.Background(), organizationId, configTemplateId).Execute()
     if err != nil {
@@ -4977,6 +5044,7 @@ func main() {
     configurationUpdatedAfter := "configurationUpdatedAfter_example" // string | Optional parameter to filter results by switches where the configuration has been updated after the given timestamp. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.GetOrganizationSwitchPortsBySwitch(context.Background(), organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).PortProfileIds(portProfileIds).Name(name).Mac(mac).Macs(macs).Serial(serial).Serials(serials).ConfigurationUpdatedAfter(configurationUpdatedAfter).Execute()
     if err != nil {
@@ -5060,6 +5128,7 @@ func main() {
     removeNetworkSwitchStackRequest := *openapiclient.NewRemoveNetworkSwitchStackRequest("Serial_example") // RemoveNetworkSwitchStackRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.RemoveNetworkSwitchStack(context.Background(), networkId, switchStackId).RemoveNetworkSwitchStackRequest(removeNetworkSwitchStackRequest).Execute()
     if err != nil {
@@ -5135,6 +5204,7 @@ func main() {
     updateDeviceSwitchPortRequest := *openapiclient.NewUpdateDeviceSwitchPortRequest() // UpdateDeviceSwitchPortRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateDeviceSwitchPort(context.Background(), serial, portId).UpdateDeviceSwitchPortRequest(updateDeviceSwitchPortRequest).Execute()
     if err != nil {
@@ -5210,6 +5280,7 @@ func main() {
     createDeviceSwitchRoutingInterfaceRequest := *openapiclient.NewCreateDeviceSwitchRoutingInterfaceRequest() // CreateDeviceSwitchRoutingInterfaceRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateDeviceSwitchRoutingInterface(context.Background(), serial, interfaceId).CreateDeviceSwitchRoutingInterfaceRequest(createDeviceSwitchRoutingInterfaceRequest).Execute()
     if err != nil {
@@ -5285,6 +5356,7 @@ func main() {
     updateDeviceSwitchRoutingInterfaceDhcpRequest := *openapiclient.NewUpdateDeviceSwitchRoutingInterfaceDhcpRequest() // UpdateDeviceSwitchRoutingInterfaceDhcpRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateDeviceSwitchRoutingInterfaceDhcp(context.Background(), serial, interfaceId).UpdateDeviceSwitchRoutingInterfaceDhcpRequest(updateDeviceSwitchRoutingInterfaceDhcpRequest).Execute()
     if err != nil {
@@ -5360,6 +5432,7 @@ func main() {
     updateDeviceSwitchRoutingStaticRouteRequest := *openapiclient.NewUpdateDeviceSwitchRoutingStaticRouteRequest() // UpdateDeviceSwitchRoutingStaticRouteRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateDeviceSwitchRoutingStaticRoute(context.Background(), serial, staticRouteId).UpdateDeviceSwitchRoutingStaticRouteRequest(updateDeviceSwitchRoutingStaticRouteRequest).Execute()
     if err != nil {
@@ -5434,6 +5507,7 @@ func main() {
     updateDeviceSwitchWarmSpareRequest := *openapiclient.NewUpdateDeviceSwitchWarmSpareRequest(false) // UpdateDeviceSwitchWarmSpareRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateDeviceSwitchWarmSpare(context.Background(), serial).UpdateDeviceSwitchWarmSpareRequest(updateDeviceSwitchWarmSpareRequest).Execute()
     if err != nil {
@@ -5506,6 +5580,7 @@ func main() {
     updateNetworkSwitchAccessControlListsRequest := *openapiclient.NewUpdateNetworkSwitchAccessControlListsRequest([]openapiclient.UpdateNetworkSwitchAccessControlListsRequestRulesInner{*openapiclient.NewUpdateNetworkSwitchAccessControlListsRequestRulesInner("Policy_example", "Protocol_example", "SrcCidr_example", "DstCidr_example")}) // UpdateNetworkSwitchAccessControlListsRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchAccessControlLists(context.Background(), networkId).UpdateNetworkSwitchAccessControlListsRequest(updateNetworkSwitchAccessControlListsRequest).Execute()
     if err != nil {
@@ -5579,6 +5654,7 @@ func main() {
     updateNetworkSwitchAccessPolicyRequest := *openapiclient.NewUpdateNetworkSwitchAccessPolicyRequest() // UpdateNetworkSwitchAccessPolicyRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchAccessPolicy(context.Background(), networkId, accessPolicyNumber).UpdateNetworkSwitchAccessPolicyRequest(updateNetworkSwitchAccessPolicyRequest).Execute()
     if err != nil {
@@ -5653,6 +5729,7 @@ func main() {
     updateNetworkSwitchAlternateManagementInterfaceRequest := *openapiclient.NewUpdateNetworkSwitchAlternateManagementInterfaceRequest() // UpdateNetworkSwitchAlternateManagementInterfaceRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchAlternateManagementInterface(context.Background(), networkId).UpdateNetworkSwitchAlternateManagementInterfaceRequest(updateNetworkSwitchAlternateManagementInterfaceRequest).Execute()
     if err != nil {
@@ -5725,6 +5802,7 @@ func main() {
     updateNetworkSwitchDhcpServerPolicyRequest := *openapiclient.NewUpdateNetworkSwitchDhcpServerPolicyRequest() // UpdateNetworkSwitchDhcpServerPolicyRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchDhcpServerPolicy(context.Background(), networkId).UpdateNetworkSwitchDhcpServerPolicyRequest(updateNetworkSwitchDhcpServerPolicyRequest).Execute()
     if err != nil {
@@ -5798,6 +5876,7 @@ func main() {
     updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest := *openapiclient.NewUpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest() // UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer(context.Background(), networkId, trustedServerId).UpdateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest(updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServerRequest).Execute()
     if err != nil {
@@ -5872,6 +5951,7 @@ func main() {
     updateNetworkSwitchDscpToCosMappingsRequest := *openapiclient.NewUpdateNetworkSwitchDscpToCosMappingsRequest([]openapiclient.UpdateNetworkSwitchDscpToCosMappingsRequestMappingsInner{*openapiclient.NewUpdateNetworkSwitchDscpToCosMappingsRequestMappingsInner(int32(123), int32(123))}) // UpdateNetworkSwitchDscpToCosMappingsRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchDscpToCosMappings(context.Background(), networkId).UpdateNetworkSwitchDscpToCosMappingsRequest(updateNetworkSwitchDscpToCosMappingsRequest).Execute()
     if err != nil {
@@ -5945,6 +6025,7 @@ func main() {
     updateNetworkSwitchLinkAggregationRequest := *openapiclient.NewUpdateNetworkSwitchLinkAggregationRequest() // UpdateNetworkSwitchLinkAggregationRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchLinkAggregation(context.Background(), networkId, linkAggregationId).UpdateNetworkSwitchLinkAggregationRequest(updateNetworkSwitchLinkAggregationRequest).Execute()
     if err != nil {
@@ -6019,6 +6100,7 @@ func main() {
     updateNetworkSwitchMtuRequest := *openapiclient.NewUpdateNetworkSwitchMtuRequest() // UpdateNetworkSwitchMtuRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchMtu(context.Background(), networkId).UpdateNetworkSwitchMtuRequest(updateNetworkSwitchMtuRequest).Execute()
     if err != nil {
@@ -6092,6 +6174,7 @@ func main() {
     updateNetworkSwitchPortScheduleRequest := *openapiclient.NewUpdateNetworkSwitchPortScheduleRequest() // UpdateNetworkSwitchPortScheduleRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchPortSchedule(context.Background(), networkId, portScheduleId).UpdateNetworkSwitchPortScheduleRequest(updateNetworkSwitchPortScheduleRequest).Execute()
     if err != nil {
@@ -6167,6 +6250,7 @@ func main() {
     updateNetworkSwitchQosRuleRequest := *openapiclient.NewUpdateNetworkSwitchQosRuleRequest() // UpdateNetworkSwitchQosRuleRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchQosRule(context.Background(), networkId, qosRuleId).UpdateNetworkSwitchQosRuleRequest(updateNetworkSwitchQosRuleRequest).Execute()
     if err != nil {
@@ -6241,6 +6325,7 @@ func main() {
     updateNetworkSwitchQosRulesOrderRequest := *openapiclient.NewUpdateNetworkSwitchQosRulesOrderRequest([]string{"RuleIds_example"}) // UpdateNetworkSwitchQosRulesOrderRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchQosRulesOrder(context.Background(), networkId).UpdateNetworkSwitchQosRulesOrderRequest(updateNetworkSwitchQosRulesOrderRequest).Execute()
     if err != nil {
@@ -6313,6 +6398,7 @@ func main() {
     updateNetworkSwitchRoutingMulticastRequest := *openapiclient.NewUpdateNetworkSwitchRoutingMulticastRequest() // UpdateNetworkSwitchRoutingMulticastRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchRoutingMulticast(context.Background(), networkId).UpdateNetworkSwitchRoutingMulticastRequest(updateNetworkSwitchRoutingMulticastRequest).Execute()
     if err != nil {
@@ -6386,6 +6472,7 @@ func main() {
     updateNetworkSwitchRoutingMulticastRendezvousPointRequest := *openapiclient.NewUpdateNetworkSwitchRoutingMulticastRendezvousPointRequest("InterfaceIp_example", "MulticastGroup_example") // UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchRoutingMulticastRendezvousPoint(context.Background(), networkId, rendezvousPointId).UpdateNetworkSwitchRoutingMulticastRendezvousPointRequest(updateNetworkSwitchRoutingMulticastRendezvousPointRequest).Execute()
     if err != nil {
@@ -6460,6 +6547,7 @@ func main() {
     updateNetworkSwitchRoutingOspfRequest := *openapiclient.NewUpdateNetworkSwitchRoutingOspfRequest() // UpdateNetworkSwitchRoutingOspfRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchRoutingOspf(context.Background(), networkId).UpdateNetworkSwitchRoutingOspfRequest(updateNetworkSwitchRoutingOspfRequest).Execute()
     if err != nil {
@@ -6532,6 +6620,7 @@ func main() {
     updateNetworkSwitchSettingsRequest := *openapiclient.NewUpdateNetworkSwitchSettingsRequest() // UpdateNetworkSwitchSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchSettings(context.Background(), networkId).UpdateNetworkSwitchSettingsRequest(updateNetworkSwitchSettingsRequest).Execute()
     if err != nil {
@@ -6606,6 +6695,7 @@ func main() {
     updateNetworkSwitchStackRoutingInterfaceRequest := *openapiclient.NewUpdateNetworkSwitchStackRoutingInterfaceRequest() // UpdateNetworkSwitchStackRoutingInterfaceRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId, interfaceId).UpdateNetworkSwitchStackRoutingInterfaceRequest(updateNetworkSwitchStackRoutingInterfaceRequest).Execute()
     if err != nil {
@@ -6684,6 +6774,7 @@ func main() {
     updateNetworkSwitchStackRoutingInterfaceDhcpRequest := *openapiclient.NewUpdateNetworkSwitchStackRoutingInterfaceDhcpRequest() // UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchStackRoutingInterfaceDhcp(context.Background(), networkId, switchStackId, interfaceId).UpdateNetworkSwitchStackRoutingInterfaceDhcpRequest(updateNetworkSwitchStackRoutingInterfaceDhcpRequest).Execute()
     if err != nil {
@@ -6762,6 +6853,7 @@ func main() {
     updateDeviceSwitchRoutingStaticRouteRequest := *openapiclient.NewUpdateDeviceSwitchRoutingStaticRouteRequest() // UpdateDeviceSwitchRoutingStaticRouteRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId, staticRouteId).UpdateDeviceSwitchRoutingStaticRouteRequest(updateDeviceSwitchRoutingStaticRouteRequest).Execute()
     if err != nil {
@@ -6838,6 +6930,7 @@ func main() {
     updateNetworkSwitchStormControlRequest := *openapiclient.NewUpdateNetworkSwitchStormControlRequest() // UpdateNetworkSwitchStormControlRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchStormControl(context.Background(), networkId).UpdateNetworkSwitchStormControlRequest(updateNetworkSwitchStormControlRequest).Execute()
     if err != nil {
@@ -6910,6 +7003,7 @@ func main() {
     updateNetworkSwitchStpRequest := *openapiclient.NewUpdateNetworkSwitchStpRequest() // UpdateNetworkSwitchStpRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateNetworkSwitchStp(context.Background(), networkId).UpdateNetworkSwitchStpRequest(updateNetworkSwitchStpRequest).Execute()
     if err != nil {
@@ -6985,6 +7079,7 @@ func main() {
     updateOrganizationConfigTemplateSwitchProfilePortRequest := *openapiclient.NewUpdateOrganizationConfigTemplateSwitchProfilePortRequest() // UpdateOrganizationConfigTemplateSwitchProfilePortRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SwitchApi.UpdateOrganizationConfigTemplateSwitchProfilePort(context.Background(), organizationId, configTemplateId, profileId, portId).UpdateOrganizationConfigTemplateSwitchProfilePortRequest(updateOrganizationConfigTemplateSwitchProfilePortRequest).Execute()
     if err != nil {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateDeviceLiveToolsPing201ResponseRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateDeviceLiveToolsPing201ResponseRequest{}
+
 // CreateDeviceLiveToolsPing201ResponseRequest Ping request parameters
 type CreateDeviceLiveToolsPing201ResponseRequest struct {
 	// Device serial number
@@ -43,7 +46,7 @@ func NewCreateDeviceLiveToolsPing201ResponseRequestWithDefaults() *CreateDeviceL
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *CreateDeviceLiveToolsPing201ResponseRequest) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *CreateDeviceLiveToolsPing201ResponseRequest) GetSerial() string {
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateDeviceLiveToolsPing201ResponseRequest) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *CreateDeviceLiveToolsPing201ResponseRequest) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *CreateDeviceLiveToolsPing201ResponseRequest) SetSerial(v string) {
 
 // GetTarget returns the Target field value if set, zero value otherwise.
 func (o *CreateDeviceLiveToolsPing201ResponseRequest) GetTarget() string {
-	if o == nil || isNil(o.Target) {
+	if o == nil || IsNil(o.Target) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *CreateDeviceLiveToolsPing201ResponseRequest) GetTarget() string {
 // GetTargetOk returns a tuple with the Target field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateDeviceLiveToolsPing201ResponseRequest) GetTargetOk() (*string, bool) {
-	if o == nil || isNil(o.Target) {
-    return nil, false
+	if o == nil || IsNil(o.Target) {
+		return nil, false
 	}
 	return o.Target, true
 }
 
 // HasTarget returns a boolean if a field has been set.
 func (o *CreateDeviceLiveToolsPing201ResponseRequest) HasTarget() bool {
-	if o != nil && !isNil(o.Target) {
+	if o != nil && !IsNil(o.Target) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *CreateDeviceLiveToolsPing201ResponseRequest) SetTarget(v string) {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *CreateDeviceLiveToolsPing201ResponseRequest) GetCount() int32 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int32
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *CreateDeviceLiveToolsPing201ResponseRequest) GetCount() int32 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateDeviceLiveToolsPing201ResponseRequest) GetCountOk() (*int32, bool) {
-	if o == nil || isNil(o.Count) {
-    return nil, false
+	if o == nil || IsNil(o.Count) {
+		return nil, false
 	}
 	return o.Count, true
 }
 
 // HasCount returns a boolean if a field has been set.
 func (o *CreateDeviceLiveToolsPing201ResponseRequest) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *CreateDeviceLiveToolsPing201ResponseRequest) SetCount(v int32) {
 }
 
 func (o CreateDeviceLiveToolsPing201ResponseRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Target) {
-		toSerialize["target"] = o.Target
-	}
-	if !isNil(o.Count) {
-		toSerialize["count"] = o.Count
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateDeviceLiveToolsPing201ResponseRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.Target) {
+		toSerialize["target"] = o.Target
+	}
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateDeviceLiveToolsPing201ResponseRequest struct {

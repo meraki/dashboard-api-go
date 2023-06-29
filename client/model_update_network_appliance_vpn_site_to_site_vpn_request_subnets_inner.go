@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner{}
+
 // UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner struct for UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner
 type UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner struct {
 	// The CIDR notation subnet used within the VPN
@@ -54,7 +57,7 @@ func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner) GetLocalSubn
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner) GetLocalSubnetOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.LocalSubnet, true
 }
@@ -66,7 +69,7 @@ func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner) SetLocalSubn
 
 // GetUseVpn returns the UseVpn field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner) GetUseVpn() bool {
-	if o == nil || isNil(o.UseVpn) {
+	if o == nil || IsNil(o.UseVpn) {
 		var ret bool
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner) GetUseVpn() 
 // GetUseVpnOk returns a tuple with the UseVpn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner) GetUseVpnOk() (*bool, bool) {
-	if o == nil || isNil(o.UseVpn) {
-    return nil, false
+	if o == nil || IsNil(o.UseVpn) {
+		return nil, false
 	}
 	return o.UseVpn, true
 }
 
 // HasUseVpn returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner) HasUseVpn() bool {
-	if o != nil && !isNil(o.UseVpn) {
+	if o != nil && !IsNil(o.UseVpn) {
 		return true
 	}
 
@@ -97,14 +100,20 @@ func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner) SetUseVpn(v 
 }
 
 func (o UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["localSubnet"] = o.LocalSubnet
-	}
-	if !isNil(o.UseVpn) {
-		toSerialize["useVpn"] = o.UseVpn
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["localSubnet"] = o.LocalSubnet
+	if !IsNil(o.UseVpn) {
+		toSerialize["useVpn"] = o.UseVpn
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceVpnSiteToSiteVpnRequestSubnetsInner struct {

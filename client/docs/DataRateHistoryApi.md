@@ -42,6 +42,7 @@ func main() {
     ssid := int32(56) // int32 | Filter results by SSID number. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.DataRateHistoryApi.GetNetworkWirelessDataRateHistory(context.Background(), networkId).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).AutoResolution(autoResolution).ClientId(clientId).DeviceSerial(deviceSerial).ApTag(apTag).Band(band).Ssid(ssid).Execute()
     if err != nil {

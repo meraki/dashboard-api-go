@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerLldp type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerLldp{}
+
 // GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerLldp Lldp information
 type GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerLldp struct {
 	// Port Id
@@ -39,7 +42,7 @@ func NewGetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerLldpWithDefaults(
 
 // GetPortId returns the PortId field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerLldp) GetPortId() string {
-	if o == nil || isNil(o.PortId) {
+	if o == nil || IsNil(o.PortId) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerLldp) GetPortId(
 // GetPortIdOk returns a tuple with the PortId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerLldp) GetPortIdOk() (*string, bool) {
-	if o == nil || isNil(o.PortId) {
-    return nil, false
+	if o == nil || IsNil(o.PortId) {
+		return nil, false
 	}
 	return o.PortId, true
 }
 
 // HasPortId returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerLldp) HasPortId() bool {
-	if o != nil && !isNil(o.PortId) {
+	if o != nil && !IsNil(o.PortId) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerLldp) SetPortId(
 }
 
 func (o GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerLldp) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.PortId) {
-		toSerialize["portId"] = o.PortId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerLldp) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PortId) {
+		toSerialize["portId"] = o.PortId
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerLldp struct {

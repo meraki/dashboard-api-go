@@ -36,6 +36,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.L7FirewallRulesApi.GetNetworkApplianceFirewallL7FirewallRules(context.Background(), networkId).Execute()
     if err != nil {
@@ -106,6 +107,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.L7FirewallRulesApi.GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories(context.Background(), networkId).Execute()
     if err != nil {
@@ -177,6 +179,7 @@ func main() {
     number := "number_example" // string | Number
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.L7FirewallRulesApi.GetNetworkWirelessSsidFirewallL7FirewallRules(context.Background(), networkId, number).Execute()
     if err != nil {
@@ -250,6 +253,7 @@ func main() {
     updateNetworkApplianceFirewallL7FirewallRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallL7FirewallRulesRequest() // UpdateNetworkApplianceFirewallL7FirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.L7FirewallRulesApi.UpdateNetworkApplianceFirewallL7FirewallRules(context.Background(), networkId).UpdateNetworkApplianceFirewallL7FirewallRulesRequest(updateNetworkApplianceFirewallL7FirewallRulesRequest).Execute()
     if err != nil {
@@ -323,6 +327,7 @@ func main() {
     updateNetworkWirelessSsidFirewallL7FirewallRulesRequest := *openapiclient.NewUpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest() // UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.L7FirewallRulesApi.UpdateNetworkWirelessSsidFirewallL7FirewallRules(context.Background(), networkId, number).UpdateNetworkWirelessSsidFirewallL7FirewallRulesRequest(updateNetworkWirelessSsidFirewallL7FirewallRulesRequest).Execute()
     if err != nil {

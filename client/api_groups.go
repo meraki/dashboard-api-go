@@ -13,7 +13,7 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -72,7 +72,7 @@ func (a *GroupsApiService) CreateNetworkFirmwareUpgradesStagedGroupExecute(r Gro
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -124,9 +124,9 @@ func (a *GroupsApiService) CreateNetworkFirmwareUpgradesStagedGroupExecute(r Gro
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -200,7 +200,7 @@ func (a *GroupsApiService) CreateOrganizationAdaptivePolicyGroupExecute(r Groups
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -252,9 +252,9 @@ func (a *GroupsApiService) CreateOrganizationAdaptivePolicyGroupExecute(r Groups
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -328,7 +328,7 @@ func (a *GroupsApiService) CreateOrganizationPolicyObjectsGroupExecute(r GroupsA
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/policyObjects/groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -380,9 +380,9 @@ func (a *GroupsApiService) CreateOrganizationPolicyObjectsGroupExecute(r GroupsA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -451,8 +451,8 @@ func (a *GroupsApiService) DeleteNetworkFirmwareUpgradesStagedGroupExecute(r Gro
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/groups/{groupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterValueToString(r.groupId, "groupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -499,9 +499,9 @@ func (a *GroupsApiService) DeleteNetworkFirmwareUpgradesStagedGroupExecute(r Gro
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -561,8 +561,8 @@ func (a *GroupsApiService) DeleteOrganizationAdaptivePolicyGroupExecute(r Groups
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/groups/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -609,9 +609,9 @@ func (a *GroupsApiService) DeleteOrganizationAdaptivePolicyGroupExecute(r Groups
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -671,8 +671,8 @@ func (a *GroupsApiService) DeleteOrganizationPolicyObjectsGroupExecute(r GroupsA
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectGroupId"+"}", url.PathEscape(parameterToString(r.policyObjectGroupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectGroupId"+"}", url.PathEscape(parameterValueToString(r.policyObjectGroupId, "policyObjectGroupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -719,9 +719,9 @@ func (a *GroupsApiService) DeleteOrganizationPolicyObjectsGroupExecute(r GroupsA
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -783,8 +783,8 @@ func (a *GroupsApiService) GetNetworkFirmwareUpgradesStagedGroupExecute(r Groups
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/groups/{groupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterValueToString(r.groupId, "groupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -831,9 +831,9 @@ func (a *GroupsApiService) GetNetworkFirmwareUpgradesStagedGroupExecute(r Groups
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -901,7 +901,7 @@ func (a *GroupsApiService) GetNetworkFirmwareUpgradesStagedGroupsExecute(r Group
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -948,9 +948,9 @@ func (a *GroupsApiService) GetNetworkFirmwareUpgradesStagedGroupsExecute(r Group
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1021,8 +1021,8 @@ func (a *GroupsApiService) GetOrganizationAdaptivePolicyGroupExecute(r GroupsApi
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/groups/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1069,9 +1069,9 @@ func (a *GroupsApiService) GetOrganizationAdaptivePolicyGroupExecute(r GroupsApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1139,7 +1139,7 @@ func (a *GroupsApiService) GetOrganizationAdaptivePolicyGroupsExecute(r GroupsAp
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1186,9 +1186,9 @@ func (a *GroupsApiService) GetOrganizationAdaptivePolicyGroupsExecute(r GroupsAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1259,8 +1259,8 @@ func (a *GroupsApiService) GetOrganizationPolicyObjectsGroupExecute(r GroupsApiG
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectGroupId"+"}", url.PathEscape(parameterToString(r.policyObjectGroupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectGroupId"+"}", url.PathEscape(parameterValueToString(r.policyObjectGroupId, "policyObjectGroupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1307,9 +1307,9 @@ func (a *GroupsApiService) GetOrganizationPolicyObjectsGroupExecute(r GroupsApiG
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1398,20 +1398,20 @@ func (a *GroupsApiService) GetOrganizationPolicyObjectsGroupsExecute(r GroupsApi
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/policyObjects/groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1454,9 +1454,9 @@ func (a *GroupsApiService) GetOrganizationPolicyObjectsGroupsExecute(r GroupsApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1533,8 +1533,8 @@ func (a *GroupsApiService) UpdateNetworkFirmwareUpgradesStagedGroupExecute(r Gro
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/groups/{groupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterValueToString(r.groupId, "groupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1586,9 +1586,9 @@ func (a *GroupsApiService) UpdateNetworkFirmwareUpgradesStagedGroupExecute(r Gro
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1665,8 +1665,8 @@ func (a *GroupsApiService) UpdateOrganizationAdaptivePolicyGroupExecute(r Groups
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/groups/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1715,9 +1715,9 @@ func (a *GroupsApiService) UpdateOrganizationAdaptivePolicyGroupExecute(r Groups
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1794,8 +1794,8 @@ func (a *GroupsApiService) UpdateOrganizationPolicyObjectsGroupExecute(r GroupsA
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectGroupId"+"}", url.PathEscape(parameterToString(r.policyObjectGroupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectGroupId"+"}", url.PathEscape(parameterValueToString(r.policyObjectGroupId, "policyObjectGroupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1844,9 +1844,9 @@ func (a *GroupsApiService) UpdateOrganizationPolicyObjectsGroupExecute(r GroupsA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

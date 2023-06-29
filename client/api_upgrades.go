@@ -13,7 +13,7 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -81,7 +81,7 @@ func (a *UpgradesApiService) GetOrganizationFirmwareUpgradesExecute(r UpgradesAp
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/firmware/upgrades"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -92,10 +92,10 @@ func (a *UpgradesApiService) GetOrganizationFirmwareUpgradesExecute(r UpgradesAp
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("status", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "status", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("status", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "status", t, "multi")
 		}
 	}
 	if r.productType != nil {
@@ -103,10 +103,10 @@ func (a *UpgradesApiService) GetOrganizationFirmwareUpgradesExecute(r UpgradesAp
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("productType", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "productType", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("productType", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "productType", t, "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -150,9 +150,9 @@ func (a *UpgradesApiService) GetOrganizationFirmwareUpgradesExecute(r UpgradesAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -276,30 +276,30 @@ func (a *UpgradesApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r Up
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/firmware/upgrades/byDevice"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	if r.networkIds != nil {
 		t := *r.networkIds
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "networkIds", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "networkIds", t, "multi")
 		}
 	}
 	if r.serials != nil {
@@ -307,10 +307,10 @@ func (a *UpgradesApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r Up
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "serials", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "serials", t, "multi")
 		}
 	}
 	if r.macs != nil {
@@ -318,10 +318,10 @@ func (a *UpgradesApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r Up
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("macs", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "macs", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("macs", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "macs", t, "multi")
 		}
 	}
 	if r.firmwareUpgradeIds != nil {
@@ -329,10 +329,10 @@ func (a *UpgradesApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r Up
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("firmwareUpgradeIds", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "firmwareUpgradeIds", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("firmwareUpgradeIds", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "firmwareUpgradeIds", t, "multi")
 		}
 	}
 	if r.firmwareUpgradeBatchIds != nil {
@@ -340,10 +340,10 @@ func (a *UpgradesApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r Up
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("firmwareUpgradeBatchIds", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "firmwareUpgradeBatchIds", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("firmwareUpgradeBatchIds", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "firmwareUpgradeBatchIds", t, "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -387,9 +387,9 @@ func (a *UpgradesApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r Up
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner{}
+
 // GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner struct for GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner
 type GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner struct {
 	// config id
@@ -46,7 +49,7 @@ func NewGetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInn
 
 // GetTrustedAccessConfigId returns the TrustedAccessConfigId field value if set, zero value otherwise.
 func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner) GetTrustedAccessConfigId() string {
-	if o == nil || isNil(o.TrustedAccessConfigId) {
+	if o == nil || IsNil(o.TrustedAccessConfigId) {
 		var ret string
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsIn
 // GetTrustedAccessConfigIdOk returns a tuple with the TrustedAccessConfigId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner) GetTrustedAccessConfigIdOk() (*string, bool) {
-	if o == nil || isNil(o.TrustedAccessConfigId) {
-    return nil, false
+	if o == nil || IsNil(o.TrustedAccessConfigId) {
+		return nil, false
 	}
 	return o.TrustedAccessConfigId, true
 }
 
 // HasTrustedAccessConfigId returns a boolean if a field has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner) HasTrustedAccessConfigId() bool {
-	if o != nil && !isNil(o.TrustedAccessConfigId) {
+	if o != nil && !IsNil(o.TrustedAccessConfigId) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsIn
 
 // GetDownloadedAt returns the DownloadedAt field value if set, zero value otherwise.
 func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner) GetDownloadedAt() string {
-	if o == nil || isNil(o.DownloadedAt) {
+	if o == nil || IsNil(o.DownloadedAt) {
 		var ret string
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsIn
 // GetDownloadedAtOk returns a tuple with the DownloadedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner) GetDownloadedAtOk() (*string, bool) {
-	if o == nil || isNil(o.DownloadedAt) {
-    return nil, false
+	if o == nil || IsNil(o.DownloadedAt) {
+		return nil, false
 	}
 	return o.DownloadedAt, true
 }
 
 // HasDownloadedAt returns a boolean if a field has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner) HasDownloadedAt() bool {
-	if o != nil && !isNil(o.DownloadedAt) {
+	if o != nil && !IsNil(o.DownloadedAt) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsIn
 
 // GetScepCompletedAt returns the ScepCompletedAt field value if set, zero value otherwise.
 func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner) GetScepCompletedAt() time.Time {
-	if o == nil || isNil(o.ScepCompletedAt) {
+	if o == nil || IsNil(o.ScepCompletedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsIn
 // GetScepCompletedAtOk returns a tuple with the ScepCompletedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner) GetScepCompletedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.ScepCompletedAt) {
-    return nil, false
+	if o == nil || IsNil(o.ScepCompletedAt) {
+		return nil, false
 	}
 	return o.ScepCompletedAt, true
 }
 
 // HasScepCompletedAt returns a boolean if a field has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner) HasScepCompletedAt() bool {
-	if o != nil && !isNil(o.ScepCompletedAt) {
+	if o != nil && !IsNil(o.ScepCompletedAt) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsIn
 
 // GetLastConnectedAt returns the LastConnectedAt field value if set, zero value otherwise.
 func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner) GetLastConnectedAt() time.Time {
-	if o == nil || isNil(o.LastConnectedAt) {
+	if o == nil || IsNil(o.LastConnectedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsIn
 // GetLastConnectedAtOk returns a tuple with the LastConnectedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner) GetLastConnectedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.LastConnectedAt) {
-    return nil, false
+	if o == nil || IsNil(o.LastConnectedAt) {
+		return nil, false
 	}
 	return o.LastConnectedAt, true
 }
 
 // HasLastConnectedAt returns a boolean if a field has been set.
 func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner) HasLastConnectedAt() bool {
-	if o != nil && !isNil(o.LastConnectedAt) {
+	if o != nil && !IsNil(o.LastConnectedAt) {
 		return true
 	}
 
@@ -173,20 +176,28 @@ func (o *GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsIn
 }
 
 func (o GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.TrustedAccessConfigId) {
-		toSerialize["trustedAccessConfigId"] = o.TrustedAccessConfigId
-	}
-	if !isNil(o.DownloadedAt) {
-		toSerialize["downloadedAt"] = o.DownloadedAt
-	}
-	if !isNil(o.ScepCompletedAt) {
-		toSerialize["scepCompletedAt"] = o.ScepCompletedAt
-	}
-	if !isNil(o.LastConnectedAt) {
-		toSerialize["lastConnectedAt"] = o.LastConnectedAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.TrustedAccessConfigId) {
+		toSerialize["trustedAccessConfigId"] = o.TrustedAccessConfigId
+	}
+	if !IsNil(o.DownloadedAt) {
+		toSerialize["downloadedAt"] = o.DownloadedAt
+	}
+	if !IsNil(o.ScepCompletedAt) {
+		toSerialize["scepCompletedAt"] = o.ScepCompletedAt
+	}
+	if !IsNil(o.LastConnectedAt) {
+		toSerialize["lastConnectedAt"] = o.LastConnectedAt
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmUserAccessDevices200ResponseInnerTrustedAccessConnectionsInner struct {

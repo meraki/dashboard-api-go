@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkFirmwareUpgradesStagedEvents200ResponseProducts type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkFirmwareUpgradesStagedEvents200ResponseProducts{}
+
 // GetNetworkFirmwareUpgradesStagedEvents200ResponseProducts The network devices to be updated
 type GetNetworkFirmwareUpgradesStagedEvents200ResponseProducts struct {
 	Switch *GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitch `json:"switch,omitempty"`
@@ -38,7 +41,7 @@ func NewGetNetworkFirmwareUpgradesStagedEvents200ResponseProductsWithDefaults() 
 
 // GetSwitch returns the Switch field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseProducts) GetSwitch() GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitch {
-	if o == nil || isNil(o.Switch) {
+	if o == nil || IsNil(o.Switch) {
 		var ret GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitch
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseProducts) GetSwitch() 
 // GetSwitchOk returns a tuple with the Switch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseProducts) GetSwitchOk() (*GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitch, bool) {
-	if o == nil || isNil(o.Switch) {
-    return nil, false
+	if o == nil || IsNil(o.Switch) {
+		return nil, false
 	}
 	return o.Switch, true
 }
 
 // HasSwitch returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseProducts) HasSwitch() bool {
-	if o != nil && !isNil(o.Switch) {
+	if o != nil && !IsNil(o.Switch) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseProducts) SetSwitch(v 
 }
 
 func (o GetNetworkFirmwareUpgradesStagedEvents200ResponseProducts) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Switch) {
-		toSerialize["switch"] = o.Switch
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkFirmwareUpgradesStagedEvents200ResponseProducts) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Switch) {
+		toSerialize["switch"] = o.Switch
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkFirmwareUpgradesStagedEvents200ResponseProducts struct {

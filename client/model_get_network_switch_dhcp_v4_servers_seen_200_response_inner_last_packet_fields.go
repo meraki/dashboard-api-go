@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields{}
+
 // GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields DHCP-specific fields of the packet.
 type GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields struct {
 	// Operation code of the packet.
@@ -67,7 +70,7 @@ func NewGetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFieldsWithDef
 
 // GetOp returns the Op field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetOp() int32 {
-	if o == nil || isNil(o.Op) {
+	if o == nil || IsNil(o.Op) {
 		var ret int32
 		return ret
 	}
@@ -77,15 +80,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetO
 // GetOpOk returns a tuple with the Op field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetOpOk() (*int32, bool) {
-	if o == nil || isNil(o.Op) {
-    return nil, false
+	if o == nil || IsNil(o.Op) {
+		return nil, false
 	}
 	return o.Op, true
 }
 
 // HasOp returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) HasOp() bool {
-	if o != nil && !isNil(o.Op) {
+	if o != nil && !IsNil(o.Op) {
 		return true
 	}
 
@@ -99,7 +102,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) SetO
 
 // GetHtype returns the Htype field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetHtype() int32 {
-	if o == nil || isNil(o.Htype) {
+	if o == nil || IsNil(o.Htype) {
 		var ret int32
 		return ret
 	}
@@ -109,15 +112,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetH
 // GetHtypeOk returns a tuple with the Htype field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetHtypeOk() (*int32, bool) {
-	if o == nil || isNil(o.Htype) {
-    return nil, false
+	if o == nil || IsNil(o.Htype) {
+		return nil, false
 	}
 	return o.Htype, true
 }
 
 // HasHtype returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) HasHtype() bool {
-	if o != nil && !isNil(o.Htype) {
+	if o != nil && !IsNil(o.Htype) {
 		return true
 	}
 
@@ -131,7 +134,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) SetH
 
 // GetHlen returns the Hlen field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetHlen() int32 {
-	if o == nil || isNil(o.Hlen) {
+	if o == nil || IsNil(o.Hlen) {
 		var ret int32
 		return ret
 	}
@@ -141,15 +144,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetH
 // GetHlenOk returns a tuple with the Hlen field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetHlenOk() (*int32, bool) {
-	if o == nil || isNil(o.Hlen) {
-    return nil, false
+	if o == nil || IsNil(o.Hlen) {
+		return nil, false
 	}
 	return o.Hlen, true
 }
 
 // HasHlen returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) HasHlen() bool {
-	if o != nil && !isNil(o.Hlen) {
+	if o != nil && !IsNil(o.Hlen) {
 		return true
 	}
 
@@ -163,7 +166,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) SetH
 
 // GetHops returns the Hops field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetHops() int32 {
-	if o == nil || isNil(o.Hops) {
+	if o == nil || IsNil(o.Hops) {
 		var ret int32
 		return ret
 	}
@@ -173,15 +176,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetH
 // GetHopsOk returns a tuple with the Hops field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetHopsOk() (*int32, bool) {
-	if o == nil || isNil(o.Hops) {
-    return nil, false
+	if o == nil || IsNil(o.Hops) {
+		return nil, false
 	}
 	return o.Hops, true
 }
 
 // HasHops returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) HasHops() bool {
-	if o != nil && !isNil(o.Hops) {
+	if o != nil && !IsNil(o.Hops) {
 		return true
 	}
 
@@ -195,7 +198,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) SetH
 
 // GetXid returns the Xid field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetXid() string {
-	if o == nil || isNil(o.Xid) {
+	if o == nil || IsNil(o.Xid) {
 		var ret string
 		return ret
 	}
@@ -205,15 +208,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetX
 // GetXidOk returns a tuple with the Xid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetXidOk() (*string, bool) {
-	if o == nil || isNil(o.Xid) {
-    return nil, false
+	if o == nil || IsNil(o.Xid) {
+		return nil, false
 	}
 	return o.Xid, true
 }
 
 // HasXid returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) HasXid() bool {
-	if o != nil && !isNil(o.Xid) {
+	if o != nil && !IsNil(o.Xid) {
 		return true
 	}
 
@@ -227,7 +230,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) SetX
 
 // GetSecs returns the Secs field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetSecs() int32 {
-	if o == nil || isNil(o.Secs) {
+	if o == nil || IsNil(o.Secs) {
 		var ret int32
 		return ret
 	}
@@ -237,15 +240,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetS
 // GetSecsOk returns a tuple with the Secs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetSecsOk() (*int32, bool) {
-	if o == nil || isNil(o.Secs) {
-    return nil, false
+	if o == nil || IsNil(o.Secs) {
+		return nil, false
 	}
 	return o.Secs, true
 }
 
 // HasSecs returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) HasSecs() bool {
-	if o != nil && !isNil(o.Secs) {
+	if o != nil && !IsNil(o.Secs) {
 		return true
 	}
 
@@ -259,7 +262,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) SetS
 
 // GetFlags returns the Flags field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetFlags() string {
-	if o == nil || isNil(o.Flags) {
+	if o == nil || IsNil(o.Flags) {
 		var ret string
 		return ret
 	}
@@ -269,15 +272,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetF
 // GetFlagsOk returns a tuple with the Flags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetFlagsOk() (*string, bool) {
-	if o == nil || isNil(o.Flags) {
-    return nil, false
+	if o == nil || IsNil(o.Flags) {
+		return nil, false
 	}
 	return o.Flags, true
 }
 
 // HasFlags returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) HasFlags() bool {
-	if o != nil && !isNil(o.Flags) {
+	if o != nil && !IsNil(o.Flags) {
 		return true
 	}
 
@@ -291,7 +294,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) SetF
 
 // GetCiaddr returns the Ciaddr field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetCiaddr() string {
-	if o == nil || isNil(o.Ciaddr) {
+	if o == nil || IsNil(o.Ciaddr) {
 		var ret string
 		return ret
 	}
@@ -301,15 +304,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetC
 // GetCiaddrOk returns a tuple with the Ciaddr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetCiaddrOk() (*string, bool) {
-	if o == nil || isNil(o.Ciaddr) {
-    return nil, false
+	if o == nil || IsNil(o.Ciaddr) {
+		return nil, false
 	}
 	return o.Ciaddr, true
 }
 
 // HasCiaddr returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) HasCiaddr() bool {
-	if o != nil && !isNil(o.Ciaddr) {
+	if o != nil && !IsNil(o.Ciaddr) {
 		return true
 	}
 
@@ -323,7 +326,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) SetC
 
 // GetYiaddr returns the Yiaddr field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetYiaddr() string {
-	if o == nil || isNil(o.Yiaddr) {
+	if o == nil || IsNil(o.Yiaddr) {
 		var ret string
 		return ret
 	}
@@ -333,15 +336,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetY
 // GetYiaddrOk returns a tuple with the Yiaddr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetYiaddrOk() (*string, bool) {
-	if o == nil || isNil(o.Yiaddr) {
-    return nil, false
+	if o == nil || IsNil(o.Yiaddr) {
+		return nil, false
 	}
 	return o.Yiaddr, true
 }
 
 // HasYiaddr returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) HasYiaddr() bool {
-	if o != nil && !isNil(o.Yiaddr) {
+	if o != nil && !IsNil(o.Yiaddr) {
 		return true
 	}
 
@@ -355,7 +358,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) SetY
 
 // GetSiaddr returns the Siaddr field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetSiaddr() string {
-	if o == nil || isNil(o.Siaddr) {
+	if o == nil || IsNil(o.Siaddr) {
 		var ret string
 		return ret
 	}
@@ -365,15 +368,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetS
 // GetSiaddrOk returns a tuple with the Siaddr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetSiaddrOk() (*string, bool) {
-	if o == nil || isNil(o.Siaddr) {
-    return nil, false
+	if o == nil || IsNil(o.Siaddr) {
+		return nil, false
 	}
 	return o.Siaddr, true
 }
 
 // HasSiaddr returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) HasSiaddr() bool {
-	if o != nil && !isNil(o.Siaddr) {
+	if o != nil && !IsNil(o.Siaddr) {
 		return true
 	}
 
@@ -387,7 +390,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) SetS
 
 // GetGiaddr returns the Giaddr field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetGiaddr() string {
-	if o == nil || isNil(o.Giaddr) {
+	if o == nil || IsNil(o.Giaddr) {
 		var ret string
 		return ret
 	}
@@ -397,15 +400,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetG
 // GetGiaddrOk returns a tuple with the Giaddr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetGiaddrOk() (*string, bool) {
-	if o == nil || isNil(o.Giaddr) {
-    return nil, false
+	if o == nil || IsNil(o.Giaddr) {
+		return nil, false
 	}
 	return o.Giaddr, true
 }
 
 // HasGiaddr returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) HasGiaddr() bool {
-	if o != nil && !isNil(o.Giaddr) {
+	if o != nil && !IsNil(o.Giaddr) {
 		return true
 	}
 
@@ -419,7 +422,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) SetG
 
 // GetChaddr returns the Chaddr field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetChaddr() string {
-	if o == nil || isNil(o.Chaddr) {
+	if o == nil || IsNil(o.Chaddr) {
 		var ret string
 		return ret
 	}
@@ -429,15 +432,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetC
 // GetChaddrOk returns a tuple with the Chaddr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetChaddrOk() (*string, bool) {
-	if o == nil || isNil(o.Chaddr) {
-    return nil, false
+	if o == nil || IsNil(o.Chaddr) {
+		return nil, false
 	}
 	return o.Chaddr, true
 }
 
 // HasChaddr returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) HasChaddr() bool {
-	if o != nil && !isNil(o.Chaddr) {
+	if o != nil && !IsNil(o.Chaddr) {
 		return true
 	}
 
@@ -451,7 +454,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) SetC
 
 // GetSname returns the Sname field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetSname() string {
-	if o == nil || isNil(o.Sname) {
+	if o == nil || IsNil(o.Sname) {
 		var ret string
 		return ret
 	}
@@ -461,15 +464,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetS
 // GetSnameOk returns a tuple with the Sname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetSnameOk() (*string, bool) {
-	if o == nil || isNil(o.Sname) {
-    return nil, false
+	if o == nil || IsNil(o.Sname) {
+		return nil, false
 	}
 	return o.Sname, true
 }
 
 // HasSname returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) HasSname() bool {
-	if o != nil && !isNil(o.Sname) {
+	if o != nil && !IsNil(o.Sname) {
 		return true
 	}
 
@@ -483,7 +486,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) SetS
 
 // GetMagicCookie returns the MagicCookie field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetMagicCookie() string {
-	if o == nil || isNil(o.MagicCookie) {
+	if o == nil || IsNil(o.MagicCookie) {
 		var ret string
 		return ret
 	}
@@ -493,15 +496,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetM
 // GetMagicCookieOk returns a tuple with the MagicCookie field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetMagicCookieOk() (*string, bool) {
-	if o == nil || isNil(o.MagicCookie) {
-    return nil, false
+	if o == nil || IsNil(o.MagicCookie) {
+		return nil, false
 	}
 	return o.MagicCookie, true
 }
 
 // HasMagicCookie returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) HasMagicCookie() bool {
-	if o != nil && !isNil(o.MagicCookie) {
+	if o != nil && !IsNil(o.MagicCookie) {
 		return true
 	}
 
@@ -515,7 +518,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) SetM
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetOptions() []GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFieldsOptionsInner {
-	if o == nil || isNil(o.Options) {
+	if o == nil || IsNil(o.Options) {
 		var ret []GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFieldsOptionsInner
 		return ret
 	}
@@ -525,15 +528,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetO
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) GetOptionsOk() ([]GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFieldsOptionsInner, bool) {
-	if o == nil || isNil(o.Options) {
-    return nil, false
+	if o == nil || IsNil(o.Options) {
+		return nil, false
 	}
 	return o.Options, true
 }
 
 // HasOptions returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) HasOptions() bool {
-	if o != nil && !isNil(o.Options) {
+	if o != nil && !IsNil(o.Options) {
 		return true
 	}
 
@@ -546,53 +549,61 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) SetO
 }
 
 func (o GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Op) {
-		toSerialize["op"] = o.Op
-	}
-	if !isNil(o.Htype) {
-		toSerialize["htype"] = o.Htype
-	}
-	if !isNil(o.Hlen) {
-		toSerialize["hlen"] = o.Hlen
-	}
-	if !isNil(o.Hops) {
-		toSerialize["hops"] = o.Hops
-	}
-	if !isNil(o.Xid) {
-		toSerialize["xid"] = o.Xid
-	}
-	if !isNil(o.Secs) {
-		toSerialize["secs"] = o.Secs
-	}
-	if !isNil(o.Flags) {
-		toSerialize["flags"] = o.Flags
-	}
-	if !isNil(o.Ciaddr) {
-		toSerialize["ciaddr"] = o.Ciaddr
-	}
-	if !isNil(o.Yiaddr) {
-		toSerialize["yiaddr"] = o.Yiaddr
-	}
-	if !isNil(o.Siaddr) {
-		toSerialize["siaddr"] = o.Siaddr
-	}
-	if !isNil(o.Giaddr) {
-		toSerialize["giaddr"] = o.Giaddr
-	}
-	if !isNil(o.Chaddr) {
-		toSerialize["chaddr"] = o.Chaddr
-	}
-	if !isNil(o.Sname) {
-		toSerialize["sname"] = o.Sname
-	}
-	if !isNil(o.MagicCookie) {
-		toSerialize["magicCookie"] = o.MagicCookie
-	}
-	if !isNil(o.Options) {
-		toSerialize["options"] = o.Options
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Op) {
+		toSerialize["op"] = o.Op
+	}
+	if !IsNil(o.Htype) {
+		toSerialize["htype"] = o.Htype
+	}
+	if !IsNil(o.Hlen) {
+		toSerialize["hlen"] = o.Hlen
+	}
+	if !IsNil(o.Hops) {
+		toSerialize["hops"] = o.Hops
+	}
+	if !IsNil(o.Xid) {
+		toSerialize["xid"] = o.Xid
+	}
+	if !IsNil(o.Secs) {
+		toSerialize["secs"] = o.Secs
+	}
+	if !IsNil(o.Flags) {
+		toSerialize["flags"] = o.Flags
+	}
+	if !IsNil(o.Ciaddr) {
+		toSerialize["ciaddr"] = o.Ciaddr
+	}
+	if !IsNil(o.Yiaddr) {
+		toSerialize["yiaddr"] = o.Yiaddr
+	}
+	if !IsNil(o.Siaddr) {
+		toSerialize["siaddr"] = o.Siaddr
+	}
+	if !IsNil(o.Giaddr) {
+		toSerialize["giaddr"] = o.Giaddr
+	}
+	if !IsNil(o.Chaddr) {
+		toSerialize["chaddr"] = o.Chaddr
+	}
+	if !IsNil(o.Sname) {
+		toSerialize["sname"] = o.Sname
+	}
+	if !IsNil(o.MagicCookie) {
+		toSerialize["magicCookie"] = o.MagicCookie
+	}
+	if !IsNil(o.Options) {
+		toSerialize["options"] = o.Options
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketFields struct {

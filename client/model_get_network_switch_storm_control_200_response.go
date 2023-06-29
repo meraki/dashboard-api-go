@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchStormControl200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchStormControl200Response{}
+
 // GetNetworkSwitchStormControl200Response struct for GetNetworkSwitchStormControl200Response
 type GetNetworkSwitchStormControl200Response struct {
 	// Broadcast threshold.
@@ -43,7 +46,7 @@ func NewGetNetworkSwitchStormControl200ResponseWithDefaults() *GetNetworkSwitchS
 
 // GetBroadcastThreshold returns the BroadcastThreshold field value if set, zero value otherwise.
 func (o *GetNetworkSwitchStormControl200Response) GetBroadcastThreshold() int32 {
-	if o == nil || isNil(o.BroadcastThreshold) {
+	if o == nil || IsNil(o.BroadcastThreshold) {
 		var ret int32
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkSwitchStormControl200Response) GetBroadcastThreshold() int32 
 // GetBroadcastThresholdOk returns a tuple with the BroadcastThreshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchStormControl200Response) GetBroadcastThresholdOk() (*int32, bool) {
-	if o == nil || isNil(o.BroadcastThreshold) {
-    return nil, false
+	if o == nil || IsNil(o.BroadcastThreshold) {
+		return nil, false
 	}
 	return o.BroadcastThreshold, true
 }
 
 // HasBroadcastThreshold returns a boolean if a field has been set.
 func (o *GetNetworkSwitchStormControl200Response) HasBroadcastThreshold() bool {
-	if o != nil && !isNil(o.BroadcastThreshold) {
+	if o != nil && !IsNil(o.BroadcastThreshold) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkSwitchStormControl200Response) SetBroadcastThreshold(v int32)
 
 // GetMulticastThreshold returns the MulticastThreshold field value if set, zero value otherwise.
 func (o *GetNetworkSwitchStormControl200Response) GetMulticastThreshold() int32 {
-	if o == nil || isNil(o.MulticastThreshold) {
+	if o == nil || IsNil(o.MulticastThreshold) {
 		var ret int32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkSwitchStormControl200Response) GetMulticastThreshold() int32 
 // GetMulticastThresholdOk returns a tuple with the MulticastThreshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchStormControl200Response) GetMulticastThresholdOk() (*int32, bool) {
-	if o == nil || isNil(o.MulticastThreshold) {
-    return nil, false
+	if o == nil || IsNil(o.MulticastThreshold) {
+		return nil, false
 	}
 	return o.MulticastThreshold, true
 }
 
 // HasMulticastThreshold returns a boolean if a field has been set.
 func (o *GetNetworkSwitchStormControl200Response) HasMulticastThreshold() bool {
-	if o != nil && !isNil(o.MulticastThreshold) {
+	if o != nil && !IsNil(o.MulticastThreshold) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkSwitchStormControl200Response) SetMulticastThreshold(v int32)
 
 // GetUnknownUnicastThreshold returns the UnknownUnicastThreshold field value if set, zero value otherwise.
 func (o *GetNetworkSwitchStormControl200Response) GetUnknownUnicastThreshold() int32 {
-	if o == nil || isNil(o.UnknownUnicastThreshold) {
+	if o == nil || IsNil(o.UnknownUnicastThreshold) {
 		var ret int32
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkSwitchStormControl200Response) GetUnknownUnicastThreshold() i
 // GetUnknownUnicastThresholdOk returns a tuple with the UnknownUnicastThreshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchStormControl200Response) GetUnknownUnicastThresholdOk() (*int32, bool) {
-	if o == nil || isNil(o.UnknownUnicastThreshold) {
-    return nil, false
+	if o == nil || IsNil(o.UnknownUnicastThreshold) {
+		return nil, false
 	}
 	return o.UnknownUnicastThreshold, true
 }
 
 // HasUnknownUnicastThreshold returns a boolean if a field has been set.
 func (o *GetNetworkSwitchStormControl200Response) HasUnknownUnicastThreshold() bool {
-	if o != nil && !isNil(o.UnknownUnicastThreshold) {
+	if o != nil && !IsNil(o.UnknownUnicastThreshold) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkSwitchStormControl200Response) SetUnknownUnicastThreshold(v i
 }
 
 func (o GetNetworkSwitchStormControl200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.BroadcastThreshold) {
-		toSerialize["broadcastThreshold"] = o.BroadcastThreshold
-	}
-	if !isNil(o.MulticastThreshold) {
-		toSerialize["multicastThreshold"] = o.MulticastThreshold
-	}
-	if !isNil(o.UnknownUnicastThreshold) {
-		toSerialize["unknownUnicastThreshold"] = o.UnknownUnicastThreshold
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchStormControl200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BroadcastThreshold) {
+		toSerialize["broadcastThreshold"] = o.BroadcastThreshold
+	}
+	if !IsNil(o.MulticastThreshold) {
+		toSerialize["multicastThreshold"] = o.MulticastThreshold
+	}
+	if !IsNil(o.UnknownUnicastThreshold) {
+		toSerialize["unknownUnicastThreshold"] = o.UnknownUnicastThreshold
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchStormControl200Response struct {

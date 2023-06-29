@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmDeviceNetworkAdapters200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmDeviceNetworkAdapters200ResponseInner{}
+
 // GetNetworkSmDeviceNetworkAdapters200ResponseInner struct for GetNetworkSmDeviceNetworkAdapters200ResponseInner
 type GetNetworkSmDeviceNetworkAdapters200ResponseInner struct {
 	// The IP address of the DCHP Server.
@@ -53,7 +56,7 @@ func NewGetNetworkSmDeviceNetworkAdapters200ResponseInnerWithDefaults() *GetNetw
 
 // GetDhcpServer returns the DhcpServer field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetDhcpServer() string {
-	if o == nil || isNil(o.DhcpServer) {
+	if o == nil || IsNil(o.DhcpServer) {
 		var ret string
 		return ret
 	}
@@ -63,15 +66,15 @@ func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetDhcpServer() stri
 // GetDhcpServerOk returns a tuple with the DhcpServer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetDhcpServerOk() (*string, bool) {
-	if o == nil || isNil(o.DhcpServer) {
-    return nil, false
+	if o == nil || IsNil(o.DhcpServer) {
+		return nil, false
 	}
 	return o.DhcpServer, true
 }
 
 // HasDhcpServer returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) HasDhcpServer() bool {
-	if o != nil && !isNil(o.DhcpServer) {
+	if o != nil && !IsNil(o.DhcpServer) {
 		return true
 	}
 
@@ -85,7 +88,7 @@ func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) SetDhcpServer(v stri
 
 // GetDnsServer returns the DnsServer field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetDnsServer() string {
-	if o == nil || isNil(o.DnsServer) {
+	if o == nil || IsNil(o.DnsServer) {
 		var ret string
 		return ret
 	}
@@ -95,15 +98,15 @@ func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetDnsServer() strin
 // GetDnsServerOk returns a tuple with the DnsServer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetDnsServerOk() (*string, bool) {
-	if o == nil || isNil(o.DnsServer) {
-    return nil, false
+	if o == nil || IsNil(o.DnsServer) {
+		return nil, false
 	}
 	return o.DnsServer, true
 }
 
 // HasDnsServer returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) HasDnsServer() bool {
-	if o != nil && !isNil(o.DnsServer) {
+	if o != nil && !IsNil(o.DnsServer) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) SetDnsServer(v strin
 
 // GetGateway returns the Gateway field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetGateway() string {
-	if o == nil || isNil(o.Gateway) {
+	if o == nil || IsNil(o.Gateway) {
 		var ret string
 		return ret
 	}
@@ -127,15 +130,15 @@ func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetGateway() string 
 // GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetGatewayOk() (*string, bool) {
-	if o == nil || isNil(o.Gateway) {
-    return nil, false
+	if o == nil || IsNil(o.Gateway) {
+		return nil, false
 	}
 	return o.Gateway, true
 }
 
 // HasGateway returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) HasGateway() bool {
-	if o != nil && !isNil(o.Gateway) {
+	if o != nil && !IsNil(o.Gateway) {
 		return true
 	}
 
@@ -149,7 +152,7 @@ func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) SetGateway(v string)
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -159,15 +162,15 @@ func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -181,7 +184,7 @@ func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) SetId(v string) {
 
 // GetIp returns the Ip field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetIp() string {
-	if o == nil || isNil(o.Ip) {
+	if o == nil || IsNil(o.Ip) {
 		var ret string
 		return ret
 	}
@@ -191,15 +194,15 @@ func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetIp() string {
 // GetIpOk returns a tuple with the Ip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetIpOk() (*string, bool) {
-	if o == nil || isNil(o.Ip) {
-    return nil, false
+	if o == nil || IsNil(o.Ip) {
+		return nil, false
 	}
 	return o.Ip, true
 }
 
 // HasIp returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) HasIp() bool {
-	if o != nil && !isNil(o.Ip) {
+	if o != nil && !IsNil(o.Ip) {
 		return true
 	}
 
@@ -213,7 +216,7 @@ func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) SetIp(v string) {
 
 // GetMac returns the Mac field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetMac() string {
-	if o == nil || isNil(o.Mac) {
+	if o == nil || IsNil(o.Mac) {
 		var ret string
 		return ret
 	}
@@ -223,15 +226,15 @@ func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetMac() string {
 // GetMacOk returns a tuple with the Mac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetMacOk() (*string, bool) {
-	if o == nil || isNil(o.Mac) {
-    return nil, false
+	if o == nil || IsNil(o.Mac) {
+		return nil, false
 	}
 	return o.Mac, true
 }
 
 // HasMac returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) HasMac() bool {
-	if o != nil && !isNil(o.Mac) {
+	if o != nil && !IsNil(o.Mac) {
 		return true
 	}
 
@@ -245,7 +248,7 @@ func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) SetMac(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -255,15 +258,15 @@ func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -277,7 +280,7 @@ func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) SetName(v string) {
 
 // GetSubnet returns the Subnet field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetSubnet() string {
-	if o == nil || isNil(o.Subnet) {
+	if o == nil || IsNil(o.Subnet) {
 		var ret string
 		return ret
 	}
@@ -287,15 +290,15 @@ func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetSubnet() string {
 // GetSubnetOk returns a tuple with the Subnet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) GetSubnetOk() (*string, bool) {
-	if o == nil || isNil(o.Subnet) {
-    return nil, false
+	if o == nil || IsNil(o.Subnet) {
+		return nil, false
 	}
 	return o.Subnet, true
 }
 
 // HasSubnet returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) HasSubnet() bool {
-	if o != nil && !isNil(o.Subnet) {
+	if o != nil && !IsNil(o.Subnet) {
 		return true
 	}
 
@@ -308,32 +311,40 @@ func (o *GetNetworkSmDeviceNetworkAdapters200ResponseInner) SetSubnet(v string) 
 }
 
 func (o GetNetworkSmDeviceNetworkAdapters200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.DhcpServer) {
-		toSerialize["dhcpServer"] = o.DhcpServer
-	}
-	if !isNil(o.DnsServer) {
-		toSerialize["dnsServer"] = o.DnsServer
-	}
-	if !isNil(o.Gateway) {
-		toSerialize["gateway"] = o.Gateway
-	}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Ip) {
-		toSerialize["ip"] = o.Ip
-	}
-	if !isNil(o.Mac) {
-		toSerialize["mac"] = o.Mac
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Subnet) {
-		toSerialize["subnet"] = o.Subnet
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmDeviceNetworkAdapters200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DhcpServer) {
+		toSerialize["dhcpServer"] = o.DhcpServer
+	}
+	if !IsNil(o.DnsServer) {
+		toSerialize["dnsServer"] = o.DnsServer
+	}
+	if !IsNil(o.Gateway) {
+		toSerialize["gateway"] = o.Gateway
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Ip) {
+		toSerialize["ip"] = o.Ip
+	}
+	if !IsNil(o.Mac) {
+		toSerialize["mac"] = o.Mac
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Subnet) {
+		toSerialize["subnet"] = o.Subnet
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmDeviceNetworkAdapters200ResponseInner struct {

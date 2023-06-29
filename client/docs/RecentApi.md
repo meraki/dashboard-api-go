@@ -33,6 +33,7 @@ func main() {
     objectType := "objectType_example" // string | [optional] The object type for which analytics will be retrieved. The default object type is person. The available types are [person, vehicle]. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.RecentApi.GetDeviceCameraAnalyticsRecent(context.Background(), serial).ObjectType(objectType).Execute()
     if err != nil {

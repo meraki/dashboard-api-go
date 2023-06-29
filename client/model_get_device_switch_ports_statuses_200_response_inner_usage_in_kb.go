@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb{}
+
 // GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb A breakdown of how many kilobytes have passed through this port during the timespan.
 type GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb struct {
 	// The total amount of data sent and received (in kilobytes).
@@ -43,7 +46,7 @@ func NewGetDeviceSwitchPortsStatuses200ResponseInnerUsageInKbWithDefaults() *Get
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) GetTotal() int32 {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		var ret int32
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) GetTotal() int32
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) GetTotalOk() (*int32, bool) {
-	if o == nil || isNil(o.Total) {
-    return nil, false
+	if o == nil || IsNil(o.Total) {
+		return nil, false
 	}
 	return o.Total, true
 }
 
 // HasTotal returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) HasTotal() bool {
-	if o != nil && !isNil(o.Total) {
+	if o != nil && !IsNil(o.Total) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) SetTotal(v int32
 
 // GetSent returns the Sent field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) GetSent() int32 {
-	if o == nil || isNil(o.Sent) {
+	if o == nil || IsNil(o.Sent) {
 		var ret int32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) GetSent() int32 
 // GetSentOk returns a tuple with the Sent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) GetSentOk() (*int32, bool) {
-	if o == nil || isNil(o.Sent) {
-    return nil, false
+	if o == nil || IsNil(o.Sent) {
+		return nil, false
 	}
 	return o.Sent, true
 }
 
 // HasSent returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) HasSent() bool {
-	if o != nil && !isNil(o.Sent) {
+	if o != nil && !IsNil(o.Sent) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) SetSent(v int32)
 
 // GetRecv returns the Recv field value if set, zero value otherwise.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) GetRecv() int32 {
-	if o == nil || isNil(o.Recv) {
+	if o == nil || IsNil(o.Recv) {
 		var ret int32
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) GetRecv() int32 
 // GetRecvOk returns a tuple with the Recv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) GetRecvOk() (*int32, bool) {
-	if o == nil || isNil(o.Recv) {
-    return nil, false
+	if o == nil || IsNil(o.Recv) {
+		return nil, false
 	}
 	return o.Recv, true
 }
 
 // HasRecv returns a boolean if a field has been set.
 func (o *GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) HasRecv() bool {
-	if o != nil && !isNil(o.Recv) {
+	if o != nil && !IsNil(o.Recv) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) SetRecv(v int32)
 }
 
 func (o GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Total) {
-		toSerialize["total"] = o.Total
-	}
-	if !isNil(o.Sent) {
-		toSerialize["sent"] = o.Sent
-	}
-	if !isNil(o.Recv) {
-		toSerialize["recv"] = o.Recv
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Total) {
+		toSerialize["total"] = o.Total
+	}
+	if !IsNil(o.Sent) {
+		toSerialize["sent"] = o.Sent
+	}
+	if !IsNil(o.Recv) {
+		toSerialize["recv"] = o.Recv
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceSwitchPortsStatuses200ResponseInnerUsageInKb struct {

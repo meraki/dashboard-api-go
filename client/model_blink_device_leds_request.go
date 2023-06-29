@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the BlinkDeviceLedsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BlinkDeviceLedsRequest{}
+
 // BlinkDeviceLedsRequest struct for BlinkDeviceLedsRequest
 type BlinkDeviceLedsRequest struct {
 	// The duration in seconds. Must be between 5 and 120. Default is 20 seconds
@@ -43,7 +46,7 @@ func NewBlinkDeviceLedsRequestWithDefaults() *BlinkDeviceLedsRequest {
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *BlinkDeviceLedsRequest) GetDuration() int32 {
-	if o == nil || isNil(o.Duration) {
+	if o == nil || IsNil(o.Duration) {
 		var ret int32
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *BlinkDeviceLedsRequest) GetDuration() int32 {
 // GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BlinkDeviceLedsRequest) GetDurationOk() (*int32, bool) {
-	if o == nil || isNil(o.Duration) {
-    return nil, false
+	if o == nil || IsNil(o.Duration) {
+		return nil, false
 	}
 	return o.Duration, true
 }
 
 // HasDuration returns a boolean if a field has been set.
 func (o *BlinkDeviceLedsRequest) HasDuration() bool {
-	if o != nil && !isNil(o.Duration) {
+	if o != nil && !IsNil(o.Duration) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *BlinkDeviceLedsRequest) SetDuration(v int32) {
 
 // GetPeriod returns the Period field value if set, zero value otherwise.
 func (o *BlinkDeviceLedsRequest) GetPeriod() int32 {
-	if o == nil || isNil(o.Period) {
+	if o == nil || IsNil(o.Period) {
 		var ret int32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *BlinkDeviceLedsRequest) GetPeriod() int32 {
 // GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BlinkDeviceLedsRequest) GetPeriodOk() (*int32, bool) {
-	if o == nil || isNil(o.Period) {
-    return nil, false
+	if o == nil || IsNil(o.Period) {
+		return nil, false
 	}
 	return o.Period, true
 }
 
 // HasPeriod returns a boolean if a field has been set.
 func (o *BlinkDeviceLedsRequest) HasPeriod() bool {
-	if o != nil && !isNil(o.Period) {
+	if o != nil && !IsNil(o.Period) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *BlinkDeviceLedsRequest) SetPeriod(v int32) {
 
 // GetDuty returns the Duty field value if set, zero value otherwise.
 func (o *BlinkDeviceLedsRequest) GetDuty() int32 {
-	if o == nil || isNil(o.Duty) {
+	if o == nil || IsNil(o.Duty) {
 		var ret int32
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *BlinkDeviceLedsRequest) GetDuty() int32 {
 // GetDutyOk returns a tuple with the Duty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BlinkDeviceLedsRequest) GetDutyOk() (*int32, bool) {
-	if o == nil || isNil(o.Duty) {
-    return nil, false
+	if o == nil || IsNil(o.Duty) {
+		return nil, false
 	}
 	return o.Duty, true
 }
 
 // HasDuty returns a boolean if a field has been set.
 func (o *BlinkDeviceLedsRequest) HasDuty() bool {
-	if o != nil && !isNil(o.Duty) {
+	if o != nil && !IsNil(o.Duty) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *BlinkDeviceLedsRequest) SetDuty(v int32) {
 }
 
 func (o BlinkDeviceLedsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Duration) {
-		toSerialize["duration"] = o.Duration
-	}
-	if !isNil(o.Period) {
-		toSerialize["period"] = o.Period
-	}
-	if !isNil(o.Duty) {
-		toSerialize["duty"] = o.Duty
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o BlinkDeviceLedsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Duration) {
+		toSerialize["duration"] = o.Duration
+	}
+	if !IsNil(o.Period) {
+		toSerialize["period"] = o.Period
+	}
+	if !IsNil(o.Duty) {
+		toSerialize["duty"] = o.Duty
+	}
+	return toSerialize, nil
 }
 
 type NullableBlinkDeviceLedsRequest struct {

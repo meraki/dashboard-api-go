@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSamlRoles200ResponseInnerTagsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSamlRoles200ResponseInnerTagsInner{}
+
 // GetOrganizationSamlRoles200ResponseInnerTagsInner struct for GetOrganizationSamlRoles200ResponseInnerTagsInner
 type GetOrganizationSamlRoles200ResponseInnerTagsInner struct {
 	// The name of the tag
@@ -41,7 +44,7 @@ func NewGetOrganizationSamlRoles200ResponseInnerTagsInnerWithDefaults() *GetOrga
 
 // GetTag returns the Tag field value if set, zero value otherwise.
 func (o *GetOrganizationSamlRoles200ResponseInnerTagsInner) GetTag() string {
-	if o == nil || isNil(o.Tag) {
+	if o == nil || IsNil(o.Tag) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetOrganizationSamlRoles200ResponseInnerTagsInner) GetTag() string {
 // GetTagOk returns a tuple with the Tag field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSamlRoles200ResponseInnerTagsInner) GetTagOk() (*string, bool) {
-	if o == nil || isNil(o.Tag) {
-    return nil, false
+	if o == nil || IsNil(o.Tag) {
+		return nil, false
 	}
 	return o.Tag, true
 }
 
 // HasTag returns a boolean if a field has been set.
 func (o *GetOrganizationSamlRoles200ResponseInnerTagsInner) HasTag() bool {
-	if o != nil && !isNil(o.Tag) {
+	if o != nil && !IsNil(o.Tag) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetOrganizationSamlRoles200ResponseInnerTagsInner) SetTag(v string) {
 
 // GetAccess returns the Access field value if set, zero value otherwise.
 func (o *GetOrganizationSamlRoles200ResponseInnerTagsInner) GetAccess() string {
-	if o == nil || isNil(o.Access) {
+	if o == nil || IsNil(o.Access) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetOrganizationSamlRoles200ResponseInnerTagsInner) GetAccess() string {
 // GetAccessOk returns a tuple with the Access field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSamlRoles200ResponseInnerTagsInner) GetAccessOk() (*string, bool) {
-	if o == nil || isNil(o.Access) {
-    return nil, false
+	if o == nil || IsNil(o.Access) {
+		return nil, false
 	}
 	return o.Access, true
 }
 
 // HasAccess returns a boolean if a field has been set.
 func (o *GetOrganizationSamlRoles200ResponseInnerTagsInner) HasAccess() bool {
-	if o != nil && !isNil(o.Access) {
+	if o != nil && !IsNil(o.Access) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetOrganizationSamlRoles200ResponseInnerTagsInner) SetAccess(v string) 
 }
 
 func (o GetOrganizationSamlRoles200ResponseInnerTagsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Tag) {
-		toSerialize["tag"] = o.Tag
-	}
-	if !isNil(o.Access) {
-		toSerialize["access"] = o.Access
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSamlRoles200ResponseInnerTagsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Tag) {
+		toSerialize["tag"] = o.Tag
+	}
+	if !IsNil(o.Access) {
+		toSerialize["access"] = o.Access
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSamlRoles200ResponseInnerTagsInner struct {

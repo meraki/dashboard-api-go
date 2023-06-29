@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWirelessSettings200ResponseNamedVlans type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessSettings200ResponseNamedVlans{}
+
 // GetNetworkWirelessSettings200ResponseNamedVlans Named VLAN settings for wireless networks.
 type GetNetworkWirelessSettings200ResponseNamedVlans struct {
 	PoolDhcpMonitoring *GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring `json:"poolDhcpMonitoring,omitempty"`
@@ -38,7 +41,7 @@ func NewGetNetworkWirelessSettings200ResponseNamedVlansWithDefaults() *GetNetwor
 
 // GetPoolDhcpMonitoring returns the PoolDhcpMonitoring field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSettings200ResponseNamedVlans) GetPoolDhcpMonitoring() GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring {
-	if o == nil || isNil(o.PoolDhcpMonitoring) {
+	if o == nil || IsNil(o.PoolDhcpMonitoring) {
 		var ret GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetNetworkWirelessSettings200ResponseNamedVlans) GetPoolDhcpMonitoring(
 // GetPoolDhcpMonitoringOk returns a tuple with the PoolDhcpMonitoring field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSettings200ResponseNamedVlans) GetPoolDhcpMonitoringOk() (*GetNetworkWirelessSettings200ResponseNamedVlansPoolDhcpMonitoring, bool) {
-	if o == nil || isNil(o.PoolDhcpMonitoring) {
-    return nil, false
+	if o == nil || IsNil(o.PoolDhcpMonitoring) {
+		return nil, false
 	}
 	return o.PoolDhcpMonitoring, true
 }
 
 // HasPoolDhcpMonitoring returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSettings200ResponseNamedVlans) HasPoolDhcpMonitoring() bool {
-	if o != nil && !isNil(o.PoolDhcpMonitoring) {
+	if o != nil && !IsNil(o.PoolDhcpMonitoring) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetNetworkWirelessSettings200ResponseNamedVlans) SetPoolDhcpMonitoring(
 }
 
 func (o GetNetworkWirelessSettings200ResponseNamedVlans) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.PoolDhcpMonitoring) {
-		toSerialize["poolDhcpMonitoring"] = o.PoolDhcpMonitoring
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessSettings200ResponseNamedVlans) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PoolDhcpMonitoring) {
+		toSerialize["poolDhcpMonitoring"] = o.PoolDhcpMonitoring
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessSettings200ResponseNamedVlans struct {

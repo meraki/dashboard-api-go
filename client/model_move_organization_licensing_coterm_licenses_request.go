@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MoveOrganizationLicensingCotermLicensesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MoveOrganizationLicensingCotermLicensesRequest{}
+
 // MoveOrganizationLicensingCotermLicensesRequest struct for MoveOrganizationLicensingCotermLicensesRequest
 type MoveOrganizationLicensingCotermLicensesRequest struct {
 	Destination MoveOrganizationLicensingCotermLicensesRequestDestination `json:"destination"`
@@ -54,7 +57,7 @@ func (o *MoveOrganizationLicensingCotermLicensesRequest) GetDestination() MoveOr
 // and a boolean to check if the value has been set.
 func (o *MoveOrganizationLicensingCotermLicensesRequest) GetDestinationOk() (*MoveOrganizationLicensingCotermLicensesRequestDestination, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Destination, true
 }
@@ -78,7 +81,7 @@ func (o *MoveOrganizationLicensingCotermLicensesRequest) GetLicenses() []MoveOrg
 // and a boolean to check if the value has been set.
 func (o *MoveOrganizationLicensingCotermLicensesRequest) GetLicensesOk() ([]MoveOrganizationLicensingCotermLicensesRequestLicensesInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Licenses, true
 }
@@ -89,14 +92,18 @@ func (o *MoveOrganizationLicensingCotermLicensesRequest) SetLicenses(v []MoveOrg
 }
 
 func (o MoveOrganizationLicensingCotermLicensesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["destination"] = o.Destination
-	}
-	if true {
-		toSerialize["licenses"] = o.Licenses
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MoveOrganizationLicensingCotermLicensesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["destination"] = o.Destination
+	toSerialize["licenses"] = o.Licenses
+	return toSerialize, nil
 }
 
 type NullableMoveOrganizationLicensingCotermLicensesRequest struct {

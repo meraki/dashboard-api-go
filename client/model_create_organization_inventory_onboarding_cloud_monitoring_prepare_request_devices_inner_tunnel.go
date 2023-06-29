@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel{}
+
 // CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel TLS Related Parameters
 type CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel struct {
 	// Name of the configured TLS certificate
@@ -45,7 +48,7 @@ func NewCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevice
 
 // GetCertificateName returns the CertificateName field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel) GetCertificateName() string {
-	if o == nil || isNil(o.CertificateName) {
+	if o == nil || IsNil(o.CertificateName) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 // GetCertificateNameOk returns a tuple with the CertificateName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel) GetCertificateNameOk() (*string, bool) {
-	if o == nil || isNil(o.CertificateName) {
-    return nil, false
+	if o == nil || IsNil(o.CertificateName) {
+		return nil, false
 	}
 	return o.CertificateName, true
 }
 
 // HasCertificateName returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel) HasCertificateName() bool {
-	if o != nil && !isNil(o.CertificateName) {
+	if o != nil && !IsNil(o.CertificateName) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 
 // GetLoopbackNumber returns the LoopbackNumber field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel) GetLoopbackNumber() int32 {
-	if o == nil || isNil(o.LoopbackNumber) {
+	if o == nil || IsNil(o.LoopbackNumber) {
 		var ret int32
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 // GetLoopbackNumberOk returns a tuple with the LoopbackNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel) GetLoopbackNumberOk() (*int32, bool) {
-	if o == nil || isNil(o.LoopbackNumber) {
-    return nil, false
+	if o == nil || IsNil(o.LoopbackNumber) {
+		return nil, false
 	}
 	return o.LoopbackNumber, true
 }
 
 // HasLoopbackNumber returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel) HasLoopbackNumber() bool {
-	if o != nil && !isNil(o.LoopbackNumber) {
+	if o != nil && !IsNil(o.LoopbackNumber) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 
 // GetLocalInterface returns the LocalInterface field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel) GetLocalInterface() int32 {
-	if o == nil || isNil(o.LocalInterface) {
+	if o == nil || IsNil(o.LocalInterface) {
 		var ret int32
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 // GetLocalInterfaceOk returns a tuple with the LocalInterface field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel) GetLocalInterfaceOk() (*int32, bool) {
-	if o == nil || isNil(o.LocalInterface) {
-    return nil, false
+	if o == nil || IsNil(o.LocalInterface) {
+		return nil, false
 	}
 	return o.LocalInterface, true
 }
 
 // HasLocalInterface returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel) HasLocalInterface() bool {
-	if o != nil && !isNil(o.LocalInterface) {
+	if o != nil && !IsNil(o.LocalInterface) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 }
 
 func (o CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.CertificateName) {
-		toSerialize["certificateName"] = o.CertificateName
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.LoopbackNumber) {
-		toSerialize["loopbackNumber"] = o.LoopbackNumber
-	}
-	if !isNil(o.LocalInterface) {
-		toSerialize["localInterface"] = o.LocalInterface
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CertificateName) {
+		toSerialize["certificateName"] = o.CertificateName
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.LoopbackNumber) {
+		toSerialize["loopbackNumber"] = o.LoopbackNumber
+	}
+	if !IsNil(o.LocalInterface) {
+		toSerialize["localInterface"] = o.LocalInterface
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerTunnel struct {

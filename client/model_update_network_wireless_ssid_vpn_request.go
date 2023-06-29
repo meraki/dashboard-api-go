@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidVpnRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidVpnRequest{}
+
 // UpdateNetworkWirelessSsidVpnRequest struct for UpdateNetworkWirelessSsidVpnRequest
 type UpdateNetworkWirelessSsidVpnRequest struct {
 	Concentrator *UpdateNetworkWirelessSsidVpnRequestConcentrator `json:"concentrator,omitempty"`
@@ -40,7 +43,7 @@ func NewUpdateNetworkWirelessSsidVpnRequestWithDefaults() *UpdateNetworkWireless
 
 // GetConcentrator returns the Concentrator field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidVpnRequest) GetConcentrator() UpdateNetworkWirelessSsidVpnRequestConcentrator {
-	if o == nil || isNil(o.Concentrator) {
+	if o == nil || IsNil(o.Concentrator) {
 		var ret UpdateNetworkWirelessSsidVpnRequestConcentrator
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *UpdateNetworkWirelessSsidVpnRequest) GetConcentrator() UpdateNetworkWir
 // GetConcentratorOk returns a tuple with the Concentrator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequest) GetConcentratorOk() (*UpdateNetworkWirelessSsidVpnRequestConcentrator, bool) {
-	if o == nil || isNil(o.Concentrator) {
-    return nil, false
+	if o == nil || IsNil(o.Concentrator) {
+		return nil, false
 	}
 	return o.Concentrator, true
 }
 
 // HasConcentrator returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequest) HasConcentrator() bool {
-	if o != nil && !isNil(o.Concentrator) {
+	if o != nil && !IsNil(o.Concentrator) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *UpdateNetworkWirelessSsidVpnRequest) SetConcentrator(v UpdateNetworkWir
 
 // GetSplitTunnel returns the SplitTunnel field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidVpnRequest) GetSplitTunnel() UpdateNetworkWirelessSsidVpnRequestSplitTunnel {
-	if o == nil || isNil(o.SplitTunnel) {
+	if o == nil || IsNil(o.SplitTunnel) {
 		var ret UpdateNetworkWirelessSsidVpnRequestSplitTunnel
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *UpdateNetworkWirelessSsidVpnRequest) GetSplitTunnel() UpdateNetworkWire
 // GetSplitTunnelOk returns a tuple with the SplitTunnel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequest) GetSplitTunnelOk() (*UpdateNetworkWirelessSsidVpnRequestSplitTunnel, bool) {
-	if o == nil || isNil(o.SplitTunnel) {
-    return nil, false
+	if o == nil || IsNil(o.SplitTunnel) {
+		return nil, false
 	}
 	return o.SplitTunnel, true
 }
 
 // HasSplitTunnel returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequest) HasSplitTunnel() bool {
-	if o != nil && !isNil(o.SplitTunnel) {
+	if o != nil && !IsNil(o.SplitTunnel) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *UpdateNetworkWirelessSsidVpnRequest) SetSplitTunnel(v UpdateNetworkWire
 
 // GetFailover returns the Failover field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidVpnRequest) GetFailover() UpdateNetworkWirelessSsidVpnRequestFailover {
-	if o == nil || isNil(o.Failover) {
+	if o == nil || IsNil(o.Failover) {
 		var ret UpdateNetworkWirelessSsidVpnRequestFailover
 		return ret
 	}
@@ -114,15 +117,15 @@ func (o *UpdateNetworkWirelessSsidVpnRequest) GetFailover() UpdateNetworkWireles
 // GetFailoverOk returns a tuple with the Failover field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequest) GetFailoverOk() (*UpdateNetworkWirelessSsidVpnRequestFailover, bool) {
-	if o == nil || isNil(o.Failover) {
-    return nil, false
+	if o == nil || IsNil(o.Failover) {
+		return nil, false
 	}
 	return o.Failover, true
 }
 
 // HasFailover returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequest) HasFailover() bool {
-	if o != nil && !isNil(o.Failover) {
+	if o != nil && !IsNil(o.Failover) {
 		return true
 	}
 
@@ -135,17 +138,25 @@ func (o *UpdateNetworkWirelessSsidVpnRequest) SetFailover(v UpdateNetworkWireles
 }
 
 func (o UpdateNetworkWirelessSsidVpnRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Concentrator) {
-		toSerialize["concentrator"] = o.Concentrator
-	}
-	if !isNil(o.SplitTunnel) {
-		toSerialize["splitTunnel"] = o.SplitTunnel
-	}
-	if !isNil(o.Failover) {
-		toSerialize["failover"] = o.Failover
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidVpnRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Concentrator) {
+		toSerialize["concentrator"] = o.Concentrator
+	}
+	if !IsNil(o.SplitTunnel) {
+		toSerialize["splitTunnel"] = o.SplitTunnel
+	}
+	if !IsNil(o.Failover) {
+		toSerialize["failover"] = o.Failover
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidVpnRequest struct {

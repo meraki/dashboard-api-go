@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationAlertsProfileRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationAlertsProfileRequest{}
+
 // CreateOrganizationAlertsProfileRequest struct for CreateOrganizationAlertsProfileRequest
 type CreateOrganizationAlertsProfileRequest struct {
 	// The alert type
@@ -61,7 +64,7 @@ func (o *CreateOrganizationAlertsProfileRequest) GetType() string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAlertsProfileRequest) GetTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Type, true
 }
@@ -85,7 +88,7 @@ func (o *CreateOrganizationAlertsProfileRequest) GetAlertCondition() CreateOrgan
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAlertsProfileRequest) GetAlertConditionOk() (*CreateOrganizationAlertsProfileRequestAlertCondition, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.AlertCondition, true
 }
@@ -109,7 +112,7 @@ func (o *CreateOrganizationAlertsProfileRequest) GetRecipients() CreateOrganizat
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAlertsProfileRequest) GetRecipientsOk() (*CreateOrganizationAlertsProfileRequestRecipients, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Recipients, true
 }
@@ -133,7 +136,7 @@ func (o *CreateOrganizationAlertsProfileRequest) GetNetworkTags() []string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAlertsProfileRequest) GetNetworkTagsOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.NetworkTags, true
 }
@@ -145,7 +148,7 @@ func (o *CreateOrganizationAlertsProfileRequest) SetNetworkTags(v []string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CreateOrganizationAlertsProfileRequest) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -155,15 +158,15 @@ func (o *CreateOrganizationAlertsProfileRequest) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationAlertsProfileRequest) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
-    return nil, false
+	if o == nil || IsNil(o.Description) {
+		return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CreateOrganizationAlertsProfileRequest) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -176,23 +179,23 @@ func (o *CreateOrganizationAlertsProfileRequest) SetDescription(v string) {
 }
 
 func (o CreateOrganizationAlertsProfileRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["alertCondition"] = o.AlertCondition
-	}
-	if true {
-		toSerialize["recipients"] = o.Recipients
-	}
-	if true {
-		toSerialize["networkTags"] = o.NetworkTags
-	}
-	if !isNil(o.Description) {
-		toSerialize["description"] = o.Description
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationAlertsProfileRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
+	toSerialize["alertCondition"] = o.AlertCondition
+	toSerialize["recipients"] = o.Recipients
+	toSerialize["networkTags"] = o.NetworkTags
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationAlertsProfileRequest struct {

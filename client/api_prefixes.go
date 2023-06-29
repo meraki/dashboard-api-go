@@ -13,7 +13,7 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -72,7 +72,7 @@ func (a *PrefixesApiService) CreateNetworkAppliancePrefixesDelegatedStaticExecut
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/prefixes/delegated/statics"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -124,9 +124,9 @@ func (a *PrefixesApiService) CreateNetworkAppliancePrefixesDelegatedStaticExecut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -195,8 +195,8 @@ func (a *PrefixesApiService) DeleteNetworkAppliancePrefixesDelegatedStaticExecut
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"staticDelegatedPrefixId"+"}", url.PathEscape(parameterToString(r.staticDelegatedPrefixId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"staticDelegatedPrefixId"+"}", url.PathEscape(parameterValueToString(r.staticDelegatedPrefixId, "staticDelegatedPrefixId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -243,9 +243,9 @@ func (a *PrefixesApiService) DeleteNetworkAppliancePrefixesDelegatedStaticExecut
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -304,7 +304,7 @@ func (a *PrefixesApiService) GetDeviceAppliancePrefixesDelegatedExecute(r Prefix
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/appliance/prefixes/delegated"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -351,9 +351,9 @@ func (a *PrefixesApiService) GetDeviceAppliancePrefixesDelegatedExecute(r Prefix
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -421,7 +421,7 @@ func (a *PrefixesApiService) GetDeviceAppliancePrefixesDelegatedVlanAssignmentsE
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/appliance/prefixes/delegated/vlanAssignments"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -468,9 +468,9 @@ func (a *PrefixesApiService) GetDeviceAppliancePrefixesDelegatedVlanAssignmentsE
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -541,8 +541,8 @@ func (a *PrefixesApiService) GetNetworkAppliancePrefixesDelegatedStaticExecute(r
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"staticDelegatedPrefixId"+"}", url.PathEscape(parameterToString(r.staticDelegatedPrefixId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"staticDelegatedPrefixId"+"}", url.PathEscape(parameterValueToString(r.staticDelegatedPrefixId, "staticDelegatedPrefixId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -589,9 +589,9 @@ func (a *PrefixesApiService) GetNetworkAppliancePrefixesDelegatedStaticExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -659,7 +659,7 @@ func (a *PrefixesApiService) GetNetworkAppliancePrefixesDelegatedStaticsExecute(
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/prefixes/delegated/statics"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -706,9 +706,9 @@ func (a *PrefixesApiService) GetNetworkAppliancePrefixesDelegatedStaticsExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -785,8 +785,8 @@ func (a *PrefixesApiService) UpdateNetworkAppliancePrefixesDelegatedStaticExecut
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"staticDelegatedPrefixId"+"}", url.PathEscape(parameterToString(r.staticDelegatedPrefixId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"staticDelegatedPrefixId"+"}", url.PathEscape(parameterValueToString(r.staticDelegatedPrefixId, "staticDelegatedPrefixId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -835,9 +835,9 @@ func (a *PrefixesApiService) UpdateNetworkAppliancePrefixesDelegatedStaticExecut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

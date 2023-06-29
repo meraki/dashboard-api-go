@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoise type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoise{}
+
 // GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoise Noise threshold. 'ambient' must be provided.
 type GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoise struct {
 	Ambient GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoiseAmbient `json:"ambient"`
@@ -51,7 +54,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdN
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoise) GetAmbientOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoiseAmbient, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Ambient, true
 }
@@ -62,11 +65,17 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdN
 }
 
 func (o GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoise) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ambient"] = o.Ambient
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoise) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["ambient"] = o.Ambient
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoise struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetAdministeredIdentitiesMe200ResponseAuthenticationApiKey type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetAdministeredIdentitiesMe200ResponseAuthenticationApiKey{}
+
 // GetAdministeredIdentitiesMe200ResponseAuthenticationApiKey API key
 type GetAdministeredIdentitiesMe200ResponseAuthenticationApiKey struct {
 	// If API key is created for this user
@@ -39,7 +42,7 @@ func NewGetAdministeredIdentitiesMe200ResponseAuthenticationApiKeyWithDefaults()
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthenticationApiKey) GetCreated() bool {
-	if o == nil || isNil(o.Created) {
+	if o == nil || IsNil(o.Created) {
 		var ret bool
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetAdministeredIdentitiesMe200ResponseAuthenticationApiKey) GetCreated(
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthenticationApiKey) GetCreatedOk() (*bool, bool) {
-	if o == nil || isNil(o.Created) {
-    return nil, false
+	if o == nil || IsNil(o.Created) {
+		return nil, false
 	}
 	return o.Created, true
 }
 
 // HasCreated returns a boolean if a field has been set.
 func (o *GetAdministeredIdentitiesMe200ResponseAuthenticationApiKey) HasCreated() bool {
-	if o != nil && !isNil(o.Created) {
+	if o != nil && !IsNil(o.Created) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetAdministeredIdentitiesMe200ResponseAuthenticationApiKey) SetCreated(
 }
 
 func (o GetAdministeredIdentitiesMe200ResponseAuthenticationApiKey) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Created) {
-		toSerialize["created"] = o.Created
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetAdministeredIdentitiesMe200ResponseAuthenticationApiKey) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Created) {
+		toSerialize["created"] = o.Created
+	}
+	return toSerialize, nil
 }
 
 type NullableGetAdministeredIdentitiesMe200ResponseAuthenticationApiKey struct {

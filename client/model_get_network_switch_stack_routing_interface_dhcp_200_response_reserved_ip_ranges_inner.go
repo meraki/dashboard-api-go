@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner{}
+
 // GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner struct for GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner
 type GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner struct {
 	// The starting IP address of the reserved IP range
@@ -43,7 +46,7 @@ func NewGetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInne
 
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner) GetStart() string {
-	if o == nil || isNil(o.Start) {
+	if o == nil || IsNil(o.Start) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInn
 // GetStartOk returns a tuple with the Start field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner) GetStartOk() (*string, bool) {
-	if o == nil || isNil(o.Start) {
-    return nil, false
+	if o == nil || IsNil(o.Start) {
+		return nil, false
 	}
 	return o.Start, true
 }
 
 // HasStart returns a boolean if a field has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner) HasStart() bool {
-	if o != nil && !isNil(o.Start) {
+	if o != nil && !IsNil(o.Start) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInn
 
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner) GetEnd() string {
-	if o == nil || isNil(o.End) {
+	if o == nil || IsNil(o.End) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInn
 // GetEndOk returns a tuple with the End field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner) GetEndOk() (*string, bool) {
-	if o == nil || isNil(o.End) {
-    return nil, false
+	if o == nil || IsNil(o.End) {
+		return nil, false
 	}
 	return o.End, true
 }
 
 // HasEnd returns a boolean if a field has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner) HasEnd() bool {
-	if o != nil && !isNil(o.End) {
+	if o != nil && !IsNil(o.End) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInn
 
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner) GetComment() string {
-	if o == nil || isNil(o.Comment) {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInn
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner) GetCommentOk() (*string, bool) {
-	if o == nil || isNil(o.Comment) {
-    return nil, false
+	if o == nil || IsNil(o.Comment) {
+		return nil, false
 	}
 	return o.Comment, true
 }
 
 // HasComment returns a boolean if a field has been set.
 func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner) HasComment() bool {
-	if o != nil && !isNil(o.Comment) {
+	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInn
 }
 
 func (o GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Start) {
-		toSerialize["start"] = o.Start
-	}
-	if !isNil(o.End) {
-		toSerialize["end"] = o.End
-	}
-	if !isNil(o.Comment) {
-		toSerialize["comment"] = o.Comment
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Start) {
+		toSerialize["start"] = o.Start
+	}
+	if !IsNil(o.End) {
+		toSerialize["end"] = o.End
+	}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchStackRoutingInterfaceDhcp200ResponseReservedIpRangesInner struct {

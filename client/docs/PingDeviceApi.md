@@ -34,6 +34,7 @@ func main() {
     createDeviceLiveToolsPingDeviceRequest := *openapiclient.NewCreateDeviceLiveToolsPingDeviceRequest() // CreateDeviceLiveToolsPingDeviceRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.PingDeviceApi.CreateDeviceLiveToolsPingDevice(context.Background(), serial).CreateDeviceLiveToolsPingDeviceRequest(createDeviceLiveToolsPingDeviceRequest).Execute()
     if err != nil {
@@ -106,6 +107,7 @@ func main() {
     id := "id_example" // string | ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.PingDeviceApi.GetDeviceLiveToolsPingDevice(context.Background(), serial, id).Execute()
     if err != nil {

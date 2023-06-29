@@ -35,6 +35,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SnmpApi.GetNetworkSnmp(context.Background(), networkId).Execute()
     if err != nil {
@@ -105,6 +106,7 @@ func main() {
     organizationId := "organizationId_example" // string | Organization ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SnmpApi.GetOrganizationSnmp(context.Background(), organizationId).Execute()
     if err != nil {
@@ -176,6 +178,7 @@ func main() {
     updateNetworkSnmpRequest := *openapiclient.NewUpdateNetworkSnmpRequest() // UpdateNetworkSnmpRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SnmpApi.UpdateNetworkSnmp(context.Background(), networkId).UpdateNetworkSnmpRequest(updateNetworkSnmpRequest).Execute()
     if err != nil {
@@ -248,6 +251,7 @@ func main() {
     updateOrganizationSnmpRequest := *openapiclient.NewUpdateOrganizationSnmpRequest() // UpdateOrganizationSnmpRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SnmpApi.UpdateOrganizationSnmp(context.Background(), organizationId).UpdateOrganizationSnmpRequest(updateOrganizationSnmpRequest).Execute()
     if err != nil {

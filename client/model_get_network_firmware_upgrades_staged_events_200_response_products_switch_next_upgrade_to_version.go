@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgradeToVersion type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgradeToVersion{}
+
 // GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgradeToVersion Details of the version the device will upgrade to
 type GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgradeToVersion struct {
 	// Id of the Version being upgraded to
@@ -41,7 +44,7 @@ func NewGetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgra
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgradeToVersion) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgr
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgradeToVersion) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgradeToVersion) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgr
 
 // GetShortName returns the ShortName field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgradeToVersion) GetShortName() string {
-	if o == nil || isNil(o.ShortName) {
+	if o == nil || IsNil(o.ShortName) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgr
 // GetShortNameOk returns a tuple with the ShortName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgradeToVersion) GetShortNameOk() (*string, bool) {
-	if o == nil || isNil(o.ShortName) {
-    return nil, false
+	if o == nil || IsNil(o.ShortName) {
+		return nil, false
 	}
 	return o.ShortName, true
 }
 
 // HasShortName returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgradeToVersion) HasShortName() bool {
-	if o != nil && !isNil(o.ShortName) {
+	if o != nil && !IsNil(o.ShortName) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgr
 }
 
 func (o GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgradeToVersion) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.ShortName) {
-		toSerialize["shortName"] = o.ShortName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgradeToVersion) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.ShortName) {
+		toSerialize["shortName"] = o.ShortName
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkFirmwareUpgradesStagedEvents200ResponseProductsSwitchNextUpgradeToVersion struct {

@@ -38,6 +38,7 @@ func main() {
     expired := true // bool | Filter for licenses that are expired (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.LicensingApi.GetOrganizationLicensingCotermLicenses(context.Background(), organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Invalidated(invalidated).Expired(expired).Execute()
     if err != nil {
@@ -114,6 +115,7 @@ func main() {
     moveOrganizationLicensingCotermLicensesRequest := *openapiclient.NewMoveOrganizationLicensingCotermLicensesRequest(*openapiclient.NewMoveOrganizationLicensingCotermLicensesRequestDestination(), []openapiclient.MoveOrganizationLicensingCotermLicensesRequestLicensesInner{*openapiclient.NewMoveOrganizationLicensingCotermLicensesRequestLicensesInner("Key_example", []openapiclient.MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner{*openapiclient.NewMoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner("Model_example", int32(123))})}) // MoveOrganizationLicensingCotermLicensesRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.LicensingApi.MoveOrganizationLicensingCotermLicenses(context.Background(), organizationId).MoveOrganizationLicensingCotermLicensesRequest(moveOrganizationLicensingCotermLicensesRequest).Execute()
     if err != nil {

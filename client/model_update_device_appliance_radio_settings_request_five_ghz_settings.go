@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings{}
+
 // UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings Manual radio settings for 5 GHz.
 type UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings struct {
 	// Sets a manual channel for 5 GHz. Can be '36', '40', '44', '48', '52', '56', '60', '64', '100', '104', '108', '112', '116', '120', '124', '128', '132', '136', '140', '144', '149', '153', '157', '161', '165', '169', '173' or '177' or null for using auto channel.
@@ -43,7 +46,7 @@ func NewUpdateDeviceApplianceRadioSettingsRequestFiveGhzSettingsWithDefaults() *
 
 // GetChannel returns the Channel field value if set, zero value otherwise.
 func (o *UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) GetChannel() int32 {
-	if o == nil || isNil(o.Channel) {
+	if o == nil || IsNil(o.Channel) {
 		var ret int32
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) GetChannel() 
 // GetChannelOk returns a tuple with the Channel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) GetChannelOk() (*int32, bool) {
-	if o == nil || isNil(o.Channel) {
-    return nil, false
+	if o == nil || IsNil(o.Channel) {
+		return nil, false
 	}
 	return o.Channel, true
 }
 
 // HasChannel returns a boolean if a field has been set.
 func (o *UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) HasChannel() bool {
-	if o != nil && !isNil(o.Channel) {
+	if o != nil && !IsNil(o.Channel) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) SetChannel(v 
 
 // GetChannelWidth returns the ChannelWidth field value if set, zero value otherwise.
 func (o *UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) GetChannelWidth() int32 {
-	if o == nil || isNil(o.ChannelWidth) {
+	if o == nil || IsNil(o.ChannelWidth) {
 		var ret int32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) GetChannelWid
 // GetChannelWidthOk returns a tuple with the ChannelWidth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) GetChannelWidthOk() (*int32, bool) {
-	if o == nil || isNil(o.ChannelWidth) {
-    return nil, false
+	if o == nil || IsNil(o.ChannelWidth) {
+		return nil, false
 	}
 	return o.ChannelWidth, true
 }
 
 // HasChannelWidth returns a boolean if a field has been set.
 func (o *UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) HasChannelWidth() bool {
-	if o != nil && !isNil(o.ChannelWidth) {
+	if o != nil && !IsNil(o.ChannelWidth) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) SetChannelWid
 
 // GetTargetPower returns the TargetPower field value if set, zero value otherwise.
 func (o *UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) GetTargetPower() int32 {
-	if o == nil || isNil(o.TargetPower) {
+	if o == nil || IsNil(o.TargetPower) {
 		var ret int32
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) GetTargetPowe
 // GetTargetPowerOk returns a tuple with the TargetPower field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) GetTargetPowerOk() (*int32, bool) {
-	if o == nil || isNil(o.TargetPower) {
-    return nil, false
+	if o == nil || IsNil(o.TargetPower) {
+		return nil, false
 	}
 	return o.TargetPower, true
 }
 
 // HasTargetPower returns a boolean if a field has been set.
 func (o *UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) HasTargetPower() bool {
-	if o != nil && !isNil(o.TargetPower) {
+	if o != nil && !IsNil(o.TargetPower) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) SetTargetPowe
 }
 
 func (o UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Channel) {
-		toSerialize["channel"] = o.Channel
-	}
-	if !isNil(o.ChannelWidth) {
-		toSerialize["channelWidth"] = o.ChannelWidth
-	}
-	if !isNil(o.TargetPower) {
-		toSerialize["targetPower"] = o.TargetPower
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Channel) {
+		toSerialize["channel"] = o.Channel
+	}
+	if !IsNil(o.ChannelWidth) {
+		toSerialize["channelWidth"] = o.ChannelWidth
+	}
+	if !IsNil(o.TargetPower) {
+		toSerialize["targetPower"] = o.TargetPower
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceApplianceRadioSettingsRequestFiveGhzSettings struct {

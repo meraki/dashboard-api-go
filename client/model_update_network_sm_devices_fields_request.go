@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSmDevicesFieldsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSmDevicesFieldsRequest{}
+
 // UpdateNetworkSmDevicesFieldsRequest struct for UpdateNetworkSmDevicesFieldsRequest
 type UpdateNetworkSmDevicesFieldsRequest struct {
 	// The wifiMac of the device to be modified.
@@ -45,7 +48,7 @@ func NewUpdateNetworkSmDevicesFieldsRequestWithDefaults() *UpdateNetworkSmDevice
 
 // GetWifiMac returns the WifiMac field value if set, zero value otherwise.
 func (o *UpdateNetworkSmDevicesFieldsRequest) GetWifiMac() string {
-	if o == nil || isNil(o.WifiMac) {
+	if o == nil || IsNil(o.WifiMac) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *UpdateNetworkSmDevicesFieldsRequest) GetWifiMac() string {
 // GetWifiMacOk returns a tuple with the WifiMac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSmDevicesFieldsRequest) GetWifiMacOk() (*string, bool) {
-	if o == nil || isNil(o.WifiMac) {
-    return nil, false
+	if o == nil || IsNil(o.WifiMac) {
+		return nil, false
 	}
 	return o.WifiMac, true
 }
 
 // HasWifiMac returns a boolean if a field has been set.
 func (o *UpdateNetworkSmDevicesFieldsRequest) HasWifiMac() bool {
-	if o != nil && !isNil(o.WifiMac) {
+	if o != nil && !IsNil(o.WifiMac) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *UpdateNetworkSmDevicesFieldsRequest) SetWifiMac(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *UpdateNetworkSmDevicesFieldsRequest) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *UpdateNetworkSmDevicesFieldsRequest) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSmDevicesFieldsRequest) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *UpdateNetworkSmDevicesFieldsRequest) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *UpdateNetworkSmDevicesFieldsRequest) SetId(v string) {
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *UpdateNetworkSmDevicesFieldsRequest) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *UpdateNetworkSmDevicesFieldsRequest) GetSerial() string {
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSmDevicesFieldsRequest) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *UpdateNetworkSmDevicesFieldsRequest) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -153,7 +156,7 @@ func (o *UpdateNetworkSmDevicesFieldsRequest) GetDeviceFields() UpdateNetworkSmD
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSmDevicesFieldsRequest) GetDeviceFieldsOk() (*UpdateNetworkSmDevicesFieldsRequestDeviceFields, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.DeviceFields, true
 }
@@ -164,20 +167,26 @@ func (o *UpdateNetworkSmDevicesFieldsRequest) SetDeviceFields(v UpdateNetworkSmD
 }
 
 func (o UpdateNetworkSmDevicesFieldsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.WifiMac) {
-		toSerialize["wifiMac"] = o.WifiMac
-	}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if true {
-		toSerialize["deviceFields"] = o.DeviceFields
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSmDevicesFieldsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.WifiMac) {
+		toSerialize["wifiMac"] = o.WifiMac
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	toSerialize["deviceFields"] = o.DeviceFields
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSmDevicesFieldsRequest struct {

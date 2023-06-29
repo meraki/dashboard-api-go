@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessRfProfileRequestSixGhzSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessRfProfileRequestSixGhzSettings{}
+
 // UpdateNetworkWirelessRfProfileRequestSixGhzSettings Settings related to 6Ghz band. Only applicable to networks with 6Ghz capable APs
 type UpdateNetworkWirelessRfProfileRequestSixGhzSettings struct {
 	// Sets max power (dBm) of 6Ghz band. Can be integer between 2 and 30.
@@ -49,7 +52,7 @@ func NewUpdateNetworkWirelessRfProfileRequestSixGhzSettingsWithDefaults() *Updat
 
 // GetMaxPower returns the MaxPower field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetMaxPower() int32 {
-	if o == nil || isNil(o.MaxPower) {
+	if o == nil || IsNil(o.MaxPower) {
 		var ret int32
 		return ret
 	}
@@ -59,15 +62,15 @@ func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetMaxPower() int3
 // GetMaxPowerOk returns a tuple with the MaxPower field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetMaxPowerOk() (*int32, bool) {
-	if o == nil || isNil(o.MaxPower) {
-    return nil, false
+	if o == nil || IsNil(o.MaxPower) {
+		return nil, false
 	}
 	return o.MaxPower, true
 }
 
 // HasMaxPower returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) HasMaxPower() bool {
-	if o != nil && !isNil(o.MaxPower) {
+	if o != nil && !IsNil(o.MaxPower) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) SetMaxPower(v int3
 
 // GetMinPower returns the MinPower field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetMinPower() int32 {
-	if o == nil || isNil(o.MinPower) {
+	if o == nil || IsNil(o.MinPower) {
 		var ret int32
 		return ret
 	}
@@ -91,15 +94,15 @@ func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetMinPower() int3
 // GetMinPowerOk returns a tuple with the MinPower field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetMinPowerOk() (*int32, bool) {
-	if o == nil || isNil(o.MinPower) {
-    return nil, false
+	if o == nil || IsNil(o.MinPower) {
+		return nil, false
 	}
 	return o.MinPower, true
 }
 
 // HasMinPower returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) HasMinPower() bool {
-	if o != nil && !isNil(o.MinPower) {
+	if o != nil && !IsNil(o.MinPower) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) SetMinPower(v int3
 
 // GetMinBitrate returns the MinBitrate field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetMinBitrate() int32 {
-	if o == nil || isNil(o.MinBitrate) {
+	if o == nil || IsNil(o.MinBitrate) {
 		var ret int32
 		return ret
 	}
@@ -123,15 +126,15 @@ func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetMinBitrate() in
 // GetMinBitrateOk returns a tuple with the MinBitrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetMinBitrateOk() (*int32, bool) {
-	if o == nil || isNil(o.MinBitrate) {
-    return nil, false
+	if o == nil || IsNil(o.MinBitrate) {
+		return nil, false
 	}
 	return o.MinBitrate, true
 }
 
 // HasMinBitrate returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) HasMinBitrate() bool {
-	if o != nil && !isNil(o.MinBitrate) {
+	if o != nil && !IsNil(o.MinBitrate) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) SetMinBitrate(v in
 
 // GetValidAutoChannels returns the ValidAutoChannels field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetValidAutoChannels() []int32 {
-	if o == nil || isNil(o.ValidAutoChannels) {
+	if o == nil || IsNil(o.ValidAutoChannels) {
 		var ret []int32
 		return ret
 	}
@@ -155,15 +158,15 @@ func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetValidAutoChanne
 // GetValidAutoChannelsOk returns a tuple with the ValidAutoChannels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetValidAutoChannelsOk() ([]int32, bool) {
-	if o == nil || isNil(o.ValidAutoChannels) {
-    return nil, false
+	if o == nil || IsNil(o.ValidAutoChannels) {
+		return nil, false
 	}
 	return o.ValidAutoChannels, true
 }
 
 // HasValidAutoChannels returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) HasValidAutoChannels() bool {
-	if o != nil && !isNil(o.ValidAutoChannels) {
+	if o != nil && !IsNil(o.ValidAutoChannels) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) SetValidAutoChanne
 
 // GetChannelWidth returns the ChannelWidth field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetChannelWidth() string {
-	if o == nil || isNil(o.ChannelWidth) {
+	if o == nil || IsNil(o.ChannelWidth) {
 		var ret string
 		return ret
 	}
@@ -187,15 +190,15 @@ func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetChannelWidth() 
 // GetChannelWidthOk returns a tuple with the ChannelWidth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetChannelWidthOk() (*string, bool) {
-	if o == nil || isNil(o.ChannelWidth) {
-    return nil, false
+	if o == nil || IsNil(o.ChannelWidth) {
+		return nil, false
 	}
 	return o.ChannelWidth, true
 }
 
 // HasChannelWidth returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) HasChannelWidth() bool {
-	if o != nil && !isNil(o.ChannelWidth) {
+	if o != nil && !IsNil(o.ChannelWidth) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) SetChannelWidth(v 
 
 // GetRxsop returns the Rxsop field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetRxsop() int32 {
-	if o == nil || isNil(o.Rxsop) {
+	if o == nil || IsNil(o.Rxsop) {
 		var ret int32
 		return ret
 	}
@@ -219,15 +222,15 @@ func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetRxsop() int32 {
 // GetRxsopOk returns a tuple with the Rxsop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) GetRxsopOk() (*int32, bool) {
-	if o == nil || isNil(o.Rxsop) {
-    return nil, false
+	if o == nil || IsNil(o.Rxsop) {
+		return nil, false
 	}
 	return o.Rxsop, true
 }
 
 // HasRxsop returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) HasRxsop() bool {
-	if o != nil && !isNil(o.Rxsop) {
+	if o != nil && !IsNil(o.Rxsop) {
 		return true
 	}
 
@@ -240,26 +243,34 @@ func (o *UpdateNetworkWirelessRfProfileRequestSixGhzSettings) SetRxsop(v int32) 
 }
 
 func (o UpdateNetworkWirelessRfProfileRequestSixGhzSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.MaxPower) {
-		toSerialize["maxPower"] = o.MaxPower
-	}
-	if !isNil(o.MinPower) {
-		toSerialize["minPower"] = o.MinPower
-	}
-	if !isNil(o.MinBitrate) {
-		toSerialize["minBitrate"] = o.MinBitrate
-	}
-	if !isNil(o.ValidAutoChannels) {
-		toSerialize["validAutoChannels"] = o.ValidAutoChannels
-	}
-	if !isNil(o.ChannelWidth) {
-		toSerialize["channelWidth"] = o.ChannelWidth
-	}
-	if !isNil(o.Rxsop) {
-		toSerialize["rxsop"] = o.Rxsop
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessRfProfileRequestSixGhzSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MaxPower) {
+		toSerialize["maxPower"] = o.MaxPower
+	}
+	if !IsNil(o.MinPower) {
+		toSerialize["minPower"] = o.MinPower
+	}
+	if !IsNil(o.MinBitrate) {
+		toSerialize["minBitrate"] = o.MinBitrate
+	}
+	if !IsNil(o.ValidAutoChannels) {
+		toSerialize["validAutoChannels"] = o.ValidAutoChannels
+	}
+	if !IsNil(o.ChannelWidth) {
+		toSerialize["channelWidth"] = o.ChannelWidth
+	}
+	if !IsNil(o.Rxsop) {
+		toSerialize["rxsop"] = o.Rxsop
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessRfProfileRequestSixGhzSettings struct {

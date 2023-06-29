@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidHotspot20RequestVenue type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidHotspot20RequestVenue{}
+
 // UpdateNetworkWirelessSsidHotspot20RequestVenue Venue settings for this SSID
 type UpdateNetworkWirelessSsidHotspot20RequestVenue struct {
 	// Venue name
@@ -41,7 +44,7 @@ func NewUpdateNetworkWirelessSsidHotspot20RequestVenueWithDefaults() *UpdateNetw
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestVenue) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestVenue) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestVenue) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestVenue) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestVenue) SetName(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestVenue) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestVenue) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestVenue) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestVenue) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestVenue) SetType(v string) {
 }
 
 func (o UpdateNetworkWirelessSsidHotspot20RequestVenue) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidHotspot20RequestVenue) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidHotspot20RequestVenue struct {

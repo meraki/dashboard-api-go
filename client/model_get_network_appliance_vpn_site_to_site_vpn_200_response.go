@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkApplianceVpnSiteToSiteVpn200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkApplianceVpnSiteToSiteVpn200Response{}
+
 // GetNetworkApplianceVpnSiteToSiteVpn200Response struct for GetNetworkApplianceVpnSiteToSiteVpn200Response
 type GetNetworkApplianceVpnSiteToSiteVpn200Response struct {
 	// The site-to-site VPN mode.
@@ -43,7 +46,7 @@ func NewGetNetworkApplianceVpnSiteToSiteVpn200ResponseWithDefaults() *GetNetwork
 
 // GetMode returns the Mode field value if set, zero value otherwise.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200Response) GetMode() string {
-	if o == nil || isNil(o.Mode) {
+	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkApplianceVpnSiteToSiteVpn200Response) GetMode() string {
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200Response) GetModeOk() (*string, bool) {
-	if o == nil || isNil(o.Mode) {
-    return nil, false
+	if o == nil || IsNil(o.Mode) {
+		return nil, false
 	}
 	return o.Mode, true
 }
 
 // HasMode returns a boolean if a field has been set.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200Response) HasMode() bool {
-	if o != nil && !isNil(o.Mode) {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkApplianceVpnSiteToSiteVpn200Response) SetMode(v string) {
 
 // GetHubs returns the Hubs field value if set, zero value otherwise.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200Response) GetHubs() []GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner {
-	if o == nil || isNil(o.Hubs) {
+	if o == nil || IsNil(o.Hubs) {
 		var ret []GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkApplianceVpnSiteToSiteVpn200Response) GetHubs() []GetNetworkA
 // GetHubsOk returns a tuple with the Hubs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200Response) GetHubsOk() ([]GetNetworkApplianceVpnSiteToSiteVpn200ResponseHubsInner, bool) {
-	if o == nil || isNil(o.Hubs) {
-    return nil, false
+	if o == nil || IsNil(o.Hubs) {
+		return nil, false
 	}
 	return o.Hubs, true
 }
 
 // HasHubs returns a boolean if a field has been set.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200Response) HasHubs() bool {
-	if o != nil && !isNil(o.Hubs) {
+	if o != nil && !IsNil(o.Hubs) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkApplianceVpnSiteToSiteVpn200Response) SetHubs(v []GetNetworkA
 
 // GetSubnets returns the Subnets field value if set, zero value otherwise.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200Response) GetSubnets() []GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner {
-	if o == nil || isNil(o.Subnets) {
+	if o == nil || IsNil(o.Subnets) {
 		var ret []GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkApplianceVpnSiteToSiteVpn200Response) GetSubnets() []GetNetwo
 // GetSubnetsOk returns a tuple with the Subnets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200Response) GetSubnetsOk() ([]GetNetworkApplianceVpnSiteToSiteVpn200ResponseSubnetsInner, bool) {
-	if o == nil || isNil(o.Subnets) {
-    return nil, false
+	if o == nil || IsNil(o.Subnets) {
+		return nil, false
 	}
 	return o.Subnets, true
 }
 
 // HasSubnets returns a boolean if a field has been set.
 func (o *GetNetworkApplianceVpnSiteToSiteVpn200Response) HasSubnets() bool {
-	if o != nil && !isNil(o.Subnets) {
+	if o != nil && !IsNil(o.Subnets) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkApplianceVpnSiteToSiteVpn200Response) SetSubnets(v []GetNetwo
 }
 
 func (o GetNetworkApplianceVpnSiteToSiteVpn200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Mode) {
-		toSerialize["mode"] = o.Mode
-	}
-	if !isNil(o.Hubs) {
-		toSerialize["hubs"] = o.Hubs
-	}
-	if !isNil(o.Subnets) {
-		toSerialize["subnets"] = o.Subnets
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkApplianceVpnSiteToSiteVpn200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Mode) {
+		toSerialize["mode"] = o.Mode
+	}
+	if !IsNil(o.Hubs) {
+		toSerialize["hubs"] = o.Hubs
+	}
+	if !IsNil(o.Subnets) {
+		toSerialize["subnets"] = o.Subnets
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkApplianceVpnSiteToSiteVpn200Response struct {

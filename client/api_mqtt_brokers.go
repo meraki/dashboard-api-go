@@ -13,7 +13,7 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -72,7 +72,7 @@ func (a *MqttBrokersApiService) CreateNetworkMqttBrokerExecute(r MqttBrokersApiC
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/mqttBrokers"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -124,9 +124,9 @@ func (a *MqttBrokersApiService) CreateNetworkMqttBrokerExecute(r MqttBrokersApiC
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -195,8 +195,8 @@ func (a *MqttBrokersApiService) DeleteNetworkMqttBrokerExecute(r MqttBrokersApiD
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/mqttBrokers/{mqttBrokerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterToString(r.mqttBrokerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterValueToString(r.mqttBrokerId, "mqttBrokerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -243,9 +243,9 @@ func (a *MqttBrokersApiService) DeleteNetworkMqttBrokerExecute(r MqttBrokersApiD
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -307,8 +307,8 @@ func (a *MqttBrokersApiService) GetNetworkMqttBrokerExecute(r MqttBrokersApiGetN
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/mqttBrokers/{mqttBrokerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterToString(r.mqttBrokerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterValueToString(r.mqttBrokerId, "mqttBrokerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -355,9 +355,9 @@ func (a *MqttBrokersApiService) GetNetworkMqttBrokerExecute(r MqttBrokersApiGetN
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -425,7 +425,7 @@ func (a *MqttBrokersApiService) GetNetworkMqttBrokersExecute(r MqttBrokersApiGet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/mqttBrokers"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -472,9 +472,9 @@ func (a *MqttBrokersApiService) GetNetworkMqttBrokersExecute(r MqttBrokersApiGet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -545,8 +545,8 @@ func (a *MqttBrokersApiService) GetNetworkSensorMqttBrokerExecute(r MqttBrokersA
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sensor/mqttBrokers/{mqttBrokerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterToString(r.mqttBrokerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterValueToString(r.mqttBrokerId, "mqttBrokerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -593,9 +593,9 @@ func (a *MqttBrokersApiService) GetNetworkSensorMqttBrokerExecute(r MqttBrokersA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -663,7 +663,7 @@ func (a *MqttBrokersApiService) GetNetworkSensorMqttBrokersExecute(r MqttBrokers
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sensor/mqttBrokers"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -710,9 +710,9 @@ func (a *MqttBrokersApiService) GetNetworkSensorMqttBrokersExecute(r MqttBrokers
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -789,8 +789,8 @@ func (a *MqttBrokersApiService) UpdateNetworkMqttBrokerExecute(r MqttBrokersApiU
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/mqttBrokers/{mqttBrokerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterToString(r.mqttBrokerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterValueToString(r.mqttBrokerId, "mqttBrokerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -839,9 +839,9 @@ func (a *MqttBrokersApiService) UpdateNetworkMqttBrokerExecute(r MqttBrokersApiU
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -918,8 +918,8 @@ func (a *MqttBrokersApiService) UpdateNetworkSensorMqttBrokerExecute(r MqttBroke
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sensor/mqttBrokers/{mqttBrokerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterToString(r.mqttBrokerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterValueToString(r.mqttBrokerId, "mqttBrokerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -971,9 +971,9 @@ func (a *MqttBrokersApiService) UpdateNetworkSensorMqttBrokerExecute(r MqttBroke
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

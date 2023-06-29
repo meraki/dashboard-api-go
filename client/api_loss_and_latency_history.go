@@ -13,7 +13,7 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -108,7 +108,7 @@ func (a *LossAndLatencyHistoryApiService) GetDeviceLossAndLatencyHistoryExecute(
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/lossAndLatencyHistory"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -118,21 +118,21 @@ func (a *LossAndLatencyHistoryApiService) GetDeviceLossAndLatencyHistoryExecute(
 	}
 
 	if r.t0 != nil {
-		localVarQueryParams.Add("t0", parameterToString(*r.t0, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "t0", r.t0, "")
 	}
 	if r.t1 != nil {
-		localVarQueryParams.Add("t1", parameterToString(*r.t1, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "t1", r.t1, "")
 	}
 	if r.timespan != nil {
-		localVarQueryParams.Add("timespan", parameterToString(*r.timespan, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "timespan", r.timespan, "")
 	}
 	if r.resolution != nil {
-		localVarQueryParams.Add("resolution", parameterToString(*r.resolution, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "resolution", r.resolution, "")
 	}
 	if r.uplink != nil {
-		localVarQueryParams.Add("uplink", parameterToString(*r.uplink, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "uplink", r.uplink, "")
 	}
-	localVarQueryParams.Add("ip", parameterToString(*r.ip, ""))
+	parameterAddToHeaderOrQuery(localVarQueryParams, "ip", r.ip, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -174,9 +174,9 @@ func (a *LossAndLatencyHistoryApiService) GetDeviceLossAndLatencyHistoryExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

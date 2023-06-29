@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidVpnRequestSplitTunnel type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidVpnRequestSplitTunnel{}
+
 // UpdateNetworkWirelessSsidVpnRequestSplitTunnel The VPN split tunnel settings for this SSID.
 type UpdateNetworkWirelessSsidVpnRequestSplitTunnel struct {
 	// If true, VPN split tunnel is enabled.
@@ -41,7 +44,7 @@ func NewUpdateNetworkWirelessSsidVpnRequestSplitTunnelWithDefaults() *UpdateNetw
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnel) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnel) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnel) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnel) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnel) SetEnabled(v bool) {
 
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnel) GetRules() []UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner {
-	if o == nil || isNil(o.Rules) {
+	if o == nil || IsNil(o.Rules) {
 		var ret []UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnel) GetRules() []UpdateNetw
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnel) GetRulesOk() ([]UpdateNetworkWirelessSsidVpnRequestSplitTunnelRulesInner, bool) {
-	if o == nil || isNil(o.Rules) {
-    return nil, false
+	if o == nil || IsNil(o.Rules) {
+		return nil, false
 	}
 	return o.Rules, true
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnel) HasRules() bool {
-	if o != nil && !isNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkWirelessSsidVpnRequestSplitTunnel) SetRules(v []UpdateNetw
 }
 
 func (o UpdateNetworkWirelessSsidVpnRequestSplitTunnel) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.Rules) {
-		toSerialize["rules"] = o.Rules
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidVpnRequestSplitTunnel) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Rules) {
+		toSerialize["rules"] = o.Rules
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidVpnRequestSplitTunnel struct {

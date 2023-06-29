@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceSwitchRoutingStaticRoute200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceSwitchRoutingStaticRoute200Response{}
+
 // GetDeviceSwitchRoutingStaticRoute200Response struct for GetDeviceSwitchRoutingStaticRoute200Response
 type GetDeviceSwitchRoutingStaticRoute200Response struct {
 	// The identifier of a layer 3 static route
@@ -51,7 +54,7 @@ func NewGetDeviceSwitchRoutingStaticRoute200ResponseWithDefaults() *GetDeviceSwi
 
 // GetStaticRouteId returns the StaticRouteId field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingStaticRoute200Response) GetStaticRouteId() string {
-	if o == nil || isNil(o.StaticRouteId) {
+	if o == nil || IsNil(o.StaticRouteId) {
 		var ret string
 		return ret
 	}
@@ -61,15 +64,15 @@ func (o *GetDeviceSwitchRoutingStaticRoute200Response) GetStaticRouteId() string
 // GetStaticRouteIdOk returns a tuple with the StaticRouteId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingStaticRoute200Response) GetStaticRouteIdOk() (*string, bool) {
-	if o == nil || isNil(o.StaticRouteId) {
-    return nil, false
+	if o == nil || IsNil(o.StaticRouteId) {
+		return nil, false
 	}
 	return o.StaticRouteId, true
 }
 
 // HasStaticRouteId returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingStaticRoute200Response) HasStaticRouteId() bool {
-	if o != nil && !isNil(o.StaticRouteId) {
+	if o != nil && !IsNil(o.StaticRouteId) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *GetDeviceSwitchRoutingStaticRoute200Response) SetStaticRouteId(v string
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingStaticRoute200Response) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -93,15 +96,15 @@ func (o *GetDeviceSwitchRoutingStaticRoute200Response) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingStaticRoute200Response) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingStaticRoute200Response) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -127,7 +130,7 @@ func (o *GetDeviceSwitchRoutingStaticRoute200Response) GetSubnet() string {
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingStaticRoute200Response) GetSubnetOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Subnet, true
 }
@@ -151,7 +154,7 @@ func (o *GetDeviceSwitchRoutingStaticRoute200Response) GetNextHopIp() string {
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingStaticRoute200Response) GetNextHopIpOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.NextHopIp, true
 }
@@ -163,7 +166,7 @@ func (o *GetDeviceSwitchRoutingStaticRoute200Response) SetNextHopIp(v string) {
 
 // GetAdvertiseViaOspfEnabled returns the AdvertiseViaOspfEnabled field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingStaticRoute200Response) GetAdvertiseViaOspfEnabled() bool {
-	if o == nil || isNil(o.AdvertiseViaOspfEnabled) {
+	if o == nil || IsNil(o.AdvertiseViaOspfEnabled) {
 		var ret bool
 		return ret
 	}
@@ -173,15 +176,15 @@ func (o *GetDeviceSwitchRoutingStaticRoute200Response) GetAdvertiseViaOspfEnable
 // GetAdvertiseViaOspfEnabledOk returns a tuple with the AdvertiseViaOspfEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingStaticRoute200Response) GetAdvertiseViaOspfEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.AdvertiseViaOspfEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.AdvertiseViaOspfEnabled) {
+		return nil, false
 	}
 	return o.AdvertiseViaOspfEnabled, true
 }
 
 // HasAdvertiseViaOspfEnabled returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingStaticRoute200Response) HasAdvertiseViaOspfEnabled() bool {
-	if o != nil && !isNil(o.AdvertiseViaOspfEnabled) {
+	if o != nil && !IsNil(o.AdvertiseViaOspfEnabled) {
 		return true
 	}
 
@@ -195,7 +198,7 @@ func (o *GetDeviceSwitchRoutingStaticRoute200Response) SetAdvertiseViaOspfEnable
 
 // GetPreferOverOspfRoutesEnabled returns the PreferOverOspfRoutesEnabled field value if set, zero value otherwise.
 func (o *GetDeviceSwitchRoutingStaticRoute200Response) GetPreferOverOspfRoutesEnabled() bool {
-	if o == nil || isNil(o.PreferOverOspfRoutesEnabled) {
+	if o == nil || IsNil(o.PreferOverOspfRoutesEnabled) {
 		var ret bool
 		return ret
 	}
@@ -205,15 +208,15 @@ func (o *GetDeviceSwitchRoutingStaticRoute200Response) GetPreferOverOspfRoutesEn
 // GetPreferOverOspfRoutesEnabledOk returns a tuple with the PreferOverOspfRoutesEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSwitchRoutingStaticRoute200Response) GetPreferOverOspfRoutesEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.PreferOverOspfRoutesEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.PreferOverOspfRoutesEnabled) {
+		return nil, false
 	}
 	return o.PreferOverOspfRoutesEnabled, true
 }
 
 // HasPreferOverOspfRoutesEnabled returns a boolean if a field has been set.
 func (o *GetDeviceSwitchRoutingStaticRoute200Response) HasPreferOverOspfRoutesEnabled() bool {
-	if o != nil && !isNil(o.PreferOverOspfRoutesEnabled) {
+	if o != nil && !IsNil(o.PreferOverOspfRoutesEnabled) {
 		return true
 	}
 
@@ -226,26 +229,30 @@ func (o *GetDeviceSwitchRoutingStaticRoute200Response) SetPreferOverOspfRoutesEn
 }
 
 func (o GetDeviceSwitchRoutingStaticRoute200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.StaticRouteId) {
-		toSerialize["staticRouteId"] = o.StaticRouteId
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["subnet"] = o.Subnet
-	}
-	if true {
-		toSerialize["nextHopIp"] = o.NextHopIp
-	}
-	if !isNil(o.AdvertiseViaOspfEnabled) {
-		toSerialize["advertiseViaOspfEnabled"] = o.AdvertiseViaOspfEnabled
-	}
-	if !isNil(o.PreferOverOspfRoutesEnabled) {
-		toSerialize["preferOverOspfRoutesEnabled"] = o.PreferOverOspfRoutesEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceSwitchRoutingStaticRoute200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.StaticRouteId) {
+		toSerialize["staticRouteId"] = o.StaticRouteId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	toSerialize["subnet"] = o.Subnet
+	toSerialize["nextHopIp"] = o.NextHopIp
+	if !IsNil(o.AdvertiseViaOspfEnabled) {
+		toSerialize["advertiseViaOspfEnabled"] = o.AdvertiseViaOspfEnabled
+	}
+	if !IsNil(o.PreferOverOspfRoutesEnabled) {
+		toSerialize["preferOverOspfRoutesEnabled"] = o.PreferOverOspfRoutesEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceSwitchRoutingStaticRoute200Response struct {

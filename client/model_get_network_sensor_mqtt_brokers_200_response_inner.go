@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSensorMqttBrokers200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSensorMqttBrokers200ResponseInner{}
+
 // GetNetworkSensorMqttBrokers200ResponseInner struct for GetNetworkSensorMqttBrokers200ResponseInner
 type GetNetworkSensorMqttBrokers200ResponseInner struct {
 	// ID of the MQTT Broker.
@@ -41,7 +44,7 @@ func NewGetNetworkSensorMqttBrokers200ResponseInnerWithDefaults() *GetNetworkSen
 
 // GetMqttBrokerId returns the MqttBrokerId field value if set, zero value otherwise.
 func (o *GetNetworkSensorMqttBrokers200ResponseInner) GetMqttBrokerId() string {
-	if o == nil || isNil(o.MqttBrokerId) {
+	if o == nil || IsNil(o.MqttBrokerId) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkSensorMqttBrokers200ResponseInner) GetMqttBrokerId() string {
 // GetMqttBrokerIdOk returns a tuple with the MqttBrokerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorMqttBrokers200ResponseInner) GetMqttBrokerIdOk() (*string, bool) {
-	if o == nil || isNil(o.MqttBrokerId) {
-    return nil, false
+	if o == nil || IsNil(o.MqttBrokerId) {
+		return nil, false
 	}
 	return o.MqttBrokerId, true
 }
 
 // HasMqttBrokerId returns a boolean if a field has been set.
 func (o *GetNetworkSensorMqttBrokers200ResponseInner) HasMqttBrokerId() bool {
-	if o != nil && !isNil(o.MqttBrokerId) {
+	if o != nil && !IsNil(o.MqttBrokerId) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkSensorMqttBrokers200ResponseInner) SetMqttBrokerId(v string) 
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *GetNetworkSensorMqttBrokers200ResponseInner) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkSensorMqttBrokers200ResponseInner) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorMqttBrokers200ResponseInner) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *GetNetworkSensorMqttBrokers200ResponseInner) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkSensorMqttBrokers200ResponseInner) SetEnabled(v bool) {
 }
 
 func (o GetNetworkSensorMqttBrokers200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.MqttBrokerId) {
-		toSerialize["mqttBrokerId"] = o.MqttBrokerId
-	}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSensorMqttBrokers200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MqttBrokerId) {
+		toSerialize["mqttBrokerId"] = o.MqttBrokerId
+	}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSensorMqttBrokers200ResponseInner struct {

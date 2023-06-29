@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceVpnBgpRequestNeighborsInnerIpv6 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceVpnBgpRequestNeighborsInnerIpv6{}
+
 // UpdateNetworkApplianceVpnBgpRequestNeighborsInnerIpv6 Information regarding IPv6 address of the neighbor, Required if `ip` is not present.
 type UpdateNetworkApplianceVpnBgpRequestNeighborsInnerIpv6 struct {
 	// The IPv6 address of the neighbor.
@@ -52,7 +55,7 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInnerIpv6) GetAddress() str
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInnerIpv6) GetAddressOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Address, true
 }
@@ -63,11 +66,17 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInnerIpv6) SetAddress(v str
 }
 
 func (o UpdateNetworkApplianceVpnBgpRequestNeighborsInnerIpv6) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["address"] = o.Address
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceVpnBgpRequestNeighborsInnerIpv6) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["address"] = o.Address
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceVpnBgpRequestNeighborsInnerIpv6 struct {

@@ -10,1532 +10,1521 @@ Testing NetworksApiService
 package client
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "github.com/meraki/dashboard-api-go/client"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func Test_client_NetworksApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test NetworksApiService BindNetwork", func(t *testing.T) {
+	t.Run("Test NetworksApiService BindNetwork", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.BindNetwork(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.BindNetwork(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService ClaimNetworkDevices", func(t *testing.T) {
+	t.Run("Test NetworksApiService ClaimNetworkDevices", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.ClaimNetworkDevices(context.Background(), networkId).Execute()
+		httpRes, err := apiClient.NetworksApi.ClaimNetworkDevices(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService CombineOrganizationNetworks", func(t *testing.T) {
+	t.Run("Test NetworksApiService CombineOrganizationNetworks", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
+		var organizationId string
 
-        resp, httpRes, err := apiClient.NetworksApi.CombineOrganizationNetworks(context.Background(), organizationId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.CombineOrganizationNetworks(context.Background(), organizationId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService CreateNetworkFirmwareUpgradesRollback", func(t *testing.T) {
+	t.Run("Test NetworksApiService CreateNetworkFirmwareUpgradesRollback", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.CreateNetworkFirmwareUpgradesRollback(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.CreateNetworkFirmwareUpgradesRollback(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService CreateNetworkFirmwareUpgradesStagedEvent", func(t *testing.T) {
+	t.Run("Test NetworksApiService CreateNetworkFirmwareUpgradesStagedEvent", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.CreateNetworkFirmwareUpgradesStagedEvent(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.CreateNetworkFirmwareUpgradesStagedEvent(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService CreateNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
+	t.Run("Test NetworksApiService CreateNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.CreateNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.CreateNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService CreateNetworkFloorPlan", func(t *testing.T) {
+	t.Run("Test NetworksApiService CreateNetworkFloorPlan", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.CreateNetworkFloorPlan(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.CreateNetworkFloorPlan(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService CreateNetworkGroupPolicy", func(t *testing.T) {
+	t.Run("Test NetworksApiService CreateNetworkGroupPolicy", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.CreateNetworkGroupPolicy(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.CreateNetworkGroupPolicy(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService CreateNetworkMerakiAuthUser", func(t *testing.T) {
+	t.Run("Test NetworksApiService CreateNetworkMerakiAuthUser", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.CreateNetworkMerakiAuthUser(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.CreateNetworkMerakiAuthUser(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService CreateNetworkMqttBroker", func(t *testing.T) {
+	t.Run("Test NetworksApiService CreateNetworkMqttBroker", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.CreateNetworkMqttBroker(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.CreateNetworkMqttBroker(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService CreateNetworkPiiRequest", func(t *testing.T) {
+	t.Run("Test NetworksApiService CreateNetworkPiiRequest", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.CreateNetworkPiiRequest(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.CreateNetworkPiiRequest(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService CreateNetworkWebhooksHttpServer", func(t *testing.T) {
+	t.Run("Test NetworksApiService CreateNetworkWebhooksHttpServer", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.CreateNetworkWebhooksHttpServer(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.CreateNetworkWebhooksHttpServer(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService CreateNetworkWebhooksPayloadTemplate", func(t *testing.T) {
+	t.Run("Test NetworksApiService CreateNetworkWebhooksPayloadTemplate", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.CreateNetworkWebhooksPayloadTemplate(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.CreateNetworkWebhooksPayloadTemplate(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService CreateNetworkWebhooksWebhookTest", func(t *testing.T) {
+	t.Run("Test NetworksApiService CreateNetworkWebhooksWebhookTest", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.CreateNetworkWebhooksWebhookTest(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.CreateNetworkWebhooksWebhookTest(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService CreateOrganizationNetwork", func(t *testing.T) {
+	t.Run("Test NetworksApiService CreateOrganizationNetwork", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
+		var organizationId string
 
-        resp, httpRes, err := apiClient.NetworksApi.CreateOrganizationNetwork(context.Background(), organizationId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.CreateOrganizationNetwork(context.Background(), organizationId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService DeferNetworkFirmwareUpgradesStagedEvents", func(t *testing.T) {
+	t.Run("Test NetworksApiService DeferNetworkFirmwareUpgradesStagedEvents", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.DeferNetworkFirmwareUpgradesStagedEvents(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.DeferNetworkFirmwareUpgradesStagedEvents(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService DeleteNetwork", func(t *testing.T) {
+	t.Run("Test NetworksApiService DeleteNetwork", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.DeleteNetwork(context.Background(), networkId).Execute()
+		httpRes, err := apiClient.NetworksApi.DeleteNetwork(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService DeleteNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
+	t.Run("Test NetworksApiService DeleteNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var groupId string
+		var networkId string
+		var groupId string
 
-        resp, httpRes, err := apiClient.NetworksApi.DeleteNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId, groupId).Execute()
+		httpRes, err := apiClient.NetworksApi.DeleteNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId, groupId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService DeleteNetworkFloorPlan", func(t *testing.T) {
+	t.Run("Test NetworksApiService DeleteNetworkFloorPlan", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var floorPlanId string
+		var networkId string
+		var floorPlanId string
 
-        resp, httpRes, err := apiClient.NetworksApi.DeleteNetworkFloorPlan(context.Background(), networkId, floorPlanId).Execute()
+		httpRes, err := apiClient.NetworksApi.DeleteNetworkFloorPlan(context.Background(), networkId, floorPlanId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService DeleteNetworkGroupPolicy", func(t *testing.T) {
+	t.Run("Test NetworksApiService DeleteNetworkGroupPolicy", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var groupPolicyId string
+		var networkId string
+		var groupPolicyId string
 
-        resp, httpRes, err := apiClient.NetworksApi.DeleteNetworkGroupPolicy(context.Background(), networkId, groupPolicyId).Execute()
+		httpRes, err := apiClient.NetworksApi.DeleteNetworkGroupPolicy(context.Background(), networkId, groupPolicyId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService DeleteNetworkMerakiAuthUser", func(t *testing.T) {
+	t.Run("Test NetworksApiService DeleteNetworkMerakiAuthUser", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var merakiAuthUserId string
+		var networkId string
+		var merakiAuthUserId string
 
-        resp, httpRes, err := apiClient.NetworksApi.DeleteNetworkMerakiAuthUser(context.Background(), networkId, merakiAuthUserId).Execute()
+		httpRes, err := apiClient.NetworksApi.DeleteNetworkMerakiAuthUser(context.Background(), networkId, merakiAuthUserId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService DeleteNetworkMqttBroker", func(t *testing.T) {
+	t.Run("Test NetworksApiService DeleteNetworkMqttBroker", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var mqttBrokerId string
+		var networkId string
+		var mqttBrokerId string
 
-        resp, httpRes, err := apiClient.NetworksApi.DeleteNetworkMqttBroker(context.Background(), networkId, mqttBrokerId).Execute()
+		httpRes, err := apiClient.NetworksApi.DeleteNetworkMqttBroker(context.Background(), networkId, mqttBrokerId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService DeleteNetworkPiiRequest", func(t *testing.T) {
+	t.Run("Test NetworksApiService DeleteNetworkPiiRequest", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var requestId string
+		var networkId string
+		var requestId string
 
-        resp, httpRes, err := apiClient.NetworksApi.DeleteNetworkPiiRequest(context.Background(), networkId, requestId).Execute()
+		httpRes, err := apiClient.NetworksApi.DeleteNetworkPiiRequest(context.Background(), networkId, requestId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService DeleteNetworkWebhooksHttpServer", func(t *testing.T) {
+	t.Run("Test NetworksApiService DeleteNetworkWebhooksHttpServer", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var httpServerId string
+		var networkId string
+		var httpServerId string
 
-        resp, httpRes, err := apiClient.NetworksApi.DeleteNetworkWebhooksHttpServer(context.Background(), networkId, httpServerId).Execute()
+		httpRes, err := apiClient.NetworksApi.DeleteNetworkWebhooksHttpServer(context.Background(), networkId, httpServerId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService DeleteNetworkWebhooksPayloadTemplate", func(t *testing.T) {
+	t.Run("Test NetworksApiService DeleteNetworkWebhooksPayloadTemplate", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var payloadTemplateId string
+		var networkId string
+		var payloadTemplateId string
 
-        resp, httpRes, err := apiClient.NetworksApi.DeleteNetworkWebhooksPayloadTemplate(context.Background(), networkId, payloadTemplateId).Execute()
+		httpRes, err := apiClient.NetworksApi.DeleteNetworkWebhooksPayloadTemplate(context.Background(), networkId, payloadTemplateId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetwork", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetwork", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetwork(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetwork(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkAlertsHistory", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkAlertsHistory", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkAlertsHistory(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkAlertsHistory(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkAlertsSettings", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkAlertsSettings", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkAlertsSettings(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkAlertsSettings(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkBluetoothClient", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkBluetoothClient", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var bluetoothClientId string
+		var networkId string
+		var bluetoothClientId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkBluetoothClient(context.Background(), networkId, bluetoothClientId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkBluetoothClient(context.Background(), networkId, bluetoothClientId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkBluetoothClients", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkBluetoothClients", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkBluetoothClients(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkBluetoothClients(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkClient", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkClient", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var clientId string
+		var networkId string
+		var clientId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkClient(context.Background(), networkId, clientId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkClient(context.Background(), networkId, clientId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkClientPolicy", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkClientPolicy", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var clientId string
+		var networkId string
+		var clientId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkClientPolicy(context.Background(), networkId, clientId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkClientPolicy(context.Background(), networkId, clientId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkClientSplashAuthorizationStatus", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkClientSplashAuthorizationStatus", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var clientId string
+		var networkId string
+		var clientId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkClientSplashAuthorizationStatus(context.Background(), networkId, clientId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkClientSplashAuthorizationStatus(context.Background(), networkId, clientId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkClientTrafficHistory", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkClientTrafficHistory", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var clientId string
+		var networkId string
+		var clientId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkClientTrafficHistory(context.Background(), networkId, clientId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkClientTrafficHistory(context.Background(), networkId, clientId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkClientUsageHistory", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkClientUsageHistory", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var clientId string
+		var networkId string
+		var clientId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkClientUsageHistory(context.Background(), networkId, clientId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkClientUsageHistory(context.Background(), networkId, clientId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkClients", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkClients", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkClients(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkClients(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkClientsApplicationUsage", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkClientsApplicationUsage", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkClientsApplicationUsage(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkClientsApplicationUsage(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkClientsBandwidthUsageHistory", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkClientsBandwidthUsageHistory", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkClientsBandwidthUsageHistory(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkClientsBandwidthUsageHistory(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkClientsOverview", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkClientsOverview", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkClientsOverview(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkClientsOverview(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkClientsUsageHistories", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkClientsUsageHistories", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkClientsUsageHistories(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkClientsUsageHistories(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkDevices", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkDevices", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkDevices(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkDevices(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkEvents", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkEvents", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkEvents(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkEvents(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkEventsEventTypes", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkEventsEventTypes", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkEventsEventTypes(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkEventsEventTypes(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkFirmwareUpgrades", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkFirmwareUpgrades", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkFirmwareUpgrades(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkFirmwareUpgrades(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkFirmwareUpgradesStagedEvents", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkFirmwareUpgradesStagedEvents", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkFirmwareUpgradesStagedEvents(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkFirmwareUpgradesStagedEvents(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var groupId string
+		var networkId string
+		var groupId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId, groupId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId, groupId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkFirmwareUpgradesStagedGroups", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkFirmwareUpgradesStagedGroups", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkFirmwareUpgradesStagedGroups(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkFirmwareUpgradesStagedGroups(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkFirmwareUpgradesStagedStages", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkFirmwareUpgradesStagedStages", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkFirmwareUpgradesStagedStages(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkFirmwareUpgradesStagedStages(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkFloorPlan", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkFloorPlan", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var floorPlanId string
+		var networkId string
+		var floorPlanId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkFloorPlan(context.Background(), networkId, floorPlanId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkFloorPlan(context.Background(), networkId, floorPlanId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkFloorPlans", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkFloorPlans", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkFloorPlans(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkFloorPlans(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkGroupPolicies", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkGroupPolicies", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkGroupPolicies(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkGroupPolicies(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkGroupPolicy", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkGroupPolicy", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var groupPolicyId string
+		var networkId string
+		var groupPolicyId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkGroupPolicy(context.Background(), networkId, groupPolicyId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkGroupPolicy(context.Background(), networkId, groupPolicyId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkHealthAlerts", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkHealthAlerts", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkHealthAlerts(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkHealthAlerts(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkMerakiAuthUser", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkMerakiAuthUser", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var merakiAuthUserId string
+		var networkId string
+		var merakiAuthUserId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkMerakiAuthUser(context.Background(), networkId, merakiAuthUserId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkMerakiAuthUser(context.Background(), networkId, merakiAuthUserId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkMerakiAuthUsers", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkMerakiAuthUsers", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkMerakiAuthUsers(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkMerakiAuthUsers(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkMqttBroker", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkMqttBroker", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var mqttBrokerId string
+		var networkId string
+		var mqttBrokerId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkMqttBroker(context.Background(), networkId, mqttBrokerId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkMqttBroker(context.Background(), networkId, mqttBrokerId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkMqttBrokers", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkMqttBrokers", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkMqttBrokers(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkMqttBrokers(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkNetflow", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkNetflow", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkNetflow(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkNetflow(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkNetworkHealthChannelUtilization", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkNetworkHealthChannelUtilization", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkNetworkHealthChannelUtilization(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkNetworkHealthChannelUtilization(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkPiiPiiKeys", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkPiiPiiKeys", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkPiiPiiKeys(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkPiiPiiKeys(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkPiiRequest", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkPiiRequest", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var requestId string
+		var networkId string
+		var requestId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkPiiRequest(context.Background(), networkId, requestId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkPiiRequest(context.Background(), networkId, requestId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkPiiRequests", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkPiiRequests", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkPiiRequests(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkPiiRequests(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkPiiSmDevicesForKey", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkPiiSmDevicesForKey", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkPiiSmDevicesForKey(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkPiiSmDevicesForKey(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkPiiSmOwnersForKey", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkPiiSmOwnersForKey", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkPiiSmOwnersForKey(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkPiiSmOwnersForKey(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkPoliciesByClient", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkPoliciesByClient", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkPoliciesByClient(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkPoliciesByClient(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkSettings", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkSettings", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkSettings(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkSettings(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkSnmp", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkSnmp", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkSnmp(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkSnmp(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkSplashLoginAttempts", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkSplashLoginAttempts", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkSplashLoginAttempts(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkSplashLoginAttempts(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkSyslogServers", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkSyslogServers", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkSyslogServers(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkSyslogServers(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkTopologyLinkLayer", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkTopologyLinkLayer", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkTopologyLinkLayer(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkTopologyLinkLayer(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkTraffic", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkTraffic", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkTraffic(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkTraffic(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkTrafficAnalysis", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkTrafficAnalysis", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkTrafficAnalysis(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkTrafficAnalysis(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkTrafficShapingApplicationCategories", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkTrafficShapingApplicationCategories", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkTrafficShapingApplicationCategories(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkTrafficShapingApplicationCategories(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkTrafficShapingDscpTaggingOptions", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkTrafficShapingDscpTaggingOptions", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkTrafficShapingDscpTaggingOptions(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkTrafficShapingDscpTaggingOptions(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkWebhooksHttpServer", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkWebhooksHttpServer", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var httpServerId string
+		var networkId string
+		var httpServerId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkWebhooksHttpServer(context.Background(), networkId, httpServerId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkWebhooksHttpServer(context.Background(), networkId, httpServerId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkWebhooksHttpServers", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkWebhooksHttpServers", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkWebhooksHttpServers(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkWebhooksHttpServers(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkWebhooksPayloadTemplate", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkWebhooksPayloadTemplate", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var payloadTemplateId string
+		var networkId string
+		var payloadTemplateId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkWebhooksPayloadTemplate(context.Background(), networkId, payloadTemplateId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkWebhooksPayloadTemplate(context.Background(), networkId, payloadTemplateId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkWebhooksPayloadTemplates", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkWebhooksPayloadTemplates", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkWebhooksPayloadTemplates(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkWebhooksPayloadTemplates(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetNetworkWebhooksWebhookTest", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetNetworkWebhooksWebhookTest", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var webhookTestId string
+		var networkId string
+		var webhookTestId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetNetworkWebhooksWebhookTest(context.Background(), networkId, webhookTestId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetNetworkWebhooksWebhookTest(context.Background(), networkId, webhookTestId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetOrganizationInventoryOnboardingCloudMonitoringNetworks", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetOrganizationInventoryOnboardingCloudMonitoringNetworks", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
+		var organizationId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetOrganizationInventoryOnboardingCloudMonitoringNetworks(context.Background(), organizationId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetOrganizationInventoryOnboardingCloudMonitoringNetworks(context.Background(), organizationId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService GetOrganizationNetworks", func(t *testing.T) {
+	t.Run("Test NetworksApiService GetOrganizationNetworks", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
+		var organizationId string
 
-        resp, httpRes, err := apiClient.NetworksApi.GetOrganizationNetworks(context.Background(), organizationId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.GetOrganizationNetworks(context.Background(), organizationId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService ProvisionNetworkClients", func(t *testing.T) {
+	t.Run("Test NetworksApiService ProvisionNetworkClients", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.ProvisionNetworkClients(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.ProvisionNetworkClients(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService RemoveNetworkDevices", func(t *testing.T) {
+	t.Run("Test NetworksApiService RemoveNetworkDevices", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.RemoveNetworkDevices(context.Background(), networkId).Execute()
+		httpRes, err := apiClient.NetworksApi.RemoveNetworkDevices(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService RollbacksNetworkFirmwareUpgradesStagedEvents", func(t *testing.T) {
+	t.Run("Test NetworksApiService RollbacksNetworkFirmwareUpgradesStagedEvents", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.RollbacksNetworkFirmwareUpgradesStagedEvents(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.RollbacksNetworkFirmwareUpgradesStagedEvents(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService SplitNetwork", func(t *testing.T) {
+	t.Run("Test NetworksApiService SplitNetwork", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.SplitNetwork(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.SplitNetwork(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UnbindNetwork", func(t *testing.T) {
+	t.Run("Test NetworksApiService UnbindNetwork", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UnbindNetwork(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UnbindNetwork(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetwork", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetwork", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetwork(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetwork(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkAlertsSettings", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkAlertsSettings", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkAlertsSettings(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkAlertsSettings(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkClientPolicy", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkClientPolicy", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var clientId string
+		var networkId string
+		var clientId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkClientPolicy(context.Background(), networkId, clientId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkClientPolicy(context.Background(), networkId, clientId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkClientSplashAuthorizationStatus", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkClientSplashAuthorizationStatus", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var clientId string
+		var networkId string
+		var clientId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkClientSplashAuthorizationStatus(context.Background(), networkId, clientId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkClientSplashAuthorizationStatus(context.Background(), networkId, clientId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkFirmwareUpgrades", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkFirmwareUpgrades", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkFirmwareUpgrades(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkFirmwareUpgrades(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkFirmwareUpgradesStagedEvents", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkFirmwareUpgradesStagedEvents", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkFirmwareUpgradesStagedEvents(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkFirmwareUpgradesStagedEvents(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var groupId string
+		var networkId string
+		var groupId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId, groupId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId, groupId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkFirmwareUpgradesStagedStages", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkFirmwareUpgradesStagedStages", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkFirmwareUpgradesStagedStages(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkFirmwareUpgradesStagedStages(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkFloorPlan", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkFloorPlan", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var floorPlanId string
+		var networkId string
+		var floorPlanId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkFloorPlan(context.Background(), networkId, floorPlanId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkFloorPlan(context.Background(), networkId, floorPlanId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkGroupPolicy", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkGroupPolicy", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var groupPolicyId string
+		var networkId string
+		var groupPolicyId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkGroupPolicy(context.Background(), networkId, groupPolicyId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkGroupPolicy(context.Background(), networkId, groupPolicyId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkMerakiAuthUser", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkMerakiAuthUser", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var merakiAuthUserId string
+		var networkId string
+		var merakiAuthUserId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkMerakiAuthUser(context.Background(), networkId, merakiAuthUserId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkMerakiAuthUser(context.Background(), networkId, merakiAuthUserId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkMqttBroker", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkMqttBroker", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var mqttBrokerId string
+		var networkId string
+		var mqttBrokerId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkMqttBroker(context.Background(), networkId, mqttBrokerId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkMqttBroker(context.Background(), networkId, mqttBrokerId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkNetflow", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkNetflow", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkNetflow(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkNetflow(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkSettings", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkSettings", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkSettings(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkSettings(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkSnmp", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkSnmp", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkSnmp(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkSnmp(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkSyslogServers", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkSyslogServers", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkSyslogServers(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkSyslogServers(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkTrafficAnalysis", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkTrafficAnalysis", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkTrafficAnalysis(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkTrafficAnalysis(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkWebhooksHttpServer", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkWebhooksHttpServer", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var httpServerId string
+		var networkId string
+		var httpServerId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkWebhooksHttpServer(context.Background(), networkId, httpServerId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkWebhooksHttpServer(context.Background(), networkId, httpServerId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService UpdateNetworkWebhooksPayloadTemplate", func(t *testing.T) {
+	t.Run("Test NetworksApiService UpdateNetworkWebhooksPayloadTemplate", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var payloadTemplateId string
+		var networkId string
+		var payloadTemplateId string
 
-        resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkWebhooksPayloadTemplate(context.Background(), networkId, payloadTemplateId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.UpdateNetworkWebhooksPayloadTemplate(context.Background(), networkId, payloadTemplateId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test NetworksApiService VmxNetworkDevicesClaim", func(t *testing.T) {
+	t.Run("Test NetworksApiService VmxNetworkDevicesClaim", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.NetworksApi.VmxNetworkDevicesClaim(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.NetworksApi.VmxNetworkDevicesClaim(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

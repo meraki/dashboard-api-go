@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWebhooksPayloadTemplates200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWebhooksPayloadTemplates200ResponseInner{}
+
 // GetNetworkWebhooksPayloadTemplates200ResponseInner struct for GetNetworkWebhooksPayloadTemplates200ResponseInner
 type GetNetworkWebhooksPayloadTemplates200ResponseInner struct {
 	// Webhook payload template Id
@@ -48,7 +51,7 @@ func NewGetNetworkWebhooksPayloadTemplates200ResponseInnerWithDefaults() *GetNet
 
 // GetPayloadTemplateId returns the PayloadTemplateId field value if set, zero value otherwise.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetPayloadTemplateId() string {
-	if o == nil || isNil(o.PayloadTemplateId) {
+	if o == nil || IsNil(o.PayloadTemplateId) {
 		var ret string
 		return ret
 	}
@@ -58,15 +61,15 @@ func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetPayloadTemplateI
 // GetPayloadTemplateIdOk returns a tuple with the PayloadTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetPayloadTemplateIdOk() (*string, bool) {
-	if o == nil || isNil(o.PayloadTemplateId) {
-    return nil, false
+	if o == nil || IsNil(o.PayloadTemplateId) {
+		return nil, false
 	}
 	return o.PayloadTemplateId, true
 }
 
 // HasPayloadTemplateId returns a boolean if a field has been set.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) HasPayloadTemplateId() bool {
-	if o != nil && !isNil(o.PayloadTemplateId) {
+	if o != nil && !IsNil(o.PayloadTemplateId) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) SetPayloadTemplateI
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -90,15 +93,15 @@ func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) SetType(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -122,15 +125,15 @@ func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) SetName(v string) {
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetHeaders() []GetNetworkWebhooksPayloadTemplates200ResponseInnerHeadersInner {
-	if o == nil || isNil(o.Headers) {
+	if o == nil || IsNil(o.Headers) {
 		var ret []GetNetworkWebhooksPayloadTemplates200ResponseInnerHeadersInner
 		return ret
 	}
@@ -154,15 +157,15 @@ func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetHeaders() []GetN
 // GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetHeadersOk() ([]GetNetworkWebhooksPayloadTemplates200ResponseInnerHeadersInner, bool) {
-	if o == nil || isNil(o.Headers) {
-    return nil, false
+	if o == nil || IsNil(o.Headers) {
+		return nil, false
 	}
 	return o.Headers, true
 }
 
 // HasHeaders returns a boolean if a field has been set.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) HasHeaders() bool {
-	if o != nil && !isNil(o.Headers) {
+	if o != nil && !IsNil(o.Headers) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) SetHeaders(v []GetN
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetBody() string {
-	if o == nil || isNil(o.Body) {
+	if o == nil || IsNil(o.Body) {
 		var ret string
 		return ret
 	}
@@ -186,15 +189,15 @@ func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetBody() string {
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetBodyOk() (*string, bool) {
-	if o == nil || isNil(o.Body) {
-    return nil, false
+	if o == nil || IsNil(o.Body) {
+		return nil, false
 	}
 	return o.Body, true
 }
 
 // HasBody returns a boolean if a field has been set.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) HasBody() bool {
-	if o != nil && !isNil(o.Body) {
+	if o != nil && !IsNil(o.Body) {
 		return true
 	}
 
@@ -208,7 +211,7 @@ func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) SetBody(v string) {
 
 // GetSharing returns the Sharing field value if set, zero value otherwise.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetSharing() GetNetworkWebhooksPayloadTemplates200ResponseInnerSharing {
-	if o == nil || isNil(o.Sharing) {
+	if o == nil || IsNil(o.Sharing) {
 		var ret GetNetworkWebhooksPayloadTemplates200ResponseInnerSharing
 		return ret
 	}
@@ -218,15 +221,15 @@ func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetSharing() GetNet
 // GetSharingOk returns a tuple with the Sharing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) GetSharingOk() (*GetNetworkWebhooksPayloadTemplates200ResponseInnerSharing, bool) {
-	if o == nil || isNil(o.Sharing) {
-    return nil, false
+	if o == nil || IsNil(o.Sharing) {
+		return nil, false
 	}
 	return o.Sharing, true
 }
 
 // HasSharing returns a boolean if a field has been set.
 func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) HasSharing() bool {
-	if o != nil && !isNil(o.Sharing) {
+	if o != nil && !IsNil(o.Sharing) {
 		return true
 	}
 
@@ -239,26 +242,34 @@ func (o *GetNetworkWebhooksPayloadTemplates200ResponseInner) SetSharing(v GetNet
 }
 
 func (o GetNetworkWebhooksPayloadTemplates200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.PayloadTemplateId) {
-		toSerialize["payloadTemplateId"] = o.PayloadTemplateId
-	}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Headers) {
-		toSerialize["headers"] = o.Headers
-	}
-	if !isNil(o.Body) {
-		toSerialize["body"] = o.Body
-	}
-	if !isNil(o.Sharing) {
-		toSerialize["sharing"] = o.Sharing
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWebhooksPayloadTemplates200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PayloadTemplateId) {
+		toSerialize["payloadTemplateId"] = o.PayloadTemplateId
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Headers) {
+		toSerialize["headers"] = o.Headers
+	}
+	if !IsNil(o.Body) {
+		toSerialize["body"] = o.Body
+	}
+	if !IsNil(o.Sharing) {
+		toSerialize["sharing"] = o.Sharing
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWebhooksPayloadTemplates200ResponseInner struct {

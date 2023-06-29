@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty{}
+
 // CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty VTY Related Parameters
 type CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty struct {
 	// Starting line VTY number
@@ -46,7 +49,7 @@ func NewCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevice
 
 // GetStartLineNumber returns the StartLineNumber field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) GetStartLineNumber() int32 {
-	if o == nil || isNil(o.StartLineNumber) {
+	if o == nil || IsNil(o.StartLineNumber) {
 		var ret int32
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 // GetStartLineNumberOk returns a tuple with the StartLineNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) GetStartLineNumberOk() (*int32, bool) {
-	if o == nil || isNil(o.StartLineNumber) {
-    return nil, false
+	if o == nil || IsNil(o.StartLineNumber) {
+		return nil, false
 	}
 	return o.StartLineNumber, true
 }
 
 // HasStartLineNumber returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) HasStartLineNumber() bool {
-	if o != nil && !isNil(o.StartLineNumber) {
+	if o != nil && !IsNil(o.StartLineNumber) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 
 // GetEndLineNumber returns the EndLineNumber field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) GetEndLineNumber() int32 {
-	if o == nil || isNil(o.EndLineNumber) {
+	if o == nil || IsNil(o.EndLineNumber) {
 		var ret int32
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 // GetEndLineNumberOk returns a tuple with the EndLineNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) GetEndLineNumberOk() (*int32, bool) {
-	if o == nil || isNil(o.EndLineNumber) {
-    return nil, false
+	if o == nil || IsNil(o.EndLineNumber) {
+		return nil, false
 	}
 	return o.EndLineNumber, true
 }
 
 // HasEndLineNumber returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) HasEndLineNumber() bool {
-	if o != nil && !isNil(o.EndLineNumber) {
+	if o != nil && !IsNil(o.EndLineNumber) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 
 // GetAuthentication returns the Authentication field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) GetAuthentication() CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAuthentication {
-	if o == nil || isNil(o.Authentication) {
+	if o == nil || IsNil(o.Authentication) {
 		var ret CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAuthentication
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 // GetAuthenticationOk returns a tuple with the Authentication field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) GetAuthenticationOk() (*CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAuthentication, bool) {
-	if o == nil || isNil(o.Authentication) {
-    return nil, false
+	if o == nil || IsNil(o.Authentication) {
+		return nil, false
 	}
 	return o.Authentication, true
 }
 
 // HasAuthentication returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) HasAuthentication() bool {
-	if o != nil && !isNil(o.Authentication) {
+	if o != nil && !IsNil(o.Authentication) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 
 // GetAuthorization returns the Authorization field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) GetAuthorization() CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAuthorization {
-	if o == nil || isNil(o.Authorization) {
+	if o == nil || IsNil(o.Authorization) {
 		var ret CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAuthorization
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 // GetAuthorizationOk returns a tuple with the Authorization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) GetAuthorizationOk() (*CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAuthorization, bool) {
-	if o == nil || isNil(o.Authorization) {
-    return nil, false
+	if o == nil || IsNil(o.Authorization) {
+		return nil, false
 	}
 	return o.Authorization, true
 }
 
 // HasAuthorization returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) HasAuthorization() bool {
-	if o != nil && !isNil(o.Authorization) {
+	if o != nil && !IsNil(o.Authorization) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 
 // GetAccessList returns the AccessList field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) GetAccessList() CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessList {
-	if o == nil || isNil(o.AccessList) {
+	if o == nil || IsNil(o.AccessList) {
 		var ret CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessList
 		return ret
 	}
@@ -184,15 +187,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 // GetAccessListOk returns a tuple with the AccessList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) GetAccessListOk() (*CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessList, bool) {
-	if o == nil || isNil(o.AccessList) {
-    return nil, false
+	if o == nil || IsNil(o.AccessList) {
+		return nil, false
 	}
 	return o.AccessList, true
 }
 
 // HasAccessList returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) HasAccessList() bool {
-	if o != nil && !isNil(o.AccessList) {
+	if o != nil && !IsNil(o.AccessList) {
 		return true
 	}
 
@@ -206,7 +209,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 
 // GetRotaryNumber returns the RotaryNumber field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) GetRotaryNumber() int32 {
-	if o == nil || isNil(o.RotaryNumber) {
+	if o == nil || IsNil(o.RotaryNumber) {
 		var ret int32
 		return ret
 	}
@@ -216,15 +219,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 // GetRotaryNumberOk returns a tuple with the RotaryNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) GetRotaryNumberOk() (*int32, bool) {
-	if o == nil || isNil(o.RotaryNumber) {
-    return nil, false
+	if o == nil || IsNil(o.RotaryNumber) {
+		return nil, false
 	}
 	return o.RotaryNumber, true
 }
 
 // HasRotaryNumber returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) HasRotaryNumber() bool {
-	if o != nil && !isNil(o.RotaryNumber) {
+	if o != nil && !IsNil(o.RotaryNumber) {
 		return true
 	}
 
@@ -237,26 +240,34 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 }
 
 func (o CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.StartLineNumber) {
-		toSerialize["startLineNumber"] = o.StartLineNumber
-	}
-	if !isNil(o.EndLineNumber) {
-		toSerialize["endLineNumber"] = o.EndLineNumber
-	}
-	if !isNil(o.Authentication) {
-		toSerialize["authentication"] = o.Authentication
-	}
-	if !isNil(o.Authorization) {
-		toSerialize["authorization"] = o.Authorization
-	}
-	if !isNil(o.AccessList) {
-		toSerialize["accessList"] = o.AccessList
-	}
-	if !isNil(o.RotaryNumber) {
-		toSerialize["rotaryNumber"] = o.RotaryNumber
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.StartLineNumber) {
+		toSerialize["startLineNumber"] = o.StartLineNumber
+	}
+	if !IsNil(o.EndLineNumber) {
+		toSerialize["endLineNumber"] = o.EndLineNumber
+	}
+	if !IsNil(o.Authentication) {
+		toSerialize["authentication"] = o.Authentication
+	}
+	if !IsNil(o.Authorization) {
+		toSerialize["authorization"] = o.Authorization
+	}
+	if !IsNil(o.AccessList) {
+		toSerialize["accessList"] = o.AccessList
+	}
+	if !IsNil(o.RotaryNumber) {
+		toSerialize["rotaryNumber"] = o.RotaryNumber
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVty struct {

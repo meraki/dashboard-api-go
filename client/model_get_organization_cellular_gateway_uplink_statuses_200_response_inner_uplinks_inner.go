@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner{}
+
 // GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner struct for GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner
 type GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner struct {
 	// Uplink interface
@@ -64,7 +67,7 @@ func NewGetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner
 
 // GetInterface returns the Interface field value if set, zero value otherwise.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetInterface() string {
-	if o == nil || isNil(o.Interface) {
+	if o == nil || IsNil(o.Interface) {
 		var ret string
 		return ret
 	}
@@ -74,15 +77,15 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 // GetInterfaceOk returns a tuple with the Interface field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetInterfaceOk() (*string, bool) {
-	if o == nil || isNil(o.Interface) {
-    return nil, false
+	if o == nil || IsNil(o.Interface) {
+		return nil, false
 	}
 	return o.Interface, true
 }
 
 // HasInterface returns a boolean if a field has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) HasInterface() bool {
-	if o != nil && !isNil(o.Interface) {
+	if o != nil && !IsNil(o.Interface) {
 		return true
 	}
 
@@ -96,7 +99,7 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -106,15 +109,15 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -128,7 +131,7 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 
 // GetIp returns the Ip field value if set, zero value otherwise.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetIp() string {
-	if o == nil || isNil(o.Ip) {
+	if o == nil || IsNil(o.Ip) {
 		var ret string
 		return ret
 	}
@@ -138,15 +141,15 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 // GetIpOk returns a tuple with the Ip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetIpOk() (*string, bool) {
-	if o == nil || isNil(o.Ip) {
-    return nil, false
+	if o == nil || IsNil(o.Ip) {
+		return nil, false
 	}
 	return o.Ip, true
 }
 
 // HasIp returns a boolean if a field has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) HasIp() bool {
-	if o != nil && !isNil(o.Ip) {
+	if o != nil && !IsNil(o.Ip) {
 		return true
 	}
 
@@ -160,7 +163,7 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 
 // GetProvider returns the Provider field value if set, zero value otherwise.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetProvider() string {
-	if o == nil || isNil(o.Provider) {
+	if o == nil || IsNil(o.Provider) {
 		var ret string
 		return ret
 	}
@@ -170,15 +173,15 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 // GetProviderOk returns a tuple with the Provider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetProviderOk() (*string, bool) {
-	if o == nil || isNil(o.Provider) {
-    return nil, false
+	if o == nil || IsNil(o.Provider) {
+		return nil, false
 	}
 	return o.Provider, true
 }
 
 // HasProvider returns a boolean if a field has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) HasProvider() bool {
-	if o != nil && !isNil(o.Provider) {
+	if o != nil && !IsNil(o.Provider) {
 		return true
 	}
 
@@ -192,7 +195,7 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 
 // GetPublicIp returns the PublicIp field value if set, zero value otherwise.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetPublicIp() string {
-	if o == nil || isNil(o.PublicIp) {
+	if o == nil || IsNil(o.PublicIp) {
 		var ret string
 		return ret
 	}
@@ -202,15 +205,15 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 // GetPublicIpOk returns a tuple with the PublicIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetPublicIpOk() (*string, bool) {
-	if o == nil || isNil(o.PublicIp) {
-    return nil, false
+	if o == nil || IsNil(o.PublicIp) {
+		return nil, false
 	}
 	return o.PublicIp, true
 }
 
 // HasPublicIp returns a boolean if a field has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) HasPublicIp() bool {
-	if o != nil && !isNil(o.PublicIp) {
+	if o != nil && !IsNil(o.PublicIp) {
 		return true
 	}
 
@@ -224,7 +227,7 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 
 // GetModel returns the Model field value if set, zero value otherwise.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetModel() string {
-	if o == nil || isNil(o.Model) {
+	if o == nil || IsNil(o.Model) {
 		var ret string
 		return ret
 	}
@@ -234,15 +237,15 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 // GetModelOk returns a tuple with the Model field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetModelOk() (*string, bool) {
-	if o == nil || isNil(o.Model) {
-    return nil, false
+	if o == nil || IsNil(o.Model) {
+		return nil, false
 	}
 	return o.Model, true
 }
 
 // HasModel returns a boolean if a field has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) HasModel() bool {
-	if o != nil && !isNil(o.Model) {
+	if o != nil && !IsNil(o.Model) {
 		return true
 	}
 
@@ -256,7 +259,7 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 
 // GetSignalStat returns the SignalStat field value if set, zero value otherwise.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetSignalStat() GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInnerSignalStat {
-	if o == nil || isNil(o.SignalStat) {
+	if o == nil || IsNil(o.SignalStat) {
 		var ret GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInnerSignalStat
 		return ret
 	}
@@ -266,15 +269,15 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 // GetSignalStatOk returns a tuple with the SignalStat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetSignalStatOk() (*GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInnerSignalStat, bool) {
-	if o == nil || isNil(o.SignalStat) {
-    return nil, false
+	if o == nil || IsNil(o.SignalStat) {
+		return nil, false
 	}
 	return o.SignalStat, true
 }
 
 // HasSignalStat returns a boolean if a field has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) HasSignalStat() bool {
-	if o != nil && !isNil(o.SignalStat) {
+	if o != nil && !IsNil(o.SignalStat) {
 		return true
 	}
 
@@ -288,7 +291,7 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 
 // GetConnectionType returns the ConnectionType field value if set, zero value otherwise.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetConnectionType() string {
-	if o == nil || isNil(o.ConnectionType) {
+	if o == nil || IsNil(o.ConnectionType) {
 		var ret string
 		return ret
 	}
@@ -298,15 +301,15 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 // GetConnectionTypeOk returns a tuple with the ConnectionType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetConnectionTypeOk() (*string, bool) {
-	if o == nil || isNil(o.ConnectionType) {
-    return nil, false
+	if o == nil || IsNil(o.ConnectionType) {
+		return nil, false
 	}
 	return o.ConnectionType, true
 }
 
 // HasConnectionType returns a boolean if a field has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) HasConnectionType() bool {
-	if o != nil && !isNil(o.ConnectionType) {
+	if o != nil && !IsNil(o.ConnectionType) {
 		return true
 	}
 
@@ -320,7 +323,7 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 
 // GetApn returns the Apn field value if set, zero value otherwise.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetApn() string {
-	if o == nil || isNil(o.Apn) {
+	if o == nil || IsNil(o.Apn) {
 		var ret string
 		return ret
 	}
@@ -330,15 +333,15 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 // GetApnOk returns a tuple with the Apn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetApnOk() (*string, bool) {
-	if o == nil || isNil(o.Apn) {
-    return nil, false
+	if o == nil || IsNil(o.Apn) {
+		return nil, false
 	}
 	return o.Apn, true
 }
 
 // HasApn returns a boolean if a field has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) HasApn() bool {
-	if o != nil && !isNil(o.Apn) {
+	if o != nil && !IsNil(o.Apn) {
 		return true
 	}
 
@@ -352,7 +355,7 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 
 // GetGateway returns the Gateway field value if set, zero value otherwise.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetGateway() string {
-	if o == nil || isNil(o.Gateway) {
+	if o == nil || IsNil(o.Gateway) {
 		var ret string
 		return ret
 	}
@@ -362,15 +365,15 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 // GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetGatewayOk() (*string, bool) {
-	if o == nil || isNil(o.Gateway) {
-    return nil, false
+	if o == nil || IsNil(o.Gateway) {
+		return nil, false
 	}
 	return o.Gateway, true
 }
 
 // HasGateway returns a boolean if a field has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) HasGateway() bool {
-	if o != nil && !isNil(o.Gateway) {
+	if o != nil && !IsNil(o.Gateway) {
 		return true
 	}
 
@@ -384,7 +387,7 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 
 // GetDns1 returns the Dns1 field value if set, zero value otherwise.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetDns1() string {
-	if o == nil || isNil(o.Dns1) {
+	if o == nil || IsNil(o.Dns1) {
 		var ret string
 		return ret
 	}
@@ -394,15 +397,15 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 // GetDns1Ok returns a tuple with the Dns1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetDns1Ok() (*string, bool) {
-	if o == nil || isNil(o.Dns1) {
-    return nil, false
+	if o == nil || IsNil(o.Dns1) {
+		return nil, false
 	}
 	return o.Dns1, true
 }
 
 // HasDns1 returns a boolean if a field has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) HasDns1() bool {
-	if o != nil && !isNil(o.Dns1) {
+	if o != nil && !IsNil(o.Dns1) {
 		return true
 	}
 
@@ -416,7 +419,7 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 
 // GetDns2 returns the Dns2 field value if set, zero value otherwise.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetDns2() string {
-	if o == nil || isNil(o.Dns2) {
+	if o == nil || IsNil(o.Dns2) {
 		var ret string
 		return ret
 	}
@@ -426,15 +429,15 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 // GetDns2Ok returns a tuple with the Dns2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetDns2Ok() (*string, bool) {
-	if o == nil || isNil(o.Dns2) {
-    return nil, false
+	if o == nil || IsNil(o.Dns2) {
+		return nil, false
 	}
 	return o.Dns2, true
 }
 
 // HasDns2 returns a boolean if a field has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) HasDns2() bool {
-	if o != nil && !isNil(o.Dns2) {
+	if o != nil && !IsNil(o.Dns2) {
 		return true
 	}
 
@@ -448,7 +451,7 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 
 // GetSignalType returns the SignalType field value if set, zero value otherwise.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetSignalType() string {
-	if o == nil || isNil(o.SignalType) {
+	if o == nil || IsNil(o.SignalType) {
 		var ret string
 		return ret
 	}
@@ -458,15 +461,15 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 // GetSignalTypeOk returns a tuple with the SignalType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetSignalTypeOk() (*string, bool) {
-	if o == nil || isNil(o.SignalType) {
-    return nil, false
+	if o == nil || IsNil(o.SignalType) {
+		return nil, false
 	}
 	return o.SignalType, true
 }
 
 // HasSignalType returns a boolean if a field has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) HasSignalType() bool {
-	if o != nil && !isNil(o.SignalType) {
+	if o != nil && !IsNil(o.SignalType) {
 		return true
 	}
 
@@ -480,7 +483,7 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 
 // GetIccid returns the Iccid field value if set, zero value otherwise.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetIccid() string {
-	if o == nil || isNil(o.Iccid) {
+	if o == nil || IsNil(o.Iccid) {
 		var ret string
 		return ret
 	}
@@ -490,15 +493,15 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 // GetIccidOk returns a tuple with the Iccid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) GetIccidOk() (*string, bool) {
-	if o == nil || isNil(o.Iccid) {
-    return nil, false
+	if o == nil || IsNil(o.Iccid) {
+		return nil, false
 	}
 	return o.Iccid, true
 }
 
 // HasIccid returns a boolean if a field has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) HasIccid() bool {
-	if o != nil && !isNil(o.Iccid) {
+	if o != nil && !IsNil(o.Iccid) {
 		return true
 	}
 
@@ -511,50 +514,58 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 }
 
 func (o GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Interface) {
-		toSerialize["interface"] = o.Interface
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.Ip) {
-		toSerialize["ip"] = o.Ip
-	}
-	if !isNil(o.Provider) {
-		toSerialize["provider"] = o.Provider
-	}
-	if !isNil(o.PublicIp) {
-		toSerialize["publicIp"] = o.PublicIp
-	}
-	if !isNil(o.Model) {
-		toSerialize["model"] = o.Model
-	}
-	if !isNil(o.SignalStat) {
-		toSerialize["signalStat"] = o.SignalStat
-	}
-	if !isNil(o.ConnectionType) {
-		toSerialize["connectionType"] = o.ConnectionType
-	}
-	if !isNil(o.Apn) {
-		toSerialize["apn"] = o.Apn
-	}
-	if !isNil(o.Gateway) {
-		toSerialize["gateway"] = o.Gateway
-	}
-	if !isNil(o.Dns1) {
-		toSerialize["dns1"] = o.Dns1
-	}
-	if !isNil(o.Dns2) {
-		toSerialize["dns2"] = o.Dns2
-	}
-	if !isNil(o.SignalType) {
-		toSerialize["signalType"] = o.SignalType
-	}
-	if !isNil(o.Iccid) {
-		toSerialize["iccid"] = o.Iccid
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Interface) {
+		toSerialize["interface"] = o.Interface
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Ip) {
+		toSerialize["ip"] = o.Ip
+	}
+	if !IsNil(o.Provider) {
+		toSerialize["provider"] = o.Provider
+	}
+	if !IsNil(o.PublicIp) {
+		toSerialize["publicIp"] = o.PublicIp
+	}
+	if !IsNil(o.Model) {
+		toSerialize["model"] = o.Model
+	}
+	if !IsNil(o.SignalStat) {
+		toSerialize["signalStat"] = o.SignalStat
+	}
+	if !IsNil(o.ConnectionType) {
+		toSerialize["connectionType"] = o.ConnectionType
+	}
+	if !IsNil(o.Apn) {
+		toSerialize["apn"] = o.Apn
+	}
+	if !IsNil(o.Gateway) {
+		toSerialize["gateway"] = o.Gateway
+	}
+	if !IsNil(o.Dns1) {
+		toSerialize["dns1"] = o.Dns1
+	}
+	if !IsNil(o.Dns2) {
+		toSerialize["dns2"] = o.Dns2
+	}
+	if !IsNil(o.SignalType) {
+		toSerialize["signalType"] = o.SignalType
+	}
+	if !IsNil(o.Iccid) {
+		toSerialize["iccid"] = o.Iccid
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the RemoveNetworkDevicesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RemoveNetworkDevicesRequest{}
+
 // RemoveNetworkDevicesRequest struct for RemoveNetworkDevicesRequest
 type RemoveNetworkDevicesRequest struct {
 	// The serial of a device
@@ -52,7 +55,7 @@ func (o *RemoveNetworkDevicesRequest) GetSerial() string {
 // and a boolean to check if the value has been set.
 func (o *RemoveNetworkDevicesRequest) GetSerialOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Serial, true
 }
@@ -63,11 +66,17 @@ func (o *RemoveNetworkDevicesRequest) SetSerial(v string) {
 }
 
 func (o RemoveNetworkDevicesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["serial"] = o.Serial
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RemoveNetworkDevicesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["serial"] = o.Serial
+	return toSerialize, nil
 }
 
 type NullableRemoveNetworkDevicesRequest struct {

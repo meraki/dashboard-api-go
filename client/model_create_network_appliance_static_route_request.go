@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkApplianceStaticRouteRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkApplianceStaticRouteRequest{}
+
 // CreateNetworkApplianceStaticRouteRequest struct for CreateNetworkApplianceStaticRouteRequest
 type CreateNetworkApplianceStaticRouteRequest struct {
 	// The name of the new static route
@@ -60,7 +63,7 @@ func (o *CreateNetworkApplianceStaticRouteRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceStaticRouteRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -84,7 +87,7 @@ func (o *CreateNetworkApplianceStaticRouteRequest) GetSubnet() string {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceStaticRouteRequest) GetSubnetOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Subnet, true
 }
@@ -108,7 +111,7 @@ func (o *CreateNetworkApplianceStaticRouteRequest) GetGatewayIp() string {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceStaticRouteRequest) GetGatewayIpOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.GatewayIp, true
 }
@@ -120,7 +123,7 @@ func (o *CreateNetworkApplianceStaticRouteRequest) SetGatewayIp(v string) {
 
 // GetGatewayVlanId returns the GatewayVlanId field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceStaticRouteRequest) GetGatewayVlanId() string {
-	if o == nil || isNil(o.GatewayVlanId) {
+	if o == nil || IsNil(o.GatewayVlanId) {
 		var ret string
 		return ret
 	}
@@ -130,15 +133,15 @@ func (o *CreateNetworkApplianceStaticRouteRequest) GetGatewayVlanId() string {
 // GetGatewayVlanIdOk returns a tuple with the GatewayVlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceStaticRouteRequest) GetGatewayVlanIdOk() (*string, bool) {
-	if o == nil || isNil(o.GatewayVlanId) {
-    return nil, false
+	if o == nil || IsNil(o.GatewayVlanId) {
+		return nil, false
 	}
 	return o.GatewayVlanId, true
 }
 
 // HasGatewayVlanId returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceStaticRouteRequest) HasGatewayVlanId() bool {
-	if o != nil && !isNil(o.GatewayVlanId) {
+	if o != nil && !IsNil(o.GatewayVlanId) {
 		return true
 	}
 
@@ -151,20 +154,22 @@ func (o *CreateNetworkApplianceStaticRouteRequest) SetGatewayVlanId(v string) {
 }
 
 func (o CreateNetworkApplianceStaticRouteRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["subnet"] = o.Subnet
-	}
-	if true {
-		toSerialize["gatewayIp"] = o.GatewayIp
-	}
-	if !isNil(o.GatewayVlanId) {
-		toSerialize["gatewayVlanId"] = o.GatewayVlanId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkApplianceStaticRouteRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["subnet"] = o.Subnet
+	toSerialize["gatewayIp"] = o.GatewayIp
+	if !IsNil(o.GatewayVlanId) {
+		toSerialize["gatewayVlanId"] = o.GatewayVlanId
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkApplianceStaticRouteRequest struct {

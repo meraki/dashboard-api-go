@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchPortScheduleRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchPortScheduleRequest{}
+
 // UpdateNetworkSwitchPortScheduleRequest struct for UpdateNetworkSwitchPortScheduleRequest
 type UpdateNetworkSwitchPortScheduleRequest struct {
 	// The name for your port schedule.
@@ -40,7 +43,7 @@ func NewUpdateNetworkSwitchPortScheduleRequestWithDefaults() *UpdateNetworkSwitc
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchPortScheduleRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *UpdateNetworkSwitchPortScheduleRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchPortScheduleRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchPortScheduleRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *UpdateNetworkSwitchPortScheduleRequest) SetName(v string) {
 
 // GetPortSchedule returns the PortSchedule field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchPortScheduleRequest) GetPortSchedule() CreateNetworkSwitchPortScheduleRequestPortSchedule {
-	if o == nil || isNil(o.PortSchedule) {
+	if o == nil || IsNil(o.PortSchedule) {
 		var ret CreateNetworkSwitchPortScheduleRequestPortSchedule
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *UpdateNetworkSwitchPortScheduleRequest) GetPortSchedule() CreateNetwork
 // GetPortScheduleOk returns a tuple with the PortSchedule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchPortScheduleRequest) GetPortScheduleOk() (*CreateNetworkSwitchPortScheduleRequestPortSchedule, bool) {
-	if o == nil || isNil(o.PortSchedule) {
-    return nil, false
+	if o == nil || IsNil(o.PortSchedule) {
+		return nil, false
 	}
 	return o.PortSchedule, true
 }
 
 // HasPortSchedule returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchPortScheduleRequest) HasPortSchedule() bool {
-	if o != nil && !isNil(o.PortSchedule) {
+	if o != nil && !IsNil(o.PortSchedule) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *UpdateNetworkSwitchPortScheduleRequest) SetPortSchedule(v CreateNetwork
 }
 
 func (o UpdateNetworkSwitchPortScheduleRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.PortSchedule) {
-		toSerialize["portSchedule"] = o.PortSchedule
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchPortScheduleRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.PortSchedule) {
+		toSerialize["portSchedule"] = o.PortSchedule
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchPortScheduleRequest struct {

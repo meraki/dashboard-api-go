@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey{}
+
 // UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey MD5 authentication credentials. This param is only relevant if md5AuthenticationEnabled is true
 type UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey struct {
 	// MD5 authentication key index. Key index must be between 1 to 255
@@ -41,7 +44,7 @@ func NewUpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKeyWithDefaults() 
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey) GetId() int32 {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey) GetId() int3
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey) GetIdOk() (*int32, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey) SetId(v int3
 
 // GetPassphrase returns the Passphrase field value if set, zero value otherwise.
 func (o *UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey) GetPassphrase() string {
-	if o == nil || isNil(o.Passphrase) {
+	if o == nil || IsNil(o.Passphrase) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey) GetPassphras
 // GetPassphraseOk returns a tuple with the Passphrase field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey) GetPassphraseOk() (*string, bool) {
-	if o == nil || isNil(o.Passphrase) {
-    return nil, false
+	if o == nil || IsNil(o.Passphrase) {
+		return nil, false
 	}
 	return o.Passphrase, true
 }
 
 // HasPassphrase returns a boolean if a field has been set.
 func (o *UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey) HasPassphrase() bool {
-	if o != nil && !isNil(o.Passphrase) {
+	if o != nil && !IsNil(o.Passphrase) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey) SetPassphras
 }
 
 func (o UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Passphrase) {
-		toSerialize["passphrase"] = o.Passphrase
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Passphrase) {
+		toSerialize["passphrase"] = o.Passphrase
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchRoutingOspfRequestMd5AuthenticationKey struct {

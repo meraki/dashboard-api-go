@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner{}
+
 // UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner struct for UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner
 type UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner struct {
 	// ID of method
@@ -41,7 +44,7 @@ func NewUpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInnerWithD
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner) Ge
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner) Se
 
 // GetAuthenticationTypes returns the AuthenticationTypes field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner) GetAuthenticationTypes() map[string]interface{} {
-	if o == nil || isNil(o.AuthenticationTypes) {
+	if o == nil || IsNil(o.AuthenticationTypes) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner) Ge
 // GetAuthenticationTypesOk returns a tuple with the AuthenticationTypes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner) GetAuthenticationTypesOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.AuthenticationTypes) {
-    return map[string]interface{}{}, false
+	if o == nil || IsNil(o.AuthenticationTypes) {
+		return map[string]interface{}{}, false
 	}
 	return o.AuthenticationTypes, true
 }
 
 // HasAuthenticationTypes returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner) HasAuthenticationTypes() bool {
-	if o != nil && !isNil(o.AuthenticationTypes) {
+	if o != nil && !IsNil(o.AuthenticationTypes) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner) Se
 }
 
 func (o UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.AuthenticationTypes) {
-		toSerialize["authenticationTypes"] = o.AuthenticationTypes
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.AuthenticationTypes) {
+		toSerialize["authenticationTypes"] = o.AuthenticationTypes
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner struct {

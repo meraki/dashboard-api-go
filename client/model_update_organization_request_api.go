@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationRequestApi type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationRequestApi{}
+
 // UpdateOrganizationRequestApi API-specific settings
 type UpdateOrganizationRequestApi struct {
 	// If true, enable the access to the Cisco Meraki Dashboard API
@@ -39,7 +42,7 @@ func NewUpdateOrganizationRequestApiWithDefaults() *UpdateOrganizationRequestApi
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateOrganizationRequestApi) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateOrganizationRequestApi) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationRequestApi) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateOrganizationRequestApi) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateOrganizationRequestApi) SetEnabled(v bool) {
 }
 
 func (o UpdateOrganizationRequestApi) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationRequestApi) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationRequestApi struct {

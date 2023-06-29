@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature{}
+
 // GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature Temperature threshold. One of 'celsius', 'fahrenheit', or 'quality' must be provided.
 type GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature struct {
 	// Alerting threshold in degrees Celsius.
@@ -43,7 +46,7 @@ func NewGetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTe
 
 // GetCelsius returns the Celsius field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature) GetCelsius() float32 {
-	if o == nil || isNil(o.Celsius) {
+	if o == nil || IsNil(o.Celsius) {
 		var ret float32
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdT
 // GetCelsiusOk returns a tuple with the Celsius field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature) GetCelsiusOk() (*float32, bool) {
-	if o == nil || isNil(o.Celsius) {
-    return nil, false
+	if o == nil || IsNil(o.Celsius) {
+		return nil, false
 	}
 	return o.Celsius, true
 }
 
 // HasCelsius returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature) HasCelsius() bool {
-	if o != nil && !isNil(o.Celsius) {
+	if o != nil && !IsNil(o.Celsius) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdT
 
 // GetFahrenheit returns the Fahrenheit field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature) GetFahrenheit() float32 {
-	if o == nil || isNil(o.Fahrenheit) {
+	if o == nil || IsNil(o.Fahrenheit) {
 		var ret float32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdT
 // GetFahrenheitOk returns a tuple with the Fahrenheit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature) GetFahrenheitOk() (*float32, bool) {
-	if o == nil || isNil(o.Fahrenheit) {
-    return nil, false
+	if o == nil || IsNil(o.Fahrenheit) {
+		return nil, false
 	}
 	return o.Fahrenheit, true
 }
 
 // HasFahrenheit returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature) HasFahrenheit() bool {
-	if o != nil && !isNil(o.Fahrenheit) {
+	if o != nil && !IsNil(o.Fahrenheit) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdT
 
 // GetQuality returns the Quality field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature) GetQuality() string {
-	if o == nil || isNil(o.Quality) {
+	if o == nil || IsNil(o.Quality) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdT
 // GetQualityOk returns a tuple with the Quality field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature) GetQualityOk() (*string, bool) {
-	if o == nil || isNil(o.Quality) {
-    return nil, false
+	if o == nil || IsNil(o.Quality) {
+		return nil, false
 	}
 	return o.Quality, true
 }
 
 // HasQuality returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature) HasQuality() bool {
-	if o != nil && !isNil(o.Quality) {
+	if o != nil && !IsNil(o.Quality) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdT
 }
 
 func (o GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Celsius) {
-		toSerialize["celsius"] = o.Celsius
-	}
-	if !isNil(o.Fahrenheit) {
-		toSerialize["fahrenheit"] = o.Fahrenheit
-	}
-	if !isNil(o.Quality) {
-		toSerialize["quality"] = o.Quality
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Celsius) {
+		toSerialize["celsius"] = o.Celsius
+	}
+	if !IsNil(o.Fahrenheit) {
+		toSerialize["fahrenheit"] = o.Fahrenheit
+	}
+	if !IsNil(o.Quality) {
+		toSerialize["quality"] = o.Quality
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature struct {

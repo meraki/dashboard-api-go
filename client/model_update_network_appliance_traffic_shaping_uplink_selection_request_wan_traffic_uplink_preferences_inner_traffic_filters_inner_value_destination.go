@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValueDestination type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValueDestination{}
+
 // UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValueDestination Destination of this custom type traffic filter
 type UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValueDestination struct {
 	// E.g.: \"any\", \"0\" (also means \"any\"), \"8080\", \"1-1024\"
@@ -41,7 +44,7 @@ func NewUpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUpli
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValueDestination) GetPort() string {
-	if o == nil || isNil(o.Port) {
+	if o == nil || IsNil(o.Port) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUpl
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValueDestination) GetPortOk() (*string, bool) {
-	if o == nil || isNil(o.Port) {
-    return nil, false
+	if o == nil || IsNil(o.Port) {
+		return nil, false
 	}
 	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValueDestination) HasPort() bool {
-	if o != nil && !isNil(o.Port) {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUpl
 
 // GetCidr returns the Cidr field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValueDestination) GetCidr() string {
-	if o == nil || isNil(o.Cidr) {
+	if o == nil || IsNil(o.Cidr) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUpl
 // GetCidrOk returns a tuple with the Cidr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValueDestination) GetCidrOk() (*string, bool) {
-	if o == nil || isNil(o.Cidr) {
-    return nil, false
+	if o == nil || IsNil(o.Cidr) {
+		return nil, false
 	}
 	return o.Cidr, true
 }
 
 // HasCidr returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValueDestination) HasCidr() bool {
-	if o != nil && !isNil(o.Cidr) {
+	if o != nil && !IsNil(o.Cidr) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUpl
 }
 
 func (o UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValueDestination) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Port) {
-		toSerialize["port"] = o.Port
-	}
-	if !isNil(o.Cidr) {
-		toSerialize["cidr"] = o.Cidr
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValueDestination) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
+	}
+	if !IsNil(o.Cidr) {
+		toSerialize["cidr"] = o.Cidr
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValueDestination struct {

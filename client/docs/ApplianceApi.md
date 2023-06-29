@@ -136,6 +136,7 @@ func main() {
     serial := "serial_example" // string | Serial
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.CreateDeviceApplianceVmxAuthenticationToken(context.Background(), serial).Execute()
     if err != nil {
@@ -207,6 +208,7 @@ func main() {
     createNetworkAppliancePrefixesDelegatedStaticRequest := *openapiclient.NewCreateNetworkAppliancePrefixesDelegatedStaticRequest("Prefix_example", *openapiclient.NewCreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin()) // CreateNetworkAppliancePrefixesDelegatedStaticRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.CreateNetworkAppliancePrefixesDelegatedStatic(context.Background(), networkId).CreateNetworkAppliancePrefixesDelegatedStaticRequest(createNetworkAppliancePrefixesDelegatedStaticRequest).Execute()
     if err != nil {
@@ -279,6 +281,7 @@ func main() {
     createNetworkApplianceRfProfileRequest := *openapiclient.NewCreateNetworkApplianceRfProfileRequest("Name_example") // CreateNetworkApplianceRfProfileRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.CreateNetworkApplianceRfProfile(context.Background(), networkId).CreateNetworkApplianceRfProfileRequest(createNetworkApplianceRfProfileRequest).Execute()
     if err != nil {
@@ -351,6 +354,7 @@ func main() {
     createNetworkApplianceStaticRouteRequest := *openapiclient.NewCreateNetworkApplianceStaticRouteRequest("Name_example", "Subnet_example", "GatewayIp_example") // CreateNetworkApplianceStaticRouteRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.CreateNetworkApplianceStaticRoute(context.Background(), networkId).CreateNetworkApplianceStaticRouteRequest(createNetworkApplianceStaticRouteRequest).Execute()
     if err != nil {
@@ -423,6 +427,7 @@ func main() {
     createNetworkApplianceTrafficShapingCustomPerformanceClassRequest := *openapiclient.NewCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest("Name_example") // CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.CreateNetworkApplianceTrafficShapingCustomPerformanceClass(context.Background(), networkId).CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest(createNetworkApplianceTrafficShapingCustomPerformanceClassRequest).Execute()
     if err != nil {
@@ -495,6 +500,7 @@ func main() {
     createNetworkApplianceVlanRequest := *openapiclient.NewCreateNetworkApplianceVlanRequest("Id_example", "Name_example") // CreateNetworkApplianceVlanRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.CreateNetworkApplianceVlan(context.Background(), networkId).CreateNetworkApplianceVlanRequest(createNetworkApplianceVlanRequest).Execute()
     if err != nil {
@@ -567,8 +573,9 @@ func main() {
     staticDelegatedPrefixId := "staticDelegatedPrefixId_example" // string | Static delegated prefix ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplianceApi.DeleteNetworkAppliancePrefixesDelegatedStatic(context.Background(), networkId, staticDelegatedPrefixId).Execute()
+    r, err := apiClient.ApplianceApi.DeleteNetworkAppliancePrefixesDelegatedStatic(context.Background(), networkId, staticDelegatedPrefixId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApplianceApi.DeleteNetworkAppliancePrefixesDelegatedStatic``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -638,8 +645,9 @@ func main() {
     rfProfileId := "rfProfileId_example" // string | Rf profile ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplianceApi.DeleteNetworkApplianceRfProfile(context.Background(), networkId, rfProfileId).Execute()
+    r, err := apiClient.ApplianceApi.DeleteNetworkApplianceRfProfile(context.Background(), networkId, rfProfileId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApplianceApi.DeleteNetworkApplianceRfProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -709,8 +717,9 @@ func main() {
     staticRouteId := "staticRouteId_example" // string | Static route ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplianceApi.DeleteNetworkApplianceStaticRoute(context.Background(), networkId, staticRouteId).Execute()
+    r, err := apiClient.ApplianceApi.DeleteNetworkApplianceStaticRoute(context.Background(), networkId, staticRouteId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApplianceApi.DeleteNetworkApplianceStaticRoute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -780,8 +789,9 @@ func main() {
     customPerformanceClassId := "customPerformanceClassId_example" // string | Custom performance class ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplianceApi.DeleteNetworkApplianceTrafficShapingCustomPerformanceClass(context.Background(), networkId, customPerformanceClassId).Execute()
+    r, err := apiClient.ApplianceApi.DeleteNetworkApplianceTrafficShapingCustomPerformanceClass(context.Background(), networkId, customPerformanceClassId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApplianceApi.DeleteNetworkApplianceTrafficShapingCustomPerformanceClass``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -851,8 +861,9 @@ func main() {
     vlanId := "vlanId_example" // string | Vlan ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ApplianceApi.DeleteNetworkApplianceVlan(context.Background(), networkId, vlanId).Execute()
+    r, err := apiClient.ApplianceApi.DeleteNetworkApplianceVlan(context.Background(), networkId, vlanId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApplianceApi.DeleteNetworkApplianceVlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -921,6 +932,7 @@ func main() {
     serial := "serial_example" // string | Serial
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetDeviceApplianceDhcpSubnets(context.Background(), serial).Execute()
     if err != nil {
@@ -991,6 +1003,7 @@ func main() {
     serial := "serial_example" // string | Serial
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetDeviceAppliancePerformance(context.Background(), serial).Execute()
     if err != nil {
@@ -1061,6 +1074,7 @@ func main() {
     serial := "serial_example" // string | Serial
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetDeviceAppliancePrefixesDelegated(context.Background(), serial).Execute()
     if err != nil {
@@ -1131,6 +1145,7 @@ func main() {
     serial := "serial_example" // string | Serial
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetDeviceAppliancePrefixesDelegatedVlanAssignments(context.Background(), serial).Execute()
     if err != nil {
@@ -1201,6 +1216,7 @@ func main() {
     serial := "serial_example" // string | Serial
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetDeviceApplianceRadioSettings(context.Background(), serial).Execute()
     if err != nil {
@@ -1271,6 +1287,7 @@ func main() {
     serial := "serial_example" // string | Serial
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetDeviceApplianceUplinksSettings(context.Background(), serial).Execute()
     if err != nil {
@@ -1349,6 +1366,7 @@ func main() {
     sortOrder := "sortOrder_example" // string | Sorted order of security events based on event detection time. Order options are 'ascending' or 'descending'. Default is ascending order. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceClientSecurityEvents(context.Background(), networkId, clientId).T0(t0).T1(t1).Timespan(timespan).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).SortOrder(sortOrder).Execute()
     if err != nil {
@@ -1428,6 +1446,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceConnectivityMonitoringDestinations(context.Background(), networkId).Execute()
     if err != nil {
@@ -1498,6 +1517,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceContentFiltering(context.Background(), networkId).Execute()
     if err != nil {
@@ -1568,6 +1588,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceContentFilteringCategories(context.Background(), networkId).Execute()
     if err != nil {
@@ -1638,6 +1659,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceFirewallCellularFirewallRules(context.Background(), networkId).Execute()
     if err != nil {
@@ -1709,6 +1731,7 @@ func main() {
     service := "service_example" // string | Service
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceFirewallFirewalledService(context.Background(), networkId, service).Execute()
     if err != nil {
@@ -1781,6 +1804,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceFirewallFirewalledServices(context.Background(), networkId).Execute()
     if err != nil {
@@ -1851,6 +1875,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceFirewallInboundCellularFirewallRules(context.Background(), networkId).Execute()
     if err != nil {
@@ -1921,6 +1946,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceFirewallInboundFirewallRules(context.Background(), networkId).Execute()
     if err != nil {
@@ -1991,6 +2017,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceFirewallL3FirewallRules(context.Background(), networkId).Execute()
     if err != nil {
@@ -2061,6 +2088,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceFirewallL7FirewallRules(context.Background(), networkId).Execute()
     if err != nil {
@@ -2131,6 +2159,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories(context.Background(), networkId).Execute()
     if err != nil {
@@ -2201,6 +2230,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceFirewallOneToManyNatRules(context.Background(), networkId).Execute()
     if err != nil {
@@ -2271,6 +2301,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceFirewallOneToOneNatRules(context.Background(), networkId).Execute()
     if err != nil {
@@ -2341,6 +2372,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceFirewallPortForwardingRules(context.Background(), networkId).Execute()
     if err != nil {
@@ -2411,6 +2443,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceFirewallSettings(context.Background(), networkId).Execute()
     if err != nil {
@@ -2482,6 +2515,7 @@ func main() {
     portId := "portId_example" // string | Port ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkAppliancePort(context.Background(), networkId, portId).Execute()
     if err != nil {
@@ -2554,6 +2588,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkAppliancePorts(context.Background(), networkId).Execute()
     if err != nil {
@@ -2625,6 +2660,7 @@ func main() {
     staticDelegatedPrefixId := "staticDelegatedPrefixId_example" // string | Static delegated prefix ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkAppliancePrefixesDelegatedStatic(context.Background(), networkId, staticDelegatedPrefixId).Execute()
     if err != nil {
@@ -2697,6 +2733,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkAppliancePrefixesDelegatedStatics(context.Background(), networkId).Execute()
     if err != nil {
@@ -2768,6 +2805,7 @@ func main() {
     rfProfileId := "rfProfileId_example" // string | Rf profile ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceRfProfile(context.Background(), networkId, rfProfileId).Execute()
     if err != nil {
@@ -2840,6 +2878,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceRfProfiles(context.Background(), networkId).Execute()
     if err != nil {
@@ -2917,6 +2956,7 @@ func main() {
     sortOrder := "sortOrder_example" // string | Sorted order of security events based on event detection time. Order options are 'ascending' or 'descending'. Default is ascending order. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceSecurityEvents(context.Background(), networkId).T0(t0).T1(t1).Timespan(timespan).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).SortOrder(sortOrder).Execute()
     if err != nil {
@@ -2994,6 +3034,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceSecurityIntrusion(context.Background(), networkId).Execute()
     if err != nil {
@@ -3064,6 +3105,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceSecurityMalware(context.Background(), networkId).Execute()
     if err != nil {
@@ -3134,6 +3176,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceSettings(context.Background(), networkId).Execute()
     if err != nil {
@@ -3204,6 +3247,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceSingleLan(context.Background(), networkId).Execute()
     if err != nil {
@@ -3275,6 +3319,7 @@ func main() {
     number := "number_example" // string | Number
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceSsid(context.Background(), networkId, number).Execute()
     if err != nil {
@@ -3347,6 +3392,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceSsids(context.Background(), networkId).Execute()
     if err != nil {
@@ -3418,6 +3464,7 @@ func main() {
     staticRouteId := "staticRouteId_example" // string | Static route ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceStaticRoute(context.Background(), networkId, staticRouteId).Execute()
     if err != nil {
@@ -3490,6 +3537,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceStaticRoutes(context.Background(), networkId).Execute()
     if err != nil {
@@ -3560,6 +3608,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceTrafficShaping(context.Background(), networkId).Execute()
     if err != nil {
@@ -3631,6 +3680,7 @@ func main() {
     customPerformanceClassId := "customPerformanceClassId_example" // string | Custom performance class ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceTrafficShapingCustomPerformanceClass(context.Background(), networkId, customPerformanceClassId).Execute()
     if err != nil {
@@ -3703,6 +3753,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceTrafficShapingCustomPerformanceClasses(context.Background(), networkId).Execute()
     if err != nil {
@@ -3773,6 +3824,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceTrafficShapingRules(context.Background(), networkId).Execute()
     if err != nil {
@@ -3843,6 +3895,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceTrafficShapingUplinkBandwidth(context.Background(), networkId).Execute()
     if err != nil {
@@ -3913,6 +3966,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceTrafficShapingUplinkSelection(context.Background(), networkId).Execute()
     if err != nil {
@@ -3987,6 +4041,7 @@ func main() {
     resolution := int32(56) // int32 | The time resolution in seconds for returned data. The valid resolutions are: 60, 300, 600, 1800, 3600, 86400. The default is 60. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceUplinksUsageHistory(context.Background(), networkId).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).Execute()
     if err != nil {
@@ -4062,6 +4117,7 @@ func main() {
     vlanId := "vlanId_example" // string | Vlan ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceVlan(context.Background(), networkId, vlanId).Execute()
     if err != nil {
@@ -4134,6 +4190,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceVlans(context.Background(), networkId).Execute()
     if err != nil {
@@ -4204,6 +4261,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceVlansSettings(context.Background(), networkId).Execute()
     if err != nil {
@@ -4274,6 +4332,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceVpnBgp(context.Background(), networkId).Execute()
     if err != nil {
@@ -4344,6 +4403,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceVpnSiteToSiteVpn(context.Background(), networkId).Execute()
     if err != nil {
@@ -4414,6 +4474,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetNetworkApplianceWarmSpare(context.Background(), networkId).Execute()
     if err != nil {
@@ -4491,6 +4552,7 @@ func main() {
     sortOrder := "sortOrder_example" // string | Sorted order of security events based on event detection time. Order options are 'ascending' or 'descending'. Default is ascending order. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetOrganizationApplianceSecurityEvents(context.Background(), organizationId).T0(t0).T1(t1).Timespan(timespan).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).SortOrder(sortOrder).Execute()
     if err != nil {
@@ -4568,6 +4630,7 @@ func main() {
     organizationId := "organizationId_example" // string | Organization ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetOrganizationApplianceSecurityIntrusion(context.Background(), organizationId).Execute()
     if err != nil {
@@ -4644,6 +4707,7 @@ func main() {
     iccids := []string{"Inner_example"} // []string | A list of ICCIDs. The returned devices will be filtered to only include these ICCIDs. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetOrganizationApplianceUplinkStatuses(context.Background(), organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Iccids(iccids).Execute()
     if err != nil {
@@ -4727,6 +4791,7 @@ func main() {
     timespan := float32(3.4) // float32 | The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 1 day. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetOrganizationApplianceVpnStats(context.Background(), organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).T0(t0).T1(t1).Timespan(timespan).Execute()
     if err != nil {
@@ -4808,6 +4873,7 @@ func main() {
     networkIds := []string{"Inner_example"} // []string | A list of Meraki network IDs to filter results to contain only specified networks. E.g.: networkIds[]=N_12345678&networkIds[]=L_3456 (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetOrganizationApplianceVpnStatuses(context.Background(), organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Execute()
     if err != nil {
@@ -4882,6 +4948,7 @@ func main() {
     organizationId := "organizationId_example" // string | Organization ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetOrganizationApplianceVpnThirdPartyVPNPeers(context.Background(), organizationId).Execute()
     if err != nil {
@@ -4952,6 +5019,7 @@ func main() {
     organizationId := "organizationId_example" // string | Organization ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.GetOrganizationApplianceVpnVpnFirewallRules(context.Background(), organizationId).Execute()
     if err != nil {
@@ -5022,6 +5090,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.SwapNetworkApplianceWarmSpare(context.Background(), networkId).Execute()
     if err != nil {
@@ -5093,6 +5162,7 @@ func main() {
     updateDeviceApplianceRadioSettingsRequest := *openapiclient.NewUpdateDeviceApplianceRadioSettingsRequest() // UpdateDeviceApplianceRadioSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateDeviceApplianceRadioSettings(context.Background(), serial).UpdateDeviceApplianceRadioSettingsRequest(updateDeviceApplianceRadioSettingsRequest).Execute()
     if err != nil {
@@ -5165,6 +5235,7 @@ func main() {
     updateDeviceApplianceUplinksSettingsRequest := *openapiclient.NewUpdateDeviceApplianceUplinksSettingsRequest(*openapiclient.NewUpdateDeviceApplianceUplinksSettingsRequestInterfaces()) // UpdateDeviceApplianceUplinksSettingsRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateDeviceApplianceUplinksSettings(context.Background(), serial).UpdateDeviceApplianceUplinksSettingsRequest(updateDeviceApplianceUplinksSettingsRequest).Execute()
     if err != nil {
@@ -5237,6 +5308,7 @@ func main() {
     updateNetworkApplianceConnectivityMonitoringDestinationsRequest := *openapiclient.NewUpdateNetworkApplianceConnectivityMonitoringDestinationsRequest() // UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceConnectivityMonitoringDestinations(context.Background(), networkId).UpdateNetworkApplianceConnectivityMonitoringDestinationsRequest(updateNetworkApplianceConnectivityMonitoringDestinationsRequest).Execute()
     if err != nil {
@@ -5309,6 +5381,7 @@ func main() {
     updateNetworkApplianceContentFilteringRequest := *openapiclient.NewUpdateNetworkApplianceContentFilteringRequest() // UpdateNetworkApplianceContentFilteringRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceContentFiltering(context.Background(), networkId).UpdateNetworkApplianceContentFilteringRequest(updateNetworkApplianceContentFilteringRequest).Execute()
     if err != nil {
@@ -5381,6 +5454,7 @@ func main() {
     updateNetworkApplianceFirewallCellularFirewallRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallCellularFirewallRulesRequest() // UpdateNetworkApplianceFirewallCellularFirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceFirewallCellularFirewallRules(context.Background(), networkId).UpdateNetworkApplianceFirewallCellularFirewallRulesRequest(updateNetworkApplianceFirewallCellularFirewallRulesRequest).Execute()
     if err != nil {
@@ -5454,6 +5528,7 @@ func main() {
     updateNetworkApplianceFirewallFirewalledServiceRequest := *openapiclient.NewUpdateNetworkApplianceFirewallFirewalledServiceRequest("Access_example") // UpdateNetworkApplianceFirewallFirewalledServiceRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceFirewallFirewalledService(context.Background(), networkId, service).UpdateNetworkApplianceFirewallFirewalledServiceRequest(updateNetworkApplianceFirewallFirewalledServiceRequest).Execute()
     if err != nil {
@@ -5528,6 +5603,7 @@ func main() {
     updateNetworkApplianceFirewallCellularFirewallRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallCellularFirewallRulesRequest() // UpdateNetworkApplianceFirewallCellularFirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceFirewallInboundCellularFirewallRules(context.Background(), networkId).UpdateNetworkApplianceFirewallCellularFirewallRulesRequest(updateNetworkApplianceFirewallCellularFirewallRulesRequest).Execute()
     if err != nil {
@@ -5600,6 +5676,7 @@ func main() {
     updateNetworkApplianceFirewallInboundFirewallRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallInboundFirewallRulesRequest() // UpdateNetworkApplianceFirewallInboundFirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceFirewallInboundFirewallRules(context.Background(), networkId).UpdateNetworkApplianceFirewallInboundFirewallRulesRequest(updateNetworkApplianceFirewallInboundFirewallRulesRequest).Execute()
     if err != nil {
@@ -5672,6 +5749,7 @@ func main() {
     updateNetworkApplianceFirewallInboundFirewallRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallInboundFirewallRulesRequest() // UpdateNetworkApplianceFirewallInboundFirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceFirewallL3FirewallRules(context.Background(), networkId).UpdateNetworkApplianceFirewallInboundFirewallRulesRequest(updateNetworkApplianceFirewallInboundFirewallRulesRequest).Execute()
     if err != nil {
@@ -5744,6 +5822,7 @@ func main() {
     updateNetworkApplianceFirewallL7FirewallRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallL7FirewallRulesRequest() // UpdateNetworkApplianceFirewallL7FirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceFirewallL7FirewallRules(context.Background(), networkId).UpdateNetworkApplianceFirewallL7FirewallRulesRequest(updateNetworkApplianceFirewallL7FirewallRulesRequest).Execute()
     if err != nil {
@@ -5816,6 +5895,7 @@ func main() {
     updateNetworkApplianceFirewallOneToManyNatRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallOneToManyNatRulesRequest([]openapiclient.UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner{*openapiclient.NewUpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInner("PublicIp_example", "Uplink_example", []openapiclient.UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner{*openapiclient.NewUpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner()})}) // UpdateNetworkApplianceFirewallOneToManyNatRulesRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceFirewallOneToManyNatRules(context.Background(), networkId).UpdateNetworkApplianceFirewallOneToManyNatRulesRequest(updateNetworkApplianceFirewallOneToManyNatRulesRequest).Execute()
     if err != nil {
@@ -5888,6 +5968,7 @@ func main() {
     updateNetworkApplianceFirewallOneToOneNatRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallOneToOneNatRulesRequest([]openapiclient.UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner{*openapiclient.NewUpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner("LanIp_example")}) // UpdateNetworkApplianceFirewallOneToOneNatRulesRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceFirewallOneToOneNatRules(context.Background(), networkId).UpdateNetworkApplianceFirewallOneToOneNatRulesRequest(updateNetworkApplianceFirewallOneToOneNatRulesRequest).Execute()
     if err != nil {
@@ -5960,6 +6041,7 @@ func main() {
     updateNetworkApplianceFirewallPortForwardingRulesRequest := *openapiclient.NewUpdateNetworkApplianceFirewallPortForwardingRulesRequest([]openapiclient.UpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner{*openapiclient.NewUpdateNetworkApplianceFirewallPortForwardingRulesRequestRulesInner("LanIp_example", "PublicPort_example", "LocalPort_example", []string{"AllowedIps_example"}, "Protocol_example")}) // UpdateNetworkApplianceFirewallPortForwardingRulesRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceFirewallPortForwardingRules(context.Background(), networkId).UpdateNetworkApplianceFirewallPortForwardingRulesRequest(updateNetworkApplianceFirewallPortForwardingRulesRequest).Execute()
     if err != nil {
@@ -6032,6 +6114,7 @@ func main() {
     updateNetworkApplianceFirewallSettingsRequest := *openapiclient.NewUpdateNetworkApplianceFirewallSettingsRequest() // UpdateNetworkApplianceFirewallSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceFirewallSettings(context.Background(), networkId).UpdateNetworkApplianceFirewallSettingsRequest(updateNetworkApplianceFirewallSettingsRequest).Execute()
     if err != nil {
@@ -6105,6 +6188,7 @@ func main() {
     updateNetworkAppliancePortRequest := *openapiclient.NewUpdateNetworkAppliancePortRequest() // UpdateNetworkAppliancePortRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkAppliancePort(context.Background(), networkId, portId).UpdateNetworkAppliancePortRequest(updateNetworkAppliancePortRequest).Execute()
     if err != nil {
@@ -6180,6 +6264,7 @@ func main() {
     updateNetworkAppliancePrefixesDelegatedStaticRequest := *openapiclient.NewUpdateNetworkAppliancePrefixesDelegatedStaticRequest() // UpdateNetworkAppliancePrefixesDelegatedStaticRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkAppliancePrefixesDelegatedStatic(context.Background(), networkId, staticDelegatedPrefixId).UpdateNetworkAppliancePrefixesDelegatedStaticRequest(updateNetworkAppliancePrefixesDelegatedStaticRequest).Execute()
     if err != nil {
@@ -6255,6 +6340,7 @@ func main() {
     updateNetworkApplianceRfProfileRequest := *openapiclient.NewUpdateNetworkApplianceRfProfileRequest() // UpdateNetworkApplianceRfProfileRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceRfProfile(context.Background(), networkId, rfProfileId).UpdateNetworkApplianceRfProfileRequest(updateNetworkApplianceRfProfileRequest).Execute()
     if err != nil {
@@ -6329,6 +6415,7 @@ func main() {
     updateNetworkApplianceSecurityIntrusionRequest := *openapiclient.NewUpdateNetworkApplianceSecurityIntrusionRequest() // UpdateNetworkApplianceSecurityIntrusionRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceSecurityIntrusion(context.Background(), networkId).UpdateNetworkApplianceSecurityIntrusionRequest(updateNetworkApplianceSecurityIntrusionRequest).Execute()
     if err != nil {
@@ -6401,6 +6488,7 @@ func main() {
     updateNetworkApplianceSecurityMalwareRequest := *openapiclient.NewUpdateNetworkApplianceSecurityMalwareRequest("Mode_example") // UpdateNetworkApplianceSecurityMalwareRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceSecurityMalware(context.Background(), networkId).UpdateNetworkApplianceSecurityMalwareRequest(updateNetworkApplianceSecurityMalwareRequest).Execute()
     if err != nil {
@@ -6473,6 +6561,7 @@ func main() {
     updateNetworkApplianceSettingsRequest := *openapiclient.NewUpdateNetworkApplianceSettingsRequest() // UpdateNetworkApplianceSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceSettings(context.Background(), networkId).UpdateNetworkApplianceSettingsRequest(updateNetworkApplianceSettingsRequest).Execute()
     if err != nil {
@@ -6545,6 +6634,7 @@ func main() {
     updateNetworkApplianceSingleLanRequest := *openapiclient.NewUpdateNetworkApplianceSingleLanRequest() // UpdateNetworkApplianceSingleLanRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceSingleLan(context.Background(), networkId).UpdateNetworkApplianceSingleLanRequest(updateNetworkApplianceSingleLanRequest).Execute()
     if err != nil {
@@ -6618,6 +6708,7 @@ func main() {
     updateNetworkApplianceSsidRequest := *openapiclient.NewUpdateNetworkApplianceSsidRequest() // UpdateNetworkApplianceSsidRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceSsid(context.Background(), networkId, number).UpdateNetworkApplianceSsidRequest(updateNetworkApplianceSsidRequest).Execute()
     if err != nil {
@@ -6693,6 +6784,7 @@ func main() {
     updateNetworkApplianceStaticRouteRequest := *openapiclient.NewUpdateNetworkApplianceStaticRouteRequest() // UpdateNetworkApplianceStaticRouteRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceStaticRoute(context.Background(), networkId, staticRouteId).UpdateNetworkApplianceStaticRouteRequest(updateNetworkApplianceStaticRouteRequest).Execute()
     if err != nil {
@@ -6767,6 +6859,7 @@ func main() {
     updateNetworkApplianceTrafficShapingRequest := *openapiclient.NewUpdateNetworkApplianceTrafficShapingRequest() // UpdateNetworkApplianceTrafficShapingRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceTrafficShaping(context.Background(), networkId).UpdateNetworkApplianceTrafficShapingRequest(updateNetworkApplianceTrafficShapingRequest).Execute()
     if err != nil {
@@ -6840,6 +6933,7 @@ func main() {
     updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest := *openapiclient.NewUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest() // UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceTrafficShapingCustomPerformanceClass(context.Background(), networkId, customPerformanceClassId).UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest(updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest).Execute()
     if err != nil {
@@ -6914,6 +7008,7 @@ func main() {
     updateNetworkApplianceTrafficShapingRulesRequest := *openapiclient.NewUpdateNetworkApplianceTrafficShapingRulesRequest() // UpdateNetworkApplianceTrafficShapingRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceTrafficShapingRules(context.Background(), networkId).UpdateNetworkApplianceTrafficShapingRulesRequest(updateNetworkApplianceTrafficShapingRulesRequest).Execute()
     if err != nil {
@@ -6986,6 +7081,7 @@ func main() {
     updateNetworkApplianceTrafficShapingUplinkBandwidthRequest := *openapiclient.NewUpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest() // UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceTrafficShapingUplinkBandwidth(context.Background(), networkId).UpdateNetworkApplianceTrafficShapingUplinkBandwidthRequest(updateNetworkApplianceTrafficShapingUplinkBandwidthRequest).Execute()
     if err != nil {
@@ -7058,6 +7154,7 @@ func main() {
     updateNetworkApplianceTrafficShapingUplinkSelectionRequest := *openapiclient.NewUpdateNetworkApplianceTrafficShapingUplinkSelectionRequest() // UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceTrafficShapingUplinkSelection(context.Background(), networkId).UpdateNetworkApplianceTrafficShapingUplinkSelectionRequest(updateNetworkApplianceTrafficShapingUplinkSelectionRequest).Execute()
     if err != nil {
@@ -7131,6 +7228,7 @@ func main() {
     updateNetworkApplianceVlanRequest := *openapiclient.NewUpdateNetworkApplianceVlanRequest() // UpdateNetworkApplianceVlanRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceVlan(context.Background(), networkId, vlanId).UpdateNetworkApplianceVlanRequest(updateNetworkApplianceVlanRequest).Execute()
     if err != nil {
@@ -7205,6 +7303,7 @@ func main() {
     updateNetworkApplianceVlansSettingsRequest := *openapiclient.NewUpdateNetworkApplianceVlansSettingsRequest() // UpdateNetworkApplianceVlansSettingsRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceVlansSettings(context.Background(), networkId).UpdateNetworkApplianceVlansSettingsRequest(updateNetworkApplianceVlansSettingsRequest).Execute()
     if err != nil {
@@ -7277,6 +7376,7 @@ func main() {
     updateNetworkApplianceVpnBgpRequest := *openapiclient.NewUpdateNetworkApplianceVpnBgpRequest(false) // UpdateNetworkApplianceVpnBgpRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceVpnBgp(context.Background(), networkId).UpdateNetworkApplianceVpnBgpRequest(updateNetworkApplianceVpnBgpRequest).Execute()
     if err != nil {
@@ -7349,6 +7449,7 @@ func main() {
     updateNetworkApplianceVpnSiteToSiteVpnRequest := *openapiclient.NewUpdateNetworkApplianceVpnSiteToSiteVpnRequest("Mode_example") // UpdateNetworkApplianceVpnSiteToSiteVpnRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceVpnSiteToSiteVpn(context.Background(), networkId).UpdateNetworkApplianceVpnSiteToSiteVpnRequest(updateNetworkApplianceVpnSiteToSiteVpnRequest).Execute()
     if err != nil {
@@ -7421,6 +7522,7 @@ func main() {
     updateNetworkApplianceWarmSpareRequest := *openapiclient.NewUpdateNetworkApplianceWarmSpareRequest(false) // UpdateNetworkApplianceWarmSpareRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateNetworkApplianceWarmSpare(context.Background(), networkId).UpdateNetworkApplianceWarmSpareRequest(updateNetworkApplianceWarmSpareRequest).Execute()
     if err != nil {
@@ -7493,6 +7595,7 @@ func main() {
     updateOrganizationApplianceSecurityIntrusionRequest := *openapiclient.NewUpdateOrganizationApplianceSecurityIntrusionRequest([]openapiclient.UpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner{*openapiclient.NewUpdateOrganizationApplianceSecurityIntrusionRequestAllowedRulesInner("RuleId_example")}) // UpdateOrganizationApplianceSecurityIntrusionRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateOrganizationApplianceSecurityIntrusion(context.Background(), organizationId).UpdateOrganizationApplianceSecurityIntrusionRequest(updateOrganizationApplianceSecurityIntrusionRequest).Execute()
     if err != nil {
@@ -7565,6 +7668,7 @@ func main() {
     updateOrganizationApplianceVpnThirdPartyVPNPeersRequest := *openapiclient.NewUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest([]openapiclient.UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner{*openapiclient.NewUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner("Name_example", []string{"PrivateSubnets_example"}, "Secret_example")}) // UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateOrganizationApplianceVpnThirdPartyVPNPeers(context.Background(), organizationId).UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequest(updateOrganizationApplianceVpnThirdPartyVPNPeersRequest).Execute()
     if err != nil {
@@ -7637,6 +7741,7 @@ func main() {
     updateOrganizationApplianceVpnVpnFirewallRulesRequest := *openapiclient.NewUpdateOrganizationApplianceVpnVpnFirewallRulesRequest() // UpdateOrganizationApplianceVpnVpnFirewallRulesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ApplianceApi.UpdateOrganizationApplianceVpnVpnFirewallRules(context.Background(), organizationId).UpdateOrganizationApplianceVpnVpnFirewallRulesRequest(updateOrganizationApplianceVpnVpnFirewallRulesRequest).Execute()
     if err != nil {

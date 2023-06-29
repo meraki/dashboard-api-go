@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner{}
+
 // UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner struct for UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner
 type UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner struct {
 	// The network ID of the hub.
@@ -54,7 +57,7 @@ func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner) GetHubId() stri
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner) GetHubIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.HubId, true
 }
@@ -66,7 +69,7 @@ func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner) SetHubId(v stri
 
 // GetUseDefaultRoute returns the UseDefaultRoute field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner) GetUseDefaultRoute() bool {
-	if o == nil || isNil(o.UseDefaultRoute) {
+	if o == nil || IsNil(o.UseDefaultRoute) {
 		var ret bool
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner) GetUseDefaultRo
 // GetUseDefaultRouteOk returns a tuple with the UseDefaultRoute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner) GetUseDefaultRouteOk() (*bool, bool) {
-	if o == nil || isNil(o.UseDefaultRoute) {
-    return nil, false
+	if o == nil || IsNil(o.UseDefaultRoute) {
+		return nil, false
 	}
 	return o.UseDefaultRoute, true
 }
 
 // HasUseDefaultRoute returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner) HasUseDefaultRoute() bool {
-	if o != nil && !isNil(o.UseDefaultRoute) {
+	if o != nil && !IsNil(o.UseDefaultRoute) {
 		return true
 	}
 
@@ -97,14 +100,20 @@ func (o *UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner) SetUseDefaultRo
 }
 
 func (o UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["hubId"] = o.HubId
-	}
-	if !isNil(o.UseDefaultRoute) {
-		toSerialize["useDefaultRoute"] = o.UseDefaultRoute
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["hubId"] = o.HubId
+	if !IsNil(o.UseDefaultRoute) {
+		toSerialize["useDefaultRoute"] = o.UseDefaultRoute
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceVpnSiteToSiteVpnRequestHubsInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInnerOrigin type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInnerOrigin{}
+
 // UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInnerOrigin The origin of the prefix
 type UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInnerOrigin struct {
 	// Type of the origin
@@ -54,7 +57,7 @@ func (o *UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInnerOrigin)
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInnerOrigin) GetTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Type, true
 }
@@ -66,7 +69,7 @@ func (o *UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInnerOrigin)
 
 // GetInterfaces returns the Interfaces field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInnerOrigin) GetInterfaces() []string {
-	if o == nil || isNil(o.Interfaces) {
+	if o == nil || IsNil(o.Interfaces) {
 		var ret []string
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInnerOrigin)
 // GetInterfacesOk returns a tuple with the Interfaces field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInnerOrigin) GetInterfacesOk() ([]string, bool) {
-	if o == nil || isNil(o.Interfaces) {
-    return nil, false
+	if o == nil || IsNil(o.Interfaces) {
+		return nil, false
 	}
 	return o.Interfaces, true
 }
 
 // HasInterfaces returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInnerOrigin) HasInterfaces() bool {
-	if o != nil && !isNil(o.Interfaces) {
+	if o != nil && !IsNil(o.Interfaces) {
 		return true
 	}
 
@@ -97,14 +100,20 @@ func (o *UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInnerOrigin)
 }
 
 func (o UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInnerOrigin) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Interfaces) {
-		toSerialize["interfaces"] = o.Interfaces
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInnerOrigin) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
+	if !IsNil(o.Interfaces) {
+		toSerialize["interfaces"] = o.Interfaces
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceSingleLanRequestIpv6PrefixAssignmentsInnerOrigin struct {

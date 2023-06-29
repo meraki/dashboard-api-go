@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidVpnRequestFailover type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidVpnRequestFailover{}
+
 // UpdateNetworkWirelessSsidVpnRequestFailover Secondary VPN concentrator settings. This is only used when two VPN concentrators are configured on the SSID.
 type UpdateNetworkWirelessSsidVpnRequestFailover struct {
 	// IP addressed reserved on DHCP server where SSID will terminate.
@@ -43,7 +46,7 @@ func NewUpdateNetworkWirelessSsidVpnRequestFailoverWithDefaults() *UpdateNetwork
 
 // GetRequestIp returns the RequestIp field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidVpnRequestFailover) GetRequestIp() string {
-	if o == nil || isNil(o.RequestIp) {
+	if o == nil || IsNil(o.RequestIp) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateNetworkWirelessSsidVpnRequestFailover) GetRequestIp() string {
 // GetRequestIpOk returns a tuple with the RequestIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestFailover) GetRequestIpOk() (*string, bool) {
-	if o == nil || isNil(o.RequestIp) {
-    return nil, false
+	if o == nil || IsNil(o.RequestIp) {
+		return nil, false
 	}
 	return o.RequestIp, true
 }
 
 // HasRequestIp returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestFailover) HasRequestIp() bool {
-	if o != nil && !isNil(o.RequestIp) {
+	if o != nil && !IsNil(o.RequestIp) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *UpdateNetworkWirelessSsidVpnRequestFailover) SetRequestIp(v string) {
 
 // GetHeartbeatInterval returns the HeartbeatInterval field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidVpnRequestFailover) GetHeartbeatInterval() int32 {
-	if o == nil || isNil(o.HeartbeatInterval) {
+	if o == nil || IsNil(o.HeartbeatInterval) {
 		var ret int32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *UpdateNetworkWirelessSsidVpnRequestFailover) GetHeartbeatInterval() int
 // GetHeartbeatIntervalOk returns a tuple with the HeartbeatInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestFailover) GetHeartbeatIntervalOk() (*int32, bool) {
-	if o == nil || isNil(o.HeartbeatInterval) {
-    return nil, false
+	if o == nil || IsNil(o.HeartbeatInterval) {
+		return nil, false
 	}
 	return o.HeartbeatInterval, true
 }
 
 // HasHeartbeatInterval returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestFailover) HasHeartbeatInterval() bool {
-	if o != nil && !isNil(o.HeartbeatInterval) {
+	if o != nil && !IsNil(o.HeartbeatInterval) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *UpdateNetworkWirelessSsidVpnRequestFailover) SetHeartbeatInterval(v int
 
 // GetIdleTimeout returns the IdleTimeout field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidVpnRequestFailover) GetIdleTimeout() int32 {
-	if o == nil || isNil(o.IdleTimeout) {
+	if o == nil || IsNil(o.IdleTimeout) {
 		var ret int32
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *UpdateNetworkWirelessSsidVpnRequestFailover) GetIdleTimeout() int32 {
 // GetIdleTimeoutOk returns a tuple with the IdleTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestFailover) GetIdleTimeoutOk() (*int32, bool) {
-	if o == nil || isNil(o.IdleTimeout) {
-    return nil, false
+	if o == nil || IsNil(o.IdleTimeout) {
+		return nil, false
 	}
 	return o.IdleTimeout, true
 }
 
 // HasIdleTimeout returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestFailover) HasIdleTimeout() bool {
-	if o != nil && !isNil(o.IdleTimeout) {
+	if o != nil && !IsNil(o.IdleTimeout) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *UpdateNetworkWirelessSsidVpnRequestFailover) SetIdleTimeout(v int32) {
 }
 
 func (o UpdateNetworkWirelessSsidVpnRequestFailover) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.RequestIp) {
-		toSerialize["requestIp"] = o.RequestIp
-	}
-	if !isNil(o.HeartbeatInterval) {
-		toSerialize["heartbeatInterval"] = o.HeartbeatInterval
-	}
-	if !isNil(o.IdleTimeout) {
-		toSerialize["idleTimeout"] = o.IdleTimeout
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidVpnRequestFailover) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.RequestIp) {
+		toSerialize["requestIp"] = o.RequestIp
+	}
+	if !IsNil(o.HeartbeatInterval) {
+		toSerialize["heartbeatInterval"] = o.HeartbeatInterval
+	}
+	if !IsNil(o.IdleTimeout) {
+		toSerialize["idleTimeout"] = o.IdleTimeout
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidVpnRequestFailover struct {

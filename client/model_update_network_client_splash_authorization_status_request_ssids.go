@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkClientSplashAuthorizationStatusRequestSsids type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkClientSplashAuthorizationStatusRequestSsids{}
+
 // UpdateNetworkClientSplashAuthorizationStatusRequestSsids The target SSIDs. Each SSID must be enabled and must have Click-through splash enabled. For each SSID where isAuthorized is true, the expiration time will automatically be set according to the SSID's splash frequency. Not all networks support configuring all SSIDs
 type UpdateNetworkClientSplashAuthorizationStatusRequestSsids struct {
 	Var0 *UpdateNetworkClientSplashAuthorizationStatusRequestSsids0 `json:"0,omitempty"`
@@ -52,7 +55,7 @@ func NewUpdateNetworkClientSplashAuthorizationStatusRequestSsidsWithDefaults() *
 
 // GetVar0 returns the Var0 field value if set, zero value otherwise.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar0() UpdateNetworkClientSplashAuthorizationStatusRequestSsids0 {
-	if o == nil || isNil(o.Var0) {
+	if o == nil || IsNil(o.Var0) {
 		var ret UpdateNetworkClientSplashAuthorizationStatusRequestSsids0
 		return ret
 	}
@@ -62,15 +65,15 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar0() Upd
 // GetVar0Ok returns a tuple with the Var0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar0Ok() (*UpdateNetworkClientSplashAuthorizationStatusRequestSsids0, bool) {
-	if o == nil || isNil(o.Var0) {
-    return nil, false
+	if o == nil || IsNil(o.Var0) {
+		return nil, false
 	}
 	return o.Var0, true
 }
 
 // HasVar0 returns a boolean if a field has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) HasVar0() bool {
-	if o != nil && !isNil(o.Var0) {
+	if o != nil && !IsNil(o.Var0) {
 		return true
 	}
 
@@ -84,7 +87,7 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) SetVar0(v Upd
 
 // GetVar1 returns the Var1 field value if set, zero value otherwise.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar1() UpdateNetworkClientSplashAuthorizationStatusRequestSsids1 {
-	if o == nil || isNil(o.Var1) {
+	if o == nil || IsNil(o.Var1) {
 		var ret UpdateNetworkClientSplashAuthorizationStatusRequestSsids1
 		return ret
 	}
@@ -94,15 +97,15 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar1() Upd
 // GetVar1Ok returns a tuple with the Var1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar1Ok() (*UpdateNetworkClientSplashAuthorizationStatusRequestSsids1, bool) {
-	if o == nil || isNil(o.Var1) {
-    return nil, false
+	if o == nil || IsNil(o.Var1) {
+		return nil, false
 	}
 	return o.Var1, true
 }
 
 // HasVar1 returns a boolean if a field has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) HasVar1() bool {
-	if o != nil && !isNil(o.Var1) {
+	if o != nil && !IsNil(o.Var1) {
 		return true
 	}
 
@@ -116,7 +119,7 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) SetVar1(v Upd
 
 // GetVar2 returns the Var2 field value if set, zero value otherwise.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar2() UpdateNetworkClientSplashAuthorizationStatusRequestSsids2 {
-	if o == nil || isNil(o.Var2) {
+	if o == nil || IsNil(o.Var2) {
 		var ret UpdateNetworkClientSplashAuthorizationStatusRequestSsids2
 		return ret
 	}
@@ -126,15 +129,15 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar2() Upd
 // GetVar2Ok returns a tuple with the Var2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar2Ok() (*UpdateNetworkClientSplashAuthorizationStatusRequestSsids2, bool) {
-	if o == nil || isNil(o.Var2) {
-    return nil, false
+	if o == nil || IsNil(o.Var2) {
+		return nil, false
 	}
 	return o.Var2, true
 }
 
 // HasVar2 returns a boolean if a field has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) HasVar2() bool {
-	if o != nil && !isNil(o.Var2) {
+	if o != nil && !IsNil(o.Var2) {
 		return true
 	}
 
@@ -148,7 +151,7 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) SetVar2(v Upd
 
 // GetVar3 returns the Var3 field value if set, zero value otherwise.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar3() UpdateNetworkClientSplashAuthorizationStatusRequestSsids3 {
-	if o == nil || isNil(o.Var3) {
+	if o == nil || IsNil(o.Var3) {
 		var ret UpdateNetworkClientSplashAuthorizationStatusRequestSsids3
 		return ret
 	}
@@ -158,15 +161,15 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar3() Upd
 // GetVar3Ok returns a tuple with the Var3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar3Ok() (*UpdateNetworkClientSplashAuthorizationStatusRequestSsids3, bool) {
-	if o == nil || isNil(o.Var3) {
-    return nil, false
+	if o == nil || IsNil(o.Var3) {
+		return nil, false
 	}
 	return o.Var3, true
 }
 
 // HasVar3 returns a boolean if a field has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) HasVar3() bool {
-	if o != nil && !isNil(o.Var3) {
+	if o != nil && !IsNil(o.Var3) {
 		return true
 	}
 
@@ -180,7 +183,7 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) SetVar3(v Upd
 
 // GetVar4 returns the Var4 field value if set, zero value otherwise.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar4() UpdateNetworkClientSplashAuthorizationStatusRequestSsids4 {
-	if o == nil || isNil(o.Var4) {
+	if o == nil || IsNil(o.Var4) {
 		var ret UpdateNetworkClientSplashAuthorizationStatusRequestSsids4
 		return ret
 	}
@@ -190,15 +193,15 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar4() Upd
 // GetVar4Ok returns a tuple with the Var4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar4Ok() (*UpdateNetworkClientSplashAuthorizationStatusRequestSsids4, bool) {
-	if o == nil || isNil(o.Var4) {
-    return nil, false
+	if o == nil || IsNil(o.Var4) {
+		return nil, false
 	}
 	return o.Var4, true
 }
 
 // HasVar4 returns a boolean if a field has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) HasVar4() bool {
-	if o != nil && !isNil(o.Var4) {
+	if o != nil && !IsNil(o.Var4) {
 		return true
 	}
 
@@ -212,7 +215,7 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) SetVar4(v Upd
 
 // GetVar5 returns the Var5 field value if set, zero value otherwise.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar5() UpdateNetworkClientSplashAuthorizationStatusRequestSsids5 {
-	if o == nil || isNil(o.Var5) {
+	if o == nil || IsNil(o.Var5) {
 		var ret UpdateNetworkClientSplashAuthorizationStatusRequestSsids5
 		return ret
 	}
@@ -222,15 +225,15 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar5() Upd
 // GetVar5Ok returns a tuple with the Var5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar5Ok() (*UpdateNetworkClientSplashAuthorizationStatusRequestSsids5, bool) {
-	if o == nil || isNil(o.Var5) {
-    return nil, false
+	if o == nil || IsNil(o.Var5) {
+		return nil, false
 	}
 	return o.Var5, true
 }
 
 // HasVar5 returns a boolean if a field has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) HasVar5() bool {
-	if o != nil && !isNil(o.Var5) {
+	if o != nil && !IsNil(o.Var5) {
 		return true
 	}
 
@@ -244,7 +247,7 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) SetVar5(v Upd
 
 // GetVar6 returns the Var6 field value if set, zero value otherwise.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar6() UpdateNetworkClientSplashAuthorizationStatusRequestSsids6 {
-	if o == nil || isNil(o.Var6) {
+	if o == nil || IsNil(o.Var6) {
 		var ret UpdateNetworkClientSplashAuthorizationStatusRequestSsids6
 		return ret
 	}
@@ -254,15 +257,15 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar6() Upd
 // GetVar6Ok returns a tuple with the Var6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar6Ok() (*UpdateNetworkClientSplashAuthorizationStatusRequestSsids6, bool) {
-	if o == nil || isNil(o.Var6) {
-    return nil, false
+	if o == nil || IsNil(o.Var6) {
+		return nil, false
 	}
 	return o.Var6, true
 }
 
 // HasVar6 returns a boolean if a field has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) HasVar6() bool {
-	if o != nil && !isNil(o.Var6) {
+	if o != nil && !IsNil(o.Var6) {
 		return true
 	}
 
@@ -276,7 +279,7 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) SetVar6(v Upd
 
 // GetVar7 returns the Var7 field value if set, zero value otherwise.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar7() UpdateNetworkClientSplashAuthorizationStatusRequestSsids7 {
-	if o == nil || isNil(o.Var7) {
+	if o == nil || IsNil(o.Var7) {
 		var ret UpdateNetworkClientSplashAuthorizationStatusRequestSsids7
 		return ret
 	}
@@ -286,15 +289,15 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar7() Upd
 // GetVar7Ok returns a tuple with the Var7 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar7Ok() (*UpdateNetworkClientSplashAuthorizationStatusRequestSsids7, bool) {
-	if o == nil || isNil(o.Var7) {
-    return nil, false
+	if o == nil || IsNil(o.Var7) {
+		return nil, false
 	}
 	return o.Var7, true
 }
 
 // HasVar7 returns a boolean if a field has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) HasVar7() bool {
-	if o != nil && !isNil(o.Var7) {
+	if o != nil && !IsNil(o.Var7) {
 		return true
 	}
 
@@ -308,7 +311,7 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) SetVar7(v Upd
 
 // GetVar8 returns the Var8 field value if set, zero value otherwise.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar8() UpdateNetworkClientSplashAuthorizationStatusRequestSsids8 {
-	if o == nil || isNil(o.Var8) {
+	if o == nil || IsNil(o.Var8) {
 		var ret UpdateNetworkClientSplashAuthorizationStatusRequestSsids8
 		return ret
 	}
@@ -318,15 +321,15 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar8() Upd
 // GetVar8Ok returns a tuple with the Var8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar8Ok() (*UpdateNetworkClientSplashAuthorizationStatusRequestSsids8, bool) {
-	if o == nil || isNil(o.Var8) {
-    return nil, false
+	if o == nil || IsNil(o.Var8) {
+		return nil, false
 	}
 	return o.Var8, true
 }
 
 // HasVar8 returns a boolean if a field has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) HasVar8() bool {
-	if o != nil && !isNil(o.Var8) {
+	if o != nil && !IsNil(o.Var8) {
 		return true
 	}
 
@@ -340,7 +343,7 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) SetVar8(v Upd
 
 // GetVar9 returns the Var9 field value if set, zero value otherwise.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar9() UpdateNetworkClientSplashAuthorizationStatusRequestSsids9 {
-	if o == nil || isNil(o.Var9) {
+	if o == nil || IsNil(o.Var9) {
 		var ret UpdateNetworkClientSplashAuthorizationStatusRequestSsids9
 		return ret
 	}
@@ -350,15 +353,15 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar9() Upd
 // GetVar9Ok returns a tuple with the Var9 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar9Ok() (*UpdateNetworkClientSplashAuthorizationStatusRequestSsids9, bool) {
-	if o == nil || isNil(o.Var9) {
-    return nil, false
+	if o == nil || IsNil(o.Var9) {
+		return nil, false
 	}
 	return o.Var9, true
 }
 
 // HasVar9 returns a boolean if a field has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) HasVar9() bool {
-	if o != nil && !isNil(o.Var9) {
+	if o != nil && !IsNil(o.Var9) {
 		return true
 	}
 
@@ -372,7 +375,7 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) SetVar9(v Upd
 
 // GetVar10 returns the Var10 field value if set, zero value otherwise.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar10() UpdateNetworkClientSplashAuthorizationStatusRequestSsids10 {
-	if o == nil || isNil(o.Var10) {
+	if o == nil || IsNil(o.Var10) {
 		var ret UpdateNetworkClientSplashAuthorizationStatusRequestSsids10
 		return ret
 	}
@@ -382,15 +385,15 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar10() Up
 // GetVar10Ok returns a tuple with the Var10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar10Ok() (*UpdateNetworkClientSplashAuthorizationStatusRequestSsids10, bool) {
-	if o == nil || isNil(o.Var10) {
-    return nil, false
+	if o == nil || IsNil(o.Var10) {
+		return nil, false
 	}
 	return o.Var10, true
 }
 
 // HasVar10 returns a boolean if a field has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) HasVar10() bool {
-	if o != nil && !isNil(o.Var10) {
+	if o != nil && !IsNil(o.Var10) {
 		return true
 	}
 
@@ -404,7 +407,7 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) SetVar10(v Up
 
 // GetVar11 returns the Var11 field value if set, zero value otherwise.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar11() UpdateNetworkClientSplashAuthorizationStatusRequestSsids11 {
-	if o == nil || isNil(o.Var11) {
+	if o == nil || IsNil(o.Var11) {
 		var ret UpdateNetworkClientSplashAuthorizationStatusRequestSsids11
 		return ret
 	}
@@ -414,15 +417,15 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar11() Up
 // GetVar11Ok returns a tuple with the Var11 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar11Ok() (*UpdateNetworkClientSplashAuthorizationStatusRequestSsids11, bool) {
-	if o == nil || isNil(o.Var11) {
-    return nil, false
+	if o == nil || IsNil(o.Var11) {
+		return nil, false
 	}
 	return o.Var11, true
 }
 
 // HasVar11 returns a boolean if a field has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) HasVar11() bool {
-	if o != nil && !isNil(o.Var11) {
+	if o != nil && !IsNil(o.Var11) {
 		return true
 	}
 
@@ -436,7 +439,7 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) SetVar11(v Up
 
 // GetVar12 returns the Var12 field value if set, zero value otherwise.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar12() UpdateNetworkClientSplashAuthorizationStatusRequestSsids12 {
-	if o == nil || isNil(o.Var12) {
+	if o == nil || IsNil(o.Var12) {
 		var ret UpdateNetworkClientSplashAuthorizationStatusRequestSsids12
 		return ret
 	}
@@ -446,15 +449,15 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar12() Up
 // GetVar12Ok returns a tuple with the Var12 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar12Ok() (*UpdateNetworkClientSplashAuthorizationStatusRequestSsids12, bool) {
-	if o == nil || isNil(o.Var12) {
-    return nil, false
+	if o == nil || IsNil(o.Var12) {
+		return nil, false
 	}
 	return o.Var12, true
 }
 
 // HasVar12 returns a boolean if a field has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) HasVar12() bool {
-	if o != nil && !isNil(o.Var12) {
+	if o != nil && !IsNil(o.Var12) {
 		return true
 	}
 
@@ -468,7 +471,7 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) SetVar12(v Up
 
 // GetVar13 returns the Var13 field value if set, zero value otherwise.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar13() UpdateNetworkClientSplashAuthorizationStatusRequestSsids13 {
-	if o == nil || isNil(o.Var13) {
+	if o == nil || IsNil(o.Var13) {
 		var ret UpdateNetworkClientSplashAuthorizationStatusRequestSsids13
 		return ret
 	}
@@ -478,15 +481,15 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar13() Up
 // GetVar13Ok returns a tuple with the Var13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar13Ok() (*UpdateNetworkClientSplashAuthorizationStatusRequestSsids13, bool) {
-	if o == nil || isNil(o.Var13) {
-    return nil, false
+	if o == nil || IsNil(o.Var13) {
+		return nil, false
 	}
 	return o.Var13, true
 }
 
 // HasVar13 returns a boolean if a field has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) HasVar13() bool {
-	if o != nil && !isNil(o.Var13) {
+	if o != nil && !IsNil(o.Var13) {
 		return true
 	}
 
@@ -500,7 +503,7 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) SetVar13(v Up
 
 // GetVar14 returns the Var14 field value if set, zero value otherwise.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar14() UpdateNetworkClientSplashAuthorizationStatusRequestSsids14 {
-	if o == nil || isNil(o.Var14) {
+	if o == nil || IsNil(o.Var14) {
 		var ret UpdateNetworkClientSplashAuthorizationStatusRequestSsids14
 		return ret
 	}
@@ -510,15 +513,15 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar14() Up
 // GetVar14Ok returns a tuple with the Var14 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) GetVar14Ok() (*UpdateNetworkClientSplashAuthorizationStatusRequestSsids14, bool) {
-	if o == nil || isNil(o.Var14) {
-    return nil, false
+	if o == nil || IsNil(o.Var14) {
+		return nil, false
 	}
 	return o.Var14, true
 }
 
 // HasVar14 returns a boolean if a field has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) HasVar14() bool {
-	if o != nil && !isNil(o.Var14) {
+	if o != nil && !IsNil(o.Var14) {
 		return true
 	}
 
@@ -531,53 +534,61 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids) SetVar14(v Up
 }
 
 func (o UpdateNetworkClientSplashAuthorizationStatusRequestSsids) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Var0) {
-		toSerialize["0"] = o.Var0
-	}
-	if !isNil(o.Var1) {
-		toSerialize["1"] = o.Var1
-	}
-	if !isNil(o.Var2) {
-		toSerialize["2"] = o.Var2
-	}
-	if !isNil(o.Var3) {
-		toSerialize["3"] = o.Var3
-	}
-	if !isNil(o.Var4) {
-		toSerialize["4"] = o.Var4
-	}
-	if !isNil(o.Var5) {
-		toSerialize["5"] = o.Var5
-	}
-	if !isNil(o.Var6) {
-		toSerialize["6"] = o.Var6
-	}
-	if !isNil(o.Var7) {
-		toSerialize["7"] = o.Var7
-	}
-	if !isNil(o.Var8) {
-		toSerialize["8"] = o.Var8
-	}
-	if !isNil(o.Var9) {
-		toSerialize["9"] = o.Var9
-	}
-	if !isNil(o.Var10) {
-		toSerialize["10"] = o.Var10
-	}
-	if !isNil(o.Var11) {
-		toSerialize["11"] = o.Var11
-	}
-	if !isNil(o.Var12) {
-		toSerialize["12"] = o.Var12
-	}
-	if !isNil(o.Var13) {
-		toSerialize["13"] = o.Var13
-	}
-	if !isNil(o.Var14) {
-		toSerialize["14"] = o.Var14
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkClientSplashAuthorizationStatusRequestSsids) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Var0) {
+		toSerialize["0"] = o.Var0
+	}
+	if !IsNil(o.Var1) {
+		toSerialize["1"] = o.Var1
+	}
+	if !IsNil(o.Var2) {
+		toSerialize["2"] = o.Var2
+	}
+	if !IsNil(o.Var3) {
+		toSerialize["3"] = o.Var3
+	}
+	if !IsNil(o.Var4) {
+		toSerialize["4"] = o.Var4
+	}
+	if !IsNil(o.Var5) {
+		toSerialize["5"] = o.Var5
+	}
+	if !IsNil(o.Var6) {
+		toSerialize["6"] = o.Var6
+	}
+	if !IsNil(o.Var7) {
+		toSerialize["7"] = o.Var7
+	}
+	if !IsNil(o.Var8) {
+		toSerialize["8"] = o.Var8
+	}
+	if !IsNil(o.Var9) {
+		toSerialize["9"] = o.Var9
+	}
+	if !IsNil(o.Var10) {
+		toSerialize["10"] = o.Var10
+	}
+	if !IsNil(o.Var11) {
+		toSerialize["11"] = o.Var11
+	}
+	if !IsNil(o.Var12) {
+		toSerialize["12"] = o.Var12
+	}
+	if !IsNil(o.Var13) {
+		toSerialize["13"] = o.Var13
+	}
+	if !IsNil(o.Var14) {
+		toSerialize["14"] = o.Var14
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkClientSplashAuthorizationStatusRequestSsids struct {

@@ -10,128 +10,128 @@ Testing UplinksApiService
 package client
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "github.com/meraki/dashboard-api-go/client"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func Test_client_UplinksApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test UplinksApiService GetDeviceApplianceUplinksSettings", func(t *testing.T) {
+	t.Run("Test UplinksApiService GetDeviceApplianceUplinksSettings", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var serial string
+		var serial string
 
-        resp, httpRes, err := apiClient.UplinksApi.GetDeviceApplianceUplinksSettings(context.Background(), serial).Execute()
+		resp, httpRes, err := apiClient.UplinksApi.GetDeviceApplianceUplinksSettings(context.Background(), serial).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test UplinksApiService GetDeviceLossAndLatencyHistory", func(t *testing.T) {
+	t.Run("Test UplinksApiService GetDeviceLossAndLatencyHistory", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var serial string
+		var serial string
 
-        resp, httpRes, err := apiClient.UplinksApi.GetDeviceLossAndLatencyHistory(context.Background(), serial).Execute()
+		resp, httpRes, err := apiClient.UplinksApi.GetDeviceLossAndLatencyHistory(context.Background(), serial).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test UplinksApiService GetNetworkApplianceUplinksUsageHistory", func(t *testing.T) {
+	t.Run("Test UplinksApiService GetNetworkApplianceUplinksUsageHistory", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.UplinksApi.GetNetworkApplianceUplinksUsageHistory(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.UplinksApi.GetNetworkApplianceUplinksUsageHistory(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test UplinksApiService GetOrganizationApplianceUplinkStatuses", func(t *testing.T) {
+	t.Run("Test UplinksApiService GetOrganizationApplianceUplinkStatuses", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
+		var organizationId string
 
-        resp, httpRes, err := apiClient.UplinksApi.GetOrganizationApplianceUplinkStatuses(context.Background(), organizationId).Execute()
+		resp, httpRes, err := apiClient.UplinksApi.GetOrganizationApplianceUplinkStatuses(context.Background(), organizationId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test UplinksApiService GetOrganizationDevicesUplinksAddressesByDevice", func(t *testing.T) {
+	t.Run("Test UplinksApiService GetOrganizationDevicesUplinksAddressesByDevice", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
+		var organizationId string
 
-        resp, httpRes, err := apiClient.UplinksApi.GetOrganizationDevicesUplinksAddressesByDevice(context.Background(), organizationId).Execute()
+		resp, httpRes, err := apiClient.UplinksApi.GetOrganizationDevicesUplinksAddressesByDevice(context.Background(), organizationId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test UplinksApiService GetOrganizationDevicesUplinksLossAndLatency", func(t *testing.T) {
+	t.Run("Test UplinksApiService GetOrganizationDevicesUplinksLossAndLatency", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
+		var organizationId string
 
-        resp, httpRes, err := apiClient.UplinksApi.GetOrganizationDevicesUplinksLossAndLatency(context.Background(), organizationId).Execute()
+		resp, httpRes, err := apiClient.UplinksApi.GetOrganizationDevicesUplinksLossAndLatency(context.Background(), organizationId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test UplinksApiService GetOrganizationUplinksStatuses", func(t *testing.T) {
+	t.Run("Test UplinksApiService GetOrganizationUplinksStatuses", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
+		var organizationId string
 
-        resp, httpRes, err := apiClient.UplinksApi.GetOrganizationUplinksStatuses(context.Background(), organizationId).Execute()
+		resp, httpRes, err := apiClient.UplinksApi.GetOrganizationUplinksStatuses(context.Background(), organizationId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test UplinksApiService UpdateDeviceApplianceUplinksSettings", func(t *testing.T) {
+	t.Run("Test UplinksApiService UpdateDeviceApplianceUplinksSettings", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var serial string
+		var serial string
 
-        resp, httpRes, err := apiClient.UplinksApi.UpdateDeviceApplianceUplinksSettings(context.Background(), serial).Execute()
+		resp, httpRes, err := apiClient.UplinksApi.UpdateDeviceApplianceUplinksSettings(context.Background(), serial).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimitsBandwidthLimits type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimitsBandwidthLimits{}
+
 // UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimitsBandwidthLimits The bandwidth limits object, specifying the upload ('limitUp') and download ('limitDown') speed in Kbps. These are only enforced if 'settings' is set to 'custom'.
 type UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimitsBandwidthLimits struct {
 	// The maximum upload limit (integer, in Kbps).
@@ -41,7 +44,7 @@ func NewUpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandw
 
 // GetLimitUp returns the LimitUp field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimitsBandwidthLimits) GetLimitUp() int32 {
-	if o == nil || isNil(o.LimitUp) {
+	if o == nil || IsNil(o.LimitUp) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBand
 // GetLimitUpOk returns a tuple with the LimitUp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimitsBandwidthLimits) GetLimitUpOk() (*int32, bool) {
-	if o == nil || isNil(o.LimitUp) {
-    return nil, false
+	if o == nil || IsNil(o.LimitUp) {
+		return nil, false
 	}
 	return o.LimitUp, true
 }
 
 // HasLimitUp returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimitsBandwidthLimits) HasLimitUp() bool {
-	if o != nil && !isNil(o.LimitUp) {
+	if o != nil && !IsNil(o.LimitUp) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBand
 
 // GetLimitDown returns the LimitDown field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimitsBandwidthLimits) GetLimitDown() int32 {
-	if o == nil || isNil(o.LimitDown) {
+	if o == nil || IsNil(o.LimitDown) {
 		var ret int32
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBand
 // GetLimitDownOk returns a tuple with the LimitDown field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimitsBandwidthLimits) GetLimitDownOk() (*int32, bool) {
-	if o == nil || isNil(o.LimitDown) {
-    return nil, false
+	if o == nil || IsNil(o.LimitDown) {
+		return nil, false
 	}
 	return o.LimitDown, true
 }
 
 // HasLimitDown returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimitsBandwidthLimits) HasLimitDown() bool {
-	if o != nil && !isNil(o.LimitDown) {
+	if o != nil && !IsNil(o.LimitDown) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBand
 }
 
 func (o UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimitsBandwidthLimits) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.LimitUp) {
-		toSerialize["limitUp"] = o.LimitUp
-	}
-	if !isNil(o.LimitDown) {
-		toSerialize["limitDown"] = o.LimitDown
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimitsBandwidthLimits) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.LimitUp) {
+		toSerialize["limitUp"] = o.LimitUp
+	}
+	if !IsNil(o.LimitDown) {
+		toSerialize["limitDown"] = o.LimitDown
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimitsBandwidthLimits struct {

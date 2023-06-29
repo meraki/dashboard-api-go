@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceSensorRelationships200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceSensorRelationships200ResponseInner{}
+
 // GetDeviceSensorRelationships200ResponseInner struct for GetDeviceSensorRelationships200ResponseInner
 type GetDeviceSensorRelationships200ResponseInner struct {
 	Livestream *GetDeviceSensorRelationships200ResponseInnerLivestream `json:"livestream,omitempty"`
@@ -38,7 +41,7 @@ func NewGetDeviceSensorRelationships200ResponseInnerWithDefaults() *GetDeviceSen
 
 // GetLivestream returns the Livestream field value if set, zero value otherwise.
 func (o *GetDeviceSensorRelationships200ResponseInner) GetLivestream() GetDeviceSensorRelationships200ResponseInnerLivestream {
-	if o == nil || isNil(o.Livestream) {
+	if o == nil || IsNil(o.Livestream) {
 		var ret GetDeviceSensorRelationships200ResponseInnerLivestream
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetDeviceSensorRelationships200ResponseInner) GetLivestream() GetDevice
 // GetLivestreamOk returns a tuple with the Livestream field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSensorRelationships200ResponseInner) GetLivestreamOk() (*GetDeviceSensorRelationships200ResponseInnerLivestream, bool) {
-	if o == nil || isNil(o.Livestream) {
-    return nil, false
+	if o == nil || IsNil(o.Livestream) {
+		return nil, false
 	}
 	return o.Livestream, true
 }
 
 // HasLivestream returns a boolean if a field has been set.
 func (o *GetDeviceSensorRelationships200ResponseInner) HasLivestream() bool {
-	if o != nil && !isNil(o.Livestream) {
+	if o != nil && !IsNil(o.Livestream) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetDeviceSensorRelationships200ResponseInner) SetLivestream(v GetDevice
 }
 
 func (o GetDeviceSensorRelationships200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Livestream) {
-		toSerialize["livestream"] = o.Livestream
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceSensorRelationships200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Livestream) {
+		toSerialize["livestream"] = o.Livestream
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceSensorRelationships200ResponseInner struct {

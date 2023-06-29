@@ -13,7 +13,7 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -77,8 +77,8 @@ func (a *ConfigureApiService) AddNetworkSwitchStackExecute(r ConfigureApiAddNetw
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks/{switchStackId}/add"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterToString(r.switchStackId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterValueToString(r.switchStackId, "switchStackId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -130,9 +130,9 @@ func (a *ConfigureApiService) AddNetworkSwitchStackExecute(r ConfigureApiAddNetw
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -206,7 +206,7 @@ func (a *ConfigureApiService) AssignOrganizationLicensesSeatsExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/licenses/assignSeats"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -258,9 +258,9 @@ func (a *ConfigureApiService) AssignOrganizationLicensesSeatsExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -334,7 +334,7 @@ func (a *ConfigureApiService) BindNetworkExecute(r ConfigureApiBindNetworkReques
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/bind"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -386,9 +386,9 @@ func (a *ConfigureApiService) BindNetworkExecute(r ConfigureApiBindNetworkReques
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -462,7 +462,7 @@ func (a *ConfigureApiService) CheckinNetworkSmDevicesExecute(r ConfigureApiCheck
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/devices/checkin"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -511,9 +511,9 @@ func (a *ConfigureApiService) CheckinNetworkSmDevicesExecute(r ConfigureApiCheck
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -587,7 +587,7 @@ func (a *ConfigureApiService) ClaimIntoOrganizationExecute(r ConfigureApiClaimIn
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/claim"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -636,9 +636,9 @@ func (a *ConfigureApiService) ClaimIntoOrganizationExecute(r ConfigureApiClaimIn
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -712,7 +712,7 @@ func (a *ConfigureApiService) ClaimIntoOrganizationInventoryExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/inventory/claim"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -761,9 +761,9 @@ func (a *ConfigureApiService) ClaimIntoOrganizationInventoryExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -835,7 +835,7 @@ func (a *ConfigureApiService) ClaimNetworkDevicesExecute(r ConfigureApiClaimNetw
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/devices/claim"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -887,9 +887,9 @@ func (a *ConfigureApiService) ClaimNetworkDevicesExecute(r ConfigureApiClaimNetw
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -954,7 +954,7 @@ func (a *ConfigureApiService) CloneOrganizationExecute(r ConfigureApiCloneOrgani
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/clone"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1006,9 +1006,9 @@ func (a *ConfigureApiService) CloneOrganizationExecute(r ConfigureApiCloneOrgani
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1082,7 +1082,7 @@ func (a *ConfigureApiService) CloneOrganizationSwitchDevicesExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/switch/devices/clone"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1134,9 +1134,9 @@ func (a *ConfigureApiService) CloneOrganizationSwitchDevicesExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1210,7 +1210,7 @@ func (a *ConfigureApiService) CombineOrganizationNetworksExecute(r ConfigureApiC
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/networks/combine"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1262,9 +1262,9 @@ func (a *ConfigureApiService) CombineOrganizationNetworksExecute(r ConfigureApiC
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1332,7 +1332,7 @@ func (a *ConfigureApiService) CreateDeviceApplianceVmxAuthenticationTokenExecute
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/appliance/vmx/authenticationToken"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1379,9 +1379,9 @@ func (a *ConfigureApiService) CreateDeviceApplianceVmxAuthenticationTokenExecute
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1455,7 +1455,7 @@ func (a *ConfigureApiService) CreateDeviceSwitchRoutingInterfaceExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/routing/interfaces"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1504,9 +1504,9 @@ func (a *ConfigureApiService) CreateDeviceSwitchRoutingInterfaceExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1580,7 +1580,7 @@ func (a *ConfigureApiService) CreateDeviceSwitchRoutingStaticRouteExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/routing/staticRoutes"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1632,9 +1632,9 @@ func (a *ConfigureApiService) CreateDeviceSwitchRoutingStaticRouteExecute(r Conf
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1708,7 +1708,7 @@ func (a *ConfigureApiService) CreateNetworkAppliancePrefixesDelegatedStaticExecu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/prefixes/delegated/statics"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1760,9 +1760,9 @@ func (a *ConfigureApiService) CreateNetworkAppliancePrefixesDelegatedStaticExecu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1836,7 +1836,7 @@ func (a *ConfigureApiService) CreateNetworkApplianceRfProfileExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/rfProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1888,9 +1888,9 @@ func (a *ConfigureApiService) CreateNetworkApplianceRfProfileExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1964,7 +1964,7 @@ func (a *ConfigureApiService) CreateNetworkApplianceStaticRouteExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/staticRoutes"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2016,9 +2016,9 @@ func (a *ConfigureApiService) CreateNetworkApplianceStaticRouteExecute(r Configu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2092,7 +2092,7 @@ func (a *ConfigureApiService) CreateNetworkApplianceTrafficShapingCustomPerforma
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/trafficShaping/customPerformanceClasses"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2144,9 +2144,9 @@ func (a *ConfigureApiService) CreateNetworkApplianceTrafficShapingCustomPerforma
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2220,7 +2220,7 @@ func (a *ConfigureApiService) CreateNetworkApplianceVlanExecute(r ConfigureApiCr
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/vlans"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2272,9 +2272,9 @@ func (a *ConfigureApiService) CreateNetworkApplianceVlanExecute(r ConfigureApiCr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2348,7 +2348,7 @@ func (a *ConfigureApiService) CreateNetworkCameraQualityRetentionProfileExecute(
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/qualityRetentionProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2400,9 +2400,9 @@ func (a *ConfigureApiService) CreateNetworkCameraQualityRetentionProfileExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2476,7 +2476,7 @@ func (a *ConfigureApiService) CreateNetworkCameraWirelessProfileExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/wirelessProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2528,9 +2528,9 @@ func (a *ConfigureApiService) CreateNetworkCameraWirelessProfileExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2604,7 +2604,7 @@ func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesRollbackExecute(r Con
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/rollbacks"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2656,9 +2656,9 @@ func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesRollbackExecute(r Con
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2732,7 +2732,7 @@ func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesStagedEventExecute(r 
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2784,9 +2784,9 @@ func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesStagedEventExecute(r 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2860,7 +2860,7 @@ func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesStagedGroupExecute(r 
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2912,9 +2912,9 @@ func (a *ConfigureApiService) CreateNetworkFirmwareUpgradesStagedGroupExecute(r 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2988,7 +2988,7 @@ func (a *ConfigureApiService) CreateNetworkFloorPlanExecute(r ConfigureApiCreate
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/floorPlans"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3040,9 +3040,9 @@ func (a *ConfigureApiService) CreateNetworkFloorPlanExecute(r ConfigureApiCreate
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3116,7 +3116,7 @@ func (a *ConfigureApiService) CreateNetworkGroupPolicyExecute(r ConfigureApiCrea
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/groupPolicies"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3168,9 +3168,9 @@ func (a *ConfigureApiService) CreateNetworkGroupPolicyExecute(r ConfigureApiCrea
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3244,7 +3244,7 @@ func (a *ConfigureApiService) CreateNetworkMerakiAuthUserExecute(r ConfigureApiC
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/merakiAuthUsers"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3296,9 +3296,9 @@ func (a *ConfigureApiService) CreateNetworkMerakiAuthUserExecute(r ConfigureApiC
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3372,7 +3372,7 @@ func (a *ConfigureApiService) CreateNetworkMqttBrokerExecute(r ConfigureApiCreat
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/mqttBrokers"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3424,9 +3424,9 @@ func (a *ConfigureApiService) CreateNetworkMqttBrokerExecute(r ConfigureApiCreat
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3506,7 +3506,7 @@ func (a *ConfigureApiService) CreateNetworkPiiRequestExecute(r ConfigureApiCreat
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/pii/requests"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3555,9 +3555,9 @@ func (a *ConfigureApiService) CreateNetworkPiiRequestExecute(r ConfigureApiCreat
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3631,7 +3631,7 @@ func (a *ConfigureApiService) CreateNetworkSensorAlertsProfileExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sensor/alerts/profiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3683,9 +3683,9 @@ func (a *ConfigureApiService) CreateNetworkSensorAlertsProfileExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3759,7 +3759,7 @@ func (a *ConfigureApiService) CreateNetworkSmBypassActivationLockAttemptExecute(
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/bypassActivationLockAttempts"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3811,9 +3811,9 @@ func (a *ConfigureApiService) CreateNetworkSmBypassActivationLockAttemptExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3887,7 +3887,7 @@ func (a *ConfigureApiService) CreateNetworkSmTargetGroupExecute(r ConfigureApiCr
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/targetGroups"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3936,9 +3936,9 @@ func (a *ConfigureApiService) CreateNetworkSmTargetGroupExecute(r ConfigureApiCr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4012,7 +4012,7 @@ func (a *ConfigureApiService) CreateNetworkSwitchAccessPolicyExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/accessPolicies"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4064,9 +4064,9 @@ func (a *ConfigureApiService) CreateNetworkSwitchAccessPolicyExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4140,7 +4140,7 @@ func (a *ConfigureApiService) CreateNetworkSwitchDhcpServerPolicyArpInspectionTr
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/dhcpServerPolicy/arpInspection/trustedServers"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4192,9 +4192,9 @@ func (a *ConfigureApiService) CreateNetworkSwitchDhcpServerPolicyArpInspectionTr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4268,7 +4268,7 @@ func (a *ConfigureApiService) CreateNetworkSwitchLinkAggregationExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/linkAggregations"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4317,9 +4317,9 @@ func (a *ConfigureApiService) CreateNetworkSwitchLinkAggregationExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4393,7 +4393,7 @@ func (a *ConfigureApiService) CreateNetworkSwitchPortScheduleExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/portSchedules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4445,9 +4445,9 @@ func (a *ConfigureApiService) CreateNetworkSwitchPortScheduleExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4521,7 +4521,7 @@ func (a *ConfigureApiService) CreateNetworkSwitchQosRuleExecute(r ConfigureApiCr
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/qosRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4573,9 +4573,9 @@ func (a *ConfigureApiService) CreateNetworkSwitchQosRuleExecute(r ConfigureApiCr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4649,7 +4649,7 @@ func (a *ConfigureApiService) CreateNetworkSwitchRoutingMulticastRendezvousPoint
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/routing/multicast/rendezvousPoints"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4701,9 +4701,9 @@ func (a *ConfigureApiService) CreateNetworkSwitchRoutingMulticastRendezvousPoint
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4777,7 +4777,7 @@ func (a *ConfigureApiService) CreateNetworkSwitchStackExecute(r ConfigureApiCrea
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4829,9 +4829,9 @@ func (a *ConfigureApiService) CreateNetworkSwitchStackExecute(r ConfigureApiCrea
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4908,8 +4908,8 @@ func (a *ConfigureApiService) CreateNetworkSwitchStackRoutingInterfaceExecute(r 
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterToString(r.switchStackId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterValueToString(r.switchStackId, "switchStackId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4961,9 +4961,9 @@ func (a *ConfigureApiService) CreateNetworkSwitchStackRoutingInterfaceExecute(r 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -5040,8 +5040,8 @@ func (a *ConfigureApiService) CreateNetworkSwitchStackRoutingStaticRouteExecute(
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks/{switchStackId}/routing/staticRoutes"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterToString(r.switchStackId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterValueToString(r.switchStackId, "switchStackId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -5093,9 +5093,9 @@ func (a *ConfigureApiService) CreateNetworkSwitchStackRoutingStaticRouteExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -5169,7 +5169,7 @@ func (a *ConfigureApiService) CreateNetworkWebhooksHttpServerExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/webhooks/httpServers"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -5221,9 +5221,9 @@ func (a *ConfigureApiService) CreateNetworkWebhooksHttpServerExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -5297,7 +5297,7 @@ func (a *ConfigureApiService) CreateNetworkWebhooksPayloadTemplateExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/webhooks/payloadTemplates"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -5349,9 +5349,9 @@ func (a *ConfigureApiService) CreateNetworkWebhooksPayloadTemplateExecute(r Conf
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -5425,7 +5425,7 @@ func (a *ConfigureApiService) CreateNetworkWebhooksWebhookTestExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/webhooks/webhookTests"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -5477,9 +5477,9 @@ func (a *ConfigureApiService) CreateNetworkWebhooksWebhookTestExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -5553,7 +5553,7 @@ func (a *ConfigureApiService) CreateNetworkWirelessRfProfileExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/rfProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -5605,9 +5605,9 @@ func (a *ConfigureApiService) CreateNetworkWirelessRfProfileExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -5684,8 +5684,8 @@ func (a *ConfigureApiService) CreateNetworkWirelessSsidIdentityPskExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/identityPsks"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -5737,9 +5737,9 @@ func (a *ConfigureApiService) CreateNetworkWirelessSsidIdentityPskExecute(r Conf
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -5861,9 +5861,9 @@ func (a *ConfigureApiService) CreateOrganizationExecute(r ConfigureApiCreateOrga
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -5937,7 +5937,7 @@ func (a *ConfigureApiService) CreateOrganizationActionBatchExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/actionBatches"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -5989,9 +5989,9 @@ func (a *ConfigureApiService) CreateOrganizationActionBatchExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -6065,7 +6065,7 @@ func (a *ConfigureApiService) CreateOrganizationAdaptivePolicyAclExecute(r Confi
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/acls"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -6117,9 +6117,9 @@ func (a *ConfigureApiService) CreateOrganizationAdaptivePolicyAclExecute(r Confi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -6193,7 +6193,7 @@ func (a *ConfigureApiService) CreateOrganizationAdaptivePolicyGroupExecute(r Con
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -6245,9 +6245,9 @@ func (a *ConfigureApiService) CreateOrganizationAdaptivePolicyGroupExecute(r Con
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -6321,7 +6321,7 @@ func (a *ConfigureApiService) CreateOrganizationAdaptivePolicyPolicyExecute(r Co
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/policies"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -6373,9 +6373,9 @@ func (a *ConfigureApiService) CreateOrganizationAdaptivePolicyPolicyExecute(r Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -6449,7 +6449,7 @@ func (a *ConfigureApiService) CreateOrganizationAdminExecute(r ConfigureApiCreat
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/admins"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -6501,9 +6501,9 @@ func (a *ConfigureApiService) CreateOrganizationAdminExecute(r ConfigureApiCreat
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -6577,7 +6577,7 @@ func (a *ConfigureApiService) CreateOrganizationAlertsProfileExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/alerts/profiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -6629,9 +6629,9 @@ func (a *ConfigureApiService) CreateOrganizationAlertsProfileExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -6705,7 +6705,7 @@ func (a *ConfigureApiService) CreateOrganizationBrandingPolicyExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/brandingPolicies"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -6754,9 +6754,9 @@ func (a *ConfigureApiService) CreateOrganizationBrandingPolicyExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -6830,7 +6830,7 @@ func (a *ConfigureApiService) CreateOrganizationCameraCustomAnalyticsArtifactExe
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/camera/customAnalytics/artifacts"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -6879,9 +6879,9 @@ func (a *ConfigureApiService) CreateOrganizationCameraCustomAnalyticsArtifactExe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -6955,7 +6955,7 @@ func (a *ConfigureApiService) CreateOrganizationConfigTemplateExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/configTemplates"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -7007,9 +7007,9 @@ func (a *ConfigureApiService) CreateOrganizationConfigTemplateExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -7083,7 +7083,7 @@ func (a *ConfigureApiService) CreateOrganizationEarlyAccessFeaturesOptInExecute(
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/earlyAccess/features/optIns"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -7135,9 +7135,9 @@ func (a *ConfigureApiService) CreateOrganizationEarlyAccessFeaturesOptInExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -7211,7 +7211,7 @@ func (a *ConfigureApiService) CreateOrganizationInsightMonitoredMediaServerExecu
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/insight/monitoredMediaServers"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -7263,9 +7263,9 @@ func (a *ConfigureApiService) CreateOrganizationInsightMonitoredMediaServerExecu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -7339,7 +7339,7 @@ func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/exportEvents"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -7391,9 +7391,9 @@ func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -7467,7 +7467,7 @@ func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/imports"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -7519,9 +7519,9 @@ func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -7595,7 +7595,7 @@ func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/prepare"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -7647,9 +7647,9 @@ func (a *ConfigureApiService) CreateOrganizationInventoryOnboardingCloudMonitori
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -7723,7 +7723,7 @@ func (a *ConfigureApiService) CreateOrganizationNetworkExecute(r ConfigureApiCre
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/networks"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -7775,9 +7775,9 @@ func (a *ConfigureApiService) CreateOrganizationNetworkExecute(r ConfigureApiCre
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -7851,7 +7851,7 @@ func (a *ConfigureApiService) CreateOrganizationPolicyObjectExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/policyObjects"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -7903,9 +7903,9 @@ func (a *ConfigureApiService) CreateOrganizationPolicyObjectExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -7979,7 +7979,7 @@ func (a *ConfigureApiService) CreateOrganizationPolicyObjectsGroupExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/policyObjects/groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -8031,9 +8031,9 @@ func (a *ConfigureApiService) CreateOrganizationPolicyObjectsGroupExecute(r Conf
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -8107,7 +8107,7 @@ func (a *ConfigureApiService) CreateOrganizationSamlIdpExecute(r ConfigureApiCre
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/saml/idps"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -8159,9 +8159,9 @@ func (a *ConfigureApiService) CreateOrganizationSamlIdpExecute(r ConfigureApiCre
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -8235,7 +8235,7 @@ func (a *ConfigureApiService) CreateOrganizationSamlRoleExecute(r ConfigureApiCr
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/samlRoles"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -8287,9 +8287,9 @@ func (a *ConfigureApiService) CreateOrganizationSamlRoleExecute(r ConfigureApiCr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -8357,7 +8357,7 @@ func (a *ConfigureApiService) DeferNetworkFirmwareUpgradesStagedEventsExecute(r 
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/events/defer"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -8404,9 +8404,9 @@ func (a *ConfigureApiService) DeferNetworkFirmwareUpgradesStagedEventsExecute(r 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -8475,8 +8475,8 @@ func (a *ConfigureApiService) DeleteDeviceSwitchRoutingInterfaceExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/routing/interfaces/{interfaceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterToString(r.interfaceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterValueToString(r.interfaceId, "interfaceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -8523,9 +8523,9 @@ func (a *ConfigureApiService) DeleteDeviceSwitchRoutingInterfaceExecute(r Config
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -8585,8 +8585,8 @@ func (a *ConfigureApiService) DeleteDeviceSwitchRoutingStaticRouteExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/routing/staticRoutes/{staticRouteId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterToString(r.staticRouteId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterValueToString(r.staticRouteId, "staticRouteId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -8633,9 +8633,9 @@ func (a *ConfigureApiService) DeleteDeviceSwitchRoutingStaticRouteExecute(r Conf
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -8692,7 +8692,7 @@ func (a *ConfigureApiService) DeleteNetworkExecute(r ConfigureApiDeleteNetworkRe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -8739,9 +8739,9 @@ func (a *ConfigureApiService) DeleteNetworkExecute(r ConfigureApiDeleteNetworkRe
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -8801,8 +8801,8 @@ func (a *ConfigureApiService) DeleteNetworkAppliancePrefixesDelegatedStaticExecu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"staticDelegatedPrefixId"+"}", url.PathEscape(parameterToString(r.staticDelegatedPrefixId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"staticDelegatedPrefixId"+"}", url.PathEscape(parameterValueToString(r.staticDelegatedPrefixId, "staticDelegatedPrefixId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -8849,9 +8849,9 @@ func (a *ConfigureApiService) DeleteNetworkAppliancePrefixesDelegatedStaticExecu
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -8911,8 +8911,8 @@ func (a *ConfigureApiService) DeleteNetworkApplianceRfProfileExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/rfProfiles/{rfProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rfProfileId"+"}", url.PathEscape(parameterToString(r.rfProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rfProfileId"+"}", url.PathEscape(parameterValueToString(r.rfProfileId, "rfProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -8959,9 +8959,9 @@ func (a *ConfigureApiService) DeleteNetworkApplianceRfProfileExecute(r Configure
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -9021,8 +9021,8 @@ func (a *ConfigureApiService) DeleteNetworkApplianceStaticRouteExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/staticRoutes/{staticRouteId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterToString(r.staticRouteId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterValueToString(r.staticRouteId, "staticRouteId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -9069,9 +9069,9 @@ func (a *ConfigureApiService) DeleteNetworkApplianceStaticRouteExecute(r Configu
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -9131,8 +9131,8 @@ func (a *ConfigureApiService) DeleteNetworkApplianceTrafficShapingCustomPerforma
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/trafficShaping/customPerformanceClasses/{customPerformanceClassId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"customPerformanceClassId"+"}", url.PathEscape(parameterToString(r.customPerformanceClassId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"customPerformanceClassId"+"}", url.PathEscape(parameterValueToString(r.customPerformanceClassId, "customPerformanceClassId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -9179,9 +9179,9 @@ func (a *ConfigureApiService) DeleteNetworkApplianceTrafficShapingCustomPerforma
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -9241,8 +9241,8 @@ func (a *ConfigureApiService) DeleteNetworkApplianceVlanExecute(r ConfigureApiDe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/vlans/{vlanId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"vlanId"+"}", url.PathEscape(parameterToString(r.vlanId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vlanId"+"}", url.PathEscape(parameterValueToString(r.vlanId, "vlanId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -9289,9 +9289,9 @@ func (a *ConfigureApiService) DeleteNetworkApplianceVlanExecute(r ConfigureApiDe
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -9351,8 +9351,8 @@ func (a *ConfigureApiService) DeleteNetworkCameraQualityRetentionProfileExecute(
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/qualityRetentionProfiles/{qualityRetentionProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"qualityRetentionProfileId"+"}", url.PathEscape(parameterToString(r.qualityRetentionProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"qualityRetentionProfileId"+"}", url.PathEscape(parameterValueToString(r.qualityRetentionProfileId, "qualityRetentionProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -9399,9 +9399,9 @@ func (a *ConfigureApiService) DeleteNetworkCameraQualityRetentionProfileExecute(
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -9461,8 +9461,8 @@ func (a *ConfigureApiService) DeleteNetworkCameraWirelessProfileExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/wirelessProfiles/{wirelessProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wirelessProfileId"+"}", url.PathEscape(parameterToString(r.wirelessProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wirelessProfileId"+"}", url.PathEscape(parameterValueToString(r.wirelessProfileId, "wirelessProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -9509,9 +9509,9 @@ func (a *ConfigureApiService) DeleteNetworkCameraWirelessProfileExecute(r Config
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -9571,8 +9571,8 @@ func (a *ConfigureApiService) DeleteNetworkFirmwareUpgradesStagedGroupExecute(r 
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/groups/{groupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterValueToString(r.groupId, "groupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -9619,9 +9619,9 @@ func (a *ConfigureApiService) DeleteNetworkFirmwareUpgradesStagedGroupExecute(r 
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -9681,8 +9681,8 @@ func (a *ConfigureApiService) DeleteNetworkFloorPlanExecute(r ConfigureApiDelete
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/floorPlans/{floorPlanId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"floorPlanId"+"}", url.PathEscape(parameterToString(r.floorPlanId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"floorPlanId"+"}", url.PathEscape(parameterValueToString(r.floorPlanId, "floorPlanId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -9729,9 +9729,9 @@ func (a *ConfigureApiService) DeleteNetworkFloorPlanExecute(r ConfigureApiDelete
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -9791,8 +9791,8 @@ func (a *ConfigureApiService) DeleteNetworkGroupPolicyExecute(r ConfigureApiDele
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/groupPolicies/{groupPolicyId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"groupPolicyId"+"}", url.PathEscape(parameterToString(r.groupPolicyId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupPolicyId"+"}", url.PathEscape(parameterValueToString(r.groupPolicyId, "groupPolicyId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -9839,9 +9839,9 @@ func (a *ConfigureApiService) DeleteNetworkGroupPolicyExecute(r ConfigureApiDele
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -9901,8 +9901,8 @@ func (a *ConfigureApiService) DeleteNetworkMerakiAuthUserExecute(r ConfigureApiD
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/merakiAuthUsers/{merakiAuthUserId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"merakiAuthUserId"+"}", url.PathEscape(parameterToString(r.merakiAuthUserId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"merakiAuthUserId"+"}", url.PathEscape(parameterValueToString(r.merakiAuthUserId, "merakiAuthUserId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -9949,9 +9949,9 @@ func (a *ConfigureApiService) DeleteNetworkMerakiAuthUserExecute(r ConfigureApiD
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -10011,8 +10011,8 @@ func (a *ConfigureApiService) DeleteNetworkMqttBrokerExecute(r ConfigureApiDelet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/mqttBrokers/{mqttBrokerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterToString(r.mqttBrokerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterValueToString(r.mqttBrokerId, "mqttBrokerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -10059,9 +10059,9 @@ func (a *ConfigureApiService) DeleteNetworkMqttBrokerExecute(r ConfigureApiDelet
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -10127,8 +10127,8 @@ func (a *ConfigureApiService) DeleteNetworkPiiRequestExecute(r ConfigureApiDelet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/pii/requests/{requestId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"requestId"+"}", url.PathEscape(parameterToString(r.requestId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"requestId"+"}", url.PathEscape(parameterValueToString(r.requestId, "requestId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -10175,9 +10175,9 @@ func (a *ConfigureApiService) DeleteNetworkPiiRequestExecute(r ConfigureApiDelet
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -10237,8 +10237,8 @@ func (a *ConfigureApiService) DeleteNetworkSensorAlertsProfileExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sensor/alerts/profiles/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -10285,9 +10285,9 @@ func (a *ConfigureApiService) DeleteNetworkSensorAlertsProfileExecute(r Configur
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -10347,8 +10347,8 @@ func (a *ConfigureApiService) DeleteNetworkSmTargetGroupExecute(r ConfigureApiDe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/targetGroups/{targetGroupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"targetGroupId"+"}", url.PathEscape(parameterToString(r.targetGroupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"targetGroupId"+"}", url.PathEscape(parameterValueToString(r.targetGroupId, "targetGroupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -10395,9 +10395,9 @@ func (a *ConfigureApiService) DeleteNetworkSmTargetGroupExecute(r ConfigureApiDe
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -10457,8 +10457,8 @@ func (a *ConfigureApiService) DeleteNetworkSmUserAccessDeviceExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/userAccessDevices/{userAccessDeviceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"userAccessDeviceId"+"}", url.PathEscape(parameterToString(r.userAccessDeviceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"userAccessDeviceId"+"}", url.PathEscape(parameterValueToString(r.userAccessDeviceId, "userAccessDeviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -10505,9 +10505,9 @@ func (a *ConfigureApiService) DeleteNetworkSmUserAccessDeviceExecute(r Configure
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -10567,8 +10567,8 @@ func (a *ConfigureApiService) DeleteNetworkSwitchAccessPolicyExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/accessPolicies/{accessPolicyNumber}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"accessPolicyNumber"+"}", url.PathEscape(parameterToString(r.accessPolicyNumber, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"accessPolicyNumber"+"}", url.PathEscape(parameterValueToString(r.accessPolicyNumber, "accessPolicyNumber")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -10615,9 +10615,9 @@ func (a *ConfigureApiService) DeleteNetworkSwitchAccessPolicyExecute(r Configure
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -10677,8 +10677,8 @@ func (a *ConfigureApiService) DeleteNetworkSwitchDhcpServerPolicyArpInspectionTr
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/dhcpServerPolicy/arpInspection/trustedServers/{trustedServerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"trustedServerId"+"}", url.PathEscape(parameterToString(r.trustedServerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"trustedServerId"+"}", url.PathEscape(parameterValueToString(r.trustedServerId, "trustedServerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -10725,9 +10725,9 @@ func (a *ConfigureApiService) DeleteNetworkSwitchDhcpServerPolicyArpInspectionTr
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -10787,8 +10787,8 @@ func (a *ConfigureApiService) DeleteNetworkSwitchLinkAggregationExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/linkAggregations/{linkAggregationId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"linkAggregationId"+"}", url.PathEscape(parameterToString(r.linkAggregationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"linkAggregationId"+"}", url.PathEscape(parameterValueToString(r.linkAggregationId, "linkAggregationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -10835,9 +10835,9 @@ func (a *ConfigureApiService) DeleteNetworkSwitchLinkAggregationExecute(r Config
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -10897,8 +10897,8 @@ func (a *ConfigureApiService) DeleteNetworkSwitchPortScheduleExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/portSchedules/{portScheduleId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"portScheduleId"+"}", url.PathEscape(parameterToString(r.portScheduleId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"portScheduleId"+"}", url.PathEscape(parameterValueToString(r.portScheduleId, "portScheduleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -10945,9 +10945,9 @@ func (a *ConfigureApiService) DeleteNetworkSwitchPortScheduleExecute(r Configure
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -11007,8 +11007,8 @@ func (a *ConfigureApiService) DeleteNetworkSwitchQosRuleExecute(r ConfigureApiDe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/qosRules/{qosRuleId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"qosRuleId"+"}", url.PathEscape(parameterToString(r.qosRuleId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"qosRuleId"+"}", url.PathEscape(parameterValueToString(r.qosRuleId, "qosRuleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -11055,9 +11055,9 @@ func (a *ConfigureApiService) DeleteNetworkSwitchQosRuleExecute(r ConfigureApiDe
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -11117,8 +11117,8 @@ func (a *ConfigureApiService) DeleteNetworkSwitchRoutingMulticastRendezvousPoint
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/routing/multicast/rendezvousPoints/{rendezvousPointId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rendezvousPointId"+"}", url.PathEscape(parameterToString(r.rendezvousPointId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rendezvousPointId"+"}", url.PathEscape(parameterValueToString(r.rendezvousPointId, "rendezvousPointId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -11165,9 +11165,9 @@ func (a *ConfigureApiService) DeleteNetworkSwitchRoutingMulticastRendezvousPoint
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -11227,8 +11227,8 @@ func (a *ConfigureApiService) DeleteNetworkSwitchStackExecute(r ConfigureApiDele
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks/{switchStackId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterToString(r.switchStackId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterValueToString(r.switchStackId, "switchStackId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -11275,9 +11275,9 @@ func (a *ConfigureApiService) DeleteNetworkSwitchStackExecute(r ConfigureApiDele
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -11340,9 +11340,9 @@ func (a *ConfigureApiService) DeleteNetworkSwitchStackRoutingInterfaceExecute(r 
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterToString(r.switchStackId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterToString(r.interfaceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterValueToString(r.switchStackId, "switchStackId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterValueToString(r.interfaceId, "interfaceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -11389,9 +11389,9 @@ func (a *ConfigureApiService) DeleteNetworkSwitchStackRoutingInterfaceExecute(r 
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -11454,9 +11454,9 @@ func (a *ConfigureApiService) DeleteNetworkSwitchStackRoutingStaticRouteExecute(
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks/{switchStackId}/routing/staticRoutes/{staticRouteId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterToString(r.switchStackId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterToString(r.staticRouteId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterValueToString(r.switchStackId, "switchStackId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterValueToString(r.staticRouteId, "staticRouteId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -11503,9 +11503,9 @@ func (a *ConfigureApiService) DeleteNetworkSwitchStackRoutingStaticRouteExecute(
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -11565,8 +11565,8 @@ func (a *ConfigureApiService) DeleteNetworkWebhooksHttpServerExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/webhooks/httpServers/{httpServerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"httpServerId"+"}", url.PathEscape(parameterToString(r.httpServerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"httpServerId"+"}", url.PathEscape(parameterValueToString(r.httpServerId, "httpServerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -11613,9 +11613,9 @@ func (a *ConfigureApiService) DeleteNetworkWebhooksHttpServerExecute(r Configure
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -11675,8 +11675,8 @@ func (a *ConfigureApiService) DeleteNetworkWebhooksPayloadTemplateExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/webhooks/payloadTemplates/{payloadTemplateId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"payloadTemplateId"+"}", url.PathEscape(parameterToString(r.payloadTemplateId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"payloadTemplateId"+"}", url.PathEscape(parameterValueToString(r.payloadTemplateId, "payloadTemplateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -11723,9 +11723,9 @@ func (a *ConfigureApiService) DeleteNetworkWebhooksPayloadTemplateExecute(r Conf
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -11785,8 +11785,8 @@ func (a *ConfigureApiService) DeleteNetworkWirelessRfProfileExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/rfProfiles/{rfProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rfProfileId"+"}", url.PathEscape(parameterToString(r.rfProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rfProfileId"+"}", url.PathEscape(parameterValueToString(r.rfProfileId, "rfProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -11833,9 +11833,9 @@ func (a *ConfigureApiService) DeleteNetworkWirelessRfProfileExecute(r ConfigureA
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -11898,9 +11898,9 @@ func (a *ConfigureApiService) DeleteNetworkWirelessSsidIdentityPskExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/identityPsks/{identityPskId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"identityPskId"+"}", url.PathEscape(parameterToString(r.identityPskId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"identityPskId"+"}", url.PathEscape(parameterValueToString(r.identityPskId, "identityPskId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -11947,9 +11947,9 @@ func (a *ConfigureApiService) DeleteNetworkWirelessSsidIdentityPskExecute(r Conf
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -12006,7 +12006,7 @@ func (a *ConfigureApiService) DeleteOrganizationExecute(r ConfigureApiDeleteOrga
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -12053,9 +12053,9 @@ func (a *ConfigureApiService) DeleteOrganizationExecute(r ConfigureApiDeleteOrga
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -12115,8 +12115,8 @@ func (a *ConfigureApiService) DeleteOrganizationActionBatchExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/actionBatches/{actionBatchId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"actionBatchId"+"}", url.PathEscape(parameterToString(r.actionBatchId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"actionBatchId"+"}", url.PathEscape(parameterValueToString(r.actionBatchId, "actionBatchId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -12163,9 +12163,9 @@ func (a *ConfigureApiService) DeleteOrganizationActionBatchExecute(r ConfigureAp
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -12225,8 +12225,8 @@ func (a *ConfigureApiService) DeleteOrganizationAdaptivePolicyAclExecute(r Confi
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/acls/{aclId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"aclId"+"}", url.PathEscape(parameterToString(r.aclId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"aclId"+"}", url.PathEscape(parameterValueToString(r.aclId, "aclId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -12273,9 +12273,9 @@ func (a *ConfigureApiService) DeleteOrganizationAdaptivePolicyAclExecute(r Confi
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -12335,8 +12335,8 @@ func (a *ConfigureApiService) DeleteOrganizationAdaptivePolicyGroupExecute(r Con
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/groups/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -12383,9 +12383,9 @@ func (a *ConfigureApiService) DeleteOrganizationAdaptivePolicyGroupExecute(r Con
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -12445,8 +12445,8 @@ func (a *ConfigureApiService) DeleteOrganizationAdaptivePolicyPolicyExecute(r Co
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/policies/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -12493,9 +12493,9 @@ func (a *ConfigureApiService) DeleteOrganizationAdaptivePolicyPolicyExecute(r Co
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -12555,8 +12555,8 @@ func (a *ConfigureApiService) DeleteOrganizationAdminExecute(r ConfigureApiDelet
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/admins/{adminId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"adminId"+"}", url.PathEscape(parameterToString(r.adminId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"adminId"+"}", url.PathEscape(parameterValueToString(r.adminId, "adminId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -12603,9 +12603,9 @@ func (a *ConfigureApiService) DeleteOrganizationAdminExecute(r ConfigureApiDelet
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -12665,8 +12665,8 @@ func (a *ConfigureApiService) DeleteOrganizationAlertsProfileExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/alerts/profiles/{alertConfigId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"alertConfigId"+"}", url.PathEscape(parameterToString(r.alertConfigId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"alertConfigId"+"}", url.PathEscape(parameterValueToString(r.alertConfigId, "alertConfigId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -12713,9 +12713,9 @@ func (a *ConfigureApiService) DeleteOrganizationAlertsProfileExecute(r Configure
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -12775,8 +12775,8 @@ func (a *ConfigureApiService) DeleteOrganizationBrandingPolicyExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/brandingPolicies/{brandingPolicyId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"brandingPolicyId"+"}", url.PathEscape(parameterToString(r.brandingPolicyId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"brandingPolicyId"+"}", url.PathEscape(parameterValueToString(r.brandingPolicyId, "brandingPolicyId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -12823,9 +12823,9 @@ func (a *ConfigureApiService) DeleteOrganizationBrandingPolicyExecute(r Configur
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -12885,8 +12885,8 @@ func (a *ConfigureApiService) DeleteOrganizationCameraCustomAnalyticsArtifactExe
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/camera/customAnalytics/artifacts/{artifactId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"artifactId"+"}", url.PathEscape(parameterToString(r.artifactId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"artifactId"+"}", url.PathEscape(parameterValueToString(r.artifactId, "artifactId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -12933,9 +12933,9 @@ func (a *ConfigureApiService) DeleteOrganizationCameraCustomAnalyticsArtifactExe
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -12995,8 +12995,8 @@ func (a *ConfigureApiService) DeleteOrganizationConfigTemplateExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/configTemplates/{configTemplateId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"configTemplateId"+"}", url.PathEscape(parameterToString(r.configTemplateId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"configTemplateId"+"}", url.PathEscape(parameterValueToString(r.configTemplateId, "configTemplateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -13043,9 +13043,9 @@ func (a *ConfigureApiService) DeleteOrganizationConfigTemplateExecute(r Configur
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -13105,8 +13105,8 @@ func (a *ConfigureApiService) DeleteOrganizationEarlyAccessFeaturesOptInExecute(
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"optInId"+"}", url.PathEscape(parameterToString(r.optInId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"optInId"+"}", url.PathEscape(parameterValueToString(r.optInId, "optInId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -13153,9 +13153,9 @@ func (a *ConfigureApiService) DeleteOrganizationEarlyAccessFeaturesOptInExecute(
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -13215,8 +13215,8 @@ func (a *ConfigureApiService) DeleteOrganizationInsightMonitoredMediaServerExecu
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/insight/monitoredMediaServers/{monitoredMediaServerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"monitoredMediaServerId"+"}", url.PathEscape(parameterToString(r.monitoredMediaServerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"monitoredMediaServerId"+"}", url.PathEscape(parameterValueToString(r.monitoredMediaServerId, "monitoredMediaServerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -13263,9 +13263,9 @@ func (a *ConfigureApiService) DeleteOrganizationInsightMonitoredMediaServerExecu
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -13325,8 +13325,8 @@ func (a *ConfigureApiService) DeleteOrganizationPolicyObjectExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/policyObjects/{policyObjectId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectId"+"}", url.PathEscape(parameterToString(r.policyObjectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectId"+"}", url.PathEscape(parameterValueToString(r.policyObjectId, "policyObjectId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -13373,9 +13373,9 @@ func (a *ConfigureApiService) DeleteOrganizationPolicyObjectExecute(r ConfigureA
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -13435,8 +13435,8 @@ func (a *ConfigureApiService) DeleteOrganizationPolicyObjectsGroupExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectGroupId"+"}", url.PathEscape(parameterToString(r.policyObjectGroupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectGroupId"+"}", url.PathEscape(parameterValueToString(r.policyObjectGroupId, "policyObjectGroupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -13483,9 +13483,9 @@ func (a *ConfigureApiService) DeleteOrganizationPolicyObjectsGroupExecute(r Conf
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -13545,8 +13545,8 @@ func (a *ConfigureApiService) DeleteOrganizationSamlIdpExecute(r ConfigureApiDel
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/saml/idps/{idpId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"idpId"+"}", url.PathEscape(parameterToString(r.idpId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"idpId"+"}", url.PathEscape(parameterValueToString(r.idpId, "idpId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -13593,9 +13593,9 @@ func (a *ConfigureApiService) DeleteOrganizationSamlIdpExecute(r ConfigureApiDel
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -13655,8 +13655,8 @@ func (a *ConfigureApiService) DeleteOrganizationSamlRoleExecute(r ConfigureApiDe
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/samlRoles/{samlRoleId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"samlRoleId"+"}", url.PathEscape(parameterToString(r.samlRoleId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"samlRoleId"+"}", url.PathEscape(parameterValueToString(r.samlRoleId, "samlRoleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -13703,9 +13703,9 @@ func (a *ConfigureApiService) DeleteOrganizationSamlRoleExecute(r ConfigureApiDe
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -13765,8 +13765,8 @@ func (a *ConfigureApiService) DeleteOrganizationUserExecute(r ConfigureApiDelete
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/users/{userId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterToString(r.userId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -13813,9 +13813,9 @@ func (a *ConfigureApiService) DeleteOrganizationUserExecute(r ConfigureApiDelete
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -13874,7 +13874,7 @@ func (a *ConfigureApiService) GetDeviceExecute(r ConfigureApiGetDeviceRequest) (
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -13921,9 +13921,9 @@ func (a *ConfigureApiService) GetDeviceExecute(r ConfigureApiGetDeviceRequest) (
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -13991,7 +13991,7 @@ func (a *ConfigureApiService) GetDeviceApplianceRadioSettingsExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/appliance/radio/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -14038,9 +14038,9 @@ func (a *ConfigureApiService) GetDeviceApplianceRadioSettingsExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -14108,7 +14108,7 @@ func (a *ConfigureApiService) GetDeviceApplianceUplinksSettingsExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/appliance/uplinks/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -14155,9 +14155,9 @@ func (a *ConfigureApiService) GetDeviceApplianceUplinksSettingsExecute(r Configu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -14225,7 +14225,7 @@ func (a *ConfigureApiService) GetDeviceCameraCustomAnalyticsExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/customAnalytics"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -14272,9 +14272,9 @@ func (a *ConfigureApiService) GetDeviceCameraCustomAnalyticsExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -14342,7 +14342,7 @@ func (a *ConfigureApiService) GetDeviceCameraQualityAndRetentionExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/qualityAndRetention"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -14389,9 +14389,9 @@ func (a *ConfigureApiService) GetDeviceCameraQualityAndRetentionExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -14459,7 +14459,7 @@ func (a *ConfigureApiService) GetDeviceCameraSenseExecute(r ConfigureApiGetDevic
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/sense"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -14506,9 +14506,9 @@ func (a *ConfigureApiService) GetDeviceCameraSenseExecute(r ConfigureApiGetDevic
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -14576,7 +14576,7 @@ func (a *ConfigureApiService) GetDeviceCameraSenseObjectDetectionModelsExecute(r
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/sense/objectDetectionModels"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -14623,9 +14623,9 @@ func (a *ConfigureApiService) GetDeviceCameraSenseObjectDetectionModelsExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -14700,14 +14700,14 @@ func (a *ConfigureApiService) GetDeviceCameraVideoLinkExecute(r ConfigureApiGetD
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/videoLink"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.timestamp != nil {
-		localVarQueryParams.Add("timestamp", parameterToString(*r.timestamp, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "timestamp", r.timestamp, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -14750,9 +14750,9 @@ func (a *ConfigureApiService) GetDeviceCameraVideoLinkExecute(r ConfigureApiGetD
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -14820,7 +14820,7 @@ func (a *ConfigureApiService) GetDeviceCameraVideoSettingsExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/video/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -14867,9 +14867,9 @@ func (a *ConfigureApiService) GetDeviceCameraVideoSettingsExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -14937,7 +14937,7 @@ func (a *ConfigureApiService) GetDeviceCameraWirelessProfilesExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/wirelessProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -14984,9 +14984,9 @@ func (a *ConfigureApiService) GetDeviceCameraWirelessProfilesExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -15054,7 +15054,7 @@ func (a *ConfigureApiService) GetDeviceCellularGatewayLanExecute(r ConfigureApiG
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/cellularGateway/lan"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -15101,9 +15101,9 @@ func (a *ConfigureApiService) GetDeviceCellularGatewayLanExecute(r ConfigureApiG
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -15171,7 +15171,7 @@ func (a *ConfigureApiService) GetDeviceCellularGatewayPortForwardingRulesExecute
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/cellularGateway/portForwardingRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -15218,9 +15218,9 @@ func (a *ConfigureApiService) GetDeviceCellularGatewayPortForwardingRulesExecute
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -15288,7 +15288,7 @@ func (a *ConfigureApiService) GetDeviceCellularSimsExecute(r ConfigureApiGetDevi
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/cellular/sims"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -15335,9 +15335,9 @@ func (a *ConfigureApiService) GetDeviceCellularSimsExecute(r ConfigureApiGetDevi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -15405,7 +15405,7 @@ func (a *ConfigureApiService) GetDeviceManagementInterfaceExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/managementInterface"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -15452,9 +15452,9 @@ func (a *ConfigureApiService) GetDeviceManagementInterfaceExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -15522,7 +15522,7 @@ func (a *ConfigureApiService) GetDeviceSensorRelationshipsExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/sensor/relationships"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -15569,9 +15569,9 @@ func (a *ConfigureApiService) GetDeviceSensorRelationshipsExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -15642,8 +15642,8 @@ func (a *ConfigureApiService) GetDeviceSwitchPortExecute(r ConfigureApiGetDevice
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/ports/{portId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"portId"+"}", url.PathEscape(parameterToString(r.portId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"portId"+"}", url.PathEscape(parameterValueToString(r.portId, "portId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -15690,9 +15690,9 @@ func (a *ConfigureApiService) GetDeviceSwitchPortExecute(r ConfigureApiGetDevice
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -15760,7 +15760,7 @@ func (a *ConfigureApiService) GetDeviceSwitchPortsExecute(r ConfigureApiGetDevic
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/ports"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -15807,9 +15807,9 @@ func (a *ConfigureApiService) GetDeviceSwitchPortsExecute(r ConfigureApiGetDevic
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -15880,8 +15880,8 @@ func (a *ConfigureApiService) GetDeviceSwitchRoutingInterfaceExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/routing/interfaces/{interfaceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterToString(r.interfaceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterValueToString(r.interfaceId, "interfaceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -15928,9 +15928,9 @@ func (a *ConfigureApiService) GetDeviceSwitchRoutingInterfaceExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -16001,8 +16001,8 @@ func (a *ConfigureApiService) GetDeviceSwitchRoutingInterfaceDhcpExecute(r Confi
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/routing/interfaces/{interfaceId}/dhcp"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterToString(r.interfaceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterValueToString(r.interfaceId, "interfaceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -16049,9 +16049,9 @@ func (a *ConfigureApiService) GetDeviceSwitchRoutingInterfaceDhcpExecute(r Confi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -16119,7 +16119,7 @@ func (a *ConfigureApiService) GetDeviceSwitchRoutingInterfacesExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/routing/interfaces"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -16166,9 +16166,9 @@ func (a *ConfigureApiService) GetDeviceSwitchRoutingInterfacesExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -16239,8 +16239,8 @@ func (a *ConfigureApiService) GetDeviceSwitchRoutingStaticRouteExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/routing/staticRoutes/{staticRouteId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterToString(r.staticRouteId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterValueToString(r.staticRouteId, "staticRouteId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -16287,9 +16287,9 @@ func (a *ConfigureApiService) GetDeviceSwitchRoutingStaticRouteExecute(r Configu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -16357,7 +16357,7 @@ func (a *ConfigureApiService) GetDeviceSwitchRoutingStaticRoutesExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/routing/staticRoutes"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -16404,9 +16404,9 @@ func (a *ConfigureApiService) GetDeviceSwitchRoutingStaticRoutesExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -16474,7 +16474,7 @@ func (a *ConfigureApiService) GetDeviceSwitchWarmSpareExecute(r ConfigureApiGetD
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/warmSpare"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -16521,9 +16521,9 @@ func (a *ConfigureApiService) GetDeviceSwitchWarmSpareExecute(r ConfigureApiGetD
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -16591,7 +16591,7 @@ func (a *ConfigureApiService) GetDeviceWirelessBluetoothSettingsExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/wireless/bluetooth/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -16638,9 +16638,9 @@ func (a *ConfigureApiService) GetDeviceWirelessBluetoothSettingsExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -16708,7 +16708,7 @@ func (a *ConfigureApiService) GetDeviceWirelessRadioSettingsExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/wireless/radio/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -16755,9 +16755,9 @@ func (a *ConfigureApiService) GetDeviceWirelessRadioSettingsExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -16825,7 +16825,7 @@ func (a *ConfigureApiService) GetNetworkExecute(r ConfigureApiGetNetworkRequest)
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -16872,9 +16872,9 @@ func (a *ConfigureApiService) GetNetworkExecute(r ConfigureApiGetNetworkRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -16942,7 +16942,7 @@ func (a *ConfigureApiService) GetNetworkAlertsSettingsExecute(r ConfigureApiGetN
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/alerts/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -16989,9 +16989,9 @@ func (a *ConfigureApiService) GetNetworkAlertsSettingsExecute(r ConfigureApiGetN
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -17059,7 +17059,7 @@ func (a *ConfigureApiService) GetNetworkApplianceConnectivityMonitoringDestinati
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/connectivityMonitoringDestinations"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -17106,9 +17106,9 @@ func (a *ConfigureApiService) GetNetworkApplianceConnectivityMonitoringDestinati
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -17176,7 +17176,7 @@ func (a *ConfigureApiService) GetNetworkApplianceContentFilteringExecute(r Confi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/contentFiltering"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -17223,9 +17223,9 @@ func (a *ConfigureApiService) GetNetworkApplianceContentFilteringExecute(r Confi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -17293,7 +17293,7 @@ func (a *ConfigureApiService) GetNetworkApplianceContentFilteringCategoriesExecu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/contentFiltering/categories"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -17340,9 +17340,9 @@ func (a *ConfigureApiService) GetNetworkApplianceContentFilteringCategoriesExecu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -17410,7 +17410,7 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallCellularFirewallRulesEx
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/cellularFirewallRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -17457,9 +17457,9 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallCellularFirewallRulesEx
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -17530,8 +17530,8 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallFirewalledServiceExecut
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/firewalledServices/{service}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"service"+"}", url.PathEscape(parameterToString(r.service, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"service"+"}", url.PathEscape(parameterValueToString(r.service, "service")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -17578,9 +17578,9 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallFirewalledServiceExecut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -17648,7 +17648,7 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallFirewalledServicesExecu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/firewalledServices"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -17695,9 +17695,9 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallFirewalledServicesExecu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -17765,7 +17765,7 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallInboundCellularFirewall
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/inboundCellularFirewallRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -17812,9 +17812,9 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallInboundCellularFirewall
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -17882,7 +17882,7 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallInboundFirewallRulesExe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/inboundFirewallRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -17929,9 +17929,9 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallInboundFirewallRulesExe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -17999,7 +17999,7 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallL3FirewallRulesExecute(
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/l3FirewallRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -18046,9 +18046,9 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallL3FirewallRulesExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -18116,7 +18116,7 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallL7FirewallRulesExecute(
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/l7FirewallRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -18163,9 +18163,9 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallL7FirewallRulesExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -18233,7 +18233,7 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallL7FirewallRulesApplicat
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/l7FirewallRules/applicationCategories"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -18280,9 +18280,9 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallL7FirewallRulesApplicat
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -18350,7 +18350,7 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallOneToManyNatRulesExecut
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/oneToManyNatRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -18397,9 +18397,9 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallOneToManyNatRulesExecut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -18467,7 +18467,7 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallOneToOneNatRulesExecute
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/oneToOneNatRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -18514,9 +18514,9 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallOneToOneNatRulesExecute
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -18584,7 +18584,7 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallPortForwardingRulesExec
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/portForwardingRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -18631,9 +18631,9 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallPortForwardingRulesExec
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -18701,7 +18701,7 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallSettingsExecute(r Confi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -18748,9 +18748,9 @@ func (a *ConfigureApiService) GetNetworkApplianceFirewallSettingsExecute(r Confi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -18821,8 +18821,8 @@ func (a *ConfigureApiService) GetNetworkAppliancePortExecute(r ConfigureApiGetNe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/ports/{portId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"portId"+"}", url.PathEscape(parameterToString(r.portId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"portId"+"}", url.PathEscape(parameterValueToString(r.portId, "portId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -18869,9 +18869,9 @@ func (a *ConfigureApiService) GetNetworkAppliancePortExecute(r ConfigureApiGetNe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -18939,7 +18939,7 @@ func (a *ConfigureApiService) GetNetworkAppliancePortsExecute(r ConfigureApiGetN
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/ports"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -18986,9 +18986,9 @@ func (a *ConfigureApiService) GetNetworkAppliancePortsExecute(r ConfigureApiGetN
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -19059,8 +19059,8 @@ func (a *ConfigureApiService) GetNetworkAppliancePrefixesDelegatedStaticExecute(
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"staticDelegatedPrefixId"+"}", url.PathEscape(parameterToString(r.staticDelegatedPrefixId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"staticDelegatedPrefixId"+"}", url.PathEscape(parameterValueToString(r.staticDelegatedPrefixId, "staticDelegatedPrefixId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -19107,9 +19107,9 @@ func (a *ConfigureApiService) GetNetworkAppliancePrefixesDelegatedStaticExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -19177,7 +19177,7 @@ func (a *ConfigureApiService) GetNetworkAppliancePrefixesDelegatedStaticsExecute
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/prefixes/delegated/statics"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -19224,9 +19224,9 @@ func (a *ConfigureApiService) GetNetworkAppliancePrefixesDelegatedStaticsExecute
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -19297,8 +19297,8 @@ func (a *ConfigureApiService) GetNetworkApplianceRfProfileExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/rfProfiles/{rfProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rfProfileId"+"}", url.PathEscape(parameterToString(r.rfProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rfProfileId"+"}", url.PathEscape(parameterValueToString(r.rfProfileId, "rfProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -19345,9 +19345,9 @@ func (a *ConfigureApiService) GetNetworkApplianceRfProfileExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -19415,7 +19415,7 @@ func (a *ConfigureApiService) GetNetworkApplianceRfProfilesExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/rfProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -19462,9 +19462,9 @@ func (a *ConfigureApiService) GetNetworkApplianceRfProfilesExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -19532,7 +19532,7 @@ func (a *ConfigureApiService) GetNetworkApplianceSecurityIntrusionExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/security/intrusion"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -19579,9 +19579,9 @@ func (a *ConfigureApiService) GetNetworkApplianceSecurityIntrusionExecute(r Conf
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -19649,7 +19649,7 @@ func (a *ConfigureApiService) GetNetworkApplianceSecurityMalwareExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/security/malware"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -19696,9 +19696,9 @@ func (a *ConfigureApiService) GetNetworkApplianceSecurityMalwareExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -19766,7 +19766,7 @@ func (a *ConfigureApiService) GetNetworkApplianceSettingsExecute(r ConfigureApiG
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -19813,9 +19813,9 @@ func (a *ConfigureApiService) GetNetworkApplianceSettingsExecute(r ConfigureApiG
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -19883,7 +19883,7 @@ func (a *ConfigureApiService) GetNetworkApplianceSingleLanExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/singleLan"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -19930,9 +19930,9 @@ func (a *ConfigureApiService) GetNetworkApplianceSingleLanExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -20003,8 +20003,8 @@ func (a *ConfigureApiService) GetNetworkApplianceSsidExecute(r ConfigureApiGetNe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/ssids/{number}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -20051,9 +20051,9 @@ func (a *ConfigureApiService) GetNetworkApplianceSsidExecute(r ConfigureApiGetNe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -20121,7 +20121,7 @@ func (a *ConfigureApiService) GetNetworkApplianceSsidsExecute(r ConfigureApiGetN
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/ssids"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -20168,9 +20168,9 @@ func (a *ConfigureApiService) GetNetworkApplianceSsidsExecute(r ConfigureApiGetN
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -20241,8 +20241,8 @@ func (a *ConfigureApiService) GetNetworkApplianceStaticRouteExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/staticRoutes/{staticRouteId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterToString(r.staticRouteId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterValueToString(r.staticRouteId, "staticRouteId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -20289,9 +20289,9 @@ func (a *ConfigureApiService) GetNetworkApplianceStaticRouteExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -20359,7 +20359,7 @@ func (a *ConfigureApiService) GetNetworkApplianceStaticRoutesExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/staticRoutes"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -20406,9 +20406,9 @@ func (a *ConfigureApiService) GetNetworkApplianceStaticRoutesExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -20476,7 +20476,7 @@ func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/trafficShaping"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -20523,9 +20523,9 @@ func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingExecute(r Configu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -20596,8 +20596,8 @@ func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingCustomPerformance
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/trafficShaping/customPerformanceClasses/{customPerformanceClassId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"customPerformanceClassId"+"}", url.PathEscape(parameterToString(r.customPerformanceClassId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"customPerformanceClassId"+"}", url.PathEscape(parameterValueToString(r.customPerformanceClassId, "customPerformanceClassId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -20644,9 +20644,9 @@ func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingCustomPerformance
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -20714,7 +20714,7 @@ func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingCustomPerformance
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/trafficShaping/customPerformanceClasses"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -20761,9 +20761,9 @@ func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingCustomPerformance
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -20831,7 +20831,7 @@ func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingRulesExecute(r Co
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/trafficShaping/rules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -20878,9 +20878,9 @@ func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingRulesExecute(r Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -20948,7 +20948,7 @@ func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingUplinkBandwidthEx
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/trafficShaping/uplinkBandwidth"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -20995,9 +20995,9 @@ func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingUplinkBandwidthEx
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -21065,7 +21065,7 @@ func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingUplinkSelectionEx
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/trafficShaping/uplinkSelection"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -21112,9 +21112,9 @@ func (a *ConfigureApiService) GetNetworkApplianceTrafficShapingUplinkSelectionEx
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -21185,8 +21185,8 @@ func (a *ConfigureApiService) GetNetworkApplianceVlanExecute(r ConfigureApiGetNe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/vlans/{vlanId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"vlanId"+"}", url.PathEscape(parameterToString(r.vlanId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vlanId"+"}", url.PathEscape(parameterValueToString(r.vlanId, "vlanId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -21233,9 +21233,9 @@ func (a *ConfigureApiService) GetNetworkApplianceVlanExecute(r ConfigureApiGetNe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -21303,7 +21303,7 @@ func (a *ConfigureApiService) GetNetworkApplianceVlansExecute(r ConfigureApiGetN
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/vlans"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -21350,9 +21350,9 @@ func (a *ConfigureApiService) GetNetworkApplianceVlansExecute(r ConfigureApiGetN
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -21420,7 +21420,7 @@ func (a *ConfigureApiService) GetNetworkApplianceVlansSettingsExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/vlans/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -21467,9 +21467,9 @@ func (a *ConfigureApiService) GetNetworkApplianceVlansSettingsExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -21537,7 +21537,7 @@ func (a *ConfigureApiService) GetNetworkApplianceVpnBgpExecute(r ConfigureApiGet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/vpn/bgp"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -21584,9 +21584,9 @@ func (a *ConfigureApiService) GetNetworkApplianceVpnBgpExecute(r ConfigureApiGet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -21654,7 +21654,7 @@ func (a *ConfigureApiService) GetNetworkApplianceVpnSiteToSiteVpnExecute(r Confi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/vpn/siteToSiteVpn"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -21701,9 +21701,9 @@ func (a *ConfigureApiService) GetNetworkApplianceVpnSiteToSiteVpnExecute(r Confi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -21771,7 +21771,7 @@ func (a *ConfigureApiService) GetNetworkApplianceWarmSpareExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/warmSpare"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -21818,9 +21818,9 @@ func (a *ConfigureApiService) GetNetworkApplianceWarmSpareExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -21891,8 +21891,8 @@ func (a *ConfigureApiService) GetNetworkCameraQualityRetentionProfileExecute(r C
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/qualityRetentionProfiles/{qualityRetentionProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"qualityRetentionProfileId"+"}", url.PathEscape(parameterToString(r.qualityRetentionProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"qualityRetentionProfileId"+"}", url.PathEscape(parameterValueToString(r.qualityRetentionProfileId, "qualityRetentionProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -21939,9 +21939,9 @@ func (a *ConfigureApiService) GetNetworkCameraQualityRetentionProfileExecute(r C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -22009,7 +22009,7 @@ func (a *ConfigureApiService) GetNetworkCameraQualityRetentionProfilesExecute(r 
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/qualityRetentionProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -22056,9 +22056,9 @@ func (a *ConfigureApiService) GetNetworkCameraQualityRetentionProfilesExecute(r 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -22126,7 +22126,7 @@ func (a *ConfigureApiService) GetNetworkCameraSchedulesExecute(r ConfigureApiGet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/schedules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -22173,9 +22173,9 @@ func (a *ConfigureApiService) GetNetworkCameraSchedulesExecute(r ConfigureApiGet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -22246,8 +22246,8 @@ func (a *ConfigureApiService) GetNetworkCameraWirelessProfileExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/wirelessProfiles/{wirelessProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wirelessProfileId"+"}", url.PathEscape(parameterToString(r.wirelessProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wirelessProfileId"+"}", url.PathEscape(parameterValueToString(r.wirelessProfileId, "wirelessProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -22294,9 +22294,9 @@ func (a *ConfigureApiService) GetNetworkCameraWirelessProfileExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -22364,7 +22364,7 @@ func (a *ConfigureApiService) GetNetworkCameraWirelessProfilesExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/wirelessProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -22411,9 +22411,9 @@ func (a *ConfigureApiService) GetNetworkCameraWirelessProfilesExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -22481,7 +22481,7 @@ func (a *ConfigureApiService) GetNetworkCellularGatewayConnectivityMonitoringDes
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/cellularGateway/connectivityMonitoringDestinations"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -22528,9 +22528,9 @@ func (a *ConfigureApiService) GetNetworkCellularGatewayConnectivityMonitoringDes
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -22598,7 +22598,7 @@ func (a *ConfigureApiService) GetNetworkCellularGatewayDhcpExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/cellularGateway/dhcp"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -22645,9 +22645,9 @@ func (a *ConfigureApiService) GetNetworkCellularGatewayDhcpExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -22715,7 +22715,7 @@ func (a *ConfigureApiService) GetNetworkCellularGatewaySubnetPoolExecute(r Confi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/cellularGateway/subnetPool"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -22762,9 +22762,9 @@ func (a *ConfigureApiService) GetNetworkCellularGatewaySubnetPoolExecute(r Confi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -22832,7 +22832,7 @@ func (a *ConfigureApiService) GetNetworkCellularGatewayUplinkExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/cellularGateway/uplink"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -22879,9 +22879,9 @@ func (a *ConfigureApiService) GetNetworkCellularGatewayUplinkExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -22952,8 +22952,8 @@ func (a *ConfigureApiService) GetNetworkClientPolicyExecute(r ConfigureApiGetNet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/clients/{clientId}/policy"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"clientId"+"}", url.PathEscape(parameterToString(r.clientId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clientId"+"}", url.PathEscape(parameterValueToString(r.clientId, "clientId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -23000,9 +23000,9 @@ func (a *ConfigureApiService) GetNetworkClientPolicyExecute(r ConfigureApiGetNet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -23073,8 +23073,8 @@ func (a *ConfigureApiService) GetNetworkClientSplashAuthorizationStatusExecute(r
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/clients/{clientId}/splashAuthorizationStatus"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"clientId"+"}", url.PathEscape(parameterToString(r.clientId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clientId"+"}", url.PathEscape(parameterValueToString(r.clientId, "clientId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -23121,9 +23121,9 @@ func (a *ConfigureApiService) GetNetworkClientSplashAuthorizationStatusExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -23191,7 +23191,7 @@ func (a *ConfigureApiService) GetNetworkDevicesExecute(r ConfigureApiGetNetworkD
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/devices"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -23238,9 +23238,9 @@ func (a *ConfigureApiService) GetNetworkDevicesExecute(r ConfigureApiGetNetworkD
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -23308,7 +23308,7 @@ func (a *ConfigureApiService) GetNetworkFirmwareUpgradesExecute(r ConfigureApiGe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -23355,9 +23355,9 @@ func (a *ConfigureApiService) GetNetworkFirmwareUpgradesExecute(r ConfigureApiGe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -23425,7 +23425,7 @@ func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedEventsExecute(r Co
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -23472,9 +23472,9 @@ func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedEventsExecute(r Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -23545,8 +23545,8 @@ func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedGroupExecute(r Con
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/groups/{groupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterValueToString(r.groupId, "groupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -23593,9 +23593,9 @@ func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedGroupExecute(r Con
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -23663,7 +23663,7 @@ func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedGroupsExecute(r Co
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -23710,9 +23710,9 @@ func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedGroupsExecute(r Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -23780,7 +23780,7 @@ func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedStagesExecute(r Co
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/stages"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -23827,9 +23827,9 @@ func (a *ConfigureApiService) GetNetworkFirmwareUpgradesStagedStagesExecute(r Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -23900,8 +23900,8 @@ func (a *ConfigureApiService) GetNetworkFloorPlanExecute(r ConfigureApiGetNetwor
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/floorPlans/{floorPlanId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"floorPlanId"+"}", url.PathEscape(parameterToString(r.floorPlanId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"floorPlanId"+"}", url.PathEscape(parameterValueToString(r.floorPlanId, "floorPlanId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -23948,9 +23948,9 @@ func (a *ConfigureApiService) GetNetworkFloorPlanExecute(r ConfigureApiGetNetwor
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -24018,7 +24018,7 @@ func (a *ConfigureApiService) GetNetworkFloorPlansExecute(r ConfigureApiGetNetwo
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/floorPlans"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -24065,9 +24065,9 @@ func (a *ConfigureApiService) GetNetworkFloorPlansExecute(r ConfigureApiGetNetwo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -24135,7 +24135,7 @@ func (a *ConfigureApiService) GetNetworkGroupPoliciesExecute(r ConfigureApiGetNe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/groupPolicies"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -24182,9 +24182,9 @@ func (a *ConfigureApiService) GetNetworkGroupPoliciesExecute(r ConfigureApiGetNe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -24255,8 +24255,8 @@ func (a *ConfigureApiService) GetNetworkGroupPolicyExecute(r ConfigureApiGetNetw
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/groupPolicies/{groupPolicyId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"groupPolicyId"+"}", url.PathEscape(parameterToString(r.groupPolicyId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupPolicyId"+"}", url.PathEscape(parameterValueToString(r.groupPolicyId, "groupPolicyId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -24303,9 +24303,9 @@ func (a *ConfigureApiService) GetNetworkGroupPolicyExecute(r ConfigureApiGetNetw
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -24373,7 +24373,7 @@ func (a *ConfigureApiService) GetNetworkHealthAlertsExecute(r ConfigureApiGetNet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/health/alerts"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -24420,9 +24420,9 @@ func (a *ConfigureApiService) GetNetworkHealthAlertsExecute(r ConfigureApiGetNet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -24493,8 +24493,8 @@ func (a *ConfigureApiService) GetNetworkMerakiAuthUserExecute(r ConfigureApiGetN
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/merakiAuthUsers/{merakiAuthUserId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"merakiAuthUserId"+"}", url.PathEscape(parameterToString(r.merakiAuthUserId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"merakiAuthUserId"+"}", url.PathEscape(parameterValueToString(r.merakiAuthUserId, "merakiAuthUserId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -24541,9 +24541,9 @@ func (a *ConfigureApiService) GetNetworkMerakiAuthUserExecute(r ConfigureApiGetN
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -24611,7 +24611,7 @@ func (a *ConfigureApiService) GetNetworkMerakiAuthUsersExecute(r ConfigureApiGet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/merakiAuthUsers"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -24658,9 +24658,9 @@ func (a *ConfigureApiService) GetNetworkMerakiAuthUsersExecute(r ConfigureApiGet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -24731,8 +24731,8 @@ func (a *ConfigureApiService) GetNetworkMqttBrokerExecute(r ConfigureApiGetNetwo
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/mqttBrokers/{mqttBrokerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterToString(r.mqttBrokerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterValueToString(r.mqttBrokerId, "mqttBrokerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -24779,9 +24779,9 @@ func (a *ConfigureApiService) GetNetworkMqttBrokerExecute(r ConfigureApiGetNetwo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -24849,7 +24849,7 @@ func (a *ConfigureApiService) GetNetworkMqttBrokersExecute(r ConfigureApiGetNetw
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/mqttBrokers"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -24896,9 +24896,9 @@ func (a *ConfigureApiService) GetNetworkMqttBrokersExecute(r ConfigureApiGetNetw
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -24966,7 +24966,7 @@ func (a *ConfigureApiService) GetNetworkNetflowExecute(r ConfigureApiGetNetworkN
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/netflow"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -25013,9 +25013,9 @@ func (a *ConfigureApiService) GetNetworkNetflowExecute(r ConfigureApiGetNetworkN
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -25131,29 +25131,29 @@ func (a *ConfigureApiService) GetNetworkPiiPiiKeysExecute(r ConfigureApiGetNetwo
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/pii/piiKeys"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.username != nil {
-		localVarQueryParams.Add("username", parameterToString(*r.username, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "username", r.username, "")
 	}
 	if r.email != nil {
-		localVarQueryParams.Add("email", parameterToString(*r.email, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "")
 	}
 	if r.mac != nil {
-		localVarQueryParams.Add("mac", parameterToString(*r.mac, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mac", r.mac, "")
 	}
 	if r.serial != nil {
-		localVarQueryParams.Add("serial", parameterToString(*r.serial, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "serial", r.serial, "")
 	}
 	if r.imei != nil {
-		localVarQueryParams.Add("imei", parameterToString(*r.imei, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "imei", r.imei, "")
 	}
 	if r.bluetoothMac != nil {
-		localVarQueryParams.Add("bluetoothMac", parameterToString(*r.bluetoothMac, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bluetoothMac", r.bluetoothMac, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -25196,9 +25196,9 @@ func (a *ConfigureApiService) GetNetworkPiiPiiKeysExecute(r ConfigureApiGetNetwo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -25275,8 +25275,8 @@ func (a *ConfigureApiService) GetNetworkPiiRequestExecute(r ConfigureApiGetNetwo
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/pii/requests/{requestId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"requestId"+"}", url.PathEscape(parameterToString(r.requestId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"requestId"+"}", url.PathEscape(parameterValueToString(r.requestId, "requestId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -25323,9 +25323,9 @@ func (a *ConfigureApiService) GetNetworkPiiRequestExecute(r ConfigureApiGetNetwo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -25399,7 +25399,7 @@ func (a *ConfigureApiService) GetNetworkPiiRequestsExecute(r ConfigureApiGetNetw
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/pii/requests"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -25446,9 +25446,9 @@ func (a *ConfigureApiService) GetNetworkPiiRequestsExecute(r ConfigureApiGetNetw
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -25564,29 +25564,29 @@ func (a *ConfigureApiService) GetNetworkPiiSmDevicesForKeyExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/pii/smDevicesForKey"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.username != nil {
-		localVarQueryParams.Add("username", parameterToString(*r.username, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "username", r.username, "")
 	}
 	if r.email != nil {
-		localVarQueryParams.Add("email", parameterToString(*r.email, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "")
 	}
 	if r.mac != nil {
-		localVarQueryParams.Add("mac", parameterToString(*r.mac, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mac", r.mac, "")
 	}
 	if r.serial != nil {
-		localVarQueryParams.Add("serial", parameterToString(*r.serial, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "serial", r.serial, "")
 	}
 	if r.imei != nil {
-		localVarQueryParams.Add("imei", parameterToString(*r.imei, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "imei", r.imei, "")
 	}
 	if r.bluetoothMac != nil {
-		localVarQueryParams.Add("bluetoothMac", parameterToString(*r.bluetoothMac, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bluetoothMac", r.bluetoothMac, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -25629,9 +25629,9 @@ func (a *ConfigureApiService) GetNetworkPiiSmDevicesForKeyExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -25747,29 +25747,29 @@ func (a *ConfigureApiService) GetNetworkPiiSmOwnersForKeyExecute(r ConfigureApiG
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/pii/smOwnersForKey"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.username != nil {
-		localVarQueryParams.Add("username", parameterToString(*r.username, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "username", r.username, "")
 	}
 	if r.email != nil {
-		localVarQueryParams.Add("email", parameterToString(*r.email, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "")
 	}
 	if r.mac != nil {
-		localVarQueryParams.Add("mac", parameterToString(*r.mac, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mac", r.mac, "")
 	}
 	if r.serial != nil {
-		localVarQueryParams.Add("serial", parameterToString(*r.serial, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "serial", r.serial, "")
 	}
 	if r.imei != nil {
-		localVarQueryParams.Add("imei", parameterToString(*r.imei, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "imei", r.imei, "")
 	}
 	if r.bluetoothMac != nil {
-		localVarQueryParams.Add("bluetoothMac", parameterToString(*r.bluetoothMac, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bluetoothMac", r.bluetoothMac, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -25812,9 +25812,9 @@ func (a *ConfigureApiService) GetNetworkPiiSmOwnersForKeyExecute(r ConfigureApiG
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -25917,26 +25917,26 @@ func (a *ConfigureApiService) GetNetworkPoliciesByClientExecute(r ConfigureApiGe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/policies/byClient"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	if r.t0 != nil {
-		localVarQueryParams.Add("t0", parameterToString(*r.t0, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "t0", r.t0, "")
 	}
 	if r.timespan != nil {
-		localVarQueryParams.Add("timespan", parameterToString(*r.timespan, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "timespan", r.timespan, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -25979,9 +25979,9 @@ func (a *ConfigureApiService) GetNetworkPoliciesByClientExecute(r ConfigureApiGe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -26052,8 +26052,8 @@ func (a *ConfigureApiService) GetNetworkSensorAlertsProfileExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sensor/alerts/profiles/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -26100,9 +26100,9 @@ func (a *ConfigureApiService) GetNetworkSensorAlertsProfileExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -26170,7 +26170,7 @@ func (a *ConfigureApiService) GetNetworkSensorAlertsProfilesExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sensor/alerts/profiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -26217,9 +26217,9 @@ func (a *ConfigureApiService) GetNetworkSensorAlertsProfilesExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -26290,8 +26290,8 @@ func (a *ConfigureApiService) GetNetworkSensorMqttBrokerExecute(r ConfigureApiGe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sensor/mqttBrokers/{mqttBrokerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterToString(r.mqttBrokerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterValueToString(r.mqttBrokerId, "mqttBrokerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -26338,9 +26338,9 @@ func (a *ConfigureApiService) GetNetworkSensorMqttBrokerExecute(r ConfigureApiGe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -26408,7 +26408,7 @@ func (a *ConfigureApiService) GetNetworkSensorMqttBrokersExecute(r ConfigureApiG
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sensor/mqttBrokers"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -26455,9 +26455,9 @@ func (a *ConfigureApiService) GetNetworkSensorMqttBrokersExecute(r ConfigureApiG
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -26525,7 +26525,7 @@ func (a *ConfigureApiService) GetNetworkSensorRelationshipsExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sensor/relationships"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -26572,9 +26572,9 @@ func (a *ConfigureApiService) GetNetworkSensorRelationshipsExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -26642,7 +26642,7 @@ func (a *ConfigureApiService) GetNetworkSettingsExecute(r ConfigureApiGetNetwork
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -26689,9 +26689,9 @@ func (a *ConfigureApiService) GetNetworkSettingsExecute(r ConfigureApiGetNetwork
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -26762,8 +26762,8 @@ func (a *ConfigureApiService) GetNetworkSmBypassActivationLockAttemptExecute(r C
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/bypassActivationLockAttempts/{attemptId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"attemptId"+"}", url.PathEscape(parameterToString(r.attemptId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"attemptId"+"}", url.PathEscape(parameterValueToString(r.attemptId, "attemptId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -26810,9 +26810,9 @@ func (a *ConfigureApiService) GetNetworkSmBypassActivationLockAttemptExecute(r C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -26883,8 +26883,8 @@ func (a *ConfigureApiService) GetNetworkSmDeviceCertsExecute(r ConfigureApiGetNe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/devices/{deviceId}/certs"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterToString(r.deviceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -26931,9 +26931,9 @@ func (a *ConfigureApiService) GetNetworkSmDeviceCertsExecute(r ConfigureApiGetNe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -27004,8 +27004,8 @@ func (a *ConfigureApiService) GetNetworkSmDeviceDeviceProfilesExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/devices/{deviceId}/deviceProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterToString(r.deviceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -27052,9 +27052,9 @@ func (a *ConfigureApiService) GetNetworkSmDeviceDeviceProfilesExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -27125,8 +27125,8 @@ func (a *ConfigureApiService) GetNetworkSmDeviceNetworkAdaptersExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/devices/{deviceId}/networkAdapters"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterToString(r.deviceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -27173,9 +27173,9 @@ func (a *ConfigureApiService) GetNetworkSmDeviceNetworkAdaptersExecute(r Configu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -27246,8 +27246,8 @@ func (a *ConfigureApiService) GetNetworkSmDeviceRestrictionsExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/devices/{deviceId}/restrictions"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterToString(r.deviceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -27294,9 +27294,9 @@ func (a *ConfigureApiService) GetNetworkSmDeviceRestrictionsExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -27367,8 +27367,8 @@ func (a *ConfigureApiService) GetNetworkSmDeviceSecurityCentersExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/devices/{deviceId}/securityCenters"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterToString(r.deviceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -27415,9 +27415,9 @@ func (a *ConfigureApiService) GetNetworkSmDeviceSecurityCentersExecute(r Configu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -27488,8 +27488,8 @@ func (a *ConfigureApiService) GetNetworkSmDeviceSoftwaresExecute(r ConfigureApiG
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/devices/{deviceId}/softwares"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterToString(r.deviceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -27536,9 +27536,9 @@ func (a *ConfigureApiService) GetNetworkSmDeviceSoftwaresExecute(r ConfigureApiG
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -27609,8 +27609,8 @@ func (a *ConfigureApiService) GetNetworkSmDeviceWlanListsExecute(r ConfigureApiG
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/devices/{deviceId}/wlanLists"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterToString(r.deviceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -27657,9 +27657,9 @@ func (a *ConfigureApiService) GetNetworkSmDeviceWlanListsExecute(r ConfigureApiG
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -27783,7 +27783,7 @@ func (a *ConfigureApiService) GetNetworkSmDevicesExecute(r ConfigureApiGetNetwor
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/devices"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -27794,10 +27794,10 @@ func (a *ConfigureApiService) GetNetworkSmDevicesExecute(r ConfigureApiGetNetwor
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("fields", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("fields", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
 		}
 	}
 	if r.wifiMacs != nil {
@@ -27805,10 +27805,10 @@ func (a *ConfigureApiService) GetNetworkSmDevicesExecute(r ConfigureApiGetNetwor
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("wifiMacs", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "wifiMacs", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("wifiMacs", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "wifiMacs", t, "multi")
 		}
 	}
 	if r.serials != nil {
@@ -27816,10 +27816,10 @@ func (a *ConfigureApiService) GetNetworkSmDevicesExecute(r ConfigureApiGetNetwor
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "serials", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "serials", t, "multi")
 		}
 	}
 	if r.ids != nil {
@@ -27827,10 +27827,10 @@ func (a *ConfigureApiService) GetNetworkSmDevicesExecute(r ConfigureApiGetNetwor
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("ids", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "ids", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("ids", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "ids", t, "multi")
 		}
 	}
 	if r.scope != nil {
@@ -27838,20 +27838,20 @@ func (a *ConfigureApiService) GetNetworkSmDevicesExecute(r ConfigureApiGetNetwor
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("scope", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "scope", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("scope", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "scope", t, "multi")
 		}
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -27894,9 +27894,9 @@ func (a *ConfigureApiService) GetNetworkSmDevicesExecute(r ConfigureApiGetNetwor
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -27964,7 +27964,7 @@ func (a *ConfigureApiService) GetNetworkSmProfilesExecute(r ConfigureApiGetNetwo
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/profiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -28011,9 +28011,9 @@ func (a *ConfigureApiService) GetNetworkSmProfilesExecute(r ConfigureApiGetNetwo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -28091,15 +28091,15 @@ func (a *ConfigureApiService) GetNetworkSmTargetGroupExecute(r ConfigureApiGetNe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/targetGroups/{targetGroupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"targetGroupId"+"}", url.PathEscape(parameterToString(r.targetGroupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"targetGroupId"+"}", url.PathEscape(parameterValueToString(r.targetGroupId, "targetGroupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.withDetails != nil {
-		localVarQueryParams.Add("withDetails", parameterToString(*r.withDetails, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "withDetails", r.withDetails, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -28142,9 +28142,9 @@ func (a *ConfigureApiService) GetNetworkSmTargetGroupExecute(r ConfigureApiGetNe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -28219,14 +28219,14 @@ func (a *ConfigureApiService) GetNetworkSmTargetGroupsExecute(r ConfigureApiGetN
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/targetGroups"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.withDetails != nil {
-		localVarQueryParams.Add("withDetails", parameterToString(*r.withDetails, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "withDetails", r.withDetails, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -28269,9 +28269,9 @@ func (a *ConfigureApiService) GetNetworkSmTargetGroupsExecute(r ConfigureApiGetN
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -28360,20 +28360,20 @@ func (a *ConfigureApiService) GetNetworkSmTrustedAccessConfigsExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/trustedAccessConfigs"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -28416,9 +28416,9 @@ func (a *ConfigureApiService) GetNetworkSmTrustedAccessConfigsExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -28507,20 +28507,20 @@ func (a *ConfigureApiService) GetNetworkSmUserAccessDevicesExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/userAccessDevices"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -28563,9 +28563,9 @@ func (a *ConfigureApiService) GetNetworkSmUserAccessDevicesExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -28636,8 +28636,8 @@ func (a *ConfigureApiService) GetNetworkSmUserDeviceProfilesExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/users/{userId}/deviceProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterToString(r.userId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -28684,9 +28684,9 @@ func (a *ConfigureApiService) GetNetworkSmUserDeviceProfilesExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -28757,8 +28757,8 @@ func (a *ConfigureApiService) GetNetworkSmUserSoftwaresExecute(r ConfigureApiGet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/users/{userId}/softwares"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterToString(r.userId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -28805,9 +28805,9 @@ func (a *ConfigureApiService) GetNetworkSmUserSoftwaresExecute(r ConfigureApiGet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -28903,7 +28903,7 @@ func (a *ConfigureApiService) GetNetworkSmUsersExecute(r ConfigureApiGetNetworkS
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/users"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -28914,10 +28914,10 @@ func (a *ConfigureApiService) GetNetworkSmUsersExecute(r ConfigureApiGetNetworkS
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("ids", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "ids", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("ids", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "ids", t, "multi")
 		}
 	}
 	if r.usernames != nil {
@@ -28925,10 +28925,10 @@ func (a *ConfigureApiService) GetNetworkSmUsersExecute(r ConfigureApiGetNetworkS
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("usernames", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "usernames", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("usernames", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "usernames", t, "multi")
 		}
 	}
 	if r.emails != nil {
@@ -28936,10 +28936,10 @@ func (a *ConfigureApiService) GetNetworkSmUsersExecute(r ConfigureApiGetNetworkS
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("emails", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "emails", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("emails", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "emails", t, "multi")
 		}
 	}
 	if r.scope != nil {
@@ -28947,10 +28947,10 @@ func (a *ConfigureApiService) GetNetworkSmUsersExecute(r ConfigureApiGetNetworkS
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("scope", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "scope", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("scope", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "scope", t, "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -28994,9 +28994,9 @@ func (a *ConfigureApiService) GetNetworkSmUsersExecute(r ConfigureApiGetNetworkS
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -29064,7 +29064,7 @@ func (a *ConfigureApiService) GetNetworkSnmpExecute(r ConfigureApiGetNetworkSnmp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/snmp"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -29111,9 +29111,9 @@ func (a *ConfigureApiService) GetNetworkSnmpExecute(r ConfigureApiGetNetworkSnmp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -29181,7 +29181,7 @@ func (a *ConfigureApiService) GetNetworkSwitchAccessControlListsExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/accessControlLists"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -29228,9 +29228,9 @@ func (a *ConfigureApiService) GetNetworkSwitchAccessControlListsExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -29298,7 +29298,7 @@ func (a *ConfigureApiService) GetNetworkSwitchAccessPoliciesExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/accessPolicies"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -29345,9 +29345,9 @@ func (a *ConfigureApiService) GetNetworkSwitchAccessPoliciesExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -29418,8 +29418,8 @@ func (a *ConfigureApiService) GetNetworkSwitchAccessPolicyExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/accessPolicies/{accessPolicyNumber}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"accessPolicyNumber"+"}", url.PathEscape(parameterToString(r.accessPolicyNumber, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"accessPolicyNumber"+"}", url.PathEscape(parameterValueToString(r.accessPolicyNumber, "accessPolicyNumber")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -29466,9 +29466,9 @@ func (a *ConfigureApiService) GetNetworkSwitchAccessPolicyExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -29536,7 +29536,7 @@ func (a *ConfigureApiService) GetNetworkSwitchAlternateManagementInterfaceExecut
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/alternateManagementInterface"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -29583,9 +29583,9 @@ func (a *ConfigureApiService) GetNetworkSwitchAlternateManagementInterfaceExecut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -29653,7 +29653,7 @@ func (a *ConfigureApiService) GetNetworkSwitchDhcpServerPolicyExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/dhcpServerPolicy"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -29700,9 +29700,9 @@ func (a *ConfigureApiService) GetNetworkSwitchDhcpServerPolicyExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -29791,20 +29791,20 @@ func (a *ConfigureApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionTrust
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/dhcpServerPolicy/arpInspection/trustedServers"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -29847,9 +29847,9 @@ func (a *ConfigureApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionTrust
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -29938,20 +29938,20 @@ func (a *ConfigureApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarni
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/dhcpServerPolicy/arpInspection/warnings/byDevice"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -29994,9 +29994,9 @@ func (a *ConfigureApiService) GetNetworkSwitchDhcpServerPolicyArpInspectionWarni
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -30099,26 +30099,26 @@ func (a *ConfigureApiService) GetNetworkSwitchDhcpV4ServersSeenExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/dhcp/v4/servers/seen"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.t0 != nil {
-		localVarQueryParams.Add("t0", parameterToString(*r.t0, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "t0", r.t0, "")
 	}
 	if r.timespan != nil {
-		localVarQueryParams.Add("timespan", parameterToString(*r.timespan, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "timespan", r.timespan, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -30161,9 +30161,9 @@ func (a *ConfigureApiService) GetNetworkSwitchDhcpV4ServersSeenExecute(r Configu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -30231,7 +30231,7 @@ func (a *ConfigureApiService) GetNetworkSwitchDscpToCosMappingsExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/dscpToCosMappings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -30278,9 +30278,9 @@ func (a *ConfigureApiService) GetNetworkSwitchDscpToCosMappingsExecute(r Configu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -30348,7 +30348,7 @@ func (a *ConfigureApiService) GetNetworkSwitchLinkAggregationsExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/linkAggregations"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -30395,9 +30395,9 @@ func (a *ConfigureApiService) GetNetworkSwitchLinkAggregationsExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -30465,7 +30465,7 @@ func (a *ConfigureApiService) GetNetworkSwitchMtuExecute(r ConfigureApiGetNetwor
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/mtu"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -30512,9 +30512,9 @@ func (a *ConfigureApiService) GetNetworkSwitchMtuExecute(r ConfigureApiGetNetwor
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -30582,7 +30582,7 @@ func (a *ConfigureApiService) GetNetworkSwitchPortSchedulesExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/portSchedules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -30629,9 +30629,9 @@ func (a *ConfigureApiService) GetNetworkSwitchPortSchedulesExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -30702,8 +30702,8 @@ func (a *ConfigureApiService) GetNetworkSwitchQosRuleExecute(r ConfigureApiGetNe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/qosRules/{qosRuleId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"qosRuleId"+"}", url.PathEscape(parameterToString(r.qosRuleId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"qosRuleId"+"}", url.PathEscape(parameterValueToString(r.qosRuleId, "qosRuleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -30750,9 +30750,9 @@ func (a *ConfigureApiService) GetNetworkSwitchQosRuleExecute(r ConfigureApiGetNe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -30820,7 +30820,7 @@ func (a *ConfigureApiService) GetNetworkSwitchQosRulesExecute(r ConfigureApiGetN
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/qosRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -30867,9 +30867,9 @@ func (a *ConfigureApiService) GetNetworkSwitchQosRulesExecute(r ConfigureApiGetN
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -30937,7 +30937,7 @@ func (a *ConfigureApiService) GetNetworkSwitchQosRulesOrderExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/qosRules/order"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -30984,9 +30984,9 @@ func (a *ConfigureApiService) GetNetworkSwitchQosRulesOrderExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -31054,7 +31054,7 @@ func (a *ConfigureApiService) GetNetworkSwitchRoutingMulticastExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/routing/multicast"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -31101,9 +31101,9 @@ func (a *ConfigureApiService) GetNetworkSwitchRoutingMulticastExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -31174,8 +31174,8 @@ func (a *ConfigureApiService) GetNetworkSwitchRoutingMulticastRendezvousPointExe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/routing/multicast/rendezvousPoints/{rendezvousPointId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rendezvousPointId"+"}", url.PathEscape(parameterToString(r.rendezvousPointId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rendezvousPointId"+"}", url.PathEscape(parameterValueToString(r.rendezvousPointId, "rendezvousPointId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -31222,9 +31222,9 @@ func (a *ConfigureApiService) GetNetworkSwitchRoutingMulticastRendezvousPointExe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -31292,7 +31292,7 @@ func (a *ConfigureApiService) GetNetworkSwitchRoutingMulticastRendezvousPointsEx
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/routing/multicast/rendezvousPoints"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -31339,9 +31339,9 @@ func (a *ConfigureApiService) GetNetworkSwitchRoutingMulticastRendezvousPointsEx
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -31409,7 +31409,7 @@ func (a *ConfigureApiService) GetNetworkSwitchRoutingOspfExecute(r ConfigureApiG
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/routing/ospf"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -31456,9 +31456,9 @@ func (a *ConfigureApiService) GetNetworkSwitchRoutingOspfExecute(r ConfigureApiG
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -31526,7 +31526,7 @@ func (a *ConfigureApiService) GetNetworkSwitchSettingsExecute(r ConfigureApiGetN
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -31573,9 +31573,9 @@ func (a *ConfigureApiService) GetNetworkSwitchSettingsExecute(r ConfigureApiGetN
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -31646,8 +31646,8 @@ func (a *ConfigureApiService) GetNetworkSwitchStackExecute(r ConfigureApiGetNetw
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks/{switchStackId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterToString(r.switchStackId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterValueToString(r.switchStackId, "switchStackId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -31694,9 +31694,9 @@ func (a *ConfigureApiService) GetNetworkSwitchStackExecute(r ConfigureApiGetNetw
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -31770,9 +31770,9 @@ func (a *ConfigureApiService) GetNetworkSwitchStackRoutingInterfaceExecute(r Con
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterToString(r.switchStackId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterToString(r.interfaceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterValueToString(r.switchStackId, "switchStackId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterValueToString(r.interfaceId, "interfaceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -31819,9 +31819,9 @@ func (a *ConfigureApiService) GetNetworkSwitchStackRoutingInterfaceExecute(r Con
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -31895,9 +31895,9 @@ func (a *ConfigureApiService) GetNetworkSwitchStackRoutingInterfaceDhcpExecute(r
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}/dhcp"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterToString(r.switchStackId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterToString(r.interfaceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterValueToString(r.switchStackId, "switchStackId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterValueToString(r.interfaceId, "interfaceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -31944,9 +31944,9 @@ func (a *ConfigureApiService) GetNetworkSwitchStackRoutingInterfaceDhcpExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -32017,8 +32017,8 @@ func (a *ConfigureApiService) GetNetworkSwitchStackRoutingInterfacesExecute(r Co
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterToString(r.switchStackId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterValueToString(r.switchStackId, "switchStackId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -32065,9 +32065,9 @@ func (a *ConfigureApiService) GetNetworkSwitchStackRoutingInterfacesExecute(r Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -32141,9 +32141,9 @@ func (a *ConfigureApiService) GetNetworkSwitchStackRoutingStaticRouteExecute(r C
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks/{switchStackId}/routing/staticRoutes/{staticRouteId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterToString(r.switchStackId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterToString(r.staticRouteId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterValueToString(r.switchStackId, "switchStackId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterValueToString(r.staticRouteId, "staticRouteId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -32190,9 +32190,9 @@ func (a *ConfigureApiService) GetNetworkSwitchStackRoutingStaticRouteExecute(r C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -32263,8 +32263,8 @@ func (a *ConfigureApiService) GetNetworkSwitchStackRoutingStaticRoutesExecute(r 
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks/{switchStackId}/routing/staticRoutes"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterToString(r.switchStackId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterValueToString(r.switchStackId, "switchStackId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -32311,9 +32311,9 @@ func (a *ConfigureApiService) GetNetworkSwitchStackRoutingStaticRoutesExecute(r 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -32381,7 +32381,7 @@ func (a *ConfigureApiService) GetNetworkSwitchStacksExecute(r ConfigureApiGetNet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -32428,9 +32428,9 @@ func (a *ConfigureApiService) GetNetworkSwitchStacksExecute(r ConfigureApiGetNet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -32498,7 +32498,7 @@ func (a *ConfigureApiService) GetNetworkSwitchStormControlExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stormControl"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -32545,9 +32545,9 @@ func (a *ConfigureApiService) GetNetworkSwitchStormControlExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -32615,7 +32615,7 @@ func (a *ConfigureApiService) GetNetworkSwitchStpExecute(r ConfigureApiGetNetwor
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stp"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -32662,9 +32662,9 @@ func (a *ConfigureApiService) GetNetworkSwitchStpExecute(r ConfigureApiGetNetwor
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -32732,7 +32732,7 @@ func (a *ConfigureApiService) GetNetworkSyslogServersExecute(r ConfigureApiGetNe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/syslogServers"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -32779,9 +32779,9 @@ func (a *ConfigureApiService) GetNetworkSyslogServersExecute(r ConfigureApiGetNe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -32849,7 +32849,7 @@ func (a *ConfigureApiService) GetNetworkTrafficAnalysisExecute(r ConfigureApiGet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/trafficAnalysis"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -32896,9 +32896,9 @@ func (a *ConfigureApiService) GetNetworkTrafficAnalysisExecute(r ConfigureApiGet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -32966,7 +32966,7 @@ func (a *ConfigureApiService) GetNetworkTrafficShapingApplicationCategoriesExecu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/trafficShaping/applicationCategories"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -33013,9 +33013,9 @@ func (a *ConfigureApiService) GetNetworkTrafficShapingApplicationCategoriesExecu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -33083,7 +33083,7 @@ func (a *ConfigureApiService) GetNetworkTrafficShapingDscpTaggingOptionsExecute(
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/trafficShaping/dscpTaggingOptions"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -33130,9 +33130,9 @@ func (a *ConfigureApiService) GetNetworkTrafficShapingDscpTaggingOptionsExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -33203,8 +33203,8 @@ func (a *ConfigureApiService) GetNetworkWebhooksHttpServerExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/webhooks/httpServers/{httpServerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"httpServerId"+"}", url.PathEscape(parameterToString(r.httpServerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"httpServerId"+"}", url.PathEscape(parameterValueToString(r.httpServerId, "httpServerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -33251,9 +33251,9 @@ func (a *ConfigureApiService) GetNetworkWebhooksHttpServerExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -33321,7 +33321,7 @@ func (a *ConfigureApiService) GetNetworkWebhooksHttpServersExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/webhooks/httpServers"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -33368,9 +33368,9 @@ func (a *ConfigureApiService) GetNetworkWebhooksHttpServersExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -33441,8 +33441,8 @@ func (a *ConfigureApiService) GetNetworkWebhooksPayloadTemplateExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/webhooks/payloadTemplates/{payloadTemplateId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"payloadTemplateId"+"}", url.PathEscape(parameterToString(r.payloadTemplateId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"payloadTemplateId"+"}", url.PathEscape(parameterValueToString(r.payloadTemplateId, "payloadTemplateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -33489,9 +33489,9 @@ func (a *ConfigureApiService) GetNetworkWebhooksPayloadTemplateExecute(r Configu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -33559,7 +33559,7 @@ func (a *ConfigureApiService) GetNetworkWebhooksPayloadTemplatesExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/webhooks/payloadTemplates"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -33606,9 +33606,9 @@ func (a *ConfigureApiService) GetNetworkWebhooksPayloadTemplatesExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -33679,8 +33679,8 @@ func (a *ConfigureApiService) GetNetworkWebhooksWebhookTestExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/webhooks/webhookTests/{webhookTestId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"webhookTestId"+"}", url.PathEscape(parameterToString(r.webhookTestId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"webhookTestId"+"}", url.PathEscape(parameterValueToString(r.webhookTestId, "webhookTestId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -33727,9 +33727,9 @@ func (a *ConfigureApiService) GetNetworkWebhooksWebhookTestExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -33797,7 +33797,7 @@ func (a *ConfigureApiService) GetNetworkWirelessAlternateManagementInterfaceExec
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/alternateManagementInterface"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -33844,9 +33844,9 @@ func (a *ConfigureApiService) GetNetworkWirelessAlternateManagementInterfaceExec
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -33914,7 +33914,7 @@ func (a *ConfigureApiService) GetNetworkWirelessBillingExecute(r ConfigureApiGet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/billing"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -33961,9 +33961,9 @@ func (a *ConfigureApiService) GetNetworkWirelessBillingExecute(r ConfigureApiGet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -34031,7 +34031,7 @@ func (a *ConfigureApiService) GetNetworkWirelessBluetoothSettingsExecute(r Confi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/bluetooth/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -34078,9 +34078,9 @@ func (a *ConfigureApiService) GetNetworkWirelessBluetoothSettingsExecute(r Confi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -34151,8 +34151,8 @@ func (a *ConfigureApiService) GetNetworkWirelessRfProfileExecute(r ConfigureApiG
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/rfProfiles/{rfProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rfProfileId"+"}", url.PathEscape(parameterToString(r.rfProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rfProfileId"+"}", url.PathEscape(parameterValueToString(r.rfProfileId, "rfProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -34199,9 +34199,9 @@ func (a *ConfigureApiService) GetNetworkWirelessRfProfileExecute(r ConfigureApiG
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -34276,14 +34276,14 @@ func (a *ConfigureApiService) GetNetworkWirelessRfProfilesExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/rfProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.includeTemplateProfiles != nil {
-		localVarQueryParams.Add("includeTemplateProfiles", parameterToString(*r.includeTemplateProfiles, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeTemplateProfiles", r.includeTemplateProfiles, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -34326,9 +34326,9 @@ func (a *ConfigureApiService) GetNetworkWirelessRfProfilesExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -34396,7 +34396,7 @@ func (a *ConfigureApiService) GetNetworkWirelessSettingsExecute(r ConfigureApiGe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -34443,9 +34443,9 @@ func (a *ConfigureApiService) GetNetworkWirelessSettingsExecute(r ConfigureApiGe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -34516,8 +34516,8 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidExecute(r ConfigureApiGetNet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -34564,9 +34564,9 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidExecute(r ConfigureApiGetNet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -34637,8 +34637,8 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidBonjourForwardingExecute(r C
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/bonjourForwarding"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -34685,9 +34685,9 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidBonjourForwardingExecute(r C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -34758,8 +34758,8 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidDeviceTypeGroupPoliciesExecu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/deviceTypeGroupPolicies"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -34806,9 +34806,9 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidDeviceTypeGroupPoliciesExecu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -34879,8 +34879,8 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidEapOverrideExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/eapOverride"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -34927,9 +34927,9 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidEapOverrideExecute(r Configu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -35000,8 +35000,8 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidFirewallL3FirewallRulesExecu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/firewall/l3FirewallRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -35048,9 +35048,9 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidFirewallL3FirewallRulesExecu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -35121,8 +35121,8 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidFirewallL7FirewallRulesExecu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/firewall/l7FirewallRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -35169,9 +35169,9 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidFirewallL7FirewallRulesExecu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -35242,8 +35242,8 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidHotspot20Execute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/hotspot20"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -35290,9 +35290,9 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidHotspot20Execute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -35366,9 +35366,9 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidIdentityPskExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/identityPsks/{identityPskId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"identityPskId"+"}", url.PathEscape(parameterToString(r.identityPskId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"identityPskId"+"}", url.PathEscape(parameterValueToString(r.identityPskId, "identityPskId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -35415,9 +35415,9 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidIdentityPskExecute(r Configu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -35488,8 +35488,8 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidIdentityPsksExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/identityPsks"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -35536,9 +35536,9 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidIdentityPsksExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -35609,8 +35609,8 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidSchedulesExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/schedules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -35657,9 +35657,9 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidSchedulesExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -35730,8 +35730,8 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidSplashSettingsExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/splash/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -35778,9 +35778,9 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidSplashSettingsExecute(r Conf
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -35851,8 +35851,8 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidTrafficShapingRulesExecute(r
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/trafficShaping/rules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -35899,9 +35899,9 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidTrafficShapingRulesExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -35972,8 +35972,8 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidVpnExecute(r ConfigureApiGet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/vpn"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -36020,9 +36020,9 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidVpnExecute(r ConfigureApiGet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -36090,7 +36090,7 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidsExecute(r ConfigureApiGetNe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -36137,9 +36137,9 @@ func (a *ConfigureApiService) GetNetworkWirelessSsidsExecute(r ConfigureApiGetNe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -36207,7 +36207,7 @@ func (a *ConfigureApiService) GetOrganizationExecute(r ConfigureApiGetOrganizati
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -36254,9 +36254,9 @@ func (a *ConfigureApiService) GetOrganizationExecute(r ConfigureApiGetOrganizati
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -36327,8 +36327,8 @@ func (a *ConfigureApiService) GetOrganizationActionBatchExecute(r ConfigureApiGe
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/actionBatches/{actionBatchId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"actionBatchId"+"}", url.PathEscape(parameterToString(r.actionBatchId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"actionBatchId"+"}", url.PathEscape(parameterValueToString(r.actionBatchId, "actionBatchId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -36375,9 +36375,9 @@ func (a *ConfigureApiService) GetOrganizationActionBatchExecute(r ConfigureApiGe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -36452,14 +36452,14 @@ func (a *ConfigureApiService) GetOrganizationActionBatchesExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/actionBatches"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.status != nil {
-		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -36502,9 +36502,9 @@ func (a *ConfigureApiService) GetOrganizationActionBatchesExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -36575,8 +36575,8 @@ func (a *ConfigureApiService) GetOrganizationAdaptivePolicyAclExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/acls/{aclId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"aclId"+"}", url.PathEscape(parameterToString(r.aclId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"aclId"+"}", url.PathEscape(parameterValueToString(r.aclId, "aclId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -36623,9 +36623,9 @@ func (a *ConfigureApiService) GetOrganizationAdaptivePolicyAclExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -36693,7 +36693,7 @@ func (a *ConfigureApiService) GetOrganizationAdaptivePolicyAclsExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/acls"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -36740,9 +36740,9 @@ func (a *ConfigureApiService) GetOrganizationAdaptivePolicyAclsExecute(r Configu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -36813,8 +36813,8 @@ func (a *ConfigureApiService) GetOrganizationAdaptivePolicyGroupExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/groups/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -36861,9 +36861,9 @@ func (a *ConfigureApiService) GetOrganizationAdaptivePolicyGroupExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -36931,7 +36931,7 @@ func (a *ConfigureApiService) GetOrganizationAdaptivePolicyGroupsExecute(r Confi
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -36978,9 +36978,9 @@ func (a *ConfigureApiService) GetOrganizationAdaptivePolicyGroupsExecute(r Confi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -37048,7 +37048,7 @@ func (a *ConfigureApiService) GetOrganizationAdaptivePolicyPoliciesExecute(r Con
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/policies"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -37095,9 +37095,9 @@ func (a *ConfigureApiService) GetOrganizationAdaptivePolicyPoliciesExecute(r Con
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -37168,8 +37168,8 @@ func (a *ConfigureApiService) GetOrganizationAdaptivePolicyPolicyExecute(r Confi
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/policies/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -37216,9 +37216,9 @@ func (a *ConfigureApiService) GetOrganizationAdaptivePolicyPolicyExecute(r Confi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -37286,7 +37286,7 @@ func (a *ConfigureApiService) GetOrganizationAdaptivePolicySettingsExecute(r Con
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -37333,9 +37333,9 @@ func (a *ConfigureApiService) GetOrganizationAdaptivePolicySettingsExecute(r Con
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -37403,7 +37403,7 @@ func (a *ConfigureApiService) GetOrganizationAdminsExecute(r ConfigureApiGetOrga
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/admins"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -37450,9 +37450,9 @@ func (a *ConfigureApiService) GetOrganizationAdminsExecute(r ConfigureApiGetOrga
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -37520,7 +37520,7 @@ func (a *ConfigureApiService) GetOrganizationAlertsProfilesExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/alerts/profiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -37567,9 +37567,9 @@ func (a *ConfigureApiService) GetOrganizationAlertsProfilesExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -37637,7 +37637,7 @@ func (a *ConfigureApiService) GetOrganizationApplianceSecurityIntrusionExecute(r
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/appliance/security/intrusion"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -37684,9 +37684,9 @@ func (a *ConfigureApiService) GetOrganizationApplianceSecurityIntrusionExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -37754,7 +37754,7 @@ func (a *ConfigureApiService) GetOrganizationApplianceVpnThirdPartyVPNPeersExecu
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -37801,9 +37801,9 @@ func (a *ConfigureApiService) GetOrganizationApplianceVpnThirdPartyVPNPeersExecu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -37871,7 +37871,7 @@ func (a *ConfigureApiService) GetOrganizationApplianceVpnVpnFirewallRulesExecute
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/appliance/vpn/vpnFirewallRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -37918,9 +37918,9 @@ func (a *ConfigureApiService) GetOrganizationApplianceVpnVpnFirewallRulesExecute
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -37988,7 +37988,7 @@ func (a *ConfigureApiService) GetOrganizationBrandingPoliciesExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/brandingPolicies"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -38035,9 +38035,9 @@ func (a *ConfigureApiService) GetOrganizationBrandingPoliciesExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -38105,7 +38105,7 @@ func (a *ConfigureApiService) GetOrganizationBrandingPoliciesPrioritiesExecute(r
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/brandingPolicies/priorities"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -38152,9 +38152,9 @@ func (a *ConfigureApiService) GetOrganizationBrandingPoliciesPrioritiesExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -38225,8 +38225,8 @@ func (a *ConfigureApiService) GetOrganizationBrandingPolicyExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/brandingPolicies/{brandingPolicyId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"brandingPolicyId"+"}", url.PathEscape(parameterToString(r.brandingPolicyId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"brandingPolicyId"+"}", url.PathEscape(parameterValueToString(r.brandingPolicyId, "brandingPolicyId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -38273,9 +38273,9 @@ func (a *ConfigureApiService) GetOrganizationBrandingPolicyExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -38346,8 +38346,8 @@ func (a *ConfigureApiService) GetOrganizationCameraCustomAnalyticsArtifactExecut
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/camera/customAnalytics/artifacts/{artifactId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"artifactId"+"}", url.PathEscape(parameterToString(r.artifactId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"artifactId"+"}", url.PathEscape(parameterValueToString(r.artifactId, "artifactId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -38394,9 +38394,9 @@ func (a *ConfigureApiService) GetOrganizationCameraCustomAnalyticsArtifactExecut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -38464,7 +38464,7 @@ func (a *ConfigureApiService) GetOrganizationCameraCustomAnalyticsArtifactsExecu
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/camera/customAnalytics/artifacts"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -38511,9 +38511,9 @@ func (a *ConfigureApiService) GetOrganizationCameraCustomAnalyticsArtifactsExecu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -38595,7 +38595,7 @@ func (a *ConfigureApiService) GetOrganizationCameraOnboardingStatusesExecute(r C
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/camera/onboarding/statuses"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -38606,10 +38606,10 @@ func (a *ConfigureApiService) GetOrganizationCameraOnboardingStatusesExecute(r C
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "serials", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "serials", t, "multi")
 		}
 	}
 	if r.networkIds != nil {
@@ -38617,10 +38617,10 @@ func (a *ConfigureApiService) GetOrganizationCameraOnboardingStatusesExecute(r C
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "networkIds", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "networkIds", t, "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -38664,9 +38664,9 @@ func (a *ConfigureApiService) GetOrganizationCameraOnboardingStatusesExecute(r C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -38762,7 +38762,7 @@ func (a *ConfigureApiService) GetOrganizationClientsSearchExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/clients/search"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -38771,15 +38771,15 @@ func (a *ConfigureApiService) GetOrganizationClientsSearchExecute(r ConfigureApi
 		return localVarReturnValue, nil, reportError("mac is required and must be specified")
 	}
 
-	localVarQueryParams.Add("mac", parameterToString(*r.mac, ""))
+	parameterAddToHeaderOrQuery(localVarQueryParams, "mac", r.mac, "")
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -38822,9 +38822,9 @@ func (a *ConfigureApiService) GetOrganizationClientsSearchExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -38895,8 +38895,8 @@ func (a *ConfigureApiService) GetOrganizationConfigTemplateExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/configTemplates/{configTemplateId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"configTemplateId"+"}", url.PathEscape(parameterToString(r.configTemplateId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"configTemplateId"+"}", url.PathEscape(parameterValueToString(r.configTemplateId, "configTemplateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -38943,9 +38943,9 @@ func (a *ConfigureApiService) GetOrganizationConfigTemplateExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -39022,10 +39022,10 @@ func (a *ConfigureApiService) GetOrganizationConfigTemplateSwitchProfilePortExec
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles/{profileId}/ports/{portId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"configTemplateId"+"}", url.PathEscape(parameterToString(r.configTemplateId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"profileId"+"}", url.PathEscape(parameterToString(r.profileId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"portId"+"}", url.PathEscape(parameterToString(r.portId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"configTemplateId"+"}", url.PathEscape(parameterValueToString(r.configTemplateId, "configTemplateId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"profileId"+"}", url.PathEscape(parameterValueToString(r.profileId, "profileId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"portId"+"}", url.PathEscape(parameterValueToString(r.portId, "portId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -39072,9 +39072,9 @@ func (a *ConfigureApiService) GetOrganizationConfigTemplateSwitchProfilePortExec
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -39148,9 +39148,9 @@ func (a *ConfigureApiService) GetOrganizationConfigTemplateSwitchProfilePortsExe
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles/{profileId}/ports"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"configTemplateId"+"}", url.PathEscape(parameterToString(r.configTemplateId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"profileId"+"}", url.PathEscape(parameterToString(r.profileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"configTemplateId"+"}", url.PathEscape(parameterValueToString(r.configTemplateId, "configTemplateId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"profileId"+"}", url.PathEscape(parameterValueToString(r.profileId, "profileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -39197,9 +39197,9 @@ func (a *ConfigureApiService) GetOrganizationConfigTemplateSwitchProfilePortsExe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -39270,8 +39270,8 @@ func (a *ConfigureApiService) GetOrganizationConfigTemplateSwitchProfilesExecute
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"configTemplateId"+"}", url.PathEscape(parameterToString(r.configTemplateId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"configTemplateId"+"}", url.PathEscape(parameterValueToString(r.configTemplateId, "configTemplateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -39318,9 +39318,9 @@ func (a *ConfigureApiService) GetOrganizationConfigTemplateSwitchProfilesExecute
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -39388,7 +39388,7 @@ func (a *ConfigureApiService) GetOrganizationConfigTemplatesExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/configTemplates"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -39435,9 +39435,9 @@ func (a *ConfigureApiService) GetOrganizationConfigTemplatesExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -39624,33 +39624,33 @@ func (a *ConfigureApiService) GetOrganizationDevicesExecute(r ConfigureApiGetOrg
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/devices"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	if r.configurationUpdatedAfter != nil {
-		localVarQueryParams.Add("configurationUpdatedAfter", parameterToString(*r.configurationUpdatedAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "configurationUpdatedAfter", r.configurationUpdatedAfter, "")
 	}
 	if r.networkIds != nil {
 		t := *r.networkIds
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "networkIds", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "networkIds", t, "multi")
 		}
 	}
 	if r.productTypes != nil {
@@ -39658,10 +39658,10 @@ func (a *ConfigureApiService) GetOrganizationDevicesExecute(r ConfigureApiGetOrg
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "productTypes", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "productTypes", t, "multi")
 		}
 	}
 	if r.tags != nil {
@@ -39669,36 +39669,36 @@ func (a *ConfigureApiService) GetOrganizationDevicesExecute(r ConfigureApiGetOrg
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "tags", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "tags", t, "multi")
 		}
 	}
 	if r.tagsFilterType != nil {
-		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "tagsFilterType", r.tagsFilterType, "")
 	}
 	if r.name != nil {
-		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "")
 	}
 	if r.mac != nil {
-		localVarQueryParams.Add("mac", parameterToString(*r.mac, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mac", r.mac, "")
 	}
 	if r.serial != nil {
-		localVarQueryParams.Add("serial", parameterToString(*r.serial, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "serial", r.serial, "")
 	}
 	if r.model != nil {
-		localVarQueryParams.Add("model", parameterToString(*r.model, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "model", r.model, "")
 	}
 	if r.macs != nil {
 		t := *r.macs
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("macs", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "macs", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("macs", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "macs", t, "multi")
 		}
 	}
 	if r.serials != nil {
@@ -39706,10 +39706,10 @@ func (a *ConfigureApiService) GetOrganizationDevicesExecute(r ConfigureApiGetOrg
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "serials", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "serials", t, "multi")
 		}
 	}
 	if r.sensorMetrics != nil {
@@ -39717,10 +39717,10 @@ func (a *ConfigureApiService) GetOrganizationDevicesExecute(r ConfigureApiGetOrg
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("sensorMetrics", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sensorMetrics", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("sensorMetrics", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sensorMetrics", t, "multi")
 		}
 	}
 	if r.sensorAlertProfileIds != nil {
@@ -39728,10 +39728,10 @@ func (a *ConfigureApiService) GetOrganizationDevicesExecute(r ConfigureApiGetOrg
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("sensorAlertProfileIds", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "sensorAlertProfileIds", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("sensorAlertProfileIds", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "sensorAlertProfileIds", t, "multi")
 		}
 	}
 	if r.models != nil {
@@ -39739,10 +39739,10 @@ func (a *ConfigureApiService) GetOrganizationDevicesExecute(r ConfigureApiGetOrg
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("models", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "models", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("models", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "models", t, "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -39786,9 +39786,9 @@ func (a *ConfigureApiService) GetOrganizationDevicesExecute(r ConfigureApiGetOrg
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -39856,7 +39856,7 @@ func (a *ConfigureApiService) GetOrganizationEarlyAccessFeaturesExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/earlyAccess/features"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -39903,9 +39903,9 @@ func (a *ConfigureApiService) GetOrganizationEarlyAccessFeaturesExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -39976,8 +39976,8 @@ func (a *ConfigureApiService) GetOrganizationEarlyAccessFeaturesOptInExecute(r C
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"optInId"+"}", url.PathEscape(parameterToString(r.optInId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"optInId"+"}", url.PathEscape(parameterValueToString(r.optInId, "optInId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -40024,9 +40024,9 @@ func (a *ConfigureApiService) GetOrganizationEarlyAccessFeaturesOptInExecute(r C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -40094,7 +40094,7 @@ func (a *ConfigureApiService) GetOrganizationEarlyAccessFeaturesOptInsExecute(r 
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/earlyAccess/features/optIns"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -40141,9 +40141,9 @@ func (a *ConfigureApiService) GetOrganizationEarlyAccessFeaturesOptInsExecute(r 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -40225,7 +40225,7 @@ func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/firmware/upgrades"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -40236,10 +40236,10 @@ func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesExecute(r Configure
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("status", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "status", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("status", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "status", t, "multi")
 		}
 	}
 	if r.productType != nil {
@@ -40247,10 +40247,10 @@ func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesExecute(r Configure
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("productType", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "productType", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("productType", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "productType", t, "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -40294,9 +40294,9 @@ func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -40420,30 +40420,30 @@ func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r C
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/firmware/upgrades/byDevice"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	if r.networkIds != nil {
 		t := *r.networkIds
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "networkIds", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "networkIds", t, "multi")
 		}
 	}
 	if r.serials != nil {
@@ -40451,10 +40451,10 @@ func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r C
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "serials", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "serials", t, "multi")
 		}
 	}
 	if r.macs != nil {
@@ -40462,10 +40462,10 @@ func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r C
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("macs", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "macs", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("macs", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "macs", t, "multi")
 		}
 	}
 	if r.firmwareUpgradeIds != nil {
@@ -40473,10 +40473,10 @@ func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r C
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("firmwareUpgradeIds", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "firmwareUpgradeIds", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("firmwareUpgradeIds", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "firmwareUpgradeIds", t, "multi")
 		}
 	}
 	if r.firmwareUpgradeBatchIds != nil {
@@ -40484,10 +40484,10 @@ func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r C
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("firmwareUpgradeBatchIds", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "firmwareUpgradeBatchIds", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("firmwareUpgradeBatchIds", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "firmwareUpgradeBatchIds", t, "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -40531,9 +40531,9 @@ func (a *ConfigureApiService) GetOrganizationFirmwareUpgradesByDeviceExecute(r C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -40601,7 +40601,7 @@ func (a *ConfigureApiService) GetOrganizationInsightApplicationsExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/insight/applications"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -40648,9 +40648,9 @@ func (a *ConfigureApiService) GetOrganizationInsightApplicationsExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -40721,8 +40721,8 @@ func (a *ConfigureApiService) GetOrganizationInsightMonitoredMediaServerExecute(
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/insight/monitoredMediaServers/{monitoredMediaServerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"monitoredMediaServerId"+"}", url.PathEscape(parameterToString(r.monitoredMediaServerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"monitoredMediaServerId"+"}", url.PathEscape(parameterValueToString(r.monitoredMediaServerId, "monitoredMediaServerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -40769,9 +40769,9 @@ func (a *ConfigureApiService) GetOrganizationInsightMonitoredMediaServerExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -40839,7 +40839,7 @@ func (a *ConfigureApiService) GetOrganizationInsightMonitoredMediaServersExecute
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/insight/monitoredMediaServers"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -40886,9 +40886,9 @@ func (a *ConfigureApiService) GetOrganizationInsightMonitoredMediaServersExecute
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -40959,8 +40959,8 @@ func (a *ConfigureApiService) GetOrganizationInventoryDeviceExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/inventory/devices/{serial}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -41007,9 +41007,9 @@ func (a *ConfigureApiService) GetOrganizationInventoryDeviceExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -41168,36 +41168,36 @@ func (a *ConfigureApiService) GetOrganizationInventoryDevicesExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/inventory/devices"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	if r.usedState != nil {
-		localVarQueryParams.Add("usedState", parameterToString(*r.usedState, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "usedState", r.usedState, "")
 	}
 	if r.search != nil {
-		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "")
 	}
 	if r.macs != nil {
 		t := *r.macs
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("macs", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "macs", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("macs", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "macs", t, "multi")
 		}
 	}
 	if r.networkIds != nil {
@@ -41205,10 +41205,10 @@ func (a *ConfigureApiService) GetOrganizationInventoryDevicesExecute(r Configure
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "networkIds", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "networkIds", t, "multi")
 		}
 	}
 	if r.serials != nil {
@@ -41216,10 +41216,10 @@ func (a *ConfigureApiService) GetOrganizationInventoryDevicesExecute(r Configure
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "serials", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "serials", t, "multi")
 		}
 	}
 	if r.models != nil {
@@ -41227,10 +41227,10 @@ func (a *ConfigureApiService) GetOrganizationInventoryDevicesExecute(r Configure
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("models", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "models", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("models", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "models", t, "multi")
 		}
 	}
 	if r.orderNumbers != nil {
@@ -41238,10 +41238,10 @@ func (a *ConfigureApiService) GetOrganizationInventoryDevicesExecute(r Configure
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("orderNumbers", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "orderNumbers", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("orderNumbers", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "orderNumbers", t, "multi")
 		}
 	}
 	if r.tags != nil {
@@ -41249,24 +41249,24 @@ func (a *ConfigureApiService) GetOrganizationInventoryDevicesExecute(r Configure
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "tags", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "tags", t, "multi")
 		}
 	}
 	if r.tagsFilterType != nil {
-		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "tagsFilterType", r.tagsFilterType, "")
 	}
 	if r.productTypes != nil {
 		t := *r.productTypes
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("productTypes", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "productTypes", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("productTypes", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "productTypes", t, "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -41310,9 +41310,9 @@ func (a *ConfigureApiService) GetOrganizationInventoryDevicesExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -41387,7 +41387,7 @@ func (a *ConfigureApiService) GetOrganizationInventoryOnboardingCloudMonitoringI
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/imports"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -41401,10 +41401,10 @@ func (a *ConfigureApiService) GetOrganizationInventoryOnboardingCloudMonitoringI
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("importIds", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "importIds", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("importIds", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "importIds", t, "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -41448,9 +41448,9 @@ func (a *ConfigureApiService) GetOrganizationInventoryOnboardingCloudMonitoringI
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -41546,7 +41546,7 @@ func (a *ConfigureApiService) GetOrganizationInventoryOnboardingCloudMonitoringN
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/inventory/onboarding/cloudMonitoring/networks"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -41555,15 +41555,15 @@ func (a *ConfigureApiService) GetOrganizationInventoryOnboardingCloudMonitoringN
 		return localVarReturnValue, nil, reportError("deviceType is required and must be specified")
 	}
 
-	localVarQueryParams.Add("deviceType", parameterToString(*r.deviceType, ""))
+	parameterAddToHeaderOrQuery(localVarQueryParams, "deviceType", r.deviceType, "")
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -41606,9 +41606,9 @@ func (a *ConfigureApiService) GetOrganizationInventoryOnboardingCloudMonitoringN
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -41679,8 +41679,8 @@ func (a *ConfigureApiService) GetOrganizationLicenseExecute(r ConfigureApiGetOrg
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/licenses/{licenseId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"licenseId"+"}", url.PathEscape(parameterToString(r.licenseId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"licenseId"+"}", url.PathEscape(parameterValueToString(r.licenseId, "licenseId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -41727,9 +41727,9 @@ func (a *ConfigureApiService) GetOrganizationLicenseExecute(r ConfigureApiGetOrg
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -41839,29 +41839,29 @@ func (a *ConfigureApiService) GetOrganizationLicensesExecute(r ConfigureApiGetOr
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/licenses"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	if r.deviceSerial != nil {
-		localVarQueryParams.Add("deviceSerial", parameterToString(*r.deviceSerial, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "deviceSerial", r.deviceSerial, "")
 	}
 	if r.networkId != nil {
-		localVarQueryParams.Add("networkId", parameterToString(*r.networkId, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "networkId", r.networkId, "")
 	}
 	if r.state != nil {
-		localVarQueryParams.Add("state", parameterToString(*r.state, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "state", r.state, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -41904,9 +41904,9 @@ func (a *ConfigureApiService) GetOrganizationLicensesExecute(r ConfigureApiGetOr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -42009,26 +42009,26 @@ func (a *ConfigureApiService) GetOrganizationLicensingCotermLicensesExecute(r Co
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/licensing/coterm/licenses"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	if r.invalidated != nil {
-		localVarQueryParams.Add("invalidated", parameterToString(*r.invalidated, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "invalidated", r.invalidated, "")
 	}
 	if r.expired != nil {
-		localVarQueryParams.Add("expired", parameterToString(*r.expired, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expired", r.expired, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -42071,9 +42071,9 @@ func (a *ConfigureApiService) GetOrganizationLicensingCotermLicensesExecute(r Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -42141,7 +42141,7 @@ func (a *ConfigureApiService) GetOrganizationLoginSecurityExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/loginSecurity"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -42188,9 +42188,9 @@ func (a *ConfigureApiService) GetOrganizationLoginSecurityExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -42307,40 +42307,40 @@ func (a *ConfigureApiService) GetOrganizationNetworksExecute(r ConfigureApiGetOr
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/networks"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.configTemplateId != nil {
-		localVarQueryParams.Add("configTemplateId", parameterToString(*r.configTemplateId, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "configTemplateId", r.configTemplateId, "")
 	}
 	if r.isBoundToConfigTemplate != nil {
-		localVarQueryParams.Add("isBoundToConfigTemplate", parameterToString(*r.isBoundToConfigTemplate, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "isBoundToConfigTemplate", r.isBoundToConfigTemplate, "")
 	}
 	if r.tags != nil {
 		t := *r.tags
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("tags", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "tags", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("tags", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "tags", t, "multi")
 		}
 	}
 	if r.tagsFilterType != nil {
-		localVarQueryParams.Add("tagsFilterType", parameterToString(*r.tagsFilterType, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "tagsFilterType", r.tagsFilterType, "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -42383,9 +42383,9 @@ func (a *ConfigureApiService) GetOrganizationNetworksExecute(r ConfigureApiGetOr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -42456,8 +42456,8 @@ func (a *ConfigureApiService) GetOrganizationPolicyObjectExecute(r ConfigureApiG
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/policyObjects/{policyObjectId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectId"+"}", url.PathEscape(parameterToString(r.policyObjectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectId"+"}", url.PathEscape(parameterValueToString(r.policyObjectId, "policyObjectId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -42504,9 +42504,9 @@ func (a *ConfigureApiService) GetOrganizationPolicyObjectExecute(r ConfigureApiG
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -42595,20 +42595,20 @@ func (a *ConfigureApiService) GetOrganizationPolicyObjectsExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/policyObjects"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -42651,9 +42651,9 @@ func (a *ConfigureApiService) GetOrganizationPolicyObjectsExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -42724,8 +42724,8 @@ func (a *ConfigureApiService) GetOrganizationPolicyObjectsGroupExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectGroupId"+"}", url.PathEscape(parameterToString(r.policyObjectGroupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectGroupId"+"}", url.PathEscape(parameterValueToString(r.policyObjectGroupId, "policyObjectGroupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -42772,9 +42772,9 @@ func (a *ConfigureApiService) GetOrganizationPolicyObjectsGroupExecute(r Configu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -42863,20 +42863,20 @@ func (a *ConfigureApiService) GetOrganizationPolicyObjectsGroupsExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/policyObjects/groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -42919,9 +42919,9 @@ func (a *ConfigureApiService) GetOrganizationPolicyObjectsGroupsExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -42989,7 +42989,7 @@ func (a *ConfigureApiService) GetOrganizationSamlExecute(r ConfigureApiGetOrgani
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/saml"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -43036,9 +43036,9 @@ func (a *ConfigureApiService) GetOrganizationSamlExecute(r ConfigureApiGetOrgani
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -43109,8 +43109,8 @@ func (a *ConfigureApiService) GetOrganizationSamlIdpExecute(r ConfigureApiGetOrg
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/saml/idps/{idpId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"idpId"+"}", url.PathEscape(parameterToString(r.idpId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"idpId"+"}", url.PathEscape(parameterValueToString(r.idpId, "idpId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -43157,9 +43157,9 @@ func (a *ConfigureApiService) GetOrganizationSamlIdpExecute(r ConfigureApiGetOrg
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -43227,7 +43227,7 @@ func (a *ConfigureApiService) GetOrganizationSamlIdpsExecute(r ConfigureApiGetOr
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/saml/idps"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -43274,9 +43274,9 @@ func (a *ConfigureApiService) GetOrganizationSamlIdpsExecute(r ConfigureApiGetOr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -43347,8 +43347,8 @@ func (a *ConfigureApiService) GetOrganizationSamlRoleExecute(r ConfigureApiGetOr
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/samlRoles/{samlRoleId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"samlRoleId"+"}", url.PathEscape(parameterToString(r.samlRoleId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"samlRoleId"+"}", url.PathEscape(parameterValueToString(r.samlRoleId, "samlRoleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -43395,9 +43395,9 @@ func (a *ConfigureApiService) GetOrganizationSamlRoleExecute(r ConfigureApiGetOr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -43465,7 +43465,7 @@ func (a *ConfigureApiService) GetOrganizationSamlRolesExecute(r ConfigureApiGetO
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/samlRoles"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -43512,9 +43512,9 @@ func (a *ConfigureApiService) GetOrganizationSamlRolesExecute(r ConfigureApiGetO
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -43582,7 +43582,7 @@ func (a *ConfigureApiService) GetOrganizationSmApnsCertExecute(r ConfigureApiGet
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/sm/apnsCert"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -43629,9 +43629,9 @@ func (a *ConfigureApiService) GetOrganizationSmApnsCertExecute(r ConfigureApiGet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -43702,8 +43702,8 @@ func (a *ConfigureApiService) GetOrganizationSmVppAccountExecute(r ConfigureApiG
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/sm/vppAccounts/{vppAccountId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"vppAccountId"+"}", url.PathEscape(parameterToString(r.vppAccountId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vppAccountId"+"}", url.PathEscape(parameterValueToString(r.vppAccountId, "vppAccountId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -43750,9 +43750,9 @@ func (a *ConfigureApiService) GetOrganizationSmVppAccountExecute(r ConfigureApiG
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -43820,7 +43820,7 @@ func (a *ConfigureApiService) GetOrganizationSmVppAccountsExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/sm/vppAccounts"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -43867,9 +43867,9 @@ func (a *ConfigureApiService) GetOrganizationSmVppAccountsExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -43937,7 +43937,7 @@ func (a *ConfigureApiService) GetOrganizationSnmpExecute(r ConfigureApiGetOrgani
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/snmp"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -43984,9 +43984,9 @@ func (a *ConfigureApiService) GetOrganizationSnmpExecute(r ConfigureApiGetOrgani
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -44131,30 +44131,30 @@ func (a *ConfigureApiService) GetOrganizationSwitchPortsBySwitchExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/switch/ports/bySwitch"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
 	}
 	if r.startingAfter != nil {
-		localVarQueryParams.Add("startingAfter", parameterToString(*r.startingAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startingAfter", r.startingAfter, "")
 	}
 	if r.endingBefore != nil {
-		localVarQueryParams.Add("endingBefore", parameterToString(*r.endingBefore, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endingBefore", r.endingBefore, "")
 	}
 	if r.networkIds != nil {
 		t := *r.networkIds
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("networkIds", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "networkIds", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("networkIds", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "networkIds", t, "multi")
 		}
 	}
 	if r.portProfileIds != nil {
@@ -44162,45 +44162,45 @@ func (a *ConfigureApiService) GetOrganizationSwitchPortsBySwitchExecute(r Config
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("portProfileIds", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "portProfileIds", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("portProfileIds", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "portProfileIds", t, "multi")
 		}
 	}
 	if r.name != nil {
-		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "")
 	}
 	if r.mac != nil {
-		localVarQueryParams.Add("mac", parameterToString(*r.mac, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mac", r.mac, "")
 	}
 	if r.macs != nil {
 		t := *r.macs
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("macs", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "macs", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("macs", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "macs", t, "multi")
 		}
 	}
 	if r.serial != nil {
-		localVarQueryParams.Add("serial", parameterToString(*r.serial, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "serial", r.serial, "")
 	}
 	if r.serials != nil {
 		t := *r.serials
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("serials", parameterToString(s.Index(i), "multi"))
+				parameterAddToHeaderOrQuery(localVarQueryParams, "serials", s.Index(i), "multi")
 			}
 		} else {
-			localVarQueryParams.Add("serials", parameterToString(t, "multi"))
+			parameterAddToHeaderOrQuery(localVarQueryParams, "serials", t, "multi")
 		}
 	}
 	if r.configurationUpdatedAfter != nil {
-		localVarQueryParams.Add("configurationUpdatedAfter", parameterToString(*r.configurationUpdatedAfter, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "configurationUpdatedAfter", r.configurationUpdatedAfter, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -44243,9 +44243,9 @@ func (a *ConfigureApiService) GetOrganizationSwitchPortsBySwitchExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -44356,9 +44356,9 @@ func (a *ConfigureApiService) GetOrganizationsExecute(r ConfigureApiGetOrganizat
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -44432,7 +44432,7 @@ func (a *ConfigureApiService) LockNetworkSmDevicesExecute(r ConfigureApiLockNetw
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/devices/lock"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -44481,9 +44481,9 @@ func (a *ConfigureApiService) LockNetworkSmDevicesExecute(r ConfigureApiLockNetw
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -44557,7 +44557,7 @@ func (a *ConfigureApiService) ModifyNetworkSmDevicesTagsExecute(r ConfigureApiMo
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/devices/modifyTags"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -44609,9 +44609,9 @@ func (a *ConfigureApiService) ModifyNetworkSmDevicesTagsExecute(r ConfigureApiMo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -44685,7 +44685,7 @@ func (a *ConfigureApiService) MoveNetworkSmDevicesExecute(r ConfigureApiMoveNetw
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/devices/move"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -44737,9 +44737,9 @@ func (a *ConfigureApiService) MoveNetworkSmDevicesExecute(r ConfigureApiMoveNetw
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -44813,7 +44813,7 @@ func (a *ConfigureApiService) MoveOrganizationLicensesExecute(r ConfigureApiMove
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/licenses/move"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -44865,9 +44865,9 @@ func (a *ConfigureApiService) MoveOrganizationLicensesExecute(r ConfigureApiMove
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -44941,7 +44941,7 @@ func (a *ConfigureApiService) MoveOrganizationLicensesSeatsExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/licenses/moveSeats"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -44993,9 +44993,9 @@ func (a *ConfigureApiService) MoveOrganizationLicensesSeatsExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -45069,7 +45069,7 @@ func (a *ConfigureApiService) MoveOrganizationLicensingCotermLicensesExecute(r C
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/licensing/coterm/licenses/move"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -45121,9 +45121,9 @@ func (a *ConfigureApiService) MoveOrganizationLicensingCotermLicensesExecute(r C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -45197,7 +45197,7 @@ func (a *ConfigureApiService) ProvisionNetworkClientsExecute(r ConfigureApiProvi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/clients/provision"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -45249,9 +45249,9 @@ func (a *ConfigureApiService) ProvisionNetworkClientsExecute(r ConfigureApiProvi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -45320,8 +45320,8 @@ func (a *ConfigureApiService) RefreshNetworkSmDeviceDetailsExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/devices/{deviceId}/refreshDetails"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterToString(r.deviceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -45368,9 +45368,9 @@ func (a *ConfigureApiService) RefreshNetworkSmDeviceDetailsExecute(r ConfigureAp
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -45435,7 +45435,7 @@ func (a *ConfigureApiService) ReleaseFromOrganizationInventoryExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/inventory/release"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -45484,9 +45484,9 @@ func (a *ConfigureApiService) ReleaseFromOrganizationInventoryExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -45558,7 +45558,7 @@ func (a *ConfigureApiService) RemoveNetworkDevicesExecute(r ConfigureApiRemoveNe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/devices/remove"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -45610,9 +45610,9 @@ func (a *ConfigureApiService) RemoveNetworkDevicesExecute(r ConfigureApiRemoveNe
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -45680,8 +45680,8 @@ func (a *ConfigureApiService) RemoveNetworkSwitchStackExecute(r ConfigureApiRemo
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks/{switchStackId}/remove"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterToString(r.switchStackId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterValueToString(r.switchStackId, "switchStackId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -45733,9 +45733,9 @@ func (a *ConfigureApiService) RemoveNetworkSwitchStackExecute(r ConfigureApiRemo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -45809,7 +45809,7 @@ func (a *ConfigureApiService) RenewOrganizationLicensesSeatsExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/licenses/renewSeats"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -45861,9 +45861,9 @@ func (a *ConfigureApiService) RenewOrganizationLicensesSeatsExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -45937,7 +45937,7 @@ func (a *ConfigureApiService) RollbacksNetworkFirmwareUpgradesStagedEventsExecut
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/events/rollbacks"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -45989,9 +45989,9 @@ func (a *ConfigureApiService) RollbacksNetworkFirmwareUpgradesStagedEventsExecut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -46059,7 +46059,7 @@ func (a *ConfigureApiService) SplitNetworkExecute(r ConfigureApiSplitNetworkRequ
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/split"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -46106,9 +46106,9 @@ func (a *ConfigureApiService) SplitNetworkExecute(r ConfigureApiSplitNetworkRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -46176,7 +46176,7 @@ func (a *ConfigureApiService) SwapNetworkApplianceWarmSpareExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/warmSpare/swap"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -46223,9 +46223,9 @@ func (a *ConfigureApiService) SwapNetworkApplianceWarmSpareExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -46299,7 +46299,7 @@ func (a *ConfigureApiService) UnbindNetworkExecute(r ConfigureApiUnbindNetworkRe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/unbind"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -46348,9 +46348,9 @@ func (a *ConfigureApiService) UnbindNetworkExecute(r ConfigureApiUnbindNetworkRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -46421,8 +46421,8 @@ func (a *ConfigureApiService) UnenrollNetworkSmDeviceExecute(r ConfigureApiUnenr
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/devices/{deviceId}/unenroll"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterToString(r.deviceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -46469,9 +46469,9 @@ func (a *ConfigureApiService) UnenrollNetworkSmDeviceExecute(r ConfigureApiUnenr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -46545,7 +46545,7 @@ func (a *ConfigureApiService) UpdateDeviceExecute(r ConfigureApiUpdateDeviceRequ
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -46594,9 +46594,9 @@ func (a *ConfigureApiService) UpdateDeviceExecute(r ConfigureApiUpdateDeviceRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -46670,7 +46670,7 @@ func (a *ConfigureApiService) UpdateDeviceApplianceRadioSettingsExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/appliance/radio/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -46719,9 +46719,9 @@ func (a *ConfigureApiService) UpdateDeviceApplianceRadioSettingsExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -46795,7 +46795,7 @@ func (a *ConfigureApiService) UpdateDeviceApplianceUplinksSettingsExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/appliance/uplinks/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -46847,9 +46847,9 @@ func (a *ConfigureApiService) UpdateDeviceApplianceUplinksSettingsExecute(r Conf
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -46923,7 +46923,7 @@ func (a *ConfigureApiService) UpdateDeviceCameraCustomAnalyticsExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/customAnalytics"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -46972,9 +46972,9 @@ func (a *ConfigureApiService) UpdateDeviceCameraCustomAnalyticsExecute(r Configu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -47048,7 +47048,7 @@ func (a *ConfigureApiService) UpdateDeviceCameraQualityAndRetentionExecute(r Con
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/qualityAndRetention"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -47097,9 +47097,9 @@ func (a *ConfigureApiService) UpdateDeviceCameraQualityAndRetentionExecute(r Con
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -47173,7 +47173,7 @@ func (a *ConfigureApiService) UpdateDeviceCameraSenseExecute(r ConfigureApiUpdat
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/sense"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -47222,9 +47222,9 @@ func (a *ConfigureApiService) UpdateDeviceCameraSenseExecute(r ConfigureApiUpdat
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -47298,7 +47298,7 @@ func (a *ConfigureApiService) UpdateDeviceCameraVideoSettingsExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/video/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -47347,9 +47347,9 @@ func (a *ConfigureApiService) UpdateDeviceCameraVideoSettingsExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -47423,7 +47423,7 @@ func (a *ConfigureApiService) UpdateDeviceCameraWirelessProfilesExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/camera/wirelessProfiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -47475,9 +47475,9 @@ func (a *ConfigureApiService) UpdateDeviceCameraWirelessProfilesExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -47551,7 +47551,7 @@ func (a *ConfigureApiService) UpdateDeviceCellularGatewayLanExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/cellularGateway/lan"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -47600,9 +47600,9 @@ func (a *ConfigureApiService) UpdateDeviceCellularGatewayLanExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -47676,7 +47676,7 @@ func (a *ConfigureApiService) UpdateDeviceCellularGatewayPortForwardingRulesExec
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/cellularGateway/portForwardingRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -47725,9 +47725,9 @@ func (a *ConfigureApiService) UpdateDeviceCellularGatewayPortForwardingRulesExec
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -47801,7 +47801,7 @@ func (a *ConfigureApiService) UpdateDeviceCellularSimsExecute(r ConfigureApiUpda
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/cellular/sims"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -47850,9 +47850,9 @@ func (a *ConfigureApiService) UpdateDeviceCellularSimsExecute(r ConfigureApiUpda
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -47926,7 +47926,7 @@ func (a *ConfigureApiService) UpdateDeviceManagementInterfaceExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/managementInterface"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -47975,9 +47975,9 @@ func (a *ConfigureApiService) UpdateDeviceManagementInterfaceExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -48051,7 +48051,7 @@ func (a *ConfigureApiService) UpdateDeviceSensorRelationshipsExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/sensor/relationships"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -48100,9 +48100,9 @@ func (a *ConfigureApiService) UpdateDeviceSensorRelationshipsExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -48179,8 +48179,8 @@ func (a *ConfigureApiService) UpdateDeviceSwitchPortExecute(r ConfigureApiUpdate
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/ports/{portId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"portId"+"}", url.PathEscape(parameterToString(r.portId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"portId"+"}", url.PathEscape(parameterValueToString(r.portId, "portId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -48229,9 +48229,9 @@ func (a *ConfigureApiService) UpdateDeviceSwitchPortExecute(r ConfigureApiUpdate
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -48308,8 +48308,8 @@ func (a *ConfigureApiService) UpdateDeviceSwitchRoutingInterfaceExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/routing/interfaces/{interfaceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterToString(r.interfaceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterValueToString(r.interfaceId, "interfaceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -48358,9 +48358,9 @@ func (a *ConfigureApiService) UpdateDeviceSwitchRoutingInterfaceExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -48437,8 +48437,8 @@ func (a *ConfigureApiService) UpdateDeviceSwitchRoutingInterfaceDhcpExecute(r Co
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/routing/interfaces/{interfaceId}/dhcp"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterToString(r.interfaceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterValueToString(r.interfaceId, "interfaceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -48487,9 +48487,9 @@ func (a *ConfigureApiService) UpdateDeviceSwitchRoutingInterfaceDhcpExecute(r Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -48566,8 +48566,8 @@ func (a *ConfigureApiService) UpdateDeviceSwitchRoutingStaticRouteExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/routing/staticRoutes/{staticRouteId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterToString(r.staticRouteId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterValueToString(r.staticRouteId, "staticRouteId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -48616,9 +48616,9 @@ func (a *ConfigureApiService) UpdateDeviceSwitchRoutingStaticRouteExecute(r Conf
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -48692,7 +48692,7 @@ func (a *ConfigureApiService) UpdateDeviceSwitchWarmSpareExecute(r ConfigureApiU
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/switch/warmSpare"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -48744,9 +48744,9 @@ func (a *ConfigureApiService) UpdateDeviceSwitchWarmSpareExecute(r ConfigureApiU
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -48820,7 +48820,7 @@ func (a *ConfigureApiService) UpdateDeviceWirelessBluetoothSettingsExecute(r Con
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/wireless/bluetooth/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -48869,9 +48869,9 @@ func (a *ConfigureApiService) UpdateDeviceWirelessBluetoothSettingsExecute(r Con
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -48945,7 +48945,7 @@ func (a *ConfigureApiService) UpdateDeviceWirelessRadioSettingsExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/devices/{serial}/wireless/radio/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterToString(r.serial, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serial"+"}", url.PathEscape(parameterValueToString(r.serial, "serial")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -48994,9 +48994,9 @@ func (a *ConfigureApiService) UpdateDeviceWirelessRadioSettingsExecute(r Configu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -49070,7 +49070,7 @@ func (a *ConfigureApiService) UpdateNetworkExecute(r ConfigureApiUpdateNetworkRe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -49119,9 +49119,9 @@ func (a *ConfigureApiService) UpdateNetworkExecute(r ConfigureApiUpdateNetworkRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -49195,7 +49195,7 @@ func (a *ConfigureApiService) UpdateNetworkAlertsSettingsExecute(r ConfigureApiU
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/alerts/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -49244,9 +49244,9 @@ func (a *ConfigureApiService) UpdateNetworkAlertsSettingsExecute(r ConfigureApiU
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -49320,7 +49320,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceConnectivityMonitoringDestin
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/connectivityMonitoringDestinations"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -49369,9 +49369,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceConnectivityMonitoringDestin
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -49445,7 +49445,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceContentFilteringExecute(r Co
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/contentFiltering"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -49494,9 +49494,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceContentFilteringExecute(r Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -49570,7 +49570,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallCellularFirewallRule
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/cellularFirewallRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -49619,9 +49619,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallCellularFirewallRule
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -49698,8 +49698,8 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallFirewalledServiceExe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/firewalledServices/{service}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"service"+"}", url.PathEscape(parameterToString(r.service, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"service"+"}", url.PathEscape(parameterValueToString(r.service, "service")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -49751,9 +49751,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallFirewalledServiceExe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -49827,7 +49827,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallInboundCellularFirew
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/inboundCellularFirewallRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -49876,9 +49876,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallInboundCellularFirew
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -49952,7 +49952,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallInboundFirewallRules
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/inboundFirewallRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -50001,9 +50001,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallInboundFirewallRules
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -50077,7 +50077,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallL3FirewallRulesExecu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/l3FirewallRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -50126,9 +50126,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallL3FirewallRulesExecu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -50202,7 +50202,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallL7FirewallRulesExecu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/l7FirewallRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -50251,9 +50251,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallL7FirewallRulesExecu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -50327,7 +50327,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallOneToManyNatRulesExe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/oneToManyNatRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -50379,9 +50379,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallOneToManyNatRulesExe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -50455,7 +50455,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallOneToOneNatRulesExec
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/oneToOneNatRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -50507,9 +50507,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallOneToOneNatRulesExec
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -50583,7 +50583,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallPortForwardingRulesE
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/portForwardingRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -50635,9 +50635,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallPortForwardingRulesE
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -50711,7 +50711,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallSettingsExecute(r Co
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/firewall/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -50760,9 +50760,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceFirewallSettingsExecute(r Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -50839,8 +50839,8 @@ func (a *ConfigureApiService) UpdateNetworkAppliancePortExecute(r ConfigureApiUp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/ports/{portId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"portId"+"}", url.PathEscape(parameterToString(r.portId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"portId"+"}", url.PathEscape(parameterValueToString(r.portId, "portId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -50889,9 +50889,9 @@ func (a *ConfigureApiService) UpdateNetworkAppliancePortExecute(r ConfigureApiUp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -50968,8 +50968,8 @@ func (a *ConfigureApiService) UpdateNetworkAppliancePrefixesDelegatedStaticExecu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/prefixes/delegated/statics/{staticDelegatedPrefixId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"staticDelegatedPrefixId"+"}", url.PathEscape(parameterToString(r.staticDelegatedPrefixId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"staticDelegatedPrefixId"+"}", url.PathEscape(parameterValueToString(r.staticDelegatedPrefixId, "staticDelegatedPrefixId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -51018,9 +51018,9 @@ func (a *ConfigureApiService) UpdateNetworkAppliancePrefixesDelegatedStaticExecu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -51097,8 +51097,8 @@ func (a *ConfigureApiService) UpdateNetworkApplianceRfProfileExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/rfProfiles/{rfProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rfProfileId"+"}", url.PathEscape(parameterToString(r.rfProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rfProfileId"+"}", url.PathEscape(parameterValueToString(r.rfProfileId, "rfProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -51147,9 +51147,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceRfProfileExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -51223,7 +51223,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSecurityIntrusionExecute(r C
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/security/intrusion"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -51272,9 +51272,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSecurityIntrusionExecute(r C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -51348,7 +51348,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSecurityMalwareExecute(r Con
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/security/malware"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -51400,9 +51400,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSecurityMalwareExecute(r Con
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -51476,7 +51476,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSettingsExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -51525,9 +51525,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSettingsExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -51601,7 +51601,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSingleLanExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/singleLan"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -51650,9 +51650,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSingleLanExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -51729,8 +51729,8 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSsidExecute(r ConfigureApiUp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/ssids/{number}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -51779,9 +51779,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceSsidExecute(r ConfigureApiUp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -51858,8 +51858,8 @@ func (a *ConfigureApiService) UpdateNetworkApplianceStaticRouteExecute(r Configu
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/staticRoutes/{staticRouteId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterToString(r.staticRouteId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterValueToString(r.staticRouteId, "staticRouteId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -51908,9 +51908,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceStaticRouteExecute(r Configu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -51984,7 +51984,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/trafficShaping"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -52033,9 +52033,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingExecute(r Conf
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -52112,8 +52112,8 @@ func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingCustomPerforma
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/trafficShaping/customPerformanceClasses/{customPerformanceClassId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"customPerformanceClassId"+"}", url.PathEscape(parameterToString(r.customPerformanceClassId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"customPerformanceClassId"+"}", url.PathEscape(parameterValueToString(r.customPerformanceClassId, "customPerformanceClassId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -52162,9 +52162,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingCustomPerforma
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -52238,7 +52238,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingRulesExecute(r
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/trafficShaping/rules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -52287,9 +52287,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingRulesExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -52363,7 +52363,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingUplinkBandwidt
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/trafficShaping/uplinkBandwidth"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -52412,9 +52412,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingUplinkBandwidt
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -52488,7 +52488,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingUplinkSelectio
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/trafficShaping/uplinkSelection"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -52537,9 +52537,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceTrafficShapingUplinkSelectio
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -52616,8 +52616,8 @@ func (a *ConfigureApiService) UpdateNetworkApplianceVlanExecute(r ConfigureApiUp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/vlans/{vlanId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"vlanId"+"}", url.PathEscape(parameterToString(r.vlanId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vlanId"+"}", url.PathEscape(parameterValueToString(r.vlanId, "vlanId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -52666,9 +52666,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceVlanExecute(r ConfigureApiUp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -52742,7 +52742,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceVlansSettingsExecute(r Confi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/vlans/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -52791,9 +52791,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceVlansSettingsExecute(r Confi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -52867,7 +52867,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceVpnBgpExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/vpn/bgp"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -52919,9 +52919,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceVpnBgpExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -52995,7 +52995,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceVpnSiteToSiteVpnExecute(r Co
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/vpn/siteToSiteVpn"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -53047,9 +53047,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceVpnSiteToSiteVpnExecute(r Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -53123,7 +53123,7 @@ func (a *ConfigureApiService) UpdateNetworkApplianceWarmSpareExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/appliance/warmSpare"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -53175,9 +53175,9 @@ func (a *ConfigureApiService) UpdateNetworkApplianceWarmSpareExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -53254,8 +53254,8 @@ func (a *ConfigureApiService) UpdateNetworkCameraQualityRetentionProfileExecute(
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/qualityRetentionProfiles/{qualityRetentionProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"qualityRetentionProfileId"+"}", url.PathEscape(parameterToString(r.qualityRetentionProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"qualityRetentionProfileId"+"}", url.PathEscape(parameterValueToString(r.qualityRetentionProfileId, "qualityRetentionProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -53304,9 +53304,9 @@ func (a *ConfigureApiService) UpdateNetworkCameraQualityRetentionProfileExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -53383,8 +53383,8 @@ func (a *ConfigureApiService) UpdateNetworkCameraWirelessProfileExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/camera/wirelessProfiles/{wirelessProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"wirelessProfileId"+"}", url.PathEscape(parameterToString(r.wirelessProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wirelessProfileId"+"}", url.PathEscape(parameterValueToString(r.wirelessProfileId, "wirelessProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -53433,9 +53433,9 @@ func (a *ConfigureApiService) UpdateNetworkCameraWirelessProfileExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -53509,7 +53509,7 @@ func (a *ConfigureApiService) UpdateNetworkCellularGatewayConnectivityMonitoring
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/cellularGateway/connectivityMonitoringDestinations"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -53558,9 +53558,9 @@ func (a *ConfigureApiService) UpdateNetworkCellularGatewayConnectivityMonitoring
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -53634,7 +53634,7 @@ func (a *ConfigureApiService) UpdateNetworkCellularGatewayDhcpExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/cellularGateway/dhcp"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -53683,9 +53683,9 @@ func (a *ConfigureApiService) UpdateNetworkCellularGatewayDhcpExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -53759,7 +53759,7 @@ func (a *ConfigureApiService) UpdateNetworkCellularGatewaySubnetPoolExecute(r Co
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/cellularGateway/subnetPool"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -53808,9 +53808,9 @@ func (a *ConfigureApiService) UpdateNetworkCellularGatewaySubnetPoolExecute(r Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -53884,7 +53884,7 @@ func (a *ConfigureApiService) UpdateNetworkCellularGatewayUplinkExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/cellularGateway/uplink"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -53933,9 +53933,9 @@ func (a *ConfigureApiService) UpdateNetworkCellularGatewayUplinkExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -54012,8 +54012,8 @@ func (a *ConfigureApiService) UpdateNetworkClientPolicyExecute(r ConfigureApiUpd
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/clients/{clientId}/policy"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"clientId"+"}", url.PathEscape(parameterToString(r.clientId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clientId"+"}", url.PathEscape(parameterValueToString(r.clientId, "clientId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -54065,9 +54065,9 @@ func (a *ConfigureApiService) UpdateNetworkClientPolicyExecute(r ConfigureApiUpd
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -54144,8 +54144,8 @@ func (a *ConfigureApiService) UpdateNetworkClientSplashAuthorizationStatusExecut
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/clients/{clientId}/splashAuthorizationStatus"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"clientId"+"}", url.PathEscape(parameterToString(r.clientId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clientId"+"}", url.PathEscape(parameterValueToString(r.clientId, "clientId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -54197,9 +54197,9 @@ func (a *ConfigureApiService) UpdateNetworkClientSplashAuthorizationStatusExecut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -54273,7 +54273,7 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -54322,9 +54322,9 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -54398,7 +54398,7 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedEventsExecute(r
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/events"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -54450,9 +54450,9 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedEventsExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -54529,8 +54529,8 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedGroupExecute(r 
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/groups/{groupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterToString(r.groupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterValueToString(r.groupId, "groupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -54582,9 +54582,9 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedGroupExecute(r 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -54658,7 +54658,7 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedStagesExecute(r
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/firmwareUpgrades/staged/stages"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -54707,9 +54707,9 @@ func (a *ConfigureApiService) UpdateNetworkFirmwareUpgradesStagedStagesExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -54786,8 +54786,8 @@ func (a *ConfigureApiService) UpdateNetworkFloorPlanExecute(r ConfigureApiUpdate
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/floorPlans/{floorPlanId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"floorPlanId"+"}", url.PathEscape(parameterToString(r.floorPlanId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"floorPlanId"+"}", url.PathEscape(parameterValueToString(r.floorPlanId, "floorPlanId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -54836,9 +54836,9 @@ func (a *ConfigureApiService) UpdateNetworkFloorPlanExecute(r ConfigureApiUpdate
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -54915,8 +54915,8 @@ func (a *ConfigureApiService) UpdateNetworkGroupPolicyExecute(r ConfigureApiUpda
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/groupPolicies/{groupPolicyId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"groupPolicyId"+"}", url.PathEscape(parameterToString(r.groupPolicyId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupPolicyId"+"}", url.PathEscape(parameterValueToString(r.groupPolicyId, "groupPolicyId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -54965,9 +54965,9 @@ func (a *ConfigureApiService) UpdateNetworkGroupPolicyExecute(r ConfigureApiUpda
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -55044,8 +55044,8 @@ func (a *ConfigureApiService) UpdateNetworkMerakiAuthUserExecute(r ConfigureApiU
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/merakiAuthUsers/{merakiAuthUserId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"merakiAuthUserId"+"}", url.PathEscape(parameterToString(r.merakiAuthUserId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"merakiAuthUserId"+"}", url.PathEscape(parameterValueToString(r.merakiAuthUserId, "merakiAuthUserId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -55094,9 +55094,9 @@ func (a *ConfigureApiService) UpdateNetworkMerakiAuthUserExecute(r ConfigureApiU
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -55173,8 +55173,8 @@ func (a *ConfigureApiService) UpdateNetworkMqttBrokerExecute(r ConfigureApiUpdat
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/mqttBrokers/{mqttBrokerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterToString(r.mqttBrokerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterValueToString(r.mqttBrokerId, "mqttBrokerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -55223,9 +55223,9 @@ func (a *ConfigureApiService) UpdateNetworkMqttBrokerExecute(r ConfigureApiUpdat
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -55299,7 +55299,7 @@ func (a *ConfigureApiService) UpdateNetworkNetflowExecute(r ConfigureApiUpdateNe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/netflow"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -55348,9 +55348,9 @@ func (a *ConfigureApiService) UpdateNetworkNetflowExecute(r ConfigureApiUpdateNe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -55427,8 +55427,8 @@ func (a *ConfigureApiService) UpdateNetworkSensorAlertsProfileExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sensor/alerts/profiles/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -55477,9 +55477,9 @@ func (a *ConfigureApiService) UpdateNetworkSensorAlertsProfileExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -55556,8 +55556,8 @@ func (a *ConfigureApiService) UpdateNetworkSensorMqttBrokerExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sensor/mqttBrokers/{mqttBrokerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterToString(r.mqttBrokerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"mqttBrokerId"+"}", url.PathEscape(parameterValueToString(r.mqttBrokerId, "mqttBrokerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -55609,9 +55609,9 @@ func (a *ConfigureApiService) UpdateNetworkSensorMqttBrokerExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -55685,7 +55685,7 @@ func (a *ConfigureApiService) UpdateNetworkSettingsExecute(r ConfigureApiUpdateN
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -55734,9 +55734,9 @@ func (a *ConfigureApiService) UpdateNetworkSettingsExecute(r ConfigureApiUpdateN
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -55810,7 +55810,7 @@ func (a *ConfigureApiService) UpdateNetworkSmDevicesFieldsExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/devices/fields"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -55862,9 +55862,9 @@ func (a *ConfigureApiService) UpdateNetworkSmDevicesFieldsExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -55941,8 +55941,8 @@ func (a *ConfigureApiService) UpdateNetworkSmTargetGroupExecute(r ConfigureApiUp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/targetGroups/{targetGroupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"targetGroupId"+"}", url.PathEscape(parameterToString(r.targetGroupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"targetGroupId"+"}", url.PathEscape(parameterValueToString(r.targetGroupId, "targetGroupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -55991,9 +55991,9 @@ func (a *ConfigureApiService) UpdateNetworkSmTargetGroupExecute(r ConfigureApiUp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -56067,7 +56067,7 @@ func (a *ConfigureApiService) UpdateNetworkSnmpExecute(r ConfigureApiUpdateNetwo
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/snmp"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -56116,9 +56116,9 @@ func (a *ConfigureApiService) UpdateNetworkSnmpExecute(r ConfigureApiUpdateNetwo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -56192,7 +56192,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchAccessControlListsExecute(r Con
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/accessControlLists"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -56244,9 +56244,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchAccessControlListsExecute(r Con
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -56323,8 +56323,8 @@ func (a *ConfigureApiService) UpdateNetworkSwitchAccessPolicyExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/accessPolicies/{accessPolicyNumber}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"accessPolicyNumber"+"}", url.PathEscape(parameterToString(r.accessPolicyNumber, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"accessPolicyNumber"+"}", url.PathEscape(parameterValueToString(r.accessPolicyNumber, "accessPolicyNumber")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -56373,9 +56373,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchAccessPolicyExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -56449,7 +56449,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchAlternateManagementInterfaceExe
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/alternateManagementInterface"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -56498,9 +56498,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchAlternateManagementInterfaceExe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -56574,7 +56574,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchDhcpServerPolicyExecute(r Confi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/dhcpServerPolicy"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -56623,9 +56623,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchDhcpServerPolicyExecute(r Confi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -56702,8 +56702,8 @@ func (a *ConfigureApiService) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTr
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/dhcpServerPolicy/arpInspection/trustedServers/{trustedServerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"trustedServerId"+"}", url.PathEscape(parameterToString(r.trustedServerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"trustedServerId"+"}", url.PathEscape(parameterValueToString(r.trustedServerId, "trustedServerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -56752,9 +56752,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchDhcpServerPolicyArpInspectionTr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -56828,7 +56828,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchDscpToCosMappingsExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/dscpToCosMappings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -56880,9 +56880,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchDscpToCosMappingsExecute(r Conf
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -56959,8 +56959,8 @@ func (a *ConfigureApiService) UpdateNetworkSwitchLinkAggregationExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/linkAggregations/{linkAggregationId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"linkAggregationId"+"}", url.PathEscape(parameterToString(r.linkAggregationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"linkAggregationId"+"}", url.PathEscape(parameterValueToString(r.linkAggregationId, "linkAggregationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -57009,9 +57009,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchLinkAggregationExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -57085,7 +57085,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchMtuExecute(r ConfigureApiUpdate
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/mtu"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -57134,9 +57134,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchMtuExecute(r ConfigureApiUpdate
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -57213,8 +57213,8 @@ func (a *ConfigureApiService) UpdateNetworkSwitchPortScheduleExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/portSchedules/{portScheduleId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"portScheduleId"+"}", url.PathEscape(parameterToString(r.portScheduleId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"portScheduleId"+"}", url.PathEscape(parameterValueToString(r.portScheduleId, "portScheduleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -57263,9 +57263,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchPortScheduleExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -57342,8 +57342,8 @@ func (a *ConfigureApiService) UpdateNetworkSwitchQosRuleExecute(r ConfigureApiUp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/qosRules/{qosRuleId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"qosRuleId"+"}", url.PathEscape(parameterToString(r.qosRuleId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"qosRuleId"+"}", url.PathEscape(parameterValueToString(r.qosRuleId, "qosRuleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -57392,9 +57392,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchQosRuleExecute(r ConfigureApiUp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -57468,7 +57468,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchQosRulesOrderExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/qosRules/order"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -57520,9 +57520,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchQosRulesOrderExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -57596,7 +57596,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchRoutingMulticastExecute(r Confi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/routing/multicast"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -57645,9 +57645,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchRoutingMulticastExecute(r Confi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -57724,8 +57724,8 @@ func (a *ConfigureApiService) UpdateNetworkSwitchRoutingMulticastRendezvousPoint
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/routing/multicast/rendezvousPoints/{rendezvousPointId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rendezvousPointId"+"}", url.PathEscape(parameterToString(r.rendezvousPointId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rendezvousPointId"+"}", url.PathEscape(parameterValueToString(r.rendezvousPointId, "rendezvousPointId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -57777,9 +57777,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchRoutingMulticastRendezvousPoint
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -57853,7 +57853,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchRoutingOspfExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/routing/ospf"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -57902,9 +57902,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchRoutingOspfExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -57978,7 +57978,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchSettingsExecute(r ConfigureApiU
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -58027,9 +58027,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchSettingsExecute(r ConfigureApiU
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -58109,9 +58109,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchStackRoutingInterfaceExecute(r 
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterToString(r.switchStackId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterToString(r.interfaceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterValueToString(r.switchStackId, "switchStackId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterValueToString(r.interfaceId, "interfaceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -58160,9 +58160,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchStackRoutingInterfaceExecute(r 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -58242,9 +58242,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchStackRoutingInterfaceDhcpExecut
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks/{switchStackId}/routing/interfaces/{interfaceId}/dhcp"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterToString(r.switchStackId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterToString(r.interfaceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterValueToString(r.switchStackId, "switchStackId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"interfaceId"+"}", url.PathEscape(parameterValueToString(r.interfaceId, "interfaceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -58293,9 +58293,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchStackRoutingInterfaceDhcpExecut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -58375,9 +58375,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchStackRoutingStaticRouteExecute(
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stacks/{switchStackId}/routing/staticRoutes/{staticRouteId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterToString(r.switchStackId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterToString(r.staticRouteId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"switchStackId"+"}", url.PathEscape(parameterValueToString(r.switchStackId, "switchStackId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"staticRouteId"+"}", url.PathEscape(parameterValueToString(r.staticRouteId, "staticRouteId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -58426,9 +58426,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchStackRoutingStaticRouteExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -58502,7 +58502,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchStormControlExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stormControl"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -58551,9 +58551,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchStormControlExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -58627,7 +58627,7 @@ func (a *ConfigureApiService) UpdateNetworkSwitchStpExecute(r ConfigureApiUpdate
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/switch/stp"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -58676,9 +58676,9 @@ func (a *ConfigureApiService) UpdateNetworkSwitchStpExecute(r ConfigureApiUpdate
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -58752,7 +58752,7 @@ func (a *ConfigureApiService) UpdateNetworkSyslogServersExecute(r ConfigureApiUp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/syslogServers"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -58804,9 +58804,9 @@ func (a *ConfigureApiService) UpdateNetworkSyslogServersExecute(r ConfigureApiUp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -58880,7 +58880,7 @@ func (a *ConfigureApiService) UpdateNetworkTrafficAnalysisExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/trafficAnalysis"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -58929,9 +58929,9 @@ func (a *ConfigureApiService) UpdateNetworkTrafficAnalysisExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -59008,8 +59008,8 @@ func (a *ConfigureApiService) UpdateNetworkWebhooksHttpServerExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/webhooks/httpServers/{httpServerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"httpServerId"+"}", url.PathEscape(parameterToString(r.httpServerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"httpServerId"+"}", url.PathEscape(parameterValueToString(r.httpServerId, "httpServerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -59058,9 +59058,9 @@ func (a *ConfigureApiService) UpdateNetworkWebhooksHttpServerExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -59137,8 +59137,8 @@ func (a *ConfigureApiService) UpdateNetworkWebhooksPayloadTemplateExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/webhooks/payloadTemplates/{payloadTemplateId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"payloadTemplateId"+"}", url.PathEscape(parameterToString(r.payloadTemplateId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"payloadTemplateId"+"}", url.PathEscape(parameterValueToString(r.payloadTemplateId, "payloadTemplateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -59187,9 +59187,9 @@ func (a *ConfigureApiService) UpdateNetworkWebhooksPayloadTemplateExecute(r Conf
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -59263,7 +59263,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessAlternateManagementInterfaceE
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/alternateManagementInterface"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -59312,9 +59312,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessAlternateManagementInterfaceE
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -59388,7 +59388,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessBillingExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/billing"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -59437,9 +59437,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessBillingExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -59513,7 +59513,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessBluetoothSettingsExecute(r Co
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/bluetooth/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -59562,9 +59562,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessBluetoothSettingsExecute(r Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -59641,8 +59641,8 @@ func (a *ConfigureApiService) UpdateNetworkWirelessRfProfileExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/rfProfiles/{rfProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rfProfileId"+"}", url.PathEscape(parameterToString(r.rfProfileId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rfProfileId"+"}", url.PathEscape(parameterValueToString(r.rfProfileId, "rfProfileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -59691,9 +59691,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessRfProfileExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -59767,7 +59767,7 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSettingsExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -59816,9 +59816,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSettingsExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -59895,8 +59895,8 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidExecute(r ConfigureApiUpd
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -59945,9 +59945,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidExecute(r ConfigureApiUpd
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -60024,8 +60024,8 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidBonjourForwardingExecute(
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/bonjourForwarding"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -60074,9 +60074,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidBonjourForwardingExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -60153,8 +60153,8 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesEx
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/deviceTypeGroupPolicies"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -60203,9 +60203,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidDeviceTypeGroupPoliciesEx
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -60282,8 +60282,8 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidEapOverrideExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/eapOverride"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -60332,9 +60332,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidEapOverrideExecute(r Conf
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -60411,8 +60411,8 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidFirewallL3FirewallRulesEx
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/firewall/l3FirewallRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -60461,9 +60461,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidFirewallL3FirewallRulesEx
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -60540,8 +60540,8 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidFirewallL7FirewallRulesEx
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/firewall/l7FirewallRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -60590,9 +60590,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidFirewallL7FirewallRulesEx
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -60669,8 +60669,8 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidHotspot20Execute(r Config
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/hotspot20"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -60719,9 +60719,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidHotspot20Execute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -60801,9 +60801,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidIdentityPskExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/identityPsks/{identityPskId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"identityPskId"+"}", url.PathEscape(parameterToString(r.identityPskId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"identityPskId"+"}", url.PathEscape(parameterValueToString(r.identityPskId, "identityPskId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -60852,9 +60852,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidIdentityPskExecute(r Conf
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -60931,8 +60931,8 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidSchedulesExecute(r Config
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/schedules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -60981,9 +60981,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidSchedulesExecute(r Config
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -61060,8 +61060,8 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidSplashSettingsExecute(r C
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/splash/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -61110,9 +61110,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidSplashSettingsExecute(r C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -61189,8 +61189,8 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidTrafficShapingRulesExecut
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/trafficShaping/rules"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -61239,9 +61239,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidTrafficShapingRulesExecut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -61318,8 +61318,8 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidVpnExecute(r ConfigureApi
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/wireless/ssids/{number}/vpn"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterToString(r.number, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"number"+"}", url.PathEscape(parameterValueToString(r.number, "number")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -61368,9 +61368,9 @@ func (a *ConfigureApiService) UpdateNetworkWirelessSsidVpnExecute(r ConfigureApi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -61444,7 +61444,7 @@ func (a *ConfigureApiService) UpdateOrganizationExecute(r ConfigureApiUpdateOrga
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -61493,9 +61493,9 @@ func (a *ConfigureApiService) UpdateOrganizationExecute(r ConfigureApiUpdateOrga
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -61572,8 +61572,8 @@ func (a *ConfigureApiService) UpdateOrganizationActionBatchExecute(r ConfigureAp
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/actionBatches/{actionBatchId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"actionBatchId"+"}", url.PathEscape(parameterToString(r.actionBatchId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"actionBatchId"+"}", url.PathEscape(parameterValueToString(r.actionBatchId, "actionBatchId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -61622,9 +61622,9 @@ func (a *ConfigureApiService) UpdateOrganizationActionBatchExecute(r ConfigureAp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -61701,8 +61701,8 @@ func (a *ConfigureApiService) UpdateOrganizationAdaptivePolicyAclExecute(r Confi
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/acls/{aclId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"aclId"+"}", url.PathEscape(parameterToString(r.aclId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"aclId"+"}", url.PathEscape(parameterValueToString(r.aclId, "aclId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -61751,9 +61751,9 @@ func (a *ConfigureApiService) UpdateOrganizationAdaptivePolicyAclExecute(r Confi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -61830,8 +61830,8 @@ func (a *ConfigureApiService) UpdateOrganizationAdaptivePolicyGroupExecute(r Con
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/groups/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -61880,9 +61880,9 @@ func (a *ConfigureApiService) UpdateOrganizationAdaptivePolicyGroupExecute(r Con
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -61959,8 +61959,8 @@ func (a *ConfigureApiService) UpdateOrganizationAdaptivePolicyPolicyExecute(r Co
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/policies/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -62009,9 +62009,9 @@ func (a *ConfigureApiService) UpdateOrganizationAdaptivePolicyPolicyExecute(r Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -62085,7 +62085,7 @@ func (a *ConfigureApiService) UpdateOrganizationAdaptivePolicySettingsExecute(r 
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/adaptivePolicy/settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -62134,9 +62134,9 @@ func (a *ConfigureApiService) UpdateOrganizationAdaptivePolicySettingsExecute(r 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -62213,8 +62213,8 @@ func (a *ConfigureApiService) UpdateOrganizationAdminExecute(r ConfigureApiUpdat
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/admins/{adminId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"adminId"+"}", url.PathEscape(parameterToString(r.adminId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"adminId"+"}", url.PathEscape(parameterValueToString(r.adminId, "adminId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -62263,9 +62263,9 @@ func (a *ConfigureApiService) UpdateOrganizationAdminExecute(r ConfigureApiUpdat
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -62342,8 +62342,8 @@ func (a *ConfigureApiService) UpdateOrganizationAlertsProfileExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/alerts/profiles/{alertConfigId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"alertConfigId"+"}", url.PathEscape(parameterToString(r.alertConfigId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"alertConfigId"+"}", url.PathEscape(parameterValueToString(r.alertConfigId, "alertConfigId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -62392,9 +62392,9 @@ func (a *ConfigureApiService) UpdateOrganizationAlertsProfileExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -62468,7 +62468,7 @@ func (a *ConfigureApiService) UpdateOrganizationApplianceSecurityIntrusionExecut
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/appliance/security/intrusion"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -62520,9 +62520,9 @@ func (a *ConfigureApiService) UpdateOrganizationApplianceSecurityIntrusionExecut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -62596,7 +62596,7 @@ func (a *ConfigureApiService) UpdateOrganizationApplianceVpnThirdPartyVPNPeersEx
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/appliance/vpn/thirdPartyVPNPeers"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -62648,9 +62648,9 @@ func (a *ConfigureApiService) UpdateOrganizationApplianceVpnThirdPartyVPNPeersEx
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -62724,7 +62724,7 @@ func (a *ConfigureApiService) UpdateOrganizationApplianceVpnVpnFirewallRulesExec
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/appliance/vpn/vpnFirewallRules"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -62773,9 +62773,9 @@ func (a *ConfigureApiService) UpdateOrganizationApplianceVpnVpnFirewallRulesExec
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -62849,7 +62849,7 @@ func (a *ConfigureApiService) UpdateOrganizationBrandingPoliciesPrioritiesExecut
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/brandingPolicies/priorities"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -62898,9 +62898,9 @@ func (a *ConfigureApiService) UpdateOrganizationBrandingPoliciesPrioritiesExecut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -62977,8 +62977,8 @@ func (a *ConfigureApiService) UpdateOrganizationBrandingPolicyExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/brandingPolicies/{brandingPolicyId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"brandingPolicyId"+"}", url.PathEscape(parameterToString(r.brandingPolicyId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"brandingPolicyId"+"}", url.PathEscape(parameterValueToString(r.brandingPolicyId, "brandingPolicyId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -63027,9 +63027,9 @@ func (a *ConfigureApiService) UpdateOrganizationBrandingPolicyExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -63103,7 +63103,7 @@ func (a *ConfigureApiService) UpdateOrganizationCameraOnboardingStatusesExecute(
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/camera/onboarding/statuses"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -63152,9 +63152,9 @@ func (a *ConfigureApiService) UpdateOrganizationCameraOnboardingStatusesExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -63231,8 +63231,8 @@ func (a *ConfigureApiService) UpdateOrganizationConfigTemplateExecute(r Configur
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/configTemplates/{configTemplateId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"configTemplateId"+"}", url.PathEscape(parameterToString(r.configTemplateId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"configTemplateId"+"}", url.PathEscape(parameterValueToString(r.configTemplateId, "configTemplateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -63281,9 +63281,9 @@ func (a *ConfigureApiService) UpdateOrganizationConfigTemplateExecute(r Configur
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -63366,10 +63366,10 @@ func (a *ConfigureApiService) UpdateOrganizationConfigTemplateSwitchProfilePortE
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles/{profileId}/ports/{portId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"configTemplateId"+"}", url.PathEscape(parameterToString(r.configTemplateId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"profileId"+"}", url.PathEscape(parameterToString(r.profileId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"portId"+"}", url.PathEscape(parameterToString(r.portId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"configTemplateId"+"}", url.PathEscape(parameterValueToString(r.configTemplateId, "configTemplateId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"profileId"+"}", url.PathEscape(parameterValueToString(r.profileId, "profileId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"portId"+"}", url.PathEscape(parameterValueToString(r.portId, "portId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -63418,9 +63418,9 @@ func (a *ConfigureApiService) UpdateOrganizationConfigTemplateSwitchProfilePortE
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -63497,8 +63497,8 @@ func (a *ConfigureApiService) UpdateOrganizationEarlyAccessFeaturesOptInExecute(
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"optInId"+"}", url.PathEscape(parameterToString(r.optInId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"optInId"+"}", url.PathEscape(parameterValueToString(r.optInId, "optInId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -63547,9 +63547,9 @@ func (a *ConfigureApiService) UpdateOrganizationEarlyAccessFeaturesOptInExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -63626,8 +63626,8 @@ func (a *ConfigureApiService) UpdateOrganizationInsightMonitoredMediaServerExecu
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/insight/monitoredMediaServers/{monitoredMediaServerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"monitoredMediaServerId"+"}", url.PathEscape(parameterToString(r.monitoredMediaServerId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"monitoredMediaServerId"+"}", url.PathEscape(parameterValueToString(r.monitoredMediaServerId, "monitoredMediaServerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -63676,9 +63676,9 @@ func (a *ConfigureApiService) UpdateOrganizationInsightMonitoredMediaServerExecu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -63755,8 +63755,8 @@ func (a *ConfigureApiService) UpdateOrganizationLicenseExecute(r ConfigureApiUpd
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/licenses/{licenseId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"licenseId"+"}", url.PathEscape(parameterToString(r.licenseId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"licenseId"+"}", url.PathEscape(parameterValueToString(r.licenseId, "licenseId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -63805,9 +63805,9 @@ func (a *ConfigureApiService) UpdateOrganizationLicenseExecute(r ConfigureApiUpd
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -63881,7 +63881,7 @@ func (a *ConfigureApiService) UpdateOrganizationLoginSecurityExecute(r Configure
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/loginSecurity"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -63930,9 +63930,9 @@ func (a *ConfigureApiService) UpdateOrganizationLoginSecurityExecute(r Configure
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -64009,8 +64009,8 @@ func (a *ConfigureApiService) UpdateOrganizationPolicyObjectExecute(r ConfigureA
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/policyObjects/{policyObjectId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectId"+"}", url.PathEscape(parameterToString(r.policyObjectId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectId"+"}", url.PathEscape(parameterValueToString(r.policyObjectId, "policyObjectId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -64059,9 +64059,9 @@ func (a *ConfigureApiService) UpdateOrganizationPolicyObjectExecute(r ConfigureA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -64138,8 +64138,8 @@ func (a *ConfigureApiService) UpdateOrganizationPolicyObjectsGroupExecute(r Conf
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/policyObjects/groups/{policyObjectGroupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectGroupId"+"}", url.PathEscape(parameterToString(r.policyObjectGroupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"policyObjectGroupId"+"}", url.PathEscape(parameterValueToString(r.policyObjectGroupId, "policyObjectGroupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -64188,9 +64188,9 @@ func (a *ConfigureApiService) UpdateOrganizationPolicyObjectsGroupExecute(r Conf
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -64264,7 +64264,7 @@ func (a *ConfigureApiService) UpdateOrganizationSamlExecute(r ConfigureApiUpdate
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/saml"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -64313,9 +64313,9 @@ func (a *ConfigureApiService) UpdateOrganizationSamlExecute(r ConfigureApiUpdate
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -64392,8 +64392,8 @@ func (a *ConfigureApiService) UpdateOrganizationSamlIdpExecute(r ConfigureApiUpd
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/saml/idps/{idpId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"idpId"+"}", url.PathEscape(parameterToString(r.idpId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"idpId"+"}", url.PathEscape(parameterValueToString(r.idpId, "idpId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -64442,9 +64442,9 @@ func (a *ConfigureApiService) UpdateOrganizationSamlIdpExecute(r ConfigureApiUpd
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -64521,8 +64521,8 @@ func (a *ConfigureApiService) UpdateOrganizationSamlRoleExecute(r ConfigureApiUp
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/samlRoles/{samlRoleId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"samlRoleId"+"}", url.PathEscape(parameterToString(r.samlRoleId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"samlRoleId"+"}", url.PathEscape(parameterValueToString(r.samlRoleId, "samlRoleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -64571,9 +64571,9 @@ func (a *ConfigureApiService) UpdateOrganizationSamlRoleExecute(r ConfigureApiUp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -64647,7 +64647,7 @@ func (a *ConfigureApiService) UpdateOrganizationSnmpExecute(r ConfigureApiUpdate
 	}
 
 	localVarPath := localBasePath + "/organizations/{organizationId}/snmp"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(parameterValueToString(r.organizationId, "organizationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -64696,9 +64696,9 @@ func (a *ConfigureApiService) UpdateOrganizationSnmpExecute(r ConfigureApiUpdate
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -64772,7 +64772,7 @@ func (a *ConfigureApiService) VmxNetworkDevicesClaimExecute(r ConfigureApiVmxNet
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/devices/claim/vmx"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -64824,9 +64824,9 @@ func (a *ConfigureApiService) VmxNetworkDevicesClaimExecute(r ConfigureApiVmxNet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -64900,7 +64900,7 @@ func (a *ConfigureApiService) WipeNetworkSmDevicesExecute(r ConfigureApiWipeNetw
 	}
 
 	localVarPath := localBasePath + "/networks/{networkId}/sm/devices/wipe"
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterToString(r.networkId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -64949,9 +64949,9 @@ func (a *ConfigureApiService) WipeNetworkSmDevicesExecute(r ConfigureApiWipeNetw
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

@@ -34,6 +34,7 @@ func main() {
     number := "number_example" // string | Number
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.BonjourForwardingApi.GetNetworkWirelessSsidBonjourForwarding(context.Background(), networkId, number).Execute()
     if err != nil {
@@ -108,6 +109,7 @@ func main() {
     updateNetworkWirelessSsidBonjourForwardingRequest := *openapiclient.NewUpdateNetworkWirelessSsidBonjourForwardingRequest() // UpdateNetworkWirelessSsidBonjourForwardingRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.BonjourForwardingApi.UpdateNetworkWirelessSsidBonjourForwarding(context.Background(), networkId, number).UpdateNetworkWirelessSsidBonjourForwardingRequest(updateNetworkWirelessSsidBonjourForwardingRequest).Execute()
     if err != nil {

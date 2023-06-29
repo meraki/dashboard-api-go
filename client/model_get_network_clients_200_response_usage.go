@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkClients200ResponseUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkClients200ResponseUsage{}
+
 // GetNetworkClients200ResponseUsage Usage, sent and received
 type GetNetworkClients200ResponseUsage struct {
 	// Usage sent by the client
@@ -41,7 +44,7 @@ func NewGetNetworkClients200ResponseUsageWithDefaults() *GetNetworkClients200Res
 
 // GetSent returns the Sent field value if set, zero value otherwise.
 func (o *GetNetworkClients200ResponseUsage) GetSent() float32 {
-	if o == nil || isNil(o.Sent) {
+	if o == nil || IsNil(o.Sent) {
 		var ret float32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkClients200ResponseUsage) GetSent() float32 {
 // GetSentOk returns a tuple with the Sent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkClients200ResponseUsage) GetSentOk() (*float32, bool) {
-	if o == nil || isNil(o.Sent) {
-    return nil, false
+	if o == nil || IsNil(o.Sent) {
+		return nil, false
 	}
 	return o.Sent, true
 }
 
 // HasSent returns a boolean if a field has been set.
 func (o *GetNetworkClients200ResponseUsage) HasSent() bool {
-	if o != nil && !isNil(o.Sent) {
+	if o != nil && !IsNil(o.Sent) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkClients200ResponseUsage) SetSent(v float32) {
 
 // GetRecv returns the Recv field value if set, zero value otherwise.
 func (o *GetNetworkClients200ResponseUsage) GetRecv() float32 {
-	if o == nil || isNil(o.Recv) {
+	if o == nil || IsNil(o.Recv) {
 		var ret float32
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkClients200ResponseUsage) GetRecv() float32 {
 // GetRecvOk returns a tuple with the Recv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkClients200ResponseUsage) GetRecvOk() (*float32, bool) {
-	if o == nil || isNil(o.Recv) {
-    return nil, false
+	if o == nil || IsNil(o.Recv) {
+		return nil, false
 	}
 	return o.Recv, true
 }
 
 // HasRecv returns a boolean if a field has been set.
 func (o *GetNetworkClients200ResponseUsage) HasRecv() bool {
-	if o != nil && !isNil(o.Recv) {
+	if o != nil && !IsNil(o.Recv) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkClients200ResponseUsage) SetRecv(v float32) {
 }
 
 func (o GetNetworkClients200ResponseUsage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Sent) {
-		toSerialize["sent"] = o.Sent
-	}
-	if !isNil(o.Recv) {
-		toSerialize["recv"] = o.Recv
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkClients200ResponseUsage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Sent) {
+		toSerialize["sent"] = o.Sent
+	}
+	if !IsNil(o.Recv) {
+		toSerialize["recv"] = o.Recv
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkClients200ResponseUsage struct {

@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetNetworkWirelessChannelUtilizationHistory200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessChannelUtilizationHistory200ResponseInner{}
+
 // GetNetworkWirelessChannelUtilizationHistory200ResponseInner struct for GetNetworkWirelessChannelUtilizationHistory200ResponseInner
 type GetNetworkWirelessChannelUtilizationHistory200ResponseInner struct {
 	// The start time of the query range
@@ -48,7 +51,7 @@ func NewGetNetworkWirelessChannelUtilizationHistory200ResponseInnerWithDefaults(
 
 // GetStartTs returns the StartTs field value if set, zero value otherwise.
 func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) GetStartTs() time.Time {
-	if o == nil || isNil(o.StartTs) {
+	if o == nil || IsNil(o.StartTs) {
 		var ret time.Time
 		return ret
 	}
@@ -58,15 +61,15 @@ func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) GetStartTs
 // GetStartTsOk returns a tuple with the StartTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) GetStartTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartTs) {
-    return nil, false
+	if o == nil || IsNil(o.StartTs) {
+		return nil, false
 	}
 	return o.StartTs, true
 }
 
 // HasStartTs returns a boolean if a field has been set.
 func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) HasStartTs() bool {
-	if o != nil && !isNil(o.StartTs) {
+	if o != nil && !IsNil(o.StartTs) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) SetStartTs
 
 // GetEndTs returns the EndTs field value if set, zero value otherwise.
 func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) GetEndTs() time.Time {
-	if o == nil || isNil(o.EndTs) {
+	if o == nil || IsNil(o.EndTs) {
 		var ret time.Time
 		return ret
 	}
@@ -90,15 +93,15 @@ func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) GetEndTs()
 // GetEndTsOk returns a tuple with the EndTs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) GetEndTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.EndTs) {
-    return nil, false
+	if o == nil || IsNil(o.EndTs) {
+		return nil, false
 	}
 	return o.EndTs, true
 }
 
 // HasEndTs returns a boolean if a field has been set.
 func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) HasEndTs() bool {
-	if o != nil && !isNil(o.EndTs) {
+	if o != nil && !IsNil(o.EndTs) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) SetEndTs(v
 
 // GetUtilizationTotal returns the UtilizationTotal field value if set, zero value otherwise.
 func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) GetUtilizationTotal() float32 {
-	if o == nil || isNil(o.UtilizationTotal) {
+	if o == nil || IsNil(o.UtilizationTotal) {
 		var ret float32
 		return ret
 	}
@@ -122,15 +125,15 @@ func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) GetUtiliza
 // GetUtilizationTotalOk returns a tuple with the UtilizationTotal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) GetUtilizationTotalOk() (*float32, bool) {
-	if o == nil || isNil(o.UtilizationTotal) {
-    return nil, false
+	if o == nil || IsNil(o.UtilizationTotal) {
+		return nil, false
 	}
 	return o.UtilizationTotal, true
 }
 
 // HasUtilizationTotal returns a boolean if a field has been set.
 func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) HasUtilizationTotal() bool {
-	if o != nil && !isNil(o.UtilizationTotal) {
+	if o != nil && !IsNil(o.UtilizationTotal) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) SetUtiliza
 
 // GetUtilization80211 returns the Utilization80211 field value if set, zero value otherwise.
 func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) GetUtilization80211() float32 {
-	if o == nil || isNil(o.Utilization80211) {
+	if o == nil || IsNil(o.Utilization80211) {
 		var ret float32
 		return ret
 	}
@@ -154,15 +157,15 @@ func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) GetUtiliza
 // GetUtilization80211Ok returns a tuple with the Utilization80211 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) GetUtilization80211Ok() (*float32, bool) {
-	if o == nil || isNil(o.Utilization80211) {
-    return nil, false
+	if o == nil || IsNil(o.Utilization80211) {
+		return nil, false
 	}
 	return o.Utilization80211, true
 }
 
 // HasUtilization80211 returns a boolean if a field has been set.
 func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) HasUtilization80211() bool {
-	if o != nil && !isNil(o.Utilization80211) {
+	if o != nil && !IsNil(o.Utilization80211) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) SetUtiliza
 
 // GetUtilizationNon80211 returns the UtilizationNon80211 field value if set, zero value otherwise.
 func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) GetUtilizationNon80211() float32 {
-	if o == nil || isNil(o.UtilizationNon80211) {
+	if o == nil || IsNil(o.UtilizationNon80211) {
 		var ret float32
 		return ret
 	}
@@ -186,15 +189,15 @@ func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) GetUtiliza
 // GetUtilizationNon80211Ok returns a tuple with the UtilizationNon80211 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) GetUtilizationNon80211Ok() (*float32, bool) {
-	if o == nil || isNil(o.UtilizationNon80211) {
-    return nil, false
+	if o == nil || IsNil(o.UtilizationNon80211) {
+		return nil, false
 	}
 	return o.UtilizationNon80211, true
 }
 
 // HasUtilizationNon80211 returns a boolean if a field has been set.
 func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) HasUtilizationNon80211() bool {
-	if o != nil && !isNil(o.UtilizationNon80211) {
+	if o != nil && !IsNil(o.UtilizationNon80211) {
 		return true
 	}
 
@@ -207,23 +210,31 @@ func (o *GetNetworkWirelessChannelUtilizationHistory200ResponseInner) SetUtiliza
 }
 
 func (o GetNetworkWirelessChannelUtilizationHistory200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.StartTs) {
-		toSerialize["startTs"] = o.StartTs
-	}
-	if !isNil(o.EndTs) {
-		toSerialize["endTs"] = o.EndTs
-	}
-	if !isNil(o.UtilizationTotal) {
-		toSerialize["utilizationTotal"] = o.UtilizationTotal
-	}
-	if !isNil(o.Utilization80211) {
-		toSerialize["utilization80211"] = o.Utilization80211
-	}
-	if !isNil(o.UtilizationNon80211) {
-		toSerialize["utilizationNon80211"] = o.UtilizationNon80211
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessChannelUtilizationHistory200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.StartTs) {
+		toSerialize["startTs"] = o.StartTs
+	}
+	if !IsNil(o.EndTs) {
+		toSerialize["endTs"] = o.EndTs
+	}
+	if !IsNil(o.UtilizationTotal) {
+		toSerialize["utilizationTotal"] = o.UtilizationTotal
+	}
+	if !IsNil(o.Utilization80211) {
+		toSerialize["utilization80211"] = o.Utilization80211
+	}
+	if !IsNil(o.UtilizationNon80211) {
+		toSerialize["utilizationNon80211"] = o.UtilizationNon80211
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessChannelUtilizationHistory200ResponseInner struct {

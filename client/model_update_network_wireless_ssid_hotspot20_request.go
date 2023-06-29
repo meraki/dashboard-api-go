@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidHotspot20Request type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidHotspot20Request{}
+
 // UpdateNetworkWirelessSsidHotspot20Request struct for UpdateNetworkWirelessSsidHotspot20Request
 type UpdateNetworkWirelessSsidHotspot20Request struct {
 	// Whether or not Hotspot 2.0 for this SSID is enabled
@@ -51,7 +54,7 @@ func NewUpdateNetworkWirelessSsidHotspot20RequestWithDefaults() *UpdateNetworkWi
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -61,15 +64,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20Request) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *UpdateNetworkWirelessSsidHotspot20Request) SetEnabled(v bool) {
 
 // GetOperator returns the Operator field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) GetOperator() UpdateNetworkWirelessSsidHotspot20RequestOperator {
-	if o == nil || isNil(o.Operator) {
+	if o == nil || IsNil(o.Operator) {
 		var ret UpdateNetworkWirelessSsidHotspot20RequestOperator
 		return ret
 	}
@@ -93,15 +96,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20Request) GetOperator() UpdateNetworkW
 // GetOperatorOk returns a tuple with the Operator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) GetOperatorOk() (*UpdateNetworkWirelessSsidHotspot20RequestOperator, bool) {
-	if o == nil || isNil(o.Operator) {
-    return nil, false
+	if o == nil || IsNil(o.Operator) {
+		return nil, false
 	}
 	return o.Operator, true
 }
 
 // HasOperator returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) HasOperator() bool {
-	if o != nil && !isNil(o.Operator) {
+	if o != nil && !IsNil(o.Operator) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *UpdateNetworkWirelessSsidHotspot20Request) SetOperator(v UpdateNetworkW
 
 // GetVenue returns the Venue field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) GetVenue() UpdateNetworkWirelessSsidHotspot20RequestVenue {
-	if o == nil || isNil(o.Venue) {
+	if o == nil || IsNil(o.Venue) {
 		var ret UpdateNetworkWirelessSsidHotspot20RequestVenue
 		return ret
 	}
@@ -125,15 +128,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20Request) GetVenue() UpdateNetworkWire
 // GetVenueOk returns a tuple with the Venue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) GetVenueOk() (*UpdateNetworkWirelessSsidHotspot20RequestVenue, bool) {
-	if o == nil || isNil(o.Venue) {
-    return nil, false
+	if o == nil || IsNil(o.Venue) {
+		return nil, false
 	}
 	return o.Venue, true
 }
 
 // HasVenue returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) HasVenue() bool {
-	if o != nil && !isNil(o.Venue) {
+	if o != nil && !IsNil(o.Venue) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *UpdateNetworkWirelessSsidHotspot20Request) SetVenue(v UpdateNetworkWire
 
 // GetNetworkAccessType returns the NetworkAccessType field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) GetNetworkAccessType() string {
-	if o == nil || isNil(o.NetworkAccessType) {
+	if o == nil || IsNil(o.NetworkAccessType) {
 		var ret string
 		return ret
 	}
@@ -157,15 +160,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20Request) GetNetworkAccessType() strin
 // GetNetworkAccessTypeOk returns a tuple with the NetworkAccessType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) GetNetworkAccessTypeOk() (*string, bool) {
-	if o == nil || isNil(o.NetworkAccessType) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkAccessType) {
+		return nil, false
 	}
 	return o.NetworkAccessType, true
 }
 
 // HasNetworkAccessType returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) HasNetworkAccessType() bool {
-	if o != nil && !isNil(o.NetworkAccessType) {
+	if o != nil && !IsNil(o.NetworkAccessType) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *UpdateNetworkWirelessSsidHotspot20Request) SetNetworkAccessType(v strin
 
 // GetDomains returns the Domains field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) GetDomains() []string {
-	if o == nil || isNil(o.Domains) {
+	if o == nil || IsNil(o.Domains) {
 		var ret []string
 		return ret
 	}
@@ -189,15 +192,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20Request) GetDomains() []string {
 // GetDomainsOk returns a tuple with the Domains field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) GetDomainsOk() ([]string, bool) {
-	if o == nil || isNil(o.Domains) {
-    return nil, false
+	if o == nil || IsNil(o.Domains) {
+		return nil, false
 	}
 	return o.Domains, true
 }
 
 // HasDomains returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) HasDomains() bool {
-	if o != nil && !isNil(o.Domains) {
+	if o != nil && !IsNil(o.Domains) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *UpdateNetworkWirelessSsidHotspot20Request) SetDomains(v []string) {
 
 // GetRoamConsortOis returns the RoamConsortOis field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) GetRoamConsortOis() []string {
-	if o == nil || isNil(o.RoamConsortOis) {
+	if o == nil || IsNil(o.RoamConsortOis) {
 		var ret []string
 		return ret
 	}
@@ -221,15 +224,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20Request) GetRoamConsortOis() []string
 // GetRoamConsortOisOk returns a tuple with the RoamConsortOis field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) GetRoamConsortOisOk() ([]string, bool) {
-	if o == nil || isNil(o.RoamConsortOis) {
-    return nil, false
+	if o == nil || IsNil(o.RoamConsortOis) {
+		return nil, false
 	}
 	return o.RoamConsortOis, true
 }
 
 // HasRoamConsortOis returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) HasRoamConsortOis() bool {
-	if o != nil && !isNil(o.RoamConsortOis) {
+	if o != nil && !IsNil(o.RoamConsortOis) {
 		return true
 	}
 
@@ -243,7 +246,7 @@ func (o *UpdateNetworkWirelessSsidHotspot20Request) SetRoamConsortOis(v []string
 
 // GetMccMncs returns the MccMncs field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) GetMccMncs() []UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner {
-	if o == nil || isNil(o.MccMncs) {
+	if o == nil || IsNil(o.MccMncs) {
 		var ret []UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner
 		return ret
 	}
@@ -253,15 +256,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20Request) GetMccMncs() []UpdateNetwork
 // GetMccMncsOk returns a tuple with the MccMncs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) GetMccMncsOk() ([]UpdateNetworkWirelessSsidHotspot20RequestMccMncsInner, bool) {
-	if o == nil || isNil(o.MccMncs) {
-    return nil, false
+	if o == nil || IsNil(o.MccMncs) {
+		return nil, false
 	}
 	return o.MccMncs, true
 }
 
 // HasMccMncs returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) HasMccMncs() bool {
-	if o != nil && !isNil(o.MccMncs) {
+	if o != nil && !IsNil(o.MccMncs) {
 		return true
 	}
 
@@ -275,7 +278,7 @@ func (o *UpdateNetworkWirelessSsidHotspot20Request) SetMccMncs(v []UpdateNetwork
 
 // GetNaiRealms returns the NaiRealms field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) GetNaiRealms() []UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner {
-	if o == nil || isNil(o.NaiRealms) {
+	if o == nil || IsNil(o.NaiRealms) {
 		var ret []UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner
 		return ret
 	}
@@ -285,15 +288,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20Request) GetNaiRealms() []UpdateNetwo
 // GetNaiRealmsOk returns a tuple with the NaiRealms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) GetNaiRealmsOk() ([]UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner, bool) {
-	if o == nil || isNil(o.NaiRealms) {
-    return nil, false
+	if o == nil || IsNil(o.NaiRealms) {
+		return nil, false
 	}
 	return o.NaiRealms, true
 }
 
 // HasNaiRealms returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20Request) HasNaiRealms() bool {
-	if o != nil && !isNil(o.NaiRealms) {
+	if o != nil && !IsNil(o.NaiRealms) {
 		return true
 	}
 
@@ -306,32 +309,40 @@ func (o *UpdateNetworkWirelessSsidHotspot20Request) SetNaiRealms(v []UpdateNetwo
 }
 
 func (o UpdateNetworkWirelessSsidHotspot20Request) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.Operator) {
-		toSerialize["operator"] = o.Operator
-	}
-	if !isNil(o.Venue) {
-		toSerialize["venue"] = o.Venue
-	}
-	if !isNil(o.NetworkAccessType) {
-		toSerialize["networkAccessType"] = o.NetworkAccessType
-	}
-	if !isNil(o.Domains) {
-		toSerialize["domains"] = o.Domains
-	}
-	if !isNil(o.RoamConsortOis) {
-		toSerialize["roamConsortOis"] = o.RoamConsortOis
-	}
-	if !isNil(o.MccMncs) {
-		toSerialize["mccMncs"] = o.MccMncs
-	}
-	if !isNil(o.NaiRealms) {
-		toSerialize["naiRealms"] = o.NaiRealms
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidHotspot20Request) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Operator) {
+		toSerialize["operator"] = o.Operator
+	}
+	if !IsNil(o.Venue) {
+		toSerialize["venue"] = o.Venue
+	}
+	if !IsNil(o.NetworkAccessType) {
+		toSerialize["networkAccessType"] = o.NetworkAccessType
+	}
+	if !IsNil(o.Domains) {
+		toSerialize["domains"] = o.Domains
+	}
+	if !IsNil(o.RoamConsortOis) {
+		toSerialize["roamConsortOis"] = o.RoamConsortOis
+	}
+	if !IsNil(o.MccMncs) {
+		toSerialize["mccMncs"] = o.MccMncs
+	}
+	if !IsNil(o.NaiRealms) {
+		toSerialize["naiRealms"] = o.NaiRealms
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidHotspot20Request struct {

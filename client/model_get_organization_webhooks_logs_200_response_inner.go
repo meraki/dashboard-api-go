@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetOrganizationWebhooksLogs200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationWebhooksLogs200ResponseInner{}
+
 // GetOrganizationWebhooksLogs200ResponseInner struct for GetOrganizationWebhooksLogs200ResponseInner
 type GetOrganizationWebhooksLogs200ResponseInner struct {
 	// Type of alert that the webhook is delivering
@@ -54,7 +57,7 @@ func NewGetOrganizationWebhooksLogs200ResponseInnerWithDefaults() *GetOrganizati
 
 // GetAlertType returns the AlertType field value if set, zero value otherwise.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) GetAlertType() string {
-	if o == nil || isNil(o.AlertType) {
+	if o == nil || IsNil(o.AlertType) {
 		var ret string
 		return ret
 	}
@@ -64,15 +67,15 @@ func (o *GetOrganizationWebhooksLogs200ResponseInner) GetAlertType() string {
 // GetAlertTypeOk returns a tuple with the AlertType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) GetAlertTypeOk() (*string, bool) {
-	if o == nil || isNil(o.AlertType) {
-    return nil, false
+	if o == nil || IsNil(o.AlertType) {
+		return nil, false
 	}
 	return o.AlertType, true
 }
 
 // HasAlertType returns a boolean if a field has been set.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) HasAlertType() bool {
-	if o != nil && !isNil(o.AlertType) {
+	if o != nil && !IsNil(o.AlertType) {
 		return true
 	}
 
@@ -86,7 +89,7 @@ func (o *GetOrganizationWebhooksLogs200ResponseInner) SetAlertType(v string) {
 
 // GetLoggedAt returns the LoggedAt field value if set, zero value otherwise.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) GetLoggedAt() time.Time {
-	if o == nil || isNil(o.LoggedAt) {
+	if o == nil || IsNil(o.LoggedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -96,15 +99,15 @@ func (o *GetOrganizationWebhooksLogs200ResponseInner) GetLoggedAt() time.Time {
 // GetLoggedAtOk returns a tuple with the LoggedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) GetLoggedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.LoggedAt) {
-    return nil, false
+	if o == nil || IsNil(o.LoggedAt) {
+		return nil, false
 	}
 	return o.LoggedAt, true
 }
 
 // HasLoggedAt returns a boolean if a field has been set.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) HasLoggedAt() bool {
-	if o != nil && !isNil(o.LoggedAt) {
+	if o != nil && !IsNil(o.LoggedAt) {
 		return true
 	}
 
@@ -118,7 +121,7 @@ func (o *GetOrganizationWebhooksLogs200ResponseInner) SetLoggedAt(v time.Time) {
 
 // GetNetworkId returns the NetworkId field value if set, zero value otherwise.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) GetNetworkId() string {
-	if o == nil || isNil(o.NetworkId) {
+	if o == nil || IsNil(o.NetworkId) {
 		var ret string
 		return ret
 	}
@@ -128,15 +131,15 @@ func (o *GetOrganizationWebhooksLogs200ResponseInner) GetNetworkId() string {
 // GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) GetNetworkIdOk() (*string, bool) {
-	if o == nil || isNil(o.NetworkId) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkId) {
+		return nil, false
 	}
 	return o.NetworkId, true
 }
 
 // HasNetworkId returns a boolean if a field has been set.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) HasNetworkId() bool {
-	if o != nil && !isNil(o.NetworkId) {
+	if o != nil && !IsNil(o.NetworkId) {
 		return true
 	}
 
@@ -150,7 +153,7 @@ func (o *GetOrganizationWebhooksLogs200ResponseInner) SetNetworkId(v string) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -160,15 +163,15 @@ func (o *GetOrganizationWebhooksLogs200ResponseInner) GetOrganizationId() string
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -182,7 +185,7 @@ func (o *GetOrganizationWebhooksLogs200ResponseInner) SetOrganizationId(v string
 
 // GetResponseCode returns the ResponseCode field value if set, zero value otherwise.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) GetResponseCode() int32 {
-	if o == nil || isNil(o.ResponseCode) {
+	if o == nil || IsNil(o.ResponseCode) {
 		var ret int32
 		return ret
 	}
@@ -192,15 +195,15 @@ func (o *GetOrganizationWebhooksLogs200ResponseInner) GetResponseCode() int32 {
 // GetResponseCodeOk returns a tuple with the ResponseCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) GetResponseCodeOk() (*int32, bool) {
-	if o == nil || isNil(o.ResponseCode) {
-    return nil, false
+	if o == nil || IsNil(o.ResponseCode) {
+		return nil, false
 	}
 	return o.ResponseCode, true
 }
 
 // HasResponseCode returns a boolean if a field has been set.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) HasResponseCode() bool {
-	if o != nil && !isNil(o.ResponseCode) {
+	if o != nil && !IsNil(o.ResponseCode) {
 		return true
 	}
 
@@ -214,7 +217,7 @@ func (o *GetOrganizationWebhooksLogs200ResponseInner) SetResponseCode(v int32) {
 
 // GetResponseDuration returns the ResponseDuration field value if set, zero value otherwise.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) GetResponseDuration() int32 {
-	if o == nil || isNil(o.ResponseDuration) {
+	if o == nil || IsNil(o.ResponseDuration) {
 		var ret int32
 		return ret
 	}
@@ -224,15 +227,15 @@ func (o *GetOrganizationWebhooksLogs200ResponseInner) GetResponseDuration() int3
 // GetResponseDurationOk returns a tuple with the ResponseDuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) GetResponseDurationOk() (*int32, bool) {
-	if o == nil || isNil(o.ResponseDuration) {
-    return nil, false
+	if o == nil || IsNil(o.ResponseDuration) {
+		return nil, false
 	}
 	return o.ResponseDuration, true
 }
 
 // HasResponseDuration returns a boolean if a field has been set.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) HasResponseDuration() bool {
-	if o != nil && !isNil(o.ResponseDuration) {
+	if o != nil && !IsNil(o.ResponseDuration) {
 		return true
 	}
 
@@ -246,7 +249,7 @@ func (o *GetOrganizationWebhooksLogs200ResponseInner) SetResponseDuration(v int3
 
 // GetSentAt returns the SentAt field value if set, zero value otherwise.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) GetSentAt() time.Time {
-	if o == nil || isNil(o.SentAt) {
+	if o == nil || IsNil(o.SentAt) {
 		var ret time.Time
 		return ret
 	}
@@ -256,15 +259,15 @@ func (o *GetOrganizationWebhooksLogs200ResponseInner) GetSentAt() time.Time {
 // GetSentAtOk returns a tuple with the SentAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) GetSentAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.SentAt) {
-    return nil, false
+	if o == nil || IsNil(o.SentAt) {
+		return nil, false
 	}
 	return o.SentAt, true
 }
 
 // HasSentAt returns a boolean if a field has been set.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) HasSentAt() bool {
-	if o != nil && !isNil(o.SentAt) {
+	if o != nil && !IsNil(o.SentAt) {
 		return true
 	}
 
@@ -278,7 +281,7 @@ func (o *GetOrganizationWebhooksLogs200ResponseInner) SetSentAt(v time.Time) {
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) GetUrl() string {
-	if o == nil || isNil(o.Url) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -288,15 +291,15 @@ func (o *GetOrganizationWebhooksLogs200ResponseInner) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) GetUrlOk() (*string, bool) {
-	if o == nil || isNil(o.Url) {
-    return nil, false
+	if o == nil || IsNil(o.Url) {
+		return nil, false
 	}
 	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *GetOrganizationWebhooksLogs200ResponseInner) HasUrl() bool {
-	if o != nil && !isNil(o.Url) {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -309,32 +312,40 @@ func (o *GetOrganizationWebhooksLogs200ResponseInner) SetUrl(v string) {
 }
 
 func (o GetOrganizationWebhooksLogs200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.AlertType) {
-		toSerialize["alertType"] = o.AlertType
-	}
-	if !isNil(o.LoggedAt) {
-		toSerialize["loggedAt"] = o.LoggedAt
-	}
-	if !isNil(o.NetworkId) {
-		toSerialize["networkId"] = o.NetworkId
-	}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organizationId"] = o.OrganizationId
-	}
-	if !isNil(o.ResponseCode) {
-		toSerialize["responseCode"] = o.ResponseCode
-	}
-	if !isNil(o.ResponseDuration) {
-		toSerialize["responseDuration"] = o.ResponseDuration
-	}
-	if !isNil(o.SentAt) {
-		toSerialize["sentAt"] = o.SentAt
-	}
-	if !isNil(o.Url) {
-		toSerialize["url"] = o.Url
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationWebhooksLogs200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AlertType) {
+		toSerialize["alertType"] = o.AlertType
+	}
+	if !IsNil(o.LoggedAt) {
+		toSerialize["loggedAt"] = o.LoggedAt
+	}
+	if !IsNil(o.NetworkId) {
+		toSerialize["networkId"] = o.NetworkId
+	}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organizationId"] = o.OrganizationId
+	}
+	if !IsNil(o.ResponseCode) {
+		toSerialize["responseCode"] = o.ResponseCode
+	}
+	if !IsNil(o.ResponseDuration) {
+		toSerialize["responseDuration"] = o.ResponseDuration
+	}
+	if !IsNil(o.SentAt) {
+		toSerialize["sentAt"] = o.SentAt
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationWebhooksLogs200ResponseInner struct {

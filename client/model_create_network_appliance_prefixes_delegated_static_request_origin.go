@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin{}
+
 // CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin The origin of the prefix
 type CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin struct {
 	// Type of the origin
@@ -41,7 +44,7 @@ func NewCreateNetworkAppliancePrefixesDelegatedStaticRequestOriginWithDefaults()
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin) GetType() s
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin) SetType(v s
 
 // GetInterfaces returns the Interfaces field value if set, zero value otherwise.
 func (o *CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin) GetInterfaces() []string {
-	if o == nil || isNil(o.Interfaces) {
+	if o == nil || IsNil(o.Interfaces) {
 		var ret []string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin) GetInterfac
 // GetInterfacesOk returns a tuple with the Interfaces field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin) GetInterfacesOk() ([]string, bool) {
-	if o == nil || isNil(o.Interfaces) {
-    return nil, false
+	if o == nil || IsNil(o.Interfaces) {
+		return nil, false
 	}
 	return o.Interfaces, true
 }
 
 // HasInterfaces returns a boolean if a field has been set.
 func (o *CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin) HasInterfaces() bool {
-	if o != nil && !isNil(o.Interfaces) {
+	if o != nil && !IsNil(o.Interfaces) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin) SetInterfac
 }
 
 func (o CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Interfaces) {
-		toSerialize["interfaces"] = o.Interfaces
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Interfaces) {
+		toSerialize["interfaces"] = o.Interfaces
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkAppliancePrefixesDelegatedStaticRequestOrigin struct {

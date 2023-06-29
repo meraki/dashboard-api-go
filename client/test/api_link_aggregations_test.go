@@ -10,74 +10,73 @@ Testing LinkAggregationsApiService
 package client
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "github.com/meraki/dashboard-api-go/client"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func Test_client_LinkAggregationsApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test LinkAggregationsApiService CreateNetworkSwitchLinkAggregation", func(t *testing.T) {
+	t.Run("Test LinkAggregationsApiService CreateNetworkSwitchLinkAggregation", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.LinkAggregationsApi.CreateNetworkSwitchLinkAggregation(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.LinkAggregationsApi.CreateNetworkSwitchLinkAggregation(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test LinkAggregationsApiService DeleteNetworkSwitchLinkAggregation", func(t *testing.T) {
+	t.Run("Test LinkAggregationsApiService DeleteNetworkSwitchLinkAggregation", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var linkAggregationId string
+		var networkId string
+		var linkAggregationId string
 
-        resp, httpRes, err := apiClient.LinkAggregationsApi.DeleteNetworkSwitchLinkAggregation(context.Background(), networkId, linkAggregationId).Execute()
+		httpRes, err := apiClient.LinkAggregationsApi.DeleteNetworkSwitchLinkAggregation(context.Background(), networkId, linkAggregationId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test LinkAggregationsApiService GetNetworkSwitchLinkAggregations", func(t *testing.T) {
+	t.Run("Test LinkAggregationsApiService GetNetworkSwitchLinkAggregations", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.LinkAggregationsApi.GetNetworkSwitchLinkAggregations(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.LinkAggregationsApi.GetNetworkSwitchLinkAggregations(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test LinkAggregationsApiService UpdateNetworkSwitchLinkAggregation", func(t *testing.T) {
+	t.Run("Test LinkAggregationsApiService UpdateNetworkSwitchLinkAggregation", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var linkAggregationId string
+		var networkId string
+		var linkAggregationId string
 
-        resp, httpRes, err := apiClient.LinkAggregationsApi.UpdateNetworkSwitchLinkAggregation(context.Background(), networkId, linkAggregationId).Execute()
+		resp, httpRes, err := apiClient.LinkAggregationsApi.UpdateNetworkSwitchLinkAggregation(context.Background(), networkId, linkAggregationId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

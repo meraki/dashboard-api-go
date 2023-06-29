@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsTunnelRootCertificate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsTunnelRootCertificate{}
+
 // CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsTunnelRootCertificate Root certificate information
 type CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsTunnelRootCertificate struct {
 	// Public certificate value
@@ -41,7 +44,7 @@ func NewCreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseIn
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsTunnelRootCertificate) GetContent() string {
-	if o == nil || isNil(o.Content) {
+	if o == nil || IsNil(o.Content) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsTunnelRootCertificate) GetContentOk() (*string, bool) {
-	if o == nil || isNil(o.Content) {
-    return nil, false
+	if o == nil || IsNil(o.Content) {
+		return nil, false
 	}
 	return o.Content, true
 }
 
 // HasContent returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsTunnelRootCertificate) HasContent() bool {
-	if o != nil && !isNil(o.Content) {
+	if o != nil && !IsNil(o.Content) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsTunnelRootCertificate) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsTunnelRootCertificate) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsTunnelRootCertificate) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseI
 }
 
 func (o CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsTunnelRootCertificate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Content) {
-		toSerialize["content"] = o.Content
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsTunnelRootCertificate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Content) {
+		toSerialize["content"] = o.Content
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationInventoryOnboardingCloudMonitoringPrepare201ResponseInnerConfigParamsTunnelRootCertificate struct {

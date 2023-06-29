@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV52 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV52{}
+
 // CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV52 Quality and resolution for MV52 camera models.
 type CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV52 struct {
 	// Quality of the camera. Can be one of 'Standard', 'Enhanced' or 'High'.
@@ -55,7 +58,7 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV52) Get
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV52) GetQualityOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Quality, true
 }
@@ -79,7 +82,7 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV52) Get
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV52) GetResolutionOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Resolution, true
 }
@@ -90,14 +93,18 @@ func (o *CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV52) Set
 }
 
 func (o CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV52) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["quality"] = o.Quality
-	}
-	if true {
-		toSerialize["resolution"] = o.Resolution
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV52) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["quality"] = o.Quality
+	toSerialize["resolution"] = o.Resolution
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkCameraQualityRetentionProfileRequestVideoSettingsMV52 struct {

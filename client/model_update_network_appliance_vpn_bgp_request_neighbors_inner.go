@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceVpnBgpRequestNeighborsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceVpnBgpRequestNeighborsInner{}
+
 // UpdateNetworkApplianceVpnBgpRequestNeighborsInner struct for UpdateNetworkApplianceVpnBgpRequestNeighborsInner
 type UpdateNetworkApplianceVpnBgpRequestNeighborsInner struct {
 	// The IPv4 address of the neighbor
@@ -59,7 +62,7 @@ func NewUpdateNetworkApplianceVpnBgpRequestNeighborsInnerWithDefaults() *UpdateN
 
 // GetIp returns the Ip field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetIp() string {
-	if o == nil || isNil(o.Ip) {
+	if o == nil || IsNil(o.Ip) {
 		var ret string
 		return ret
 	}
@@ -69,15 +72,15 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetIp() string {
 // GetIpOk returns a tuple with the Ip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetIpOk() (*string, bool) {
-	if o == nil || isNil(o.Ip) {
-    return nil, false
+	if o == nil || IsNil(o.Ip) {
+		return nil, false
 	}
 	return o.Ip, true
 }
 
 // HasIp returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) HasIp() bool {
-	if o != nil && !isNil(o.Ip) {
+	if o != nil && !IsNil(o.Ip) {
 		return true
 	}
 
@@ -91,7 +94,7 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) SetIp(v string) {
 
 // GetIpv6 returns the Ipv6 field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetIpv6() UpdateNetworkApplianceVpnBgpRequestNeighborsInnerIpv6 {
-	if o == nil || isNil(o.Ipv6) {
+	if o == nil || IsNil(o.Ipv6) {
 		var ret UpdateNetworkApplianceVpnBgpRequestNeighborsInnerIpv6
 		return ret
 	}
@@ -101,15 +104,15 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetIpv6() UpdateNetw
 // GetIpv6Ok returns a tuple with the Ipv6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetIpv6Ok() (*UpdateNetworkApplianceVpnBgpRequestNeighborsInnerIpv6, bool) {
-	if o == nil || isNil(o.Ipv6) {
-    return nil, false
+	if o == nil || IsNil(o.Ipv6) {
+		return nil, false
 	}
 	return o.Ipv6, true
 }
 
 // HasIpv6 returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) HasIpv6() bool {
-	if o != nil && !isNil(o.Ipv6) {
+	if o != nil && !IsNil(o.Ipv6) {
 		return true
 	}
 
@@ -135,7 +138,7 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetRemoteAsNumber() 
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetRemoteAsNumberOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.RemoteAsNumber, true
 }
@@ -147,7 +150,7 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) SetRemoteAsNumber(v 
 
 // GetReceiveLimit returns the ReceiveLimit field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetReceiveLimit() int32 {
-	if o == nil || isNil(o.ReceiveLimit) {
+	if o == nil || IsNil(o.ReceiveLimit) {
 		var ret int32
 		return ret
 	}
@@ -157,15 +160,15 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetReceiveLimit() in
 // GetReceiveLimitOk returns a tuple with the ReceiveLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetReceiveLimitOk() (*int32, bool) {
-	if o == nil || isNil(o.ReceiveLimit) {
-    return nil, false
+	if o == nil || IsNil(o.ReceiveLimit) {
+		return nil, false
 	}
 	return o.ReceiveLimit, true
 }
 
 // HasReceiveLimit returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) HasReceiveLimit() bool {
-	if o != nil && !isNil(o.ReceiveLimit) {
+	if o != nil && !IsNil(o.ReceiveLimit) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) SetReceiveLimit(v in
 
 // GetAllowTransit returns the AllowTransit field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetAllowTransit() bool {
-	if o == nil || isNil(o.AllowTransit) {
+	if o == nil || IsNil(o.AllowTransit) {
 		var ret bool
 		return ret
 	}
@@ -189,15 +192,15 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetAllowTransit() bo
 // GetAllowTransitOk returns a tuple with the AllowTransit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetAllowTransitOk() (*bool, bool) {
-	if o == nil || isNil(o.AllowTransit) {
-    return nil, false
+	if o == nil || IsNil(o.AllowTransit) {
+		return nil, false
 	}
 	return o.AllowTransit, true
 }
 
 // HasAllowTransit returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) HasAllowTransit() bool {
-	if o != nil && !isNil(o.AllowTransit) {
+	if o != nil && !IsNil(o.AllowTransit) {
 		return true
 	}
 
@@ -223,7 +226,7 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetEbgpHoldTimer() i
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetEbgpHoldTimerOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.EbgpHoldTimer, true
 }
@@ -247,7 +250,7 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetEbgpMultihop() in
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetEbgpMultihopOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.EbgpMultihop, true
 }
@@ -259,7 +262,7 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) SetEbgpMultihop(v in
 
 // GetSourceInterface returns the SourceInterface field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetSourceInterface() string {
-	if o == nil || isNil(o.SourceInterface) {
+	if o == nil || IsNil(o.SourceInterface) {
 		var ret string
 		return ret
 	}
@@ -269,15 +272,15 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetSourceInterface()
 // GetSourceInterfaceOk returns a tuple with the SourceInterface field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetSourceInterfaceOk() (*string, bool) {
-	if o == nil || isNil(o.SourceInterface) {
-    return nil, false
+	if o == nil || IsNil(o.SourceInterface) {
+		return nil, false
 	}
 	return o.SourceInterface, true
 }
 
 // HasSourceInterface returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) HasSourceInterface() bool {
-	if o != nil && !isNil(o.SourceInterface) {
+	if o != nil && !IsNil(o.SourceInterface) {
 		return true
 	}
 
@@ -291,7 +294,7 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) SetSourceInterface(v
 
 // GetNextHopIp returns the NextHopIp field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetNextHopIp() string {
-	if o == nil || isNil(o.NextHopIp) {
+	if o == nil || IsNil(o.NextHopIp) {
 		var ret string
 		return ret
 	}
@@ -301,15 +304,15 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetNextHopIp() strin
 // GetNextHopIpOk returns a tuple with the NextHopIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetNextHopIpOk() (*string, bool) {
-	if o == nil || isNil(o.NextHopIp) {
-    return nil, false
+	if o == nil || IsNil(o.NextHopIp) {
+		return nil, false
 	}
 	return o.NextHopIp, true
 }
 
 // HasNextHopIp returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) HasNextHopIp() bool {
-	if o != nil && !isNil(o.NextHopIp) {
+	if o != nil && !IsNil(o.NextHopIp) {
 		return true
 	}
 
@@ -323,7 +326,7 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) SetNextHopIp(v strin
 
 // GetTtlSecurity returns the TtlSecurity field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetTtlSecurity() UpdateNetworkApplianceVpnBgpRequestNeighborsInnerTtlSecurity {
-	if o == nil || isNil(o.TtlSecurity) {
+	if o == nil || IsNil(o.TtlSecurity) {
 		var ret UpdateNetworkApplianceVpnBgpRequestNeighborsInnerTtlSecurity
 		return ret
 	}
@@ -333,15 +336,15 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetTtlSecurity() Upd
 // GetTtlSecurityOk returns a tuple with the TtlSecurity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetTtlSecurityOk() (*UpdateNetworkApplianceVpnBgpRequestNeighborsInnerTtlSecurity, bool) {
-	if o == nil || isNil(o.TtlSecurity) {
-    return nil, false
+	if o == nil || IsNil(o.TtlSecurity) {
+		return nil, false
 	}
 	return o.TtlSecurity, true
 }
 
 // HasTtlSecurity returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) HasTtlSecurity() bool {
-	if o != nil && !isNil(o.TtlSecurity) {
+	if o != nil && !IsNil(o.TtlSecurity) {
 		return true
 	}
 
@@ -355,7 +358,7 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) SetTtlSecurity(v Upd
 
 // GetAuthentication returns the Authentication field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetAuthentication() UpdateNetworkApplianceVpnBgpRequestNeighborsInnerAuthentication {
-	if o == nil || isNil(o.Authentication) {
+	if o == nil || IsNil(o.Authentication) {
 		var ret UpdateNetworkApplianceVpnBgpRequestNeighborsInnerAuthentication
 		return ret
 	}
@@ -365,15 +368,15 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetAuthentication() 
 // GetAuthenticationOk returns a tuple with the Authentication field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) GetAuthenticationOk() (*UpdateNetworkApplianceVpnBgpRequestNeighborsInnerAuthentication, bool) {
-	if o == nil || isNil(o.Authentication) {
-    return nil, false
+	if o == nil || IsNil(o.Authentication) {
+		return nil, false
 	}
 	return o.Authentication, true
 }
 
 // HasAuthentication returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) HasAuthentication() bool {
-	if o != nil && !isNil(o.Authentication) {
+	if o != nil && !IsNil(o.Authentication) {
 		return true
 	}
 
@@ -386,41 +389,43 @@ func (o *UpdateNetworkApplianceVpnBgpRequestNeighborsInner) SetAuthentication(v 
 }
 
 func (o UpdateNetworkApplianceVpnBgpRequestNeighborsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Ip) {
-		toSerialize["ip"] = o.Ip
-	}
-	if !isNil(o.Ipv6) {
-		toSerialize["ipv6"] = o.Ipv6
-	}
-	if true {
-		toSerialize["remoteAsNumber"] = o.RemoteAsNumber
-	}
-	if !isNil(o.ReceiveLimit) {
-		toSerialize["receiveLimit"] = o.ReceiveLimit
-	}
-	if !isNil(o.AllowTransit) {
-		toSerialize["allowTransit"] = o.AllowTransit
-	}
-	if true {
-		toSerialize["ebgpHoldTimer"] = o.EbgpHoldTimer
-	}
-	if true {
-		toSerialize["ebgpMultihop"] = o.EbgpMultihop
-	}
-	if !isNil(o.SourceInterface) {
-		toSerialize["sourceInterface"] = o.SourceInterface
-	}
-	if !isNil(o.NextHopIp) {
-		toSerialize["nextHopIp"] = o.NextHopIp
-	}
-	if !isNil(o.TtlSecurity) {
-		toSerialize["ttlSecurity"] = o.TtlSecurity
-	}
-	if !isNil(o.Authentication) {
-		toSerialize["authentication"] = o.Authentication
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceVpnBgpRequestNeighborsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Ip) {
+		toSerialize["ip"] = o.Ip
+	}
+	if !IsNil(o.Ipv6) {
+		toSerialize["ipv6"] = o.Ipv6
+	}
+	toSerialize["remoteAsNumber"] = o.RemoteAsNumber
+	if !IsNil(o.ReceiveLimit) {
+		toSerialize["receiveLimit"] = o.ReceiveLimit
+	}
+	if !IsNil(o.AllowTransit) {
+		toSerialize["allowTransit"] = o.AllowTransit
+	}
+	toSerialize["ebgpHoldTimer"] = o.EbgpHoldTimer
+	toSerialize["ebgpMultihop"] = o.EbgpMultihop
+	if !IsNil(o.SourceInterface) {
+		toSerialize["sourceInterface"] = o.SourceInterface
+	}
+	if !IsNil(o.NextHopIp) {
+		toSerialize["nextHopIp"] = o.NextHopIp
+	}
+	if !IsNil(o.TtlSecurity) {
+		toSerialize["ttlSecurity"] = o.TtlSecurity
+	}
+	if !IsNil(o.Authentication) {
+		toSerialize["authentication"] = o.Authentication
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceVpnBgpRequestNeighborsInner struct {

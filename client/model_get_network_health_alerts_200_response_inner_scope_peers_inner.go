@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkHealthAlerts200ResponseInnerScopePeersInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkHealthAlerts200ResponseInnerScopePeersInner{}
+
 // GetNetworkHealthAlerts200ResponseInnerScopePeersInner struct for GetNetworkHealthAlerts200ResponseInnerScopePeersInner
 type GetNetworkHealthAlerts200ResponseInnerScopePeersInner struct {
 	// URL to the peer
@@ -40,7 +43,7 @@ func NewGetNetworkHealthAlerts200ResponseInnerScopePeersInnerWithDefaults() *Get
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopePeersInner) GetUrl() string {
-	if o == nil || isNil(o.Url) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopePeersInner) GetUrl() string 
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopePeersInner) GetUrlOk() (*string, bool) {
-	if o == nil || isNil(o.Url) {
-    return nil, false
+	if o == nil || IsNil(o.Url) {
+		return nil, false
 	}
 	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopePeersInner) HasUrl() bool {
-	if o != nil && !isNil(o.Url) {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopePeersInner) SetUrl(v string)
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopePeersInner) GetNetwork() GetNetworkHealthAlerts200ResponseInnerScopePeersInnerNetwork {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		var ret GetNetworkHealthAlerts200ResponseInnerScopePeersInnerNetwork
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopePeersInner) GetNetwork() Get
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopePeersInner) GetNetworkOk() (*GetNetworkHealthAlerts200ResponseInnerScopePeersInnerNetwork, bool) {
-	if o == nil || isNil(o.Network) {
-    return nil, false
+	if o == nil || IsNil(o.Network) {
+		return nil, false
 	}
 	return o.Network, true
 }
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopePeersInner) HasNetwork() bool {
-	if o != nil && !isNil(o.Network) {
+	if o != nil && !IsNil(o.Network) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopePeersInner) SetNetwork(v Get
 }
 
 func (o GetNetworkHealthAlerts200ResponseInnerScopePeersInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Url) {
-		toSerialize["url"] = o.Url
-	}
-	if !isNil(o.Network) {
-		toSerialize["network"] = o.Network
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkHealthAlerts200ResponseInnerScopePeersInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.Network) {
+		toSerialize["network"] = o.Network
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkHealthAlerts200ResponseInnerScopePeersInner struct {

@@ -36,6 +36,7 @@ func main() {
     createOrganizationAdminRequest := *openapiclient.NewCreateOrganizationAdminRequest("Email_example", "Name_example", "OrgAccess_example") // CreateOrganizationAdminRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.AdminsApi.CreateOrganizationAdmin(context.Background(), organizationId).CreateOrganizationAdminRequest(createOrganizationAdminRequest).Execute()
     if err != nil {
@@ -108,8 +109,9 @@ func main() {
     adminId := "adminId_example" // string | Admin ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminsApi.DeleteOrganizationAdmin(context.Background(), organizationId, adminId).Execute()
+    r, err := apiClient.AdminsApi.DeleteOrganizationAdmin(context.Background(), organizationId, adminId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminsApi.DeleteOrganizationAdmin``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -178,6 +180,7 @@ func main() {
     organizationId := "organizationId_example" // string | Organization ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.AdminsApi.GetOrganizationAdmins(context.Background(), organizationId).Execute()
     if err != nil {
@@ -250,6 +253,7 @@ func main() {
     updateOrganizationAdminRequest := *openapiclient.NewUpdateOrganizationAdminRequest() // UpdateOrganizationAdminRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.AdminsApi.UpdateOrganizationAdmin(context.Background(), organizationId, adminId).UpdateOrganizationAdminRequest(updateOrganizationAdminRequest).Execute()
     if err != nil {

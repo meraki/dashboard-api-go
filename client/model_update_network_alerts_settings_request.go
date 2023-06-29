@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkAlertsSettingsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkAlertsSettingsRequest{}
+
 // UpdateNetworkAlertsSettingsRequest struct for UpdateNetworkAlertsSettingsRequest
 type UpdateNetworkAlertsSettingsRequest struct {
 	DefaultDestinations *UpdateNetworkAlertsSettingsRequestDefaultDestinations `json:"defaultDestinations,omitempty"`
@@ -40,7 +43,7 @@ func NewUpdateNetworkAlertsSettingsRequestWithDefaults() *UpdateNetworkAlertsSet
 
 // GetDefaultDestinations returns the DefaultDestinations field value if set, zero value otherwise.
 func (o *UpdateNetworkAlertsSettingsRequest) GetDefaultDestinations() UpdateNetworkAlertsSettingsRequestDefaultDestinations {
-	if o == nil || isNil(o.DefaultDestinations) {
+	if o == nil || IsNil(o.DefaultDestinations) {
 		var ret UpdateNetworkAlertsSettingsRequestDefaultDestinations
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *UpdateNetworkAlertsSettingsRequest) GetDefaultDestinations() UpdateNetw
 // GetDefaultDestinationsOk returns a tuple with the DefaultDestinations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAlertsSettingsRequest) GetDefaultDestinationsOk() (*UpdateNetworkAlertsSettingsRequestDefaultDestinations, bool) {
-	if o == nil || isNil(o.DefaultDestinations) {
-    return nil, false
+	if o == nil || IsNil(o.DefaultDestinations) {
+		return nil, false
 	}
 	return o.DefaultDestinations, true
 }
 
 // HasDefaultDestinations returns a boolean if a field has been set.
 func (o *UpdateNetworkAlertsSettingsRequest) HasDefaultDestinations() bool {
-	if o != nil && !isNil(o.DefaultDestinations) {
+	if o != nil && !IsNil(o.DefaultDestinations) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *UpdateNetworkAlertsSettingsRequest) SetDefaultDestinations(v UpdateNetw
 
 // GetAlerts returns the Alerts field value if set, zero value otherwise.
 func (o *UpdateNetworkAlertsSettingsRequest) GetAlerts() []UpdateNetworkAlertsSettingsRequestAlertsInner {
-	if o == nil || isNil(o.Alerts) {
+	if o == nil || IsNil(o.Alerts) {
 		var ret []UpdateNetworkAlertsSettingsRequestAlertsInner
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *UpdateNetworkAlertsSettingsRequest) GetAlerts() []UpdateNetworkAlertsSe
 // GetAlertsOk returns a tuple with the Alerts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkAlertsSettingsRequest) GetAlertsOk() ([]UpdateNetworkAlertsSettingsRequestAlertsInner, bool) {
-	if o == nil || isNil(o.Alerts) {
-    return nil, false
+	if o == nil || IsNil(o.Alerts) {
+		return nil, false
 	}
 	return o.Alerts, true
 }
 
 // HasAlerts returns a boolean if a field has been set.
 func (o *UpdateNetworkAlertsSettingsRequest) HasAlerts() bool {
-	if o != nil && !isNil(o.Alerts) {
+	if o != nil && !IsNil(o.Alerts) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *UpdateNetworkAlertsSettingsRequest) SetAlerts(v []UpdateNetworkAlertsSe
 }
 
 func (o UpdateNetworkAlertsSettingsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.DefaultDestinations) {
-		toSerialize["defaultDestinations"] = o.DefaultDestinations
-	}
-	if !isNil(o.Alerts) {
-		toSerialize["alerts"] = o.Alerts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkAlertsSettingsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DefaultDestinations) {
+		toSerialize["defaultDestinations"] = o.DefaultDestinations
+	}
+	if !IsNil(o.Alerts) {
+		toSerialize["alerts"] = o.Alerts
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkAlertsSettingsRequest struct {

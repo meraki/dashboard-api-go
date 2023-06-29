@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkFloorPlanRequestTopRightCorner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkFloorPlanRequestTopRightCorner{}
+
 // CreateNetworkFloorPlanRequestTopRightCorner The longitude and latitude of the top right corner of your floor plan.
 type CreateNetworkFloorPlanRequestTopRightCorner struct {
 	// Latitude
@@ -41,7 +44,7 @@ func NewCreateNetworkFloorPlanRequestTopRightCornerWithDefaults() *CreateNetwork
 
 // GetLat returns the Lat field value if set, zero value otherwise.
 func (o *CreateNetworkFloorPlanRequestTopRightCorner) GetLat() float32 {
-	if o == nil || isNil(o.Lat) {
+	if o == nil || IsNil(o.Lat) {
 		var ret float32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateNetworkFloorPlanRequestTopRightCorner) GetLat() float32 {
 // GetLatOk returns a tuple with the Lat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFloorPlanRequestTopRightCorner) GetLatOk() (*float32, bool) {
-	if o == nil || isNil(o.Lat) {
-    return nil, false
+	if o == nil || IsNil(o.Lat) {
+		return nil, false
 	}
 	return o.Lat, true
 }
 
 // HasLat returns a boolean if a field has been set.
 func (o *CreateNetworkFloorPlanRequestTopRightCorner) HasLat() bool {
-	if o != nil && !isNil(o.Lat) {
+	if o != nil && !IsNil(o.Lat) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateNetworkFloorPlanRequestTopRightCorner) SetLat(v float32) {
 
 // GetLng returns the Lng field value if set, zero value otherwise.
 func (o *CreateNetworkFloorPlanRequestTopRightCorner) GetLng() float32 {
-	if o == nil || isNil(o.Lng) {
+	if o == nil || IsNil(o.Lng) {
 		var ret float32
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateNetworkFloorPlanRequestTopRightCorner) GetLng() float32 {
 // GetLngOk returns a tuple with the Lng field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFloorPlanRequestTopRightCorner) GetLngOk() (*float32, bool) {
-	if o == nil || isNil(o.Lng) {
-    return nil, false
+	if o == nil || IsNil(o.Lng) {
+		return nil, false
 	}
 	return o.Lng, true
 }
 
 // HasLng returns a boolean if a field has been set.
 func (o *CreateNetworkFloorPlanRequestTopRightCorner) HasLng() bool {
-	if o != nil && !isNil(o.Lng) {
+	if o != nil && !IsNil(o.Lng) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *CreateNetworkFloorPlanRequestTopRightCorner) SetLng(v float32) {
 }
 
 func (o CreateNetworkFloorPlanRequestTopRightCorner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Lat) {
-		toSerialize["lat"] = o.Lat
-	}
-	if !isNil(o.Lng) {
-		toSerialize["lng"] = o.Lng
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkFloorPlanRequestTopRightCorner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Lat) {
+		toSerialize["lat"] = o.Lat
+	}
+	if !IsNil(o.Lng) {
+		toSerialize["lng"] = o.Lng
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkFloorPlanRequestTopRightCorner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkSwitchAccessPolicyRequestRadiusServersInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkSwitchAccessPolicyRequestRadiusServersInner{}
+
 // CreateNetworkSwitchAccessPolicyRequestRadiusServersInner struct for CreateNetworkSwitchAccessPolicyRequestRadiusServersInner
 type CreateNetworkSwitchAccessPolicyRequestRadiusServersInner struct {
 	// Public IP address of the RADIUS server
@@ -58,7 +61,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequestRadiusServersInner) GetHost() str
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequestRadiusServersInner) GetHostOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Host, true
 }
@@ -82,7 +85,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequestRadiusServersInner) GetPort() int
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequestRadiusServersInner) GetPortOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Port, true
 }
@@ -106,7 +109,7 @@ func (o *CreateNetworkSwitchAccessPolicyRequestRadiusServersInner) GetSecret() s
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchAccessPolicyRequestRadiusServersInner) GetSecretOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Secret, true
 }
@@ -117,17 +120,19 @@ func (o *CreateNetworkSwitchAccessPolicyRequestRadiusServersInner) SetSecret(v s
 }
 
 func (o CreateNetworkSwitchAccessPolicyRequestRadiusServersInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["host"] = o.Host
-	}
-	if true {
-		toSerialize["port"] = o.Port
-	}
-	if true {
-		toSerialize["secret"] = o.Secret
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkSwitchAccessPolicyRequestRadiusServersInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["host"] = o.Host
+	toSerialize["port"] = o.Port
+	toSerialize["secret"] = o.Secret
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkSwitchAccessPolicyRequestRadiusServersInner struct {

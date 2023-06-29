@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource{}
+
 // GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource Source of the packet.
 type GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource struct {
 	// Source mac address of the packet.
@@ -42,7 +45,7 @@ func NewGetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSourceWithDef
 
 // GetMac returns the Mac field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) GetMac() string {
-	if o == nil || isNil(o.Mac) {
+	if o == nil || IsNil(o.Mac) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) GetM
 // GetMacOk returns a tuple with the Mac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) GetMacOk() (*string, bool) {
-	if o == nil || isNil(o.Mac) {
-    return nil, false
+	if o == nil || IsNil(o.Mac) {
+		return nil, false
 	}
 	return o.Mac, true
 }
 
 // HasMac returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) HasMac() bool {
-	if o != nil && !isNil(o.Mac) {
+	if o != nil && !IsNil(o.Mac) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) SetM
 
 // GetIpv4 returns the Ipv4 field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) GetIpv4() GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSourceIpv4 {
-	if o == nil || isNil(o.Ipv4) {
+	if o == nil || IsNil(o.Ipv4) {
 		var ret GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSourceIpv4
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) GetI
 // GetIpv4Ok returns a tuple with the Ipv4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) GetIpv4Ok() (*GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSourceIpv4, bool) {
-	if o == nil || isNil(o.Ipv4) {
-    return nil, false
+	if o == nil || IsNil(o.Ipv4) {
+		return nil, false
 	}
 	return o.Ipv4, true
 }
 
 // HasIpv4 returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) HasIpv4() bool {
-	if o != nil && !isNil(o.Ipv4) {
+	if o != nil && !IsNil(o.Ipv4) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) SetI
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) GetPort() int32 {
-	if o == nil || isNil(o.Port) {
+	if o == nil || IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) GetP
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) GetPortOk() (*int32, bool) {
-	if o == nil || isNil(o.Port) {
-    return nil, false
+	if o == nil || IsNil(o.Port) {
+		return nil, false
 	}
 	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) HasPort() bool {
-	if o != nil && !isNil(o.Port) {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) SetP
 }
 
 func (o GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Mac) {
-		toSerialize["mac"] = o.Mac
-	}
-	if !isNil(o.Ipv4) {
-		toSerialize["ipv4"] = o.Ipv4
-	}
-	if !isNil(o.Port) {
-		toSerialize["port"] = o.Port
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Mac) {
+		toSerialize["mac"] = o.Mac
+	}
+	if !IsNil(o.Ipv4) {
+		toSerialize["ipv4"] = o.Ipv4
+	}
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchDhcpV4ServersSeen200ResponseInnerLastPacketSource struct {

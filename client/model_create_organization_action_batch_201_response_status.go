@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationActionBatch201ResponseStatus type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationActionBatch201ResponseStatus{}
+
 // CreateOrganizationActionBatch201ResponseStatus Status of action batch
 type CreateOrganizationActionBatch201ResponseStatus struct {
 	// Flag describing whether all actions in the action batch have completed
@@ -46,7 +49,7 @@ func NewCreateOrganizationActionBatch201ResponseStatusWithDefaults() *CreateOrga
 
 // GetCompleted returns the Completed field value if set, zero value otherwise.
 func (o *CreateOrganizationActionBatch201ResponseStatus) GetCompleted() bool {
-	if o == nil || isNil(o.Completed) {
+	if o == nil || IsNil(o.Completed) {
 		var ret bool
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *CreateOrganizationActionBatch201ResponseStatus) GetCompleted() bool {
 // GetCompletedOk returns a tuple with the Completed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatch201ResponseStatus) GetCompletedOk() (*bool, bool) {
-	if o == nil || isNil(o.Completed) {
-    return nil, false
+	if o == nil || IsNil(o.Completed) {
+		return nil, false
 	}
 	return o.Completed, true
 }
 
 // HasCompleted returns a boolean if a field has been set.
 func (o *CreateOrganizationActionBatch201ResponseStatus) HasCompleted() bool {
-	if o != nil && !isNil(o.Completed) {
+	if o != nil && !IsNil(o.Completed) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *CreateOrganizationActionBatch201ResponseStatus) SetCompleted(v bool) {
 
 // GetFailed returns the Failed field value if set, zero value otherwise.
 func (o *CreateOrganizationActionBatch201ResponseStatus) GetFailed() bool {
-	if o == nil || isNil(o.Failed) {
+	if o == nil || IsNil(o.Failed) {
 		var ret bool
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *CreateOrganizationActionBatch201ResponseStatus) GetFailed() bool {
 // GetFailedOk returns a tuple with the Failed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatch201ResponseStatus) GetFailedOk() (*bool, bool) {
-	if o == nil || isNil(o.Failed) {
-    return nil, false
+	if o == nil || IsNil(o.Failed) {
+		return nil, false
 	}
 	return o.Failed, true
 }
 
 // HasFailed returns a boolean if a field has been set.
 func (o *CreateOrganizationActionBatch201ResponseStatus) HasFailed() bool {
-	if o != nil && !isNil(o.Failed) {
+	if o != nil && !IsNil(o.Failed) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *CreateOrganizationActionBatch201ResponseStatus) SetFailed(v bool) {
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *CreateOrganizationActionBatch201ResponseStatus) GetErrors() []string {
-	if o == nil || isNil(o.Errors) {
+	if o == nil || IsNil(o.Errors) {
 		var ret []string
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *CreateOrganizationActionBatch201ResponseStatus) GetErrors() []string {
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatch201ResponseStatus) GetErrorsOk() ([]string, bool) {
-	if o == nil || isNil(o.Errors) {
-    return nil, false
+	if o == nil || IsNil(o.Errors) {
+		return nil, false
 	}
 	return o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
 func (o *CreateOrganizationActionBatch201ResponseStatus) HasErrors() bool {
-	if o != nil && !isNil(o.Errors) {
+	if o != nil && !IsNil(o.Errors) {
 		return true
 	}
 
@@ -154,7 +157,7 @@ func (o *CreateOrganizationActionBatch201ResponseStatus) GetCreatedResources() [
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatch201ResponseStatus) GetCreatedResourcesOk() ([]CreateOrganizationActionBatch201ResponseStatusCreatedResourcesInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.CreatedResources, true
 }
@@ -165,20 +168,26 @@ func (o *CreateOrganizationActionBatch201ResponseStatus) SetCreatedResources(v [
 }
 
 func (o CreateOrganizationActionBatch201ResponseStatus) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Completed) {
-		toSerialize["completed"] = o.Completed
-	}
-	if !isNil(o.Failed) {
-		toSerialize["failed"] = o.Failed
-	}
-	if !isNil(o.Errors) {
-		toSerialize["errors"] = o.Errors
-	}
-	if true {
-		toSerialize["createdResources"] = o.CreatedResources
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationActionBatch201ResponseStatus) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Completed) {
+		toSerialize["completed"] = o.Completed
+	}
+	if !IsNil(o.Failed) {
+		toSerialize["failed"] = o.Failed
+	}
+	if !IsNil(o.Errors) {
+		toSerialize["errors"] = o.Errors
+	}
+	toSerialize["createdResources"] = o.CreatedResources
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationActionBatch201ResponseStatus struct {

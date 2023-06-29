@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkCellularGatewaySubnetPoolRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkCellularGatewaySubnetPoolRequest{}
+
 // UpdateNetworkCellularGatewaySubnetPoolRequest struct for UpdateNetworkCellularGatewaySubnetPoolRequest
 type UpdateNetworkCellularGatewaySubnetPoolRequest struct {
 	// Mask used for the subnet of all MGs in  this network.
@@ -41,7 +44,7 @@ func NewUpdateNetworkCellularGatewaySubnetPoolRequestWithDefaults() *UpdateNetwo
 
 // GetMask returns the Mask field value if set, zero value otherwise.
 func (o *UpdateNetworkCellularGatewaySubnetPoolRequest) GetMask() int32 {
-	if o == nil || isNil(o.Mask) {
+	if o == nil || IsNil(o.Mask) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkCellularGatewaySubnetPoolRequest) GetMask() int32 {
 // GetMaskOk returns a tuple with the Mask field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkCellularGatewaySubnetPoolRequest) GetMaskOk() (*int32, bool) {
-	if o == nil || isNil(o.Mask) {
-    return nil, false
+	if o == nil || IsNil(o.Mask) {
+		return nil, false
 	}
 	return o.Mask, true
 }
 
 // HasMask returns a boolean if a field has been set.
 func (o *UpdateNetworkCellularGatewaySubnetPoolRequest) HasMask() bool {
-	if o != nil && !isNil(o.Mask) {
+	if o != nil && !IsNil(o.Mask) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkCellularGatewaySubnetPoolRequest) SetMask(v int32) {
 
 // GetCidr returns the Cidr field value if set, zero value otherwise.
 func (o *UpdateNetworkCellularGatewaySubnetPoolRequest) GetCidr() string {
-	if o == nil || isNil(o.Cidr) {
+	if o == nil || IsNil(o.Cidr) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkCellularGatewaySubnetPoolRequest) GetCidr() string {
 // GetCidrOk returns a tuple with the Cidr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkCellularGatewaySubnetPoolRequest) GetCidrOk() (*string, bool) {
-	if o == nil || isNil(o.Cidr) {
-    return nil, false
+	if o == nil || IsNil(o.Cidr) {
+		return nil, false
 	}
 	return o.Cidr, true
 }
 
 // HasCidr returns a boolean if a field has been set.
 func (o *UpdateNetworkCellularGatewaySubnetPoolRequest) HasCidr() bool {
-	if o != nil && !isNil(o.Cidr) {
+	if o != nil && !IsNil(o.Cidr) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkCellularGatewaySubnetPoolRequest) SetCidr(v string) {
 }
 
 func (o UpdateNetworkCellularGatewaySubnetPoolRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Mask) {
-		toSerialize["mask"] = o.Mask
-	}
-	if !isNil(o.Cidr) {
-		toSerialize["cidr"] = o.Cidr
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkCellularGatewaySubnetPoolRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Mask) {
+		toSerialize["mask"] = o.Mask
+	}
+	if !IsNil(o.Cidr) {
+		toSerialize["cidr"] = o.Cidr
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkCellularGatewaySubnetPoolRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidSchedulesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidSchedulesRequest{}
+
 // UpdateNetworkWirelessSsidSchedulesRequest struct for UpdateNetworkWirelessSsidSchedulesRequest
 type UpdateNetworkWirelessSsidSchedulesRequest struct {
 	// If true, the SSID outage schedule is enabled.
@@ -43,7 +46,7 @@ func NewUpdateNetworkWirelessSsidSchedulesRequestWithDefaults() *UpdateNetworkWi
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSchedulesRequest) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateNetworkWirelessSsidSchedulesRequest) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSchedulesRequest) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSchedulesRequest) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *UpdateNetworkWirelessSsidSchedulesRequest) SetEnabled(v bool) {
 
 // GetRanges returns the Ranges field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSchedulesRequest) GetRanges() []UpdateNetworkWirelessSsidSchedulesRequestRangesInner {
-	if o == nil || isNil(o.Ranges) {
+	if o == nil || IsNil(o.Ranges) {
 		var ret []UpdateNetworkWirelessSsidSchedulesRequestRangesInner
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *UpdateNetworkWirelessSsidSchedulesRequest) GetRanges() []UpdateNetworkW
 // GetRangesOk returns a tuple with the Ranges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSchedulesRequest) GetRangesOk() ([]UpdateNetworkWirelessSsidSchedulesRequestRangesInner, bool) {
-	if o == nil || isNil(o.Ranges) {
-    return nil, false
+	if o == nil || IsNil(o.Ranges) {
+		return nil, false
 	}
 	return o.Ranges, true
 }
 
 // HasRanges returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSchedulesRequest) HasRanges() bool {
-	if o != nil && !isNil(o.Ranges) {
+	if o != nil && !IsNil(o.Ranges) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *UpdateNetworkWirelessSsidSchedulesRequest) SetRanges(v []UpdateNetworkW
 
 // GetRangesInSeconds returns the RangesInSeconds field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidSchedulesRequest) GetRangesInSeconds() []UpdateNetworkWirelessSsidSchedulesRequestRangesInSecondsInner {
-	if o == nil || isNil(o.RangesInSeconds) {
+	if o == nil || IsNil(o.RangesInSeconds) {
 		var ret []UpdateNetworkWirelessSsidSchedulesRequestRangesInSecondsInner
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *UpdateNetworkWirelessSsidSchedulesRequest) GetRangesInSeconds() []Updat
 // GetRangesInSecondsOk returns a tuple with the RangesInSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidSchedulesRequest) GetRangesInSecondsOk() ([]UpdateNetworkWirelessSsidSchedulesRequestRangesInSecondsInner, bool) {
-	if o == nil || isNil(o.RangesInSeconds) {
-    return nil, false
+	if o == nil || IsNil(o.RangesInSeconds) {
+		return nil, false
 	}
 	return o.RangesInSeconds, true
 }
 
 // HasRangesInSeconds returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidSchedulesRequest) HasRangesInSeconds() bool {
-	if o != nil && !isNil(o.RangesInSeconds) {
+	if o != nil && !IsNil(o.RangesInSeconds) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *UpdateNetworkWirelessSsidSchedulesRequest) SetRangesInSeconds(v []Updat
 }
 
 func (o UpdateNetworkWirelessSsidSchedulesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.Ranges) {
-		toSerialize["ranges"] = o.Ranges
-	}
-	if !isNil(o.RangesInSeconds) {
-		toSerialize["rangesInSeconds"] = o.RangesInSeconds
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidSchedulesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Ranges) {
+		toSerialize["ranges"] = o.Ranges
+	}
+	if !IsNil(o.RangesInSeconds) {
+		toSerialize["rangesInSeconds"] = o.RangesInSeconds
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidSchedulesRequest struct {

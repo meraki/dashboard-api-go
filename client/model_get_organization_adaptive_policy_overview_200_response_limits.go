@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationAdaptivePolicyOverview200ResponseLimits type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationAdaptivePolicyOverview200ResponseLimits{}
+
 // GetOrganizationAdaptivePolicyOverview200ResponseLimits The current limits of various adaptive policy objects.
 type GetOrganizationAdaptivePolicyOverview200ResponseLimits struct {
 	// Maximum number of user-created adaptive policy groups allowed in the organization.
@@ -45,7 +48,7 @@ func NewGetOrganizationAdaptivePolicyOverview200ResponseLimitsWithDefaults() *Ge
 
 // GetCustomGroups returns the CustomGroups field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) GetCustomGroups() int32 {
-	if o == nil || isNil(o.CustomGroups) {
+	if o == nil || IsNil(o.CustomGroups) {
 		var ret int32
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) GetCustomGroups
 // GetCustomGroupsOk returns a tuple with the CustomGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) GetCustomGroupsOk() (*int32, bool) {
-	if o == nil || isNil(o.CustomGroups) {
-    return nil, false
+	if o == nil || IsNil(o.CustomGroups) {
+		return nil, false
 	}
 	return o.CustomGroups, true
 }
 
 // HasCustomGroups returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) HasCustomGroups() bool {
-	if o != nil && !isNil(o.CustomGroups) {
+	if o != nil && !IsNil(o.CustomGroups) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) SetCustomGroups
 
 // GetRulesInAnAcl returns the RulesInAnAcl field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) GetRulesInAnAcl() int32 {
-	if o == nil || isNil(o.RulesInAnAcl) {
+	if o == nil || IsNil(o.RulesInAnAcl) {
 		var ret int32
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) GetRulesInAnAcl
 // GetRulesInAnAclOk returns a tuple with the RulesInAnAcl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) GetRulesInAnAclOk() (*int32, bool) {
-	if o == nil || isNil(o.RulesInAnAcl) {
-    return nil, false
+	if o == nil || IsNil(o.RulesInAnAcl) {
+		return nil, false
 	}
 	return o.RulesInAnAcl, true
 }
 
 // HasRulesInAnAcl returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) HasRulesInAnAcl() bool {
-	if o != nil && !isNil(o.RulesInAnAcl) {
+	if o != nil && !IsNil(o.RulesInAnAcl) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) SetRulesInAnAcl
 
 // GetAclsInAPolicy returns the AclsInAPolicy field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) GetAclsInAPolicy() int32 {
-	if o == nil || isNil(o.AclsInAPolicy) {
+	if o == nil || IsNil(o.AclsInAPolicy) {
 		var ret int32
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) GetAclsInAPolic
 // GetAclsInAPolicyOk returns a tuple with the AclsInAPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) GetAclsInAPolicyOk() (*int32, bool) {
-	if o == nil || isNil(o.AclsInAPolicy) {
-    return nil, false
+	if o == nil || IsNil(o.AclsInAPolicy) {
+		return nil, false
 	}
 	return o.AclsInAPolicy, true
 }
 
 // HasAclsInAPolicy returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) HasAclsInAPolicy() bool {
-	if o != nil && !isNil(o.AclsInAPolicy) {
+	if o != nil && !IsNil(o.AclsInAPolicy) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) SetAclsInAPolic
 
 // GetPolicyObjects returns the PolicyObjects field value if set, zero value otherwise.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) GetPolicyObjects() int32 {
-	if o == nil || isNil(o.PolicyObjects) {
+	if o == nil || IsNil(o.PolicyObjects) {
 		var ret int32
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) GetPolicyObject
 // GetPolicyObjectsOk returns a tuple with the PolicyObjects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) GetPolicyObjectsOk() (*int32, bool) {
-	if o == nil || isNil(o.PolicyObjects) {
-    return nil, false
+	if o == nil || IsNil(o.PolicyObjects) {
+		return nil, false
 	}
 	return o.PolicyObjects, true
 }
 
 // HasPolicyObjects returns a boolean if a field has been set.
 func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) HasPolicyObjects() bool {
-	if o != nil && !isNil(o.PolicyObjects) {
+	if o != nil && !IsNil(o.PolicyObjects) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *GetOrganizationAdaptivePolicyOverview200ResponseLimits) SetPolicyObject
 }
 
 func (o GetOrganizationAdaptivePolicyOverview200ResponseLimits) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.CustomGroups) {
-		toSerialize["customGroups"] = o.CustomGroups
-	}
-	if !isNil(o.RulesInAnAcl) {
-		toSerialize["rulesInAnAcl"] = o.RulesInAnAcl
-	}
-	if !isNil(o.AclsInAPolicy) {
-		toSerialize["aclsInAPolicy"] = o.AclsInAPolicy
-	}
-	if !isNil(o.PolicyObjects) {
-		toSerialize["policyObjects"] = o.PolicyObjects
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationAdaptivePolicyOverview200ResponseLimits) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CustomGroups) {
+		toSerialize["customGroups"] = o.CustomGroups
+	}
+	if !IsNil(o.RulesInAnAcl) {
+		toSerialize["rulesInAnAcl"] = o.RulesInAnAcl
+	}
+	if !IsNil(o.AclsInAPolicy) {
+		toSerialize["aclsInAPolicy"] = o.AclsInAPolicy
+	}
+	if !IsNil(o.PolicyObjects) {
+		toSerialize["policyObjects"] = o.PolicyObjects
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationAdaptivePolicyOverview200ResponseLimits struct {

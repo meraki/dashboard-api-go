@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner{}
+
 // GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner struct for GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner
 type GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner struct {
 	// Timestamp for this data point
@@ -44,7 +47,7 @@ func NewGetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInn
 
 // GetTs returns the Ts field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner) GetTs() time.Time {
-	if o == nil || isNil(o.Ts) {
+	if o == nil || IsNil(o.Ts) {
 		var ret time.Time
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesIn
 // GetTsOk returns a tuple with the Ts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner) GetTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.Ts) {
-    return nil, false
+	if o == nil || IsNil(o.Ts) {
+		return nil, false
 	}
 	return o.Ts, true
 }
 
 // HasTs returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner) HasTs() bool {
-	if o != nil && !isNil(o.Ts) {
+	if o != nil && !IsNil(o.Ts) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesIn
 
 // GetLossPercent returns the LossPercent field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner) GetLossPercent() float32 {
-	if o == nil || isNil(o.LossPercent) {
+	if o == nil || IsNil(o.LossPercent) {
 		var ret float32
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesIn
 // GetLossPercentOk returns a tuple with the LossPercent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner) GetLossPercentOk() (*float32, bool) {
-	if o == nil || isNil(o.LossPercent) {
-    return nil, false
+	if o == nil || IsNil(o.LossPercent) {
+		return nil, false
 	}
 	return o.LossPercent, true
 }
 
 // HasLossPercent returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner) HasLossPercent() bool {
-	if o != nil && !isNil(o.LossPercent) {
+	if o != nil && !IsNil(o.LossPercent) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesIn
 
 // GetLatencyMs returns the LatencyMs field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner) GetLatencyMs() float32 {
-	if o == nil || isNil(o.LatencyMs) {
+	if o == nil || IsNil(o.LatencyMs) {
 		var ret float32
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesIn
 // GetLatencyMsOk returns a tuple with the LatencyMs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner) GetLatencyMsOk() (*float32, bool) {
-	if o == nil || isNil(o.LatencyMs) {
-    return nil, false
+	if o == nil || IsNil(o.LatencyMs) {
+		return nil, false
 	}
 	return o.LatencyMs, true
 }
 
 // HasLatencyMs returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner) HasLatencyMs() bool {
-	if o != nil && !isNil(o.LatencyMs) {
+	if o != nil && !IsNil(o.LatencyMs) {
 		return true
 	}
 
@@ -139,17 +142,25 @@ func (o *GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesIn
 }
 
 func (o GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Ts) {
-		toSerialize["ts"] = o.Ts
-	}
-	if !isNil(o.LossPercent) {
-		toSerialize["lossPercent"] = o.LossPercent
-	}
-	if !isNil(o.LatencyMs) {
-		toSerialize["latencyMs"] = o.LatencyMs
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Ts) {
+		toSerialize["ts"] = o.Ts
+	}
+	if !IsNil(o.LossPercent) {
+		toSerialize["lossPercent"] = o.LossPercent
+	}
+	if !IsNil(o.LatencyMs) {
+		toSerialize["latencyMs"] = o.LatencyMs
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationDevicesUplinksLossAndLatency200ResponseInnerTimeSeriesInner struct {

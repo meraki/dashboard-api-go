@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner{}
+
 // UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner struct for UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner
 type UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner struct {
 	// A descriptive name for the rule
@@ -48,7 +51,7 @@ func NewUpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInnerWithDefau
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -58,15 +61,15 @@ func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) GetNam
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) SetNam
 
 // GetPublicIp returns the PublicIp field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) GetPublicIp() string {
-	if o == nil || isNil(o.PublicIp) {
+	if o == nil || IsNil(o.PublicIp) {
 		var ret string
 		return ret
 	}
@@ -90,15 +93,15 @@ func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) GetPub
 // GetPublicIpOk returns a tuple with the PublicIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) GetPublicIpOk() (*string, bool) {
-	if o == nil || isNil(o.PublicIp) {
-    return nil, false
+	if o == nil || IsNil(o.PublicIp) {
+		return nil, false
 	}
 	return o.PublicIp, true
 }
 
 // HasPublicIp returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) HasPublicIp() bool {
-	if o != nil && !isNil(o.PublicIp) {
+	if o != nil && !IsNil(o.PublicIp) {
 		return true
 	}
 
@@ -124,7 +127,7 @@ func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) GetLan
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) GetLanIpOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.LanIp, true
 }
@@ -136,7 +139,7 @@ func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) SetLan
 
 // GetUplink returns the Uplink field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) GetUplink() string {
-	if o == nil || isNil(o.Uplink) {
+	if o == nil || IsNil(o.Uplink) {
 		var ret string
 		return ret
 	}
@@ -146,15 +149,15 @@ func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) GetUpl
 // GetUplinkOk returns a tuple with the Uplink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) GetUplinkOk() (*string, bool) {
-	if o == nil || isNil(o.Uplink) {
-    return nil, false
+	if o == nil || IsNil(o.Uplink) {
+		return nil, false
 	}
 	return o.Uplink, true
 }
 
 // HasUplink returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) HasUplink() bool {
-	if o != nil && !isNil(o.Uplink) {
+	if o != nil && !IsNil(o.Uplink) {
 		return true
 	}
 
@@ -168,7 +171,7 @@ func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) SetUpl
 
 // GetAllowedInbound returns the AllowedInbound field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) GetAllowedInbound() []UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInnerAllowedInboundInner {
-	if o == nil || isNil(o.AllowedInbound) {
+	if o == nil || IsNil(o.AllowedInbound) {
 		var ret []UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInnerAllowedInboundInner
 		return ret
 	}
@@ -178,15 +181,15 @@ func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) GetAll
 // GetAllowedInboundOk returns a tuple with the AllowedInbound field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) GetAllowedInboundOk() ([]UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInnerAllowedInboundInner, bool) {
-	if o == nil || isNil(o.AllowedInbound) {
-    return nil, false
+	if o == nil || IsNil(o.AllowedInbound) {
+		return nil, false
 	}
 	return o.AllowedInbound, true
 }
 
 // HasAllowedInbound returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) HasAllowedInbound() bool {
-	if o != nil && !isNil(o.AllowedInbound) {
+	if o != nil && !IsNil(o.AllowedInbound) {
 		return true
 	}
 
@@ -199,23 +202,29 @@ func (o *UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) SetAll
 }
 
 func (o UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.PublicIp) {
-		toSerialize["publicIp"] = o.PublicIp
-	}
-	if true {
-		toSerialize["lanIp"] = o.LanIp
-	}
-	if !isNil(o.Uplink) {
-		toSerialize["uplink"] = o.Uplink
-	}
-	if !isNil(o.AllowedInbound) {
-		toSerialize["allowedInbound"] = o.AllowedInbound
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.PublicIp) {
+		toSerialize["publicIp"] = o.PublicIp
+	}
+	toSerialize["lanIp"] = o.LanIp
+	if !IsNil(o.Uplink) {
+		toSerialize["uplink"] = o.Uplink
+	}
+	if !IsNil(o.AllowedInbound) {
+		toSerialize["allowedInbound"] = o.AllowedInbound
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceFirewallOneToOneNatRulesRequestRulesInner struct {

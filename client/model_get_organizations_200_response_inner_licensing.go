@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizations200ResponseInnerLicensing type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizations200ResponseInnerLicensing{}
+
 // GetOrganizations200ResponseInnerLicensing Licensing related settings
 type GetOrganizations200ResponseInnerLicensing struct {
 	// Organization licensing model. Can be 'co-term', 'per-device', or 'subscription'.
@@ -39,7 +42,7 @@ func NewGetOrganizations200ResponseInnerLicensingWithDefaults() *GetOrganization
 
 // GetModel returns the Model field value if set, zero value otherwise.
 func (o *GetOrganizations200ResponseInnerLicensing) GetModel() string {
-	if o == nil || isNil(o.Model) {
+	if o == nil || IsNil(o.Model) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizations200ResponseInnerLicensing) GetModel() string {
 // GetModelOk returns a tuple with the Model field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizations200ResponseInnerLicensing) GetModelOk() (*string, bool) {
-	if o == nil || isNil(o.Model) {
-    return nil, false
+	if o == nil || IsNil(o.Model) {
+		return nil, false
 	}
 	return o.Model, true
 }
 
 // HasModel returns a boolean if a field has been set.
 func (o *GetOrganizations200ResponseInnerLicensing) HasModel() bool {
-	if o != nil && !isNil(o.Model) {
+	if o != nil && !IsNil(o.Model) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizations200ResponseInnerLicensing) SetModel(v string) {
 }
 
 func (o GetOrganizations200ResponseInnerLicensing) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Model) {
-		toSerialize["model"] = o.Model
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizations200ResponseInnerLicensing) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Model) {
+		toSerialize["model"] = o.Model
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizations200ResponseInnerLicensing struct {

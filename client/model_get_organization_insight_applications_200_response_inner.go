@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationInsightApplications200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationInsightApplications200ResponseInner{}
+
 // GetOrganizationInsightApplications200ResponseInner struct for GetOrganizationInsightApplications200ResponseInner
 type GetOrganizationInsightApplications200ResponseInner struct {
 	// Application identifier
@@ -42,7 +45,7 @@ func NewGetOrganizationInsightApplications200ResponseInnerWithDefaults() *GetOrg
 
 // GetApplicationId returns the ApplicationId field value if set, zero value otherwise.
 func (o *GetOrganizationInsightApplications200ResponseInner) GetApplicationId() string {
-	if o == nil || isNil(o.ApplicationId) {
+	if o == nil || IsNil(o.ApplicationId) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *GetOrganizationInsightApplications200ResponseInner) GetApplicationId() 
 // GetApplicationIdOk returns a tuple with the ApplicationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInsightApplications200ResponseInner) GetApplicationIdOk() (*string, bool) {
-	if o == nil || isNil(o.ApplicationId) {
-    return nil, false
+	if o == nil || IsNil(o.ApplicationId) {
+		return nil, false
 	}
 	return o.ApplicationId, true
 }
 
 // HasApplicationId returns a boolean if a field has been set.
 func (o *GetOrganizationInsightApplications200ResponseInner) HasApplicationId() bool {
-	if o != nil && !isNil(o.ApplicationId) {
+	if o != nil && !IsNil(o.ApplicationId) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *GetOrganizationInsightApplications200ResponseInner) SetApplicationId(v 
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizationInsightApplications200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *GetOrganizationInsightApplications200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInsightApplications200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizationInsightApplications200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *GetOrganizationInsightApplications200ResponseInner) SetName(v string) {
 
 // GetThresholds returns the Thresholds field value if set, zero value otherwise.
 func (o *GetOrganizationInsightApplications200ResponseInner) GetThresholds() GetOrganizationInsightApplications200ResponseInnerThresholds {
-	if o == nil || isNil(o.Thresholds) {
+	if o == nil || IsNil(o.Thresholds) {
 		var ret GetOrganizationInsightApplications200ResponseInnerThresholds
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *GetOrganizationInsightApplications200ResponseInner) GetThresholds() Get
 // GetThresholdsOk returns a tuple with the Thresholds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationInsightApplications200ResponseInner) GetThresholdsOk() (*GetOrganizationInsightApplications200ResponseInnerThresholds, bool) {
-	if o == nil || isNil(o.Thresholds) {
-    return nil, false
+	if o == nil || IsNil(o.Thresholds) {
+		return nil, false
 	}
 	return o.Thresholds, true
 }
 
 // HasThresholds returns a boolean if a field has been set.
 func (o *GetOrganizationInsightApplications200ResponseInner) HasThresholds() bool {
-	if o != nil && !isNil(o.Thresholds) {
+	if o != nil && !IsNil(o.Thresholds) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *GetOrganizationInsightApplications200ResponseInner) SetThresholds(v Get
 }
 
 func (o GetOrganizationInsightApplications200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ApplicationId) {
-		toSerialize["applicationId"] = o.ApplicationId
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Thresholds) {
-		toSerialize["thresholds"] = o.Thresholds
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationInsightApplications200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ApplicationId) {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Thresholds) {
+		toSerialize["thresholds"] = o.Thresholds
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationInsightApplications200ResponseInner struct {

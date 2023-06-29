@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner{}
+
 // UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner struct for UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner
 type UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner struct {
 	// A description of the rule
@@ -49,7 +52,7 @@ func NewUpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRule
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -59,15 +62,15 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRul
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRul
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) GetProtocol() string {
-	if o == nil || isNil(o.Protocol) {
+	if o == nil || IsNil(o.Protocol) {
 		var ret string
 		return ret
 	}
@@ -91,15 +94,15 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRul
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) GetProtocolOk() (*string, bool) {
-	if o == nil || isNil(o.Protocol) {
-    return nil, false
+	if o == nil || IsNil(o.Protocol) {
+		return nil, false
 	}
 	return o.Protocol, true
 }
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) HasProtocol() bool {
-	if o != nil && !isNil(o.Protocol) {
+	if o != nil && !IsNil(o.Protocol) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRul
 
 // GetPublicPort returns the PublicPort field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) GetPublicPort() string {
-	if o == nil || isNil(o.PublicPort) {
+	if o == nil || IsNil(o.PublicPort) {
 		var ret string
 		return ret
 	}
@@ -123,15 +126,15 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRul
 // GetPublicPortOk returns a tuple with the PublicPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) GetPublicPortOk() (*string, bool) {
-	if o == nil || isNil(o.PublicPort) {
-    return nil, false
+	if o == nil || IsNil(o.PublicPort) {
+		return nil, false
 	}
 	return o.PublicPort, true
 }
 
 // HasPublicPort returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) HasPublicPort() bool {
-	if o != nil && !isNil(o.PublicPort) {
+	if o != nil && !IsNil(o.PublicPort) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRul
 
 // GetLocalIp returns the LocalIp field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) GetLocalIp() string {
-	if o == nil || isNil(o.LocalIp) {
+	if o == nil || IsNil(o.LocalIp) {
 		var ret string
 		return ret
 	}
@@ -155,15 +158,15 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRul
 // GetLocalIpOk returns a tuple with the LocalIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) GetLocalIpOk() (*string, bool) {
-	if o == nil || isNil(o.LocalIp) {
-    return nil, false
+	if o == nil || IsNil(o.LocalIp) {
+		return nil, false
 	}
 	return o.LocalIp, true
 }
 
 // HasLocalIp returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) HasLocalIp() bool {
-	if o != nil && !isNil(o.LocalIp) {
+	if o != nil && !IsNil(o.LocalIp) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRul
 
 // GetLocalPort returns the LocalPort field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) GetLocalPort() string {
-	if o == nil || isNil(o.LocalPort) {
+	if o == nil || IsNil(o.LocalPort) {
 		var ret string
 		return ret
 	}
@@ -187,15 +190,15 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRul
 // GetLocalPortOk returns a tuple with the LocalPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) GetLocalPortOk() (*string, bool) {
-	if o == nil || isNil(o.LocalPort) {
-    return nil, false
+	if o == nil || IsNil(o.LocalPort) {
+		return nil, false
 	}
 	return o.LocalPort, true
 }
 
 // HasLocalPort returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) HasLocalPort() bool {
-	if o != nil && !isNil(o.LocalPort) {
+	if o != nil && !IsNil(o.LocalPort) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRul
 
 // GetAllowedIps returns the AllowedIps field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) GetAllowedIps() []string {
-	if o == nil || isNil(o.AllowedIps) {
+	if o == nil || IsNil(o.AllowedIps) {
 		var ret []string
 		return ret
 	}
@@ -219,15 +222,15 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRul
 // GetAllowedIpsOk returns a tuple with the AllowedIps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) GetAllowedIpsOk() ([]string, bool) {
-	if o == nil || isNil(o.AllowedIps) {
-    return nil, false
+	if o == nil || IsNil(o.AllowedIps) {
+		return nil, false
 	}
 	return o.AllowedIps, true
 }
 
 // HasAllowedIps returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) HasAllowedIps() bool {
-	if o != nil && !isNil(o.AllowedIps) {
+	if o != nil && !IsNil(o.AllowedIps) {
 		return true
 	}
 
@@ -240,26 +243,34 @@ func (o *UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRul
 }
 
 func (o UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Protocol) {
-		toSerialize["protocol"] = o.Protocol
-	}
-	if !isNil(o.PublicPort) {
-		toSerialize["publicPort"] = o.PublicPort
-	}
-	if !isNil(o.LocalIp) {
-		toSerialize["localIp"] = o.LocalIp
-	}
-	if !isNil(o.LocalPort) {
-		toSerialize["localPort"] = o.LocalPort
-	}
-	if !isNil(o.AllowedIps) {
-		toSerialize["allowedIps"] = o.AllowedIps
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Protocol) {
+		toSerialize["protocol"] = o.Protocol
+	}
+	if !IsNil(o.PublicPort) {
+		toSerialize["publicPort"] = o.PublicPort
+	}
+	if !IsNil(o.LocalIp) {
+		toSerialize["localIp"] = o.LocalIp
+	}
+	if !IsNil(o.LocalPort) {
+		toSerialize["localPort"] = o.LocalPort
+	}
+	if !IsNil(o.AllowedIps) {
+		toSerialize["allowedIps"] = o.AllowedIps
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceFirewallOneToManyNatRulesRequestRulesInnerPortRulesInner struct {

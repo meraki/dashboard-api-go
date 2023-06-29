@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits{}
+
 // UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits The uplink bandwidth settings for the pricing plan.
 type UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits struct {
 	// The maximum upload limit (integer, in Kbps). null indicates no limit
@@ -41,7 +44,7 @@ func NewUpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimitsWithDefaults
 
 // GetLimitUp returns the LimitUp field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits) GetLimitUp() int32 {
-	if o == nil || isNil(o.LimitUp) {
+	if o == nil || IsNil(o.LimitUp) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits) GetLimitU
 // GetLimitUpOk returns a tuple with the LimitUp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits) GetLimitUpOk() (*int32, bool) {
-	if o == nil || isNil(o.LimitUp) {
-    return nil, false
+	if o == nil || IsNil(o.LimitUp) {
+		return nil, false
 	}
 	return o.LimitUp, true
 }
 
 // HasLimitUp returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits) HasLimitUp() bool {
-	if o != nil && !isNil(o.LimitUp) {
+	if o != nil && !IsNil(o.LimitUp) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits) SetLimitU
 
 // GetLimitDown returns the LimitDown field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits) GetLimitDown() int32 {
-	if o == nil || isNil(o.LimitDown) {
+	if o == nil || IsNil(o.LimitDown) {
 		var ret int32
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits) GetLimitD
 // GetLimitDownOk returns a tuple with the LimitDown field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits) GetLimitDownOk() (*int32, bool) {
-	if o == nil || isNil(o.LimitDown) {
-    return nil, false
+	if o == nil || IsNil(o.LimitDown) {
+		return nil, false
 	}
 	return o.LimitDown, true
 }
 
 // HasLimitDown returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits) HasLimitDown() bool {
-	if o != nil && !isNil(o.LimitDown) {
+	if o != nil && !IsNil(o.LimitDown) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits) SetLimitD
 }
 
 func (o UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.LimitUp) {
-		toSerialize["limitUp"] = o.LimitUp
-	}
-	if !isNil(o.LimitDown) {
-		toSerialize["limitDown"] = o.LimitDown
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.LimitUp) {
+		toSerialize["limitUp"] = o.LimitUp
+	}
+	if !IsNil(o.LimitDown) {
+		toSerialize["limitDown"] = o.LimitDown
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessBillingRequestPlansInnerBandwidthLimits struct {

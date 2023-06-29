@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkSwitchPortScheduleRequestPortSchedule type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkSwitchPortScheduleRequestPortSchedule{}
+
 // CreateNetworkSwitchPortScheduleRequestPortSchedule     The schedule for switch port scheduling. Schedules are applied to days of the week.     When it's empty, default schedule with all days of a week are configured.     Any unspecified day in the schedule is added as a default schedule configuration of the day. 
 type CreateNetworkSwitchPortScheduleRequestPortSchedule struct {
 	Monday *CreateNetworkGroupPolicyRequestSchedulingMonday `json:"monday,omitempty"`
@@ -44,7 +47,7 @@ func NewCreateNetworkSwitchPortScheduleRequestPortScheduleWithDefaults() *Create
 
 // GetMonday returns the Monday field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetMonday() CreateNetworkGroupPolicyRequestSchedulingMonday {
-	if o == nil || isNil(o.Monday) {
+	if o == nil || IsNil(o.Monday) {
 		var ret CreateNetworkGroupPolicyRequestSchedulingMonday
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetMonday() CreateN
 // GetMondayOk returns a tuple with the Monday field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetMondayOk() (*CreateNetworkGroupPolicyRequestSchedulingMonday, bool) {
-	if o == nil || isNil(o.Monday) {
-    return nil, false
+	if o == nil || IsNil(o.Monday) {
+		return nil, false
 	}
 	return o.Monday, true
 }
 
 // HasMonday returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) HasMonday() bool {
-	if o != nil && !isNil(o.Monday) {
+	if o != nil && !IsNil(o.Monday) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) SetMonday(v CreateN
 
 // GetTuesday returns the Tuesday field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetTuesday() CreateNetworkGroupPolicyRequestSchedulingTuesday {
-	if o == nil || isNil(o.Tuesday) {
+	if o == nil || IsNil(o.Tuesday) {
 		var ret CreateNetworkGroupPolicyRequestSchedulingTuesday
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetTuesday() Create
 // GetTuesdayOk returns a tuple with the Tuesday field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetTuesdayOk() (*CreateNetworkGroupPolicyRequestSchedulingTuesday, bool) {
-	if o == nil || isNil(o.Tuesday) {
-    return nil, false
+	if o == nil || IsNil(o.Tuesday) {
+		return nil, false
 	}
 	return o.Tuesday, true
 }
 
 // HasTuesday returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) HasTuesday() bool {
-	if o != nil && !isNil(o.Tuesday) {
+	if o != nil && !IsNil(o.Tuesday) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) SetTuesday(v Create
 
 // GetWednesday returns the Wednesday field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetWednesday() CreateNetworkGroupPolicyRequestSchedulingWednesday {
-	if o == nil || isNil(o.Wednesday) {
+	if o == nil || IsNil(o.Wednesday) {
 		var ret CreateNetworkGroupPolicyRequestSchedulingWednesday
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetWednesday() Crea
 // GetWednesdayOk returns a tuple with the Wednesday field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetWednesdayOk() (*CreateNetworkGroupPolicyRequestSchedulingWednesday, bool) {
-	if o == nil || isNil(o.Wednesday) {
-    return nil, false
+	if o == nil || IsNil(o.Wednesday) {
+		return nil, false
 	}
 	return o.Wednesday, true
 }
 
 // HasWednesday returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) HasWednesday() bool {
-	if o != nil && !isNil(o.Wednesday) {
+	if o != nil && !IsNil(o.Wednesday) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) SetWednesday(v Crea
 
 // GetThursday returns the Thursday field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetThursday() CreateNetworkGroupPolicyRequestSchedulingThursday {
-	if o == nil || isNil(o.Thursday) {
+	if o == nil || IsNil(o.Thursday) {
 		var ret CreateNetworkGroupPolicyRequestSchedulingThursday
 		return ret
 	}
@@ -150,15 +153,15 @@ func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetThursday() Creat
 // GetThursdayOk returns a tuple with the Thursday field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetThursdayOk() (*CreateNetworkGroupPolicyRequestSchedulingThursday, bool) {
-	if o == nil || isNil(o.Thursday) {
-    return nil, false
+	if o == nil || IsNil(o.Thursday) {
+		return nil, false
 	}
 	return o.Thursday, true
 }
 
 // HasThursday returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) HasThursday() bool {
-	if o != nil && !isNil(o.Thursday) {
+	if o != nil && !IsNil(o.Thursday) {
 		return true
 	}
 
@@ -172,7 +175,7 @@ func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) SetThursday(v Creat
 
 // GetFriday returns the Friday field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetFriday() CreateNetworkGroupPolicyRequestSchedulingFriday {
-	if o == nil || isNil(o.Friday) {
+	if o == nil || IsNil(o.Friday) {
 		var ret CreateNetworkGroupPolicyRequestSchedulingFriday
 		return ret
 	}
@@ -182,15 +185,15 @@ func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetFriday() CreateN
 // GetFridayOk returns a tuple with the Friday field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetFridayOk() (*CreateNetworkGroupPolicyRequestSchedulingFriday, bool) {
-	if o == nil || isNil(o.Friday) {
-    return nil, false
+	if o == nil || IsNil(o.Friday) {
+		return nil, false
 	}
 	return o.Friday, true
 }
 
 // HasFriday returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) HasFriday() bool {
-	if o != nil && !isNil(o.Friday) {
+	if o != nil && !IsNil(o.Friday) {
 		return true
 	}
 
@@ -204,7 +207,7 @@ func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) SetFriday(v CreateN
 
 // GetSaturday returns the Saturday field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetSaturday() CreateNetworkGroupPolicyRequestSchedulingSaturday {
-	if o == nil || isNil(o.Saturday) {
+	if o == nil || IsNil(o.Saturday) {
 		var ret CreateNetworkGroupPolicyRequestSchedulingSaturday
 		return ret
 	}
@@ -214,15 +217,15 @@ func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetSaturday() Creat
 // GetSaturdayOk returns a tuple with the Saturday field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetSaturdayOk() (*CreateNetworkGroupPolicyRequestSchedulingSaturday, bool) {
-	if o == nil || isNil(o.Saturday) {
-    return nil, false
+	if o == nil || IsNil(o.Saturday) {
+		return nil, false
 	}
 	return o.Saturday, true
 }
 
 // HasSaturday returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) HasSaturday() bool {
-	if o != nil && !isNil(o.Saturday) {
+	if o != nil && !IsNil(o.Saturday) {
 		return true
 	}
 
@@ -236,7 +239,7 @@ func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) SetSaturday(v Creat
 
 // GetSunday returns the Sunday field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetSunday() CreateNetworkGroupPolicyRequestSchedulingSunday {
-	if o == nil || isNil(o.Sunday) {
+	if o == nil || IsNil(o.Sunday) {
 		var ret CreateNetworkGroupPolicyRequestSchedulingSunday
 		return ret
 	}
@@ -246,15 +249,15 @@ func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetSunday() CreateN
 // GetSundayOk returns a tuple with the Sunday field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) GetSundayOk() (*CreateNetworkGroupPolicyRequestSchedulingSunday, bool) {
-	if o == nil || isNil(o.Sunday) {
-    return nil, false
+	if o == nil || IsNil(o.Sunday) {
+		return nil, false
 	}
 	return o.Sunday, true
 }
 
 // HasSunday returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) HasSunday() bool {
-	if o != nil && !isNil(o.Sunday) {
+	if o != nil && !IsNil(o.Sunday) {
 		return true
 	}
 
@@ -267,29 +270,37 @@ func (o *CreateNetworkSwitchPortScheduleRequestPortSchedule) SetSunday(v CreateN
 }
 
 func (o CreateNetworkSwitchPortScheduleRequestPortSchedule) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Monday) {
-		toSerialize["monday"] = o.Monday
-	}
-	if !isNil(o.Tuesday) {
-		toSerialize["tuesday"] = o.Tuesday
-	}
-	if !isNil(o.Wednesday) {
-		toSerialize["wednesday"] = o.Wednesday
-	}
-	if !isNil(o.Thursday) {
-		toSerialize["thursday"] = o.Thursday
-	}
-	if !isNil(o.Friday) {
-		toSerialize["friday"] = o.Friday
-	}
-	if !isNil(o.Saturday) {
-		toSerialize["saturday"] = o.Saturday
-	}
-	if !isNil(o.Sunday) {
-		toSerialize["sunday"] = o.Sunday
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkSwitchPortScheduleRequestPortSchedule) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Monday) {
+		toSerialize["monday"] = o.Monday
+	}
+	if !IsNil(o.Tuesday) {
+		toSerialize["tuesday"] = o.Tuesday
+	}
+	if !IsNil(o.Wednesday) {
+		toSerialize["wednesday"] = o.Wednesday
+	}
+	if !IsNil(o.Thursday) {
+		toSerialize["thursday"] = o.Thursday
+	}
+	if !IsNil(o.Friday) {
+		toSerialize["friday"] = o.Friday
+	}
+	if !IsNil(o.Saturday) {
+		toSerialize["saturday"] = o.Saturday
+	}
+	if !IsNil(o.Sunday) {
+		toSerialize["sunday"] = o.Sunday
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkSwitchPortScheduleRequestPortSchedule struct {

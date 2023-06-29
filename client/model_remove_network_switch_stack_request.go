@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the RemoveNetworkSwitchStackRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RemoveNetworkSwitchStackRequest{}
+
 // RemoveNetworkSwitchStackRequest struct for RemoveNetworkSwitchStackRequest
 type RemoveNetworkSwitchStackRequest struct {
 	// The serial of the switch to be removed
@@ -52,7 +55,7 @@ func (o *RemoveNetworkSwitchStackRequest) GetSerial() string {
 // and a boolean to check if the value has been set.
 func (o *RemoveNetworkSwitchStackRequest) GetSerialOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Serial, true
 }
@@ -63,11 +66,17 @@ func (o *RemoveNetworkSwitchStackRequest) SetSerial(v string) {
 }
 
 func (o RemoveNetworkSwitchStackRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["serial"] = o.Serial
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RemoveNetworkSwitchStackRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["serial"] = o.Serial
+	return toSerialize, nil
 }
 
 type NullableRemoveNetworkSwitchStackRequest struct {

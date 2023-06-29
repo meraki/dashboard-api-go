@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner{}
+
 // UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner struct for UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner
 type UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner struct {
 	// The type of definition. Can be one of 'application', 'applicationCategory', 'host', 'port', 'ipRange' or 'localNet'.
@@ -55,7 +58,7 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsIn
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner) GetTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Type, true
 }
@@ -79,7 +82,7 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsIn
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner) GetValueOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Value, true
 }
@@ -90,14 +93,18 @@ func (o *UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsIn
 }
 
 func (o UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["value"] = o.Value
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
+	toSerialize["value"] = o.Value
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner struct {

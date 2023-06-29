@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInnerSignalStat type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInnerSignalStat{}
+
 // GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInnerSignalStat Tower Signal Status
 type GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInnerSignalStat struct {
 	// Reference Signal Received Power
@@ -41,7 +44,7 @@ func NewGetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInner
 
 // GetRsrp returns the Rsrp field value if set, zero value otherwise.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInnerSignalStat) GetRsrp() string {
-	if o == nil || isNil(o.Rsrp) {
+	if o == nil || IsNil(o.Rsrp) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 // GetRsrpOk returns a tuple with the Rsrp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInnerSignalStat) GetRsrpOk() (*string, bool) {
-	if o == nil || isNil(o.Rsrp) {
-    return nil, false
+	if o == nil || IsNil(o.Rsrp) {
+		return nil, false
 	}
 	return o.Rsrp, true
 }
 
 // HasRsrp returns a boolean if a field has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInnerSignalStat) HasRsrp() bool {
-	if o != nil && !isNil(o.Rsrp) {
+	if o != nil && !IsNil(o.Rsrp) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 
 // GetRsrq returns the Rsrq field value if set, zero value otherwise.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInnerSignalStat) GetRsrq() string {
-	if o == nil || isNil(o.Rsrq) {
+	if o == nil || IsNil(o.Rsrq) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 // GetRsrqOk returns a tuple with the Rsrq field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInnerSignalStat) GetRsrqOk() (*string, bool) {
-	if o == nil || isNil(o.Rsrq) {
-    return nil, false
+	if o == nil || IsNil(o.Rsrq) {
+		return nil, false
 	}
 	return o.Rsrq, true
 }
 
 // HasRsrq returns a boolean if a field has been set.
 func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInnerSignalStat) HasRsrq() bool {
-	if o != nil && !isNil(o.Rsrq) {
+	if o != nil && !IsNil(o.Rsrq) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInne
 }
 
 func (o GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInnerSignalStat) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Rsrp) {
-		toSerialize["rsrp"] = o.Rsrp
-	}
-	if !isNil(o.Rsrq) {
-		toSerialize["rsrq"] = o.Rsrq
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInnerSignalStat) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Rsrp) {
+		toSerialize["rsrp"] = o.Rsrp
+	}
+	if !IsNil(o.Rsrq) {
+		toSerialize["rsrq"] = o.Rsrq
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationCellularGatewayUplinkStatuses200ResponseInnerUplinksInnerSignalStat struct {

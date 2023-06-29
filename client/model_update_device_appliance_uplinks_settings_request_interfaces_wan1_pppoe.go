@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe{}
+
 // UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe Configuration options for PPPoE.
 type UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe struct {
 	// Whether PPPoE is enabled.
@@ -40,7 +43,7 @@ func NewUpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1PppoeWithDefaul
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe) GetEnab
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe) SetEnab
 
 // GetAuthentication returns the Authentication field value if set, zero value otherwise.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe) GetAuthentication() UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1PppoeAuthentication {
-	if o == nil || isNil(o.Authentication) {
+	if o == nil || IsNil(o.Authentication) {
 		var ret UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1PppoeAuthentication
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe) GetAuth
 // GetAuthenticationOk returns a tuple with the Authentication field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe) GetAuthenticationOk() (*UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1PppoeAuthentication, bool) {
-	if o == nil || isNil(o.Authentication) {
-    return nil, false
+	if o == nil || IsNil(o.Authentication) {
+		return nil, false
 	}
 	return o.Authentication, true
 }
 
 // HasAuthentication returns a boolean if a field has been set.
 func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe) HasAuthentication() bool {
-	if o != nil && !isNil(o.Authentication) {
+	if o != nil && !IsNil(o.Authentication) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe) SetAuth
 }
 
 func (o UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.Authentication) {
-		toSerialize["authentication"] = o.Authentication
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Authentication) {
+		toSerialize["authentication"] = o.Authentication
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceApplianceUplinksSettingsRequestInterfacesWan1Pppoe struct {

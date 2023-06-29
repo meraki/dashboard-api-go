@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner{}
+
 // UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner struct for UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner
 type UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner struct {
 	// The format for the realm ('1' or '0')
@@ -43,7 +46,7 @@ func NewUpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerWithDefaults() *U
 
 // GetFormat returns the Format field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) GetFormat() string {
-	if o == nil || isNil(o.Format) {
+	if o == nil || IsNil(o.Format) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) GetFormat() st
 // GetFormatOk returns a tuple with the Format field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) GetFormatOk() (*string, bool) {
-	if o == nil || isNil(o.Format) {
-    return nil, false
+	if o == nil || IsNil(o.Format) {
+		return nil, false
 	}
 	return o.Format, true
 }
 
 // HasFormat returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) HasFormat() bool {
-	if o != nil && !isNil(o.Format) {
+	if o != nil && !IsNil(o.Format) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) SetFormat(v st
 
 // GetRealm returns the Realm field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) GetRealm() string {
-	if o == nil || isNil(o.Realm) {
+	if o == nil || IsNil(o.Realm) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) GetRealm() str
 // GetRealmOk returns a tuple with the Realm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) GetRealmOk() (*string, bool) {
-	if o == nil || isNil(o.Realm) {
-    return nil, false
+	if o == nil || IsNil(o.Realm) {
+		return nil, false
 	}
 	return o.Realm, true
 }
 
 // HasRealm returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) HasRealm() bool {
-	if o != nil && !isNil(o.Realm) {
+	if o != nil && !IsNil(o.Realm) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) SetRealm(v str
 
 // GetMethods returns the Methods field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) GetMethods() []UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner {
-	if o == nil || isNil(o.Methods) {
+	if o == nil || IsNil(o.Methods) {
 		var ret []UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) GetMethods() [
 // GetMethodsOk returns a tuple with the Methods field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) GetMethodsOk() ([]UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInnerMethodsInner, bool) {
-	if o == nil || isNil(o.Methods) {
-    return nil, false
+	if o == nil || IsNil(o.Methods) {
+		return nil, false
 	}
 	return o.Methods, true
 }
 
 // HasMethods returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) HasMethods() bool {
-	if o != nil && !isNil(o.Methods) {
+	if o != nil && !IsNil(o.Methods) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) SetMethods(v [
 }
 
 func (o UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Format) {
-		toSerialize["format"] = o.Format
-	}
-	if !isNil(o.Realm) {
-		toSerialize["realm"] = o.Realm
-	}
-	if !isNil(o.Methods) {
-		toSerialize["methods"] = o.Methods
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Format) {
+		toSerialize["format"] = o.Format
+	}
+	if !IsNil(o.Realm) {
+		toSerialize["realm"] = o.Realm
+	}
+	if !IsNil(o.Methods) {
+		toSerialize["methods"] = o.Methods
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidHotspot20RequestNaiRealmsInner struct {

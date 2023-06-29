@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold{}
+
 // GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold Threshold for sensor readings that will cause an alert to be sent. This object should contain a single property key matching the condition's 'metric' value.
 type GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold struct {
 	Temperature *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature `json:"temperature,omitempty"`
@@ -45,7 +48,7 @@ func NewGetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdWi
 
 // GetTemperature returns the Temperature field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetTemperature() GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature {
-	if o == nil || isNil(o.Temperature) {
+	if o == nil || IsNil(o.Temperature) {
 		var ret GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold)
 // GetTemperatureOk returns a tuple with the Temperature field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetTemperatureOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTemperature, bool) {
-	if o == nil || isNil(o.Temperature) {
-    return nil, false
+	if o == nil || IsNil(o.Temperature) {
+		return nil, false
 	}
 	return o.Temperature, true
 }
 
 // HasTemperature returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) HasTemperature() bool {
-	if o != nil && !isNil(o.Temperature) {
+	if o != nil && !IsNil(o.Temperature) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold)
 
 // GetHumidity returns the Humidity field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetHumidity() GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdHumidity {
-	if o == nil || isNil(o.Humidity) {
+	if o == nil || IsNil(o.Humidity) {
 		var ret GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdHumidity
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold)
 // GetHumidityOk returns a tuple with the Humidity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetHumidityOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdHumidity, bool) {
-	if o == nil || isNil(o.Humidity) {
-    return nil, false
+	if o == nil || IsNil(o.Humidity) {
+		return nil, false
 	}
 	return o.Humidity, true
 }
 
 // HasHumidity returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) HasHumidity() bool {
-	if o != nil && !isNil(o.Humidity) {
+	if o != nil && !IsNil(o.Humidity) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold)
 
 // GetWater returns the Water field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetWater() GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdWater {
-	if o == nil || isNil(o.Water) {
+	if o == nil || IsNil(o.Water) {
 		var ret GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdWater
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold)
 // GetWaterOk returns a tuple with the Water field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetWaterOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdWater, bool) {
-	if o == nil || isNil(o.Water) {
-    return nil, false
+	if o == nil || IsNil(o.Water) {
+		return nil, false
 	}
 	return o.Water, true
 }
 
 // HasWater returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) HasWater() bool {
-	if o != nil && !isNil(o.Water) {
+	if o != nil && !IsNil(o.Water) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold)
 
 // GetDoor returns the Door field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetDoor() GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdDoor {
-	if o == nil || isNil(o.Door) {
+	if o == nil || IsNil(o.Door) {
 		var ret GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdDoor
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold)
 // GetDoorOk returns a tuple with the Door field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetDoorOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdDoor, bool) {
-	if o == nil || isNil(o.Door) {
-    return nil, false
+	if o == nil || IsNil(o.Door) {
+		return nil, false
 	}
 	return o.Door, true
 }
 
 // HasDoor returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) HasDoor() bool {
-	if o != nil && !isNil(o.Door) {
+	if o != nil && !IsNil(o.Door) {
 		return true
 	}
 
@@ -173,7 +176,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold)
 
 // GetTvoc returns the Tvoc field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetTvoc() GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTvoc {
-	if o == nil || isNil(o.Tvoc) {
+	if o == nil || IsNil(o.Tvoc) {
 		var ret GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTvoc
 		return ret
 	}
@@ -183,15 +186,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold)
 // GetTvocOk returns a tuple with the Tvoc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetTvocOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdTvoc, bool) {
-	if o == nil || isNil(o.Tvoc) {
-    return nil, false
+	if o == nil || IsNil(o.Tvoc) {
+		return nil, false
 	}
 	return o.Tvoc, true
 }
 
 // HasTvoc returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) HasTvoc() bool {
-	if o != nil && !isNil(o.Tvoc) {
+	if o != nil && !IsNil(o.Tvoc) {
 		return true
 	}
 
@@ -205,7 +208,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold)
 
 // GetPm25 returns the Pm25 field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetPm25() GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdPm25 {
-	if o == nil || isNil(o.Pm25) {
+	if o == nil || IsNil(o.Pm25) {
 		var ret GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdPm25
 		return ret
 	}
@@ -215,15 +218,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold)
 // GetPm25Ok returns a tuple with the Pm25 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetPm25Ok() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdPm25, bool) {
-	if o == nil || isNil(o.Pm25) {
-    return nil, false
+	if o == nil || IsNil(o.Pm25) {
+		return nil, false
 	}
 	return o.Pm25, true
 }
 
 // HasPm25 returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) HasPm25() bool {
-	if o != nil && !isNil(o.Pm25) {
+	if o != nil && !IsNil(o.Pm25) {
 		return true
 	}
 
@@ -237,7 +240,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold)
 
 // GetNoise returns the Noise field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetNoise() GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoise {
-	if o == nil || isNil(o.Noise) {
+	if o == nil || IsNil(o.Noise) {
 		var ret GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoise
 		return ret
 	}
@@ -247,15 +250,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold)
 // GetNoiseOk returns a tuple with the Noise field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetNoiseOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdNoise, bool) {
-	if o == nil || isNil(o.Noise) {
-    return nil, false
+	if o == nil || IsNil(o.Noise) {
+		return nil, false
 	}
 	return o.Noise, true
 }
 
 // HasNoise returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) HasNoise() bool {
-	if o != nil && !isNil(o.Noise) {
+	if o != nil && !IsNil(o.Noise) {
 		return true
 	}
 
@@ -269,7 +272,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold)
 
 // GetIndoorAirQuality returns the IndoorAirQuality field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetIndoorAirQuality() GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdIndoorAirQuality {
-	if o == nil || isNil(o.IndoorAirQuality) {
+	if o == nil || IsNil(o.IndoorAirQuality) {
 		var ret GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdIndoorAirQuality
 		return ret
 	}
@@ -279,15 +282,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold)
 // GetIndoorAirQualityOk returns a tuple with the IndoorAirQuality field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) GetIndoorAirQualityOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdIndoorAirQuality, bool) {
-	if o == nil || isNil(o.IndoorAirQuality) {
-    return nil, false
+	if o == nil || IsNil(o.IndoorAirQuality) {
+		return nil, false
 	}
 	return o.IndoorAirQuality, true
 }
 
 // HasIndoorAirQuality returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) HasIndoorAirQuality() bool {
-	if o != nil && !isNil(o.IndoorAirQuality) {
+	if o != nil && !IsNil(o.IndoorAirQuality) {
 		return true
 	}
 
@@ -300,32 +303,40 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold)
 }
 
 func (o GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Temperature) {
-		toSerialize["temperature"] = o.Temperature
-	}
-	if !isNil(o.Humidity) {
-		toSerialize["humidity"] = o.Humidity
-	}
-	if !isNil(o.Water) {
-		toSerialize["water"] = o.Water
-	}
-	if !isNil(o.Door) {
-		toSerialize["door"] = o.Door
-	}
-	if !isNil(o.Tvoc) {
-		toSerialize["tvoc"] = o.Tvoc
-	}
-	if !isNil(o.Pm25) {
-		toSerialize["pm25"] = o.Pm25
-	}
-	if !isNil(o.Noise) {
-		toSerialize["noise"] = o.Noise
-	}
-	if !isNil(o.IndoorAirQuality) {
-		toSerialize["indoorAirQuality"] = o.IndoorAirQuality
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Temperature) {
+		toSerialize["temperature"] = o.Temperature
+	}
+	if !IsNil(o.Humidity) {
+		toSerialize["humidity"] = o.Humidity
+	}
+	if !IsNil(o.Water) {
+		toSerialize["water"] = o.Water
+	}
+	if !IsNil(o.Door) {
+		toSerialize["door"] = o.Door
+	}
+	if !IsNil(o.Tvoc) {
+		toSerialize["tvoc"] = o.Tvoc
+	}
+	if !IsNil(o.Pm25) {
+		toSerialize["pm25"] = o.Pm25
+	}
+	if !IsNil(o.Noise) {
+		toSerialize["noise"] = o.Noise
+	}
+	if !IsNil(o.IndoorAirQuality) {
+		toSerialize["indoorAirQuality"] = o.IndoorAirQuality
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateDeviceLiveToolsPing201Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateDeviceLiveToolsPing201Response{}
+
 // CreateDeviceLiveToolsPing201Response struct for CreateDeviceLiveToolsPing201Response
 type CreateDeviceLiveToolsPing201Response struct {
 	// Id to check the status of your ping request.
@@ -44,7 +47,7 @@ func NewCreateDeviceLiveToolsPing201ResponseWithDefaults() *CreateDeviceLiveTool
 
 // GetPingId returns the PingId field value if set, zero value otherwise.
 func (o *CreateDeviceLiveToolsPing201Response) GetPingId() string {
-	if o == nil || isNil(o.PingId) {
+	if o == nil || IsNil(o.PingId) {
 		var ret string
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *CreateDeviceLiveToolsPing201Response) GetPingId() string {
 // GetPingIdOk returns a tuple with the PingId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateDeviceLiveToolsPing201Response) GetPingIdOk() (*string, bool) {
-	if o == nil || isNil(o.PingId) {
-    return nil, false
+	if o == nil || IsNil(o.PingId) {
+		return nil, false
 	}
 	return o.PingId, true
 }
 
 // HasPingId returns a boolean if a field has been set.
 func (o *CreateDeviceLiveToolsPing201Response) HasPingId() bool {
-	if o != nil && !isNil(o.PingId) {
+	if o != nil && !IsNil(o.PingId) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *CreateDeviceLiveToolsPing201Response) SetPingId(v string) {
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *CreateDeviceLiveToolsPing201Response) GetUrl() string {
-	if o == nil || isNil(o.Url) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *CreateDeviceLiveToolsPing201Response) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateDeviceLiveToolsPing201Response) GetUrlOk() (*string, bool) {
-	if o == nil || isNil(o.Url) {
-    return nil, false
+	if o == nil || IsNil(o.Url) {
+		return nil, false
 	}
 	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *CreateDeviceLiveToolsPing201Response) HasUrl() bool {
-	if o != nil && !isNil(o.Url) {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *CreateDeviceLiveToolsPing201Response) SetUrl(v string) {
 
 // GetRequest returns the Request field value if set, zero value otherwise.
 func (o *CreateDeviceLiveToolsPing201Response) GetRequest() CreateDeviceLiveToolsPing201ResponseRequest {
-	if o == nil || isNil(o.Request) {
+	if o == nil || IsNil(o.Request) {
 		var ret CreateDeviceLiveToolsPing201ResponseRequest
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *CreateDeviceLiveToolsPing201Response) GetRequest() CreateDeviceLiveTool
 // GetRequestOk returns a tuple with the Request field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateDeviceLiveToolsPing201Response) GetRequestOk() (*CreateDeviceLiveToolsPing201ResponseRequest, bool) {
-	if o == nil || isNil(o.Request) {
-    return nil, false
+	if o == nil || IsNil(o.Request) {
+		return nil, false
 	}
 	return o.Request, true
 }
 
 // HasRequest returns a boolean if a field has been set.
 func (o *CreateDeviceLiveToolsPing201Response) HasRequest() bool {
-	if o != nil && !isNil(o.Request) {
+	if o != nil && !IsNil(o.Request) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *CreateDeviceLiveToolsPing201Response) SetRequest(v CreateDeviceLiveTool
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *CreateDeviceLiveToolsPing201Response) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -150,15 +153,15 @@ func (o *CreateDeviceLiveToolsPing201Response) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateDeviceLiveToolsPing201Response) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *CreateDeviceLiveToolsPing201Response) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -171,20 +174,28 @@ func (o *CreateDeviceLiveToolsPing201Response) SetStatus(v string) {
 }
 
 func (o CreateDeviceLiveToolsPing201Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.PingId) {
-		toSerialize["pingId"] = o.PingId
-	}
-	if !isNil(o.Url) {
-		toSerialize["url"] = o.Url
-	}
-	if !isNil(o.Request) {
-		toSerialize["request"] = o.Request
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateDeviceLiveToolsPing201Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PingId) {
+		toSerialize["pingId"] = o.PingId
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.Request) {
+		toSerialize["request"] = o.Request
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateDeviceLiveToolsPing201Response struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner{}
+
 // GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner struct for GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner
 type GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner struct {
 	Group *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup `json:"group,omitempty"`
@@ -41,7 +44,7 @@ func NewGetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerWithDefaults
 
 // GetGroup returns the Group field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) GetGroup() GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup {
-	if o == nil || isNil(o.Group) {
+	if o == nil || IsNil(o.Group) {
 		var ret GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) GetGroup(
 // GetGroupOk returns a tuple with the Group field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) GetGroupOk() (*GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerGroup, bool) {
-	if o == nil || isNil(o.Group) {
-    return nil, false
+	if o == nil || IsNil(o.Group) {
+		return nil, false
 	}
 	return o.Group, true
 }
 
 // HasGroup returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) HasGroup() bool {
-	if o != nil && !isNil(o.Group) {
+	if o != nil && !IsNil(o.Group) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) SetGroup(
 
 // GetMilestones returns the Milestones field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) GetMilestones() GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones {
-	if o == nil || isNil(o.Milestones) {
+	if o == nil || IsNil(o.Milestones) {
 		var ret GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) GetMilest
 // GetMilestonesOk returns a tuple with the Milestones field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) GetMilestonesOk() (*GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInnerMilestones, bool) {
-	if o == nil || isNil(o.Milestones) {
-    return nil, false
+	if o == nil || IsNil(o.Milestones) {
+		return nil, false
 	}
 	return o.Milestones, true
 }
 
 // HasMilestones returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) HasMilestones() bool {
-	if o != nil && !isNil(o.Milestones) {
+	if o != nil && !IsNil(o.Milestones) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) SetMilest
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) GetStatus
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -136,17 +139,25 @@ func (o *GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) SetStatus
 }
 
 func (o GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Group) {
-		toSerialize["group"] = o.Group
-	}
-	if !isNil(o.Milestones) {
-		toSerialize["milestones"] = o.Milestones
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Group) {
+		toSerialize["group"] = o.Group
+	}
+	if !IsNil(o.Milestones) {
+		toSerialize["milestones"] = o.Milestones
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkFirmwareUpgradesStagedEvents200ResponseStagesInner struct {

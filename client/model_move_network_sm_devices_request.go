@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MoveNetworkSmDevicesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MoveNetworkSmDevicesRequest{}
+
 // MoveNetworkSmDevicesRequest struct for MoveNetworkSmDevicesRequest
 type MoveNetworkSmDevicesRequest struct {
 	// The wifiMacs of the devices to be moved.
@@ -48,7 +51,7 @@ func NewMoveNetworkSmDevicesRequestWithDefaults() *MoveNetworkSmDevicesRequest {
 
 // GetWifiMacs returns the WifiMacs field value if set, zero value otherwise.
 func (o *MoveNetworkSmDevicesRequest) GetWifiMacs() []string {
-	if o == nil || isNil(o.WifiMacs) {
+	if o == nil || IsNil(o.WifiMacs) {
 		var ret []string
 		return ret
 	}
@@ -58,15 +61,15 @@ func (o *MoveNetworkSmDevicesRequest) GetWifiMacs() []string {
 // GetWifiMacsOk returns a tuple with the WifiMacs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MoveNetworkSmDevicesRequest) GetWifiMacsOk() ([]string, bool) {
-	if o == nil || isNil(o.WifiMacs) {
-    return nil, false
+	if o == nil || IsNil(o.WifiMacs) {
+		return nil, false
 	}
 	return o.WifiMacs, true
 }
 
 // HasWifiMacs returns a boolean if a field has been set.
 func (o *MoveNetworkSmDevicesRequest) HasWifiMacs() bool {
-	if o != nil && !isNil(o.WifiMacs) {
+	if o != nil && !IsNil(o.WifiMacs) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *MoveNetworkSmDevicesRequest) SetWifiMacs(v []string) {
 
 // GetIds returns the Ids field value if set, zero value otherwise.
 func (o *MoveNetworkSmDevicesRequest) GetIds() []string {
-	if o == nil || isNil(o.Ids) {
+	if o == nil || IsNil(o.Ids) {
 		var ret []string
 		return ret
 	}
@@ -90,15 +93,15 @@ func (o *MoveNetworkSmDevicesRequest) GetIds() []string {
 // GetIdsOk returns a tuple with the Ids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MoveNetworkSmDevicesRequest) GetIdsOk() ([]string, bool) {
-	if o == nil || isNil(o.Ids) {
-    return nil, false
+	if o == nil || IsNil(o.Ids) {
+		return nil, false
 	}
 	return o.Ids, true
 }
 
 // HasIds returns a boolean if a field has been set.
 func (o *MoveNetworkSmDevicesRequest) HasIds() bool {
-	if o != nil && !isNil(o.Ids) {
+	if o != nil && !IsNil(o.Ids) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *MoveNetworkSmDevicesRequest) SetIds(v []string) {
 
 // GetSerials returns the Serials field value if set, zero value otherwise.
 func (o *MoveNetworkSmDevicesRequest) GetSerials() []string {
-	if o == nil || isNil(o.Serials) {
+	if o == nil || IsNil(o.Serials) {
 		var ret []string
 		return ret
 	}
@@ -122,15 +125,15 @@ func (o *MoveNetworkSmDevicesRequest) GetSerials() []string {
 // GetSerialsOk returns a tuple with the Serials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MoveNetworkSmDevicesRequest) GetSerialsOk() ([]string, bool) {
-	if o == nil || isNil(o.Serials) {
-    return nil, false
+	if o == nil || IsNil(o.Serials) {
+		return nil, false
 	}
 	return o.Serials, true
 }
 
 // HasSerials returns a boolean if a field has been set.
 func (o *MoveNetworkSmDevicesRequest) HasSerials() bool {
-	if o != nil && !isNil(o.Serials) {
+	if o != nil && !IsNil(o.Serials) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *MoveNetworkSmDevicesRequest) SetSerials(v []string) {
 
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *MoveNetworkSmDevicesRequest) GetScope() []string {
-	if o == nil || isNil(o.Scope) {
+	if o == nil || IsNil(o.Scope) {
 		var ret []string
 		return ret
 	}
@@ -154,15 +157,15 @@ func (o *MoveNetworkSmDevicesRequest) GetScope() []string {
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MoveNetworkSmDevicesRequest) GetScopeOk() ([]string, bool) {
-	if o == nil || isNil(o.Scope) {
-    return nil, false
+	if o == nil || IsNil(o.Scope) {
+		return nil, false
 	}
 	return o.Scope, true
 }
 
 // HasScope returns a boolean if a field has been set.
 func (o *MoveNetworkSmDevicesRequest) HasScope() bool {
-	if o != nil && !isNil(o.Scope) {
+	if o != nil && !IsNil(o.Scope) {
 		return true
 	}
 
@@ -188,7 +191,7 @@ func (o *MoveNetworkSmDevicesRequest) GetNewNetwork() string {
 // and a boolean to check if the value has been set.
 func (o *MoveNetworkSmDevicesRequest) GetNewNetworkOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.NewNetwork, true
 }
@@ -199,23 +202,29 @@ func (o *MoveNetworkSmDevicesRequest) SetNewNetwork(v string) {
 }
 
 func (o MoveNetworkSmDevicesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.WifiMacs) {
-		toSerialize["wifiMacs"] = o.WifiMacs
-	}
-	if !isNil(o.Ids) {
-		toSerialize["ids"] = o.Ids
-	}
-	if !isNil(o.Serials) {
-		toSerialize["serials"] = o.Serials
-	}
-	if !isNil(o.Scope) {
-		toSerialize["scope"] = o.Scope
-	}
-	if true {
-		toSerialize["newNetwork"] = o.NewNetwork
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MoveNetworkSmDevicesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.WifiMacs) {
+		toSerialize["wifiMacs"] = o.WifiMacs
+	}
+	if !IsNil(o.Ids) {
+		toSerialize["ids"] = o.Ids
+	}
+	if !IsNil(o.Serials) {
+		toSerialize["serials"] = o.Serials
+	}
+	if !IsNil(o.Scope) {
+		toSerialize["scope"] = o.Scope
+	}
+	toSerialize["newNetwork"] = o.NewNetwork
+	return toSerialize, nil
 }
 
 type NullableMoveNetworkSmDevicesRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkEvents200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkEvents200Response{}
+
 // GetNetworkEvents200Response struct for GetNetworkEvents200Response
 type GetNetworkEvents200Response struct {
 	// A message regarding the events sent. Usually 'null' unless there are no events
@@ -45,7 +48,7 @@ func NewGetNetworkEvents200ResponseWithDefaults() *GetNetworkEvents200Response {
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *GetNetworkEvents200Response) GetMessage() string {
-	if o == nil || isNil(o.Message) {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *GetNetworkEvents200Response) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200Response) GetMessageOk() (*string, bool) {
-	if o == nil || isNil(o.Message) {
-    return nil, false
+	if o == nil || IsNil(o.Message) {
+		return nil, false
 	}
 	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *GetNetworkEvents200Response) HasMessage() bool {
-	if o != nil && !isNil(o.Message) {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetNetworkEvents200Response) SetMessage(v string) {
 
 // GetPageStartAt returns the PageStartAt field value if set, zero value otherwise.
 func (o *GetNetworkEvents200Response) GetPageStartAt() string {
-	if o == nil || isNil(o.PageStartAt) {
+	if o == nil || IsNil(o.PageStartAt) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *GetNetworkEvents200Response) GetPageStartAt() string {
 // GetPageStartAtOk returns a tuple with the PageStartAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200Response) GetPageStartAtOk() (*string, bool) {
-	if o == nil || isNil(o.PageStartAt) {
-    return nil, false
+	if o == nil || IsNil(o.PageStartAt) {
+		return nil, false
 	}
 	return o.PageStartAt, true
 }
 
 // HasPageStartAt returns a boolean if a field has been set.
 func (o *GetNetworkEvents200Response) HasPageStartAt() bool {
-	if o != nil && !isNil(o.PageStartAt) {
+	if o != nil && !IsNil(o.PageStartAt) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetNetworkEvents200Response) SetPageStartAt(v string) {
 
 // GetPageEndAt returns the PageEndAt field value if set, zero value otherwise.
 func (o *GetNetworkEvents200Response) GetPageEndAt() string {
-	if o == nil || isNil(o.PageEndAt) {
+	if o == nil || IsNil(o.PageEndAt) {
 		var ret string
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *GetNetworkEvents200Response) GetPageEndAt() string {
 // GetPageEndAtOk returns a tuple with the PageEndAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200Response) GetPageEndAtOk() (*string, bool) {
-	if o == nil || isNil(o.PageEndAt) {
-    return nil, false
+	if o == nil || IsNil(o.PageEndAt) {
+		return nil, false
 	}
 	return o.PageEndAt, true
 }
 
 // HasPageEndAt returns a boolean if a field has been set.
 func (o *GetNetworkEvents200Response) HasPageEndAt() bool {
-	if o != nil && !isNil(o.PageEndAt) {
+	if o != nil && !IsNil(o.PageEndAt) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetNetworkEvents200Response) SetPageEndAt(v string) {
 
 // GetEvents returns the Events field value if set, zero value otherwise.
 func (o *GetNetworkEvents200Response) GetEvents() []GetNetworkEvents200ResponseEventsInner {
-	if o == nil || isNil(o.Events) {
+	if o == nil || IsNil(o.Events) {
 		var ret []GetNetworkEvents200ResponseEventsInner
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *GetNetworkEvents200Response) GetEvents() []GetNetworkEvents200ResponseE
 // GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200Response) GetEventsOk() ([]GetNetworkEvents200ResponseEventsInner, bool) {
-	if o == nil || isNil(o.Events) {
-    return nil, false
+	if o == nil || IsNil(o.Events) {
+		return nil, false
 	}
 	return o.Events, true
 }
 
 // HasEvents returns a boolean if a field has been set.
 func (o *GetNetworkEvents200Response) HasEvents() bool {
-	if o != nil && !isNil(o.Events) {
+	if o != nil && !IsNil(o.Events) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *GetNetworkEvents200Response) SetEvents(v []GetNetworkEvents200ResponseE
 }
 
 func (o GetNetworkEvents200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Message) {
-		toSerialize["message"] = o.Message
-	}
-	if !isNil(o.PageStartAt) {
-		toSerialize["pageStartAt"] = o.PageStartAt
-	}
-	if !isNil(o.PageEndAt) {
-		toSerialize["pageEndAt"] = o.PageEndAt
-	}
-	if !isNil(o.Events) {
-		toSerialize["events"] = o.Events
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkEvents200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	if !IsNil(o.PageStartAt) {
+		toSerialize["pageStartAt"] = o.PageStartAt
+	}
+	if !IsNil(o.PageEndAt) {
+		toSerialize["pageEndAt"] = o.PageEndAt
+	}
+	if !IsNil(o.Events) {
+		toSerialize["events"] = o.Events
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkEvents200Response struct {

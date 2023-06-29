@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceCameraSenseRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceCameraSenseRequest{}
+
 // UpdateDeviceCameraSenseRequest struct for UpdateDeviceCameraSenseRequest
 type UpdateDeviceCameraSenseRequest struct {
 	// Boolean indicating if sense(license) is enabled(true) or disabled(false) on the camera
@@ -44,7 +47,7 @@ func NewUpdateDeviceCameraSenseRequestWithDefaults() *UpdateDeviceCameraSenseReq
 
 // GetSenseEnabled returns the SenseEnabled field value if set, zero value otherwise.
 func (o *UpdateDeviceCameraSenseRequest) GetSenseEnabled() bool {
-	if o == nil || isNil(o.SenseEnabled) {
+	if o == nil || IsNil(o.SenseEnabled) {
 		var ret bool
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *UpdateDeviceCameraSenseRequest) GetSenseEnabled() bool {
 // GetSenseEnabledOk returns a tuple with the SenseEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCameraSenseRequest) GetSenseEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.SenseEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.SenseEnabled) {
+		return nil, false
 	}
 	return o.SenseEnabled, true
 }
 
 // HasSenseEnabled returns a boolean if a field has been set.
 func (o *UpdateDeviceCameraSenseRequest) HasSenseEnabled() bool {
-	if o != nil && !isNil(o.SenseEnabled) {
+	if o != nil && !IsNil(o.SenseEnabled) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *UpdateDeviceCameraSenseRequest) SetSenseEnabled(v bool) {
 
 // GetMqttBrokerId returns the MqttBrokerId field value if set, zero value otherwise.
 func (o *UpdateDeviceCameraSenseRequest) GetMqttBrokerId() string {
-	if o == nil || isNil(o.MqttBrokerId) {
+	if o == nil || IsNil(o.MqttBrokerId) {
 		var ret string
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *UpdateDeviceCameraSenseRequest) GetMqttBrokerId() string {
 // GetMqttBrokerIdOk returns a tuple with the MqttBrokerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCameraSenseRequest) GetMqttBrokerIdOk() (*string, bool) {
-	if o == nil || isNil(o.MqttBrokerId) {
-    return nil, false
+	if o == nil || IsNil(o.MqttBrokerId) {
+		return nil, false
 	}
 	return o.MqttBrokerId, true
 }
 
 // HasMqttBrokerId returns a boolean if a field has been set.
 func (o *UpdateDeviceCameraSenseRequest) HasMqttBrokerId() bool {
-	if o != nil && !isNil(o.MqttBrokerId) {
+	if o != nil && !IsNil(o.MqttBrokerId) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *UpdateDeviceCameraSenseRequest) SetMqttBrokerId(v string) {
 
 // GetAudioDetection returns the AudioDetection field value if set, zero value otherwise.
 func (o *UpdateDeviceCameraSenseRequest) GetAudioDetection() UpdateDeviceCameraSenseRequestAudioDetection {
-	if o == nil || isNil(o.AudioDetection) {
+	if o == nil || IsNil(o.AudioDetection) {
 		var ret UpdateDeviceCameraSenseRequestAudioDetection
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *UpdateDeviceCameraSenseRequest) GetAudioDetection() UpdateDeviceCameraS
 // GetAudioDetectionOk returns a tuple with the AudioDetection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCameraSenseRequest) GetAudioDetectionOk() (*UpdateDeviceCameraSenseRequestAudioDetection, bool) {
-	if o == nil || isNil(o.AudioDetection) {
-    return nil, false
+	if o == nil || IsNil(o.AudioDetection) {
+		return nil, false
 	}
 	return o.AudioDetection, true
 }
 
 // HasAudioDetection returns a boolean if a field has been set.
 func (o *UpdateDeviceCameraSenseRequest) HasAudioDetection() bool {
-	if o != nil && !isNil(o.AudioDetection) {
+	if o != nil && !IsNil(o.AudioDetection) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *UpdateDeviceCameraSenseRequest) SetAudioDetection(v UpdateDeviceCameraS
 
 // GetDetectionModelId returns the DetectionModelId field value if set, zero value otherwise.
 func (o *UpdateDeviceCameraSenseRequest) GetDetectionModelId() string {
-	if o == nil || isNil(o.DetectionModelId) {
+	if o == nil || IsNil(o.DetectionModelId) {
 		var ret string
 		return ret
 	}
@@ -150,15 +153,15 @@ func (o *UpdateDeviceCameraSenseRequest) GetDetectionModelId() string {
 // GetDetectionModelIdOk returns a tuple with the DetectionModelId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCameraSenseRequest) GetDetectionModelIdOk() (*string, bool) {
-	if o == nil || isNil(o.DetectionModelId) {
-    return nil, false
+	if o == nil || IsNil(o.DetectionModelId) {
+		return nil, false
 	}
 	return o.DetectionModelId, true
 }
 
 // HasDetectionModelId returns a boolean if a field has been set.
 func (o *UpdateDeviceCameraSenseRequest) HasDetectionModelId() bool {
-	if o != nil && !isNil(o.DetectionModelId) {
+	if o != nil && !IsNil(o.DetectionModelId) {
 		return true
 	}
 
@@ -171,20 +174,28 @@ func (o *UpdateDeviceCameraSenseRequest) SetDetectionModelId(v string) {
 }
 
 func (o UpdateDeviceCameraSenseRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.SenseEnabled) {
-		toSerialize["senseEnabled"] = o.SenseEnabled
-	}
-	if !isNil(o.MqttBrokerId) {
-		toSerialize["mqttBrokerId"] = o.MqttBrokerId
-	}
-	if !isNil(o.AudioDetection) {
-		toSerialize["audioDetection"] = o.AudioDetection
-	}
-	if !isNil(o.DetectionModelId) {
-		toSerialize["detectionModelId"] = o.DetectionModelId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceCameraSenseRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SenseEnabled) {
+		toSerialize["senseEnabled"] = o.SenseEnabled
+	}
+	if !IsNil(o.MqttBrokerId) {
+		toSerialize["mqttBrokerId"] = o.MqttBrokerId
+	}
+	if !IsNil(o.AudioDetection) {
+		toSerialize["audioDetection"] = o.AudioDetection
+	}
+	if !IsNil(o.DetectionModelId) {
+		toSerialize["detectionModelId"] = o.DetectionModelId
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceCameraSenseRequest struct {

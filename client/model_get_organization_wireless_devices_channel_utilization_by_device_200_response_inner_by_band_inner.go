@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner{}
+
 // GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner struct for GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner
 type GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner struct {
 	// The band for the given metrics.
@@ -42,7 +45,7 @@ func NewGetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInner
 
 // GetBand returns the Band field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner) GetBand() string {
-	if o == nil || isNil(o.Band) {
+	if o == nil || IsNil(o.Band) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInne
 // GetBandOk returns a tuple with the Band field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner) GetBandOk() (*string, bool) {
-	if o == nil || isNil(o.Band) {
-    return nil, false
+	if o == nil || IsNil(o.Band) {
+		return nil, false
 	}
 	return o.Band, true
 }
 
 // HasBand returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner) HasBand() bool {
-	if o != nil && !isNil(o.Band) {
+	if o != nil && !IsNil(o.Band) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInne
 
 // GetWifi returns the Wifi field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner) GetWifi() GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInnerWifi {
-	if o == nil || isNil(o.Wifi) {
+	if o == nil || IsNil(o.Wifi) {
 		var ret GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInnerWifi
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInne
 // GetWifiOk returns a tuple with the Wifi field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner) GetWifiOk() (*GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInnerWifi, bool) {
-	if o == nil || isNil(o.Wifi) {
-    return nil, false
+	if o == nil || IsNil(o.Wifi) {
+		return nil, false
 	}
 	return o.Wifi, true
 }
 
 // HasWifi returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner) HasWifi() bool {
-	if o != nil && !isNil(o.Wifi) {
+	if o != nil && !IsNil(o.Wifi) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInne
 
 // GetNonWifi returns the NonWifi field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner) GetNonWifi() GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInnerNonWifi {
-	if o == nil || isNil(o.NonWifi) {
+	if o == nil || IsNil(o.NonWifi) {
 		var ret GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInnerNonWifi
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInne
 // GetNonWifiOk returns a tuple with the NonWifi field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner) GetNonWifiOk() (*GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInnerNonWifi, bool) {
-	if o == nil || isNil(o.NonWifi) {
-    return nil, false
+	if o == nil || IsNil(o.NonWifi) {
+		return nil, false
 	}
 	return o.NonWifi, true
 }
 
 // HasNonWifi returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner) HasNonWifi() bool {
-	if o != nil && !isNil(o.NonWifi) {
+	if o != nil && !IsNil(o.NonWifi) {
 		return true
 	}
 
@@ -138,7 +141,7 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInne
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner) GetTotal() GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInnerTotal {
-	if o == nil || isNil(o.Total) {
+	if o == nil || IsNil(o.Total) {
 		var ret GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInnerTotal
 		return ret
 	}
@@ -148,15 +151,15 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInne
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner) GetTotalOk() (*GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInnerTotal, bool) {
-	if o == nil || isNil(o.Total) {
-    return nil, false
+	if o == nil || IsNil(o.Total) {
+		return nil, false
 	}
 	return o.Total, true
 }
 
 // HasTotal returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner) HasTotal() bool {
-	if o != nil && !isNil(o.Total) {
+	if o != nil && !IsNil(o.Total) {
 		return true
 	}
 
@@ -169,20 +172,28 @@ func (o *GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInne
 }
 
 func (o GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Band) {
-		toSerialize["band"] = o.Band
-	}
-	if !isNil(o.Wifi) {
-		toSerialize["wifi"] = o.Wifi
-	}
-	if !isNil(o.NonWifi) {
-		toSerialize["nonWifi"] = o.NonWifi
-	}
-	if !isNil(o.Total) {
-		toSerialize["total"] = o.Total
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Band) {
+		toSerialize["band"] = o.Band
+	}
+	if !IsNil(o.Wifi) {
+		toSerialize["wifi"] = o.Wifi
+	}
+	if !IsNil(o.NonWifi) {
+		toSerialize["nonWifi"] = o.NonWifi
+	}
+	if !IsNil(o.Total) {
+		toSerialize["total"] = o.Total
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationWirelessDevicesChannelUtilizationByDevice200ResponseInnerByBandInner struct {

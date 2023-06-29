@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner{}
+
 // GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner struct for GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner
 type GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner struct {
 	// Type of address for the device uplink. Available options are: ipv4, ipv6.
@@ -46,7 +49,7 @@ func NewGetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInn
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) GetProtocol() string {
-	if o == nil || isNil(o.Protocol) {
+	if o == nil || IsNil(o.Protocol) {
 		var ret string
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksIn
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) GetProtocolOk() (*string, bool) {
-	if o == nil || isNil(o.Protocol) {
-    return nil, false
+	if o == nil || IsNil(o.Protocol) {
+		return nil, false
 	}
 	return o.Protocol, true
 }
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) HasProtocol() bool {
-	if o != nil && !isNil(o.Protocol) {
+	if o != nil && !IsNil(o.Protocol) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksIn
 
 // GetAssignmentMode returns the AssignmentMode field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) GetAssignmentMode() string {
-	if o == nil || isNil(o.AssignmentMode) {
+	if o == nil || IsNil(o.AssignmentMode) {
 		var ret string
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksIn
 // GetAssignmentModeOk returns a tuple with the AssignmentMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) GetAssignmentModeOk() (*string, bool) {
-	if o == nil || isNil(o.AssignmentMode) {
-    return nil, false
+	if o == nil || IsNil(o.AssignmentMode) {
+		return nil, false
 	}
 	return o.AssignmentMode, true
 }
 
 // HasAssignmentMode returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) HasAssignmentMode() bool {
-	if o != nil && !isNil(o.AssignmentMode) {
+	if o != nil && !IsNil(o.AssignmentMode) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksIn
 
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) GetAddress() string {
-	if o == nil || isNil(o.Address) {
+	if o == nil || IsNil(o.Address) {
 		var ret string
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksIn
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) GetAddressOk() (*string, bool) {
-	if o == nil || isNil(o.Address) {
-    return nil, false
+	if o == nil || IsNil(o.Address) {
+		return nil, false
 	}
 	return o.Address, true
 }
 
 // HasAddress returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) HasAddress() bool {
-	if o != nil && !isNil(o.Address) {
+	if o != nil && !IsNil(o.Address) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksIn
 
 // GetGateway returns the Gateway field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) GetGateway() string {
-	if o == nil || isNil(o.Gateway) {
+	if o == nil || IsNil(o.Gateway) {
 		var ret string
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksIn
 // GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) GetGatewayOk() (*string, bool) {
-	if o == nil || isNil(o.Gateway) {
-    return nil, false
+	if o == nil || IsNil(o.Gateway) {
+		return nil, false
 	}
 	return o.Gateway, true
 }
 
 // HasGateway returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) HasGateway() bool {
-	if o != nil && !isNil(o.Gateway) {
+	if o != nil && !IsNil(o.Gateway) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksIn
 
 // GetPublic returns the Public field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) GetPublic() GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInnerPublic {
-	if o == nil || isNil(o.Public) {
+	if o == nil || IsNil(o.Public) {
 		var ret GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInnerPublic
 		return ret
 	}
@@ -184,15 +187,15 @@ func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksIn
 // GetPublicOk returns a tuple with the Public field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) GetPublicOk() (*GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInnerPublic, bool) {
-	if o == nil || isNil(o.Public) {
-    return nil, false
+	if o == nil || IsNil(o.Public) {
+		return nil, false
 	}
 	return o.Public, true
 }
 
 // HasPublic returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) HasPublic() bool {
-	if o != nil && !isNil(o.Public) {
+	if o != nil && !IsNil(o.Public) {
 		return true
 	}
 
@@ -205,23 +208,31 @@ func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksIn
 }
 
 func (o GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Protocol) {
-		toSerialize["protocol"] = o.Protocol
-	}
-	if !isNil(o.AssignmentMode) {
-		toSerialize["assignmentMode"] = o.AssignmentMode
-	}
-	if !isNil(o.Address) {
-		toSerialize["address"] = o.Address
-	}
-	if !isNil(o.Gateway) {
-		toSerialize["gateway"] = o.Gateway
-	}
-	if !isNil(o.Public) {
-		toSerialize["public"] = o.Public
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Protocol) {
+		toSerialize["protocol"] = o.Protocol
+	}
+	if !IsNil(o.AssignmentMode) {
+		toSerialize["assignmentMode"] = o.AssignmentMode
+	}
+	if !IsNil(o.Address) {
+		toSerialize["address"] = o.Address
+	}
+	if !IsNil(o.Gateway) {
+		toSerialize["gateway"] = o.Gateway
+	}
+	if !IsNil(o.Public) {
+		toSerialize["public"] = o.Public
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner struct {

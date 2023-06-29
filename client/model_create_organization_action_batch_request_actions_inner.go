@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationActionBatchRequestActionsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationActionBatchRequestActionsInner{}
+
 // CreateOrganizationActionBatchRequestActionsInner struct for CreateOrganizationActionBatchRequestActionsInner
 type CreateOrganizationActionBatchRequestActionsInner struct {
 	// Unique identifier for the resource to be acted on
@@ -57,7 +60,7 @@ func (o *CreateOrganizationActionBatchRequestActionsInner) GetResource() string 
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatchRequestActionsInner) GetResourceOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Resource, true
 }
@@ -81,7 +84,7 @@ func (o *CreateOrganizationActionBatchRequestActionsInner) GetOperation() string
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatchRequestActionsInner) GetOperationOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Operation, true
 }
@@ -93,7 +96,7 @@ func (o *CreateOrganizationActionBatchRequestActionsInner) SetOperation(v string
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *CreateOrganizationActionBatchRequestActionsInner) GetBody() map[string]interface{} {
-	if o == nil || isNil(o.Body) {
+	if o == nil || IsNil(o.Body) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -103,15 +106,15 @@ func (o *CreateOrganizationActionBatchRequestActionsInner) GetBody() map[string]
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatchRequestActionsInner) GetBodyOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Body) {
-    return map[string]interface{}{}, false
+	if o == nil || IsNil(o.Body) {
+		return map[string]interface{}{}, false
 	}
 	return o.Body, true
 }
 
 // HasBody returns a boolean if a field has been set.
 func (o *CreateOrganizationActionBatchRequestActionsInner) HasBody() bool {
-	if o != nil && !isNil(o.Body) {
+	if o != nil && !IsNil(o.Body) {
 		return true
 	}
 
@@ -124,17 +127,21 @@ func (o *CreateOrganizationActionBatchRequestActionsInner) SetBody(v map[string]
 }
 
 func (o CreateOrganizationActionBatchRequestActionsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["resource"] = o.Resource
-	}
-	if true {
-		toSerialize["operation"] = o.Operation
-	}
-	if !isNil(o.Body) {
-		toSerialize["body"] = o.Body
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationActionBatchRequestActionsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["resource"] = o.Resource
+	toSerialize["operation"] = o.Operation
+	if !IsNil(o.Body) {
+		toSerialize["body"] = o.Body
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationActionBatchRequestActionsInner struct {

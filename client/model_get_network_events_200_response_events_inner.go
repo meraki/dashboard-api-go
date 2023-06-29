@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkEvents200ResponseEventsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkEvents200ResponseEventsInner{}
+
 // GetNetworkEvents200ResponseEventsInner struct for GetNetworkEvents200ResponseEventsInner
 type GetNetworkEvents200ResponseEventsInner struct {
 	// An UTC ISO8601 string of the time the event occurred at.
@@ -60,7 +63,7 @@ func NewGetNetworkEvents200ResponseEventsInnerWithDefaults() *GetNetworkEvents20
 
 // GetOccurredAt returns the OccurredAt field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInner) GetOccurredAt() string {
-	if o == nil || isNil(o.OccurredAt) {
+	if o == nil || IsNil(o.OccurredAt) {
 		var ret string
 		return ret
 	}
@@ -70,15 +73,15 @@ func (o *GetNetworkEvents200ResponseEventsInner) GetOccurredAt() string {
 // GetOccurredAtOk returns a tuple with the OccurredAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) GetOccurredAtOk() (*string, bool) {
-	if o == nil || isNil(o.OccurredAt) {
-    return nil, false
+	if o == nil || IsNil(o.OccurredAt) {
+		return nil, false
 	}
 	return o.OccurredAt, true
 }
 
 // HasOccurredAt returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) HasOccurredAt() bool {
-	if o != nil && !isNil(o.OccurredAt) {
+	if o != nil && !IsNil(o.OccurredAt) {
 		return true
 	}
 
@@ -92,7 +95,7 @@ func (o *GetNetworkEvents200ResponseEventsInner) SetOccurredAt(v string) {
 
 // GetNetworkId returns the NetworkId field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInner) GetNetworkId() string {
-	if o == nil || isNil(o.NetworkId) {
+	if o == nil || IsNil(o.NetworkId) {
 		var ret string
 		return ret
 	}
@@ -102,15 +105,15 @@ func (o *GetNetworkEvents200ResponseEventsInner) GetNetworkId() string {
 // GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) GetNetworkIdOk() (*string, bool) {
-	if o == nil || isNil(o.NetworkId) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkId) {
+		return nil, false
 	}
 	return o.NetworkId, true
 }
 
 // HasNetworkId returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) HasNetworkId() bool {
-	if o != nil && !isNil(o.NetworkId) {
+	if o != nil && !IsNil(o.NetworkId) {
 		return true
 	}
 
@@ -124,7 +127,7 @@ func (o *GetNetworkEvents200ResponseEventsInner) SetNetworkId(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInner) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -134,15 +137,15 @@ func (o *GetNetworkEvents200ResponseEventsInner) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -156,7 +159,7 @@ func (o *GetNetworkEvents200ResponseEventsInner) SetType(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInner) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -166,15 +169,15 @@ func (o *GetNetworkEvents200ResponseEventsInner) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
-    return nil, false
+	if o == nil || IsNil(o.Description) {
+		return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -188,7 +191,7 @@ func (o *GetNetworkEvents200ResponseEventsInner) SetDescription(v string) {
 
 // GetCategory returns the Category field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInner) GetCategory() string {
-	if o == nil || isNil(o.Category) {
+	if o == nil || IsNil(o.Category) {
 		var ret string
 		return ret
 	}
@@ -198,15 +201,15 @@ func (o *GetNetworkEvents200ResponseEventsInner) GetCategory() string {
 // GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) GetCategoryOk() (*string, bool) {
-	if o == nil || isNil(o.Category) {
-    return nil, false
+	if o == nil || IsNil(o.Category) {
+		return nil, false
 	}
 	return o.Category, true
 }
 
 // HasCategory returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) HasCategory() bool {
-	if o != nil && !isNil(o.Category) {
+	if o != nil && !IsNil(o.Category) {
 		return true
 	}
 
@@ -220,7 +223,7 @@ func (o *GetNetworkEvents200ResponseEventsInner) SetCategory(v string) {
 
 // GetClientId returns the ClientId field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInner) GetClientId() string {
-	if o == nil || isNil(o.ClientId) {
+	if o == nil || IsNil(o.ClientId) {
 		var ret string
 		return ret
 	}
@@ -230,15 +233,15 @@ func (o *GetNetworkEvents200ResponseEventsInner) GetClientId() string {
 // GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) GetClientIdOk() (*string, bool) {
-	if o == nil || isNil(o.ClientId) {
-    return nil, false
+	if o == nil || IsNil(o.ClientId) {
+		return nil, false
 	}
 	return o.ClientId, true
 }
 
 // HasClientId returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) HasClientId() bool {
-	if o != nil && !isNil(o.ClientId) {
+	if o != nil && !IsNil(o.ClientId) {
 		return true
 	}
 
@@ -252,7 +255,7 @@ func (o *GetNetworkEvents200ResponseEventsInner) SetClientId(v string) {
 
 // GetClientDescription returns the ClientDescription field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInner) GetClientDescription() string {
-	if o == nil || isNil(o.ClientDescription) {
+	if o == nil || IsNil(o.ClientDescription) {
 		var ret string
 		return ret
 	}
@@ -262,15 +265,15 @@ func (o *GetNetworkEvents200ResponseEventsInner) GetClientDescription() string {
 // GetClientDescriptionOk returns a tuple with the ClientDescription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) GetClientDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.ClientDescription) {
-    return nil, false
+	if o == nil || IsNil(o.ClientDescription) {
+		return nil, false
 	}
 	return o.ClientDescription, true
 }
 
 // HasClientDescription returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) HasClientDescription() bool {
-	if o != nil && !isNil(o.ClientDescription) {
+	if o != nil && !IsNil(o.ClientDescription) {
 		return true
 	}
 
@@ -284,7 +287,7 @@ func (o *GetNetworkEvents200ResponseEventsInner) SetClientDescription(v string) 
 
 // GetClientMac returns the ClientMac field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInner) GetClientMac() string {
-	if o == nil || isNil(o.ClientMac) {
+	if o == nil || IsNil(o.ClientMac) {
 		var ret string
 		return ret
 	}
@@ -294,15 +297,15 @@ func (o *GetNetworkEvents200ResponseEventsInner) GetClientMac() string {
 // GetClientMacOk returns a tuple with the ClientMac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) GetClientMacOk() (*string, bool) {
-	if o == nil || isNil(o.ClientMac) {
-    return nil, false
+	if o == nil || IsNil(o.ClientMac) {
+		return nil, false
 	}
 	return o.ClientMac, true
 }
 
 // HasClientMac returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) HasClientMac() bool {
-	if o != nil && !isNil(o.ClientMac) {
+	if o != nil && !IsNil(o.ClientMac) {
 		return true
 	}
 
@@ -316,7 +319,7 @@ func (o *GetNetworkEvents200ResponseEventsInner) SetClientMac(v string) {
 
 // GetDeviceSerial returns the DeviceSerial field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInner) GetDeviceSerial() string {
-	if o == nil || isNil(o.DeviceSerial) {
+	if o == nil || IsNil(o.DeviceSerial) {
 		var ret string
 		return ret
 	}
@@ -326,15 +329,15 @@ func (o *GetNetworkEvents200ResponseEventsInner) GetDeviceSerial() string {
 // GetDeviceSerialOk returns a tuple with the DeviceSerial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) GetDeviceSerialOk() (*string, bool) {
-	if o == nil || isNil(o.DeviceSerial) {
-    return nil, false
+	if o == nil || IsNil(o.DeviceSerial) {
+		return nil, false
 	}
 	return o.DeviceSerial, true
 }
 
 // HasDeviceSerial returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) HasDeviceSerial() bool {
-	if o != nil && !isNil(o.DeviceSerial) {
+	if o != nil && !IsNil(o.DeviceSerial) {
 		return true
 	}
 
@@ -348,7 +351,7 @@ func (o *GetNetworkEvents200ResponseEventsInner) SetDeviceSerial(v string) {
 
 // GetDeviceName returns the DeviceName field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInner) GetDeviceName() string {
-	if o == nil || isNil(o.DeviceName) {
+	if o == nil || IsNil(o.DeviceName) {
 		var ret string
 		return ret
 	}
@@ -358,15 +361,15 @@ func (o *GetNetworkEvents200ResponseEventsInner) GetDeviceName() string {
 // GetDeviceNameOk returns a tuple with the DeviceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) GetDeviceNameOk() (*string, bool) {
-	if o == nil || isNil(o.DeviceName) {
-    return nil, false
+	if o == nil || IsNil(o.DeviceName) {
+		return nil, false
 	}
 	return o.DeviceName, true
 }
 
 // HasDeviceName returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) HasDeviceName() bool {
-	if o != nil && !isNil(o.DeviceName) {
+	if o != nil && !IsNil(o.DeviceName) {
 		return true
 	}
 
@@ -380,7 +383,7 @@ func (o *GetNetworkEvents200ResponseEventsInner) SetDeviceName(v string) {
 
 // GetSsidNumber returns the SsidNumber field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInner) GetSsidNumber() int32 {
-	if o == nil || isNil(o.SsidNumber) {
+	if o == nil || IsNil(o.SsidNumber) {
 		var ret int32
 		return ret
 	}
@@ -390,15 +393,15 @@ func (o *GetNetworkEvents200ResponseEventsInner) GetSsidNumber() int32 {
 // GetSsidNumberOk returns a tuple with the SsidNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) GetSsidNumberOk() (*int32, bool) {
-	if o == nil || isNil(o.SsidNumber) {
-    return nil, false
+	if o == nil || IsNil(o.SsidNumber) {
+		return nil, false
 	}
 	return o.SsidNumber, true
 }
 
 // HasSsidNumber returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) HasSsidNumber() bool {
-	if o != nil && !isNil(o.SsidNumber) {
+	if o != nil && !IsNil(o.SsidNumber) {
 		return true
 	}
 
@@ -412,7 +415,7 @@ func (o *GetNetworkEvents200ResponseEventsInner) SetSsidNumber(v int32) {
 
 // GetEventData returns the EventData field value if set, zero value otherwise.
 func (o *GetNetworkEvents200ResponseEventsInner) GetEventData() GetNetworkEvents200ResponseEventsInnerEventData {
-	if o == nil || isNil(o.EventData) {
+	if o == nil || IsNil(o.EventData) {
 		var ret GetNetworkEvents200ResponseEventsInnerEventData
 		return ret
 	}
@@ -422,15 +425,15 @@ func (o *GetNetworkEvents200ResponseEventsInner) GetEventData() GetNetworkEvents
 // GetEventDataOk returns a tuple with the EventData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) GetEventDataOk() (*GetNetworkEvents200ResponseEventsInnerEventData, bool) {
-	if o == nil || isNil(o.EventData) {
-    return nil, false
+	if o == nil || IsNil(o.EventData) {
+		return nil, false
 	}
 	return o.EventData, true
 }
 
 // HasEventData returns a boolean if a field has been set.
 func (o *GetNetworkEvents200ResponseEventsInner) HasEventData() bool {
-	if o != nil && !isNil(o.EventData) {
+	if o != nil && !IsNil(o.EventData) {
 		return true
 	}
 
@@ -443,44 +446,52 @@ func (o *GetNetworkEvents200ResponseEventsInner) SetEventData(v GetNetworkEvents
 }
 
 func (o GetNetworkEvents200ResponseEventsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.OccurredAt) {
-		toSerialize["occurredAt"] = o.OccurredAt
-	}
-	if !isNil(o.NetworkId) {
-		toSerialize["networkId"] = o.NetworkId
-	}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	if !isNil(o.Category) {
-		toSerialize["category"] = o.Category
-	}
-	if !isNil(o.ClientId) {
-		toSerialize["clientId"] = o.ClientId
-	}
-	if !isNil(o.ClientDescription) {
-		toSerialize["clientDescription"] = o.ClientDescription
-	}
-	if !isNil(o.ClientMac) {
-		toSerialize["clientMac"] = o.ClientMac
-	}
-	if !isNil(o.DeviceSerial) {
-		toSerialize["deviceSerial"] = o.DeviceSerial
-	}
-	if !isNil(o.DeviceName) {
-		toSerialize["deviceName"] = o.DeviceName
-	}
-	if !isNil(o.SsidNumber) {
-		toSerialize["ssidNumber"] = o.SsidNumber
-	}
-	if !isNil(o.EventData) {
-		toSerialize["eventData"] = o.EventData
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkEvents200ResponseEventsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.OccurredAt) {
+		toSerialize["occurredAt"] = o.OccurredAt
+	}
+	if !IsNil(o.NetworkId) {
+		toSerialize["networkId"] = o.NetworkId
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.Category) {
+		toSerialize["category"] = o.Category
+	}
+	if !IsNil(o.ClientId) {
+		toSerialize["clientId"] = o.ClientId
+	}
+	if !IsNil(o.ClientDescription) {
+		toSerialize["clientDescription"] = o.ClientDescription
+	}
+	if !IsNil(o.ClientMac) {
+		toSerialize["clientMac"] = o.ClientMac
+	}
+	if !IsNil(o.DeviceSerial) {
+		toSerialize["deviceSerial"] = o.DeviceSerial
+	}
+	if !IsNil(o.DeviceName) {
+		toSerialize["deviceName"] = o.DeviceName
+	}
+	if !IsNil(o.SsidNumber) {
+		toSerialize["ssidNumber"] = o.SsidNumber
+	}
+	if !IsNil(o.EventData) {
+		toSerialize["eventData"] = o.EventData
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkEvents200ResponseEventsInner struct {

@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetOrganizationApiRequests200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationApiRequests200ResponseInner{}
+
 // GetOrganizationApiRequests200ResponseInner struct for GetOrganizationApiRequests200ResponseInner
 type GetOrganizationApiRequests200ResponseInner struct {
 	// Database ID for the admin user who made the API request.
@@ -60,7 +63,7 @@ func NewGetOrganizationApiRequests200ResponseInnerWithDefaults() *GetOrganizatio
 
 // GetAdminId returns the AdminId field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequests200ResponseInner) GetAdminId() string {
-	if o == nil || isNil(o.AdminId) {
+	if o == nil || IsNil(o.AdminId) {
 		var ret string
 		return ret
 	}
@@ -70,15 +73,15 @@ func (o *GetOrganizationApiRequests200ResponseInner) GetAdminId() string {
 // GetAdminIdOk returns a tuple with the AdminId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) GetAdminIdOk() (*string, bool) {
-	if o == nil || isNil(o.AdminId) {
-    return nil, false
+	if o == nil || IsNil(o.AdminId) {
+		return nil, false
 	}
 	return o.AdminId, true
 }
 
 // HasAdminId returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) HasAdminId() bool {
-	if o != nil && !isNil(o.AdminId) {
+	if o != nil && !IsNil(o.AdminId) {
 		return true
 	}
 
@@ -92,7 +95,7 @@ func (o *GetOrganizationApiRequests200ResponseInner) SetAdminId(v string) {
 
 // GetMethod returns the Method field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequests200ResponseInner) GetMethod() string {
-	if o == nil || isNil(o.Method) {
+	if o == nil || IsNil(o.Method) {
 		var ret string
 		return ret
 	}
@@ -102,15 +105,15 @@ func (o *GetOrganizationApiRequests200ResponseInner) GetMethod() string {
 // GetMethodOk returns a tuple with the Method field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) GetMethodOk() (*string, bool) {
-	if o == nil || isNil(o.Method) {
-    return nil, false
+	if o == nil || IsNil(o.Method) {
+		return nil, false
 	}
 	return o.Method, true
 }
 
 // HasMethod returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) HasMethod() bool {
-	if o != nil && !isNil(o.Method) {
+	if o != nil && !IsNil(o.Method) {
 		return true
 	}
 
@@ -124,7 +127,7 @@ func (o *GetOrganizationApiRequests200ResponseInner) SetMethod(v string) {
 
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequests200ResponseInner) GetHost() string {
-	if o == nil || isNil(o.Host) {
+	if o == nil || IsNil(o.Host) {
 		var ret string
 		return ret
 	}
@@ -134,15 +137,15 @@ func (o *GetOrganizationApiRequests200ResponseInner) GetHost() string {
 // GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) GetHostOk() (*string, bool) {
-	if o == nil || isNil(o.Host) {
-    return nil, false
+	if o == nil || IsNil(o.Host) {
+		return nil, false
 	}
 	return o.Host, true
 }
 
 // HasHost returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) HasHost() bool {
-	if o != nil && !isNil(o.Host) {
+	if o != nil && !IsNil(o.Host) {
 		return true
 	}
 
@@ -156,7 +159,7 @@ func (o *GetOrganizationApiRequests200ResponseInner) SetHost(v string) {
 
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequests200ResponseInner) GetPath() string {
-	if o == nil || isNil(o.Path) {
+	if o == nil || IsNil(o.Path) {
 		var ret string
 		return ret
 	}
@@ -166,15 +169,15 @@ func (o *GetOrganizationApiRequests200ResponseInner) GetPath() string {
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) GetPathOk() (*string, bool) {
-	if o == nil || isNil(o.Path) {
-    return nil, false
+	if o == nil || IsNil(o.Path) {
+		return nil, false
 	}
 	return o.Path, true
 }
 
 // HasPath returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) HasPath() bool {
-	if o != nil && !isNil(o.Path) {
+	if o != nil && !IsNil(o.Path) {
 		return true
 	}
 
@@ -188,7 +191,7 @@ func (o *GetOrganizationApiRequests200ResponseInner) SetPath(v string) {
 
 // GetQueryString returns the QueryString field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequests200ResponseInner) GetQueryString() string {
-	if o == nil || isNil(o.QueryString) {
+	if o == nil || IsNil(o.QueryString) {
 		var ret string
 		return ret
 	}
@@ -198,15 +201,15 @@ func (o *GetOrganizationApiRequests200ResponseInner) GetQueryString() string {
 // GetQueryStringOk returns a tuple with the QueryString field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) GetQueryStringOk() (*string, bool) {
-	if o == nil || isNil(o.QueryString) {
-    return nil, false
+	if o == nil || IsNil(o.QueryString) {
+		return nil, false
 	}
 	return o.QueryString, true
 }
 
 // HasQueryString returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) HasQueryString() bool {
-	if o != nil && !isNil(o.QueryString) {
+	if o != nil && !IsNil(o.QueryString) {
 		return true
 	}
 
@@ -220,7 +223,7 @@ func (o *GetOrganizationApiRequests200ResponseInner) SetQueryString(v string) {
 
 // GetUserAgent returns the UserAgent field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequests200ResponseInner) GetUserAgent() string {
-	if o == nil || isNil(o.UserAgent) {
+	if o == nil || IsNil(o.UserAgent) {
 		var ret string
 		return ret
 	}
@@ -230,15 +233,15 @@ func (o *GetOrganizationApiRequests200ResponseInner) GetUserAgent() string {
 // GetUserAgentOk returns a tuple with the UserAgent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) GetUserAgentOk() (*string, bool) {
-	if o == nil || isNil(o.UserAgent) {
-    return nil, false
+	if o == nil || IsNil(o.UserAgent) {
+		return nil, false
 	}
 	return o.UserAgent, true
 }
 
 // HasUserAgent returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) HasUserAgent() bool {
-	if o != nil && !isNil(o.UserAgent) {
+	if o != nil && !IsNil(o.UserAgent) {
 		return true
 	}
 
@@ -252,7 +255,7 @@ func (o *GetOrganizationApiRequests200ResponseInner) SetUserAgent(v string) {
 
 // GetTs returns the Ts field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequests200ResponseInner) GetTs() time.Time {
-	if o == nil || isNil(o.Ts) {
+	if o == nil || IsNil(o.Ts) {
 		var ret time.Time
 		return ret
 	}
@@ -262,15 +265,15 @@ func (o *GetOrganizationApiRequests200ResponseInner) GetTs() time.Time {
 // GetTsOk returns a tuple with the Ts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) GetTsOk() (*time.Time, bool) {
-	if o == nil || isNil(o.Ts) {
-    return nil, false
+	if o == nil || IsNil(o.Ts) {
+		return nil, false
 	}
 	return o.Ts, true
 }
 
 // HasTs returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) HasTs() bool {
-	if o != nil && !isNil(o.Ts) {
+	if o != nil && !IsNil(o.Ts) {
 		return true
 	}
 
@@ -284,7 +287,7 @@ func (o *GetOrganizationApiRequests200ResponseInner) SetTs(v time.Time) {
 
 // GetResponseCode returns the ResponseCode field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequests200ResponseInner) GetResponseCode() int32 {
-	if o == nil || isNil(o.ResponseCode) {
+	if o == nil || IsNil(o.ResponseCode) {
 		var ret int32
 		return ret
 	}
@@ -294,15 +297,15 @@ func (o *GetOrganizationApiRequests200ResponseInner) GetResponseCode() int32 {
 // GetResponseCodeOk returns a tuple with the ResponseCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) GetResponseCodeOk() (*int32, bool) {
-	if o == nil || isNil(o.ResponseCode) {
-    return nil, false
+	if o == nil || IsNil(o.ResponseCode) {
+		return nil, false
 	}
 	return o.ResponseCode, true
 }
 
 // HasResponseCode returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) HasResponseCode() bool {
-	if o != nil && !isNil(o.ResponseCode) {
+	if o != nil && !IsNil(o.ResponseCode) {
 		return true
 	}
 
@@ -316,7 +319,7 @@ func (o *GetOrganizationApiRequests200ResponseInner) SetResponseCode(v int32) {
 
 // GetSourceIp returns the SourceIp field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequests200ResponseInner) GetSourceIp() string {
-	if o == nil || isNil(o.SourceIp) {
+	if o == nil || IsNil(o.SourceIp) {
 		var ret string
 		return ret
 	}
@@ -326,15 +329,15 @@ func (o *GetOrganizationApiRequests200ResponseInner) GetSourceIp() string {
 // GetSourceIpOk returns a tuple with the SourceIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) GetSourceIpOk() (*string, bool) {
-	if o == nil || isNil(o.SourceIp) {
-    return nil, false
+	if o == nil || IsNil(o.SourceIp) {
+		return nil, false
 	}
 	return o.SourceIp, true
 }
 
 // HasSourceIp returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) HasSourceIp() bool {
-	if o != nil && !isNil(o.SourceIp) {
+	if o != nil && !IsNil(o.SourceIp) {
 		return true
 	}
 
@@ -348,7 +351,7 @@ func (o *GetOrganizationApiRequests200ResponseInner) SetSourceIp(v string) {
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequests200ResponseInner) GetVersion() int32 {
-	if o == nil || isNil(o.Version) {
+	if o == nil || IsNil(o.Version) {
 		var ret int32
 		return ret
 	}
@@ -358,15 +361,15 @@ func (o *GetOrganizationApiRequests200ResponseInner) GetVersion() int32 {
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) GetVersionOk() (*int32, bool) {
-	if o == nil || isNil(o.Version) {
-    return nil, false
+	if o == nil || IsNil(o.Version) {
+		return nil, false
 	}
 	return o.Version, true
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) HasVersion() bool {
-	if o != nil && !isNil(o.Version) {
+	if o != nil && !IsNil(o.Version) {
 		return true
 	}
 
@@ -380,7 +383,7 @@ func (o *GetOrganizationApiRequests200ResponseInner) SetVersion(v int32) {
 
 // GetOperationId returns the OperationId field value if set, zero value otherwise.
 func (o *GetOrganizationApiRequests200ResponseInner) GetOperationId() string {
-	if o == nil || isNil(o.OperationId) {
+	if o == nil || IsNil(o.OperationId) {
 		var ret string
 		return ret
 	}
@@ -390,15 +393,15 @@ func (o *GetOrganizationApiRequests200ResponseInner) GetOperationId() string {
 // GetOperationIdOk returns a tuple with the OperationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) GetOperationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OperationId) {
-    return nil, false
+	if o == nil || IsNil(o.OperationId) {
+		return nil, false
 	}
 	return o.OperationId, true
 }
 
 // HasOperationId returns a boolean if a field has been set.
 func (o *GetOrganizationApiRequests200ResponseInner) HasOperationId() bool {
-	if o != nil && !isNil(o.OperationId) {
+	if o != nil && !IsNil(o.OperationId) {
 		return true
 	}
 
@@ -411,41 +414,49 @@ func (o *GetOrganizationApiRequests200ResponseInner) SetOperationId(v string) {
 }
 
 func (o GetOrganizationApiRequests200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.AdminId) {
-		toSerialize["adminId"] = o.AdminId
-	}
-	if !isNil(o.Method) {
-		toSerialize["method"] = o.Method
-	}
-	if !isNil(o.Host) {
-		toSerialize["host"] = o.Host
-	}
-	if !isNil(o.Path) {
-		toSerialize["path"] = o.Path
-	}
-	if !isNil(o.QueryString) {
-		toSerialize["queryString"] = o.QueryString
-	}
-	if !isNil(o.UserAgent) {
-		toSerialize["userAgent"] = o.UserAgent
-	}
-	if !isNil(o.Ts) {
-		toSerialize["ts"] = o.Ts
-	}
-	if !isNil(o.ResponseCode) {
-		toSerialize["responseCode"] = o.ResponseCode
-	}
-	if !isNil(o.SourceIp) {
-		toSerialize["sourceIp"] = o.SourceIp
-	}
-	if !isNil(o.Version) {
-		toSerialize["version"] = o.Version
-	}
-	if !isNil(o.OperationId) {
-		toSerialize["operationId"] = o.OperationId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationApiRequests200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AdminId) {
+		toSerialize["adminId"] = o.AdminId
+	}
+	if !IsNil(o.Method) {
+		toSerialize["method"] = o.Method
+	}
+	if !IsNil(o.Host) {
+		toSerialize["host"] = o.Host
+	}
+	if !IsNil(o.Path) {
+		toSerialize["path"] = o.Path
+	}
+	if !IsNil(o.QueryString) {
+		toSerialize["queryString"] = o.QueryString
+	}
+	if !IsNil(o.UserAgent) {
+		toSerialize["userAgent"] = o.UserAgent
+	}
+	if !IsNil(o.Ts) {
+		toSerialize["ts"] = o.Ts
+	}
+	if !IsNil(o.ResponseCode) {
+		toSerialize["responseCode"] = o.ResponseCode
+	}
+	if !IsNil(o.SourceIp) {
+		toSerialize["sourceIp"] = o.SourceIp
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
+	if !IsNil(o.OperationId) {
+		toSerialize["operationId"] = o.OperationId
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationApiRequests200ResponseInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessList{}
+
 // CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessList AccessList details
 type CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessList struct {
 	VtyIn *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessListVtyIn `json:"vtyIn,omitempty"`
@@ -39,7 +42,7 @@ func NewCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevice
 
 // GetVtyIn returns the VtyIn field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessList) GetVtyIn() CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessListVtyIn {
-	if o == nil || isNil(o.VtyIn) {
+	if o == nil || IsNil(o.VtyIn) {
 		var ret CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessListVtyIn
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 // GetVtyInOk returns a tuple with the VtyIn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessList) GetVtyInOk() (*CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessListVtyIn, bool) {
-	if o == nil || isNil(o.VtyIn) {
-    return nil, false
+	if o == nil || IsNil(o.VtyIn) {
+		return nil, false
 	}
 	return o.VtyIn, true
 }
 
 // HasVtyIn returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessList) HasVtyIn() bool {
-	if o != nil && !isNil(o.VtyIn) {
+	if o != nil && !IsNil(o.VtyIn) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 
 // GetVtyOut returns the VtyOut field value if set, zero value otherwise.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessList) GetVtyOut() CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessListVtyOut {
-	if o == nil || isNil(o.VtyOut) {
+	if o == nil || IsNil(o.VtyOut) {
 		var ret CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessListVtyOut
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 // GetVtyOutOk returns a tuple with the VtyOut field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessList) GetVtyOutOk() (*CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessListVtyOut, bool) {
-	if o == nil || isNil(o.VtyOut) {
-    return nil, false
+	if o == nil || IsNil(o.VtyOut) {
+		return nil, false
 	}
 	return o.VtyOut, true
 }
 
 // HasVtyOut returns a boolean if a field has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessList) HasVtyOut() bool {
-	if o != nil && !isNil(o.VtyOut) {
+	if o != nil && !IsNil(o.VtyOut) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevic
 }
 
 func (o CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessList) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.VtyIn) {
-		toSerialize["vtyIn"] = o.VtyIn
-	}
-	if !isNil(o.VtyOut) {
-		toSerialize["vtyOut"] = o.VtyOut
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessList) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.VtyIn) {
+		toSerialize["vtyIn"] = o.VtyIn
+	}
+	if !IsNil(o.VtyOut) {
+		toSerialize["vtyOut"] = o.VtyOut
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationInventoryOnboardingCloudMonitoringPrepareRequestDevicesInnerVtyAccessList struct {

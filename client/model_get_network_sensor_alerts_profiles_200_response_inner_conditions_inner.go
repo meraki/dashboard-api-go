@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner{}
+
 // GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner struct for GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner
 type GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner struct {
 	// The type of sensor metric that will be monitored for changes. Available metrics are door, humidity, indoorAirQuality, noise, pm25, temperature, tvoc, and water.
@@ -62,7 +65,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) GetMetri
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) GetMetricOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Metric, true
 }
@@ -86,7 +89,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) GetThres
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) GetThresholdOk() (*GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThreshold, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Threshold, true
 }
@@ -98,7 +101,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) SetThres
 
 // GetDirection returns the Direction field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) GetDirection() string {
-	if o == nil || isNil(o.Direction) {
+	if o == nil || IsNil(o.Direction) {
 		var ret string
 		return ret
 	}
@@ -108,15 +111,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) GetDirec
 // GetDirectionOk returns a tuple with the Direction field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) GetDirectionOk() (*string, bool) {
-	if o == nil || isNil(o.Direction) {
-    return nil, false
+	if o == nil || IsNil(o.Direction) {
+		return nil, false
 	}
 	return o.Direction, true
 }
 
 // HasDirection returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) HasDirection() bool {
-	if o != nil && !isNil(o.Direction) {
+	if o != nil && !IsNil(o.Direction) {
 		return true
 	}
 
@@ -130,7 +133,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) SetDirec
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) GetDuration() int32 {
-	if o == nil || isNil(o.Duration) {
+	if o == nil || IsNil(o.Duration) {
 		var ret int32
 		return ret
 	}
@@ -140,15 +143,15 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) GetDurat
 // GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) GetDurationOk() (*int32, bool) {
-	if o == nil || isNil(o.Duration) {
-    return nil, false
+	if o == nil || IsNil(o.Duration) {
+		return nil, false
 	}
 	return o.Duration, true
 }
 
 // HasDuration returns a boolean if a field has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) HasDuration() bool {
-	if o != nil && !isNil(o.Duration) {
+	if o != nil && !IsNil(o.Duration) {
 		return true
 	}
 
@@ -161,20 +164,24 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) SetDurat
 }
 
 func (o GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["metric"] = o.Metric
-	}
-	if true {
-		toSerialize["threshold"] = o.Threshold
-	}
-	if !isNil(o.Direction) {
-		toSerialize["direction"] = o.Direction
-	}
-	if !isNil(o.Duration) {
-		toSerialize["duration"] = o.Duration
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["metric"] = o.Metric
+	toSerialize["threshold"] = o.Threshold
+	if !IsNil(o.Direction) {
+		toSerialize["direction"] = o.Direction
+	}
+	if !IsNil(o.Duration) {
+		toSerialize["duration"] = o.Duration
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSensorAlertsProfiles200ResponseInnerConditionsInner struct {

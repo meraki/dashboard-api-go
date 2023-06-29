@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkApplianceRfProfileRequestFiveGhzSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkApplianceRfProfileRequestFiveGhzSettings{}
+
 // CreateNetworkApplianceRfProfileRequestFiveGhzSettings Settings related to 5Ghz band
 type CreateNetworkApplianceRfProfileRequestFiveGhzSettings struct {
 	// Sets min bitrate (Mbps) of 5Ghz band. Can be one of '6', '9', '12', '18', '24', '36', '48' or '54'. Defaults to 12.
@@ -41,7 +44,7 @@ func NewCreateNetworkApplianceRfProfileRequestFiveGhzSettingsWithDefaults() *Cre
 
 // GetMinBitrate returns the MinBitrate field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceRfProfileRequestFiveGhzSettings) GetMinBitrate() int32 {
-	if o == nil || isNil(o.MinBitrate) {
+	if o == nil || IsNil(o.MinBitrate) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *CreateNetworkApplianceRfProfileRequestFiveGhzSettings) GetMinBitrate() 
 // GetMinBitrateOk returns a tuple with the MinBitrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceRfProfileRequestFiveGhzSettings) GetMinBitrateOk() (*int32, bool) {
-	if o == nil || isNil(o.MinBitrate) {
-    return nil, false
+	if o == nil || IsNil(o.MinBitrate) {
+		return nil, false
 	}
 	return o.MinBitrate, true
 }
 
 // HasMinBitrate returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceRfProfileRequestFiveGhzSettings) HasMinBitrate() bool {
-	if o != nil && !isNil(o.MinBitrate) {
+	if o != nil && !IsNil(o.MinBitrate) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *CreateNetworkApplianceRfProfileRequestFiveGhzSettings) SetMinBitrate(v 
 
 // GetAxEnabled returns the AxEnabled field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceRfProfileRequestFiveGhzSettings) GetAxEnabled() bool {
-	if o == nil || isNil(o.AxEnabled) {
+	if o == nil || IsNil(o.AxEnabled) {
 		var ret bool
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *CreateNetworkApplianceRfProfileRequestFiveGhzSettings) GetAxEnabled() b
 // GetAxEnabledOk returns a tuple with the AxEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceRfProfileRequestFiveGhzSettings) GetAxEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.AxEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.AxEnabled) {
+		return nil, false
 	}
 	return o.AxEnabled, true
 }
 
 // HasAxEnabled returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceRfProfileRequestFiveGhzSettings) HasAxEnabled() bool {
-	if o != nil && !isNil(o.AxEnabled) {
+	if o != nil && !IsNil(o.AxEnabled) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *CreateNetworkApplianceRfProfileRequestFiveGhzSettings) SetAxEnabled(v b
 }
 
 func (o CreateNetworkApplianceRfProfileRequestFiveGhzSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.MinBitrate) {
-		toSerialize["minBitrate"] = o.MinBitrate
-	}
-	if !isNil(o.AxEnabled) {
-		toSerialize["axEnabled"] = o.AxEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkApplianceRfProfileRequestFiveGhzSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MinBitrate) {
+		toSerialize["minBitrate"] = o.MinBitrate
+	}
+	if !IsNil(o.AxEnabled) {
+		toSerialize["axEnabled"] = o.AxEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkApplianceRfProfileRequestFiveGhzSettings struct {

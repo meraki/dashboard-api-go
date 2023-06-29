@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationConfigTemplateSwitchProfilePortRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationConfigTemplateSwitchProfilePortRequest{}
+
 // UpdateOrganizationConfigTemplateSwitchProfilePortRequest struct for UpdateOrganizationConfigTemplateSwitchProfilePortRequest
 type UpdateOrganizationConfigTemplateSwitchProfilePortRequest struct {
 	// The name of the switch profile port.
@@ -82,7 +85,7 @@ func NewUpdateOrganizationConfigTemplateSwitchProfilePortRequestWithDefaults() *
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -92,15 +95,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetName() str
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -114,7 +117,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetName(v str
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetTags() []string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -124,15 +127,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetTags() []s
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
 	}
 	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -146,7 +149,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetTags(v []s
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -156,15 +159,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetEnabled() 
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -178,7 +181,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetEnabled(v 
 
 // GetPoeEnabled returns the PoeEnabled field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetPoeEnabled() bool {
-	if o == nil || isNil(o.PoeEnabled) {
+	if o == nil || IsNil(o.PoeEnabled) {
 		var ret bool
 		return ret
 	}
@@ -188,15 +191,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetPoeEnabled
 // GetPoeEnabledOk returns a tuple with the PoeEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetPoeEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.PoeEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.PoeEnabled) {
+		return nil, false
 	}
 	return o.PoeEnabled, true
 }
 
 // HasPoeEnabled returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasPoeEnabled() bool {
-	if o != nil && !isNil(o.PoeEnabled) {
+	if o != nil && !IsNil(o.PoeEnabled) {
 		return true
 	}
 
@@ -210,7 +213,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetPoeEnabled
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -220,15 +223,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetType() str
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -242,7 +245,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetType(v str
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetVlan() int32 {
-	if o == nil || isNil(o.Vlan) {
+	if o == nil || IsNil(o.Vlan) {
 		var ret int32
 		return ret
 	}
@@ -252,15 +255,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetVlan() int
 // GetVlanOk returns a tuple with the Vlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetVlanOk() (*int32, bool) {
-	if o == nil || isNil(o.Vlan) {
-    return nil, false
+	if o == nil || IsNil(o.Vlan) {
+		return nil, false
 	}
 	return o.Vlan, true
 }
 
 // HasVlan returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasVlan() bool {
-	if o != nil && !isNil(o.Vlan) {
+	if o != nil && !IsNil(o.Vlan) {
 		return true
 	}
 
@@ -274,7 +277,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetVlan(v int
 
 // GetVoiceVlan returns the VoiceVlan field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetVoiceVlan() int32 {
-	if o == nil || isNil(o.VoiceVlan) {
+	if o == nil || IsNil(o.VoiceVlan) {
 		var ret int32
 		return ret
 	}
@@ -284,15 +287,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetVoiceVlan(
 // GetVoiceVlanOk returns a tuple with the VoiceVlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetVoiceVlanOk() (*int32, bool) {
-	if o == nil || isNil(o.VoiceVlan) {
-    return nil, false
+	if o == nil || IsNil(o.VoiceVlan) {
+		return nil, false
 	}
 	return o.VoiceVlan, true
 }
 
 // HasVoiceVlan returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasVoiceVlan() bool {
-	if o != nil && !isNil(o.VoiceVlan) {
+	if o != nil && !IsNil(o.VoiceVlan) {
 		return true
 	}
 
@@ -306,7 +309,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetVoiceVlan(
 
 // GetAllowedVlans returns the AllowedVlans field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetAllowedVlans() string {
-	if o == nil || isNil(o.AllowedVlans) {
+	if o == nil || IsNil(o.AllowedVlans) {
 		var ret string
 		return ret
 	}
@@ -316,15 +319,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetAllowedVla
 // GetAllowedVlansOk returns a tuple with the AllowedVlans field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetAllowedVlansOk() (*string, bool) {
-	if o == nil || isNil(o.AllowedVlans) {
-    return nil, false
+	if o == nil || IsNil(o.AllowedVlans) {
+		return nil, false
 	}
 	return o.AllowedVlans, true
 }
 
 // HasAllowedVlans returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasAllowedVlans() bool {
-	if o != nil && !isNil(o.AllowedVlans) {
+	if o != nil && !IsNil(o.AllowedVlans) {
 		return true
 	}
 
@@ -338,7 +341,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetAllowedVla
 
 // GetIsolationEnabled returns the IsolationEnabled field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetIsolationEnabled() bool {
-	if o == nil || isNil(o.IsolationEnabled) {
+	if o == nil || IsNil(o.IsolationEnabled) {
 		var ret bool
 		return ret
 	}
@@ -348,15 +351,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetIsolationE
 // GetIsolationEnabledOk returns a tuple with the IsolationEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetIsolationEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.IsolationEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.IsolationEnabled) {
+		return nil, false
 	}
 	return o.IsolationEnabled, true
 }
 
 // HasIsolationEnabled returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasIsolationEnabled() bool {
-	if o != nil && !isNil(o.IsolationEnabled) {
+	if o != nil && !IsNil(o.IsolationEnabled) {
 		return true
 	}
 
@@ -370,7 +373,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetIsolationE
 
 // GetRstpEnabled returns the RstpEnabled field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetRstpEnabled() bool {
-	if o == nil || isNil(o.RstpEnabled) {
+	if o == nil || IsNil(o.RstpEnabled) {
 		var ret bool
 		return ret
 	}
@@ -380,15 +383,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetRstpEnable
 // GetRstpEnabledOk returns a tuple with the RstpEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetRstpEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.RstpEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.RstpEnabled) {
+		return nil, false
 	}
 	return o.RstpEnabled, true
 }
 
 // HasRstpEnabled returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasRstpEnabled() bool {
-	if o != nil && !isNil(o.RstpEnabled) {
+	if o != nil && !IsNil(o.RstpEnabled) {
 		return true
 	}
 
@@ -402,7 +405,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetRstpEnable
 
 // GetStpGuard returns the StpGuard field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetStpGuard() string {
-	if o == nil || isNil(o.StpGuard) {
+	if o == nil || IsNil(o.StpGuard) {
 		var ret string
 		return ret
 	}
@@ -412,15 +415,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetStpGuard()
 // GetStpGuardOk returns a tuple with the StpGuard field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetStpGuardOk() (*string, bool) {
-	if o == nil || isNil(o.StpGuard) {
-    return nil, false
+	if o == nil || IsNil(o.StpGuard) {
+		return nil, false
 	}
 	return o.StpGuard, true
 }
 
 // HasStpGuard returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasStpGuard() bool {
-	if o != nil && !isNil(o.StpGuard) {
+	if o != nil && !IsNil(o.StpGuard) {
 		return true
 	}
 
@@ -434,7 +437,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetStpGuard(v
 
 // GetLinkNegotiation returns the LinkNegotiation field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetLinkNegotiation() string {
-	if o == nil || isNil(o.LinkNegotiation) {
+	if o == nil || IsNil(o.LinkNegotiation) {
 		var ret string
 		return ret
 	}
@@ -444,15 +447,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetLinkNegoti
 // GetLinkNegotiationOk returns a tuple with the LinkNegotiation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetLinkNegotiationOk() (*string, bool) {
-	if o == nil || isNil(o.LinkNegotiation) {
-    return nil, false
+	if o == nil || IsNil(o.LinkNegotiation) {
+		return nil, false
 	}
 	return o.LinkNegotiation, true
 }
 
 // HasLinkNegotiation returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasLinkNegotiation() bool {
-	if o != nil && !isNil(o.LinkNegotiation) {
+	if o != nil && !IsNil(o.LinkNegotiation) {
 		return true
 	}
 
@@ -466,7 +469,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetLinkNegoti
 
 // GetPortScheduleId returns the PortScheduleId field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetPortScheduleId() string {
-	if o == nil || isNil(o.PortScheduleId) {
+	if o == nil || IsNil(o.PortScheduleId) {
 		var ret string
 		return ret
 	}
@@ -476,15 +479,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetPortSchedu
 // GetPortScheduleIdOk returns a tuple with the PortScheduleId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetPortScheduleIdOk() (*string, bool) {
-	if o == nil || isNil(o.PortScheduleId) {
-    return nil, false
+	if o == nil || IsNil(o.PortScheduleId) {
+		return nil, false
 	}
 	return o.PortScheduleId, true
 }
 
 // HasPortScheduleId returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasPortScheduleId() bool {
-	if o != nil && !isNil(o.PortScheduleId) {
+	if o != nil && !IsNil(o.PortScheduleId) {
 		return true
 	}
 
@@ -498,7 +501,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetPortSchedu
 
 // GetUdld returns the Udld field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetUdld() string {
-	if o == nil || isNil(o.Udld) {
+	if o == nil || IsNil(o.Udld) {
 		var ret string
 		return ret
 	}
@@ -508,15 +511,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetUdld() str
 // GetUdldOk returns a tuple with the Udld field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetUdldOk() (*string, bool) {
-	if o == nil || isNil(o.Udld) {
-    return nil, false
+	if o == nil || IsNil(o.Udld) {
+		return nil, false
 	}
 	return o.Udld, true
 }
 
 // HasUdld returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasUdld() bool {
-	if o != nil && !isNil(o.Udld) {
+	if o != nil && !IsNil(o.Udld) {
 		return true
 	}
 
@@ -530,7 +533,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetUdld(v str
 
 // GetAccessPolicyType returns the AccessPolicyType field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetAccessPolicyType() string {
-	if o == nil || isNil(o.AccessPolicyType) {
+	if o == nil || IsNil(o.AccessPolicyType) {
 		var ret string
 		return ret
 	}
@@ -540,15 +543,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetAccessPoli
 // GetAccessPolicyTypeOk returns a tuple with the AccessPolicyType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetAccessPolicyTypeOk() (*string, bool) {
-	if o == nil || isNil(o.AccessPolicyType) {
-    return nil, false
+	if o == nil || IsNil(o.AccessPolicyType) {
+		return nil, false
 	}
 	return o.AccessPolicyType, true
 }
 
 // HasAccessPolicyType returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasAccessPolicyType() bool {
-	if o != nil && !isNil(o.AccessPolicyType) {
+	if o != nil && !IsNil(o.AccessPolicyType) {
 		return true
 	}
 
@@ -562,7 +565,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetAccessPoli
 
 // GetAccessPolicyNumber returns the AccessPolicyNumber field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetAccessPolicyNumber() int32 {
-	if o == nil || isNil(o.AccessPolicyNumber) {
+	if o == nil || IsNil(o.AccessPolicyNumber) {
 		var ret int32
 		return ret
 	}
@@ -572,15 +575,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetAccessPoli
 // GetAccessPolicyNumberOk returns a tuple with the AccessPolicyNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetAccessPolicyNumberOk() (*int32, bool) {
-	if o == nil || isNil(o.AccessPolicyNumber) {
-    return nil, false
+	if o == nil || IsNil(o.AccessPolicyNumber) {
+		return nil, false
 	}
 	return o.AccessPolicyNumber, true
 }
 
 // HasAccessPolicyNumber returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasAccessPolicyNumber() bool {
-	if o != nil && !isNil(o.AccessPolicyNumber) {
+	if o != nil && !IsNil(o.AccessPolicyNumber) {
 		return true
 	}
 
@@ -594,7 +597,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetAccessPoli
 
 // GetMacAllowList returns the MacAllowList field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetMacAllowList() []string {
-	if o == nil || isNil(o.MacAllowList) {
+	if o == nil || IsNil(o.MacAllowList) {
 		var ret []string
 		return ret
 	}
@@ -604,15 +607,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetMacAllowLi
 // GetMacAllowListOk returns a tuple with the MacAllowList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetMacAllowListOk() ([]string, bool) {
-	if o == nil || isNil(o.MacAllowList) {
-    return nil, false
+	if o == nil || IsNil(o.MacAllowList) {
+		return nil, false
 	}
 	return o.MacAllowList, true
 }
 
 // HasMacAllowList returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasMacAllowList() bool {
-	if o != nil && !isNil(o.MacAllowList) {
+	if o != nil && !IsNil(o.MacAllowList) {
 		return true
 	}
 
@@ -626,7 +629,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetMacAllowLi
 
 // GetStickyMacAllowList returns the StickyMacAllowList field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetStickyMacAllowList() []string {
-	if o == nil || isNil(o.StickyMacAllowList) {
+	if o == nil || IsNil(o.StickyMacAllowList) {
 		var ret []string
 		return ret
 	}
@@ -636,15 +639,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetStickyMacA
 // GetStickyMacAllowListOk returns a tuple with the StickyMacAllowList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetStickyMacAllowListOk() ([]string, bool) {
-	if o == nil || isNil(o.StickyMacAllowList) {
-    return nil, false
+	if o == nil || IsNil(o.StickyMacAllowList) {
+		return nil, false
 	}
 	return o.StickyMacAllowList, true
 }
 
 // HasStickyMacAllowList returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasStickyMacAllowList() bool {
-	if o != nil && !isNil(o.StickyMacAllowList) {
+	if o != nil && !IsNil(o.StickyMacAllowList) {
 		return true
 	}
 
@@ -658,7 +661,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetStickyMacA
 
 // GetStickyMacAllowListLimit returns the StickyMacAllowListLimit field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetStickyMacAllowListLimit() int32 {
-	if o == nil || isNil(o.StickyMacAllowListLimit) {
+	if o == nil || IsNil(o.StickyMacAllowListLimit) {
 		var ret int32
 		return ret
 	}
@@ -668,15 +671,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetStickyMacA
 // GetStickyMacAllowListLimitOk returns a tuple with the StickyMacAllowListLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetStickyMacAllowListLimitOk() (*int32, bool) {
-	if o == nil || isNil(o.StickyMacAllowListLimit) {
-    return nil, false
+	if o == nil || IsNil(o.StickyMacAllowListLimit) {
+		return nil, false
 	}
 	return o.StickyMacAllowListLimit, true
 }
 
 // HasStickyMacAllowListLimit returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasStickyMacAllowListLimit() bool {
-	if o != nil && !isNil(o.StickyMacAllowListLimit) {
+	if o != nil && !IsNil(o.StickyMacAllowListLimit) {
 		return true
 	}
 
@@ -690,7 +693,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetStickyMacA
 
 // GetStormControlEnabled returns the StormControlEnabled field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetStormControlEnabled() bool {
-	if o == nil || isNil(o.StormControlEnabled) {
+	if o == nil || IsNil(o.StormControlEnabled) {
 		var ret bool
 		return ret
 	}
@@ -700,15 +703,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetStormContr
 // GetStormControlEnabledOk returns a tuple with the StormControlEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetStormControlEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.StormControlEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.StormControlEnabled) {
+		return nil, false
 	}
 	return o.StormControlEnabled, true
 }
 
 // HasStormControlEnabled returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasStormControlEnabled() bool {
-	if o != nil && !isNil(o.StormControlEnabled) {
+	if o != nil && !IsNil(o.StormControlEnabled) {
 		return true
 	}
 
@@ -722,7 +725,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetStormContr
 
 // GetFlexibleStackingEnabled returns the FlexibleStackingEnabled field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetFlexibleStackingEnabled() bool {
-	if o == nil || isNil(o.FlexibleStackingEnabled) {
+	if o == nil || IsNil(o.FlexibleStackingEnabled) {
 		var ret bool
 		return ret
 	}
@@ -732,15 +735,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetFlexibleSt
 // GetFlexibleStackingEnabledOk returns a tuple with the FlexibleStackingEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetFlexibleStackingEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.FlexibleStackingEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.FlexibleStackingEnabled) {
+		return nil, false
 	}
 	return o.FlexibleStackingEnabled, true
 }
 
 // HasFlexibleStackingEnabled returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasFlexibleStackingEnabled() bool {
-	if o != nil && !isNil(o.FlexibleStackingEnabled) {
+	if o != nil && !IsNil(o.FlexibleStackingEnabled) {
 		return true
 	}
 
@@ -754,7 +757,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetFlexibleSt
 
 // GetDaiTrusted returns the DaiTrusted field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetDaiTrusted() bool {
-	if o == nil || isNil(o.DaiTrusted) {
+	if o == nil || IsNil(o.DaiTrusted) {
 		var ret bool
 		return ret
 	}
@@ -764,15 +767,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetDaiTrusted
 // GetDaiTrustedOk returns a tuple with the DaiTrusted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetDaiTrustedOk() (*bool, bool) {
-	if o == nil || isNil(o.DaiTrusted) {
-    return nil, false
+	if o == nil || IsNil(o.DaiTrusted) {
+		return nil, false
 	}
 	return o.DaiTrusted, true
 }
 
 // HasDaiTrusted returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasDaiTrusted() bool {
-	if o != nil && !isNil(o.DaiTrusted) {
+	if o != nil && !IsNil(o.DaiTrusted) {
 		return true
 	}
 
@@ -786,7 +789,7 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetDaiTrusted
 
 // GetProfile returns the Profile field value if set, zero value otherwise.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetProfile() GetDeviceSwitchPorts200ResponseInnerProfile {
-	if o == nil || isNil(o.Profile) {
+	if o == nil || IsNil(o.Profile) {
 		var ret GetDeviceSwitchPorts200ResponseInnerProfile
 		return ret
 	}
@@ -796,15 +799,15 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetProfile() 
 // GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) GetProfileOk() (*GetDeviceSwitchPorts200ResponseInnerProfile, bool) {
-	if o == nil || isNil(o.Profile) {
-    return nil, false
+	if o == nil || IsNil(o.Profile) {
+		return nil, false
 	}
 	return o.Profile, true
 }
 
 // HasProfile returns a boolean if a field has been set.
 func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) HasProfile() bool {
-	if o != nil && !isNil(o.Profile) {
+	if o != nil && !IsNil(o.Profile) {
 		return true
 	}
 
@@ -817,77 +820,85 @@ func (o *UpdateOrganizationConfigTemplateSwitchProfilePortRequest) SetProfile(v 
 }
 
 func (o UpdateOrganizationConfigTemplateSwitchProfilePortRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.PoeEnabled) {
-		toSerialize["poeEnabled"] = o.PoeEnabled
-	}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Vlan) {
-		toSerialize["vlan"] = o.Vlan
-	}
-	if !isNil(o.VoiceVlan) {
-		toSerialize["voiceVlan"] = o.VoiceVlan
-	}
-	if !isNil(o.AllowedVlans) {
-		toSerialize["allowedVlans"] = o.AllowedVlans
-	}
-	if !isNil(o.IsolationEnabled) {
-		toSerialize["isolationEnabled"] = o.IsolationEnabled
-	}
-	if !isNil(o.RstpEnabled) {
-		toSerialize["rstpEnabled"] = o.RstpEnabled
-	}
-	if !isNil(o.StpGuard) {
-		toSerialize["stpGuard"] = o.StpGuard
-	}
-	if !isNil(o.LinkNegotiation) {
-		toSerialize["linkNegotiation"] = o.LinkNegotiation
-	}
-	if !isNil(o.PortScheduleId) {
-		toSerialize["portScheduleId"] = o.PortScheduleId
-	}
-	if !isNil(o.Udld) {
-		toSerialize["udld"] = o.Udld
-	}
-	if !isNil(o.AccessPolicyType) {
-		toSerialize["accessPolicyType"] = o.AccessPolicyType
-	}
-	if !isNil(o.AccessPolicyNumber) {
-		toSerialize["accessPolicyNumber"] = o.AccessPolicyNumber
-	}
-	if !isNil(o.MacAllowList) {
-		toSerialize["macAllowList"] = o.MacAllowList
-	}
-	if !isNil(o.StickyMacAllowList) {
-		toSerialize["stickyMacAllowList"] = o.StickyMacAllowList
-	}
-	if !isNil(o.StickyMacAllowListLimit) {
-		toSerialize["stickyMacAllowListLimit"] = o.StickyMacAllowListLimit
-	}
-	if !isNil(o.StormControlEnabled) {
-		toSerialize["stormControlEnabled"] = o.StormControlEnabled
-	}
-	if !isNil(o.FlexibleStackingEnabled) {
-		toSerialize["flexibleStackingEnabled"] = o.FlexibleStackingEnabled
-	}
-	if !isNil(o.DaiTrusted) {
-		toSerialize["daiTrusted"] = o.DaiTrusted
-	}
-	if !isNil(o.Profile) {
-		toSerialize["profile"] = o.Profile
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationConfigTemplateSwitchProfilePortRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.PoeEnabled) {
+		toSerialize["poeEnabled"] = o.PoeEnabled
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Vlan) {
+		toSerialize["vlan"] = o.Vlan
+	}
+	if !IsNil(o.VoiceVlan) {
+		toSerialize["voiceVlan"] = o.VoiceVlan
+	}
+	if !IsNil(o.AllowedVlans) {
+		toSerialize["allowedVlans"] = o.AllowedVlans
+	}
+	if !IsNil(o.IsolationEnabled) {
+		toSerialize["isolationEnabled"] = o.IsolationEnabled
+	}
+	if !IsNil(o.RstpEnabled) {
+		toSerialize["rstpEnabled"] = o.RstpEnabled
+	}
+	if !IsNil(o.StpGuard) {
+		toSerialize["stpGuard"] = o.StpGuard
+	}
+	if !IsNil(o.LinkNegotiation) {
+		toSerialize["linkNegotiation"] = o.LinkNegotiation
+	}
+	if !IsNil(o.PortScheduleId) {
+		toSerialize["portScheduleId"] = o.PortScheduleId
+	}
+	if !IsNil(o.Udld) {
+		toSerialize["udld"] = o.Udld
+	}
+	if !IsNil(o.AccessPolicyType) {
+		toSerialize["accessPolicyType"] = o.AccessPolicyType
+	}
+	if !IsNil(o.AccessPolicyNumber) {
+		toSerialize["accessPolicyNumber"] = o.AccessPolicyNumber
+	}
+	if !IsNil(o.MacAllowList) {
+		toSerialize["macAllowList"] = o.MacAllowList
+	}
+	if !IsNil(o.StickyMacAllowList) {
+		toSerialize["stickyMacAllowList"] = o.StickyMacAllowList
+	}
+	if !IsNil(o.StickyMacAllowListLimit) {
+		toSerialize["stickyMacAllowListLimit"] = o.StickyMacAllowListLimit
+	}
+	if !IsNil(o.StormControlEnabled) {
+		toSerialize["stormControlEnabled"] = o.StormControlEnabled
+	}
+	if !IsNil(o.FlexibleStackingEnabled) {
+		toSerialize["flexibleStackingEnabled"] = o.FlexibleStackingEnabled
+	}
+	if !IsNil(o.DaiTrusted) {
+		toSerialize["daiTrusted"] = o.DaiTrusted
+	}
+	if !IsNil(o.Profile) {
+		toSerialize["profile"] = o.Profile
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationConfigTemplateSwitchProfilePortRequest struct {

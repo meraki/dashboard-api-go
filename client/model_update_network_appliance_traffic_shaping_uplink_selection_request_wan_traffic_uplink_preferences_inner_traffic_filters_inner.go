@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInner{}
+
 // UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInner struct for UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInner
 type UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInner struct {
 	// Type of this traffic filter. Must be one of: 'custom'
@@ -54,7 +57,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUpl
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInner) GetTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Type, true
 }
@@ -78,7 +81,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUpl
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInner) GetValueOk() (*UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValue, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Value, true
 }
@@ -89,14 +92,18 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUpl
 }
 
 func (o UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["value"] = o.Value
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
+	toSerialize["value"] = o.Value
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInner struct {

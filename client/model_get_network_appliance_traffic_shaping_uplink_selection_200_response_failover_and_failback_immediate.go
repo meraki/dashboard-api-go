@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkApplianceTrafficShapingUplinkSelection200ResponseFailoverAndFailbackImmediate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkApplianceTrafficShapingUplinkSelection200ResponseFailoverAndFailbackImmediate{}
+
 // GetNetworkApplianceTrafficShapingUplinkSelection200ResponseFailoverAndFailbackImmediate Immediate WAN failover and failback
 type GetNetworkApplianceTrafficShapingUplinkSelection200ResponseFailoverAndFailbackImmediate struct {
 	// Whether immediate WAN failover and failback is enabled
@@ -52,7 +55,7 @@ func (o *GetNetworkApplianceTrafficShapingUplinkSelection200ResponseFailoverAndF
 // and a boolean to check if the value has been set.
 func (o *GetNetworkApplianceTrafficShapingUplinkSelection200ResponseFailoverAndFailbackImmediate) GetEnabledOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Enabled, true
 }
@@ -63,11 +66,17 @@ func (o *GetNetworkApplianceTrafficShapingUplinkSelection200ResponseFailoverAndF
 }
 
 func (o GetNetworkApplianceTrafficShapingUplinkSelection200ResponseFailoverAndFailbackImmediate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["enabled"] = o.Enabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkApplianceTrafficShapingUplinkSelection200ResponseFailoverAndFailbackImmediate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["enabled"] = o.Enabled
+	return toSerialize, nil
 }
 
 type NullableGetNetworkApplianceTrafficShapingUplinkSelection200ResponseFailoverAndFailbackImmediate struct {

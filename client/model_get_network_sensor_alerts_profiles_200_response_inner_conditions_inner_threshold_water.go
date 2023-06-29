@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdWater type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdWater{}
+
 // GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdWater Water detection threshold. 'present' must be provided and set to true.
 type GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdWater struct {
 	// Alerting threshold for a water detection event. Must be set to true.
@@ -52,7 +55,7 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdW
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdWater) GetPresentOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Present, true
 }
@@ -63,11 +66,17 @@ func (o *GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdW
 }
 
 func (o GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdWater) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["present"] = o.Present
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdWater) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["present"] = o.Present
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSensorAlertsProfiles200ResponseInnerConditionsInnerThresholdWater struct {

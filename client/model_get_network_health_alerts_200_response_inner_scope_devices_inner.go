@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner{}
+
 // GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner struct for GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner
 type GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner struct {
 	// URL to the device
@@ -50,7 +53,7 @@ func NewGetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerWithDefaults() *G
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetUrl() string {
-	if o == nil || isNil(o.Url) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -60,15 +63,15 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetUrl() strin
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetUrlOk() (*string, bool) {
-	if o == nil || isNil(o.Url) {
-    return nil, false
+	if o == nil || IsNil(o.Url) {
+		return nil, false
 	}
 	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) HasUrl() bool {
-	if o != nil && !isNil(o.Url) {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -82,7 +85,7 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) SetUrl(v strin
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -92,15 +95,15 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetName() stri
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -114,7 +117,7 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) SetName(v stri
 
 // GetProductType returns the ProductType field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetProductType() string {
-	if o == nil || isNil(o.ProductType) {
+	if o == nil || IsNil(o.ProductType) {
 		var ret string
 		return ret
 	}
@@ -124,15 +127,15 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetProductType
 // GetProductTypeOk returns a tuple with the ProductType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetProductTypeOk() (*string, bool) {
-	if o == nil || isNil(o.ProductType) {
-    return nil, false
+	if o == nil || IsNil(o.ProductType) {
+		return nil, false
 	}
 	return o.ProductType, true
 }
 
 // HasProductType returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) HasProductType() bool {
-	if o != nil && !isNil(o.ProductType) {
+	if o != nil && !IsNil(o.ProductType) {
 		return true
 	}
 
@@ -146,7 +149,7 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) SetProductType
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -156,15 +159,15 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetSerial() st
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -178,7 +181,7 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) SetSerial(v st
 
 // GetMac returns the Mac field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetMac() string {
-	if o == nil || isNil(o.Mac) {
+	if o == nil || IsNil(o.Mac) {
 		var ret string
 		return ret
 	}
@@ -188,15 +191,15 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetMac() strin
 // GetMacOk returns a tuple with the Mac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetMacOk() (*string, bool) {
-	if o == nil || isNil(o.Mac) {
-    return nil, false
+	if o == nil || IsNil(o.Mac) {
+		return nil, false
 	}
 	return o.Mac, true
 }
 
 // HasMac returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) HasMac() bool {
-	if o != nil && !isNil(o.Mac) {
+	if o != nil && !IsNil(o.Mac) {
 		return true
 	}
 
@@ -210,7 +213,7 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) SetMac(v strin
 
 // GetLldp returns the Lldp field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetLldp() GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerLldp {
-	if o == nil || isNil(o.Lldp) {
+	if o == nil || IsNil(o.Lldp) {
 		var ret GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerLldp
 		return ret
 	}
@@ -220,15 +223,15 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetLldp() GetN
 // GetLldpOk returns a tuple with the Lldp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetLldpOk() (*GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerLldp, bool) {
-	if o == nil || isNil(o.Lldp) {
-    return nil, false
+	if o == nil || IsNil(o.Lldp) {
+		return nil, false
 	}
 	return o.Lldp, true
 }
 
 // HasLldp returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) HasLldp() bool {
-	if o != nil && !isNil(o.Lldp) {
+	if o != nil && !IsNil(o.Lldp) {
 		return true
 	}
 
@@ -242,7 +245,7 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) SetLldp(v GetN
 
 // GetClients returns the Clients field value if set, zero value otherwise.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetClients() []GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInner {
-	if o == nil || isNil(o.Clients) {
+	if o == nil || IsNil(o.Clients) {
 		var ret []GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInner
 		return ret
 	}
@@ -252,15 +255,15 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetClients() [
 // GetClientsOk returns a tuple with the Clients field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) GetClientsOk() ([]GetNetworkHealthAlerts200ResponseInnerScopeDevicesInnerClientsInner, bool) {
-	if o == nil || isNil(o.Clients) {
-    return nil, false
+	if o == nil || IsNil(o.Clients) {
+		return nil, false
 	}
 	return o.Clients, true
 }
 
 // HasClients returns a boolean if a field has been set.
 func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) HasClients() bool {
-	if o != nil && !isNil(o.Clients) {
+	if o != nil && !IsNil(o.Clients) {
 		return true
 	}
 
@@ -273,29 +276,37 @@ func (o *GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) SetClients(v [
 }
 
 func (o GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Url) {
-		toSerialize["url"] = o.Url
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.ProductType) {
-		toSerialize["productType"] = o.ProductType
-	}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Mac) {
-		toSerialize["mac"] = o.Mac
-	}
-	if !isNil(o.Lldp) {
-		toSerialize["lldp"] = o.Lldp
-	}
-	if !isNil(o.Clients) {
-		toSerialize["clients"] = o.Clients
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkHealthAlerts200ResponseInnerScopeDevicesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.ProductType) {
+		toSerialize["productType"] = o.ProductType
+	}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.Mac) {
+		toSerialize["mac"] = o.Mac
+	}
+	if !IsNil(o.Lldp) {
+		toSerialize["lldp"] = o.Lldp
+	}
+	if !IsNil(o.Clients) {
+		toSerialize["clients"] = o.Clients
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkHealthAlerts200ResponseInnerScopeDevicesInner struct {

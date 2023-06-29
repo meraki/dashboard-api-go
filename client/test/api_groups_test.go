@@ -10,235 +10,232 @@ Testing GroupsApiService
 package client
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "github.com/meraki/dashboard-api-go/client"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func Test_client_GroupsApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test GroupsApiService CreateNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
+	t.Run("Test GroupsApiService CreateNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.GroupsApi.CreateNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.GroupsApi.CreateNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test GroupsApiService CreateOrganizationAdaptivePolicyGroup", func(t *testing.T) {
+	t.Run("Test GroupsApiService CreateOrganizationAdaptivePolicyGroup", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
+		var organizationId string
 
-        resp, httpRes, err := apiClient.GroupsApi.CreateOrganizationAdaptivePolicyGroup(context.Background(), organizationId).Execute()
+		resp, httpRes, err := apiClient.GroupsApi.CreateOrganizationAdaptivePolicyGroup(context.Background(), organizationId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test GroupsApiService CreateOrganizationPolicyObjectsGroup", func(t *testing.T) {
+	t.Run("Test GroupsApiService CreateOrganizationPolicyObjectsGroup", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
+		var organizationId string
 
-        resp, httpRes, err := apiClient.GroupsApi.CreateOrganizationPolicyObjectsGroup(context.Background(), organizationId).Execute()
+		resp, httpRes, err := apiClient.GroupsApi.CreateOrganizationPolicyObjectsGroup(context.Background(), organizationId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test GroupsApiService DeleteNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
+	t.Run("Test GroupsApiService DeleteNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var groupId string
+		var networkId string
+		var groupId string
 
-        resp, httpRes, err := apiClient.GroupsApi.DeleteNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId, groupId).Execute()
+		httpRes, err := apiClient.GroupsApi.DeleteNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId, groupId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test GroupsApiService DeleteOrganizationAdaptivePolicyGroup", func(t *testing.T) {
+	t.Run("Test GroupsApiService DeleteOrganizationAdaptivePolicyGroup", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
-        var id string
+		var organizationId string
+		var id string
 
-        resp, httpRes, err := apiClient.GroupsApi.DeleteOrganizationAdaptivePolicyGroup(context.Background(), organizationId, id).Execute()
+		httpRes, err := apiClient.GroupsApi.DeleteOrganizationAdaptivePolicyGroup(context.Background(), organizationId, id).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test GroupsApiService DeleteOrganizationPolicyObjectsGroup", func(t *testing.T) {
+	t.Run("Test GroupsApiService DeleteOrganizationPolicyObjectsGroup", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
-        var policyObjectGroupId string
+		var organizationId string
+		var policyObjectGroupId string
 
-        resp, httpRes, err := apiClient.GroupsApi.DeleteOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).Execute()
+		httpRes, err := apiClient.GroupsApi.DeleteOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test GroupsApiService GetNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
+	t.Run("Test GroupsApiService GetNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var groupId string
+		var networkId string
+		var groupId string
 
-        resp, httpRes, err := apiClient.GroupsApi.GetNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId, groupId).Execute()
+		resp, httpRes, err := apiClient.GroupsApi.GetNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId, groupId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test GroupsApiService GetNetworkFirmwareUpgradesStagedGroups", func(t *testing.T) {
+	t.Run("Test GroupsApiService GetNetworkFirmwareUpgradesStagedGroups", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.GroupsApi.GetNetworkFirmwareUpgradesStagedGroups(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.GroupsApi.GetNetworkFirmwareUpgradesStagedGroups(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test GroupsApiService GetOrganizationAdaptivePolicyGroup", func(t *testing.T) {
+	t.Run("Test GroupsApiService GetOrganizationAdaptivePolicyGroup", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
-        var id string
+		var organizationId string
+		var id string
 
-        resp, httpRes, err := apiClient.GroupsApi.GetOrganizationAdaptivePolicyGroup(context.Background(), organizationId, id).Execute()
+		resp, httpRes, err := apiClient.GroupsApi.GetOrganizationAdaptivePolicyGroup(context.Background(), organizationId, id).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test GroupsApiService GetOrganizationAdaptivePolicyGroups", func(t *testing.T) {
+	t.Run("Test GroupsApiService GetOrganizationAdaptivePolicyGroups", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
+		var organizationId string
 
-        resp, httpRes, err := apiClient.GroupsApi.GetOrganizationAdaptivePolicyGroups(context.Background(), organizationId).Execute()
+		resp, httpRes, err := apiClient.GroupsApi.GetOrganizationAdaptivePolicyGroups(context.Background(), organizationId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test GroupsApiService GetOrganizationPolicyObjectsGroup", func(t *testing.T) {
+	t.Run("Test GroupsApiService GetOrganizationPolicyObjectsGroup", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
-        var policyObjectGroupId string
+		var organizationId string
+		var policyObjectGroupId string
 
-        resp, httpRes, err := apiClient.GroupsApi.GetOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).Execute()
+		resp, httpRes, err := apiClient.GroupsApi.GetOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test GroupsApiService GetOrganizationPolicyObjectsGroups", func(t *testing.T) {
+	t.Run("Test GroupsApiService GetOrganizationPolicyObjectsGroups", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
+		var organizationId string
 
-        resp, httpRes, err := apiClient.GroupsApi.GetOrganizationPolicyObjectsGroups(context.Background(), organizationId).Execute()
+		resp, httpRes, err := apiClient.GroupsApi.GetOrganizationPolicyObjectsGroups(context.Background(), organizationId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test GroupsApiService UpdateNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
+	t.Run("Test GroupsApiService UpdateNetworkFirmwareUpgradesStagedGroup", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var groupId string
+		var networkId string
+		var groupId string
 
-        resp, httpRes, err := apiClient.GroupsApi.UpdateNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId, groupId).Execute()
+		resp, httpRes, err := apiClient.GroupsApi.UpdateNetworkFirmwareUpgradesStagedGroup(context.Background(), networkId, groupId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test GroupsApiService UpdateOrganizationAdaptivePolicyGroup", func(t *testing.T) {
+	t.Run("Test GroupsApiService UpdateOrganizationAdaptivePolicyGroup", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
-        var id string
+		var organizationId string
+		var id string
 
-        resp, httpRes, err := apiClient.GroupsApi.UpdateOrganizationAdaptivePolicyGroup(context.Background(), organizationId, id).Execute()
+		resp, httpRes, err := apiClient.GroupsApi.UpdateOrganizationAdaptivePolicyGroup(context.Background(), organizationId, id).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test GroupsApiService UpdateOrganizationPolicyObjectsGroup", func(t *testing.T) {
+	t.Run("Test GroupsApiService UpdateOrganizationPolicyObjectsGroup", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var organizationId string
-        var policyObjectGroupId string
+		var organizationId string
+		var policyObjectGroupId string
 
-        resp, httpRes, err := apiClient.GroupsApi.UpdateOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).Execute()
+		resp, httpRes, err := apiClient.GroupsApi.UpdateOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

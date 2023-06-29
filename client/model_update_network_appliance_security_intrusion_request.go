@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceSecurityIntrusionRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceSecurityIntrusionRequest{}
+
 // UpdateNetworkApplianceSecurityIntrusionRequest struct for UpdateNetworkApplianceSecurityIntrusionRequest
 type UpdateNetworkApplianceSecurityIntrusionRequest struct {
 	// Set mode to 'disabled'/'detection'/'prevention' (optional - omitting will leave current config unchanged)
@@ -42,7 +45,7 @@ func NewUpdateNetworkApplianceSecurityIntrusionRequestWithDefaults() *UpdateNetw
 
 // GetMode returns the Mode field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequest) GetMode() string {
-	if o == nil || isNil(o.Mode) {
+	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *UpdateNetworkApplianceSecurityIntrusionRequest) GetMode() string {
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequest) GetModeOk() (*string, bool) {
-	if o == nil || isNil(o.Mode) {
-    return nil, false
+	if o == nil || IsNil(o.Mode) {
+		return nil, false
 	}
 	return o.Mode, true
 }
 
 // HasMode returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequest) HasMode() bool {
-	if o != nil && !isNil(o.Mode) {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *UpdateNetworkApplianceSecurityIntrusionRequest) SetMode(v string) {
 
 // GetIdsRulesets returns the IdsRulesets field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequest) GetIdsRulesets() string {
-	if o == nil || isNil(o.IdsRulesets) {
+	if o == nil || IsNil(o.IdsRulesets) {
 		var ret string
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *UpdateNetworkApplianceSecurityIntrusionRequest) GetIdsRulesets() string
 // GetIdsRulesetsOk returns a tuple with the IdsRulesets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequest) GetIdsRulesetsOk() (*string, bool) {
-	if o == nil || isNil(o.IdsRulesets) {
-    return nil, false
+	if o == nil || IsNil(o.IdsRulesets) {
+		return nil, false
 	}
 	return o.IdsRulesets, true
 }
 
 // HasIdsRulesets returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequest) HasIdsRulesets() bool {
-	if o != nil && !isNil(o.IdsRulesets) {
+	if o != nil && !IsNil(o.IdsRulesets) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *UpdateNetworkApplianceSecurityIntrusionRequest) SetIdsRulesets(v string
 
 // GetProtectedNetworks returns the ProtectedNetworks field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequest) GetProtectedNetworks() UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks {
-	if o == nil || isNil(o.ProtectedNetworks) {
+	if o == nil || IsNil(o.ProtectedNetworks) {
 		var ret UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *UpdateNetworkApplianceSecurityIntrusionRequest) GetProtectedNetworks() 
 // GetProtectedNetworksOk returns a tuple with the ProtectedNetworks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequest) GetProtectedNetworksOk() (*UpdateNetworkApplianceSecurityIntrusionRequestProtectedNetworks, bool) {
-	if o == nil || isNil(o.ProtectedNetworks) {
-    return nil, false
+	if o == nil || IsNil(o.ProtectedNetworks) {
+		return nil, false
 	}
 	return o.ProtectedNetworks, true
 }
 
 // HasProtectedNetworks returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSecurityIntrusionRequest) HasProtectedNetworks() bool {
-	if o != nil && !isNil(o.ProtectedNetworks) {
+	if o != nil && !IsNil(o.ProtectedNetworks) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *UpdateNetworkApplianceSecurityIntrusionRequest) SetProtectedNetworks(v 
 }
 
 func (o UpdateNetworkApplianceSecurityIntrusionRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Mode) {
-		toSerialize["mode"] = o.Mode
-	}
-	if !isNil(o.IdsRulesets) {
-		toSerialize["idsRulesets"] = o.IdsRulesets
-	}
-	if !isNil(o.ProtectedNetworks) {
-		toSerialize["protectedNetworks"] = o.ProtectedNetworks
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceSecurityIntrusionRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Mode) {
+		toSerialize["mode"] = o.Mode
+	}
+	if !IsNil(o.IdsRulesets) {
+		toSerialize["idsRulesets"] = o.IdsRulesets
+	}
+	if !IsNil(o.ProtectedNetworks) {
+		toSerialize["protectedNetworks"] = o.ProtectedNetworks
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceSecurityIntrusionRequest struct {

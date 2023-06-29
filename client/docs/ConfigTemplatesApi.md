@@ -41,6 +41,7 @@ func main() {
     createOrganizationConfigTemplateRequest := *openapiclient.NewCreateOrganizationConfigTemplateRequest("Name_example") // CreateOrganizationConfigTemplateRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ConfigTemplatesApi.CreateOrganizationConfigTemplate(context.Background(), organizationId).CreateOrganizationConfigTemplateRequest(createOrganizationConfigTemplateRequest).Execute()
     if err != nil {
@@ -113,8 +114,9 @@ func main() {
     configTemplateId := "configTemplateId_example" // string | Config template ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigTemplatesApi.DeleteOrganizationConfigTemplate(context.Background(), organizationId, configTemplateId).Execute()
+    r, err := apiClient.ConfigTemplatesApi.DeleteOrganizationConfigTemplate(context.Background(), organizationId, configTemplateId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigTemplatesApi.DeleteOrganizationConfigTemplate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -184,6 +186,7 @@ func main() {
     configTemplateId := "configTemplateId_example" // string | Config template ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ConfigTemplatesApi.GetOrganizationConfigTemplate(context.Background(), organizationId, configTemplateId).Execute()
     if err != nil {
@@ -259,6 +262,7 @@ func main() {
     portId := "portId_example" // string | Port ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ConfigTemplatesApi.GetOrganizationConfigTemplateSwitchProfilePort(context.Background(), organizationId, configTemplateId, profileId, portId).Execute()
     if err != nil {
@@ -337,6 +341,7 @@ func main() {
     profileId := "profileId_example" // string | Profile ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ConfigTemplatesApi.GetOrganizationConfigTemplateSwitchProfilePorts(context.Background(), organizationId, configTemplateId, profileId).Execute()
     if err != nil {
@@ -412,6 +417,7 @@ func main() {
     configTemplateId := "configTemplateId_example" // string | Config template ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ConfigTemplatesApi.GetOrganizationConfigTemplateSwitchProfiles(context.Background(), organizationId, configTemplateId).Execute()
     if err != nil {
@@ -484,6 +490,7 @@ func main() {
     organizationId := "organizationId_example" // string | Organization ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ConfigTemplatesApi.GetOrganizationConfigTemplates(context.Background(), organizationId).Execute()
     if err != nil {
@@ -556,6 +563,7 @@ func main() {
     updateOrganizationConfigTemplateRequest := *openapiclient.NewUpdateOrganizationConfigTemplateRequest() // UpdateOrganizationConfigTemplateRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ConfigTemplatesApi.UpdateOrganizationConfigTemplate(context.Background(), organizationId, configTemplateId).UpdateOrganizationConfigTemplateRequest(updateOrganizationConfigTemplateRequest).Execute()
     if err != nil {
@@ -633,6 +641,7 @@ func main() {
     updateOrganizationConfigTemplateSwitchProfilePortRequest := *openapiclient.NewUpdateOrganizationConfigTemplateSwitchProfilePortRequest() // UpdateOrganizationConfigTemplateSwitchProfilePortRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.ConfigTemplatesApi.UpdateOrganizationConfigTemplateSwitchProfilePort(context.Background(), organizationId, configTemplateId, profileId, portId).UpdateOrganizationConfigTemplateSwitchProfilePortRequest(updateOrganizationConfigTemplateSwitchProfilePortRequest).Execute()
     if err != nil {

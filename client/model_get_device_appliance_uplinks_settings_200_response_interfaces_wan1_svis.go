@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis{}
+
 // GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis SVI settings by protocol.
 type GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis struct {
 	Ipv4 *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4 `json:"ipv4,omitempty"`
@@ -39,7 +42,7 @@ func NewGetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisWithDefaul
 
 // GetIpv4 returns the Ipv4 field value if set, zero value otherwise.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis) GetIpv4() GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4 {
-	if o == nil || isNil(o.Ipv4) {
+	if o == nil || IsNil(o.Ipv4) {
 		var ret GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis) GetIpv4
 // GetIpv4Ok returns a tuple with the Ipv4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis) GetIpv4Ok() (*GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv4, bool) {
-	if o == nil || isNil(o.Ipv4) {
-    return nil, false
+	if o == nil || IsNil(o.Ipv4) {
+		return nil, false
 	}
 	return o.Ipv4, true
 }
 
 // HasIpv4 returns a boolean if a field has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis) HasIpv4() bool {
-	if o != nil && !isNil(o.Ipv4) {
+	if o != nil && !IsNil(o.Ipv4) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis) SetIpv4
 
 // GetIpv6 returns the Ipv6 field value if set, zero value otherwise.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis) GetIpv6() GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv6 {
-	if o == nil || isNil(o.Ipv6) {
+	if o == nil || IsNil(o.Ipv6) {
 		var ret GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv6
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis) GetIpv6
 // GetIpv6Ok returns a tuple with the Ipv6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis) GetIpv6Ok() (*GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1SvisIpv6, bool) {
-	if o == nil || isNil(o.Ipv6) {
-    return nil, false
+	if o == nil || IsNil(o.Ipv6) {
+		return nil, false
 	}
 	return o.Ipv6, true
 }
 
 // HasIpv6 returns a boolean if a field has been set.
 func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis) HasIpv6() bool {
-	if o != nil && !isNil(o.Ipv6) {
+	if o != nil && !IsNil(o.Ipv6) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis) SetIpv6
 }
 
 func (o GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Ipv4) {
-		toSerialize["ipv4"] = o.Ipv4
-	}
-	if !isNil(o.Ipv6) {
-		toSerialize["ipv6"] = o.Ipv6
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Ipv4) {
+		toSerialize["ipv4"] = o.Ipv4
+	}
+	if !IsNil(o.Ipv6) {
+		toSerialize["ipv6"] = o.Ipv6
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceApplianceUplinksSettings200ResponseInterfacesWan1Svis struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkClientSplashAuthorizationStatusRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkClientSplashAuthorizationStatusRequest{}
+
 // UpdateNetworkClientSplashAuthorizationStatusRequest struct for UpdateNetworkClientSplashAuthorizationStatusRequest
 type UpdateNetworkClientSplashAuthorizationStatusRequest struct {
 	Ssids UpdateNetworkClientSplashAuthorizationStatusRequestSsids `json:"ssids"`
@@ -51,7 +54,7 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequest) GetSsids() UpdateN
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequest) GetSsidsOk() (*UpdateNetworkClientSplashAuthorizationStatusRequestSsids, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Ssids, true
 }
@@ -62,11 +65,17 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequest) SetSsids(v UpdateN
 }
 
 func (o UpdateNetworkClientSplashAuthorizationStatusRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ssids"] = o.Ssids
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkClientSplashAuthorizationStatusRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["ssids"] = o.Ssids
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkClientSplashAuthorizationStatusRequest struct {

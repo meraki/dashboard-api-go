@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkFirmwareUpgradesStagedStagesRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkFirmwareUpgradesStagedStagesRequest{}
+
 // UpdateNetworkFirmwareUpgradesStagedStagesRequest struct for UpdateNetworkFirmwareUpgradesStagedStagesRequest
 type UpdateNetworkFirmwareUpgradesStagedStagesRequest struct {
 	// Array of Staged Upgrade Groups
@@ -39,7 +42,7 @@ func NewUpdateNetworkFirmwareUpgradesStagedStagesRequestWithDefaults() *UpdateNe
 
 // GetJson returns the Json field value if set, zero value otherwise.
 func (o *UpdateNetworkFirmwareUpgradesStagedStagesRequest) GetJson() []UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInner {
-	if o == nil || isNil(o.Json) {
+	if o == nil || IsNil(o.Json) {
 		var ret []UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInner
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateNetworkFirmwareUpgradesStagedStagesRequest) GetJson() []UpdateNet
 // GetJsonOk returns a tuple with the Json field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesStagedStagesRequest) GetJsonOk() ([]UpdateNetworkFirmwareUpgradesStagedStagesRequestJsonInner, bool) {
-	if o == nil || isNil(o.Json) {
-    return nil, false
+	if o == nil || IsNil(o.Json) {
+		return nil, false
 	}
 	return o.Json, true
 }
 
 // HasJson returns a boolean if a field has been set.
 func (o *UpdateNetworkFirmwareUpgradesStagedStagesRequest) HasJson() bool {
-	if o != nil && !isNil(o.Json) {
+	if o != nil && !IsNil(o.Json) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateNetworkFirmwareUpgradesStagedStagesRequest) SetJson(v []UpdateNet
 }
 
 func (o UpdateNetworkFirmwareUpgradesStagedStagesRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Json) {
-		toSerialize["_json"] = o.Json
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkFirmwareUpgradesStagedStagesRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Json) {
+		toSerialize["_json"] = o.Json
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkFirmwareUpgradesStagedStagesRequest struct {

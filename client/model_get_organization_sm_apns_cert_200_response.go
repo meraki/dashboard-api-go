@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSmApnsCert200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSmApnsCert200Response{}
+
 // GetOrganizationSmApnsCert200Response struct for GetOrganizationSmApnsCert200Response
 type GetOrganizationSmApnsCert200Response struct {
 	// Organization APNS Certificate used by devices to communication with Apple
@@ -39,7 +42,7 @@ func NewGetOrganizationSmApnsCert200ResponseWithDefaults() *GetOrganizationSmApn
 
 // GetCertificate returns the Certificate field value if set, zero value otherwise.
 func (o *GetOrganizationSmApnsCert200Response) GetCertificate() string {
-	if o == nil || isNil(o.Certificate) {
+	if o == nil || IsNil(o.Certificate) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationSmApnsCert200Response) GetCertificate() string {
 // GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSmApnsCert200Response) GetCertificateOk() (*string, bool) {
-	if o == nil || isNil(o.Certificate) {
-    return nil, false
+	if o == nil || IsNil(o.Certificate) {
+		return nil, false
 	}
 	return o.Certificate, true
 }
 
 // HasCertificate returns a boolean if a field has been set.
 func (o *GetOrganizationSmApnsCert200Response) HasCertificate() bool {
-	if o != nil && !isNil(o.Certificate) {
+	if o != nil && !IsNil(o.Certificate) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationSmApnsCert200Response) SetCertificate(v string) {
 }
 
 func (o GetOrganizationSmApnsCert200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Certificate) {
-		toSerialize["certificate"] = o.Certificate
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSmApnsCert200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Certificate) {
+		toSerialize["certificate"] = o.Certificate
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSmApnsCert200Response struct {

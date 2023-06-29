@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkApplianceRfProfileRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkApplianceRfProfileRequest{}
+
 // CreateNetworkApplianceRfProfileRequest struct for CreateNetworkApplianceRfProfileRequest
 type CreateNetworkApplianceRfProfileRequest struct {
 	// The name of the new profile. Must be unique. This param is required on creation.
@@ -55,7 +58,7 @@ func (o *CreateNetworkApplianceRfProfileRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceRfProfileRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -67,7 +70,7 @@ func (o *CreateNetworkApplianceRfProfileRequest) SetName(v string) {
 
 // GetTwoFourGhzSettings returns the TwoFourGhzSettings field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceRfProfileRequest) GetTwoFourGhzSettings() CreateNetworkApplianceRfProfileRequestTwoFourGhzSettings {
-	if o == nil || isNil(o.TwoFourGhzSettings) {
+	if o == nil || IsNil(o.TwoFourGhzSettings) {
 		var ret CreateNetworkApplianceRfProfileRequestTwoFourGhzSettings
 		return ret
 	}
@@ -77,15 +80,15 @@ func (o *CreateNetworkApplianceRfProfileRequest) GetTwoFourGhzSettings() CreateN
 // GetTwoFourGhzSettingsOk returns a tuple with the TwoFourGhzSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceRfProfileRequest) GetTwoFourGhzSettingsOk() (*CreateNetworkApplianceRfProfileRequestTwoFourGhzSettings, bool) {
-	if o == nil || isNil(o.TwoFourGhzSettings) {
-    return nil, false
+	if o == nil || IsNil(o.TwoFourGhzSettings) {
+		return nil, false
 	}
 	return o.TwoFourGhzSettings, true
 }
 
 // HasTwoFourGhzSettings returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceRfProfileRequest) HasTwoFourGhzSettings() bool {
-	if o != nil && !isNil(o.TwoFourGhzSettings) {
+	if o != nil && !IsNil(o.TwoFourGhzSettings) {
 		return true
 	}
 
@@ -99,7 +102,7 @@ func (o *CreateNetworkApplianceRfProfileRequest) SetTwoFourGhzSettings(v CreateN
 
 // GetFiveGhzSettings returns the FiveGhzSettings field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceRfProfileRequest) GetFiveGhzSettings() CreateNetworkApplianceRfProfileRequestFiveGhzSettings {
-	if o == nil || isNil(o.FiveGhzSettings) {
+	if o == nil || IsNil(o.FiveGhzSettings) {
 		var ret CreateNetworkApplianceRfProfileRequestFiveGhzSettings
 		return ret
 	}
@@ -109,15 +112,15 @@ func (o *CreateNetworkApplianceRfProfileRequest) GetFiveGhzSettings() CreateNetw
 // GetFiveGhzSettingsOk returns a tuple with the FiveGhzSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceRfProfileRequest) GetFiveGhzSettingsOk() (*CreateNetworkApplianceRfProfileRequestFiveGhzSettings, bool) {
-	if o == nil || isNil(o.FiveGhzSettings) {
-    return nil, false
+	if o == nil || IsNil(o.FiveGhzSettings) {
+		return nil, false
 	}
 	return o.FiveGhzSettings, true
 }
 
 // HasFiveGhzSettings returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceRfProfileRequest) HasFiveGhzSettings() bool {
-	if o != nil && !isNil(o.FiveGhzSettings) {
+	if o != nil && !IsNil(o.FiveGhzSettings) {
 		return true
 	}
 
@@ -131,7 +134,7 @@ func (o *CreateNetworkApplianceRfProfileRequest) SetFiveGhzSettings(v CreateNetw
 
 // GetPerSsidSettings returns the PerSsidSettings field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceRfProfileRequest) GetPerSsidSettings() CreateNetworkApplianceRfProfileRequestPerSsidSettings {
-	if o == nil || isNil(o.PerSsidSettings) {
+	if o == nil || IsNil(o.PerSsidSettings) {
 		var ret CreateNetworkApplianceRfProfileRequestPerSsidSettings
 		return ret
 	}
@@ -141,15 +144,15 @@ func (o *CreateNetworkApplianceRfProfileRequest) GetPerSsidSettings() CreateNetw
 // GetPerSsidSettingsOk returns a tuple with the PerSsidSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceRfProfileRequest) GetPerSsidSettingsOk() (*CreateNetworkApplianceRfProfileRequestPerSsidSettings, bool) {
-	if o == nil || isNil(o.PerSsidSettings) {
-    return nil, false
+	if o == nil || IsNil(o.PerSsidSettings) {
+		return nil, false
 	}
 	return o.PerSsidSettings, true
 }
 
 // HasPerSsidSettings returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceRfProfileRequest) HasPerSsidSettings() bool {
-	if o != nil && !isNil(o.PerSsidSettings) {
+	if o != nil && !IsNil(o.PerSsidSettings) {
 		return true
 	}
 
@@ -162,20 +165,26 @@ func (o *CreateNetworkApplianceRfProfileRequest) SetPerSsidSettings(v CreateNetw
 }
 
 func (o CreateNetworkApplianceRfProfileRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.TwoFourGhzSettings) {
-		toSerialize["twoFourGhzSettings"] = o.TwoFourGhzSettings
-	}
-	if !isNil(o.FiveGhzSettings) {
-		toSerialize["fiveGhzSettings"] = o.FiveGhzSettings
-	}
-	if !isNil(o.PerSsidSettings) {
-		toSerialize["perSsidSettings"] = o.PerSsidSettings
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkApplianceRfProfileRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.TwoFourGhzSettings) {
+		toSerialize["twoFourGhzSettings"] = o.TwoFourGhzSettings
+	}
+	if !IsNil(o.FiveGhzSettings) {
+		toSerialize["fiveGhzSettings"] = o.FiveGhzSettings
+	}
+	if !IsNil(o.PerSsidSettings) {
+		toSerialize["perSsidSettings"] = o.PerSsidSettings
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkApplianceRfProfileRequest struct {

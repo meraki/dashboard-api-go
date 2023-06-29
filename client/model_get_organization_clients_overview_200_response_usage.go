@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationClientsOverview200ResponseUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationClientsOverview200ResponseUsage{}
+
 // GetOrganizationClientsOverview200ResponseUsage Usage information of all clients across organization
 type GetOrganizationClientsOverview200ResponseUsage struct {
 	Overall *GetOrganizationClientsOverview200ResponseUsageOverall `json:"overall,omitempty"`
@@ -40,7 +43,7 @@ func NewGetOrganizationClientsOverview200ResponseUsageWithDefaults() *GetOrganiz
 
 // GetOverall returns the Overall field value if set, zero value otherwise.
 func (o *GetOrganizationClientsOverview200ResponseUsage) GetOverall() GetOrganizationClientsOverview200ResponseUsageOverall {
-	if o == nil || isNil(o.Overall) {
+	if o == nil || IsNil(o.Overall) {
 		var ret GetOrganizationClientsOverview200ResponseUsageOverall
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *GetOrganizationClientsOverview200ResponseUsage) GetOverall() GetOrganiz
 // GetOverallOk returns a tuple with the Overall field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationClientsOverview200ResponseUsage) GetOverallOk() (*GetOrganizationClientsOverview200ResponseUsageOverall, bool) {
-	if o == nil || isNil(o.Overall) {
-    return nil, false
+	if o == nil || IsNil(o.Overall) {
+		return nil, false
 	}
 	return o.Overall, true
 }
 
 // HasOverall returns a boolean if a field has been set.
 func (o *GetOrganizationClientsOverview200ResponseUsage) HasOverall() bool {
-	if o != nil && !isNil(o.Overall) {
+	if o != nil && !IsNil(o.Overall) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *GetOrganizationClientsOverview200ResponseUsage) SetOverall(v GetOrganiz
 
 // GetAverage returns the Average field value if set, zero value otherwise.
 func (o *GetOrganizationClientsOverview200ResponseUsage) GetAverage() float32 {
-	if o == nil || isNil(o.Average) {
+	if o == nil || IsNil(o.Average) {
 		var ret float32
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *GetOrganizationClientsOverview200ResponseUsage) GetAverage() float32 {
 // GetAverageOk returns a tuple with the Average field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationClientsOverview200ResponseUsage) GetAverageOk() (*float32, bool) {
-	if o == nil || isNil(o.Average) {
-    return nil, false
+	if o == nil || IsNil(o.Average) {
+		return nil, false
 	}
 	return o.Average, true
 }
 
 // HasAverage returns a boolean if a field has been set.
 func (o *GetOrganizationClientsOverview200ResponseUsage) HasAverage() bool {
-	if o != nil && !isNil(o.Average) {
+	if o != nil && !IsNil(o.Average) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *GetOrganizationClientsOverview200ResponseUsage) SetAverage(v float32) {
 }
 
 func (o GetOrganizationClientsOverview200ResponseUsage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Overall) {
-		toSerialize["overall"] = o.Overall
-	}
-	if !isNil(o.Average) {
-		toSerialize["average"] = o.Average
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationClientsOverview200ResponseUsage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Overall) {
+		toSerialize["overall"] = o.Overall
+	}
+	if !IsNil(o.Average) {
+		toSerialize["average"] = o.Average
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationClientsOverview200ResponseUsage struct {

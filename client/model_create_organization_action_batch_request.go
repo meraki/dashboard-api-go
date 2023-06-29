@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationActionBatchRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationActionBatchRequest{}
+
 // CreateOrganizationActionBatchRequest struct for CreateOrganizationActionBatchRequest
 type CreateOrganizationActionBatchRequest struct {
 	// Set to true for immediate execution. Set to false if the action should be previewed before executing. This property cannot be unset once it is true. Defaults to false.
@@ -44,7 +47,7 @@ func NewCreateOrganizationActionBatchRequestWithDefaults() *CreateOrganizationAc
 
 // GetConfirmed returns the Confirmed field value if set, zero value otherwise.
 func (o *CreateOrganizationActionBatchRequest) GetConfirmed() bool {
-	if o == nil || isNil(o.Confirmed) {
+	if o == nil || IsNil(o.Confirmed) {
 		var ret bool
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *CreateOrganizationActionBatchRequest) GetConfirmed() bool {
 // GetConfirmedOk returns a tuple with the Confirmed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatchRequest) GetConfirmedOk() (*bool, bool) {
-	if o == nil || isNil(o.Confirmed) {
-    return nil, false
+	if o == nil || IsNil(o.Confirmed) {
+		return nil, false
 	}
 	return o.Confirmed, true
 }
 
 // HasConfirmed returns a boolean if a field has been set.
 func (o *CreateOrganizationActionBatchRequest) HasConfirmed() bool {
-	if o != nil && !isNil(o.Confirmed) {
+	if o != nil && !IsNil(o.Confirmed) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *CreateOrganizationActionBatchRequest) SetConfirmed(v bool) {
 
 // GetSynchronous returns the Synchronous field value if set, zero value otherwise.
 func (o *CreateOrganizationActionBatchRequest) GetSynchronous() bool {
-	if o == nil || isNil(o.Synchronous) {
+	if o == nil || IsNil(o.Synchronous) {
 		var ret bool
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *CreateOrganizationActionBatchRequest) GetSynchronous() bool {
 // GetSynchronousOk returns a tuple with the Synchronous field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatchRequest) GetSynchronousOk() (*bool, bool) {
-	if o == nil || isNil(o.Synchronous) {
-    return nil, false
+	if o == nil || IsNil(o.Synchronous) {
+		return nil, false
 	}
 	return o.Synchronous, true
 }
 
 // HasSynchronous returns a boolean if a field has been set.
 func (o *CreateOrganizationActionBatchRequest) HasSynchronous() bool {
-	if o != nil && !isNil(o.Synchronous) {
+	if o != nil && !IsNil(o.Synchronous) {
 		return true
 	}
 
@@ -120,7 +123,7 @@ func (o *CreateOrganizationActionBatchRequest) GetActions() []CreateOrganization
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatchRequest) GetActionsOk() ([]CreateOrganizationActionBatchRequestActionsInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Actions, true
 }
@@ -131,17 +134,23 @@ func (o *CreateOrganizationActionBatchRequest) SetActions(v []CreateOrganization
 }
 
 func (o CreateOrganizationActionBatchRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Confirmed) {
-		toSerialize["confirmed"] = o.Confirmed
-	}
-	if !isNil(o.Synchronous) {
-		toSerialize["synchronous"] = o.Synchronous
-	}
-	if true {
-		toSerialize["actions"] = o.Actions
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationActionBatchRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Confirmed) {
+		toSerialize["confirmed"] = o.Confirmed
+	}
+	if !IsNil(o.Synchronous) {
+		toSerialize["synchronous"] = o.Synchronous
+	}
+	toSerialize["actions"] = o.Actions
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationActionBatchRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSettings200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSettings200Response{}
+
 // GetNetworkSettings200Response struct for GetNetworkSettings200Response
 type GetNetworkSettings200Response struct {
 	// Enables / disables the local device status pages (<a target='_blank' href='http://my.meraki.com/'>my.meraki.com, </a><a target='_blank' href='http://ap.meraki.com/'>ap.meraki.com, </a><a target='_blank' href='http://switch.meraki.com/'>switch.meraki.com, </a><a target='_blank' href='http://wired.meraki.com/'>wired.meraki.com</a>). Optional (defaults to false)
@@ -46,7 +49,7 @@ func NewGetNetworkSettings200ResponseWithDefaults() *GetNetworkSettings200Respon
 
 // GetLocalStatusPageEnabled returns the LocalStatusPageEnabled field value if set, zero value otherwise.
 func (o *GetNetworkSettings200Response) GetLocalStatusPageEnabled() bool {
-	if o == nil || isNil(o.LocalStatusPageEnabled) {
+	if o == nil || IsNil(o.LocalStatusPageEnabled) {
 		var ret bool
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *GetNetworkSettings200Response) GetLocalStatusPageEnabled() bool {
 // GetLocalStatusPageEnabledOk returns a tuple with the LocalStatusPageEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSettings200Response) GetLocalStatusPageEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.LocalStatusPageEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.LocalStatusPageEnabled) {
+		return nil, false
 	}
 	return o.LocalStatusPageEnabled, true
 }
 
 // HasLocalStatusPageEnabled returns a boolean if a field has been set.
 func (o *GetNetworkSettings200Response) HasLocalStatusPageEnabled() bool {
-	if o != nil && !isNil(o.LocalStatusPageEnabled) {
+	if o != nil && !IsNil(o.LocalStatusPageEnabled) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *GetNetworkSettings200Response) SetLocalStatusPageEnabled(v bool) {
 
 // GetRemoteStatusPageEnabled returns the RemoteStatusPageEnabled field value if set, zero value otherwise.
 func (o *GetNetworkSettings200Response) GetRemoteStatusPageEnabled() bool {
-	if o == nil || isNil(o.RemoteStatusPageEnabled) {
+	if o == nil || IsNil(o.RemoteStatusPageEnabled) {
 		var ret bool
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *GetNetworkSettings200Response) GetRemoteStatusPageEnabled() bool {
 // GetRemoteStatusPageEnabledOk returns a tuple with the RemoteStatusPageEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSettings200Response) GetRemoteStatusPageEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.RemoteStatusPageEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.RemoteStatusPageEnabled) {
+		return nil, false
 	}
 	return o.RemoteStatusPageEnabled, true
 }
 
 // HasRemoteStatusPageEnabled returns a boolean if a field has been set.
 func (o *GetNetworkSettings200Response) HasRemoteStatusPageEnabled() bool {
-	if o != nil && !isNil(o.RemoteStatusPageEnabled) {
+	if o != nil && !IsNil(o.RemoteStatusPageEnabled) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *GetNetworkSettings200Response) SetRemoteStatusPageEnabled(v bool) {
 
 // GetLocalStatusPage returns the LocalStatusPage field value if set, zero value otherwise.
 func (o *GetNetworkSettings200Response) GetLocalStatusPage() GetNetworkSettings200ResponseLocalStatusPage {
-	if o == nil || isNil(o.LocalStatusPage) {
+	if o == nil || IsNil(o.LocalStatusPage) {
 		var ret GetNetworkSettings200ResponseLocalStatusPage
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *GetNetworkSettings200Response) GetLocalStatusPage() GetNetworkSettings2
 // GetLocalStatusPageOk returns a tuple with the LocalStatusPage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSettings200Response) GetLocalStatusPageOk() (*GetNetworkSettings200ResponseLocalStatusPage, bool) {
-	if o == nil || isNil(o.LocalStatusPage) {
-    return nil, false
+	if o == nil || IsNil(o.LocalStatusPage) {
+		return nil, false
 	}
 	return o.LocalStatusPage, true
 }
 
 // HasLocalStatusPage returns a boolean if a field has been set.
 func (o *GetNetworkSettings200Response) HasLocalStatusPage() bool {
-	if o != nil && !isNil(o.LocalStatusPage) {
+	if o != nil && !IsNil(o.LocalStatusPage) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *GetNetworkSettings200Response) SetLocalStatusPage(v GetNetworkSettings2
 
 // GetSecurePort returns the SecurePort field value if set, zero value otherwise.
 func (o *GetNetworkSettings200Response) GetSecurePort() GetNetworkSettings200ResponseSecurePort {
-	if o == nil || isNil(o.SecurePort) {
+	if o == nil || IsNil(o.SecurePort) {
 		var ret GetNetworkSettings200ResponseSecurePort
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *GetNetworkSettings200Response) GetSecurePort() GetNetworkSettings200Res
 // GetSecurePortOk returns a tuple with the SecurePort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSettings200Response) GetSecurePortOk() (*GetNetworkSettings200ResponseSecurePort, bool) {
-	if o == nil || isNil(o.SecurePort) {
-    return nil, false
+	if o == nil || IsNil(o.SecurePort) {
+		return nil, false
 	}
 	return o.SecurePort, true
 }
 
 // HasSecurePort returns a boolean if a field has been set.
 func (o *GetNetworkSettings200Response) HasSecurePort() bool {
-	if o != nil && !isNil(o.SecurePort) {
+	if o != nil && !IsNil(o.SecurePort) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *GetNetworkSettings200Response) SetSecurePort(v GetNetworkSettings200Res
 
 // GetFips returns the Fips field value if set, zero value otherwise.
 func (o *GetNetworkSettings200Response) GetFips() GetNetworkSettings200ResponseFips {
-	if o == nil || isNil(o.Fips) {
+	if o == nil || IsNil(o.Fips) {
 		var ret GetNetworkSettings200ResponseFips
 		return ret
 	}
@@ -184,15 +187,15 @@ func (o *GetNetworkSettings200Response) GetFips() GetNetworkSettings200ResponseF
 // GetFipsOk returns a tuple with the Fips field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSettings200Response) GetFipsOk() (*GetNetworkSettings200ResponseFips, bool) {
-	if o == nil || isNil(o.Fips) {
-    return nil, false
+	if o == nil || IsNil(o.Fips) {
+		return nil, false
 	}
 	return o.Fips, true
 }
 
 // HasFips returns a boolean if a field has been set.
 func (o *GetNetworkSettings200Response) HasFips() bool {
-	if o != nil && !isNil(o.Fips) {
+	if o != nil && !IsNil(o.Fips) {
 		return true
 	}
 
@@ -206,7 +209,7 @@ func (o *GetNetworkSettings200Response) SetFips(v GetNetworkSettings200ResponseF
 
 // GetNamedVlans returns the NamedVlans field value if set, zero value otherwise.
 func (o *GetNetworkSettings200Response) GetNamedVlans() GetNetworkSettings200ResponseNamedVlans {
-	if o == nil || isNil(o.NamedVlans) {
+	if o == nil || IsNil(o.NamedVlans) {
 		var ret GetNetworkSettings200ResponseNamedVlans
 		return ret
 	}
@@ -216,15 +219,15 @@ func (o *GetNetworkSettings200Response) GetNamedVlans() GetNetworkSettings200Res
 // GetNamedVlansOk returns a tuple with the NamedVlans field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSettings200Response) GetNamedVlansOk() (*GetNetworkSettings200ResponseNamedVlans, bool) {
-	if o == nil || isNil(o.NamedVlans) {
-    return nil, false
+	if o == nil || IsNil(o.NamedVlans) {
+		return nil, false
 	}
 	return o.NamedVlans, true
 }
 
 // HasNamedVlans returns a boolean if a field has been set.
 func (o *GetNetworkSettings200Response) HasNamedVlans() bool {
-	if o != nil && !isNil(o.NamedVlans) {
+	if o != nil && !IsNil(o.NamedVlans) {
 		return true
 	}
 
@@ -238,7 +241,7 @@ func (o *GetNetworkSettings200Response) SetNamedVlans(v GetNetworkSettings200Res
 
 // GetClientPrivacy returns the ClientPrivacy field value if set, zero value otherwise.
 func (o *GetNetworkSettings200Response) GetClientPrivacy() GetNetworkSettings200ResponseClientPrivacy {
-	if o == nil || isNil(o.ClientPrivacy) {
+	if o == nil || IsNil(o.ClientPrivacy) {
 		var ret GetNetworkSettings200ResponseClientPrivacy
 		return ret
 	}
@@ -248,15 +251,15 @@ func (o *GetNetworkSettings200Response) GetClientPrivacy() GetNetworkSettings200
 // GetClientPrivacyOk returns a tuple with the ClientPrivacy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSettings200Response) GetClientPrivacyOk() (*GetNetworkSettings200ResponseClientPrivacy, bool) {
-	if o == nil || isNil(o.ClientPrivacy) {
-    return nil, false
+	if o == nil || IsNil(o.ClientPrivacy) {
+		return nil, false
 	}
 	return o.ClientPrivacy, true
 }
 
 // HasClientPrivacy returns a boolean if a field has been set.
 func (o *GetNetworkSettings200Response) HasClientPrivacy() bool {
-	if o != nil && !isNil(o.ClientPrivacy) {
+	if o != nil && !IsNil(o.ClientPrivacy) {
 		return true
 	}
 
@@ -269,29 +272,37 @@ func (o *GetNetworkSettings200Response) SetClientPrivacy(v GetNetworkSettings200
 }
 
 func (o GetNetworkSettings200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.LocalStatusPageEnabled) {
-		toSerialize["localStatusPageEnabled"] = o.LocalStatusPageEnabled
-	}
-	if !isNil(o.RemoteStatusPageEnabled) {
-		toSerialize["remoteStatusPageEnabled"] = o.RemoteStatusPageEnabled
-	}
-	if !isNil(o.LocalStatusPage) {
-		toSerialize["localStatusPage"] = o.LocalStatusPage
-	}
-	if !isNil(o.SecurePort) {
-		toSerialize["securePort"] = o.SecurePort
-	}
-	if !isNil(o.Fips) {
-		toSerialize["fips"] = o.Fips
-	}
-	if !isNil(o.NamedVlans) {
-		toSerialize["namedVlans"] = o.NamedVlans
-	}
-	if !isNil(o.ClientPrivacy) {
-		toSerialize["clientPrivacy"] = o.ClientPrivacy
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSettings200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.LocalStatusPageEnabled) {
+		toSerialize["localStatusPageEnabled"] = o.LocalStatusPageEnabled
+	}
+	if !IsNil(o.RemoteStatusPageEnabled) {
+		toSerialize["remoteStatusPageEnabled"] = o.RemoteStatusPageEnabled
+	}
+	if !IsNil(o.LocalStatusPage) {
+		toSerialize["localStatusPage"] = o.LocalStatusPage
+	}
+	if !IsNil(o.SecurePort) {
+		toSerialize["securePort"] = o.SecurePort
+	}
+	if !IsNil(o.Fips) {
+		toSerialize["fips"] = o.Fips
+	}
+	if !IsNil(o.NamedVlans) {
+		toSerialize["namedVlans"] = o.NamedVlans
+	}
+	if !IsNil(o.ClientPrivacy) {
+		toSerialize["clientPrivacy"] = o.ClientPrivacy
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSettings200Response struct {

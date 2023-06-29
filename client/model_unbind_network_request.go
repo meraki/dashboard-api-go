@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UnbindNetworkRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UnbindNetworkRequest{}
+
 // UnbindNetworkRequest struct for UnbindNetworkRequest
 type UnbindNetworkRequest struct {
 	// Optional boolean to retain all the current configs given by the template.
@@ -39,7 +42,7 @@ func NewUnbindNetworkRequestWithDefaults() *UnbindNetworkRequest {
 
 // GetRetainConfigs returns the RetainConfigs field value if set, zero value otherwise.
 func (o *UnbindNetworkRequest) GetRetainConfigs() bool {
-	if o == nil || isNil(o.RetainConfigs) {
+	if o == nil || IsNil(o.RetainConfigs) {
 		var ret bool
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UnbindNetworkRequest) GetRetainConfigs() bool {
 // GetRetainConfigsOk returns a tuple with the RetainConfigs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UnbindNetworkRequest) GetRetainConfigsOk() (*bool, bool) {
-	if o == nil || isNil(o.RetainConfigs) {
-    return nil, false
+	if o == nil || IsNil(o.RetainConfigs) {
+		return nil, false
 	}
 	return o.RetainConfigs, true
 }
 
 // HasRetainConfigs returns a boolean if a field has been set.
 func (o *UnbindNetworkRequest) HasRetainConfigs() bool {
-	if o != nil && !isNil(o.RetainConfigs) {
+	if o != nil && !IsNil(o.RetainConfigs) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UnbindNetworkRequest) SetRetainConfigs(v bool) {
 }
 
 func (o UnbindNetworkRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.RetainConfigs) {
-		toSerialize["retainConfigs"] = o.RetainConfigs
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UnbindNetworkRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.RetainConfigs) {
+		toSerialize["retainConfigs"] = o.RetainConfigs
+	}
+	return toSerialize, nil
 }
 
 type NullableUnbindNetworkRequest struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSwitchRoutingMulticast200ResponseOverridesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSwitchRoutingMulticast200ResponseOverridesInner{}
+
 // GetNetworkSwitchRoutingMulticast200ResponseOverridesInner struct for GetNetworkSwitchRoutingMulticast200ResponseOverridesInner
 type GetNetworkSwitchRoutingMulticast200ResponseOverridesInner struct {
 	// (optional) List of switch serials for non-template network
@@ -47,7 +50,7 @@ func NewGetNetworkSwitchRoutingMulticast200ResponseOverridesInnerWithDefaults() 
 
 // GetSwitches returns the Switches field value if set, zero value otherwise.
 func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) GetSwitches() []string {
-	if o == nil || isNil(o.Switches) {
+	if o == nil || IsNil(o.Switches) {
 		var ret []string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) GetSwitches(
 // GetSwitchesOk returns a tuple with the Switches field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) GetSwitchesOk() ([]string, bool) {
-	if o == nil || isNil(o.Switches) {
-    return nil, false
+	if o == nil || IsNil(o.Switches) {
+		return nil, false
 	}
 	return o.Switches, true
 }
 
 // HasSwitches returns a boolean if a field has been set.
 func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) HasSwitches() bool {
-	if o != nil && !isNil(o.Switches) {
+	if o != nil && !IsNil(o.Switches) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) SetSwitches(
 
 // GetStacks returns the Stacks field value if set, zero value otherwise.
 func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) GetStacks() []string {
-	if o == nil || isNil(o.Stacks) {
+	if o == nil || IsNil(o.Stacks) {
 		var ret []string
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) GetStacks() 
 // GetStacksOk returns a tuple with the Stacks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) GetStacksOk() ([]string, bool) {
-	if o == nil || isNil(o.Stacks) {
-    return nil, false
+	if o == nil || IsNil(o.Stacks) {
+		return nil, false
 	}
 	return o.Stacks, true
 }
 
 // HasStacks returns a boolean if a field has been set.
 func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) HasStacks() bool {
-	if o != nil && !isNil(o.Stacks) {
+	if o != nil && !IsNil(o.Stacks) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) SetStacks(v 
 
 // GetSwitchProfiles returns the SwitchProfiles field value if set, zero value otherwise.
 func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) GetSwitchProfiles() []string {
-	if o == nil || isNil(o.SwitchProfiles) {
+	if o == nil || IsNil(o.SwitchProfiles) {
 		var ret []string
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) GetSwitchPro
 // GetSwitchProfilesOk returns a tuple with the SwitchProfiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) GetSwitchProfilesOk() ([]string, bool) {
-	if o == nil || isNil(o.SwitchProfiles) {
-    return nil, false
+	if o == nil || IsNil(o.SwitchProfiles) {
+		return nil, false
 	}
 	return o.SwitchProfiles, true
 }
 
 // HasSwitchProfiles returns a boolean if a field has been set.
 func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) HasSwitchProfiles() bool {
-	if o != nil && !isNil(o.SwitchProfiles) {
+	if o != nil && !IsNil(o.SwitchProfiles) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) SetSwitchPro
 
 // GetIgmpSnoopingEnabled returns the IgmpSnoopingEnabled field value if set, zero value otherwise.
 func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) GetIgmpSnoopingEnabled() bool {
-	if o == nil || isNil(o.IgmpSnoopingEnabled) {
+	if o == nil || IsNil(o.IgmpSnoopingEnabled) {
 		var ret bool
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) GetIgmpSnoop
 // GetIgmpSnoopingEnabledOk returns a tuple with the IgmpSnoopingEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) GetIgmpSnoopingEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.IgmpSnoopingEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.IgmpSnoopingEnabled) {
+		return nil, false
 	}
 	return o.IgmpSnoopingEnabled, true
 }
 
 // HasIgmpSnoopingEnabled returns a boolean if a field has been set.
 func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) HasIgmpSnoopingEnabled() bool {
-	if o != nil && !isNil(o.IgmpSnoopingEnabled) {
+	if o != nil && !IsNil(o.IgmpSnoopingEnabled) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) SetIgmpSnoop
 
 // GetFloodUnknownMulticastTrafficEnabled returns the FloodUnknownMulticastTrafficEnabled field value if set, zero value otherwise.
 func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) GetFloodUnknownMulticastTrafficEnabled() bool {
-	if o == nil || isNil(o.FloodUnknownMulticastTrafficEnabled) {
+	if o == nil || IsNil(o.FloodUnknownMulticastTrafficEnabled) {
 		var ret bool
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) GetFloodUnkn
 // GetFloodUnknownMulticastTrafficEnabledOk returns a tuple with the FloodUnknownMulticastTrafficEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) GetFloodUnknownMulticastTrafficEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.FloodUnknownMulticastTrafficEnabled) {
-    return nil, false
+	if o == nil || IsNil(o.FloodUnknownMulticastTrafficEnabled) {
+		return nil, false
 	}
 	return o.FloodUnknownMulticastTrafficEnabled, true
 }
 
 // HasFloodUnknownMulticastTrafficEnabled returns a boolean if a field has been set.
 func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) HasFloodUnknownMulticastTrafficEnabled() bool {
-	if o != nil && !isNil(o.FloodUnknownMulticastTrafficEnabled) {
+	if o != nil && !IsNil(o.FloodUnknownMulticastTrafficEnabled) {
 		return true
 	}
 
@@ -206,23 +209,31 @@ func (o *GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) SetFloodUnkn
 }
 
 func (o GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Switches) {
-		toSerialize["switches"] = o.Switches
-	}
-	if !isNil(o.Stacks) {
-		toSerialize["stacks"] = o.Stacks
-	}
-	if !isNil(o.SwitchProfiles) {
-		toSerialize["switchProfiles"] = o.SwitchProfiles
-	}
-	if !isNil(o.IgmpSnoopingEnabled) {
-		toSerialize["igmpSnoopingEnabled"] = o.IgmpSnoopingEnabled
-	}
-	if !isNil(o.FloodUnknownMulticastTrafficEnabled) {
-		toSerialize["floodUnknownMulticastTrafficEnabled"] = o.FloodUnknownMulticastTrafficEnabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSwitchRoutingMulticast200ResponseOverridesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Switches) {
+		toSerialize["switches"] = o.Switches
+	}
+	if !IsNil(o.Stacks) {
+		toSerialize["stacks"] = o.Stacks
+	}
+	if !IsNil(o.SwitchProfiles) {
+		toSerialize["switchProfiles"] = o.SwitchProfiles
+	}
+	if !IsNil(o.IgmpSnoopingEnabled) {
+		toSerialize["igmpSnoopingEnabled"] = o.IgmpSnoopingEnabled
+	}
+	if !IsNil(o.FloodUnknownMulticastTrafficEnabled) {
+		toSerialize["floodUnknownMulticastTrafficEnabled"] = o.FloodUnknownMulticastTrafficEnabled
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSwitchRoutingMulticast200ResponseOverridesInner struct {

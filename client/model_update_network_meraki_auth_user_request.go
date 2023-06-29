@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkMerakiAuthUserRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkMerakiAuthUserRequest{}
+
 // UpdateNetworkMerakiAuthUserRequest struct for UpdateNetworkMerakiAuthUserRequest
 type UpdateNetworkMerakiAuthUserRequest struct {
 	// Name of the user. Only allowed If the user is not Dashboard administrator.
@@ -45,7 +48,7 @@ func NewUpdateNetworkMerakiAuthUserRequestWithDefaults() *UpdateNetworkMerakiAut
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateNetworkMerakiAuthUserRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *UpdateNetworkMerakiAuthUserRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkMerakiAuthUserRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNetworkMerakiAuthUserRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *UpdateNetworkMerakiAuthUserRequest) SetName(v string) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *UpdateNetworkMerakiAuthUserRequest) GetPassword() string {
-	if o == nil || isNil(o.Password) {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *UpdateNetworkMerakiAuthUserRequest) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkMerakiAuthUserRequest) GetPasswordOk() (*string, bool) {
-	if o == nil || isNil(o.Password) {
-    return nil, false
+	if o == nil || IsNil(o.Password) {
+		return nil, false
 	}
 	return o.Password, true
 }
 
 // HasPassword returns a boolean if a field has been set.
 func (o *UpdateNetworkMerakiAuthUserRequest) HasPassword() bool {
-	if o != nil && !isNil(o.Password) {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *UpdateNetworkMerakiAuthUserRequest) SetPassword(v string) {
 
 // GetEmailPasswordToUser returns the EmailPasswordToUser field value if set, zero value otherwise.
 func (o *UpdateNetworkMerakiAuthUserRequest) GetEmailPasswordToUser() bool {
-	if o == nil || isNil(o.EmailPasswordToUser) {
+	if o == nil || IsNil(o.EmailPasswordToUser) {
 		var ret bool
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *UpdateNetworkMerakiAuthUserRequest) GetEmailPasswordToUser() bool {
 // GetEmailPasswordToUserOk returns a tuple with the EmailPasswordToUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkMerakiAuthUserRequest) GetEmailPasswordToUserOk() (*bool, bool) {
-	if o == nil || isNil(o.EmailPasswordToUser) {
-    return nil, false
+	if o == nil || IsNil(o.EmailPasswordToUser) {
+		return nil, false
 	}
 	return o.EmailPasswordToUser, true
 }
 
 // HasEmailPasswordToUser returns a boolean if a field has been set.
 func (o *UpdateNetworkMerakiAuthUserRequest) HasEmailPasswordToUser() bool {
-	if o != nil && !isNil(o.EmailPasswordToUser) {
+	if o != nil && !IsNil(o.EmailPasswordToUser) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *UpdateNetworkMerakiAuthUserRequest) SetEmailPasswordToUser(v bool) {
 
 // GetAuthorizations returns the Authorizations field value if set, zero value otherwise.
 func (o *UpdateNetworkMerakiAuthUserRequest) GetAuthorizations() []UpdateNetworkMerakiAuthUserRequestAuthorizationsInner {
-	if o == nil || isNil(o.Authorizations) {
+	if o == nil || IsNil(o.Authorizations) {
 		var ret []UpdateNetworkMerakiAuthUserRequestAuthorizationsInner
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *UpdateNetworkMerakiAuthUserRequest) GetAuthorizations() []UpdateNetwork
 // GetAuthorizationsOk returns a tuple with the Authorizations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkMerakiAuthUserRequest) GetAuthorizationsOk() ([]UpdateNetworkMerakiAuthUserRequestAuthorizationsInner, bool) {
-	if o == nil || isNil(o.Authorizations) {
-    return nil, false
+	if o == nil || IsNil(o.Authorizations) {
+		return nil, false
 	}
 	return o.Authorizations, true
 }
 
 // HasAuthorizations returns a boolean if a field has been set.
 func (o *UpdateNetworkMerakiAuthUserRequest) HasAuthorizations() bool {
-	if o != nil && !isNil(o.Authorizations) {
+	if o != nil && !IsNil(o.Authorizations) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *UpdateNetworkMerakiAuthUserRequest) SetAuthorizations(v []UpdateNetwork
 }
 
 func (o UpdateNetworkMerakiAuthUserRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Password) {
-		toSerialize["password"] = o.Password
-	}
-	if !isNil(o.EmailPasswordToUser) {
-		toSerialize["emailPasswordToUser"] = o.EmailPasswordToUser
-	}
-	if !isNil(o.Authorizations) {
-		toSerialize["authorizations"] = o.Authorizations
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkMerakiAuthUserRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.EmailPasswordToUser) {
+		toSerialize["emailPasswordToUser"] = o.EmailPasswordToUser
+	}
+	if !IsNil(o.Authorizations) {
+		toSerialize["authorizations"] = o.Authorizations
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkMerakiAuthUserRequest struct {

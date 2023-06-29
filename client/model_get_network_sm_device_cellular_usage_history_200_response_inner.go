@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmDeviceCellularUsageHistory200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmDeviceCellularUsageHistory200ResponseInner{}
+
 // GetNetworkSmDeviceCellularUsageHistory200ResponseInner struct for GetNetworkSmDeviceCellularUsageHistory200ResponseInner
 type GetNetworkSmDeviceCellularUsageHistory200ResponseInner struct {
 	// The amount of cellular data received by the device.
@@ -43,7 +46,7 @@ func NewGetNetworkSmDeviceCellularUsageHistory200ResponseInnerWithDefaults() *Ge
 
 // GetReceived returns the Received field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceCellularUsageHistory200ResponseInner) GetReceived() float32 {
-	if o == nil || isNil(o.Received) {
+	if o == nil || IsNil(o.Received) {
 		var ret float32
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *GetNetworkSmDeviceCellularUsageHistory200ResponseInner) GetReceived() f
 // GetReceivedOk returns a tuple with the Received field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceCellularUsageHistory200ResponseInner) GetReceivedOk() (*float32, bool) {
-	if o == nil || isNil(o.Received) {
-    return nil, false
+	if o == nil || IsNil(o.Received) {
+		return nil, false
 	}
 	return o.Received, true
 }
 
 // HasReceived returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceCellularUsageHistory200ResponseInner) HasReceived() bool {
-	if o != nil && !isNil(o.Received) {
+	if o != nil && !IsNil(o.Received) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *GetNetworkSmDeviceCellularUsageHistory200ResponseInner) SetReceived(v f
 
 // GetSent returns the Sent field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceCellularUsageHistory200ResponseInner) GetSent() float32 {
-	if o == nil || isNil(o.Sent) {
+	if o == nil || IsNil(o.Sent) {
 		var ret float32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *GetNetworkSmDeviceCellularUsageHistory200ResponseInner) GetSent() float
 // GetSentOk returns a tuple with the Sent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceCellularUsageHistory200ResponseInner) GetSentOk() (*float32, bool) {
-	if o == nil || isNil(o.Sent) {
-    return nil, false
+	if o == nil || IsNil(o.Sent) {
+		return nil, false
 	}
 	return o.Sent, true
 }
 
 // HasSent returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceCellularUsageHistory200ResponseInner) HasSent() bool {
-	if o != nil && !isNil(o.Sent) {
+	if o != nil && !IsNil(o.Sent) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *GetNetworkSmDeviceCellularUsageHistory200ResponseInner) SetSent(v float
 
 // GetTs returns the Ts field value if set, zero value otherwise.
 func (o *GetNetworkSmDeviceCellularUsageHistory200ResponseInner) GetTs() string {
-	if o == nil || isNil(o.Ts) {
+	if o == nil || IsNil(o.Ts) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *GetNetworkSmDeviceCellularUsageHistory200ResponseInner) GetTs() string 
 // GetTsOk returns a tuple with the Ts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmDeviceCellularUsageHistory200ResponseInner) GetTsOk() (*string, bool) {
-	if o == nil || isNil(o.Ts) {
-    return nil, false
+	if o == nil || IsNil(o.Ts) {
+		return nil, false
 	}
 	return o.Ts, true
 }
 
 // HasTs returns a boolean if a field has been set.
 func (o *GetNetworkSmDeviceCellularUsageHistory200ResponseInner) HasTs() bool {
-	if o != nil && !isNil(o.Ts) {
+	if o != nil && !IsNil(o.Ts) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *GetNetworkSmDeviceCellularUsageHistory200ResponseInner) SetTs(v string)
 }
 
 func (o GetNetworkSmDeviceCellularUsageHistory200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Received) {
-		toSerialize["received"] = o.Received
-	}
-	if !isNil(o.Sent) {
-		toSerialize["sent"] = o.Sent
-	}
-	if !isNil(o.Ts) {
-		toSerialize["ts"] = o.Ts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmDeviceCellularUsageHistory200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Received) {
+		toSerialize["received"] = o.Received
+	}
+	if !IsNil(o.Sent) {
+		toSerialize["sent"] = o.Sent
+	}
+	if !IsNil(o.Ts) {
+		toSerialize["ts"] = o.Ts
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmDeviceCellularUsageHistory200ResponseInner struct {

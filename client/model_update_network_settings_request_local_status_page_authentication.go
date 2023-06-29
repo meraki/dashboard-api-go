@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSettingsRequestLocalStatusPageAuthentication type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSettingsRequestLocalStatusPageAuthentication{}
+
 // UpdateNetworkSettingsRequestLocalStatusPageAuthentication A hash of Local Status page(s)' authentication options applied to the Network.
 type UpdateNetworkSettingsRequestLocalStatusPageAuthentication struct {
 	// Enables / disables the authentication on Local Status page(s).
@@ -41,7 +44,7 @@ func NewUpdateNetworkSettingsRequestLocalStatusPageAuthenticationWithDefaults() 
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateNetworkSettingsRequestLocalStatusPageAuthentication) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkSettingsRequestLocalStatusPageAuthentication) GetEnabled()
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSettingsRequestLocalStatusPageAuthentication) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateNetworkSettingsRequestLocalStatusPageAuthentication) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkSettingsRequestLocalStatusPageAuthentication) SetEnabled(v
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *UpdateNetworkSettingsRequestLocalStatusPageAuthentication) GetPassword() string {
-	if o == nil || isNil(o.Password) {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkSettingsRequestLocalStatusPageAuthentication) GetPassword(
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSettingsRequestLocalStatusPageAuthentication) GetPasswordOk() (*string, bool) {
-	if o == nil || isNil(o.Password) {
-    return nil, false
+	if o == nil || IsNil(o.Password) {
+		return nil, false
 	}
 	return o.Password, true
 }
 
 // HasPassword returns a boolean if a field has been set.
 func (o *UpdateNetworkSettingsRequestLocalStatusPageAuthentication) HasPassword() bool {
-	if o != nil && !isNil(o.Password) {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkSettingsRequestLocalStatusPageAuthentication) SetPassword(
 }
 
 func (o UpdateNetworkSettingsRequestLocalStatusPageAuthentication) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.Password) {
-		toSerialize["password"] = o.Password
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSettingsRequestLocalStatusPageAuthentication) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSettingsRequestLocalStatusPageAuthentication struct {

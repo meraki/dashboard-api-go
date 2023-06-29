@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceSsidRequestRadiusServersInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceSsidRequestRadiusServersInner{}
+
 // UpdateNetworkApplianceSsidRequestRadiusServersInner struct for UpdateNetworkApplianceSsidRequestRadiusServersInner
 type UpdateNetworkApplianceSsidRequestRadiusServersInner struct {
 	// The IP address of your RADIUS server.
@@ -43,7 +46,7 @@ func NewUpdateNetworkApplianceSsidRequestRadiusServersInnerWithDefaults() *Updat
 
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequestRadiusServersInner) GetHost() string {
-	if o == nil || isNil(o.Host) {
+	if o == nil || IsNil(o.Host) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateNetworkApplianceSsidRequestRadiusServersInner) GetHost() string {
 // GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequestRadiusServersInner) GetHostOk() (*string, bool) {
-	if o == nil || isNil(o.Host) {
-    return nil, false
+	if o == nil || IsNil(o.Host) {
+		return nil, false
 	}
 	return o.Host, true
 }
 
 // HasHost returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequestRadiusServersInner) HasHost() bool {
-	if o != nil && !isNil(o.Host) {
+	if o != nil && !IsNil(o.Host) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *UpdateNetworkApplianceSsidRequestRadiusServersInner) SetHost(v string) 
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequestRadiusServersInner) GetPort() int32 {
-	if o == nil || isNil(o.Port) {
+	if o == nil || IsNil(o.Port) {
 		var ret int32
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *UpdateNetworkApplianceSsidRequestRadiusServersInner) GetPort() int32 {
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequestRadiusServersInner) GetPortOk() (*int32, bool) {
-	if o == nil || isNil(o.Port) {
-    return nil, false
+	if o == nil || IsNil(o.Port) {
+		return nil, false
 	}
 	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequestRadiusServersInner) HasPort() bool {
-	if o != nil && !isNil(o.Port) {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *UpdateNetworkApplianceSsidRequestRadiusServersInner) SetPort(v int32) {
 
 // GetSecret returns the Secret field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceSsidRequestRadiusServersInner) GetSecret() string {
-	if o == nil || isNil(o.Secret) {
+	if o == nil || IsNil(o.Secret) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *UpdateNetworkApplianceSsidRequestRadiusServersInner) GetSecret() string
 // GetSecretOk returns a tuple with the Secret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceSsidRequestRadiusServersInner) GetSecretOk() (*string, bool) {
-	if o == nil || isNil(o.Secret) {
-    return nil, false
+	if o == nil || IsNil(o.Secret) {
+		return nil, false
 	}
 	return o.Secret, true
 }
 
 // HasSecret returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceSsidRequestRadiusServersInner) HasSecret() bool {
-	if o != nil && !isNil(o.Secret) {
+	if o != nil && !IsNil(o.Secret) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *UpdateNetworkApplianceSsidRequestRadiusServersInner) SetSecret(v string
 }
 
 func (o UpdateNetworkApplianceSsidRequestRadiusServersInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Host) {
-		toSerialize["host"] = o.Host
-	}
-	if !isNil(o.Port) {
-		toSerialize["port"] = o.Port
-	}
-	if !isNil(o.Secret) {
-		toSerialize["secret"] = o.Secret
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceSsidRequestRadiusServersInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Host) {
+		toSerialize["host"] = o.Host
+	}
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
+	}
+	if !IsNil(o.Secret) {
+		toSerialize["secret"] = o.Secret
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceSsidRequestRadiusServersInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner{}
+
 // GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner struct for GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner
 type GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner struct {
 	// The device model
@@ -42,7 +45,7 @@ func NewGetOrganizationSummaryTopDevicesModelsByUsage200ResponseInnerWithDefault
 
 // GetModel returns the Model field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) GetModel() string {
-	if o == nil || isNil(o.Model) {
+	if o == nil || IsNil(o.Model) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) GetModel
 // GetModelOk returns a tuple with the Model field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) GetModelOk() (*string, bool) {
-	if o == nil || isNil(o.Model) {
-    return nil, false
+	if o == nil || IsNil(o.Model) {
+		return nil, false
 	}
 	return o.Model, true
 }
 
 // HasModel returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) HasModel() bool {
-	if o != nil && !isNil(o.Model) {
+	if o != nil && !IsNil(o.Model) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) SetModel
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) GetCount() int32 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int32
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) GetCount
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) GetCountOk() (*int32, bool) {
-	if o == nil || isNil(o.Count) {
-    return nil, false
+	if o == nil || IsNil(o.Count) {
+		return nil, false
 	}
 	return o.Count, true
 }
 
 // HasCount returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) SetCount
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) GetUsage() GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInnerUsage {
-	if o == nil || isNil(o.Usage) {
+	if o == nil || IsNil(o.Usage) {
 		var ret GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInnerUsage
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) GetUsage
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) GetUsageOk() (*GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInnerUsage, bool) {
-	if o == nil || isNil(o.Usage) {
-    return nil, false
+	if o == nil || IsNil(o.Usage) {
+		return nil, false
 	}
 	return o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
 func (o *GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) HasUsage() bool {
-	if o != nil && !isNil(o.Usage) {
+	if o != nil && !IsNil(o.Usage) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) SetUsage
 }
 
 func (o GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Model) {
-		toSerialize["model"] = o.Model
-	}
-	if !isNil(o.Count) {
-		toSerialize["count"] = o.Count
-	}
-	if !isNil(o.Usage) {
-		toSerialize["usage"] = o.Usage
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Model) {
+		toSerialize["model"] = o.Model
+	}
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
+	}
+	if !IsNil(o.Usage) {
+		toSerialize["usage"] = o.Usage
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSummaryTopDevicesModelsByUsage200ResponseInner struct {

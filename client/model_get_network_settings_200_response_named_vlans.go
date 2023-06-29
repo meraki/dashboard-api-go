@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSettings200ResponseNamedVlans type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSettings200ResponseNamedVlans{}
+
 // GetNetworkSettings200ResponseNamedVlans A hash of Named VLANs options applied to the Network.
 type GetNetworkSettings200ResponseNamedVlans struct {
 	// Enables / disables Named VLANs on the Network.
@@ -52,7 +55,7 @@ func (o *GetNetworkSettings200ResponseNamedVlans) GetEnabled() bool {
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSettings200ResponseNamedVlans) GetEnabledOk() (*bool, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Enabled, true
 }
@@ -63,11 +66,17 @@ func (o *GetNetworkSettings200ResponseNamedVlans) SetEnabled(v bool) {
 }
 
 func (o GetNetworkSettings200ResponseNamedVlans) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["enabled"] = o.Enabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSettings200ResponseNamedVlans) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["enabled"] = o.Enabled
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSettings200ResponseNamedVlans struct {

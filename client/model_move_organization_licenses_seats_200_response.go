@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MoveOrganizationLicensesSeats200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MoveOrganizationLicensesSeats200Response{}
+
 // MoveOrganizationLicensesSeats200Response struct for MoveOrganizationLicensesSeats200Response
 type MoveOrganizationLicensesSeats200Response struct {
 	// The ID of the organization to move the SM seats to
@@ -43,7 +46,7 @@ func NewMoveOrganizationLicensesSeats200ResponseWithDefaults() *MoveOrganization
 
 // GetDestOrganizationId returns the DestOrganizationId field value if set, zero value otherwise.
 func (o *MoveOrganizationLicensesSeats200Response) GetDestOrganizationId() string {
-	if o == nil || isNil(o.DestOrganizationId) {
+	if o == nil || IsNil(o.DestOrganizationId) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *MoveOrganizationLicensesSeats200Response) GetDestOrganizationId() strin
 // GetDestOrganizationIdOk returns a tuple with the DestOrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MoveOrganizationLicensesSeats200Response) GetDestOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.DestOrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.DestOrganizationId) {
+		return nil, false
 	}
 	return o.DestOrganizationId, true
 }
 
 // HasDestOrganizationId returns a boolean if a field has been set.
 func (o *MoveOrganizationLicensesSeats200Response) HasDestOrganizationId() bool {
-	if o != nil && !isNil(o.DestOrganizationId) {
+	if o != nil && !IsNil(o.DestOrganizationId) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *MoveOrganizationLicensesSeats200Response) SetDestOrganizationId(v strin
 
 // GetLicenseId returns the LicenseId field value if set, zero value otherwise.
 func (o *MoveOrganizationLicensesSeats200Response) GetLicenseId() string {
-	if o == nil || isNil(o.LicenseId) {
+	if o == nil || IsNil(o.LicenseId) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *MoveOrganizationLicensesSeats200Response) GetLicenseId() string {
 // GetLicenseIdOk returns a tuple with the LicenseId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MoveOrganizationLicensesSeats200Response) GetLicenseIdOk() (*string, bool) {
-	if o == nil || isNil(o.LicenseId) {
-    return nil, false
+	if o == nil || IsNil(o.LicenseId) {
+		return nil, false
 	}
 	return o.LicenseId, true
 }
 
 // HasLicenseId returns a boolean if a field has been set.
 func (o *MoveOrganizationLicensesSeats200Response) HasLicenseId() bool {
-	if o != nil && !isNil(o.LicenseId) {
+	if o != nil && !IsNil(o.LicenseId) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *MoveOrganizationLicensesSeats200Response) SetLicenseId(v string) {
 
 // GetSeatCount returns the SeatCount field value if set, zero value otherwise.
 func (o *MoveOrganizationLicensesSeats200Response) GetSeatCount() int32 {
-	if o == nil || isNil(o.SeatCount) {
+	if o == nil || IsNil(o.SeatCount) {
 		var ret int32
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *MoveOrganizationLicensesSeats200Response) GetSeatCount() int32 {
 // GetSeatCountOk returns a tuple with the SeatCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MoveOrganizationLicensesSeats200Response) GetSeatCountOk() (*int32, bool) {
-	if o == nil || isNil(o.SeatCount) {
-    return nil, false
+	if o == nil || IsNil(o.SeatCount) {
+		return nil, false
 	}
 	return o.SeatCount, true
 }
 
 // HasSeatCount returns a boolean if a field has been set.
 func (o *MoveOrganizationLicensesSeats200Response) HasSeatCount() bool {
-	if o != nil && !isNil(o.SeatCount) {
+	if o != nil && !IsNil(o.SeatCount) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *MoveOrganizationLicensesSeats200Response) SetSeatCount(v int32) {
 }
 
 func (o MoveOrganizationLicensesSeats200Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.DestOrganizationId) {
-		toSerialize["destOrganizationId"] = o.DestOrganizationId
-	}
-	if !isNil(o.LicenseId) {
-		toSerialize["licenseId"] = o.LicenseId
-	}
-	if !isNil(o.SeatCount) {
-		toSerialize["seatCount"] = o.SeatCount
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MoveOrganizationLicensesSeats200Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DestOrganizationId) {
+		toSerialize["destOrganizationId"] = o.DestOrganizationId
+	}
+	if !IsNil(o.LicenseId) {
+		toSerialize["licenseId"] = o.LicenseId
+	}
+	if !IsNil(o.SeatCount) {
+		toSerialize["seatCount"] = o.SeatCount
+	}
+	return toSerialize, nil
 }
 
 type NullableMoveOrganizationLicensesSeats200Response struct {

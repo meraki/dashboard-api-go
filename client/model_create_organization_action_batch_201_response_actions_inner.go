@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationActionBatch201ResponseActionsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationActionBatch201ResponseActionsInner{}
+
 // CreateOrganizationActionBatch201ResponseActionsInner struct for CreateOrganizationActionBatch201ResponseActionsInner
 type CreateOrganizationActionBatch201ResponseActionsInner struct {
 	// Unique identifier for the resource to be acted on
@@ -55,7 +58,7 @@ func (o *CreateOrganizationActionBatch201ResponseActionsInner) GetResource() str
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatch201ResponseActionsInner) GetResourceOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Resource, true
 }
@@ -79,7 +82,7 @@ func (o *CreateOrganizationActionBatch201ResponseActionsInner) GetOperation() st
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationActionBatch201ResponseActionsInner) GetOperationOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Operation, true
 }
@@ -90,14 +93,18 @@ func (o *CreateOrganizationActionBatch201ResponseActionsInner) SetOperation(v st
 }
 
 func (o CreateOrganizationActionBatch201ResponseActionsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["resource"] = o.Resource
-	}
-	if true {
-		toSerialize["operation"] = o.Operation
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationActionBatch201ResponseActionsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["resource"] = o.Resource
+	toSerialize["operation"] = o.Operation
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationActionBatch201ResponseActionsInner struct {

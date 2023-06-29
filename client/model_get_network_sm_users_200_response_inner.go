@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkSmUsers200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkSmUsers200ResponseInner{}
+
 // GetNetworkSmUsers200ResponseInner struct for GetNetworkSmUsers200ResponseInner
 type GetNetworkSmUsers200ResponseInner struct {
 	// The Meraki managed Id of the user record.
@@ -65,7 +68,7 @@ func NewGetNetworkSmUsers200ResponseInnerWithDefaults() *GetNetworkSmUsers200Res
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetNetworkSmUsers200ResponseInner) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -75,15 +78,15 @@ func (o *GetNetworkSmUsers200ResponseInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUsers200ResponseInner) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetNetworkSmUsers200ResponseInner) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -97,7 +100,7 @@ func (o *GetNetworkSmUsers200ResponseInner) SetId(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *GetNetworkSmUsers200ResponseInner) GetEmail() string {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -107,15 +110,15 @@ func (o *GetNetworkSmUsers200ResponseInner) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUsers200ResponseInner) GetEmailOk() (*string, bool) {
-	if o == nil || isNil(o.Email) {
-    return nil, false
+	if o == nil || IsNil(o.Email) {
+		return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *GetNetworkSmUsers200ResponseInner) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -129,7 +132,7 @@ func (o *GetNetworkSmUsers200ResponseInner) SetEmail(v string) {
 
 // GetFullName returns the FullName field value if set, zero value otherwise.
 func (o *GetNetworkSmUsers200ResponseInner) GetFullName() string {
-	if o == nil || isNil(o.FullName) {
+	if o == nil || IsNil(o.FullName) {
 		var ret string
 		return ret
 	}
@@ -139,15 +142,15 @@ func (o *GetNetworkSmUsers200ResponseInner) GetFullName() string {
 // GetFullNameOk returns a tuple with the FullName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUsers200ResponseInner) GetFullNameOk() (*string, bool) {
-	if o == nil || isNil(o.FullName) {
-    return nil, false
+	if o == nil || IsNil(o.FullName) {
+		return nil, false
 	}
 	return o.FullName, true
 }
 
 // HasFullName returns a boolean if a field has been set.
 func (o *GetNetworkSmUsers200ResponseInner) HasFullName() bool {
-	if o != nil && !isNil(o.FullName) {
+	if o != nil && !IsNil(o.FullName) {
 		return true
 	}
 
@@ -161,7 +164,7 @@ func (o *GetNetworkSmUsers200ResponseInner) SetFullName(v string) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *GetNetworkSmUsers200ResponseInner) GetUsername() string {
-	if o == nil || isNil(o.Username) {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -171,15 +174,15 @@ func (o *GetNetworkSmUsers200ResponseInner) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUsers200ResponseInner) GetUsernameOk() (*string, bool) {
-	if o == nil || isNil(o.Username) {
-    return nil, false
+	if o == nil || IsNil(o.Username) {
+		return nil, false
 	}
 	return o.Username, true
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *GetNetworkSmUsers200ResponseInner) HasUsername() bool {
-	if o != nil && !isNil(o.Username) {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -193,7 +196,7 @@ func (o *GetNetworkSmUsers200ResponseInner) SetUsername(v string) {
 
 // GetHasPassword returns the HasPassword field value if set, zero value otherwise.
 func (o *GetNetworkSmUsers200ResponseInner) GetHasPassword() bool {
-	if o == nil || isNil(o.HasPassword) {
+	if o == nil || IsNil(o.HasPassword) {
 		var ret bool
 		return ret
 	}
@@ -203,15 +206,15 @@ func (o *GetNetworkSmUsers200ResponseInner) GetHasPassword() bool {
 // GetHasPasswordOk returns a tuple with the HasPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUsers200ResponseInner) GetHasPasswordOk() (*bool, bool) {
-	if o == nil || isNil(o.HasPassword) {
-    return nil, false
+	if o == nil || IsNil(o.HasPassword) {
+		return nil, false
 	}
 	return o.HasPassword, true
 }
 
 // HasHasPassword returns a boolean if a field has been set.
 func (o *GetNetworkSmUsers200ResponseInner) HasHasPassword() bool {
-	if o != nil && !isNil(o.HasPassword) {
+	if o != nil && !IsNil(o.HasPassword) {
 		return true
 	}
 
@@ -225,7 +228,7 @@ func (o *GetNetworkSmUsers200ResponseInner) SetHasPassword(v bool) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *GetNetworkSmUsers200ResponseInner) GetTags() string {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		var ret string
 		return ret
 	}
@@ -235,15 +238,15 @@ func (o *GetNetworkSmUsers200ResponseInner) GetTags() string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUsers200ResponseInner) GetTagsOk() (*string, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
 	}
 	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *GetNetworkSmUsers200ResponseInner) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -257,7 +260,7 @@ func (o *GetNetworkSmUsers200ResponseInner) SetTags(v string) {
 
 // GetAdGroups returns the AdGroups field value if set, zero value otherwise.
 func (o *GetNetworkSmUsers200ResponseInner) GetAdGroups() []string {
-	if o == nil || isNil(o.AdGroups) {
+	if o == nil || IsNil(o.AdGroups) {
 		var ret []string
 		return ret
 	}
@@ -267,15 +270,15 @@ func (o *GetNetworkSmUsers200ResponseInner) GetAdGroups() []string {
 // GetAdGroupsOk returns a tuple with the AdGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUsers200ResponseInner) GetAdGroupsOk() ([]string, bool) {
-	if o == nil || isNil(o.AdGroups) {
-    return nil, false
+	if o == nil || IsNil(o.AdGroups) {
+		return nil, false
 	}
 	return o.AdGroups, true
 }
 
 // HasAdGroups returns a boolean if a field has been set.
 func (o *GetNetworkSmUsers200ResponseInner) HasAdGroups() bool {
-	if o != nil && !isNil(o.AdGroups) {
+	if o != nil && !IsNil(o.AdGroups) {
 		return true
 	}
 
@@ -289,7 +292,7 @@ func (o *GetNetworkSmUsers200ResponseInner) SetAdGroups(v []string) {
 
 // GetAzureAdGroups returns the AzureAdGroups field value if set, zero value otherwise.
 func (o *GetNetworkSmUsers200ResponseInner) GetAzureAdGroups() []string {
-	if o == nil || isNil(o.AzureAdGroups) {
+	if o == nil || IsNil(o.AzureAdGroups) {
 		var ret []string
 		return ret
 	}
@@ -299,15 +302,15 @@ func (o *GetNetworkSmUsers200ResponseInner) GetAzureAdGroups() []string {
 // GetAzureAdGroupsOk returns a tuple with the AzureAdGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUsers200ResponseInner) GetAzureAdGroupsOk() ([]string, bool) {
-	if o == nil || isNil(o.AzureAdGroups) {
-    return nil, false
+	if o == nil || IsNil(o.AzureAdGroups) {
+		return nil, false
 	}
 	return o.AzureAdGroups, true
 }
 
 // HasAzureAdGroups returns a boolean if a field has been set.
 func (o *GetNetworkSmUsers200ResponseInner) HasAzureAdGroups() bool {
-	if o != nil && !isNil(o.AzureAdGroups) {
+	if o != nil && !IsNil(o.AzureAdGroups) {
 		return true
 	}
 
@@ -321,7 +324,7 @@ func (o *GetNetworkSmUsers200ResponseInner) SetAzureAdGroups(v []string) {
 
 // GetSamlGroups returns the SamlGroups field value if set, zero value otherwise.
 func (o *GetNetworkSmUsers200ResponseInner) GetSamlGroups() []string {
-	if o == nil || isNil(o.SamlGroups) {
+	if o == nil || IsNil(o.SamlGroups) {
 		var ret []string
 		return ret
 	}
@@ -331,15 +334,15 @@ func (o *GetNetworkSmUsers200ResponseInner) GetSamlGroups() []string {
 // GetSamlGroupsOk returns a tuple with the SamlGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUsers200ResponseInner) GetSamlGroupsOk() ([]string, bool) {
-	if o == nil || isNil(o.SamlGroups) {
-    return nil, false
+	if o == nil || IsNil(o.SamlGroups) {
+		return nil, false
 	}
 	return o.SamlGroups, true
 }
 
 // HasSamlGroups returns a boolean if a field has been set.
 func (o *GetNetworkSmUsers200ResponseInner) HasSamlGroups() bool {
-	if o != nil && !isNil(o.SamlGroups) {
+	if o != nil && !IsNil(o.SamlGroups) {
 		return true
 	}
 
@@ -353,7 +356,7 @@ func (o *GetNetworkSmUsers200ResponseInner) SetSamlGroups(v []string) {
 
 // GetAsmGroups returns the AsmGroups field value if set, zero value otherwise.
 func (o *GetNetworkSmUsers200ResponseInner) GetAsmGroups() []string {
-	if o == nil || isNil(o.AsmGroups) {
+	if o == nil || IsNil(o.AsmGroups) {
 		var ret []string
 		return ret
 	}
@@ -363,15 +366,15 @@ func (o *GetNetworkSmUsers200ResponseInner) GetAsmGroups() []string {
 // GetAsmGroupsOk returns a tuple with the AsmGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUsers200ResponseInner) GetAsmGroupsOk() ([]string, bool) {
-	if o == nil || isNil(o.AsmGroups) {
-    return nil, false
+	if o == nil || IsNil(o.AsmGroups) {
+		return nil, false
 	}
 	return o.AsmGroups, true
 }
 
 // HasAsmGroups returns a boolean if a field has been set.
 func (o *GetNetworkSmUsers200ResponseInner) HasAsmGroups() bool {
-	if o != nil && !isNil(o.AsmGroups) {
+	if o != nil && !IsNil(o.AsmGroups) {
 		return true
 	}
 
@@ -385,7 +388,7 @@ func (o *GetNetworkSmUsers200ResponseInner) SetAsmGroups(v []string) {
 
 // GetIsExternal returns the IsExternal field value if set, zero value otherwise.
 func (o *GetNetworkSmUsers200ResponseInner) GetIsExternal() bool {
-	if o == nil || isNil(o.IsExternal) {
+	if o == nil || IsNil(o.IsExternal) {
 		var ret bool
 		return ret
 	}
@@ -395,15 +398,15 @@ func (o *GetNetworkSmUsers200ResponseInner) GetIsExternal() bool {
 // GetIsExternalOk returns a tuple with the IsExternal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUsers200ResponseInner) GetIsExternalOk() (*bool, bool) {
-	if o == nil || isNil(o.IsExternal) {
-    return nil, false
+	if o == nil || IsNil(o.IsExternal) {
+		return nil, false
 	}
 	return o.IsExternal, true
 }
 
 // HasIsExternal returns a boolean if a field has been set.
 func (o *GetNetworkSmUsers200ResponseInner) HasIsExternal() bool {
-	if o != nil && !isNil(o.IsExternal) {
+	if o != nil && !IsNil(o.IsExternal) {
 		return true
 	}
 
@@ -417,7 +420,7 @@ func (o *GetNetworkSmUsers200ResponseInner) SetIsExternal(v bool) {
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *GetNetworkSmUsers200ResponseInner) GetDisplayName() string {
-	if o == nil || isNil(o.DisplayName) {
+	if o == nil || IsNil(o.DisplayName) {
 		var ret string
 		return ret
 	}
@@ -427,15 +430,15 @@ func (o *GetNetworkSmUsers200ResponseInner) GetDisplayName() string {
 // GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUsers200ResponseInner) GetDisplayNameOk() (*string, bool) {
-	if o == nil || isNil(o.DisplayName) {
-    return nil, false
+	if o == nil || IsNil(o.DisplayName) {
+		return nil, false
 	}
 	return o.DisplayName, true
 }
 
 // HasDisplayName returns a boolean if a field has been set.
 func (o *GetNetworkSmUsers200ResponseInner) HasDisplayName() bool {
-	if o != nil && !isNil(o.DisplayName) {
+	if o != nil && !IsNil(o.DisplayName) {
 		return true
 	}
 
@@ -449,7 +452,7 @@ func (o *GetNetworkSmUsers200ResponseInner) SetDisplayName(v string) {
 
 // GetHasIdentityCertificate returns the HasIdentityCertificate field value if set, zero value otherwise.
 func (o *GetNetworkSmUsers200ResponseInner) GetHasIdentityCertificate() bool {
-	if o == nil || isNil(o.HasIdentityCertificate) {
+	if o == nil || IsNil(o.HasIdentityCertificate) {
 		var ret bool
 		return ret
 	}
@@ -459,15 +462,15 @@ func (o *GetNetworkSmUsers200ResponseInner) GetHasIdentityCertificate() bool {
 // GetHasIdentityCertificateOk returns a tuple with the HasIdentityCertificate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUsers200ResponseInner) GetHasIdentityCertificateOk() (*bool, bool) {
-	if o == nil || isNil(o.HasIdentityCertificate) {
-    return nil, false
+	if o == nil || IsNil(o.HasIdentityCertificate) {
+		return nil, false
 	}
 	return o.HasIdentityCertificate, true
 }
 
 // HasHasIdentityCertificate returns a boolean if a field has been set.
 func (o *GetNetworkSmUsers200ResponseInner) HasHasIdentityCertificate() bool {
-	if o != nil && !isNil(o.HasIdentityCertificate) {
+	if o != nil && !IsNil(o.HasIdentityCertificate) {
 		return true
 	}
 
@@ -481,7 +484,7 @@ func (o *GetNetworkSmUsers200ResponseInner) SetHasIdentityCertificate(v bool) {
 
 // GetUserThumbnail returns the UserThumbnail field value if set, zero value otherwise.
 func (o *GetNetworkSmUsers200ResponseInner) GetUserThumbnail() string {
-	if o == nil || isNil(o.UserThumbnail) {
+	if o == nil || IsNil(o.UserThumbnail) {
 		var ret string
 		return ret
 	}
@@ -491,15 +494,15 @@ func (o *GetNetworkSmUsers200ResponseInner) GetUserThumbnail() string {
 // GetUserThumbnailOk returns a tuple with the UserThumbnail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkSmUsers200ResponseInner) GetUserThumbnailOk() (*string, bool) {
-	if o == nil || isNil(o.UserThumbnail) {
-    return nil, false
+	if o == nil || IsNil(o.UserThumbnail) {
+		return nil, false
 	}
 	return o.UserThumbnail, true
 }
 
 // HasUserThumbnail returns a boolean if a field has been set.
 func (o *GetNetworkSmUsers200ResponseInner) HasUserThumbnail() bool {
-	if o != nil && !isNil(o.UserThumbnail) {
+	if o != nil && !IsNil(o.UserThumbnail) {
 		return true
 	}
 
@@ -512,50 +515,58 @@ func (o *GetNetworkSmUsers200ResponseInner) SetUserThumbnail(v string) {
 }
 
 func (o GetNetworkSmUsers200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Email) {
-		toSerialize["email"] = o.Email
-	}
-	if !isNil(o.FullName) {
-		toSerialize["fullName"] = o.FullName
-	}
-	if !isNil(o.Username) {
-		toSerialize["username"] = o.Username
-	}
-	if !isNil(o.HasPassword) {
-		toSerialize["hasPassword"] = o.HasPassword
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
-	}
-	if !isNil(o.AdGroups) {
-		toSerialize["adGroups"] = o.AdGroups
-	}
-	if !isNil(o.AzureAdGroups) {
-		toSerialize["azureAdGroups"] = o.AzureAdGroups
-	}
-	if !isNil(o.SamlGroups) {
-		toSerialize["samlGroups"] = o.SamlGroups
-	}
-	if !isNil(o.AsmGroups) {
-		toSerialize["asmGroups"] = o.AsmGroups
-	}
-	if !isNil(o.IsExternal) {
-		toSerialize["isExternal"] = o.IsExternal
-	}
-	if !isNil(o.DisplayName) {
-		toSerialize["displayName"] = o.DisplayName
-	}
-	if !isNil(o.HasIdentityCertificate) {
-		toSerialize["hasIdentityCertificate"] = o.HasIdentityCertificate
-	}
-	if !isNil(o.UserThumbnail) {
-		toSerialize["userThumbnail"] = o.UserThumbnail
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkSmUsers200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.FullName) {
+		toSerialize["fullName"] = o.FullName
+	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.HasPassword) {
+		toSerialize["hasPassword"] = o.HasPassword
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.AdGroups) {
+		toSerialize["adGroups"] = o.AdGroups
+	}
+	if !IsNil(o.AzureAdGroups) {
+		toSerialize["azureAdGroups"] = o.AzureAdGroups
+	}
+	if !IsNil(o.SamlGroups) {
+		toSerialize["samlGroups"] = o.SamlGroups
+	}
+	if !IsNil(o.AsmGroups) {
+		toSerialize["asmGroups"] = o.AsmGroups
+	}
+	if !IsNil(o.IsExternal) {
+		toSerialize["isExternal"] = o.IsExternal
+	}
+	if !IsNil(o.DisplayName) {
+		toSerialize["displayName"] = o.DisplayName
+	}
+	if !IsNil(o.HasIdentityCertificate) {
+		toSerialize["hasIdentityCertificate"] = o.HasIdentityCertificate
+	}
+	if !IsNil(o.UserThumbnail) {
+		toSerialize["userThumbnail"] = o.UserThumbnail
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkSmUsers200ResponseInner struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkMerakiAuthUserRequestAuthorizationsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkMerakiAuthUserRequestAuthorizationsInner{}
+
 // CreateNetworkMerakiAuthUserRequestAuthorizationsInner struct for CreateNetworkMerakiAuthUserRequestAuthorizationsInner
 type CreateNetworkMerakiAuthUserRequestAuthorizationsInner struct {
 	// Required for wireless networks. The SSID for which the user is being authorized, which must be configured for the user's given accountType.
@@ -45,7 +48,7 @@ func NewCreateNetworkMerakiAuthUserRequestAuthorizationsInnerWithDefaults() *Cre
 
 // GetSsidNumber returns the SsidNumber field value if set, zero value otherwise.
 func (o *CreateNetworkMerakiAuthUserRequestAuthorizationsInner) GetSsidNumber() int32 {
-	if o == nil || isNil(o.SsidNumber) {
+	if o == nil || IsNil(o.SsidNumber) {
 		var ret int32
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *CreateNetworkMerakiAuthUserRequestAuthorizationsInner) GetSsidNumber() 
 // GetSsidNumberOk returns a tuple with the SsidNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkMerakiAuthUserRequestAuthorizationsInner) GetSsidNumberOk() (*int32, bool) {
-	if o == nil || isNil(o.SsidNumber) {
-    return nil, false
+	if o == nil || IsNil(o.SsidNumber) {
+		return nil, false
 	}
 	return o.SsidNumber, true
 }
 
 // HasSsidNumber returns a boolean if a field has been set.
 func (o *CreateNetworkMerakiAuthUserRequestAuthorizationsInner) HasSsidNumber() bool {
-	if o != nil && !isNil(o.SsidNumber) {
+	if o != nil && !IsNil(o.SsidNumber) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *CreateNetworkMerakiAuthUserRequestAuthorizationsInner) SetSsidNumber(v 
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *CreateNetworkMerakiAuthUserRequestAuthorizationsInner) GetExpiresAt() string {
-	if o == nil || isNil(o.ExpiresAt) {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret string
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *CreateNetworkMerakiAuthUserRequestAuthorizationsInner) GetExpiresAt() s
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkMerakiAuthUserRequestAuthorizationsInner) GetExpiresAtOk() (*string, bool) {
-	if o == nil || isNil(o.ExpiresAt) {
-    return nil, false
+	if o == nil || IsNil(o.ExpiresAt) {
+		return nil, false
 	}
 	return o.ExpiresAt, true
 }
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *CreateNetworkMerakiAuthUserRequestAuthorizationsInner) HasExpiresAt() bool {
-	if o != nil && !isNil(o.ExpiresAt) {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -108,14 +111,22 @@ func (o *CreateNetworkMerakiAuthUserRequestAuthorizationsInner) SetExpiresAt(v s
 }
 
 func (o CreateNetworkMerakiAuthUserRequestAuthorizationsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.SsidNumber) {
-		toSerialize["ssidNumber"] = o.SsidNumber
-	}
-	if !isNil(o.ExpiresAt) {
-		toSerialize["expiresAt"] = o.ExpiresAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkMerakiAuthUserRequestAuthorizationsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SsidNumber) {
+		toSerialize["ssidNumber"] = o.SsidNumber
+	}
+	if !IsNil(o.ExpiresAt) {
+		toSerialize["expiresAt"] = o.ExpiresAt
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkMerakiAuthUserRequestAuthorizationsInner struct {

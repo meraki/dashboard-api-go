@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the BindNetworkRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BindNetworkRequest{}
+
 // BindNetworkRequest struct for BindNetworkRequest
 type BindNetworkRequest struct {
 	// The ID of the template to which the network should be bound.
@@ -54,7 +57,7 @@ func (o *BindNetworkRequest) GetConfigTemplateId() string {
 // and a boolean to check if the value has been set.
 func (o *BindNetworkRequest) GetConfigTemplateIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ConfigTemplateId, true
 }
@@ -66,7 +69,7 @@ func (o *BindNetworkRequest) SetConfigTemplateId(v string) {
 
 // GetAutoBind returns the AutoBind field value if set, zero value otherwise.
 func (o *BindNetworkRequest) GetAutoBind() bool {
-	if o == nil || isNil(o.AutoBind) {
+	if o == nil || IsNil(o.AutoBind) {
 		var ret bool
 		return ret
 	}
@@ -76,15 +79,15 @@ func (o *BindNetworkRequest) GetAutoBind() bool {
 // GetAutoBindOk returns a tuple with the AutoBind field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BindNetworkRequest) GetAutoBindOk() (*bool, bool) {
-	if o == nil || isNil(o.AutoBind) {
-    return nil, false
+	if o == nil || IsNil(o.AutoBind) {
+		return nil, false
 	}
 	return o.AutoBind, true
 }
 
 // HasAutoBind returns a boolean if a field has been set.
 func (o *BindNetworkRequest) HasAutoBind() bool {
-	if o != nil && !isNil(o.AutoBind) {
+	if o != nil && !IsNil(o.AutoBind) {
 		return true
 	}
 
@@ -97,14 +100,20 @@ func (o *BindNetworkRequest) SetAutoBind(v bool) {
 }
 
 func (o BindNetworkRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["configTemplateId"] = o.ConfigTemplateId
-	}
-	if !isNil(o.AutoBind) {
-		toSerialize["autoBind"] = o.AutoBind
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o BindNetworkRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["configTemplateId"] = o.ConfigTemplateId
+	if !IsNil(o.AutoBind) {
+		toSerialize["autoBind"] = o.AutoBind
+	}
+	return toSerialize, nil
 }
 
 type NullableBindNetworkRequest struct {

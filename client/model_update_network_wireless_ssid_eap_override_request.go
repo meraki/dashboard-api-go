@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidEapOverrideRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidEapOverrideRequest{}
+
 // UpdateNetworkWirelessSsidEapOverrideRequest struct for UpdateNetworkWirelessSsidEapOverrideRequest
 type UpdateNetworkWirelessSsidEapOverrideRequest struct {
 	// General EAP timeout in seconds.
@@ -43,7 +46,7 @@ func NewUpdateNetworkWirelessSsidEapOverrideRequestWithDefaults() *UpdateNetwork
 
 // GetTimeout returns the Timeout field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidEapOverrideRequest) GetTimeout() int32 {
-	if o == nil || isNil(o.Timeout) {
+	if o == nil || IsNil(o.Timeout) {
 		var ret int32
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateNetworkWirelessSsidEapOverrideRequest) GetTimeout() int32 {
 // GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidEapOverrideRequest) GetTimeoutOk() (*int32, bool) {
-	if o == nil || isNil(o.Timeout) {
-    return nil, false
+	if o == nil || IsNil(o.Timeout) {
+		return nil, false
 	}
 	return o.Timeout, true
 }
 
 // HasTimeout returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidEapOverrideRequest) HasTimeout() bool {
-	if o != nil && !isNil(o.Timeout) {
+	if o != nil && !IsNil(o.Timeout) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *UpdateNetworkWirelessSsidEapOverrideRequest) SetTimeout(v int32) {
 
 // GetIdentity returns the Identity field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidEapOverrideRequest) GetIdentity() GetNetworkWirelessSsidEapOverride200ResponseIdentity {
-	if o == nil || isNil(o.Identity) {
+	if o == nil || IsNil(o.Identity) {
 		var ret GetNetworkWirelessSsidEapOverride200ResponseIdentity
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *UpdateNetworkWirelessSsidEapOverrideRequest) GetIdentity() GetNetworkWi
 // GetIdentityOk returns a tuple with the Identity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidEapOverrideRequest) GetIdentityOk() (*GetNetworkWirelessSsidEapOverride200ResponseIdentity, bool) {
-	if o == nil || isNil(o.Identity) {
-    return nil, false
+	if o == nil || IsNil(o.Identity) {
+		return nil, false
 	}
 	return o.Identity, true
 }
 
 // HasIdentity returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidEapOverrideRequest) HasIdentity() bool {
-	if o != nil && !isNil(o.Identity) {
+	if o != nil && !IsNil(o.Identity) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *UpdateNetworkWirelessSsidEapOverrideRequest) SetIdentity(v GetNetworkWi
 
 // GetMaxRetries returns the MaxRetries field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidEapOverrideRequest) GetMaxRetries() int32 {
-	if o == nil || isNil(o.MaxRetries) {
+	if o == nil || IsNil(o.MaxRetries) {
 		var ret int32
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *UpdateNetworkWirelessSsidEapOverrideRequest) GetMaxRetries() int32 {
 // GetMaxRetriesOk returns a tuple with the MaxRetries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidEapOverrideRequest) GetMaxRetriesOk() (*int32, bool) {
-	if o == nil || isNil(o.MaxRetries) {
-    return nil, false
+	if o == nil || IsNil(o.MaxRetries) {
+		return nil, false
 	}
 	return o.MaxRetries, true
 }
 
 // HasMaxRetries returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidEapOverrideRequest) HasMaxRetries() bool {
-	if o != nil && !isNil(o.MaxRetries) {
+	if o != nil && !IsNil(o.MaxRetries) {
 		return true
 	}
 
@@ -139,7 +142,7 @@ func (o *UpdateNetworkWirelessSsidEapOverrideRequest) SetMaxRetries(v int32) {
 
 // GetEapolKey returns the EapolKey field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidEapOverrideRequest) GetEapolKey() GetNetworkWirelessSsidEapOverride200ResponseEapolKey {
-	if o == nil || isNil(o.EapolKey) {
+	if o == nil || IsNil(o.EapolKey) {
 		var ret GetNetworkWirelessSsidEapOverride200ResponseEapolKey
 		return ret
 	}
@@ -149,15 +152,15 @@ func (o *UpdateNetworkWirelessSsidEapOverrideRequest) GetEapolKey() GetNetworkWi
 // GetEapolKeyOk returns a tuple with the EapolKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidEapOverrideRequest) GetEapolKeyOk() (*GetNetworkWirelessSsidEapOverride200ResponseEapolKey, bool) {
-	if o == nil || isNil(o.EapolKey) {
-    return nil, false
+	if o == nil || IsNil(o.EapolKey) {
+		return nil, false
 	}
 	return o.EapolKey, true
 }
 
 // HasEapolKey returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidEapOverrideRequest) HasEapolKey() bool {
-	if o != nil && !isNil(o.EapolKey) {
+	if o != nil && !IsNil(o.EapolKey) {
 		return true
 	}
 
@@ -170,20 +173,28 @@ func (o *UpdateNetworkWirelessSsidEapOverrideRequest) SetEapolKey(v GetNetworkWi
 }
 
 func (o UpdateNetworkWirelessSsidEapOverrideRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Timeout) {
-		toSerialize["timeout"] = o.Timeout
-	}
-	if !isNil(o.Identity) {
-		toSerialize["identity"] = o.Identity
-	}
-	if !isNil(o.MaxRetries) {
-		toSerialize["maxRetries"] = o.MaxRetries
-	}
-	if !isNil(o.EapolKey) {
-		toSerialize["eapolKey"] = o.EapolKey
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidEapOverrideRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Timeout) {
+		toSerialize["timeout"] = o.Timeout
+	}
+	if !IsNil(o.Identity) {
+		toSerialize["identity"] = o.Identity
+	}
+	if !IsNil(o.MaxRetries) {
+		toSerialize["maxRetries"] = o.MaxRetries
+	}
+	if !IsNil(o.EapolKey) {
+		toSerialize["eapolKey"] = o.EapolKey
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidEapOverrideRequest struct {

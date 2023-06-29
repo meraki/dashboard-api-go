@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkWirelessSsidVpnRequestConcentrator type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkWirelessSsidVpnRequestConcentrator{}
+
 // UpdateNetworkWirelessSsidVpnRequestConcentrator The VPN concentrator settings for this SSID.
 type UpdateNetworkWirelessSsidVpnRequestConcentrator struct {
 	// The NAT ID of the concentrator that should be set.
@@ -41,7 +44,7 @@ func NewUpdateNetworkWirelessSsidVpnRequestConcentratorWithDefaults() *UpdateNet
 
 // GetNetworkId returns the NetworkId field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidVpnRequestConcentrator) GetNetworkId() string {
-	if o == nil || isNil(o.NetworkId) {
+	if o == nil || IsNil(o.NetworkId) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *UpdateNetworkWirelessSsidVpnRequestConcentrator) GetNetworkId() string 
 // GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestConcentrator) GetNetworkIdOk() (*string, bool) {
-	if o == nil || isNil(o.NetworkId) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkId) {
+		return nil, false
 	}
 	return o.NetworkId, true
 }
 
 // HasNetworkId returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestConcentrator) HasNetworkId() bool {
-	if o != nil && !isNil(o.NetworkId) {
+	if o != nil && !IsNil(o.NetworkId) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *UpdateNetworkWirelessSsidVpnRequestConcentrator) SetNetworkId(v string)
 
 // GetVlanId returns the VlanId field value if set, zero value otherwise.
 func (o *UpdateNetworkWirelessSsidVpnRequestConcentrator) GetVlanId() int32 {
-	if o == nil || isNil(o.VlanId) {
+	if o == nil || IsNil(o.VlanId) {
 		var ret int32
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *UpdateNetworkWirelessSsidVpnRequestConcentrator) GetVlanId() int32 {
 // GetVlanIdOk returns a tuple with the VlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestConcentrator) GetVlanIdOk() (*int32, bool) {
-	if o == nil || isNil(o.VlanId) {
-    return nil, false
+	if o == nil || IsNil(o.VlanId) {
+		return nil, false
 	}
 	return o.VlanId, true
 }
 
 // HasVlanId returns a boolean if a field has been set.
 func (o *UpdateNetworkWirelessSsidVpnRequestConcentrator) HasVlanId() bool {
-	if o != nil && !isNil(o.VlanId) {
+	if o != nil && !IsNil(o.VlanId) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *UpdateNetworkWirelessSsidVpnRequestConcentrator) SetVlanId(v int32) {
 }
 
 func (o UpdateNetworkWirelessSsidVpnRequestConcentrator) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.NetworkId) {
-		toSerialize["networkId"] = o.NetworkId
-	}
-	if !isNil(o.VlanId) {
-		toSerialize["vlanId"] = o.VlanId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkWirelessSsidVpnRequestConcentrator) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.NetworkId) {
+		toSerialize["networkId"] = o.NetworkId
+	}
+	if !IsNil(o.VlanId) {
+		toSerialize["vlanId"] = o.VlanId
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkWirelessSsidVpnRequestConcentrator struct {

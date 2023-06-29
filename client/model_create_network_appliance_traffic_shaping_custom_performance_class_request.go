@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest{}
+
 // CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest struct for CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest
 type CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest struct {
 	// Name of the custom performance class
@@ -58,7 +61,7 @@ func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) GetN
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -70,7 +73,7 @@ func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) SetN
 
 // GetMaxLatency returns the MaxLatency field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) GetMaxLatency() int32 {
-	if o == nil || isNil(o.MaxLatency) {
+	if o == nil || IsNil(o.MaxLatency) {
 		var ret int32
 		return ret
 	}
@@ -80,15 +83,15 @@ func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) GetM
 // GetMaxLatencyOk returns a tuple with the MaxLatency field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) GetMaxLatencyOk() (*int32, bool) {
-	if o == nil || isNil(o.MaxLatency) {
-    return nil, false
+	if o == nil || IsNil(o.MaxLatency) {
+		return nil, false
 	}
 	return o.MaxLatency, true
 }
 
 // HasMaxLatency returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) HasMaxLatency() bool {
-	if o != nil && !isNil(o.MaxLatency) {
+	if o != nil && !IsNil(o.MaxLatency) {
 		return true
 	}
 
@@ -102,7 +105,7 @@ func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) SetM
 
 // GetMaxJitter returns the MaxJitter field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) GetMaxJitter() int32 {
-	if o == nil || isNil(o.MaxJitter) {
+	if o == nil || IsNil(o.MaxJitter) {
 		var ret int32
 		return ret
 	}
@@ -112,15 +115,15 @@ func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) GetM
 // GetMaxJitterOk returns a tuple with the MaxJitter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) GetMaxJitterOk() (*int32, bool) {
-	if o == nil || isNil(o.MaxJitter) {
-    return nil, false
+	if o == nil || IsNil(o.MaxJitter) {
+		return nil, false
 	}
 	return o.MaxJitter, true
 }
 
 // HasMaxJitter returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) HasMaxJitter() bool {
-	if o != nil && !isNil(o.MaxJitter) {
+	if o != nil && !IsNil(o.MaxJitter) {
 		return true
 	}
 
@@ -134,7 +137,7 @@ func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) SetM
 
 // GetMaxLossPercentage returns the MaxLossPercentage field value if set, zero value otherwise.
 func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) GetMaxLossPercentage() int32 {
-	if o == nil || isNil(o.MaxLossPercentage) {
+	if o == nil || IsNil(o.MaxLossPercentage) {
 		var ret int32
 		return ret
 	}
@@ -144,15 +147,15 @@ func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) GetM
 // GetMaxLossPercentageOk returns a tuple with the MaxLossPercentage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) GetMaxLossPercentageOk() (*int32, bool) {
-	if o == nil || isNil(o.MaxLossPercentage) {
-    return nil, false
+	if o == nil || IsNil(o.MaxLossPercentage) {
+		return nil, false
 	}
 	return o.MaxLossPercentage, true
 }
 
 // HasMaxLossPercentage returns a boolean if a field has been set.
 func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) HasMaxLossPercentage() bool {
-	if o != nil && !isNil(o.MaxLossPercentage) {
+	if o != nil && !IsNil(o.MaxLossPercentage) {
 		return true
 	}
 
@@ -165,20 +168,26 @@ func (o *CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) SetM
 }
 
 func (o CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.MaxLatency) {
-		toSerialize["maxLatency"] = o.MaxLatency
-	}
-	if !isNil(o.MaxJitter) {
-		toSerialize["maxJitter"] = o.MaxJitter
-	}
-	if !isNil(o.MaxLossPercentage) {
-		toSerialize["maxLossPercentage"] = o.MaxLossPercentage
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.MaxLatency) {
+		toSerialize["maxLatency"] = o.MaxLatency
+	}
+	if !IsNil(o.MaxJitter) {
+		toSerialize["maxJitter"] = o.MaxJitter
+	}
+	if !IsNil(o.MaxLossPercentage) {
+		toSerialize["maxLossPercentage"] = o.MaxLossPercentage
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest struct {

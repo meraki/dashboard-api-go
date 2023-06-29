@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationPolicyObjectRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationPolicyObjectRequest{}
+
 // CreateOrganizationPolicyObjectRequest struct for CreateOrganizationPolicyObjectRequest
 type CreateOrganizationPolicyObjectRequest struct {
 	// Name of a policy object, unique within the organization (alphanumeric, space, dash, or underscore characters only)
@@ -68,7 +71,7 @@ func (o *CreateOrganizationPolicyObjectRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationPolicyObjectRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -92,7 +95,7 @@ func (o *CreateOrganizationPolicyObjectRequest) GetCategory() string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationPolicyObjectRequest) GetCategoryOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Category, true
 }
@@ -116,7 +119,7 @@ func (o *CreateOrganizationPolicyObjectRequest) GetType() string {
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationPolicyObjectRequest) GetTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Type, true
 }
@@ -128,7 +131,7 @@ func (o *CreateOrganizationPolicyObjectRequest) SetType(v string) {
 
 // GetCidr returns the Cidr field value if set, zero value otherwise.
 func (o *CreateOrganizationPolicyObjectRequest) GetCidr() string {
-	if o == nil || isNil(o.Cidr) {
+	if o == nil || IsNil(o.Cidr) {
 		var ret string
 		return ret
 	}
@@ -138,15 +141,15 @@ func (o *CreateOrganizationPolicyObjectRequest) GetCidr() string {
 // GetCidrOk returns a tuple with the Cidr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationPolicyObjectRequest) GetCidrOk() (*string, bool) {
-	if o == nil || isNil(o.Cidr) {
-    return nil, false
+	if o == nil || IsNil(o.Cidr) {
+		return nil, false
 	}
 	return o.Cidr, true
 }
 
 // HasCidr returns a boolean if a field has been set.
 func (o *CreateOrganizationPolicyObjectRequest) HasCidr() bool {
-	if o != nil && !isNil(o.Cidr) {
+	if o != nil && !IsNil(o.Cidr) {
 		return true
 	}
 
@@ -160,7 +163,7 @@ func (o *CreateOrganizationPolicyObjectRequest) SetCidr(v string) {
 
 // GetFqdn returns the Fqdn field value if set, zero value otherwise.
 func (o *CreateOrganizationPolicyObjectRequest) GetFqdn() string {
-	if o == nil || isNil(o.Fqdn) {
+	if o == nil || IsNil(o.Fqdn) {
 		var ret string
 		return ret
 	}
@@ -170,15 +173,15 @@ func (o *CreateOrganizationPolicyObjectRequest) GetFqdn() string {
 // GetFqdnOk returns a tuple with the Fqdn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationPolicyObjectRequest) GetFqdnOk() (*string, bool) {
-	if o == nil || isNil(o.Fqdn) {
-    return nil, false
+	if o == nil || IsNil(o.Fqdn) {
+		return nil, false
 	}
 	return o.Fqdn, true
 }
 
 // HasFqdn returns a boolean if a field has been set.
 func (o *CreateOrganizationPolicyObjectRequest) HasFqdn() bool {
-	if o != nil && !isNil(o.Fqdn) {
+	if o != nil && !IsNil(o.Fqdn) {
 		return true
 	}
 
@@ -192,7 +195,7 @@ func (o *CreateOrganizationPolicyObjectRequest) SetFqdn(v string) {
 
 // GetMask returns the Mask field value if set, zero value otherwise.
 func (o *CreateOrganizationPolicyObjectRequest) GetMask() string {
-	if o == nil || isNil(o.Mask) {
+	if o == nil || IsNil(o.Mask) {
 		var ret string
 		return ret
 	}
@@ -202,15 +205,15 @@ func (o *CreateOrganizationPolicyObjectRequest) GetMask() string {
 // GetMaskOk returns a tuple with the Mask field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationPolicyObjectRequest) GetMaskOk() (*string, bool) {
-	if o == nil || isNil(o.Mask) {
-    return nil, false
+	if o == nil || IsNil(o.Mask) {
+		return nil, false
 	}
 	return o.Mask, true
 }
 
 // HasMask returns a boolean if a field has been set.
 func (o *CreateOrganizationPolicyObjectRequest) HasMask() bool {
-	if o != nil && !isNil(o.Mask) {
+	if o != nil && !IsNil(o.Mask) {
 		return true
 	}
 
@@ -224,7 +227,7 @@ func (o *CreateOrganizationPolicyObjectRequest) SetMask(v string) {
 
 // GetIp returns the Ip field value if set, zero value otherwise.
 func (o *CreateOrganizationPolicyObjectRequest) GetIp() string {
-	if o == nil || isNil(o.Ip) {
+	if o == nil || IsNil(o.Ip) {
 		var ret string
 		return ret
 	}
@@ -234,15 +237,15 @@ func (o *CreateOrganizationPolicyObjectRequest) GetIp() string {
 // GetIpOk returns a tuple with the Ip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationPolicyObjectRequest) GetIpOk() (*string, bool) {
-	if o == nil || isNil(o.Ip) {
-    return nil, false
+	if o == nil || IsNil(o.Ip) {
+		return nil, false
 	}
 	return o.Ip, true
 }
 
 // HasIp returns a boolean if a field has been set.
 func (o *CreateOrganizationPolicyObjectRequest) HasIp() bool {
-	if o != nil && !isNil(o.Ip) {
+	if o != nil && !IsNil(o.Ip) {
 		return true
 	}
 
@@ -256,7 +259,7 @@ func (o *CreateOrganizationPolicyObjectRequest) SetIp(v string) {
 
 // GetGroupIds returns the GroupIds field value if set, zero value otherwise.
 func (o *CreateOrganizationPolicyObjectRequest) GetGroupIds() []int32 {
-	if o == nil || isNil(o.GroupIds) {
+	if o == nil || IsNil(o.GroupIds) {
 		var ret []int32
 		return ret
 	}
@@ -266,15 +269,15 @@ func (o *CreateOrganizationPolicyObjectRequest) GetGroupIds() []int32 {
 // GetGroupIdsOk returns a tuple with the GroupIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationPolicyObjectRequest) GetGroupIdsOk() ([]int32, bool) {
-	if o == nil || isNil(o.GroupIds) {
-    return nil, false
+	if o == nil || IsNil(o.GroupIds) {
+		return nil, false
 	}
 	return o.GroupIds, true
 }
 
 // HasGroupIds returns a boolean if a field has been set.
 func (o *CreateOrganizationPolicyObjectRequest) HasGroupIds() bool {
-	if o != nil && !isNil(o.GroupIds) {
+	if o != nil && !IsNil(o.GroupIds) {
 		return true
 	}
 
@@ -287,32 +290,34 @@ func (o *CreateOrganizationPolicyObjectRequest) SetGroupIds(v []int32) {
 }
 
 func (o CreateOrganizationPolicyObjectRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["category"] = o.Category
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Cidr) {
-		toSerialize["cidr"] = o.Cidr
-	}
-	if !isNil(o.Fqdn) {
-		toSerialize["fqdn"] = o.Fqdn
-	}
-	if !isNil(o.Mask) {
-		toSerialize["mask"] = o.Mask
-	}
-	if !isNil(o.Ip) {
-		toSerialize["ip"] = o.Ip
-	}
-	if !isNil(o.GroupIds) {
-		toSerialize["groupIds"] = o.GroupIds
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationPolicyObjectRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["category"] = o.Category
+	toSerialize["type"] = o.Type
+	if !IsNil(o.Cidr) {
+		toSerialize["cidr"] = o.Cidr
+	}
+	if !IsNil(o.Fqdn) {
+		toSerialize["fqdn"] = o.Fqdn
+	}
+	if !IsNil(o.Mask) {
+		toSerialize["mask"] = o.Mask
+	}
+	if !IsNil(o.Ip) {
+		toSerialize["ip"] = o.Ip
+	}
+	if !IsNil(o.GroupIds) {
+		toSerialize["groupIds"] = o.GroupIds
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationPolicyObjectRequest struct {

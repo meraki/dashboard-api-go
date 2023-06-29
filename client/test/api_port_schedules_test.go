@@ -10,74 +10,73 @@ Testing PortSchedulesApiService
 package client
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "github.com/meraki/dashboard-api-go/client"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func Test_client_PortSchedulesApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test PortSchedulesApiService CreateNetworkSwitchPortSchedule", func(t *testing.T) {
+	t.Run("Test PortSchedulesApiService CreateNetworkSwitchPortSchedule", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.PortSchedulesApi.CreateNetworkSwitchPortSchedule(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.PortSchedulesApi.CreateNetworkSwitchPortSchedule(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test PortSchedulesApiService DeleteNetworkSwitchPortSchedule", func(t *testing.T) {
+	t.Run("Test PortSchedulesApiService DeleteNetworkSwitchPortSchedule", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var portScheduleId string
+		var networkId string
+		var portScheduleId string
 
-        resp, httpRes, err := apiClient.PortSchedulesApi.DeleteNetworkSwitchPortSchedule(context.Background(), networkId, portScheduleId).Execute()
+		httpRes, err := apiClient.PortSchedulesApi.DeleteNetworkSwitchPortSchedule(context.Background(), networkId, portScheduleId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test PortSchedulesApiService GetNetworkSwitchPortSchedules", func(t *testing.T) {
+	t.Run("Test PortSchedulesApiService GetNetworkSwitchPortSchedules", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.PortSchedulesApi.GetNetworkSwitchPortSchedules(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.PortSchedulesApi.GetNetworkSwitchPortSchedules(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test PortSchedulesApiService UpdateNetworkSwitchPortSchedule", func(t *testing.T) {
+	t.Run("Test PortSchedulesApiService UpdateNetworkSwitchPortSchedule", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var portScheduleId string
+		var networkId string
+		var portScheduleId string
 
-        resp, httpRes, err := apiClient.PortSchedulesApi.UpdateNetworkSwitchPortSchedule(context.Background(), networkId, portScheduleId).Execute()
+		resp, httpRes, err := apiClient.PortSchedulesApi.UpdateNetworkSwitchPortSchedule(context.Background(), networkId, portScheduleId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

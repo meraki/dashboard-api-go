@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner{}
+
 // UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner struct for UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner
 type UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner struct {
 	Group *UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerGroup `json:"group,omitempty"`
@@ -39,7 +42,7 @@ func NewUpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerWithDefaults(
 
 // GetGroup returns the Group field value if set, zero value otherwise.
 func (o *UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner) GetGroup() UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerGroup {
-	if o == nil || isNil(o.Group) {
+	if o == nil || IsNil(o.Group) {
 		var ret UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerGroup
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner) GetGroup()
 // GetGroupOk returns a tuple with the Group field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner) GetGroupOk() (*UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerGroup, bool) {
-	if o == nil || isNil(o.Group) {
-    return nil, false
+	if o == nil || IsNil(o.Group) {
+		return nil, false
 	}
 	return o.Group, true
 }
 
 // HasGroup returns a boolean if a field has been set.
 func (o *UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner) HasGroup() bool {
-	if o != nil && !isNil(o.Group) {
+	if o != nil && !IsNil(o.Group) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner) SetGroup(v
 
 // GetMilestones returns the Milestones field value if set, zero value otherwise.
 func (o *UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner) GetMilestones() UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerMilestones {
-	if o == nil || isNil(o.Milestones) {
+	if o == nil || IsNil(o.Milestones) {
 		var ret UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerMilestones
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner) GetMilesto
 // GetMilestonesOk returns a tuple with the Milestones field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner) GetMilestonesOk() (*UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInnerMilestones, bool) {
-	if o == nil || isNil(o.Milestones) {
-    return nil, false
+	if o == nil || IsNil(o.Milestones) {
+		return nil, false
 	}
 	return o.Milestones, true
 }
 
 // HasMilestones returns a boolean if a field has been set.
 func (o *UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner) HasMilestones() bool {
-	if o != nil && !isNil(o.Milestones) {
+	if o != nil && !IsNil(o.Milestones) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner) SetMilesto
 }
 
 func (o UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Group) {
-		toSerialize["group"] = o.Group
-	}
-	if !isNil(o.Milestones) {
-		toSerialize["milestones"] = o.Milestones
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Group) {
+		toSerialize["group"] = o.Group
+	}
+	if !IsNil(o.Milestones) {
+		toSerialize["milestones"] = o.Milestones
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkFirmwareUpgradesStagedEventsRequestStagesInner struct {

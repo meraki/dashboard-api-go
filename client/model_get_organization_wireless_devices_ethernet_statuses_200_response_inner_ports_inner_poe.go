@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerPoe type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerPoe{}
+
 // GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerPoe PoE details object for the port
 type GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerPoe struct {
 	// The PoE Standard for the port. Can be '802.3at', '802.3af', '802.3bt', or null
@@ -39,7 +42,7 @@ func NewGetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInner
 
 // GetStandard returns the Standard field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerPoe) GetStandard() string {
-	if o == nil || isNil(o.Standard) {
+	if o == nil || IsNil(o.Standard) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInne
 // GetStandardOk returns a tuple with the Standard field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerPoe) GetStandardOk() (*string, bool) {
-	if o == nil || isNil(o.Standard) {
-    return nil, false
+	if o == nil || IsNil(o.Standard) {
+		return nil, false
 	}
 	return o.Standard, true
 }
 
 // HasStandard returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerPoe) HasStandard() bool {
-	if o != nil && !isNil(o.Standard) {
+	if o != nil && !IsNil(o.Standard) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInne
 }
 
 func (o GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerPoe) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Standard) {
-		toSerialize["standard"] = o.Standard
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerPoe) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Standard) {
+		toSerialize["standard"] = o.Standard
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerPortsInnerPoe struct {

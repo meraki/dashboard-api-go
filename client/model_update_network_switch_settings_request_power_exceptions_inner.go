@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSwitchSettingsRequestPowerExceptionsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSwitchSettingsRequestPowerExceptionsInner{}
+
 // UpdateNetworkSwitchSettingsRequestPowerExceptionsInner struct for UpdateNetworkSwitchSettingsRequestPowerExceptionsInner
 type UpdateNetworkSwitchSettingsRequestPowerExceptionsInner struct {
 	// Serial number of the switch
@@ -55,7 +58,7 @@ func (o *UpdateNetworkSwitchSettingsRequestPowerExceptionsInner) GetSerial() str
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchSettingsRequestPowerExceptionsInner) GetSerialOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Serial, true
 }
@@ -79,7 +82,7 @@ func (o *UpdateNetworkSwitchSettingsRequestPowerExceptionsInner) GetPowerType() 
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSwitchSettingsRequestPowerExceptionsInner) GetPowerTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.PowerType, true
 }
@@ -90,14 +93,18 @@ func (o *UpdateNetworkSwitchSettingsRequestPowerExceptionsInner) SetPowerType(v 
 }
 
 func (o UpdateNetworkSwitchSettingsRequestPowerExceptionsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["serial"] = o.Serial
-	}
-	if true {
-		toSerialize["powerType"] = o.PowerType
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSwitchSettingsRequestPowerExceptionsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["serial"] = o.Serial
+	toSerialize["powerType"] = o.PowerType
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSwitchSettingsRequestPowerExceptionsInner struct {

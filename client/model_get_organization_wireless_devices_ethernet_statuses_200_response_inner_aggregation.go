@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregation{}
+
 // GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregation Aggregation details object
 type GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregation struct {
 	// Link Aggregation enabled flag
@@ -41,7 +44,7 @@ func NewGetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregatio
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregation) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregati
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregation) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregation) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregati
 
 // GetSpeed returns the Speed field value if set, zero value otherwise.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregation) GetSpeed() int32 {
-	if o == nil || isNil(o.Speed) {
+	if o == nil || IsNil(o.Speed) {
 		var ret int32
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregati
 // GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregation) GetSpeedOk() (*int32, bool) {
-	if o == nil || isNil(o.Speed) {
-    return nil, false
+	if o == nil || IsNil(o.Speed) {
+		return nil, false
 	}
 	return o.Speed, true
 }
 
 // HasSpeed returns a boolean if a field has been set.
 func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregation) HasSpeed() bool {
-	if o != nil && !isNil(o.Speed) {
+	if o != nil && !IsNil(o.Speed) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregati
 }
 
 func (o GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregation) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.Speed) {
-		toSerialize["speed"] = o.Speed
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregation) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Speed) {
+		toSerialize["speed"] = o.Speed
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationWirelessDevicesEthernetStatuses200ResponseInnerAggregation struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValue type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValue{}
+
 // UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValue Value object of this traffic filter
 type UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValue struct {
 	// Protocol of this custom type traffic filter. Must be one of: 'tcp', 'udp', 'icmp6' or 'any'
@@ -43,7 +46,7 @@ func NewUpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUpli
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValue) GetProtocol() string {
-	if o == nil || isNil(o.Protocol) {
+	if o == nil || IsNil(o.Protocol) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUpl
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValue) GetProtocolOk() (*string, bool) {
-	if o == nil || isNil(o.Protocol) {
-    return nil, false
+	if o == nil || IsNil(o.Protocol) {
+		return nil, false
 	}
 	return o.Protocol, true
 }
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValue) HasProtocol() bool {
-	if o != nil && !isNil(o.Protocol) {
+	if o != nil && !IsNil(o.Protocol) {
 		return true
 	}
 
@@ -87,7 +90,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUpl
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValue) GetSourceOk() (*UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValueSource, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Source, true
 }
@@ -111,7 +114,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUpl
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValue) GetDestinationOk() (*UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValueDestination, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Destination, true
 }
@@ -122,17 +125,21 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUpl
 }
 
 func (o UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValue) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Protocol) {
-		toSerialize["protocol"] = o.Protocol
-	}
-	if true {
-		toSerialize["source"] = o.Source
-	}
-	if true {
-		toSerialize["destination"] = o.Destination
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValue) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Protocol) {
+		toSerialize["protocol"] = o.Protocol
+	}
+	toSerialize["source"] = o.Source
+	toSerialize["destination"] = o.Destination
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceTrafficShapingUplinkSelectionRequestWanTrafficUplinkPreferencesInnerTrafficFiltersInnerValue struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner{}
+
 // UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner struct for UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner
 type UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner struct {
 	// The name of the VPN peer
@@ -75,7 +78,7 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetN
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -87,7 +90,7 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) SetN
 
 // GetPublicIp returns the PublicIp field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetPublicIp() string {
-	if o == nil || isNil(o.PublicIp) {
+	if o == nil || IsNil(o.PublicIp) {
 		var ret string
 		return ret
 	}
@@ -97,15 +100,15 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetP
 // GetPublicIpOk returns a tuple with the PublicIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetPublicIpOk() (*string, bool) {
-	if o == nil || isNil(o.PublicIp) {
-    return nil, false
+	if o == nil || IsNil(o.PublicIp) {
+		return nil, false
 	}
 	return o.PublicIp, true
 }
 
 // HasPublicIp returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) HasPublicIp() bool {
-	if o != nil && !isNil(o.PublicIp) {
+	if o != nil && !IsNil(o.PublicIp) {
 		return true
 	}
 
@@ -131,7 +134,7 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetP
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetPrivateSubnetsOk() ([]string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.PrivateSubnets, true
 }
@@ -143,7 +146,7 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) SetP
 
 // GetLocalId returns the LocalId field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetLocalId() string {
-	if o == nil || isNil(o.LocalId) {
+	if o == nil || IsNil(o.LocalId) {
 		var ret string
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetL
 // GetLocalIdOk returns a tuple with the LocalId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetLocalIdOk() (*string, bool) {
-	if o == nil || isNil(o.LocalId) {
-    return nil, false
+	if o == nil || IsNil(o.LocalId) {
+		return nil, false
 	}
 	return o.LocalId, true
 }
 
 // HasLocalId returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) HasLocalId() bool {
-	if o != nil && !isNil(o.LocalId) {
+	if o != nil && !IsNil(o.LocalId) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) SetL
 
 // GetRemoteId returns the RemoteId field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetRemoteId() string {
-	if o == nil || isNil(o.RemoteId) {
+	if o == nil || IsNil(o.RemoteId) {
 		var ret string
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetR
 // GetRemoteIdOk returns a tuple with the RemoteId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetRemoteIdOk() (*string, bool) {
-	if o == nil || isNil(o.RemoteId) {
-    return nil, false
+	if o == nil || IsNil(o.RemoteId) {
+		return nil, false
 	}
 	return o.RemoteId, true
 }
 
 // HasRemoteId returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) HasRemoteId() bool {
-	if o != nil && !isNil(o.RemoteId) {
+	if o != nil && !IsNil(o.RemoteId) {
 		return true
 	}
 
@@ -207,7 +210,7 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) SetR
 
 // GetIpsecPolicies returns the IpsecPolicies field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetIpsecPolicies() GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies {
-	if o == nil || isNil(o.IpsecPolicies) {
+	if o == nil || IsNil(o.IpsecPolicies) {
 		var ret GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies
 		return ret
 	}
@@ -217,15 +220,15 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetI
 // GetIpsecPoliciesOk returns a tuple with the IpsecPolicies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetIpsecPoliciesOk() (*GetOrganizationApplianceVpnThirdPartyVPNPeers200ResponsePeersInnerIpsecPolicies, bool) {
-	if o == nil || isNil(o.IpsecPolicies) {
-    return nil, false
+	if o == nil || IsNil(o.IpsecPolicies) {
+		return nil, false
 	}
 	return o.IpsecPolicies, true
 }
 
 // HasIpsecPolicies returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) HasIpsecPolicies() bool {
-	if o != nil && !isNil(o.IpsecPolicies) {
+	if o != nil && !IsNil(o.IpsecPolicies) {
 		return true
 	}
 
@@ -239,7 +242,7 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) SetI
 
 // GetIpsecPoliciesPreset returns the IpsecPoliciesPreset field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetIpsecPoliciesPreset() string {
-	if o == nil || isNil(o.IpsecPoliciesPreset) {
+	if o == nil || IsNil(o.IpsecPoliciesPreset) {
 		var ret string
 		return ret
 	}
@@ -249,15 +252,15 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetI
 // GetIpsecPoliciesPresetOk returns a tuple with the IpsecPoliciesPreset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetIpsecPoliciesPresetOk() (*string, bool) {
-	if o == nil || isNil(o.IpsecPoliciesPreset) {
-    return nil, false
+	if o == nil || IsNil(o.IpsecPoliciesPreset) {
+		return nil, false
 	}
 	return o.IpsecPoliciesPreset, true
 }
 
 // HasIpsecPoliciesPreset returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) HasIpsecPoliciesPreset() bool {
-	if o != nil && !isNil(o.IpsecPoliciesPreset) {
+	if o != nil && !IsNil(o.IpsecPoliciesPreset) {
 		return true
 	}
 
@@ -283,7 +286,7 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetS
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetSecretOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Secret, true
 }
@@ -295,7 +298,7 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) SetS
 
 // GetIkeVersion returns the IkeVersion field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetIkeVersion() string {
-	if o == nil || isNil(o.IkeVersion) {
+	if o == nil || IsNil(o.IkeVersion) {
 		var ret string
 		return ret
 	}
@@ -305,15 +308,15 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetI
 // GetIkeVersionOk returns a tuple with the IkeVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetIkeVersionOk() (*string, bool) {
-	if o == nil || isNil(o.IkeVersion) {
-    return nil, false
+	if o == nil || IsNil(o.IkeVersion) {
+		return nil, false
 	}
 	return o.IkeVersion, true
 }
 
 // HasIkeVersion returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) HasIkeVersion() bool {
-	if o != nil && !isNil(o.IkeVersion) {
+	if o != nil && !IsNil(o.IkeVersion) {
 		return true
 	}
 
@@ -327,7 +330,7 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) SetI
 
 // GetNetworkTags returns the NetworkTags field value if set, zero value otherwise.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetNetworkTags() []string {
-	if o == nil || isNil(o.NetworkTags) {
+	if o == nil || IsNil(o.NetworkTags) {
 		var ret []string
 		return ret
 	}
@@ -337,15 +340,15 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetN
 // GetNetworkTagsOk returns a tuple with the NetworkTags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) GetNetworkTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.NetworkTags) {
-    return nil, false
+	if o == nil || IsNil(o.NetworkTags) {
+		return nil, false
 	}
 	return o.NetworkTags, true
 }
 
 // HasNetworkTags returns a boolean if a field has been set.
 func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) HasNetworkTags() bool {
-	if o != nil && !isNil(o.NetworkTags) {
+	if o != nil && !IsNil(o.NetworkTags) {
 		return true
 	}
 
@@ -358,38 +361,40 @@ func (o *UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) SetN
 }
 
 func (o UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.PublicIp) {
-		toSerialize["publicIp"] = o.PublicIp
-	}
-	if true {
-		toSerialize["privateSubnets"] = o.PrivateSubnets
-	}
-	if !isNil(o.LocalId) {
-		toSerialize["localId"] = o.LocalId
-	}
-	if !isNil(o.RemoteId) {
-		toSerialize["remoteId"] = o.RemoteId
-	}
-	if !isNil(o.IpsecPolicies) {
-		toSerialize["ipsecPolicies"] = o.IpsecPolicies
-	}
-	if !isNil(o.IpsecPoliciesPreset) {
-		toSerialize["ipsecPoliciesPreset"] = o.IpsecPoliciesPreset
-	}
-	if true {
-		toSerialize["secret"] = o.Secret
-	}
-	if !isNil(o.IkeVersion) {
-		toSerialize["ikeVersion"] = o.IkeVersion
-	}
-	if !isNil(o.NetworkTags) {
-		toSerialize["networkTags"] = o.NetworkTags
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.PublicIp) {
+		toSerialize["publicIp"] = o.PublicIp
+	}
+	toSerialize["privateSubnets"] = o.PrivateSubnets
+	if !IsNil(o.LocalId) {
+		toSerialize["localId"] = o.LocalId
+	}
+	if !IsNil(o.RemoteId) {
+		toSerialize["remoteId"] = o.RemoteId
+	}
+	if !IsNil(o.IpsecPolicies) {
+		toSerialize["ipsecPolicies"] = o.IpsecPolicies
+	}
+	if !IsNil(o.IpsecPoliciesPreset) {
+		toSerialize["ipsecPoliciesPreset"] = o.IpsecPoliciesPreset
+	}
+	toSerialize["secret"] = o.Secret
+	if !IsNil(o.IkeVersion) {
+		toSerialize["ikeVersion"] = o.IkeVersion
+	}
+	if !IsNil(o.NetworkTags) {
+		toSerialize["networkTags"] = o.NetworkTags
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationApplianceVpnThirdPartyVPNPeersRequestPeersInner struct {

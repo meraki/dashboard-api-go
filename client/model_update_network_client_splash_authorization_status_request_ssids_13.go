@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkClientSplashAuthorizationStatusRequestSsids13 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkClientSplashAuthorizationStatusRequestSsids13{}
+
 // UpdateNetworkClientSplashAuthorizationStatusRequestSsids13 Splash authorization for SSID 13
 type UpdateNetworkClientSplashAuthorizationStatusRequestSsids13 struct {
 	// New authorization status for the SSID (true, false).
@@ -39,7 +42,7 @@ func NewUpdateNetworkClientSplashAuthorizationStatusRequestSsids13WithDefaults()
 
 // GetIsAuthorized returns the IsAuthorized field value if set, zero value otherwise.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids13) GetIsAuthorized() bool {
-	if o == nil || isNil(o.IsAuthorized) {
+	if o == nil || IsNil(o.IsAuthorized) {
 		var ret bool
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids13) GetIsAuthor
 // GetIsAuthorizedOk returns a tuple with the IsAuthorized field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids13) GetIsAuthorizedOk() (*bool, bool) {
-	if o == nil || isNil(o.IsAuthorized) {
-    return nil, false
+	if o == nil || IsNil(o.IsAuthorized) {
+		return nil, false
 	}
 	return o.IsAuthorized, true
 }
 
 // HasIsAuthorized returns a boolean if a field has been set.
 func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids13) HasIsAuthorized() bool {
-	if o != nil && !isNil(o.IsAuthorized) {
+	if o != nil && !IsNil(o.IsAuthorized) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateNetworkClientSplashAuthorizationStatusRequestSsids13) SetIsAuthor
 }
 
 func (o UpdateNetworkClientSplashAuthorizationStatusRequestSsids13) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.IsAuthorized) {
-		toSerialize["isAuthorized"] = o.IsAuthorized
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkClientSplashAuthorizationStatusRequestSsids13) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.IsAuthorized) {
+		toSerialize["isAuthorized"] = o.IsAuthorized
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkClientSplashAuthorizationStatusRequestSsids13 struct {

@@ -10,89 +10,88 @@ Testing PayloadTemplatesApiService
 package client
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "github.com/meraki/dashboard-api-go/client"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func Test_client_PayloadTemplatesApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test PayloadTemplatesApiService CreateNetworkWebhooksPayloadTemplate", func(t *testing.T) {
+	t.Run("Test PayloadTemplatesApiService CreateNetworkWebhooksPayloadTemplate", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.PayloadTemplatesApi.CreateNetworkWebhooksPayloadTemplate(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.PayloadTemplatesApi.CreateNetworkWebhooksPayloadTemplate(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test PayloadTemplatesApiService DeleteNetworkWebhooksPayloadTemplate", func(t *testing.T) {
+	t.Run("Test PayloadTemplatesApiService DeleteNetworkWebhooksPayloadTemplate", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var payloadTemplateId string
+		var networkId string
+		var payloadTemplateId string
 
-        resp, httpRes, err := apiClient.PayloadTemplatesApi.DeleteNetworkWebhooksPayloadTemplate(context.Background(), networkId, payloadTemplateId).Execute()
+		httpRes, err := apiClient.PayloadTemplatesApi.DeleteNetworkWebhooksPayloadTemplate(context.Background(), networkId, payloadTemplateId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test PayloadTemplatesApiService GetNetworkWebhooksPayloadTemplate", func(t *testing.T) {
+	t.Run("Test PayloadTemplatesApiService GetNetworkWebhooksPayloadTemplate", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var payloadTemplateId string
+		var networkId string
+		var payloadTemplateId string
 
-        resp, httpRes, err := apiClient.PayloadTemplatesApi.GetNetworkWebhooksPayloadTemplate(context.Background(), networkId, payloadTemplateId).Execute()
+		resp, httpRes, err := apiClient.PayloadTemplatesApi.GetNetworkWebhooksPayloadTemplate(context.Background(), networkId, payloadTemplateId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test PayloadTemplatesApiService GetNetworkWebhooksPayloadTemplates", func(t *testing.T) {
+	t.Run("Test PayloadTemplatesApiService GetNetworkWebhooksPayloadTemplates", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.PayloadTemplatesApi.GetNetworkWebhooksPayloadTemplates(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.PayloadTemplatesApi.GetNetworkWebhooksPayloadTemplates(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test PayloadTemplatesApiService UpdateNetworkWebhooksPayloadTemplate", func(t *testing.T) {
+	t.Run("Test PayloadTemplatesApiService UpdateNetworkWebhooksPayloadTemplate", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var payloadTemplateId string
+		var networkId string
+		var payloadTemplateId string
 
-        resp, httpRes, err := apiClient.PayloadTemplatesApi.UpdateNetworkWebhooksPayloadTemplate(context.Background(), networkId, payloadTemplateId).Execute()
+		resp, httpRes, err := apiClient.PayloadTemplatesApi.UpdateNetworkWebhooksPayloadTemplate(context.Background(), networkId, payloadTemplateId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

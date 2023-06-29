@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevicesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevicesInner{}
+
 // CreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevicesInner struct for CreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevicesInner
 type CreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevicesInner struct {
 	// Import ID from the Import operation
@@ -58,7 +61,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevice
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevicesInner) GetDeviceIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.DeviceId, true
 }
@@ -82,7 +85,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevice
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevicesInner) GetUdiOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Udi, true
 }
@@ -106,7 +109,7 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevice
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevicesInner) GetNetworkIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.NetworkId, true
 }
@@ -117,17 +120,19 @@ func (o *CreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevice
 }
 
 func (o CreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevicesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["deviceId"] = o.DeviceId
-	}
-	if true {
-		toSerialize["udi"] = o.Udi
-	}
-	if true {
-		toSerialize["networkId"] = o.NetworkId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevicesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["deviceId"] = o.DeviceId
+	toSerialize["udi"] = o.Udi
+	toSerialize["networkId"] = o.NetworkId
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationInventoryOnboardingCloudMonitoringImportRequestDevicesInner struct {

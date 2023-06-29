@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkFirmwareUpgradesStagedEventRequestProducts type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkFirmwareUpgradesStagedEventRequestProducts{}
+
 // CreateNetworkFirmwareUpgradesStagedEventRequestProducts Contains firmware upgrade version information
 type CreateNetworkFirmwareUpgradesStagedEventRequestProducts struct {
 	Switch *CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch `json:"switch,omitempty"`
@@ -39,7 +42,7 @@ func NewCreateNetworkFirmwareUpgradesStagedEventRequestProductsWithDefaults() *C
 
 // GetSwitch returns the Switch field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProducts) GetSwitch() CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch {
-	if o == nil || isNil(o.Switch) {
+	if o == nil || IsNil(o.Switch) {
 		var ret CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProducts) GetSwitch() Cr
 // GetSwitchOk returns a tuple with the Switch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProducts) GetSwitchOk() (*CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitch, bool) {
-	if o == nil || isNil(o.Switch) {
-    return nil, false
+	if o == nil || IsNil(o.Switch) {
+		return nil, false
 	}
 	return o.Switch, true
 }
 
 // HasSwitch returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProducts) HasSwitch() bool {
-	if o != nil && !isNil(o.Switch) {
+	if o != nil && !IsNil(o.Switch) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProducts) SetSwitch(v Cr
 
 // GetSwitchCatalyst returns the SwitchCatalyst field value if set, zero value otherwise.
 func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProducts) GetSwitchCatalyst() CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchCatalyst {
-	if o == nil || isNil(o.SwitchCatalyst) {
+	if o == nil || IsNil(o.SwitchCatalyst) {
 		var ret CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchCatalyst
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProducts) GetSwitchCatal
 // GetSwitchCatalystOk returns a tuple with the SwitchCatalyst field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProducts) GetSwitchCatalystOk() (*CreateNetworkFirmwareUpgradesStagedEventRequestProductsSwitchCatalyst, bool) {
-	if o == nil || isNil(o.SwitchCatalyst) {
-    return nil, false
+	if o == nil || IsNil(o.SwitchCatalyst) {
+		return nil, false
 	}
 	return o.SwitchCatalyst, true
 }
 
 // HasSwitchCatalyst returns a boolean if a field has been set.
 func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProducts) HasSwitchCatalyst() bool {
-	if o != nil && !isNil(o.SwitchCatalyst) {
+	if o != nil && !IsNil(o.SwitchCatalyst) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *CreateNetworkFirmwareUpgradesStagedEventRequestProducts) SetSwitchCatal
 }
 
 func (o CreateNetworkFirmwareUpgradesStagedEventRequestProducts) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Switch) {
-		toSerialize["switch"] = o.Switch
-	}
-	if !isNil(o.SwitchCatalyst) {
-		toSerialize["switchCatalyst"] = o.SwitchCatalyst
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkFirmwareUpgradesStagedEventRequestProducts) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Switch) {
+		toSerialize["switch"] = o.Switch
+	}
+	if !IsNil(o.SwitchCatalyst) {
+		toSerialize["switchCatalyst"] = o.SwitchCatalyst
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkFirmwareUpgradesStagedEventRequestProducts struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSensorReadingsHistory200ResponseInnerNoise type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSensorReadingsHistory200ResponseInnerNoise{}
+
 // GetOrganizationSensorReadingsHistory200ResponseInnerNoise Reading for the 'noise' metric. This will only be present if the 'metric' property equals 'noise'.
 type GetOrganizationSensorReadingsHistory200ResponseInnerNoise struct {
 	Ambient *GetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbient `json:"ambient,omitempty"`
@@ -38,7 +41,7 @@ func NewGetOrganizationSensorReadingsHistory200ResponseInnerNoiseWithDefaults() 
 
 // GetAmbient returns the Ambient field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerNoise) GetAmbient() GetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbient {
-	if o == nil || isNil(o.Ambient) {
+	if o == nil || IsNil(o.Ambient) {
 		var ret GetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbient
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerNoise) GetAmbient()
 // GetAmbientOk returns a tuple with the Ambient field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerNoise) GetAmbientOk() (*GetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbient, bool) {
-	if o == nil || isNil(o.Ambient) {
-    return nil, false
+	if o == nil || IsNil(o.Ambient) {
+		return nil, false
 	}
 	return o.Ambient, true
 }
 
 // HasAmbient returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerNoise) HasAmbient() bool {
-	if o != nil && !isNil(o.Ambient) {
+	if o != nil && !IsNil(o.Ambient) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerNoise) SetAmbient(v
 }
 
 func (o GetOrganizationSensorReadingsHistory200ResponseInnerNoise) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Ambient) {
-		toSerialize["ambient"] = o.Ambient
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSensorReadingsHistory200ResponseInnerNoise) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Ambient) {
+		toSerialize["ambient"] = o.Ambient
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSensorReadingsHistory200ResponseInnerNoise struct {

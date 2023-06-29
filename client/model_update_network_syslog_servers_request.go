@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkSyslogServersRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkSyslogServersRequest{}
+
 // UpdateNetworkSyslogServersRequest struct for UpdateNetworkSyslogServersRequest
 type UpdateNetworkSyslogServersRequest struct {
 	// A list of the syslog servers for this network
@@ -52,7 +55,7 @@ func (o *UpdateNetworkSyslogServersRequest) GetServers() []UpdateNetworkSyslogSe
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkSyslogServersRequest) GetServersOk() ([]UpdateNetworkSyslogServersRequestServersInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Servers, true
 }
@@ -63,11 +66,17 @@ func (o *UpdateNetworkSyslogServersRequest) SetServers(v []UpdateNetworkSyslogSe
 }
 
 func (o UpdateNetworkSyslogServersRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["servers"] = o.Servers
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkSyslogServersRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["servers"] = o.Servers
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkSyslogServersRequest struct {

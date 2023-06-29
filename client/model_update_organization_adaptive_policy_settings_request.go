@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateOrganizationAdaptivePolicySettingsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateOrganizationAdaptivePolicySettingsRequest{}
+
 // UpdateOrganizationAdaptivePolicySettingsRequest struct for UpdateOrganizationAdaptivePolicySettingsRequest
 type UpdateOrganizationAdaptivePolicySettingsRequest struct {
 	// List of network IDs with adaptive policy enabled
@@ -39,7 +42,7 @@ func NewUpdateOrganizationAdaptivePolicySettingsRequestWithDefaults() *UpdateOrg
 
 // GetEnabledNetworks returns the EnabledNetworks field value if set, zero value otherwise.
 func (o *UpdateOrganizationAdaptivePolicySettingsRequest) GetEnabledNetworks() []string {
-	if o == nil || isNil(o.EnabledNetworks) {
+	if o == nil || IsNil(o.EnabledNetworks) {
 		var ret []string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateOrganizationAdaptivePolicySettingsRequest) GetEnabledNetworks() [
 // GetEnabledNetworksOk returns a tuple with the EnabledNetworks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateOrganizationAdaptivePolicySettingsRequest) GetEnabledNetworksOk() ([]string, bool) {
-	if o == nil || isNil(o.EnabledNetworks) {
-    return nil, false
+	if o == nil || IsNil(o.EnabledNetworks) {
+		return nil, false
 	}
 	return o.EnabledNetworks, true
 }
 
 // HasEnabledNetworks returns a boolean if a field has been set.
 func (o *UpdateOrganizationAdaptivePolicySettingsRequest) HasEnabledNetworks() bool {
-	if o != nil && !isNil(o.EnabledNetworks) {
+	if o != nil && !IsNil(o.EnabledNetworks) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateOrganizationAdaptivePolicySettingsRequest) SetEnabledNetworks(v [
 }
 
 func (o UpdateOrganizationAdaptivePolicySettingsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.EnabledNetworks) {
-		toSerialize["enabledNetworks"] = o.EnabledNetworks
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateOrganizationAdaptivePolicySettingsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.EnabledNetworks) {
+		toSerialize["enabledNetworks"] = o.EnabledNetworks
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateOrganizationAdaptivePolicySettingsRequest struct {

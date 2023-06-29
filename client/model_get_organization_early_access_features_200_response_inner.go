@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationEarlyAccessFeatures200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationEarlyAccessFeatures200ResponseInner{}
+
 // GetOrganizationEarlyAccessFeatures200ResponseInner struct for GetOrganizationEarlyAccessFeatures200ResponseInner
 type GetOrganizationEarlyAccessFeatures200ResponseInner struct {
 	// Short name of the early access feature
@@ -50,7 +53,7 @@ func NewGetOrganizationEarlyAccessFeatures200ResponseInnerWithDefaults() *GetOrg
 
 // GetShortName returns the ShortName field value if set, zero value otherwise.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetShortName() string {
-	if o == nil || isNil(o.ShortName) {
+	if o == nil || IsNil(o.ShortName) {
 		var ret string
 		return ret
 	}
@@ -60,15 +63,15 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetShortName() stri
 // GetShortNameOk returns a tuple with the ShortName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetShortNameOk() (*string, bool) {
-	if o == nil || isNil(o.ShortName) {
-    return nil, false
+	if o == nil || IsNil(o.ShortName) {
+		return nil, false
 	}
 	return o.ShortName, true
 }
 
 // HasShortName returns a boolean if a field has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) HasShortName() bool {
-	if o != nil && !isNil(o.ShortName) {
+	if o != nil && !IsNil(o.ShortName) {
 		return true
 	}
 
@@ -82,7 +85,7 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) SetShortName(v stri
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -92,15 +95,15 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -114,7 +117,7 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) SetName(v string) {
 
 // GetDescriptions returns the Descriptions field value if set, zero value otherwise.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetDescriptions() GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions {
-	if o == nil || isNil(o.Descriptions) {
+	if o == nil || IsNil(o.Descriptions) {
 		var ret GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions
 		return ret
 	}
@@ -124,15 +127,15 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetDescriptions() G
 // GetDescriptionsOk returns a tuple with the Descriptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetDescriptionsOk() (*GetOrganizationEarlyAccessFeatures200ResponseInnerDescriptions, bool) {
-	if o == nil || isNil(o.Descriptions) {
-    return nil, false
+	if o == nil || IsNil(o.Descriptions) {
+		return nil, false
 	}
 	return o.Descriptions, true
 }
 
 // HasDescriptions returns a boolean if a field has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) HasDescriptions() bool {
-	if o != nil && !isNil(o.Descriptions) {
+	if o != nil && !IsNil(o.Descriptions) {
 		return true
 	}
 
@@ -146,7 +149,7 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) SetDescriptions(v G
 
 // GetTopic returns the Topic field value if set, zero value otherwise.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetTopic() string {
-	if o == nil || isNil(o.Topic) {
+	if o == nil || IsNil(o.Topic) {
 		var ret string
 		return ret
 	}
@@ -156,15 +159,15 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetTopic() string {
 // GetTopicOk returns a tuple with the Topic field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetTopicOk() (*string, bool) {
-	if o == nil || isNil(o.Topic) {
-    return nil, false
+	if o == nil || IsNil(o.Topic) {
+		return nil, false
 	}
 	return o.Topic, true
 }
 
 // HasTopic returns a boolean if a field has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) HasTopic() bool {
-	if o != nil && !isNil(o.Topic) {
+	if o != nil && !IsNil(o.Topic) {
 		return true
 	}
 
@@ -178,7 +181,7 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) SetTopic(v string) 
 
 // GetIsOrgScopedOnly returns the IsOrgScopedOnly field value if set, zero value otherwise.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetIsOrgScopedOnly() bool {
-	if o == nil || isNil(o.IsOrgScopedOnly) {
+	if o == nil || IsNil(o.IsOrgScopedOnly) {
 		var ret bool
 		return ret
 	}
@@ -188,15 +191,15 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetIsOrgScopedOnly(
 // GetIsOrgScopedOnlyOk returns a tuple with the IsOrgScopedOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetIsOrgScopedOnlyOk() (*bool, bool) {
-	if o == nil || isNil(o.IsOrgScopedOnly) {
-    return nil, false
+	if o == nil || IsNil(o.IsOrgScopedOnly) {
+		return nil, false
 	}
 	return o.IsOrgScopedOnly, true
 }
 
 // HasIsOrgScopedOnly returns a boolean if a field has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) HasIsOrgScopedOnly() bool {
-	if o != nil && !isNil(o.IsOrgScopedOnly) {
+	if o != nil && !IsNil(o.IsOrgScopedOnly) {
 		return true
 	}
 
@@ -210,7 +213,7 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) SetIsOrgScopedOnly(
 
 // GetDocumentationLink returns the DocumentationLink field value if set, zero value otherwise.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetDocumentationLink() string {
-	if o == nil || isNil(o.DocumentationLink) {
+	if o == nil || IsNil(o.DocumentationLink) {
 		var ret string
 		return ret
 	}
@@ -220,15 +223,15 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetDocumentationLin
 // GetDocumentationLinkOk returns a tuple with the DocumentationLink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetDocumentationLinkOk() (*string, bool) {
-	if o == nil || isNil(o.DocumentationLink) {
-    return nil, false
+	if o == nil || IsNil(o.DocumentationLink) {
+		return nil, false
 	}
 	return o.DocumentationLink, true
 }
 
 // HasDocumentationLink returns a boolean if a field has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) HasDocumentationLink() bool {
-	if o != nil && !isNil(o.DocumentationLink) {
+	if o != nil && !IsNil(o.DocumentationLink) {
 		return true
 	}
 
@@ -242,7 +245,7 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) SetDocumentationLin
 
 // GetSupportLink returns the SupportLink field value if set, zero value otherwise.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetSupportLink() string {
-	if o == nil || isNil(o.SupportLink) {
+	if o == nil || IsNil(o.SupportLink) {
 		var ret string
 		return ret
 	}
@@ -252,15 +255,15 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetSupportLink() st
 // GetSupportLinkOk returns a tuple with the SupportLink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) GetSupportLinkOk() (*string, bool) {
-	if o == nil || isNil(o.SupportLink) {
-    return nil, false
+	if o == nil || IsNil(o.SupportLink) {
+		return nil, false
 	}
 	return o.SupportLink, true
 }
 
 // HasSupportLink returns a boolean if a field has been set.
 func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) HasSupportLink() bool {
-	if o != nil && !isNil(o.SupportLink) {
+	if o != nil && !IsNil(o.SupportLink) {
 		return true
 	}
 
@@ -273,29 +276,37 @@ func (o *GetOrganizationEarlyAccessFeatures200ResponseInner) SetSupportLink(v st
 }
 
 func (o GetOrganizationEarlyAccessFeatures200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ShortName) {
-		toSerialize["shortName"] = o.ShortName
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Descriptions) {
-		toSerialize["descriptions"] = o.Descriptions
-	}
-	if !isNil(o.Topic) {
-		toSerialize["topic"] = o.Topic
-	}
-	if !isNil(o.IsOrgScopedOnly) {
-		toSerialize["isOrgScopedOnly"] = o.IsOrgScopedOnly
-	}
-	if !isNil(o.DocumentationLink) {
-		toSerialize["documentationLink"] = o.DocumentationLink
-	}
-	if !isNil(o.SupportLink) {
-		toSerialize["supportLink"] = o.SupportLink
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationEarlyAccessFeatures200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ShortName) {
+		toSerialize["shortName"] = o.ShortName
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Descriptions) {
+		toSerialize["descriptions"] = o.Descriptions
+	}
+	if !IsNil(o.Topic) {
+		toSerialize["topic"] = o.Topic
+	}
+	if !IsNil(o.IsOrgScopedOnly) {
+		toSerialize["isOrgScopedOnly"] = o.IsOrgScopedOnly
+	}
+	if !IsNil(o.DocumentationLink) {
+		toSerialize["documentationLink"] = o.DocumentationLink
+	}
+	if !IsNil(o.SupportLink) {
+		toSerialize["supportLink"] = o.SupportLink
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationEarlyAccessFeatures200ResponseInner struct {

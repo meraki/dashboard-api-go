@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbient type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbient{}
+
 // GetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbient Ambient noise reading.
 type GetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbient struct {
 	// Ambient noise reading in adjusted decibels.
@@ -39,7 +42,7 @@ func NewGetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbientWithDefa
 
 // GetLevel returns the Level field value if set, zero value otherwise.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbient) GetLevel() int32 {
-	if o == nil || isNil(o.Level) {
+	if o == nil || IsNil(o.Level) {
 		var ret int32
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbient) GetLe
 // GetLevelOk returns a tuple with the Level field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbient) GetLevelOk() (*int32, bool) {
-	if o == nil || isNil(o.Level) {
-    return nil, false
+	if o == nil || IsNil(o.Level) {
+		return nil, false
 	}
 	return o.Level, true
 }
 
 // HasLevel returns a boolean if a field has been set.
 func (o *GetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbient) HasLevel() bool {
-	if o != nil && !isNil(o.Level) {
+	if o != nil && !IsNil(o.Level) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbient) SetLe
 }
 
 func (o GetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbient) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Level) {
-		toSerialize["level"] = o.Level
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbient) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Level) {
+		toSerialize["level"] = o.Level
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSensorReadingsHistory200ResponseInnerNoiseAmbient struct {

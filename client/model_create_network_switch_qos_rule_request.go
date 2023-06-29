@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkSwitchQosRuleRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkSwitchQosRuleRequest{}
+
 // CreateNetworkSwitchQosRuleRequest struct for CreateNetworkSwitchQosRuleRequest
 type CreateNetworkSwitchQosRuleRequest struct {
 	// The VLAN of the incoming packet. A null value will match any VLAN.
@@ -64,7 +67,7 @@ func (o *CreateNetworkSwitchQosRuleRequest) GetVlan() int32 {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchQosRuleRequest) GetVlanOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Vlan, true
 }
@@ -76,7 +79,7 @@ func (o *CreateNetworkSwitchQosRuleRequest) SetVlan(v int32) {
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchQosRuleRequest) GetProtocol() string {
-	if o == nil || isNil(o.Protocol) {
+	if o == nil || IsNil(o.Protocol) {
 		var ret string
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *CreateNetworkSwitchQosRuleRequest) GetProtocol() string {
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchQosRuleRequest) GetProtocolOk() (*string, bool) {
-	if o == nil || isNil(o.Protocol) {
-    return nil, false
+	if o == nil || IsNil(o.Protocol) {
+		return nil, false
 	}
 	return o.Protocol, true
 }
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchQosRuleRequest) HasProtocol() bool {
-	if o != nil && !isNil(o.Protocol) {
+	if o != nil && !IsNil(o.Protocol) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *CreateNetworkSwitchQosRuleRequest) SetProtocol(v string) {
 
 // GetSrcPort returns the SrcPort field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchQosRuleRequest) GetSrcPort() int32 {
-	if o == nil || isNil(o.SrcPort) {
+	if o == nil || IsNil(o.SrcPort) {
 		var ret int32
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *CreateNetworkSwitchQosRuleRequest) GetSrcPort() int32 {
 // GetSrcPortOk returns a tuple with the SrcPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchQosRuleRequest) GetSrcPortOk() (*int32, bool) {
-	if o == nil || isNil(o.SrcPort) {
-    return nil, false
+	if o == nil || IsNil(o.SrcPort) {
+		return nil, false
 	}
 	return o.SrcPort, true
 }
 
 // HasSrcPort returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchQosRuleRequest) HasSrcPort() bool {
-	if o != nil && !isNil(o.SrcPort) {
+	if o != nil && !IsNil(o.SrcPort) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *CreateNetworkSwitchQosRuleRequest) SetSrcPort(v int32) {
 
 // GetSrcPortRange returns the SrcPortRange field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchQosRuleRequest) GetSrcPortRange() string {
-	if o == nil || isNil(o.SrcPortRange) {
+	if o == nil || IsNil(o.SrcPortRange) {
 		var ret string
 		return ret
 	}
@@ -150,15 +153,15 @@ func (o *CreateNetworkSwitchQosRuleRequest) GetSrcPortRange() string {
 // GetSrcPortRangeOk returns a tuple with the SrcPortRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchQosRuleRequest) GetSrcPortRangeOk() (*string, bool) {
-	if o == nil || isNil(o.SrcPortRange) {
-    return nil, false
+	if o == nil || IsNil(o.SrcPortRange) {
+		return nil, false
 	}
 	return o.SrcPortRange, true
 }
 
 // HasSrcPortRange returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchQosRuleRequest) HasSrcPortRange() bool {
-	if o != nil && !isNil(o.SrcPortRange) {
+	if o != nil && !IsNil(o.SrcPortRange) {
 		return true
 	}
 
@@ -172,7 +175,7 @@ func (o *CreateNetworkSwitchQosRuleRequest) SetSrcPortRange(v string) {
 
 // GetDstPort returns the DstPort field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchQosRuleRequest) GetDstPort() int32 {
-	if o == nil || isNil(o.DstPort) {
+	if o == nil || IsNil(o.DstPort) {
 		var ret int32
 		return ret
 	}
@@ -182,15 +185,15 @@ func (o *CreateNetworkSwitchQosRuleRequest) GetDstPort() int32 {
 // GetDstPortOk returns a tuple with the DstPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchQosRuleRequest) GetDstPortOk() (*int32, bool) {
-	if o == nil || isNil(o.DstPort) {
-    return nil, false
+	if o == nil || IsNil(o.DstPort) {
+		return nil, false
 	}
 	return o.DstPort, true
 }
 
 // HasDstPort returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchQosRuleRequest) HasDstPort() bool {
-	if o != nil && !isNil(o.DstPort) {
+	if o != nil && !IsNil(o.DstPort) {
 		return true
 	}
 
@@ -204,7 +207,7 @@ func (o *CreateNetworkSwitchQosRuleRequest) SetDstPort(v int32) {
 
 // GetDstPortRange returns the DstPortRange field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchQosRuleRequest) GetDstPortRange() string {
-	if o == nil || isNil(o.DstPortRange) {
+	if o == nil || IsNil(o.DstPortRange) {
 		var ret string
 		return ret
 	}
@@ -214,15 +217,15 @@ func (o *CreateNetworkSwitchQosRuleRequest) GetDstPortRange() string {
 // GetDstPortRangeOk returns a tuple with the DstPortRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchQosRuleRequest) GetDstPortRangeOk() (*string, bool) {
-	if o == nil || isNil(o.DstPortRange) {
-    return nil, false
+	if o == nil || IsNil(o.DstPortRange) {
+		return nil, false
 	}
 	return o.DstPortRange, true
 }
 
 // HasDstPortRange returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchQosRuleRequest) HasDstPortRange() bool {
-	if o != nil && !isNil(o.DstPortRange) {
+	if o != nil && !IsNil(o.DstPortRange) {
 		return true
 	}
 
@@ -236,7 +239,7 @@ func (o *CreateNetworkSwitchQosRuleRequest) SetDstPortRange(v string) {
 
 // GetDscp returns the Dscp field value if set, zero value otherwise.
 func (o *CreateNetworkSwitchQosRuleRequest) GetDscp() int32 {
-	if o == nil || isNil(o.Dscp) {
+	if o == nil || IsNil(o.Dscp) {
 		var ret int32
 		return ret
 	}
@@ -246,15 +249,15 @@ func (o *CreateNetworkSwitchQosRuleRequest) GetDscp() int32 {
 // GetDscpOk returns a tuple with the Dscp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchQosRuleRequest) GetDscpOk() (*int32, bool) {
-	if o == nil || isNil(o.Dscp) {
-    return nil, false
+	if o == nil || IsNil(o.Dscp) {
+		return nil, false
 	}
 	return o.Dscp, true
 }
 
 // HasDscp returns a boolean if a field has been set.
 func (o *CreateNetworkSwitchQosRuleRequest) HasDscp() bool {
-	if o != nil && !isNil(o.Dscp) {
+	if o != nil && !IsNil(o.Dscp) {
 		return true
 	}
 
@@ -267,29 +270,35 @@ func (o *CreateNetworkSwitchQosRuleRequest) SetDscp(v int32) {
 }
 
 func (o CreateNetworkSwitchQosRuleRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["vlan"] = o.Vlan
-	}
-	if !isNil(o.Protocol) {
-		toSerialize["protocol"] = o.Protocol
-	}
-	if !isNil(o.SrcPort) {
-		toSerialize["srcPort"] = o.SrcPort
-	}
-	if !isNil(o.SrcPortRange) {
-		toSerialize["srcPortRange"] = o.SrcPortRange
-	}
-	if !isNil(o.DstPort) {
-		toSerialize["dstPort"] = o.DstPort
-	}
-	if !isNil(o.DstPortRange) {
-		toSerialize["dstPortRange"] = o.DstPortRange
-	}
-	if !isNil(o.Dscp) {
-		toSerialize["dscp"] = o.Dscp
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkSwitchQosRuleRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["vlan"] = o.Vlan
+	if !IsNil(o.Protocol) {
+		toSerialize["protocol"] = o.Protocol
+	}
+	if !IsNil(o.SrcPort) {
+		toSerialize["srcPort"] = o.SrcPort
+	}
+	if !IsNil(o.SrcPortRange) {
+		toSerialize["srcPortRange"] = o.SrcPortRange
+	}
+	if !IsNil(o.DstPort) {
+		toSerialize["dstPort"] = o.DstPort
+	}
+	if !IsNil(o.DstPortRange) {
+		toSerialize["dstPortRange"] = o.DstPortRange
+	}
+	if !IsNil(o.Dscp) {
+		toSerialize["dscp"] = o.Dscp
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkSwitchQosRuleRequest struct {

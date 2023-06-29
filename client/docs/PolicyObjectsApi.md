@@ -42,6 +42,7 @@ func main() {
     createOrganizationPolicyObjectRequest := *openapiclient.NewCreateOrganizationPolicyObjectRequest("Name_example", "Category_example", "Type_example") // CreateOrganizationPolicyObjectRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.PolicyObjectsApi.CreateOrganizationPolicyObject(context.Background(), organizationId).CreateOrganizationPolicyObjectRequest(createOrganizationPolicyObjectRequest).Execute()
     if err != nil {
@@ -114,6 +115,7 @@ func main() {
     createOrganizationPolicyObjectsGroupRequest := *openapiclient.NewCreateOrganizationPolicyObjectsGroupRequest("Name_example") // CreateOrganizationPolicyObjectsGroupRequest | 
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.PolicyObjectsApi.CreateOrganizationPolicyObjectsGroup(context.Background(), organizationId).CreateOrganizationPolicyObjectsGroupRequest(createOrganizationPolicyObjectsGroupRequest).Execute()
     if err != nil {
@@ -186,8 +188,9 @@ func main() {
     policyObjectId := "policyObjectId_example" // string | Policy object ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PolicyObjectsApi.DeleteOrganizationPolicyObject(context.Background(), organizationId, policyObjectId).Execute()
+    r, err := apiClient.PolicyObjectsApi.DeleteOrganizationPolicyObject(context.Background(), organizationId, policyObjectId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PolicyObjectsApi.DeleteOrganizationPolicyObject``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -257,8 +260,9 @@ func main() {
     policyObjectGroupId := "policyObjectGroupId_example" // string | Policy object group ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PolicyObjectsApi.DeleteOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).Execute()
+    r, err := apiClient.PolicyObjectsApi.DeleteOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PolicyObjectsApi.DeleteOrganizationPolicyObjectsGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -328,6 +332,7 @@ func main() {
     policyObjectId := "policyObjectId_example" // string | Policy object ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.PolicyObjectsApi.GetOrganizationPolicyObject(context.Background(), organizationId, policyObjectId).Execute()
     if err != nil {
@@ -403,6 +408,7 @@ func main() {
     endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.PolicyObjectsApi.GetOrganizationPolicyObjects(context.Background(), organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
     if err != nil {
@@ -477,6 +483,7 @@ func main() {
     policyObjectGroupId := "policyObjectGroupId_example" // string | Policy object group ID
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.PolicyObjectsApi.GetOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).Execute()
     if err != nil {
@@ -552,6 +559,7 @@ func main() {
     endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.PolicyObjectsApi.GetOrganizationPolicyObjectsGroups(context.Background(), organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Execute()
     if err != nil {
@@ -627,6 +635,7 @@ func main() {
     updateOrganizationPolicyObjectRequest := *openapiclient.NewUpdateOrganizationPolicyObjectRequest() // UpdateOrganizationPolicyObjectRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.PolicyObjectsApi.UpdateOrganizationPolicyObject(context.Background(), organizationId, policyObjectId).UpdateOrganizationPolicyObjectRequest(updateOrganizationPolicyObjectRequest).Execute()
     if err != nil {
@@ -702,6 +711,7 @@ func main() {
     updateOrganizationPolicyObjectsGroupRequest := *openapiclient.NewUpdateOrganizationPolicyObjectsGroupRequest() // UpdateOrganizationPolicyObjectsGroupRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
+    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.PolicyObjectsApi.UpdateOrganizationPolicyObjectsGroup(context.Background(), organizationId, policyObjectGroupId).UpdateOrganizationPolicyObjectsGroupRequest(updateOrganizationPolicyObjectsGroupRequest).Execute()
     if err != nil {

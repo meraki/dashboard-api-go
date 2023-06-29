@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ProvisionNetworkClientsRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProvisionNetworkClientsRequest{}
+
 // ProvisionNetworkClientsRequest struct for ProvisionNetworkClientsRequest
 type ProvisionNetworkClientsRequest struct {
 	// The array of clients to provision
@@ -59,7 +62,7 @@ func (o *ProvisionNetworkClientsRequest) GetClients() []ProvisionNetworkClientsR
 // and a boolean to check if the value has been set.
 func (o *ProvisionNetworkClientsRequest) GetClientsOk() ([]ProvisionNetworkClientsRequestClientsInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Clients, true
 }
@@ -83,7 +86,7 @@ func (o *ProvisionNetworkClientsRequest) GetDevicePolicy() string {
 // and a boolean to check if the value has been set.
 func (o *ProvisionNetworkClientsRequest) GetDevicePolicyOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.DevicePolicy, true
 }
@@ -95,7 +98,7 @@ func (o *ProvisionNetworkClientsRequest) SetDevicePolicy(v string) {
 
 // GetGroupPolicyId returns the GroupPolicyId field value if set, zero value otherwise.
 func (o *ProvisionNetworkClientsRequest) GetGroupPolicyId() string {
-	if o == nil || isNil(o.GroupPolicyId) {
+	if o == nil || IsNil(o.GroupPolicyId) {
 		var ret string
 		return ret
 	}
@@ -105,15 +108,15 @@ func (o *ProvisionNetworkClientsRequest) GetGroupPolicyId() string {
 // GetGroupPolicyIdOk returns a tuple with the GroupPolicyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProvisionNetworkClientsRequest) GetGroupPolicyIdOk() (*string, bool) {
-	if o == nil || isNil(o.GroupPolicyId) {
-    return nil, false
+	if o == nil || IsNil(o.GroupPolicyId) {
+		return nil, false
 	}
 	return o.GroupPolicyId, true
 }
 
 // HasGroupPolicyId returns a boolean if a field has been set.
 func (o *ProvisionNetworkClientsRequest) HasGroupPolicyId() bool {
-	if o != nil && !isNil(o.GroupPolicyId) {
+	if o != nil && !IsNil(o.GroupPolicyId) {
 		return true
 	}
 
@@ -127,7 +130,7 @@ func (o *ProvisionNetworkClientsRequest) SetGroupPolicyId(v string) {
 
 // GetPoliciesBySecurityAppliance returns the PoliciesBySecurityAppliance field value if set, zero value otherwise.
 func (o *ProvisionNetworkClientsRequest) GetPoliciesBySecurityAppliance() ProvisionNetworkClientsRequestPoliciesBySecurityAppliance {
-	if o == nil || isNil(o.PoliciesBySecurityAppliance) {
+	if o == nil || IsNil(o.PoliciesBySecurityAppliance) {
 		var ret ProvisionNetworkClientsRequestPoliciesBySecurityAppliance
 		return ret
 	}
@@ -137,15 +140,15 @@ func (o *ProvisionNetworkClientsRequest) GetPoliciesBySecurityAppliance() Provis
 // GetPoliciesBySecurityApplianceOk returns a tuple with the PoliciesBySecurityAppliance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProvisionNetworkClientsRequest) GetPoliciesBySecurityApplianceOk() (*ProvisionNetworkClientsRequestPoliciesBySecurityAppliance, bool) {
-	if o == nil || isNil(o.PoliciesBySecurityAppliance) {
-    return nil, false
+	if o == nil || IsNil(o.PoliciesBySecurityAppliance) {
+		return nil, false
 	}
 	return o.PoliciesBySecurityAppliance, true
 }
 
 // HasPoliciesBySecurityAppliance returns a boolean if a field has been set.
 func (o *ProvisionNetworkClientsRequest) HasPoliciesBySecurityAppliance() bool {
-	if o != nil && !isNil(o.PoliciesBySecurityAppliance) {
+	if o != nil && !IsNil(o.PoliciesBySecurityAppliance) {
 		return true
 	}
 
@@ -159,7 +162,7 @@ func (o *ProvisionNetworkClientsRequest) SetPoliciesBySecurityAppliance(v Provis
 
 // GetPoliciesBySsid returns the PoliciesBySsid field value if set, zero value otherwise.
 func (o *ProvisionNetworkClientsRequest) GetPoliciesBySsid() ProvisionNetworkClientsRequestPoliciesBySsid {
-	if o == nil || isNil(o.PoliciesBySsid) {
+	if o == nil || IsNil(o.PoliciesBySsid) {
 		var ret ProvisionNetworkClientsRequestPoliciesBySsid
 		return ret
 	}
@@ -169,15 +172,15 @@ func (o *ProvisionNetworkClientsRequest) GetPoliciesBySsid() ProvisionNetworkCli
 // GetPoliciesBySsidOk returns a tuple with the PoliciesBySsid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ProvisionNetworkClientsRequest) GetPoliciesBySsidOk() (*ProvisionNetworkClientsRequestPoliciesBySsid, bool) {
-	if o == nil || isNil(o.PoliciesBySsid) {
-    return nil, false
+	if o == nil || IsNil(o.PoliciesBySsid) {
+		return nil, false
 	}
 	return o.PoliciesBySsid, true
 }
 
 // HasPoliciesBySsid returns a boolean if a field has been set.
 func (o *ProvisionNetworkClientsRequest) HasPoliciesBySsid() bool {
-	if o != nil && !isNil(o.PoliciesBySsid) {
+	if o != nil && !IsNil(o.PoliciesBySsid) {
 		return true
 	}
 
@@ -190,23 +193,27 @@ func (o *ProvisionNetworkClientsRequest) SetPoliciesBySsid(v ProvisionNetworkCli
 }
 
 func (o ProvisionNetworkClientsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["clients"] = o.Clients
-	}
-	if true {
-		toSerialize["devicePolicy"] = o.DevicePolicy
-	}
-	if !isNil(o.GroupPolicyId) {
-		toSerialize["groupPolicyId"] = o.GroupPolicyId
-	}
-	if !isNil(o.PoliciesBySecurityAppliance) {
-		toSerialize["policiesBySecurityAppliance"] = o.PoliciesBySecurityAppliance
-	}
-	if !isNil(o.PoliciesBySsid) {
-		toSerialize["policiesBySsid"] = o.PoliciesBySsid
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ProvisionNetworkClientsRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["clients"] = o.Clients
+	toSerialize["devicePolicy"] = o.DevicePolicy
+	if !IsNil(o.GroupPolicyId) {
+		toSerialize["groupPolicyId"] = o.GroupPolicyId
+	}
+	if !IsNil(o.PoliciesBySecurityAppliance) {
+		toSerialize["policiesBySecurityAppliance"] = o.PoliciesBySecurityAppliance
+	}
+	if !IsNil(o.PoliciesBySsid) {
+		toSerialize["policiesBySsid"] = o.PoliciesBySsid
+	}
+	return toSerialize, nil
 }
 
 type NullableProvisionNetworkClientsRequest struct {

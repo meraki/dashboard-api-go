@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the CreateNetworkWirelessSsidIdentityPskRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkWirelessSsidIdentityPskRequest{}
+
 // CreateNetworkWirelessSsidIdentityPskRequest struct for CreateNetworkWirelessSsidIdentityPskRequest
 type CreateNetworkWirelessSsidIdentityPskRequest struct {
 	// The name of the Identity PSK
@@ -60,7 +63,7 @@ func (o *CreateNetworkWirelessSsidIdentityPskRequest) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessSsidIdentityPskRequest) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -72,7 +75,7 @@ func (o *CreateNetworkWirelessSsidIdentityPskRequest) SetName(v string) {
 
 // GetPassphrase returns the Passphrase field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessSsidIdentityPskRequest) GetPassphrase() string {
-	if o == nil || isNil(o.Passphrase) {
+	if o == nil || IsNil(o.Passphrase) {
 		var ret string
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *CreateNetworkWirelessSsidIdentityPskRequest) GetPassphrase() string {
 // GetPassphraseOk returns a tuple with the Passphrase field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessSsidIdentityPskRequest) GetPassphraseOk() (*string, bool) {
-	if o == nil || isNil(o.Passphrase) {
-    return nil, false
+	if o == nil || IsNil(o.Passphrase) {
+		return nil, false
 	}
 	return o.Passphrase, true
 }
 
 // HasPassphrase returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessSsidIdentityPskRequest) HasPassphrase() bool {
-	if o != nil && !isNil(o.Passphrase) {
+	if o != nil && !IsNil(o.Passphrase) {
 		return true
 	}
 
@@ -116,7 +119,7 @@ func (o *CreateNetworkWirelessSsidIdentityPskRequest) GetGroupPolicyId() string 
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessSsidIdentityPskRequest) GetGroupPolicyIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.GroupPolicyId, true
 }
@@ -128,7 +131,7 @@ func (o *CreateNetworkWirelessSsidIdentityPskRequest) SetGroupPolicyId(v string)
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *CreateNetworkWirelessSsidIdentityPskRequest) GetExpiresAt() time.Time {
-	if o == nil || isNil(o.ExpiresAt) {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret time.Time
 		return ret
 	}
@@ -138,15 +141,15 @@ func (o *CreateNetworkWirelessSsidIdentityPskRequest) GetExpiresAt() time.Time {
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkWirelessSsidIdentityPskRequest) GetExpiresAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.ExpiresAt) {
-    return nil, false
+	if o == nil || IsNil(o.ExpiresAt) {
+		return nil, false
 	}
 	return o.ExpiresAt, true
 }
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *CreateNetworkWirelessSsidIdentityPskRequest) HasExpiresAt() bool {
-	if o != nil && !isNil(o.ExpiresAt) {
+	if o != nil && !IsNil(o.ExpiresAt) {
 		return true
 	}
 
@@ -159,20 +162,24 @@ func (o *CreateNetworkWirelessSsidIdentityPskRequest) SetExpiresAt(v time.Time) 
 }
 
 func (o CreateNetworkWirelessSsidIdentityPskRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Passphrase) {
-		toSerialize["passphrase"] = o.Passphrase
-	}
-	if true {
-		toSerialize["groupPolicyId"] = o.GroupPolicyId
-	}
-	if !isNil(o.ExpiresAt) {
-		toSerialize["expiresAt"] = o.ExpiresAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkWirelessSsidIdentityPskRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Passphrase) {
+		toSerialize["passphrase"] = o.Passphrase
+	}
+	toSerialize["groupPolicyId"] = o.GroupPolicyId
+	if !IsNil(o.ExpiresAt) {
+		toSerialize["expiresAt"] = o.ExpiresAt
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkWirelessSsidIdentityPskRequest struct {

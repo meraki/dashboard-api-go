@@ -10,292 +10,289 @@ Testing StacksApiService
 package client
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "github.com/meraki/dashboard-api-go/client"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/meraki/dashboard-api-go/client"
 )
 
 func Test_client_StacksApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test StacksApiService AddNetworkSwitchStack", func(t *testing.T) {
+	t.Run("Test StacksApiService AddNetworkSwitchStack", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var switchStackId string
+		var networkId string
+		var switchStackId string
 
-        resp, httpRes, err := apiClient.StacksApi.AddNetworkSwitchStack(context.Background(), networkId, switchStackId).Execute()
+		resp, httpRes, err := apiClient.StacksApi.AddNetworkSwitchStack(context.Background(), networkId, switchStackId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService CreateNetworkSwitchStack", func(t *testing.T) {
+	t.Run("Test StacksApiService CreateNetworkSwitchStack", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.StacksApi.CreateNetworkSwitchStack(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.StacksApi.CreateNetworkSwitchStack(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService CreateNetworkSwitchStackRoutingInterface", func(t *testing.T) {
+	t.Run("Test StacksApiService CreateNetworkSwitchStackRoutingInterface", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var switchStackId string
+		var networkId string
+		var switchStackId string
 
-        resp, httpRes, err := apiClient.StacksApi.CreateNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId).Execute()
+		resp, httpRes, err := apiClient.StacksApi.CreateNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService CreateNetworkSwitchStackRoutingStaticRoute", func(t *testing.T) {
+	t.Run("Test StacksApiService CreateNetworkSwitchStackRoutingStaticRoute", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var switchStackId string
+		var networkId string
+		var switchStackId string
 
-        resp, httpRes, err := apiClient.StacksApi.CreateNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId).Execute()
+		resp, httpRes, err := apiClient.StacksApi.CreateNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService DeleteNetworkSwitchStack", func(t *testing.T) {
+	t.Run("Test StacksApiService DeleteNetworkSwitchStack", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var switchStackId string
+		var networkId string
+		var switchStackId string
 
-        resp, httpRes, err := apiClient.StacksApi.DeleteNetworkSwitchStack(context.Background(), networkId, switchStackId).Execute()
+		httpRes, err := apiClient.StacksApi.DeleteNetworkSwitchStack(context.Background(), networkId, switchStackId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService DeleteNetworkSwitchStackRoutingInterface", func(t *testing.T) {
+	t.Run("Test StacksApiService DeleteNetworkSwitchStackRoutingInterface", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var switchStackId string
-        var interfaceId string
+		var networkId string
+		var switchStackId string
+		var interfaceId string
 
-        resp, httpRes, err := apiClient.StacksApi.DeleteNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId, interfaceId).Execute()
+		httpRes, err := apiClient.StacksApi.DeleteNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId, interfaceId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService DeleteNetworkSwitchStackRoutingStaticRoute", func(t *testing.T) {
+	t.Run("Test StacksApiService DeleteNetworkSwitchStackRoutingStaticRoute", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var switchStackId string
-        var staticRouteId string
+		var networkId string
+		var switchStackId string
+		var staticRouteId string
 
-        resp, httpRes, err := apiClient.StacksApi.DeleteNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId, staticRouteId).Execute()
+		httpRes, err := apiClient.StacksApi.DeleteNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId, staticRouteId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService GetNetworkSwitchStack", func(t *testing.T) {
+	t.Run("Test StacksApiService GetNetworkSwitchStack", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var switchStackId string
+		var networkId string
+		var switchStackId string
 
-        resp, httpRes, err := apiClient.StacksApi.GetNetworkSwitchStack(context.Background(), networkId, switchStackId).Execute()
+		resp, httpRes, err := apiClient.StacksApi.GetNetworkSwitchStack(context.Background(), networkId, switchStackId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService GetNetworkSwitchStackRoutingInterface", func(t *testing.T) {
+	t.Run("Test StacksApiService GetNetworkSwitchStackRoutingInterface", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var switchStackId string
-        var interfaceId string
+		var networkId string
+		var switchStackId string
+		var interfaceId string
 
-        resp, httpRes, err := apiClient.StacksApi.GetNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId, interfaceId).Execute()
+		resp, httpRes, err := apiClient.StacksApi.GetNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId, interfaceId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService GetNetworkSwitchStackRoutingInterfaceDhcp", func(t *testing.T) {
+	t.Run("Test StacksApiService GetNetworkSwitchStackRoutingInterfaceDhcp", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var switchStackId string
-        var interfaceId string
+		var networkId string
+		var switchStackId string
+		var interfaceId string
 
-        resp, httpRes, err := apiClient.StacksApi.GetNetworkSwitchStackRoutingInterfaceDhcp(context.Background(), networkId, switchStackId, interfaceId).Execute()
+		resp, httpRes, err := apiClient.StacksApi.GetNetworkSwitchStackRoutingInterfaceDhcp(context.Background(), networkId, switchStackId, interfaceId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService GetNetworkSwitchStackRoutingInterfaces", func(t *testing.T) {
+	t.Run("Test StacksApiService GetNetworkSwitchStackRoutingInterfaces", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var switchStackId string
+		var networkId string
+		var switchStackId string
 
-        resp, httpRes, err := apiClient.StacksApi.GetNetworkSwitchStackRoutingInterfaces(context.Background(), networkId, switchStackId).Execute()
+		resp, httpRes, err := apiClient.StacksApi.GetNetworkSwitchStackRoutingInterfaces(context.Background(), networkId, switchStackId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService GetNetworkSwitchStackRoutingStaticRoute", func(t *testing.T) {
+	t.Run("Test StacksApiService GetNetworkSwitchStackRoutingStaticRoute", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var switchStackId string
-        var staticRouteId string
+		var networkId string
+		var switchStackId string
+		var staticRouteId string
 
-        resp, httpRes, err := apiClient.StacksApi.GetNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId, staticRouteId).Execute()
+		resp, httpRes, err := apiClient.StacksApi.GetNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId, staticRouteId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService GetNetworkSwitchStackRoutingStaticRoutes", func(t *testing.T) {
+	t.Run("Test StacksApiService GetNetworkSwitchStackRoutingStaticRoutes", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var switchStackId string
+		var networkId string
+		var switchStackId string
 
-        resp, httpRes, err := apiClient.StacksApi.GetNetworkSwitchStackRoutingStaticRoutes(context.Background(), networkId, switchStackId).Execute()
+		resp, httpRes, err := apiClient.StacksApi.GetNetworkSwitchStackRoutingStaticRoutes(context.Background(), networkId, switchStackId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService GetNetworkSwitchStacks", func(t *testing.T) {
+	t.Run("Test StacksApiService GetNetworkSwitchStacks", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
+		var networkId string
 
-        resp, httpRes, err := apiClient.StacksApi.GetNetworkSwitchStacks(context.Background(), networkId).Execute()
+		resp, httpRes, err := apiClient.StacksApi.GetNetworkSwitchStacks(context.Background(), networkId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService RemoveNetworkSwitchStack", func(t *testing.T) {
+	t.Run("Test StacksApiService RemoveNetworkSwitchStack", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var switchStackId string
+		var networkId string
+		var switchStackId string
 
-        resp, httpRes, err := apiClient.StacksApi.RemoveNetworkSwitchStack(context.Background(), networkId, switchStackId).Execute()
+		resp, httpRes, err := apiClient.StacksApi.RemoveNetworkSwitchStack(context.Background(), networkId, switchStackId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService UpdateNetworkSwitchStackRoutingInterface", func(t *testing.T) {
+	t.Run("Test StacksApiService UpdateNetworkSwitchStackRoutingInterface", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var switchStackId string
-        var interfaceId string
+		var networkId string
+		var switchStackId string
+		var interfaceId string
 
-        resp, httpRes, err := apiClient.StacksApi.UpdateNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId, interfaceId).Execute()
+		resp, httpRes, err := apiClient.StacksApi.UpdateNetworkSwitchStackRoutingInterface(context.Background(), networkId, switchStackId, interfaceId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService UpdateNetworkSwitchStackRoutingInterfaceDhcp", func(t *testing.T) {
+	t.Run("Test StacksApiService UpdateNetworkSwitchStackRoutingInterfaceDhcp", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var switchStackId string
-        var interfaceId string
+		var networkId string
+		var switchStackId string
+		var interfaceId string
 
-        resp, httpRes, err := apiClient.StacksApi.UpdateNetworkSwitchStackRoutingInterfaceDhcp(context.Background(), networkId, switchStackId, interfaceId).Execute()
+		resp, httpRes, err := apiClient.StacksApi.UpdateNetworkSwitchStackRoutingInterfaceDhcp(context.Background(), networkId, switchStackId, interfaceId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test StacksApiService UpdateNetworkSwitchStackRoutingStaticRoute", func(t *testing.T) {
+	t.Run("Test StacksApiService UpdateNetworkSwitchStackRoutingStaticRoute", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var networkId string
-        var switchStackId string
-        var staticRouteId string
+		var networkId string
+		var switchStackId string
+		var staticRouteId string
 
-        resp, httpRes, err := apiClient.StacksApi.UpdateNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId, staticRouteId).Execute()
+		resp, httpRes, err := apiClient.StacksApi.UpdateNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId, staticRouteId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
 }

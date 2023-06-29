@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDeviceCellularSimsRequestSimFailover type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDeviceCellularSimsRequestSimFailover{}
+
 // UpdateDeviceCellularSimsRequestSimFailover SIM Failover settings.
 type UpdateDeviceCellularSimsRequestSimFailover struct {
 	// Failover to secondary SIM (optional)
@@ -39,7 +42,7 @@ func NewUpdateDeviceCellularSimsRequestSimFailoverWithDefaults() *UpdateDeviceCe
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *UpdateDeviceCellularSimsRequestSimFailover) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *UpdateDeviceCellularSimsRequestSimFailover) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDeviceCellularSimsRequestSimFailover) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdateDeviceCellularSimsRequestSimFailover) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *UpdateDeviceCellularSimsRequestSimFailover) SetEnabled(v bool) {
 }
 
 func (o UpdateDeviceCellularSimsRequestSimFailover) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDeviceCellularSimsRequestSimFailover) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDeviceCellularSimsRequestSimFailover struct {

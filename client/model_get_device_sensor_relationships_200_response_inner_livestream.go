@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeviceSensorRelationships200ResponseInnerLivestream type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeviceSensorRelationships200ResponseInnerLivestream{}
+
 // GetDeviceSensorRelationships200ResponseInnerLivestream A role defined between an MT sensor and an MV camera that adds the camera's livestream to the sensor's details page. Snapshots from the camera will also appear in alert notifications that the sensor triggers.
 type GetDeviceSensorRelationships200ResponseInnerLivestream struct {
 	// An array of the related devices for the role
@@ -39,7 +42,7 @@ func NewGetDeviceSensorRelationships200ResponseInnerLivestreamWithDefaults() *Ge
 
 // GetRelatedDevices returns the RelatedDevices field value if set, zero value otherwise.
 func (o *GetDeviceSensorRelationships200ResponseInnerLivestream) GetRelatedDevices() []GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner {
-	if o == nil || isNil(o.RelatedDevices) {
+	if o == nil || IsNil(o.RelatedDevices) {
 		var ret []GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GetDeviceSensorRelationships200ResponseInnerLivestream) GetRelatedDevic
 // GetRelatedDevicesOk returns a tuple with the RelatedDevices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeviceSensorRelationships200ResponseInnerLivestream) GetRelatedDevicesOk() ([]GetDeviceSensorRelationships200ResponseInnerLivestreamRelatedDevicesInner, bool) {
-	if o == nil || isNil(o.RelatedDevices) {
-    return nil, false
+	if o == nil || IsNil(o.RelatedDevices) {
+		return nil, false
 	}
 	return o.RelatedDevices, true
 }
 
 // HasRelatedDevices returns a boolean if a field has been set.
 func (o *GetDeviceSensorRelationships200ResponseInnerLivestream) HasRelatedDevices() bool {
-	if o != nil && !isNil(o.RelatedDevices) {
+	if o != nil && !IsNil(o.RelatedDevices) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *GetDeviceSensorRelationships200ResponseInnerLivestream) SetRelatedDevic
 }
 
 func (o GetDeviceSensorRelationships200ResponseInnerLivestream) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.RelatedDevices) {
-		toSerialize["relatedDevices"] = o.RelatedDevices
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeviceSensorRelationships200ResponseInnerLivestream) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.RelatedDevices) {
+		toSerialize["relatedDevices"] = o.RelatedDevices
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeviceSensorRelationships200ResponseInnerLivestream struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInner{}
+
 // GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInner struct for GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInner
 type GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInner struct {
 	// Interface for the device uplink. Available options are: cellular, man1, man2, wan1, wan2
@@ -41,7 +44,7 @@ func NewGetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInn
 
 // GetInterface returns the Interface field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInner) GetInterface() string {
-	if o == nil || isNil(o.Interface) {
+	if o == nil || IsNil(o.Interface) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksIn
 // GetInterfaceOk returns a tuple with the Interface field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInner) GetInterfaceOk() (*string, bool) {
-	if o == nil || isNil(o.Interface) {
-    return nil, false
+	if o == nil || IsNil(o.Interface) {
+		return nil, false
 	}
 	return o.Interface, true
 }
 
 // HasInterface returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInner) HasInterface() bool {
-	if o != nil && !isNil(o.Interface) {
+	if o != nil && !IsNil(o.Interface) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksIn
 
 // GetAddresses returns the Addresses field value if set, zero value otherwise.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInner) GetAddresses() []GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner {
-	if o == nil || isNil(o.Addresses) {
+	if o == nil || IsNil(o.Addresses) {
 		var ret []GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksIn
 // GetAddressesOk returns a tuple with the Addresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInner) GetAddressesOk() ([]GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInnerAddressesInner, bool) {
-	if o == nil || isNil(o.Addresses) {
-    return nil, false
+	if o == nil || IsNil(o.Addresses) {
+		return nil, false
 	}
 	return o.Addresses, true
 }
 
 // HasAddresses returns a boolean if a field has been set.
 func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInner) HasAddresses() bool {
-	if o != nil && !isNil(o.Addresses) {
+	if o != nil && !IsNil(o.Addresses) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksIn
 }
 
 func (o GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Interface) {
-		toSerialize["interface"] = o.Interface
-	}
-	if !isNil(o.Addresses) {
-		toSerialize["addresses"] = o.Addresses
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Interface) {
+		toSerialize["interface"] = o.Interface
+	}
+	if !IsNil(o.Addresses) {
+		toSerialize["addresses"] = o.Addresses
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationDevicesUplinksAddressesByDevice200ResponseInnerUplinksInner struct {

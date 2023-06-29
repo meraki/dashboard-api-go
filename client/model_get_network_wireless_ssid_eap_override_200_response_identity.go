@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetNetworkWirelessSsidEapOverride200ResponseIdentity type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetNetworkWirelessSsidEapOverride200ResponseIdentity{}
+
 // GetNetworkWirelessSsidEapOverride200ResponseIdentity EAP settings for identity requests.
 type GetNetworkWirelessSsidEapOverride200ResponseIdentity struct {
 	// Maximum number of EAP retries.
@@ -41,7 +44,7 @@ func NewGetNetworkWirelessSsidEapOverride200ResponseIdentityWithDefaults() *GetN
 
 // GetRetries returns the Retries field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidEapOverride200ResponseIdentity) GetRetries() int32 {
-	if o == nil || isNil(o.Retries) {
+	if o == nil || IsNil(o.Retries) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GetNetworkWirelessSsidEapOverride200ResponseIdentity) GetRetries() int3
 // GetRetriesOk returns a tuple with the Retries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidEapOverride200ResponseIdentity) GetRetriesOk() (*int32, bool) {
-	if o == nil || isNil(o.Retries) {
-    return nil, false
+	if o == nil || IsNil(o.Retries) {
+		return nil, false
 	}
 	return o.Retries, true
 }
 
 // HasRetries returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidEapOverride200ResponseIdentity) HasRetries() bool {
-	if o != nil && !isNil(o.Retries) {
+	if o != nil && !IsNil(o.Retries) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GetNetworkWirelessSsidEapOverride200ResponseIdentity) SetRetries(v int3
 
 // GetTimeout returns the Timeout field value if set, zero value otherwise.
 func (o *GetNetworkWirelessSsidEapOverride200ResponseIdentity) GetTimeout() int32 {
-	if o == nil || isNil(o.Timeout) {
+	if o == nil || IsNil(o.Timeout) {
 		var ret int32
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GetNetworkWirelessSsidEapOverride200ResponseIdentity) GetTimeout() int3
 // GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetNetworkWirelessSsidEapOverride200ResponseIdentity) GetTimeoutOk() (*int32, bool) {
-	if o == nil || isNil(o.Timeout) {
-    return nil, false
+	if o == nil || IsNil(o.Timeout) {
+		return nil, false
 	}
 	return o.Timeout, true
 }
 
 // HasTimeout returns a boolean if a field has been set.
 func (o *GetNetworkWirelessSsidEapOverride200ResponseIdentity) HasTimeout() bool {
-	if o != nil && !isNil(o.Timeout) {
+	if o != nil && !IsNil(o.Timeout) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *GetNetworkWirelessSsidEapOverride200ResponseIdentity) SetTimeout(v int3
 }
 
 func (o GetNetworkWirelessSsidEapOverride200ResponseIdentity) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Retries) {
-		toSerialize["retries"] = o.Retries
-	}
-	if !isNil(o.Timeout) {
-		toSerialize["timeout"] = o.Timeout
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetNetworkWirelessSsidEapOverride200ResponseIdentity) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Retries) {
+		toSerialize["retries"] = o.Retries
+	}
+	if !IsNil(o.Timeout) {
+		toSerialize["timeout"] = o.Timeout
+	}
+	return toSerialize, nil
 }
 
 type NullableGetNetworkWirelessSsidEapOverride200ResponseIdentity struct {

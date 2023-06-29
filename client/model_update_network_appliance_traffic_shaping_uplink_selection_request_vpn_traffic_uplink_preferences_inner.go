@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner{}
+
 // UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner struct for UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner
 type UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner struct {
 	// Array of traffic filters for this uplink preference rule
@@ -58,7 +61,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUpl
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner) GetTrafficFiltersOk() ([]UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerTrafficFiltersInner, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.TrafficFilters, true
 }
@@ -82,7 +85,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUpl
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner) GetPreferredUplinkOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.PreferredUplink, true
 }
@@ -94,7 +97,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUpl
 
 // GetFailOverCriterion returns the FailOverCriterion field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner) GetFailOverCriterion() string {
-	if o == nil || isNil(o.FailOverCriterion) {
+	if o == nil || IsNil(o.FailOverCriterion) {
 		var ret string
 		return ret
 	}
@@ -104,15 +107,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUpl
 // GetFailOverCriterionOk returns a tuple with the FailOverCriterion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner) GetFailOverCriterionOk() (*string, bool) {
-	if o == nil || isNil(o.FailOverCriterion) {
-    return nil, false
+	if o == nil || IsNil(o.FailOverCriterion) {
+		return nil, false
 	}
 	return o.FailOverCriterion, true
 }
 
 // HasFailOverCriterion returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner) HasFailOverCriterion() bool {
-	if o != nil && !isNil(o.FailOverCriterion) {
+	if o != nil && !IsNil(o.FailOverCriterion) {
 		return true
 	}
 
@@ -126,7 +129,7 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUpl
 
 // GetPerformanceClass returns the PerformanceClass field value if set, zero value otherwise.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner) GetPerformanceClass() UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass {
-	if o == nil || isNil(o.PerformanceClass) {
+	if o == nil || IsNil(o.PerformanceClass) {
 		var ret UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass
 		return ret
 	}
@@ -136,15 +139,15 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUpl
 // GetPerformanceClassOk returns a tuple with the PerformanceClass field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner) GetPerformanceClassOk() (*UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInnerPerformanceClass, bool) {
-	if o == nil || isNil(o.PerformanceClass) {
-    return nil, false
+	if o == nil || IsNil(o.PerformanceClass) {
+		return nil, false
 	}
 	return o.PerformanceClass, true
 }
 
 // HasPerformanceClass returns a boolean if a field has been set.
 func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner) HasPerformanceClass() bool {
-	if o != nil && !isNil(o.PerformanceClass) {
+	if o != nil && !IsNil(o.PerformanceClass) {
 		return true
 	}
 
@@ -157,20 +160,24 @@ func (o *UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUpl
 }
 
 func (o UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["trafficFilters"] = o.TrafficFilters
-	}
-	if true {
-		toSerialize["preferredUplink"] = o.PreferredUplink
-	}
-	if !isNil(o.FailOverCriterion) {
-		toSerialize["failOverCriterion"] = o.FailOverCriterion
-	}
-	if !isNil(o.PerformanceClass) {
-		toSerialize["performanceClass"] = o.PerformanceClass
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["trafficFilters"] = o.TrafficFilters
+	toSerialize["preferredUplink"] = o.PreferredUplink
+	if !IsNil(o.FailOverCriterion) {
+		toSerialize["failOverCriterion"] = o.FailOverCriterion
+	}
+	if !IsNil(o.PerformanceClass) {
+		toSerialize["performanceClass"] = o.PerformanceClass
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateNetworkApplianceTrafficShapingUplinkSelectionRequestVpnTrafficUplinkPreferencesInner struct {

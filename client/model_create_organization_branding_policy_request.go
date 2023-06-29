@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationBrandingPolicyRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationBrandingPolicyRequest{}
+
 // CreateOrganizationBrandingPolicyRequest struct for CreateOrganizationBrandingPolicyRequest
 type CreateOrganizationBrandingPolicyRequest struct {
 	// Name of the Dashboard branding policy.
@@ -44,7 +47,7 @@ func NewCreateOrganizationBrandingPolicyRequestWithDefaults() *CreateOrganizatio
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CreateOrganizationBrandingPolicyRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *CreateOrganizationBrandingPolicyRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationBrandingPolicyRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateOrganizationBrandingPolicyRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *CreateOrganizationBrandingPolicyRequest) SetName(v string) {
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *CreateOrganizationBrandingPolicyRequest) GetEnabled() bool {
-	if o == nil || isNil(o.Enabled) {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *CreateOrganizationBrandingPolicyRequest) GetEnabled() bool {
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationBrandingPolicyRequest) GetEnabledOk() (*bool, bool) {
-	if o == nil || isNil(o.Enabled) {
-    return nil, false
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
 	}
 	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *CreateOrganizationBrandingPolicyRequest) HasEnabled() bool {
-	if o != nil && !isNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *CreateOrganizationBrandingPolicyRequest) SetEnabled(v bool) {
 
 // GetAdminSettings returns the AdminSettings field value if set, zero value otherwise.
 func (o *CreateOrganizationBrandingPolicyRequest) GetAdminSettings() GetOrganizationBrandingPolicies200ResponseInnerAdminSettings {
-	if o == nil || isNil(o.AdminSettings) {
+	if o == nil || IsNil(o.AdminSettings) {
 		var ret GetOrganizationBrandingPolicies200ResponseInnerAdminSettings
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *CreateOrganizationBrandingPolicyRequest) GetAdminSettings() GetOrganiza
 // GetAdminSettingsOk returns a tuple with the AdminSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationBrandingPolicyRequest) GetAdminSettingsOk() (*GetOrganizationBrandingPolicies200ResponseInnerAdminSettings, bool) {
-	if o == nil || isNil(o.AdminSettings) {
-    return nil, false
+	if o == nil || IsNil(o.AdminSettings) {
+		return nil, false
 	}
 	return o.AdminSettings, true
 }
 
 // HasAdminSettings returns a boolean if a field has been set.
 func (o *CreateOrganizationBrandingPolicyRequest) HasAdminSettings() bool {
-	if o != nil && !isNil(o.AdminSettings) {
+	if o != nil && !IsNil(o.AdminSettings) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *CreateOrganizationBrandingPolicyRequest) SetAdminSettings(v GetOrganiza
 
 // GetHelpSettings returns the HelpSettings field value if set, zero value otherwise.
 func (o *CreateOrganizationBrandingPolicyRequest) GetHelpSettings() CreateOrganizationBrandingPolicyRequestHelpSettings {
-	if o == nil || isNil(o.HelpSettings) {
+	if o == nil || IsNil(o.HelpSettings) {
 		var ret CreateOrganizationBrandingPolicyRequestHelpSettings
 		return ret
 	}
@@ -150,15 +153,15 @@ func (o *CreateOrganizationBrandingPolicyRequest) GetHelpSettings() CreateOrgani
 // GetHelpSettingsOk returns a tuple with the HelpSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationBrandingPolicyRequest) GetHelpSettingsOk() (*CreateOrganizationBrandingPolicyRequestHelpSettings, bool) {
-	if o == nil || isNil(o.HelpSettings) {
-    return nil, false
+	if o == nil || IsNil(o.HelpSettings) {
+		return nil, false
 	}
 	return o.HelpSettings, true
 }
 
 // HasHelpSettings returns a boolean if a field has been set.
 func (o *CreateOrganizationBrandingPolicyRequest) HasHelpSettings() bool {
-	if o != nil && !isNil(o.HelpSettings) {
+	if o != nil && !IsNil(o.HelpSettings) {
 		return true
 	}
 
@@ -172,7 +175,7 @@ func (o *CreateOrganizationBrandingPolicyRequest) SetHelpSettings(v CreateOrgani
 
 // GetCustomLogo returns the CustomLogo field value if set, zero value otherwise.
 func (o *CreateOrganizationBrandingPolicyRequest) GetCustomLogo() CreateOrganizationBrandingPolicyRequestCustomLogo {
-	if o == nil || isNil(o.CustomLogo) {
+	if o == nil || IsNil(o.CustomLogo) {
 		var ret CreateOrganizationBrandingPolicyRequestCustomLogo
 		return ret
 	}
@@ -182,15 +185,15 @@ func (o *CreateOrganizationBrandingPolicyRequest) GetCustomLogo() CreateOrganiza
 // GetCustomLogoOk returns a tuple with the CustomLogo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationBrandingPolicyRequest) GetCustomLogoOk() (*CreateOrganizationBrandingPolicyRequestCustomLogo, bool) {
-	if o == nil || isNil(o.CustomLogo) {
-    return nil, false
+	if o == nil || IsNil(o.CustomLogo) {
+		return nil, false
 	}
 	return o.CustomLogo, true
 }
 
 // HasCustomLogo returns a boolean if a field has been set.
 func (o *CreateOrganizationBrandingPolicyRequest) HasCustomLogo() bool {
-	if o != nil && !isNil(o.CustomLogo) {
+	if o != nil && !IsNil(o.CustomLogo) {
 		return true
 	}
 
@@ -203,23 +206,31 @@ func (o *CreateOrganizationBrandingPolicyRequest) SetCustomLogo(v CreateOrganiza
 }
 
 func (o CreateOrganizationBrandingPolicyRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Enabled) {
-		toSerialize["enabled"] = o.Enabled
-	}
-	if !isNil(o.AdminSettings) {
-		toSerialize["adminSettings"] = o.AdminSettings
-	}
-	if !isNil(o.HelpSettings) {
-		toSerialize["helpSettings"] = o.HelpSettings
-	}
-	if !isNil(o.CustomLogo) {
-		toSerialize["customLogo"] = o.CustomLogo
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationBrandingPolicyRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.AdminSettings) {
+		toSerialize["adminSettings"] = o.AdminSettings
+	}
+	if !IsNil(o.HelpSettings) {
+		toSerialize["helpSettings"] = o.HelpSettings
+	}
+	if !IsNil(o.CustomLogo) {
+		toSerialize["customLogo"] = o.CustomLogo
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationBrandingPolicyRequest struct {

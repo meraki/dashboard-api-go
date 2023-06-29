@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateNetworkSwitchLinkAggregationRequestSwitchPortsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateNetworkSwitchLinkAggregationRequestSwitchPortsInner{}
+
 // CreateNetworkSwitchLinkAggregationRequestSwitchPortsInner struct for CreateNetworkSwitchLinkAggregationRequestSwitchPortsInner
 type CreateNetworkSwitchLinkAggregationRequestSwitchPortsInner struct {
 	// Serial number of the switch.
@@ -55,7 +58,7 @@ func (o *CreateNetworkSwitchLinkAggregationRequestSwitchPortsInner) GetSerial() 
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchLinkAggregationRequestSwitchPortsInner) GetSerialOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Serial, true
 }
@@ -79,7 +82,7 @@ func (o *CreateNetworkSwitchLinkAggregationRequestSwitchPortsInner) GetPortId() 
 // and a boolean to check if the value has been set.
 func (o *CreateNetworkSwitchLinkAggregationRequestSwitchPortsInner) GetPortIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.PortId, true
 }
@@ -90,14 +93,18 @@ func (o *CreateNetworkSwitchLinkAggregationRequestSwitchPortsInner) SetPortId(v 
 }
 
 func (o CreateNetworkSwitchLinkAggregationRequestSwitchPortsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["serial"] = o.Serial
-	}
-	if true {
-		toSerialize["portId"] = o.PortId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateNetworkSwitchLinkAggregationRequestSwitchPortsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["serial"] = o.Serial
+	toSerialize["portId"] = o.PortId
+	return toSerialize, nil
 }
 
 type NullableCreateNetworkSwitchLinkAggregationRequestSwitchPortsInner struct {

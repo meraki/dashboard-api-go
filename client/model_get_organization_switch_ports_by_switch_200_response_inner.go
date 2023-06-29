@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationSwitchPortsBySwitch200ResponseInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationSwitchPortsBySwitch200ResponseInner{}
+
 // GetOrganizationSwitchPortsBySwitch200ResponseInner struct for GetOrganizationSwitchPortsBySwitch200ResponseInner
 type GetOrganizationSwitchPortsBySwitch200ResponseInner struct {
 	// The name of the switch.
@@ -48,7 +51,7 @@ func NewGetOrganizationSwitchPortsBySwitch200ResponseInnerWithDefaults() *GetOrg
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -58,15 +61,15 @@ func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) SetName(v string) {
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetSerial() string {
-	if o == nil || isNil(o.Serial) {
+	if o == nil || IsNil(o.Serial) {
 		var ret string
 		return ret
 	}
@@ -90,15 +93,15 @@ func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetSerial() string 
 // GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetSerialOk() (*string, bool) {
-	if o == nil || isNil(o.Serial) {
-    return nil, false
+	if o == nil || IsNil(o.Serial) {
+		return nil, false
 	}
 	return o.Serial, true
 }
 
 // HasSerial returns a boolean if a field has been set.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) HasSerial() bool {
-	if o != nil && !isNil(o.Serial) {
+	if o != nil && !IsNil(o.Serial) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) SetSerial(v string)
 
 // GetMac returns the Mac field value if set, zero value otherwise.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetMac() string {
-	if o == nil || isNil(o.Mac) {
+	if o == nil || IsNil(o.Mac) {
 		var ret string
 		return ret
 	}
@@ -122,15 +125,15 @@ func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetMac() string {
 // GetMacOk returns a tuple with the Mac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetMacOk() (*string, bool) {
-	if o == nil || isNil(o.Mac) {
-    return nil, false
+	if o == nil || IsNil(o.Mac) {
+		return nil, false
 	}
 	return o.Mac, true
 }
 
 // HasMac returns a boolean if a field has been set.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) HasMac() bool {
-	if o != nil && !isNil(o.Mac) {
+	if o != nil && !IsNil(o.Mac) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) SetMac(v string) {
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetNetwork() GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork {
-	if o == nil || isNil(o.Network) {
+	if o == nil || IsNil(o.Network) {
 		var ret GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork
 		return ret
 	}
@@ -154,15 +157,15 @@ func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetNetwork() GetOrg
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetNetworkOk() (*GetOrganizationSwitchPortsBySwitch200ResponseInnerNetwork, bool) {
-	if o == nil || isNil(o.Network) {
-    return nil, false
+	if o == nil || IsNil(o.Network) {
+		return nil, false
 	}
 	return o.Network, true
 }
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) HasNetwork() bool {
-	if o != nil && !isNil(o.Network) {
+	if o != nil && !IsNil(o.Network) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) SetNetwork(v GetOrg
 
 // GetModel returns the Model field value if set, zero value otherwise.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetModel() string {
-	if o == nil || isNil(o.Model) {
+	if o == nil || IsNil(o.Model) {
 		var ret string
 		return ret
 	}
@@ -186,15 +189,15 @@ func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetModel() string {
 // GetModelOk returns a tuple with the Model field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetModelOk() (*string, bool) {
-	if o == nil || isNil(o.Model) {
-    return nil, false
+	if o == nil || IsNil(o.Model) {
+		return nil, false
 	}
 	return o.Model, true
 }
 
 // HasModel returns a boolean if a field has been set.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) HasModel() bool {
-	if o != nil && !isNil(o.Model) {
+	if o != nil && !IsNil(o.Model) {
 		return true
 	}
 
@@ -208,7 +211,7 @@ func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) SetModel(v string) 
 
 // GetPorts returns the Ports field value if set, zero value otherwise.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetPorts() []GetOrganizationSwitchPortsBySwitch200ResponseInnerPortsInner {
-	if o == nil || isNil(o.Ports) {
+	if o == nil || IsNil(o.Ports) {
 		var ret []GetOrganizationSwitchPortsBySwitch200ResponseInnerPortsInner
 		return ret
 	}
@@ -218,15 +221,15 @@ func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetPorts() []GetOrg
 // GetPortsOk returns a tuple with the Ports field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) GetPortsOk() ([]GetOrganizationSwitchPortsBySwitch200ResponseInnerPortsInner, bool) {
-	if o == nil || isNil(o.Ports) {
-    return nil, false
+	if o == nil || IsNil(o.Ports) {
+		return nil, false
 	}
 	return o.Ports, true
 }
 
 // HasPorts returns a boolean if a field has been set.
 func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) HasPorts() bool {
-	if o != nil && !isNil(o.Ports) {
+	if o != nil && !IsNil(o.Ports) {
 		return true
 	}
 
@@ -239,26 +242,34 @@ func (o *GetOrganizationSwitchPortsBySwitch200ResponseInner) SetPorts(v []GetOrg
 }
 
 func (o GetOrganizationSwitchPortsBySwitch200ResponseInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	if !isNil(o.Mac) {
-		toSerialize["mac"] = o.Mac
-	}
-	if !isNil(o.Network) {
-		toSerialize["network"] = o.Network
-	}
-	if !isNil(o.Model) {
-		toSerialize["model"] = o.Model
-	}
-	if !isNil(o.Ports) {
-		toSerialize["ports"] = o.Ports
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationSwitchPortsBySwitch200ResponseInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	if !IsNil(o.Mac) {
+		toSerialize["mac"] = o.Mac
+	}
+	if !IsNil(o.Network) {
+		toSerialize["network"] = o.Network
+	}
+	if !IsNil(o.Model) {
+		toSerialize["model"] = o.Model
+	}
+	if !IsNil(o.Ports) {
+		toSerialize["ports"] = o.Ports
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationSwitchPortsBySwitch200ResponseInner struct {
