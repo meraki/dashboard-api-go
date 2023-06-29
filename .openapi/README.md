@@ -13,10 +13,26 @@ The `templates` directory contains the templates used to generate the client. Cu
 
 This library is automatically generated using the [OpenAPI generator v5.3](https://github.com/OpenAPITools/openapi-generator) using the [Meraki OpenAPI v2 specification](https://github.com/meraki/openapi/).
 
+
+## Generate a new HTTP Client with Makefile
+
+To use the Makefile, you can run the following commands:
+
+`make install-generator`: Downloads and installs the OpenAPI generator JAR file.
+`make download-spec`: Downloads the specified version of the Meraki OpenAPI spec.
+`make generate-code`: Runs the code generator to generate the client code using the downloaded spec.
+`make cleanup`: Cleans up the build files by removing the downloaded spec.
+
+you can simply run `make all` to execute all the commands in order. 
+This will install the generator, download the spec, generate the code, and perform the cleanup.
+
+Alternatively, You can execute each step individually or run `make` followed by the target name to execute the steps sequentially.
+For example, `make install-generator download-spec generate-code` will execute all three steps in order.
+
+
 ## Manually generate a new HTTP Client
 
 While there isn't a requirement to generate this library, it can be accomplished with the commands below.
-
 
 
 1) Install or download the latest[ OpenAPI generator](https://github.com/OpenAPITools/openapi-generator#1---installation) jar file:
