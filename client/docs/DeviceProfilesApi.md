@@ -34,7 +34,7 @@ func main() {
     deviceId := "deviceId_example" // string | Device ID
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.DeviceProfilesApi.GetNetworkSmDeviceDeviceProfiles(context.Background(), networkId, deviceId).Execute()
     if err != nil {
@@ -108,7 +108,7 @@ func main() {
     userId := "userId_example" // string | User ID
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.DeviceProfilesApi.GetNetworkSmUserDeviceProfiles(context.Background(), networkId, userId).Execute()
     if err != nil {

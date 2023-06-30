@@ -38,7 +38,7 @@ func main() {
     bluetoothMac := "bluetoothMac_example" // string | The MAC of a Bluetooth client (optional)
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.SmDevicesForKeyApi.GetNetworkPiiSmDevicesForKey(context.Background(), networkId).Username(username).Email(email).Mac(mac).Serial(serial).Imei(imei).BluetoothMac(bluetoothMac).Execute()
     if err != nil {

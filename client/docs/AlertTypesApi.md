@@ -33,7 +33,7 @@ func main() {
     productType := "productType_example" // string | Filter sample alerts to a specific product type (optional)
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.AlertTypesApi.GetOrganizationWebhooksAlertTypes(context.Background(), organizationId).ProductType(productType).Execute()
     if err != nil {

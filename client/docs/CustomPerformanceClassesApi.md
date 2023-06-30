@@ -37,7 +37,7 @@ func main() {
     createNetworkApplianceTrafficShapingCustomPerformanceClassRequest := *openapiclient.NewCreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest("Name_example") // CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest | 
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.CustomPerformanceClassesApi.CreateNetworkApplianceTrafficShapingCustomPerformanceClass(context.Background(), networkId).CreateNetworkApplianceTrafficShapingCustomPerformanceClassRequest(createNetworkApplianceTrafficShapingCustomPerformanceClassRequest).Execute()
     if err != nil {
@@ -110,7 +110,7 @@ func main() {
     customPerformanceClassId := "customPerformanceClassId_example" // string | Custom performance class ID
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     r, err := apiClient.CustomPerformanceClassesApi.DeleteNetworkApplianceTrafficShapingCustomPerformanceClass(context.Background(), networkId, customPerformanceClassId).Execute()
     if err != nil {
@@ -182,7 +182,7 @@ func main() {
     customPerformanceClassId := "customPerformanceClassId_example" // string | Custom performance class ID
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.CustomPerformanceClassesApi.GetNetworkApplianceTrafficShapingCustomPerformanceClass(context.Background(), networkId, customPerformanceClassId).Execute()
     if err != nil {
@@ -255,7 +255,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.CustomPerformanceClassesApi.GetNetworkApplianceTrafficShapingCustomPerformanceClasses(context.Background(), networkId).Execute()
     if err != nil {
@@ -328,7 +328,7 @@ func main() {
     updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest := *openapiclient.NewUpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest() // UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.CustomPerformanceClassesApi.UpdateNetworkApplianceTrafficShapingCustomPerformanceClass(context.Background(), networkId, customPerformanceClassId).UpdateNetworkApplianceTrafficShapingCustomPerformanceClassRequest(updateNetworkApplianceTrafficShapingCustomPerformanceClassRequest).Execute()
     if err != nil {

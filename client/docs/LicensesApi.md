@@ -42,7 +42,7 @@ func main() {
     assignOrganizationLicensesSeatsRequest := *openapiclient.NewAssignOrganizationLicensesSeatsRequest("LicenseId_example", "NetworkId_example", int32(123)) // AssignOrganizationLicensesSeatsRequest | 
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.LicensesApi.AssignOrganizationLicensesSeats(context.Background(), organizationId).AssignOrganizationLicensesSeatsRequest(assignOrganizationLicensesSeatsRequest).Execute()
     if err != nil {
@@ -115,7 +115,7 @@ func main() {
     licenseId := "licenseId_example" // string | License ID
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.LicensesApi.GetOrganizationLicense(context.Background(), organizationId, licenseId).Execute()
     if err != nil {
@@ -194,7 +194,7 @@ func main() {
     state := "state_example" // string | Filter the licenses to those in a particular state. Can be one of 'active', 'expired', 'expiring', 'recentlyQueued', 'unused' or 'unusedActive' (optional)
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.LicensesApi.GetOrganizationLicenses(context.Background(), organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).DeviceSerial(deviceSerial).NetworkId(networkId).State(state).Execute()
     if err != nil {
@@ -271,7 +271,7 @@ func main() {
     organizationId := "organizationId_example" // string | Organization ID
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.LicensesApi.GetOrganizationLicensesOverview(context.Background(), organizationId).Execute()
     if err != nil {
@@ -347,7 +347,7 @@ func main() {
     expired := true // bool | Filter for licenses that are expired (optional)
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.LicensesApi.GetOrganizationLicensingCotermLicenses(context.Background(), organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).Invalidated(invalidated).Expired(expired).Execute()
     if err != nil {
@@ -424,7 +424,7 @@ func main() {
     moveOrganizationLicensesRequest := *openapiclient.NewMoveOrganizationLicensesRequest("DestOrganizationId_example", []string{"LicenseIds_example"}) // MoveOrganizationLicensesRequest | 
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.LicensesApi.MoveOrganizationLicenses(context.Background(), organizationId).MoveOrganizationLicensesRequest(moveOrganizationLicensesRequest).Execute()
     if err != nil {
@@ -497,7 +497,7 @@ func main() {
     moveOrganizationLicensesSeatsRequest := *openapiclient.NewMoveOrganizationLicensesSeatsRequest("DestOrganizationId_example", "LicenseId_example", int32(123)) // MoveOrganizationLicensesSeatsRequest | 
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.LicensesApi.MoveOrganizationLicensesSeats(context.Background(), organizationId).MoveOrganizationLicensesSeatsRequest(moveOrganizationLicensesSeatsRequest).Execute()
     if err != nil {
@@ -570,7 +570,7 @@ func main() {
     moveOrganizationLicensingCotermLicensesRequest := *openapiclient.NewMoveOrganizationLicensingCotermLicensesRequest(*openapiclient.NewMoveOrganizationLicensingCotermLicensesRequestDestination(), []openapiclient.MoveOrganizationLicensingCotermLicensesRequestLicensesInner{*openapiclient.NewMoveOrganizationLicensingCotermLicensesRequestLicensesInner("Key_example", []openapiclient.MoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner{*openapiclient.NewMoveOrganizationLicensingCotermLicensesRequestLicensesInnerCountsInner("Model_example", int32(123))})}) // MoveOrganizationLicensingCotermLicensesRequest | 
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.LicensesApi.MoveOrganizationLicensingCotermLicenses(context.Background(), organizationId).MoveOrganizationLicensingCotermLicensesRequest(moveOrganizationLicensingCotermLicensesRequest).Execute()
     if err != nil {
@@ -643,7 +643,7 @@ func main() {
     renewOrganizationLicensesSeatsRequest := *openapiclient.NewRenewOrganizationLicensesSeatsRequest("LicenseIdToRenew_example", "UnusedLicenseId_example") // RenewOrganizationLicensesSeatsRequest | 
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.LicensesApi.RenewOrganizationLicensesSeats(context.Background(), organizationId).RenewOrganizationLicensesSeatsRequest(renewOrganizationLicensesSeatsRequest).Execute()
     if err != nil {
@@ -717,7 +717,7 @@ func main() {
     updateOrganizationLicenseRequest := *openapiclient.NewUpdateOrganizationLicenseRequest() // UpdateOrganizationLicenseRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.LicensesApi.UpdateOrganizationLicense(context.Background(), organizationId, licenseId).UpdateOrganizationLicenseRequest(updateOrganizationLicenseRequest).Execute()
     if err != nil {

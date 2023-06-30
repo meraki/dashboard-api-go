@@ -33,7 +33,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.StormControlApi.GetNetworkSwitchStormControl(context.Background(), networkId).Execute()
     if err != nil {
@@ -105,7 +105,7 @@ func main() {
     updateNetworkSwitchStormControlRequest := *openapiclient.NewUpdateNetworkSwitchStormControlRequest() // UpdateNetworkSwitchStormControlRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.StormControlApi.UpdateNetworkSwitchStormControl(context.Background(), networkId).UpdateNetworkSwitchStormControlRequest(updateNetworkSwitchStormControlRequest).Execute()
     if err != nil {

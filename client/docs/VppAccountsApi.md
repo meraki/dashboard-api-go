@@ -34,7 +34,7 @@ func main() {
     vppAccountId := "vppAccountId_example" // string | Vpp account ID
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.VppAccountsApi.GetOrganizationSmVppAccount(context.Background(), organizationId, vppAccountId).Execute()
     if err != nil {
@@ -107,7 +107,7 @@ func main() {
     organizationId := "organizationId_example" // string | Organization ID
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.VppAccountsApi.GetOrganizationSmVppAccounts(context.Background(), organizationId).Execute()
     if err != nil {
