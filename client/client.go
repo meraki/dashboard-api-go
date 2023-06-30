@@ -578,12 +578,34 @@ type service struct {
 	client *APIClient
 }
 
+// Custom transport to add bearer token in the Authorization header
+type bearerAuthTransport struct {
+Transport http.RoundTripper
+Token     string
+}
+
+func (t *bearerAuthTransport) RoundTrip(req *http.Request) (*http.Response, error) {
+// Add the bearer token to the Authorization header
+req.Header.Set("Authorization", "Bearer "+t.Token)
+
+// Use the underlying transport to perform the actual request
+return t.Transport.RoundTrip(req)
+}
+
 // NewAPIClient creates a new API client. Requires a userAgent string describing your application.
 // optionally a custom http.Client to allow for advanced features such as caching.
 func NewAPIClient(cfg *Configuration) *APIClient {
-	if cfg.HTTPClient == nil {
-		cfg.HTTPClient = http.DefaultClient
-	}
+
+    // Create a custom HTTP transport and set the bearer token in the Authorization header
+    transport := &bearerAuthTransport{
+        Transport: http.DefaultTransport,
+        Token:     os.Getenv("MERAKI_DASHBOARD_API_KEY"),
+    }
+
+    if cfg.HTTPClient == nil {
+        cfg.HTTPClient = http.DefaultClient
+        cfg.HTTPClient.Transport = transport
+    }
 
 	c := &APIClient{}
 	c.cfg = cfg
