@@ -33,7 +33,7 @@ func main() {
     networkId := "networkId_example" // string | Network ID
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.DscpToCosMappingsApi.GetNetworkSwitchDscpToCosMappings(context.Background(), networkId).Execute()
     if err != nil {
@@ -105,7 +105,7 @@ func main() {
     updateNetworkSwitchDscpToCosMappingsRequest := *openapiclient.NewUpdateNetworkSwitchDscpToCosMappingsRequest([]openapiclient.UpdateNetworkSwitchDscpToCosMappingsRequestMappingsInner{*openapiclient.NewUpdateNetworkSwitchDscpToCosMappingsRequestMappingsInner(int32(123), int32(123))}) // UpdateNetworkSwitchDscpToCosMappingsRequest | 
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.DscpToCosMappingsApi.UpdateNetworkSwitchDscpToCosMappings(context.Background(), networkId).UpdateNetworkSwitchDscpToCosMappingsRequest(updateNetworkSwitchDscpToCosMappingsRequest).Execute()
     if err != nil {

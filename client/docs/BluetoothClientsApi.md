@@ -36,7 +36,7 @@ func main() {
     connectivityHistoryTimespan := int32(56) // int32 | The timespan, in seconds, for the connectivityHistory data. By default 1 day, 86400, will be used. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.BluetoothClientsApi.GetNetworkBluetoothClient(context.Background(), networkId, bluetoothClientId).IncludeConnectivityHistory(includeConnectivityHistory).ConnectivityHistoryTimespan(connectivityHistoryTimespan).Execute()
     if err != nil {
@@ -117,7 +117,7 @@ func main() {
     includeConnectivityHistory := true // bool | Include the connectivity history for this client (optional)
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.BluetoothClientsApi.GetNetworkBluetoothClients(context.Background(), networkId).T0(t0).Timespan(timespan).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).IncludeConnectivityHistory(includeConnectivityHistory).Execute()
     if err != nil {

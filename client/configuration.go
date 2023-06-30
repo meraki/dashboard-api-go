@@ -14,6 +14,8 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+    "os"
+    "strconv"
 	"strings"
 )
 
@@ -83,13 +85,26 @@ type Configuration struct {
 	Servers          ServerConfigurations
 	OperationServers map[string]ServerConfigurations
 	HTTPClient       *http.Client
+    DefaultBaseUrl	string
+    SingleRequestTimeout              int
+    CertificatePath                   string
+    RequestsProxy                     string
+    WaitOnRateLimit                   bool
+    Nginx429RetryWaitTime             int
+    ActionBatchRetryWaitTime          int
+    Retry4xxError                     bool
+    Retry4xxErrorWaitTime             int
+    MaximumRetries                    int
+    SimulateAPICalls                  bool
+    MerakiGoSDKCaller             	  string
+    UseIteratorForGetPages            bool
 }
 
 // NewConfiguration returns a new Configuration object
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader:    make(map[string]string),
-		UserAgent:       "meraki-golang/v1.34.0/",
+		UserAgent:       getEnvOrDefaultStr("MERAKI_GO_SDK_CALLER", "meraki-golang/v1.34.0/"),
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
@@ -99,8 +114,47 @@ func NewConfiguration() *Configuration {
 		},
 		OperationServers: map[string]ServerConfigurations{
 		},
+        DefaultBaseUrl: getEnvOrDefaultStr("DEFAULT_BASE_URL","https://api.meraki.com/api/v1"),
+        SingleRequestTimeout:      getEnvOrDefaultInt("SINGLE_REQUEST_TIMEOUT", 60),
+        CertificatePath:           getEnvOrDefaultStr("CERTIFICATE_PATH", ""),
+        RequestsProxy:             getEnvOrDefaultStr("REQUESTS_PROXY", ""),
+        WaitOnRateLimit:           getEnvOrDefaultBool("WAIT_ON_RATE_LIMIT", true),
+        Nginx429RetryWaitTime:     getEnvOrDefaultInt("NGINX_429_RETRY_WAIT_TIME", 60),
+        ActionBatchRetryWaitTime:  getEnvOrDefaultInt("ACTION_BATCH_RETRY_WAIT_TIME", 60),
+        Retry4xxError:             getEnvOrDefaultBool("RETRY_4XX_ERROR", false),
+        Retry4xxErrorWaitTime:     getEnvOrDefaultInt("RETRY_4XX_ERROR_WAIT_TIME", 60),
+        MaximumRetries:            getEnvOrDefaultInt("MAXIMUM_RETRIES", 2),
+        SimulateAPICalls:          getEnvOrDefaultBool("SIMULATE_API_CALLS", false),
+        MerakiGoSDKCaller:     	   getEnvOrDefaultStr("MERAKI_GO_SDK_CALLER", ""),
+        UseIteratorForGetPages:    getEnvOrDefaultBool("USE_ITERATOR_FOR_GET_PAGES", true),
 	}
 	return cfg
+}
+
+func getEnvOrDefaultStr(envVar, defaultValue string) string {
+value := os.Getenv(envVar)
+if value == "" {
+return defaultValue
+}
+return value
+}
+
+func getEnvOrDefaultInt(envVar string, defaultValue int) int {
+value := getEnvOrDefaultStr(envVar, "")
+if val, err := strconv.Atoi(value); err == nil {
+return val
+}
+
+return defaultValue
+}
+
+func getEnvOrDefaultBool(envVar string, defaultValue bool) bool {
+value := getEnvOrDefaultStr(envVar, "")
+if val, err := strconv.ParseBool(value); err == nil {
+return val
+}
+
+return defaultValue
 }
 
 // AddDefaultHeader adds a new HTTP header to the default header in the request

@@ -39,7 +39,7 @@ func main() {
     createOrganizationBrandingPolicyRequest := *openapiclient.NewCreateOrganizationBrandingPolicyRequest() // CreateOrganizationBrandingPolicyRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.BrandingPoliciesApi.CreateOrganizationBrandingPolicy(context.Background(), organizationId).CreateOrganizationBrandingPolicyRequest(createOrganizationBrandingPolicyRequest).Execute()
     if err != nil {
@@ -112,7 +112,7 @@ func main() {
     brandingPolicyId := "brandingPolicyId_example" // string | Branding policy ID
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     r, err := apiClient.BrandingPoliciesApi.DeleteOrganizationBrandingPolicy(context.Background(), organizationId, brandingPolicyId).Execute()
     if err != nil {
@@ -183,7 +183,7 @@ func main() {
     organizationId := "organizationId_example" // string | Organization ID
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.BrandingPoliciesApi.GetOrganizationBrandingPolicies(context.Background(), organizationId).Execute()
     if err != nil {
@@ -254,7 +254,7 @@ func main() {
     organizationId := "organizationId_example" // string | Organization ID
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.BrandingPoliciesApi.GetOrganizationBrandingPoliciesPriorities(context.Background(), organizationId).Execute()
     if err != nil {
@@ -326,7 +326,7 @@ func main() {
     brandingPolicyId := "brandingPolicyId_example" // string | Branding policy ID
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.BrandingPoliciesApi.GetOrganizationBrandingPolicy(context.Background(), organizationId, brandingPolicyId).Execute()
     if err != nil {
@@ -400,7 +400,7 @@ func main() {
     updateOrganizationBrandingPoliciesPrioritiesRequest := *openapiclient.NewUpdateOrganizationBrandingPoliciesPrioritiesRequest() // UpdateOrganizationBrandingPoliciesPrioritiesRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.BrandingPoliciesApi.UpdateOrganizationBrandingPoliciesPriorities(context.Background(), organizationId).UpdateOrganizationBrandingPoliciesPrioritiesRequest(updateOrganizationBrandingPoliciesPrioritiesRequest).Execute()
     if err != nil {
@@ -474,7 +474,7 @@ func main() {
     updateOrganizationBrandingPolicyRequest := *openapiclient.NewUpdateOrganizationBrandingPolicyRequest() // UpdateOrganizationBrandingPolicyRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
+
     apiClient := openapiclient.NewAPIClient(configuration)
     resp, r, err := apiClient.BrandingPoliciesApi.UpdateOrganizationBrandingPolicy(context.Background(), organizationId, brandingPolicyId).UpdateOrganizationBrandingPolicyRequest(updateOrganizationBrandingPolicyRequest).Execute()
     if err != nil {

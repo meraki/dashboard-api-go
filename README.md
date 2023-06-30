@@ -48,16 +48,12 @@ import (
    "fmt"
    openapiclient "github.com/meraki/dashboard-api-go/client"
    "log"
-   "os"
 )
 
 func main() {
 
    // Create a new API configuration
    configuration := openapiclient.NewConfiguration()
-
-   // Set the bearer token in the default headers
-   configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("MERAKI_DASHBOARD_API_KEY"))
 
    // Create the API client using the configuration
    apiClient := openapiclient.NewAPIClient(configuration)
