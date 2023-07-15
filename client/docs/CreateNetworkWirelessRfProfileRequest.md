@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **SixGhzSettings** | Pointer to [**CreateNetworkWirelessRfProfileRequestSixGhzSettings**](CreateNetworkWirelessRfProfileRequestSixGhzSettings.md) |  | [optional] 
 **Transmission** | Pointer to [**GetNetworkWirelessRfProfiles200ResponseTransmission**](GetNetworkWirelessRfProfiles200ResponseTransmission.md) |  | [optional] 
 **PerSsidSettings** | Pointer to [**CreateNetworkWirelessRfProfileRequestPerSsidSettings**](CreateNetworkWirelessRfProfileRequestPerSsidSettings.md) |  | [optional] 
+**FlexRadios** | Pointer to [**CreateNetworkWirelessRfProfileRequestFlexRadios**](CreateNetworkWirelessRfProfileRequestFlexRadios.md) |  | [optional] 
 
 ## Methods
 
@@ -273,6 +274,31 @@ SetPerSsidSettings sets PerSsidSettings field to given value.
 `func (o *CreateNetworkWirelessRfProfileRequest) HasPerSsidSettings() bool`
 
 HasPerSsidSettings returns a boolean if a field has been set.
+
+### GetFlexRadios
+
+`func (o *CreateNetworkWirelessRfProfileRequest) GetFlexRadios() CreateNetworkWirelessRfProfileRequestFlexRadios`
+
+GetFlexRadios returns the FlexRadios field if non-nil, zero value otherwise.
+
+### GetFlexRadiosOk
+
+`func (o *CreateNetworkWirelessRfProfileRequest) GetFlexRadiosOk() (*CreateNetworkWirelessRfProfileRequestFlexRadios, bool)`
+
+GetFlexRadiosOk returns a tuple with the FlexRadios field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFlexRadios
+
+`func (o *CreateNetworkWirelessRfProfileRequest) SetFlexRadios(v CreateNetworkWirelessRfProfileRequestFlexRadios)`
+
+SetFlexRadios sets FlexRadios field to given value.
+
+### HasFlexRadios
+
+`func (o *CreateNetworkWirelessRfProfileRequest) HasFlexRadios() bool`
+
+HasFlexRadios returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

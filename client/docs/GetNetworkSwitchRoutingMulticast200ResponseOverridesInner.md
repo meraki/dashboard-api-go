@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Switches** | Pointer to **[]string** | (optional) List of switch serials for non-template network | [optional] 
 **Stacks** | Pointer to **[]string** | (optional) List of switch stack ids for non-template network | [optional] 
-**SwitchProfiles** | Pointer to **[]string** | (optional) List of switch profiles ids for template network | [optional] 
-**IgmpSnoopingEnabled** | Pointer to **bool** | IGMP snooping enabled for switches, switch stacks or switch profiles | [optional] 
-**FloodUnknownMulticastTrafficEnabled** | Pointer to **bool** | Flood unknown multicast traffic enabled for switches, switch stacks or switch profiles | [optional] 
+**SwitchProfiles** | Pointer to **[]string** | (optional) List of switch templates ids for template network | [optional] 
+**IgmpSnoopingEnabled** | Pointer to **bool** | IGMP snooping enabled for switches, switch stacks or switch templates | [optional] 
+**FloodUnknownMulticastTrafficEnabled** | Pointer to **bool** | Flood unknown multicast traffic enabled for switches, switch stacks or switch templates | [optional] 
 
 ## Methods
 

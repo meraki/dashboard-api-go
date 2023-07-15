@@ -1107,9 +1107,10 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var networkId string
 		var floorPlanId string
 
-		httpRes, err := apiClient.ConfigureApi.DeleteNetworkFloorPlan(context.Background(), networkId, floorPlanId).Execute()
+		resp, httpRes, err := apiClient.ConfigureApi.DeleteNetworkFloorPlan(context.Background(), networkId, floorPlanId).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -1614,20 +1615,6 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var samlRoleId string
 
 		httpRes, err := apiClient.ConfigureApi.DeleteOrganizationSamlRole(context.Background(), organizationId, samlRoleId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ConfigureApiService DeleteOrganizationUser", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var organizationId string
-		var userId string
-
-		httpRes, err := apiClient.ConfigureApi.DeleteOrganizationUser(context.Background(), organizationId, userId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

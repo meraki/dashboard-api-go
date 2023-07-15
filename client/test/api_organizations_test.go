@@ -537,20 +537,6 @@ func Test_client_OrganizationsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test OrganizationsApiService DeleteOrganizationUser", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var organizationId string
-		var userId string
-
-		httpRes, err := apiClient.OrganizationsApi.DeleteOrganizationUser(context.Background(), organizationId, userId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test OrganizationsApiService GetOrganization", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

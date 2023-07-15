@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RstpEnabled** | Pointer to **bool** | The spanning tree protocol status in network | [optional] 
-**StpBridgePriority** | Pointer to [**[]UpdateNetworkSwitchStpRequestStpBridgePriorityInner**](UpdateNetworkSwitchStpRequestStpBridgePriorityInner.md) | STP bridge priority for switches/stacks or switch profiles. An empty array will clear the STP bridge priority settings. | [optional] 
+**StpBridgePriority** | Pointer to [**[]UpdateNetworkSwitchStpRequestStpBridgePriorityInner**](UpdateNetworkSwitchStpRequestStpBridgePriorityInner.md) | STP bridge priority for switches/stacks or switch templates. An empty array will clear the STP bridge priority settings. | [optional] 
 
 ## Methods
 

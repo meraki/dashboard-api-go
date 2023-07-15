@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Switches** | Pointer to **[]string** | List of switch serials. Applicable only for switch network. | [optional] 
-**SwitchProfiles** | Pointer to **[]string** | List of switch profile IDs. Applicable only for template network. | [optional] 
-**MtuSize** | **int32** | MTU size for the switches or switch profiles. | 
+**SwitchProfiles** | Pointer to **[]string** | List of switch template IDs. Applicable only for template network. | [optional] 
+**MtuSize** | **int32** | MTU size for the switches or switch templates. | 
 
 ## Methods
 

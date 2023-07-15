@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Host** | **string** | IP address of your RADIUS server | 
+**Host** | **string** | IP address (or FQDN) of your RADIUS server | 
 **Port** | Pointer to **int32** | UDP port the RADIUS server listens on for Access-requests | [optional] 
 **Secret** | Pointer to **string** | RADIUS client shared secret | [optional] 
 **RadsecEnabled** | Pointer to **bool** | Use RADSEC (TLS over TCP) to connect to this RADIUS server. Requires radiusProxyEnabled. | [optional] 

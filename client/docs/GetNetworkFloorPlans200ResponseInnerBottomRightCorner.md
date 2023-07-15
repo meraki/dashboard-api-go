@@ -1,4 +1,4 @@
-# CreateNetworkFloorPlanRequestBottomLeftCorner
+# GetNetworkFloorPlans200ResponseInnerBottomRightCorner
 
 ## Properties
 
@@ -9,70 +9,70 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewCreateNetworkFloorPlanRequestBottomLeftCorner
+### NewGetNetworkFloorPlans200ResponseInnerBottomRightCorner
 
-`func NewCreateNetworkFloorPlanRequestBottomLeftCorner() *CreateNetworkFloorPlanRequestBottomLeftCorner`
+`func NewGetNetworkFloorPlans200ResponseInnerBottomRightCorner() *GetNetworkFloorPlans200ResponseInnerBottomRightCorner`
 
-NewCreateNetworkFloorPlanRequestBottomLeftCorner instantiates a new CreateNetworkFloorPlanRequestBottomLeftCorner object
+NewGetNetworkFloorPlans200ResponseInnerBottomRightCorner instantiates a new GetNetworkFloorPlans200ResponseInnerBottomRightCorner object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewCreateNetworkFloorPlanRequestBottomLeftCornerWithDefaults
+### NewGetNetworkFloorPlans200ResponseInnerBottomRightCornerWithDefaults
 
-`func NewCreateNetworkFloorPlanRequestBottomLeftCornerWithDefaults() *CreateNetworkFloorPlanRequestBottomLeftCorner`
+`func NewGetNetworkFloorPlans200ResponseInnerBottomRightCornerWithDefaults() *GetNetworkFloorPlans200ResponseInnerBottomRightCorner`
 
-NewCreateNetworkFloorPlanRequestBottomLeftCornerWithDefaults instantiates a new CreateNetworkFloorPlanRequestBottomLeftCorner object
+NewGetNetworkFloorPlans200ResponseInnerBottomRightCornerWithDefaults instantiates a new GetNetworkFloorPlans200ResponseInnerBottomRightCorner object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetLat
 
-`func (o *CreateNetworkFloorPlanRequestBottomLeftCorner) GetLat() float32`
+`func (o *GetNetworkFloorPlans200ResponseInnerBottomRightCorner) GetLat() float32`
 
 GetLat returns the Lat field if non-nil, zero value otherwise.
 
 ### GetLatOk
 
-`func (o *CreateNetworkFloorPlanRequestBottomLeftCorner) GetLatOk() (*float32, bool)`
+`func (o *GetNetworkFloorPlans200ResponseInnerBottomRightCorner) GetLatOk() (*float32, bool)`
 
 GetLatOk returns a tuple with the Lat field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLat
 
-`func (o *CreateNetworkFloorPlanRequestBottomLeftCorner) SetLat(v float32)`
+`func (o *GetNetworkFloorPlans200ResponseInnerBottomRightCorner) SetLat(v float32)`
 
 SetLat sets Lat field to given value.
 
 ### HasLat
 
-`func (o *CreateNetworkFloorPlanRequestBottomLeftCorner) HasLat() bool`
+`func (o *GetNetworkFloorPlans200ResponseInnerBottomRightCorner) HasLat() bool`
 
 HasLat returns a boolean if a field has been set.
 
 ### GetLng
 
-`func (o *CreateNetworkFloorPlanRequestBottomLeftCorner) GetLng() float32`
+`func (o *GetNetworkFloorPlans200ResponseInnerBottomRightCorner) GetLng() float32`
 
 GetLng returns the Lng field if non-nil, zero value otherwise.
 
 ### GetLngOk
 
-`func (o *CreateNetworkFloorPlanRequestBottomLeftCorner) GetLngOk() (*float32, bool)`
+`func (o *GetNetworkFloorPlans200ResponseInnerBottomRightCorner) GetLngOk() (*float32, bool)`
 
 GetLngOk returns a tuple with the Lng field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLng
 
-`func (o *CreateNetworkFloorPlanRequestBottomLeftCorner) SetLng(v float32)`
+`func (o *GetNetworkFloorPlans200ResponseInnerBottomRightCorner) SetLng(v float32)`
 
 SetLng sets Lng field to given value.
 
 ### HasLng
 
-`func (o *CreateNetworkFloorPlanRequestBottomLeftCorner) HasLng() bool`
+`func (o *GetNetworkFloorPlans200ResponseInnerBottomRightCorner) HasLng() bool`
 
 HasLng returns a boolean if a field has been set.
 

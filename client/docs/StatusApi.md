@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetDeviceWirelessStatus
 
-> map[string]interface{} GetDeviceWirelessStatus(ctx, serial).Execute()
+> GetDeviceWirelessStatus200Response GetDeviceWirelessStatus(ctx, serial).Execute()
 
 Return the SSID statuses of an access point
 
@@ -39,7 +39,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `StatusApi.GetDeviceWirelessStatus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceWirelessStatus`: map[string]interface{}
+    // response from `GetDeviceWirelessStatus`: GetDeviceWirelessStatus200Response
     fmt.Fprintf(os.Stdout, "Response from `StatusApi.GetDeviceWirelessStatus`: %v\n", resp)
 }
 ```
@@ -63,11 +63,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GetDeviceWirelessStatus200Response**](GetDeviceWirelessStatus200Response.md)
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 

@@ -22,20 +22,6 @@ func Test_client_UsersApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test UsersApiService DeleteOrganizationUser", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var organizationId string
-		var userId string
-
-		httpRes, err := apiClient.UsersApi.DeleteOrganizationUser(context.Background(), organizationId, userId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test UsersApiService GetNetworkSmUserDeviceProfiles", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

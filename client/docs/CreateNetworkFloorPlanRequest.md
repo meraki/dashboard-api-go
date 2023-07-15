@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | The name of your floor plan. | 
-**Center** | Pointer to [**CreateNetworkFloorPlanRequestCenter**](CreateNetworkFloorPlanRequestCenter.md) |  | [optional] 
-**BottomLeftCorner** | Pointer to [**CreateNetworkFloorPlanRequestBottomLeftCorner**](CreateNetworkFloorPlanRequestBottomLeftCorner.md) |  | [optional] 
-**BottomRightCorner** | Pointer to [**CreateNetworkFloorPlanRequestBottomRightCorner**](CreateNetworkFloorPlanRequestBottomRightCorner.md) |  | [optional] 
-**TopLeftCorner** | Pointer to [**CreateNetworkFloorPlanRequestTopLeftCorner**](CreateNetworkFloorPlanRequestTopLeftCorner.md) |  | [optional] 
-**TopRightCorner** | Pointer to [**CreateNetworkFloorPlanRequestTopRightCorner**](CreateNetworkFloorPlanRequestTopRightCorner.md) |  | [optional] 
+**Center** | Pointer to [**GetNetworkFloorPlans200ResponseInnerCenter**](GetNetworkFloorPlans200ResponseInnerCenter.md) |  | [optional] 
+**BottomLeftCorner** | Pointer to [**GetNetworkFloorPlans200ResponseInnerBottomLeftCorner**](GetNetworkFloorPlans200ResponseInnerBottomLeftCorner.md) |  | [optional] 
+**BottomRightCorner** | Pointer to [**GetNetworkFloorPlans200ResponseInnerBottomRightCorner**](GetNetworkFloorPlans200ResponseInnerBottomRightCorner.md) |  | [optional] 
+**TopLeftCorner** | Pointer to [**GetNetworkFloorPlans200ResponseInnerTopLeftCorner**](GetNetworkFloorPlans200ResponseInnerTopLeftCorner.md) |  | [optional] 
+**TopRightCorner** | Pointer to [**GetNetworkFloorPlans200ResponseInnerTopRightCorner**](GetNetworkFloorPlans200ResponseInnerTopRightCorner.md) |  | [optional] 
 **ImageContents** | **string** | The file contents (a base 64 encoded string) of your image. Supported formats are PNG, GIF, and JPG. Note that all images are saved as PNG files, regardless of the format they are uploaded in. | 
 
 ## Methods
@@ -53,20 +53,20 @@ SetName sets Name field to given value.
 
 ### GetCenter
 
-`func (o *CreateNetworkFloorPlanRequest) GetCenter() CreateNetworkFloorPlanRequestCenter`
+`func (o *CreateNetworkFloorPlanRequest) GetCenter() GetNetworkFloorPlans200ResponseInnerCenter`
 
 GetCenter returns the Center field if non-nil, zero value otherwise.
 
 ### GetCenterOk
 
-`func (o *CreateNetworkFloorPlanRequest) GetCenterOk() (*CreateNetworkFloorPlanRequestCenter, bool)`
+`func (o *CreateNetworkFloorPlanRequest) GetCenterOk() (*GetNetworkFloorPlans200ResponseInnerCenter, bool)`
 
 GetCenterOk returns a tuple with the Center field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCenter
 
-`func (o *CreateNetworkFloorPlanRequest) SetCenter(v CreateNetworkFloorPlanRequestCenter)`
+`func (o *CreateNetworkFloorPlanRequest) SetCenter(v GetNetworkFloorPlans200ResponseInnerCenter)`
 
 SetCenter sets Center field to given value.
 
@@ -78,20 +78,20 @@ HasCenter returns a boolean if a field has been set.
 
 ### GetBottomLeftCorner
 
-`func (o *CreateNetworkFloorPlanRequest) GetBottomLeftCorner() CreateNetworkFloorPlanRequestBottomLeftCorner`
+`func (o *CreateNetworkFloorPlanRequest) GetBottomLeftCorner() GetNetworkFloorPlans200ResponseInnerBottomLeftCorner`
 
 GetBottomLeftCorner returns the BottomLeftCorner field if non-nil, zero value otherwise.
 
 ### GetBottomLeftCornerOk
 
-`func (o *CreateNetworkFloorPlanRequest) GetBottomLeftCornerOk() (*CreateNetworkFloorPlanRequestBottomLeftCorner, bool)`
+`func (o *CreateNetworkFloorPlanRequest) GetBottomLeftCornerOk() (*GetNetworkFloorPlans200ResponseInnerBottomLeftCorner, bool)`
 
 GetBottomLeftCornerOk returns a tuple with the BottomLeftCorner field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBottomLeftCorner
 
-`func (o *CreateNetworkFloorPlanRequest) SetBottomLeftCorner(v CreateNetworkFloorPlanRequestBottomLeftCorner)`
+`func (o *CreateNetworkFloorPlanRequest) SetBottomLeftCorner(v GetNetworkFloorPlans200ResponseInnerBottomLeftCorner)`
 
 SetBottomLeftCorner sets BottomLeftCorner field to given value.
 
@@ -103,20 +103,20 @@ HasBottomLeftCorner returns a boolean if a field has been set.
 
 ### GetBottomRightCorner
 
-`func (o *CreateNetworkFloorPlanRequest) GetBottomRightCorner() CreateNetworkFloorPlanRequestBottomRightCorner`
+`func (o *CreateNetworkFloorPlanRequest) GetBottomRightCorner() GetNetworkFloorPlans200ResponseInnerBottomRightCorner`
 
 GetBottomRightCorner returns the BottomRightCorner field if non-nil, zero value otherwise.
 
 ### GetBottomRightCornerOk
 
-`func (o *CreateNetworkFloorPlanRequest) GetBottomRightCornerOk() (*CreateNetworkFloorPlanRequestBottomRightCorner, bool)`
+`func (o *CreateNetworkFloorPlanRequest) GetBottomRightCornerOk() (*GetNetworkFloorPlans200ResponseInnerBottomRightCorner, bool)`
 
 GetBottomRightCornerOk returns a tuple with the BottomRightCorner field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBottomRightCorner
 
-`func (o *CreateNetworkFloorPlanRequest) SetBottomRightCorner(v CreateNetworkFloorPlanRequestBottomRightCorner)`
+`func (o *CreateNetworkFloorPlanRequest) SetBottomRightCorner(v GetNetworkFloorPlans200ResponseInnerBottomRightCorner)`
 
 SetBottomRightCorner sets BottomRightCorner field to given value.
 
@@ -128,20 +128,20 @@ HasBottomRightCorner returns a boolean if a field has been set.
 
 ### GetTopLeftCorner
 
-`func (o *CreateNetworkFloorPlanRequest) GetTopLeftCorner() CreateNetworkFloorPlanRequestTopLeftCorner`
+`func (o *CreateNetworkFloorPlanRequest) GetTopLeftCorner() GetNetworkFloorPlans200ResponseInnerTopLeftCorner`
 
 GetTopLeftCorner returns the TopLeftCorner field if non-nil, zero value otherwise.
 
 ### GetTopLeftCornerOk
 
-`func (o *CreateNetworkFloorPlanRequest) GetTopLeftCornerOk() (*CreateNetworkFloorPlanRequestTopLeftCorner, bool)`
+`func (o *CreateNetworkFloorPlanRequest) GetTopLeftCornerOk() (*GetNetworkFloorPlans200ResponseInnerTopLeftCorner, bool)`
 
 GetTopLeftCornerOk returns a tuple with the TopLeftCorner field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTopLeftCorner
 
-`func (o *CreateNetworkFloorPlanRequest) SetTopLeftCorner(v CreateNetworkFloorPlanRequestTopLeftCorner)`
+`func (o *CreateNetworkFloorPlanRequest) SetTopLeftCorner(v GetNetworkFloorPlans200ResponseInnerTopLeftCorner)`
 
 SetTopLeftCorner sets TopLeftCorner field to given value.
 
@@ -153,20 +153,20 @@ HasTopLeftCorner returns a boolean if a field has been set.
 
 ### GetTopRightCorner
 
-`func (o *CreateNetworkFloorPlanRequest) GetTopRightCorner() CreateNetworkFloorPlanRequestTopRightCorner`
+`func (o *CreateNetworkFloorPlanRequest) GetTopRightCorner() GetNetworkFloorPlans200ResponseInnerTopRightCorner`
 
 GetTopRightCorner returns the TopRightCorner field if non-nil, zero value otherwise.
 
 ### GetTopRightCornerOk
 
-`func (o *CreateNetworkFloorPlanRequest) GetTopRightCornerOk() (*CreateNetworkFloorPlanRequestTopRightCorner, bool)`
+`func (o *CreateNetworkFloorPlanRequest) GetTopRightCornerOk() (*GetNetworkFloorPlans200ResponseInnerTopRightCorner, bool)`
 
 GetTopRightCornerOk returns a tuple with the TopRightCorner field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTopRightCorner
 
-`func (o *CreateNetworkFloorPlanRequest) SetTopRightCorner(v CreateNetworkFloorPlanRequestTopRightCorner)`
+`func (o *CreateNetworkFloorPlanRequest) SetTopRightCorner(v GetNetworkFloorPlans200ResponseInnerTopRightCorner)`
 
 SetTopRightCorner sets TopRightCorner field to given value.
 
