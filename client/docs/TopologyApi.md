@@ -4,7 +4,7 @@ All URIs are relative to *https://api.meraki.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetNetworkTopologyLinkLayer**](TopologyApi.md#GetNetworkTopologyLinkLayer) | **Get** /networks/{networkId}/topology/linkLayer | List the LLDP and CDP information for all discovered devices and connections in a network.
+[**GetNetworkTopologyLinkLayer**](TopologyApi.md#GetNetworkTopologyLinkLayer) | **Get** /networks/{networkId}/topology/linkLayer | List the LLDP and CDP information for all discovered devices and connections in a network
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > map[string]interface{} GetNetworkTopologyLinkLayer(ctx, networkId).Execute()
 
-List the LLDP and CDP information for all discovered devices and connections in a network.
+List the LLDP and CDP information for all discovered devices and connections in a network
 
 
 
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 

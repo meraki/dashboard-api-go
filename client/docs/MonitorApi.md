@@ -49,7 +49,7 @@ Method | HTTP request | Description
 [**GetNetworkSmDeviceDeviceCommandLogs**](MonitorApi.md#GetNetworkSmDeviceDeviceCommandLogs) | **Get** /networks/{networkId}/sm/devices/{deviceId}/deviceCommandLogs | Return historical records of commands sent to Systems Manager devices
 [**GetNetworkSmDevicePerformanceHistory**](MonitorApi.md#GetNetworkSmDevicePerformanceHistory) | **Get** /networks/{networkId}/sm/devices/{deviceId}/performanceHistory | Return historical records of various Systems Manager client metrics for desktop devices.
 [**GetNetworkSplashLoginAttempts**](MonitorApi.md#GetNetworkSplashLoginAttempts) | **Get** /networks/{networkId}/splashLoginAttempts | List the splash login attempts for a network
-[**GetNetworkTopologyLinkLayer**](MonitorApi.md#GetNetworkTopologyLinkLayer) | **Get** /networks/{networkId}/topology/linkLayer | List the LLDP and CDP information for all discovered devices and connections in a network.
+[**GetNetworkTopologyLinkLayer**](MonitorApi.md#GetNetworkTopologyLinkLayer) | **Get** /networks/{networkId}/topology/linkLayer | List the LLDP and CDP information for all discovered devices and connections in a network
 [**GetNetworkTraffic**](MonitorApi.md#GetNetworkTraffic) | **Get** /networks/{networkId}/traffic | Return the traffic analysis data for this network
 [**GetNetworkWirelessAirMarshal**](MonitorApi.md#GetNetworkWirelessAirMarshal) | **Get** /networks/{networkId}/wireless/airMarshal | List Air Marshal scan results from a network
 [**GetNetworkWirelessChannelUtilizationHistory**](MonitorApi.md#GetNetworkWirelessChannelUtilizationHistory) | **Get** /networks/{networkId}/wireless/channelUtilizationHistory | Return AP channel utilization over time for a device or network client
@@ -76,6 +76,7 @@ Method | HTTP request | Description
 [**GetOrganizationApiRequestsOverviewResponseCodesByInterval**](MonitorApi.md#GetOrganizationApiRequestsOverviewResponseCodesByInterval) | **Get** /organizations/{organizationId}/apiRequests/overview/responseCodes/byInterval | Tracks organizations&#39; API requests by response code across a given time period
 [**GetOrganizationApplianceSecurityEvents**](MonitorApi.md#GetOrganizationApplianceSecurityEvents) | **Get** /organizations/{organizationId}/appliance/security/events | List the security events for an organization
 [**GetOrganizationApplianceUplinkStatuses**](MonitorApi.md#GetOrganizationApplianceUplinkStatuses) | **Get** /organizations/{organizationId}/appliance/uplink/statuses | List the uplink status of every Meraki MX and Z series appliances in the organization
+[**GetOrganizationApplianceUplinksUsageByNetwork**](MonitorApi.md#GetOrganizationApplianceUplinksUsageByNetwork) | **Get** /organizations/{organizationId}/appliance/uplinks/usage/byNetwork | Get the sent and received bytes for each uplink of all MX and Z networks within an organization
 [**GetOrganizationApplianceVpnStats**](MonitorApi.md#GetOrganizationApplianceVpnStats) | **Get** /organizations/{organizationId}/appliance/vpn/stats | Show VPN history stat for networks in an organization
 [**GetOrganizationApplianceVpnStatuses**](MonitorApi.md#GetOrganizationApplianceVpnStatuses) | **Get** /organizations/{organizationId}/appliance/vpn/statuses | Show VPN status for networks in an organization
 [**GetOrganizationCellularGatewayUplinkStatuses**](MonitorApi.md#GetOrganizationCellularGatewayUplinkStatuses) | **Get** /organizations/{organizationId}/cellularGateway/uplink/statuses | List the uplink status of every Meraki MG cellular gateway in the organization
@@ -172,7 +173,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -234,7 +235,7 @@ Other parameters are passed through a pointer to a apiGetAdministeredIdentitiesM
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -305,7 +306,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -376,7 +377,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -447,7 +448,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -518,7 +519,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -589,7 +590,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -668,7 +669,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -741,7 +742,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -825,7 +826,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -896,7 +897,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -971,7 +972,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -1042,7 +1043,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -1125,7 +1126,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -1200,7 +1201,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -1275,7 +1276,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -1360,7 +1361,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -1447,7 +1448,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -1461,7 +1462,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceWirelessStatus
 
-> map[string]interface{} GetDeviceWirelessStatus(ctx, serial).Execute()
+> GetDeviceWirelessStatus200Response GetDeviceWirelessStatus(ctx, serial).Execute()
 
 Return the SSID statuses of an access point
 
@@ -1490,7 +1491,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.GetDeviceWirelessStatus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceWirelessStatus`: map[string]interface{}
+    // response from `GetDeviceWirelessStatus`: GetDeviceWirelessStatus200Response
     fmt.Fprintf(os.Stdout, "Response from `MonitorApi.GetDeviceWirelessStatus`: %v\n", resp)
 }
 ```
@@ -1514,11 +1515,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GetDeviceWirelessStatus200Response**](GetDeviceWirelessStatus200Response.md)
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -1595,7 +1596,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -1683,7 +1684,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -1768,7 +1769,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -1847,7 +1848,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -1925,7 +1926,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -2008,7 +2009,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -2082,7 +2083,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -2162,7 +2163,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -2236,7 +2237,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -2337,7 +2338,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -2424,7 +2425,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -2507,7 +2508,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -2586,7 +2587,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -2673,7 +2674,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -2772,7 +2773,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -2843,7 +2844,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -2925,7 +2926,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -3010,7 +3011,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -3081,7 +3082,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -3160,7 +3161,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -3234,7 +3235,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -3314,7 +3315,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -3394,7 +3395,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -3474,7 +3475,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -3554,7 +3555,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -3631,7 +3632,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -3647,7 +3648,7 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} GetNetworkTopologyLinkLayer(ctx, networkId).Execute()
 
-List the LLDP and CDP information for all discovered devices and connections in a network.
+List the LLDP and CDP information for all discovered devices and connections in a network
 
 
 
@@ -3702,7 +3703,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -3779,7 +3780,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -3854,7 +3855,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -3943,7 +3944,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -4031,7 +4032,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -4127,7 +4128,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -4218,7 +4219,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -4300,7 +4301,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -4390,7 +4391,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -4475,7 +4476,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -4562,7 +4563,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -4647,7 +4648,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -4738,7 +4739,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -4823,7 +4824,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -4910,7 +4911,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -4999,7 +5000,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -5092,7 +5093,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -5179,7 +5180,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -5256,7 +5257,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -5347,7 +5348,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -5438,7 +5439,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -5509,7 +5510,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -5608,7 +5609,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -5685,7 +5686,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -5774,7 +5775,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -5859,7 +5860,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -5942,7 +5943,84 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetOrganizationApplianceUplinksUsageByNetwork
+
+> []GetOrganizationApplianceUplinksUsageByNetwork200ResponseInner GetOrganizationApplianceUplinksUsageByNetwork(ctx, organizationId).T0(t0).T1(t1).Timespan(timespan).Execute()
+
+Get the sent and received bytes for each uplink of all MX and Z networks within an organization
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | Organization ID
+    t0 := "t0_example" // string | The beginning of the timespan for the data. The maximum lookback period is 365 days from today. (optional)
+    t1 := "t1_example" // string | The end of the timespan for the data. t1 can be a maximum of 14 days after t0. (optional)
+    timespan := float32(3.4) // float32 | The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 14 days. The default is 1 day. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MonitorApi.GetOrganizationApplianceUplinksUsageByNetwork(context.Background(), organizationId).T0(t0).T1(t1).Timespan(timespan).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.GetOrganizationApplianceUplinksUsageByNetwork``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOrganizationApplianceUplinksUsageByNetwork`: []GetOrganizationApplianceUplinksUsageByNetwork200ResponseInner
+    fmt.Fprintf(os.Stdout, "Response from `MonitorApi.GetOrganizationApplianceUplinksUsageByNetwork`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** | Organization ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrganizationApplianceUplinksUsageByNetworkRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **t0** | **string** | The beginning of the timespan for the data. The maximum lookback period is 365 days from today. | 
+ **t1** | **string** | The end of the timespan for the data. t1 can be a maximum of 14 days after t0. | 
+ **timespan** | **float32** | The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 14 days. The default is 1 day. | 
+
+### Return type
+
+[**[]GetOrganizationApplianceUplinksUsageByNetwork200ResponseInner**](GetOrganizationApplianceUplinksUsageByNetwork200ResponseInner.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -6027,7 +6105,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -6106,7 +6184,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -6189,7 +6267,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -6266,7 +6344,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -6343,7 +6421,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -6430,7 +6508,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -6517,7 +6595,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -6604,7 +6682,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -6693,7 +6771,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -6707,7 +6785,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationDevicesStatuses
 
-> GetOrganizationDevicesStatuses200Response GetOrganizationDevicesStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Statuses(statuses).ProductTypes(productTypes).Models(models).Tags(tags).TagsFilterType(tagsFilterType).Execute()
+> []GetOrganizationDevicesStatuses200ResponseInner GetOrganizationDevicesStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Statuses(statuses).ProductTypes(productTypes).Models(models).Tags(tags).TagsFilterType(tagsFilterType).Execute()
 
 List the status of every Meraki device in the organization
 
@@ -6746,7 +6824,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.GetOrganizationDevicesStatuses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationDevicesStatuses`: GetOrganizationDevicesStatuses200Response
+    // response from `GetOrganizationDevicesStatuses`: []GetOrganizationDevicesStatuses200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `MonitorApi.GetOrganizationDevicesStatuses`: %v\n", resp)
 }
 ```
@@ -6780,11 +6858,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetOrganizationDevicesStatuses200Response**](GetOrganizationDevicesStatuses200Response.md)
+[**[]GetOrganizationDevicesStatuses200ResponseInner**](GetOrganizationDevicesStatuses200ResponseInner.md)
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -6859,7 +6937,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -6946,7 +7024,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -7027,7 +7105,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -7098,7 +7176,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -7171,7 +7249,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -7260,7 +7338,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -7343,7 +7421,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -7420,7 +7498,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -7497,7 +7575,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -7574,7 +7652,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -7651,7 +7729,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -7728,7 +7806,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -7805,7 +7883,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -7882,7 +7960,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -7965,7 +8043,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -8038,7 +8116,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -8123,7 +8201,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -8212,7 +8290,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -8301,7 +8379,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -8390,7 +8468,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -8479,7 +8557,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 
@@ -8558,7 +8636,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[meraki_api_key](../README.md#meraki_api_key)
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
 
 ### HTTP request headers
 

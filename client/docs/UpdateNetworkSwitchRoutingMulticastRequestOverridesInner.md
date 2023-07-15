@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SwitchProfiles** | Pointer to **[]string** | List of switch profiles ids for template network | [optional] 
+**SwitchProfiles** | Pointer to **[]string** | List of switch templates ids for template network | [optional] 
 **Switches** | Pointer to **[]string** | List of switch serials for non-template network | [optional] 
 **Stacks** | Pointer to **[]string** | List of switch stack ids for non-template network | [optional] 
-**IgmpSnoopingEnabled** | **bool** | IGMP snooping setting for switches, switch stacks or switch profiles | 
-**FloodUnknownMulticastTrafficEnabled** | **bool** | Flood unknown multicast traffic setting for switches, switch stacks or switch profiles | 
+**IgmpSnoopingEnabled** | **bool** | IGMP snooping setting for switches, switch stacks or switch templates | 
+**FloodUnknownMulticastTrafficEnabled** | **bool** | Flood unknown multicast traffic setting for switches, switch stacks or switch templates | 
 
 ## Methods
 

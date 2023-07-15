@@ -6,7 +6,7 @@ info:
   description: |
     A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.
 
-    > Date: 07 June, 2023
+    > Date: 05 July, 2023
     >
     > [Recent Updates](https://meraki.io/whats-new/)
 
@@ -18,11 +18,15 @@ info:
 
     [Meraki Homepage](https://www.meraki.com)
   title: Meraki Dashboard API
-  version: 1.34.0
+  version: 1.35.0
 servers:
-- url: https://api.meraki.com/api/v1
+- url: "https://api.meraki.com/{basePath}"
+  variables:
+    basePath:
+      default: api/v1
 security:
 - meraki_api_key: []
+- bearerAuth: []
 tags:
 - name: organizations
 - name: networks
@@ -266,6 +270,7 @@ tags:
 - name: uplinkSelection
 - name: uplinks
 - name: uplinksLossAndLatency
+- name: usage
 - name: usageHistories
 - name: usageHistory
 - name: userAccessDevices
@@ -851,7 +856,7 @@ paths:
                 period: 160
                 duty: 50
               schema:
-                type: object
+                $ref: '#/components/schemas/blinkDeviceLeds_202_response'
           description: Successful operation
       summary: Blink the LEDs on a device
       tags:
@@ -2357,7 +2362,7 @@ paths:
               example:
                 success: true
               schema:
-                type: object
+                $ref: '#/components/schemas/rebootDevice_202_response'
           description: Successful operation
       summary: Reboot a device
       tags:
@@ -3879,28 +3884,8 @@ paths:
                   power: 18 dBm
                   visible: true
                   broadcasting: true
-                - ssidName: My SSID
-                  ssidNumber: 0
-                  enabled: true
-                  band: 5 GHz
-                  bssid: 8A:15:14:00:00:00
-                  channel: 64
-                  channelWidth: 40 MHz
-                  power: 18 dBm
-                  visible: true
-                  broadcasting: true
-                - ssidName: My SSID
-                  ssidNumber: 0
-                  enabled: true
-                  band: 6 GHz
-                  bssid: 8A:15:24:00:00:00
-                  channel: 145
-                  channelWidth: 80 MHz
-                  power: 18 dBm
-                  visible: true
-                  broadcasting: true
               schema:
-                type: object
+                $ref: '#/components/schemas/getDeviceWirelessStatus_200_response'
           description: Successful operation
       summary: Return the SSID statuses of an access point
       tags:
@@ -11798,21 +11783,17 @@ paths:
                 - name: My AP
                   lat: 37.4180951010362
                   lng: -122.098531723022
-                  serial: Q234-ABCD-5678
-                  mac: 00:11:22:33:44:55
-                  model: MR34
                   address: 1600 Pennsylvania Ave
                   notes: My AP's note
-                  lanIp: 1.2.3.4
                   tags:
                   - recently-added
                   networkId: N_24329156
-                  beaconIdParams:
-                    uuid: 00000000-0000-0000-0000-000000000000
-                    major: 5
-                    minor: 3
+                  serial: Q234-ABCD-5678
+                  model: MR34
+                  mac: 00:11:22:33:44:55
+                  lanIp: 1.2.3.4
                   firmware: wireless-25-14
-                  floorPlanId: g_1234567
+                  productType: wireless
                 width: 100.0
                 height: 150.1
                 center:
@@ -11832,7 +11813,7 @@ paths:
                   lng: -122.38873962509012
               schema:
                 items:
-                  type: object
+                  $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner'
                 type: array
           description: Successful operation
       summary: List the floor plans that belong to your network
@@ -11873,21 +11854,17 @@ paths:
                 - name: My AP
                   lat: 37.4180951010362
                   lng: -122.098531723022
-                  serial: Q234-ABCD-5678
-                  mac: 00:11:22:33:44:55
-                  model: MR34
                   address: 1600 Pennsylvania Ave
                   notes: My AP's note
-                  lanIp: 1.2.3.4
                   tags:
                   - recently-added
                   networkId: N_24329156
-                  beaconIdParams:
-                    uuid: 00000000-0000-0000-0000-000000000000
-                    major: 5
-                    minor: 3
+                  serial: Q234-ABCD-5678
+                  model: MR34
+                  mac: 00:11:22:33:44:55
+                  lanIp: 1.2.3.4
                   firmware: wireless-25-14
-                  floorPlanId: g_1234567
+                  productType: wireless
                 width: 100.0
                 height: 150.1
                 center:
@@ -11906,7 +11883,7 @@ paths:
                   lat: 37.77157860210302
                   lng: -122.38873962509012
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner'
           description: Successful operation
       summary: Upload a floor plan
       tags:
@@ -11936,6 +11913,49 @@ paths:
         style: simple
       responses:
         "204":
+          content:
+            application/json:
+              example:
+                floorPlanId: g_1234567
+                imageUrl: https://meraki-na.s3.amazonaws.com/assets/...
+                imageUrlExpiresAt: 2019-06-11 16:04:54 +00:00
+                imageExtension: png
+                imageMd5: 2a9edd3f4ffd80130c647d13eacb59f3
+                name: HQ Floor Plan
+                devices:
+                - name: My AP
+                  lat: 37.4180951010362
+                  lng: -122.098531723022
+                  address: 1600 Pennsylvania Ave
+                  notes: My AP's note
+                  tags:
+                  - recently-added
+                  networkId: N_24329156
+                  serial: Q234-ABCD-5678
+                  model: MR34
+                  mac: 00:11:22:33:44:55
+                  lanIp: 1.2.3.4
+                  firmware: wireless-25-14
+                  productType: wireless
+                width: 100.0
+                height: 150.1
+                center:
+                  lat: 37.770040510499996
+                  lng: -122.38714009525
+                bottomLeftCorner:
+                  lat: 37.7696461495
+                  lng: -122.3880815506
+                bottomRightCorner:
+                  lat: 37.771524649766654
+                  lng: -122.38795275055205
+                topLeftCorner:
+                  lat: 37.769700101836364
+                  lng: -122.3888684251381
+                topRightCorner:
+                  lat: 37.77157860210302
+                  lng: -122.38873962509012
+              schema:
+                $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner'
           description: Successful operation
       summary: Destroy a floor plan
       tags:
@@ -11977,21 +11997,17 @@ paths:
                 - name: My AP
                   lat: 37.4180951010362
                   lng: -122.098531723022
-                  serial: Q234-ABCD-5678
-                  mac: 00:11:22:33:44:55
-                  model: MR34
                   address: 1600 Pennsylvania Ave
                   notes: My AP's note
-                  lanIp: 1.2.3.4
                   tags:
                   - recently-added
                   networkId: N_24329156
-                  beaconIdParams:
-                    uuid: 00000000-0000-0000-0000-000000000000
-                    major: 5
-                    minor: 3
+                  serial: Q234-ABCD-5678
+                  model: MR34
+                  mac: 00:11:22:33:44:55
+                  lanIp: 1.2.3.4
                   firmware: wireless-25-14
-                  floorPlanId: g_1234567
+                  productType: wireless
                 width: 100.0
                 height: 150.1
                 center:
@@ -12010,7 +12026,7 @@ paths:
                   lat: 37.77157860210302
                   lng: -122.38873962509012
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner'
           description: Successful operation
       summary: Find a floor plan by ID
       tags:
@@ -12058,21 +12074,17 @@ paths:
                 - name: My AP
                   lat: 37.4180951010362
                   lng: -122.098531723022
-                  serial: Q234-ABCD-5678
-                  mac: 00:11:22:33:44:55
-                  model: MR34
                   address: 1600 Pennsylvania Ave
                   notes: My AP's note
-                  lanIp: 1.2.3.4
                   tags:
                   - recently-added
                   networkId: N_24329156
-                  beaconIdParams:
-                    uuid: 00000000-0000-0000-0000-000000000000
-                    major: 5
-                    minor: 3
+                  serial: Q234-ABCD-5678
+                  model: MR34
+                  mac: 00:11:22:33:44:55
+                  lanIp: 1.2.3.4
                   firmware: wireless-25-14
-                  floorPlanId: g_1234567
+                  productType: wireless
                 width: 100.0
                 height: 150.1
                 center:
@@ -12091,7 +12103,7 @@ paths:
                   lat: 37.77157860210302
                   lng: -122.38873962509012
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner'
           description: Successful operation
       summary: Update a floor plan's geolocation and other meta data
       tags:
@@ -12817,7 +12829,7 @@ paths:
     get:
       description: "List the users configured under Meraki Authentication for a network\
         \ (splash guest or RADIUS users for a wireless network, or client VPN users\
-        \ for a wired network)"
+        \ for a MX network)"
       operationId: getNetworkMerakiAuthUsers
       parameters:
       - description: Network ID
@@ -12852,7 +12864,7 @@ paths:
           description: Successful operation
       summary: "List the users configured under Meraki Authentication for a network\
         \ (splash guest or RADIUS users for a wireless network, or client VPN users\
-        \ for a wired network)"
+        \ for a MX network)"
       tags:
       - networks
       - configure
@@ -20048,7 +20060,8 @@ paths:
   /networks/{networkId}/topology/linkLayer:
     get:
       description: List the LLDP and CDP information for all discovered devices and
-        connections in a network.
+        connections in a network. At least one MX or MS device must be in the network
+        in order to build the topology.
       operationId: getNetworkTopologyLinkLayer
       parameters:
       - description: Network ID
@@ -20172,7 +20185,7 @@ paths:
                 type: object
           description: Successful operation
       summary: List the LLDP and CDP information for all discovered devices and connections
-        in a network.
+        in a network
       tags:
       - networks
       - monitor
@@ -21115,13 +21128,13 @@ paths:
                 currency: USD
                 plans:
                 - id: "1"
-                  price: 5
+                  price: 5.0
                   bandwidthLimits:
                     limitUp: 1000
                     limitDown: 1000
                   timeLimit: 1 hour
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkWirelessBilling_200_response'
           description: Successful operation
       summary: Return the billing settings of this network
       tags:
@@ -21154,13 +21167,13 @@ paths:
                 currency: USD
                 plans:
                 - id: "1"
-                  price: 5
+                  price: 5.0
                   bandwidthLimits:
                     limitUp: 1000
                     limitDown: 1000
                   timeLimit: 1 hour
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkWirelessBilling_200_response'
           description: Successful operation
       summary: Update the billing settings
       tags:
@@ -24469,9 +24482,39 @@ paths:
                 splashPage: Click-through splash page
                 ssidAdminAccessible: false
                 authMode: 8021x-radius
-                encryptionMode: wpa-eap
+                encryptionMode: wpa
                 wpaEncryptionMode: WPA2 only
                 radiusServers:
+                - host: 0.0.0.0
+                  port: 3000
+                  openRoamingCertificateId: 2
+                  caCertificate: |-
+                    -----BEGIN CERTIFICATE-----
+                    MIIEKjCCAxKgAwIBAgIRANb+lsED3eb4+6YKLFFYqEkwDQYJKoZIhvcNAQELBQAw
+                    gYcxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMREwDwYDVQQHDAhT
+                    YW4gSm9zZTEcMBoGA1UECgwTQ2lzY28gU3lzdGVtcywgSW5jLjESMBAGA1UECwwJ
+                    RE5BU3BhY2VzMR4wHAYDVQQDDBVjaXNjby5vcGVucm9hbWluZy5vcmcwHhcNMjAx
+                    MTA1MjEzMzM1WhcNMjExMTA1MjIzMzM1WjCBpDEcMBoGCgmSJomT8ixkAQETDGRu
+                    YXNwYWNlczpVUzELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMQ4wDAYDVQQKEwVD
+                    aXNjbzEcMBoGA1UECxMTV0JBOldSSVggRW5kLUVudGl0eTE8MDoGA1UEAxMzNjQ3
+                    MDcwNDM4NDQ5NjQxMjAwMDAuMTg4MzQuaHMuY2lzY28ub3BlbnJvYW1pbmcub3Jn
+                    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoqjP9QgRGyUO3p7SH9QK
+                    uTq6UYK7nAyjImgS4yQxeBkyZ5f2EUkX8m/AOcewpPxxPBhjPKRwxGeX3S50ksiA
+                    ayFomUeslR0S0Z7RN9rzJa+CFyi9MwWIHMbLgXpB8tsSpgTAqwrzoTzOGq9fgC6u
+                    pZhdZrBkg3FeJgD88goCi9mZDsY2YAoeGRLFJ2fR8iICqIVQy+Htq9pE22WBLpnS
+                    KjL3+mR9FArHNFtWlhKF2YHMUqyHHrnZnF/Ns7QNoMMF7/CK18iAKgnb+2wuGKM2
+                    aEMddOeOTtz+i/rgjkp/RGMt011EdCsso0/cTo9qqX/bxOOCE4/Mne/ChMkQPnNU
+                    CwIDAQABo3IwcDAJBgNVHRMEAjAAMB8GA1UdIwQYMBaAFIG+4l5yiB01gP0sw4ML
+                    USopqYcuMB0GA1UdDgQWBBSby1T9leYVOVVdOZXiHCSaDDEMiDAOBgNVHQ8BAf8E
+                    BAMCBaAwEwYDVR0lBAwwCgYIKwYBBQUHAwIwDQYJKoZIhvcNAQELBQADggEBAEyE
+                    1mjSUyY6uNp6W4l20w7SskALSJDRKkOeZxAgF3VMxlsCuEl70s9oEfntwIpyQtSa
+                    jON/9yJHbwm/Az824bmk8Dc7AXIPhay+dftXb8j529gPuYB9AKoPNg0NctkyYCQh
+                    a/3YQVdDWX7XgmEiXkL57M7G6+IdcPDONLArfjOcT9qHdkVVq1AIjlMSx3OQQmm/
+                    uoLb/G9q/97QA2/l8shG/Na8HjVqGLcl5TNZdbNhs2w9ogxr/GNzqdvym6RQ8vT/
+                    UR2n+uwH4n1MUxmHYYeyot5dnIV1IJ6hQ54JAncM9HvCLFk1WHz6RKshQUCuPBiJ
+                    wTw70BVktzJnb0VLeDg=
+                    -----END CERTIFICATE-----
+                radiusAccountingServers:
                 - host: 0.0.0.0
                   port: 3000
                   openRoamingCertificateId: 2
@@ -24504,8 +24547,8 @@ paths:
                 radiusAccountingEnabled: false
                 radiusEnabled: true
                 radiusAttributeForGroupPolicies: Filter-Id
-                radiusFailoverPolicy: "null"
-                radiusLoadBalancingPolicy: "null"
+                radiusFailoverPolicy: Deny access
+                radiusLoadBalancingPolicy: Round robin
                 ipAssignmentMode: NAT mode
                 adminSplashUrl: http://example.com
                 splashTimeout: 30 minutes
@@ -24520,43 +24563,14 @@ paths:
                 visible: true
                 availableOnAllAps: false
                 availabilityTags:
-                - test-tag
+                - tag1
+                - tag2
                 perSsidBandwidthLimitUp: 0
                 perSsidBandwidthLimitDown: 0
                 mandatoryDhcpEnabled: false
-                radiusAccountingServers:
-                - host: 0.0.0.0
-                  port: 3000
-                  openRoamingCertificateId: 2
-                  caCertificate: |-
-                    -----BEGIN CERTIFICATE-----
-                    MIIEKjCCAxKgAwIBAgIRANb+lsED3eb4+6YKLFFYqEkwDQYJKoZIhvcNAQELBQAw
-                    gYcxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMREwDwYDVQQHDAhT
-                    YW4gSm9zZTEcMBoGA1UECgwTQ2lzY28gU3lzdGVtcywgSW5jLjESMBAGA1UECwwJ
-                    RE5BU3BhY2VzMR4wHAYDVQQDDBVjaXNjby5vcGVucm9hbWluZy5vcmcwHhcNMjAx
-                    MTA1MjEzMzM1WhcNMjExMTA1MjIzMzM1WjCBpDEcMBoGCgmSJomT8ixkAQETDGRu
-                    YXNwYWNlczpVUzELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMQ4wDAYDVQQKEwVD
-                    aXNjbzEcMBoGA1UECxMTV0JBOldSSVggRW5kLUVudGl0eTE8MDoGA1UEAxMzNjQ3
-                    MDcwNDM4NDQ5NjQxMjAwMDAuMTg4MzQuaHMuY2lzY28ub3BlbnJvYW1pbmcub3Jn
-                    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoqjP9QgRGyUO3p7SH9QK
-                    uTq6UYK7nAyjImgS4yQxeBkyZ5f2EUkX8m/AOcewpPxxPBhjPKRwxGeX3S50ksiA
-                    ayFomUeslR0S0Z7RN9rzJa+CFyi9MwWIHMbLgXpB8tsSpgTAqwrzoTzOGq9fgC6u
-                    pZhdZrBkg3FeJgD88goCi9mZDsY2YAoeGRLFJ2fR8iICqIVQy+Htq9pE22WBLpnS
-                    KjL3+mR9FArHNFtWlhKF2YHMUqyHHrnZnF/Ns7QNoMMF7/CK18iAKgnb+2wuGKM2
-                    aEMddOeOTtz+i/rgjkp/RGMt011EdCsso0/cTo9qqX/bxOOCE4/Mne/ChMkQPnNU
-                    CwIDAQABo3IwcDAJBgNVHRMEAjAAMB8GA1UdIwQYMBaAFIG+4l5yiB01gP0sw4ML
-                    USopqYcuMB0GA1UdDgQWBBSby1T9leYVOVVdOZXiHCSaDDEMiDAOBgNVHQ8BAf8E
-                    BAMCBaAwEwYDVR0lBAwwCgYIKwYBBQUHAwIwDQYJKoZIhvcNAQELBQADggEBAEyE
-                    1mjSUyY6uNp6W4l20w7SskALSJDRKkOeZxAgF3VMxlsCuEl70s9oEfntwIpyQtSa
-                    jON/9yJHbwm/Az824bmk8Dc7AXIPhay+dftXb8j529gPuYB9AKoPNg0NctkyYCQh
-                    a/3YQVdDWX7XgmEiXkL57M7G6+IdcPDONLArfjOcT9qHdkVVq1AIjlMSx3OQQmm/
-                    uoLb/G9q/97QA2/l8shG/Na8HjVqGLcl5TNZdbNhs2w9ogxr/GNzqdvym6RQ8vT/
-                    UR2n+uwH4n1MUxmHYYeyot5dnIV1IJ6hQ54JAncM9HvCLFk1WHz6RKshQUCuPBiJ
-                    wTw70BVktzJnb0VLeDg=
-                    -----END CERTIFICATE-----
               schema:
                 items:
-                  type: object
+                  $ref: '#/components/schemas/getNetworkWirelessSsids_200_response_inner'
                 type: array
           description: Successful operation
       summary: List the MR SSIDs in a network
@@ -24596,9 +24610,39 @@ paths:
                 splashPage: Click-through splash page
                 ssidAdminAccessible: false
                 authMode: 8021x-radius
-                encryptionMode: wpa-eap
+                encryptionMode: wpa
                 wpaEncryptionMode: WPA2 only
                 radiusServers:
+                - host: 0.0.0.0
+                  port: 3000
+                  openRoamingCertificateId: 2
+                  caCertificate: |-
+                    -----BEGIN CERTIFICATE-----
+                    MIIEKjCCAxKgAwIBAgIRANb+lsED3eb4+6YKLFFYqEkwDQYJKoZIhvcNAQELBQAw
+                    gYcxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMREwDwYDVQQHDAhT
+                    YW4gSm9zZTEcMBoGA1UECgwTQ2lzY28gU3lzdGVtcywgSW5jLjESMBAGA1UECwwJ
+                    RE5BU3BhY2VzMR4wHAYDVQQDDBVjaXNjby5vcGVucm9hbWluZy5vcmcwHhcNMjAx
+                    MTA1MjEzMzM1WhcNMjExMTA1MjIzMzM1WjCBpDEcMBoGCgmSJomT8ixkAQETDGRu
+                    YXNwYWNlczpVUzELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMQ4wDAYDVQQKEwVD
+                    aXNjbzEcMBoGA1UECxMTV0JBOldSSVggRW5kLUVudGl0eTE8MDoGA1UEAxMzNjQ3
+                    MDcwNDM4NDQ5NjQxMjAwMDAuMTg4MzQuaHMuY2lzY28ub3BlbnJvYW1pbmcub3Jn
+                    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoqjP9QgRGyUO3p7SH9QK
+                    uTq6UYK7nAyjImgS4yQxeBkyZ5f2EUkX8m/AOcewpPxxPBhjPKRwxGeX3S50ksiA
+                    ayFomUeslR0S0Z7RN9rzJa+CFyi9MwWIHMbLgXpB8tsSpgTAqwrzoTzOGq9fgC6u
+                    pZhdZrBkg3FeJgD88goCi9mZDsY2YAoeGRLFJ2fR8iICqIVQy+Htq9pE22WBLpnS
+                    KjL3+mR9FArHNFtWlhKF2YHMUqyHHrnZnF/Ns7QNoMMF7/CK18iAKgnb+2wuGKM2
+                    aEMddOeOTtz+i/rgjkp/RGMt011EdCsso0/cTo9qqX/bxOOCE4/Mne/ChMkQPnNU
+                    CwIDAQABo3IwcDAJBgNVHRMEAjAAMB8GA1UdIwQYMBaAFIG+4l5yiB01gP0sw4ML
+                    USopqYcuMB0GA1UdDgQWBBSby1T9leYVOVVdOZXiHCSaDDEMiDAOBgNVHQ8BAf8E
+                    BAMCBaAwEwYDVR0lBAwwCgYIKwYBBQUHAwIwDQYJKoZIhvcNAQELBQADggEBAEyE
+                    1mjSUyY6uNp6W4l20w7SskALSJDRKkOeZxAgF3VMxlsCuEl70s9oEfntwIpyQtSa
+                    jON/9yJHbwm/Az824bmk8Dc7AXIPhay+dftXb8j529gPuYB9AKoPNg0NctkyYCQh
+                    a/3YQVdDWX7XgmEiXkL57M7G6+IdcPDONLArfjOcT9qHdkVVq1AIjlMSx3OQQmm/
+                    uoLb/G9q/97QA2/l8shG/Na8HjVqGLcl5TNZdbNhs2w9ogxr/GNzqdvym6RQ8vT/
+                    UR2n+uwH4n1MUxmHYYeyot5dnIV1IJ6hQ54JAncM9HvCLFk1WHz6RKshQUCuPBiJ
+                    wTw70BVktzJnb0VLeDg=
+                    -----END CERTIFICATE-----
+                radiusAccountingServers:
                 - host: 0.0.0.0
                   port: 3000
                   openRoamingCertificateId: 2
@@ -24631,8 +24675,8 @@ paths:
                 radiusAccountingEnabled: false
                 radiusEnabled: true
                 radiusAttributeForGroupPolicies: Filter-Id
-                radiusFailoverPolicy: "null"
-                radiusLoadBalancingPolicy: "null"
+                radiusFailoverPolicy: Deny access
+                radiusLoadBalancingPolicy: Round robin
                 ipAssignmentMode: NAT mode
                 adminSplashUrl: http://example.com
                 splashTimeout: 30 minutes
@@ -24647,42 +24691,13 @@ paths:
                 visible: true
                 availableOnAllAps: false
                 availabilityTags:
-                - test-tag
+                - tag1
+                - tag2
                 perSsidBandwidthLimitUp: 0
                 perSsidBandwidthLimitDown: 0
                 mandatoryDhcpEnabled: false
-                radiusAccountingServers:
-                - host: 0.0.0.0
-                  port: 3000
-                  openRoamingCertificateId: 2
-                  caCertificate: |-
-                    -----BEGIN CERTIFICATE-----
-                    MIIEKjCCAxKgAwIBAgIRANb+lsED3eb4+6YKLFFYqEkwDQYJKoZIhvcNAQELBQAw
-                    gYcxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMREwDwYDVQQHDAhT
-                    YW4gSm9zZTEcMBoGA1UECgwTQ2lzY28gU3lzdGVtcywgSW5jLjESMBAGA1UECwwJ
-                    RE5BU3BhY2VzMR4wHAYDVQQDDBVjaXNjby5vcGVucm9hbWluZy5vcmcwHhcNMjAx
-                    MTA1MjEzMzM1WhcNMjExMTA1MjIzMzM1WjCBpDEcMBoGCgmSJomT8ixkAQETDGRu
-                    YXNwYWNlczpVUzELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMQ4wDAYDVQQKEwVD
-                    aXNjbzEcMBoGA1UECxMTV0JBOldSSVggRW5kLUVudGl0eTE8MDoGA1UEAxMzNjQ3
-                    MDcwNDM4NDQ5NjQxMjAwMDAuMTg4MzQuaHMuY2lzY28ub3BlbnJvYW1pbmcub3Jn
-                    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoqjP9QgRGyUO3p7SH9QK
-                    uTq6UYK7nAyjImgS4yQxeBkyZ5f2EUkX8m/AOcewpPxxPBhjPKRwxGeX3S50ksiA
-                    ayFomUeslR0S0Z7RN9rzJa+CFyi9MwWIHMbLgXpB8tsSpgTAqwrzoTzOGq9fgC6u
-                    pZhdZrBkg3FeJgD88goCi9mZDsY2YAoeGRLFJ2fR8iICqIVQy+Htq9pE22WBLpnS
-                    KjL3+mR9FArHNFtWlhKF2YHMUqyHHrnZnF/Ns7QNoMMF7/CK18iAKgnb+2wuGKM2
-                    aEMddOeOTtz+i/rgjkp/RGMt011EdCsso0/cTo9qqX/bxOOCE4/Mne/ChMkQPnNU
-                    CwIDAQABo3IwcDAJBgNVHRMEAjAAMB8GA1UdIwQYMBaAFIG+4l5yiB01gP0sw4ML
-                    USopqYcuMB0GA1UdDgQWBBSby1T9leYVOVVdOZXiHCSaDDEMiDAOBgNVHQ8BAf8E
-                    BAMCBaAwEwYDVR0lBAwwCgYIKwYBBQUHAwIwDQYJKoZIhvcNAQELBQADggEBAEyE
-                    1mjSUyY6uNp6W4l20w7SskALSJDRKkOeZxAgF3VMxlsCuEl70s9oEfntwIpyQtSa
-                    jON/9yJHbwm/Az824bmk8Dc7AXIPhay+dftXb8j529gPuYB9AKoPNg0NctkyYCQh
-                    a/3YQVdDWX7XgmEiXkL57M7G6+IdcPDONLArfjOcT9qHdkVVq1AIjlMSx3OQQmm/
-                    uoLb/G9q/97QA2/l8shG/Na8HjVqGLcl5TNZdbNhs2w9ogxr/GNzqdvym6RQ8vT/
-                    UR2n+uwH4n1MUxmHYYeyot5dnIV1IJ6hQ54JAncM9HvCLFk1WHz6RKshQUCuPBiJ
-                    wTw70BVktzJnb0VLeDg=
-                    -----END CERTIFICATE-----
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkWirelessSsids_200_response_inner'
           description: Successful operation
       summary: Return a single MR SSID
       tags:
@@ -24726,9 +24741,39 @@ paths:
                 splashPage: Click-through splash page
                 ssidAdminAccessible: false
                 authMode: 8021x-radius
-                encryptionMode: wpa-eap
+                encryptionMode: wpa
                 wpaEncryptionMode: WPA2 only
                 radiusServers:
+                - host: 0.0.0.0
+                  port: 3000
+                  openRoamingCertificateId: 2
+                  caCertificate: |-
+                    -----BEGIN CERTIFICATE-----
+                    MIIEKjCCAxKgAwIBAgIRANb+lsED3eb4+6YKLFFYqEkwDQYJKoZIhvcNAQELBQAw
+                    gYcxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMREwDwYDVQQHDAhT
+                    YW4gSm9zZTEcMBoGA1UECgwTQ2lzY28gU3lzdGVtcywgSW5jLjESMBAGA1UECwwJ
+                    RE5BU3BhY2VzMR4wHAYDVQQDDBVjaXNjby5vcGVucm9hbWluZy5vcmcwHhcNMjAx
+                    MTA1MjEzMzM1WhcNMjExMTA1MjIzMzM1WjCBpDEcMBoGCgmSJomT8ixkAQETDGRu
+                    YXNwYWNlczpVUzELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMQ4wDAYDVQQKEwVD
+                    aXNjbzEcMBoGA1UECxMTV0JBOldSSVggRW5kLUVudGl0eTE8MDoGA1UEAxMzNjQ3
+                    MDcwNDM4NDQ5NjQxMjAwMDAuMTg4MzQuaHMuY2lzY28ub3BlbnJvYW1pbmcub3Jn
+                    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoqjP9QgRGyUO3p7SH9QK
+                    uTq6UYK7nAyjImgS4yQxeBkyZ5f2EUkX8m/AOcewpPxxPBhjPKRwxGeX3S50ksiA
+                    ayFomUeslR0S0Z7RN9rzJa+CFyi9MwWIHMbLgXpB8tsSpgTAqwrzoTzOGq9fgC6u
+                    pZhdZrBkg3FeJgD88goCi9mZDsY2YAoeGRLFJ2fR8iICqIVQy+Htq9pE22WBLpnS
+                    KjL3+mR9FArHNFtWlhKF2YHMUqyHHrnZnF/Ns7QNoMMF7/CK18iAKgnb+2wuGKM2
+                    aEMddOeOTtz+i/rgjkp/RGMt011EdCsso0/cTo9qqX/bxOOCE4/Mne/ChMkQPnNU
+                    CwIDAQABo3IwcDAJBgNVHRMEAjAAMB8GA1UdIwQYMBaAFIG+4l5yiB01gP0sw4ML
+                    USopqYcuMB0GA1UdDgQWBBSby1T9leYVOVVdOZXiHCSaDDEMiDAOBgNVHQ8BAf8E
+                    BAMCBaAwEwYDVR0lBAwwCgYIKwYBBQUHAwIwDQYJKoZIhvcNAQELBQADggEBAEyE
+                    1mjSUyY6uNp6W4l20w7SskALSJDRKkOeZxAgF3VMxlsCuEl70s9oEfntwIpyQtSa
+                    jON/9yJHbwm/Az824bmk8Dc7AXIPhay+dftXb8j529gPuYB9AKoPNg0NctkyYCQh
+                    a/3YQVdDWX7XgmEiXkL57M7G6+IdcPDONLArfjOcT9qHdkVVq1AIjlMSx3OQQmm/
+                    uoLb/G9q/97QA2/l8shG/Na8HjVqGLcl5TNZdbNhs2w9ogxr/GNzqdvym6RQ8vT/
+                    UR2n+uwH4n1MUxmHYYeyot5dnIV1IJ6hQ54JAncM9HvCLFk1WHz6RKshQUCuPBiJ
+                    wTw70BVktzJnb0VLeDg=
+                    -----END CERTIFICATE-----
+                radiusAccountingServers:
                 - host: 0.0.0.0
                   port: 3000
                   openRoamingCertificateId: 2
@@ -24761,8 +24806,8 @@ paths:
                 radiusAccountingEnabled: false
                 radiusEnabled: true
                 radiusAttributeForGroupPolicies: Filter-Id
-                radiusFailoverPolicy: "null"
-                radiusLoadBalancingPolicy: "null"
+                radiusFailoverPolicy: Deny access
+                radiusLoadBalancingPolicy: Round robin
                 ipAssignmentMode: NAT mode
                 adminSplashUrl: http://example.com
                 splashTimeout: 30 minutes
@@ -24777,42 +24822,13 @@ paths:
                 visible: true
                 availableOnAllAps: false
                 availabilityTags:
-                - test-tag
+                - tag1
+                - tag2
                 perSsidBandwidthLimitUp: 0
                 perSsidBandwidthLimitDown: 0
                 mandatoryDhcpEnabled: false
-                radiusAccountingServers:
-                - host: 0.0.0.0
-                  port: 3000
-                  openRoamingCertificateId: 2
-                  caCertificate: |-
-                    -----BEGIN CERTIFICATE-----
-                    MIIEKjCCAxKgAwIBAgIRANb+lsED3eb4+6YKLFFYqEkwDQYJKoZIhvcNAQELBQAw
-                    gYcxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMREwDwYDVQQHDAhT
-                    YW4gSm9zZTEcMBoGA1UECgwTQ2lzY28gU3lzdGVtcywgSW5jLjESMBAGA1UECwwJ
-                    RE5BU3BhY2VzMR4wHAYDVQQDDBVjaXNjby5vcGVucm9hbWluZy5vcmcwHhcNMjAx
-                    MTA1MjEzMzM1WhcNMjExMTA1MjIzMzM1WjCBpDEcMBoGCgmSJomT8ixkAQETDGRu
-                    YXNwYWNlczpVUzELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMQ4wDAYDVQQKEwVD
-                    aXNjbzEcMBoGA1UECxMTV0JBOldSSVggRW5kLUVudGl0eTE8MDoGA1UEAxMzNjQ3
-                    MDcwNDM4NDQ5NjQxMjAwMDAuMTg4MzQuaHMuY2lzY28ub3BlbnJvYW1pbmcub3Jn
-                    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoqjP9QgRGyUO3p7SH9QK
-                    uTq6UYK7nAyjImgS4yQxeBkyZ5f2EUkX8m/AOcewpPxxPBhjPKRwxGeX3S50ksiA
-                    ayFomUeslR0S0Z7RN9rzJa+CFyi9MwWIHMbLgXpB8tsSpgTAqwrzoTzOGq9fgC6u
-                    pZhdZrBkg3FeJgD88goCi9mZDsY2YAoeGRLFJ2fR8iICqIVQy+Htq9pE22WBLpnS
-                    KjL3+mR9FArHNFtWlhKF2YHMUqyHHrnZnF/Ns7QNoMMF7/CK18iAKgnb+2wuGKM2
-                    aEMddOeOTtz+i/rgjkp/RGMt011EdCsso0/cTo9qqX/bxOOCE4/Mne/ChMkQPnNU
-                    CwIDAQABo3IwcDAJBgNVHRMEAjAAMB8GA1UdIwQYMBaAFIG+4l5yiB01gP0sw4ML
-                    USopqYcuMB0GA1UdDgQWBBSby1T9leYVOVVdOZXiHCSaDDEMiDAOBgNVHQ8BAf8E
-                    BAMCBaAwEwYDVR0lBAwwCgYIKwYBBQUHAwIwDQYJKoZIhvcNAQELBQADggEBAEyE
-                    1mjSUyY6uNp6W4l20w7SskALSJDRKkOeZxAgF3VMxlsCuEl70s9oEfntwIpyQtSa
-                    jON/9yJHbwm/Az824bmk8Dc7AXIPhay+dftXb8j529gPuYB9AKoPNg0NctkyYCQh
-                    a/3YQVdDWX7XgmEiXkL57M7G6+IdcPDONLArfjOcT9qHdkVVq1AIjlMSx3OQQmm/
-                    uoLb/G9q/97QA2/l8shG/Na8HjVqGLcl5TNZdbNhs2w9ogxr/GNzqdvym6RQ8vT/
-                    UR2n+uwH4n1MUxmHYYeyot5dnIV1IJ6hQ54JAncM9HvCLFk1WHz6RKshQUCuPBiJ
-                    wTw70BVktzJnb0VLeDg=
-                    -----END CERTIFICATE-----
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkWirelessSsids_200_response_inner'
           description: Successful operation
       summary: Update the attributes of an MR SSID
       tags:
@@ -24846,6 +24862,8 @@ paths:
             application/json:
               example:
                 enabled: true
+                exception:
+                  enabled: true
                 rules:
                 - description: A simple bonjour rule
                   vlanId: "1"
@@ -24892,6 +24910,8 @@ paths:
             application/json:
               example:
                 enabled: true
+                exception:
+                  enabled: true
                 rules:
                 - description: A simple bonjour rule
                   vlanId: "1"
@@ -28566,6 +28586,76 @@ paths:
       - monitor
       - uplinks
       - statuses
+  /organizations/{organizationId}/appliance/uplinks/usage/byNetwork:
+    get:
+      description: "Get the sent and received bytes for each uplink of all MX and\
+        \ Z networks within an organization. If more than one device was active during\
+        \ the specified timespan, then the sent and received bytes will be aggregated\
+        \ by interface."
+      operationId: getOrganizationApplianceUplinksUsageByNetwork
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The beginning of the timespan for the data. The maximum lookback
+          period is 365 days from today.
+        explode: true
+        in: query
+        name: t0
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The end of the timespan for the data. t1 can be a maximum of
+          14 days after t0.
+        explode: true
+        in: query
+        name: t1
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The timespan for which the information will be fetched. If specifying\
+          \ timespan, do not specify parameters t0 and t1. The value must be in seconds\
+          \ and be less than or equal to 14 days. The default is 1 day."
+        explode: true
+        in: query
+        name: timespan
+        required: false
+        schema:
+          format: float
+          type: number
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - networkId: N_24329156
+                name: Main Office
+                byUplink:
+                - serial: Q234-ABCD-5678
+                  interface: wan1
+                  sent: 200
+                  received: 400
+              schema:
+                items:
+                  $ref: '#/components/schemas/getOrganizationApplianceUplinksUsageByNetwork_200_response_inner'
+                type: array
+          description: Successful operation
+      summary: Get the sent and received bytes for each uplink of all MX and Z networks
+        within an organization
+      tags:
+      - appliance
+      - monitor
+      - uplinks
+      - usage
+      - byNetwork
   /organizations/{organizationId}/appliance/vpn/stats:
     get:
       description: Show VPN history stat for networks in an organization
@@ -29842,7 +29932,7 @@ paths:
                 - key: Z2XXXXXXXXXX
                   mode: addDevices
               schema:
-                type: object
+                $ref: '#/components/schemas/claimIntoOrganization_200_response'
           description: Successful operation
       summary: "Claim a list of devices, licenses, and/or orders into an organization"
       tags:
@@ -30174,7 +30264,7 @@ paths:
                 timeZone: America/Los_Angeles
               schema:
                 items:
-                  type: object
+                  $ref: '#/components/schemas/getOrganizationConfigTemplates_200_response_inner'
                 type: array
           description: Successful operation
       summary: List the configuration templates for this organization
@@ -30213,7 +30303,7 @@ paths:
                 - wireless
                 timeZone: America/Los_Angeles
               schema:
-                type: object
+                $ref: '#/components/schemas/getOrganizationConfigTemplates_200_response_inner'
           description: Successful operation
       summary: Create a new configuration template
       tags:
@@ -30282,7 +30372,7 @@ paths:
                 - wireless
                 timeZone: America/Los_Angeles
               schema:
-                type: object
+                $ref: '#/components/schemas/getOrganizationConfigTemplates_200_response_inner'
           description: Successful operation
       summary: Return a single configuration template
       tags:
@@ -30328,7 +30418,7 @@ paths:
                 - wireless
                 timeZone: America/Los_Angeles
               schema:
-                type: object
+                $ref: '#/components/schemas/getOrganizationConfigTemplates_200_response_inner'
           description: Successful operation
       summary: Update a configuration template
       tags:
@@ -30337,7 +30427,7 @@ paths:
       - configTemplates
   /organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles:
     get:
-      description: List the switch profiles for your switch template configuration
+      description: List the switch templates for your switch template configuration
       operationId: getOrganizationConfigTemplateSwitchProfiles
       parameters:
       - description: Organization ID
@@ -30362,14 +30452,14 @@ paths:
             application/json:
               example:
               - switchProfileId: "1234"
-                name: A Simple Switch Profile
+                name: A Simple Switch Template
                 model: MS450-24
               schema:
                 items:
                   $ref: '#/components/schemas/getOrganizationConfigTemplateSwitchProfiles_200_response_inner'
                 type: array
           description: Successful operation
-      summary: List the switch profiles for your switch template configuration
+      summary: List the switch templates for your switch template configuration
       tags:
       - switch
       - configure
@@ -30377,7 +30467,7 @@ paths:
       - profiles
   /organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles/{profileId}/ports:
     get:
-      description: Return all the ports of a switch profile
+      description: Return all the ports of a switch template
       operationId: getOrganizationConfigTemplateSwitchProfilePorts
       parameters:
       - description: Organization ID
@@ -30450,7 +30540,7 @@ paths:
                   $ref: '#/components/schemas/getOrganizationConfigTemplateSwitchProfilePorts_200_response_inner'
                 type: array
           description: Successful operation
-      summary: Return all the ports of a switch profile
+      summary: Return all the ports of a switch template
       tags:
       - switch
       - configure
@@ -30459,7 +30549,7 @@ paths:
       - ports
   /organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles/{profileId}/ports/{portId}:
     get:
-      description: Return a switch profile port
+      description: Return a switch template port
       operationId: getOrganizationConfigTemplateSwitchProfilePort
       parameters:
       - description: Organization ID
@@ -30538,7 +30628,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/getOrganizationConfigTemplateSwitchProfilePorts_200_response_inner'
           description: Successful operation
-      summary: Return a switch profile port
+      summary: Return a switch template port
       tags:
       - switch
       - configure
@@ -30546,7 +30636,7 @@ paths:
       - profiles
       - ports
     put:
-      description: Update a switch profile port
+      description: Update a switch template port
       operationId: updateOrganizationConfigTemplateSwitchProfilePort
       parameters:
       - description: Organization ID
@@ -30631,7 +30721,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/getOrganizationConfigTemplateSwitchProfilePorts_200_response_inner'
           description: Successful operation
-      summary: Update a switch profile port
+      summary: Update a switch template port
       tags:
       - switch
       - configure
@@ -30987,7 +31077,7 @@ paths:
                 productType: wireless
               schema:
                 items:
-                  $ref: '#/components/schemas/getOrganizationDevices_200_response_inner'
+                  $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_devices_inner'
                 type: array
           description: Successful operation
           headers:
@@ -31582,7 +31672,7 @@ paths:
           content:
             application/json:
               example:
-                name: My AP
+              - name: My AP
                 serial: Q234-ABCD-5678
                 mac: 00:11:22:33:44:55
                 publicIp: 123.123.123.1
@@ -31602,7 +31692,9 @@ paths:
                 - tag1
                 - tag2
               schema:
-                $ref: '#/components/schemas/getOrganizationDevicesStatuses_200_response'
+                items:
+                  $ref: '#/components/schemas/getOrganizationDevicesStatuses_200_response_inner'
+                type: array
           description: Successful operation
           headers:
             Link:
@@ -32627,7 +32719,7 @@ paths:
                 - key: Z2XXXXXXXXXX
                   mode: addDevices
               schema:
-                type: object
+                $ref: '#/components/schemas/claimIntoOrganization_200_response'
           description: Successful operation
       summary: "Claim a list of devices, licenses, and/or orders into an organization\
         \ inventory"
@@ -36431,35 +36523,6 @@ paths:
       - monitor
       - uplinks
       - statuses
-  /organizations/{organizationId}/users/{userId}:
-    delete:
-      description: Delete a user and all of its authentication methods.
-      operationId: deleteOrganizationUser
-      parameters:
-      - description: Organization ID
-        explode: false
-        in: path
-        name: organizationId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: User ID
-        explode: false
-        in: path
-        name: userId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Successful operation
-      summary: Delete a user and all of its authentication methods.
-      tags:
-      - organizations
-      - configure
-      - users
   /organizations/{organizationId}/webhooks/alertTypes:
     get:
       description: Return a list of alert types to be used with managing webhook alerts
@@ -37703,6 +37766,29 @@ components:
         "4":
           $ref: '#/components/schemas/createNetworkApplianceRfProfile_request_perSsidSettings_4'
       type: object
+    getNetworkFloorPlans_200_response_inner_center:
+      description: "The longitude and latitude of the center of your floor plan. The\
+        \ 'center' or two adjacent corners (e.g. 'topLeftCorner' and 'bottomLeftCorner')\
+        \ must be specified. If 'center' is specified, the floor plan is placed over\
+        \ that point with no rotation. If two adjacent corners are specified, the\
+        \ floor plan is rotated to line up with the two specified points. The aspect\
+        \ ratio of the floor plan's image is preserved regardless of which corners/center\
+        \ are specified. (This means if that more than two corners are specified,\
+        \ only two corners may be used to preserve the floor plan's aspect ratio.).\
+        \ No two points can have the same latitude, longitude pair."
+      example:
+        lng: 2.302136
+        lat: 5.637377
+      properties:
+        lat:
+          description: Latitude
+          format: float
+          type: number
+        lng:
+          description: Longitude
+          format: float
+          type: number
+      type: object
     updateOrganizationLicense_request:
       example:
         deviceSerial: Q234-ABCD-5678
@@ -37823,6 +37909,25 @@ components:
           $ref: '#/components/schemas/getNetworkApplianceSingleLan_200_response_mandatoryDhcp'
         ipv6:
           $ref: '#/components/schemas/getNetworkApplianceSingleLan_200_response_ipv6'
+      type: object
+    blinkDeviceLeds_202_response:
+      example:
+        duration: 0
+        period: 6
+        duty: 1
+      properties:
+        duration:
+          description: The duration in seconds. Will be between 5 and 120. Default
+            is 20 seconds
+          type: integer
+        period:
+          description: The period in milliseconds. Will be between 100 and 1000. Default
+            is 160 milliseconds
+          type: integer
+        duty:
+          description: The duty cycle as the percent active. Will be between 10 and
+            90. Default is 50
+          type: integer
       type: object
     getNetworkSwitchDhcpV4ServersSeen_200_response_inner_seenBy_inner:
       example:
@@ -38102,7 +38207,24 @@ components:
           type: boolean
       type: object
     updateNetworkFloorPlan_request:
-      example: {}
+      example:
+        name: HQ Floor Plan
+        center:
+          lat: 37.770040510499996
+          lng: -122.38714009525
+        bottomLeftCorner:
+          lat: 37.770040510499996
+          lng: -122.38714009525
+        bottomRightCorner:
+          lat: 37.770040510499996
+          lng: -122.38714009525
+        topLeftCorner:
+          lat: 37.770040510499996
+          lng: -122.38714009525
+        topRightCorner:
+          lat: 37.770040510499996
+          lng: -122.38714009525
+        imageContents: 2a9edd3f4ffd80130c647d13eacb59f3
       properties:
         name:
           description: The name of your floor plan.
@@ -38110,13 +38232,13 @@ components:
         center:
           $ref: '#/components/schemas/updateNetworkFloorPlan_request_center'
         bottomLeftCorner:
-          $ref: '#/components/schemas/createNetworkFloorPlan_request_bottomLeftCorner'
+          $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_bottomLeftCorner'
         bottomRightCorner:
-          $ref: '#/components/schemas/createNetworkFloorPlan_request_bottomRightCorner'
+          $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_bottomRightCorner'
         topLeftCorner:
-          $ref: '#/components/schemas/createNetworkFloorPlan_request_topLeftCorner'
+          $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_topLeftCorner'
         topRightCorner:
-          $ref: '#/components/schemas/createNetworkFloorPlan_request_topRightCorner'
+          $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_topRightCorner'
         imageContents:
           description: "The file contents (a base 64 encoded string) of your new image.\
             \ Supported formats are PNG, GIF, and JPG. Note that all images are saved\
@@ -39493,21 +39615,36 @@ components:
     createNetworkFloorPlan_request:
       example:
         name: HQ Floor Plan
-        imageContents: Q2lzY28gTWVyYWtp
+        center:
+          lat: 37.770040510499996
+          lng: -122.38714009525
+        bottomLeftCorner:
+          lat: 37.770040510499996
+          lng: -122.38714009525
+        bottomRightCorner:
+          lat: 37.770040510499996
+          lng: -122.38714009525
+        topLeftCorner:
+          lat: 37.770040510499996
+          lng: -122.38714009525
+        topRightCorner:
+          lat: 37.770040510499996
+          lng: -122.38714009525
+        imageContents: 2a9edd3f4ffd80130c647d13eacb59f3
       properties:
         name:
           description: The name of your floor plan.
           type: string
         center:
-          $ref: '#/components/schemas/createNetworkFloorPlan_request_center'
+          $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_center'
         bottomLeftCorner:
-          $ref: '#/components/schemas/createNetworkFloorPlan_request_bottomLeftCorner'
+          $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_bottomLeftCorner'
         bottomRightCorner:
-          $ref: '#/components/schemas/createNetworkFloorPlan_request_bottomRightCorner'
+          $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_bottomRightCorner'
         topLeftCorner:
-          $ref: '#/components/schemas/createNetworkFloorPlan_request_topLeftCorner'
+          $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_topLeftCorner'
         topRightCorner:
-          $ref: '#/components/schemas/createNetworkFloorPlan_request_topRightCorner'
+          $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_topRightCorner'
         imageContents:
           description: "The file contents (a base 64 encoded string) of your image.\
             \ Supported formats are PNG, GIF, and JPG. Note that all images are saved\
@@ -39659,6 +39796,111 @@ components:
           $ref: '#/components/schemas/getOrganizationFirmwareUpgrades_200_response_inner_toVersion'
         fromVersion:
           $ref: '#/components/schemas/getOrganizationFirmwareUpgrades_200_response_inner_fromVersion'
+      type: object
+    getNetworkFloorPlans_200_response_inner:
+      example:
+        imageMd5: imageMd5
+        floorPlanId: floorPlanId
+        topLeftCorner:
+          lng: 7.386282
+          lat: 4.145608
+        devices:
+        - address: address
+          notes: notes
+          lng: 6.0274563
+          mac: mac
+          tags:
+          - tags
+          - tags
+          serial: serial
+          name: name
+          networkId: networkId
+          model: model
+          firmware: firmware
+          lat: 0.8008282
+          productType: productType
+          lanIp: lanIp
+        - address: address
+          notes: notes
+          lng: 6.0274563
+          mac: mac
+          tags:
+          - tags
+          - tags
+          serial: serial
+          name: name
+          networkId: networkId
+          model: model
+          firmware: firmware
+          lat: 0.8008282
+          productType: productType
+          lanIp: lanIp
+        center:
+          lng: 2.302136
+          lat: 5.637377
+        bottomRightCorner:
+          lng: 2.027123
+          lat: 3.6160767
+        imageUrlExpiresAt: imageUrlExpiresAt
+        imageUrl: imageUrl
+        name: name
+        width: 1.4658129
+        topRightCorner:
+          lng: 1.0246457
+          lat: 1.2315135
+        imageExtension: imageExtension
+        bottomLeftCorner:
+          lng: 9.301444
+          lat: 7.0614014
+        height: 5.962134
+      properties:
+        floorPlanId:
+          description: Floor plan ID
+          type: string
+        imageUrl:
+          description: The url link for the floor plan image.
+          type: string
+        imageUrlExpiresAt:
+          description: The time the image url link will expire.
+          type: string
+        imageExtension:
+          description: The format type of the image.
+          type: string
+        imageMd5:
+          description: "The file contents (a base 64 encoded string) of your new image.\
+            \ Supported formats are PNG, GIF, and JPG. Note that all images are saved\
+            \ as PNG files, regardless of the format they are uploaded in. If you\
+            \ upload a new image, and you do NOT specify any new geolocation fields\
+            \ ('center, 'topLeftCorner', etc), the floor plan will be recentered with\
+            \ no rotation in order to maintain the aspect ratio of your new image."
+          format: byte
+          type: string
+        name:
+          description: The name of your floor plan.
+          type: string
+        devices:
+          description: List of devices for the floorplan
+          items:
+            $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_devices_inner'
+          type: array
+        width:
+          description: The width of your floor plan.
+          format: float
+          type: number
+        height:
+          description: The height of your floor plan.
+          format: float
+          type: number
+        center:
+          $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_center'
+        bottomLeftCorner:
+          $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_bottomLeftCorner'
+        bottomRightCorner:
+          $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_bottomRightCorner'
+        topLeftCorner:
+          $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_topLeftCorner'
+        topRightCorner:
+          $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_topRightCorner'
       type: object
     updateNetworkWirelessSsidDeviceTypeGroupPolicies_request:
       example:
@@ -40831,6 +41073,28 @@ components:
         securePort:
           $ref: '#/components/schemas/getNetworkSettings_200_response_securePort'
       type: object
+    getNetworkWirelessBilling_200_response_plans_inner:
+      example:
+        timeLimit: timeLimit
+        price: 0.8008282
+        bandwidthLimits:
+          limitUp: 6
+          limitDown: 1
+        id: id
+      properties:
+        id:
+          description: The id of the pricing plan to update.
+          type: string
+        price:
+          description: The price of the billing plan.
+          format: float
+          type: number
+        bandwidthLimits:
+          $ref: '#/components/schemas/getNetworkWirelessBilling_200_response_plans_inner_bandwidthLimits'
+        timeLimit:
+          description: The time limit of the pricing plan in minutes.
+          type: string
+      type: object
     updateNetworkApplianceVpnBgp_request_neighbors_inner_ttlSecurity:
       description: Settings for BGP TTL security to protect BGP peering sessions from
         forged IP attacks.
@@ -40909,6 +41173,36 @@ components:
           description: The name of the payload template.
           type: string
       type: object
+    claimIntoOrganization_200_response:
+      example:
+        serials:
+        - serials
+        - serials
+        licenses:
+        - mode: mode
+          key: key
+        - mode: mode
+          key: key
+        orders:
+        - orders
+        - orders
+      properties:
+        orders:
+          description: The numbers of the orders claimed
+          items:
+            type: string
+          type: array
+        serials:
+          description: The serials of the devices claimed
+          items:
+            type: string
+          type: array
+        licenses:
+          description: The licenses claimed
+          items:
+            $ref: '#/components/schemas/claimIntoOrganization_200_response_licenses_inner'
+          type: array
+      type: object
     updateNetworkWirelessSsid_request_localRadius:
       description: "The current setting for Local Authentication, a built-in RADIUS\
         \ server on the access point. Only valid if authMode is '8021x-localradius'."
@@ -40929,10 +41223,10 @@ components:
         model: model
       properties:
         switchProfileId:
-          description: Switch profile id
+          description: Switch template id
           type: string
         name:
-          description: Switch profile name
+          description: Switch template name
           type: string
         model:
           description: Switch model
@@ -41894,6 +42188,22 @@ components:
           description: Enables / disables SecureConnect on the network. Optional.
           type: boolean
       type: object
+    getNetworkFloorPlans_200_response_inner_bottomLeftCorner:
+      description: The longitude and latitude of the bottom left corner of your floor
+        plan.
+      example:
+        lng: 9.301444
+        lat: 7.0614014
+      properties:
+        lat:
+          description: Latitude
+          format: float
+          type: number
+        lng:
+          description: Longitude
+          format: float
+          type: number
+      type: object
     getDeviceSensorRelationships_200_response_inner_livestream:
       description: A role defined between an MT sensor and an MV camera that adds
         the camera's livestream to the sensor's details page. Snapshots from the camera
@@ -42388,7 +42698,10 @@ components:
           type: string
       type: object
     updateNetworkCellularGatewayUplink_request:
-      example: {}
+      example:
+        bandwidthLimits:
+          limitUp: 1000
+          limitDown: 1000
       properties:
         bandwidthLimits:
           $ref: '#/components/schemas/updateNetworkApplianceTrafficShapingUplinkBandwidth_request_bandwidthLimits_cellular'
@@ -43163,68 +43476,6 @@ components:
           type: boolean
         profile:
           $ref: '#/components/schemas/getDeviceSwitchPorts_200_response_inner_profile'
-      type: object
-    getOrganizationDevices_200_response_inner:
-      example:
-        address: address
-        notes: notes
-        lng: 6.0274563
-        mac: mac
-        tags:
-        - tags
-        - tags
-        serial: serial
-        name: name
-        networkId: networkId
-        model: model
-        firmware: firmware
-        lat: 0.8008282
-        productType: productType
-        lanIp: lanIp
-      properties:
-        name:
-          description: Name of the device
-          type: string
-        lat:
-          description: Latitude of the device
-          format: float
-          type: number
-        lng:
-          description: Longitude of the device
-          format: float
-          type: number
-        address:
-          description: Physical address of the device
-          type: string
-        notes:
-          description: "Notes for the device, limited to 255 characters"
-          type: string
-        tags:
-          description: List of tags assigned to the device
-          items:
-            type: string
-          type: array
-        networkId:
-          description: ID of the network the device belongs to
-          type: string
-        serial:
-          description: Serial number of the device
-          type: string
-        model:
-          description: Model of the device
-          type: string
-        mac:
-          description: MAC address of the device
-          type: string
-        lanIp:
-          description: LAN IP address of the device
-          type: string
-        firmware:
-          description: Firmware version of the device
-          type: string
-        productType:
-          description: Product type of the device
-          type: string
       type: object
     getNetworkFirmwareUpgrades_200_response_products_wireless:
       description: The network device to be updated
@@ -44048,14 +44299,14 @@ components:
       example:
         bandwidthLimits:
           wan1:
-            limitUp: 1000000
-            limitDown: 1000000
+            limitUp: 1000
+            limitDown: 1000
           wan2:
-            limitUp: 1000000
-            limitDown: 1000000
+            limitUp: 1000
+            limitDown: 1000
           cellular:
-            limitUp: 51200
-            limitDown: 51200
+            limitUp: 1000
+            limitDown: 1000
       properties:
         bandwidthLimits:
           $ref: '#/components/schemas/updateNetworkApplianceTrafficShapingUplinkBandwidth_request_bandwidthLimits'
@@ -44773,17 +45024,17 @@ components:
             type: string
           type: array
         switchProfiles:
-          description: (optional) List of switch profiles ids for template network
+          description: (optional) List of switch templates ids for template network
           items:
             type: string
           type: array
         igmpSnoopingEnabled:
           description: "IGMP snooping enabled for switches, switch stacks or switch\
-            \ profiles"
+            \ templates"
           type: boolean
         floodUnknownMulticastTrafficEnabled:
           description: "Flood unknown multicast traffic enabled for switches, switch\
-            \ stacks or switch profiles"
+            \ stacks or switch templates"
           type: boolean
       type: object
     createNetworkGroupPolicy_request_firewallAndTrafficShaping_l3FirewallRules_inner:
@@ -45484,6 +45735,12 @@ components:
         ambient:
           $ref: '#/components/schemas/getOrganizationSensorReadingsHistory_200_response_inner_noise_ambient'
       type: object
+    updateNetworkAlertsSettings_request_muting:
+      description: Mute alerts under certain conditions
+      properties:
+        byPortSchedules:
+          $ref: '#/components/schemas/updateNetworkAlertsSettings_request_muting_byPortSchedules'
+      type: object
     getNetworkApplianceSsids_200_response_inner:
       example:
         authMode: authMode
@@ -45637,6 +45894,26 @@ components:
       required:
       - rules
       type: object
+    getNetworkWirelessSsids_200_response_inner_radiusServers_inner:
+      example:
+        port: 6
+        host: host
+        openRoamingCertificateId: 1
+        caCertificate: caCertificate
+      properties:
+        host:
+          description: IP address (or FQDN) of your RADIUS server
+          type: string
+        port:
+          description: UDP port the RADIUS server listens on for Access-requests
+          type: integer
+        openRoamingCertificateId:
+          description: The ID of the Openroaming Certificate attached to radius server
+          type: integer
+        caCertificate:
+          description: Certificate used for authorization for the RADSEC Server
+          type: string
+      type: object
     updateOrganizationApplianceSecurityIntrusion_request:
       example:
         allowedRules:
@@ -45711,7 +45988,7 @@ components:
         currency: USD
         plans:
         - id: "1"
-          price: 5
+          price: 5.0
           bandwidthLimits:
             limitUp: 1000
             limitDown: 1000
@@ -45725,6 +46002,15 @@ components:
             maximum of 5)
           items:
             $ref: '#/components/schemas/updateNetworkWirelessBilling_request_plans_inner'
+          type: array
+      type: object
+    createNetworkWirelessRfProfile_request_flexRadios:
+      description: Flex radio settings.
+      properties:
+        byModel:
+          description: Flex radios by model.
+          items:
+            $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_flexRadios_byModel_inner'
           type: array
       type: object
     getAdministeredIdentitiesMe_200_response_authentication_twoFactor:
@@ -46573,6 +46859,241 @@ components:
           description: Note whether credentials were sent successfully
           type: boolean
       type: object
+    updateNetworkWirelessSsidBonjourForwarding_request_exception:
+      description: Bonjour forwarding exception
+      properties:
+        enabled:
+          description: "If true, Bonjour forwarding exception is enabled on this SSID.\
+            \ Exception is required to enable L2 isolation and Bonjour forwarding\
+            \ to work together."
+          type: boolean
+      type: object
+    getNetworkWirelessSsids_200_response_inner:
+      example:
+        bandSelection: 5 GHz band only
+        minBitrate: 2
+        radiusAccountingServers:
+        - port: 5
+          host: host
+          openRoamingCertificateId: 5
+          caCertificate: caCertificate
+        - port: 5
+          host: host
+          openRoamingCertificateId: 5
+          caCertificate: caCertificate
+        radiusAttributeForGroupPolicies: Airespace-ACL-Name
+        wpaEncryptionMode: WPA1 and WPA2
+        enabled: true
+        radiusFailoverPolicy: Allow access
+        splashPage: Billing
+        number: 0
+        encryptionMode: wep
+        perSsidBandwidthLimitUp: 3
+        radiusServers:
+        - port: 6
+          host: host
+          openRoamingCertificateId: 1
+          caCertificate: caCertificate
+        - port: 6
+          host: host
+          openRoamingCertificateId: 1
+          caCertificate: caCertificate
+        perClientBandwidthLimitDown: 9
+        radiusEnabled: true
+        radiusAccountingEnabled: true
+        visible: true
+        availableOnAllAps: true
+        ipAssignmentMode: Bridge mode
+        ssidAdminAccessible: true
+        perSsidBandwidthLimitDown: 2
+        adminSplashUrl: adminSplashUrl
+        authMode: 8021x-google
+        perClientBandwidthLimitUp: 7
+        mandatoryDhcpEnabled: true
+        radiusLoadBalancingPolicy: Round robin
+        availabilityTags:
+        - availabilityTags
+        - availabilityTags
+        name: name
+        splashTimeout: splashTimeout
+        walledGardenEnabled: true
+        walledGardenRanges:
+        - walledGardenRanges
+        - walledGardenRanges
+      properties:
+        number:
+          description: Unique identifier of the SSID
+          type: integer
+        name:
+          description: The name of the SSID
+          type: string
+        enabled:
+          description: Whether or not the SSID is enabled
+          type: boolean
+        splashPage:
+          description: The type of splash page for the SSID
+          enum:
+          - Billing
+          - Cisco ISE
+          - Click-through splash page
+          - Facebook Wi-Fi
+          - Google Apps domain
+          - Google OAuth
+          - None
+          - Password-protected with Active Directory
+          - Password-protected with LDAP
+          - Password-protected with Meraki RADIUS
+          - Password-protected with custom RADIUS
+          - SMS authentication
+          - Sponsored guest
+          - Systems Manager Sentry
+          type: string
+        ssidAdminAccessible:
+          description: SSID Administrator access status
+          type: boolean
+        authMode:
+          description: The association control method for the SSID
+          enum:
+          - 8021x-google
+          - 8021x-localradius
+          - 8021x-meraki
+          - 8021x-nac
+          - 8021x-radius
+          - ipsk-with-nac
+          - ipsk-with-radius
+          - ipsk-without-radius
+          - open
+          - open-enhanced
+          - open-with-nac
+          - open-with-radius
+          - psk
+          type: string
+        encryptionMode:
+          description: The psk encryption mode for the SSID
+          enum:
+          - wep
+          - wpa
+          type: string
+        wpaEncryptionMode:
+          description: The types of WPA encryption
+          enum:
+          - WPA1 and WPA2
+          - WPA1 only
+          - WPA2 only
+          - WPA3 192-bit Security
+          - WPA3 Transition Mode
+          - WPA3 only
+          type: string
+        radiusServers:
+          description: List of RADIUS 802.1X servers to be used for authentication
+          items:
+            $ref: '#/components/schemas/getNetworkWirelessSsids_200_response_inner_radiusServers_inner'
+          type: array
+        radiusAccountingServers:
+          description: List of RADIUS accounting 802.1X servers to be used for authentication
+          items:
+            $ref: '#/components/schemas/getNetworkWirelessSsids_200_response_inner_radiusAccountingServers_inner'
+          type: array
+        radiusAccountingEnabled:
+          description: Whether or not RADIUS accounting is enabled
+          type: boolean
+        radiusEnabled:
+          description: Whether RADIUS authentication is enabled
+          type: boolean
+        radiusAttributeForGroupPolicies:
+          description: RADIUS attribute used to look up group policies
+          enum:
+          - Airespace-ACL-Name
+          - Aruba-User-Role
+          - Filter-Id
+          - Reply-Message
+          type: string
+        radiusFailoverPolicy:
+          description: Policy which determines how authentication requests should
+            be handled in the event that all of the configured RADIUS servers are
+            unreachable
+          enum:
+          - Allow access
+          - Deny access
+          type: string
+        radiusLoadBalancingPolicy:
+          description: "Policy which determines which RADIUS server will be contacted\
+            \ first in an authentication attempt, and the ordering of any necessary\
+            \ retry attempts"
+          enum:
+          - Round robin
+          - Strict priority order
+          type: string
+        ipAssignmentMode:
+          description: The client IP assignment mode
+          enum:
+          - Bridge mode
+          - Ethernet over GRE
+          - Layer 3 roaming
+          - Layer 3 roaming with a concentrator
+          - NAT mode
+          - VPN
+          type: string
+        adminSplashUrl:
+          description: URL for the admin splash page
+          type: string
+        splashTimeout:
+          description: Splash page timeout
+          type: string
+        walledGardenEnabled:
+          description: Allow users to access a configurable list of IP ranges prior
+            to sign-on
+          type: boolean
+        walledGardenRanges:
+          description: Domain names and IP address ranges available in Walled Garden
+            mode
+          items:
+            type: string
+          type: array
+        minBitrate:
+          description: The minimum bitrate in Mbps of this SSID in the default indoor
+            RF profile
+          type: integer
+        bandSelection:
+          description: The client-serving radio frequencies of this SSID in the default
+            indoor RF profile
+          enum:
+          - 5 GHz band only
+          - Dual band operation
+          - Dual band operation with Band Steering
+          type: string
+        perClientBandwidthLimitUp:
+          description: The upload bandwidth limit in Kbps. (0 represents no limit.)
+          type: integer
+        perClientBandwidthLimitDown:
+          description: The download bandwidth limit in Kbps. (0 represents no limit.)
+          type: integer
+        visible:
+          description: Whether the SSID is advertised or hidden by the AP
+          type: boolean
+        availableOnAllAps:
+          description: Whether all APs broadcast the SSID or if it's restricted to
+            APs matching any availability tags
+          type: boolean
+        availabilityTags:
+          description: "List of tags for this SSID. If availableOnAllAps is false,\
+            \ then the SSID is only broadcast by APs with tags matching any of the\
+            \ tags in this list"
+          items:
+            type: string
+          type: array
+        perSsidBandwidthLimitUp:
+          description: The total upload bandwidth limit in Kbps (0 represents no limit)
+          type: integer
+        perSsidBandwidthLimitDown:
+          description: The total download bandwidth limit in Kbps (0 represents no
+            limit)
+          type: integer
+        mandatoryDhcpEnabled:
+          description: Whether clients connecting to this SSID must use the IP address
+            assigned by the DHCP server
+          type: boolean
+      type: object
     createNetworkGroupPolicy_request_scheduling_tuesday:
       description: The schedule object for Tuesday.
       properties:
@@ -46721,7 +47242,8 @@ components:
     updateNetworkWirelessSsid_request_radiusAccountingServers_inner:
       properties:
         host:
-          description: IP address to which the APs will send RADIUS accounting messages
+          description: IP address (or FQDN) to which the APs will send RADIUS accounting
+            messages
           type: string
         port:
           description: Port on the RADIUS server that is listening for accounting
@@ -46760,6 +47282,22 @@ components:
       required:
       - access
       - id
+      type: object
+    getNetworkFloorPlans_200_response_inner_topLeftCorner:
+      description: The longitude and latitude of the top left corner of your floor
+        plan.
+      example:
+        lng: 7.386282
+        lat: 4.145608
+      properties:
+        lat:
+          description: Latitude
+          format: float
+          type: number
+        lng:
+          description: Longitude
+          format: float
+          type: number
       type: object
     getNetworkWebhooksPayloadTemplates_200_response_inner_headers_inner:
       example:
@@ -47043,7 +47581,7 @@ components:
     updateNetworkWirelessSsid_request_radiusServers_inner:
       properties:
         host:
-          description: IP address of your RADIUS server
+          description: IP address (or FQDN) of your RADIUS server
           type: string
         port:
           description: UDP port the RADIUS server listens on for Access-requests
@@ -47072,6 +47610,34 @@ components:
           type: string
         toVersion:
           $ref: '#/components/schemas/updateNetworkFirmwareUpgrades_request_products_wireless_nextUpgrade_toVersion'
+      type: object
+    getOrganizationConfigTemplates_200_response_inner:
+      example:
+        name: name
+        timeZone: timeZone
+        productTypes:
+        - productTypes
+        - productTypes
+        id: id
+      properties:
+        id:
+          description: The ID of the network or config template to copy configuration
+            from
+          type: string
+        name:
+          description: The name of the configuration template
+          type: string
+        productTypes:
+          description: The product types of the configuration template
+          items:
+            type: string
+          type: array
+        timeZone:
+          description: "The timezone of the configuration template. For a list of\
+            \ allowed timezones, please see the 'TZ' column in the table in <a target='_blank'\
+            \ href='https://en.wikipedia.org/wiki/List_of_tz_database_time_zones'>this\
+            \ article</a>. Not applicable if copying from existing network or template"
+          type: string
       type: object
     updateNetworkApplianceSingleLan_request_mandatoryDhcp:
       description: Mandatory DHCP will enforce that clients connecting to this LAN
@@ -47264,6 +47830,221 @@ components:
       example:
         name: My SSID
         enabled: true
+        authMode: 8021x-radius
+        enterpriseAdminAccess: access enabled
+        encryptionMode: wpa
+        psk: deadbeef
+        wpaEncryptionMode: WPA2 only
+        dot11w:
+          enabled: true
+          required: false
+        dot11r:
+          enabled: true
+          adaptive: true
+        splashPage: Click-through splash page
+        splashGuestSponsorDomains:
+        - example.com
+        oauth:
+          allowedDomains:
+          - example.com
+        localRadius:
+          cacheTimeout: 60
+          passwordAuthentication:
+            enabled: false
+          certificateAuthentication:
+            enabled: true
+            useLdap: false
+            useOcsp: true
+            ocspResponderUrl: http://ocsp-server.example.com
+            clientRootCaCertificate:
+              contents: |-
+                -----BEGIN CERTIFICATE-----
+                MIIEKjCCAxKgAwIBAgIRANb+lsED3eb4+6YKLFFYqEkwDQYJKoZIhvcNAQELBQAw
+                gYcxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMREwDwYDVQQHDAhT
+                YW4gSm9zZTEcMBoGA1UECgwTQ2lzY28gU3lzdGVtcywgSW5jLjESMBAGA1UECwwJ
+                RE5BU3BhY2VzMR4wHAYDVQQDDBVjaXNjby5vcGVucm9hbWluZy5vcmcwHhcNMjAx
+                MTA1MjEzMzM1WhcNMjExMTA1MjIzMzM1WjCBpDEcMBoGCgmSJomT8ixkAQETDGRu
+                YXNwYWNlczpVUzELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMQ4wDAYDVQQKEwVD
+                aXNjbzEcMBoGA1UECxMTV0JBOldSSVggRW5kLUVudGl0eTE8MDoGA1UEAxMzNjQ3
+                MDcwNDM4NDQ5NjQxMjAwMDAuMTg4MzQuaHMuY2lzY28ub3BlbnJvYW1pbmcub3Jn
+                MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoqjP9QgRGyUO3p7SH9QK
+                uTq6UYK7nAyjImgS4yQxeBkyZ5f2EUkX8m/AOcewpPxxPBhjPKRwxGeX3S50ksiA
+                ayFomUeslR0S0Z7RN9rzJa+CFyi9MwWIHMbLgXpB8tsSpgTAqwrzoTzOGq9fgC6u
+                pZhdZrBkg3FeJgD88goCi9mZDsY2YAoeGRLFJ2fR8iICqIVQy+Htq9pE22WBLpnS
+                KjL3+mR9FArHNFtWlhKF2YHMUqyHHrnZnF/Ns7QNoMMF7/CK18iAKgnb+2wuGKM2
+                aEMddOeOTtz+i/rgjkp/RGMt011EdCsso0/cTo9qqX/bxOOCE4/Mne/ChMkQPnNU
+                CwIDAQABo3IwcDAJBgNVHRMEAjAAMB8GA1UdIwQYMBaAFIG+4l5yiB01gP0sw4ML
+                USopqYcuMB0GA1UdDgQWBBSby1T9leYVOVVdOZXiHCSaDDEMiDAOBgNVHQ8BAf8E
+                BAMCBaAwEwYDVR0lBAwwCgYIKwYBBQUHAwIwDQYJKoZIhvcNAQELBQADggEBAEyE
+                1mjSUyY6uNp6W4l20w7SskALSJDRKkOeZxAgF3VMxlsCuEl70s9oEfntwIpyQtSa
+                jON/9yJHbwm/Az824bmk8Dc7AXIPhay+dftXb8j529gPuYB9AKoPNg0NctkyYCQh
+                a/3YQVdDWX7XgmEiXkL57M7G6+IdcPDONLArfjOcT9qHdkVVq1AIjlMSx3OQQmm/
+                uoLb/G9q/97QA2/l8shG/Na8HjVqGLcl5TNZdbNhs2w9ogxr/GNzqdvym6RQ8vT/
+                UR2n+uwH4n1MUxmHYYeyot5dnIV1IJ6hQ54JAncM9HvCLFk1WHz6RKshQUCuPBiJ
+                wTw70BVktzJnb0VLeDg=
+                -----END CERTIFICATE-----
+        ldap:
+          servers:
+          - host: 127.0.0.1
+            port: 389
+          credentials:
+            distinguishedName: "cn=user,dc=example,dc=com"
+            password: password
+          baseDistinguishedName: "dc=example,dc=com"
+          serverCaCertificate:
+            contents: |-
+              -----BEGIN CERTIFICATE-----
+              MIIEKjCCAxKgAwIBAgIRANb+lsED3eb4+6YKLFFYqEkwDQYJKoZIhvcNAQELBQAw
+              gYcxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMREwDwYDVQQHDAhT
+              YW4gSm9zZTEcMBoGA1UECgwTQ2lzY28gU3lzdGVtcywgSW5jLjESMBAGA1UECwwJ
+              RE5BU3BhY2VzMR4wHAYDVQQDDBVjaXNjby5vcGVucm9hbWluZy5vcmcwHhcNMjAx
+              MTA1MjEzMzM1WhcNMjExMTA1MjIzMzM1WjCBpDEcMBoGCgmSJomT8ixkAQETDGRu
+              YXNwYWNlczpVUzELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMQ4wDAYDVQQKEwVD
+              aXNjbzEcMBoGA1UECxMTV0JBOldSSVggRW5kLUVudGl0eTE8MDoGA1UEAxMzNjQ3
+              MDcwNDM4NDQ5NjQxMjAwMDAuMTg4MzQuaHMuY2lzY28ub3BlbnJvYW1pbmcub3Jn
+              MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoqjP9QgRGyUO3p7SH9QK
+              uTq6UYK7nAyjImgS4yQxeBkyZ5f2EUkX8m/AOcewpPxxPBhjPKRwxGeX3S50ksiA
+              ayFomUeslR0S0Z7RN9rzJa+CFyi9MwWIHMbLgXpB8tsSpgTAqwrzoTzOGq9fgC6u
+              pZhdZrBkg3FeJgD88goCi9mZDsY2YAoeGRLFJ2fR8iICqIVQy+Htq9pE22WBLpnS
+              KjL3+mR9FArHNFtWlhKF2YHMUqyHHrnZnF/Ns7QNoMMF7/CK18iAKgnb+2wuGKM2
+              aEMddOeOTtz+i/rgjkp/RGMt011EdCsso0/cTo9qqX/bxOOCE4/Mne/ChMkQPnNU
+              CwIDAQABo3IwcDAJBgNVHRMEAjAAMB8GA1UdIwQYMBaAFIG+4l5yiB01gP0sw4ML
+              USopqYcuMB0GA1UdDgQWBBSby1T9leYVOVVdOZXiHCSaDDEMiDAOBgNVHQ8BAf8E
+              BAMCBaAwEwYDVR0lBAwwCgYIKwYBBQUHAwIwDQYJKoZIhvcNAQELBQADggEBAEyE
+              1mjSUyY6uNp6W4l20w7SskALSJDRKkOeZxAgF3VMxlsCuEl70s9oEfntwIpyQtSa
+              jON/9yJHbwm/Az824bmk8Dc7AXIPhay+dftXb8j529gPuYB9AKoPNg0NctkyYCQh
+              a/3YQVdDWX7XgmEiXkL57M7G6+IdcPDONLArfjOcT9qHdkVVq1AIjlMSx3OQQmm/
+              uoLb/G9q/97QA2/l8shG/Na8HjVqGLcl5TNZdbNhs2w9ogxr/GNzqdvym6RQ8vT/
+              UR2n+uwH4n1MUxmHYYeyot5dnIV1IJ6hQ54JAncM9HvCLFk1WHz6RKshQUCuPBiJ
+              wTw70BVktzJnb0VLeDg=
+              -----END CERTIFICATE-----
+        activeDirectory:
+          servers:
+          - host: 127.0.0.1
+            port: 3268
+          credentials:
+            logonName: user
+            password: password
+        radiusServers:
+        - host: 0.0.0.0
+          port: 3000
+          secret: secret-string
+          radsecEnabled: true
+          openRoamingCertificateId: 2
+          caCertificate: |-
+            -----BEGIN CERTIFICATE-----
+            MIIEKjCCAxKgAwIBAgIRANb+lsED3eb4+6YKLFFYqEkwDQYJKoZIhvcNAQELBQAw
+            gYcxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMREwDwYDVQQHDAhT
+            YW4gSm9zZTEcMBoGA1UECgwTQ2lzY28gU3lzdGVtcywgSW5jLjESMBAGA1UECwwJ
+            RE5BU3BhY2VzMR4wHAYDVQQDDBVjaXNjby5vcGVucm9hbWluZy5vcmcwHhcNMjAx
+            MTA1MjEzMzM1WhcNMjExMTA1MjIzMzM1WjCBpDEcMBoGCgmSJomT8ixkAQETDGRu
+            YXNwYWNlczpVUzELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMQ4wDAYDVQQKEwVD
+            aXNjbzEcMBoGA1UECxMTV0JBOldSSVggRW5kLUVudGl0eTE8MDoGA1UEAxMzNjQ3
+            MDcwNDM4NDQ5NjQxMjAwMDAuMTg4MzQuaHMuY2lzY28ub3BlbnJvYW1pbmcub3Jn
+            MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoqjP9QgRGyUO3p7SH9QK
+            uTq6UYK7nAyjImgS4yQxeBkyZ5f2EUkX8m/AOcewpPxxPBhjPKRwxGeX3S50ksiA
+            ayFomUeslR0S0Z7RN9rzJa+CFyi9MwWIHMbLgXpB8tsSpgTAqwrzoTzOGq9fgC6u
+            pZhdZrBkg3FeJgD88goCi9mZDsY2YAoeGRLFJ2fR8iICqIVQy+Htq9pE22WBLpnS
+            KjL3+mR9FArHNFtWlhKF2YHMUqyHHrnZnF/Ns7QNoMMF7/CK18iAKgnb+2wuGKM2
+            aEMddOeOTtz+i/rgjkp/RGMt011EdCsso0/cTo9qqX/bxOOCE4/Mne/ChMkQPnNU
+            CwIDAQABo3IwcDAJBgNVHRMEAjAAMB8GA1UdIwQYMBaAFIG+4l5yiB01gP0sw4ML
+            USopqYcuMB0GA1UdDgQWBBSby1T9leYVOVVdOZXiHCSaDDEMiDAOBgNVHQ8BAf8E
+            BAMCBaAwEwYDVR0lBAwwCgYIKwYBBQUHAwIwDQYJKoZIhvcNAQELBQADggEBAEyE
+            1mjSUyY6uNp6W4l20w7SskALSJDRKkOeZxAgF3VMxlsCuEl70s9oEfntwIpyQtSa
+            jON/9yJHbwm/Az824bmk8Dc7AXIPhay+dftXb8j529gPuYB9AKoPNg0NctkyYCQh
+            a/3YQVdDWX7XgmEiXkL57M7G6+IdcPDONLArfjOcT9qHdkVVq1AIjlMSx3OQQmm/
+            uoLb/G9q/97QA2/l8shG/Na8HjVqGLcl5TNZdbNhs2w9ogxr/GNzqdvym6RQ8vT/
+            UR2n+uwH4n1MUxmHYYeyot5dnIV1IJ6hQ54JAncM9HvCLFk1WHz6RKshQUCuPBiJ
+            wTw70BVktzJnb0VLeDg=
+            -----END CERTIFICATE-----
+        radiusProxyEnabled: false
+        radiusTestingEnabled: true
+        radiusCalledStationId: 00-11-22-33-44-55:AP1
+        radiusAuthenticationNasId: 00-11-22-33-44-55:AP1
+        radiusServerTimeout: 5
+        radiusServerAttemptsLimit: 5
+        radiusFallbackEnabled: true
+        radiusCoaEnabled: true
+        radiusFailoverPolicy: Deny access
+        radiusLoadBalancingPolicy: Round robin
+        radiusAccountingEnabled: true
+        radiusAccountingServers:
+        - host: 0.0.0.0
+          port: 3000
+          secret: secret-string
+          radsecEnabled: true
+          caCertificate: |-
+            -----BEGIN CERTIFICATE-----
+            MIIEKjCCAxKgAwIBAgIRANb+lsED3eb4+6YKLFFYqEkwDQYJKoZIhvcNAQELBQAw
+            gYcxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMREwDwYDVQQHDAhT
+            YW4gSm9zZTEcMBoGA1UECgwTQ2lzY28gU3lzdGVtcywgSW5jLjESMBAGA1UECwwJ
+            RE5BU3BhY2VzMR4wHAYDVQQDDBVjaXNjby5vcGVucm9hbWluZy5vcmcwHhcNMjAx
+            MTA1MjEzMzM1WhcNMjExMTA1MjIzMzM1WjCBpDEcMBoGCgmSJomT8ixkAQETDGRu
+            YXNwYWNlczpVUzELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMQ4wDAYDVQQKEwVD
+            aXNjbzEcMBoGA1UECxMTV0JBOldSSVggRW5kLUVudGl0eTE8MDoGA1UEAxMzNjQ3
+            MDcwNDM4NDQ5NjQxMjAwMDAuMTg4MzQuaHMuY2lzY28ub3BlbnJvYW1pbmcub3Jn
+            MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoqjP9QgRGyUO3p7SH9QK
+            uTq6UYK7nAyjImgS4yQxeBkyZ5f2EUkX8m/AOcewpPxxPBhjPKRwxGeX3S50ksiA
+            ayFomUeslR0S0Z7RN9rzJa+CFyi9MwWIHMbLgXpB8tsSpgTAqwrzoTzOGq9fgC6u
+            pZhdZrBkg3FeJgD88goCi9mZDsY2YAoeGRLFJ2fR8iICqIVQy+Htq9pE22WBLpnS
+            KjL3+mR9FArHNFtWlhKF2YHMUqyHHrnZnF/Ns7QNoMMF7/CK18iAKgnb+2wuGKM2
+            aEMddOeOTtz+i/rgjkp/RGMt011EdCsso0/cTo9qqX/bxOOCE4/Mne/ChMkQPnNU
+            CwIDAQABo3IwcDAJBgNVHRMEAjAAMB8GA1UdIwQYMBaAFIG+4l5yiB01gP0sw4ML
+            USopqYcuMB0GA1UdDgQWBBSby1T9leYVOVVdOZXiHCSaDDEMiDAOBgNVHQ8BAf8E
+            BAMCBaAwEwYDVR0lBAwwCgYIKwYBBQUHAwIwDQYJKoZIhvcNAQELBQADggEBAEyE
+            1mjSUyY6uNp6W4l20w7SskALSJDRKkOeZxAgF3VMxlsCuEl70s9oEfntwIpyQtSa
+            jON/9yJHbwm/Az824bmk8Dc7AXIPhay+dftXb8j529gPuYB9AKoPNg0NctkyYCQh
+            a/3YQVdDWX7XgmEiXkL57M7G6+IdcPDONLArfjOcT9qHdkVVq1AIjlMSx3OQQmm/
+            uoLb/G9q/97QA2/l8shG/Na8HjVqGLcl5TNZdbNhs2w9ogxr/GNzqdvym6RQ8vT/
+            UR2n+uwH4n1MUxmHYYeyot5dnIV1IJ6hQ54JAncM9HvCLFk1WHz6RKshQUCuPBiJ
+            wTw70BVktzJnb0VLeDg=
+            -----END CERTIFICATE-----
+        radiusAccountingInterimInterval: 5
+        radiusAttributeForGroupPolicies: Filter-Id
+        ipAssignmentMode: NAT mode
+        useVlanTagging: false
+        concentratorNetworkId: N_24329156
+        secondaryConcentratorNetworkId: disabled
+        disassociateClientsOnVpnFailover: false
+        vlanId: 10
+        defaultVlanId: 1
+        apTagsAndVlanIds:
+        - tags:
+          - tag1
+          - tag2
+          vlanId: 100
+        walledGardenEnabled: true
+        walledGardenRanges:
+        - example.com
+        - 1.1.1.1/32
+        gre:
+          concentrator:
+            host: 192.168.1.1
+          key: 5
+        radiusOverride: false
+        radiusGuestVlanEnabled: true
+        radiusGuestVlanId: 1
+        minBitrate: 5.5
+        bandSelection: 5 GHz band only
+        perClientBandwidthLimitUp: 0
+        perClientBandwidthLimitDown: 0
+        perSsidBandwidthLimitUp: 0
+        perSsidBandwidthLimitDown: 0
+        lanIsolationEnabled: true
+        visible: true
+        availableOnAllAps: false
+        availabilityTags:
+        - tag1
+        - tag2
+        mandatoryDhcpEnabled: false
+        adultContentFilteringEnabled: false
+        dnsRewrite:
+          enabled: true
+          dnsCustomNameservers:
+          - 8.8.8.8
+          - 8.8.4.4
+        speedBurst:
+          enabled: true
       properties:
         name:
           description: The name of the SSID
@@ -47274,14 +48055,15 @@ components:
         authMode:
           description: "The association control method for the SSID ('open', 'open-enhanced',\
             \ 'psk', 'open-with-radius', 'open-with-nac', '8021x-meraki', '8021x-nac',\
-            \ '8021x-radius', '8021x-google', '8021x-localradius', 'ipsk-with-radius'\
-            \ or 'ipsk-without-radius')"
+            \ '8021x-radius', '8021x-google', '8021x-localradius', 'ipsk-with-radius',\
+            \ 'ipsk-without-radius' or 'ipsk-with-nac')"
           enum:
           - 8021x-google
           - 8021x-localradius
           - 8021x-meraki
           - 8021x-nac
           - 8021x-radius
+          - ipsk-with-nac
           - ipsk-with-radius
           - ipsk-without-radius
           - open
@@ -48031,7 +48813,7 @@ components:
           type: integer
         overrides:
           description: |-
-            Override MTU size for individual switches or switch profiles.
+            Override MTU size for individual switches or switch templates.
                   An empty array will clear overrides.
           items:
             $ref: '#/components/schemas/getNetworkSwitchMtu_200_response_overrides_inner'
@@ -48606,19 +49388,6 @@ components:
                   entities to apply the branding policy to. For 'Specific admins...', specify an array of admin IDs. For 'All admins of
                   networks...', specify an array of network IDs and/or configuration template IDs. For 'All admins of networks tagged...',
                   specify an array of tag names.
-          items:
-            type: string
-          type: array
-      type: object
-    getOrganizationDevicesStatuses_200_response_components:
-      description: Components
-      example:
-        powerSupplies:
-        - powerSupplies
-        - powerSupplies
-      properties:
-        powerSupplies:
-          description: Power Supplies
           items:
             type: string
           type: array
@@ -49263,6 +50032,11 @@ components:
             minBitrate: 11.0
             bandOperationMode: dual
             bandSteeringEnabled: true
+        flexRadios:
+          byModel:
+          - model: MR34
+            bands:
+            - "5"
       properties:
         name:
           description: The name of the new profile. Must be unique. This param is
@@ -49298,6 +50072,8 @@ components:
           $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_transmission'
         perSsidSettings:
           $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_perSsidSettings'
+        flexRadios:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_flexRadios'
       required:
       - bandSelectionType
       - name
@@ -49687,6 +50463,50 @@ components:
           description: Release date of the firmware version
           format: date-time
           type: string
+      type: object
+    getDeviceWirelessStatus_200_response_basicServiceSets_inner:
+      example:
+        ssidName: ssidName
+        ssidNumber: 0
+        visible: true
+        bssid: bssid
+        channelWidth: channelWidth
+        channel: 6
+        band: band
+        power: power
+        enabled: true
+        broadcasting: true
+      properties:
+        ssidName:
+          description: Name of wireless network
+          type: string
+        ssidNumber:
+          description: Unique identifier of wireless network
+          type: integer
+        enabled:
+          description: Status of wireless network
+          type: boolean
+        band:
+          description: Frequency range used by wireless network
+          type: string
+        bssid:
+          description: Unique identifier of wireless access point
+          type: string
+        channel:
+          description: Frequency channel used by wireless network
+          type: integer
+        channelWidth:
+          description: Width of frequency channel used by wireless network
+          type: string
+        power:
+          description: Strength of wireless signal
+          type: string
+        visible:
+          description: Whether the SSID is advertised or hidden
+          type: boolean
+        broadcasting:
+          description: Whether the SSID is broadcasting based on an availability schedule
+          type: boolean
       type: object
     lockNetworkSmDevices_request:
       example:
@@ -50726,6 +51546,11 @@ components:
             minBitrate: 11.0
             bandOperationMode: dual
             bandSteeringEnabled: true
+        flexRadios:
+          byModel:
+          - model: MR34
+            bands:
+            - "5"
       properties:
         name:
           description: The name of the new profile. Must be unique.
@@ -50758,6 +51583,8 @@ components:
           $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_transmission'
         perSsidSettings:
           $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_perSsidSettings'
+        flexRadios:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_flexRadios'
       type: object
     getOrganizationDevicesUplinksAddressesByDevice_200_response_inner:
       example:
@@ -50853,7 +51680,7 @@ components:
           description: The spanning tree protocol status in network
           type: boolean
         stpBridgePriority:
-          description: STP bridge priority for switches/stacks or switch profiles.
+          description: STP bridge priority for switches/stacks or switch templates.
             An empty array will clear the STP bridge priority settings.
           items:
             $ref: '#/components/schemas/updateNetworkSwitchStp_request_stpBridgePriority_inner'
@@ -50900,6 +51727,20 @@ components:
           items:
             $ref: '#/components/schemas/updateNetworkAlertsSettings_request_alerts_inner'
           type: array
+        muting:
+          $ref: '#/components/schemas/updateNetworkAlertsSettings_request_muting'
+      type: object
+    claimIntoOrganization_200_response_licenses_inner:
+      example:
+        mode: mode
+        key: key
+      properties:
+        key:
+          description: The key of the license
+          type: string
+        mode:
+          description: The mode of the license
+          type: string
       type: object
     createNetworkFirmwareUpgradesStagedEvent_request_products_switchCatalyst_nextUpgrade:
       description: The next upgrade version for the switch network
@@ -51095,6 +51936,7 @@ components:
       example:
         name: My config template
         timeZone: America/Los_Angeles
+        copyFromNetworkId: N_24329156
       properties:
         name:
           description: The name of the configuration template
@@ -51306,12 +52148,12 @@ components:
             type: string
           type: array
         switchProfiles:
-          description: List of switch profile IDs. Applicable only for template network.
+          description: List of switch template IDs. Applicable only for template network.
           items:
             type: string
           type: array
         mtuSize:
-          description: MTU size for the switches or switch profiles.
+          description: MTU size for the switches or switch templates.
           type: integer
       required:
       - mtuSize
@@ -51409,19 +52251,6 @@ components:
         enabled:
           description: Enable client sampling on uplink
           type: boolean
-      type: object
-    createNetworkFloorPlan_request_bottomRightCorner:
-      description: The longitude and latitude of the bottom right corner of your floor
-        plan.
-      properties:
-        lat:
-          description: Latitude
-          format: float
-          type: number
-        lng:
-          description: Longitude
-          format: float
-          type: number
       type: object
     getNetworkSwitchDhcpV4ServersSeen_200_response_inner_ipv4:
       description: IPv4 attributes of the server.
@@ -51577,6 +52406,33 @@ components:
           $ref: '#/components/schemas/createNetworkFirmwareUpgradesStagedEvent_request_products_switch'
         switchCatalyst:
           $ref: '#/components/schemas/createNetworkFirmwareUpgradesStagedEvent_request_products_switchCatalyst'
+      type: object
+    getNetworkWirelessBilling_200_response:
+      example:
+        plans:
+        - timeLimit: timeLimit
+          price: 0.8008282
+          bandwidthLimits:
+            limitUp: 6
+            limitDown: 1
+          id: id
+        - timeLimit: timeLimit
+          price: 0.8008282
+          bandwidthLimits:
+            limitUp: 6
+            limitDown: 1
+          id: id
+        currency: currency
+      properties:
+        currency:
+          description: The currency code of this node group's billing plans
+          type: string
+        plans:
+          description: Array of billing plans in the node group. (Can configure a
+            maximum of 5)
+          items:
+            $ref: '#/components/schemas/getNetworkWirelessBilling_200_response_plans_inner'
+          type: array
       type: object
     createNetworkSmTargetGroup_request:
       example:
@@ -52224,19 +53080,6 @@ components:
           description: The number of seats to move to the new organization. Must be
             less than or equal to the total number of seats of the license
           type: integer
-      type: object
-    createNetworkFloorPlan_request_topRightCorner:
-      description: The longitude and latitude of the top right corner of your floor
-        plan.
-      properties:
-        lat:
-          description: Latitude
-          format: float
-          type: number
-        lng:
-          description: Longitude
-          format: float
-          type: number
       type: object
     getNetworkApplianceTrafficShapingUplinkBandwidth_200_response_bandwidthLimits_wan2:
       description: "uplink wan2 configured limits [optional]"
@@ -53107,6 +53950,26 @@ components:
           description: The VPP Account's Service Token
           type: string
       type: object
+    getOrganizationApplianceUplinksUsageByNetwork_200_response_inner_byUplink_inner:
+      example:
+        serial: serial
+        received: 6
+        interface: interface
+        sent: 0
+      properties:
+        serial:
+          description: Uplink serial
+          type: string
+        interface:
+          description: Uplink name
+          type: string
+        sent:
+          description: Bytes sent
+          type: integer
+        received:
+          description: Bytes received
+          type: integer
+      type: object
     getNetworkApplianceRfProfiles_200_response_assigned_inner_perSsidSettings:
       description: Per-SSID radio settings by number.
       example:
@@ -53132,9 +53995,12 @@ components:
         "4":
           $ref: '#/components/schemas/getNetworkApplianceRfProfiles_200_response_assigned_inner_perSsidSettings_4'
       type: object
-    createNetworkFloorPlan_request_topLeftCorner:
-      description: The longitude and latitude of the top left corner of your floor
+    getNetworkFloorPlans_200_response_inner_topRightCorner:
+      description: The longitude and latitude of the top right corner of your floor
         plan.
+      example:
+        lng: 1.0246457
+        lat: 1.2315135
       properties:
         lat:
           description: Latitude
@@ -53144,80 +54010,6 @@ components:
           description: Longitude
           format: float
           type: number
-      type: object
-    getOrganizationDevicesStatuses_200_response:
-      example:
-        lastReportedAt: lastReportedAt
-        components:
-          powerSupplies:
-          - powerSupplies
-          - powerSupplies
-        primaryDns: primaryDns
-        publicIp: publicIp
-        mac: mac
-        tags:
-        - tags
-        - tags
-        serial: serial
-        name: name
-        networkId: networkId
-        secondaryDns: secondaryDns
-        model: model
-        gateway: gateway
-        ipType: ipType
-        productType: productType
-        status: status
-        lanIp: lanIp
-      properties:
-        name:
-          description: Device Name
-          type: string
-        serial:
-          description: Device Serial Number
-          type: string
-        mac:
-          description: MAC Address
-          type: string
-        publicIp:
-          description: Public IP Address
-          type: string
-        networkId:
-          description: Network ID
-          type: string
-        status:
-          description: Device Status
-          type: string
-        lastReportedAt:
-          description: Device Last Reported Location
-          type: string
-        lanIp:
-          description: LAN IP Address
-          type: string
-        gateway:
-          description: IP Gateway
-          type: string
-        ipType:
-          description: IP Type
-          type: string
-        primaryDns:
-          description: Primary DNS
-          type: string
-        secondaryDns:
-          description: Secondary DNS
-          type: string
-        productType:
-          description: Product Type
-          type: string
-        components:
-          $ref: '#/components/schemas/getOrganizationDevicesStatuses_200_response_components'
-        model:
-          description: Model
-          type: string
-        tags:
-          description: Tags
-          items:
-            type: string
-          type: array
       type: object
     updateNetworkWirelessSsidHotspot20_request_operator:
       description: Operator settings for this SSID
@@ -53306,11 +54098,11 @@ components:
             based on the new address. Only applies when lat and lng are not specified.
           type: boolean
         switchProfileId:
-          description: "The ID of a switch profile to bind to the device (for available\
-            \ switch profiles, see the 'Switch Profiles' endpoint). Use null to unbind\
-            \ the switch device from the current profile. For a device to be bindable\
-            \ to a switch profile, it must (1) be a switch, and (2) belong to a network\
-            \ that is bound to a configuration template."
+          description: "The ID of a switch template to bind to the device (for available\
+            \ switch templates, see the 'Switch Templates' endpoint). Use null to\
+            \ unbind the switch device from the current profile. For a device to be\
+            \ bindable to a switch template, it must (1) be a switch, and (2) belong\
+            \ to a network that is bound to a configuration template."
           type: string
         floorPlanId:
           description: The floor plan to associate to this device. null disassociates
@@ -54536,42 +55328,42 @@ components:
         daiTrusted: true
       properties:
         portId:
-          description: The identifier of the switch profile port.
+          description: The identifier of the switch template port.
           type: string
         name:
-          description: The name of the switch profile port.
+          description: The name of the switch template port.
           type: string
         tags:
-          description: The list of tags of the switch profile port.
+          description: The list of tags of the switch template port.
           items:
             type: string
           type: array
         enabled:
-          description: The status of the switch profile port.
+          description: The status of the switch template port.
           type: boolean
         poeEnabled:
-          description: The PoE status of the switch profile port.
+          description: The PoE status of the switch template port.
           type: boolean
         type:
-          description: The type of the switch profile port ('trunk' or 'access').
+          description: The type of the switch template port ('trunk' or 'access').
           enum:
           - access
           - trunk
           type: string
         vlan:
-          description: The VLAN of the switch profile port. A null value will clear
+          description: The VLAN of the switch template port. A null value will clear
             the value set for trunk ports.
           type: integer
         voiceVlan:
-          description: The voice VLAN of the switch profile port. Only applicable
+          description: The voice VLAN of the switch template port. Only applicable
             to access ports.
           type: integer
         allowedVlans:
-          description: The VLANs allowed on the switch profile port. Only applicable
+          description: The VLANs allowed on the switch template port. Only applicable
             to trunk ports.
           type: string
         isolationEnabled:
-          description: The isolation status of the switch profile port.
+          description: The isolation status of the switch template port.
           type: boolean
         rstpEnabled:
           description: The rapid spanning tree protocol status.
@@ -54586,10 +55378,10 @@ components:
           - root guard
           type: string
         linkNegotiation:
-          description: The link speed for the switch profile port.
+          description: The link speed for the switch template port.
           type: string
         linkNegotiationCapabilities:
-          description: Available link speeds for the switch profile port.
+          description: Available link speeds for the switch template port.
           items:
             type: string
           type: array
@@ -54605,7 +55397,7 @@ components:
           - Enforce
           type: string
         accessPolicyType:
-          description: "The type of the access policy of the switch profile port.\
+          description: "The type of the access policy of the switch template port.\
             \ Only applicable to access ports. Can be one of 'Open', 'Custom access\
             \ policy', 'MAC allow list' or 'Sticky MAC allow list'."
           enum:
@@ -54616,7 +55408,7 @@ components:
           type: string
         accessPolicyNumber:
           description: The number of a custom access policy to configure on the switch
-            profile port. Only applicable when 'accessPolicyType' is 'Custom access
+            template port. Only applicable when 'accessPolicyType' is 'Custom access
             policy'.
           type: integer
         macAllowList:
@@ -54637,7 +55429,7 @@ components:
             Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
           type: integer
         stormControlEnabled:
-          description: The storm control status of the switch profile port.
+          description: The storm control status of the switch template port.
           type: boolean
         flexibleStackingEnabled:
           description: "For supported switches (e.g. MS420/MS425), whether or not\
@@ -54875,19 +55667,6 @@ components:
       - type
       - value
       type: object
-    createNetworkFloorPlan_request_bottomLeftCorner:
-      description: The longitude and latitude of the bottom left corner of your floor
-        plan.
-      properties:
-        lat:
-          description: Latitude
-          format: float
-          type: number
-        lng:
-          description: Longitude
-          format: float
-          type: number
-      type: object
     getOrganizationSummaryTopClientsByUsage_200_response_inner:
       example:
         usage:
@@ -55103,6 +55882,88 @@ components:
           $ref: '#/components/schemas/getNetworkApplianceTrafficShapingUplinkBandwidth_200_response_bandwidthLimits_wan2'
         cellular:
           $ref: '#/components/schemas/getNetworkApplianceTrafficShapingUplinkBandwidth_200_response_bandwidthLimits_cellular'
+      type: object
+    getOrganizationDevicesStatuses_200_response_inner:
+      example:
+        lastReportedAt: lastReportedAt
+        components:
+          powerSupplies:
+          - powerSupplies
+          - powerSupplies
+        primaryDns: primaryDns
+        publicIp: publicIp
+        mac: mac
+        tags:
+        - tags
+        - tags
+        serial: serial
+        name: name
+        networkId: networkId
+        secondaryDns: secondaryDns
+        model: model
+        gateway: gateway
+        ipType: ipType
+        productType: productType
+        status: status
+        lanIp: lanIp
+      properties:
+        name:
+          description: Device Name
+          type: string
+        serial:
+          description: Device Serial Number
+          type: string
+        mac:
+          description: MAC Address
+          type: string
+        publicIp:
+          description: Public IP Address
+          type: string
+        networkId:
+          description: Network ID
+          type: string
+        status:
+          description: Device Status
+          type: string
+        lastReportedAt:
+          description: Device Last Reported Location
+          type: string
+        lanIp:
+          description: LAN IP Address
+          type: string
+        gateway:
+          description: IP Gateway
+          type: string
+        ipType:
+          description: IP Type
+          type: string
+        primaryDns:
+          description: Primary DNS
+          type: string
+        secondaryDns:
+          description: Secondary DNS
+          type: string
+        productType:
+          description: Product Type
+          type: string
+        components:
+          $ref: '#/components/schemas/getOrganizationDevicesStatuses_200_response_inner_components'
+        model:
+          description: Model
+          type: string
+        tags:
+          description: Tags
+          items:
+            type: string
+          type: array
+      type: object
+    rebootDevice_202_response:
+      example:
+        success: true
+      properties:
+        success:
+          description: Shows the success of the reboot
+          type: boolean
       type: object
     updateNetworkWirelessBilling_request_plans_inner_bandwidthLimits:
       description: The uplink bandwidth settings for the pricing plan.
@@ -55390,7 +56251,7 @@ components:
           description: MTU size for the entire network. Default value is 9578.
           type: integer
         overrides:
-          description: Override MTU size for individual switches or switch profiles.
+          description: Override MTU size for individual switches or switch templates.
             An empty array will clear overrides.
           items:
             $ref: '#/components/schemas/getNetworkSwitchMtu_200_response_overrides_inner'
@@ -55811,6 +56672,68 @@ components:
         fqdn:
           description: "FQDN format address. Currently only availabe in 'destination'\
             \ of 'vpnTrafficUplinkPreference' object. E.g.: 'www.google.com'"
+          type: string
+      type: object
+    getNetworkFloorPlans_200_response_inner_devices_inner:
+      example:
+        address: address
+        notes: notes
+        lng: 6.0274563
+        mac: mac
+        tags:
+        - tags
+        - tags
+        serial: serial
+        name: name
+        networkId: networkId
+        model: model
+        firmware: firmware
+        lat: 0.8008282
+        productType: productType
+        lanIp: lanIp
+      properties:
+        name:
+          description: Name of the device
+          type: string
+        lat:
+          description: Latitude of the device
+          format: float
+          type: number
+        lng:
+          description: Longitude of the device
+          format: float
+          type: number
+        address:
+          description: Physical address of the device
+          type: string
+        notes:
+          description: "Notes for the device, limited to 255 characters"
+          type: string
+        tags:
+          description: List of tags assigned to the device
+          items:
+            type: string
+          type: array
+        networkId:
+          description: ID of the network the device belongs to
+          type: string
+        serial:
+          description: Serial number of the device
+          type: string
+        model:
+          description: Model of the device
+          type: string
+        mac:
+          description: MAC address of the device
+          type: string
+        lanIp:
+          description: LAN IP address of the device
+          type: string
+        firmware:
+          description: Firmware version of the device
+          type: string
+        productType:
+          description: Product type of the device
           type: string
       type: object
     getNetworkApplianceVlans_200_response_inner_ipv6:
@@ -57161,6 +58084,22 @@ components:
             \ article.</a>"
           type: string
       type: object
+    getNetworkFloorPlans_200_response_inner_bottomRightCorner:
+      description: The longitude and latitude of the bottom right corner of your floor
+        plan.
+      example:
+        lng: 2.027123
+        lat: 3.6160767
+      properties:
+        lat:
+          description: Latitude
+          format: float
+          type: number
+        lng:
+          description: Longitude
+          format: float
+          type: number
+      type: object
     checkinNetworkSmDevices_200_response:
       example:
         ids:
@@ -57232,7 +58171,7 @@ components:
     updateNetworkSwitchStp_request_stpBridgePriority_inner:
       properties:
         switchProfiles:
-          description: List of switch profile IDs
+          description: List of switch template IDs
           items:
             type: string
           type: array
@@ -57247,7 +58186,7 @@ components:
             type: string
           type: array
         stpPriority:
-          description: "STP priority for switch, stacks, or switch profiles"
+          description: "STP priority for switch, stacks, or switch templates"
           type: integer
       required:
       - stpPriority
@@ -58525,6 +59464,19 @@ components:
       - port
       - roles
       type: object
+    getNetworkWirelessBilling_200_response_plans_inner_bandwidthLimits:
+      description: The uplink bandwidth settings for the pricing plan.
+      example:
+        limitUp: 6
+        limitDown: 1
+      properties:
+        limitUp:
+          description: "The maximum upload limit (integer, in Kbps)."
+          type: integer
+        limitDown:
+          description: "The maximum download limit (integer, in Kbps)."
+          type: integer
+      type: object
     getOrganizationFirmwareUpgradesByDevice_200_response_inner_upgrade:
       description: The devices upgrade details and status
       example:
@@ -58904,6 +59856,8 @@ components:
     updateNetworkWirelessSsidBonjourForwarding_request:
       example:
         enabled: true
+        exception:
+          enabled: true
         rules:
         - description: A simple bonjour rule
           vlanId: "1"
@@ -58918,6 +59872,8 @@ components:
           items:
             $ref: '#/components/schemas/createNetworkGroupPolicy_request_bonjourForwarding_rules_inner'
           type: array
+        exception:
+          $ref: '#/components/schemas/updateNetworkWirelessSsidBonjourForwarding_request_exception'
       type: object
     getNetworkWirelessSettings_200_response_namedVlans:
       description: Named VLAN settings for wireless networks.
@@ -59067,7 +60023,7 @@ components:
         accountType:
           default: 802.1X
           description: "Authorization type for user. Can be 'Guest' or '802.1X' for\
-            \ wireless networks, or 'Client VPN' for wired networks. Defaults to '802.1X'."
+            \ wireless networks, or 'Client VPN' for MX networks. Defaults to '802.1X'."
           enum:
           - 802.1X
           - Client VPN
@@ -59374,7 +60330,7 @@ components:
     updateNetworkSwitchRoutingMulticast_request_overrides_inner:
       properties:
         switchProfiles:
-          description: List of switch profiles ids for template network
+          description: List of switch templates ids for template network
           items:
             type: string
           type: array
@@ -59390,11 +60346,11 @@ components:
           type: array
         igmpSnoopingEnabled:
           description: "IGMP snooping setting for switches, switch stacks or switch\
-            \ profiles"
+            \ templates"
           type: boolean
         floodUnknownMulticastTrafficEnabled:
           description: "Flood unknown multicast traffic setting for switches, switch\
-            \ stacks or switch profiles"
+            \ stacks or switch templates"
           type: boolean
       required:
       - floodUnknownMulticastTrafficEnabled
@@ -59774,6 +60730,32 @@ components:
           description: List of custom tags for the device.
           items:
             type: string
+          type: array
+      type: object
+    getOrganizationApplianceUplinksUsageByNetwork_200_response_inner:
+      example:
+        byUplink:
+        - serial: serial
+          received: 6
+          interface: interface
+          sent: 0
+        - serial: serial
+          received: 6
+          interface: interface
+          sent: 0
+        name: name
+        networkId: networkId
+      properties:
+        networkId:
+          description: Network identifier
+          type: string
+        name:
+          description: Network name
+          type: string
+        byUplink:
+          description: Uplink usage
+          items:
+            $ref: '#/components/schemas/getOrganizationApplianceUplinksUsageByNetwork_200_response_inner_byUplink_inner'
           type: array
       type: object
     getDeviceLiveToolsPing_200_response:
@@ -60792,26 +61774,6 @@ components:
       required:
       - stages
       type: object
-    createNetworkFloorPlan_request_center:
-      description: "The longitude and latitude of the center of your floor plan. The\
-        \ 'center' or two adjacent corners (e.g. 'topLeftCorner' and 'bottomLeftCorner')\
-        \ must be specified. If 'center' is specified, the floor plan is placed over\
-        \ that point with no rotation. If two adjacent corners are specified, the\
-        \ floor plan is rotated to line up with the two specified points. The aspect\
-        \ ratio of the floor plan's image is preserved regardless of which corners/center\
-        \ are specified. (This means if that more than two corners are specified,\
-        \ only two corners may be used to preserve the floor plan's aspect ratio.).\
-        \ No two points can have the same latitude, longitude pair."
-      properties:
-        lat:
-          description: Latitude
-          format: float
-          type: number
-        lng:
-          description: Longitude
-          format: float
-          type: number
-      type: object
     createOrganizationAdaptivePolicyPolicy_request_sourceGroup:
       description: The source adaptive policy group (requires one unique attribute)
       properties:
@@ -60824,6 +61786,28 @@ components:
         sgt:
           description: The SGT of the source adaptive policy group
           type: integer
+      type: object
+    getNetworkWirelessSsids_200_response_inner_radiusAccountingServers_inner:
+      example:
+        port: 5
+        host: host
+        openRoamingCertificateId: 5
+        caCertificate: caCertificate
+      properties:
+        host:
+          description: IP address (or FQDN) to which the APs will send RADIUS accounting
+            messages
+          type: string
+        port:
+          description: Port on the RADIUS server that is listening for accounting
+            messages
+          type: integer
+        openRoamingCertificateId:
+          description: The ID of the Openroaming Certificate attached to radius server
+          type: integer
+        caCertificate:
+          description: Certificate used for authorization for the RADSEC Server
+          type: string
       type: object
     getNetworkAppliancePrefixesDelegatedStatics_200_response_inner:
       example:
@@ -62591,6 +63575,36 @@ components:
             $ref: '#/components/schemas/getNetworkApplianceRfProfiles_200_response_assigned_inner'
           type: array
       type: object
+    getDeviceWirelessStatus_200_response:
+      example:
+        basicServiceSets:
+        - ssidName: ssidName
+          ssidNumber: 0
+          visible: true
+          bssid: bssid
+          channelWidth: channelWidth
+          channel: 6
+          band: band
+          power: power
+          enabled: true
+          broadcasting: true
+        - ssidName: ssidName
+          ssidNumber: 0
+          visible: true
+          bssid: bssid
+          channelWidth: channelWidth
+          channel: 6
+          band: band
+          power: power
+          enabled: true
+          broadcasting: true
+      properties:
+        basicServiceSets:
+          description: SSID status list
+          items:
+            $ref: '#/components/schemas/getDeviceWirelessStatus_200_response_basicServiceSets_inner'
+          type: array
+      type: object
     createNetworkFirmwareUpgradesStagedEvent_request_products_switch:
       description: Version information for the switch network being upgraded
       properties:
@@ -63908,6 +64922,14 @@ components:
         apiAuthentication:
           $ref: '#/components/schemas/getOrganizationLoginSecurity_200_response_apiAuthentication'
       type: object
+    updateNetworkAlertsSettings_request_muting_byPortSchedules:
+      description: Mute wireless unreachable alerts based on switch port schedules
+      properties:
+        enabled:
+          description: "If true, then wireless unreachable alerts will be muted when\
+            \ caused by a port schedule"
+          type: boolean
+      type: object
     createNetworkGroupPolicy_request_bandwidth_bandwidthLimits:
       description: "The bandwidth limits object, specifying upload and download speed\
         \ for clients bound to the group policy. These are only enforced if 'settings'\
@@ -64508,39 +65530,39 @@ components:
           iname: iname
       properties:
         name:
-          description: The name of the switch profile port.
+          description: The name of the switch template port.
           type: string
         tags:
-          description: The list of tags of the switch profile port.
+          description: The list of tags of the switch template port.
           items:
             type: string
           type: array
         enabled:
-          description: The status of the switch profile port.
+          description: The status of the switch template port.
           type: boolean
         poeEnabled:
-          description: The PoE status of the switch profile port.
+          description: The PoE status of the switch template port.
           type: boolean
         type:
-          description: The type of the switch profile port ('trunk' or 'access').
+          description: The type of the switch template port ('trunk' or 'access').
           enum:
           - access
           - trunk
           type: string
         vlan:
-          description: The VLAN of the switch profile port. A null value will clear
+          description: The VLAN of the switch template port. A null value will clear
             the value set for trunk ports.
           type: integer
         voiceVlan:
-          description: The voice VLAN of the switch profile port. Only applicable
+          description: The voice VLAN of the switch template port. Only applicable
             to access ports.
           type: integer
         allowedVlans:
-          description: The VLANs allowed on the switch profile port. Only applicable
+          description: The VLANs allowed on the switch template port. Only applicable
             to trunk ports.
           type: string
         isolationEnabled:
-          description: The isolation status of the switch profile port.
+          description: The isolation status of the switch template port.
           type: boolean
         rstpEnabled:
           description: The rapid spanning tree protocol status.
@@ -64555,7 +65577,7 @@ components:
           - root guard
           type: string
         linkNegotiation:
-          description: The link speed for the switch profile port.
+          description: The link speed for the switch template port.
           type: string
         portScheduleId:
           description: The ID of the port schedule. A value of null will clear the
@@ -64569,7 +65591,7 @@ components:
           - Enforce
           type: string
         accessPolicyType:
-          description: "The type of the access policy of the switch profile port.\
+          description: "The type of the access policy of the switch template port.\
             \ Only applicable to access ports. Can be one of 'Open', 'Custom access\
             \ policy', 'MAC allow list' or 'Sticky MAC allow list'."
           enum:
@@ -64580,7 +65602,7 @@ components:
           type: string
         accessPolicyNumber:
           description: The number of a custom access policy to configure on the switch
-            profile port. Only applicable when 'accessPolicyType' is 'Custom access
+            template port. Only applicable when 'accessPolicyType' is 'Custom access
             policy'.
           type: integer
         macAllowList:
@@ -64601,7 +65623,7 @@ components:
             Only applicable when 'accessPolicyType' is 'Sticky MAC allow list'.
           type: integer
         stormControlEnabled:
-          description: The storm control status of the switch profile port.
+          description: The storm control status of the switch template port.
           type: boolean
         flexibleStackingEnabled:
           description: "For supported switches (e.g. MS420/MS425), whether or not\
@@ -65549,6 +66571,35 @@ components:
       required:
       - target
       type: object
+    getOrganizationDevicesStatuses_200_response_inner_components:
+      description: Components
+      example:
+        powerSupplies:
+        - powerSupplies
+        - powerSupplies
+      properties:
+        powerSupplies:
+          description: Power Supplies
+          items:
+            type: string
+          type: array
+      type: object
+    createNetworkWirelessRfProfile_request_flexRadios_byModel_inner:
+      properties:
+        model:
+          description: Model of the AP
+          type: string
+        bands:
+          description: "Band to use for each flex radio. For example, ['6'] will set\
+            \ the AP's first flex radio to 6 GHz"
+          items:
+            enum:
+            - "2.4"
+            - "5"
+            - "6"
+            type: string
+          type: array
+      type: object
     createOrganizationAdaptivePolicyAcl_request:
       example:
         name: Block sensitive web traffic
@@ -65827,6 +66878,10 @@ components:
       in: header
       name: X-Cisco-Meraki-API-Key
       type: apiKey
+    bearerAuth:
+      bearerFormat: API Key
+      scheme: bearer
+      type: http
 x-batchable-actions:
 - group: Adaptive policy
   summary: Add an Adaptive Policy
@@ -65870,7 +66925,7 @@ x-batchable-actions:
   summary: Update the attributes of an MX SSID
   resource: "/networks/{networkId}/appliance/ssids/{number}"
   operation: update
-- group: Bgp setting
+- group: Bgp settings
   summary: Update a Hub BGP Configuration
   resource: "/networks/{networkId}/appliance/vpn/bgp"
   operation: update
@@ -65998,10 +67053,6 @@ x-batchable-actions:
   summary: Update the EAP overridden parameters for an SSID.
   resource: "/networks/{networkId}/wireless/ssids/{number}/eapOverride"
   operation: update
-- group: End user
-  summary: Delete a user and all of its authentication methods.
-  resource: "/organizations/{organizationId}/users/{userId}"
-  operation: destroy
 - group: Feature opt in
   summary: Update an early access feature opt-in for an organization
   resource: "/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}"
@@ -66457,7 +67508,7 @@ x-batchable-actions:
   resource: "/networks/{networkId}/switch/portSchedules/{portScheduleId}"
   operation: update
 - group: Switch profile port
-  summary: Update a switch profile port
+  summary: Update a switch template port
   resource: "/organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles/{profileId}/ports/{portId}"
   operation: update
 - group: Switch stacks l3 interface

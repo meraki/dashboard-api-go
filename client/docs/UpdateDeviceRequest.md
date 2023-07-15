@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Address** | Pointer to **string** | The address of a device | [optional] 
 **Notes** | Pointer to **string** | The notes for the device. String. Limited to 255 characters. | [optional] 
 **MoveMapMarker** | Pointer to **bool** | Whether or not to set the latitude and longitude of a device based on the new address. Only applies when lat and lng are not specified. | [optional] 
-**SwitchProfileId** | Pointer to **string** | The ID of a switch profile to bind to the device (for available switch profiles, see the &#39;Switch Profiles&#39; endpoint). Use null to unbind the switch device from the current profile. For a device to be bindable to a switch profile, it must (1) be a switch, and (2) belong to a network that is bound to a configuration template. | [optional] 
+**SwitchProfileId** | Pointer to **string** | The ID of a switch template to bind to the device (for available switch templates, see the &#39;Switch Templates&#39; endpoint). Use null to unbind the switch device from the current profile. For a device to be bindable to a switch template, it must (1) be a switch, and (2) belong to a network that is bound to a configuration template. | [optional] 
 **FloorPlanId** | Pointer to **string** | The floor plan to associate to this device. null disassociates the device from the floorplan. | [optional] 
 
 ## Methods

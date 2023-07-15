@@ -1044,6 +1044,20 @@ func Test_client_MonitorApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test MonitorApiService GetOrganizationApplianceUplinksUsageByNetwork", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.MonitorApi.GetOrganizationApplianceUplinksUsageByNetwork(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test MonitorApiService GetOrganizationApplianceVpnStats", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SwitchProfileId** | Pointer to **string** | Switch profile id | [optional] 
-**Name** | Pointer to **string** | Switch profile name | [optional] 
+**SwitchProfileId** | Pointer to **string** | Switch template id | [optional] 
+**Name** | Pointer to **string** | Switch template name | [optional] 
 **Model** | Pointer to **string** | Switch model | [optional] 
 
 ## Methods

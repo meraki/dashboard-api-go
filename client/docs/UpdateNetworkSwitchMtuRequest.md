@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DefaultMtuSize** | Pointer to **int32** | MTU size for the entire network. Default value is 9578. | [optional] 
-**Overrides** | Pointer to [**[]GetNetworkSwitchMtu200ResponseOverridesInner**](GetNetworkSwitchMtu200ResponseOverridesInner.md) | Override MTU size for individual switches or switch profiles. An empty array will clear overrides. | [optional] 
+**Overrides** | Pointer to [**[]GetNetworkSwitchMtu200ResponseOverridesInner**](GetNetworkSwitchMtu200ResponseOverridesInner.md) | Override MTU size for individual switches or switch templates. An empty array will clear overrides. | [optional] 
 
 ## Methods
 

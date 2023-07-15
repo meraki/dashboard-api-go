@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DefaultDestinations** | Pointer to [**UpdateNetworkAlertsSettingsRequestDefaultDestinations**](UpdateNetworkAlertsSettingsRequestDefaultDestinations.md) |  | [optional] 
 **Alerts** | Pointer to [**[]UpdateNetworkAlertsSettingsRequestAlertsInner**](UpdateNetworkAlertsSettingsRequestAlertsInner.md) | Alert-specific configuration for each type. Only alerts that pertain to the network can be updated. | [optional] 
+**Muting** | Pointer to [**UpdateNetworkAlertsSettingsRequestMuting**](UpdateNetworkAlertsSettingsRequestMuting.md) |  | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetAlerts sets Alerts field to given value.
 `func (o *UpdateNetworkAlertsSettingsRequest) HasAlerts() bool`
 
 HasAlerts returns a boolean if a field has been set.
+
+### GetMuting
+
+`func (o *UpdateNetworkAlertsSettingsRequest) GetMuting() UpdateNetworkAlertsSettingsRequestMuting`
+
+GetMuting returns the Muting field if non-nil, zero value otherwise.
+
+### GetMutingOk
+
+`func (o *UpdateNetworkAlertsSettingsRequest) GetMutingOk() (*UpdateNetworkAlertsSettingsRequestMuting, bool)`
+
+GetMutingOk returns a tuple with the Muting field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMuting
+
+`func (o *UpdateNetworkAlertsSettingsRequest) SetMuting(v UpdateNetworkAlertsSettingsRequestMuting)`
+
+SetMuting sets Muting field to given value.
+
+### HasMuting
+
+`func (o *UpdateNetworkAlertsSettingsRequest) HasMuting() bool`
+
+HasMuting returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

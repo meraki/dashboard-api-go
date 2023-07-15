@@ -43,9 +43,10 @@ func Test_client_FloorPlansApiService(t *testing.T) {
 		var networkId string
 		var floorPlanId string
 
-		httpRes, err := apiClient.FloorPlansApi.DeleteNetworkFloorPlan(context.Background(), networkId, floorPlanId).Execute()
+		resp, httpRes, err := apiClient.FloorPlansApi.DeleteNetworkFloorPlan(context.Background(), networkId, floorPlanId).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

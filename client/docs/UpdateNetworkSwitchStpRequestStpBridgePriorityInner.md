@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SwitchProfiles** | Pointer to **[]string** | List of switch profile IDs | [optional] 
+**SwitchProfiles** | Pointer to **[]string** | List of switch template IDs | [optional] 
 **Switches** | Pointer to **[]string** | List of switch serial numbers | [optional] 
 **Stacks** | Pointer to **[]string** | List of stack IDs | [optional] 
-**StpPriority** | **int32** | STP priority for switch, stacks, or switch profiles | 
+**StpPriority** | **int32** | STP priority for switch, stacks, or switch templates | 
 
 ## Methods
 

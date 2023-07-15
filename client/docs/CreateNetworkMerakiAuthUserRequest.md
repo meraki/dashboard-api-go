@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Email** | **string** | Email address of the user | 
 **Name** | Pointer to **string** | Name of the user. Only required If the user is not a Dashboard administrator. | [optional] 
 **Password** | Pointer to **string** | The password for this user account. Only required If the user is not a Dashboard administrator. | [optional] 
-**AccountType** | Pointer to **string** | Authorization type for user. Can be &#39;Guest&#39; or &#39;802.1X&#39; for wireless networks, or &#39;Client VPN&#39; for wired networks. Defaults to &#39;802.1X&#39;. | [optional] [default to "802.1X"]
+**AccountType** | Pointer to **string** | Authorization type for user. Can be &#39;Guest&#39; or &#39;802.1X&#39; for wireless networks, or &#39;Client VPN&#39; for MX networks. Defaults to &#39;802.1X&#39;. | [optional] [default to "802.1X"]
 **EmailPasswordToUser** | Pointer to **bool** | Whether or not Meraki should email the password to user. Default is false. | [optional] 
 **IsAdmin** | Pointer to **bool** | Whether or not the user is a Dashboard administrator. | [optional] 
 **Authorizations** | [**[]CreateNetworkMerakiAuthUserRequestAuthorizationsInner**](CreateNetworkMerakiAuthUserRequestAuthorizationsInner.md) | Authorization zones and expiration dates for the user. | 
