@@ -56,7 +56,7 @@ Method | HTTP request | Description
 [**GetOrganizationWirelessDevicesChannelUtilizationByNetwork**](WirelessApi.md#GetOrganizationWirelessDevicesChannelUtilizationByNetwork) | **Get** /organizations/{organizationId}/wireless/devices/channelUtilization/byNetwork | Get average channel utilization across all bands for all networks in the organization
 [**GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval**](WirelessApi.md#GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval) | **Get** /organizations/{organizationId}/wireless/devices/channelUtilization/history/byDevice/byInterval | Get a time-series of average channel utilization for all bands, segmented by device.
 [**GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval**](WirelessApi.md#GetOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval) | **Get** /organizations/{organizationId}/wireless/devices/channelUtilization/history/byNetwork/byInterval | Get a time-series of average channel utilization for all bands
-[**GetOrganizationWirelessDevicesEthernetStatuses**](WirelessApi.md#GetOrganizationWirelessDevicesEthernetStatuses) | **Get** /organizations/{organizationId}/wireless/devices/ethernet/statuses | Endpoint to see power status for wireless devices
+[**GetOrganizationWirelessDevicesEthernetStatuses**](WirelessApi.md#GetOrganizationWirelessDevicesEthernetStatuses) | **Get** /organizations/{organizationId}/wireless/devices/ethernet/statuses | List the most recent Ethernet link speed, duplex, aggregation and power mode and status information for wireless devices.
 [**UpdateDeviceWirelessBluetoothSettings**](WirelessApi.md#UpdateDeviceWirelessBluetoothSettings) | **Put** /devices/{serial}/wireless/bluetooth/settings | Update the bluetooth settings for a wireless device
 [**UpdateDeviceWirelessRadioSettings**](WirelessApi.md#UpdateDeviceWirelessRadioSettings) | **Put** /devices/{serial}/wireless/radio/settings | Update the radio settings of a device
 [**UpdateNetworkWirelessAlternateManagementInterface**](WirelessApi.md#UpdateNetworkWirelessAlternateManagementInterface) | **Put** /networks/{networkId}/wireless/alternateManagementInterface | Update alternate management interface and device static IP
@@ -4246,7 +4246,7 @@ Name | Type | Description  | Notes
 
 > []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner GetOrganizationWirelessDevicesEthernetStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Execute()
 
-Endpoint to see power status for wireless devices
+List the most recent Ethernet link speed, duplex, aggregation and power mode and status information for wireless devices.
 
 
 

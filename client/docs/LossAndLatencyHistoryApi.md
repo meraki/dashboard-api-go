@@ -4,7 +4,7 @@ All URIs are relative to *https://api.meraki.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetDeviceLossAndLatencyHistory**](LossAndLatencyHistoryApi.md#GetDeviceLossAndLatencyHistory) | **Get** /devices/{serial}/lossAndLatencyHistory | Get the uplink loss percentage and latency in milliseconds, and goodput in kilobits per second for a wired network device.
+[**GetDeviceLossAndLatencyHistory**](LossAndLatencyHistoryApi.md#GetDeviceLossAndLatencyHistory) | **Get** /devices/{serial}/lossAndLatencyHistory | Get the uplink loss percentage and latency in milliseconds, and goodput in kilobits per second for MX, MG and Z devices.
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > []map[string]interface{} GetDeviceLossAndLatencyHistory(ctx, serial).Ip(ip).T0(t0).T1(t1).Timespan(timespan).Resolution(resolution).Uplink(uplink).Execute()
 
-Get the uplink loss percentage and latency in milliseconds, and goodput in kilobits per second for a wired network device.
+Get the uplink loss percentage and latency in milliseconds, and goodput in kilobits per second for MX, MG and Z devices.
 
 
 

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Status** | Pointer to **string** | Status of upgrade event: [Cancelled, Completed] | [optional] 
 **Time** | Pointer to **time.Time** | Scheduled start time | [optional] 
 **CompletedAt** | Pointer to **string** | Timestamp when upgrade completed. Null if status pending. | [optional] 
-**ProductType** | Pointer to **string** | product upgraded [wireless, appliance, switch, systemsManager, camera, cellularGateway, sensor] | [optional] 
+**ProductTypes** | Pointer to **string** | product upgraded [wireless, appliance, switch, systemsManager, camera, cellularGateway, sensor] | [optional] 
 **ToVersion** | Pointer to [**GetOrganizationFirmwareUpgrades200ResponseInnerToVersion**](GetOrganizationFirmwareUpgrades200ResponseInnerToVersion.md) |  | [optional] 
 **FromVersion** | Pointer to [**GetOrganizationFirmwareUpgrades200ResponseInnerFromVersion**](GetOrganizationFirmwareUpgrades200ResponseInnerFromVersion.md) |  | [optional] 
 
@@ -183,30 +183,30 @@ SetCompletedAt sets CompletedAt field to given value.
 
 HasCompletedAt returns a boolean if a field has been set.
 
-### GetProductType
+### GetProductTypes
 
-`func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetProductType() string`
+`func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetProductTypes() string`
 
-GetProductType returns the ProductType field if non-nil, zero value otherwise.
+GetProductTypes returns the ProductTypes field if non-nil, zero value otherwise.
 
-### GetProductTypeOk
+### GetProductTypesOk
 
-`func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetProductTypeOk() (*string, bool)`
+`func (o *GetOrganizationFirmwareUpgrades200ResponseInner) GetProductTypesOk() (*string, bool)`
 
-GetProductTypeOk returns a tuple with the ProductType field if it's non-nil, zero value otherwise
+GetProductTypesOk returns a tuple with the ProductTypes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProductType
+### SetProductTypes
 
-`func (o *GetOrganizationFirmwareUpgrades200ResponseInner) SetProductType(v string)`
+`func (o *GetOrganizationFirmwareUpgrades200ResponseInner) SetProductTypes(v string)`
 
-SetProductType sets ProductType field to given value.
+SetProductTypes sets ProductTypes field to given value.
 
-### HasProductType
+### HasProductTypes
 
-`func (o *GetOrganizationFirmwareUpgrades200ResponseInner) HasProductType() bool`
+`func (o *GetOrganizationFirmwareUpgrades200ResponseInner) HasProductTypes() bool`
 
-HasProductType returns a boolean if a field has been set.
+HasProductTypes returns a boolean if a field has been set.
 
 ### GetToVersion
 

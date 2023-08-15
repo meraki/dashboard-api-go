@@ -24,7 +24,7 @@ Method | HTTP request | Description
 [**DeleteNetworkFirmwareUpgradesStagedGroup**](NetworksApi.md#DeleteNetworkFirmwareUpgradesStagedGroup) | **Delete** /networks/{networkId}/firmwareUpgrades/staged/groups/{groupId} | Delete a Staged Upgrade Group
 [**DeleteNetworkFloorPlan**](NetworksApi.md#DeleteNetworkFloorPlan) | **Delete** /networks/{networkId}/floorPlans/{floorPlanId} | Destroy a floor plan
 [**DeleteNetworkGroupPolicy**](NetworksApi.md#DeleteNetworkGroupPolicy) | **Delete** /networks/{networkId}/groupPolicies/{groupPolicyId} | Delete a group policy
-[**DeleteNetworkMerakiAuthUser**](NetworksApi.md#DeleteNetworkMerakiAuthUser) | **Delete** /networks/{networkId}/merakiAuthUsers/{merakiAuthUserId} | Deauthorize a user
+[**DeleteNetworkMerakiAuthUser**](NetworksApi.md#DeleteNetworkMerakiAuthUser) | **Delete** /networks/{networkId}/merakiAuthUsers/{merakiAuthUserId} | Delete an 802.1X RADIUS user, or deauthorize and optionally delete a splash guest or client VPN user.
 [**DeleteNetworkMqttBroker**](NetworksApi.md#DeleteNetworkMqttBroker) | **Delete** /networks/{networkId}/mqttBrokers/{mqttBrokerId} | Delete an MQTT broker
 [**DeleteNetworkPiiRequest**](NetworksApi.md#DeleteNetworkPiiRequest) | **Delete** /networks/{networkId}/pii/requests/{requestId} | Delete a restrict processing PII request
 [**DeleteNetworkWebhooksHttpServer**](NetworksApi.md#DeleteNetworkWebhooksHttpServer) | **Delete** /networks/{networkId}/webhooks/httpServers/{httpServerId} | Delete an HTTP server from a network
@@ -1566,9 +1566,9 @@ Name | Type | Description  | Notes
 
 ## DeleteNetworkMerakiAuthUser
 
-> DeleteNetworkMerakiAuthUser(ctx, networkId, merakiAuthUserId).Execute()
+> DeleteNetworkMerakiAuthUser(ctx, networkId, merakiAuthUserId).Delete(delete).Execute()
 
-Deauthorize a user
+Delete an 802.1X RADIUS user, or deauthorize and optionally delete a splash guest or client VPN user.
 
 
 
@@ -1587,11 +1587,12 @@ import (
 func main() {
     networkId := "networkId_example" // string | Network ID
     merakiAuthUserId := "merakiAuthUserId_example" // string | Meraki auth user ID
+    delete := true // bool | If the ID supplied is for a splash guest or client VPN user, and that user is not authorized for any other networks in the organization, then also delete the user. 802.1X RADIUS users are always deleted regardless of this optional attribute. (optional)
 
     configuration := openapiclient.NewConfiguration()
 
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.NetworksApi.DeleteNetworkMerakiAuthUser(context.Background(), networkId, merakiAuthUserId).Execute()
+    r, err := apiClient.NetworksApi.DeleteNetworkMerakiAuthUser(context.Background(), networkId, merakiAuthUserId).Delete(delete).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `NetworksApi.DeleteNetworkMerakiAuthUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1617,6 +1618,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **delete** | **bool** | If the ID supplied is for a splash guest or client VPN user, and that user is not authorized for any other networks in the organization, then also delete the user. 802.1X RADIUS users are always deleted regardless of this optional attribute. | 
 
 ### Return type
 

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**DeleteOrganizationAlertsProfile**](ProfilesApi.md#DeleteOrganizationAlertsProfile) | **Delete** /organizations/{organizationId}/alerts/profiles/{alertConfigId} | Removes an organization-wide alert config
 [**GetNetworkSensorAlertsProfile**](ProfilesApi.md#GetNetworkSensorAlertsProfile) | **Get** /networks/{networkId}/sensor/alerts/profiles/{id} | Show details of a sensor alert profile for a network.
 [**GetNetworkSensorAlertsProfiles**](ProfilesApi.md#GetNetworkSensorAlertsProfiles) | **Get** /networks/{networkId}/sensor/alerts/profiles | Lists all sensor alert profiles for a network.
-[**GetNetworkSmProfiles**](ProfilesApi.md#GetNetworkSmProfiles) | **Get** /networks/{networkId}/sm/profiles | List all profiles in a network
+[**GetNetworkSmProfiles**](ProfilesApi.md#GetNetworkSmProfiles) | **Get** /networks/{networkId}/sm/profiles | List all the profiles in the network
 [**GetOrganizationAlertsProfiles**](ProfilesApi.md#GetOrganizationAlertsProfiles) | **Get** /organizations/{organizationId}/alerts/profiles | List all organization-wide alert configurations
 [**GetOrganizationConfigTemplateSwitchProfilePort**](ProfilesApi.md#GetOrganizationConfigTemplateSwitchProfilePort) | **Get** /organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles/{profileId}/ports/{portId} | Return a switch template port
 [**GetOrganizationConfigTemplateSwitchProfilePorts**](ProfilesApi.md#GetOrganizationConfigTemplateSwitchProfilePorts) | **Get** /organizations/{organizationId}/configTemplates/{configTemplateId}/switch/profiles/{profileId}/ports | Return all the ports of a switch template
@@ -458,9 +458,9 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmProfiles
 
-> []GetNetworkSmProfiles200ResponseInner GetNetworkSmProfiles(ctx, networkId).Execute()
+> map[string]interface{} GetNetworkSmProfiles(ctx, networkId).Execute()
 
-List all profiles in a network
+List all the profiles in the network
 
 
 
@@ -487,7 +487,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ProfilesApi.GetNetworkSmProfiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmProfiles`: []GetNetworkSmProfiles200ResponseInner
+    // response from `GetNetworkSmProfiles`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `ProfilesApi.GetNetworkSmProfiles`: %v\n", resp)
 }
 ```
@@ -511,7 +511,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetNetworkSmProfiles200ResponseInner**](GetNetworkSmProfiles200ResponseInner.md)
+**map[string]interface{}**
 
 ### Authorization
 

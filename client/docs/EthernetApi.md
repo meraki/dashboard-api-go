@@ -4,7 +4,7 @@ All URIs are relative to *https://api.meraki.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetOrganizationWirelessDevicesEthernetStatuses**](EthernetApi.md#GetOrganizationWirelessDevicesEthernetStatuses) | **Get** /organizations/{organizationId}/wireless/devices/ethernet/statuses | Endpoint to see power status for wireless devices
+[**GetOrganizationWirelessDevicesEthernetStatuses**](EthernetApi.md#GetOrganizationWirelessDevicesEthernetStatuses) | **Get** /organizations/{organizationId}/wireless/devices/ethernet/statuses | List the most recent Ethernet link speed, duplex, aggregation and power mode and status information for wireless devices.
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner GetOrganizationWirelessDevicesEthernetStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Execute()
 
-Endpoint to see power status for wireless devices
+List the most recent Ethernet link speed, duplex, aggregation and power mode and status information for wireless devices.
 
 
 

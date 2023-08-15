@@ -15,7 +15,7 @@ Method | HTTP request | Description
 [**GetOrganizationDevicesStatuses**](StatusesApi.md#GetOrganizationDevicesStatuses) | **Get** /organizations/{organizationId}/devices/statuses | List the status of every Meraki device in the organization
 [**GetOrganizationDevicesStatusesOverview**](StatusesApi.md#GetOrganizationDevicesStatusesOverview) | **Get** /organizations/{organizationId}/devices/statuses/overview | Return an overview of current device statuses
 [**GetOrganizationUplinksStatuses**](StatusesApi.md#GetOrganizationUplinksStatuses) | **Get** /organizations/{organizationId}/uplinks/statuses | List the uplink status of every Meraki MX, MG and Z series devices in the organization
-[**GetOrganizationWirelessDevicesEthernetStatuses**](StatusesApi.md#GetOrganizationWirelessDevicesEthernetStatuses) | **Get** /organizations/{organizationId}/wireless/devices/ethernet/statuses | Endpoint to see power status for wireless devices
+[**GetOrganizationWirelessDevicesEthernetStatuses**](StatusesApi.md#GetOrganizationWirelessDevicesEthernetStatuses) | **Get** /organizations/{organizationId}/wireless/devices/ethernet/statuses | List the most recent Ethernet link speed, duplex, aggregation and power mode and status information for wireless devices.
 [**UpdateOrganizationCameraOnboardingStatuses**](StatusesApi.md#UpdateOrganizationCameraOnboardingStatuses) | **Put** /organizations/{organizationId}/camera/onboarding/statuses | Notify that credential handoff to camera has completed
 
 
@@ -919,7 +919,7 @@ Name | Type | Description  | Notes
 
 > []GetOrganizationWirelessDevicesEthernetStatuses200ResponseInner GetOrganizationWirelessDevicesEthernetStatuses(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Execute()
 
-Endpoint to see power status for wireless devices
+List the most recent Ethernet link speed, duplex, aggregation and power mode and status information for wireless devices.
 
 
 

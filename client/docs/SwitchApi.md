@@ -618,7 +618,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkSwitchPortSchedule
 
-> map[string]interface{} CreateNetworkSwitchPortSchedule(ctx, networkId).CreateNetworkSwitchPortScheduleRequest(createNetworkSwitchPortScheduleRequest).Execute()
+> GetNetworkSwitchPortSchedules200ResponseInner CreateNetworkSwitchPortSchedule(ctx, networkId).CreateNetworkSwitchPortScheduleRequest(createNetworkSwitchPortScheduleRequest).Execute()
 
 Add a switch port schedule
 
@@ -648,7 +648,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.CreateNetworkSwitchPortSchedule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkSwitchPortSchedule`: map[string]interface{}
+    // response from `CreateNetworkSwitchPortSchedule`: GetNetworkSwitchPortSchedules200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SwitchApi.CreateNetworkSwitchPortSchedule`: %v\n", resp)
 }
 ```
@@ -673,7 +673,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GetNetworkSwitchPortSchedules200ResponseInner**](GetNetworkSwitchPortSchedules200ResponseInner.md)
 
 ### Authorization
 
@@ -3469,7 +3469,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchPortSchedules
 
-> []map[string]interface{} GetNetworkSwitchPortSchedules(ctx, networkId).Execute()
+> []GetNetworkSwitchPortSchedules200ResponseInner GetNetworkSwitchPortSchedules(ctx, networkId).Execute()
 
 List switch port schedules
 
@@ -3498,7 +3498,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.GetNetworkSwitchPortSchedules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchPortSchedules`: []map[string]interface{}
+    // response from `GetNetworkSwitchPortSchedules`: []GetNetworkSwitchPortSchedules200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SwitchApi.GetNetworkSwitchPortSchedules`: %v\n", resp)
 }
 ```
@@ -3522,7 +3522,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[]map[string]interface{}**
+[**[]GetNetworkSwitchPortSchedules200ResponseInner**](GetNetworkSwitchPortSchedules200ResponseInner.md)
 
 ### Authorization
 
@@ -6150,7 +6150,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchPortSchedule
 
-> map[string]interface{} UpdateNetworkSwitchPortSchedule(ctx, networkId, portScheduleId).UpdateNetworkSwitchPortScheduleRequest(updateNetworkSwitchPortScheduleRequest).Execute()
+> GetNetworkSwitchPortSchedules200ResponseInner UpdateNetworkSwitchPortSchedule(ctx, networkId, portScheduleId).UpdateNetworkSwitchPortScheduleRequest(updateNetworkSwitchPortScheduleRequest).Execute()
 
 Update a switch port schedule
 
@@ -6181,7 +6181,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.UpdateNetworkSwitchPortSchedule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkSwitchPortSchedule`: map[string]interface{}
+    // response from `UpdateNetworkSwitchPortSchedule`: GetNetworkSwitchPortSchedules200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SwitchApi.UpdateNetworkSwitchPortSchedule`: %v\n", resp)
 }
 ```
@@ -6208,7 +6208,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GetNetworkSwitchPortSchedules200ResponseInner**](GetNetworkSwitchPortSchedules200ResponseInner.md)
 
 ### Authorization
 

@@ -83,7 +83,7 @@ Method | HTTP request | Description
 [**DeleteNetworkFirmwareUpgradesStagedGroup**](ConfigureApi.md#DeleteNetworkFirmwareUpgradesStagedGroup) | **Delete** /networks/{networkId}/firmwareUpgrades/staged/groups/{groupId} | Delete a Staged Upgrade Group
 [**DeleteNetworkFloorPlan**](ConfigureApi.md#DeleteNetworkFloorPlan) | **Delete** /networks/{networkId}/floorPlans/{floorPlanId} | Destroy a floor plan
 [**DeleteNetworkGroupPolicy**](ConfigureApi.md#DeleteNetworkGroupPolicy) | **Delete** /networks/{networkId}/groupPolicies/{groupPolicyId} | Delete a group policy
-[**DeleteNetworkMerakiAuthUser**](ConfigureApi.md#DeleteNetworkMerakiAuthUser) | **Delete** /networks/{networkId}/merakiAuthUsers/{merakiAuthUserId} | Deauthorize a user
+[**DeleteNetworkMerakiAuthUser**](ConfigureApi.md#DeleteNetworkMerakiAuthUser) | **Delete** /networks/{networkId}/merakiAuthUsers/{merakiAuthUserId} | Delete an 802.1X RADIUS user, or deauthorize and optionally delete a splash guest or client VPN user.
 [**DeleteNetworkMqttBroker**](ConfigureApi.md#DeleteNetworkMqttBroker) | **Delete** /networks/{networkId}/mqttBrokers/{mqttBrokerId} | Delete an MQTT broker
 [**DeleteNetworkPiiRequest**](ConfigureApi.md#DeleteNetworkPiiRequest) | **Delete** /networks/{networkId}/pii/requests/{requestId} | Delete a restrict processing PII request
 [**DeleteNetworkSensorAlertsProfile**](ConfigureApi.md#DeleteNetworkSensorAlertsProfile) | **Delete** /networks/{networkId}/sensor/alerts/profiles/{id} | Deletes a sensor alert profile from a network.
@@ -234,7 +234,7 @@ Method | HTTP request | Description
 [**GetNetworkSmDeviceSoftwares**](ConfigureApi.md#GetNetworkSmDeviceSoftwares) | **Get** /networks/{networkId}/sm/devices/{deviceId}/softwares | Get a list of softwares associated with a device
 [**GetNetworkSmDeviceWlanLists**](ConfigureApi.md#GetNetworkSmDeviceWlanLists) | **Get** /networks/{networkId}/sm/devices/{deviceId}/wlanLists | List the saved SSID names on a device
 [**GetNetworkSmDevices**](ConfigureApi.md#GetNetworkSmDevices) | **Get** /networks/{networkId}/sm/devices | List the devices enrolled in an SM network with various specified fields and filters
-[**GetNetworkSmProfiles**](ConfigureApi.md#GetNetworkSmProfiles) | **Get** /networks/{networkId}/sm/profiles | List all profiles in a network
+[**GetNetworkSmProfiles**](ConfigureApi.md#GetNetworkSmProfiles) | **Get** /networks/{networkId}/sm/profiles | List all the profiles in the network
 [**GetNetworkSmTargetGroup**](ConfigureApi.md#GetNetworkSmTargetGroup) | **Get** /networks/{networkId}/sm/targetGroups/{targetGroupId} | Return a target group
 [**GetNetworkSmTargetGroups**](ConfigureApi.md#GetNetworkSmTargetGroups) | **Get** /networks/{networkId}/sm/targetGroups | List the target groups in this network
 [**GetNetworkSmTrustedAccessConfigs**](ConfigureApi.md#GetNetworkSmTrustedAccessConfigs) | **Get** /networks/{networkId}/sm/trustedAccessConfigs | List Trusted Access Configs
@@ -3009,7 +3009,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkSwitchPortSchedule
 
-> map[string]interface{} CreateNetworkSwitchPortSchedule(ctx, networkId).CreateNetworkSwitchPortScheduleRequest(createNetworkSwitchPortScheduleRequest).Execute()
+> GetNetworkSwitchPortSchedules200ResponseInner CreateNetworkSwitchPortSchedule(ctx, networkId).CreateNetworkSwitchPortScheduleRequest(createNetworkSwitchPortScheduleRequest).Execute()
 
 Add a switch port schedule
 
@@ -3039,7 +3039,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.CreateNetworkSwitchPortSchedule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNetworkSwitchPortSchedule`: map[string]interface{}
+    // response from `CreateNetworkSwitchPortSchedule`: GetNetworkSwitchPortSchedules200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.CreateNetworkSwitchPortSchedule`: %v\n", resp)
 }
 ```
@@ -3064,7 +3064,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GetNetworkSwitchPortSchedules200ResponseInner**](GetNetworkSwitchPortSchedules200ResponseInner.md)
 
 ### Authorization
 
@@ -6281,9 +6281,9 @@ Name | Type | Description  | Notes
 
 ## DeleteNetworkMerakiAuthUser
 
-> DeleteNetworkMerakiAuthUser(ctx, networkId, merakiAuthUserId).Execute()
+> DeleteNetworkMerakiAuthUser(ctx, networkId, merakiAuthUserId).Delete(delete).Execute()
 
-Deauthorize a user
+Delete an 802.1X RADIUS user, or deauthorize and optionally delete a splash guest or client VPN user.
 
 
 
@@ -6302,11 +6302,12 @@ import (
 func main() {
     networkId := "networkId_example" // string | Network ID
     merakiAuthUserId := "merakiAuthUserId_example" // string | Meraki auth user ID
+    delete := true // bool | If the ID supplied is for a splash guest or client VPN user, and that user is not authorized for any other networks in the organization, then also delete the user. 802.1X RADIUS users are always deleted regardless of this optional attribute. (optional)
 
     configuration := openapiclient.NewConfiguration()
 
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ConfigureApi.DeleteNetworkMerakiAuthUser(context.Background(), networkId, merakiAuthUserId).Execute()
+    r, err := apiClient.ConfigureApi.DeleteNetworkMerakiAuthUser(context.Background(), networkId, merakiAuthUserId).Delete(delete).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.DeleteNetworkMerakiAuthUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -6332,6 +6333,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **delete** | **bool** | If the ID supplied is for a splash guest or client VPN user, and that user is not authorized for any other networks in the organization, then also delete the user. 802.1X RADIUS users are always deleted regardless of this optional attribute. | 
 
 ### Return type
 
@@ -17204,9 +17206,9 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSmProfiles
 
-> []GetNetworkSmProfiles200ResponseInner GetNetworkSmProfiles(ctx, networkId).Execute()
+> map[string]interface{} GetNetworkSmProfiles(ctx, networkId).Execute()
 
-List all profiles in a network
+List all the profiles in the network
 
 
 
@@ -17233,7 +17235,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSmProfiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSmProfiles`: []GetNetworkSmProfiles200ResponseInner
+    // response from `GetNetworkSmProfiles`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSmProfiles`: %v\n", resp)
 }
 ```
@@ -17257,7 +17259,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]GetNetworkSmProfiles200ResponseInner**](GetNetworkSmProfiles200ResponseInner.md)
+**map[string]interface{}**
 
 ### Authorization
 
@@ -18682,7 +18684,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchPortSchedules
 
-> []map[string]interface{} GetNetworkSwitchPortSchedules(ctx, networkId).Execute()
+> []GetNetworkSwitchPortSchedules200ResponseInner GetNetworkSwitchPortSchedules(ctx, networkId).Execute()
 
 List switch port schedules
 
@@ -18711,7 +18713,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetNetworkSwitchPortSchedules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchPortSchedules`: []map[string]interface{}
+    // response from `GetNetworkSwitchPortSchedules`: []GetNetworkSwitchPortSchedules200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.GetNetworkSwitchPortSchedules`: %v\n", resp)
 }
 ```
@@ -18735,7 +18737,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[]map[string]interface{}**
+[**[]GetNetworkSwitchPortSchedules200ResponseInner**](GetNetworkSwitchPortSchedules200ResponseInner.md)
 
 ### Authorization
 
@@ -24399,7 +24401,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationFirmwareUpgrades
 
-> []GetOrganizationFirmwareUpgrades200ResponseInner GetOrganizationFirmwareUpgrades(ctx, organizationId).Status(status).ProductType(productType).Execute()
+> []GetOrganizationFirmwareUpgrades200ResponseInner GetOrganizationFirmwareUpgrades(ctx, organizationId).Status(status).ProductTypes(productTypes).Execute()
 
 Get firmware upgrade information for an organization
 
@@ -24420,12 +24422,12 @@ import (
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
     status := []string{"Inner_example"} // []string | The status of an upgrade  (optional)
-    productType := []string{"Inner_example"} // []string | The product type in a given upgrade ID (optional)
+    productTypes := []string{"Inner_example"} // []string | The product type in a given upgrade ID (optional)
 
     configuration := openapiclient.NewConfiguration()
 
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.GetOrganizationFirmwareUpgrades(context.Background(), organizationId).Status(status).ProductType(productType).Execute()
+    resp, r, err := apiClient.ConfigureApi.GetOrganizationFirmwareUpgrades(context.Background(), organizationId).Status(status).ProductTypes(productTypes).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationFirmwareUpgrades``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -24452,7 +24454,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **status** | **[]string** | The status of an upgrade  | 
- **productType** | **[]string** | The product type in a given upgrade ID | 
+ **productTypes** | **[]string** | The product type in a given upgrade ID | 
 
 ### Return type
 
@@ -24474,7 +24476,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationFirmwareUpgradesByDevice
 
-> []GetOrganizationFirmwareUpgradesByDevice200ResponseInner GetOrganizationFirmwareUpgradesByDevice(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Macs(macs).FirmwareUpgradeIds(firmwareUpgradeIds).FirmwareUpgradeBatchIds(firmwareUpgradeBatchIds).Execute()
+> []GetOrganizationFirmwareUpgradesByDevice200ResponseInner GetOrganizationFirmwareUpgradesByDevice(ctx, organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Macs(macs).FirmwareUpgradeBatchIds(firmwareUpgradeBatchIds).UpgradeStatuses(upgradeStatuses).Execute()
 
 Get firmware upgrade status for the filtered devices
 
@@ -24494,19 +24496,19 @@ import (
 
 func main() {
     organizationId := "organizationId_example" // string | Organization ID
-    perPage := int32(56) // int32 | The number of entries per page returned. Acceptable range is 3 - 50. Default is 50. (optional)
+    perPage := int32(56) // int32 | The number of entries per page returned. Acceptable range is 3 - 1000. Default is 50. (optional)
     startingAfter := "startingAfter_example" // string | A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
     endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
     networkIds := []string{"Inner_example"} // []string | Optional parameter to filter by network (optional)
     serials := []string{"Inner_example"} // []string | Optional parameter to filter by serial number.  All returned devices will have a serial number that is an exact match. (optional)
     macs := []string{"Inner_example"} // []string | Optional parameter to filter by one or more MAC addresses belonging to devices. All devices returned belong to MAC addresses that are an exact match. (optional)
-    firmwareUpgradeIds := []string{"Inner_example"} // []string | Optional parameter to filter by firmware upgrade ids. (optional)
     firmwareUpgradeBatchIds := []string{"Inner_example"} // []string | Optional parameter to filter by firmware upgrade batch ids. (optional)
+    upgradeStatuses := []string{"UpgradeStatuses_example"} // []string | Optional parameter to filter by firmware upgrade statuses. (optional)
 
     configuration := openapiclient.NewConfiguration()
 
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ConfigureApi.GetOrganizationFirmwareUpgradesByDevice(context.Background(), organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Macs(macs).FirmwareUpgradeIds(firmwareUpgradeIds).FirmwareUpgradeBatchIds(firmwareUpgradeBatchIds).Execute()
+    resp, r, err := apiClient.ConfigureApi.GetOrganizationFirmwareUpgradesByDevice(context.Background(), organizationId).PerPage(perPage).StartingAfter(startingAfter).EndingBefore(endingBefore).NetworkIds(networkIds).Serials(serials).Macs(macs).FirmwareUpgradeBatchIds(firmwareUpgradeBatchIds).UpgradeStatuses(upgradeStatuses).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.GetOrganizationFirmwareUpgradesByDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -24532,14 +24534,14 @@ Other parameters are passed through a pointer to a apiGetOrganizationFirmwareUpg
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **perPage** | **int32** | The number of entries per page returned. Acceptable range is 3 - 50. Default is 50. | 
+ **perPage** | **int32** | The number of entries per page returned. Acceptable range is 3 - 1000. Default is 50. | 
  **startingAfter** | **string** | A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. | 
  **endingBefore** | **string** | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. | 
  **networkIds** | **[]string** | Optional parameter to filter by network | 
  **serials** | **[]string** | Optional parameter to filter by serial number.  All returned devices will have a serial number that is an exact match. | 
  **macs** | **[]string** | Optional parameter to filter by one or more MAC addresses belonging to devices. All devices returned belong to MAC addresses that are an exact match. | 
- **firmwareUpgradeIds** | **[]string** | Optional parameter to filter by firmware upgrade ids. | 
  **firmwareUpgradeBatchIds** | **[]string** | Optional parameter to filter by firmware upgrade batch ids. | 
+ **upgradeStatuses** | **[]string** | Optional parameter to filter by firmware upgrade statuses. | 
 
 ### Return type
 
@@ -27763,7 +27765,7 @@ Name | Type | Description  | Notes
 
 ## UnenrollNetworkSmDevice
 
-> map[string]interface{} UnenrollNetworkSmDevice(ctx, networkId, deviceId).Execute()
+> UnenrollNetworkSmDevice200Response UnenrollNetworkSmDevice(ctx, networkId, deviceId).Execute()
 
 Unenroll a device
 
@@ -27793,7 +27795,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UnenrollNetworkSmDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UnenrollNetworkSmDevice`: map[string]interface{}
+    // response from `UnenrollNetworkSmDevice`: UnenrollNetworkSmDevice200Response
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UnenrollNetworkSmDevice`: %v\n", resp)
 }
 ```
@@ -27819,7 +27821,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**UnenrollNetworkSmDevice200Response**](UnenrollNetworkSmDevice200Response.md)
 
 ### Authorization
 
@@ -34050,7 +34052,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkSwitchPortSchedule
 
-> map[string]interface{} UpdateNetworkSwitchPortSchedule(ctx, networkId, portScheduleId).UpdateNetworkSwitchPortScheduleRequest(updateNetworkSwitchPortScheduleRequest).Execute()
+> GetNetworkSwitchPortSchedules200ResponseInner UpdateNetworkSwitchPortSchedule(ctx, networkId, portScheduleId).UpdateNetworkSwitchPortScheduleRequest(updateNetworkSwitchPortScheduleRequest).Execute()
 
 Update a switch port schedule
 
@@ -34081,7 +34083,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ConfigureApi.UpdateNetworkSwitchPortSchedule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkSwitchPortSchedule`: map[string]interface{}
+    // response from `UpdateNetworkSwitchPortSchedule`: GetNetworkSwitchPortSchedules200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ConfigureApi.UpdateNetworkSwitchPortSchedule`: %v\n", resp)
 }
 ```
@@ -34108,7 +34110,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GetNetworkSwitchPortSchedules200ResponseInner**](GetNetworkSwitchPortSchedules200ResponseInner.md)
 
 ### Authorization
 
