@@ -6,7 +6,7 @@ info:
   description: |
     A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.
 
-    > Date: 05 July, 2023
+    > Date: 02 August, 2023
     >
     > [Recent Updates](https://meraki.io/whats-new/)
 
@@ -18,7 +18,7 @@ info:
 
     [Meraki Homepage](https://www.meraki.com)
   title: Meraki Dashboard API
-  version: 1.35.0
+  version: 1.36.0
 servers:
 - url: "https://api.meraki.com/{basePath}"
   variables:
@@ -84,6 +84,7 @@ tags:
 - name: cellularFirewallRules
 - name: cellularUsageHistory
 - name: certs
+- name: changeHistory
 - name: channelUtilization
 - name: channelUtilizationHistory
 - name: claim
@@ -2146,7 +2147,7 @@ paths:
   /devices/{serial}/lossAndLatencyHistory:
     get:
       description: "Get the uplink loss percentage and latency in milliseconds, and\
-        \ goodput in kilobits per second for a wired network device."
+        \ goodput in kilobits per second for MX, MG and Z devices."
       operationId: getDeviceLossAndLatencyHistory
       parameters:
       - description: Serial
@@ -2247,7 +2248,7 @@ paths:
                 type: array
           description: Successful operation
       summary: "Get the uplink loss percentage and latency in milliseconds, and goodput\
-        \ in kilobits per second for a wired network device."
+        \ in kilobits per second for MX, MG and Z devices."
       tags:
       - devices
       - monitor
@@ -9663,6 +9664,7 @@ paths:
                 - mac: 00:11:22:33:44:55
                   clientId: k74272e
                   name: Miles's phone
+                  message: Blocked message for client
                 devicePolicy: Group policy
                 groupPolicyId: "101"
               schema:
@@ -12918,9 +12920,8 @@ paths:
       - merakiAuthUsers
   /networks/{networkId}/merakiAuthUsers/{merakiAuthUserId}:
     delete:
-      description: "Deauthorize a user. To reauthorize a user after deauthorizing\
-        \ them, POST to this endpoint. (Currently, 802.1X RADIUS, splash guest, and\
-        \ client VPN users can be deauthorized.)"
+      description: "Delete an 802.1X RADIUS user, or deauthorize and optionally delete\
+        \ a splash guest or client VPN user."
       operationId: deleteNetworkMerakiAuthUser
       parameters:
       - description: Network ID
@@ -12939,10 +12940,22 @@ paths:
         schema:
           type: string
         style: simple
+      - description: "If the ID supplied is for a splash guest or client VPN user,\
+          \ and that user is not authorized for any other networks in the organization,\
+          \ then also delete the user. 802.1X RADIUS users are always deleted regardless\
+          \ of this optional attribute."
+        explode: true
+        in: query
+        name: delete
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "204":
           description: Successful operation
-      summary: Deauthorize a user
+      summary: "Delete an 802.1X RADIUS user, or deauthorize and optionally delete\
+        \ a splash guest or client VPN user."
       tags:
       - networks
       - configure
@@ -15888,7 +15901,7 @@ paths:
               example:
                 success: true
               schema:
-                type: object
+                $ref: '#/components/schemas/unenrollNetworkSmDevice_200_response'
           description: Successful operation
       summary: Unenroll a device
       tags:
@@ -15937,7 +15950,7 @@ paths:
       - wlanLists
   /networks/{networkId}/sm/profiles:
     get:
-      description: List all profiles in a network
+      description: List all the profiles in the network
       operationId: getNetworkSmProfiles
       parameters:
       - description: Network ID
@@ -15953,19 +15966,23 @@ paths:
           content:
             application/json:
               example:
-              - id: "1284392014819"
-                name: My profile
-                description: Some profile description
-                scope: withAny
-                tags:
-                - tag1
-                - tag2
+                profiles:
+                - id: "1234"
+                  payload_display_name: API Profile
+                  payload_identifier: com.meraki.sm.1
+                  payload_description: API docs test
+                  scope: some
+                  tags:
+                  - tag1
+                  - tag2
+                  wifis: []
+                  payload_types:
+                  - Privacy
+                  - Document
               schema:
-                items:
-                  $ref: '#/components/schemas/getNetworkSmProfiles_200_response_inner'
-                type: array
+                type: object
           description: Successful operation
-      summary: List all profiles in a network
+      summary: List all the profiles in the network
       tags:
       - sm
       - configure
@@ -18069,7 +18086,7 @@ paths:
                     to: 24:00
               schema:
                 items:
-                  type: object
+                  $ref: '#/components/schemas/getNetworkSwitchPortSchedules_200_response_inner'
                 type: array
           description: Successful operation
       summary: List switch port schedules
@@ -18133,7 +18150,7 @@ paths:
                     from: 0:00
                     to: 24:00
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkSwitchPortSchedules_200_response_inner'
           description: Successful operation
       summary: Add a switch port schedule
       tags:
@@ -18233,7 +18250,7 @@ paths:
                     from: 0:00
                     to: 24:00
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkSwitchPortSchedules_200_response_inner'
           description: Successful operation
       summary: Update a switch port schedule
       tags:
@@ -23344,6 +23361,10 @@ paths:
                 bandSelectionType: ap
                 apBandSettings:
                   bandOperationMode: dual
+                  bands:
+                    enabled:
+                    - "2.4"
+                    - "5"
                   bandSteeringEnabled: true
                 twoFourGhzSettings:
                   maxPower: 30
@@ -23460,76 +23481,136 @@ paths:
                     name: SSID 0
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "1":
                     name: SSID 1
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "2":
                     name: SSID 2
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "3":
                     name: SSID 3
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "4":
                     name: SSID 4
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "5":
                     name: SSID 5
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "6":
                     name: SSID 6
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "7":
                     name: SSID 7
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "8":
                     name: SSID 8
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "9":
                     name: SSID 9
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "10":
                     name: SSID 10
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "11":
                     name: SSID 11
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "12":
                     name: SSID 12
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "13":
                     name: SSID 13
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "14":
                     name: SSID 14
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
               schema:
                 $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response'
@@ -23570,6 +23651,10 @@ paths:
                 bandSelectionType: ap
                 apBandSettings:
                   bandOperationMode: dual
+                  bands:
+                    enabled:
+                    - "2.4"
+                    - "5"
                   bandSteeringEnabled: true
                 twoFourGhzSettings:
                   maxPower: 30
@@ -23686,76 +23771,136 @@ paths:
                     name: SSID 0
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "1":
                     name: SSID 1
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "2":
                     name: SSID 2
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "3":
                     name: SSID 3
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "4":
                     name: SSID 4
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "5":
                     name: SSID 5
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "6":
                     name: SSID 6
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "7":
                     name: SSID 7
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "8":
                     name: SSID 8
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "9":
                     name: SSID 9
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "10":
                     name: SSID 10
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "11":
                     name: SSID 11
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "12":
                     name: SSID 12
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "13":
                     name: SSID 13
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "14":
                     name: SSID 14
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
               schema:
                 $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response'
@@ -23827,6 +23972,10 @@ paths:
                 bandSelectionType: ap
                 apBandSettings:
                   bandOperationMode: dual
+                  bands:
+                    enabled:
+                    - "2.4"
+                    - "5"
                   bandSteeringEnabled: true
                 twoFourGhzSettings:
                   maxPower: 30
@@ -23943,76 +24092,136 @@ paths:
                     name: SSID 0
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "1":
                     name: SSID 1
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "2":
                     name: SSID 2
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "3":
                     name: SSID 3
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "4":
                     name: SSID 4
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "5":
                     name: SSID 5
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "6":
                     name: SSID 6
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "7":
                     name: SSID 7
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "8":
                     name: SSID 8
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "9":
                     name: SSID 9
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "10":
                     name: SSID 10
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "11":
                     name: SSID 11
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "12":
                     name: SSID 12
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "13":
                     name: SSID 13
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "14":
                     name: SSID 14
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
               schema:
                 $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response'
@@ -24061,6 +24270,10 @@ paths:
                 bandSelectionType: ap
                 apBandSettings:
                   bandOperationMode: dual
+                  bands:
+                    enabled:
+                    - "2.4"
+                    - "5"
                   bandSteeringEnabled: true
                 twoFourGhzSettings:
                   maxPower: 30
@@ -24177,76 +24390,136 @@ paths:
                     name: SSID 0
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "1":
                     name: SSID 1
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "2":
                     name: SSID 2
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "3":
                     name: SSID 3
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "4":
                     name: SSID 4
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "5":
                     name: SSID 5
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "6":
                     name: SSID 6
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "7":
                     name: SSID 7
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "8":
                     name: SSID 8
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "9":
                     name: SSID 9
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "10":
                     name: SSID 10
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "11":
                     name: SSID 11
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "12":
                     name: SSID 12
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "13":
                     name: SSID 13
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
                   "14":
                     name: SSID 14
                     minBitrate: 11
                     bandOperationMode: dual
+                    bands:
+                      enabled:
+                      - "2.4"
+                      - "5"
                     bandSteeringEnabled: true
               schema:
                 $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response'
@@ -24283,6 +24556,9 @@ paths:
                   poolDhcpMonitoring:
                     enabled: true
                     duration: 5
+                regulatoryDomain:
+                  name: FCC
+                  permits6e: true
               schema:
                 $ref: '#/components/schemas/getNetworkWirelessSettings_200_response'
           description: Successful operation
@@ -24323,6 +24599,9 @@ paths:
                   poolDhcpMonitoring:
                     enabled: true
                     duration: 5
+                regulatoryDomain:
+                  name: FCC
+                  permits6e: true
               schema:
                 $ref: '#/components/schemas/getNetworkWirelessSettings_200_response'
           description: Successful operation
@@ -29899,6 +30178,7 @@ paths:
       - statuses
   /organizations/{organizationId}/claim:
     post:
+      deprecated: true
       description: "Claim a list of devices, licenses, and/or orders into an organization.\
         \ When claiming by order, all devices and licenses in the order will be claimed;\
         \ licenses will be added to the organization and devices will be placed in\
@@ -31232,6 +31512,175 @@ paths:
       - monitor
       - devices
       - availabilities
+  /organizations/{organizationId}/devices/availabilities/changeHistory:
+    get:
+      description: List the availability history information for devices in an organization.
+      operationId: getOrganizationDevicesAvailabilitiesChangeHistory
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The number of entries per page returned. Acceptable range is
+          3 - 1000. Default is 1000.
+        explode: true
+        in: query
+        name: perPage
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "A token used by the server to indicate the start of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: startingAfter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A token used by the server to indicate the end of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: endingBefore
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The beginning of the timespan for the data. The maximum lookback
+          period is 14 days from today.
+        explode: true
+        in: query
+        name: t0
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The end of the timespan for the data. t1 can be a maximum of
+          14 days after t0.
+        explode: true
+        in: query
+        name: t1
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The timespan for which the information will be fetched. If specifying\
+          \ timespan, do not specify parameters t0 and t1. The value must be in seconds\
+          \ and be less than or equal to 14 days. The default is 1 day."
+        explode: true
+        in: query
+        name: timespan
+        required: false
+        schema:
+          format: float
+          type: number
+        style: form
+      - description: Optional parameter to filter device availabilities history by
+          device serial numbers
+        explode: true
+        in: query
+        name: serials
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Optional parameter to filter device availabilities history by
+          device product types
+        explode: true
+        in: query
+        name: productTypes
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Optional parameter to filter device availabilities history by
+          network IDs
+        explode: true
+        in: query
+        name: networkIds
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Optional parameter to filter device availabilities history by
+          device statuses
+        explode: true
+        in: query
+        name: statuses
+        required: false
+        schema:
+          items:
+            enum:
+            - alerting
+            - dormant
+            - offline
+            - online
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - ts: 2018-02-11T00:00:00.090210Z
+                device:
+                  serial: Q234-ABCD-5678
+                  name: My AP
+                  productType: wireless
+                  model: MR34
+                details:
+                  old:
+                  - name: status
+                    value: online
+                  new:
+                  - name: status
+                    value: offline
+                network:
+                  id: N_24329156
+                  name: Main Office
+                  url: https://n1.meraki.com//n//manage/nodes/list
+                  tags:
+                  - tag1
+                  - tag2
+              schema:
+                items:
+                  $ref: '#/components/schemas/getOrganizationDevicesAvailabilitiesChangeHistory_200_response_inner'
+                type: array
+          description: Successful operation
+          headers:
+            Link:
+              description: "A comma-separated list of first, last, prev, and next\
+                \ relative links used for subsequent paginated requests."
+              explode: false
+              schema:
+                type: string
+              style: simple
+      summary: List the availability history information for devices in an organization.
+      tags:
+      - organizations
+      - monitor
+      - devices
+      - availabilities
+      - changeHistory
   /organizations/{organizationId}/devices/powerModules/statuses/byDevice:
     get:
       description: List the power status information for devices in an organization.
@@ -32279,7 +32728,7 @@ paths:
       - description: The product type in a given upgrade ID
         explode: true
         in: query
-        name: productType
+        name: productTypes
         required: false
         schema:
           items:
@@ -32299,7 +32748,7 @@ paths:
                 status: Completed
                 time: 2022-11-01T00:00:00Z
                 completedAt: 2020-11-05 15:50:05 UTC
-                productType: wireless
+                productTypes: wireless
                 toVersion:
                   id: "2888"
                   shortName: MR 11.2.1
@@ -32335,7 +32784,7 @@ paths:
           type: string
         style: simple
       - description: The number of entries per page returned. Acceptable range is
-          3 - 50. Default is 50.
+          3 - 1000. Default is 50.
         explode: true
         in: query
         name: perPage
@@ -32400,16 +32849,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: Optional parameter to filter by firmware upgrade ids.
-        explode: true
-        in: query
-        name: firmwareUpgradeIds
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       - description: Optional parameter to filter by firmware upgrade batch ids.
         explode: true
         in: query
@@ -32417,6 +32856,21 @@ paths:
         required: false
         schema:
           items:
+            type: string
+          type: array
+        style: form
+      - description: Optional parameter to filter by firmware upgrade statuses.
+        explode: true
+        in: query
+        name: upgradeStatuses
+        required: false
+        schema:
+          items:
+            enum:
+            - canceled
+            - completed
+            - pending
+            - started
             type: string
           type: array
         style: form
@@ -36831,11 +37285,11 @@ paths:
                 byBand:
                 - band: "5"
                   wifi:
-                    percentage: 33.84
+                    percentage: 33.12
                   nonWifi:
                     percentage: 1.84
                   total:
-                    percentage: 32.0
+                    percentage: 34.96
               schema:
                 items:
                   $ref: '#/components/schemas/getOrganizationWirelessDevicesChannelUtilizationByDevice_200_response_inner'
@@ -36972,11 +37426,11 @@ paths:
                 byBand:
                 - band: "5"
                   wifi:
-                    percentage: 33.84
+                    percentage: 33.12
                   nonWifi:
                     percentage: 1.84
                   total:
-                    percentage: 32.0
+                    percentage: 34.96
               schema:
                 items:
                   $ref: '#/components/schemas/getOrganizationWirelessDevicesChannelUtilizationByNetwork_200_response_inner'
@@ -37117,11 +37571,11 @@ paths:
                 byBand:
                 - band: "5"
                   wifi:
-                    percentage: 33.84
+                    percentage: 33.12
                   nonWifi:
                     percentage: 1.84
                   total:
-                    percentage: 32.0
+                    percentage: 34.96
               schema:
                 items:
                   $ref: '#/components/schemas/getOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval_200_response_inner'
@@ -37261,11 +37715,11 @@ paths:
                 byBand:
                 - band: "5"
                   wifi:
-                    percentage: 33.84
+                    percentage: 33.12
                   nonWifi:
                     percentage: 1.84
                   total:
-                    percentage: 32.0
+                    percentage: 34.96
               schema:
                 items:
                   $ref: '#/components/schemas/getOrganizationWirelessDevicesChannelUtilizationHistoryByNetworkByInterval_200_response_inner'
@@ -37290,7 +37744,8 @@ paths:
       - byInterval
   /organizations/{organizationId}/wireless/devices/ethernet/statuses:
     get:
-      description: Endpoint to see power status for wireless devices
+      description: "List the most recent Ethernet link speed, duplex, aggregation\
+        \ and power mode and status information for wireless devices."
       operationId: getOrganizationWirelessDevicesEthernetStatuses
       parameters:
       - description: Organization ID
@@ -37383,7 +37838,8 @@ paths:
               schema:
                 type: string
               style: simple
-      summary: Endpoint to see power status for wireless devices
+      summary: "List the most recent Ethernet link speed, duplex, aggregation and\
+        \ power mode and status information for wireless devices."
       tags:
       - wireless
       - monitor
@@ -37738,6 +38194,19 @@ components:
           description: The password of the identity.
           type: string
       type: object
+    createNetworkWirelessRfProfile_request_apBandSettings_bands:
+      description: Settings related to all bands
+      properties:
+        enabled:
+          description: "List of enabled bands. Can include [\"2.4\", \"5\", \"6\"]"
+          items:
+            enum:
+            - "2.4"
+            - "5"
+            - "6"
+            type: string
+          type: array
+      type: object
     updateNetworkSettings_request_localStatusPage:
       description: A hash of Local Status page(s)' authentication options applied
         to the Network.
@@ -37910,6 +38379,31 @@ components:
         ipv6:
           $ref: '#/components/schemas/getNetworkApplianceSingleLan_200_response_ipv6'
       type: object
+    getOrganizationDevicesAvailabilitiesChangeHistory_200_response_inner_network:
+      description: Network information
+      example:
+        name: name
+        id: id
+        url: url
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          description: Network id
+          type: string
+        name:
+          description: Network name
+          type: string
+        url:
+          description: Network dashboard url
+          type: string
+        tags:
+          description: Network tags
+          items:
+            type: string
+          type: array
+      type: object
     blinkDeviceLeds_202_response:
       example:
         duration: 0
@@ -37944,6 +38438,53 @@ components:
         url:
           description: Url link to device.
           type: string
+      type: object
+    getNetworkSwitchPortSchedules_200_response_inner_portSchedule:
+      description: Port schedule
+      example:
+        sunday:
+          active: true
+          from: from
+          to: to
+        saturday:
+          active: true
+          from: from
+          to: to
+        tuesday:
+          active: true
+          from: from
+          to: to
+        wednesday:
+          active: true
+          from: from
+          to: to
+        thursday:
+          active: true
+          from: from
+          to: to
+        friday:
+          active: true
+          from: from
+          to: to
+        monday:
+          active: true
+          from: from
+          to: to
+      properties:
+        monday:
+          $ref: '#/components/schemas/getNetworkSwitchPortSchedules_200_response_inner_portSchedule_monday'
+        tuesday:
+          $ref: '#/components/schemas/getNetworkSwitchPortSchedules_200_response_inner_portSchedule_tuesday'
+        wednesday:
+          $ref: '#/components/schemas/getNetworkSwitchPortSchedules_200_response_inner_portSchedule_wednesday'
+        thursday:
+          $ref: '#/components/schemas/getNetworkSwitchPortSchedules_200_response_inner_portSchedule_thursday'
+        friday:
+          $ref: '#/components/schemas/getNetworkSwitchPortSchedules_200_response_inner_portSchedule_friday'
+        saturday:
+          $ref: '#/components/schemas/getNetworkSwitchPortSchedules_200_response_inner_portSchedule_saturday'
+        sunday:
+          $ref: '#/components/schemas/getNetworkSwitchPortSchedules_200_response_inner_portSchedule_sunday'
       type: object
     getNetworkSwitchDhcpV4ServersSeen_200_response_inner_lastAck_ipv4:
       description: IPv4 attributes of the last ack.
@@ -38393,10 +38934,17 @@ components:
       example:
         bandSteeringEnabled: true
         bandOperationMode: bandOperationMode
+        bands:
+          enabled:
+          - enabled
+          - enabled
       properties:
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'. Defaults to dual."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.\
+            \ Defaults to dual."
           type: string
+        bands:
+          $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band. Can be either true or false.
             Defaults to true.
@@ -39757,9 +40305,9 @@ components:
           releaseType: releaseType
           id: id
           shortName: shortName
+        productTypes: productTypes
         time: 2000-01-23T04:56:07.000+00:00
         upgradeId: upgradeId
-        productType: productType
         network:
           name: name
           id: id
@@ -39788,7 +40336,7 @@ components:
         completedAt:
           description: Timestamp when upgrade completed. Null if status pending.
           type: string
-        productType:
+        productTypes:
           description: "product upgraded [wireless, appliance, switch, systemsManager,\
             \ camera, cellularGateway, sensor]"
           type: string
@@ -40254,6 +40802,36 @@ components:
         isAuthorized:
           description: "New authorization status for the SSID (true, false)."
           type: boolean
+      type: object
+    getOrganizationDevicesAvailabilitiesChangeHistory_200_response_inner_device:
+      description: Device information
+      example:
+        serial: serial
+        name: name
+        model: model
+        productType: appliance
+      properties:
+        serial:
+          description: Device serial number
+          type: string
+        name:
+          description: Device name
+          type: string
+        productType:
+          description: Device product type.
+          enum:
+          - appliance
+          - camera
+          - cellularGateway
+          - cloudGateway
+          - sensor
+          - switch
+          - systemsManager
+          - wireless
+          type: string
+        model:
+          description: Device model
+          type: string
       type: object
     updateNetworkClientSplashAuthorizationStatus_request_ssids_1:
       description: Splash authorization for SSID 1
@@ -41329,34 +41907,6 @@ components:
           description: Option value.
           type: string
       type: object
-    getNetworkSmProfiles_200_response_inner:
-      example:
-        scope: scope
-        name: name
-        description: description
-        id: id
-        tags:
-        - tags
-        - tags
-      properties:
-        id:
-          description: ID of a profile.
-          type: string
-        name:
-          description: Name of a profile.
-          type: string
-        description:
-          description: Description of a profile.
-          type: string
-        scope:
-          description: Scope of a profile.
-          type: string
-        tags:
-          description: Tags of a profile.
-          items:
-            type: string
-          type: array
-      type: object
     getNetworkSmDeviceSoftwares_200_response_inner:
       example:
         redemptionCode: 1
@@ -42056,6 +42606,31 @@ components:
             $ref: '#/components/schemas/getOrganizationDevicesUplinksAddressesByDevice_200_response_inner_uplinks_inner_addresses_inner'
           type: array
       type: object
+    getOrganizationDevicesAvailabilitiesChangeHistory_200_response_inner_details:
+      description: Details about the status changes
+      example:
+        new:
+        - name: name
+          value: value
+        - name: name
+          value: value
+        old:
+        - name: name
+          value: value
+        - name: name
+          value: value
+      properties:
+        old:
+          description: Details about the old status
+          items:
+            $ref: '#/components/schemas/getOrganizationDevicesAvailabilitiesChangeHistory_200_response_inner_details_old_inner'
+          type: array
+        new:
+          description: Details about the new status
+          items:
+            $ref: '#/components/schemas/getOrganizationDevicesAvailabilitiesChangeHistory_200_response_inner_details_old_inner'
+          type: array
+      type: object
     getNetworkSensorRelationships_200_response_inner_relationships:
       description: An object describing the relationships defined between the device
         and other devices
@@ -42326,6 +42901,10 @@ components:
         name: name
         bandSteeringEnabled: true
         bandOperationMode: 2.4ghz
+        bands:
+          enabled:
+          - enabled
+          - enabled
       properties:
         name:
           description: Name of SSID
@@ -42335,12 +42914,16 @@ components:
             \ '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'."
           type: integer
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -42353,6 +42936,10 @@ components:
         name: name
         bandSteeringEnabled: true
         bandOperationMode: 2.4ghz
+        bands:
+          enabled:
+          - enabled
+          - enabled
       properties:
         name:
           description: Name of SSID
@@ -42362,12 +42949,16 @@ components:
             \ '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'."
           type: integer
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -42439,6 +43030,10 @@ components:
         name: name
         bandSteeringEnabled: true
         bandOperationMode: 2.4ghz
+        bands:
+          enabled:
+          - enabled
+          - enabled
       properties:
         name:
           description: Name of SSID
@@ -42448,12 +43043,16 @@ components:
             \ '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'."
           type: integer
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -42466,6 +43065,10 @@ components:
         name: name
         bandSteeringEnabled: true
         bandOperationMode: 2.4ghz
+        bands:
+          enabled:
+          - enabled
+          - enabled
       properties:
         name:
           description: Name of SSID
@@ -42475,12 +43078,16 @@ components:
             \ '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'."
           type: integer
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -42517,6 +43124,10 @@ components:
         name: name
         bandSteeringEnabled: true
         bandOperationMode: 2.4ghz
+        bands:
+          enabled:
+          - enabled
+          - enabled
       properties:
         name:
           description: Name of SSID
@@ -42526,12 +43137,16 @@ components:
             \ '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'."
           type: integer
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -42729,6 +43344,7 @@ components:
         - mac: 00:11:22:33:44:55
           clientId: k74272e
           name: Miles's phone
+          message: Blocked message for client
         devicePolicy: Group policy
         groupPolicyId: "101"
       properties:
@@ -43274,6 +43890,9 @@ components:
         locationAnalyticsEnabled: true
         upgradeStrategy: minimizeClientDowntime
         ledLightsOn: true
+        regulatoryDomain:
+          name: name
+          permits6e: true
       properties:
         meshingEnabled:
           description: Toggle for enabling or disabling meshing in a network
@@ -43300,6 +43919,8 @@ components:
           type: boolean
         namedVlans:
           $ref: '#/components/schemas/getNetworkWirelessSettings_200_response_namedVlans'
+        regulatoryDomain:
+          $ref: '#/components/schemas/getNetworkWirelessSettings_200_response_regulatoryDomain'
       type: object
     addNetworkSwitchStack_request:
       example:
@@ -46003,6 +46624,20 @@ components:
           items:
             $ref: '#/components/schemas/updateNetworkWirelessBilling_request_plans_inner'
           type: array
+      type: object
+    getNetworkWirelessSettings_200_response_regulatoryDomain:
+      description: Regulatory domain information for this network.
+      example:
+        name: name
+        permits6e: true
+      properties:
+        name:
+          description: The name of the regulatory domain for this network.
+          type: string
+        permits6e:
+          description: Whether or not the regulatory domain for this network permits
+            Wifi 6E.
+          type: boolean
       type: object
     createNetworkWirelessRfProfile_request_flexRadios:
       description: Flex radio settings.
@@ -49860,6 +50495,10 @@ components:
         bandSelectionType: ap
         apBandSettings:
           bandOperationMode: dual
+          bands:
+            enabled:
+            - "2.4"
+            - "5"
           bandSteeringEnabled: true
         twoFourGhzSettings:
           maxPower: 30
@@ -49975,62 +50614,122 @@ components:
           "0":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "1":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "2":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "3":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "4":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "5":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "6":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "7":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "8":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "9":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "10":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "11":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "12":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "13":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "14":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
         flexRadios:
           byModel:
@@ -51374,6 +52073,10 @@ components:
         bandSelectionType: ap
         apBandSettings:
           bandOperationMode: dual
+          bands:
+            enabled:
+            - "2.4"
+            - "5"
           bandSteeringEnabled: true
         twoFourGhzSettings:
           maxPower: 30
@@ -51489,62 +52192,122 @@ components:
           "0":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "1":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "2":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "3":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "4":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "5":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "6":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "7":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "8":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "9":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "10":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "11":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "12":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "13":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
           "14":
             minBitrate: 11.0
             bandOperationMode: dual
+            bands:
+              enabled:
+              - "2.4"
+              - "5"
             bandSteeringEnabled: true
         flexRadios:
           byModel:
@@ -53319,6 +54082,23 @@ components:
       - category
       - comment
       type: object
+    getNetworkSwitchPortSchedules_200_response_inner_portSchedule_monday:
+      description: Monday schedule
+      example:
+        active: true
+        from: from
+        to: to
+      properties:
+        active:
+          description: Whether the schedule is active or inactive
+          type: boolean
+        from:
+          description: "The time, from '00:00' to '24:00'"
+          type: string
+        to:
+          description: "The time, from '00:00' to '24:00'"
+          type: string
+      type: object
     updateNetworkSwitchStormControl_request:
       example:
         broadcastThreshold: 30
@@ -53378,12 +54158,16 @@ components:
       description: Settings that will be enabled if selectionType is set to 'ap'.
       properties:
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band. Can be either true or false.
           type: boolean
@@ -53488,6 +54272,44 @@ components:
           description: Name
           type: string
       type: object
+    getOrganizationDevicesAvailabilitiesChangeHistory_200_response_inner:
+      example:
+        details:
+          new:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          old:
+          - name: name
+            value: value
+          - name: name
+            value: value
+        device:
+          serial: serial
+          name: name
+          model: model
+          productType: appliance
+        ts: 2000-01-23T04:56:07.000+00:00
+        network:
+          name: name
+          id: id
+          url: url
+          tags:
+          - tags
+          - tags
+      properties:
+        ts:
+          description: "Timestamp, in iso8601 format, at which the event happened"
+          format: date-time
+          type: string
+        device:
+          $ref: '#/components/schemas/getOrganizationDevicesAvailabilitiesChangeHistory_200_response_inner_device'
+        details:
+          $ref: '#/components/schemas/getOrganizationDevicesAvailabilitiesChangeHistory_200_response_inner_details'
+        network:
+          $ref: '#/components/schemas/getOrganizationDevicesAvailabilitiesChangeHistory_200_response_inner_network'
+      type: object
     updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer_request:
       example:
         mac: 00:11:22:33:44:55
@@ -53512,6 +54334,23 @@ components:
       properties:
         id:
           description: ID for the network that the device is associated with.
+          type: string
+      type: object
+    getNetworkSwitchPortSchedules_200_response_inner_portSchedule_friday:
+      description: Friday schedule
+      example:
+        active: true
+        from: from
+        to: to
+      properties:
+        active:
+          description: Whether the schedule is active or inactive
+          type: boolean
+        from:
+          description: "The time, from '00:00' to '24:00'"
+          type: string
+        to:
+          description: "The time, from '00:00' to '24:00'"
           type: string
       type: object
     updateNetworkWebhooksHttpServer_request_payloadTemplate:
@@ -54195,6 +55034,23 @@ components:
           - poor
           type: string
       type: object
+    getNetworkSwitchPortSchedules_200_response_inner_portSchedule_thursday:
+      description: Thursday schedule
+      example:
+        active: true
+        from: from
+        to: to
+      properties:
+        active:
+          description: Whether the schedule is active or inactive
+          type: boolean
+        from:
+          description: "The time, from '00:00' to '24:00'"
+          type: string
+        to:
+          description: "The time, from '00:00' to '24:00'"
+          type: string
+      type: object
     createNetworkWirelessRfProfile_request_perSsidSettings_13:
       description: Settings for SSID 13
       properties:
@@ -54204,12 +55060,16 @@ components:
           format: float
           type: number
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -54224,12 +55084,16 @@ components:
           format: float
           type: number
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -54285,12 +55149,16 @@ components:
           format: float
           type: number
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -54305,12 +55173,16 @@ components:
           format: float
           type: number
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -54375,12 +55247,16 @@ components:
           format: float
           type: number
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -54522,6 +55398,23 @@ components:
       required:
       - id
       type: object
+    getNetworkSwitchPortSchedules_200_response_inner_portSchedule_wednesday:
+      description: Wednesday schedule
+      example:
+        active: true
+        from: from
+        to: to
+      properties:
+        active:
+          description: Whether the schedule is active or inactive
+          type: boolean
+        from:
+          description: "The time, from '00:00' to '24:00'"
+          type: string
+        to:
+          description: "The time, from '00:00' to '24:00'"
+          type: string
+      type: object
     getNetworkSwitchDhcpV4ServersSeen_200_response_inner_lastPacket_source:
       description: Source of the packet.
       example:
@@ -54651,6 +55544,23 @@ components:
           type: array
       required:
       - conditions
+      type: object
+    getNetworkSwitchPortSchedules_200_response_inner_portSchedule_saturday:
+      description: Saturday schedule
+      example:
+        active: true
+        from: from
+        to: to
+      properties:
+        active:
+          description: Whether the schedule is active or inactive
+          type: boolean
+        from:
+          description: "The time, from '00:00' to '24:00'"
+          type: string
+        to:
+          description: "The time, from '00:00' to '24:00'"
+          type: string
       type: object
     getNetworkFirmwareUpgradesStagedEvents_200_response_products_switch_nextUpgrade:
       description: Details of the next firmware upgrade
@@ -56202,12 +57112,16 @@ components:
           format: float
           type: number
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -56222,12 +57136,16 @@ components:
           format: float
           type: number
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -56266,12 +57184,16 @@ components:
           format: float
           type: number
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -56286,12 +57208,16 @@ components:
           format: float
           type: number
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -56301,11 +57227,13 @@ components:
       description: Settings for SSID 1
       properties:
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
@@ -56321,12 +57249,16 @@ components:
           format: float
           type: number
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -56336,11 +57268,13 @@ components:
       description: Settings for SSID 2
       properties:
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
@@ -56356,12 +57290,16 @@ components:
           format: float
           type: number
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -56384,11 +57322,13 @@ components:
       description: Settings for SSID 3
       properties:
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
@@ -56404,12 +57344,16 @@ components:
           format: float
           type: number
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -56432,11 +57376,13 @@ components:
       description: Settings for SSID 4
       properties:
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
@@ -56452,12 +57398,16 @@ components:
           format: float
           type: number
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -56472,12 +57422,16 @@ components:
           format: float
           type: number
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -56492,12 +57446,16 @@ components:
           format: float
           type: number
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -57563,6 +58521,10 @@ components:
         apBandSettings:
           bandSteeringEnabled: true
           bandOperationMode: bandOperationMode
+          bands:
+            enabled:
+            - enabled
+            - enabled
         transmission:
           enabled: true
         fiveGhzSettings:
@@ -57602,76 +58564,136 @@ components:
             name: name
             bandSteeringEnabled: true
             bandOperationMode: 2.4ghz
+            bands:
+              enabled:
+              - enabled
+              - enabled
           "12":
             minBitrate: 6
             name: name
             bandSteeringEnabled: true
             bandOperationMode: 2.4ghz
+            bands:
+              enabled:
+              - enabled
+              - enabled
           "13":
             minBitrate: 1
             name: name
             bandSteeringEnabled: true
             bandOperationMode: 2.4ghz
+            bands:
+              enabled:
+              - enabled
+              - enabled
           "14":
             minBitrate: 2
             name: name
             bandSteeringEnabled: true
             bandOperationMode: 2.4ghz
+            bands:
+              enabled:
+              - enabled
+              - enabled
           "0":
             minBitrate: 6
             name: name
             bandSteeringEnabled: true
             bandOperationMode: 2.4ghz
+            bands:
+              enabled:
+              - enabled
+              - enabled
           "1":
             minBitrate: 7
             name: name
             bandSteeringEnabled: true
             bandOperationMode: 2.4ghz
+            bands:
+              enabled:
+              - enabled
+              - enabled
           "2":
             minBitrate: 1
             name: name
             bandSteeringEnabled: true
             bandOperationMode: 2.4ghz
+            bands:
+              enabled:
+              - enabled
+              - enabled
           "3":
             minBitrate: 4
             name: name
             bandSteeringEnabled: true
             bandOperationMode: 2.4ghz
+            bands:
+              enabled:
+              - enabled
+              - enabled
           "4":
             minBitrate: 5
             name: name
             bandSteeringEnabled: true
             bandOperationMode: 2.4ghz
+            bands:
+              enabled:
+              - enabled
+              - enabled
           "5":
             minBitrate: 9
             name: name
             bandSteeringEnabled: true
             bandOperationMode: 2.4ghz
+            bands:
+              enabled:
+              - enabled
+              - enabled
           "6":
             minBitrate: 9
             name: name
             bandSteeringEnabled: true
             bandOperationMode: 2.4ghz
+            bands:
+              enabled:
+              - enabled
+              - enabled
           "7":
             minBitrate: 6
             name: name
             bandSteeringEnabled: true
             bandOperationMode: 2.4ghz
+            bands:
+              enabled:
+              - enabled
+              - enabled
           "8":
             minBitrate: 8
             name: name
             bandSteeringEnabled: true
             bandOperationMode: 2.4ghz
+            bands:
+              enabled:
+              - enabled
+              - enabled
           "9":
             minBitrate: 9
             name: name
             bandSteeringEnabled: true
             bandOperationMode: 2.4ghz
+            bands:
+              enabled:
+              - enabled
+              - enabled
           "10":
             minBitrate: 6
             name: name
             bandSteeringEnabled: true
             bandOperationMode: 2.4ghz
+            bands:
+              enabled:
+              - enabled
+              - enabled
       properties:
         id:
           description: The name of the new profile. Must be unique.
@@ -58041,6 +59063,23 @@ components:
           type: string
         upgrade:
           $ref: '#/components/schemas/getOrganizationFirmwareUpgradesByDevice_200_response_inner_upgrade'
+      type: object
+    getNetworkSwitchPortSchedules_200_response_inner_portSchedule_sunday:
+      description: Sunday schedule
+      example:
+        active: true
+        from: from
+        to: to
+      properties:
+        active:
+          description: Whether the schedule is active or inactive
+          type: boolean
+        from:
+          description: "The time, from '00:00' to '24:00'"
+          type: string
+        to:
+          description: "The time, from '00:00' to '24:00'"
+          type: string
       type: object
     getNetworkFirmwareUpgradesStagedEvents_200_response_products_switch_nextUpgrade_toVersion:
       description: Details of the version the device will upgrade to
@@ -58485,6 +59524,10 @@ components:
         name: name
         bandSteeringEnabled: true
         bandOperationMode: 2.4ghz
+        bands:
+          enabled:
+          - enabled
+          - enabled
       properties:
         name:
           description: Name of SSID
@@ -58494,12 +59537,16 @@ components:
             \ '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'."
           type: integer
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -58512,6 +59559,10 @@ components:
         name: name
         bandSteeringEnabled: true
         bandOperationMode: 2.4ghz
+        bands:
+          enabled:
+          - enabled
+          - enabled
       properties:
         name:
           description: Name of SSID
@@ -58521,12 +59572,16 @@ components:
             \ '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'."
           type: integer
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -58566,6 +59621,10 @@ components:
         name: name
         bandSteeringEnabled: true
         bandOperationMode: 2.4ghz
+        bands:
+          enabled:
+          - enabled
+          - enabled
       properties:
         name:
           description: Name of SSID
@@ -58575,12 +59634,16 @@ components:
             \ '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'."
           type: integer
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -58593,6 +59656,10 @@ components:
         name: name
         bandSteeringEnabled: true
         bandOperationMode: 2.4ghz
+        bands:
+          enabled:
+          - enabled
+          - enabled
       properties:
         name:
           description: Name of SSID
@@ -58602,12 +59669,16 @@ components:
             \ '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'."
           type: integer
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -58620,6 +59691,10 @@ components:
         name: name
         bandSteeringEnabled: true
         bandOperationMode: 2.4ghz
+        bands:
+          enabled:
+          - enabled
+          - enabled
       properties:
         name:
           description: Name of SSID
@@ -58629,12 +59704,16 @@ components:
             \ '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'."
           type: integer
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -58647,6 +59726,10 @@ components:
         name: name
         bandSteeringEnabled: true
         bandOperationMode: 2.4ghz
+        bands:
+          enabled:
+          - enabled
+          - enabled
       properties:
         name:
           description: Name of SSID
@@ -58656,12 +59739,16 @@ components:
             \ '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'."
           type: integer
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -58674,6 +59761,10 @@ components:
         name: name
         bandSteeringEnabled: true
         bandOperationMode: 2.4ghz
+        bands:
+          enabled:
+          - enabled
+          - enabled
       properties:
         name:
           description: Name of SSID
@@ -58683,12 +59774,16 @@ components:
             \ '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'."
           type: integer
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -58735,6 +59830,10 @@ components:
         name: name
         bandSteeringEnabled: true
         bandOperationMode: 2.4ghz
+        bands:
+          enabled:
+          - enabled
+          - enabled
       properties:
         name:
           description: Name of SSID
@@ -58744,12 +59843,16 @@ components:
             \ '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'."
           type: integer
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -58859,6 +59962,10 @@ components:
         name: name
         bandSteeringEnabled: true
         bandOperationMode: 2.4ghz
+        bands:
+          enabled:
+          - enabled
+          - enabled
       properties:
         name:
           description: Name of SSID
@@ -58868,12 +59975,16 @@ components:
             \ '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'."
           type: integer
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -58959,6 +60070,10 @@ components:
         name: name
         bandSteeringEnabled: true
         bandOperationMode: 2.4ghz
+        bands:
+          enabled:
+          - enabled
+          - enabled
       properties:
         name:
           description: Name of SSID
@@ -58968,12 +60083,16 @@ components:
             \ '5.5', '6', '9', '11', '12', '18', '24', '36', '48' or '54'."
           type: integer
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band between 2.4 GHz and 5 GHz.
             Can be either true or false.
@@ -59069,76 +60188,136 @@ components:
           name: name
           bandSteeringEnabled: true
           bandOperationMode: 2.4ghz
+          bands:
+            enabled:
+            - enabled
+            - enabled
         "12":
           minBitrate: 6
           name: name
           bandSteeringEnabled: true
           bandOperationMode: 2.4ghz
+          bands:
+            enabled:
+            - enabled
+            - enabled
         "13":
           minBitrate: 1
           name: name
           bandSteeringEnabled: true
           bandOperationMode: 2.4ghz
+          bands:
+            enabled:
+            - enabled
+            - enabled
         "14":
           minBitrate: 2
           name: name
           bandSteeringEnabled: true
           bandOperationMode: 2.4ghz
+          bands:
+            enabled:
+            - enabled
+            - enabled
         "0":
           minBitrate: 6
           name: name
           bandSteeringEnabled: true
           bandOperationMode: 2.4ghz
+          bands:
+            enabled:
+            - enabled
+            - enabled
         "1":
           minBitrate: 7
           name: name
           bandSteeringEnabled: true
           bandOperationMode: 2.4ghz
+          bands:
+            enabled:
+            - enabled
+            - enabled
         "2":
           minBitrate: 1
           name: name
           bandSteeringEnabled: true
           bandOperationMode: 2.4ghz
+          bands:
+            enabled:
+            - enabled
+            - enabled
         "3":
           minBitrate: 4
           name: name
           bandSteeringEnabled: true
           bandOperationMode: 2.4ghz
+          bands:
+            enabled:
+            - enabled
+            - enabled
         "4":
           minBitrate: 5
           name: name
           bandSteeringEnabled: true
           bandOperationMode: 2.4ghz
+          bands:
+            enabled:
+            - enabled
+            - enabled
         "5":
           minBitrate: 9
           name: name
           bandSteeringEnabled: true
           bandOperationMode: 2.4ghz
+          bands:
+            enabled:
+            - enabled
+            - enabled
         "6":
           minBitrate: 9
           name: name
           bandSteeringEnabled: true
           bandOperationMode: 2.4ghz
+          bands:
+            enabled:
+            - enabled
+            - enabled
         "7":
           minBitrate: 6
           name: name
           bandSteeringEnabled: true
           bandOperationMode: 2.4ghz
+          bands:
+            enabled:
+            - enabled
+            - enabled
         "8":
           minBitrate: 8
           name: name
           bandSteeringEnabled: true
           bandOperationMode: 2.4ghz
+          bands:
+            enabled:
+            - enabled
+            - enabled
         "9":
           minBitrate: 9
           name: name
           bandSteeringEnabled: true
           bandOperationMode: 2.4ghz
+          bands:
+            enabled:
+            - enabled
+            - enabled
         "10":
           minBitrate: 6
           name: name
           bandSteeringEnabled: true
           bandOperationMode: 2.4ghz
+          bands:
+            enabled:
+            - enabled
+            - enabled
       properties:
         "0":
           $ref: '#/components/schemas/getNetworkWirelessRfProfiles_200_response_perSsidSettings_0'
@@ -59660,6 +60839,7 @@ components:
           - cellular
           - wan1
           - wan2
+          - wan3
           type: string
         status:
           description: Uplink status
@@ -60960,6 +62140,19 @@ components:
             type: string
           type: array
       type: object
+    getNetworkWirelessRfProfiles_200_response_apBandSettings_bands:
+      description: Settings related to all bands
+      example:
+        enabled:
+        - enabled
+        - enabled
+      properties:
+        enabled:
+          description: "List of enabled bands. Can include [\"2.4\", \"5\", \"6\"]"
+          items:
+            type: string
+          type: array
+      type: object
     updateNetworkApplianceVpnBgp_request_neighbors_inner_authentication:
       description: Authentication settings between BGP peers.
       properties:
@@ -61773,6 +62966,23 @@ components:
           type: array
       required:
       - stages
+      type: object
+    getNetworkSwitchPortSchedules_200_response_inner_portSchedule_tuesday:
+      description: Tuesday schedule
+      example:
+        active: true
+        from: from
+        to: to
+      properties:
+        active:
+          description: Whether the schedule is active or inactive
+          type: boolean
+        from:
+          description: "The time, from '00:00' to '24:00'"
+          type: string
+        to:
+          description: "The time, from '00:00' to '24:00'"
+          type: string
       type: object
     createOrganizationAdaptivePolicyPolicy_request_sourceGroup:
       description: The source adaptive policy group (requires one unique attribute)
@@ -63091,6 +64301,14 @@ components:
             $ref: '#/components/schemas/getNetworkHealthAlerts_200_response_inner_scope_peers_inner'
           type: array
       type: object
+    unenrollNetworkSmDevice_200_response:
+      example:
+        success: true
+      properties:
+        success:
+          description: Boolean indicating whether the operation was completed successfully.
+          type: boolean
+      type: object
     getOrganizationFirmwareUpgrades_200_response_inner_network:
       description: Network of the upgrade
       example:
@@ -63848,12 +65066,17 @@ components:
       description: Settings that will be enabled if selectionType is set to 'ap'.
       properties:
         bandOperationMode:
-          description: "Choice between 'dual', '2.4ghz' or '5ghz'. Defaults to dual."
+          description: "Choice between 'dual', '2.4ghz', '5ghz', '6ghz' or 'multi'.\
+            \ Defaults to dual."
           enum:
           - 2.4ghz
           - 5ghz
+          - 6ghz
           - dual
+          - multi
           type: string
+        bands:
+          $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_apBandSettings_bands'
         bandSteeringEnabled:
           description: Steers client to most open band. Can be either true or false.
             Defaults to true.
@@ -64347,6 +65570,18 @@ components:
           description: "Timestamp for when the Identity PSK expires, or 'null' to\
             \ never expire"
           format: date-time
+          type: string
+      type: object
+    getOrganizationDevicesAvailabilitiesChangeHistory_200_response_inner_details_old_inner:
+      example:
+        name: name
+        value: value
+      properties:
+        name:
+          description: Name of the detail
+          type: string
+        value:
+          description: Value of the detail
           type: string
       type: object
     getOrganizationInsightApplications_200_response_inner_thresholds_byNetwork_inner:
@@ -65460,6 +66695,53 @@ components:
         limitDown:
           description: "The maximum download limit (integer, in Kbps)."
           type: integer
+      type: object
+    getNetworkSwitchPortSchedules_200_response_inner:
+      example:
+        portSchedule:
+          sunday:
+            active: true
+            from: from
+            to: to
+          saturday:
+            active: true
+            from: from
+            to: to
+          tuesday:
+            active: true
+            from: from
+            to: to
+          wednesday:
+            active: true
+            from: from
+            to: to
+          thursday:
+            active: true
+            from: from
+            to: to
+          friday:
+            active: true
+            from: from
+            to: to
+          monday:
+            active: true
+            from: from
+            to: to
+        name: name
+        networkId: networkId
+        id: id
+      properties:
+        id:
+          description: Switch port schedule ID
+          type: string
+        networkId:
+          description: Network ID
+          type: string
+        name:
+          description: Switch port schedule name
+          type: string
+        portSchedule:
+          $ref: '#/components/schemas/getNetworkSwitchPortSchedules_200_response_inner_portSchedule'
       type: object
     updateNetworkWebhooksPayloadTemplate_request:
       example:
@@ -67053,6 +68335,22 @@ x-batchable-actions:
   summary: Update the EAP overridden parameters for an SSID.
   resource: "/networks/{networkId}/wireless/ssids/{number}/eapOverride"
   operation: update
+- group: End users/actions/meraki auth user
+  summary: "Authorize a user configured with Meraki Authentication for a network (currently\
+    \ supports 802.1X, splash guest, and client VPN users, and currently, organizations\
+    \ have a 50,000 user cap)"
+  resource: "/networks/{networkId}/merakiAuthUsers"
+  operation: create
+- group: End users/actions/meraki auth user
+  summary: "Delete an 802.1X RADIUS user, or deauthorize and optionally delete a splash\
+    \ guest or client VPN user."
+  resource: "/networks/{networkId}/merakiAuthUsers/{merakiAuthUserId}"
+  operation: destroy
+- group: End users/actions/meraki auth user
+  summary: "Update a user configured with Meraki Authentication (currently, 802.1X\
+    \ RADIUS, splash guest, and client VPN users can be updated)"
+  resource: "/networks/{networkId}/merakiAuthUsers/{merakiAuthUserId}"
+  operation: update
 - group: Feature opt in
   summary: Update an early access feature opt-in for an organization
   resource: "/organizations/{organizationId}/earlyAccess/features/optIns/{optInId}"
@@ -67183,23 +68481,6 @@ x-batchable-actions:
 - group: Management interface settings
   summary: Update the management interface settings for a device
   resource: "/devices/{serial}/managementInterface"
-  operation: update
-- group: Meraki auth user
-  summary: "Authorize a user configured with Meraki Authentication for a network (currently\
-    \ supports 802.1X, splash guest, and client VPN users, and currently, organizations\
-    \ have a 50,000 user cap)"
-  resource: "/networks/{networkId}/merakiAuthUsers"
-  operation: create
-- group: Meraki auth user
-  summary: "Deauthorize a user. To reauthorize a user after deauthorizing them, POST\
-    \ to this endpoint. (Currently, 802.1X RADIUS, splash guest, and client VPN users\
-    \ can be deauthorized.)"
-  resource: "/networks/{networkId}/merakiAuthUsers/{merakiAuthUserId}"
-  operation: destroy
-- group: Meraki auth user
-  summary: "Update a user configured with Meraki Authentication (currently, 802.1X\
-    \ RADIUS, splash guest, and client VPN users can be updated)"
-  resource: "/networks/{networkId}/merakiAuthUsers/{merakiAuthUserId}"
   operation: update
 - group: Monitored media server
   summary: Add a media server to be monitored for this organization. Only valid for

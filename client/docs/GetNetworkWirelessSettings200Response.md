@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **UpgradeStrategy** | Pointer to **string** | The upgrade strategy to apply to the network. Must be one of &#39;minimizeUpgradeTime&#39; or &#39;minimizeClientDowntime&#39;. Requires firmware version MR 26.8 or higher&#39; | [optional] 
 **LedLightsOn** | Pointer to **bool** | Toggle for enabling or disabling LED lights on all APs in the network (making them run dark) | [optional] 
 **NamedVlans** | Pointer to [**GetNetworkWirelessSettings200ResponseNamedVlans**](GetNetworkWirelessSettings200ResponseNamedVlans.md) |  | [optional] 
+**RegulatoryDomain** | Pointer to [**GetNetworkWirelessSettings200ResponseRegulatoryDomain**](GetNetworkWirelessSettings200ResponseRegulatoryDomain.md) |  | [optional] 
 
 ## Methods
 
@@ -179,6 +180,31 @@ SetNamedVlans sets NamedVlans field to given value.
 `func (o *GetNetworkWirelessSettings200Response) HasNamedVlans() bool`
 
 HasNamedVlans returns a boolean if a field has been set.
+
+### GetRegulatoryDomain
+
+`func (o *GetNetworkWirelessSettings200Response) GetRegulatoryDomain() GetNetworkWirelessSettings200ResponseRegulatoryDomain`
+
+GetRegulatoryDomain returns the RegulatoryDomain field if non-nil, zero value otherwise.
+
+### GetRegulatoryDomainOk
+
+`func (o *GetNetworkWirelessSettings200Response) GetRegulatoryDomainOk() (*GetNetworkWirelessSettings200ResponseRegulatoryDomain, bool)`
+
+GetRegulatoryDomainOk returns a tuple with the RegulatoryDomain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegulatoryDomain
+
+`func (o *GetNetworkWirelessSettings200Response) SetRegulatoryDomain(v GetNetworkWirelessSettings200ResponseRegulatoryDomain)`
+
+SetRegulatoryDomain sets RegulatoryDomain field to given value.
+
+### HasRegulatoryDomain
+
+`func (o *GetNetworkWirelessSettings200Response) HasRegulatoryDomain() bool`
+
+HasRegulatoryDomain returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
