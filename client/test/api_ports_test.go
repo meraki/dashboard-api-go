@@ -22,6 +22,34 @@ func Test_client_PortsApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test PortsApiService AssignNetworkWirelessEthernetPortsProfiles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.PortsApi.AssignNetworkWirelessEthernetPortsProfiles(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test PortsApiService CreateNetworkWirelessEthernetPortsProfile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.PortsApi.CreateNetworkWirelessEthernetPortsProfile(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test PortsApiService CycleDeviceSwitchPorts", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -32,6 +60,20 @@ func Test_client_PortsApiService(t *testing.T) {
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test PortsApiService DeleteNetworkWirelessEthernetPortsProfile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+		var profileId string
+
+		httpRes, err := apiClient.PortsApi.DeleteNetworkWirelessEthernetPortsProfile(context.Background(), networkId, profileId).Execute()
+
+		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -122,6 +164,35 @@ func Test_client_PortsApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test PortsApiService GetNetworkWirelessEthernetPortsProfile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+		var profileId string
+
+		resp, httpRes, err := apiClient.PortsApi.GetNetworkWirelessEthernetPortsProfile(context.Background(), networkId, profileId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test PortsApiService GetNetworkWirelessEthernetPortsProfiles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.PortsApi.GetNetworkWirelessEthernetPortsProfiles(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test PortsApiService GetOrganizationConfigTemplateSwitchProfilePort", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -169,6 +240,20 @@ func Test_client_PortsApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test PortsApiService SetNetworkWirelessEthernetPortsProfilesDefault", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.PortsApi.SetNetworkWirelessEthernetPortsProfilesDefault(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test PortsApiService UpdateDeviceSwitchPort", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -192,6 +277,21 @@ func Test_client_PortsApiService(t *testing.T) {
 		var portId string
 
 		resp, httpRes, err := apiClient.PortsApi.UpdateNetworkAppliancePort(context.Background(), networkId, portId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test PortsApiService UpdateNetworkWirelessEthernetPortsProfile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+		var profileId string
+
+		resp, httpRes, err := apiClient.PortsApi.UpdateNetworkWirelessEthernetPortsProfile(context.Background(), networkId, profileId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

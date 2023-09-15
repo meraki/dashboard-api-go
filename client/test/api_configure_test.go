@@ -37,6 +37,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ConfigureApiService AssignNetworkWirelessEthernetPortsProfiles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.AssignNetworkWirelessEthernetPortsProfiles(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ConfigureApiService AssignOrganizationLicensesSeats", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -626,6 +640,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ConfigureApiService CreateNetworkWirelessEthernetPortsProfile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.CreateNetworkWirelessEthernetPortsProfile(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ConfigureApiService CreateNetworkWirelessRfProfile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -772,6 +800,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var organizationId string
 
 		resp, httpRes, err := apiClient.ConfigureApi.CreateOrganizationCameraCustomAnalyticsArtifact(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService CreateOrganizationCameraRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.CreateOrganizationCameraRole(context.Background(), organizationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -1369,6 +1411,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ConfigureApiService DeleteNetworkWirelessEthernetPortsProfile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+		var profileId string
+
+		httpRes, err := apiClient.ConfigureApi.DeleteNetworkWirelessEthernetPortsProfile(context.Background(), networkId, profileId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ConfigureApiService DeleteNetworkWirelessRfProfile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -1517,6 +1573,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var artifactId string
 
 		httpRes, err := apiClient.ConfigureApi.DeleteOrganizationCameraCustomAnalyticsArtifact(context.Background(), organizationId, artifactId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService DeleteOrganizationCameraRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		httpRes, err := apiClient.ConfigureApi.DeleteOrganizationCameraRole(context.Background(), organizationId, roleId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -3995,6 +4065,35 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ConfigureApiService GetNetworkWirelessEthernetPortsProfile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+		var profileId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetNetworkWirelessEthernetPortsProfile(context.Background(), networkId, profileId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService GetNetworkWirelessEthernetPortsProfiles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetNetworkWirelessEthernetPortsProfiles(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ConfigureApiService GetNetworkWirelessRfProfile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -4434,6 +4533,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ConfigureApiService GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ConfigureApiService GetOrganizationApplianceVpnThirdPartyVPNPeers", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -4541,6 +4654,64 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var organizationId string
 
 		resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationCameraOnboardingStatuses(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService GetOrganizationCameraPermission", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var permissionScopeId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationCameraPermission(context.Background(), organizationId, permissionScopeId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService GetOrganizationCameraPermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationCameraPermissions(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService GetOrganizationCameraRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationCameraRole(context.Background(), organizationId, roleId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService GetOrganizationCameraRoles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetOrganizationCameraRoles(context.Background(), organizationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -5290,6 +5461,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ConfigureApiService SetNetworkWirelessEthernetPortsProfilesDefault", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.SetNetworkWirelessEthernetPortsProfilesDefault(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ConfigureApiService SplitNetwork", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -5596,6 +5781,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var serial string
 
 		resp, httpRes, err := apiClient.ConfigureApi.UpdateDeviceSwitchWarmSpare(context.Background(), serial).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService UpdateDeviceWirelessAlternateManagementInterfaceIpv6", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serial string
+
+		resp, httpRes, err := apiClient.ConfigureApi.UpdateDeviceWirelessAlternateManagementInterfaceIpv6(context.Background(), serial).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -6023,6 +6222,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var networkId string
 
 		resp, httpRes, err := apiClient.ConfigureApi.UpdateNetworkApplianceTrafficShapingUplinkSelection(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService UpdateNetworkApplianceTrafficShapingVpnExclusions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.UpdateNetworkApplianceTrafficShapingVpnExclusions(context.Background(), networkId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -6827,6 +7040,21 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ConfigureApiService UpdateNetworkWirelessEthernetPortsProfile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+		var profileId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.UpdateNetworkWirelessEthernetPortsProfile(context.Background(), networkId, profileId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ConfigureApiService UpdateNetworkWirelessRfProfile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -7233,6 +7461,21 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var organizationId string
 
 		resp, httpRes, err := apiClient.ConfigureApi.UpdateOrganizationCameraOnboardingStatuses(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService UpdateOrganizationCameraRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.UpdateOrganizationCameraRole(context.Background(), organizationId, roleId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

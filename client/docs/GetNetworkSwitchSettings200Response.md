@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **UseCombinedPower** | Pointer to **bool** | The use Combined Power as the default behavior of secondary power supplies on supported devices. | [optional] 
 **PowerExceptions** | Pointer to [**[]GetNetworkSwitchSettings200ResponsePowerExceptionsInner**](GetNetworkSwitchSettings200ResponsePowerExceptionsInner.md) | Exceptions on a per switch basis to \&quot;useCombinedPower\&quot; | [optional] 
 **UplinkClientSampling** | Pointer to [**GetNetworkSwitchSettings200ResponseUplinkClientSampling**](GetNetworkSwitchSettings200ResponseUplinkClientSampling.md) |  | [optional] 
+**MacBlocklist** | Pointer to [**GetNetworkSwitchSettings200ResponseMacBlocklist**](GetNetworkSwitchSettings200ResponseMacBlocklist.md) |  | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetUplinkClientSampling sets UplinkClientSampling field to given value.
 `func (o *GetNetworkSwitchSettings200Response) HasUplinkClientSampling() bool`
 
 HasUplinkClientSampling returns a boolean if a field has been set.
+
+### GetMacBlocklist
+
+`func (o *GetNetworkSwitchSettings200Response) GetMacBlocklist() GetNetworkSwitchSettings200ResponseMacBlocklist`
+
+GetMacBlocklist returns the MacBlocklist field if non-nil, zero value otherwise.
+
+### GetMacBlocklistOk
+
+`func (o *GetNetworkSwitchSettings200Response) GetMacBlocklistOk() (*GetNetworkSwitchSettings200ResponseMacBlocklist, bool)`
+
+GetMacBlocklistOk returns a tuple with the MacBlocklist field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMacBlocklist
+
+`func (o *GetNetworkSwitchSettings200Response) SetMacBlocklist(v GetNetworkSwitchSettings200ResponseMacBlocklist)`
+
+SetMacBlocklist sets MacBlocklist field to given value.
+
+### HasMacBlocklist
+
+`func (o *GetNetworkSwitchSettings200Response) HasMacBlocklist() bool`
+
+HasMacBlocklist returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

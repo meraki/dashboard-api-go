@@ -50,6 +50,20 @@ func Test_client_AlternateManagementInterfaceApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test AlternateManagementInterfaceApiService UpdateDeviceWirelessAlternateManagementInterfaceIpv6", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serial string
+
+		resp, httpRes, err := apiClient.AlternateManagementInterfaceApi.UpdateDeviceWirelessAlternateManagementInterfaceIpv6(context.Background(), serial).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test AlternateManagementInterfaceApiService UpdateNetworkSwitchAlternateManagementInterface", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

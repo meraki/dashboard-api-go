@@ -64,6 +64,20 @@ func Test_client_CameraApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test CameraApiService CreateOrganizationCameraRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.CameraApi.CreateOrganizationCameraRole(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test CameraApiService DeleteNetworkCameraQualityRetentionProfile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -100,6 +114,20 @@ func Test_client_CameraApiService(t *testing.T) {
 		var artifactId string
 
 		httpRes, err := apiClient.CameraApi.DeleteOrganizationCameraCustomAnalyticsArtifact(context.Background(), organizationId, artifactId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test CameraApiService DeleteOrganizationCameraRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		httpRes, err := apiClient.CameraApi.DeleteOrganizationCameraRole(context.Background(), organizationId, roleId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -404,6 +432,64 @@ func Test_client_CameraApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test CameraApiService GetOrganizationCameraPermission", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var permissionScopeId string
+
+		resp, httpRes, err := apiClient.CameraApi.GetOrganizationCameraPermission(context.Background(), organizationId, permissionScopeId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test CameraApiService GetOrganizationCameraPermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.CameraApi.GetOrganizationCameraPermissions(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test CameraApiService GetOrganizationCameraRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		resp, httpRes, err := apiClient.CameraApi.GetOrganizationCameraRole(context.Background(), organizationId, roleId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test CameraApiService GetOrganizationCameraRoles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.CameraApi.GetOrganizationCameraRoles(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test CameraApiService UpdateDeviceCameraCustomAnalytics", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -511,6 +597,21 @@ func Test_client_CameraApiService(t *testing.T) {
 		var organizationId string
 
 		resp, httpRes, err := apiClient.CameraApi.UpdateOrganizationCameraOnboardingStatuses(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test CameraApiService UpdateOrganizationCameraRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var roleId string
+
+		resp, httpRes, err := apiClient.CameraApi.UpdateOrganizationCameraRole(context.Background(), organizationId, roleId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

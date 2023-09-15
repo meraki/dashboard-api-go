@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## GetDeviceCameraVideoSettings
 
-> map[string]interface{} GetDeviceCameraVideoSettings(ctx, serial).Execute()
+> GetDeviceCameraVideoSettings200Response GetDeviceCameraVideoSettings(ctx, serial).Execute()
 
 Returns video settings for the given camera
 
@@ -40,7 +40,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `VideoApi.GetDeviceCameraVideoSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceCameraVideoSettings`: map[string]interface{}
+    // response from `GetDeviceCameraVideoSettings`: GetDeviceCameraVideoSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `VideoApi.GetDeviceCameraVideoSettings`: %v\n", resp)
 }
 ```
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GetDeviceCameraVideoSettings200Response**](GetDeviceCameraVideoSettings200Response.md)
 
 ### Authorization
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceCameraVideoSettings
 
-> map[string]interface{} UpdateDeviceCameraVideoSettings(ctx, serial).UpdateDeviceCameraVideoSettingsRequest(updateDeviceCameraVideoSettingsRequest).Execute()
+> GetDeviceCameraVideoSettings200Response UpdateDeviceCameraVideoSettings(ctx, serial).UpdateDeviceCameraVideoSettingsRequest(updateDeviceCameraVideoSettingsRequest).Execute()
 
 Update video settings for the given camera
 
@@ -112,7 +112,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `VideoApi.UpdateDeviceCameraVideoSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateDeviceCameraVideoSettings`: map[string]interface{}
+    // response from `UpdateDeviceCameraVideoSettings`: GetDeviceCameraVideoSettings200Response
     fmt.Fprintf(os.Stdout, "Response from `VideoApi.UpdateDeviceCameraVideoSettings`: %v\n", resp)
 }
 ```
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GetDeviceCameraVideoSettings200Response**](GetDeviceCameraVideoSettings200Response.md)
 
 ### Authorization
 
