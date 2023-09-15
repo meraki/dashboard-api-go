@@ -178,6 +178,20 @@ func Test_client_TrafficShapingApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test TrafficShapingApiService GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.TrafficShapingApi.GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test TrafficShapingApiService UpdateNetworkApplianceTrafficShaping", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -242,6 +256,20 @@ func Test_client_TrafficShapingApiService(t *testing.T) {
 		var networkId string
 
 		resp, httpRes, err := apiClient.TrafficShapingApi.UpdateNetworkApplianceTrafficShapingUplinkSelection(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TrafficShapingApiService UpdateNetworkApplianceTrafficShapingVpnExclusions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.TrafficShapingApi.UpdateNetworkApplianceTrafficShapingVpnExclusions(context.Background(), networkId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

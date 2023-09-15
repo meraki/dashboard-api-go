@@ -6,7 +6,7 @@ info:
   description: |
     A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.
 
-    > Date: 02 August, 2023
+    > Date: 06 September, 2023
     >
     > [Recent Updates](https://meraki.io/whats-new/)
 
@@ -18,7 +18,7 @@ info:
 
     [Meraki Homepage](https://www.meraki.com)
   title: Meraki Dashboard API
-  version: 1.36.0
+  version: 1.37.0
 servers:
 - url: "https://api.meraki.com/{basePath}"
   variables:
@@ -143,6 +143,7 @@ tags:
 - name: interfaces
 - name: intrusion
 - name: inventory
+- name: ipv6
 - name: l3FirewallRules
 - name: l7FirewallRules
 - name: lan
@@ -187,6 +188,7 @@ tags:
 - name: payloadTemplates
 - name: performance
 - name: performanceHistory
+- name: permissions
 - name: pii
 - name: piiKeys
 - name: ping
@@ -215,6 +217,7 @@ tags:
 - name: responseCodes
 - name: restrictions
 - name: rfProfiles
+- name: roles
 - name: rollbacks
 - name: routing
 - name: rules
@@ -283,6 +286,7 @@ tags:
 - name: vlans
 - name: vmx
 - name: vpn
+- name: vpnExclusions
 - name: vpnFirewallRules
 - name: vppAccounts
 - name: warmSpare
@@ -934,6 +938,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 604800
           type: number
         style: form
       - description: "[optional] The object type for which analytics will be retrieved.\
@@ -1100,6 +1105,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 50400
           type: number
         style: form
       - description: "The time resolution in seconds for returned data. The valid\
@@ -1441,7 +1447,7 @@ paths:
                 externalRtspEnabled: true
                 rtspUrl: rtsp://10.0.0.1:9000/live
               schema:
-                type: object
+                $ref: '#/components/schemas/getDeviceCameraVideoSettings_200_response'
           description: Successful operation
       summary: Returns video settings for the given camera
       tags:
@@ -1475,7 +1481,7 @@ paths:
                 externalRtspEnabled: true
                 rtspUrl: rtsp://10.0.0.1:9000/live
               schema:
-                type: object
+                $ref: '#/components/schemas/getDeviceCameraVideoSettings_200_response'
           description: Successful operation
       summary: Update video settings for the given camera
       tags:
@@ -1880,6 +1886,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       responses:
@@ -2185,6 +2192,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: "The time resolution in seconds for returned data. The valid\
@@ -2570,6 +2578,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       responses:
@@ -2672,6 +2681,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 86400
           type: number
         style: form
       responses:
@@ -3491,6 +3501,49 @@ paths:
       - switch
       - configure
       - warmSpare
+  /devices/{serial}/wireless/alternateManagementInterface/ipv6:
+    put:
+      description: Update alternate management interface IPv6 address
+      operationId: updateDeviceWirelessAlternateManagementInterfaceIpv6
+      parameters:
+      - description: Serial
+        explode: false
+        in: path
+        name: serial
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateDeviceWirelessAlternateManagementInterfaceIpv6_request'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                addresses:
+                - protocol: ipv6
+                  assignmentMode: static
+                  address: 2001:db8:3c4d:15::1
+                  gateway: fe80:db8:c15:c0:d0c::10ca:1d02
+                  prefix: 2001:db8:3c4d:15::/64
+                  nameservers:
+                    addresses:
+                    - 2001:db8:3c4d:15::1
+                    - 2001:db8:3c4d:15::1
+              schema:
+                $ref: '#/components/schemas/updateDeviceWirelessAlternateManagementInterfaceIpv6_200_response'
+          description: Successful operation
+      summary: Update alternate management interface IPv6 address
+      tags:
+      - wireless
+      - configure
+      - alternateManagementInterface
+      - ipv6
   /devices/{serial}/wireless/bluetooth/settings:
     get:
       description: Return the bluetooth settings for a wireless device
@@ -3596,6 +3649,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 604800
           type: number
         style: form
       - description: "Filter results by band (either '2.4', '5' or '6'). Note that\
@@ -3695,6 +3749,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 604800
           type: number
         style: form
       - description: "Filter results by band (either '2.4', '5' or '6'). Note that\
@@ -4229,6 +4284,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 68342400
           type: number
         style: form
       - description: The number of entries per page returned. Acceptable range is
@@ -6041,6 +6097,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 31536000
           type: number
         style: form
       - description: The number of entries per page returned. Acceptable range is
@@ -6637,6 +6694,7 @@ paths:
                 - start: 192.168.1.0
                   end: 192.168.1.1
                   comment: A reserved IP range
+                gatewayVlanId: 100
               schema:
                 items:
                   type: object
@@ -6757,6 +6815,7 @@ paths:
                 - start: 192.168.1.0
                   end: 192.168.1.1
                   comment: A reserved IP range
+                gatewayVlanId: 100
               schema:
                 type: object
           description: Successful operation
@@ -6811,6 +6870,7 @@ paths:
                 - start: 192.168.1.0
                   end: 192.168.1.1
                   comment: A reserved IP range
+                gatewayVlanId: 100
               schema:
                 type: object
           description: Successful operation
@@ -7401,6 +7461,48 @@ paths:
       - configure
       - trafficShaping
       - uplinkSelection
+  /networks/{networkId}/appliance/trafficShaping/vpnExclusions:
+    put:
+      description: Update VPN exclusion rules for an MX network.
+      operationId: updateNetworkApplianceTrafficShapingVpnExclusions
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateNetworkApplianceTrafficShapingVpnExclusions_request'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                networkId: N_24329156
+                networkName: Main Office
+                custom:
+                - protocol: tcp
+                  destination: 192.168.3.0/24
+                  port: "8000"
+                majorApplications:
+                - id: meraki:vpnExclusion/application/2
+                  name: Office 365 Sharepoint
+              schema:
+                $ref: '#/components/schemas/updateNetworkApplianceTrafficShapingVpnExclusions_200_response'
+          description: Successful operation
+      summary: Update VPN exclusion rules for an MX network.
+      tags:
+      - appliance
+      - configure
+      - trafficShaping
+      - vpnExclusions
   /networks/{networkId}/appliance/uplinks/usageHistory:
     get:
       description: Get the sent and received bytes for each uplink of a network.
@@ -7441,6 +7543,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: "The time resolution in seconds for returned data. The valid\
@@ -8189,6 +8292,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 604800
           type: number
         style: form
       - description: The number of entries per page returned. Acceptable range is
@@ -8605,11 +8709,9 @@ paths:
               example:
               - id: "123"
                 name: Weekday schedule
-              - id: "124"
-                name: Office hours
               schema:
                 items:
-                  type: object
+                  $ref: '#/components/schemas/getNetworkCameraSchedules_200_response_inner'
                 type: array
           description: Successful operation
       summary: Returns a list of all camera recording schedules.
@@ -9136,6 +9238,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: The number of entries per page returned. Acceptable range is
@@ -9428,6 +9531,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       responses:
@@ -9502,6 +9606,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: The number of entries per page returned. Acceptable range is
@@ -9604,6 +9709,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: "The time resolution in seconds for returned data. The valid\
@@ -9783,6 +9889,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       responses:
@@ -12788,6 +12895,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 604800
           type: number
         style: form
       - description: "The time resolution in seconds for returned data. The valid\
@@ -13369,6 +13477,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: "The time resolution in seconds for returned data. The valid\
@@ -13983,6 +14092,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       responses:
@@ -14100,6 +14210,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: "The time interval in seconds for returned data. The valid intervals\
@@ -17216,6 +17327,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: The number of entries per page returned. Acceptable range is
@@ -18932,6 +19044,8 @@ paths:
                   powerType: redundant
                 uplinkClientSampling:
                   enabled: true
+                macBlocklist:
+                  enabled: true
               schema:
                 $ref: '#/components/schemas/getNetworkSwitchSettings_200_response'
           description: Successful operation
@@ -18969,6 +19083,8 @@ paths:
                 - serial: Q234-ABCD-0001
                   powerType: redundant
                 uplinkClientSampling:
+                  enabled: true
+                macBlocklist:
                   enabled: true
               schema:
                 $ref: '#/components/schemas/getNetworkSwitchSettings_200_response'
@@ -20240,6 +20356,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2592000
           type: number
         style: form
       - description: "Filter the data by device type: 'combined', 'wireless', 'switch'\
@@ -21004,6 +21121,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       responses:
@@ -21315,6 +21433,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: "The time resolution in seconds for returned data. The valid\
@@ -21438,6 +21557,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: "The time resolution in seconds for returned data. The valid\
@@ -21563,6 +21683,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 604800
           type: number
         style: form
       - description: "Filter results by band (either '2.4', '5' or '6'). Note that\
@@ -21679,6 +21800,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 604800
           type: number
         style: form
       - description: "Filter results by band (either '2.4', '5' or '6'). Note that\
@@ -21857,6 +21979,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 604800
           type: number
         style: form
       - description: "Filter results by band (either '2.4', '5' or '6'). Note that\
@@ -21999,6 +22122,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: "A list of event types to include. If not specified, events of\
@@ -22175,6 +22299,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 68342400
           type: number
         style: form
       - description: "The time resolution in seconds for returned data. The valid\
@@ -22310,6 +22435,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 604800
           type: number
         style: form
       - description: "Filter results by band (either '2.4', '5' or '6'). Note that\
@@ -22435,6 +22561,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 604800
           type: number
         style: form
       - description: "Filter results by band (either '2.4', '5' or '6'). Note that\
@@ -22533,6 +22660,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: "The time resolution in seconds for returned data. The valid\
@@ -22659,6 +22787,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 604800
           type: number
         style: form
       - description: "Filter results by band (either '2.4', '5' or '6'). Note that\
@@ -22761,6 +22890,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 604800
           type: number
         style: form
       - description: "Filter results by band (either '2.4', '5' or '6'). Note that\
@@ -22869,6 +22999,302 @@ paths:
       - monitor
       - devices
       - latencyStats
+  /networks/{networkId}/wireless/ethernet/ports/profiles:
+    get:
+      description: List the AP port profiles for this network
+      operationId: getNetworkWirelessEthernetPortsProfiles
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - profileId: "1001"
+                name: Ap Port Profile Name
+                isDefault: false
+                ports:
+                - name: port 1
+                  number: 1
+                  enabled: true
+                  ssid: 1
+                  pskGroupId: "100"
+                usbPorts:
+                - name: usb port
+                  enabled: true
+                  ssid: 5
+              schema:
+                items:
+                  $ref: '#/components/schemas/getNetworkWirelessEthernetPortsProfiles_200_response_inner'
+                type: array
+          description: Successful operation
+      summary: List the AP port profiles for this network
+      tags:
+      - wireless
+      - configure
+      - ethernet
+      - ports
+      - profiles
+    post:
+      description: Create an AP port profile
+      operationId: createNetworkWirelessEthernetPortsProfile
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createNetworkWirelessEthernetPortsProfile_request'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                profileId: "1001"
+                name: Ap Port Profile Name
+                isDefault: false
+                ports:
+                - name: port 1
+                  number: 1
+                  enabled: true
+                  ssid: 1
+                  pskGroupId: "100"
+                usbPorts:
+                - name: usb port
+                  enabled: true
+                  ssid: 5
+              schema:
+                $ref: '#/components/schemas/getNetworkWirelessEthernetPortsProfiles_200_response_inner'
+          description: Successful operation
+      summary: Create an AP port profile
+      tags:
+      - wireless
+      - configure
+      - ethernet
+      - ports
+      - profiles
+  /networks/{networkId}/wireless/ethernet/ports/profiles/assign:
+    post:
+      description: Assign AP port profile to list of APs
+      operationId: assignNetworkWirelessEthernetPortsProfiles
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/assignNetworkWirelessEthernetPortsProfiles_request'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                serials:
+                - Q234-ABCD-0001
+                - Q234-ABCD-0002
+                - Q234-ABCD-0003
+                profileId: "1001"
+              schema:
+                $ref: '#/components/schemas/assignNetworkWirelessEthernetPortsProfiles_201_response'
+          description: Successful operation
+      summary: Assign AP port profile to list of APs
+      tags:
+      - wireless
+      - configure
+      - ethernet
+      - ports
+      - profiles
+  /networks/{networkId}/wireless/ethernet/ports/profiles/setDefault:
+    post:
+      description: Set the AP port profile to be default for this network
+      operationId: setNetworkWirelessEthernetPortsProfilesDefault
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/setNetworkWirelessEthernetPortsProfilesDefault_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                profileId: "1001"
+              schema:
+                $ref: '#/components/schemas/setNetworkWirelessEthernetPortsProfilesDefault_200_response'
+          description: Successful operation
+      summary: Set the AP port profile to be default for this network
+      tags:
+      - wireless
+      - configure
+      - ethernet
+      - ports
+      - profiles
+  /networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}:
+    delete:
+      description: Delete an AP port profile
+      operationId: deleteNetworkWirelessEthernetPortsProfile
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Profile ID
+        explode: false
+        in: path
+        name: profileId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Successful operation
+      summary: Delete an AP port profile
+      tags:
+      - wireless
+      - configure
+      - ethernet
+      - ports
+      - profiles
+    get:
+      description: Show the AP port profile by ID for this network
+      operationId: getNetworkWirelessEthernetPortsProfile
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Profile ID
+        explode: false
+        in: path
+        name: profileId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                profileId: "1001"
+                name: Ap Port Profile Name
+                isDefault: false
+                ports:
+                - name: port 1
+                  number: 1
+                  enabled: true
+                  ssid: 1
+                  pskGroupId: "100"
+                usbPorts:
+                - name: usb port
+                  enabled: true
+                  ssid: 5
+              schema:
+                $ref: '#/components/schemas/getNetworkWirelessEthernetPortsProfiles_200_response_inner'
+          description: Successful operation
+      summary: Show the AP port profile by ID for this network
+      tags:
+      - wireless
+      - configure
+      - ethernet
+      - ports
+      - profiles
+    put:
+      description: Update the AP port profile by ID for this network
+      operationId: updateNetworkWirelessEthernetPortsProfile
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Profile ID
+        explode: false
+        in: path
+        name: profileId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateNetworkWirelessEthernetPortsProfile_request'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                profileId: "1001"
+                name: Ap Port Profile Name
+                isDefault: false
+                ports:
+                - name: port 1
+                  number: 1
+                  enabled: true
+                  ssid: 1
+                  pskGroupId: "100"
+                usbPorts:
+                - name: usb port
+                  enabled: true
+                  ssid: 5
+              schema:
+                $ref: '#/components/schemas/getNetworkWirelessEthernetPortsProfiles_200_response_inner'
+          description: Successful operation
+      summary: Update the AP port profile by ID for this network
+      tags:
+      - wireless
+      - configure
+      - ethernet
+      - ports
+      - profiles
   /networks/{networkId}/wireless/failedConnections:
     get:
       description: List of all failed client connection events on this network in
@@ -22910,6 +23336,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 604800
           type: number
         style: form
       - description: "Filter results by band (either '2.4', '5' or '6'). Note that\
@@ -23029,6 +23456,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: "The time resolution in seconds for returned data. The valid\
@@ -23166,6 +23594,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 604800
           type: number
         style: form
       - description: "Filter results by band (either '2.4', '5' or '6'). Note that\
@@ -24651,6 +25080,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: "The time resolution in seconds for returned data. The valid\
@@ -24760,6 +25190,7 @@ paths:
                 enabled: true
                 splashPage: Click-through splash page
                 ssidAdminAccessible: false
+                localAuth: false
                 authMode: 8021x-radius
                 encryptionMode: wpa
                 wpaEncryptionMode: WPA2 only
@@ -24888,6 +25319,7 @@ paths:
                 enabled: true
                 splashPage: Click-through splash page
                 ssidAdminAccessible: false
+                localAuth: false
                 authMode: 8021x-radius
                 encryptionMode: wpa
                 wpaEncryptionMode: WPA2 only
@@ -25019,6 +25451,7 @@ paths:
                 enabled: true
                 splashPage: Click-through splash page
                 ssidAdminAccessible: false
+                localAuth: false
                 authMode: 8021x-radius
                 encryptionMode: wpa
                 wpaEncryptionMode: WPA2 only
@@ -26467,6 +26900,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: "The time resolution in seconds for returned data. The valid\
@@ -28112,6 +28546,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: The number of entries per page returned. Acceptable range is
@@ -28296,6 +28731,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       responses:
@@ -28542,6 +28978,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 31536000
           type: number
         style: form
       - description: The number of entries per page returned. Acceptable range is
@@ -28728,6 +29165,96 @@ paths:
       - configure
       - security
       - intrusion
+  /organizations/{organizationId}/appliance/trafficShaping/vpnExclusions/byNetwork:
+    get:
+      description: Display VPN exclusion rules for MX networks.
+      operationId: getOrganizationApplianceTrafficShapingVpnExclusionsByNetwork
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The number of entries per page returned. Acceptable range is
+          3 - 1000. Default is 50.
+        explode: true
+        in: query
+        name: perPage
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "A token used by the server to indicate the start of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: startingAfter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A token used by the server to indicate the end of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: endingBefore
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Optional parameter to filter the results by network IDs
+        explode: true
+        in: query
+        name: networkIds
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - networkId: N_24329156
+                networkName: Main Office
+                custom:
+                - protocol: tcp
+                  destination: 192.168.3.0/24
+                  port: "8000"
+                majorApplications:
+                - id: meraki:vpnExclusion/application/2
+                  name: Office 365 Sharepoint
+              schema:
+                items:
+                  $ref: '#/components/schemas/updateNetworkApplianceTrafficShapingVpnExclusions_200_response'
+                type: array
+          description: Successful operation
+          headers:
+            Link:
+              description: "A comma-separated list of first, last, prev, and next\
+                \ relative links used for subsequent paginated requests."
+              explode: false
+              schema:
+                type: string
+              style: simple
+      summary: Display VPN exclusion rules for MX networks.
+      tags:
+      - appliance
+      - configure
+      - trafficShaping
+      - vpnExclusions
+      - byNetwork
   /organizations/{organizationId}/appliance/uplink/statuses:
     get:
       description: List the uplink status of every Meraki MX and Z series appliances
@@ -28908,6 +29435,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 1209600
           type: number
         style: form
       responses:
@@ -29019,6 +29547,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       responses:
@@ -29415,13 +29944,13 @@ paths:
                 - comment: Allow TCP traffic to subnet with HTTP servers.
                   policy: allow
                   protocol: tcp
-                  destPort: "443"
-                  destCidr: 192.168.1.0/24
                   srcPort: Any
                   srcCidr: Any
+                  destPort: "443"
+                  destCidr: 192.168.1.0/24
                   syslogEnabled: false
               schema:
-                type: object
+                $ref: '#/components/schemas/getOrganizationApplianceVpnVpnFirewallRules_200_response'
           description: Successful operation
       summary: Return the firewall rules for an organization's site-to-site VPN
       tags:
@@ -29462,7 +29991,7 @@ paths:
                   destCidr: 192.168.1.0/24
                   syslogEnabled: false
               schema:
-                $ref: '#/components/schemas/updateOrganizationApplianceVpnVpnFirewallRules_200_response'
+                $ref: '#/components/schemas/getOrganizationApplianceVpnVpnFirewallRules_200_response'
           description: Successful operation
       summary: Update the firewall rules of an organization's site-to-site VPN
       tags:
@@ -30051,6 +30580,306 @@ paths:
       - configure
       - onboarding
       - statuses
+  /organizations/{organizationId}/camera/permissions:
+    get:
+      description: List the permissions scopes for this organization
+      operationId: getOrganizationCameraPermissions
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - id: "1234"
+                name: camera_video
+                level: live_video
+              schema:
+                items:
+                  $ref: '#/components/schemas/getOrganizationCameraPermissions_200_response_inner'
+                type: array
+          description: Successful operation
+      summary: List the permissions scopes for this organization
+      tags:
+      - camera
+      - configure
+      - permissions
+  /organizations/{organizationId}/camera/permissions/{permissionScopeId}:
+    get:
+      description: Retrieve a single permission scope
+      operationId: getOrganizationCameraPermission
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Permission scope ID
+        explode: false
+        in: path
+        name: permissionScopeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                id: "1234"
+                name: camera_video
+                level: live_video
+              schema:
+                $ref: '#/components/schemas/getOrganizationCameraPermissions_200_response_inner'
+          description: Successful operation
+      summary: Retrieve a single permission scope
+      tags:
+      - camera
+      - configure
+      - permissions
+  /organizations/{organizationId}/camera/roles:
+    get:
+      description: List all the roles in this organization
+      operationId: getOrganizationCameraRoles
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - name: Security_Guard
+                appliedOnDevices:
+                - tag: reception-desk
+                  id: ""
+                  permissionScopeId: "1"
+                  permissionScope: camera-video
+                  permissionLevel: view_and_export
+                appliedOnNetworks:
+                - tag: ""
+                  id: "2568"
+                  permissionScopeId: "2"
+                  permissionScope: camera-video
+                  permissionLevel: view
+                appliedOrgWide:
+                - tag: building-a
+                  permissionScopeId: "2"
+                  permissionScope: camera_video
+                  permissionLevel: view_live
+              schema:
+                items:
+                  type: object
+                type: array
+          description: Successful operation
+      summary: List all the roles in this organization
+      tags:
+      - camera
+      - configure
+      - roles
+    post:
+      description: Creates new role for this organization.
+      operationId: createOrganizationCameraRole
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createOrganizationCameraRole_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                name: Security_Guard
+                appliedOnDevices:
+                - tag: reception-desk
+                  id: ""
+                  permissionScopeId: "1"
+                  permissionScope: camera-video
+                  permissionLevel: view_and_export
+                appliedOnNetworks:
+                - tag: ""
+                  id: "2568"
+                  permissionScopeId: "2"
+                  permissionScope: camera-video
+                  permissionLevel: view
+                appliedOrgWide:
+                - tag: building-a
+                  permissionScopeId: "2"
+                  permissionScope: camera_video
+                  permissionLevel: view_live
+              schema:
+                type: object
+          description: Successful operation
+      summary: Creates new role for this organization.
+      tags:
+      - camera
+      - configure
+      - roles
+  /organizations/{organizationId}/camera/roles/{roleId}:
+    delete:
+      description: Delete an existing role for this organization.
+      operationId: deleteOrganizationCameraRole
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Role ID
+        explode: false
+        in: path
+        name: roleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Successful operation
+      summary: Delete an existing role for this organization.
+      tags:
+      - camera
+      - configure
+      - roles
+    get:
+      description: Retrieve a single role.
+      operationId: getOrganizationCameraRole
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Role ID
+        explode: false
+        in: path
+        name: roleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                name: Security_Guard
+                appliedOnDevices:
+                - tag: reception-desk
+                  id: ""
+                  permissionScopeId: "1"
+                  permissionScope: camera-video
+                  permissionLevel: view_and_export
+                appliedOnNetworks:
+                - tag: ""
+                  id: "2568"
+                  permissionScopeId: "2"
+                  permissionScope: camera-video
+                  permissionLevel: view
+                appliedOrgWide:
+                - tag: building-a
+                  permissionScopeId: "2"
+                  permissionScope: camera_video
+                  permissionLevel: view_live
+              schema:
+                type: object
+          description: Successful operation
+      summary: Retrieve a single role.
+      tags:
+      - camera
+      - configure
+      - roles
+    put:
+      description: Update an existing role in this organization.
+      operationId: updateOrganizationCameraRole
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Role ID
+        explode: false
+        in: path
+        name: roleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateOrganizationCameraRole_request'
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                name: Security_Guard
+                appliedOnDevices:
+                - tag: reception-desk
+                  id: ""
+                  permissionScopeId: "1"
+                  permissionScope: camera-video
+                  permissionLevel: view_and_export
+                appliedOnNetworks:
+                - tag: ""
+                  id: "2568"
+                  permissionScopeId: "2"
+                  permissionScope: camera-video
+                  permissionLevel: view
+                appliedOrgWide:
+                - tag: building-a
+                  permissionScopeId: "2"
+                  permissionScope: camera_video
+                  permissionLevel: view_live
+              schema:
+                type: object
+          description: Successful operation
+      summary: Update an existing role in this organization.
+      tags:
+      - camera
+      - configure
+      - roles
   /organizations/{organizationId}/cellularGateway/uplink/statuses:
     get:
       description: List the uplink status of every Meraki MG cellular gateway in the
@@ -30258,6 +31087,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       responses:
@@ -30321,6 +31151,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       responses:
@@ -31048,6 +31879,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 31536000
           type: number
         style: form
       - description: The number of entries per page returned. Acceptable range is
@@ -31585,6 +32417,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 1209600
           type: number
         style: form
       - description: Optional parameter to filter device availabilities history by
@@ -31683,8 +32516,9 @@ paths:
       - changeHistory
   /organizations/{organizationId}/devices/powerModules/statuses/byDevice:
     get:
-      description: List the power status information for devices in an organization.
-        The data returned by this endpoint is updated every 5 minutes.
+      description: List the most recent status information for power modules in rackmount
+        MX and MS devices that support them. The data returned by this endpoint is
+        updated every 5 minutes.
       operationId: getOrganizationDevicesPowerModulesStatusesByDevice
       parameters:
       - description: Organization ID
@@ -31818,7 +32652,8 @@ paths:
               schema:
                 type: string
               style: simple
-      summary: List the power status information for devices in an organization
+      summary: List the most recent status information for power modules in rackmount
+        MX and MS devices that support them
       tags:
       - organizations
       - monitor
@@ -32414,6 +33249,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 300
           type: number
         style: form
       - description: "Optional filter for a specific WAN uplink. Valid uplinks are\
@@ -33360,6 +34196,7 @@ paths:
                 - tag1
                 - tag2
                 productType: wireless
+                countryCode: US
               schema:
                 items:
                   $ref: '#/components/schemas/getOrganizationInventoryDevices_200_response_inner'
@@ -33417,6 +34254,7 @@ paths:
                 - tag1
                 - tag2
                 productType: wireless
+                countryCode: US
               schema:
                 $ref: '#/components/schemas/getOrganizationInventoryDevices_200_response_inner'
           description: Successful operation
@@ -35711,6 +36549,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 604800
           type: number
         style: form
       - description: Optional parameter to filter readings by network.
@@ -35814,7 +36653,7 @@ paths:
           type: string
         style: simple
       - description: The number of entries per page returned. Acceptable range is
-          3 - 100. Default is 100.
+          3 - 1000. Default is 1000.
         explode: true
         in: query
         name: perPage
@@ -36166,13 +37005,16 @@ paths:
         style: form
       - description: "The timespan for which the information will be fetched. If specifying\
           \ timespan, do not specify parameters t0 and t1. The value must be in seconds\
-          \ and be less than or equal to 31 days. The default is 1 day."
+          \ and be greater than or equal to 25 minutes and be less than or equal to\
+          \ 31 days. The default is 1 day."
         explode: true
         in: query
         name: timespan
         required: false
         schema:
           format: float
+          maximum: 2678400
+          minimum: 1500
           type: number
         style: form
       responses:
@@ -36237,13 +37079,16 @@ paths:
         style: form
       - description: "The timespan for which the information will be fetched. If specifying\
           \ timespan, do not specify parameters t0 and t1. The value must be in seconds\
-          \ and be less than or equal to 31 days. The default is 1 day."
+          \ and be greater than or equal to 8 hours and be less than or equal to 31\
+          \ days. The default is 1 day."
         explode: true
         in: query
         name: timespan
         required: false
         schema:
           format: float
+          maximum: 2678400
+          minimum: 28800
           type: number
         style: form
       responses:
@@ -36316,6 +37161,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       responses:
@@ -36379,13 +37225,16 @@ paths:
         style: form
       - description: "The timespan for which the information will be fetched. If specifying\
           \ timespan, do not specify parameters t0 and t1. The value must be in seconds\
-          \ and be less than or equal to 31 days. The default is 1 day."
+          \ and be greater than or equal to 8 hours and be less than or equal to 31\
+          \ days. The default is 1 day."
         explode: true
         in: query
         name: timespan
         required: false
         schema:
           format: float
+          maximum: 2678400
+          minimum: 28800
           type: number
         style: form
       responses:
@@ -36454,13 +37303,16 @@ paths:
         style: form
       - description: "The timespan for which the information will be fetched. If specifying\
           \ timespan, do not specify parameters t0 and t1. The value must be in seconds\
-          \ and be less than or equal to 31 days. The default is 1 day."
+          \ and be greater than or equal to 8 hours and be less than or equal to 31\
+          \ days. The default is 1 day."
         explode: true
         in: query
         name: timespan
         required: false
         schema:
           format: float
+          maximum: 2678400
+          minimum: 28800
           type: number
         style: form
       responses:
@@ -36521,13 +37373,16 @@ paths:
         style: form
       - description: "The timespan for which the information will be fetched. If specifying\
           \ timespan, do not specify parameters t0 and t1. The value must be in seconds\
-          \ and be less than or equal to 31 days. The default is 1 day."
+          \ and be greater than or equal to 8 hours and be less than or equal to 31\
+          \ days. The default is 1 day."
         explode: true
         in: query
         name: timespan
         required: false
         schema:
           format: float
+          maximum: 2678400
+          minimum: 28800
           type: number
         style: form
       responses:
@@ -36591,13 +37446,16 @@ paths:
         style: form
       - description: "The timespan for which the information will be fetched. If specifying\
           \ timespan, do not specify parameters t0 and t1. The value must be in seconds\
-          \ and be less than or equal to 31 days. The default is 1 day."
+          \ and be greater than or equal to 25 minutes and be less than or equal to\
+          \ 31 days. The default is 1 day."
         explode: true
         in: query
         name: timespan
         required: false
         schema:
           format: float
+          maximum: 2678400
+          minimum: 1500
           type: number
         style: form
       responses:
@@ -36977,6 +37835,98 @@ paths:
       - monitor
       - uplinks
       - statuses
+  /organizations/{organizationId}/uplinksLossAndLatency:
+    get:
+      description: Return the uplink loss and latency for every MX in the organization
+        from at latest 2 minutes ago
+      operationId: getOrganizationUplinksLossAndLatency
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The beginning of the timespan for the data. The maximum lookback
+          period is 60 days from today.
+        explode: true
+        in: query
+        name: t0
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The end of the timespan for the data. t1 can be a maximum of
+          5 minutes after t0. The latest possible time that t1 can be is 2 minutes
+          into the past.
+        explode: true
+        in: query
+        name: t1
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The timespan for which the information will be fetched. If specifying\
+          \ timespan, do not specify parameters t0 and t1. The value must be in seconds\
+          \ and be less than or equal to 5 minutes. The default is 5 minutes."
+        explode: true
+        in: query
+        name: timespan
+        required: false
+        schema:
+          format: float
+          maximum: 300
+          type: number
+        style: form
+      - description: "Optional filter for a specific WAN uplink. Valid uplinks are\
+          \ wan1, wan2, wan3, cellular. Default will return all uplinks."
+        explode: true
+        in: query
+        name: uplink
+        required: false
+        schema:
+          enum:
+          - cellular
+          - wan1
+          - wan2
+          - wan3
+          type: string
+        style: form
+      - description: Optional filter for a specific destination IP. Default will return
+          all destination IPs.
+        explode: true
+        in: query
+        name: ip
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - networkId: N_12345
+                serial: Q2AB-CDEF-GHIJ
+                uplink: wan1
+                ip: 8.8.8.8
+                timeSeries:
+                - ts: 2019-01-31T18:46:13Z
+                  lossPercent: 5.3
+                  latencyMs: 194.9
+              schema:
+                items:
+                  type: object
+                type: array
+          description: Successful operation
+      summary: Return the uplink loss and latency for every MX in the organization
+        from at latest 2 minutes ago
+      tags:
+      - organizations
+      - monitor
+      - uplinksLossAndLatency
   /organizations/{organizationId}/webhooks/alertTypes:
     get:
       description: Return a list of alert types to be used with managing webhook alerts
@@ -37093,6 +38043,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: The number of entries per page returned. Acceptable range is
@@ -37262,6 +38213,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 7776000
           type: number
         style: form
       - description: "The time interval in seconds for returned data. The valid intervals\
@@ -37405,6 +38357,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 7776000
           type: number
         style: form
       - description: "The time interval in seconds for returned data. The valid intervals\
@@ -37546,6 +38499,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: "The time interval in seconds for returned data. The valid intervals\
@@ -37692,6 +38646,7 @@ paths:
         required: false
         schema:
           format: float
+          maximum: 2678400
           type: number
         style: form
       - description: "The time interval in seconds for returned data. The valid intervals\
@@ -38848,6 +39803,7 @@ components:
         claimedAt: 2000-01-23T04:56:07.000+00:00
         orderNumber: orderNumber
         serial: serial
+        countryCode: countryCode
         licenseExpirationDate: 2000-01-23T04:56:07.000+00:00
         name: name
         model: model
@@ -38891,6 +39847,9 @@ components:
           type: array
         productType:
           description: Product type of the device
+          type: string
+        countryCode:
+          description: "Country/region code from device, network, or store order"
           type: string
       type: object
     provisionNetworkClients_request_policiesBySsid:
@@ -39018,10 +39977,10 @@ components:
           - Standard
           type: string
         resolution:
-          description: Resolution of the camera. Can be one of '1080x1080' or '2058x2058'.
+          description: Resolution of the camera. Can be one of '1080x1080' or '2112x2112'.
           enum:
           - 1080x1080
-          - 2058x2058
+          - 2112x2112
           type: string
       required:
       - quality
@@ -39242,6 +40201,15 @@ components:
           - block
           - log
           type: string
+      type: object
+    getNetworkSwitchSettings_200_response_macBlocklist:
+      description: MAC blocklist
+      example:
+        enabled: true
+      properties:
+        enabled:
+          description: Enable MAC blocklist for switches in the network
+          type: boolean
       type: object
     updateDeviceSensorRelationships_request_livestream_relatedDevices_inner:
       properties:
@@ -40932,6 +41900,16 @@ components:
         spoofingProtection:
           $ref: '#/components/schemas/updateNetworkApplianceFirewallSettings_request_spoofingProtection'
       type: object
+    setNetworkWirelessEthernetPortsProfilesDefault_request:
+      example:
+        profileId: "1001"
+      properties:
+        profileId:
+          description: AP profile ID
+          type: string
+      required:
+      - profileId
+      type: object
     createNetworkSwitchStackRoutingInterface_request_ipv6:
       description: The IPv6 settings of the interface.
       properties:
@@ -40970,6 +41948,18 @@ components:
       required:
       - access
       - tag
+      type: object
+    getNetworkCameraSchedules_200_response_inner:
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          description: Schedule id
+          type: string
+        name:
+          description: Schedule name
+          type: string
       type: object
     createOrganizationInventoryOnboardingCloudMonitoringImport_201_response_inner:
       example:
@@ -41047,6 +42037,20 @@ components:
             is defined and this is the first           interface with IPv6 configured
             for the switch.
           type: string
+      type: object
+    updateOrganizationCameraRole_request_appliedOnNetworks_inner:
+      properties:
+        tag:
+          description: Network tag
+          type: string
+        id:
+          description: Network id
+          type: string
+        permissionScopeId:
+          description: Permission scope id
+          type: string
+      required:
+      - permissionScopeId
       type: object
     updateNetworkApplianceRfProfile_request_twoFourGhzSettings:
       description: Settings related to 2.4Ghz band
@@ -42115,6 +43119,45 @@ components:
           description: UDP port that the RADIUS server listens on for access requests
           type: integer
       type: object
+    updateNetworkApplianceTrafficShapingVpnExclusions_200_response:
+      example:
+        majorApplications:
+        - name: AWS
+          id: id
+        - name: AWS
+          id: id
+        custom:
+        - protocol: any
+          port: port
+          destination: destination
+        - protocol: any
+          port: port
+          destination: destination
+        networkName: networkName
+        networkId: networkId
+      properties:
+        networkId:
+          description: ID of the network whose VPN exclusion rules are returned.
+          type: string
+        networkName:
+          description: Name of the network whose VPN exclusion rules are returned.
+          type: string
+        custom:
+          description: Custom VPN exclusion rules.
+          items:
+            $ref: '#/components/schemas/updateNetworkApplianceTrafficShapingVpnExclusions_200_response_custom_inner'
+          type: array
+        majorApplications:
+          description: Major Application based VPN exclusion rules.
+          items:
+            $ref: '#/components/schemas/updateNetworkApplianceTrafficShapingVpnExclusions_200_response_majorApplications_inner'
+          type: array
+      required:
+      - custom
+      - majorApplications
+      - networkId
+      - networkName
+      type: object
     createNetworkWebhooksPayloadTemplate_request_headers_inner:
       properties:
         name:
@@ -42197,6 +43240,31 @@ components:
           items:
             $ref: '#/components/schemas/getOrganizationDevicesPowerModulesStatusesByDevice_200_response_inner_slots_inner'
           type: array
+      type: object
+    updateNetworkApplianceTrafficShapingVpnExclusions_request_majorApplications_inner:
+      properties:
+        id:
+          description: Application's Meraki ID.
+          type: string
+        name:
+          description: Application's name.
+          enum:
+          - AWS
+          - Box
+          - Office 365 Sharepoint
+          - Office 365 Suite
+          - Oracle
+          - SAP
+          - Salesforce
+          - Skype & Teams
+          - Slack
+          - Webex
+          - Webex Calling
+          - Webex Meetings
+          - Zoom
+          type: string
+      required:
+      - id
       type: object
     getOrganizationSensorReadingsLatest_200_response_inner_readings_inner:
       example:
@@ -43321,6 +44389,14 @@ components:
         bandwidthLimits:
           $ref: '#/components/schemas/updateNetworkApplianceTrafficShapingUplinkBandwidth_request_bandwidthLimits_cellular'
       type: object
+    setNetworkWirelessEthernetPortsProfilesDefault_200_response:
+      example:
+        profileId: profileId
+      properties:
+        profileId:
+          description: AP profile ID
+          type: string
+      type: object
     createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner_vty_authentication_group:
       description: Group Details
       properties:
@@ -43410,6 +44486,22 @@ components:
         contents:
           description: The file contents (a base 64 encoded string) of your new logo.
           format: byte
+          type: string
+      type: object
+    getOrganizationCameraPermissions_200_response_inner:
+      example:
+        level: level
+        name: name
+        id: id
+      properties:
+        id:
+          description: Permission scope id
+          type: string
+        name:
+          description: Name of permission scope
+          type: string
+        level:
+          description: Permission scope level
           type: string
       type: object
     createOrganizationSamlRole_request:
@@ -44418,6 +45510,13 @@ components:
           - Email
           type: string
       type: object
+    updateNetworkSwitchSettings_request_macBlocklist:
+      description: MAC blocklist
+      properties:
+        enabled:
+          description: Enable MAC blocklist
+          type: boolean
+      type: object
     getNetworkSwitchRoutingMulticast_200_response_defaultSettings:
       description: |-
         Default multicast setting for entire network. IGMP snooping and Flood unknown
@@ -44855,6 +45954,26 @@ components:
             $ref: '#/components/schemas/getOrganizationInsightApplications_200_response_inner_thresholds_byNetwork_inner'
           type: array
       type: object
+    assignNetworkWirelessEthernetPortsProfiles_request:
+      example:
+        serials:
+        - Q234-ABCD-0001
+        - Q234-ABCD-0002
+        - Q234-ABCD-0003
+        profileId: "1001"
+      properties:
+        serials:
+          description: List of AP serials
+          items:
+            type: string
+          type: array
+        profileId:
+          description: AP profile ID
+          type: string
+      required:
+      - profileId
+      - serials
+      type: object
     getOrganizationDevicesStatusesOverview_200_response_counts_byStatus:
       description: byStatus
       example:
@@ -45243,6 +46362,58 @@ components:
           type: integer
       required:
       - definitions
+      type: object
+    getNetworkWirelessEthernetPortsProfiles_200_response_inner_ports_inner:
+      example:
+        number: 0
+        pskGroupId: pskGroupId
+        name: name
+        ssid: 6
+        enabled: true
+      properties:
+        name:
+          description: Name
+          type: string
+        number:
+          description: Number
+          type: integer
+        enabled:
+          description: Enabled
+          type: boolean
+        ssid:
+          description: Ssid number
+          type: integer
+        pskGroupId:
+          description: PSK Group number
+          type: string
+      type: object
+    updateDeviceWirelessAlternateManagementInterfaceIpv6_request_addresses_inner:
+      properties:
+        protocol:
+          description: The IP protocol used for the address
+          enum:
+          - ipv4
+          - ipv6
+          type: string
+        assignmentMode:
+          description: The type of address assignment. Either static or dynamic.
+          enum:
+          - dynamic
+          - static
+          type: string
+        address:
+          description: The IP address configured for the alternate management interface
+          type: string
+        gateway:
+          description: The gateway address configured for the alternate managment
+            interface
+          type: string
+        prefix:
+          description: The IPv6 prefix length of the IPv6 interface. Required if IPv6
+            object is included.
+          type: string
+        nameservers:
+          $ref: '#/components/schemas/updateDeviceWirelessAlternateManagementInterfaceIpv6_request_addresses_inner_nameservers'
       type: object
     getNetworkFirmwareUpgradesStagedGroups_200_response_inner_assignedDevices_devices_inner:
       example:
@@ -45969,42 +47140,6 @@ components:
           items:
             type: string
           type: array
-      type: object
-    updateOrganizationApplianceVpnVpnFirewallRules_200_response_rules_inner:
-      example:
-        srcCidr: srcCidr
-        protocol: protocol
-        syslogEnabled: true
-        destPort: destPort
-        comment: comment
-        srcPort: srcPort
-        destCidr: destCidr
-        policy: policy
-      properties:
-        comment:
-          description: Description of the rule
-          type: string
-        policy:
-          description: '''Deny'' traffic specified by this rule'
-          type: string
-        protocol:
-          description: The type of protocol
-          type: string
-        srcPort:
-          description: List of source ports
-          type: string
-        srcCidr:
-          description: List of source IP addresses
-          type: string
-        destPort:
-          description: List of destination ports
-          type: string
-        destCidr:
-          description: List of destination IP addresses
-          type: string
-        syslogEnabled:
-          description: Flag indicating whether the rule should be logged to syslog
-          type: boolean
       type: object
     createNetworkFirmwareUpgradesStagedGroup_request:
       example:
@@ -47006,6 +48141,32 @@ components:
       - type
       - value
       type: object
+    getOrganizationApplianceVpnVpnFirewallRules_200_response:
+      example:
+        rules:
+        - srcCidr: srcCidr
+          protocol: protocol
+          syslogEnabled: true
+          destPort: destPort
+          comment: comment
+          srcPort: srcPort
+          destCidr: destCidr
+          policy: policy
+        - srcCidr: srcCidr
+          protocol: protocol
+          syslogEnabled: true
+          destPort: destPort
+          comment: comment
+          srcPort: srcPort
+          destCidr: destCidr
+          policy: policy
+      properties:
+        rules:
+          description: List of firewall rules
+          items:
+            $ref: '#/components/schemas/getOrganizationApplianceVpnVpnFirewallRules_200_response_rules_inner'
+          type: array
+      type: object
     getNetworkWirelessSsidIdentityPsks_200_response_inner:
       example:
         name: name
@@ -47522,6 +48683,7 @@ components:
         radiusFailoverPolicy: Allow access
         splashPage: Billing
         number: 0
+        localAuth: true
         encryptionMode: wep
         perSsidBandwidthLimitUp: 3
         radiusServers:
@@ -47585,6 +48747,9 @@ components:
           type: string
         ssidAdminAccessible:
           description: SSID Administrator access status
+          type: boolean
+        localAuth:
+          description: Extended local auth flag for Enterprise NAC
           type: boolean
         authMode:
           description: The association control method for the SSID
@@ -49993,6 +51158,26 @@ components:
             $ref: '#/components/schemas/updateNetworkCellularGatewayConnectivityMonitoringDestinations_request_destinations_inner'
           type: array
       type: object
+    createOrganizationCameraRole_request_appliedOnDevices_inner:
+      properties:
+        tag:
+          description: Device tag.
+          type: string
+        id:
+          description: Device id.
+          type: string
+        inNetworksWithTag:
+          description: Network tag scope
+          type: string
+        inNetworksWithId:
+          description: Network id scope
+          type: string
+        permissionScopeId:
+          description: Permission scope id
+          type: string
+      required:
+      - permissionScopeId
+      type: object
     getOrganizationBrandingPolicies_200_response_inner_adminSettings:
       description: Settings for describing which kinds of admins this policy applies
         to.
@@ -52349,6 +53534,20 @@ components:
         flexRadios:
           $ref: '#/components/schemas/createNetworkWirelessRfProfile_request_flexRadios'
       type: object
+    updateDeviceWirelessAlternateManagementInterfaceIpv6_request_addresses_inner_nameservers:
+      description: The DNS servers settings for this address.
+      example:
+        addresses:
+        - addresses
+        - addresses
+      properties:
+        addresses:
+          description: "Up to 2 nameserver addresses to use, ordered in priority from\
+            \ highest to lowest priority."
+          items:
+            type: string
+          type: array
+      type: object
     getOrganizationDevicesUplinksAddressesByDevice_200_response_inner:
       example:
         serial: serial
@@ -52423,6 +53622,14 @@ components:
           items:
             $ref: '#/components/schemas/getOrganizationDevicesUplinksAddressesByDevice_200_response_inner_uplinks_inner'
           type: array
+      type: object
+    createOrganizationCameraRole_request_appliedOrgWide_inner:
+      properties:
+        permissionScopeId:
+          description: Permission scope id
+          type: string
+      required:
+      - permissionScopeId
       type: object
     updateNetworkSwitchStp_request:
       example:
@@ -52614,6 +53821,20 @@ components:
           description: "Toggle for radio transmission. When false, radios will not\
             \ transmit at all."
           type: boolean
+      type: object
+    createNetworkWirelessEthernetPortsProfile_request_usbPorts_inner:
+      properties:
+        name:
+          description: AP usb port name
+          type: string
+        enabled:
+          description: AP usb port enabled
+          type: boolean
+        ssid:
+          description: AP usb port ssid number
+          type: integer
+      required:
+      - name
       type: object
     splitNetwork_200_response:
       example:
@@ -53570,13 +54791,12 @@ components:
           type: string
         resolution:
           description: "Resolution of the camera. Can be one of '1280x720', '1920x1080',\
-            \ '1080x1080', '2058x2058', '2112x2112', '2880x2880', '2688x1512' or '3840x2160'.Not\
+            \ '1080x1080', '2112x2112', '2880x2880', '2688x1512' or '3840x2160'.Not\
             \ all resolutions are supported by every camera model."
           enum:
           - 1080x1080
           - 1280x720
           - 1920x1080
-          - 2058x2058
           - 2112x2112
           - 2688x1512
           - 2880x2880
@@ -53934,6 +55154,41 @@ components:
           description: EAPOL Key timeout in milliseconds.
           type: integer
       type: object
+    updateOrganizationCameraRole_request:
+      example:
+        name: Security_Guard
+        appliedOnDevices:
+        - tag: reception-desk
+          id: ""
+          permissionScopeId: "1"
+        appliedOnNetworks:
+        - tag: building-a
+          id: ""
+          permissionScopeId: "2"
+        appliedOrgWide:
+        - tag: building-a
+          id: ""
+          permissionScopeId: "2"
+      properties:
+        name:
+          description: The name of the new role. Must be unique.
+          type: string
+        appliedOnDevices:
+          description: Device tag on which this specified permission is applied.
+          items:
+            $ref: '#/components/schemas/createOrganizationCameraRole_request_appliedOnDevices_inner'
+          type: array
+        appliedOnNetworks:
+          description: Network tag on which this specified permission is applied.
+          items:
+            $ref: '#/components/schemas/updateOrganizationCameraRole_request_appliedOnNetworks_inner'
+          type: array
+        appliedOrgWide:
+          description: Permissions to be applied org wide.
+          items:
+            $ref: '#/components/schemas/createOrganizationCameraRole_request_appliedOrgWide_inner'
+          type: array
+      type: object
     getNetworkApplianceFirewallL7FirewallRulesApplicationCategories_200_response:
       example:
         applicationCategories:
@@ -54172,32 +55427,6 @@ components:
           description: Steers client to most open band. Can be either true or false.
           type: boolean
       type: object
-    updateOrganizationApplianceVpnVpnFirewallRules_200_response:
-      example:
-        rules:
-        - srcCidr: srcCidr
-          protocol: protocol
-          syslogEnabled: true
-          destPort: destPort
-          comment: comment
-          srcPort: srcPort
-          destCidr: destCidr
-          policy: policy
-        - srcCidr: srcCidr
-          protocol: protocol
-          syslogEnabled: true
-          destPort: destPort
-          comment: comment
-          srcPort: srcPort
-          destCidr: destCidr
-          policy: policy
-      properties:
-        rules:
-          description: List of firewall rules
-          items:
-            $ref: '#/components/schemas/updateOrganizationApplianceVpnVpnFirewallRules_200_response_rules_inner'
-          type: array
-      type: object
     getNetworkFirmwareUpgradesStagedEvents_200_response_stages_inner_group:
       description: The staged upgrade group
       example:
@@ -54214,6 +55443,22 @@ components:
         description:
           description: Description of the Staged Upgrade Group
           type: string
+      type: object
+    getNetworkWirelessEthernetPortsProfiles_200_response_inner_usbPorts_inner:
+      example:
+        name: name
+        ssid: 1
+        enabled: true
+      properties:
+        name:
+          description: Name
+          type: string
+        enabled:
+          description: Enabled
+          type: boolean
+        ssid:
+          description: Ssid number
+          type: integer
       type: object
     updateNetworkSwitchAccessControlLists_request_rules_inner:
       properties:
@@ -54386,6 +55631,22 @@ components:
           type: string
         thresholds:
           $ref: '#/components/schemas/getOrganizationInsightApplications_200_response_inner_thresholds'
+      type: object
+    assignNetworkWirelessEthernetPortsProfiles_201_response:
+      example:
+        serials:
+        - serials
+        - serials
+        profileId: profileId
+      properties:
+        serials:
+          description: List of updated AP serials
+          items:
+            type: string
+          type: array
+        profileId:
+          description: AP profile ID
+          type: string
       type: object
     updateNetworkSwitchRoutingOspf_request_v3:
       description: OSPF v3 configuration
@@ -54628,6 +55889,44 @@ components:
           type: string
       required:
       - newNetwork
+      type: object
+    updateDeviceWirelessAlternateManagementInterfaceIpv6_200_response_addresses_inner:
+      example:
+        protocol: ipv4
+        address: address
+        nameservers:
+          addresses:
+          - addresses
+          - addresses
+        assignmentMode: dynamic
+        prefix: prefix
+        gateway: gateway
+      properties:
+        protocol:
+          description: The IP protocol used for the address
+          enum:
+          - ipv4
+          - ipv6
+          type: string
+        assignmentMode:
+          description: The type of address assignment. Either static or dynamic.
+          enum:
+          - dynamic
+          - static
+          type: string
+        address:
+          description: The IP address configured for the alternate management interface
+          type: string
+        gateway:
+          description: The gateway address configured for the alternate managment
+            interface
+          type: string
+        prefix:
+          description: The IPv6 prefix of the interface. Required if IPv6 object is
+            included.
+          type: string
+        nameservers:
+          $ref: '#/components/schemas/updateDeviceWirelessAlternateManagementInterfaceIpv6_request_addresses_inner_nameservers'
       type: object
     updateNetworkApplianceSingleLan_request_ipv6:
       description: IPv6 configuration on the VLAN
@@ -55924,6 +57223,25 @@ components:
           description: The device uplink public IP address.
           type: string
       type: object
+    updateDeviceWirelessAlternateManagementInterfaceIpv6_request:
+      example:
+        addresses:
+        - protocol: ipv6
+          assignmentMode: static
+          address: 2001:db8:3c4d:15::1
+          gateway: fe80:db8:c15:c0:d0c::10ca:1d02
+          prefix: 2001:db8:3c4d:15::/64
+          nameservers:
+            addresses:
+            - 2001:db8:3c4d:15::1
+            - 2001:db8:3c4d:15::1
+      properties:
+        addresses:
+          description: configured alternate management interface addresses
+          items:
+            $ref: '#/components/schemas/updateDeviceWirelessAlternateManagementInterfaceIpv6_request_addresses_inner'
+          type: array
+      type: object
     updateNetworkApplianceSecurityIntrusion_request:
       example:
         mode: prevention
@@ -56447,7 +57765,7 @@ components:
           description: "Length of time in seconds that the triggering state must persist\
             \ before an alert is sent. Available options are 0 seconds, 1 minute,\
             \ 2 minutes, 3 minutes, 4 minutes, 5 minutes, 10 minutes, 15 minutes,\
-            \ 30 minutes, and 1 hour. Default is 0."
+            \ 30 minutes, 1 hour, 2 hours, 4 hours, and 8 hours. Default is 0."
           enum:
           - 0
           - 60
@@ -56459,6 +57777,9 @@ components:
           - 900
           - 1800
           - 3600
+          - 7200
+          - 14400
+          - 28800
           type: integer
       required:
       - metric
@@ -56772,6 +58093,50 @@ components:
           type: integer
         usage:
           $ref: '#/components/schemas/getOrganizationSummaryTopDevicesModelsByUsage_200_response_inner_usage'
+      type: object
+    getNetworkWirelessEthernetPortsProfiles_200_response_inner:
+      example:
+        isDefault: true
+        usbPorts:
+        - name: name
+          ssid: 1
+          enabled: true
+        - name: name
+          ssid: 1
+          enabled: true
+        profileId: profileId
+        name: name
+        ports:
+        - number: 0
+          pskGroupId: pskGroupId
+          name: name
+          ssid: 6
+          enabled: true
+        - number: 0
+          pskGroupId: pskGroupId
+          name: name
+          ssid: 6
+          enabled: true
+      properties:
+        profileId:
+          description: AP port profile ID
+          type: string
+        name:
+          description: AP port profile name
+          type: string
+        isDefault:
+          description: Is default profile
+          type: boolean
+        ports:
+          description: Ports config
+          items:
+            $ref: '#/components/schemas/getNetworkWirelessEthernetPortsProfiles_200_response_inner_ports_inner'
+          type: array
+        usbPorts:
+          description: Usb ports config
+          items:
+            $ref: '#/components/schemas/getNetworkWirelessEthernetPortsProfiles_200_response_inner_usbPorts_inner'
+          type: array
       type: object
     getNetworkApplianceTrafficShapingUplinkBandwidth_200_response_bandwidthLimits:
       description: A hash uplink keys and their configured settings for the Appliance
@@ -57830,6 +59195,26 @@ components:
         simFailover:
           $ref: '#/components/schemas/updateDeviceCellularSims_request_simFailover'
       type: object
+    updateNetworkApplianceTrafficShapingVpnExclusions_request_custom_inner:
+      properties:
+        protocol:
+          description: Protocol.
+          enum:
+          - any
+          - dns
+          - icmp
+          - tcp
+          - udp
+          type: string
+        destination:
+          description: "Destination address; hostname required for DNS, IPv4 otherwise."
+          type: string
+        port:
+          description: Destination port.
+          type: string
+      required:
+      - protocol
+      type: object
     getNetworkFirmwareUpgrades_200_response:
       example:
         upgradeWindow:
@@ -58332,6 +59717,23 @@ components:
         clientRootCaCertificate:
           $ref: '#/components/schemas/updateNetworkWirelessSsid_request_localRadius_certificateAuthentication_clientRootCaCertificate'
       type: object
+    createNetworkWirelessEthernetPortsProfile_request_ports_inner:
+      properties:
+        name:
+          description: AP port name
+          type: string
+        enabled:
+          description: AP port enabled
+          type: boolean
+        ssid:
+          description: AP port ssid number
+          type: integer
+        pskGroupId:
+          description: AP port PSK Group ID
+          type: string
+      required:
+      - name
+      type: object
     updateNetworkSwitchSettings_request_powerExceptions_inner:
       properties:
         serial:
@@ -58347,6 +59749,44 @@ components:
       required:
       - powerType
       - serial
+      type: object
+    createOrganizationCameraRole_request:
+      example:
+        name: Security_Guard
+        appliedOnDevices:
+        - tag: reception-desk
+          id: ""
+          permissionScopeId: "1"
+        appliedOnNetworks:
+        - tag: building-a
+          id: ""
+          permissionScopeId: "2"
+        appliedOrgWide:
+        - tag: building-a
+          id: ""
+          permissionScopeId: "2"
+      properties:
+        name:
+          description: The name of the new role. Must be unique. This parameter is
+            required.
+          type: string
+        appliedOnDevices:
+          description: Device tag on which this specified permission is applied.
+          items:
+            $ref: '#/components/schemas/createOrganizationCameraRole_request_appliedOnDevices_inner'
+          type: array
+        appliedOnNetworks:
+          description: Network tag on which this specified permission is applied.
+          items:
+            $ref: '#/components/schemas/createOrganizationCameraRole_request_appliedOnNetworks_inner'
+          type: array
+        appliedOrgWide:
+          description: Permissions to be applied org wide.
+          items:
+            $ref: '#/components/schemas/createOrganizationCameraRole_request_appliedOrgWide_inner'
+          type: array
+      required:
+      - name
       type: object
     getOrganizationApplianceVpnThirdPartyVPNPeers_200_response_peers_inner:
       example:
@@ -58988,6 +60428,32 @@ components:
             be listening on.
           type: integer
       type: object
+    updateNetworkApplianceTrafficShapingVpnExclusions_200_response_custom_inner:
+      example:
+        protocol: any
+        port: port
+        destination: destination
+      properties:
+        protocol:
+          description: Protocol.
+          enum:
+          - any
+          - dns
+          - icmp
+          - tcp
+          - udp
+          type: string
+        destination:
+          description: "Destination address; hostname required for DNS, IPv4 otherwise."
+          type: string
+        port:
+          description: Destination port.
+          type: string
+      required:
+      - destination
+      - port
+      - protocol
+      type: object
     updateNetworkFloorPlan_request_center:
       description: "The longitude and latitude of the center of your floor plan. If\
         \ you want to change the geolocation data of your floor plan, either the 'center'\
@@ -59612,6 +61078,34 @@ components:
           description: An array of port forwarding params
           items:
             $ref: '#/components/schemas/updateDeviceCellularGatewayPortForwardingRules_request_rules_inner'
+          type: array
+      type: object
+    updateDeviceWirelessAlternateManagementInterfaceIpv6_200_response:
+      example:
+        addresses:
+        - protocol: ipv4
+          address: address
+          nameservers:
+            addresses:
+            - addresses
+            - addresses
+          assignmentMode: dynamic
+          prefix: prefix
+          gateway: gateway
+        - protocol: ipv4
+          address: address
+          nameservers:
+            addresses:
+            - addresses
+            - addresses
+          assignmentMode: dynamic
+          prefix: prefix
+          gateway: gateway
+      properties:
+        addresses:
+          description: configured alternate management interface addresses
+          items:
+            $ref: '#/components/schemas/updateDeviceWirelessAlternateManagementInterfaceIpv6_200_response_addresses_inner'
           type: array
       type: object
     getNetworkWirelessRfProfiles_200_response_perSsidSettings_2:
@@ -61032,6 +62526,29 @@ components:
       required:
       - alternateManagementIp
       - serial
+      type: object
+    updateNetworkApplianceTrafficShapingVpnExclusions_request:
+      example:
+        custom:
+        - protocol: tcp
+          destination: 192.168.3.0/24
+          port: "8000"
+        majorApplications:
+        - id: meraki:vpnExclusion/application/2
+          name: Office 365 Sharepoint
+      properties:
+        custom:
+          description: Custom VPN exclusion rules. Pass an empty array to clear existing
+            rules.
+          items:
+            $ref: '#/components/schemas/updateNetworkApplianceTrafficShapingVpnExclusions_request_custom_inner'
+          type: array
+        majorApplications:
+          description: Major Application based VPN exclusion rules. Pass an empty
+            array to clear existing rules.
+          items:
+            $ref: '#/components/schemas/updateNetworkApplianceTrafficShapingVpnExclusions_request_majorApplications_inner'
+          type: array
       type: object
     updateNetworkWirelessSsidBonjourForwarding_request:
       example:
@@ -62749,6 +64266,8 @@ components:
           type: array
         uplinkClientSampling:
           $ref: '#/components/schemas/updateNetworkSwitchSettings_request_uplinkClientSampling'
+        macBlocklist:
+          $ref: '#/components/schemas/updateNetworkSwitchSettings_request_macBlocklist'
       type: object
     createNetworkApplianceVlan_request:
       example:
@@ -63582,6 +65101,23 @@ components:
             type: integer
           type: array
       type: object
+    updateNetworkWirelessEthernetPortsProfile_request_ports_inner:
+      properties:
+        name:
+          description: AP port name
+          type: string
+        enabled:
+          description: AP port enabled
+          type: boolean
+        ssid:
+          description: AP port ssid number
+          type: integer
+        pskGroupId:
+          description: AP port PSK Group number
+          type: string
+      required:
+      - name
+      type: object
     updateNetworkApplianceSsid_request_radiusServers_inner:
       properties:
         host:
@@ -63809,6 +65345,20 @@ components:
           items:
             $ref: '#/components/schemas/getOrganizationLicensingCotermLicenses_200_response_inner_counts_inner'
           type: array
+      type: object
+    createOrganizationCameraRole_request_appliedOnNetworks_inner:
+      properties:
+        tag:
+          description: Network tag
+          type: string
+        id:
+          description: Network id.
+          type: string
+        permissionScopeId:
+          description: Permission scope id
+          type: string
+      required:
+      - permissionScopeId
       type: object
     updateNetworkApplianceTrafficShapingUplinkSelection_request_vpnTrafficUplinkPreferences_inner_trafficFilters_inner_value:
       description: Value object of this traffic filter
@@ -64342,6 +65892,8 @@ components:
           powerType: combined
         - serial: serial
           powerType: combined
+        macBlocklist:
+          enabled: true
         vlan: 0
         uplinkClientSampling:
           enabled: true
@@ -64361,6 +65913,8 @@ components:
           type: array
         uplinkClientSampling:
           $ref: '#/components/schemas/getNetworkSwitchSettings_200_response_uplinkClientSampling'
+        macBlocklist:
+          $ref: '#/components/schemas/getNetworkSwitchSettings_200_response_macBlocklist'
       type: object
     getNetworkSmUserAccessDevices_200_response_inner:
       example:
@@ -64605,6 +66159,23 @@ components:
         serial:
           description: The device serial.
           type: string
+      type: object
+    updateNetworkWirelessEthernetPortsProfile_request:
+      example: {}
+      properties:
+        name:
+          description: AP port profile name
+          type: string
+        ports:
+          description: AP ports configuration
+          items:
+            $ref: '#/components/schemas/updateNetworkWirelessEthernetPortsProfile_request_ports_inner'
+          type: array
+        usbPorts:
+          description: AP usb ports configuration
+          items:
+            $ref: '#/components/schemas/createNetworkWirelessEthernetPortsProfile_request_usbPorts_inner'
+          type: array
       type: object
     getOrganizationWirelessDevicesEthernetStatuses_200_response_inner:
       example:
@@ -65572,6 +67143,36 @@ components:
           format: date-time
           type: string
       type: object
+    createNetworkWirelessEthernetPortsProfile_request:
+      example:
+        name: name
+        ports:
+        - name: port
+          enabled: true
+          ssid: 1
+          pskGroupId: "2"
+        usbPorts:
+        - name: usb port
+          enabled: true
+          ssid: 2
+      properties:
+        name:
+          description: AP port profile name
+          type: string
+        ports:
+          description: AP ports configuration
+          items:
+            $ref: '#/components/schemas/createNetworkWirelessEthernetPortsProfile_request_ports_inner'
+          type: array
+        usbPorts:
+          description: AP usb ports configuration
+          items:
+            $ref: '#/components/schemas/createNetworkWirelessEthernetPortsProfile_request_usbPorts_inner'
+          type: array
+      required:
+      - name
+      - ports
+      type: object
     getOrganizationDevicesAvailabilitiesChangeHistory_200_response_inner_details_old_inner:
       example:
         name: name
@@ -65999,6 +67600,19 @@ components:
           description: time when the alert was sent to the user(s) for this channel
           type: string
       type: object
+    getDeviceCameraVideoSettings_200_response:
+      example:
+        rtspUrl: rtspUrl
+        externalRtspEnabled: true
+      properties:
+        externalRtspEnabled:
+          description: Boolean indicating if external rtsp stream is exposed
+          type: boolean
+        rtspUrl:
+          description: External rstp url. Will only be returned if external rtsp stream
+            is exposed
+          type: string
+      type: object
     createNetworkWebhooksHttpServer_request:
       example:
         name: Example Webhook Server
@@ -66400,6 +68014,42 @@ components:
         checksum:
           description: UDP checksum of the packet.
           type: string
+      type: object
+    getOrganizationApplianceVpnVpnFirewallRules_200_response_rules_inner:
+      example:
+        srcCidr: srcCidr
+        protocol: protocol
+        syslogEnabled: true
+        destPort: destPort
+        comment: comment
+        srcPort: srcPort
+        destCidr: destCidr
+        policy: policy
+      properties:
+        comment:
+          description: Description of the rule
+          type: string
+        policy:
+          description: '''Deny'' traffic specified by this rule'
+          type: string
+        protocol:
+          description: The type of protocol
+          type: string
+        srcPort:
+          description: List of source ports
+          type: string
+        srcCidr:
+          description: List of source IP addresses
+          type: string
+        destPort:
+          description: List of destination ports
+          type: string
+        destCidr:
+          description: List of destination IP addresses
+          type: string
+        syslogEnabled:
+          description: Flag indicating whether the rule should be logged to syslog
+          type: boolean
       type: object
     updateNetworkAlertsSettings_request_defaultDestinations:
       description: The network-wide destinations for all alerts on the network.
@@ -67839,6 +69489,35 @@ components:
             with Apple
           type: string
       type: object
+    updateNetworkApplianceTrafficShapingVpnExclusions_200_response_majorApplications_inner:
+      example:
+        name: AWS
+        id: id
+      properties:
+        id:
+          description: Application's Meraki ID.
+          type: string
+        name:
+          description: Application's name.
+          enum:
+          - AWS
+          - Box
+          - Office 365 Sharepoint
+          - Office 365 Suite
+          - Oracle
+          - SAP
+          - Salesforce
+          - Skype & Teams
+          - Slack
+          - Webex
+          - Webex Calling
+          - Webex Meetings
+          - Zoom
+          type: string
+      required:
+      - id
+      - name
+      type: object
     createDeviceLiveToolsPing_request:
       example:
         target: 75.75.75.75
@@ -68509,6 +70188,30 @@ x-batchable-actions:
   summary: Update an MQTT broker
   resource: "/networks/{networkId}/mqttBrokers/{mqttBrokerId}"
   operation: update
+- group: Mr/actions/ap port profile
+  summary: Create an AP port profile
+  resource: "/networks/{networkId}/wireless/ethernet/ports/profiles"
+  operation: create
+- group: Mr/actions/ap port profile
+  summary: Delete an AP port profile
+  resource: "/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}"
+  operation: destroy
+- group: Mr/actions/ap port profile
+  summary: Update the AP port profile by ID for this network
+  resource: "/networks/{networkId}/wireless/ethernet/ports/profiles/{profileId}"
+  operation: update
+- group: Mr/actions/ap port profile assign
+  summary: Assign AP port profile to list of APs
+  resource: "/networks/{networkId}/wireless/ethernet/ports/profiles"
+  operation: aps
+- group: Mr/actions/ap port profile set
+  summary: Set the AP port profile to be default for this network
+  resource: "/networks/{networkId}/wireless/ethernet/ports/profiles"
+  operation: default
+- group: Mr/actions/wireless alternate management interface v6
+  summary: Update alternate management interface IPv6 address
+  resource: "/devices/{serial}/wireless/alternateManagementInterface/ipv6"
+  operation: update
 - group: Ms/actions/switch
   summary: Update switch network settings
   resource: "/networks/{networkId}/switch/settings"
@@ -68896,6 +70599,10 @@ x-batchable-actions:
 - group: Webhook template
   summary: Update a webhook payload template for a network
   resource: "/networks/{networkId}/webhooks/payloadTemplates/{payloadTemplateId}"
+  operation: update
+- group: Wired/actions/vpn exclusions
+  summary: Update VPN exclusion rules for an MX network.
+  resource: "/networks/{networkId}/appliance/trafficShaping/vpnExclusions"
   operation: update
 - group: Wired/appliance RF profile
   summary: Creates new RF profile for this network

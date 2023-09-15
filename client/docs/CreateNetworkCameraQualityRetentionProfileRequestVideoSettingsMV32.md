@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Quality** | **string** | Quality of the camera. Can be one of &#39;Standard&#39;, &#39;Enhanced&#39; or &#39;High&#39;. | 
-**Resolution** | **string** | Resolution of the camera. Can be one of &#39;1080x1080&#39; or &#39;2058x2058&#39;. | 
+**Resolution** | **string** | Resolution of the camera. Can be one of &#39;1080x1080&#39; or &#39;2112x2112&#39;. | 
 
 ## Methods
 

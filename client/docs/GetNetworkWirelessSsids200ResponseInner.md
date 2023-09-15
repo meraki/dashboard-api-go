@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Enabled** | Pointer to **bool** | Whether or not the SSID is enabled | [optional] 
 **SplashPage** | Pointer to **string** | The type of splash page for the SSID | [optional] 
 **SsidAdminAccessible** | Pointer to **bool** | SSID Administrator access status | [optional] 
+**LocalAuth** | Pointer to **bool** | Extended local auth flag for Enterprise NAC | [optional] 
 **AuthMode** | Pointer to **string** | The association control method for the SSID | [optional] 
 **EncryptionMode** | Pointer to **string** | The psk encryption mode for the SSID | [optional] 
 **WpaEncryptionMode** | Pointer to **string** | The types of WPA encryption | [optional] 
@@ -178,6 +179,31 @@ SetSsidAdminAccessible sets SsidAdminAccessible field to given value.
 `func (o *GetNetworkWirelessSsids200ResponseInner) HasSsidAdminAccessible() bool`
 
 HasSsidAdminAccessible returns a boolean if a field has been set.
+
+### GetLocalAuth
+
+`func (o *GetNetworkWirelessSsids200ResponseInner) GetLocalAuth() bool`
+
+GetLocalAuth returns the LocalAuth field if non-nil, zero value otherwise.
+
+### GetLocalAuthOk
+
+`func (o *GetNetworkWirelessSsids200ResponseInner) GetLocalAuthOk() (*bool, bool)`
+
+GetLocalAuthOk returns a tuple with the LocalAuth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocalAuth
+
+`func (o *GetNetworkWirelessSsids200ResponseInner) SetLocalAuth(v bool)`
+
+SetLocalAuth sets LocalAuth field to given value.
+
+### HasLocalAuth
+
+`func (o *GetNetworkWirelessSsids200ResponseInner) HasLocalAuth() bool`
+
+HasLocalAuth returns a boolean if a field has been set.
 
 ### GetAuthMode
 
