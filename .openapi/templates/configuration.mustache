@@ -138,11 +138,27 @@ type Configuration struct {
 	{{/withCustomMiddlewareFunction}}
 }
 
+func merakiUserAgent(packageVersion, applicationName string) string {
+    userAgent := "golang-meraki"
+
+    if len(packageVersion) > 0 {
+    packageVersion = strings.TrimPrefix(packageVersion, "v")
+    userAgent = fmt.Sprintf("%s/%s", userAgent, packageVersion)
+    }
+
+    if len(applicationName) > 0 {
+    userAgent = fmt.Sprintf("%s %s", userAgent, applicationName)
+    }
+
+    return userAgent
+}
+
 // NewConfiguration returns a new Configuration object
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader:    make(map[string]string),
-		UserAgent:       getEnvOrDefaultStr("MERAKI_GO_SDK_CALLER", "{{{httpUserAgent}}}{{^httpUserAgent}}meraki-golang/{{{packageVersion}}}/{{/httpUserAgent}}"),
+        // current = meraki-golang/v1.36.0
+		UserAgent:   merakiUserAgent("{{{packageVersion}}}", os.Getenv("MERAKI_GO_SDK_CALLER")),
 		Debug:            false,
 		{{#servers}}
 		{{#-first}}
