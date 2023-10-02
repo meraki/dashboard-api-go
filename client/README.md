@@ -35,7 +35,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import client "github.com/meraki/dashboard-api-go/client"
+import client "github.com/meraki/dashboard-api-go"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
