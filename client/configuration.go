@@ -103,11 +103,27 @@ type Configuration struct {
     UseIteratorForGetPages            bool
 }
 
+func merakiUserAgent(packageVersion, applicationName string) string {
+    userAgent := "golang-meraki"
+
+    if len(packageVersion) > 0 {
+    packageVersion = strings.TrimPrefix(packageVersion, "v")
+    userAgent = fmt.Sprintf("%s/%s", userAgent, packageVersion)
+    }
+
+    if len(applicationName) > 0 {
+    userAgent = fmt.Sprintf("%s %s", userAgent, applicationName)
+    }
+
+    return userAgent
+}
+
 // NewConfiguration returns a new Configuration object
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader:    make(map[string]string),
-		UserAgent:       getEnvOrDefaultStr("MERAKI_GO_SDK_CALLER", "meraki-golang/v1.37.0/"),
+        // current = meraki-golang/v1.36.0
+		UserAgent:   merakiUserAgent("v1.37.0", os.Getenv("MERAKI_GO_SDK_CALLER")),
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
