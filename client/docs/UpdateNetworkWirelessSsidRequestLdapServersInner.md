@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Host** | **string** | IP address of your LDAP server. | 
+**Host** | **string** | IP address (or FQDN) of your LDAP server. | 
 **Port** | **int32** | UDP port the LDAP server listens on. | 
 
 ## Methods

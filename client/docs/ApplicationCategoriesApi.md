@@ -5,7 +5,7 @@ All URIs are relative to *https://api.meraki.com/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories**](ApplicationCategoriesApi.md#GetNetworkApplianceFirewallL7FirewallRulesApplicationCategories) | **Get** /networks/{networkId}/appliance/firewall/l7FirewallRules/applicationCategories | Return the L7 firewall application categories and their associated applications for an MX network
-[**GetNetworkTrafficShapingApplicationCategories**](ApplicationCategoriesApi.md#GetNetworkTrafficShapingApplicationCategories) | **Get** /networks/{networkId}/trafficShaping/applicationCategories | Returns the application categories for traffic shaping rules.
+[**GetNetworkTrafficShapingApplicationCategories**](ApplicationCategoriesApi.md#GetNetworkTrafficShapingApplicationCategories) | **Get** /networks/{networkId}/trafficShaping/applicationCategories | Returns the application categories for traffic shaping rules
 
 
 
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} GetNetworkTrafficShapingApplicationCategories(ctx, networkId).Execute()
 
-Returns the application categories for traffic shaping rules.
+Returns the application categories for traffic shaping rules
 
 
 

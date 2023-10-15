@@ -459,6 +459,20 @@ func Test_client_SmApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test SmApiService InstallNetworkSmDeviceApps", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+		var deviceId string
+
+		httpRes, err := apiClient.SmApi.InstallNetworkSmDeviceApps(context.Background(), networkId, deviceId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SmApiService LockNetworkSmDevices", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -526,6 +540,20 @@ func Test_client_SmApiService(t *testing.T) {
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SmApiService UninstallNetworkSmDeviceApps", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+		var deviceId string
+
+		httpRes, err := apiClient.SmApi.UninstallNetworkSmDeviceApps(context.Background(), networkId, deviceId).Execute()
+
+		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

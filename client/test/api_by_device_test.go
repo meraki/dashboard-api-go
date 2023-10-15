@@ -36,6 +36,20 @@ func Test_client_ByDeviceApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ByDeviceApiService GetNetworkVlanProfilesAssignmentsByDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.ByDeviceApi.GetNetworkVlanProfilesAssignmentsByDevice(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ByDeviceApiService GetOrganizationDevicesPowerModulesStatusesByDevice", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

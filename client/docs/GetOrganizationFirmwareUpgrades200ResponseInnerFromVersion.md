@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | Firmware version ID | [optional] 
 **ShortName** | Pointer to **string** | Firmware version short name | [optional] 
+**Firmware** | Pointer to **string** | Firmware name | [optional] 
 **ReleaseType** | Pointer to **string** | Release type of the firmware version | [optional] 
 **ReleaseDate** | Pointer to **time.Time** | Release date of the firmware version | [optional] 
 
@@ -77,6 +78,31 @@ SetShortName sets ShortName field to given value.
 `func (o *GetOrganizationFirmwareUpgrades200ResponseInnerFromVersion) HasShortName() bool`
 
 HasShortName returns a boolean if a field has been set.
+
+### GetFirmware
+
+`func (o *GetOrganizationFirmwareUpgrades200ResponseInnerFromVersion) GetFirmware() string`
+
+GetFirmware returns the Firmware field if non-nil, zero value otherwise.
+
+### GetFirmwareOk
+
+`func (o *GetOrganizationFirmwareUpgrades200ResponseInnerFromVersion) GetFirmwareOk() (*string, bool)`
+
+GetFirmwareOk returns a tuple with the Firmware field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFirmware
+
+`func (o *GetOrganizationFirmwareUpgrades200ResponseInnerFromVersion) SetFirmware(v string)`
+
+SetFirmware sets Firmware field to given value.
+
+### HasFirmware
+
+`func (o *GetOrganizationFirmwareUpgrades200ResponseInnerFromVersion) HasFirmware() bool`
+
+HasFirmware returns a boolean if a field has been set.
 
 ### GetReleaseType
 
