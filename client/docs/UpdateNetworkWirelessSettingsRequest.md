@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **LocationAnalyticsEnabled** | Pointer to **bool** | Toggle for enabling or disabling location analytics for your network | [optional] 
 **UpgradeStrategy** | Pointer to **string** | The upgrade strategy to apply to the network. Must be one of &#39;minimizeUpgradeTime&#39; or &#39;minimizeClientDowntime&#39;. Requires firmware version MR 26.8 or higher&#39; | [optional] 
 **LedLightsOn** | Pointer to **bool** | Toggle for enabling or disabling LED lights on all APs in the network (making them run dark) | [optional] 
+**NamedVlans** | Pointer to [**UpdateNetworkWirelessSettingsRequestNamedVlans**](UpdateNetworkWirelessSettingsRequestNamedVlans.md) |  | [optional] 
 
 ## Methods
 
@@ -153,6 +154,31 @@ SetLedLightsOn sets LedLightsOn field to given value.
 `func (o *UpdateNetworkWirelessSettingsRequest) HasLedLightsOn() bool`
 
 HasLedLightsOn returns a boolean if a field has been set.
+
+### GetNamedVlans
+
+`func (o *UpdateNetworkWirelessSettingsRequest) GetNamedVlans() UpdateNetworkWirelessSettingsRequestNamedVlans`
+
+GetNamedVlans returns the NamedVlans field if non-nil, zero value otherwise.
+
+### GetNamedVlansOk
+
+`func (o *UpdateNetworkWirelessSettingsRequest) GetNamedVlansOk() (*UpdateNetworkWirelessSettingsRequestNamedVlans, bool)`
+
+GetNamedVlansOk returns a tuple with the NamedVlans field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNamedVlans
+
+`func (o *UpdateNetworkWirelessSettingsRequest) SetNamedVlans(v UpdateNetworkWirelessSettingsRequestNamedVlans)`
+
+SetNamedVlans sets NamedVlans field to given value.
+
+### HasNamedVlans
+
+`func (o *UpdateNetworkWirelessSettingsRequest) HasNamedVlans() bool`
+
+HasNamedVlans returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

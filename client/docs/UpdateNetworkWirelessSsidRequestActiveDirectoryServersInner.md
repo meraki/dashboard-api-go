@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Host** | **string** | IP address of your Active Directory server. | 
+**Host** | **string** | IP address (or FQDN) of your Active Directory server. | 
 **Port** | Pointer to **int32** | (Optional) UDP port the Active Directory server listens on. By default, uses port 3268. | [optional] 
 
 ## Methods

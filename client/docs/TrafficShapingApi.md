@@ -12,7 +12,7 @@ Method | HTTP request | Description
 [**GetNetworkApplianceTrafficShapingRules**](TrafficShapingApi.md#GetNetworkApplianceTrafficShapingRules) | **Get** /networks/{networkId}/appliance/trafficShaping/rules | Display the traffic shaping settings rules for an MX network
 [**GetNetworkApplianceTrafficShapingUplinkBandwidth**](TrafficShapingApi.md#GetNetworkApplianceTrafficShapingUplinkBandwidth) | **Get** /networks/{networkId}/appliance/trafficShaping/uplinkBandwidth | Returns the uplink bandwidth limits for your MX network
 [**GetNetworkApplianceTrafficShapingUplinkSelection**](TrafficShapingApi.md#GetNetworkApplianceTrafficShapingUplinkSelection) | **Get** /networks/{networkId}/appliance/trafficShaping/uplinkSelection | Show uplink selection settings for an MX network
-[**GetNetworkTrafficShapingApplicationCategories**](TrafficShapingApi.md#GetNetworkTrafficShapingApplicationCategories) | **Get** /networks/{networkId}/trafficShaping/applicationCategories | Returns the application categories for traffic shaping rules.
+[**GetNetworkTrafficShapingApplicationCategories**](TrafficShapingApi.md#GetNetworkTrafficShapingApplicationCategories) | **Get** /networks/{networkId}/trafficShaping/applicationCategories | Returns the application categories for traffic shaping rules
 [**GetNetworkTrafficShapingDscpTaggingOptions**](TrafficShapingApi.md#GetNetworkTrafficShapingDscpTaggingOptions) | **Get** /networks/{networkId}/trafficShaping/dscpTaggingOptions | Returns the available DSCP tagging options for your traffic shaping rules.
 [**GetNetworkWirelessSsidTrafficShapingRules**](TrafficShapingApi.md#GetNetworkWirelessSsidTrafficShapingRules) | **Get** /networks/{networkId}/wireless/ssids/{number}/trafficShaping/rules | Display the traffic shaping settings for a SSID on an MR network
 [**GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork**](TrafficShapingApi.md#GetOrganizationApplianceTrafficShapingVpnExclusionsByNetwork) | **Get** /organizations/{organizationId}/appliance/trafficShaping/vpnExclusions/byNetwork | Display VPN exclusion rules for MX networks.
@@ -22,7 +22,7 @@ Method | HTTP request | Description
 [**UpdateNetworkApplianceTrafficShapingUplinkBandwidth**](TrafficShapingApi.md#UpdateNetworkApplianceTrafficShapingUplinkBandwidth) | **Put** /networks/{networkId}/appliance/trafficShaping/uplinkBandwidth | Updates the uplink bandwidth settings for your MX network.
 [**UpdateNetworkApplianceTrafficShapingUplinkSelection**](TrafficShapingApi.md#UpdateNetworkApplianceTrafficShapingUplinkSelection) | **Put** /networks/{networkId}/appliance/trafficShaping/uplinkSelection | Update uplink selection settings for an MX network
 [**UpdateNetworkApplianceTrafficShapingVpnExclusions**](TrafficShapingApi.md#UpdateNetworkApplianceTrafficShapingVpnExclusions) | **Put** /networks/{networkId}/appliance/trafficShaping/vpnExclusions | Update VPN exclusion rules for an MX network.
-[**UpdateNetworkWirelessSsidTrafficShapingRules**](TrafficShapingApi.md#UpdateNetworkWirelessSsidTrafficShapingRules) | **Put** /networks/{networkId}/wireless/ssids/{number}/trafficShaping/rules | Update the traffic shaping settings for an SSID on an MR network
+[**UpdateNetworkWirelessSsidTrafficShapingRules**](TrafficShapingApi.md#UpdateNetworkWirelessSsidTrafficShapingRules) | **Put** /networks/{networkId}/wireless/ssids/{number}/trafficShaping/rules | Update the traffic shaping rules for an SSID on an MR network.
 
 
 
@@ -604,7 +604,7 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} GetNetworkTrafficShapingApplicationCategories(ctx, networkId).Execute()
 
-Returns the application categories for traffic shaping rules.
+Returns the application categories for traffic shaping rules
 
 
 
@@ -744,7 +744,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkWirelessSsidTrafficShapingRules
 
-> map[string]interface{} GetNetworkWirelessSsidTrafficShapingRules(ctx, networkId, number).Execute()
+> GetNetworkWirelessSsidTrafficShapingRules200Response GetNetworkWirelessSsidTrafficShapingRules(ctx, networkId, number).Execute()
 
 Display the traffic shaping settings for a SSID on an MR network
 
@@ -774,7 +774,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `TrafficShapingApi.GetNetworkWirelessSsidTrafficShapingRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkWirelessSsidTrafficShapingRules`: map[string]interface{}
+    // response from `GetNetworkWirelessSsidTrafficShapingRules`: GetNetworkWirelessSsidTrafficShapingRules200Response
     fmt.Fprintf(os.Stdout, "Response from `TrafficShapingApi.GetNetworkWirelessSsidTrafficShapingRules`: %v\n", resp)
 }
 ```
@@ -800,7 +800,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GetNetworkWirelessSsidTrafficShapingRules200Response**](GetNetworkWirelessSsidTrafficShapingRules200Response.md)
 
 ### Authorization
 
@@ -1338,9 +1338,9 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkWirelessSsidTrafficShapingRules
 
-> map[string]interface{} UpdateNetworkWirelessSsidTrafficShapingRules(ctx, networkId, number).UpdateNetworkWirelessSsidTrafficShapingRulesRequest(updateNetworkWirelessSsidTrafficShapingRulesRequest).Execute()
+> GetNetworkWirelessSsidTrafficShapingRules200Response UpdateNetworkWirelessSsidTrafficShapingRules(ctx, networkId, number).UpdateNetworkWirelessSsidTrafficShapingRulesRequest(updateNetworkWirelessSsidTrafficShapingRulesRequest).Execute()
 
-Update the traffic shaping settings for an SSID on an MR network
+Update the traffic shaping rules for an SSID on an MR network.
 
 
 
@@ -1369,7 +1369,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `TrafficShapingApi.UpdateNetworkWirelessSsidTrafficShapingRules``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNetworkWirelessSsidTrafficShapingRules`: map[string]interface{}
+    // response from `UpdateNetworkWirelessSsidTrafficShapingRules`: GetNetworkWirelessSsidTrafficShapingRules200Response
     fmt.Fprintf(os.Stdout, "Response from `TrafficShapingApi.UpdateNetworkWirelessSsidTrafficShapingRules`: %v\n", resp)
 }
 ```
@@ -1396,7 +1396,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GetNetworkWirelessSsidTrafficShapingRules200Response**](GetNetworkWirelessSsidTrafficShapingRules200Response.md)
 
 ### Authorization
 

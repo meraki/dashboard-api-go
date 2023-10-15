@@ -6,7 +6,7 @@ info:
   description: |
     A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.
 
-    > Date: 06 September, 2023
+    > Date: 04 October, 2023
     >
     > [Recent Updates](https://meraki.io/whats-new/)
 
@@ -18,7 +18,7 @@ info:
 
     [Meraki Homepage](https://www.meraki.com)
   title: Meraki Dashboard API
-  version: 1.37.0
+  version: 1.38.0
 servers:
 - url: "https://api.meraki.com/{basePath}"
   variables:
@@ -60,6 +60,7 @@ tags:
 - name: applications
 - name: arpInspection
 - name: artifacts
+- name: assignments
 - name: authenticationToken
 - name: availabilities
 - name: bandwidthUsageHistory
@@ -283,6 +284,7 @@ tags:
 - name: video
 - name: videoLink
 - name: vlanAssignments
+- name: vlanProfiles
 - name: vlans
 - name: vmx
 - name: vpn
@@ -363,6 +365,9 @@ paths:
                   minor: 3
                 firmware: wireless-25-14
                 floorPlanId: g_1234567
+                details:
+                - name: Catalyst serial
+                  value: 123ABC
               schema:
                 type: object
           description: Successful operation
@@ -411,6 +416,9 @@ paths:
                   minor: 3
                 firmware: wireless-25-14
                 floorPlanId: g_1234567
+                details:
+                - name: Catalyst serial
+                  value: 123ABC
               schema:
                 type: object
           description: Successful operation
@@ -9358,6 +9366,15 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filters clients based on the partial or full match for the named
+          VLAN field.
+        explode: true
+        in: query
+        name: namedVlan
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filters clients based on recent connection type. Can be one of
           'Wired' or 'Wireless'.
         explode: true
@@ -10345,7 +10362,8 @@ paths:
                 address: 1600 Pennsylvania Ave
                 notes: My AP's note
                 lanIp: 1.2.3.4
-                tags: ' recently-added '
+                tags:
+                - recently-added
                 networkId: N_24329156
                 beaconIdParams:
                   uuid: 00000000-0000-0000-0000-000000000000
@@ -10353,6 +10371,9 @@ paths:
                   minor: 3
                 firmware: wireless-25-14
                 floorPlanId: g_1234567
+                details:
+                - name: Catalyst serial
+                  value: 123ABC
               schema:
                 items:
                   type: object
@@ -10434,6 +10455,9 @@ paths:
                   minor: 3
                 firmware: wireless-25-14
                 floorPlanId: g_1234567
+                details:
+                - name: Catalyst serial
+                  value: 123ABC
               schema:
                 type: object
           description: Successful operation
@@ -10485,7 +10509,7 @@ paths:
         style: simple
       - description: "The product type to fetch events for. This parameter is required\
           \ for networks with multiple device types. Valid types are wireless, appliance,\
-          \ switch, systemsManager, camera, cellularGateway, and cloudGateway"
+          \ switch, systemsManager, camera, and cellularGateway"
         explode: true
         in: query
         name: productType
@@ -10495,7 +10519,6 @@ paths:
           - appliance
           - camera
           - cellularGateway
-          - cloudGateway
           - switch
           - systemsManager
           - wireless
@@ -10943,42 +10966,6 @@ paths:
                       releaseType: beta
                       releaseDate: 2020-11-28T17:22:52Z
                     participateInNextBetaRelease: false
-                  cloudGateway:
-                    currentVersion:
-                      id: "4321"
-                      firmware: camera-11-2-1
-                      shortName: MV 11.2.1
-                      releaseType: stable
-                      releaseDate: 2020-03-17T17:22:52Z
-                    lastUpgrade:
-                      time: 2021-05-17T17:22:52Z
-                      fromVersion:
-                        id: "1234"
-                        firmware: camera-10-8-1
-                        shortName: MV 10.8.1
-                        releaseType: stable
-                        releaseDate: 2021-03-17T17:22:52Z
-                      toVersion:
-                        id: "4321"
-                        firmware: camera-11-2-1
-                        shortName: MV 11.2.1
-                        releaseType: stable
-                        releaseDate: 2019-03-17T17:22:52Z
-                    nextUpgrade:
-                      time: 2021-05-17T17:22:52Z
-                      toVersion:
-                        id: "2134"
-                        firmware: camera-15-5-2
-                        shortName: MV 25.5.2
-                        releaseType: stable
-                        releaseDate: 2021-05-28T17:22:52Z
-                    availableVersions:
-                    - id: "3421"
-                      firmware: camera-16-x-y
-                      shortName: MV 16.x.y
-                      releaseType: beta
-                      releaseDate: 2020-11-28T17:22:52Z
-                    participateInNextBetaRelease: false
               schema:
                 $ref: '#/components/schemas/getNetworkFirmwareUpgrades_200_response'
           description: Successful operation
@@ -11196,42 +11183,6 @@ paths:
                       releaseDate: 2020-11-28T17:22:52Z
                     participateInNextBetaRelease: false
                   sensor:
-                    currentVersion:
-                      id: "4321"
-                      firmware: camera-11-2-1
-                      shortName: MV 11.2.1
-                      releaseType: stable
-                      releaseDate: 2020-03-17T17:22:52Z
-                    lastUpgrade:
-                      time: 2021-05-17T17:22:52Z
-                      fromVersion:
-                        id: "1234"
-                        firmware: camera-10-8-1
-                        shortName: MV 10.8.1
-                        releaseType: stable
-                        releaseDate: 2021-03-17T17:22:52Z
-                      toVersion:
-                        id: "4321"
-                        firmware: camera-11-2-1
-                        shortName: MV 11.2.1
-                        releaseType: stable
-                        releaseDate: 2019-03-17T17:22:52Z
-                    nextUpgrade:
-                      time: 2021-05-17T17:22:52Z
-                      toVersion:
-                        id: "2134"
-                        firmware: camera-15-5-2
-                        shortName: MV 25.5.2
-                        releaseType: stable
-                        releaseDate: 2021-05-28T17:22:52Z
-                    availableVersions:
-                    - id: "3421"
-                      firmware: camera-16-x-y
-                      shortName: MV 16.x.y
-                      releaseType: beta
-                      releaseDate: 2020-11-28T17:22:52Z
-                    participateInNextBetaRelease: false
-                  cloudGateway:
                     currentVersion:
                       id: "4321"
                       firmware: camera-11-2-1
@@ -11903,6 +11854,9 @@ paths:
                   lanIp: 1.2.3.4
                   firmware: wireless-25-14
                   productType: wireless
+                  details:
+                  - name: Catalyst serial
+                    value: 123ABC
                 width: 100.0
                 height: 150.1
                 center:
@@ -11974,6 +11928,9 @@ paths:
                   lanIp: 1.2.3.4
                   firmware: wireless-25-14
                   productType: wireless
+                  details:
+                  - name: Catalyst serial
+                    value: 123ABC
                 width: 100.0
                 height: 150.1
                 center:
@@ -12046,6 +12003,9 @@ paths:
                   lanIp: 1.2.3.4
                   firmware: wireless-25-14
                   productType: wireless
+                  details:
+                  - name: Catalyst serial
+                    value: 123ABC
                 width: 100.0
                 height: 150.1
                 center:
@@ -12117,6 +12077,9 @@ paths:
                   lanIp: 1.2.3.4
                   firmware: wireless-25-14
                   productType: wireless
+                  details:
+                  - name: Catalyst serial
+                    value: 123ABC
                 width: 100.0
                 height: 150.1
                 center:
@@ -12194,6 +12157,9 @@ paths:
                   lanIp: 1.2.3.4
                   firmware: wireless-25-14
                   productType: wireless
+                  details:
+                  - name: Catalyst serial
+                    value: 123ABC
                 width: 100.0
                 height: 150.1
                 center:
@@ -15669,6 +15635,41 @@ paths:
       - configure
       - devices
       - deviceProfiles
+  /networks/{networkId}/sm/devices/{deviceId}/installApps:
+    post:
+      description: Install applications on a device
+      operationId: installNetworkSmDeviceApps
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Device ID
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/installNetworkSmDeviceApps_request'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+      summary: Install applications on a device
+      tags:
+      - sm
+      - configure
+      - devices
   /networks/{networkId}/sm/devices/{deviceId}/networkAdapters:
     get:
       description: List the network adapters of a device
@@ -16015,6 +16016,41 @@ paths:
                 $ref: '#/components/schemas/unenrollNetworkSmDevice_200_response'
           description: Successful operation
       summary: Unenroll a device
+      tags:
+      - sm
+      - configure
+      - devices
+  /networks/{networkId}/sm/devices/{deviceId}/uninstallApps:
+    post:
+      description: Uninstall applications on a device
+      operationId: uninstallNetworkSmDeviceApps
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Device ID
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/uninstallNetworkSmDeviceApps_request'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+      summary: Uninstall applications on a device
       tags:
       - sm
       - configure
@@ -20491,7 +20527,8 @@ paths:
       - trafficAnalysis
   /networks/{networkId}/trafficShaping/applicationCategories:
     get:
-      description: Returns the application categories for traffic shaping rules.
+      description: Returns the application categories for traffic shaping rules. Only
+        applicable on networks with a security applicance.
       operationId: getNetworkTrafficShapingApplicationCategories
       parameters:
       - description: Network ID
@@ -20520,7 +20557,7 @@ paths:
               schema:
                 type: object
           description: Successful operation
-      summary: Returns the application categories for traffic shaping rules.
+      summary: Returns the application categories for traffic shaping rules
       tags:
       - networks
       - configure
@@ -20612,6 +20649,357 @@ paths:
       tags:
       - networks
       - configure
+  /networks/{networkId}/vlanProfiles:
+    get:
+      description: List VLAN profiles for a network
+      operationId: getNetworkVlanProfiles
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - iname: Profile1
+                name: My VLAN profile name
+                isDefault: false
+                vlanNames:
+                - name: named-1
+                  vlanId: "1"
+                vlanGroups:
+                - name: named-group-1
+                  vlanIds: "2,5-7"
+              schema:
+                items:
+                  $ref: '#/components/schemas/getNetworkVlanProfiles_200_response_inner'
+                type: array
+          description: Successful operation
+      summary: List VLAN profiles for a network
+      tags:
+      - networks
+      - configure
+      - vlanProfiles
+    post:
+      description: Create a VLAN profile for a network
+      operationId: createNetworkVlanProfile
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createNetworkVlanProfile_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                iname: Profile1
+                name: My VLAN profile name
+                isDefault: false
+                vlanNames:
+                - name: named-1
+                  vlanId: "1"
+                vlanGroups:
+                - name: named-group-1
+                  vlanIds: "2,5-7"
+              schema:
+                $ref: '#/components/schemas/getNetworkVlanProfiles_200_response_inner'
+          description: Successful operation
+      summary: Create a VLAN profile for a network
+      tags:
+      - networks
+      - configure
+      - vlanProfiles
+  /networks/{networkId}/vlanProfiles/assignments/byDevice:
+    get:
+      description: Get the assigned VLAN Profiles for devices in a network
+      operationId: getNetworkVlanProfilesAssignmentsByDevice
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The number of entries per page returned. Acceptable range is
+          3 - 1000. Default is 1000.
+        explode: true
+        in: query
+        name: perPage
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "A token used by the server to indicate the start of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: startingAfter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A token used by the server to indicate the end of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: endingBefore
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Optional parameter to filter devices by serials. All devices
+          returned belong to serial numbers that are an exact match.
+        explode: true
+        in: query
+        name: serials
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Optional parameter to filter devices by product types.
+        explode: true
+        in: query
+        name: productTypes
+        required: false
+        schema:
+          items:
+            enum:
+            - switch
+            - wireless
+            type: string
+          type: array
+        style: form
+      - description: Optional parameter to filter devices by Switch Stack ids.
+        explode: true
+        in: query
+        name: stackIds
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - name: My switch
+                serial: Q234-ABCD-5678
+                mac: 00:11:22:33:44:55
+                productType: switch
+                vlanProfile:
+                  iname: Profile1
+                  name: My VLAN Profile
+                  isDefault: true
+                stack:
+                  id: "1234"
+              schema:
+                items:
+                  $ref: '#/components/schemas/getNetworkVlanProfilesAssignmentsByDevice_200_response_inner'
+                type: array
+          description: Successful operation
+          headers:
+            Link:
+              description: "A comma-separated list of first, last, prev, and next\
+                \ relative links used for subsequent paginated requests."
+              explode: false
+              schema:
+                type: string
+              style: simple
+      summary: Get the assigned VLAN Profiles for devices in a network
+      tags:
+      - networks
+      - configure
+      - vlanProfiles
+      - assignments
+      - byDevice
+  /networks/{networkId}/vlanProfiles/assignments/reassign:
+    post:
+      description: Update the assigned VLAN Profile for devices in a network
+      operationId: reassignNetworkVlanProfilesAssignments
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/reassignNetworkVlanProfilesAssignments_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                vlanProfile:
+                  iname: Profile1
+                  name: My VLAN Profile
+                serials:
+                - Q234-ABCD-5678
+                stackIds:
+                - "1234"
+              schema:
+                $ref: '#/components/schemas/reassignNetworkVlanProfilesAssignments_200_response'
+          description: Successful operation
+      summary: Update the assigned VLAN Profile for devices in a network
+      tags:
+      - networks
+      - configure
+      - vlanProfiles
+      - assignments
+  /networks/{networkId}/vlanProfiles/{iname}:
+    delete:
+      description: Delete a VLAN profile of a network
+      operationId: deleteNetworkVlanProfile
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Iname
+        explode: false
+        in: path
+        name: iname
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Successful operation
+      summary: Delete a VLAN profile of a network
+      tags:
+      - networks
+      - configure
+      - vlanProfiles
+    get:
+      description: Get an existing VLAN profile of a network
+      operationId: getNetworkVlanProfile
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Iname
+        explode: false
+        in: path
+        name: iname
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                iname: Profile1
+                name: My VLAN profile name
+                isDefault: false
+                vlanNames:
+                - name: named-1
+                  vlanId: "1"
+                vlanGroups:
+                - name: named-group-1
+                  vlanIds: "2,5-7"
+              schema:
+                $ref: '#/components/schemas/getNetworkVlanProfiles_200_response_inner'
+          description: Successful operation
+      summary: Get an existing VLAN profile of a network
+      tags:
+      - networks
+      - configure
+      - vlanProfiles
+    put:
+      description: Update an existing VLAN profile of a network
+      operationId: updateNetworkVlanProfile
+      parameters:
+      - description: Network ID
+        explode: false
+        in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Iname
+        explode: false
+        in: path
+        name: iname
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateNetworkVlanProfile_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                iname: Profile1
+                name: My VLAN profile name
+                isDefault: false
+                vlanNames:
+                - name: named-1
+                  vlanId: "1"
+                vlanGroups:
+                - name: named-group-1
+                  vlanIds: "2,5-7"
+              schema:
+                $ref: '#/components/schemas/getNetworkVlanProfiles_200_response_inner'
+          description: Successful operation
+      summary: Update an existing VLAN profile of a network
+      tags:
+      - networks
+      - configure
+      - vlanProfiles
   /networks/{networkId}/webhooks/httpServers:
     get:
       description: List the HTTP servers for a network
@@ -26654,25 +27042,15 @@ paths:
                 - definitions:
                   - type: host
                     value: google.com
-                  - type: port
-                    value: "9090"
-                  - type: ipRange
-                    value: 192.1.0.0
-                  - type: ipRange
-                    value: 192.1.0.0/16
-                  - type: ipRange
-                    value: 10.1.0.0/16:80
-                  - type: localNet
-                    value: 192.168.0.0/16
                   perClientBandwidthLimits:
                     settings: custom
                     bandwidthLimits:
-                      limitUp: 1000000
-                      limitDown: 1000000
+                      limitUp: 1000
+                      limitDown: 1000
                   dscpTagValue: 0
                   pcpTagValue: 0
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkWirelessSsidTrafficShapingRules_200_response'
           description: Successful operation
       summary: Display the traffic shaping settings for a SSID on an MR network
       tags:
@@ -26682,7 +27060,7 @@ paths:
       - trafficShaping
       - rules
     put:
-      description: Update the traffic shaping settings for an SSID on an MR network
+      description: Update the traffic shaping rules for an SSID on an MR network.
       operationId: updateNetworkWirelessSsidTrafficShapingRules
       parameters:
       - description: Network ID
@@ -26718,27 +27096,17 @@ paths:
                 - definitions:
                   - type: host
                     value: google.com
-                  - type: port
-                    value: "9090"
-                  - type: ipRange
-                    value: 192.1.0.0
-                  - type: ipRange
-                    value: 192.1.0.0/16
-                  - type: ipRange
-                    value: 10.1.0.0/16:80
-                  - type: localNet
-                    value: 192.168.0.0/16
                   perClientBandwidthLimits:
                     settings: custom
                     bandwidthLimits:
-                      limitUp: 1000000
-                      limitDown: 1000000
+                      limitUp: 1000
+                      limitDown: 1000
                   dscpTagValue: 0
                   pcpTagValue: 0
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkWirelessSsidTrafficShapingRules_200_response'
           description: Successful operation
-      summary: Update the traffic shaping settings for an SSID on an MR network
+      summary: Update the traffic shaping rules for an SSID on an MR network.
       tags:
       - wireless
       - configure
@@ -32033,7 +32401,7 @@ paths:
         style: form
       - description: "Optional parameter to filter devices by product type. Valid\
           \ types are wireless, appliance, switch, systemsManager, camera, cellularGateway,\
-          \ sensor, and cloudGateway."
+          \ and sensor."
         explode: true
         in: query
         name: productTypes
@@ -32044,7 +32412,6 @@ paths:
             - appliance
             - camera
             - cellularGateway
-            - cloudGateway
             - sensor
             - switch
             - systemsManager
@@ -32187,6 +32554,9 @@ paths:
                 lanIp: 1.2.3.4
                 firmware: wireless-25-14
                 productType: wireless
+                details:
+                - name: Catalyst serial
+                  value: 123ABC
               schema:
                 items:
                   $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_devices_inner'
@@ -32897,7 +33267,7 @@ paths:
         style: form
       - description: "An optional parameter to filter device statuses by product type.\
           \ Valid types are wireless, appliance, switch, systemsManager, camera, cellularGateway,\
-          \ sensor, and cloudGateway."
+          \ and sensor."
         explode: true
         in: query
         name: productTypes
@@ -32908,7 +33278,6 @@ paths:
             - appliance
             - camera
             - cellularGateway
-            - cloudGateway
             - sensor
             - switch
             - systemsManager
@@ -33009,7 +33378,7 @@ paths:
         style: simple
       - description: "An optional parameter to filter device statuses by product type.\
           \ Valid types are wireless, appliance, switch, systemsManager, camera, cellularGateway,\
-          \ sensor, and cloudGateway."
+          \ and sensor."
         explode: true
         in: query
         name: productTypes
@@ -33020,7 +33389,6 @@ paths:
             - appliance
             - camera
             - cellularGateway
-            - cloudGateway
             - sensor
             - switch
             - systemsManager
@@ -33551,7 +33919,40 @@ paths:
         schema:
           type: string
         style: simple
-      - description: 'The status of an upgrade '
+      - description: The number of entries per page returned. Acceptable range is
+          3 - 1000. Default is 1000.
+        explode: true
+        in: query
+        name: perPage
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "A token used by the server to indicate the start of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: startingAfter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A token used by the server to indicate the end of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: endingBefore
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Optional parameter to filter the upgrade by status.
         explode: true
         in: query
         name: status
@@ -33561,7 +33962,7 @@ paths:
             type: string
           type: array
         style: form
-      - description: The product type in a given upgrade ID
+      - description: Optional parameter to filter the upgrade by product type.
         explode: true
         in: query
         name: productTypes
@@ -33576,8 +33977,8 @@ paths:
           content:
             application/json:
               example:
-              - upgradeId: Event ID Number
-                upgradeBatchId: Batch ID Number
+              - upgradeId: "1234"
+                upgradeBatchId: "5678"
                 network:
                   id: L_1738
                   name: Minions
@@ -33588,11 +33989,13 @@ paths:
                 toVersion:
                   id: "2888"
                   shortName: MR 11.2.1
+                  firmware: wireless-11-2-1
                   releaseType: stable
                   releaseDate: 2022-03-17T17:22:52Z
                 fromVersion:
                   id: "2887"
                   shortName: MR 11.2.1
+                  firmware: wireless-11-2-1
                   releaseType: stable
                   releaseDate: 2022-03-17T17:22:52Z
               schema:
@@ -33600,6 +34003,14 @@ paths:
                   $ref: '#/components/schemas/getOrganizationFirmwareUpgrades_200_response_inner'
                 type: array
           description: Successful operation
+          headers:
+            Link:
+              description: "A comma-separated list of first, last, prev, and next\
+                \ relative links used for subsequent paginated requests."
+              explode: false
+              schema:
+                type: string
+              style: simple
       summary: Get firmware upgrade information for an organization
       tags:
       - organizations
@@ -34159,8 +34570,7 @@ paths:
           type: string
         style: form
       - description: "Filter devices by product type. Accepted values are appliance,\
-          \ camera, cellularGateway, cloudGateway, sensor, switch, systemsManager,\
-          \ and wireless."
+          \ camera, cellularGateway, sensor, switch, systemsManager, and wireless."
         explode: true
         in: query
         name: productTypes
@@ -34171,7 +34581,6 @@ paths:
             - appliance
             - camera
             - cellularGateway
-            - cloudGateway
             - sensor
             - switch
             - systemsManager
@@ -37835,98 +38244,6 @@ paths:
       - monitor
       - uplinks
       - statuses
-  /organizations/{organizationId}/uplinksLossAndLatency:
-    get:
-      description: Return the uplink loss and latency for every MX in the organization
-        from at latest 2 minutes ago
-      operationId: getOrganizationUplinksLossAndLatency
-      parameters:
-      - description: Organization ID
-        explode: false
-        in: path
-        name: organizationId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The beginning of the timespan for the data. The maximum lookback
-          period is 60 days from today.
-        explode: true
-        in: query
-        name: t0
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: The end of the timespan for the data. t1 can be a maximum of
-          5 minutes after t0. The latest possible time that t1 can be is 2 minutes
-          into the past.
-        explode: true
-        in: query
-        name: t1
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: "The timespan for which the information will be fetched. If specifying\
-          \ timespan, do not specify parameters t0 and t1. The value must be in seconds\
-          \ and be less than or equal to 5 minutes. The default is 5 minutes."
-        explode: true
-        in: query
-        name: timespan
-        required: false
-        schema:
-          format: float
-          maximum: 300
-          type: number
-        style: form
-      - description: "Optional filter for a specific WAN uplink. Valid uplinks are\
-          \ wan1, wan2, wan3, cellular. Default will return all uplinks."
-        explode: true
-        in: query
-        name: uplink
-        required: false
-        schema:
-          enum:
-          - cellular
-          - wan1
-          - wan2
-          - wan3
-          type: string
-        style: form
-      - description: Optional filter for a specific destination IP. Default will return
-          all destination IPs.
-        explode: true
-        in: query
-        name: ip
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              example:
-              - networkId: N_12345
-                serial: Q2AB-CDEF-GHIJ
-                uplink: wan1
-                ip: 8.8.8.8
-                timeSeries:
-                - ts: 2019-01-31T18:46:13Z
-                  lossPercent: 5.3
-                  latencyMs: 194.9
-              schema:
-                items:
-                  type: object
-                type: array
-          description: Successful operation
-      summary: Return the uplink loss and latency for every MX in the organization
-        from at latest 2 minutes ago
-      tags:
-      - organizations
-      - monitor
-      - uplinksLossAndLatency
   /organizations/{organizationId}/webhooks/alertTypes:
     get:
       description: Return a list of alert types to be used with managing webhook alerts
@@ -39501,12 +39818,16 @@ components:
         releaseType: releaseType
         id: id
         shortName: shortName
+        firmware: firmware
       properties:
         id:
           description: Firmware version ID
           type: string
         shortName:
           description: Firmware version short name
+          type: string
+        firmware:
+          description: Firmware name
           type: string
         releaseType:
           description: Release type of the firmware version
@@ -39964,6 +40285,42 @@ components:
       - localPort
       - protocol
       - publicPort
+      type: object
+    getNetworkWirelessSsidTrafficShapingRules_200_response_rules_inner:
+      example:
+        perClientBandwidthLimits:
+          settings: settings
+          bandwidthLimits:
+            limitUp: 0
+            limitDown: 6
+        pcpTagValue: 5
+        dscpTagValue: 1
+        definitions:
+        - type: application
+          value: value
+        - type: application
+          value: value
+      properties:
+        definitions:
+          description: |2
+                A list of objects describing the definitions of your traffic shaping rule. At least one definition is required.
+          items:
+            $ref: '#/components/schemas/updateNetworkApplianceTrafficShapingRules_request_rules_inner_definitions_inner'
+          type: array
+        perClientBandwidthLimits:
+          $ref: '#/components/schemas/updateNetworkApplianceTrafficShapingRules_request_rules_inner_perClientBandwidthLimits'
+        dscpTagValue:
+          description: |2
+                The DSCP tag applied by your rule. null means 'Do not change DSCP tag'.
+                For a list of possible tag values, use the trafficShaping/dscpTaggingOptions endpoint.
+          type: integer
+        pcpTagValue:
+          description: |2
+                The PCP tag applied by your rule. Can be 0 (lowest priority) through 7 (highest priority).
+                null means 'Do not set PCP tag'.
+          type: integer
+      required:
+      - definitions
       type: object
     createNetworkCameraQualityRetentionProfile_request_videoSettings_MV32:
       description: Quality and resolution for MV32 camera models.
@@ -41273,6 +41630,7 @@ components:
           releaseType: releaseType
           id: id
           shortName: shortName
+          firmware: firmware
         productTypes: productTypes
         time: 2000-01-23T04:56:07.000+00:00
         upgradeId: upgradeId
@@ -41285,6 +41643,7 @@ components:
           releaseType: releaseType
           id: id
           shortName: shortName
+          firmware: firmware
       properties:
         upgradeId:
           description: The upgrade
@@ -41332,6 +41691,11 @@ components:
           name: name
           networkId: networkId
           model: model
+          details:
+          - name: name
+            value: value
+          - name: name
+            value: value
           firmware: firmware
           lat: 0.8008282
           productType: productType
@@ -41347,6 +41711,11 @@ components:
           name: name
           networkId: networkId
           model: model
+          details:
+          - name: name
+            value: value
+          - name: name
+            value: value
           firmware: firmware
           lat: 0.8008282
           productType: productType
@@ -41791,7 +42160,6 @@ components:
           - appliance
           - camera
           - cellularGateway
-          - cloudGateway
           - sensor
           - switch
           - systemsManager
@@ -42637,6 +43005,8 @@ components:
             password: miles123
         securePort:
           enabled: false
+        namedVlans:
+          enabled: true
       properties:
         localStatusPageEnabled:
           description: "Enables / disables the local device status pages (<a target='_blank'\
@@ -42654,6 +43024,8 @@ components:
           $ref: '#/components/schemas/updateNetworkSettings_request_localStatusPage'
         securePort:
           $ref: '#/components/schemas/getNetworkSettings_200_response_securePort'
+        namedVlans:
+          $ref: '#/components/schemas/updateNetworkSettings_request_namedVlans'
       type: object
     getNetworkWirelessBilling_200_response_plans_inner:
       example:
@@ -42684,6 +43056,17 @@ components:
         enabled:
           description: Boolean value to enable or disable BGP TTL security.
           type: boolean
+      type: object
+    updateNetworkWirelessSsid_request_namedVlans_tagging_byApTags_inner:
+      properties:
+        tags:
+          description: List of AP tags.
+          items:
+            type: string
+          type: array
+        vlanName:
+          description: VLAN name that will be used to tag traffic.
+          type: string
       type: object
     createOrganizationInventoryOnboardingCloudMonitoringPrepare_201_response_inner_configParams_user:
       description: User credentials used to connect to the device
@@ -43221,7 +43604,6 @@ components:
           - appliance
           - camera
           - cellularGateway
-          - cloudGateway
           - sensor
           - switch
           - systemsManager
@@ -43937,6 +44319,13 @@ components:
       required:
       - rules
       type: object
+    reassignNetworkVlanProfilesAssignments_request_vlanProfile:
+      description: The VLAN Profile
+      properties:
+        iname:
+          description: IName of the VLAN Profile
+          type: string
+      type: object
     getOrganizationSummaryTopDevicesByUsage_200_response_inner_clients:
       description: Clients
       example:
@@ -44603,6 +44992,18 @@ components:
           type: integer
       required:
       - vlan
+      type: object
+    createNetworkVlanProfile_request_vlanGroups_inner:
+      properties:
+        name:
+          description: "Name of the VLAN, string length must be from 1 to 32 characters"
+          type: string
+        vlanIds:
+          description: Comma-separated VLAN IDs or ID ranges
+          type: string
+      required:
+      - name
+      - vlanIds
       type: object
     updateDeviceSwitchRoutingInterfaceDhcp_request_reservedIpRanges_inner:
       properties:
@@ -45372,6 +45773,43 @@ components:
       required:
       - count
       - model
+      type: object
+    getNetworkVlanProfiles_200_response_inner:
+      example:
+        vlanNames:
+        - vlanId: vlanId
+          name: name
+        - vlanId: vlanId
+          name: name
+        isDefault: true
+        name: name
+        vlanGroups:
+        - vlanIds: vlanIds
+          name: name
+        - vlanIds: vlanIds
+          name: name
+        iname: iname
+      properties:
+        iname:
+          description: IName of the VLAN profile
+          type: string
+        name:
+          description: "Name of the profile, string length must be from 1 to 255 characters"
+          type: string
+        isDefault:
+          description: Boolean indicating the default VLAN Profile for any device
+            that does not have a profile explicitly assigned
+          type: boolean
+        vlanNames:
+          description: An array of named VLANs
+          items:
+            $ref: '#/components/schemas/getNetworkVlanProfiles_200_response_inner_vlanNames_inner'
+          type: array
+        vlanGroups:
+          description: An array of named VLANs
+          items:
+            $ref: '#/components/schemas/getNetworkVlanProfiles_200_response_inner_vlanGroups_inner'
+          type: array
       type: object
     updateOrganizationApplianceVpnVpnFirewallRules_request_rules_inner:
       properties:
@@ -46340,29 +46778,6 @@ components:
           description: Password for PPPoE authentication. This parameter is not returned.
           type: string
       type: object
-    updateNetworkWirelessSsidTrafficShapingRules_request_rules_inner:
-      properties:
-        definitions:
-          description: |2
-                A list of objects describing the definitions of your traffic shaping rule. At least one definition is required.
-          items:
-            $ref: '#/components/schemas/updateNetworkApplianceTrafficShapingRules_request_rules_inner_definitions_inner'
-          type: array
-        perClientBandwidthLimits:
-          $ref: '#/components/schemas/updateNetworkApplianceTrafficShapingRules_request_rules_inner_perClientBandwidthLimits'
-        dscpTagValue:
-          description: |2
-                The DSCP tag applied by your rule. null means 'Do not change DSCP tag'.
-                For a list of possible tag values, use the trafficShaping/dscpTaggingOptions endpoint.
-          type: integer
-        pcpTagValue:
-          description: |2
-                The PCP tag applied by your rule. Can be 0 (lowest priority) through 7 (highest priority).
-                null means 'Do not set PCP tag'.
-          type: integer
-      required:
-      - definitions
-      type: object
     getNetworkWirelessEthernetPortsProfiles_200_response_inner_ports_inner:
       example:
         number: 0
@@ -46537,6 +46952,13 @@ components:
           $ref: '#/components/schemas/getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_noise'
         indoorAirQuality:
           $ref: '#/components/schemas/getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_indoorAirQuality'
+      type: object
+    updateNetworkWirelessSsid_request_namedVlans_radius:
+      description: RADIUS settings. This param is only valid when authMode is 'open-with-radius'
+        and ipAssignmentMode is not 'NAT mode'.
+      properties:
+        guestVlan:
+          $ref: '#/components/schemas/updateNetworkWirelessSsid_request_namedVlans_radius_guestVlan'
       type: object
     createOrganizationActionBatch_201_response_actions_inner:
       example:
@@ -47118,6 +47540,31 @@ components:
       required:
       - mode
       type: object
+    reassignNetworkVlanProfilesAssignments_request:
+      example:
+        vlanProfile:
+          iname: Profile1
+        serials:
+        - Q234-ABCD-5678
+        stackIds:
+        - "1234"
+      properties:
+        vlanProfile:
+          $ref: '#/components/schemas/reassignNetworkVlanProfilesAssignments_request_vlanProfile'
+        serials:
+          description: Array of Device Serials
+          items:
+            type: string
+          type: array
+        stackIds:
+          description: Array of Switch Stack IDs
+          items:
+            type: string
+          type: array
+      required:
+      - serials
+      - stackIds
+      type: object
     updateNetworkApplianceFirewallOneToOneNatRules_request_rules_inner_allowedInbound_inner:
       properties:
         protocol:
@@ -47559,7 +48006,7 @@ components:
     updateNetworkWirelessSsid_request_activeDirectory_servers_inner:
       properties:
         host:
-          description: IP address of your Active Directory server.
+          description: IP address (or FQDN) of your Active Directory server.
           type: string
         port:
           description: "(Optional) UDP port the Active Directory server listens on.\
@@ -49353,6 +49800,10 @@ components:
         locationAnalyticsEnabled: false
         upgradeStrategy: minimizeUpgradeTime
         ledLightsOn: false
+        namedVlans:
+          poolDhcpMonitoring:
+            enabled: true
+            duration: 5
       properties:
         meshingEnabled:
           description: Toggle for enabling or disabling meshing in a network
@@ -49377,6 +49828,8 @@ components:
           description: Toggle for enabling or disabling LED lights on all APs in the
             network (making them run dark)
           type: boolean
+        namedVlans:
+          $ref: '#/components/schemas/updateNetworkWirelessSettings_request_namedVlans'
       type: object
     updateNetworkWirelessSsid_request_radiusServers_inner:
       properties:
@@ -49845,6 +50298,19 @@ components:
           - 8.8.4.4
         speedBurst:
           enabled: true
+        namedVlans:
+          tagging:
+            enabled: true
+            defaultVlanName: My VLAN
+            byApTags:
+            - tags:
+              - tag1
+              - tag2
+              vlanName: My VLAN
+          radius:
+            guestVlan:
+              enabled: true
+              name: Guest VLAN
       properties:
         name:
           description: The name of the SSID
@@ -50152,6 +50618,8 @@ components:
           $ref: '#/components/schemas/updateNetworkWirelessSsid_request_dnsRewrite'
         speedBurst:
           $ref: '#/components/schemas/updateNetworkWirelessSsid_request_speedBurst'
+        namedVlans:
+          $ref: '#/components/schemas/updateNetworkWirelessSsid_request_namedVlans'
       type: object
     getOrganizationWirelessDevicesEthernetStatuses_200_response_inner_power:
       description: Power details object
@@ -50453,6 +50921,18 @@ components:
           items:
             $ref: '#/components/schemas/claimIntoOrganization_request_licenses_inner'
           type: array
+      type: object
+    updateNetworkWirelessSsid_request_namedVlans_radius_guestVlan:
+      description: Guest VLAN settings. Used to direct traffic to a guest VLAN when
+        none of the RADIUS servers are reachable or a client receives access-reject
+        from the RADIUS server.
+      properties:
+        enabled:
+          description: Whether or not RADIUS guest named VLAN is enabled.
+          type: boolean
+        name:
+          description: RADIUS guest VLAN name.
+          type: string
       type: object
     getNetworkWirelessSsidSplashSettings_200_response:
       example:
@@ -50813,6 +51293,23 @@ components:
           description: "Determines whether ax radio on 2.4Ghz band is on or off. Can\
             \ be either true or false. If false, we highly recommend disabling band\
             \ steering. Defaults to true."
+          type: boolean
+      type: object
+    getNetworkVlanProfilesAssignmentsByDevice_200_response_inner_vlanProfile:
+      description: The VLAN Profile
+      example:
+        isDefault: true
+        name: name
+        iname: iname
+      properties:
+        iname:
+          description: IName of the VLAN Profile
+          type: string
+        name:
+          description: Name of the VLAN Profile
+          type: string
+        isDefault:
+          description: Is this VLAN profile the default for the network?
           type: boolean
       type: object
     getNetworkSwitchDhcpV4ServersSeen_200_response_inner_device:
@@ -51259,6 +51756,18 @@ components:
           type: number
         ts:
           description: When the cellular usage data was collected.
+          type: string
+      type: object
+    getNetworkVlanProfiles_200_response_inner_vlanGroups_inner:
+      example:
+        vlanIds: vlanIds
+        name: name
+      properties:
+        name:
+          description: "Name of the VLAN, string length must be from 1 to 32 characters"
+          type: string
+        vlanIds:
+          description: Comma-separated VLAN IDs or ID ranges
           type: string
       type: object
     getNetworkSyslogServers_200_response:
@@ -52840,7 +53349,6 @@ components:
           - appliance
           - camera
           - cellularGateway
-          - cloudGateway
           - switch
           - switchCatalyst
           - wireless
@@ -53603,7 +54111,6 @@ components:
           - appliance
           - camera
           - cellularGateway
-          - cloudGateway
           - sensor
           - switch
           - systemsManager
@@ -53821,6 +54328,19 @@ components:
           description: "Toggle for radio transmission. When false, radios will not\
             \ transmit at all."
           type: boolean
+      type: object
+    reassignNetworkVlanProfilesAssignments_200_response_vlanProfile:
+      description: The VLAN Profile
+      example:
+        name: name
+        iname: iname
+      properties:
+        iname:
+          description: IName of the VLAN Profile
+          type: string
+        name:
+          description: Name of the VLAN Profile
+          type: string
       type: object
     createNetworkWirelessEthernetPortsProfile_request_usbPorts_inner:
       properties:
@@ -55337,6 +55857,55 @@ components:
       - category
       - comment
       type: object
+    getNetworkWirelessSsidTrafficShapingRules_200_response:
+      example:
+        trafficShapingEnabled: true
+        defaultRulesEnabled: true
+        rules:
+        - perClientBandwidthLimits:
+            settings: settings
+            bandwidthLimits:
+              limitUp: 0
+              limitDown: 6
+          pcpTagValue: 5
+          dscpTagValue: 1
+          definitions:
+          - type: application
+            value: value
+          - type: application
+            value: value
+        - perClientBandwidthLimits:
+            settings: settings
+            bandwidthLimits:
+              limitUp: 0
+              limitDown: 6
+          pcpTagValue: 5
+          dscpTagValue: 1
+          definitions:
+          - type: application
+            value: value
+          - type: application
+            value: value
+      properties:
+        trafficShapingEnabled:
+          description: Whether traffic shaping rules are applied to clients on your
+            SSID.
+          type: boolean
+        defaultRulesEnabled:
+          description: "Whether default traffic shaping rules are enabled (true) or\
+            \ disabled (false). There are 4 default rules, which can be seen on your\
+            \ network's traffic shaping page. Note that default rules count against\
+            \ the rule limit of 8."
+          type: boolean
+        rules:
+          description: |2
+                An array of traffic shaping rules. Rules are applied in the order that
+                they are specified in. An empty list (or null) means no rules. Note that
+                you are allowed a maximum of 8 rules.
+          items:
+            $ref: '#/components/schemas/getNetworkWirelessSsidTrafficShapingRules_200_response_rules_inner'
+          type: array
+      type: object
     getNetworkSwitchPortSchedules_200_response_inner_portSchedule_monday:
       description: Monday schedule
       example:
@@ -55516,6 +56085,20 @@ components:
         name:
           description: Name
           type: string
+      type: object
+    uninstallNetworkSmDeviceApps_request:
+      example:
+        appIds:
+        - "1284392014819"
+        - "2983092129865"
+      properties:
+        appIds:
+          description: ids of applications to be uninstalled
+          items:
+            type: string
+          type: array
+      required:
+      - appIds
       type: object
     getOrganizationDevicesAvailabilitiesChangeHistory_200_response_inner:
       example:
@@ -55890,6 +56473,45 @@ components:
       required:
       - newNetwork
       type: object
+    updateNetworkWirelessSettings_request_namedVlans:
+      description: Named VLAN settings for wireless networks.
+      properties:
+        poolDhcpMonitoring:
+          $ref: '#/components/schemas/updateNetworkWirelessSettings_request_namedVlans_poolDhcpMonitoring'
+      type: object
+    createNetworkVlanProfile_request:
+      example:
+        name: My VLAN profile name
+        vlanNames:
+        - name: named-1
+          vlanId: "1"
+        vlanGroups:
+        - name: named-group-1
+          vlanIds: "2,5-7"
+        iname: Profile1
+      properties:
+        name:
+          description: "Name of the profile, string length must be from 1 to 255 characters"
+          type: string
+        vlanNames:
+          description: An array of named VLANs
+          items:
+            $ref: '#/components/schemas/createNetworkVlanProfile_request_vlanNames_inner'
+          type: array
+        vlanGroups:
+          description: An array of VLAN groups
+          items:
+            $ref: '#/components/schemas/createNetworkVlanProfile_request_vlanGroups_inner'
+          type: array
+        iname:
+          description: IName of the profile
+          type: string
+      required:
+      - iname
+      - name
+      - vlanGroups
+      - vlanNames
+      type: object
     updateDeviceWirelessAlternateManagementInterfaceIpv6_200_response_addresses_inner:
       example:
         protocol: ipv4
@@ -56155,6 +56777,34 @@ components:
         name:
           description: Operator name
           type: string
+      type: object
+    updateNetworkVlanProfile_request:
+      example:
+        name: My VLAN profile name
+        vlanNames:
+        - name: named-1
+          vlanId: "1"
+        vlanGroups:
+        - name: named-group-1
+          vlanIds: "2,5-7"
+      properties:
+        name:
+          description: "Name of the profile, string length must be from 1 to 255 characters"
+          type: string
+        vlanNames:
+          description: An array of named VLANs
+          items:
+            $ref: '#/components/schemas/createNetworkVlanProfile_request_vlanNames_inner'
+          type: array
+        vlanGroups:
+          description: An array of VLAN groups
+          items:
+            $ref: '#/components/schemas/createNetworkVlanProfile_request_vlanGroups_inner'
+          type: array
+      required:
+      - name
+      - vlanGroups
+      - vlanNames
       type: object
     getNetworkApplianceTrafficShapingUplinkSelection_200_response_failoverAndFailback_immediate:
       description: Immediate WAN failover and failback
@@ -57325,7 +57975,6 @@ components:
             - appliance
             - camera
             - cellularGateway
-            - cloudGateway
             - sensor
             - switch
             - systemsManager
@@ -57419,6 +58068,14 @@ components:
           type: array
         counts:
           $ref: '#/components/schemas/getNetworkSensorAlertsCurrentOverviewByMetric_200_response_counts'
+      type: object
+    updateNetworkWirelessSsid_request_namedVlans:
+      description: Named VLAN settings.
+      properties:
+        tagging:
+          $ref: '#/components/schemas/updateNetworkWirelessSsid_request_namedVlans_tagging'
+        radius:
+          $ref: '#/components/schemas/updateNetworkWirelessSsid_request_namedVlans_radius'
       type: object
     updateDeviceCameraWirelessProfiles_request_ids:
       description: The ids of the wireless profile to assign to the given camera
@@ -57871,6 +58528,9 @@ components:
           type: boolean
       type: object
     updateNetworkApplianceTrafficShapingRules_request_rules_inner_definitions_inner:
+      example:
+        type: application
+        value: value
       properties:
         type:
           description: "The type of definition. Can be one of 'application', 'applicationCategory',\
@@ -58605,6 +59265,26 @@ components:
             Can be either true or false.
           type: boolean
       type: object
+    installNetworkSmDeviceApps_request:
+      example:
+        appIds:
+        - "1284392014819"
+        - "2983092129865"
+        force: false
+      properties:
+        appIds:
+          description: ids of applications to be installed
+          items:
+            type: string
+          type: array
+        force:
+          description: "By default, installation of an app which is believed to already\
+            \ be present on the device will be skipped. If you'd like to force the\
+            \ installation of the app, set this parameter to true."
+          type: boolean
+      required:
+      - appIds
+      type: object
     createNetworkWirelessRfProfile_request_perSsidSettings_5:
       description: Settings for SSID 5
       properties:
@@ -59010,6 +59690,11 @@ components:
         name: name
         networkId: networkId
         model: model
+        details:
+        - name: name
+          value: value
+        - name: name
+          value: value
         firmware: firmware
         lat: 0.8008282
         productType: productType
@@ -59058,6 +59743,11 @@ components:
         productType:
           description: Product type of the device
           type: string
+        details:
+          description: Additional device information
+          items:
+            $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_devices_inner_details_inner'
+          type: array
       type: object
     getNetworkApplianceVlans_200_response_inner_ipv6:
       description: IPv6 configuration on the VLAN
@@ -59386,47 +60076,6 @@ components:
               id: id
               shortName: shortName
               firmware: firmware
-          cloudGateway:
-            lastUpgrade:
-              fromVersion:
-                releaseDate: 2000-01-23T04:56:07.000+00:00
-                releaseType: releaseType
-                id: id
-                shortName: shortName
-                firmware: firmware
-              time: 2000-01-23T04:56:07.000+00:00
-              toVersion:
-                releaseDate: 2000-01-23T04:56:07.000+00:00
-                releaseType: releaseType
-                id: id
-                shortName: shortName
-                firmware: firmware
-            participateInNextBetaRelease: true
-            nextUpgrade:
-              time: 2000-01-23T04:56:07.000+00:00
-              toVersion:
-                releaseDate: 2000-01-23T04:56:07.000+00:00
-                releaseType: releaseType
-                id: id
-                shortName: shortName
-                firmware: firmware
-            currentVersion:
-              releaseDate: 2000-01-23T04:56:07.000+00:00
-              releaseType: releaseType
-              id: id
-              shortName: shortName
-              firmware: firmware
-            availableVersions:
-            - releaseDate: 2000-01-23T04:56:07.000+00:00
-              releaseType: releaseType
-              id: id
-              shortName: shortName
-              firmware: firmware
-            - releaseDate: 2000-01-23T04:56:07.000+00:00
-              releaseType: releaseType
-              id: id
-              shortName: shortName
-              firmware: firmware
           camera:
             lastUpgrade:
               fromVersion:
@@ -59688,7 +60337,7 @@ components:
     updateNetworkWirelessSsid_request_ldap_servers_inner:
       properties:
         host:
-          description: IP address of your LDAP server.
+          description: IP address (or FQDN) of your LDAP server.
           type: string
         port:
           description: UDP port the LDAP server listens on.
@@ -60173,6 +60822,11 @@ components:
     updateNetworkApplianceTrafficShapingRules_request_rules_inner_perClientBandwidthLimits:
       description: |2
             An object describing the bandwidth settings for your rule.
+      example:
+        settings: settings
+        bandwidthLimits:
+          limitUp: 0
+          limitDown: 6
       properties:
         settings:
           description: "How bandwidth limits are applied by your rule. Can be one\
@@ -62456,6 +63110,19 @@ components:
         customLogo:
           $ref: '#/components/schemas/createOrganizationBrandingPolicy_request_customLogo'
       type: object
+    updateNetworkWirelessSettings_request_namedVlans_poolDhcpMonitoring:
+      description: Named VLAN Pool DHCP Monitoring settings.
+      properties:
+        enabled:
+          description: "Whether or not devices using named VLAN pools should remove\
+            \ dirty VLANs from the pool, thereby preventing clients from being assigned\
+            \ to VLANs where they would be unable to obtain an IP address via DHCP."
+          type: boolean
+        duration:
+          description: The duration in minutes that devices will refrain from using
+            dirty VLANs before adding them back to the pool.
+          type: integer
+      type: object
     createNetworkCameraQualityRetentionProfile_request_videoSettings_MV21_MV71:
       description: Quality and resolution for MV21/MV71 camera models.
       properties:
@@ -63194,7 +63861,6 @@ components:
           - appliance
           - camera
           - cellularGateway
-          - cloudGateway
           - sensor
           - switch
           - systemsManager
@@ -63406,7 +64072,6 @@ components:
           - appliance
           - camera
           - cellularGateway
-          - cloudGateway
           - sensor
           - switch
           - systemsManager
@@ -63518,6 +64183,18 @@ components:
         enabled:
           description: Enable Mandatory DHCP on VLAN.
           type: boolean
+      type: object
+    getNetworkVlanProfiles_200_response_inner_vlanNames_inner:
+      example:
+        vlanId: vlanId
+        name: name
+      properties:
+        name:
+          description: "Name of the VLAN, string length must be from 1 to 32 characters"
+          type: string
+        vlanId:
+          description: VLAN ID
+          type: string
       type: object
     getOrganizationInventoryOnboardingCloudMonitoringImports_200_response_inner_device:
       description: Represents the details of an imported device.
@@ -63878,6 +64555,26 @@ components:
           description: AC power connected
           type: boolean
       type: object
+    updateNetworkWirelessSsid_request_namedVlans_tagging:
+      description: VLAN tagging settings. This param is only valid when ipAssignmentMode
+        is 'Bridge mode' or 'Layer 3 roaming'.
+      properties:
+        enabled:
+          description: Whether or not traffic should be directed to use specific VLAN
+            names.
+          type: boolean
+        defaultVlanName:
+          description: The default VLAN name used to tag traffic in the absence of
+            a matching AP tag.
+          type: string
+        byApTags:
+          description: "The list of AP tags and VLAN names used for named VLAN tagging.\
+            \ If an AP has a tag matching one in the list, then traffic on this SSID\
+            \ will be directed to use the VLAN name associated to the tag."
+          items:
+            $ref: '#/components/schemas/updateNetworkWirelessSsid_request_namedVlans_tagging_byApTags_inner'
+          type: array
+      type: object
     createNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer_request_ipv4:
       description: The IPv4 attributes of the trusted server being added
       properties:
@@ -64173,21 +64870,11 @@ components:
         - definitions:
           - type: host
             value: google.com
-          - type: port
-            value: "9090"
-          - type: ipRange
-            value: 192.1.0.0
-          - type: ipRange
-            value: 192.1.0.0/16
-          - type: ipRange
-            value: 10.1.0.0/16:80
-          - type: localNet
-            value: 192.168.0.0/16
           perClientBandwidthLimits:
             settings: custom
             bandwidthLimits:
-              limitUp: 1000000
-              limitDown: 1000000
+              limitUp: 1000
+              limitDown: 1000
           dscpTagValue: 0
           pcpTagValue: 0
       properties:
@@ -64207,7 +64894,7 @@ components:
                 they are specified in. An empty list (or null) means no rules. Note that
                 you are allowed a maximum of 8 rules.
           items:
-            $ref: '#/components/schemas/updateNetworkWirelessSsidTrafficShapingRules_request_rules_inner'
+            $ref: '#/components/schemas/getNetworkWirelessSsidTrafficShapingRules_200_response_rules_inner'
           type: array
       type: object
     getNetworkSwitchDhcpV4ServersSeen_200_response_inner_lastPacket_ip_dscp:
@@ -65260,8 +65947,6 @@ components:
         cellularGateway:
           $ref: '#/components/schemas/updateNetworkFirmwareUpgrades_request_products_wireless'
         sensor:
-          $ref: '#/components/schemas/updateNetworkFirmwareUpgrades_request_products_wireless'
-        cloudGateway:
           $ref: '#/components/schemas/updateNetworkFirmwareUpgrades_request_products_wireless'
         switchCatalyst:
           $ref: '#/components/schemas/updateNetworkFirmwareUpgrades_request_products_wireless'
@@ -66755,6 +67440,13 @@ components:
           properties: {}
           type: object
       type: object
+    updateNetworkSettings_request_namedVlans:
+      description: A hash of Named VLANs options applied to the Network.
+      properties:
+        enabled:
+          description: Enables / disables Named VLANs on the Network.
+          type: boolean
+      type: object
     createNetworkSwitchRoutingMulticastRendezvousPoint_request:
       example:
         interfaceIp: 192.168.1.2
@@ -67099,6 +67791,18 @@ components:
         externalRtspEnabled:
           description: Boolean indicating if external rtsp stream is exposed
           type: boolean
+      type: object
+    createNetworkVlanProfile_request_vlanNames_inner:
+      properties:
+        name:
+          description: "Name of the VLAN, string length must be from 1 to 32 characters"
+          type: string
+        vlanId:
+          description: VLAN ID
+          type: string
+      required:
+      - name
+      - vlanId
       type: object
     createNetworkCameraWirelessProfile_request:
       example:
@@ -67491,12 +68195,16 @@ components:
         releaseType: releaseType
         id: id
         shortName: shortName
+        firmware: firmware
       properties:
         id:
           description: Firmware version ID
           type: string
         shortName:
           description: Firmware version short name
+          type: string
+        firmware:
+          description: Firmware name
           type: string
         releaseType:
           description: Release type of the firmware version
@@ -67972,12 +68680,6 @@ components:
               toVersion:
                 id: "1005"
             participateInNextBetaRelease: false
-          cloudGateway:
-            nextUpgrade:
-              time: 2019-03-17T17:22:52Z
-              toVersion:
-                id: "1006"
-            participateInNextBetaRelease: false
           switchCatalyst:
             nextUpgrade:
               time: 2019-03-17T17:22:52Z
@@ -68141,6 +68843,36 @@ components:
             pick a subnet from this pool.
           type: string
       type: object
+    getNetworkVlanProfilesAssignmentsByDevice_200_response_inner:
+      example:
+        stack:
+          id: id
+        serial: serial
+        name: name
+        vlanProfile:
+          isDefault: true
+          name: name
+          iname: iname
+        mac: mac
+        productType: productType
+      properties:
+        name:
+          description: Name of the Device
+          type: string
+        serial:
+          description: Serial of the Device
+          type: string
+        mac:
+          description: MAC address of the device
+          type: string
+        productType:
+          description: The product type
+          type: string
+        vlanProfile:
+          $ref: '#/components/schemas/getNetworkVlanProfilesAssignmentsByDevice_200_response_inner_vlanProfile'
+        stack:
+          $ref: '#/components/schemas/getNetworkVlanProfilesAssignmentsByDevice_200_response_inner_stack'
+      type: object
     getNetworkSmDeviceWlanLists_200_response_inner:
       example:
         createdAt: createdAt
@@ -68268,6 +69000,15 @@ components:
           description: PoE power connected
           type: boolean
       type: object
+    getNetworkVlanProfilesAssignmentsByDevice_200_response_inner_stack:
+      description: The Switch Stack the device belongs to
+      example:
+        id: id
+      properties:
+        id:
+          description: ID of the Switch Stack
+          type: string
+      type: object
     createNetworkFirmwareUpgradesRollback_request:
       example:
         product: switch
@@ -68284,7 +69025,6 @@ components:
           - appliance
           - camera
           - cellularGateway
-          - cloudGateway
           - switch
           - switchCatalyst
           - wireless
@@ -68338,6 +69078,9 @@ components:
       description: "The bandwidth limits object, specifying the upload ('limitUp')\
         \ and download ('limitDown') speed in Kbps. These are only enforced if 'settings'\
         \ is set to 'custom'."
+      example:
+        limitUp: 0
+        limitDown: 6
       properties:
         limitUp:
           description: "The maximum upload limit (integer, in Kbps)."
@@ -68587,6 +69330,31 @@ components:
       required:
       - destination
       - source
+      type: object
+    reassignNetworkVlanProfilesAssignments_200_response:
+      example:
+        serials:
+        - serials
+        - serials
+        stackIds:
+        - stackIds
+        - stackIds
+        vlanProfile:
+          name: name
+          iname: iname
+      properties:
+        vlanProfile:
+          $ref: '#/components/schemas/reassignNetworkVlanProfilesAssignments_200_response_vlanProfile'
+        serials:
+          description: Array of Device Serials
+          items:
+            type: string
+          type: array
+        stackIds:
+          description: Array of Switch Stack IDs
+          items:
+            type: string
+          type: array
       type: object
     createNetworkWirelessSsidIdentityPsk_request:
       example:
@@ -68976,47 +69744,6 @@ components:
             id: id
             shortName: shortName
             firmware: firmware
-        cloudGateway:
-          lastUpgrade:
-            fromVersion:
-              releaseDate: 2000-01-23T04:56:07.000+00:00
-              releaseType: releaseType
-              id: id
-              shortName: shortName
-              firmware: firmware
-            time: 2000-01-23T04:56:07.000+00:00
-            toVersion:
-              releaseDate: 2000-01-23T04:56:07.000+00:00
-              releaseType: releaseType
-              id: id
-              shortName: shortName
-              firmware: firmware
-          participateInNextBetaRelease: true
-          nextUpgrade:
-            time: 2000-01-23T04:56:07.000+00:00
-            toVersion:
-              releaseDate: 2000-01-23T04:56:07.000+00:00
-              releaseType: releaseType
-              id: id
-              shortName: shortName
-              firmware: firmware
-          currentVersion:
-            releaseDate: 2000-01-23T04:56:07.000+00:00
-            releaseType: releaseType
-            id: id
-            shortName: shortName
-            firmware: firmware
-          availableVersions:
-          - releaseDate: 2000-01-23T04:56:07.000+00:00
-            releaseType: releaseType
-            id: id
-            shortName: shortName
-            firmware: firmware
-          - releaseDate: 2000-01-23T04:56:07.000+00:00
-            releaseType: releaseType
-            id: id
-            shortName: shortName
-            firmware: firmware
         camera:
           lastUpgrade:
             fromVersion:
@@ -69111,8 +69838,6 @@ components:
         cellularGateway:
           $ref: '#/components/schemas/getNetworkFirmwareUpgrades_200_response_products_wireless'
         sensor:
-          $ref: '#/components/schemas/getNetworkFirmwareUpgrades_200_response_products_wireless'
-        cloudGateway:
           $ref: '#/components/schemas/getNetworkFirmwareUpgrades_200_response_products_wireless'
       type: object
     updateOrganizationBrandingPoliciesPriorities_request:
@@ -69379,6 +70104,18 @@ components:
       required:
       - preferredUplink
       - trafficFilters
+      type: object
+    getNetworkFloorPlans_200_response_inner_devices_inner_details_inner:
+      example:
+        name: name
+        value: value
+      properties:
+        name:
+          description: Additional property name
+          type: string
+        value:
+          description: Additional property value
+          type: string
       type: object
     updateNetworkCameraQualityRetentionProfile_request:
       example: {}
@@ -70534,7 +71271,7 @@ x-batchable-actions:
   resource: "/networks/{networkId}/appliance/trafficShaping/rules"
   operation: update
 - group: Traffic shaping settings
-  summary: Update the traffic shaping settings for an SSID on an MR network
+  summary: Update the traffic shaping rules for an SSID on an MR network.
   resource: "/networks/{networkId}/wireless/ssids/{number}/trafficShaping/rules"
   operation: update
 - group: Uplink selection settings
@@ -70570,6 +71307,14 @@ x-batchable-actions:
   summary: Update a VLAN
   resource: "/networks/{networkId}/appliance/vlans/{vlanId}"
   operation: update
+- group: VLAN profile
+  summary: Create a VLAN profile for a network
+  resource: "/networks/{networkId}/vlanProfiles"
+  operation: create
+- group: VLAN profile
+  summary: Delete a VLAN profile of a network
+  resource: "/networks/{networkId}/vlanProfiles/{iname}"
+  operation: destroy
 - group: Vmx
   summary: Claim a vMX into a network
   resource: "/networks/{networkId}/devices/claim"

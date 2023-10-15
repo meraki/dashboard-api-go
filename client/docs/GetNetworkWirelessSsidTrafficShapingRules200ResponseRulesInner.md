@@ -1,4 +1,4 @@
-# UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner
+# GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner
 
 ## Properties
 
@@ -11,115 +11,115 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewUpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner
+### NewGetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner
 
-`func NewUpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner(definitions []UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner, ) *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner`
+`func NewGetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner(definitions []UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner, ) *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner`
 
-NewUpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner instantiates a new UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner object
+NewGetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner instantiates a new GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewUpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInnerWithDefaults
+### NewGetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInnerWithDefaults
 
-`func NewUpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInnerWithDefaults() *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner`
+`func NewGetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInnerWithDefaults() *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner`
 
-NewUpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInnerWithDefaults instantiates a new UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner object
+NewGetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInnerWithDefaults instantiates a new GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetDefinitions
 
-`func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner) GetDefinitions() []UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner`
+`func (o *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner) GetDefinitions() []UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner`
 
 GetDefinitions returns the Definitions field if non-nil, zero value otherwise.
 
 ### GetDefinitionsOk
 
-`func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner) GetDefinitionsOk() (*[]UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner, bool)`
+`func (o *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner) GetDefinitionsOk() (*[]UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner, bool)`
 
 GetDefinitionsOk returns a tuple with the Definitions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefinitions
 
-`func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner) SetDefinitions(v []UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner)`
+`func (o *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner) SetDefinitions(v []UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerDefinitionsInner)`
 
 SetDefinitions sets Definitions field to given value.
 
 
 ### GetPerClientBandwidthLimits
 
-`func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner) GetPerClientBandwidthLimits() UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits`
+`func (o *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner) GetPerClientBandwidthLimits() UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits`
 
 GetPerClientBandwidthLimits returns the PerClientBandwidthLimits field if non-nil, zero value otherwise.
 
 ### GetPerClientBandwidthLimitsOk
 
-`func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner) GetPerClientBandwidthLimitsOk() (*UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits, bool)`
+`func (o *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner) GetPerClientBandwidthLimitsOk() (*UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits, bool)`
 
 GetPerClientBandwidthLimitsOk returns a tuple with the PerClientBandwidthLimits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPerClientBandwidthLimits
 
-`func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner) SetPerClientBandwidthLimits(v UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits)`
+`func (o *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner) SetPerClientBandwidthLimits(v UpdateNetworkApplianceTrafficShapingRulesRequestRulesInnerPerClientBandwidthLimits)`
 
 SetPerClientBandwidthLimits sets PerClientBandwidthLimits field to given value.
 
 ### HasPerClientBandwidthLimits
 
-`func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner) HasPerClientBandwidthLimits() bool`
+`func (o *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner) HasPerClientBandwidthLimits() bool`
 
 HasPerClientBandwidthLimits returns a boolean if a field has been set.
 
 ### GetDscpTagValue
 
-`func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner) GetDscpTagValue() int32`
+`func (o *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner) GetDscpTagValue() int32`
 
 GetDscpTagValue returns the DscpTagValue field if non-nil, zero value otherwise.
 
 ### GetDscpTagValueOk
 
-`func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner) GetDscpTagValueOk() (*int32, bool)`
+`func (o *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner) GetDscpTagValueOk() (*int32, bool)`
 
 GetDscpTagValueOk returns a tuple with the DscpTagValue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDscpTagValue
 
-`func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner) SetDscpTagValue(v int32)`
+`func (o *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner) SetDscpTagValue(v int32)`
 
 SetDscpTagValue sets DscpTagValue field to given value.
 
 ### HasDscpTagValue
 
-`func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner) HasDscpTagValue() bool`
+`func (o *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner) HasDscpTagValue() bool`
 
 HasDscpTagValue returns a boolean if a field has been set.
 
 ### GetPcpTagValue
 
-`func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner) GetPcpTagValue() int32`
+`func (o *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner) GetPcpTagValue() int32`
 
 GetPcpTagValue returns the PcpTagValue field if non-nil, zero value otherwise.
 
 ### GetPcpTagValueOk
 
-`func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner) GetPcpTagValueOk() (*int32, bool)`
+`func (o *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner) GetPcpTagValueOk() (*int32, bool)`
 
 GetPcpTagValueOk returns a tuple with the PcpTagValue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPcpTagValue
 
-`func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner) SetPcpTagValue(v int32)`
+`func (o *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner) SetPcpTagValue(v int32)`
 
 SetPcpTagValue sets PcpTagValue field to given value.
 
 ### HasPcpTagValue
 
-`func (o *UpdateNetworkWirelessSsidTrafficShapingRulesRequestRulesInner) HasPcpTagValue() bool`
+`func (o *GetNetworkWirelessSsidTrafficShapingRules200ResponseRulesInner) HasPcpTagValue() bool`
 
 HasPcpTagValue returns a boolean if a field has been set.
 

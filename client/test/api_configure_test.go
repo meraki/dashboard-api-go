@@ -598,6 +598,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ConfigureApiService CreateNetworkVlanProfile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.CreateNetworkVlanProfile(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ConfigureApiService CreateNetworkWebhooksHttpServer", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -1377,6 +1391,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var staticRouteId string
 
 		httpRes, err := apiClient.ConfigureApi.DeleteNetworkSwitchStackRoutingStaticRoute(context.Background(), networkId, switchStackId, staticRouteId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService DeleteNetworkVlanProfile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+		var iname string
+
+		httpRes, err := apiClient.ConfigureApi.DeleteNetworkVlanProfile(context.Background(), networkId, iname).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -3950,6 +3978,49 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ConfigureApiService GetNetworkVlanProfile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+		var iname string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetNetworkVlanProfile(context.Background(), networkId, iname).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService GetNetworkVlanProfiles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetNetworkVlanProfiles(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService GetNetworkVlanProfilesAssignmentsByDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetNetworkVlanProfilesAssignmentsByDevice(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ConfigureApiService GetNetworkWebhooksHttpServer", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -5279,6 +5350,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ConfigureApiService InstallNetworkSmDeviceApps", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+		var deviceId string
+
+		httpRes, err := apiClient.ConfigureApi.InstallNetworkSmDeviceApps(context.Background(), networkId, deviceId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ConfigureApiService LockNetworkSmDevices", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -5370,6 +5455,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var networkId string
 
 		resp, httpRes, err := apiClient.ConfigureApi.ProvisionNetworkClients(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService ReassignNetworkVlanProfilesAssignments", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.ReassignNetworkVlanProfilesAssignments(context.Background(), networkId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -5528,6 +5627,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService UninstallNetworkSmDeviceApps", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+		var deviceId string
+
+		httpRes, err := apiClient.ConfigureApi.UninstallNetworkSmDeviceApps(context.Background(), networkId, deviceId).Execute()
+
+		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -6961,6 +7074,21 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var networkId string
 
 		resp, httpRes, err := apiClient.ConfigureApi.UpdateNetworkTrafficAnalysis(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService UpdateNetworkVlanProfile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var networkId string
+		var iname string
+
+		resp, httpRes, err := apiClient.ConfigureApi.UpdateNetworkVlanProfile(context.Background(), networkId, iname).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
