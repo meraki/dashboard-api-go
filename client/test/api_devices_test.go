@@ -708,6 +708,48 @@ func Test_client_DevicesApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test DevicesApiService GetOrganizationWirelessDevicesPacketLossByClient", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.DevicesApi.GetOrganizationWirelessDevicesPacketLossByClient(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DevicesApiService GetOrganizationWirelessDevicesPacketLossByDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.DevicesApi.GetOrganizationWirelessDevicesPacketLossByDevice(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DevicesApiService GetOrganizationWirelessDevicesPacketLossByNetwork", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.DevicesApi.GetOrganizationWirelessDevicesPacketLossByNetwork(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DevicesApiService InstallNetworkSmDeviceApps", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

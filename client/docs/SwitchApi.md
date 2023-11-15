@@ -104,7 +104,7 @@ Method | HTTP request | Description
 
 ## AddNetworkSwitchStack
 
-> GetNetworkSwitchStack200Response AddNetworkSwitchStack(ctx, networkId, switchStackId).AddNetworkSwitchStackRequest(addNetworkSwitchStackRequest).Execute()
+> GetNetworkSwitchStacks200ResponseInner AddNetworkSwitchStack(ctx, networkId, switchStackId).AddNetworkSwitchStackRequest(addNetworkSwitchStackRequest).Execute()
 
 Add a switch to a stack
 
@@ -135,7 +135,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.AddNetworkSwitchStack``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AddNetworkSwitchStack`: GetNetworkSwitchStack200Response
+    // response from `AddNetworkSwitchStack`: GetNetworkSwitchStacks200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SwitchApi.AddNetworkSwitchStack`: %v\n", resp)
 }
 ```
@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetNetworkSwitchStack200Response**](GetNetworkSwitchStack200Response.md)
+[**GetNetworkSwitchStacks200ResponseInner**](GetNetworkSwitchStacks200ResponseInner.md)
 
 ### Authorization
 
@@ -4114,7 +4114,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchStack
 
-> GetNetworkSwitchStack200Response GetNetworkSwitchStack(ctx, networkId, switchStackId).Execute()
+> GetNetworkSwitchStacks200ResponseInner GetNetworkSwitchStack(ctx, networkId, switchStackId).Execute()
 
 Show a switch stack
 
@@ -4144,7 +4144,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.GetNetworkSwitchStack``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchStack`: GetNetworkSwitchStack200Response
+    // response from `GetNetworkSwitchStack`: GetNetworkSwitchStacks200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SwitchApi.GetNetworkSwitchStack`: %v\n", resp)
 }
 ```
@@ -4170,7 +4170,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetNetworkSwitchStack200Response**](GetNetworkSwitchStack200Response.md)
+[**GetNetworkSwitchStacks200ResponseInner**](GetNetworkSwitchStacks200ResponseInner.md)
 
 ### Authorization
 
@@ -4567,7 +4567,7 @@ Name | Type | Description  | Notes
 
 ## GetNetworkSwitchStacks
 
-> []map[string]interface{} GetNetworkSwitchStacks(ctx, networkId).Execute()
+> []GetNetworkSwitchStacks200ResponseInner GetNetworkSwitchStacks(ctx, networkId).Execute()
 
 List the switch stacks in a network
 
@@ -4596,7 +4596,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SwitchApi.GetNetworkSwitchStacks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNetworkSwitchStacks`: []map[string]interface{}
+    // response from `GetNetworkSwitchStacks`: []GetNetworkSwitchStacks200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `SwitchApi.GetNetworkSwitchStacks`: %v\n", resp)
 }
 ```
@@ -4620,7 +4620,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[]map[string]interface{}**
+[**[]GetNetworkSwitchStacks200ResponseInner**](GetNetworkSwitchStacks200ResponseInner.md)
 
 ### Authorization
 

@@ -6,7 +6,7 @@ info:
   description: |
     A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.
 
-    > Date: 04 October, 2023
+    > Date: 01 November, 2023
     >
     > [Recent Updates](https://meraki.io/whats-new/)
 
@@ -18,7 +18,7 @@ info:
 
     [Meraki Homepage](https://www.meraki.com)
   title: Meraki Dashboard API
-  version: 1.38.0
+  version: 1.39.0
 servers:
 - url: "https://api.meraki.com/{basePath}"
   variables:
@@ -185,6 +185,7 @@ tags:
 - name: order
 - name: ospf
 - name: overview
+- name: packetLoss
 - name: packets
 - name: payloadTemplates
 - name: performance
@@ -1528,6 +1529,7 @@ paths:
             application/json:
               example:
                 url: https://nxx.meraki.com/office-cameras/n/bs0a1k/manage/nodes/new_list/29048243992402?timestamp=1535732570077
+                visionUrl: https://vision.meraki.com/n/6482158978508419/cameras/29048243992402?ts=1535732570077
               schema:
                 type: object
           description: Successful operation
@@ -2403,14 +2405,12 @@ paths:
           content:
             application/json:
               example:
-              - livestream:
+                livestream:
                   relatedDevices:
                   - serial: Q234-ABCD-5678
                     productType: camera
               schema:
-                items:
-                  $ref: '#/components/schemas/getDeviceSensorRelationships_200_response_inner'
-                type: array
+                $ref: '#/components/schemas/getDeviceSensorRelationships_200_response'
           description: Successful operation
       summary: List the sensor roles for a given sensor or camera device.
       tags:
@@ -2445,7 +2445,7 @@ paths:
                   - serial: Q234-ABCD-5678
                     productType: camera
               schema:
-                $ref: '#/components/schemas/getDeviceSensorRelationships_200_response_inner'
+                $ref: '#/components/schemas/getDeviceSensorRelationships_200_response'
           description: Successful operation
       summary: Assign one or more sensor roles to a given sensor or camera device.
       tags:
@@ -4900,14 +4900,14 @@ paths:
                 - comment: Allow TCP traffic to subnet with HTTP servers.
                   policy: allow
                   protocol: tcp
-                  destPort: "443"
-                  destCidr: 192.168.1.0/24
                   srcPort: Any
                   srcCidr: Any
+                  destPort: "443"
+                  destCidr: 192.168.1.0/24
                   syslogEnabled: false
-                syslogDefaultRule: true
+                syslogDefaultRule: false
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkApplianceFirewallInboundFirewallRules_200_response'
           description: Successful operation
       summary: Return the inbound firewall rules for an MX network
       tags:
@@ -4942,14 +4942,14 @@ paths:
                 - comment: Allow TCP traffic to subnet with HTTP servers.
                   policy: allow
                   protocol: tcp
-                  destPort: "443"
-                  destCidr: 192.168.1.0/24
                   srcPort: Any
                   srcCidr: Any
+                  destPort: "443"
+                  destCidr: 192.168.1.0/24
                   syslogEnabled: false
-                syslogDefaultRule: true
+                syslogDefaultRule: false
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkApplianceFirewallInboundFirewallRules_200_response'
           description: Successful operation
       summary: Update the inbound firewall rules of an MX network
       tags:
@@ -5009,7 +5009,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/updateNetworkApplianceFirewallInboundFirewallRules_request'
+              $ref: '#/components/schemas/updateNetworkApplianceFirewallL3FirewallRules_request'
         required: false
       responses:
         "200":
@@ -11598,13 +11598,13 @@ paths:
                 isDefault: false
                 assignedDevices:
                   devices:
-                  - name: Device Name
-                    serial: Q234-ABCD-5678
+                  - serial: Q234-ABCD-5678
+                    name: Device Name
                   switchStacks:
-                  - name: Stack Name
-                    id: "1234"
+                  - id: "1234"
+                    name: Stack Name
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkFirmwareUpgradesStagedGroups_200_response_inner'
           description: Successful operation
       summary: Create a Staged Upgrade Group for a network
       tags:
@@ -11727,13 +11727,13 @@ paths:
                 isDefault: false
                 assignedDevices:
                   devices:
-                  - name: Device Name
-                    serial: Q234-ABCD-5678
+                  - serial: Q234-ABCD-5678
+                    name: Device Name
                   switchStacks:
-                  - name: Stack Name
-                    id: "1234"
+                  - id: "1234"
+                    name: Stack Name
               schema:
-                type: object
+                $ref: '#/components/schemas/getNetworkFirmwareUpgradesStagedGroups_200_response_inner'
           description: Successful operation
       summary: Update a Staged Upgrade Group for a network
       tags:
@@ -14739,9 +14739,6 @@ paths:
                   enabled: true
                 namedVlans:
                   enabled: true
-                clientPrivacy:
-                  expireDataOlderThan: 86400
-                  expireDataBefore: 2022-10-01T00:00:00Z
               schema:
                 $ref: '#/components/schemas/getNetworkSettings_200_response'
           description: Successful operation
@@ -14785,9 +14782,6 @@ paths:
                   enabled: true
                 namedVlans:
                   enabled: true
-                clientPrivacy:
-                  expireDataOlderThan: 86400
-                  expireDataBefore: 2022-10-01T00:00:00Z
               schema:
                 $ref: '#/components/schemas/getNetworkSettings_200_response'
           description: Successful operation
@@ -14929,6 +14923,16 @@ paths:
         explode: true
         in: query
         name: ids
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter devices by uuid(s).
+        explode: true
+        in: query
+        name: uuids
         required: false
         schema:
           items:
@@ -16097,7 +16101,7 @@ paths:
       - wlanLists
   /networks/{networkId}/sm/profiles:
     get:
-      description: List all the profiles in the network
+      description: List all profiles in a network
       operationId: getNetworkSmProfiles
       parameters:
       - description: Network ID
@@ -16113,23 +16117,19 @@ paths:
           content:
             application/json:
               example:
-                profiles:
-                - id: "1234"
-                  payload_display_name: API Profile
-                  payload_identifier: com.meraki.sm.1
-                  payload_description: API docs test
-                  scope: some
-                  tags:
-                  - tag1
-                  - tag2
-                  wifis: []
-                  payload_types:
-                  - Privacy
-                  - Document
+              - id: "1284392014819"
+                name: My profile
+                description: Some profile description
+                scope: withAny
+                tags:
+                - tag1
+                - tag2
               schema:
-                type: object
+                items:
+                  $ref: '#/components/schemas/getNetworkSmProfiles_200_response_inner'
+                type: array
           description: Successful operation
-      summary: List all the profiles in the network
+      summary: List all profiles in a network
       tags:
       - sm
       - configure
@@ -19155,7 +19155,7 @@ paths:
                 - QBAB-CDEF-GHIJ
               schema:
                 items:
-                  type: object
+                  $ref: '#/components/schemas/getNetworkSwitchStacks_200_response_inner'
                 type: array
           description: Successful operation
       summary: List the switch stacks in a network
@@ -19259,7 +19259,7 @@ paths:
                 - QBZY-XWVU-TSRQ
                 - QBAB-CDEF-GHIJ
               schema:
-                $ref: '#/components/schemas/getNetworkSwitchStack_200_response'
+                $ref: '#/components/schemas/getNetworkSwitchStacks_200_response_inner'
           description: Successful operation
       summary: Show a switch stack
       tags:
@@ -19304,7 +19304,7 @@ paths:
                 - QBZY-XWVU-TSRQ
                 - QBAB-CDEF-GHIJ
               schema:
-                $ref: '#/components/schemas/getNetworkSwitchStack_200_response'
+                $ref: '#/components/schemas/getNetworkSwitchStacks_200_response_inner'
           description: Successful operation
       summary: Add a switch to a stack
       tags:
@@ -32308,6 +32308,10 @@ paths:
                 adminName: Miles Meraki
                 adminEmail: miles@meraki.com
                 adminId: "212406"
+                networkName: Main Office
+                networkId: N_24329156
+                ssidName: My SSID
+                ssidNumber: 1
                 page: via API
                 label: PUT /api/v1/organizations/2930418
                 oldValue: "{\"id\":\"2930418\",\"name\":\"My organization\",\"url\"\
@@ -32318,7 +32322,7 @@ paths:
                   }"
               schema:
                 items:
-                  type: object
+                  $ref: '#/components/schemas/getOrganizationConfigurationChanges_200_response_inner'
                 type: array
           description: Successful operation
           headers:
@@ -33339,7 +33343,14 @@ paths:
                 secondaryDns: 8.8.4.4
                 productType: wireless
                 components:
-                  powerSupplies: []
+                  powerSupplies:
+                  - slot: 1
+                    serial: QABC-1234-5678
+                    model: PWR-MS320-1025WAC
+                    status: powering
+                    poe:
+                      unit: watts
+                      maximum: 740
                 model: MR34
                 tags:
                 - tag1
@@ -34116,7 +34127,7 @@ paths:
             enum:
             - canceled
             - completed
-            - pending
+            - scheduled
             - started
             type: string
           type: array
@@ -34141,7 +34152,7 @@ paths:
                     shortName: MV 11.2.1
                     releaseType: stable
                     releaseDate: 2018-02-11T00:00:00.090210Z
-                  status: completed
+                  status: Completed
                   id: "1234"
                   upgradeBatchId: "1234"
                   staged:
@@ -34606,6 +34617,9 @@ paths:
                 - tag2
                 productType: wireless
                 countryCode: US
+                details:
+                - name: Catalyst serial
+                  value: FOC2234432B
               schema:
                 items:
                   $ref: '#/components/schemas/getOrganizationInventoryDevices_200_response_inner'
@@ -34664,6 +34678,9 @@ paths:
                 - tag2
                 productType: wireless
                 countryCode: US
+                details:
+                - name: Catalyst serial
+                  value: FOC2234432B
               schema:
                 $ref: '#/components/schemas/getOrganizationInventoryDevices_200_response_inner'
           description: Successful operation
@@ -34818,6 +34835,14 @@ paths:
           enum:
           - switch
           - wireless_controller
+          type: string
+        style: form
+      - description: Optional parameter to search on network name
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
           type: string
         style: form
       - description: The number of entries per page returned. Acceptable range is
@@ -37258,8 +37283,25 @@ paths:
           content:
             application/json:
               example:
-              - id: "1284392014819"
-                vppServiceToken: eyJleHBEYXRlIjoiMjAyMS0wMi0yNVQxNjo1NToyMy0wODAwIiwidG9rZW4iOiJBZFN4YWxyQmhFK0FhSWUrYTJDbDE1aDg1N0ZkUDkrL2c5c00xUWhlMG1WS0ZKWkdOL0hxRnQxeitSVERSTkNLNkxhMEExellML3JFa2tpOG1pbk8xRDlJWHhZQnBERy8wZllhTE44UlUrMDhYZkZsNlVwenkrRE8wQW41ZGgxWncwSmZiYmlXU21VVG94TFJmV1BCcVE9PSIsIm9yZ05hbWUiOiJNZXJha2kgTExDICsgRGV2ZWxvcGVyIn0=
+              - vppAccountId: "1284392014819"
+                contentToken: eyJleHBEYXRlIjoiMzAyMy0xMC0yMVQxMjowOTo0NSswMDAwIiwidG9rZW4iOiIvVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlQiLCJvcmdOYW1lIjoiTWVyYWtpICsgREVWRUxPUEVSIn0=
+                email: email@example.com
+                name: VPP Account name
+                allowedAdmins: Network
+                networkIdAdmins: N_24329156
+                assignableNetworks: Some
+                assignableNetworkIds:
+                - N_24329156
+                vppLocationId: "22222222222"
+                vppLocationName: LocationName
+                lastSyncedAt: 2021-02-25T16:59:23Z
+                lastForceSyncedAt: 2021-02-25T16:59:23Z
+                parsedToken:
+                  orgName: My organization
+                  hashedToken: f572d396fae9206628714fb2ce00f72e94f2258f
+                  expiresAt: 2023-10-21T12:09:45Z
+                id: "1284392014819"
+                vppServiceToken: eyJleHBEYXRlIjoiMzAyMy0xMC0yMVQxMjowOTo0NSswMDAwIiwidG9rZW4iOiIvVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlQiLCJvcmdOYW1lIjoiTWVyYWtpICsgREVWRUxPUEVSIn0=
               schema:
                 items:
                   $ref: '#/components/schemas/getOrganizationSmVppAccounts_200_response_inner'
@@ -37297,8 +37339,25 @@ paths:
           content:
             application/json:
               example:
+                vppAccountId: "1284392014819"
+                contentToken: eyJleHBEYXRlIjoiMzAyMy0xMC0yMVQxMjowOTo0NSswMDAwIiwidG9rZW4iOiIvVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlQiLCJvcmdOYW1lIjoiTWVyYWtpICsgREVWRUxPUEVSIn0=
+                email: email@example.com
+                name: VPP Account name
+                allowedAdmins: Network
+                networkIdAdmins: N_24329156
+                assignableNetworks: Some
+                assignableNetworkIds:
+                - N_24329156
+                vppLocationId: "22222222222"
+                vppLocationName: LocationName
+                lastSyncedAt: 2021-02-25T16:59:23Z
+                lastForceSyncedAt: 2021-02-25T16:59:23Z
+                parsedToken:
+                  orgName: My organization
+                  hashedToken: f572d396fae9206628714fb2ce00f72e94f2258f
+                  expiresAt: 2023-10-21T12:09:45Z
                 id: "1284392014819"
-                vppServiceToken: eyJleHBEYXRlIjoiMjAyMS0wMi0yNVQxNjo1NToyMy0wODAwIiwidG9rZW4iOiJBZFN4YWxyQmhFK0FhSWUrYTJDbDE1aDg1N0ZkUDkrL2c5c00xUWhlMG1WS0ZKWkdOL0hxRnQxeitSVERSTkNLNkxhMEExellML3JFa2tpOG1pbk8xRDlJWHhZQnBERy8wZllhTE44UlUrMDhYZkZsNlVwenkrRE8wQW41ZGgxWncwSmZiYmlXU21VVG94TFJmV1BCcVE9PSIsIm9yZ05hbWUiOiJNZXJha2kgTExDICsgRGV2ZWxvcGVyIn0=
+                vppServiceToken: eyJleHBEYXRlIjoiMzAyMy0xMC0yMVQxMjowOTo0NSswMDAwIiwidG9rZW4iOiIvVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlRPS0VOVE9LRU5UT0tFTlQiLCJvcmdOYW1lIjoiTWVyYWtpICsgREVWRUxPUEVSIn0=
               schema:
                 $ref: '#/components/schemas/getOrganizationSmVppAccounts_200_response_inner'
           description: Successful operation
@@ -39118,6 +39177,481 @@ paths:
       - devices
       - ethernet
       - statuses
+  /organizations/{organizationId}/wireless/devices/packetLoss/byClient:
+    get:
+      description: Get average packet loss for the given timespan for all clients
+        in the organization.
+      operationId: getOrganizationWirelessDevicesPacketLossByClient
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Filter results by network.
+        explode: true
+        in: query
+        name: networkIds
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results by SSID number.
+        explode: true
+        in: query
+        name: ssids
+        required: false
+        schema:
+          items:
+            type: integer
+          type: array
+        style: form
+      - description: "Filter results by band. Valid bands are: 2.4, 5, and 6."
+        explode: true
+        in: query
+        name: bands
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results by client mac address(es).
+        explode: true
+        in: query
+        name: macs
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: The number of entries per page returned. Acceptable range is
+          3 - 1000. Default is 1000.
+        explode: true
+        in: query
+        name: perPage
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "A token used by the server to indicate the start of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: startingAfter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A token used by the server to indicate the end of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: endingBefore
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The beginning of the timespan for the data. The maximum lookback
+          period is 90 days from today.
+        explode: true
+        in: query
+        name: t0
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The end of the timespan for the data. t1 can be a maximum of
+          90 days after t0.
+        explode: true
+        in: query
+        name: t1
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The timespan for which the information will be fetched. If specifying\
+          \ timespan, do not specify parameters t0 and t1. The value must be in seconds\
+          \ and be greater than or equal to 5 minutes and be less than or equal to\
+          \ 90 days. The default is 7 days."
+        explode: true
+        in: query
+        name: timespan
+        required: false
+        schema:
+          format: float
+          maximum: 7776000
+          minimum: 300
+          type: number
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - downstream:
+                  total: 1000
+                  lost: 10
+                  lossPercentage: 1.0
+                upstream:
+                  total: 1200
+                  lost: 15
+                  lossPercentage: 1.3
+                client:
+                  id: k74272e
+                  mac: 22:33:44:55:66:77
+                network:
+                  id: N_24329156
+                  name: Main Office
+              schema:
+                items:
+                  $ref: '#/components/schemas/getOrganizationWirelessDevicesPacketLossByClient_200_response_inner'
+                type: array
+          description: Successful operation
+          headers:
+            Link:
+              description: "A comma-separated list of first, last, prev, and next\
+                \ relative links used for subsequent paginated requests."
+              explode: false
+              schema:
+                type: string
+              style: simple
+      summary: Get average packet loss for the given timespan for all clients in the
+        organization.
+      tags:
+      - wireless
+      - monitor
+      - devices
+      - packetLoss
+      - byClient
+  /organizations/{organizationId}/wireless/devices/packetLoss/byDevice:
+    get:
+      description: Get average packet loss for the given timespan for all devices
+        in the organization. Does not include device's own traffic.
+      operationId: getOrganizationWirelessDevicesPacketLossByDevice
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Filter results by network.
+        explode: true
+        in: query
+        name: networkIds
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results by device.
+        explode: true
+        in: query
+        name: serials
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results by SSID number.
+        explode: true
+        in: query
+        name: ssids
+        required: false
+        schema:
+          items:
+            type: integer
+          type: array
+        style: form
+      - description: "Filter results by band. Valid bands are: 2.4, 5, and 6."
+        explode: true
+        in: query
+        name: bands
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: The number of entries per page returned. Acceptable range is
+          3 - 1000. Default is 1000.
+        explode: true
+        in: query
+        name: perPage
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "A token used by the server to indicate the start of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: startingAfter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A token used by the server to indicate the end of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: endingBefore
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The beginning of the timespan for the data. The maximum lookback
+          period is 90 days from today.
+        explode: true
+        in: query
+        name: t0
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The end of the timespan for the data. t1 can be a maximum of
+          90 days after t0.
+        explode: true
+        in: query
+        name: t1
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The timespan for which the information will be fetched. If specifying\
+          \ timespan, do not specify parameters t0 and t1. The value must be in seconds\
+          \ and be greater than or equal to 5 minutes and be less than or equal to\
+          \ 90 days. The default is 7 days."
+        explode: true
+        in: query
+        name: timespan
+        required: false
+        schema:
+          format: float
+          maximum: 7776000
+          minimum: 300
+          type: number
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - downstream:
+                  total: 1000
+                  lost: 10
+                  lossPercentage: 1.0
+                upstream:
+                  total: 1200
+                  lost: 15
+                  lossPercentage: 1.3
+                network:
+                  id: N_24329156
+                  name: Main Office
+                device:
+                  name: My AP
+                  serial: Q234-ABCD-5678
+                  mac: 00:11:22:33:44:55
+              schema:
+                items:
+                  $ref: '#/components/schemas/getOrganizationWirelessDevicesPacketLossByDevice_200_response_inner'
+                type: array
+          description: Successful operation
+          headers:
+            Link:
+              description: "A comma-separated list of first, last, prev, and next\
+                \ relative links used for subsequent paginated requests."
+              explode: false
+              schema:
+                type: string
+              style: simple
+      summary: Get average packet loss for the given timespan for all devices in the
+        organization
+      tags:
+      - wireless
+      - monitor
+      - devices
+      - packetLoss
+      - byDevice
+  /organizations/{organizationId}/wireless/devices/packetLoss/byNetwork:
+    get:
+      description: Get average packet loss for the given timespan for all networks
+        in the organization.
+      operationId: getOrganizationWirelessDevicesPacketLossByNetwork
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Filter results by network.
+        explode: true
+        in: query
+        name: networkIds
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results by device.
+        explode: true
+        in: query
+        name: serials
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results by SSID number.
+        explode: true
+        in: query
+        name: ssids
+        required: false
+        schema:
+          items:
+            type: integer
+          type: array
+        style: form
+      - description: "Filter results by band. Valid bands are: 2.4, 5, and 6."
+        explode: true
+        in: query
+        name: bands
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: The number of entries per page returned. Acceptable range is
+          3 - 1000. Default is 1000.
+        explode: true
+        in: query
+        name: perPage
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "A token used by the server to indicate the start of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: startingAfter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A token used by the server to indicate the end of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: endingBefore
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The beginning of the timespan for the data. The maximum lookback
+          period is 90 days from today.
+        explode: true
+        in: query
+        name: t0
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The end of the timespan for the data. t1 can be a maximum of
+          90 days after t0.
+        explode: true
+        in: query
+        name: t1
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The timespan for which the information will be fetched. If specifying\
+          \ timespan, do not specify parameters t0 and t1. The value must be in seconds\
+          \ and be greater than or equal to 5 minutes and be less than or equal to\
+          \ 90 days. The default is 7 days."
+        explode: true
+        in: query
+        name: timespan
+        required: false
+        schema:
+          format: float
+          maximum: 7776000
+          minimum: 300
+          type: number
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - downstream:
+                  total: 1000
+                  lost: 10
+                  lossPercentage: 1.0
+                upstream:
+                  total: 1200
+                  lost: 15
+                  lossPercentage: 1.3
+                network:
+                  id: N_24329156
+                  name: Main Office
+              schema:
+                items:
+                  $ref: '#/components/schemas/getOrganizationWirelessDevicesPacketLossByNetwork_200_response_inner'
+                type: array
+          description: Successful operation
+          headers:
+            Link:
+              description: "A comma-separated list of first, last, prev, and next\
+                \ relative links used for subsequent paginated requests."
+              explode: false
+              schema:
+                type: string
+              style: simple
+      summary: Get average packet loss for the given timespan for all networks in
+        the organization.
+      tags:
+      - wireless
+      - monitor
+      - devices
+      - packetLoss
+      - byNetwork
 components:
   schemas:
     updateNetworkApplianceSsid_request_dot11w:
@@ -40129,6 +40663,11 @@ components:
         name: name
         model: model
         networkId: networkId
+        details:
+        - name: name
+          value: value
+        - name: name
+          value: value
         mac: mac
         productType: productType
         tags:
@@ -40172,6 +40711,11 @@ components:
         countryCode:
           description: "Country/region code from device, network, or store order"
           type: string
+        details:
+          description: Additional device information
+          items:
+            $ref: '#/components/schemas/getNetworkFloorPlans_200_response_inner_devices_inner_details_inner'
+          type: array
       type: object
     provisionNetworkClients_request_policiesBySsid:
       description: "An object, describing the policy-connection associations for each\
@@ -40567,6 +41111,19 @@ components:
         enabled:
           description: Enable MAC blocklist for switches in the network
           type: boolean
+      type: object
+    getOrganizationWirelessDevicesPacketLossByClient_200_response_inner_client:
+      description: Client.
+      example:
+        id: id
+        mac: mac
+      properties:
+        id:
+          description: Client ID.
+          type: string
+        mac:
+          description: MAC address.
+          type: string
       type: object
     updateDeviceSensorRelationships_request_livestream_relatedDevices_inner:
       properties:
@@ -42345,18 +42902,6 @@ components:
           description: Response method
           type: string
       type: object
-    getDeviceSensorRelationships_200_response_inner:
-      example:
-        livestream:
-          relatedDevices:
-          - serial: serial
-            productType: camera
-          - serial: serial
-            productType: camera
-      properties:
-        livestream:
-          $ref: '#/components/schemas/getDeviceSensorRelationships_200_response_inner_livestream'
-      type: object
     provisionNetworkClients_request_policiesBySecurityAppliance:
       description: "An object, describing what the policy-connection association is\
         \ for the security appliance. (Only relevant if the security appliance is\
@@ -43294,6 +43839,34 @@ components:
           description: Option value.
           type: string
       type: object
+    getNetworkSmProfiles_200_response_inner:
+      example:
+        scope: scope
+        name: name
+        description: description
+        id: id
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          description: ID of a profile.
+          type: string
+        name:
+          description: Name of a profile.
+          type: string
+        description:
+          description: Description of a profile.
+          type: string
+        scope:
+          description: Scope of a profile.
+          type: string
+        tags:
+          description: Tags of a profile.
+          items:
+            type: string
+          type: array
+      type: object
     getNetworkSmDeviceSoftwares_200_response_inner:
       example:
         redemptionCode: 1
@@ -44093,7 +44666,7 @@ components:
             productType: camera
       properties:
         livestream:
-          $ref: '#/components/schemas/getDeviceSensorRelationships_200_response_inner_livestream'
+          $ref: '#/components/schemas/getDeviceSensorRelationships_200_response_livestream'
       type: object
     createOrganizationAlertsProfile_request_recipients:
       description: List of recipients that will recieve the alert.
@@ -44228,23 +44801,6 @@ components:
           description: Longitude
           format: float
           type: number
-      type: object
-    getDeviceSensorRelationships_200_response_inner_livestream:
-      description: A role defined between an MT sensor and an MV camera that adds
-        the camera's livestream to the sensor's details page. Snapshots from the camera
-        will also appear in alert notifications that the sensor triggers.
-      example:
-        relatedDevices:
-        - serial: serial
-          productType: camera
-        - serial: serial
-          productType: camera
-      properties:
-        relatedDevices:
-          description: An array of the related devices for the role
-          items:
-            $ref: '#/components/schemas/getDeviceSensorRelationships_200_response_inner_livestream_relatedDevices_inner'
-          type: array
       type: object
     getNetworkSwitchDhcpServerPolicy_200_response_arpInspection:
       description: Dynamic ARP Inspection settings
@@ -44609,6 +45165,29 @@ components:
             Can be either true or false.
           type: boolean
       type: object
+    updateNetworkApplianceFirewallL3FirewallRules_request:
+      example:
+        rules:
+        - comment: Allow TCP traffic to subnet with HTTP servers.
+          policy: allow
+          protocol: tcp
+          destPort: "443"
+          destCidr: 192.168.1.0/24
+          srcPort: Any
+          srcCidr: Any
+          syslogEnabled: false
+      properties:
+        rules:
+          description: An ordered array of the firewall rules (not including the default
+            rule)
+          items:
+            $ref: '#/components/schemas/updateNetworkApplianceFirewallCellularFirewallRules_request_rules_inner'
+          type: array
+        syslogDefaultRule:
+          description: Log the special default rule (boolean value - enable only if
+            you've configured a syslog server) (optional)
+          type: boolean
+      type: object
     getOrganizationSummaryTopClientsManufacturersByUsage_200_response_inner_clients:
       description: Clients info
       example:
@@ -44767,6 +45346,67 @@ components:
           enum:
           - camera
           - sensor
+          type: string
+      type: object
+    getOrganizationConfigurationChanges_200_response_inner:
+      example:
+        adminName: adminName
+        ssidName: ssidName
+        ssidNumber: 0
+        newValue: newValue
+        adminId: adminId
+        networkName: networkName
+        networkId: networkId
+        page: page
+        label: label
+        oldValue: oldValue
+        ts: 2000-01-23T04:56:07.000+00:00
+        adminEmail: adminEmail
+      properties:
+        ts:
+          description: "Time, in ISO8601 format, when the configuration change was\
+            \ made."
+          format: date-time
+          type: string
+        adminName:
+          description: The name of the admin who made the configuration change.
+          type: string
+        adminEmail:
+          description: The email address of the admin who made the configuration change.
+            This attribute may be null.
+          type: string
+        adminId:
+          description: The ID of the admin who made the configuration change. This
+            attribute may be null.
+          type: string
+        networkName:
+          description: The name of the network that the configuration change was applied
+            to. This attribute may be null.
+          type: string
+        networkId:
+          description: The ID of the network that the configuration change was applied
+            to. This attribute may be null.
+          type: string
+        ssidName:
+          description: "The name of the ssid that the configuration change was applied\
+            \ to, if applicable. This attribute may be null."
+          type: string
+        ssidNumber:
+          description: "The ssid number that the configuration change was applied\
+            \ to, if applicable. This attribute may be null."
+          type: integer
+        page:
+          description: The name of the Meraki Dashboard page on which the configuration
+            change was made.
+          type: string
+        label:
+          description: Description of the configuration change.
+          type: string
+        oldValue:
+          description: "The value of the configuration, before the change was applied."
+          type: string
+        newValue:
+          description: "The value of the configuration, after the change was applied."
           type: string
       type: object
     updateNetworkCellularGatewayUplink_request:
@@ -46082,21 +46722,6 @@ components:
             2.4 GHz and 5 GHz.
           type: boolean
       type: object
-    getDeviceSensorRelationships_200_response_inner_livestream_relatedDevices_inner:
-      example:
-        serial: serial
-        productType: camera
-      properties:
-        serial:
-          description: The serial of the related device
-          type: string
-        productType:
-          description: The product type of the related device
-          enum:
-          - camera
-          - sensor
-          type: string
-      type: object
     updateOrganization_request:
       example:
         name: My organization
@@ -46715,6 +47340,23 @@ components:
         lastSeenAt:
           description: When the device was last seen as connected to the internet
             in each connection.
+          type: string
+      type: object
+    getOrganizationSmVppAccounts_200_response_inner_parsedToken:
+      description: The parsed VPP service token
+      example:
+        orgName: orgName
+        hashedToken: hashedToken
+        expiresAt: expiresAt
+      properties:
+        orgName:
+          description: The organization name
+          type: string
+        hashedToken:
+          description: The hashed token
+          type: string
+        expiresAt:
+          description: The expiration time of the token
           type: string
       type: object
     getNetworkSmDevicePerformanceHistory_200_response_inner:
@@ -48163,6 +48805,38 @@ components:
           description: Port Id
           type: string
       type: object
+    getOrganizationDevicesStatuses_200_response_inner_components_powerSupplies_inner:
+      example:
+        serial: serial
+        poe:
+          unit: unit
+          maximum: 6
+        model: model
+        slot: 0
+        status: available
+      properties:
+        slot:
+          description: Slot the power supply is in
+          type: integer
+        serial:
+          description: Serial of the power supply
+          type: string
+        model:
+          description: Model of the power supply
+          type: string
+        status:
+          description: Status of the power supply
+          enum:
+          - available
+          - connected
+          - disconnected
+          - powered
+          - powering
+          - standby
+          type: string
+        poe:
+          $ref: '#/components/schemas/getOrganizationDevicesStatuses_200_response_inner_components_powerSupplies_inner_poe'
+      type: object
     createNetworkApplianceStaticRoute_request:
       example:
         name: My route
@@ -48609,9 +49283,10 @@ components:
           policy: policy
       properties:
         rules:
-          description: List of firewall rules
+          description: An ordered array of the firewall rules (not including the default
+            rule)
           items:
-            $ref: '#/components/schemas/getOrganizationApplianceVpnVpnFirewallRules_200_response_rules_inner'
+            $ref: '#/components/schemas/getNetworkApplianceFirewallInboundFirewallRules_200_response_rules_inner'
           type: array
       type: object
     getNetworkWirelessSsidIdentityPsks_200_response_inner:
@@ -49575,9 +50250,6 @@ components:
       example:
         securePort:
           enabled: true
-        clientPrivacy:
-          expireDataOlderThan: 0
-          expireDataBefore: 2000-01-23T04:56:07.000+00:00
         remoteStatusPageEnabled: true
         namedVlans:
           enabled: true
@@ -49609,8 +50281,6 @@ components:
           $ref: '#/components/schemas/getNetworkSettings_200_response_fips'
         namedVlans:
           $ref: '#/components/schemas/getNetworkSettings_200_response_namedVlans'
-        clientPrivacy:
-          $ref: '#/components/schemas/getNetworkSettings_200_response_clientPrivacy'
       type: object
     getOrganizations_200_response_inner_licensing:
       description: Licensing related settings
@@ -49947,6 +50617,33 @@ components:
             $ref: '#/components/schemas/updateNetworkWirelessAlternateManagementInterface_request_accessPoints_inner'
           type: array
       type: object
+    getOrganizationWirelessDevicesPacketLossByDevice_200_response_inner:
+      example:
+        upstream:
+          total: 5
+          lost: 5
+          lossPercentage: 2.302136
+        downstream:
+          total: 0
+          lost: 6
+          lossPercentage: 1.4658129
+        device:
+          serial: serial
+          name: name
+          mac: mac
+        network:
+          name: name
+          id: id
+      properties:
+        downstream:
+          $ref: '#/components/schemas/getOrganizationWirelessDevicesPacketLossByClient_200_response_inner_downstream'
+        upstream:
+          $ref: '#/components/schemas/getOrganizationWirelessDevicesPacketLossByClient_200_response_inner_upstream'
+        network:
+          $ref: '#/components/schemas/getOrganizationWirelessDevicesPacketLossByClient_200_response_inner_network'
+        device:
+          $ref: '#/components/schemas/getOrganizationWirelessDevicesPacketLossByDevice_200_response_inner_device'
+      type: object
     createNetworkCameraQualityRetentionProfile_request_videoSettings_MV63X:
       description: Quality and resolution for MV63X camera models.
       properties:
@@ -50043,6 +50740,18 @@ components:
         access:
           description: Access level for the tag
           type: string
+      type: object
+    getDeviceSensorRelationships_200_response:
+      example:
+        livestream:
+          relatedDevices:
+          - serial: serial
+            productType: camera
+          - serial: serial
+            productType: camera
+      properties:
+        livestream:
+          $ref: '#/components/schemas/getDeviceSensorRelationships_200_response_livestream'
       type: object
     getNetworkWirelessBluetoothSettings_200_response:
       example:
@@ -50855,6 +51564,24 @@ components:
           description: "URI, not including base, of the created resource"
           type: string
       type: object
+    getOrganizationWirelessDevicesPacketLossByClient_200_response_inner_downstream:
+      description: Packets sent from an AP to a client.
+      example:
+        total: 0
+        lost: 6
+        lossPercentage: 1.4658129
+      properties:
+        total:
+          description: Total packets received by a client.
+          type: integer
+        lost:
+          description: Total packets sent by an AP that did not reach the client.
+          type: integer
+        lossPercentage:
+          description: Percentage of lost packets.
+          format: float
+          type: number
+      type: object
     updateNetworkSwitchDhcpServerPolicyArpInspectionTrustedServer_request_ipv4:
       description: The updated IPv4 attributes of the trusted server
       properties:
@@ -51294,6 +52021,26 @@ components:
             \ be either true or false. If false, we highly recommend disabling band\
             \ steering. Defaults to true."
           type: boolean
+      type: object
+    getNetworkSwitchStacks_200_response_inner:
+      example:
+        serials:
+        - serials
+        - serials
+        name: name
+        id: id
+      properties:
+        id:
+          description: Switch stacks id
+          type: string
+        name:
+          description: Switch stacks name
+          type: string
+        serials:
+          description: Serials of the switches in the switch stack
+          items:
+            type: string
+          type: array
       type: object
     getNetworkVlanProfilesAssignmentsByDevice_200_response_inner_vlanProfile:
       description: The VLAN Profile
@@ -52152,6 +52899,19 @@ components:
           items:
             type: string
           type: array
+      type: object
+    getOrganizationWirelessDevicesPacketLossByClient_200_response_inner_network:
+      description: Network.
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          description: Network ID.
+          type: string
+        name:
+          description: Name of the network.
+          type: string
       type: object
     updateDeviceCellularGatewayLan_request_reservedIpRanges_inner:
       properties:
@@ -54756,6 +55516,38 @@ components:
           description: Enable client sampling on uplink
           type: boolean
       type: object
+    getNetworkApplianceFirewallInboundFirewallRules_200_response:
+      example:
+        rules:
+        - srcCidr: srcCidr
+          protocol: protocol
+          syslogEnabled: true
+          destPort: destPort
+          comment: comment
+          srcPort: srcPort
+          destCidr: destCidr
+          policy: policy
+        - srcCidr: srcCidr
+          protocol: protocol
+          syslogEnabled: true
+          destPort: destPort
+          comment: comment
+          srcPort: srcPort
+          destCidr: destCidr
+          policy: policy
+        syslogDefaultRule: true
+      properties:
+        rules:
+          description: An ordered array of the firewall rules (not including the default
+            rule)
+          items:
+            $ref: '#/components/schemas/getNetworkApplianceFirewallInboundFirewallRules_200_response_rules_inner'
+          type: array
+        syslogDefaultRule:
+          description: Log the special default rule (boolean value - enable only if
+            you've configured a syslog server) (optional)
+          type: boolean
+      type: object
     getNetworkSwitchDhcpV4ServersSeen_200_response_inner_ipv4:
       description: IPv4 attributes of the server.
       example:
@@ -54838,6 +55630,32 @@ components:
           type: string
         security:
           $ref: '#/components/schemas/createNetworkMqttBroker_request_security_security'
+      type: object
+    getOrganizationWirelessDevicesPacketLossByClient_200_response_inner:
+      example:
+        upstream:
+          total: 5
+          lost: 5
+          lossPercentage: 2.302136
+        downstream:
+          total: 0
+          lost: 6
+          lossPercentage: 1.4658129
+        client:
+          id: id
+          mac: mac
+        network:
+          name: name
+          id: id
+      properties:
+        downstream:
+          $ref: '#/components/schemas/getOrganizationWirelessDevicesPacketLossByClient_200_response_inner_downstream'
+        upstream:
+          $ref: '#/components/schemas/getOrganizationWirelessDevicesPacketLossByClient_200_response_inner_upstream'
+        client:
+          $ref: '#/components/schemas/getOrganizationWirelessDevicesPacketLossByClient_200_response_inner_client'
+        network:
+          $ref: '#/components/schemas/getOrganizationWirelessDevicesPacketLossByClient_200_response_inner_network'
       type: object
     updateNetworkSwitchAlternateManagementInterface_request_switches_inner:
       properties:
@@ -55583,6 +56401,23 @@ components:
           description: The number of seats to move to the new organization. Must be
             less than or equal to the total number of seats of the license
           type: integer
+      type: object
+    getDeviceSensorRelationships_200_response_livestream:
+      description: A role defined between an MT sensor and an MV camera that adds
+        the camera's livestream to the sensor's details page. Snapshots from the camera
+        will also appear in alert notifications that the sensor triggers.
+      example:
+        relatedDevices:
+        - serial: serial
+          productType: camera
+        - serial: serial
+          productType: camera
+      properties:
+        relatedDevices:
+          description: An array of the related devices for the role
+          items:
+            $ref: '#/components/schemas/getDeviceSensorRelationships_200_response_livestream_relatedDevices_inner'
+          type: array
       type: object
     getNetworkApplianceTrafficShapingUplinkBandwidth_200_response_bandwidthLimits_wan2:
       description: "uplink wan2 configured limits [optional]"
@@ -56700,9 +57535,67 @@ components:
       type: object
     getOrganizationSmVppAccounts_200_response_inner:
       example:
+        lastForceSyncedAt: lastForceSyncedAt
+        assignableNetworkIds:
+        - assignableNetworkIds
+        - assignableNetworkIds
+        vppLocationId: vppLocationId
+        lastSyncedAt: lastSyncedAt
+        vppAccountId: vppAccountId
+        assignableNetworks: assignableNetworks
+        allowedAdmins: allowedAdmins
+        contentToken: contentToken
+        name: name
+        parsedToken:
+          orgName: orgName
+          hashedToken: hashedToken
+          expiresAt: expiresAt
         vppServiceToken: vppServiceToken
+        networkIdAdmins: networkIdAdmins
+        vppLocationName: vppLocationName
         id: id
+        email: email
       properties:
+        vppAccountId:
+          description: The id of the VPP Account
+          type: string
+        contentToken:
+          description: The VPP service token
+          type: string
+        email:
+          description: The email address associated with the VPP account
+          type: string
+        name:
+          description: The name of the VPP account
+          type: string
+        allowedAdmins:
+          description: The allowed admins for the VPP account
+          type: string
+        networkIdAdmins:
+          description: The network IDs of the admins for the VPP account
+          type: string
+        assignableNetworks:
+          description: The assignable networks for the VPP account
+          type: string
+        assignableNetworkIds:
+          description: The network IDs of the assignable networks for the VPP account
+          items:
+            type: string
+          type: array
+        vppLocationId:
+          description: The VPP location ID
+          type: string
+        vppLocationName:
+          description: The VPP location name
+          type: string
+        lastSyncedAt:
+          description: The last time the VPP account was synced
+          type: string
+        lastForceSyncedAt:
+          description: The last time the VPP account was force synced
+          type: string
+        parsedToken:
+          $ref: '#/components/schemas/getOrganizationSmVppAccounts_200_response_inner_parsedToken'
         id:
           description: The id of the VPP Account
           type: string
@@ -57796,6 +58689,21 @@ components:
           description: HTTP 511 response code count.
           type: integer
       type: object
+    getDeviceSensorRelationships_200_response_livestream_relatedDevices_inner:
+      example:
+        serial: serial
+        productType: camera
+      properties:
+        serial:
+          description: The serial of the related device
+          type: string
+        productType:
+          description: The product type of the related device
+          enum:
+          - camera
+          - sensor
+          type: string
+      type: object
     getOrganizationSensorReadingsLatest_200_response_inner:
       example:
         readings:
@@ -58586,21 +59494,6 @@ components:
         usage:
           $ref: '#/components/schemas/getOrganizationSummaryTopClientsByUsage_200_response_inner_usage'
       type: object
-    getNetworkSettings_200_response_clientPrivacy:
-      description: Privacy settings
-      example:
-        expireDataOlderThan: 0
-        expireDataBefore: 2000-01-23T04:56:07.000+00:00
-      properties:
-        expireDataOlderThan:
-          description: "The number of days, weeks, or months in Epoch time to expire\
-            \ the data before"
-          type: integer
-        expireDataBefore:
-          description: The date to expire the data before
-          format: date-time
-          type: string
-      type: object
     updateNetworkWirelessSsidSchedules_request_ranges_inner:
       properties:
         startDay:
@@ -58823,8 +59716,20 @@ components:
         lastReportedAt: lastReportedAt
         components:
           powerSupplies:
-          - powerSupplies
-          - powerSupplies
+          - serial: serial
+            poe:
+              unit: unit
+              maximum: 6
+            model: model
+            slot: 0
+            status: available
+          - serial: serial
+            poe:
+              unit: unit
+              maximum: 6
+            model: model
+            slot: 0
+            status: available
         primaryDns: primaryDns
         publicIp: publicIp
         mac: mac
@@ -59618,6 +60523,23 @@ components:
           type: boolean
       required:
       - enabled
+      type: object
+    getOrganizationWirelessDevicesPacketLossByDevice_200_response_inner_device:
+      description: Device.
+      example:
+        serial: serial
+        name: name
+        mac: mac
+      properties:
+        name:
+          description: Name
+          type: string
+        serial:
+          description: Serial Number
+          type: string
+        mac:
+          description: MAC address
+          type: string
       type: object
     updateNetworkSensorMqttBroker_request:
       example:
@@ -62594,26 +63516,6 @@ components:
             $ref: '#/components/schemas/updateDeviceCellularGatewayLan_request_fixedIpAssignments_inner'
           type: array
       type: object
-    getNetworkSwitchStack_200_response:
-      example:
-        serials:
-        - serials
-        - serials
-        name: name
-        id: id
-      properties:
-        id:
-          description: Switch stacks id
-          type: string
-        name:
-          description: Switch stacks name
-          type: string
-        serials:
-          description: Serials of the switches in the switch stack
-          items:
-            type: string
-          type: array
-      type: object
     updateNetworkFirmwareUpgradesStagedEvents_request:
       example:
         stages:
@@ -63833,6 +64735,27 @@ components:
         guestCanRequestTimeframe:
           description: Whether or not guests can specify how much time they are requesting.
           type: boolean
+      type: object
+    getOrganizationWirelessDevicesPacketLossByNetwork_200_response_inner:
+      example:
+        upstream:
+          total: 5
+          lost: 5
+          lossPercentage: 2.302136
+        downstream:
+          total: 0
+          lost: 6
+          lossPercentage: 1.4658129
+        network:
+          name: name
+          id: id
+      properties:
+        downstream:
+          $ref: '#/components/schemas/getOrganizationWirelessDevicesPacketLossByClient_200_response_inner_downstream'
+        upstream:
+          $ref: '#/components/schemas/getOrganizationWirelessDevicesPacketLossByClient_200_response_inner_upstream'
+        network:
+          $ref: '#/components/schemas/getOrganizationWirelessDevicesPacketLossByClient_200_response_inner_network'
       type: object
     getOrganizationDevicesAvailabilities_200_response_inner:
       example:
@@ -65964,6 +66887,48 @@ components:
           description: The extension of the image file.
           type: string
       type: object
+    getNetworkApplianceFirewallInboundFirewallRules_200_response_rules_inner:
+      example:
+        srcCidr: srcCidr
+        protocol: protocol
+        syslogEnabled: true
+        destPort: destPort
+        comment: comment
+        srcPort: srcPort
+        destCidr: destCidr
+        policy: policy
+      properties:
+        comment:
+          description: Description of the rule (optional)
+          type: string
+        policy:
+          description: '''allow'' or ''deny'' traffic specified by this rule'
+          type: string
+        protocol:
+          description: "The type of protocol (must be 'tcp', 'udp', 'icmp', 'icmp6'\
+            \ or 'any')"
+          type: string
+        srcPort:
+          description: "Comma-separated list of source port(s) (integer in the range\
+            \ 1-65535), or 'any'"
+          type: string
+        srcCidr:
+          description: "Comma-separated list of source IP address(es) (in IP or CIDR\
+            \ notation), or 'any' (note: FQDN not supported for source addresses)"
+          type: string
+        destPort:
+          description: "Comma-separated list of destination port(s) (integer in the\
+            \ range 1-65535), or 'any'"
+          type: string
+        destCidr:
+          description: "Comma-separated list of destination IP address(es) (in IP\
+            \ or CIDR notation), fully-qualified domain names (FQDN) or 'any'"
+          type: string
+        syslogEnabled:
+          description: "Log this rule to syslog (true or false, boolean value) - only\
+            \ applicable if a syslog has been configured (optional)"
+          type: boolean
+      type: object
     getOrganizationLicensingCotermLicenses_200_response_inner:
       example:
         organizationId: organizationId
@@ -66461,6 +67426,24 @@ components:
           type: string
       required:
       - name
+      type: object
+    getOrganizationWirelessDevicesPacketLossByClient_200_response_inner_upstream:
+      description: Packets sent from a client to an AP.
+      example:
+        total: 5
+        lost: 5
+        lossPercentage: 2.302136
+      properties:
+        total:
+          description: Total packets sent by a client to an AP.
+          type: integer
+        lost:
+          description: Total packets sent by a client and did not reach the AP.
+          type: integer
+        lossPercentage:
+          description: Percentage of lost packets.
+          format: float
+          type: number
       type: object
     getOrganizationSummaryTopClientsManufacturersByUsage_200_response_inner:
       example:
@@ -68717,42 +69700,6 @@ components:
           description: UDP checksum of the packet.
           type: string
       type: object
-    getOrganizationApplianceVpnVpnFirewallRules_200_response_rules_inner:
-      example:
-        srcCidr: srcCidr
-        protocol: protocol
-        syslogEnabled: true
-        destPort: destPort
-        comment: comment
-        srcPort: srcPort
-        destCidr: destCidr
-        policy: policy
-      properties:
-        comment:
-          description: Description of the rule
-          type: string
-        policy:
-          description: '''Deny'' traffic specified by this rule'
-          type: string
-        protocol:
-          description: The type of protocol
-          type: string
-        srcPort:
-          description: List of source ports
-          type: string
-        srcCidr:
-          description: List of source IP addresses
-          type: string
-        destPort:
-          description: List of destination ports
-          type: string
-        destCidr:
-          description: List of destination IP addresses
-          type: string
-        syslogEnabled:
-          description: Flag indicating whether the rule should be logged to syslog
-          type: boolean
-      type: object
     updateNetworkAlertsSettings_request_defaultDestinations:
       description: The network-wide destinations for all alerts on the network.
       properties:
@@ -69389,11 +70336,12 @@ components:
         - comment: Allow TCP traffic to subnet with HTTP servers.
           policy: allow
           protocol: tcp
-          destPort: "443"
-          destCidr: 192.168.1.0/24
           srcPort: Any
           srcCidr: Any
+          destPort: "443"
+          destCidr: 192.168.1.0/24
           syslogEnabled: false
+        syslogDefaultRule: true
       properties:
         rules:
           description: An ordered array of the firewall rules (not including the default
@@ -70269,17 +71217,43 @@ components:
       required:
       - target
       type: object
+    getOrganizationDevicesStatuses_200_response_inner_components_powerSupplies_inner_poe:
+      description: PoE info of the power supply
+      example:
+        unit: unit
+        maximum: 6
+      properties:
+        unit:
+          description: Unit of the PoE maximum
+          type: string
+        maximum:
+          description: Maximum PoE this power supply can provide when connected to
+            the current switch model
+          type: integer
+      type: object
     getOrganizationDevicesStatuses_200_response_inner_components:
       description: Components
       example:
         powerSupplies:
-        - powerSupplies
-        - powerSupplies
+        - serial: serial
+          poe:
+            unit: unit
+            maximum: 6
+          model: model
+          slot: 0
+          status: available
+        - serial: serial
+          poe:
+            unit: unit
+            maximum: 6
+          model: model
+          slot: 0
+          status: available
       properties:
         powerSupplies:
           description: Power Supplies
           items:
-            type: string
+            $ref: '#/components/schemas/getOrganizationDevicesStatuses_200_response_inner_components_powerSupplies_inner'
           type: array
       type: object
     createNetworkWirelessRfProfile_request_flexRadios_byModel_inner:
@@ -70949,10 +71923,10 @@ x-batchable-actions:
   summary: Update alternate management interface IPv6 address
   resource: "/devices/{serial}/wireless/alternateManagementInterface/ipv6"
   operation: update
-- group: Ms/actions/switch
+- group: Ms/switch
   summary: Update switch network settings
   resource: "/networks/{networkId}/switch/settings"
-  operation: settings/update
+  operation: settings/actions/update
 - group: Mt/api/actions/alert profiles
   summary: Creates a sensor alert profile for a network.
   resource: "/networks/{networkId}/sensor/alerts/profiles"
@@ -70964,6 +71938,10 @@ x-batchable-actions:
 - group: Mt/api/actions/alert profiles
   summary: Updates a sensor alert profile for a network.
   resource: "/networks/{networkId}/sensor/alerts/profiles/{id}"
+  operation: update
+- group: Mt/api/actions/sensor gateway role
+  summary: Assign one or more sensor roles to a given sensor or camera device.
+  resource: "/devices/{serial}/sensor/relationships"
   operation: update
 - group: Mt/api/actions/sensor mqtt broker
   summary: "Update the sensor settings of an MQTT broker. To update the broker itself,\
@@ -71133,10 +72111,6 @@ x-batchable-actions:
 - group: Sense setting
   summary: Update sense settings for the given camera
   resource: "/devices/{serial}/camera/sense"
-  operation: update
-- group: Sensor gateway role
-  summary: Assign one or more sensor roles to a given sensor or camera device.
-  resource: "/devices/{serial}/sensor/relationships"
   operation: update
 - group: Single lan
   summary: Update single LAN configuration

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Livestream** | Pointer to [**GetDeviceSensorRelationships200ResponseInnerLivestream**](GetDeviceSensorRelationships200ResponseInnerLivestream.md) |  | [optional] 
+**Livestream** | Pointer to [**GetDeviceSensorRelationships200ResponseLivestream**](GetDeviceSensorRelationships200ResponseLivestream.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetLivestream
 
-`func (o *GetNetworkSensorRelationships200ResponseInnerRelationships) GetLivestream() GetDeviceSensorRelationships200ResponseInnerLivestream`
+`func (o *GetNetworkSensorRelationships200ResponseInnerRelationships) GetLivestream() GetDeviceSensorRelationships200ResponseLivestream`
 
 GetLivestream returns the Livestream field if non-nil, zero value otherwise.
 
 ### GetLivestreamOk
 
-`func (o *GetNetworkSensorRelationships200ResponseInnerRelationships) GetLivestreamOk() (*GetDeviceSensorRelationships200ResponseInnerLivestream, bool)`
+`func (o *GetNetworkSensorRelationships200ResponseInnerRelationships) GetLivestreamOk() (*GetDeviceSensorRelationships200ResponseLivestream, bool)`
 
 GetLivestreamOk returns a tuple with the Livestream field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLivestream
 
-`func (o *GetNetworkSensorRelationships200ResponseInnerRelationships) SetLivestream(v GetDeviceSensorRelationships200ResponseInnerLivestream)`
+`func (o *GetNetworkSensorRelationships200ResponseInnerRelationships) SetLivestream(v GetDeviceSensorRelationships200ResponseLivestream)`
 
 SetLivestream sets Livestream field to given value.
 

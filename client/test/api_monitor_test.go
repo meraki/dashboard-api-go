@@ -1520,4 +1520,46 @@ func Test_client_MonitorApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test MonitorApiService GetOrganizationWirelessDevicesPacketLossByClient", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.MonitorApi.GetOrganizationWirelessDevicesPacketLossByClient(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test MonitorApiService GetOrganizationWirelessDevicesPacketLossByDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.MonitorApi.GetOrganizationWirelessDevicesPacketLossByDevice(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test MonitorApiService GetOrganizationWirelessDevicesPacketLossByNetwork", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.MonitorApi.GetOrganizationWirelessDevicesPacketLossByNetwork(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }
