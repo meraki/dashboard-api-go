@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PowerSupplies** | Pointer to **[]string** | Power Supplies | [optional] 
+**PowerSupplies** | Pointer to [**[]GetOrganizationDevicesStatuses200ResponseInnerComponentsPowerSuppliesInner**](GetOrganizationDevicesStatuses200ResponseInnerComponentsPowerSuppliesInner.md) | Power Supplies | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetPowerSupplies
 
-`func (o *GetOrganizationDevicesStatuses200ResponseInnerComponents) GetPowerSupplies() []string`
+`func (o *GetOrganizationDevicesStatuses200ResponseInnerComponents) GetPowerSupplies() []GetOrganizationDevicesStatuses200ResponseInnerComponentsPowerSuppliesInner`
 
 GetPowerSupplies returns the PowerSupplies field if non-nil, zero value otherwise.
 
 ### GetPowerSuppliesOk
 
-`func (o *GetOrganizationDevicesStatuses200ResponseInnerComponents) GetPowerSuppliesOk() (*[]string, bool)`
+`func (o *GetOrganizationDevicesStatuses200ResponseInnerComponents) GetPowerSuppliesOk() (*[]GetOrganizationDevicesStatuses200ResponseInnerComponentsPowerSuppliesInner, bool)`
 
 GetPowerSuppliesOk returns a tuple with the PowerSupplies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPowerSupplies
 
-`func (o *GetOrganizationDevicesStatuses200ResponseInnerComponents) SetPowerSupplies(v []string)`
+`func (o *GetOrganizationDevicesStatuses200ResponseInnerComponents) SetPowerSupplies(v []GetOrganizationDevicesStatuses200ResponseInnerComponentsPowerSuppliesInner)`
 
 SetPowerSupplies sets PowerSupplies field to given value.
 

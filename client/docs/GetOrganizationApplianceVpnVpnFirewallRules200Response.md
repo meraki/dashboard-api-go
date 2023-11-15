@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Rules** | Pointer to [**[]GetOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner**](GetOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner.md) | List of firewall rules | [optional] 
+**Rules** | Pointer to [**[]GetNetworkApplianceFirewallInboundFirewallRules200ResponseRulesInner**](GetNetworkApplianceFirewallInboundFirewallRules200ResponseRulesInner.md) | An ordered array of the firewall rules (not including the default rule) | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetRules
 
-`func (o *GetOrganizationApplianceVpnVpnFirewallRules200Response) GetRules() []GetOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner`
+`func (o *GetOrganizationApplianceVpnVpnFirewallRules200Response) GetRules() []GetNetworkApplianceFirewallInboundFirewallRules200ResponseRulesInner`
 
 GetRules returns the Rules field if non-nil, zero value otherwise.
 
 ### GetRulesOk
 
-`func (o *GetOrganizationApplianceVpnVpnFirewallRules200Response) GetRulesOk() (*[]GetOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner, bool)`
+`func (o *GetOrganizationApplianceVpnVpnFirewallRules200Response) GetRulesOk() (*[]GetNetworkApplianceFirewallInboundFirewallRules200ResponseRulesInner, bool)`
 
 GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRules
 
-`func (o *GetOrganizationApplianceVpnVpnFirewallRules200Response) SetRules(v []GetOrganizationApplianceVpnVpnFirewallRules200ResponseRulesInner)`
+`func (o *GetOrganizationApplianceVpnVpnFirewallRules200Response) SetRules(v []GetNetworkApplianceFirewallInboundFirewallRules200ResponseRulesInner)`
 
 SetRules sets Rules field to given value.
 
