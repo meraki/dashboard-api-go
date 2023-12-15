@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | Name of the VLAN, string length must be from 1 to 32 characters | 
 **VlanId** | **string** | VLAN ID | 
+**AdaptivePolicyGroup** | Pointer to [**CreateNetworkVlanProfileRequestVlanNamesInnerAdaptivePolicyGroup**](CreateNetworkVlanProfileRequestVlanNamesInnerAdaptivePolicyGroup.md) |  | [optional] 
 
 ## Methods
 
@@ -65,6 +66,31 @@ and a boolean to check if the value has been set.
 
 SetVlanId sets VlanId field to given value.
 
+
+### GetAdaptivePolicyGroup
+
+`func (o *CreateNetworkVlanProfileRequestVlanNamesInner) GetAdaptivePolicyGroup() CreateNetworkVlanProfileRequestVlanNamesInnerAdaptivePolicyGroup`
+
+GetAdaptivePolicyGroup returns the AdaptivePolicyGroup field if non-nil, zero value otherwise.
+
+### GetAdaptivePolicyGroupOk
+
+`func (o *CreateNetworkVlanProfileRequestVlanNamesInner) GetAdaptivePolicyGroupOk() (*CreateNetworkVlanProfileRequestVlanNamesInnerAdaptivePolicyGroup, bool)`
+
+GetAdaptivePolicyGroupOk returns a tuple with the AdaptivePolicyGroup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAdaptivePolicyGroup
+
+`func (o *CreateNetworkVlanProfileRequestVlanNamesInner) SetAdaptivePolicyGroup(v CreateNetworkVlanProfileRequestVlanNamesInnerAdaptivePolicyGroup)`
+
+SetAdaptivePolicyGroup sets AdaptivePolicyGroup field to given value.
+
+### HasAdaptivePolicyGroup
+
+`func (o *CreateNetworkVlanProfileRequestVlanNamesInner) HasAdaptivePolicyGroup() bool`
+
+HasAdaptivePolicyGroup returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

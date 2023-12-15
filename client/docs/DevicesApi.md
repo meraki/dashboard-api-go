@@ -728,7 +728,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceLiveToolsPing
 
-> GetDeviceLiveToolsPing200Response GetDeviceLiveToolsPing(ctx, serial, id).Execute()
+> DevicesSerialLiveToolsPingPostRequestMessage GetDeviceLiveToolsPing(ctx, serial, id).Execute()
 
 Return a ping job
 
@@ -758,7 +758,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.GetDeviceLiveToolsPing``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceLiveToolsPing`: GetDeviceLiveToolsPing200Response
+    // response from `GetDeviceLiveToolsPing`: DevicesSerialLiveToolsPingPostRequestMessage
     fmt.Fprintf(os.Stdout, "Response from `DevicesApi.GetDeviceLiveToolsPing`: %v\n", resp)
 }
 ```
@@ -784,7 +784,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetDeviceLiveToolsPing200Response**](GetDeviceLiveToolsPing200Response.md)
+[**DevicesSerialLiveToolsPingPostRequestMessage**](DevicesSerialLiveToolsPingPostRequestMessage.md)
 
 ### Authorization
 
@@ -802,7 +802,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceLiveToolsPingDevice
 
-> GetDeviceLiveToolsPing200Response GetDeviceLiveToolsPingDevice(ctx, serial, id).Execute()
+> GetDeviceLiveToolsPingDevice200Response GetDeviceLiveToolsPingDevice(ctx, serial, id).Execute()
 
 Return a ping device job
 
@@ -832,7 +832,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DevicesApi.GetDeviceLiveToolsPingDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceLiveToolsPingDevice`: GetDeviceLiveToolsPing200Response
+    // response from `GetDeviceLiveToolsPingDevice`: GetDeviceLiveToolsPingDevice200Response
     fmt.Fprintf(os.Stdout, "Response from `DevicesApi.GetDeviceLiveToolsPingDevice`: %v\n", resp)
 }
 ```
@@ -858,7 +858,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetDeviceLiveToolsPing200Response**](GetDeviceLiveToolsPing200Response.md)
+[**GetDeviceLiveToolsPingDevice200Response**](GetDeviceLiveToolsPingDevice200Response.md)
 
 ### Authorization
 
@@ -2104,7 +2104,7 @@ import (
 
 func main() {
     networkId := "networkId_example" // string | Network ID
-    fields := []string{"Inner_example"} // []string | Additional fields that will be displayed for each device.     The default fields are: id, name, tags, ssid, wifiMac, osName, systemModel, uuid, and serialNumber. The additional fields are: ip,     systemType, availableDeviceCapacity, kioskAppName, biosVersion, lastConnected, missingAppsCount, userSuppliedAddress, location, lastUser,     ownerEmail, ownerUsername, osBuild, publicIp, phoneNumber, diskInfoJson, deviceCapacity, isManaged, hadMdm, isSupervised, meid, imei, iccid,     simCarrierNetwork, cellularDataUsed, isHotspotEnabled, createdAt, batteryEstCharge, quarantined, avName, avRunning, asName, fwName,     isRooted, loginRequired, screenLockEnabled, screenLockDelay, autoLoginDisabled, autoTags, hasMdm, hasDesktopAgent, diskEncryptionEnabled,     hardwareEncryptionCaps, passCodeLock, usesHardwareKeystore, androidSecurityPatchVersion, and url. (optional)
+    fields := []string{"Inner_example"} // []string | Additional fields that will be displayed for each device.     The default fields are: id, name, tags, ssid, wifiMac, osName, systemModel, uuid, and serialNumber. The additional fields are: ip,     systemType, availableDeviceCapacity, kioskAppName, biosVersion, lastConnected, missingAppsCount, userSuppliedAddress, location, lastUser,     ownerEmail, ownerUsername, osBuild, publicIp, phoneNumber, diskInfoJson, deviceCapacity, isManaged, hadMdm, isSupervised, meid, imei, iccid,     simCarrierNetwork, cellularDataUsed, isHotspotEnabled, createdAt, batteryEstCharge, quarantined, avName, avRunning, asName, fwName,     isRooted, loginRequired, screenLockEnabled, screenLockDelay, autoLoginDisabled, autoTags, hasMdm, hasDesktopAgent, diskEncryptionEnabled,     hardwareEncryptionCaps, passCodeLock, usesHardwareKeystore, androidSecurityPatchVersion, cellular, and url. (optional)
     wifiMacs := []string{"Inner_example"} // []string | Filter devices by wifi mac(s). (optional)
     serials := []string{"Inner_example"} // []string | Filter devices by serial(s). (optional)
     ids := []string{"Inner_example"} // []string | Filter devices by id(s). (optional)
@@ -2143,7 +2143,7 @@ Other parameters are passed through a pointer to a apiGetNetworkSmDevicesRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **fields** | **[]string** | Additional fields that will be displayed for each device.     The default fields are: id, name, tags, ssid, wifiMac, osName, systemModel, uuid, and serialNumber. The additional fields are: ip,     systemType, availableDeviceCapacity, kioskAppName, biosVersion, lastConnected, missingAppsCount, userSuppliedAddress, location, lastUser,     ownerEmail, ownerUsername, osBuild, publicIp, phoneNumber, diskInfoJson, deviceCapacity, isManaged, hadMdm, isSupervised, meid, imei, iccid,     simCarrierNetwork, cellularDataUsed, isHotspotEnabled, createdAt, batteryEstCharge, quarantined, avName, avRunning, asName, fwName,     isRooted, loginRequired, screenLockEnabled, screenLockDelay, autoLoginDisabled, autoTags, hasMdm, hasDesktopAgent, diskEncryptionEnabled,     hardwareEncryptionCaps, passCodeLock, usesHardwareKeystore, androidSecurityPatchVersion, and url. | 
+ **fields** | **[]string** | Additional fields that will be displayed for each device.     The default fields are: id, name, tags, ssid, wifiMac, osName, systemModel, uuid, and serialNumber. The additional fields are: ip,     systemType, availableDeviceCapacity, kioskAppName, biosVersion, lastConnected, missingAppsCount, userSuppliedAddress, location, lastUser,     ownerEmail, ownerUsername, osBuild, publicIp, phoneNumber, diskInfoJson, deviceCapacity, isManaged, hadMdm, isSupervised, meid, imei, iccid,     simCarrierNetwork, cellularDataUsed, isHotspotEnabled, createdAt, batteryEstCharge, quarantined, avName, avRunning, asName, fwName,     isRooted, loginRequired, screenLockEnabled, screenLockDelay, autoLoginDisabled, autoTags, hasMdm, hasDesktopAgent, diskEncryptionEnabled,     hardwareEncryptionCaps, passCodeLock, usesHardwareKeystore, androidSecurityPatchVersion, cellular, and url. | 
  **wifiMacs** | **[]string** | Filter devices by wifi mac(s). | 
  **serials** | **[]string** | Filter devices by serial(s). | 
  **ids** | **[]string** | Filter devices by id(s). | 
@@ -3238,7 +3238,7 @@ func main() {
     usedState := "usedState_example" // string | Filter results by used or unused inventory. Accepted values are 'used' or 'unused'. (optional)
     search := "search_example" // string | Search for devices in inventory based on serial number, mac address, or model. (optional)
     macs := []string{"Inner_example"} // []string | Search for devices in inventory based on mac addresses. (optional)
-    networkIds := []string{"Inner_example"} // []string | Search for devices in inventory based on network ids. (optional)
+    networkIds := []string{"Inner_example"} // []string | Search for devices in inventory based on network ids. Use explicit 'null' value to get available devices only. (optional)
     serials := []string{"Inner_example"} // []string | Search for devices in inventory based on serials. (optional)
     models := []string{"Inner_example"} // []string | Search for devices in inventory based on model. (optional)
     orderNumbers := []string{"Inner_example"} // []string | Search for devices in inventory based on order numbers. (optional)
@@ -3281,7 +3281,7 @@ Name | Type | Description  | Notes
  **usedState** | **string** | Filter results by used or unused inventory. Accepted values are &#39;used&#39; or &#39;unused&#39;. | 
  **search** | **string** | Search for devices in inventory based on serial number, mac address, or model. | 
  **macs** | **[]string** | Search for devices in inventory based on mac addresses. | 
- **networkIds** | **[]string** | Search for devices in inventory based on network ids. | 
+ **networkIds** | **[]string** | Search for devices in inventory based on network ids. Use explicit &#39;null&#39; value to get available devices only. | 
  **serials** | **[]string** | Search for devices in inventory based on serials. | 
  **models** | **[]string** | Search for devices in inventory based on model. | 
  **orderNumbers** | **[]string** | Search for devices in inventory based on order numbers. | 

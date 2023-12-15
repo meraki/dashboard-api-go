@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceLiveToolsPing
 
-> GetDeviceLiveToolsPing200Response GetDeviceLiveToolsPing(ctx, serial, id).Execute()
+> DevicesSerialLiveToolsPingPostRequestMessage GetDeviceLiveToolsPing(ctx, serial, id).Execute()
 
 Return a ping job
 
@@ -114,7 +114,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PingApi.GetDeviceLiveToolsPing``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceLiveToolsPing`: GetDeviceLiveToolsPing200Response
+    // response from `GetDeviceLiveToolsPing`: DevicesSerialLiveToolsPingPostRequestMessage
     fmt.Fprintf(os.Stdout, "Response from `PingApi.GetDeviceLiveToolsPing`: %v\n", resp)
 }
 ```
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetDeviceLiveToolsPing200Response**](GetDeviceLiveToolsPing200Response.md)
+[**DevicesSerialLiveToolsPingPostRequestMessage**](DevicesSerialLiveToolsPingPostRequestMessage.md)
 
 ### Authorization
 

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Synchronous** | Pointer to **bool** | Flag describing whether actions should run synchronously or asynchronously | [optional] 
 **Status** | Pointer to [**CreateOrganizationActionBatch201ResponseStatus**](CreateOrganizationActionBatch201ResponseStatus.md) |  | [optional] 
 **Actions** | [**[]CreateOrganizationActionBatch201ResponseActionsInner**](CreateOrganizationActionBatch201ResponseActionsInner.md) | A set of changes made as part of this action (&lt;a href&#x3D;&#39;https://developer.cisco.com/meraki/api/#/rest/guides/action-batches/&#39;&gt;more details&lt;/a&gt;) | 
+**Callback** | Pointer to [**CreateDeviceLiveToolsPing201ResponseCallback**](CreateDeviceLiveToolsPing201ResponseCallback.md) |  | [optional] 
 
 ## Methods
 
@@ -174,6 +175,31 @@ and a boolean to check if the value has been set.
 
 SetActions sets Actions field to given value.
 
+
+### GetCallback
+
+`func (o *CreateOrganizationActionBatch201Response) GetCallback() CreateDeviceLiveToolsPing201ResponseCallback`
+
+GetCallback returns the Callback field if non-nil, zero value otherwise.
+
+### GetCallbackOk
+
+`func (o *CreateOrganizationActionBatch201Response) GetCallbackOk() (*CreateDeviceLiveToolsPing201ResponseCallback, bool)`
+
+GetCallbackOk returns a tuple with the Callback field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCallback
+
+`func (o *CreateOrganizationActionBatch201Response) SetCallback(v CreateDeviceLiveToolsPing201ResponseCallback)`
+
+SetCallback sets Callback field to given value.
+
+### HasCallback
+
+`func (o *CreateOrganizationActionBatch201Response) HasCallback() bool`
+
+HasCallback returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

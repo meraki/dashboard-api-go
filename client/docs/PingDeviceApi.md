@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceLiveToolsPingDevice
 
-> GetDeviceLiveToolsPing200Response GetDeviceLiveToolsPingDevice(ctx, serial, id).Execute()
+> GetDeviceLiveToolsPingDevice200Response GetDeviceLiveToolsPingDevice(ctx, serial, id).Execute()
 
 Return a ping device job
 
@@ -114,7 +114,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `PingDeviceApi.GetDeviceLiveToolsPingDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDeviceLiveToolsPingDevice`: GetDeviceLiveToolsPing200Response
+    // response from `GetDeviceLiveToolsPingDevice`: GetDeviceLiveToolsPingDevice200Response
     fmt.Fprintf(os.Stdout, "Response from `PingDeviceApi.GetDeviceLiveToolsPingDevice`: %v\n", resp)
 }
 ```
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetDeviceLiveToolsPing200Response**](GetDeviceLiveToolsPing200Response.md)
+[**GetDeviceLiveToolsPingDevice200Response**](GetDeviceLiveToolsPingDevice200Response.md)
 
 ### Authorization
 

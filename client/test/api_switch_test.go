@@ -987,6 +987,20 @@ func Test_client_SwitchApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test SwitchApiService GetOrganizationSummarySwitchPowerHistory", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.SwitchApi.GetOrganizationSummarySwitchPowerHistory(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test SwitchApiService GetOrganizationSwitchPortsBySwitch", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

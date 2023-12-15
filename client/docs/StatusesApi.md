@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**GetOrganizationDevicesStatuses**](StatusesApi.md#GetOrganizationDevicesStatuses) | **Get** /organizations/{organizationId}/devices/statuses | List the status of every Meraki device in the organization
 [**GetOrganizationDevicesStatusesOverview**](StatusesApi.md#GetOrganizationDevicesStatusesOverview) | **Get** /organizations/{organizationId}/devices/statuses/overview | Return an overview of current device statuses
 [**GetOrganizationUplinksStatuses**](StatusesApi.md#GetOrganizationUplinksStatuses) | **Get** /organizations/{organizationId}/uplinks/statuses | List the uplink status of every Meraki MX, MG and Z series devices in the organization
+[**GetOrganizationWebhooksCallbacksStatus**](StatusesApi.md#GetOrganizationWebhooksCallbacksStatus) | **Get** /organizations/{organizationId}/webhooks/callbacks/statuses/{callbackId} | Return the status of an API callback
 [**GetOrganizationWirelessDevicesEthernetStatuses**](StatusesApi.md#GetOrganizationWirelessDevicesEthernetStatuses) | **Get** /organizations/{organizationId}/wireless/devices/ethernet/statuses | List the most recent Ethernet link speed, duplex, aggregation and power mode and status information for wireless devices.
 [**UpdateOrganizationCameraOnboardingStatuses**](StatusesApi.md#UpdateOrganizationCameraOnboardingStatuses) | **Put** /organizations/{organizationId}/camera/onboarding/statuses | Notify that credential handoff to camera has completed
 
@@ -900,6 +901,80 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]GetOrganizationUplinksStatuses200ResponseInner**](GetOrganizationUplinksStatuses200ResponseInner.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth), [meraki_api_key](../README.md#meraki_api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetOrganizationWebhooksCallbacksStatus
+
+> GetOrganizationWebhooksCallbacksStatus200Response GetOrganizationWebhooksCallbacksStatus(ctx, organizationId, callbackId).Execute()
+
+Return the status of an API callback
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/meraki/dashboard-api-go/client"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | Organization ID
+    callbackId := "callbackId_example" // string | Callback ID
+
+    configuration := openapiclient.NewConfiguration()
+
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.StatusesApi.GetOrganizationWebhooksCallbacksStatus(context.Background(), organizationId, callbackId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `StatusesApi.GetOrganizationWebhooksCallbacksStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOrganizationWebhooksCallbacksStatus`: GetOrganizationWebhooksCallbacksStatus200Response
+    fmt.Fprintf(os.Stdout, "Response from `StatusesApi.GetOrganizationWebhooksCallbacksStatus`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** | Organization ID | 
+**callbackId** | **string** | Callback ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrganizationWebhooksCallbacksStatusRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**GetOrganizationWebhooksCallbacksStatus200Response**](GetOrganizationWebhooksCallbacksStatus200Response.md)
 
 ### Authorization
 

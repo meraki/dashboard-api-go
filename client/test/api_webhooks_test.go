@@ -179,6 +179,21 @@ func Test_client_WebhooksApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test WebhooksApiService GetOrganizationWebhooksCallbacksStatus", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+		var callbackId string
+
+		resp, httpRes, err := apiClient.WebhooksApi.GetOrganizationWebhooksCallbacksStatus(context.Background(), organizationId, callbackId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test WebhooksApiService GetOrganizationWebhooksLogs", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
