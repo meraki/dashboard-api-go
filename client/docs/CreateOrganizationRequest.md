@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | The name of the organization | 
-**Management** | Pointer to [**GetOrganizations200ResponseInnerManagement**](GetOrganizations200ResponseInnerManagement.md) |  | [optional] 
+**Management** | Pointer to [**CreateOrganizationRequestManagement**](CreateOrganizationRequestManagement.md) |  | [optional] 
 
 ## Methods
 
@@ -48,20 +48,20 @@ SetName sets Name field to given value.
 
 ### GetManagement
 
-`func (o *CreateOrganizationRequest) GetManagement() GetOrganizations200ResponseInnerManagement`
+`func (o *CreateOrganizationRequest) GetManagement() CreateOrganizationRequestManagement`
 
 GetManagement returns the Management field if non-nil, zero value otherwise.
 
 ### GetManagementOk
 
-`func (o *CreateOrganizationRequest) GetManagementOk() (*GetOrganizations200ResponseInnerManagement, bool)`
+`func (o *CreateOrganizationRequest) GetManagementOk() (*CreateOrganizationRequestManagement, bool)`
 
 GetManagementOk returns a tuple with the Management field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetManagement
 
-`func (o *CreateOrganizationRequest) SetManagement(v GetOrganizations200ResponseInnerManagement)`
+`func (o *CreateOrganizationRequest) SetManagement(v CreateOrganizationRequestManagement)`
 
 SetManagement sets Management field to given value.
 

@@ -6,7 +6,7 @@ info:
   description: |
     A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.
 
-    > Date: 01 November, 2023
+    > Date: 06 December, 2023
     >
     > [Recent Updates](https://meraki.io/whats-new/)
 
@@ -18,7 +18,7 @@ info:
 
     [Meraki Homepage](https://www.meraki.com)
   title: Meraki Dashboard API
-  version: 1.39.0
+  version: 1.40.0
 servers:
 - url: "https://api.meraki.com/{basePath}"
   variables:
@@ -80,6 +80,7 @@ tags:
 - name: byUsage
 - name: byUtilization
 - name: bypassActivationLockAttempts
+- name: callbacks
 - name: categories
 - name: cellular
 - name: cellularFirewallRules
@@ -201,6 +202,7 @@ tags:
 - name: portForwardingRules
 - name: portSchedules
 - name: ports
+- name: power
 - name: powerModules
 - name: prefixes
 - name: prepare
@@ -369,6 +371,7 @@ paths:
                 details:
                 - name: Catalyst serial
                   value: 123ABC
+                imei: "123456789000000"
               schema:
                 type: object
           description: Successful operation
@@ -420,6 +423,7 @@ paths:
                 details:
                 - name: Catalyst serial
                   value: 123ABC
+                imei: "123456789000000"
               schema:
                 type: object
           description: Successful operation
@@ -1930,6 +1934,22 @@ paths:
       - clients
   /devices/{serial}/liveTools/ping:
     post:
+      callbacks:
+        pingHost:
+          '{$request.body#/callback/url}':
+            post:
+              operationId: pingHost_Post
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request'
+                description: Callback payload
+                required: true
+              responses:
+                "2XX":
+                  description: Your server return this code if it accepts the callback
+              x-callback-request: true
       description: Enqueue a job to ping a target host from the device
       operationId: createDeviceLiveToolsPing
       parameters:
@@ -1959,6 +1979,10 @@ paths:
                   target: 75.75.75.75
                   count: 2
                 status: complete
+                callback:
+                  id: "1284392014819"
+                  url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
+                  status: new
               schema:
                 $ref: '#/components/schemas/createDeviceLiveToolsPing_201_response'
           description: Successful operation
@@ -2015,7 +2039,7 @@ paths:
                     size: 84
                     latency: 15.7
               schema:
-                $ref: '#/components/schemas/getDeviceLiveToolsPing_200_response'
+                $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request_message'
           description: Successful operation
       summary: Return a ping job
       tags:
@@ -2024,6 +2048,22 @@ paths:
       - ping
   /devices/{serial}/liveTools/pingDevice:
     post:
+      callbacks:
+        pingDevice:
+          '{$request.body#/callback/url}':
+            post:
+              operationId: pingDevice_Post
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request'
+                description: Callback payload
+                required: true
+              responses:
+                "2XX":
+                  description: Your server return this code if it accepts the callback
+              x-callback-request: true
       description: Enqueue a job to check connectivity status to the device
       operationId: createDeviceLiveToolsPingDevice
       parameters:
@@ -2053,6 +2093,10 @@ paths:
                   target: 75.75.75.75
                   count: 2
                 status: complete
+                callback:
+                  id: "1284392014819"
+                  url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
+                  status: new
               schema:
                 $ref: '#/components/schemas/createDeviceLiveToolsPing_201_response'
           description: Successful operation
@@ -2108,8 +2152,12 @@ paths:
                   - sequenceId: 1
                     size: 84
                     latency: 15.7
+                callback:
+                  id: "1284392014819"
+                  url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
+                  status: new
               schema:
-                $ref: '#/components/schemas/getDeviceLiveToolsPing_200_response'
+                $ref: '#/components/schemas/getDeviceLiveToolsPingDevice_200_response'
           description: Successful operation
       summary: Return a ping device job
       tags:
@@ -2602,7 +2650,7 @@ paths:
                 - PoE overload
                 - Very high proportion of CRC errors
                 warnings:
-                - SecureConnect authentication in progress
+                - SecurePort authentication in progress
                 - PoE port was denied power
                 - High proportion of CRC errors
                 speed: 10 Gbps
@@ -9250,7 +9298,7 @@ paths:
           type: number
         style: form
       - description: The number of entries per page returned. Acceptable range is
-          3 - 1000. Default is 10.
+          3 - 5000. Default is 10.
         explode: true
         in: query
         name: perPage
@@ -10374,6 +10422,7 @@ paths:
                 details:
                 - name: Catalyst serial
                   value: 123ABC
+                imei: "123456789000000"
               schema:
                 items:
                   type: object
@@ -10458,6 +10507,7 @@ paths:
                 details:
                 - name: Catalyst serial
                   value: 123ABC
+                imei: "123456789000000"
               schema:
                 type: object
           description: Successful operation
@@ -11850,6 +11900,7 @@ paths:
                   networkId: N_24329156
                   serial: Q234-ABCD-5678
                   model: MR34
+                  imei: "123456789000000"
                   mac: 00:11:22:33:44:55
                   lanIp: 1.2.3.4
                   firmware: wireless-25-14
@@ -11924,6 +11975,7 @@ paths:
                   networkId: N_24329156
                   serial: Q234-ABCD-5678
                   model: MR34
+                  imei: "123456789000000"
                   mac: 00:11:22:33:44:55
                   lanIp: 1.2.3.4
                   firmware: wireless-25-14
@@ -11999,6 +12051,7 @@ paths:
                   networkId: N_24329156
                   serial: Q234-ABCD-5678
                   model: MR34
+                  imei: "123456789000000"
                   mac: 00:11:22:33:44:55
                   lanIp: 1.2.3.4
                   firmware: wireless-25-14
@@ -12073,6 +12126,7 @@ paths:
                   networkId: N_24329156
                   serial: Q234-ABCD-5678
                   model: MR34
+                  imei: "123456789000000"
                   mac: 00:11:22:33:44:55
                   lanIp: 1.2.3.4
                   firmware: wireless-25-14
@@ -12153,6 +12207,7 @@ paths:
                   networkId: N_24329156
                   serial: Q234-ABCD-5678
                   model: MR34
+                  imei: "123456789000000"
                   mac: 00:11:22:33:44:55
                   lanIp: 1.2.3.4
                   firmware: wireless-25-14
@@ -14889,7 +14944,7 @@ paths:
               ownerEmail, ownerUsername, osBuild, publicIp, phoneNumber, diskInfoJson, deviceCapacity, isManaged, hadMdm, isSupervised, meid, imei, iccid,
               simCarrierNetwork, cellularDataUsed, isHotspotEnabled, createdAt, batteryEstCharge, quarantined, avName, avRunning, asName, fwName,
               isRooted, loginRequired, screenLockEnabled, screenLockDelay, autoLoginDisabled, autoTags, hasMdm, hasDesktopAgent, diskEncryptionEnabled,
-              hardwareEncryptionCaps, passCodeLock, usesHardwareKeystore, androidSecurityPatchVersion, and url.
+              hardwareEncryptionCaps, passCodeLock, usesHardwareKeystore, androidSecurityPatchVersion, cellular, and url.
         explode: true
         in: query
         name: fields
@@ -20673,6 +20728,9 @@ paths:
                 vlanNames:
                 - name: named-1
                   vlanId: "1"
+                  adaptivePolicyGroup:
+                    id: "791"
+                    name: Infrastructure
                 vlanGroups:
                 - name: named-group-1
                   vlanIds: "2,5-7"
@@ -20715,6 +20773,9 @@ paths:
                 vlanNames:
                 - name: named-1
                   vlanId: "1"
+                  adaptivePolicyGroup:
+                    id: "791"
+                    name: Infrastructure
                 vlanGroups:
                 - name: named-group-1
                   vlanIds: "2,5-7"
@@ -20941,6 +21002,9 @@ paths:
                 vlanNames:
                 - name: named-1
                   vlanId: "1"
+                  adaptivePolicyGroup:
+                    id: "791"
+                    name: Infrastructure
                 vlanGroups:
                 - name: named-group-1
                   vlanIds: "2,5-7"
@@ -20989,6 +21053,9 @@ paths:
                 vlanNames:
                 - name: named-1
                   vlanId: "1"
+                  adaptivePolicyGroup:
+                    id: "791"
+                    name: Infrastructure
                 vlanGroups:
                 - name: named-group-1
                   vlanIds: "2,5-7"
@@ -27587,6 +27654,22 @@ paths:
       - configure
       - actionBatches
     post:
+      callbacks:
+        actionBatch:
+          '{$request.body#/callback/url}':
+            post:
+              operationId: actionBatch_Post
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/_organizations__organizationId__actionBatches_get_request'
+                description: Callback payload
+                required: true
+              responses:
+                "2XX":
+                  description: Your server return this code if it accepts the callback
+              x-callback-request: true
       description: Create an action batch
       operationId: createOrganizationActionBatch
       parameters:
@@ -27623,6 +27706,10 @@ paths:
                 actions:
                 - resource: /devices/QXXX-XXXX-XXXX/switch/ports/3
                   operation: update
+                callback:
+                  id: "1284392014819"
+                  url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
+                  status: new
               schema:
                 $ref: '#/components/schemas/createOrganizationActionBatch_201_response'
           description: Successful operation
@@ -27699,6 +27786,10 @@ paths:
                 actions:
                 - resource: /devices/QXXX-XXXX-XXXX/switch/ports/3
                   operation: update
+                callback:
+                  id: "1284392014819"
+                  url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
+                  status: new
               schema:
                 $ref: '#/components/schemas/createOrganizationActionBatch_201_response'
           description: Successful operation
@@ -32554,6 +32645,7 @@ paths:
                 networkId: N_24329156
                 serial: Q234-ABCD-5678
                 model: MR34
+                imei: "123456789000000"
                 mac: 00:11:22:33:44:55
                 lanIp: 1.2.3.4
                 firmware: wireless-25-14
@@ -34516,7 +34608,8 @@ paths:
             type: string
           type: array
         style: form
-      - description: Search for devices in inventory based on network ids.
+      - description: Search for devices in inventory based on network ids. Use explicit
+          'null' value to get available devices only.
         explode: true
         in: query
         name: networkIds
@@ -37440,6 +37533,73 @@ paths:
       - organizations
       - configure
       - snmp
+  /organizations/{organizationId}/summary/switch/power/history:
+    get:
+      description: "Returns the total PoE power draw for all switch ports in the organization\
+        \ over the requested timespan (by default the last 24 hours). The returned\
+        \ array is a newest-first list of intervals. The time between intervals depends\
+        \ on the requested timespan with 20 minute intervals used for timespans up\
+        \ to 1 day, 4 hour intervals used for timespans up to 2 weeks, and 1 day intervals\
+        \ for timespans larger than 2 weeks."
+      operationId: getOrganizationSummarySwitchPowerHistory
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The beginning of the timespan for the data.
+        explode: true
+        in: query
+        name: t0
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The end of the timespan for the data. t1 can be a maximum of
+          31 days after t0.
+        explode: true
+        in: query
+        name: t1
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The timespan for which the information will be fetched. If specifying\
+          \ timespan, do not specify parameters t0 and t1. The value must be in seconds\
+          \ and be less than or equal to 31 days. The default is 1 day."
+        explode: true
+        in: query
+        name: timespan
+        required: false
+        schema:
+          format: float
+          maximum: 2678400
+          type: number
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - ts: 2021-06-20T01:00:00.000Z
+                draw: 5.4321
+              schema:
+                items:
+                  $ref: '#/components/schemas/getOrganizationSummarySwitchPowerHistory_200_response_inner'
+                type: array
+          description: Successful operation
+      summary: Returns the total PoE power draw for all switch ports in the organization
+        over the requested timespan (by default the last 24 hours)
+      tags:
+      - switch
+      - monitor
+      - summary
+      - power
+      - history
   /organizations/{organizationId}/summary/top/appliances/byUtilization:
     get:
       description: Return the top 10 appliances sorted by utilization over given time
@@ -38339,39 +38499,40 @@ paths:
           content:
             application/json:
               example:
-              - alertTypeId: stopped_reporting
+                alertTypeId: stopped_reporting
                 alertType: APs went down
-                version: "0.1"
-                sharedSecret: secret
-                sentAt: 2020-07-11T00:03:12.331789Z
-                alertId: "0000000000000000"
-                alertLevel: warning
-                occurredAt: 2018-02-11T00:00:00.123450Z
-                alertData: {}
-                organizationId: "2930418"
-                organizationName: My organization
-                organizationUrl: https://dashboard.meraki.com/o/VjjsAd/manage/organization/overview
-                deviceSerial: Q234-ABCD-5678
-                deviceMac: 00:11:22:33:44:55
-                deviceName: My AP
-                deviceUrl: https://n1.meraki.com//n//manage/nodes/new_list/000000000000
-                deviceTags:
-                - tag1
-                - tag2
-                deviceModel: MR34
-                networkId: N_24329156
-                networkName: Main Office
-                networkUrl: https://n1.meraki.com//n//manage/nodes/list
-                enrollmentString: my-enrollment-string
-                notes: Additional description of the network
-                productTypes:
-                - appliance
-                - switch
-                - wireless
+                example:
+                  version: "0.1"
+                  sharedSecret: secret
+                  sentAt: 2018-02-11T00:00:00.090210Z
+                  alertId: "0000000000000000"
+                  alertLevel: warning
+                  occurredAt: 2018-02-11T00:00:00.090210Z
+                  alertData:
+                    automationId: "0000000000000000"
+                  organizationId: "2930418"
+                  organizationName: My organization
+                  organizationUrl: https://dashboard.meraki.com/o/VjjsAd/manage/organization/overview
+                  deviceSerial: Q234-ABCD-5678
+                  deviceMac: 00:11:22:33:44:55
+                  deviceName: My AP
+                  deviceUrl: https://n1.meraki.com//n//manage/nodes/new_list/000000000000
+                  deviceTags:
+                  - tag1
+                  - tag2
+                  deviceModel: MR34
+                  networkId: N_24329156
+                  networkName: Main Office
+                  networkUrl: https://n1.meraki.com//n//manage/nodes/list
+                  enrollmentString: my-enrollment-string
+                  notes: Additional description of the network
+                  productTypes:
+                  - appliance
+                  - switch
+                  - wireless
+                  encryptedId: 6GREra
               schema:
-                items:
-                  type: object
-                type: array
+                $ref: '#/components/schemas/getOrganizationWebhooksAlertTypes_200_response'
           description: Successful operation
       summary: Return a list of alert types to be used with managing webhook alerts
       tags:
@@ -38379,6 +38540,55 @@ paths:
       - monitor
       - webhooks
       - alertTypes
+  /organizations/{organizationId}/webhooks/callbacks/statuses/{callbackId}:
+    get:
+      description: Return the status of an API callback
+      operationId: getOrganizationWebhooksCallbacksStatus
+      parameters:
+      - description: Organization ID
+        explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Callback ID
+        explode: false
+        in: path
+        name: callbackId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                callbackId: "1284392014819"
+                status: completed
+                errors:
+                - Callback failed
+                createdBy:
+                  adminId: "212406"
+                webhook:
+                  url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
+                  httpServer:
+                    id: aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vd2ViaG9va3M=
+                  payloadTemplate:
+                    id: wpt_2100
+                  sentAt: 2018-02-11T00:00:00.090210Z
+              schema:
+                $ref: '#/components/schemas/getOrganizationWebhooksCallbacksStatus_200_response'
+          description: Successful operation
+      summary: Return the status of an API callback
+      tags:
+      - organizations
+      - configure
+      - webhooks
+      - callbacks
+      - statuses
   /organizations/{organizationId}/webhooks/logs:
     get:
       description: Return the log of webhook POSTs sent
@@ -40064,6 +40274,41 @@ components:
           format: float
           type: number
       type: object
+    _devices__serial__liveTools_ping_post_request_message_results:
+      description: Results of the ping request.
+      example:
+        loss:
+          percentage: 1.4658129
+        replies:
+        - size: 9
+          latency: 3.6160767
+          sequenceId: 7
+        - size: 9
+          latency: 3.6160767
+          sequenceId: 7
+        latencies:
+          average: 5.637377
+          maximum: 2.302136
+          minimum: 5.962134
+        received: 6
+        sent: 0
+      properties:
+        sent:
+          description: Number of packets sent
+          type: integer
+        received:
+          description: Number of packets received
+          type: integer
+        loss:
+          $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request_message_results_loss'
+        latencies:
+          $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request_message_results_latencies'
+        replies:
+          description: Received packets
+          items:
+            $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request_message_results_replies_inner'
+          type: array
+      type: object
     updateOrganizationLicense_request:
       example:
         deviceSerial: Q234-ABCD-5678
@@ -40146,6 +40391,19 @@ components:
           default: Never
           description: "Date for authorization to expire. Set to 'Never' for the authorization\
             \ to not expire, which is the default."
+          type: string
+      type: object
+    getNetworkVlanProfiles_200_response_inner_vlanNames_inner_adaptivePolicyGroup:
+      description: Adaptive Policy Group assigned to Vlan ID
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          description: Adaptive Policy Group ID
+          type: string
+        name:
+          description: Adaptive Policy Group name
           type: string
       type: object
     getNetworkApplianceSingleLan_200_response:
@@ -40330,6 +40588,10 @@ components:
           count: 0
           target: target
         pingId: pingId
+        callback:
+          id: id
+          url: url
+          status: status
         url: url
         status: status
       properties:
@@ -40344,6 +40606,8 @@ components:
         status:
           description: Status of the ping request.
           type: string
+        callback:
+          $ref: '#/components/schemas/createDeviceLiveToolsPing_201_response_callback'
       type: object
     getOrganizationFirmwareUpgrades_200_response_inner_toVersion:
       description: ID of the upgrade's target version
@@ -40918,10 +41182,12 @@ components:
           - Standard
           type: string
         resolution:
-          description: Resolution of the camera. Can be one of '1080x1080' or '2112x2112'.
+          description: "Resolution of the camera. Can be one of '1080x1080', '2112x2112'\
+            \ or '2880x2880'."
           enum:
           - 1080x1080
           - 2112x2112
+          - 2880x2880
           type: string
       required:
       - quality
@@ -41880,10 +42146,12 @@ components:
           - Standard
           type: string
         resolution:
-          description: Resolution of the camera. Can be one of '1080x1080' or '2688x1512'.
+          description: "Resolution of the camera. Can be one of '1920x1080', '2688x1512'\
+            \ or '3840x2160'."
           enum:
-          - 1080x1080
+          - 1920x1080
           - 2688x1512
+          - 3840x2160
           type: string
       required:
       - quality
@@ -42246,6 +42514,7 @@ components:
           - tags
           serial: serial
           name: name
+          imei: imei
           networkId: networkId
           model: model
           details:
@@ -42266,6 +42535,7 @@ components:
           - tags
           serial: serial
           name: name
+          imei: imei
           networkId: networkId
           model: model
           details:
@@ -43827,6 +44097,19 @@ components:
       required:
       - access
       type: object
+    _organizations__organizationId__actionBatches_get_request:
+      properties:
+        organization:
+          $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request_organization'
+        network:
+          $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request_organization'
+        sentAt:
+          type: string
+        callbackId:
+          type: string
+        message:
+          $ref: '#/components/schemas/_organizations__organizationId__actionBatches_get_request_message'
+      type: object
     getNetworkSwitchDhcpV4ServersSeen_200_response_inner_lastPacket_fields_options_inner:
       example:
         name: name
@@ -44309,7 +44592,10 @@ components:
           value: value
       properties:
         details:
-          description: "Details related to organization management, possibly empty"
+          description: "Details related to organization management, possibly empty.\
+            \ Details may be named 'MSP ID', 'IP restriction mode for API', or 'IP\
+            \ restriction mode for dashboard', if the organization admin has configured\
+            \ any."
           items:
             $ref: '#/components/schemas/getOrganizations_200_response_inner_management_details_inner'
           type: array
@@ -45584,7 +45870,7 @@ components:
           description: The name of the organization
           type: string
         management:
-          $ref: '#/components/schemas/getOrganizations_200_response_inner_management'
+          $ref: '#/components/schemas/createOrganization_request_management'
       required:
       - name
       type: object
@@ -45632,6 +45918,16 @@ components:
           type: integer
       required:
       - vlan
+      type: object
+    _devices__serial__liveTools_ping_post_request_message_results_loss:
+      description: Lost packets
+      example:
+        percentage: 1.4658129
+      properties:
+        percentage:
+          description: Percentage of packets lost
+          format: float
+          type: number
       type: object
     createNetworkVlanProfile_request_vlanGroups_inner:
       properties:
@@ -45818,26 +46114,6 @@ components:
           items:
             $ref: '#/components/schemas/getOrganizationSwitchPortsBySwitch_200_response_inner_ports_inner'
           type: array
-      type: object
-    getDeviceLiveToolsPing_200_response_results_latencies:
-      description: Packet latency stats
-      example:
-        average: 5.637377
-        maximum: 2.302136
-        minimum: 5.962134
-      properties:
-        minimum:
-          description: Minimum latency
-          format: float
-          type: number
-        average:
-          description: Average latency
-          format: float
-          type: number
-        maximum:
-          description: Maximum latency
-          format: float
-          type: number
       type: object
     updateNetworkApplianceSingleLan_request_ipv6_prefixAssignments_inner_origin:
       description: The origin of the prefix
@@ -46417,9 +46693,15 @@ components:
     getNetworkVlanProfiles_200_response_inner:
       example:
         vlanNames:
-        - vlanId: vlanId
+        - adaptivePolicyGroup:
+            name: name
+            id: id
+          vlanId: vlanId
           name: name
-        - vlanId: vlanId
+        - adaptivePolicyGroup:
+            name: name
+            id: id
+          vlanId: vlanId
           name: name
         isDefault: true
         name: name
@@ -46736,7 +47018,7 @@ components:
           description: The name of the organization
           type: string
         management:
-          $ref: '#/components/schemas/getOrganizations_200_response_inner_management'
+          $ref: '#/components/schemas/createOrganization_request_management'
         api:
           $ref: '#/components/schemas/updateOrganization_request_api'
       type: object
@@ -47057,6 +47339,65 @@ components:
         dormant:
           description: dormant count
           type: integer
+      type: object
+    createDeviceLiveToolsPing_request_callback:
+      description: Details for the callback. Please include either an httpServerId
+        OR url and sharedSecret
+      properties:
+        url:
+          description: "The callback URL for the webhook target. If using this field,\
+            \ please also specify a sharedSecret."
+          type: string
+        sharedSecret:
+          description: "A shared secret that will be included in the requests sent\
+            \ to the callback URL. It can be used to verify that the request was sent\
+            \ by Meraki. If using this field, please also specify an url."
+          type: string
+        httpServer:
+          $ref: '#/components/schemas/createDeviceLiveToolsPing_request_callback_httpServer'
+        payloadTemplate:
+          $ref: '#/components/schemas/createDeviceLiveToolsPing_request_callback_payloadTemplate'
+      type: object
+      x-release-stage: general_availability
+    _devices__serial__liveTools_ping_post_request_message:
+      example:
+        request:
+          serial: serial
+          count: 0
+          target: target
+        pingId: pingId
+        results:
+          loss:
+            percentage: 1.4658129
+          replies:
+          - size: 9
+            latency: 3.6160767
+            sequenceId: 7
+          - size: 9
+            latency: 3.6160767
+            sequenceId: 7
+          latencies:
+            average: 5.637377
+            maximum: 2.302136
+            minimum: 5.962134
+          received: 6
+          sent: 0
+        url: url
+        status: status
+      properties:
+        pingId:
+          description: Id to check the status of your ping request.
+          type: string
+        url:
+          description: GET this url to check the status of your ping request.
+          type: string
+        request:
+          $ref: '#/components/schemas/createDeviceLiveToolsPing_201_response_request'
+        status:
+          description: Status of the ping request.
+          type: string
+        results:
+          $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request_message_results'
       type: object
     updateNetworkMerakiAuthUser_request:
       example:
@@ -47918,6 +48259,15 @@ components:
       - policy
       - protocol
       type: object
+    getOrganizationWebhooksCallbacksStatus_200_response_createdBy:
+      description: Information around who initiated the callback
+      example:
+        adminId: adminId
+      properties:
+        adminId:
+          description: The ID of the user who initiated the callback
+          type: string
+      type: object
     getOrganizationWebhooksLogs_200_response_inner:
       example:
         organizationId: organizationId
@@ -48400,6 +48750,13 @@ components:
         enabled:
           description: Dynamic DNS enabled
           type: boolean
+      type: object
+    _devices__serial__liveTools_ping_post_request_organization:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
       type: object
     getNetworkSmTrustedAccessConfigs_200_response_inner:
       example:
@@ -50113,6 +50470,13 @@ components:
         actions:
         - resource: /devices/QXXX-XXXX-XXXX/switch/ports/3
           operation: create
+        callback:
+          url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
+          sharedSecret: secret
+          httpServer:
+            id: aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vd2ViaG9va3M=
+          payloadTemplate:
+            id: wpt_2100
       properties:
         confirmed:
           description: Set to true for immediate execution. Set to false if the action
@@ -50129,6 +50493,8 @@ components:
           items:
             $ref: '#/components/schemas/createOrganizationActionBatch_request_actions_inner'
           type: array
+        callback:
+          $ref: '#/components/schemas/createDeviceLiveToolsPing_request_callback'
       required:
       - actions
       type: object
@@ -51552,6 +51918,49 @@ components:
           description: Idle timer timeout in seconds.
           type: integer
       type: object
+    getOrganizationWebhooksAlertTypes_200_response:
+      example:
+        alertTypeId: alertTypeId
+        alertType: alertType
+        example:
+          deviceTags:
+          - deviceTags
+          - deviceTags
+          occurredAt: 2000-01-23T04:56:07.000+00:00
+          notes: notes
+          organizationName: organizationName
+          alertLevel: critical
+          networkName: networkName
+          productTypes:
+          - appliance
+          - appliance
+          sentAt: 2000-01-23T04:56:07.000+00:00
+          alertData:
+            key: ""
+          organizationUrl: organizationUrl
+          version: version
+          deviceName: deviceName
+          organizationId: organizationId
+          deviceSerial: deviceSerial
+          encryptedId: encryptedId
+          deviceMac: deviceMac
+          deviceUrl: deviceUrl
+          deviceModel: deviceModel
+          networkId: networkId
+          alertId: alertId
+          sharedSecret: sharedSecret
+          enrollmentString: enrollmentString
+          networkUrl: networkUrl
+      properties:
+        alertTypeId:
+          description: The type ID of Meraki alert
+          type: string
+        alertType:
+          description: The type of Meraki alert
+          type: string
+        example:
+          $ref: '#/components/schemas/getOrganizationWebhooksAlertTypes_200_response_example'
+      type: object
     createOrganizationActionBatch_201_response_status_createdResources_inner:
       example:
         id: id
@@ -52505,6 +52914,19 @@ components:
           description: When the cellular usage data was collected.
           type: string
       type: object
+    _devices__serial__liveTools_ping_post_request:
+      properties:
+        organization:
+          $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request_organization'
+        network:
+          $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request_organization'
+        sentAt:
+          type: string
+        callbackId:
+          type: string
+        message:
+          $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request_message'
+      type: object
     getNetworkVlanProfiles_200_response_inner_vlanGroups_inner:
       example:
         vlanIds: vlanIds
@@ -52837,41 +53259,6 @@ components:
             \ time specified in 'from'. Defaults to '24:00'. Only 30 minute increments\
             \ are allowed."
           type: string
-      type: object
-    getDeviceLiveToolsPing_200_response_results:
-      description: Results of the ping request.
-      example:
-        loss:
-          percentage: 1.4658129
-        replies:
-        - size: 9
-          latency: 3.6160767
-          sequenceId: 7
-        - size: 9
-          latency: 3.6160767
-          sequenceId: 7
-        latencies:
-          average: 5.637377
-          maximum: 2.302136
-          minimum: 5.962134
-        received: 6
-        sent: 0
-      properties:
-        sent:
-          description: Number of packets sent
-          type: integer
-        received:
-          description: Number of packets received
-          type: integer
-        loss:
-          $ref: '#/components/schemas/getDeviceLiveToolsPing_200_response_results_loss'
-        latencies:
-          $ref: '#/components/schemas/getDeviceLiveToolsPing_200_response_results_latencies'
-        replies:
-          description: Received packets
-          items:
-            $ref: '#/components/schemas/getDeviceLiveToolsPing_200_response_results_replies_inner'
-          type: array
       type: object
     getNetworkSwitchAccessPolicies_200_response_inner_dot1x:
       description: 802.1x Settings
@@ -53964,6 +54351,21 @@ components:
             requests
           type: integer
       type: object
+    getOrganizationSummarySwitchPowerHistory_200_response_inner:
+      example:
+        draw: 0.8008282
+        ts: 2000-01-23T04:56:07.000+00:00
+      properties:
+        ts:
+          description: Timestamp of the start of the interval.
+          format: date-time
+          type: string
+        draw:
+          description: The PoE power draw in watts for all switch ports in the organization
+            for the given interval.
+          format: float
+          type: number
+      type: object
     getNetworkSensorAlertsProfiles_200_response_inner_conditions_inner_threshold_humidity:
       description: Humidity threshold. One of 'relativePercentage' or 'quality' must
         be provided.
@@ -54229,6 +54631,65 @@ components:
           - Unspecified Vehicular
           - Zoo or Aquarium
           type: string
+      type: object
+    getOrganizationWebhooksCallbacksStatus_200_response_webhook:
+      description: The webhook receiver used by the callback to send results
+      example:
+        httpServer:
+          id: id
+        sentAt: 2000-01-23T04:56:07.000+00:00
+        payloadTemplate:
+          id: id
+        url: url
+      properties:
+        url:
+          description: The webhook receiver URL where the callback will be sent
+          type: string
+        httpServer:
+          $ref: '#/components/schemas/getOrganizationWebhooksCallbacksStatus_200_response_webhook_httpServer'
+        payloadTemplate:
+          $ref: '#/components/schemas/getOrganizationWebhooksCallbacksStatus_200_response_webhook_payloadTemplate'
+        sentAt:
+          description: The timestamp the callback was sent to the webhook receiver
+          format: date-time
+          type: string
+      type: object
+    getOrganizationWebhooksCallbacksStatus_200_response:
+      example:
+        webhook:
+          httpServer:
+            id: id
+          sentAt: 2000-01-23T04:56:07.000+00:00
+          payloadTemplate:
+            id: id
+          url: url
+        callbackId: callbackId
+        createdBy:
+          adminId: adminId
+        errors:
+        - errors
+        - errors
+        status: completed
+      properties:
+        callbackId:
+          description: The ID of the callback
+          type: string
+        status:
+          description: The status of the callback
+          enum:
+          - completed
+          - failed
+          - running
+          type: string
+        errors:
+          description: The errors returned by the callback
+          items:
+            type: string
+          type: array
+        createdBy:
+          $ref: '#/components/schemas/getOrganizationWebhooksCallbacksStatus_200_response_createdBy'
+        webhook:
+          $ref: '#/components/schemas/getOrganizationWebhooksCallbacksStatus_200_response_webhook'
       type: object
     getNetworkHealthAlerts_200_response_inner_scope_peers_inner_network:
       description: Network of the peer
@@ -56309,6 +56770,13 @@ components:
           - Online
           type: string
       type: object
+    createNetworkVlanProfile_request_vlanNames_inner_adaptivePolicyGroup:
+      description: Adaptive Policy Group assigned to Vlan ID
+      properties:
+        id:
+          description: Adaptive Policy Group ID
+          type: string
+      type: object
     ? updateNetworkApplianceTrafficShapingUplinkSelection_request_wanTrafficUplinkPreferences_inner_trafficFilters_inner_value_destination
     : description: Destination of this custom type traffic filter
       properties:
@@ -56935,6 +57403,23 @@ components:
       required:
       - appIds
       type: object
+    _devices__serial__liveTools_ping_post_request_message_results_replies_inner:
+      example:
+        size: 9
+        latency: 3.6160767
+        sequenceId: 7
+      properties:
+        sequenceId:
+          description: Sequence ID of the packet
+          type: integer
+        size:
+          description: Size of the packet in bytes
+          type: integer
+        latency:
+          description: Latency of the packet in milliseconds
+          format: float
+          type: number
+      type: object
     getOrganizationDevicesAvailabilitiesChangeHistory_200_response_inner:
       example:
         details:
@@ -57320,6 +57805,8 @@ components:
         vlanNames:
         - name: named-1
           vlanId: "1"
+          adaptivePolicyGroup:
+            id: "791"
         vlanGroups:
         - name: named-group-1
           vlanIds: "2,5-7"
@@ -57506,10 +57993,19 @@ components:
     createDeviceLiveToolsPingDevice_request:
       example:
         count: 3
+        callback:
+          url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
+          sharedSecret: secret
+          httpServer:
+            id: aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vd2ViaG9va3M=
+          payloadTemplate:
+            id: wpt_2100
       properties:
         count:
           description: "Count parameter to pass to ping. [1..5], default 5"
           type: integer
+        callback:
+          $ref: '#/components/schemas/createDeviceLiveToolsPing_request_callback'
       type: object
     getNetworkFirmwareUpgradesStagedEvents_200_response_products_switch:
       description: The Switch network to be updated
@@ -57677,6 +58173,8 @@ components:
         vlanNames:
         - name: named-1
           vlanId: "1"
+          adaptivePolicyGroup:
+            id: "791"
         vlanGroups:
         - name: named-group-1
           vlanIds: "2,5-7"
@@ -58157,6 +58655,129 @@ components:
           type: string
         ipv4:
           $ref: '#/components/schemas/getNetworkSwitchDhcpV4ServersSeen_200_response_inner_lastAck_ipv4'
+      type: object
+    getOrganizationWebhooksAlertTypes_200_response_example:
+      description: Example alert type
+      example:
+        deviceTags:
+        - deviceTags
+        - deviceTags
+        occurredAt: 2000-01-23T04:56:07.000+00:00
+        notes: notes
+        organizationName: organizationName
+        alertLevel: critical
+        networkName: networkName
+        productTypes:
+        - appliance
+        - appliance
+        sentAt: 2000-01-23T04:56:07.000+00:00
+        alertData:
+          key: ""
+        organizationUrl: organizationUrl
+        version: version
+        deviceName: deviceName
+        organizationId: organizationId
+        deviceSerial: deviceSerial
+        encryptedId: encryptedId
+        deviceMac: deviceMac
+        deviceUrl: deviceUrl
+        deviceModel: deviceModel
+        networkId: networkId
+        alertId: alertId
+        sharedSecret: sharedSecret
+        enrollmentString: enrollmentString
+        networkUrl: networkUrl
+      properties:
+        version:
+          description: Version of the alert
+          type: string
+        sharedSecret:
+          description: Shared secret for the alert
+          type: string
+        sentAt:
+          description: "When the alert notification was sent, in ISO8601 format"
+          format: date-time
+          type: string
+        alertId:
+          description: ID for the alert instance
+          type: string
+        alertLevel:
+          description: Severity level of the alert
+          enum:
+          - critical
+          - informational
+          - warning
+          type: string
+        occurredAt:
+          description: "When the alert occurred, in ISO8601 format"
+          format: date-time
+          type: string
+        alertData:
+          additionalProperties: true
+          description: Data for the specific alert. Contents depend on the type of
+            the alert
+          type: object
+        organizationId:
+          description: ID of the organization associated with the alert
+          type: string
+        organizationName:
+          description: Name of the organization associated with the alert
+          type: string
+        organizationUrl:
+          description: URL of the organization associated with the alert
+          type: string
+        deviceSerial:
+          description: Serial for the device associated with the alert
+          type: string
+        deviceMac:
+          description: Mac address for the device associated with the alert
+          type: string
+        deviceName:
+          description: Name of the device associated with the alert
+          type: string
+        deviceUrl:
+          description: URL of the device associated with the alert
+          type: string
+        deviceTags:
+          description: List of tags for the device associated with the alert
+          items:
+            type: string
+          type: array
+        deviceModel:
+          description: Model of the device associated with the alert
+          type: string
+        networkId:
+          description: ID of the network associated with the alert
+          type: string
+        networkName:
+          description: Name of the network associated with the alert
+          type: string
+        networkUrl:
+          description: URL of the network associated with the alert
+          type: string
+        enrollmentString:
+          description: Enrollment string of the network associated with the alert
+          type: string
+        notes:
+          description: Notes for the network associated with the alert
+          type: string
+        productTypes:
+          description: List of product types that are part of the network associated
+            with the alert
+          items:
+            enum:
+            - appliance
+            - camera
+            - cellularGateway
+            - sensor
+            - switch
+            - systemsManager
+            - wireless
+            type: string
+          type: array
+        encryptedId:
+          description: Encrypted ID of the network associated with the alert
+          type: string
       type: object
     getNetworkWirelessSsidEapOverride_200_response_identity:
       description: EAP settings for identity requests.
@@ -58977,6 +59598,15 @@ components:
         counts:
           $ref: '#/components/schemas/getNetworkSensorAlertsCurrentOverviewByMetric_200_response_counts'
       type: object
+    getOrganizationWebhooksCallbacksStatus_200_response_webhook_payloadTemplate:
+      description: The payload template of the webhook used for the callback
+      example:
+        id: id
+      properties:
+        id:
+          description: The ID of the payload template
+          type: string
+      type: object
     updateNetworkWirelessSsid_request_namedVlans:
       description: Named VLAN settings.
       properties:
@@ -59259,23 +59889,6 @@ components:
           type: number
         average:
           description: Average usage in megabytes
-          format: float
-          type: number
-      type: object
-    getDeviceLiveToolsPing_200_response_results_replies_inner:
-      example:
-        size: 9
-        latency: 3.6160767
-        sequenceId: 7
-      properties:
-        sequenceId:
-          description: Sequence ID of the packet
-          type: integer
-        size:
-          description: Size of the packet in bytes
-          type: integer
-        latency:
-          description: Latency of the packet in milliseconds
           format: float
           type: number
       type: object
@@ -59797,6 +60410,26 @@ components:
             type: string
           type: array
       type: object
+    createDeviceLiveToolsPing_201_response_callback:
+      description: Information for callback used to send back results
+      example:
+        id: id
+        url: url
+        status: status
+      properties:
+        id:
+          description: "The ID of the callback. To check the status of the callback,\
+            \ use this ID in a request to /webhooks/callbacks/statuses/{id}"
+          type: string
+        url:
+          description: The callback URL for the webhook target. This was either provided
+            in the original request or comes from a configured webhook receiver
+          type: string
+        status:
+          description: The status of the callback
+          type: string
+      type: object
+      x-release-stage: general_availability
     rebootDevice_202_response:
       example:
         success: true
@@ -59935,6 +60568,14 @@ components:
       properties:
         name:
           description: Name of region
+          type: string
+      type: object
+    createDeviceLiveToolsPing_request_callback_payloadTemplate:
+      description: The payload template of the webhook used for the callback
+      properties:
+        id:
+          description: The ID of the payload template. Defaults to 'wpt_00005' for
+            the Callback (included) template.
           type: string
       type: object
     getOrganizationEarlyAccessFeatures_200_response_inner:
@@ -60610,6 +61251,7 @@ components:
         - tags
         serial: serial
         name: name
+        imei: imei
         networkId: networkId
         model: model
         details:
@@ -60652,6 +61294,9 @@ components:
           type: string
         model:
           description: Model of the device
+          type: string
+        imei:
+          description: "IMEI of the device, if applicable"
           type: string
         mac:
           description: MAC address of the device
@@ -62432,6 +63077,14 @@ components:
           - poor
           type: string
       type: object
+    createDeviceLiveToolsPing_request_callback_httpServer:
+      description: The webhook receiver used for the callback webhook.
+      properties:
+        id:
+          description: "The webhook receiver ID that will receive information. If\
+            \ specifying this, please leave the url and sharedSecret fields blank."
+          type: string
+      type: object
     updateDeviceSensorRelationships_request:
       example: {}
       properties:
@@ -63516,6 +64169,52 @@ components:
             $ref: '#/components/schemas/updateDeviceCellularGatewayLan_request_fixedIpAssignments_inner'
           type: array
       type: object
+    getDeviceLiveToolsPingDevice_200_response:
+      example:
+        request:
+          serial: serial
+          count: 0
+          target: target
+        pingId: pingId
+        callback:
+          id: id
+          url: url
+          status: status
+        results:
+          loss:
+            percentage: 1.4658129
+          replies:
+          - size: 9
+            latency: 3.6160767
+            sequenceId: 7
+          - size: 9
+            latency: 3.6160767
+            sequenceId: 7
+          latencies:
+            average: 5.637377
+            maximum: 2.302136
+            minimum: 5.962134
+          received: 6
+          sent: 0
+        url: url
+        status: status
+      properties:
+        pingId:
+          description: Id to check the status of your ping request.
+          type: string
+        url:
+          description: GET this url to check the status of your ping request.
+          type: string
+        request:
+          $ref: '#/components/schemas/createDeviceLiveToolsPing_201_response_request'
+        status:
+          description: Status of the ping request.
+          type: string
+        results:
+          $ref: '#/components/schemas/_devices__serial__liveTools_ping_post_request_message_results'
+        callback:
+          $ref: '#/components/schemas/createDeviceLiveToolsPing_201_response_callback'
+      type: object
     updateNetworkFirmwareUpgradesStagedEvents_request:
       example:
         stages:
@@ -64324,6 +65023,10 @@ components:
       example:
         organizationId: organizationId
         synchronous: true
+        callback:
+          id: id
+          url: url
+          status: status
         id: id
         confirmed: true
         actions:
@@ -64366,6 +65069,8 @@ components:
           items:
             $ref: '#/components/schemas/createOrganizationActionBatch_201_response_actions_inner'
           type: array
+        callback:
+          $ref: '#/components/schemas/createDeviceLiveToolsPing_201_response_callback'
       required:
       - actions
       type: object
@@ -65043,46 +65748,6 @@ components:
             $ref: '#/components/schemas/getOrganizationApplianceUplinksUsageByNetwork_200_response_inner_byUplink_inner'
           type: array
       type: object
-    getDeviceLiveToolsPing_200_response:
-      example:
-        request:
-          serial: serial
-          count: 0
-          target: target
-        pingId: pingId
-        results:
-          loss:
-            percentage: 1.4658129
-          replies:
-          - size: 9
-            latency: 3.6160767
-            sequenceId: 7
-          - size: 9
-            latency: 3.6160767
-            sequenceId: 7
-          latencies:
-            average: 5.637377
-            maximum: 2.302136
-            minimum: 5.962134
-          received: 6
-          sent: 0
-        url: url
-        status: status
-      properties:
-        pingId:
-          description: Id to check the status of your ping request.
-          type: string
-        url:
-          description: GET this url to check the status of your ping request.
-          type: string
-        request:
-          $ref: '#/components/schemas/createDeviceLiveToolsPing_201_response_request'
-        status:
-          description: Status of the ping request.
-          type: string
-        results:
-          $ref: '#/components/schemas/getDeviceLiveToolsPing_200_response_results'
-      type: object
     getOrganizationAdmins_200_response_inner_networks_inner:
       example:
         access: access
@@ -65109,6 +65774,9 @@ components:
       type: object
     getNetworkVlanProfiles_200_response_inner_vlanNames_inner:
       example:
+        adaptivePolicyGroup:
+          name: name
+          id: id
         vlanId: vlanId
         name: name
       properties:
@@ -65118,6 +65786,8 @@ components:
         vlanId:
           description: VLAN ID
           type: string
+        adaptivePolicyGroup:
+          $ref: '#/components/schemas/getNetworkVlanProfiles_200_response_inner_vlanNames_inner_adaptivePolicyGroup'
       type: object
     getOrganizationInventoryOnboardingCloudMonitoringImports_200_response_inner_device:
       description: Represents the details of an imported device.
@@ -66577,6 +67247,15 @@ components:
           type: string
         public:
           $ref: '#/components/schemas/getOrganizationDevicesUplinksAddressesByDevice_200_response_inner_uplinks_inner_addresses_inner_public'
+      type: object
+    getOrganizationWebhooksCallbacksStatus_200_response_webhook_httpServer:
+      description: The webhook receiver used for the callback webhook
+      example:
+        id: id
+      properties:
+        id:
+          description: The webhook receiver ID that will receive information
+          type: string
       type: object
     createNetworkCameraWirelessProfile_request_ssid:
       description: The details of the SSID config.
@@ -68783,6 +69462,8 @@ components:
         vlanId:
           description: VLAN ID
           type: string
+        adaptivePolicyGroup:
+          $ref: '#/components/schemas/createNetworkVlanProfile_request_vlanNames_inner_adaptivePolicyGroup'
       required:
       - name
       - vlanId
@@ -68979,15 +69660,14 @@ components:
           description: Label for the mapping (optional).
           type: string
       type: object
-    getDeviceLiveToolsPing_200_response_results_loss:
-      description: Lost packets
-      example:
-        percentage: 1.4658129
+    createOrganization_request_management:
+      description: Information about the organization's management system
       properties:
-        percentage:
-          description: Percentage of packets lost
-          format: float
-          type: number
+        details:
+          description: "Details related to organization management, possibly empty"
+          items:
+            $ref: '#/components/schemas/getOrganizations_200_response_inner_management_details_inner'
+          type: array
       type: object
     createOrganizationInventoryOnboardingCloudMonitoringExportEvent_request:
       example:
@@ -69042,6 +69722,26 @@ components:
       properties:
         key:
           $ref: '#/components/schemas/getAdministeredIdentitiesMe_200_response_authentication_api_key'
+      type: object
+    _devices__serial__liveTools_ping_post_request_message_results_latencies:
+      description: Packet latency stats
+      example:
+        average: 5.637377
+        maximum: 2.302136
+        minimum: 5.962134
+      properties:
+        minimum:
+          description: Minimum latency
+          format: float
+          type: number
+        average:
+          description: Average latency
+          format: float
+          type: number
+        maximum:
+          description: Maximum latency
+          format: float
+          type: number
       type: object
     getOrganizationWirelessDevicesChannelUtilizationByDevice_200_response_inner:
       example:
@@ -71207,6 +71907,13 @@ components:
       example:
         target: 75.75.75.75
         count: 2
+        callback:
+          url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
+          sharedSecret: secret
+          httpServer:
+            id: aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vd2ViaG9va3M=
+          payloadTemplate:
+            id: wpt_2100
       properties:
         target:
           description: "FQDN, IPv4 or IPv6 address"
@@ -71214,8 +71921,38 @@ components:
         count:
           description: "Count parameter to pass to ping. [1..5], default 5"
           type: integer
+        callback:
+          $ref: '#/components/schemas/createDeviceLiveToolsPing_request_callback'
       required:
       - target
+      type: object
+    _organizations__organizationId__actionBatches_get_request_message:
+      properties:
+        id:
+          description: "ID of the action batch. Can be used to check the status of\
+            \ the action batch at /organizations/{organizationId}/actionBatches/{actionBatchId}"
+          type: string
+        organizationId:
+          description: ID of the organization this action batch belongs to
+          type: string
+        confirmed:
+          description: Flag describing whether the action should be previewed before
+            executing or not
+          type: boolean
+        synchronous:
+          description: Flag describing whether actions should run synchronously or
+            asynchronously
+          type: boolean
+        status:
+          $ref: '#/components/schemas/createOrganizationActionBatch_201_response_status'
+        actions:
+          description: A set of changes made as part of this action (<a href='https://developer.cisco.com/meraki/api/#/rest/guides/action-batches/'>more
+            details</a>)
+          items:
+            $ref: '#/components/schemas/createOrganizationActionBatch_201_response_actions_inner'
+          type: array
+      required:
+      - actions
       type: object
     getOrganizationDevicesStatuses_200_response_inner_components_powerSupplies_inner_poe:
       description: PoE info of the power supply
@@ -71704,14 +72441,14 @@ x-batchable-actions:
   resource: "/devices/{serial}"
   operation: update
 - group: Device
-  summary: "Claim devices into a network. (Note: for recently claimed devices, it\
-    \ may take a few minutes for API requsts against that device to succeed)"
-  resource: "/networks/{networkId}/devices"
-  operation: claim
-- group: Device
   summary: Remove a single device
   resource: "/networks/{networkId}/devices"
   operation: remove
+- group: Device
+  summary: "Claim devices into a network. (Note: for recently claimed devices, it\
+    \ may take a few minutes for API requsts against that device to succeed)"
+  resource: "/networks/{networkId}/devices/claim"
+  operation: claim
 - group: Dhcp server policy
   summary: "Update the DHCP server settings. Blocked/allowed servers are only applied\
     \ when default policy is allow/block, respectively"
@@ -72291,7 +73028,7 @@ x-batchable-actions:
   operation: destroy
 - group: Vmx
   summary: Claim a vMX into a network
-  resource: "/networks/{networkId}/devices/claim"
+  resource: "/networks/{networkId}/devices/claim/vmx"
   operation: claim
 - group: Vmx token
   summary: Generate a new vMX authentication token

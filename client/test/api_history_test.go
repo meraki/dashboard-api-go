@@ -65,6 +65,20 @@ func Test_client_HistoryApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test HistoryApiService GetOrganizationSummarySwitchPowerHistory", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var organizationId string
+
+		resp, httpRes, err := apiClient.HistoryApi.GetOrganizationSummarySwitchPowerHistory(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test HistoryApiService GetOrganizationWirelessDevicesChannelUtilizationHistoryByDeviceByInterval", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

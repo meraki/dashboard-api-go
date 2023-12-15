@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Url** | Pointer to **string** | GET this url to check the status of your ping request. | [optional] 
 **Request** | Pointer to [**CreateDeviceLiveToolsPing201ResponseRequest**](CreateDeviceLiveToolsPing201ResponseRequest.md) |  | [optional] 
 **Status** | Pointer to **string** | Status of the ping request. | [optional] 
+**Callback** | Pointer to [**CreateDeviceLiveToolsPing201ResponseCallback**](CreateDeviceLiveToolsPing201ResponseCallback.md) |  | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetStatus sets Status field to given value.
 `func (o *CreateDeviceLiveToolsPing201Response) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
+
+### GetCallback
+
+`func (o *CreateDeviceLiveToolsPing201Response) GetCallback() CreateDeviceLiveToolsPing201ResponseCallback`
+
+GetCallback returns the Callback field if non-nil, zero value otherwise.
+
+### GetCallbackOk
+
+`func (o *CreateDeviceLiveToolsPing201Response) GetCallbackOk() (*CreateDeviceLiveToolsPing201ResponseCallback, bool)`
+
+GetCallbackOk returns a tuple with the Callback field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCallback
+
+`func (o *CreateDeviceLiveToolsPing201Response) SetCallback(v CreateDeviceLiveToolsPing201ResponseCallback)`
+
+SetCallback sets Callback field to given value.
+
+### HasCallback
+
+`func (o *CreateDeviceLiveToolsPing201Response) HasCallback() bool`
+
+HasCallback returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

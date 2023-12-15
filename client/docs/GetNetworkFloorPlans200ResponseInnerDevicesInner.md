@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **NetworkId** | Pointer to **string** | ID of the network the device belongs to | [optional] 
 **Serial** | Pointer to **string** | Serial number of the device | [optional] 
 **Model** | Pointer to **string** | Model of the device | [optional] 
+**Imei** | Pointer to **string** | IMEI of the device, if applicable | [optional] 
 **Mac** | Pointer to **string** | MAC address of the device | [optional] 
 **LanIp** | Pointer to **string** | LAN IP address of the device | [optional] 
 **Firmware** | Pointer to **string** | Firmware version of the device | [optional] 
@@ -262,6 +263,31 @@ SetModel sets Model field to given value.
 `func (o *GetNetworkFloorPlans200ResponseInnerDevicesInner) HasModel() bool`
 
 HasModel returns a boolean if a field has been set.
+
+### GetImei
+
+`func (o *GetNetworkFloorPlans200ResponseInnerDevicesInner) GetImei() string`
+
+GetImei returns the Imei field if non-nil, zero value otherwise.
+
+### GetImeiOk
+
+`func (o *GetNetworkFloorPlans200ResponseInnerDevicesInner) GetImeiOk() (*string, bool)`
+
+GetImeiOk returns a tuple with the Imei field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetImei
+
+`func (o *GetNetworkFloorPlans200ResponseInnerDevicesInner) SetImei(v string)`
+
+SetImei sets Imei field to given value.
+
+### HasImei
+
+`func (o *GetNetworkFloorPlans200ResponseInnerDevicesInner) HasImei() bool`
+
+HasImei returns a boolean if a field has been set.
 
 ### GetMac
 
