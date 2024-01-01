@@ -22,6 +22,44 @@ func Test_client_LicensingApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test LicensingApiService BindAdministeredLicensingSubscriptionSubscription", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionId string
+
+		resp, httpRes, err := apiClient.LicensingApi.BindAdministeredLicensingSubscriptionSubscription(context.Background(), subscriptionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test LicensingApiService ClaimAdministeredLicensingSubscriptionSubscriptions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.LicensingApi.ClaimAdministeredLicensingSubscriptionSubscriptions(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test LicensingApiService GetAdministeredLicensingSubscriptionSubscriptions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.LicensingApi.GetAdministeredLicensingSubscriptionSubscriptions(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test LicensingApiService GetOrganizationLicensingCotermLicenses", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -43,6 +81,18 @@ func Test_client_LicensingApiService(t *testing.T) {
 		var organizationId string
 
 		resp, httpRes, err := apiClient.LicensingApi.MoveOrganizationLicensingCotermLicenses(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test LicensingApiService ValidateAdministeredLicensingSubscriptionSubscriptionsClaimKey", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.LicensingApi.ValidateAdministeredLicensingSubscriptionSubscriptionsClaimKey(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
