@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **DhcpBootOptionsEnabled** | Pointer to **bool** | Use DHCP boot options specified in other properties | [optional] 
 **DhcpBootNextServer** | Pointer to **string** | DHCP boot option to direct boot clients to the server to load the boot file from | [optional] 
 **DhcpBootFilename** | Pointer to **string** | DHCP boot option for boot filename | [optional] 
-**FixedIpAssignments** | Pointer to **map[string]interface{}** | The DHCP fixed IP assignments on the VLAN. This should be an object that contains mappings from MAC addresses to objects that themselves each contain \&quot;ip\&quot; and \&quot;name\&quot; string fields. See the sample request/response for more details. | [optional] 
+**FixedIpAssignments** | Pointer to [**map[string]GetNetworkApplianceVlans200ResponseInnerFixedIpAssignmentsValue**](GetNetworkApplianceVlans200ResponseInnerFixedIpAssignmentsValue.md) | The DHCP fixed IP assignments on the VLAN. This should be an object that contains mappings from MAC addresses to objects that themselves each contain \&quot;ip\&quot; and \&quot;name\&quot; string fields. See the sample request/response for more details. | [optional] 
 **ReservedIpRanges** | Pointer to [**[]GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner**](GetNetworkApplianceVlans200ResponseInnerReservedIpRangesInner.md) | The DHCP reserved IP ranges on the VLAN | [optional] 
 **DnsNameservers** | Pointer to **string** | The DNS nameservers used for DHCP responses, either \&quot;upstream_dns\&quot;, \&quot;google_dns\&quot;, \&quot;opendns\&quot;, or a newline seperated string of IP addresses or domain names | [optional] 
 **DhcpOptions** | Pointer to [**[]GetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner**](GetNetworkApplianceVlans200ResponseInnerDhcpOptionsInner.md) | The list of DHCP options that will be included in DHCP responses. Each object in the list should have \&quot;code\&quot;, \&quot;type\&quot;, and \&quot;value\&quot; properties. | [optional] 
@@ -423,20 +423,20 @@ HasDhcpBootFilename returns a boolean if a field has been set.
 
 ### GetFixedIpAssignments
 
-`func (o *GetNetworkApplianceVlans200ResponseInner) GetFixedIpAssignments() map[string]interface{}`
+`func (o *GetNetworkApplianceVlans200ResponseInner) GetFixedIpAssignments() map[string]GetNetworkApplianceVlans200ResponseInnerFixedIpAssignmentsValue`
 
 GetFixedIpAssignments returns the FixedIpAssignments field if non-nil, zero value otherwise.
 
 ### GetFixedIpAssignmentsOk
 
-`func (o *GetNetworkApplianceVlans200ResponseInner) GetFixedIpAssignmentsOk() (*map[string]interface{}, bool)`
+`func (o *GetNetworkApplianceVlans200ResponseInner) GetFixedIpAssignmentsOk() (*map[string]GetNetworkApplianceVlans200ResponseInnerFixedIpAssignmentsValue, bool)`
 
 GetFixedIpAssignmentsOk returns a tuple with the FixedIpAssignments field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFixedIpAssignments
 
-`func (o *GetNetworkApplianceVlans200ResponseInner) SetFixedIpAssignments(v map[string]interface{})`
+`func (o *GetNetworkApplianceVlans200ResponseInner) SetFixedIpAssignments(v map[string]GetNetworkApplianceVlans200ResponseInnerFixedIpAssignmentsValue)`
 
 SetFixedIpAssignments sets FixedIpAssignments field to given value.
 

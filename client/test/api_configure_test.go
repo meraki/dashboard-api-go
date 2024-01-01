@@ -65,6 +65,20 @@ func Test_client_ConfigureApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ConfigureApiService BindAdministeredLicensingSubscriptionSubscription", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionId string
+
+		resp, httpRes, err := apiClient.ConfigureApi.BindAdministeredLicensingSubscriptionSubscription(context.Background(), subscriptionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ConfigureApiService BindNetwork", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -86,6 +100,18 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var networkId string
 
 		resp, httpRes, err := apiClient.ConfigureApi.CheckinNetworkSmDevices(context.Background(), networkId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService ClaimAdministeredLicensingSubscriptionSubscriptions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.ConfigureApi.ClaimAdministeredLicensingSubscriptionSubscriptions(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -1715,6 +1741,18 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		httpRes, err := apiClient.ConfigureApi.DeleteOrganizationSamlRole(context.Background(), organizationId, samlRoleId).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService GetAdministeredLicensingSubscriptionSubscriptions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.ConfigureApi.GetAdministeredLicensingSubscriptionSubscriptions(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -7798,6 +7836,18 @@ func Test_client_ConfigureApiService(t *testing.T) {
 		var organizationId string
 
 		resp, httpRes, err := apiClient.ConfigureApi.UpdateOrganizationSnmp(context.Background(), organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConfigureApiService ValidateAdministeredLicensingSubscriptionSubscriptionsClaimKey", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.ConfigureApi.ValidateAdministeredLicensingSubscriptionSubscriptionsClaimKey(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

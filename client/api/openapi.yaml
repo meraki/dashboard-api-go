@@ -6,7 +6,7 @@ info:
   description: |
     A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.
 
-    > Date: 06 December, 2023
+    > Date: 18 December, 2023
     >
     > [Recent Updates](https://meraki.io/whats-new/)
 
@@ -18,7 +18,7 @@ info:
 
     [Meraki Homepage](https://www.meraki.com)
   title: Meraki Dashboard API
-  version: 1.40.0
+  version: 1.41.0
 servers:
 - url: "https://api.meraki.com/{basePath}"
   variables:
@@ -90,6 +90,7 @@ tags:
 - name: channelUtilization
 - name: channelUtilizationHistory
 - name: claim
+- name: claimKey
 - name: clientCountHistory
 - name: clients
 - name: cloudMonitoring
@@ -259,6 +260,8 @@ tags:
 - name: stp
 - name: subnetPool
 - name: subnets
+- name: subscription
+- name: subscriptions
 - name: summary
 - name: switches
 - name: syslogServers
@@ -332,6 +335,306 @@ paths:
       - monitor
       - identities
       - me
+  /administered/licensing/subscription/subscriptions:
+    get:
+      description: List available subscriptions
+      operationId: getAdministeredLicensingSubscriptionSubscriptions
+      parameters:
+      - description: The number of entries per page returned. Acceptable range is
+          3 - 1000. Default is 1000.
+        explode: true
+        in: query
+        name: perPage
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "A token used by the server to indicate the start of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: startingAfter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A token used by the server to indicate the end of the page.\
+          \ Often this is a timestamp or an ID but it is not limited to those. This\
+          \ parameter should not be defined by client applications. The link for the\
+          \ first, last, prev, or next page in the HTTP Link header should define\
+          \ it."
+        explode: true
+        in: query
+        name: endingBefore
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: List of subscription ids to fetch
+        explode: true
+        in: query
+        name: subscriptionIds
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Organizations to get associated subscriptions for
+        explode: true
+        in: query
+        name: organizationIds
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: List of statuses that returned subscriptions can have
+        explode: true
+        in: query
+        name: statuses
+        required: false
+        schema:
+          items:
+            enum:
+            - active
+            - canceled
+            - expired
+            - inactive
+            type: string
+          type: array
+        style: form
+      - description: List of product types that returned subscriptions need to have
+          entitlements for.
+        explode: true
+        in: query
+        name: productTypes
+        required: false
+        schema:
+          items:
+            enum:
+            - appliance
+            - camera
+            - cellularGateway
+            - sensor
+            - switch
+            - systemsManager
+            - wireless
+            type: string
+          type: array
+        style: form
+      - description: "Filter subscriptions by start date, ISO 8601 format. To filter\
+          \ with a range of dates, use 'startDate[<option>]=?' in the request. Accepted\
+          \ options include lt, gt, lte, gte."
+        explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          $ref: '#/components/schemas/getAdministeredLicensingSubscriptionSubscriptions_startDate_parameter'
+        style: form
+      - description: "Filter subscriptions by end date, ISO 8601 format. To filter\
+          \ with a range of dates, use 'endDate[<option>]=?' in the request. Accepted\
+          \ options include lt, gt, lte, gte."
+        explode: true
+        in: query
+        name: endDate
+        required: false
+        schema:
+          $ref: '#/components/schemas/getAdministeredLicensingSubscriptionSubscriptions_startDate_parameter'
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - subscriptionId: "2345"
+                name: Corporate subscription
+                description: A description
+                status: active
+                startDate: 2027-06-30T00:00:00Z
+                endDate: 2028-06-30T00:00:00Z
+                webOrderId: "55598764"
+                productTypes:
+                - wireless
+                entitlements:
+                - sku: LIC-MS-400-L-A
+                  seats:
+                    assigned: 10
+                    available: 15
+                    limit: 25
+                counts:
+                  seats:
+                    assigned: 10
+                    available: 15
+                    limit: 25
+                  networks: 1
+              schema:
+                items:
+                  $ref: '#/components/schemas/getAdministeredLicensingSubscriptionSubscriptions_200_response_inner'
+                type: array
+          description: Successful operation
+          headers:
+            Link:
+              description: "A comma-separated list of first, last, prev, and next\
+                \ relative links used for subsequent paginated requests."
+              explode: false
+              schema:
+                type: string
+              style: simple
+      summary: List available subscriptions
+      tags:
+      - licensing
+      - configure
+      - subscription
+      - subscriptions
+  /administered/licensing/subscription/subscriptions/claim:
+    post:
+      description: Claim a subscription into an organization.
+      operationId: claimAdministeredLicensingSubscriptionSubscriptions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/claimAdministeredLicensingSubscriptionSubscriptions_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                subscriptionId: "2345"
+                name: Corporate subscription
+                description: A description
+                status: active
+                startDate: 2027-06-30T00:00:00Z
+                endDate: 2028-06-30T00:00:00Z
+                webOrderId: "55598764"
+                productTypes:
+                - wireless
+                entitlements:
+                - sku: LIC-MS-400-L-A
+                  seats:
+                    assigned: 10
+                    available: 15
+                    limit: 25
+                counts:
+                  seats:
+                    assigned: 10
+                    available: 15
+                    limit: 25
+                  networks: 1
+              schema:
+                $ref: '#/components/schemas/getAdministeredLicensingSubscriptionSubscriptions_200_response_inner'
+          description: Successful operation
+      summary: Claim a subscription into an organization.
+      tags:
+      - licensing
+      - configure
+      - subscription
+      - subscriptions
+  /administered/licensing/subscription/subscriptions/claimKey/validate:
+    post:
+      description: Find a subscription by claim key. Returns 400 if the key has already
+        been claimed.
+      operationId: validateAdministeredLicensingSubscriptionSubscriptionsClaimKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/validateAdministeredLicensingSubscriptionSubscriptionsClaimKey_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                subscriptionId: "2345"
+                name: Corporate subscription
+                description: A description
+                status: active
+                startDate: 2027-06-30T00:00:00Z
+                endDate: 2028-06-30T00:00:00Z
+                webOrderId: "55598764"
+                productTypes:
+                - wireless
+                entitlements:
+                - sku: LIC-MS-400-L-A
+                  seats:
+                    assigned: 10
+                    available: 15
+                    limit: 25
+                counts:
+                  seats:
+                    assigned: 10
+                    available: 15
+                    limit: 25
+                  networks: 1
+              schema:
+                $ref: '#/components/schemas/getAdministeredLicensingSubscriptionSubscriptions_200_response_inner'
+          description: Successful operation
+      summary: Find a subscription by claim key
+      tags:
+      - licensing
+      - configure
+      - subscription
+      - subscriptions
+      - claimKey
+  /administered/licensing/subscription/subscriptions/{subscriptionId}/bind:
+    post:
+      description: Bind networks to a subscription
+      operationId: bindAdministeredLicensingSubscriptionSubscription
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Check if the provided networks can be bound to the subscription.
+          Returns any licensing problems and does not commit the results.
+        explode: true
+        in: query
+        name: validate
+        required: false
+        schema:
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bindAdministeredLicensingSubscriptionSubscription_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                subscriptionId: XY1234567
+                networks:
+                - id: L_1234
+                  name: Corporate network
+                errors:
+                - Insufficient licenses
+                insufficientEntitlements:
+                - sku: LIC-MS-400-L-A
+                  quantity: 5
+              schema:
+                $ref: '#/components/schemas/bindAdministeredLicensingSubscriptionSubscription_200_response'
+          description: Successful operation
+      summary: Bind networks to a subscription
+      tags:
+      - licensing
+      - configure
+      - subscription
+      - subscriptions
   /devices/{serial}:
     get:
       description: Return a single device
@@ -7680,6 +7983,10 @@ paths:
                 dhcpBootOptionsEnabled: false
                 dhcpBootNextServer: 1.2.3.4
                 dhcpBootFilename: sample.file
+                fixedIpAssignments:
+                  "00:11:22:33:44:55":
+                    ip: 1.2.3.4
+                    name: My favorite IP
                 reservedIpRanges:
                 - start: 192.168.1.0
                   end: 192.168.1.1
@@ -7896,6 +8203,10 @@ paths:
                 dhcpBootOptionsEnabled: false
                 dhcpBootNextServer: 1.2.3.4
                 dhcpBootFilename: sample.file
+                fixedIpAssignments:
+                  "00:11:22:33:44:55":
+                    ip: 1.2.3.4
+                    name: My favorite IP
                 reservedIpRanges:
                 - start: 192.168.1.0
                   end: 192.168.1.1
@@ -7974,6 +8285,10 @@ paths:
                 dhcpBootOptionsEnabled: false
                 dhcpBootNextServer: 1.2.3.4
                 dhcpBootFilename: sample.file
+                fixedIpAssignments:
+                  "00:11:22:33:44:55":
+                    ip: 1.2.3.4
+                    name: My favorite IP
                 reservedIpRanges:
                 - start: 192.168.1.0
                   end: 192.168.1.1
@@ -34808,7 +35123,6 @@ paths:
             application/json:
               example: {}
               schema:
-                properties: {}
                 type: object
           description: Successful operation
       summary: Imports event logs related to the onboarding app into elastisearch
@@ -41654,7 +41968,6 @@ components:
             object that contains mappings from MAC addresses to objects that themselves
             each contain "ip" and "name" string fields. See the sample request/response
             for more details.
-          properties: {}
           type: object
         reservedIpRanges:
           description: The DHCP reserved IP ranges on the VLAN
@@ -41780,7 +42093,6 @@ components:
             \ Reserved, Vendor Specific; tunneledEapMethodCredentials: SIM, USIM,\
             \ NFC Secure Element, Hardware Token, Softoken, Certificate, username/password,\
             \ Reserved, Anonymous, Vendor Specific)"
-          properties: {}
           type: object
       type: object
     ? getNetworkApplianceTrafficShapingUplinkSelection_200_response_vpnTrafficUplinkPreferences_inner_trafficFilters_inner_value_destination
@@ -43382,7 +43694,10 @@ components:
           value: value
         dhcpBootOptionsEnabled: true
         dhcpBootNextServer: dhcpBootNextServer
-        fixedIpAssignments: "{}"
+        fixedIpAssignments:
+          key:
+            ip: ip
+            name: name
         dhcpLeaseTime: 1 day
         vpnNatSubnet: vpnNatSubnet
         dhcpRelayServerIps:
@@ -43497,11 +43812,12 @@ components:
           description: DHCP boot option for boot filename
           type: string
         fixedIpAssignments:
+          additionalProperties:
+            $ref: '#/components/schemas/getNetworkApplianceVlans_200_response_inner_fixedIpAssignments_value'
           description: The DHCP fixed IP assignments on the VLAN. This should be an
             object that contains mappings from MAC addresses to objects that themselves
             each contain "ip" and "name" string fields. See the sample request/response
             for more details.
-          properties: {}
           type: object
         reservedIpRanges:
           description: The DHCP reserved IP ranges on the VLAN
@@ -45131,6 +45447,24 @@ components:
             for Polaris switches
           type: string
       type: object
+    getAdministeredLicensingSubscriptionSubscriptions_200_response_inner_entitlements_inner_seats:
+      description: Seat distribution
+      example:
+        available: 6
+        limit: 1
+        assigned: 0
+      properties:
+        assigned:
+          description: Number of seats in use
+          type: integer
+        available:
+          description: Number of seats available for use
+          type: integer
+        limit:
+          description: Total number of seats provided by this subscription for this
+            sku
+          type: integer
+      type: object
     updateNetworkApplianceFirewallOneToManyNatRules_request:
       example:
         rules:
@@ -46155,11 +46489,11 @@ components:
             \ to false."
           type: boolean
         ebgpHoldTimer:
-          description: The EBGP hold timer in seconds for each neighbor. The EBGP
+          description: The eBGP hold timer in seconds for each neighbor. The eBGP
             hold timer must be an integer between 12 and 240.
           type: integer
         ebgpMultihop:
-          description: Configure this if the neighbor is not adjacent. The EBGP multi-hop
+          description: Configure this if the neighbor is not adjacent. The eBGP multi-hop
             must be an integer between 1 and 255.
           type: integer
         sourceInterface:
@@ -47627,7 +47961,6 @@ components:
         body:
           default: {}
           description: The body of the action
-          properties: {}
           type: object
       required:
       - operation
@@ -49357,6 +49690,21 @@ components:
             $ref: '#/components/schemas/updateNetworkWirelessSsidSchedules_request_rangesInSeconds_inner'
           type: array
       type: object
+    bindAdministeredLicensingSubscriptionSubscription_request:
+      example:
+        networkIds:
+        - L_1234
+        - N_5678
+        validate: true
+      properties:
+        networkIds:
+          description: List of network ids to bind to the subscription
+          items:
+            type: string
+          type: array
+      required:
+      - networkIds
+      type: object
     updateDeviceSwitchPort_request:
       example:
         name: My switch port
@@ -50111,7 +50459,7 @@ components:
             \ then it defaults to 64512."
           type: integer
         ibgpHoldTimer:
-          description: "The IBGP holdtimer in seconds. The IBGP holdtimer must be\
+          description: "The iBGP holdtimer in seconds. The iBGP holdtimer must be\
             \ an integer between 12 and 240. When absent, this field is not updated.\
             \ If no value exists then it defaults to 240."
           type: integer
@@ -51032,6 +51380,20 @@ components:
       required:
       - quality
       - resolution
+      type: object
+    getAdministeredLicensingSubscriptionSubscriptions_200_response_inner_entitlements_inner:
+      example:
+        sku: sku
+        seats:
+          available: 6
+          limit: 1
+          assigned: 0
+      properties:
+        sku:
+          description: SKU of the required product
+          type: string
+        seats:
+          $ref: '#/components/schemas/getAdministeredLicensingSubscriptionSubscriptions_200_response_inner_entitlements_inner_seats'
       type: object
     createOrganizationSamlIdp_request:
       example:
@@ -54186,7 +54548,6 @@ components:
             be an object that contains mappings from MAC addresses to objects that
             themselves each contain "ip" and "name" string fields. See the sample
             request/response for more details.
-          properties: {}
           type: object
         reservedIpRanges:
           description: The DHCP reserved IP ranges on the static route
@@ -54934,6 +55295,18 @@ components:
       - licenseId
       - networkId
       - seatCount
+      type: object
+    bindAdministeredLicensingSubscriptionSubscription_200_response_insufficientEntitlements_inner:
+      example:
+        quantity: 0
+        sku: sku
+      properties:
+        sku:
+          description: SKU of the required product
+          type: string
+        quantity:
+          description: Number required
+          type: integer
       type: object
     updateDeviceCameraSense_request:
       example:
@@ -57403,6 +57776,18 @@ components:
       required:
       - appIds
       type: object
+    bindAdministeredLicensingSubscriptionSubscription_200_response_networks_inner:
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          description: Network ID
+          type: string
+        name:
+          description: Network name
+          type: string
+      type: object
     _devices__serial__liveTools_ping_post_request_message_results_replies_inner:
       example:
         size: 9
@@ -59393,6 +59778,21 @@ components:
             $ref: '#/components/schemas/getOrganizationSensorReadingsLatest_200_response_inner_readings_inner'
           type: array
       type: object
+    getAdministeredLicensingSubscriptionSubscriptions_200_response_inner_counts:
+      description: Numeric breakdown of network and entitlement counts
+      example:
+        networks: 7
+        seats:
+          available: 5
+          limit: 2
+          assigned: 5
+      properties:
+        seats:
+          $ref: '#/components/schemas/getAdministeredLicensingSubscriptionSubscriptions_200_response_inner_counts_seats'
+        networks:
+          description: Number of networks bound to this subscription
+          type: integer
+      type: object
     getOrganizationDevicesUplinksAddressesByDevice_200_response_inner_uplinks_inner_addresses_inner_public:
       description: Public interface information.
       example:
@@ -60674,6 +61074,16 @@ components:
             water
           type: integer
       type: object
+    validateAdministeredLicensingSubscriptionSubscriptionsClaimKey_request:
+      example:
+        claimKey: S2345-6789A-BCDEF-GHJKM
+      properties:
+        claimKey:
+          description: The subscription's claim key
+          type: string
+      required:
+      - claimKey
+      type: object
     createNetworkWirelessRfProfile_request_perSsidSettings_9:
       description: Settings for SSID 9
       properties:
@@ -61182,6 +61592,19 @@ components:
           description: MAC address
           type: string
       type: object
+    getNetworkApplianceVlans_200_response_inner_fixedIpAssignments_value:
+      description: "IP assignment information, keyed by MAC address of the device"
+      example:
+        ip: ip
+        name: name
+      properties:
+        ip:
+          description: IP address of the assignment
+          type: string
+        name:
+          description: Name of the IP assignment
+          type: string
+      type: object
     updateNetworkSensorMqttBroker_request:
       example:
         mqttBrokerId: "1234"
@@ -61403,7 +61826,6 @@ components:
           $ref: '#/components/schemas/getNetworkAlertsHistory_200_response_inner_destinations'
         alertData:
           description: relevant data about the event that caused the alert
-          properties: {}
           type: object
       type: object
     getOrganizationSummaryTopClientsByUsage_200_response_inner_network:
@@ -61912,6 +62334,29 @@ components:
       required:
       - host
       - port
+      type: object
+    claimAdministeredLicensingSubscriptionSubscriptions_request:
+      example:
+        claimKey: S2345-6789A-BCDEF-GHJKM
+        organizationId: "12345678910"
+        name: Corporate subscription
+        description: Subscription for all main offices
+      properties:
+        claimKey:
+          description: The subscription's claim key
+          type: string
+        organizationId:
+          description: The id of the organization claiming the subscription
+          type: string
+        name:
+          description: Friendly name to identify the subscription
+          type: string
+        description:
+          description: Extra details or notes about the subscription
+          type: string
+      required:
+      - claimKey
+      - organizationId
       type: object
     updateNetworkWirelessSsid_request_localRadius_certificateAuthentication:
       description: The current setting for certificate verification.
@@ -64356,12 +64801,39 @@ components:
           $ref: '#/components/schemas/createNetworkMqttBroker_request_security'
         authentication:
           description: Authentication settings of the MQTT broker
-          properties: {}
           type: object
       required:
       - host
       - name
       - port
+      type: object
+    getAdministeredLicensingSubscriptionSubscriptions_startDate_parameter_oneOf:
+      properties:
+        lt:
+          description: comparative operator used to filter for all values less than
+            the given value
+          format: date-time
+          type: string
+        gt:
+          description: comparative operator used to filter for all values greater
+            than the given value
+          format: date-time
+          type: string
+        lte:
+          description: comparative operator used to filter for all values less than
+            or equal to the given value
+          format: date-time
+          type: string
+        gte:
+          description: comparative operator used to filter for all values greater
+            than or equal to the given value
+          format: date-time
+          type: string
+        neq:
+          description: comparative operator used to filter for all values not equal
+            to the given value
+          format: date-time
+          type: string
       type: object
     createNetworkFirmwareUpgradesStagedEvent_request_products_switch_nextUpgrade_toVersion:
       description: The version to be updated to for switch devices
@@ -66148,6 +66620,85 @@ components:
           description: AC power connected
           type: boolean
       type: object
+    getAdministeredLicensingSubscriptionSubscriptions_200_response_inner:
+      example:
+        entitlements:
+        - sku: sku
+          seats:
+            available: 6
+            limit: 1
+            assigned: 0
+        - sku: sku
+          seats:
+            available: 6
+            limit: 1
+            assigned: 0
+        endDate: 2000-01-23T04:56:07.000+00:00
+        counts:
+          networks: 7
+          seats:
+            available: 5
+            limit: 2
+            assigned: 5
+        name: name
+        description: description
+        webOrderId: webOrderId
+        productTypes:
+        - appliance
+        - appliance
+        subscriptionId: subscriptionId
+        startDate: 2000-01-23T04:56:07.000+00:00
+        status: active
+      properties:
+        subscriptionId:
+          description: Subscription's ID
+          type: string
+        name:
+          description: Subscription name
+          type: string
+        description:
+          description: Subscription description
+          type: string
+        status:
+          description: Subscription status
+          enum:
+          - active
+          - canceled
+          - expired
+          - inactive
+          type: string
+        startDate:
+          description: Subscription start date
+          format: date-time
+          type: string
+        endDate:
+          description: Subscription expiration date
+          format: date-time
+          type: string
+        webOrderId:
+          description: Web order id
+          type: string
+        productTypes:
+          description: Products the subscription has entitlements for
+          items:
+            enum:
+            - appliance
+            - camera
+            - cellularGateway
+            - sensor
+            - switch
+            - systemsManager
+            - wireless
+            type: string
+          type: array
+        entitlements:
+          description: Entitlement info
+          items:
+            $ref: '#/components/schemas/getAdministeredLicensingSubscriptionSubscriptions_200_response_inner_entitlements_inner'
+          type: array
+        counts:
+          $ref: '#/components/schemas/getAdministeredLicensingSubscriptionSubscriptions_200_response_inner_counts'
+      type: object
     updateNetworkWirelessSsid_request_namedVlans_tagging:
       description: VLAN tagging settings. This param is only valid when ipAssignmentMode
         is 'Bridge mode' or 'Layer 3 roaming'.
@@ -67437,6 +67988,43 @@ components:
         hash:
           description: The hashed secret
           type: string
+      type: object
+    bindAdministeredLicensingSubscriptionSubscription_200_response:
+      example:
+        subscriptionId: subscriptionId
+        networks:
+        - name: name
+          id: id
+        - name: name
+          id: id
+        insufficientEntitlements:
+        - quantity: 0
+          sku: sku
+        - quantity: 0
+          sku: sku
+        errors:
+        - errors
+        - errors
+      properties:
+        subscriptionId:
+          description: Subscription ID
+          type: string
+        networks:
+          description: Unbound networks
+          items:
+            $ref: '#/components/schemas/bindAdministeredLicensingSubscriptionSubscription_200_response_networks_inner'
+          type: array
+        errors:
+          description: Array of errors if failed
+          items:
+            type: string
+          type: array
+        insufficientEntitlements:
+          description: A list of entitlements required to successfully bind the networks
+            to the subscription
+          items:
+            $ref: '#/components/schemas/bindAdministeredLicensingSubscriptionSubscription_200_response_insufficientEntitlements_inner'
+          type: array
       type: object
     createOrganizationInventoryOnboardingCloudMonitoringPrepare_request_devices_inner:
       properties:
@@ -69099,7 +69687,6 @@ components:
           $ref: '#/components/schemas/createNetworkMqttBroker_request_security'
         authentication:
           description: Authentication settings of the MQTT broker
-          properties: {}
           type: object
       type: object
     updateNetworkSettings_request_namedVlans:
@@ -69288,6 +69875,9 @@ components:
         enabled:
           description: Failover to secondary SIM (optional)
           type: boolean
+        timeout:
+          description: Failover timeout in seconds (optional)
+          type: integer
       type: object
     createOrganizationBrandingPolicy_request_helpSettings:
       description: |2-
@@ -70399,6 +70989,23 @@ components:
         checksum:
           description: UDP checksum of the packet.
           type: string
+      type: object
+    getAdministeredLicensingSubscriptionSubscriptions_200_response_inner_counts_seats:
+      description: Seat distribution
+      example:
+        available: 5
+        limit: 2
+        assigned: 5
+      properties:
+        assigned:
+          description: Number of seats in use
+          type: integer
+        available:
+          description: Number of seats available for use
+          type: integer
+        limit:
+          description: Total number of seats provided by this subscription
+          type: integer
       type: object
     updateNetworkAlertsSettings_request_defaultDestinations:
       description: The network-wide destinations for all alerts on the network.
@@ -71515,7 +72122,6 @@ components:
         filters:
           description: A hash of specific configuration data for the alert. Only filters
             specific to the alert will be updated.
-          properties: {}
           type: object
       required:
       - type
@@ -71581,6 +72187,11 @@ components:
       - licenseId
       - seatCount
       type: object
+    getAdministeredLicensingSubscriptionSubscriptions_startDate_parameter:
+      oneOf:
+      - $ref: '#/components/schemas/getAdministeredLicensingSubscriptionSubscriptions_startDate_parameter_oneOf'
+      - format: date-time
+        type: string
     getOrganizationClientsOverview_200_response_usage:
       description: Usage information of all clients across organization
       example:

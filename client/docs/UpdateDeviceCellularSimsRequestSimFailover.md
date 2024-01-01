@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Enabled** | Pointer to **bool** | Failover to secondary SIM (optional) | [optional] 
+**Timeout** | Pointer to **int32** | Failover timeout in seconds (optional) | [optional] 
 
 ## Methods
 
@@ -49,6 +50,31 @@ SetEnabled sets Enabled field to given value.
 `func (o *UpdateDeviceCellularSimsRequestSimFailover) HasEnabled() bool`
 
 HasEnabled returns a boolean if a field has been set.
+
+### GetTimeout
+
+`func (o *UpdateDeviceCellularSimsRequestSimFailover) GetTimeout() int32`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *UpdateDeviceCellularSimsRequestSimFailover) GetTimeoutOk() (*int32, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *UpdateDeviceCellularSimsRequestSimFailover) SetTimeout(v int32)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *UpdateDeviceCellularSimsRequestSimFailover) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
