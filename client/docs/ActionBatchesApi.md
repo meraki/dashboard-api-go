@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationActionBatches
 
-> []map[string]interface{} GetOrganizationActionBatches(ctx, organizationId).Status(status).Execute()
+> []GetOrganizationActionBatches200ResponseInner GetOrganizationActionBatches(ctx, organizationId).Status(status).Execute()
 
 Return the list of action batches in the organization
 
@@ -263,7 +263,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ActionBatchesApi.GetOrganizationActionBatches``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationActionBatches`: []map[string]interface{}
+    // response from `GetOrganizationActionBatches`: []GetOrganizationActionBatches200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ActionBatchesApi.GetOrganizationActionBatches`: %v\n", resp)
 }
 ```
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[]map[string]interface{}**
+[**[]GetOrganizationActionBatches200ResponseInner**](GetOrganizationActionBatches200ResponseInner.md)
 
 ### Authorization
 
@@ -306,7 +306,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationActionBatch
 
-> map[string]interface{} UpdateOrganizationActionBatch(ctx, organizationId, actionBatchId).UpdateOrganizationActionBatchRequest(updateOrganizationActionBatchRequest).Execute()
+> GetOrganizationActionBatches200ResponseInner UpdateOrganizationActionBatch(ctx, organizationId, actionBatchId).UpdateOrganizationActionBatchRequest(updateOrganizationActionBatchRequest).Execute()
 
 Update an action batch
 
@@ -337,7 +337,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ActionBatchesApi.UpdateOrganizationActionBatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationActionBatch`: map[string]interface{}
+    // response from `UpdateOrganizationActionBatch`: GetOrganizationActionBatches200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `ActionBatchesApi.UpdateOrganizationActionBatch`: %v\n", resp)
 }
 ```
@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GetOrganizationActionBatches200ResponseInner**](GetOrganizationActionBatches200ResponseInner.md)
 
 ### Authorization
 

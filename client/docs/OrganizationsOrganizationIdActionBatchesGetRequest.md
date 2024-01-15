@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Network** | Pointer to [**DevicesSerialLiveToolsPingPostRequestOrganization**](DevicesSerialLiveToolsPingPostRequestOrganization.md) |  | [optional] 
 **SentAt** | Pointer to **string** |  | [optional] 
 **CallbackId** | Pointer to **string** |  | [optional] 
-**Message** | Pointer to [**OrganizationsOrganizationIdActionBatchesGetRequestMessage**](OrganizationsOrganizationIdActionBatchesGetRequestMessage.md) |  | [optional] 
+**Message** | Pointer to [**GetOrganizationActionBatches200ResponseInner**](GetOrganizationActionBatches200ResponseInner.md) |  | [optional] 
 
 ## Methods
 
@@ -131,20 +131,20 @@ HasCallbackId returns a boolean if a field has been set.
 
 ### GetMessage
 
-`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) GetMessage() OrganizationsOrganizationIdActionBatchesGetRequestMessage`
+`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) GetMessage() GetOrganizationActionBatches200ResponseInner`
 
 GetMessage returns the Message field if non-nil, zero value otherwise.
 
 ### GetMessageOk
 
-`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) GetMessageOk() (*OrganizationsOrganizationIdActionBatchesGetRequestMessage, bool)`
+`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) GetMessageOk() (*GetOrganizationActionBatches200ResponseInner, bool)`
 
 GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMessage
 
-`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) SetMessage(v OrganizationsOrganizationIdActionBatchesGetRequestMessage)`
+`func (o *OrganizationsOrganizationIdActionBatchesGetRequest) SetMessage(v GetOrganizationActionBatches200ResponseInner)`
 
 SetMessage sets Message field to given value.
 

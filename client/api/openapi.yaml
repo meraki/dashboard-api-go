@@ -6,7 +6,7 @@ info:
   description: |
     A RESTful API to programmatically manage and monitor Cisco Meraki networks at scale.
 
-    > Date: 18 December, 2023
+    > Date: 03 January, 2024
     >
     > [Recent Updates](https://meraki.io/whats-new/)
 
@@ -18,7 +18,7 @@ info:
 
     [Meraki Homepage](https://www.meraki.com)
   title: Meraki Dashboard API
-  version: 1.41.0
+  version: 1.42.0
 servers:
 - url: "https://api.meraki.com/{basePath}"
   variables:
@@ -27938,7 +27938,7 @@ paths:
           content:
             application/json:
               example:
-              - id: "123"
+              - id: "1234"
                 organizationId: "2930418"
                 confirmed: true
                 synchronous: false
@@ -27947,20 +27947,16 @@ paths:
                   failed: false
                   errors: []
                   createdResources:
-                  - id: 100
+                  - id: "1284392014819"
                     uri: /networks/L_XXXXX/groupPolicies/100
                 actions:
                 - resource: /devices/QXXX-XXXX-XXXX/switch/ports/3
                   operation: update
                   body:
                     enabled: false
-                - resource: /networks/L_XXXXX/groupPolicies
-                  operation: create
-                  body:
-                    name: Group 1
               schema:
                 items:
-                  type: object
+                  $ref: '#/components/schemas/getOrganizationActionBatches_200_response_inner'
                 type: array
           description: Successful operation
       summary: Return the list of action batches in the organization
@@ -28021,6 +28017,8 @@ paths:
                 actions:
                 - resource: /devices/QXXX-XXXX-XXXX/switch/ports/3
                   operation: update
+                  body:
+                    enabled: false
                 callback:
                   id: "1284392014819"
                   url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
@@ -28101,6 +28099,8 @@ paths:
                 actions:
                 - resource: /devices/QXXX-XXXX-XXXX/switch/ports/3
                   operation: update
+                  body:
+                    enabled: false
                 callback:
                   id: "1284392014819"
                   url: https://webhook.site/28efa24e-f830-4d9f-a12b-fbb9e5035031
@@ -28144,26 +28144,24 @@ paths:
           content:
             application/json:
               example:
-                id: "123"
+                id: "1234"
                 organizationId: "2930418"
                 confirmed: true
                 synchronous: false
                 status:
-                  completed: false
+                  completed: true
                   failed: false
                   errors: []
-                  createdResources: []
+                  createdResources:
+                  - id: "1284392014819"
+                    uri: /networks/L_XXXXX/groupPolicies/100
                 actions:
                 - resource: /devices/QXXX-XXXX-XXXX/switch/ports/3
                   operation: update
                   body:
                     enabled: false
-                - resource: /networks/L_XXXXX/groupPolicies
-                  operation: create
-                  body:
-                    name: Group 1
               schema:
-                type: object
+                $ref: '#/components/schemas/getOrganizationActionBatches_200_response_inner'
           description: Successful operation
       summary: Update an action batch
       tags:
@@ -32716,6 +32714,7 @@ paths:
                 adminId: "212406"
                 networkName: Main Office
                 networkId: N_24329156
+                networkUrl: https://n1.meraki.com//n//manage/nodes/list
                 ssidName: My SSID
                 ssidNumber: 1
                 page: via API
@@ -33172,7 +33171,7 @@ paths:
           type: string
         style: form
       - description: The beginning of the timespan for the data. The maximum lookback
-          period is 14 days from today.
+          period is 31 days from today.
         explode: true
         in: query
         name: t0
@@ -33181,7 +33180,7 @@ paths:
           type: string
         style: form
       - description: The end of the timespan for the data. t1 can be a maximum of
-          14 days after t0.
+          31 days after t0.
         explode: true
         in: query
         name: t1
@@ -33191,14 +33190,14 @@ paths:
         style: form
       - description: "The timespan for which the information will be fetched. If specifying\
           \ timespan, do not specify parameters t0 and t1. The value must be in seconds\
-          \ and be less than or equal to 14 days. The default is 1 day."
+          \ and be less than or equal to 31 days. The default is 1 day."
         explode: true
         in: query
         name: timespan
         required: false
         schema:
           format: float
-          maximum: 1209600
+          maximum: 2678400
           type: number
         style: form
       - description: Optional parameter to filter device availabilities history by
@@ -42211,41 +42210,6 @@ components:
       - counts
       - key
       type: object
-    createOrganizationActionBatch_201_response_status:
-      description: Status of action batch
-      example:
-        createdResources:
-        - id: id
-          uri: uri
-        - id: id
-          uri: uri
-        completed: true
-        failed: true
-        errors:
-        - errors
-        - errors
-      properties:
-        completed:
-          description: Flag describing whether all actions in the action batch have
-            completed
-          type: boolean
-        failed:
-          description: Flag describing whether any actions in the action batch failed
-          type: boolean
-        errors:
-          description: List of errors encountered when running actions in the action
-            batch
-          items:
-            type: string
-          type: array
-        createdResources:
-          description: Resources created as a result of this action batch
-          items:
-            $ref: '#/components/schemas/createOrganizationActionBatch_201_response_status_createdResources_inner'
-          type: array
-      required:
-      - createdResources
-      type: object
     getOrganizationLoginSecurity_200_response_apiAuthentication_ipRestrictionsForKeys:
       description: Details for API-only IP restrictions.
       example:
@@ -42470,7 +42434,7 @@ components:
       - resolution
       type: object
     createNetworkFirmwareUpgradesStagedEvent_request_products_switchCatalyst_nextUpgrade_toVersion:
-      description: The version to be updated to for switch catalyst devices
+      description: The version to be updated to for switch Catalyst devices
       properties:
         id:
           description: The version ID
@@ -43628,6 +43592,59 @@ components:
       required:
       - ports
       type: object
+    getOrganizationActionBatches_200_response_inner:
+      example:
+        organizationId: organizationId
+        synchronous: true
+        id: id
+        confirmed: true
+        actions:
+        - resource: resource
+          body:
+            key: ""
+          operation: operation
+        - resource: resource
+          body:
+            key: ""
+          operation: operation
+        status:
+          createdResources:
+          - id: id
+            uri: uri
+          - id: id
+            uri: uri
+          completed: true
+          failed: true
+          errors:
+          - errors
+          - errors
+      properties:
+        id:
+          description: "ID of the action batch. Can be used to check the status of\
+            \ the action batch at /organizations/{organizationId}/actionBatches/{actionBatchId}"
+          type: string
+        organizationId:
+          description: ID of the organization this action batch belongs to
+          type: string
+        confirmed:
+          description: Flag describing whether the action should be previewed before
+            executing or not
+          type: boolean
+        synchronous:
+          description: Flag describing whether actions should run synchronously or
+            asynchronously
+          type: boolean
+        status:
+          $ref: '#/components/schemas/getOrganizationActionBatches_200_response_inner_status'
+        actions:
+          description: A set of changes made as part of this action (<a href='https://developer.cisco.com/meraki/api/#/rest/guides/action-batches/'>more
+            details</a>)
+          items:
+            $ref: '#/components/schemas/getOrganizationActionBatches_200_response_inner_actions_inner'
+          type: array
+      required:
+      - actions
+      type: object
     getOrganizationSummaryTopSwitchesByEnergyUsage_200_response_inner:
       example:
         usage:
@@ -44424,7 +44441,7 @@ components:
         callbackId:
           type: string
         message:
-          $ref: '#/components/schemas/_organizations__organizationId__actionBatches_get_request_message'
+          $ref: '#/components/schemas/getOrganizationActionBatches_200_response_inner'
       type: object
     getNetworkSwitchDhcpV4ServersSeen_200_response_inner_lastPacket_fields_options_inner:
       example:
@@ -45970,18 +45987,19 @@ components:
       type: object
     getOrganizationConfigurationChanges_200_response_inner:
       example:
-        adminName: adminName
         ssidName: ssidName
         ssidNumber: 0
         newValue: newValue
-        adminId: adminId
         networkName: networkName
+        label: label
+        adminName: adminName
+        adminId: adminId
         networkId: networkId
         page: page
-        label: label
         oldValue: oldValue
         ts: 2000-01-23T04:56:07.000+00:00
         adminEmail: adminEmail
+        networkUrl: networkUrl
       properties:
         ts:
           description: "Time, in ISO8601 format, when the configuration change was\
@@ -46005,6 +46023,10 @@ components:
           type: string
         networkId:
           description: The ID of the network that the configuration change was applied
+            to. This attribute may be null.
+          type: string
+        networkUrl:
+          description: The url of the network that the configuration change was applied
             to. This attribute may be null.
           type: string
         ssidName:
@@ -46498,7 +46520,7 @@ components:
           type: integer
         sourceInterface:
           description: "The output interface for peering with the remote BGP peer.\
-            \ Valid values are: 'wired0', 'wired1' or 'vlan{VLAN ID}'(e.g. 'vlan123')."
+            \ Valid values are: 'wan1', 'wan2' or 'vlan{VLAN ID}'(e.g. 'vlan123')."
           type: string
         nextHopIp:
           description: The IPv4 address of the remote BGP peer that will establish
@@ -48275,21 +48297,6 @@ components:
       properties:
         guestVlan:
           $ref: '#/components/schemas/updateNetworkWirelessSsid_request_namedVlans_radius_guestVlan'
-      type: object
-    createOrganizationActionBatch_201_response_actions_inner:
-      example:
-        resource: resource
-        operation: operation
-      properties:
-        resource:
-          description: Unique identifier for the resource to be acted on
-          type: string
-        operation:
-          description: The operation to be used by this action
-          type: string
-      required:
-      - operation
-      - resource
       type: object
     getOrganizationFirmwareUpgradesByDevice_200_response_inner_upgrade_fromVersion:
       description: The initial version of the device
@@ -52323,18 +52330,6 @@ components:
         example:
           $ref: '#/components/schemas/getOrganizationWebhooksAlertTypes_200_response_example'
       type: object
-    createOrganizationActionBatch_201_response_status_createdResources_inner:
-      example:
-        id: id
-        uri: uri
-      properties:
-        id:
-          description: ID of the created resource
-          type: string
-        uri:
-          description: "URI, not including base, of the created resource"
-          type: string
-      type: object
     getOrganizationWirelessDevicesPacketLossByClient_200_response_inner_downstream:
       description: Packets sent from an AP to a client.
       example:
@@ -53604,6 +53599,28 @@ components:
             type: integer
           type: array
       type: object
+    getOrganizationActionBatches_200_response_inner_actions_inner:
+      example:
+        resource: resource
+        body:
+          key: ""
+        operation: operation
+      properties:
+        resource:
+          description: Unique identifier for the resource to be acted on
+          type: string
+        operation:
+          description: The operation to be used by this action
+          type: string
+        body:
+          additionalProperties: true
+          description: Data provided in the body of the Action. Contents depend on
+            the Action type
+          type: object
+      required:
+      - operation
+      - resource
+      type: object
     createNetworkGroupPolicy_request_scheduling_sunday:
       description: The schedule object for Sunday.
       properties:
@@ -54072,6 +54089,41 @@ components:
           $ref: '#/components/schemas/updateNetworkApplianceSsid_request_dhcpEnforcedDeauthentication'
         dot11w:
           $ref: '#/components/schemas/updateNetworkApplianceSsid_request_dot11w'
+      type: object
+    getOrganizationActionBatches_200_response_inner_status:
+      description: Status of action batch
+      example:
+        createdResources:
+        - id: id
+          uri: uri
+        - id: id
+          uri: uri
+        completed: true
+        failed: true
+        errors:
+        - errors
+        - errors
+      properties:
+        completed:
+          description: Flag describing whether all actions in the action batch have
+            completed
+          type: boolean
+        failed:
+          description: Flag describing whether any actions in the action batch failed
+          type: boolean
+        errors:
+          description: List of errors encountered when running actions in the action
+            batch
+          items:
+            type: string
+          type: array
+        createdResources:
+          description: Resources created as a result of this action batch
+          items:
+            $ref: '#/components/schemas/getOrganizationActionBatches_200_response_inner_status_createdResources_inner'
+          type: array
+      required:
+      - createdResources
       type: object
     getNetworkFirmwareUpgradesStagedStages_200_response_inner:
       example:
@@ -60265,6 +60317,18 @@ components:
         profile:
           $ref: '#/components/schemas/getDeviceSwitchPorts_200_response_inner_profile'
       type: object
+    getOrganizationActionBatches_200_response_inner_status_createdResources_inner:
+      example:
+        id: id
+        uri: uri
+      properties:
+        id:
+          description: ID of the created resource
+          type: string
+        uri:
+          description: "URI, not including base, of the created resource"
+          type: string
+      type: object
     createDeviceApplianceVmxAuthenticationToken_201_response:
       example:
         expiresAt: expiresAt
@@ -65503,8 +65567,12 @@ components:
         confirmed: true
         actions:
         - resource: resource
+          body:
+            key: ""
           operation: operation
         - resource: resource
+          body:
+            key: ""
           operation: operation
         status:
           createdResources:
@@ -65534,12 +65602,12 @@ components:
             asynchronously
           type: boolean
         status:
-          $ref: '#/components/schemas/createOrganizationActionBatch_201_response_status'
+          $ref: '#/components/schemas/getOrganizationActionBatches_200_response_inner_status'
         actions:
           description: A set of changes made as part of this action (<a href='https://developer.cisco.com/meraki/api/#/rest/guides/action-batches/'>more
             details</a>)
           items:
-            $ref: '#/components/schemas/createOrganizationActionBatch_201_response_actions_inner'
+            $ref: '#/components/schemas/getOrganizationActionBatches_200_response_inner_actions_inner'
           type: array
         callback:
           $ref: '#/components/schemas/createDeviceLiveToolsPing_201_response_callback'
@@ -72536,34 +72604,6 @@ components:
           $ref: '#/components/schemas/createDeviceLiveToolsPing_request_callback'
       required:
       - target
-      type: object
-    _organizations__organizationId__actionBatches_get_request_message:
-      properties:
-        id:
-          description: "ID of the action batch. Can be used to check the status of\
-            \ the action batch at /organizations/{organizationId}/actionBatches/{actionBatchId}"
-          type: string
-        organizationId:
-          description: ID of the organization this action batch belongs to
-          type: string
-        confirmed:
-          description: Flag describing whether the action should be previewed before
-            executing or not
-          type: boolean
-        synchronous:
-          description: Flag describing whether actions should run synchronously or
-            asynchronously
-          type: boolean
-        status:
-          $ref: '#/components/schemas/createOrganizationActionBatch_201_response_status'
-        actions:
-          description: A set of changes made as part of this action (<a href='https://developer.cisco.com/meraki/api/#/rest/guides/action-batches/'>more
-            details</a>)
-          items:
-            $ref: '#/components/schemas/createOrganizationActionBatch_201_response_actions_inner'
-          type: array
-      required:
-      - actions
       type: object
     getOrganizationDevicesStatuses_200_response_inner_components_powerSupplies_inner_poe:
       description: PoE info of the power supply
