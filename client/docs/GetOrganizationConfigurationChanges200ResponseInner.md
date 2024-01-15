@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **AdminId** | Pointer to **string** | The ID of the admin who made the configuration change. This attribute may be null. | [optional] 
 **NetworkName** | Pointer to **string** | The name of the network that the configuration change was applied to. This attribute may be null. | [optional] 
 **NetworkId** | Pointer to **string** | The ID of the network that the configuration change was applied to. This attribute may be null. | [optional] 
+**NetworkUrl** | Pointer to **string** | The url of the network that the configuration change was applied to. This attribute may be null. | [optional] 
 **SsidName** | Pointer to **string** | The name of the ssid that the configuration change was applied to, if applicable. This attribute may be null. | [optional] 
 **SsidNumber** | Pointer to **int32** | The ssid number that the configuration change was applied to, if applicable. This attribute may be null. | [optional] 
 **Page** | Pointer to **string** | The name of the Meraki Dashboard page on which the configuration change was made. | [optional] 
@@ -185,6 +186,31 @@ SetNetworkId sets NetworkId field to given value.
 `func (o *GetOrganizationConfigurationChanges200ResponseInner) HasNetworkId() bool`
 
 HasNetworkId returns a boolean if a field has been set.
+
+### GetNetworkUrl
+
+`func (o *GetOrganizationConfigurationChanges200ResponseInner) GetNetworkUrl() string`
+
+GetNetworkUrl returns the NetworkUrl field if non-nil, zero value otherwise.
+
+### GetNetworkUrlOk
+
+`func (o *GetOrganizationConfigurationChanges200ResponseInner) GetNetworkUrlOk() (*string, bool)`
+
+GetNetworkUrlOk returns a tuple with the NetworkUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkUrl
+
+`func (o *GetOrganizationConfigurationChanges200ResponseInner) SetNetworkUrl(v string)`
+
+SetNetworkUrl sets NetworkUrl field to given value.
+
+### HasNetworkUrl
+
+`func (o *GetOrganizationConfigurationChanges200ResponseInner) HasNetworkUrl() bool`
+
+HasNetworkUrl returns a boolean if a field has been set.
 
 ### GetSsidName
 

@@ -2964,7 +2964,7 @@ Name | Type | Description  | Notes
 
 ## GetOrganizationActionBatches
 
-> []map[string]interface{} GetOrganizationActionBatches(ctx, organizationId).Status(status).Execute()
+> []GetOrganizationActionBatches200ResponseInner GetOrganizationActionBatches(ctx, organizationId).Status(status).Execute()
 
 Return the list of action batches in the organization
 
@@ -2994,7 +2994,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.GetOrganizationActionBatches``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrganizationActionBatches`: []map[string]interface{}
+    // response from `GetOrganizationActionBatches`: []GetOrganizationActionBatches200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.GetOrganizationActionBatches`: %v\n", resp)
 }
 ```
@@ -3019,7 +3019,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[]map[string]interface{}**
+[**[]GetOrganizationActionBatches200ResponseInner**](GetOrganizationActionBatches200ResponseInner.md)
 
 ### Authorization
 
@@ -4917,9 +4917,9 @@ func main() {
     perPage := int32(56) // int32 | The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000. (optional)
     startingAfter := "startingAfter_example" // string | A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
     endingBefore := "endingBefore_example" // string | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. (optional)
-    t0 := "t0_example" // string | The beginning of the timespan for the data. The maximum lookback period is 14 days from today. (optional)
-    t1 := "t1_example" // string | The end of the timespan for the data. t1 can be a maximum of 14 days after t0. (optional)
-    timespan := float32(3.4) // float32 | The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 14 days. The default is 1 day. (optional)
+    t0 := "t0_example" // string | The beginning of the timespan for the data. The maximum lookback period is 31 days from today. (optional)
+    t1 := "t1_example" // string | The end of the timespan for the data. t1 can be a maximum of 31 days after t0. (optional)
+    timespan := float32(3.4) // float32 | The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 1 day. (optional)
     serials := []string{"Inner_example"} // []string | Optional parameter to filter device availabilities history by device serial numbers (optional)
     productTypes := []string{"Inner_example"} // []string | Optional parameter to filter device availabilities history by device product types (optional)
     networkIds := []string{"Inner_example"} // []string | Optional parameter to filter device availabilities history by network IDs (optional)
@@ -4957,9 +4957,9 @@ Name | Type | Description  | Notes
  **perPage** | **int32** | The number of entries per page returned. Acceptable range is 3 - 1000. Default is 1000. | 
  **startingAfter** | **string** | A token used by the server to indicate the start of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. | 
  **endingBefore** | **string** | A token used by the server to indicate the end of the page. Often this is a timestamp or an ID but it is not limited to those. This parameter should not be defined by client applications. The link for the first, last, prev, or next page in the HTTP Link header should define it. | 
- **t0** | **string** | The beginning of the timespan for the data. The maximum lookback period is 14 days from today. | 
- **t1** | **string** | The end of the timespan for the data. t1 can be a maximum of 14 days after t0. | 
- **timespan** | **float32** | The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 14 days. The default is 1 day. | 
+ **t0** | **string** | The beginning of the timespan for the data. The maximum lookback period is 31 days from today. | 
+ **t1** | **string** | The end of the timespan for the data. t1 can be a maximum of 31 days after t0. | 
+ **timespan** | **float32** | The timespan for which the information will be fetched. If specifying timespan, do not specify parameters t0 and t1. The value must be in seconds and be less than or equal to 31 days. The default is 1 day. | 
  **serials** | **[]string** | Optional parameter to filter device availabilities history by device serial numbers | 
  **productTypes** | **[]string** | Optional parameter to filter device availabilities history by device product types | 
  **networkIds** | **[]string** | Optional parameter to filter device availabilities history by network IDs | 
@@ -8676,7 +8676,7 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganizationActionBatch
 
-> map[string]interface{} UpdateOrganizationActionBatch(ctx, organizationId, actionBatchId).UpdateOrganizationActionBatchRequest(updateOrganizationActionBatchRequest).Execute()
+> GetOrganizationActionBatches200ResponseInner UpdateOrganizationActionBatch(ctx, organizationId, actionBatchId).UpdateOrganizationActionBatchRequest(updateOrganizationActionBatchRequest).Execute()
 
 Update an action batch
 
@@ -8707,7 +8707,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UpdateOrganizationActionBatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrganizationActionBatch`: map[string]interface{}
+    // response from `UpdateOrganizationActionBatch`: GetOrganizationActionBatches200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `OrganizationsApi.UpdateOrganizationActionBatch`: %v\n", resp)
 }
 ```
@@ -8734,7 +8734,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GetOrganizationActionBatches200ResponseInner**](GetOrganizationActionBatches200ResponseInner.md)
 
 ### Authorization
 

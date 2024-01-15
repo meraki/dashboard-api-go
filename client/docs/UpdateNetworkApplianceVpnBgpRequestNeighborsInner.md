@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **AllowTransit** | Pointer to **bool** | When this feature is on, the Meraki device will advertise routes learned from other Autonomous Systems, thereby allowing traffic between Autonomous Systems to transit this AS. When absent, it defaults to false. | [optional] 
 **EbgpHoldTimer** | **int32** | The eBGP hold timer in seconds for each neighbor. The eBGP hold timer must be an integer between 12 and 240. | 
 **EbgpMultihop** | **int32** | Configure this if the neighbor is not adjacent. The eBGP multi-hop must be an integer between 1 and 255. | 
-**SourceInterface** | Pointer to **string** | The output interface for peering with the remote BGP peer. Valid values are: &#39;wired0&#39;, &#39;wired1&#39; or &#39;vlan{VLAN ID}&#39;(e.g. &#39;vlan123&#39;). | [optional] 
+**SourceInterface** | Pointer to **string** | The output interface for peering with the remote BGP peer. Valid values are: &#39;wan1&#39;, &#39;wan2&#39; or &#39;vlan{VLAN ID}&#39;(e.g. &#39;vlan123&#39;). | [optional] 
 **NextHopIp** | Pointer to **string** | The IPv4 address of the remote BGP peer that will establish a TCP session with the local MX. | [optional] 
 **TtlSecurity** | Pointer to [**UpdateNetworkApplianceVpnBgpRequestNeighborsInnerTtlSecurity**](UpdateNetworkApplianceVpnBgpRequestNeighborsInnerTtlSecurity.md) |  | [optional] 
 **Authentication** | Pointer to [**UpdateNetworkApplianceVpnBgpRequestNeighborsInnerAuthentication**](UpdateNetworkApplianceVpnBgpRequestNeighborsInnerAuthentication.md) |  | [optional] 
